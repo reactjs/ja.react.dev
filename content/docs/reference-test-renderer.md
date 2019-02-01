@@ -17,7 +17,7 @@ const TestRenderer = require('react-test-renderer'); // ES5 with npm
 
 このパッケージは、DOM やネイティブのモバイル環境に依存せずに React コンポーネントをピュアな JavaScript オブジェクトにレンダーすることができる React レンダラを提供します。
 
-基本的には、このパッケージはプラットフォームにおいて、（DOM ツリーと同様の）ビューの階層構造のスナップショットの取得を容易にするものです。ビューの階層構造は、ブラウザや [jsdom](https://github.com/tmpvar/jsdom) を利用せずに React DOM もしくは React Native コンポーネントからレンダリングされます。
+本質的にこのパッケージは、ブラウザや [jsdom](https://github.com/tmpvar/jsdom) を利用しなくても、React DOM や React Native コンポーネントがレンダーする（DOM ツリーに似た）ビューの階層構造のスナップショットを容易に取得できるようにするためのものです。
 
 例：
 
