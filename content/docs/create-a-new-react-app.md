@@ -77,7 +77,7 @@ Gatsby の[オフィシャルガイド](https://www.gatsbyjs.org/docs/) およ�
 
 - **[Parcel](https://parceljs.org/)** は高速な、ゼロ設定のウェブアプリケーションバンドラで [React で動作](https://parceljs.org/recipes.html#react)します。
 
-- **[Razzle](https://github.com/jaredpalmer/razzle)** はその他の設定不要なサーバレンダリングフレームワークでありながら、Next.js よりの柔軟性があります。
+- **[Razzle](https://github.com/jaredpalmer/razzle)** は設定不要のサーバレンダリングフレームワークでありながら、Next.js よりも柔軟性があります。
 
 ## ゼロからツールチェインを作成する
 
