@@ -13,7 +13,7 @@ React および ReactDOM は CDN を介して利用することができます�
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 ```
 
-上記のバージョンは開発のためだけのものあり、本番環境には適していません。圧縮・最適化された本番バージョンの React は下記で利用できます。
+上記のバージョンは開発のためだけのものあり、本番環境には適していません。圧縮・最適化された本番バージョンの React は下記のリンクから利用できます。
 
 ```html
 <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
@@ -30,7 +30,7 @@ CDN を使って React の機能を提供する場合、[`crossorigin`](https://
 <script crossorigin src="..."></script>
 ```
 
-また、利用している CDN が `Access-Control-Allow-Origin: *` という HTTP ヘッダを設定していることを確認してください。
+利用している CDN が `Access-Control-Allow-Origin: *` という HTTP ヘッダを設定していることを確認することもお勧めします。
 
 ![Access-Control-Allow-Origin: *](../images/docs/cdn-cors-header.png)
 
