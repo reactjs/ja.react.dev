@@ -50,7 +50,6 @@ function WelcomeDialog() {
 `<FancyBorder>` JSX タグの内側のあらゆる要素は `FancyBorder` に `children` という props として渡されます。 `FancyBorder` は `<div>` の内側に `{props.children}` をレンダリングするので、渡された要素が出力されます。
 
 あまり一般的ではありませんが、複数の箇所に子要素を追加したいケースも考えられます。そのようなケースでは以下のように `children` の props の代わりに独自の props を作成して渡すことができます。
-この実装方法は他のライブラリで言うところの slot や yield のような考え方ですが、React のコンポーネントに props として渡せるものに制限はありません。
 
 ```js{5,8,18,21}
 function SplitPane(props) {
@@ -81,7 +80,8 @@ function App() {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/gwZOJp?editors=0010)
 
-`<Contacts />` や `<Chat />` のような React の要素はただのオブジェクトなので、他のあらゆるデータと同様に props として渡すことができます。
+`<Contacts />` や `<Chat />` のような React の要素はただのオブジェクトなので、他のあらゆるデータと同様に props として渡すことができます。このアプローチは他のライブラリで言うところの slot に似ていると感じるかもしれませんが、React のコンポーネントに props として渡せるものに制限はありません。
+
 
 ## 特化したコンポーネント (Specialization)
 
