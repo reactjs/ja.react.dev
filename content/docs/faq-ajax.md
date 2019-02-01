@@ -1,24 +1,24 @@
 ---
 id: faq-ajax
-title: AJAX and APIs
+title: AJAXとAPI
 permalink: docs/faq-ajax.html
 layout: docs
 category: FAQ
 ---
 
-### How can I make an AJAX call?
+### AJAXコールするには？
 
-You can use any AJAX library you like with React. Some popular ones are [Axios](https://github.com/axios/axios), [jQuery AJAX](https://api.jquery.com/jQuery.ajax/), and the browser built-in [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
+任意のAJAXライブラリをReactと共に利用可能です。人気のあるものとしては、[Axios](https://github.com/axios/axios)、[jQuery AJAX](https://api.jquery.com/jQuery.ajax/)、ブラウザ組み込みの [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)などがあります。
 
-### Where in the component lifecycle should I make an AJAX call?
+### コンポーネントのどのライフサイクルでAJAXコールすべきか？
 
-You should populate data with AJAX calls in the [`componentDidMount`](/docs/react-component.html#mounting) lifecycle method. This is so you can use `setState` to update your component when the data is retrieved.
+AJAXコールによるデータ取得は[`componentDidMount`](/docs/react-component.html#mounting)で行うと良いでしょう。データ取得後に `setState` でコンポーネントを更新できるようにするためです。
 
-### Example: Using AJAX results to set local state
+### 例：AJAXの通信結果をローカルstateで利用する
 
-The component below demonstrates how to make an AJAX call in `componentDidMount` to populate local component state. 
+下記のコンポーネントは、 `componentDidMount` でAJAXコールして得られたデータをローカルコンポーネントのstateに流し込んでいます。 
 
-The example API returns a JSON object like this:
+サンプルAPIが返すJSONオブジェクトはこのようになります：
 
 ```
 {
@@ -50,9 +50,8 @@ class MyComponent extends React.Component {
             items: result.items
           });
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
+        // 補足：コンポーネント内のバグによる例外を隠蔽しないためにも
+        // catch()ブロックの代わりにここでエラーハンドリングすることが重要です
         (error) => {
           this.setState({
             isLoaded: true,
