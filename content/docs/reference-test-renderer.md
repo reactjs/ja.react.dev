@@ -15,7 +15,7 @@ const TestRenderer = require('react-test-renderer'); // ES5 with npm
 
 ## 概要
 
-このパッケージは React レンダラを提供します。レンダラは React コンポーネントをピュア JavaScript オブジェクトにレンダリングするのに使用することができ、DOM に依存したりネイティブのモバイル環境には依存しません。
+このパッケージは、DOM やネイティブのモバイル環境に依存せずに React コンポーネントをピュアな JavaScript オブジェクトにレンダーすることができる React レンダラを提供します。
 
 基本的には、このパッケージはプラットフォームにおいて、（DOM ツリーと同様の）ビューの階層構造のスナップショットの取得を容易にするものです。ビューの階層構造は、ブラウザや [jsdom](https://github.com/tmpvar/jsdom) を利用せずに React DOM もしくは React Native コンポーネントからレンダリングされます。
 
@@ -40,7 +40,7 @@ console.log(testRenderer.toJSON());
 
 JSON ツリーを自動的にファイルに保存し、変更が起こったかをテストで確認するには、Jest のスナップショットテスト機能が利用できます。[詳細について知る](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html)
 
-出力を横断して特定のノードを検索し、それらに対してアサーションを行うこともできます。
+出力を走査して特定のノードを検索し、それらに対してアサーションを行うこともできます。
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
@@ -102,7 +102,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 TestRenderer.create(element, options);
 ```
 
-渡された React 要素から `TestRenderer` のインスタンスを作成します。実際の DOM は使用しませんが、コンポーネントを完全な形でメモリにレンダリングするので、アサーションを行うことができます。返されたインスタンスは、次のメソッドとプロパティを持ちます。
+渡された React 要素から `TestRenderer` のインスタンスを作成します。実際の DOM は使用しませんが、コンポーネントを完全な形でメモリにレンダーするので、アサーションを行うことができます。返されたインスタンスは、次のメソッドとプロパティを持ちます。
 
 ### `testRenderer.toJSON()`
 
@@ -110,7 +110,7 @@ TestRenderer.create(element, options);
 testRenderer.toJSON()
 ```
 
-レンダリングされたツリーを表すオブジェクトを返します。このツリーは `<div>` もしくは `<View>` のようなプラットフォーム固有のノードとそのプロパティを含みますが、ユーザー定義のコンポーネントは含まれません。[スナップショットテスト](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest)に便利です。
+レンダーされたツリーを表すオブジェクトを返します。このツリーは `<div>` もしくは `<View>` のようなプラットフォーム固有のノードとそのプロパティを含みますが、ユーザー定義のコンポーネントは含まれません。[スナップショットテスト](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest)に便利です。
 
 ### `testRenderer.toTree()`
 
@@ -118,7 +118,7 @@ testRenderer.toJSON()
 testRenderer.toTree()
 ```
 
-レンダリングされたツリーを表すオブジェクトを返します。`toJSON()` とは異なり、より詳細な内容を含んでいます。ユーザー定義のコンポーネントも含みます。テストレンダラの最上位に自作のアサーションライブラリを作成している場合以外は、このメソッドが必要となることはないでしょう。
+レンダリングされたツリーを表すオブジェクトを返します。`toJSON()` とは異なり、結果はより詳細なものであり、ユーザー定義のコンポーネントも含んでいます。テストレンダラを利用して自作のアサーションライブラリを作成している場合以外は、恐らくこのメソッドが必要となることはないでしょう。
 
 ### `testRenderer.update()`
 
@@ -126,7 +126,7 @@ testRenderer.toTree()
 testRenderer.update(element)
 ```
 
-メモリ上のツリーを新規のルート要素で再レンダリングします。ルートでの React の更新をシミュレートします。新しい要素が以前のものと同じ型とキーを持つ場合は、ツリーが更新されます。それ以外の場合は新しいツリーを再マウントします。
+メモリ上のツリーを新規のルート要素で再レンダーします。ルートでの React の更新をシミュレートします。新しい要素が以前の要素と同じ型と key を持つ場合は、ツリーは更新されます。それ以外の場合は新しいツリーを再マウントします。
 
 ### `testRenderer.unmount()`
 
@@ -142,7 +142,7 @@ testRenderer.unmount()
 testRenderer.getInstance()
 ```
 
-可能な場合、ルート要素と対応したインスタンスを返します。関数コンポーネントはインスタンスを持たないため、ルート要素が関数コンポーネントの場合、このメソッドを使用することはできません。
+存在する場合、ルート要素と対応したインスタンスを返します。関数コンポーネントはインスタンスを持たないため、ルート要素が関数コンポーネントの場合、このメソッドはうまく動作しません。
 
 ### `testRenderer.root`
 
@@ -150,7 +150,7 @@ testRenderer.getInstance()
 testRenderer.root
 ```
 
-ツリー上の特定のノードに対してアサーションを行う際に役立つ、ルート「テストインスタンス」を返します。ルート「テストインスタンス」は、配下の他のテストインスタンスを検索する際に使用することができます。
+ツリー上の特定のノードに対してアサーションを行う際に役立つ、ルート「テストインスタンス」を返します。これは、配下の他の「テストインスタンス」を検索する際に使用することができます。
 
 ### `testInstance.find()`
 
@@ -158,7 +158,7 @@ testRenderer.root
 testInstance.find(test)
 ```
 
-`test(testInstance)` が `true` を返すテストインスタンスの、単一の子テストインスタンスを検索します。 `test(testInstance)` がテストインスタンスに対して 1 つも `true` を返さない場合は、エラーがスローされます。
+`test(testInstance)` が `true` を返す単一の子テストインスタンスを検索します。もし `test(testInstance)` に対して `true` を返すテストインスタンスの数がちょうど 1 でない場合は、エラーがスローされます。
 
 ### `testInstance.findByType()`
 
@@ -166,7 +166,7 @@ testInstance.find(test)
 testInstance.findByType(type)
 ```
 
-与えられた `type` を持つ単一の子テストインスタンスを検索します。与えられた `type` を持つテストインスタンスが 1 つもない場合は、エラーがスローされます。
+与えられた `type` を持つ単一の子テストインスタンスを検索します。もし与えられた `type` を持つテストインスタンスの数がちょうど 1 でない場合、エラーがスローされます。
 
 ### `testInstance.findByProps()`
 
@@ -174,7 +174,7 @@ testInstance.findByType(type)
 testInstance.findByProps(props)
 ```
 
-与えられた `props` を持つ単一の子テストインスタンスを検索します。与えられた `props` を持つテストインスタンスが 1 つもない場合は、エラーがスローされます。
+与えられた `props` を持つ単一の子テストインスタンスを検索します。もし与えられた `props` を持つテストインスタンスの数がちょうど 1 でない場合、エラーがスローされます。
 
 ### `testInstance.findAll()`
 
@@ -190,7 +190,7 @@ testInstance.findAll(test)
 testInstance.findAllByType(type)
 ```
 
-与えられた `type` を持つテストインスタンスを全て検索します。
+与えられた `type` を持つ全ての子テストインスタンスを検索します。
 
 ### `testInstance.findAllByProps()`
 
@@ -198,7 +198,7 @@ testInstance.findAllByType(type)
 testInstance.findAllByProps(props)
 ```
 
-与えられた `props` を持つテストインスタンスを全て検索します。
+与えられた `props` を持つ全ての子テストインスタンスを検索します。
 
 ### `testInstance.instance`
 
@@ -206,7 +206,7 @@ testInstance.findAllByProps(props)
 testInstance.instance
 ```
 
-当該テストインスタンスに対応するコンポーネントのインスタンスです。関数コンポーネントはインスタンスを持たないため、クラスコンポーネントでのみ使用することができます。 与えられたコンポーネント内での this の値と一致します。
+当該テストインスタンスに対応するコンポーネントのインスタンスです。関数コンポーネントはインスタンスを持たないため、クラスコンポーネントでのみ使用することができます。与えられたコンポーネント内での `this` の値と一致します。
 
 ### `testInstance.type`
 
@@ -214,7 +214,7 @@ testInstance.instance
 testInstance.type
 ```
 
-当該テストインスタンスに対応するコンポーネントのタイプです。例えば、`<Button />` コンポーネントは `Button` タイプを持っています。
+当該テストインスタンスに対応するコンポーネントの型です。例えば、`<Button />` コンポーネントは `Button` 型を持っています。
 
 ### `testInstance.props`
 
@@ -222,7 +222,7 @@ testInstance.type
 testInstance.props
 ```
 
-当該テストインスタンスに対応するコンポーネントの props です。 例えば、`<Button size="small" />` コンポーネントは `{size: 'small'}` を props として持っています。
+当該テストインスタンスに対応するコンポーネントの props です。例えば、`<Button size="small" />` コンポーネントは `{size: 'small'}` を props として持っています。
 
 ### `testInstance.parent`
 
