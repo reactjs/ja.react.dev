@@ -1,6 +1,6 @@
 ---
 id: thinking-in-react
-title: Thinking in React
+title: Reactの流儀
 permalink: docs/thinking-in-react.html
 redirect_from:
   - 'blog/2013/11/05/thinking-in-react.html'
@@ -8,9 +8,9 @@ redirect_from:
 prev: composition-vs-inheritance.html
 ---
 
-React is, in our opinion, the premier way to build big, fast Web apps with JavaScript. It has scaled very well for us at Facebook and Instagram.
+巨大で軽快なWebアプリを開発する場合に、React は最高の手段であると、私たちは考えています。Facebook や Instagram といった私たちのサービスにおいても、とてもよくスケールしています。
 
-One of the many great parts of React is how it makes you think about apps as you build them. In this document, we'll walk you through the thought process of building a searchable product data table using React.
+React には素晴らしい特徴がいくつもありますが、そのうちのひとつとして、アプリを組み立てる際には、そのアプリのことを考えていられる、というものがあります。本ドキュメントでは、検索可能な商品データ表を、Reactで作っていく過程を通してお見せします。
 
 ## Start With A Mock
 
