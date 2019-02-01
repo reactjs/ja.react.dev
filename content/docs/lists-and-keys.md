@@ -139,7 +139,7 @@ key が意味を持つのは、それをとり囲んでいる配列の側の文�
 
 例えば、`ListItem` コンポーネントを抽出する際には、key は `ListItem` 自体の `<li>` 要素に書くのではなく、配列内の `<ListItem />` 要素に残しておくべきです。
 
-**例: 不適切な key の使用法**
+**例： 不適切な key の使用法**
 
 ```javascript{4,5,14,15}
 function ListItem(props) {
@@ -172,7 +172,7 @@ ReactDOM.render(
 );
 ```
 
-**例: 正しい key の使用法**
+**例： 正しい key の使用法**
 
 ```javascript{2,3,9,10}
 function ListItem(props) {
