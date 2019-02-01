@@ -62,7 +62,7 @@ function MyComponent() {
 
 >注意
 >
->Some examples in the documentation use `style` for convenience, but **using the `style` attribute as the primary means of styling elements is generally not recommended.** In most cases, [`className`](#classname) should be used to reference classes defined in an external CSS stylesheet. `style` is most often used in React applications to add dynamically-computed styles at render time. See also [FAQ: Styling and CSS](/docs/faq-styling.html).
+>このドキュメンテーションにあるいくつかの例では `style` を便宜上使用していますが、 **`style` 属性を要素のスタイリングの手段として使うことは一般的に推奨されません。** 多くの場合、外部の CSS スタイルシートに定義された CSS クラスを参照するために [`className`](#classname) が使われます。React アプリケーションの中では、`style` は動的に計算されたスタイルをレンダリング時に追加するために最もよく使われます。[FAQ: Styling and CSS](/docs/faq-styling.html) を参照してください。
 
 `style` 属性は CSS 文字列ではなく、キャメルケースのプロパティを持った JavaScript オブジェクトを受け取ります。これは DOM の `style` JavaScript プロパティとの一貫性があり、より効率的で、XSS 攻撃の対象となるセキュリティホールを防ぎます。例えば：
 
@@ -92,7 +92,7 @@ function ComponentWithTransition() {
 
 style のキー名のキャメルケースは JavaScript から DOM ノードのプロパティにアクセスする場合と一致するようになっています（例えば `node.style.backgroundImage` など）。[`ms` 以外](http://www.andismith.com/blog/2012/02/modernizr-prefixed/)のベンダープレフィックスは先頭を大文字にしてください。`WebkitTransition` に大文字 "W" があるのはこのためです。
 
-React will automatically append a "px" suffix to certain numeric inline style properties. If you want to use units other than "px", specify the value as a string with the desired unit. For example:
+React はインラインスタイルでの特定の数値プロパティに対して自動的に "px" サフィックスを付け加えます。"px" 以外の単位を使用したい場合は、その単位を付け加えた文字列で値を指定してください。例えば：
 
 ```js
 // Result style: '10px'
@@ -114,9 +114,9 @@ React will automatically append a "px" suffix to certain numeric inline style pr
 
 ### suppressHydrationWarning
 
-If you use server-side React rendering, normally there is a warning when the server and the client render different content. However, in some rare cases, it is very hard or impossible to guarantee an exact match. For example, timestamps are expected to differ on the server and on the client.
+サーバサイドで React レンダリングを使用している場合、サーバとクライアントが違う内容をレンダリングする時に警告が通常は出力されます。しかし、まれに両者のレンダリング内容の完全な一致を保証することが非常に困難あるいは不可能である場合があります。例えば、サーバとクライアントでは、タイムスタンプは異なることが予想されます。
 
-If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. You can read more about hydration in the [`ReactDOM.hydrate()` documentation](/docs/react-dom.html#hydrate).
+`suppressHydrationWarning` を `true` に設定した場合、その要素の属性と内容の、サーバとクライアントでの差異についての警告を React は出力しません。この機能は1レベルの深さ（設定した対象の要素）でのみ動作し、例えるなら脱出ハッチのようにやむを得ない場合に使われることが想定されています。そのため、むやみに使わないようにしてください。この "hydration" の詳細については [`ReactDOM.hydrate()` のドキュメンテーション](/docs/react-dom.html#hydrate)で読むことができます。
 
 ### value
 
