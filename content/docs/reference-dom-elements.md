@@ -24,11 +24,11 @@ React と HTML とで挙動が異なる属性がいくつか存在します。
 
 ### checked
 
-`checked` 属性は `checkbox` または `radio` 型の `<input>` コンポーネントでサポートされています。この属性はコンポーネントがチェックされているかを設定します。制御されたコンポーネントを構築する際に便利です。`defaultChecked` は非制御 (uncontrolled) コンポーネントにおける等価な属性で、最初にマウントされた時にチェックされるかを設定します。
+`checked` 属性は `checkbox` または `radio` 型の `<input>` コンポーネントでサポートされています。この属性はコンポーネントがチェックされているかを設定します。制御されたコンポーネント (controlled component) を構築する際に便利です。`defaultChecked` は非制御コンポーネント (uncontrolled component) における等価な属性で、最初にマウントされた時にチェックされるかを設定します。
 
 ### className
 
-CSS クラスを指定する際は、`className` 属性を使用してください。これは `<div>` 、`<a>` およびその他あらゆる標準 DOM 要素と SVG 要素に対して適用されます。
+CSS クラスを指定する際は、`className` 属性を使用してください。これは `<div>`、`<a>` およびその他あらゆる標準 DOM 要素と SVG 要素に対して適用されます。
 
 React を（一般的ではありませんが）Web Componentsと使用する場合、代わりに class 属性を使用してください。
 
@@ -106,7 +106,7 @@ React will automatically append a "px" suffix to certain numeric inline style pr
 </div>
 ```
 
-全てのスタイルプロパティがピクセルの文字列に変換されるわけではありません。特定のものは単位がないままです（例えば `zoom`、 `order`、 `flex`）。単位のないプロパティの完全なリストは[こちら](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59)で確認できます。
+全てのスタイルプロパティがピクセルの文字列に変換されるわけではありません。特定のものは単位がないままです（例えば `zoom`、`order`、`flex`）。単位のないプロパティの完全なリストは[こちら](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59)で確認できます。
 
 ### suppressContentEditableWarning
 
@@ -120,13 +120,13 @@ If you set `suppressHydrationWarning` to `true`, React will not warn you about m
 
 ### value
 
-`value` 属性は `<input>` コンポーネントと `<textarea>` コンポーネントでサポートされています。コンポーネントの値を設定するのに使用できます。制御されたコンポーネントを構築する際に便利です。`defaultValue` は制御されないコンポーネントにおける等価な属性で、最初にマウントされた時の値を設定します。
+`value` 属性は `<input>` コンポーネントと `<textarea>` コンポーネントでサポートされています。コンポーネントの値を設定するのに使用できます。制御されたコンポーネントを構築する際に便利です。`defaultValue` は非制御コンポーネントにおける等価な属性で、最初にマウントされた時の値を設定します。
 
 ## サポートされている全ての HTML 属性
 
 React 16 より、任意の標準[もしくは独自の](/blog/2017/09/08/dom-attributes-in-react-16.html) DOM 属性が完全にサポートされます。
 
-React は常にJavaScript を中心とした API を DOM に提供してきました。 React コンポーネントは多くの場合で独自および DOM に関連したプロパティを受け取り、React は DOM API と同様に `camelCase` 規則を用います：
+React は常に JavaScript を中心とした API を DOM に提供してきました。 React コンポーネントは多くの場合で独自および DOM に関連したプロパティを受け取り、React は DOM API と同様に `camelCase` 規則を用います：
 
 ```js
 <div tabIndex="-1" />      // Just like node.tabIndex DOM API
@@ -136,7 +136,7 @@ React は常にJavaScript を中心とした API を DOM に提供してきま�
 
 これらの属性は、上記で述べた特別なケースを除き、対応する HTML 属性と同じように動作します。
 
-React でサポートされているDOM 属性の一部としては：
+React でサポートされている DOM 属性の一部としては：
 
 ```
 accept acceptCharset accessKey action allowFullScreen alt async autoComplete
