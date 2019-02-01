@@ -1,14 +1,14 @@
 ---
 id: javascript-environment-requirements
-title: JavaScript Environment Requirements
+title: JavaScript 環境の要件
 layout: docs
 category: Reference
 permalink: docs/javascript-environment-requirements.html
 ---
 
-React 16 depends on the collection types [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) and [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set). If you support older browsers and devices which may not yet provide these natively (e.g. IE < 11) or which have non-compliant implementations (e.g. IE 11), consider including a global polyfill in your bundled application, such as [core-js](https://github.com/zloirock/core-js) or [babel-polyfill](https://babeljs.io/docs/usage/polyfill/).
+React 16 はコレクション型 [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) および [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) に依存しています。（例えば IE 11 以前など）これらのプロパティをネイティブに提供しない、または非準拠の実装をしている古いブラウザやデバイスをサポートする場合は、[core-js](https://github.com/zloirock/core-js) もしくは [babel-polyfill](https://babeljs.io/docs/en/babel-polyfill/) などにより、グローバル環境のポリフィルをバンドルしたアプリケーションに含めることを検討してください。
 
-A polyfilled environment for React 16 using core-js to support older browsers might look like:
+古いブラウザをサポートするために、core-js を利用して React 16 向けにポリフィルした環境は次のようになります。
 
 ```js
 import 'core-js/es6/map';
@@ -23,8 +23,8 @@ ReactDOM.render(
 );
 ```
 
-React also depends on `requestAnimationFrame` (even in test environments).  
-You can use the [raf](https://www.npmjs.com/package/raf) package to shim `requestAnimationFrame`:
+React は（テスト環境であっても）`requestAnimationFrame` に依存します。
+`requestAnimationFrame` をシミュレートするには [raf](https://www.npmjs.com/package/raf) を使用することができます。
 
 ```js
 import 'raf/polyfill';
