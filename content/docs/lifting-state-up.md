@@ -169,17 +169,14 @@ class TemperatureInput extends React.Component {
     // ...  
 ```
 
-However, we want these two inputs to be in sync with each other. When we update the Celsius input, the Fahrenheit input should reflect the converted temperature, and vice versa.
 しかし、2つの入力フィールドはお互いに同期されていて欲しいです。摂氏の入力フィールドを更新したら、華氏の入力フィールドも華氏に変換された温度で反映されて欲しいですし、逆も同じです。
 
 React では、state の共有はその state を、必要とするコンポーネントの直近の親コンポーネントに移動することによって実現します。 これを "state のリフトアップ (lifting state up)" と呼びます。 `TemperatureInput` からローカルの state を削除して `Calculator` に移動しましょう。
 
-If the `Calculator` owns the shared state, it becomes the "source of truth" for the current temperature in both inputs. It can instruct them both to have values that are consistent with each other. Since the props of both `TemperatureInput` components are coming from the same parent `Calculator` component, the two inputs will always be in sync.
 `Calculator` が共有の state を保持すれば、それが両方の入力における現在の温度の "信頼できる情報源 (source of truth)" となります。 それによって、両方に対して相互に一貫性のある値を持たせることができるようになります。 両方の `TemperatureInput` コンポーネントの props は同じ親コンポーネント `Calculator` から与えられるので、2つの入力は常に同期されているようになります。
 
 それでは、どのように動作するのか1つずつ見ていきましょう。
 
-First, we will replace `this.state.temperature` with `this.props.temperature` in the `TemperatureInput` component. For now, let's pretend `this.props.temperature` already exists, although we will need to pass it from the `Calculator` in the future:
 まず、`TemperatureInput` コンポーネントの `this.state.temperature` を `this.props.temperature` に置き換えます。 とりあえず、`this.props.temperature` は既にあるものだとしておきましょう。後でこれは `Calculator` から渡すようにします：
 
 ```js{3}
