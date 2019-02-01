@@ -38,7 +38,7 @@ next: complementary-tools-zh-CN.html
 
 ### CodeWinds
 
-[Pete Hunt](http://www.petehunt.net/) 与 [Jeff Barczewski](http://jeff.barczewski.com/) 在 CodeWinds Episode 4 上关于 React 的谈话。
+[Pete Hunt](http://www.petehunt.net/) 与 [Jeff Barczewski](http://jeff.barczewski.com/) 在 CodeWinds Episode 4 上关于 React 的谈话.
 <figure><a href="http://codewinds.com/4"><img src="../images/docs/codewinds-004.png"></a></figure>
 
 <table width="100%"><tr><td>
@@ -71,7 +71,7 @@ next: complementary-tools-zh-CN.html
 
 ### JavaScript Jabber
 
-[Pete Hunt](http://www.petehunt.net/) 和 [Jordan Walke](https://github.com/jordwalke) 在 JavaScript Jabber 73 上关于React的谈话。
+[Pete Hunt](http://www.petehunt.net/) 和 [Jordan Walke](https://github.com/jordwalke) 在 JavaScript Jabber 73 上关于React的谈话.
 <figure><a href="http://javascriptjabber.com/073-jsj-react-with-pete-hunt-and-jordan-walke/#content"><img src="../images/docs/javascript-jabber.png"></a></figure>
 
 <table width="100%"><tr><td>
@@ -108,7 +108,7 @@ next: complementary-tools-zh-CN.html
 ### Backbone + React + Middleman Screencast
 <iframe width="650" height="488" src="https://www.youtube-nocookie.com/embed/iul1fWHVU6A" frameborder="0" allowfullscreen></iframe>
 
-Backbone 是一个在用React实现 REST API 接口的极好方法。这个屏博展示了用 [Backbone-React-Component](https://github.com/magalhas/backbone-react-component)如何整合两者。 Middleman 是在本例中使用的框架但很容易被替换成其他框架。对此可支持的template可以在[这里](https://github.com/jbhatab/middleman-backbone-react-template) 找到。 -- [Open Minded Innovations](http://www.openmindedinnovations.com/)
+Backbone 是一个在用React实现 REST API 接口的极好方法。这个屏博展示了用 [Backbone-React-Component](https://github.com/magalhas/backbone-react-component)如何整合两者. Middleman 是在本例中使用的框架但很容易被替换成其他框架。对此可支持的template可以在[这里](https://github.com/jbhatab/middleman-backbone-react-template) 找到. -- [Open Minded Innovations](http://www.openmindedinnovations.com/)
 
 * * *
 
@@ -160,7 +160,7 @@ Facebook 工程师 [Bill Fisher](https://twitter.com/fisherwebdev) 和 [Jing Che
 
 <iframe src="https://player.vimeo.com/video/108488724" width="100%" height="365" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
-来自 [Andres Suarez](https://github.com/zertosh) 的演练，关于 [SoundCloud](https://developers.soundcloud.com/blog/) 如何使用 React 和 Flux 在服务器端渲染。
+来自 [Andres Suarez](https://github.com/zertosh) 的演练，关于 [SoundCloud](https://developers.soundcloud.com/blog/) 如何使用 React 和 Flux 在服务器端渲染.
 
 [幻灯片和示例代码](https://github.com/zertosh/ssr-demo-kit)
 
