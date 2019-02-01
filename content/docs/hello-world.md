@@ -6,7 +6,7 @@ prev: cdn-links.html
 next: introducing-jsx.html
 ---
 
-React のいちばん短い例はこのようになります:
+React のいちばん短い例はこのようになります：
 
 ```js
 ReactDOM.render(

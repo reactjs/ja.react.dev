@@ -63,7 +63,7 @@ Emanuele shared this awesome demo video with us:
 
 
 ### Table Sorter
-[Table Sorter](https://bgerm.github.io/react-table-sorter-demo/) by [bgerm](https://github.com/bgerm) [[source](https://github.com/bgerm/react-table-sorter-demo)] is another helpful React component.
+[Table Sorter](https://bgerm.github.io/react-table-sorter-demo/) by [bgerm](https://github.com/bgerm)[[source](https://github.com/bgerm/react-table-sorter-demo)]is another helpful React component.
 
 ### Static-search
 
