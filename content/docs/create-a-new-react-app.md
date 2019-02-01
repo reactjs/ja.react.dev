@@ -63,7 +63,7 @@ Next.js の[オフィシャルガイド](https://nextjs.org/learn/)を参照し�
 
 ### Gatsby
 
-[Gatsby](https://www.gatsbyjs.org/) は React で**静的なウェブサイト**を作成するのに最も良い方法です。React コンポーネントを使用しながらも、事前にレンダーされた HTML と CSS を出力して最速のロード時間を保証します。
+[Gatsby](https://www.gatsbyjs.org/) は React で**静的なウェブサイト**を作成するのに最も良い方法です。React コンポーネントを使用しながらも、事前レンダーされた HTML と CSS を出力することで最速のロード時間を保証します。
 
 Gatsby の[オフィシャルガイド](https://www.gatsbyjs.org/docs/) および [スターターキットのギャラリー](https://www.gatsbyjs.org/docs/gatsby-starters/)を参照してください。
 
