@@ -154,7 +154,7 @@ by [Stoyan Stefanov](http://www.phpied.com/)
 
 <iframe width="650" height="366" src="https://www.youtube-nocookie.com/embed/i__969noyAM" frameborder="0" allowfullscreen></iframe>
 
-Facebook 개발자 [Bill Fisher](https://twitter.com/fisherwebdev)와 [Jing Chen](https://twitter.com/jingc)가 Flux 와 React 에 대해서 이야기합니다. 그리고 어떻게 단일 방향의 자료흐름을 사용하는 어플리케이션 구조가 방대한 코드를 정리하는지에 대해서 이야기합니다."
+Facebook 개발자 [Bill Fisher](https://twitter.com/fisherwebdev)와 [Jing Chen](https://twitter.com/jingc)가 Flux 와 React 에 대해서 이야기합니다. 그리고 어떻게 단일 방향의 자료흐름을 사용하는 어플리케이션 구조가 방대한 코드를 정리하는지에 대해서 이야기합니다.
 
 * * *
 
