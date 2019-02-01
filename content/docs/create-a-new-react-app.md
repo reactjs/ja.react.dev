@@ -30,7 +30,7 @@ next: cdn-links.html
 
 React チームは主に以下のソリューションを推奨します：
 
-- **React を学習中**か**新しい[単ページ](/docs/glossary.html#single-page-application)アプリを作成**するなら、[Create React App](#create-react-app) を利用してください
+- **React を学習中**か、**新しい[シングルページ](/docs/glossary.html#single-page-application)アプリケーションを作成したい**場合、[Create React App](#create-react-app) を利用してください
 - **Node.js でサーバサイドでレンダーされたウェブサイト**を構築するなら、[Next.js](#nextjs) を試してください
 - **静的なコンテンツ中心のウェブサイト**を構築するなら、[Gatsby](#gatsby) を試してください
 - **コンポーネントライブラリ**の構築や**既存のコードベースへの統合**をするなら、[その他の柔軟なツールチェイン](#more-flexible-toolchains)を試してください
