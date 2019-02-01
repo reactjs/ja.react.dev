@@ -69,7 +69,7 @@ Gatsby の[オフィシャルガイド](https://www.gatsbyjs.org/docs/) およ�
 
 ### その他の柔軟なツールチェイン
 
-次のツールチェインはより柔軟で選択肢があります。経験豊富なユーザにこれらを推奨します。
+以下のツールチェインはより大きな柔軟性や選択肢を提供します。経験豊富なユーザにこれらを推奨します。
 
 - **[Neutrino](https://neutrinojs.org/)** は [webpack](https://webpack.js.org/) のパワーとプリセットのシンプルさを兼ね備えています。プリセットには [React アプリ](https://neutrinojs.org/packages/react/) と [React コンポーネント](https://neutrinojs.org/packages/react-components/)用のものがあります。
 
