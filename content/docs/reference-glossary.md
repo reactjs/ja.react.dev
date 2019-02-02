@@ -78,7 +78,7 @@ class Welcome extends React.Component {
 }
 ```
 
-コンポーネントは機能的に異なる部品に分割でき、他のコンポーネントの中で使用することができます。コンポーネントは別のコンポーネント、配列、文字列および数字を返すことができます。役に立つ経験則として、UI の一部（Button、Panel、Avatar など）が複数回使われている場合、または UI の一部が独立できるほど複雑（App 、FeedStory、Comment など）な場合、それらは再利用可能なコンポーネントの有力な候補であるといえます。コンポーネント名は常に大文字で始める必要があります（`<wrapper/>` ではなく `<Wrapper/>` とすること）。コンポーネントのレンダーについての詳細は[このドキュメント](/docs/components-and-props.html#rendering-a-component)を参照してください。
+コンポーネントは機能的に異なる部品に分割でき、他のコンポーネントの中で使用することができます。コンポーネントは別のコンポーネント、配列、文字列および数値を返すことができます。役に立つ経験則として、UI の一部（Button、Panel、Avatar など）が複数回使われている場合、または UI の一部が独立できるほど複雑（App、FeedStory、Comment など）な場合、それらは再利用可能なコンポーネントの有力な候補であるといえます。コンポーネント名は常に大文字で始める必要があります（`<wrapper/>` ではなく `<Wrapper/>` とすること）。コンポーネントのレンダーについての詳細は[このドキュメント](/docs/components-and-props.html#rendering-a-component)を参照してください。
 
 ### [`props`](/docs/components-and-props.html)
 
