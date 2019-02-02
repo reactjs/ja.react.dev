@@ -9,37 +9,26 @@ permalink: docs/glossary.html
 
 ## シングルページアプリケーション（SPA）
 
-シングルページアプリケーションは、単一の HTML ページおよびアプリケーションの実行に必要な必要なアセット（JavaScript や CSS など）をロードするものです。
-あるページもしくはそれ以降のページとのやり取りにサーバーとの往復は必要なく、ページがリロードされないということでもあります。
+シングルページアプリケーションは、単一の HTML ページおよびアプリケーションの実行に必要な必要なアセット（JavaScript や CSS など）をロードするものです。あるページもしくはそれ以降のページとのやり取りにサーバーとの往復は必要なく、ページがリロードされないということでもあります。
 
-React でシングルページアプリケーションを構築することができますが、必須のものではありません。
-React は、既存のウェブサイトをよりインタラクティブにする、小さな部品を拡張するために使用することもできます。
-React で記述されたコードは、PHP などによりサーバーでレンダリングされたマークアップや、他のクライアントサイドのライブラリと問題なく共存できます。
-実際に、Facebook では React はそうやって利用されています。
+React でシングルページアプリケーションを構築することができますが、必須のものではありません。React は、既存のウェブサイトをよりインタラクティブにする、小さな部品を拡張するために使用することもできます。React で記述されたコードは、PHP などによりサーバーでレンダリングされたマークアップや、他のクライアントサイドのライブラリと問題なく共存できます。実際に、Facebook では React はそうやって利用されています。
 
 ## ES6、ES2015、ES2016 など
 
-これらの頭字語は全て、最新のECMAScript 言語の標準仕様に関するもので、JavaScript 言語はこれらの実装となります。
-ES6 バージョン（ES2015 とも呼ばれます）はそれ以前のバージョンから、多くのものが追加されています：アロー関数、クラス、テンプレートリテラル、let および const ステートメントなどです。
-特定のバージョンの詳細については[こちら](https://en.wikipedia.org/wiki/ECMAScript#Versions)で学ぶことができます。
+これらの頭字語は全て、最新のECMAScript 言語の標準仕様に関するもので、JavaScript 言語はこれらの実装となります。ES6 バージョン（ES2015 とも呼ばれます）はそれ以前のバージョンから、多くのものが追加されています：アロー関数、クラス、テンプレートリテラル、let および const ステートメントなどです。特定のバージョンの詳細については[こちら](https://en.wikipedia.org/wiki/ECMAScript#Versions)で学ぶことができます。
 
 ## コンパイラ
 
-JavaScript コンパイラは JavaScript コードを受け取って変換し、別のフォーマットの JavaScript コードを返します。
-最も一般的なユースケースはES6 構文を受け取り、古いブラウザーが解釈できる構文に変換することです。
-Babel は React で最も一般的なコンパイラです。
+JavaScript コンパイラは JavaScript コードを受け取って変換し、別のフォーマットの JavaScript コードを返します。最も一般的なユースケースはES6 構文を受け取り、古いブラウザーが解釈できる構文に変換することです。Babel は React で最も一般的なコンパイラです。
 
 ## バンドラ
 
-バンドラは別々のモジュールとして記述された（しばしば数百個になる）JavaScript および CSS のコードを受け取り、ブラウザに最適化された数個のファイルに結合します。
-[Webpack](https://webpack.js.org/) や [Browserify](http://browserify.org/) を含む、いくつかのバンドラが React で一般的に利用されています。
+バンドラは別々のモジュールとして記述された（しばしば数百個になる）JavaScript および CSS のコードを受け取り、ブラウザに最適化された数個のファイルに結合します。[Webpack](https://webpack.js.org/) や [Browserify](http://browserify.org/) を含む、いくつかのバンドラが React で一般的に利用されています。
 
 ## パッケージマネージャ
 
-
 パッケージ マネージャーは、プロジェクト内の依存関係を管理するためのツールです。
-[npm](https://www.npmjs.com/) および [Yarn](http://yarnpkg.com/) の 2 つのパッケージマネージャが React アプリケーションで一般的に利用されています。
-どちらも同じ npm パッケージレジストリのクライアントです。
+[npm](https://www.npmjs.com/) および [Yarn](http://yarnpkg.com/) の 2 つのパッケージマネージャが React アプリケーションで一般的に利用されています。どちらも同じ npm パッケージレジストリのクライアントです。
 
 ## CDN
 
@@ -47,10 +36,7 @@ CDN は Content Delivery Network の略です。 CDN はキャッシュされた
 
 ## JSX
 
-JSX は javascript の拡張構文です。
-テンプレート言語に似ていますが、完全に JavaScript だけで動作します。
-JSX は、"React 要素" と呼ばれるプレーンな JavaScript オブジェクトを返す、 `React.createElement()` のコールにコンパイルされます。
-JSX の基本的な導入部分を学ぶには[こちらのドキュメントを参照してください](/docs/introducing-jsx.html)。また、さらに JSX について詳細に学ぶには[こちら](/docs/jsx-in-depth.html)を参照してください。
+JSX は javascript の拡張構文です。テンプレート言語に似ていますが、完全に JavaScript だけで動作します。JSX は、"React 要素" と呼ばれるプレーンな JavaScript オブジェクトを返す、 `React.createElement()` のコールにコンパイルされます。JSX の基本的な導入部分を学ぶには[こちらのドキュメントを参照してください](/docs/introducing-jsx.html)。また、さらに JSX について詳細に学ぶには[こちら](/docs/jsx-in-depth.html)を参照してください。
 
 React DOM は HTML の属性名の命名規則ではなく、キャメルケースを使用します。例えば、`tabindex` は、JSX では `tabIndex` となります。`class` も `className` と記述され、これは `class` が JavaScript において予約語であるためです：
 
@@ -96,12 +82,12 @@ class Welcome extends React.Component {
 
 ### [`props`](/docs/components-and-props.html)
 
-`props` are inputs to a React component. They are data passed down from a parent component to a child component.
+`props` は、 React コンポーネントへの入力です。親のコンポーネントから子コンポーネントへと渡されるデータを指します。
 
-Remember that `props` are readonly. They should not be modified in any way:
+`props` は読み取り専用です。どのような場合でもあっても、変更されるべきではありません：
 
 ```js
-// Wrong!
+// 間違った例
 props.number = 42;
 ```
 
@@ -109,7 +95,7 @@ props.number = 42;
 
 ### `props.children`
 
-`props.children` is available on every component. It contains the content between the opening and closing tags of a component. For example:
+`props.children` は全てのコンポーネントで使用可能です。これには、コンポーネントの開始タグと終了タグの間の全てのコンテンツが含まれています。例えば：
 
 ```js
 <Welcome>Hello world!</Welcome>
