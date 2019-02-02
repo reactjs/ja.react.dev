@@ -153,10 +153,9 @@ React によって値が制御される入力フォーム要素は *制御され
 ## [Refs](/docs/refs-and-the-dom.html)
 
 React は任意のコンポーネントに追加できる特別な属性をサポートしています。
+`ref` 属性は、 [`React.createRef()` 関数](/docs/react-api.html#reactcreateref) によって生成されたオブジェクト、あるいはそのコールバック関数や文字列（古い API)です。 `ref` 属性がコールバック関数の場合、その関数は引数として（要素の型次第で）DOM 要素またはクラスインスタンスを受け取ります。これによって、 DOM 要素またはコンポーネントのインスタンスへと直接アクセスできます。
 
-The `ref` attribute can be an object created by [`React.createRef()` function](/docs/react-api.html#reactcreateref) or a callback function, or a string (in legacy API). When the `ref` attribute is a callback function, the function receives the underlying DOM element or class instance (depending on the type of element) as its argument. This allows you to have direct access to the DOM element or component instance.
-
-Use refs sparingly. If you find yourself often using refs to "make things happen" in your app, consider getting more familiar with [top-down data flow](/docs/lifting-state-up.html).
+refs は消極的に利用してください。アプリケーション内で何かを実行するために refs を頻繁に使用している場合、[トップダウンのデータフロー](/docs/lifting-state-up.html)に慣れ親しむことを検討してください。
 
 ## [イベント](/docs/handling-events.html)
 
