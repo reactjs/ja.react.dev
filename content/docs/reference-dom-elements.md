@@ -48,7 +48,7 @@ function MyComponent() {
 
 ### htmlFor
 
-`for` は JavaScript での予約語であるため、 React 要素では代わりに `htmlFor` を使用します。
+`for` は JavaScript での予約語であるため、React 要素では代わりに `htmlFor` を使用します。
 
 ### onChange
 
