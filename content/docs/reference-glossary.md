@@ -146,7 +146,7 @@ React によって値が制御される入力フォーム要素は *制御され
 
 "key" は特別な文字列の属性で、要素の配列を作成する際に含めておく必要があります。キーは React がどの要素が変更、追加もしくは削除されたかを識別するのに役立ちます。キーは配列内の要素に安定した一意性を与えるよう設定されるべきです。
 
-Keys only need to be unique among sibling elements in the same array. They don't need to be unique across the whole application or even a single component.
+キーは同じ配列内の兄弟要素間で一意としなければなりません。アプリケーション全体、単一のコンポーネントに渡ってすべて一意である必要はありません。
 
 `Math.random()` のようなものをキーとして設定しないでください。キーには再レンダリングをまたいだ「安定した一意性」を持たせることで、要素の追加、削除および並べ替えがあった時に React が識別できることが重要です。理想的にはキーは `post.id` のように、データから得られる一意で安定した識別子に対応するべきです。
 
