@@ -14,27 +14,27 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
-React はパフォーマンスとブラウザ間の互換性を確保するためにブラウザから独立した DOM システムを実装しています。そしてこれを機にして、ブラウザの DOM 実装に存在するいくつかの粗削りな部分を取り払っています。
+React はパフォーマンスとブラウザ間での互換性のために、ブラウザから独立した DOM システムを実装しています。このことを機に、ブラウザの DOM 実装にあるいくつかの粗削りな部分が取り払われました。
 
-React では、全ての DOM のプロパティと属性（イベントハンドラも含む）はキャメルケースで名前付けされる必要があります。例えば、HTML 属性 `tabindex` に React で対応する属性は `tabIndex` です。例外は `aria-*` と `data-*` 属性であり、これらは小文字に揃える必要があります。例えば、`aria-label` は `aria-label` のままにできます。
+React では、DOM のプロパティと属性（イベントハンドラを含む）全てがキャメルケースで名前付けされる必要があります。例えば、HTML 属性 `tabindex` に React で対応する属性は `tabIndex` です。例外は `aria-*` と `data-*` 属性であり、これらは全て小文字に揃える必要があります。例えば、`aria-label` は `aria-label` のままにできます。
 
 ## 属性についての差異
 
-React と HTML とで挙動が異なる属性がいくつか存在します。
+React と HTML で挙動が異なる属性がいくつか存在します。
 
 ### checked
 
-`checked` 属性は `checkbox` または `radio` 型の `<input>` コンポーネントでサポートされています。この属性はコンポーネントがチェックされているかを設定します。制御されたコンポーネント (controlled component) を構築する際に便利です。`defaultChecked` は非制御コンポーネント (uncontrolled component) における等価な属性で、最初にマウントされた時にチェックされるかを設定します。
+`checked` 属性はインプットタイプが `checkbox` または `radio` の `<input>` コンポーネントでサポートされています。コンポーネントがチェックされた状態かどうかの設定に、この属性を使うことができます。これは制御されたコンポーネント (controlled component) を構築する際に役立ちます。`defaultChecked` は非制御コンポーネント (uncontrolled component) において同様の働きをする属性で、そのコンポーネントが最初にマウントされた時に、チェックされた状態かどうかを設定します。
 
 ### className
 
-CSS クラスを指定する際は、`className` 属性を使用してください。これは `<div>`、`<a>` およびその他あらゆる標準 DOM 要素と SVG 要素に対して適用されます。
+CSS クラスを指定するには、`className` 属性を使用してください。このことは `<div>`、`<a>` など全ての標準 DOM 要素と SVG 要素に当てはまります。
 
-React を（一般的ではありませんが）Web Componentsと使用する場合、代わりに class 属性を使用してください。
+React を（一般的ではありませんが）Web Components とともに使用する場合は、代わりに class 属性を使用してください。
 
 ### dangerouslySetInnerHTML
 
-`dangerouslySetInnerHTML` は React において、ブラウザ DOM における `innerHTML` を代替するものです。一般に、コードで HTML を設定することは、ユーザを[クロスサイトスクリプティング (XSS) ](https://en.wikipedia.org/wiki/Cross-site_scripting)攻撃にうっかり晒してしまいやすいので、危険です。そのため、 React で直接 HTML を設定することはできますが、`dangerouslySetInnerHTML` と入力して `__html` というキーを持つオブジェクトを渡すことで、この行為が危険であるということを自身に思い出させる必要があります。例えば：
+`dangerouslySetInnerHTML` は、ブラウザ DOM における `innerHTML` の React での代替です。一般に、コードから HTML を設定することは、誤ってあなたのユーザを[クロスサイトスクリプティング (XSS) ](https://en.wikipedia.org/wiki/Cross-site_scripting)攻撃に晒してしまいやすいため、危険です。そのため、 React では直接 HTML を設定することはできますが、それは危険であることを自覚するために `dangerouslySetInnerHTML` と入力し `__html` というキーを持つオブジェクトを渡す必要があります。例えば：
 
 ```js
 function createMarkup() {
@@ -48,23 +48,23 @@ function MyComponent() {
 
 ### htmlFor
 
-`for` は JavaScript では予約語なので、 React 要素は代わりに `htmlFor` を使用します。
+`for` は JavaScript での予約語であるため、 React 要素では代わりに `htmlFor` を使用します。
 
 ### onChange
 
-`onChange` イベントは期待通りの振る舞いをするようになっています。フォームフィールドに変更があるたび、このイベントが発生します。`onChange` という名前はその振る舞いにふさわしいものではなく、React はユーザーからの入力のリアルタイムな処理をこのイベントに依存しているため、既存のブラウザの振る舞いはあえて使用していません。
+`onChange` イベントはあなたが想定しているような挙動をします。フォームフィールドに変更があるたび、このイベントが発生します。React の `onChange` という名前は既存のブラウザの挙動に対しては適切な名前では無く、React はリアルタイムでのユーザ入力を扱うためにこのイベントに依存しているため、React では意図的に既存のブラウザの挙動は使用していません。
 
 ### selected
 
-`selected` 属性は `<option>` コンポーネントでサポートされています。この属性でコンポーネントが選択されているかを設定することができます。制御されたコンポーネントを構築する際に便利です。
+`selected` 属性は `<option>` コンポーネントでサポートされています。この属性でコンポーネントが選択されているかを設定することができます。制御されたコンポーネントを構築する際に役立ちます。
 
 ### style
 
->注意
+>補足
 >
->このドキュメンテーションにあるいくつかの例では `style` を便宜上使用していますが、 **`style` 属性を要素のスタイリングの手段として使うことは一般的に推奨されません。** 多くの場合、外部の CSS スタイルシートに定義された CSS クラスを参照するために [`className`](#classname) が使われます。React アプリケーションの中では、`style` は動的に計算されたスタイルをレンダリング時に追加するために最もよく使われます。[FAQ: Styling and CSS](/docs/faq-styling.html) を参照してください。
+>このドキュメンテーションにあるいくつかの例では `style` を便宜上使用していますが、 **`style` 属性を要素のスタイリングの手段として使うことは一般的に推奨されません。** 多くの場合、外部の CSS スタイルシートに定義された CSS クラスを参照するために [`className`](#classname) が使われます。React アプリケーションの中では、`style` は動的に計算されたスタイルをレンダリング時に追加するために最もよく使われます。[FAQ: Styling and CSS](/docs/faq-styling.html) も参照してください。
 
-`style` 属性は CSS 文字列ではなく、キャメルケースのプロパティを持った JavaScript オブジェクトを受け取ります。これは DOM の `style` JavaScript プロパティとの一貫性があり、より効率的で、XSS 攻撃の対象となるセキュリティホールを防ぎます。例えば：
+`style` 属性は CSS 文字列ではなく、キャメルケースのプロパティを持った JavaScript オブジェクトを受け取ります。これは JavaScript での DOM の `style` プロパティとの一貫性があり、より効率的で、XSS 攻撃の対象となるセキュリティホールを防ぎます。例えば：
 
 ```js
 const divStyle = {
@@ -77,12 +77,12 @@ function HelloWorldComponent() {
 }
 ```
 
-ベンダープレフィックスの自動追加は行われないことに注意してください。古いブラウザをサポートするには対応する style プロパティを与える必要があります：
+ベンダープレフィックスの自動追加は行われないことに注意してください。古いブラウザをサポートするには、対応するスタイルのプロパティを与える必要があります：
 
 ```js
 const divStyle = {
-  WebkitTransition: 'all', // note the capital 'W' here
-  msTransition: 'all' // 'ms' is the only lowercase vendor prefix
+  WebkitTransition: 'all', // ここでは大文字の 'W' です
+  msTransition: 'all' // 'ms' は小文字である必要がある唯一のベンダープレフィックスです
 };
 
 function ComponentWithTransition() {
@@ -90,53 +90,53 @@ function ComponentWithTransition() {
 }
 ```
 
-style のキー名のキャメルケースは JavaScript から DOM ノードのプロパティにアクセスする場合と一致するようになっています（例えば `node.style.backgroundImage` など）。[`ms` 以外](http://www.andismith.com/blog/2012/02/modernizr-prefixed/)のベンダープレフィックスは先頭を大文字にしてください。`WebkitTransition` に大文字 "W" があるのはこのためです。
+JavaScript から DOM ノードのプロパティにアクセスする場合（例えば `node.style.backgroundImage`）と一致させるために、スタイルのキー名はキャメルケースです。[`ms` 以外](http://www.andismith.com/blog/2012/02/modernizr-prefixed/)のベンダープレフィックスは先頭を大文字にしてください。`WebkitTransition` に大文字 "W" があるのはこのためです。
 
 React はインラインスタイルでの特定の数値プロパティに対して自動的に "px" サフィックスを付け加えます。"px" 以外の単位を使用したい場合は、その単位を付け加えた文字列で値を指定してください。例えば：
 
 ```js
-// Result style: '10px'
+// 最終的なスタイルは '10px'
 <div style={{ height: 10 }}>
   Hello World!
 </div>
 
-// Result style: '10%'
+// 最終的なスタイルは '10%'
 <div style={{ height: '10%' }}>
   Hello World!
 </div>
 ```
 
-全てのスタイルプロパティがピクセルの文字列に変換されるわけではありません。特定のものは単位がないままです（例えば `zoom`、`order`、`flex`）。単位のないプロパティの完全なリストは[こちら](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59)で確認できます。
+全てのスタイルプロパティがピクセル指定に変換されるわけではありません。特定のプロパティ（例えば `zoom`、`order`、`flex`）は単位が無いままとなります。単位の無いプロパティの完全なリストは[こちら](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59)で確認できます。
 
 ### suppressContentEditableWarning
 
-通常、子要素を持つ要素が `contentEditable` でもある場合、その設定は動作しないので警告が出力されます。この属性はその警告が出力されないようにします。`contentEditable` を自身で管理する [Draft.js](https://facebook.github.io/draft-js/) のようなライブラリを構築するときでも無い限り、この属性は使用しないでください。
+子要素を持つ要素に `contentEditable` 属性が付与されている場合、それは動作しないため通常は警告が出力されます。この属性は、その警告が出力されないようにします。`contentEditable` を自身で管理している [Draft.js](https://facebook.github.io/draft-js/) のようなライブラリを開発するときでも無い限り、この属性は使用しないでください。
 
 ### suppressHydrationWarning
 
-サーバサイドで React レンダリングを使用している場合、サーバとクライアントが違う内容をレンダリングする時に警告が通常は出力されます。しかし、まれに両者のレンダリング内容の完全な一致を保証することが非常に困難あるいは不可能である場合があります。例えば、サーバとクライアントでは、タイムスタンプは異なることが予想されます。
+サーバサイドの React レンダリングを使用している場合、サーバとクライアントが違う内容をレンダリングする時に通常は警告が出力されます。しかし、まれに両者のレンダリング内容の完全な一致を保証することが非常に困難あるいは不可能な場合があります。例えば、サーバとクライアントでは、タイムスタンプは異なることが予想されます。
 
-`suppressHydrationWarning` を `true` に設定した場合、その要素の属性と内容の、サーバとクライアントでの差異についての警告を React は出力しません。この機能は1レベルの深さ（設定した対象の要素）でのみ動作し、例えるなら脱出ハッチのようにやむを得ない場合に使われることが想定されています。そのため、むやみに使わないようにしてください。この "hydration" の詳細については [`ReactDOM.hydrate()` のドキュメンテーション](/docs/react-dom.html#hydrate)で読むことができます。
+`suppressHydrationWarning` を `true` に設定した場合、その要素の属性と内容の、サーバとクライアントでの差異について React は警告しません。この機能は1レベルの深さでのみ動作し、例えるなら脱出ハッチのように使われることが想定されています。そのため、むやみに使用しないでください。この "hydration" 機能の詳細については [`ReactDOM.hydrate()` のドキュメンテーション](/docs/react-dom.html#hydrate)で読むことができます。
 
 ### value
 
-`value` 属性は `<input>` コンポーネントと `<textarea>` コンポーネントでサポートされています。コンポーネントの値を設定するのに使用できます。制御されたコンポーネントを構築する際に便利です。`defaultValue` は非制御コンポーネントにおける等価な属性で、最初にマウントされた時の値を設定します。
+`value` 属性は `<input>` コンポーネントと `<textarea>` コンポーネントでサポートされています。コンポーネントの値を設定することに使用できます。これは制御されたコンポーネントを構築する際に役立ちます。`defaultValue` は非制御コンポーネントにおいて同様の働きをする属性で、コンポーネントが最初にマウントされた時の値を設定します。
 
 ## サポートされている全ての HTML 属性
 
-React 16 より、任意の標準[もしくは独自の](/blog/2017/09/08/dom-attributes-in-react-16.html) DOM 属性が完全にサポートされます。
+React 16 では、標準[あるいは独自の](/blog/2017/09/08/dom-attributes-in-react-16.html) DOM 属性全てが完全にサポートされます。
 
-React は常に JavaScript を中心とした API を DOM に提供してきました。 React コンポーネントは多くの場合で独自および DOM に関連したプロパティを受け取り、React は DOM API と同様に `camelCase` 規則を用います：
+React は DOM に対して JavaScript を中心に設計した API を常に提供してきました。React コンポーネントは、独自および DOM に関連した props を頻繁に受け取るため、Reactは DOM API と同様にキャメルケース (`camelCase`) の命名規則を属性の名前付けに使用します。
 
 ```js
-<div tabIndex="-1" />      // Just like node.tabIndex DOM API
-<div className="Button" /> // Just like node.className DOM API
-<input readOnly={true} />  // Just like node.readOnly DOM API
+<div tabIndex="-1" />      // DOM API の node.tabIndex と同様に
+<div className="Button" /> // DOM API の node.className と同様に
+<input readOnly={true} />  // DOM API の node.readOnly と同様に
 ```
 
-これらの属性は、上記で述べた特別なケースを除き、対応する HTML 属性と同じように動作します。
+このような props は、これまでドキュメントで述べられてきた特殊な例外を除き、対応する HTML 属性と同様に機能します。
 
-React でサポートされている DOM 属性の一部としては：
+React でサポートされている DOM 属性には、以下が含まれます：
 
 ```
 accept acceptCharset accessKey action allowFullScreen alt async autoComplete
@@ -193,4 +193,4 @@ xlinkHref xlinkRole xlinkShow xlinkTitle xlinkType xmlns xmlnsXlink xmlBase
 xmlLang xmlSpace y y1 y2 yChannelSelector z zoomAndPan
 ```
 
-それらが lowercase である限り、独自の属性も使用することができます。
+独自の属性も、その名前が全て小文字であれば使用できます。
