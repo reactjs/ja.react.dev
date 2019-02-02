@@ -102,7 +102,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 TestRenderer.create(element, options);
 ```
 
-渡された React 要素から `TestRenderer` のインスタンスを作成します。実際の DOM は使用しませんが、コンポーネントを完全な形でメモリにレンダーするので、アサーションを行うことができます。返されたインスタンスは、次のメソッドとプロパティを持ちます。
+渡された React 要素から `TestRenderer` インスタンスを作成します。実際の DOM は使用しませんが、コンポーネントを完全な形でメモリにレンダーするので、アサーションを行うことができます。返されたインスタンスは、次のメソッドとプロパティを持ちます。
 
 ### `testRenderer.toJSON()`
 
@@ -118,7 +118,7 @@ testRenderer.toJSON()
 testRenderer.toTree()
 ```
 
-レンダリングされたツリーを表すオブジェクトを返します。`toJSON()` とは異なり、結果はより詳細なものであり、ユーザー定義のコンポーネントも含んでいます。テストレンダラを利用して自作のアサーションライブラリを作成している場合以外は、恐らくこのメソッドが必要となることはないでしょう。
+レンダーされたツリーを表すオブジェクトを返します。`toJSON()` とは異なり、このツリーはより詳細なものであり、ユーザー定義のコンポーネントも含んでいます。テストレンダラを利用して自作のアサーションライブラリを作成している場合以外は、恐らくこのメソッドが必要となることはないでしょう。
 
 ### `testRenderer.update()`
 
@@ -242,7 +242,7 @@ testInstance.children
 
 ## 使い方のアイデア
 
-オプションとして、`createNodeMock` 関数を `TestRenderer.create` に渡すことで、独自のモック refs を作成することができます。`createNodeMock` は現在の要素を受け取り、モックの ref オブジェクトを返す必要があります。refs に依存したコンポーネントのテストに便利です。
+オプションとして `createNodeMock` 関数を `TestRenderer.create` に渡すことで、独自のモック refs を作成することができます。`createNodeMock` は現在の要素を受け取り、モックの ref オブジェクトを返す必要があります。refs に依存したコンポーネントのテストに便利です。
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
