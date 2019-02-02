@@ -18,39 +18,44 @@ redirect_from:
   - "docs/environments.html"
 ---
 
-This page is an overview of the React documentation and related resources.
+このページは React のドキュメント、および関連する資料の概要となります。
 
-**React** is a JavaScript library for building user interfaces. Learn what React is all about on [our homepage](/) or [in the tutorial](/tutorial/tutorial.html).
+**React** はユーザーインターフェースを作成する為の JavaScript のライブラリです。 
+[ここのホームページ](/)、または[このチュートリアル](/tutorial/tutorial.html)から React がどういうものかを学びましょう。
 
 ---
 
-- [Try React](#try-react)
-- [Learn React](#learn-react)
-- [Staying Informed](#staying-informed)
-- [Versioned Documentation](#versioned-documentation)
-- [Something Missing?](#something-missing)
+- [React を試す](#try-react)
+- [React を学ぶ](#learn-react)
+- [最新の情報を追う](#staying-informed)
+- [バージョン管理されたドキュメント](#versioned-documentation)
+- [足りないものがある?](#something-missing)
 
-## Try React
+## React を試す
 
-React has been designed from the start for gradual adoption, and **you can use as little or as much React as you need.** Whether you want to get a taste of React, add some interactivity to a simple HTML page, or start a complex React-powered app, the links in this section will help you get started.
+React は初めから既存のプロジェクトに徐々に追加していけるようなデザインとなっています。 **あなたは React をどれだけ使っても問題ありません**触りだけやってみるもよし、シンプルな HTML のページにインタラクティブな機能を追加するのに使うもよし、React をフル活用した複雑なアプリを作成するもよし。どのような目的にしても、このページにあるリンクが役に立つでしょう。
 
-### Online Playgrounds
+### Web 上で試す
 
-If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world) or [CodeSandbox](https://codesandbox.io/s/new).
+React を試してみたかったら、Web 上のコードエディタでも試すことができます。
+[CodePen](codepen://hello-world) や [CodeSandbox](https://codesandbox.io/s/new) で Hello World のテンプレートを使って試してみましょう。
 
-If you prefer to use your own text editor, you can also [download this HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), edit it, and open it from the local filesystem in your browser. It does a slow runtime code transformation, so we'd only recommend using this for simple demos.
+自前のテキストエディタを使いたい場合は、[この HTML ファイル](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)をダウンロードして、編集して、ブラウザからローカルで開くことができます。
+ランタイムでのコード変換が行われる為、簡単なデモに留めておくことをおすすめします。
 
-### Add React to a Website
+### React を Web サイトに追加する
 
-You can [add React to an HTML page in one minute](/docs/add-react-to-a-website.html). You can then either gradually expand its presence, or keep it contained to a few dynamic widgets.
+[React は HTML ページにすぐに追加することができます。](/docs/add-react-to-a-website.html) 追加したら、徐々に全体に反映させていくか、数量のダイナミックなウィジェットに留めるかはあなたの自由です。
 
-### Create a New React App
+### 新規 React アプリの作成
 
-When starting a React project, [a simple HTML page with script tags](/docs/add-react-to-a-website.html) might still be the best option. It only takes a minute to set up!
+新しく React のプロジェクトを始めたい場合でも、まずは[シンプルな HTML ページに script タグを追加](/docs/add-react-to-a-website.html)するのがおすすめです。数分でセットアップできます！
 
-As your application grows, you might want to consider a more integrated setup. There are [several JavaScript toolchains](/docs/create-a-new-react-app.html) we recommend for larger applications. Each of them can work with little to no configuration and lets you take full advantage of the rich React ecosystem.
+アプリが成長するにつれて、より統合されたセットアップを行うことを考慮していきましょう。
+大きいアプリの為には我々が勧める [様々なJavaScript を用いたツールチェイン](/docs/create-a-new-react-app.html)が存在します。
+それぞれ少ない設定、もしくは設定要らずでリッチな React のエコシステムを活用していくことができます。
 
-## Learn React
+## React を学ぶ
 
 People come to React from different backgrounds and with different learning styles. Whether you prefer a more theoretical or a practical approach, we hope you'll find this section helpful.
 
