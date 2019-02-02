@@ -6,20 +6,20 @@ layout: docs
 category: Reference
 ---
 
-**Importing**
+**インポート**
 
 ```javascript
 import TestRenderer from 'react-test-renderer'; // ES6
 const TestRenderer = require('react-test-renderer'); // ES5 with npm
 ```
 
-## Overview
+## 概要
 
-This package provides a React renderer that can be used to render React components to pure JavaScript objects, without depending on the DOM or a native mobile environment.
+このパッケージは、DOM やネイティブのモバイル環境に依存せずに React コンポーネントをピュアな JavaScript オブジェクトにレンダーすることができる React レンダラを提供します。
 
-Essentially, this package makes it easy to grab a snapshot of the platform view hierarchy (similar to a DOM tree) rendered by a React DOM or React Native component without using a browser or [jsdom](https://github.com/tmpvar/jsdom).
+本質的にこのパッケージは、ブラウザや [jsdom](https://github.com/tmpvar/jsdom) を利用しなくても、React DOM や React Native コンポーネントがレンダーする（DOM ツリーに似た）ビューの階層構造のスナップショットを容易に取得できるようにするためのものです。
 
-Example:
+例：
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
@@ -38,9 +38,9 @@ console.log(testRenderer.toJSON());
 //   children: [ 'Facebook' ] }
 ```
 
-You can use Jest's snapshot testing feature to automatically save a copy of the JSON tree to a file and check in your tests that it hasn't changed: [Learn more about it](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
+JSON ツリーを自動的にファイルに保存し、変更が起こったかをテストで確認するには、Jest のスナップショットテスト機能が利用できます。[詳細について知る](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html)
 
-You can also traverse the output to find specific nodes and make assertions about them.
+出力を走査して特定のノードを検索し、それらに対してアサーションを行うこともできます。
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
@@ -94,7 +94,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 * [`testInstance.parent`](#testinstanceparent)
 * [`testInstance.children`](#testinstancechildren)
 
-## Reference
+## リファレンス
 
 ### `TestRenderer.create()`
 
@@ -102,7 +102,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 TestRenderer.create(element, options);
 ```
 
-Create a `TestRenderer` instance with the passed React element. It doesn't use the real DOM, but it still fully renders the component tree into memory so you can make assertions about it. The returned instance has the following methods and properties.
+渡された React 要素から `TestRenderer` インスタンスを作成します。実際の DOM は使用しませんが、コンポーネントを完全な形でメモリにレンダーするので、アサーションを行うことができます。返されたインスタンスは、次のメソッドとプロパティを持ちます。
 
 ### `testRenderer.toJSON()`
 
@@ -110,7 +110,7 @@ Create a `TestRenderer` instance with the passed React element. It doesn't use t
 testRenderer.toJSON()
 ```
 
-Return an object representing the rendered tree. This tree only contains the platform-specific nodes like `<div>` or `<View>` and their props, but doesn't contain any user-written components. This is handy for [snapshot testing](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest).
+レンダーされたツリーを表すオブジェクトを返します。このツリーは `<div>` もしくは `<View>` のようなプラットフォーム固有のノードとそのプロパティを含みますが、ユーザー定義のコンポーネントは含まれません。[スナップショットテスト](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest)に便利です。
 
 ### `testRenderer.toTree()`
 
@@ -118,7 +118,7 @@ Return an object representing the rendered tree. This tree only contains the pla
 testRenderer.toTree()
 ```
 
-Return an object representing the rendered tree. Unlike `toJSON()`, the representation is more detailed than the one provided by `toJSON()`, and includes the user-written components. You probably don't need this method unless you're writing your own assertion library on top of the test renderer.
+レンダーされたツリーを表すオブジェクトを返します。`toJSON()` とは異なり、このツリーはより詳細なものであり、ユーザー定義のコンポーネントも含んでいます。テストレンダラを利用して自作のアサーションライブラリを作成している場合以外は、恐らくこのメソッドが必要となることはないでしょう。
 
 ### `testRenderer.update()`
 
@@ -126,7 +126,7 @@ Return an object representing the rendered tree. Unlike `toJSON()`, the represen
 testRenderer.update(element)
 ```
 
-Re-render the in-memory tree with a new root element. This simulates a React update at the root. If the new element has the same type and key as the previous element, the tree will be updated; otherwise, it will re-mount a new tree.
+メモリ上のツリーを新規のルート要素で再レンダーします。ルートでの React の更新をシミュレートします。新しい要素が以前の要素と同じ型と key を持つ場合は、ツリーは更新されます。それ以外の場合は新しいツリーを再マウントします。
 
 ### `testRenderer.unmount()`
 
@@ -134,7 +134,7 @@ Re-render the in-memory tree with a new root element. This simulates a React upd
 testRenderer.unmount()
 ```
 
-Unmount the in-memory tree, triggering the appropriate lifecycle events.
+メモリ上のツリーをアンマウントし、適切なライフサイクルイベントを発生させます。
 
 ### `testRenderer.getInstance()`
 
@@ -142,7 +142,7 @@ Unmount the in-memory tree, triggering the appropriate lifecycle events.
 testRenderer.getInstance()
 ```
 
-Return the instance corresponding to the root element, if available. This will not work if the root element is a function component because they don't have instances.
+ルート要素に対応したインスタンスがある場合はそれを返します。関数コンポーネントはインスタンスを持たないため、ルート要素が関数コンポーネントの場合、このメソッドはうまく動作しません。
 
 ### `testRenderer.root`
 
@@ -150,7 +150,7 @@ Return the instance corresponding to the root element, if available. This will n
 testRenderer.root
 ```
 
-Returns the root "test instance" object that is useful for making assertions about specific nodes in the tree. You can use it to find other "test instances" deeper below.
+ツリー上の特定のノードに対してアサーションを行う際に役立つ、ルート「テストインスタンス」を返します。これは、配下の他の「テストインスタンス」を検索する際に使用することができます。
 
 ### `testInstance.find()`
 
@@ -158,7 +158,7 @@ Returns the root "test instance" object that is useful for making assertions abo
 testInstance.find(test)
 ```
 
-Find a single descendant test instance for which `test(testInstance)` returns `true`. If `test(testInstance)` does not return `true` for exactly one test instance, it will throw an error.
+`test(testInstance)` が `true` を返す単一の子テストインスタンスを検索します。もし `test(testInstance)` に対して `true` を返すテストインスタンスの数がちょうど 1 でない場合は、エラーがスローされます。
 
 ### `testInstance.findByType()`
 
@@ -166,7 +166,7 @@ Find a single descendant test instance for which `test(testInstance)` returns `t
 testInstance.findByType(type)
 ```
 
-Find a single descendant test instance with the provided `type`. If there is not exactly one test instance with the provided `type`, it will throw an error.
+与えられた `type` を持つ単一の子テストインスタンスを検索します。もし与えられた `type` を持つテストインスタンスの数がちょうど 1 でない場合、エラーがスローされます。
 
 ### `testInstance.findByProps()`
 
@@ -174,7 +174,7 @@ Find a single descendant test instance with the provided `type`. If there is not
 testInstance.findByProps(props)
 ```
 
-Find a single descendant test instance with the provided `props`. If there is not exactly one test instance with the provided `props`, it will throw an error.
+与えられた `props` を持つ単一の子テストインスタンスを検索します。もし与えられた `props` を持つテストインスタンスの数がちょうど 1 でない場合、エラーがスローされます。
 
 ### `testInstance.findAll()`
 
@@ -182,7 +182,7 @@ Find a single descendant test instance with the provided `props`. If there is no
 testInstance.findAll(test)
 ```
 
-Find all descendant test instances for which `test(testInstance)` returns `true`.
+`test(testInstance)` が `true` を返す全ての子テストインスタンスを検索します。
 
 ### `testInstance.findAllByType()`
 
@@ -190,7 +190,7 @@ Find all descendant test instances for which `test(testInstance)` returns `true`
 testInstance.findAllByType(type)
 ```
 
-Find all descendant test instances with the provided `type`.
+与えられた `type` を持つ全ての子テストインスタンスを検索します。
 
 ### `testInstance.findAllByProps()`
 
@@ -198,7 +198,7 @@ Find all descendant test instances with the provided `type`.
 testInstance.findAllByProps(props)
 ```
 
-Find all descendant test instances with the provided `props`.
+与えられた `props` を持つ全ての子テストインスタンスを検索します。
 
 ### `testInstance.instance`
 
@@ -206,7 +206,7 @@ Find all descendant test instances with the provided `props`.
 testInstance.instance
 ```
 
-The component instance corresponding to this test instance. It is only available for class components, as function components don't have instances. It matches the `this` value inside the given component.
+当該テストインスタンスに対応するコンポーネントのインスタンスです。関数コンポーネントはインスタンスを持たないため、クラスコンポーネントでのみ使用することができます。与えられたコンポーネント内での `this` の値と一致します。
 
 ### `testInstance.type`
 
@@ -214,7 +214,7 @@ The component instance corresponding to this test instance. It is only available
 testInstance.type
 ```
 
-The component type corresponding to this test instance. For example, a `<Button />` component has a type of `Button`.
+当該テストインスタンスに対応するコンポーネントの型です。例えば、`<Button />` コンポーネントは `Button` 型を持っています。
 
 ### `testInstance.props`
 
@@ -222,7 +222,7 @@ The component type corresponding to this test instance. For example, a `<Button 
 testInstance.props
 ```
 
-The props corresponding to this test instance. For example, a `<Button size="small" />` component has `{size: 'small'}` as props.
+当該テストインスタンスに対応するコンポーネントの props です。例えば、`<Button size="small" />` コンポーネントは `{size: 'small'}` を props として持っています。
 
 ### `testInstance.parent`
 
@@ -230,7 +230,7 @@ The props corresponding to this test instance. For example, a `<Button size="sma
 testInstance.parent
 ```
 
-The parent test instance of this test instance.
+当該テストインスタンスの親テストインスタンスです。
 
 ### `testInstance.children`
 
@@ -238,13 +238,11 @@ The parent test instance of this test instance.
 testInstance.children
 ```
 
-The children test instances of this test instance.
+当該テストインスタンスの子テストインスタンスです。
 
-## Ideas
+## 使い方の一例
 
-You can pass `createNodeMock` function to `TestRenderer.create` as the option, which allows for custom mock refs.
-`createNodeMock` accepts the current element and should return a mock ref object.
-This is useful when you test a component that relies on refs.
+オプションとして `createNodeMock` 関数を `TestRenderer.create` に渡すことで、独自のモック refs を作成することができます。`createNodeMock` は現在の要素を受け取り、モックの ref オブジェクトを返す必要があります。refs に依存したコンポーネントのテストに便利です。
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
