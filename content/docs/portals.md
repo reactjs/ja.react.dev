@@ -10,7 +10,7 @@ permalink: docs/portals.html
 ReactDOM.createPortal(child, container)
 ```
 
-第 1 引数 (`child`) は [React の子要素としてレンダー可能なもの](/docs/react-component.html#render)なら何でもよく、要素、文字列、フラグメントがそれに当たります。第 2 引数 (`container`) は DOM 要素を指定します。
+第 1 引数 (`child`) は [React の子要素としてレンダー可能なもの](/docs/react-component.html#render)、例えば、要素、文字列、フラグメントなどです。第 2 引数 (`container`) は DOM 要素を指定します。
 
 ## 使い方
 
