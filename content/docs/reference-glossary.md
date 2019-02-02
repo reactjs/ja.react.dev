@@ -36,7 +36,7 @@ CDN は Content Delivery Network の略です。 CDN はキャッシュされた
 
 ## JSX
 
-JSX は javascript の拡張構文です。テンプレート言語に似ていますが、完全に JavaScript だけで動作します。JSX は、"React 要素" と呼ばれるプレーンな JavaScript オブジェクトを返す、 `React.createElement()` のコールにコンパイルされます。JSX の基本的な導入部分を学ぶには[こちらのドキュメントを参照してください](/docs/introducing-jsx.html)。また、さらに JSX について詳細に学ぶには[こちら](/docs/jsx-in-depth.html)を参照してください。
+JSX は JavaScript の拡張構文です。テンプレート言語に似ていますが、完全に JavaScript だけで動作します。JSX は、"React 要素" と呼ばれるプレーンな JavaScript オブジェクトを返す、 `React.createElement()` のコールにコンパイルされます。JSX の基本的な導入部分を学ぶには[こちらのドキュメントを参照してください](/docs/introducing-jsx.html)。また、さらに JSX について詳細に学ぶには[こちら](/docs/jsx-in-depth.html)を参照してください。
 
 React DOM は HTML の属性名ではなく、キャメルケースの命名規則を使用します。例えば、`tabindex` は、JSX では `tabIndex` となります。`class` も `className` と記述されますが、これは `class` が JavaScript において予約語であるためです：
 
