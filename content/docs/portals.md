@@ -31,7 +31,7 @@ render() {
 
 ```js{6}
 render() {
-  // React は新しい div をつくり*ません*。小要素は `domNode` に対して描画されます。
+  // React は新しい div をつくり*ません*。子要素は `domNode` に対して描画されます。
   // `domNode` は DOM ノードであれば何でも良く、 DOM 構造内のどこにあるかは問いません。
   return ReactDOM.createPortal(
     this.props.children,
@@ -109,8 +109,7 @@ class Parent extends React.Component {
   }
 
   handleClick() {
-    // これは Child 内のボタンがクリックされた時に発行され、
-    // Parent の state を更新します。
+    // これは Child 内のボタンがクリックされた時に発行され、 Parent の state を更新します。
     // たとえそのボタンが DOM 上では直系の子孫でなかったとしてもです。
     this.setState(state => ({
       clicks: state.clicks + 1
