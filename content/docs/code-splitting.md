@@ -4,15 +4,11 @@ title: Code-Splitting
 permalink: docs/code-splitting.html
 ---
 
-## Bundling
+## バンドル
 
-Most React apps will have their files "bundled" using tools like
-[Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/).
-Bundling is the process of following imported files and merging them into a
-single file: a "bundle". This bundle can then be included on a webpage to load
-an entire app at once.
+多くの React アプリケーションは、[Webpack](https://webpack.js.org/)や [Browserify](http://browserify.org/) などのツールを使ってファイルを「バンドル」しています。バンドリングはインポートされたファイルをたどって、それらを一つのファイルにまとめるプロセスです。このバンドルされたファイルをWebページ内に置くことによって、アプリ全体を一度に読み込むことができます。
 
-#### Example
+#### 例
 
 **App:**
 
@@ -40,42 +36,28 @@ function add(a, b) {
 console.log(add(16, 26)); // 42
 ```
 
-> Note:
+> 補足:
 >
-> Your bundles will end up looking a lot different than this.
+> バンドルされたファイルはこれらのファイルとは似てもつかないような見た目をしているでしょう。
 
-If you're using [Create React App](https://github.com/facebookincubator/create-react-app), [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/), or a similar tool, you will have a Webpack setup out of the box to bundle your
-app.
+もしあなたが [Create React App](https://github.com/facebookincubator/create-react-app) や [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/) またはこれらに類するツールを使用している場合、Webpack は自動的にそれらをバンドルしてくれます。
 
-If you aren't, you'll need to setup bundling yourself. For example, see the
-[Installation](https://webpack.js.org/guides/installation/) and
-[Getting Started](https://webpack.js.org/guides/getting-started/) guides on the
-Webpack docs.
+そうでない場合は、自分でバンドルを設定する必要があります。設定方法に関しては、Webpackのドキュメントにある [Installation](https://webpack.js.org/guides/installation/) や [Getting Started](https://webpack.js.org/guides/getting-started/) などを参照してみてください。
 
-## Code Splitting
+## コード分割
 
-Bundling is great, but as your app grows, your bundle will grow too. Especially
-if you are including large third-party libraries. You need to keep an eye on
-the code you are including in your bundle so that you don't accidentally make
-it so large that your app takes a long time to load.
+バンドルは確かに素晴らしいですが、アプリが大きくなるにつれて、バンドルのサイズも大きくなります。特にサイズの大きなサードパーティ製のライブラリを含む場合は顕著にサイズが増大します。
+不用意に大きなバンドルを作成してしまいアプリの読み込みに多くの時間がかかってしまうという事態にならないためにも、常に注意を払い続けなければなりません。
 
-To avoid winding up with a large bundle, it's good to get ahead of the problem
-and start "splitting" your bundle.
- [Code-Splitting](https://webpack.js.org/guides/code-splitting/) is a feature
-supported by bundlers like Webpack and Browserify (via
-[factor-bundle](https://github.com/browserify/factor-bundle)) which can create
-multiple bundles that can be dynamically loaded at runtime.
+大きなバンドルに巻き込まれないためには、コードを"分割"して問題を回避しましょう。
+[Code-Splitting](https://webpack.js.org/guides/code-splitting/) は、実行時にロードする複数のバンドルを生成できる Webpack や Browserify などのバンドル(但し [factor-bundle](https://github.com/browserify/factor-bundle) が必要)によってサポートされている機能です。
 
-Code-splitting your app can help you "lazy-load" just the things that are
-currently needed by the user, which can dramatically improve the performance of
-your app. While you haven't reduced the overall amount of code in your app,
-you've avoided loading code that the user may never need, and reduced the amount
-of code needed during the initial load.
+コード分割することによって"遅延ロード"が可能となり、アプリのパフォーマンスを劇的に向上させることができます。
+アプリの全体的なコード量を減らすことはできませんが、ユーザが必要としないコードをロードしなくて済むため、初期ロードの際にロードするコード量を削減することができます。
 
 ## `import()`
 
-The best way to introduce code-splitting into your app is through the dynamic
-`import()` syntax.
+コード分割をアプリに導入する最も良い手段は動的インポート`import()`を使用することです。
 
 **Before:**
 
@@ -93,23 +75,15 @@ import("./math").then(math => {
 });
 ```
 
-> Note:
+> 補足:
 >
-> The dynamic `import()` syntax is a ECMAScript (JavaScript)
-> [proposal](https://github.com/tc39/proposal-dynamic-import) not currently
-> part of the language standard. It is expected to be accepted in the
-> near future.
+> `import()` 構文はECMAScript (JavaScript) が提案している、現時点(2018年2月)ではまだ言語標準として実装されていない構文です。近い将来に標準化される予定です。
 
-When Webpack comes across this syntax, it automatically starts code-splitting
-your app. If you're using Create React App, this is already configured for you
-and you can [start using it](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting) immediately. It's also supported
-out of the box in [Next.js](https://github.com/zeit/next.js/#dynamic-import).
+Webpackがこの構文を見つけると、自動的にアプリのコードを分割します。Create React App を使用している場合はすでに設定がされているため、[すぐに使用を開始することができます。](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting)Next.jsも同様です。
 
-If you're setting up Webpack yourself, you'll probably want to read Webpack's
-[guide on code splitting](https://webpack.js.org/guides/code-splitting/). Your Webpack config should look vaguely [like this](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
+もし Webpack を自分でセットアップしていた場合には、Webpack の[コード分割に関するガイド](https://webpack.js.org/guides/code-splitting/)を読むと良いでしょう。きっとあなたの Webpack の設定は[これくらい](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269)がらんとしているでしょうから。
 
-When using [Babel](http://babeljs.io/), you'll need to make sure that Babel can
-parse the dynamic import syntax but is not transforming it. For that you will need [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import).
+もし [Babel](http://babeljs.io/) を使用している場合は、Babel が動的インポート構文を解析できても変換しないようにする必要があります。そのためには  [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import) を利用すると良いでしょう。
 
 ## `React.lazy`
 
