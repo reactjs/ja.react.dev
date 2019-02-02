@@ -110,7 +110,7 @@ React はインラインスタイルでの特定の数値プロパティに対�
 
 ### suppressContentEditableWarning
 
-子要素を持つ要素に `contentEditable` 属性が付与されている場合、それは動作しないため通常は警告が出力されます。この属性は、その警告が出力されないようにします。`contentEditable` を自身で管理している [Draft.js](https://facebook.github.io/draft-js/) のようなライブラリを開発するときでも無い限り、この属性は使用しないでください。
+子要素を持つ要素に `contentEditable` 属性が付与されている場合、それは動作しないため通常は警告が出力されます。この属性は、その警告が出力されないようにします。`contentEditable` を自身で管理している [Draft.js](https://facebook.github.io/draft-js/) のようなライブラリを開発するときでもない限り、この属性は使用しないでください。
 
 ### suppressHydrationWarning
 
