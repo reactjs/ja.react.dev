@@ -81,14 +81,11 @@ class Modal extends React.Component {
   }
 
   componentDidMount() {
-    // The portal element is inserted in the DOM tree after
-    // the Modal's children are mounted, meaning that children
-    // will be mounted on a detached DOM node. If a child
-    // component requires to be attached to the DOM tree
-    // immediately when mounted, for example to measure a
-    // DOM node, or uses 'autoFocus' in a descendant, add
-    // state to Modal and only render the children when Modal
-    // is inserted in the DOM tree.
+    // ポータルの要素が DOM ツリーに挿入されるのは、 Modal の子要素がマウントされた後になります。
+    // つまり、子要素は一旦どこにも結びつかない DOM ノードへとマウントされるということです。
+    // もし子コンポーネントがマウント後すぐに DOM ツリーに結びついてほしい ――
+    // たとえば DOM ノードの大きさを測りたい、子孫要素で `autoFocus` を使いたいなど
+    // ―― 場合は、 Modal に状態を持たせて子要素が DOM ツリーに入ったときだけ描画されるようにしましょう。
     modalRoot.appendChild(this.el);
   }
 
@@ -112,9 +109,9 @@ class Parent extends React.Component {
   }
 
   handleClick() {
-    // This will fire when the button in Child is clicked,
-    // updating Parent's state, even though button
-    // is not direct descendant in the DOM.
+    // これは Child 内のボタンがクリックされた時に発行され、
+    // Parent の state を更新します。
+    // たとえそのボタンが DOM 上では直系の子孫でなかったとしてもです。
     this.setState(state => ({
       clicks: state.clicks + 1
     }));
@@ -139,8 +136,8 @@ class Parent extends React.Component {
 }
 
 function Child() {
-  // The click event on this button will bubble up to parent,
-  // because there is no 'onClick' attribute defined
+  // クリックするとイベントが親に伝播します。
+  // なぜならここには `onClick` 属性が定義されてないからです。
   return (
     <div className="modal">
       <button>Click</button>
