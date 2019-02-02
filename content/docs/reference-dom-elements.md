@@ -34,7 +34,7 @@ React を（一般的ではありませんが）Web Components とともに使�
 
 ### dangerouslySetInnerHTML
 
-`dangerouslySetInnerHTML` は、ブラウザ DOM における `innerHTML` の React での代替です。一般に、コードから HTML を設定することは、誤ってあなたのユーザを[クロスサイトスクリプティング (XSS) ](https://en.wikipedia.org/wiki/Cross-site_scripting)攻撃に晒してしまいやすいため、危険です。そのため、 React では直接 HTML を設定することはできますが、それは危険であることを自覚するために `dangerouslySetInnerHTML` と入力し `__html` というキーを持つオブジェクトを渡す必要があります。例えば：
+`dangerouslySetInnerHTML` は、ブラウザ DOM における `innerHTML` の React での代替です。一般に、コードから HTML を設定することは、誤ってあなたのユーザを[クロスサイトスクリプティング (XSS) ](https://en.wikipedia.org/wiki/Cross-site_scripting)攻撃に晒してしまいやすいため、危険です。そのため、React では直接 HTML を設定することはできますが、それは危険であることを自覚するために `dangerouslySetInnerHTML` と入力し `__html` というキーを持つオブジェクトを渡す必要があります。例えば：
 
 ```js
 function createMarkup() {
