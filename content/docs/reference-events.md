@@ -1,18 +1,18 @@
 ---
 id: events
-title: SyntheticEvent
+title: 合成 (Synthetic) イベント
 permalink: docs/events.html
 layout: docs
 category: Reference
 ---
 
-This reference guide documents the `SyntheticEvent` wrapper that forms part of React's Event System. See the [Handling Events](/docs/handling-events.html) guide to learn more.
+このリファレンスガイドは、React イベントシステムの一部を構成する `SyntheticEvent`  (合成イベント)ラッパーについて文書化したものです。詳しくは、[イベント処理](/docs/handling-events.html)を参照してください。
 
-## Overview
+## 概要
 
-Your event handlers will be passed instances of `SyntheticEvent`, a cross-browser wrapper around the browser's native event. It has the same interface as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers.
+イベントハンドラには `SyntheticEvent` のインスタンスが渡されます。これはブラウザのネイティブイベントのクロスブラウザラッパーです。`stopPropagation()` や `preventDefault()` など、ブラウザのネイティブイベントと同じインターフェイスを持ちます。これらはすべてのブラウザで同じように機能します。
 
-If you find that you need the underlying browser event for some reason, simply use the `nativeEvent` attribute to get it. Every `SyntheticEvent` object has the following attributes:
+何らかの理由で基本的なブラウザイベントが必要であることがわかった場合は、`nativeEvent` 属性を使用して取得してください。すべての `SyntheticEvent` オブジェクトには以下の属性があります。
 
 ```javascript
 boolean bubbles
@@ -31,15 +31,14 @@ number timeStamp
 string type
 ```
 
-> Note:
+> 補足
 >
-> As of v0.14, returning `false` from an event handler will no longer stop event propagation. Instead, `e.stopPropagation()` or `e.preventDefault()` should be triggered manually, as appropriate.
+> v0.14以降、イベントハンドラからfalseを返してもイベントの伝播が止まることはなくなりました。代わりに、`e.stopPropagation()` または `e.preventDefault()` を手動でトリガーする必要があります。
 
-### Event Pooling
 
-The `SyntheticEvent` is pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event callback has been invoked.
-This is for performance reasons.
-As such, you cannot access the event in an asynchronous way.
+### イベントプーリング
+
+`SyntheticEvent` はプールされます。つまり、`SyntheticEvent` オブジェクトは再利用され、イベントコールバックが呼び出された後にすべてのプロパティは無効になります。これはパフォーマンス上の理由からです。そのため、非同期にイベントにアクセスすることはできません。
 
 ```javascript
 function onClick(event) {
@@ -52,40 +51,43 @@ function onClick(event) {
     console.log(eventType); // => "click"
   }, 0);
 
-  // Won't work. this.state.clickEvent will only contain null values.
+  // これは動作しません。this.state.clickEvent はnullのみを保持します。
   this.setState({clickEvent: event});
 
-  // You can still export event properties.
+  // イベントプロパティをエクスポートすることは可能です。
   this.setState({eventType: event.type});
 }
 ```
 
-> Note:
+
+> 補足
 >
-> If you want to access the event properties in an asynchronous way, you should call `event.persist()` on the event, which will remove the synthetic event from the pool and allow references to the event to be retained by user code.
+> 非同期でイベントプロパティにアクセスする場合は、イベントに対して `event.persist()` を呼び出す必要があります。これにより、プールから合成イベントが削除され、イベントへの参照をコードで保持できるようになります。
 
-## Supported Events
 
-React normalizes events so that they have consistent properties across different browsers.
+## サポートされるイベント
 
-The event handlers below are triggered by an event in the bubbling phase. To register an event handler for the capture phase, append `Capture` to the event name; for example, instead of using `onClick`, you would use `onClickCapture` to handle the click event in the capture phase.
+React はイベントを正規化して、異なるブラウザ間で一貫したプロパティを持つようにします。
 
-- [Clipboard Events](#clipboard-events)
-- [Composition Events](#composition-events)
-- [Keyboard Events](#keyboard-events)
-- [Focus Events](#focus-events)
-- [Form Events](#form-events)
-- [Mouse Events](#mouse-events)
-- [Pointer Events](#pointer-events)
-- [Selection Events](#selection-events)
-- [Touch Events](#touch-events)
-- [UI Events](#ui-events)
+以下のイベントハンドラはバブリングフェーズのイベントによって発生します。キャプチャフェーズのイベントハンドラを登録するには、イベント名に `Capture` を追加します。たとえば、`onClick` を使用する代わりに、`onClickCapture` を使用してキャプチャフェーズでクリックイベントを処理します。
+
+- [クリップボードイベント](#clipboard-events)
+- [コンポジションイベント](#composition-events)
+- [キーボードイベント](#keyboard-events)
+- [フォーカスイベント](#focus-events)
+- [フォームイベント](#form-events)
+- [マウスイベント](#mouse-events)
+- [ポインタイベント](#pointer-events)
+- [選択イベント](#selection-events)
+- [タッチイベント](#touch-events)
+- [UI イベント](#ui-events)
 - [Wheel Events](#wheel-events)
 - [Media Events](#media-events)
 - [Image Events](#image-events)
 - [Animation Events](#animation-events)
 - [Transition Events](#transition-events)
 - [Other Events](#other-events)
+
 
 * * *
 
