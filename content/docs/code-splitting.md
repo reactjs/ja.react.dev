@@ -215,8 +215,6 @@ const App = () => (
 
 ## 名前付きエクスポート
 
-`React.lazy` currently only supports default exports. If the module you want to import uses named exports, you can create an intermediate module that reexports it as the default. This ensures that treeshaking keeps working and that you don't pull in unused components.
-
 `React.lazy` は現在デフォルトエクスポートのみサポートしています。インポートしたいモジュールが名前付きエクスポートを使用している場合、それを背フォルトとして最エクスポートする中間モジュールを作成できます。これにより、treeshaking が機能し未使用のコンポーネントを取り込まず済むようにできます。
 
 ```js
