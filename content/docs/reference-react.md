@@ -20,7 +20,7 @@ npm と ES6 を使う場合、`import React from 'react'` と書けます。npm 
 
 ### Components
 
-React コンポーネントを使用するとUIを独立した再利用可能な部分に分割し、各部分を個別に考えることができます。
+React コンポーネントを使用すると UI を独立した再利用可能な部分に分割し、各部分を個別に考えることができます。
 React コンポーネントは `React.Component` または `React.PureComponent` をサブクラス化することで定義することができます。
 
  - [`React.Component`](#reactcomponent)
@@ -115,9 +115,9 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 `React.memo` は [higher order component](/docs/higher-order-components.html) です。これは [`React.PureComponent`](#reactpurecomponent) に似ていますが、クラスではなく関数コンポーネントです。
 
-ある関数コンポーネントが同じpropsを与えられたときに同じ結果をレンダリングするとき、結果を記憶してパフォーマンスを向上させるためにそれを `React.memo` でラップして呼び出すことができます。つまり、Reactはコンポーネントのレンダリングをスキップし、最後のレンダリング結果を再利用します。
+ある関数コンポーネントが同じ props を与えられたときに同じ結果をレンダリングするとき、結果を記憶してパフォーマンスを向上させるためにそれを `React.memo` でラップして呼び出すことができます。つまり、Reactはコンポーネントのレンダリングをスキップし、最後のレンダリング結果を再利用します。
 
-デフォルトではpropsオブジェクト内の複雑なオブジェクトは浅い比較のみが行われます。比較を制御したい場合は2番目の引数でカスタム比較関数を指定することができます。
+デフォルトでは props オブジェクト内の複雑なオブジェクトは浅い比較のみが行われます。比較を制御したい場合は2番目の引数でカスタム比較関数を指定することができます。
 
 ```javascript
 function MyComponent(props) {
