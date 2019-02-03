@@ -41,7 +41,7 @@ Greeting.defaultProps = {
 };
 ```
 
-`createReactClass()` の場合、渡されるオブジェクトの関数として `getDefaultProps()` を定義する必要があります。
+`createReactClass()` の場合、渡されるオブジェクト内の関数として `getDefaultProps()` を定義する必要があります。
 
 ```javascript
 var Greeting = createReactClass({
