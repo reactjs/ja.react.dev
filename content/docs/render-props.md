@@ -45,8 +45,8 @@ class MouseTracker extends React.Component {
   render() {
     return (
       <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
-        <h1>マウスを動かしてみましょう！</h1>
-        <p>現在のマウスの位置は ({this.state.x}, {this.state.y})</p>
+        <h1>Move the mouse around!</h1>
+        <p>The current mouse position is ({this.state.x}, {this.state.y})</p>
       </div>
     );
   }
@@ -60,7 +60,7 @@ class MouseTracker extends React.Component {
 コンポーネントは React におけるコード再利用の基本構成要素ですので、コードを少しリファクタリングして、他で再利用する必要のあるこの振る舞いをカプセル化するための `<Mouse>` コンポーネントを使ってみましょう。
 
 ```js
-// <Mouse> コンポーネントは必要な振る舞いだけをカプセル化します...
+// The <Mouse> component encapsulates the behavior we need...
 class Mouse extends React.Component {
   constructor(props) {
     super(props);
@@ -79,8 +79,8 @@ class Mouse extends React.Component {
     return (
       <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
 
-        {/* ...しかし、どのようにして <p> 以外のものをレンダーするのでしょうか？ */}
-        <p>現在のマウスの位置は ({this.state.x}, {this.state.y})</p>
+        {/* ...but how do we render something other than a <p>? */}
+        <p>The current mouse position is ({this.state.x}, {this.state.y})</p>
       </div>
     );
   }
@@ -90,7 +90,7 @@ class MouseTracker extends React.Component {
   render() {
     return (
       <div>
-        <h1>マウスを動かしてみましょう！</h1>
+        <h1>Move the mouse around!</h1>
         <Mouse />
       </div>
     );
@@ -133,10 +133,10 @@ class MouseWithCat extends React.Component {
       <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
 
         {/*
-          ここで <p> を <Cat> に差し替えることができますが...
-          それを使用するたびに別途 <MouseWithSomethingElse>
-          コンポーネントを作成する必要があるため、
-          <MouseWithCat> はまだ真に再利用可能になったとは言えません。 
+          We could just swap out the <p> for a <Cat> here ... but then
+          we would need to create a separate <MouseWithSomethingElse>
+          component every time we need to use it, so <MouseWithCat>
+          isn't really reusable yet.
         */}
         <Cat mouse={this.state} />
       </div>
@@ -148,7 +148,7 @@ class MouseTracker extends React.Component {
   render() {
     return (
       <div>
-        <h1>マウスを動かしてみましょう！</h1>
+        <h1>Move the mouse around!</h1>
         <MouseWithCat />
       </div>
     );
@@ -189,8 +189,8 @@ class Mouse extends React.Component {
       <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
 
         {/*
-          <Mouse> がレンダーするものを静的に表現する代わりに、
-          propsとしての `render` を使うことでレンダーするものを動的に決定します。
+          Instead of providing a static representation of what <Mouse> renders,
+          use the `render` prop to dynamically determine what to render.
         */}
         {this.props.render(this.state)}
       </div>
@@ -223,8 +223,8 @@ More concretely, **a render prop is a function prop that a component uses to kno
 レンダープロップの興味深い点として、多くの[高階コンポーネント](/docs/higher-order-components.html) (HOC) がレンダープロップを使った通常のコンポーネントによって実装可能ということが挙げられます。たとえば、`<Mouse>` コンポーネントよりも `withMouse` HOCが好みであれば、レンダープロップを有する `<Mouse>` を使って簡単に作成可能です。 
 
 ```js
-// HOCを選択する理由があれば、
-// 通常のコンポーネントとレンダープロップを使うことで簡単に作成可能です！
+// If you really want a HOC for some reason, you can easily
+// create one using a regular component with a render prop!
 function withMouse(Component) {
   return class extends React.Component {
     render() {
