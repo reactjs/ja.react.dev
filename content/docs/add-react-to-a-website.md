@@ -16,8 +16,8 @@ React は段階的に導入することができるように最初からデザ�
 
 ---
 
-- [1分で React を導入する](#1分で-react-を導入する)
-- [補足：React で JSX を使う](#補足：react-で-jsx-を使う) (バンドルツールは不要です！)
+- [1分で React を導入する](#add-react-in-one-minute)
+- [補足：React で JSX を使う](#optional-try-react-with-jsx) (バンドルツールは不要です！)
 
 ## 1分で React を導入する
 
@@ -191,7 +191,7 @@ npx babel --watch src --out-dir . --presets react-app/prod
 >
 >`npx` はタイプミスではありません。[npm 5.2 以上で利用可能なパッケージ実行ツール](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b)です。
 >
->万が一 "You have mistakenly installed the `babel` package" というエラーが表示されたのであれば、[JSX をプロジェクトに追加する](#jsx-をプロジェクトに追加する)のステップがうまく実行できていなかったのかもしれません。今いるディレクトリと同じディレクトリで改めて実行してみてください。
+>万が一 "You have mistakenly installed the `babel` package" というエラーが表示されたのであれば、[JSX をプロジェクトに追加する](#add-jsx-to-a-project)のステップがうまく実行できていなかったのかもしれません。今いるディレクトリと同じディレクトリで改めて実行してみてください。
 
 このコマンドは JSX を継続的に監視するため、実行が完了するのを待つ必要はありません。
 
