@@ -77,7 +77,7 @@ import("./math").then(math => {
 
 > 補足：
 >
-> `import()` 構文はECMAScript (JavaScript) が提案している、現時点(2018年2月)ではまだ言語標準として実装されていない構文です。近い将来に標準化される予定です。
+> `import()` 構文はECMAScript (JavaScript) が提案している、現時点ではまだ言語標準として実装されていない構文です。近い将来に標準化される予定です。
 
 Webpackがこの構文を見つけると、自動的にアプリのコードを分割します。Create React App を使用している場合はすでに設定がされているため、[すぐに使用を開始することができます。](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting)Next.jsも同様です。
 
