@@ -20,7 +20,7 @@ JSX は React "要素" を生成します。[次の章](/docs/rendering-elements
 
 ### JSXを使う理由
 
-レンダリングロジックは、イベントへの応答や経時的な状態の変化、画面表示のためにデータを準備する方法といった、他の UI ロジックと本質的に結合したものであり、React ではその事実を受け入れます。
+表示のためのロジックは、イベントへの応答や経時的な状態の変化、画面表示のためのデータを準備する方法といった、他の UI ロジックと本質的に結合したものであり、React はその事実を受け入れます。
 
 マークアップとロジックを別々のファイルに書いて人為的に*技術*を分離するのではなく、React はマークアップとロジックを両方含む疎結合の「コンポーネント」という単位を用いて[*関心*を分離](https://en.wikipedia.org/wiki/Separation_of_concerns)します。[後のセクション](/docs/components-and-props.html)でコンポーネントについては改めて詳しく紹介しますが、現時点で JavaScript にマークアップを書くことが気にくわない場合、[こちらの議論](https://www.youtube.com/watch?v=x7cQ3mrcKaY)で考えが改まるかもしれません。
 
@@ -43,7 +43,7 @@ ReactDOM.render(
 );
 ```
 
-あらゆる有効な[JavaScriptの式](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions)を JSX 内で中括弧に囲んで使用できます。例えば、`2 + 2` や `user.firstName` や `formatName(user)` はすべて有効な JavaScript の式です。
+あらゆる有効な [JavaScript の式](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions)を JSX 内で中括弧に囲んで使用できます。例えば、`2 + 2` や `user.firstName` や `formatName(user)` はすべて有効な JavaScript の式です。
 
 以下の例では、`formatName(user)` という JavaScript 関数の結果を `<h1>` 要素内に埋め込んでいます。
 
@@ -106,7 +106,7 @@ const element = <img src={user.avatarUrl}></img>;
 
 >**警告:**
 >
->JSX は HTML よりも JavaScript に近いものですので、React DOM は HTML の属性ではなく `camelCase` のプロパティ命名規則を使用します。
+>JSX は HTML よりも JavaScript に近いものですので、React DOM は HTML の属性ではなくキャメルケース (camelCase) のプロパティ命名規則を使用します。
 >
 >JSX では例えば、`class` は [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) となり、`tabindex` は  [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/tabIndex) となります。
 
@@ -176,7 +176,7 @@ const element = {
 };
 ```
 
-これらのオブジェクトは "React 要素" と呼ばれます。これらは画面に表示したいものの説明書きとして考えることができます。React はこれらのオブジェクトを読み取り、DOM を構築して最新に保ちます。
+このようなオブジェクトは "React 要素" と呼ばれます。これらは画面に表示したいものの説明書きとして考えることができます。React はこれらのオブジェクトを読み取り、DOM を構築して最新に保ちます。
 
 次の章では React 要素を DOM に変換することについて見ていきましょう。
 

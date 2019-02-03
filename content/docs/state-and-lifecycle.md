@@ -10,7 +10,7 @@ next: handling-events.html
 
 このページでは React コンポーネントにおける state とライフサイクルについての導入を行います。[詳細なコンポーネントの API リファレンスはこちら](/docs/react-component.html)にあります。
 
-[以前の章のひとつ](/docs/rendering-elements.html#updating-the-rendered-element)にあった秒刻みの時計の例を考えてみましょう。[要素のレンダリング](/docs/rendering-elements.html#rendering-an-element-into-the-dom)の章にて、UI を更新するための方法をひとつだけ学びました。それはレンダーされた出力を更新するために `ReactDOM.render()` を呼び出す、というものでした。
+[以前の章のひとつ](/docs/rendering-elements.html#updating-the-rendered-element)にあった秒刻みの時計の例を考えてみましょう。[要素のレンダー](/docs/rendering-elements.html#rendering-an-element-into-the-dom)の章にて、UI を更新するための方法をひとつだけ学びました。それはレンダーされた出力を更新するために `ReactDOM.render()` を呼び出す、というものでした。
 
 ```js{8-11}
 function tick() {
@@ -201,9 +201,9 @@ ReactDOM.render(
 
 多くのコンポーネントを有するアプリケーションでは、コンポーネントが破棄された場合にそのコンポーネントが占有していたリソースを開放することがとても重要です。
 
-最初に `Clock` が DOM としてレンダーされる際に、[タイマーを設定](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval)したいでしょう。このことを React では "マウント (mounting)" と呼びます。
+[タイマーを設定](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval)したいのは、最初に `Clock` が DOM として描画されるときです。このことを React では "マウント (mounting)" と呼びます。
 
-また `Clock` が生成した DOM が削除される際には[タイマーをクリア](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/clearInterval)したいです。このことを React では "アンマウント (unmounting)" と呼びます。
+また[タイマーをクリア](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/clearInterval)したいのは、`Clock` が生成した DOM が削除されるときです。このことを React では "アンマウント (unmounting)" と呼びます。
 
 コンポーネントクラスで特別なメソッドを宣言することで、コンポーネントがマウントしたりアンマウントしたりした際にコードを実行することができます：
 
@@ -415,7 +415,7 @@ this.setState(function(state, props) {
 
 親コンポーネントであれ子コンポーネントであれ、特定の他のコンポーネントがステートフルかステートレスかを知ることはできませんし、特定のコンポーネントの定義が関数型かクラス型かを気にするべきではありません。
 
-これが、state はローカルのものである、ないしはカプセル化されている、と言われる理由です。state を所有してセットするコンポーネント自身以外からはアクセスすることができません。
+これが、state はローカルのものである、ないしはカプセル化されている、と言われる理由です。state を所有してセットするコンポーネント自身以外からはその state にアクセスすることができません。
 
 コンポーネントはその子コンポーネントに props として自身の state を渡してもかまいません。
 
@@ -464,6 +464,6 @@ ReactDOM.render(
 
 [**Try it on CodePen**](http://codepen.io/gaearon/pen/vXdGmd?editors=0010)
 
-各 `Clock` は独立してタイマーを設定して更新します。
+各 `Clock` は独立してタイマーをセットし、独立して更新します。
 
 React アプリケーションでは、コンポーネントがステートフルかステートレスかは、コンポーネントにおける内部実装の詳細 (implementation detail) とみなされ、それは時間と共に変化しうるものです。ステートレスなコンポーネントをステートフルなコンポーネントの中で使うことが可能であり、その逆も同様です。
