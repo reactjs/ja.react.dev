@@ -29,7 +29,7 @@ ES6 のクラス API は `createReactClass()` とよく似ていますが、い�
 
 ## デフォルト props の宣言
 
-関数や ES6 クラスでは、 `defaultProps` はコンポーネント自体のプロパティとして定義されます。
+関数や ES6 クラスでは、`defaultProps` はコンポーネント自体のプロパティとして定義されます。
 
 ```javascript
 class Greeting extends React.Component {
