@@ -173,7 +173,7 @@ class SayHello extends React.Component {
 >
 >**加えて、ミックスインを用いたコードによる多くの問題が見つかっており、[新規コードで利用することは推奨されません](/blog/2016/07/13/mixins-considered-harmful.html)。**
 >
->この章は参考のためだけに存在します。
+>この節は参考のためだけに存在します。
 
 時には同じ機能が全く異なるコンポーネント間で共有されることがあります。これは[横断的関心事 (cross-cutting concerns)](https://en.wikipedia.org/wiki/Cross-cutting_concern) と呼ばれることがあります。 `createReactClass` であれば、それ用にレガシーな `mixins` 機能を使うことができます。
 
