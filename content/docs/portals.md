@@ -46,7 +46,7 @@ render() {
 >
 > ポータルを利用する際は、[キーボードのフォーカスの管理](/docs/accessibility.html#programmatically-managing-focus)を行うことが重要になるので、忘れずに行ってください。
 >
-> モーダルダイアログについては [WAI-ARIA *** Authoring Practices](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal)に従い、誰もが利用できるという状態を確保してください。
+> モーダルダイアログについては [WAI-ARIA モーダルの推奨実装方法](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal)に従い、誰もが利用できるという状態を確保してください。
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/yzMaBd)
 
