@@ -56,7 +56,7 @@ var Greeting = createReactClass({
 });
 ```
 
-## stateの初期値の設定
+## state の初期値の設定
 
 ES6 クラスでは、コンストラクターで `this.state` へ代入することでstateの初期値を定義できます。
 
