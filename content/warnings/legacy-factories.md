@@ -5,9 +5,7 @@ permalink: warnings/legacy-factories.html
 ---
 React Element ファクトリと JSX についての警告。
 
-You probably came here because your code is calling your component as a plain function call. This is now deprecated:
-
-このページに来たのは、恐らくコードがコンポーネントの呼び出しを普通の関数呼び出ししているからでしょう。これは現在非推奨になっています。
+このページを閲覧しているのは、恐らくコンポーネントを普通の関数として呼び出ししているからでしょう。これは現在非推奨になっています。
 
 ```javascript
 var MyComponent = require('MyComponent');
@@ -18,8 +16,6 @@ function render() {
 ```
 
 ## JSX
-
-React components can no longer be called directly like this. Instead [you can use JSX](/docs/jsx-in-depth.html).
 
 Reactコンポーネントは、このように直接呼び出すことはできなくなりました。代わりに[JSXを使うことができます](/docs/jsx-in-depth.html)。
 
@@ -32,10 +28,7 @@ function render() {
 }
 ```
 
-## Without JSX
 ## JSX を使用しない場合
-
-If you don't want to, or can't use JSX, then you'll need to wrap your component in a factory before calling it:
 
 JSX を使いたくない、または使えない場合、コンポーネントを呼び出す前にファクトリでラップする必要があります。
 
@@ -48,19 +41,11 @@ function render() {
 }
 ```
 
-This is an easy upgrade path if you have a lot of existing function calls.
-
 呼び出しの箇所が大量である場合、この修正方法が簡単です。
-
-## Dynamic components without JSX
 
 ## JSX を使用しない動的なコンポーネント
 
-If you get a component class from a dynamic source, then it might be unnecessary to create a factory that you immediately invoke. Instead you can just create your element inline:
-
-
-コンポーネントのクラスを動的に取得する場合は、すぐに実行してしまうファクトリを作成する必要はありません。その代わりにインラインで単に要素を作成します。
-
+コンポーネントのクラスが動的に与えられる場合は、すぐに実行してしまうファクトリを作成する必要はありません。その代わりにインラインで単に要素を作成します。
 
 ```javascript
 var React = require('react');
@@ -70,11 +55,6 @@ function render(MyComponent) {
 }
 ```
 
-## In Depth
 ## 詳細
 
-
-[Read more about WHY we're making this change.](https://gist.github.com/sebmarkbage/d7bce729f38730399d28)
-
-[この変更を行った理由について更に読む。](https://gist.github.com/sebmarkbage/d7bce729f38730399d28)
-
+[この変更がなされた理由について更に読む。](https://gist.github.com/sebmarkbage/d7bce729f38730399d28)
