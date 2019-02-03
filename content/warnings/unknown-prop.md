@@ -3,14 +3,14 @@ title: Unknown Prop Warning
 layout: single
 permalink: warnings/unknown-prop.html
 ---
-「不明なプロパティ」（unknown-prop）警告は、DOM 標準仕様で定義された属性/プロパティであるとReactが認識していないプロパティでDOM をレンダリングしようとした場合に発生します。
+「不明なプロパティ」 (unknown-prop) 警告は、DOM 標準仕様で定義された属性/プロパティであると React が認識していないプロパティでDOM をレンダリングしようとした場合に発生します。
 該当箇所の近辺で非正規な props を使ってしまっていないことを確認してください。
 
 この警告が表示されるありそうな原因のいくつかを示します。
 
 1. `{...this.props}` または `cloneElement(element, this.props)` を使っていませんか？　コンポーネントが自身の props を子要素にそのまま転送しています（参考： [propsの転送](/docs/transferring-props.html)）。子要素に props を転送する場合、親コンポーネントが解釈すべき props を誤って子に転送していないことを確認する必要があります。
 
-2. 独自データを表現するため等の理由で、ネイティブの DOM ノード上で非標準の DOM 属性を使用している場合。DOM 要素に独自形式のデータを追加しようとしているなら、[MDN で説明されている](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes)通りにカスタムデータ属性（data-*）の使用を検討してください。
+2. 独自データを表現するため等の理由で、ネイティブの DOM ノード上で非標準の DOM 属性を使用している場合。DOM 要素に独自形式のデータを追加しようとしているなら、[MDN で説明されている](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes)通りにカスタムデータ属性 (data-*) の使用を検討してください。
 
 2. 指定した属性を React が標準仕様の一部として正しく認識していない場合。この振舞いはReact の将来のバージョンで修正される可能性は高いでしょう。しかし現時点では、React は知らない属性を全て削除するため、React アプリケーションで指定してもレンダリングされません。
 

@@ -8,13 +8,13 @@ permalink: warnings/dont-call-proptypes.html
 > 注意：
 >
 > React.PropTypes は React v15.5 から別パッケージに移動しました。代わりに [prop-typesライブラリ](https://www.npmjs.com/package/prop-types)を使用してください。
-> コードを自動で変換するための [codemodスクリプト](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) も提供しています。
+> コードを自動で変換するための [codemod スクリプト](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) も提供しています。
 
-Reactの将来のメジャーリリースでは、PropTypeのバリデーションを実装するコードは、プロダクションビルドから削除される予定です。その際には、バリデーションを手動で呼び出す全てのコード（プロダクションビルドで削除されないもの）はエラーを投げることになります。
+React の将来のメジャーリリースでは、PropType のバリデーションを実装するコードは、本番用ビルドから削除される予定です。その際には、バリデーションを手動で呼び出す全てのコード（本番用ビルドで削除されないもの）はエラーを投げることになります。
 
 ### PropTypes 宣言については問題ありません
 
-PropTypeの通常の使用は引き続きサポートされます。
+PropType の通常の使用は引き続きサポートされます。
 
 ```javascript
 Button.propTypes = {
@@ -26,7 +26,7 @@ Button.propTypes = {
 
 ### PropTypes を直接呼び出さない
 
-React コンポーネントに注釈を付ける以外の方法でPropTypeを使用することはサポートされなくなりました。
+React コンポーネントに注釈を付ける以外の方法で PropType を使用することはサポートされなくなりました。
 
 ```javascript
 var apiShape = PropTypes.shape({
@@ -38,13 +38,13 @@ var apiShape = PropTypes.shape({
 var error = apiShape(json, 'response');
 ```
 
-この形で PropType を使用をする必要がある場合、PropTypeのフォーク版（[これら](https://github.com/aackerman/PropTypes) [2つの](https://github.com/developit/proptypes)パッケージなど）を使用するか、あるいは新たにフォーク版を作成することをお勧めします。
+この形で PropType を使用をする必要がある場合、PropType のフォーク版（[これら](https://github.com/aackerman/PropTypes) [2つの](https://github.com/developit/proptypes)パッケージなど）を使用するか、あるいは新たにフォーク版を作成することをお勧めします。
 
-警告に応じてコードを修正しなければ、このコードは React 16 のプロダクションビルドではクラッシュします。
+警告に応じてコードを修正しなければ、このコードは React 16 の本番用ビルドではクラッシュします。
 
 ### PropTypes を直接呼んでいないのに警告が発生するとき
 
-警告で出力されているスタックトレースを調べることで、PropTypesを直接呼んでいるコンポーネント定義を見付けることができます。ほとんどの場合、ReactのPropTypeをラップするサードパーティ製のPropTypeが問題の原因です。たとえば、
+警告で出力されているスタックトレースを調べることで、PropTypes を直接呼んでいるコンポーネント定義を見付けることができます。ほとんどの場合、React の PropType をラップするサードパーティ製の PropType が問題の原因です。たとえば、
 
 ```js
 Button.propTypes = {
@@ -55,7 +55,7 @@ Button.propTypes = {
 }
 ```
 
-このケースでは、 `ThirdPartyPropTypes.deprecated` が `PropTypes.bool` を呼び出しているラッパーです。このパターンそのものは良いのですが、あなたが直接 PropTypes を呼び出したと React が判断するため、誤検出（=呼び出していないのに呼び出したと判定）を引き起こします。次節では `ThirdPartyPropTypes` のようなライブラリを実装する際に、この問題をどのように解決するかについて述べます。自分で書いたライブラリでなければ、そのライブラリについてissueを作成することもできます。
+このケースでは、 `ThirdPartyPropTypes.deprecated` が `PropTypes.bool` を呼び出しているラッパーです。このパターンそのものは良いのですが、あなたが直接 PropTypes を呼び出したと React が判断するため、誤検出（=呼び出していないのに呼び出したと判定）を引き起こします。次節では `ThirdPartyPropTypes` のようなライブラリを実装する際に、この問題をどのように解決するかについて述べます。自分で書いたライブラリでなければ、そのライブラリについて issue を作成することもできます。
 
 ### サードパーティの PropTypes における誤検知を修正する
 
@@ -82,7 +82,7 @@ export default function deprecated(propType, explanation) {
 }
 ```
 
-誤検知を修正するには、**すべての**引数をラップされたPropTypeに渡してください。これはES6の `...rest` 記法で簡単に行えます。
+誤検知を修正するには、**すべての**引数をラップされた PropType に渡してください。これはES6の `...rest` 記法で簡単に行えます。
 
 ```javascript
 export default function deprecated(propType, explanation) {

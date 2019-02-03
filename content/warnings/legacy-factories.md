@@ -17,7 +17,7 @@ function render() {
 
 ## JSX
 
-Reactコンポーネントは、このように直接呼び出すことはできなくなりました。代わりに[JSXを使うことができます](/docs/jsx-in-depth.html)。
+React コンポーネントは、このように直接呼び出すことはできなくなりました。代わりに [JSX を使うことができます](/docs/jsx-in-depth.html)。
 
 ```javascript
 var React = require('react');

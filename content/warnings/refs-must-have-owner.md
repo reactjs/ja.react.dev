@@ -12,7 +12,7 @@ permalink: warnings/refs-must-have-owner.html
 >
 > Element ref was specified as a string (myRefName) but no owner was set. You may have multiple copies of React loaded. (details: https://fb.me/react-refs-must-have-owner).
 >
-> ref 要素が文字列（myRefName）として指定されましたが、オーナーが設定されていませんでした。Reactの複数のコピーがロードされている可能性があります。（詳細： https://fb.me/react-refs-must-have-owner ）。
+> ref 要素が文字列 (myRefName) として指定されましたが、オーナーが設定されていませんでした。Reactの複数のコピーがロードされている可能性があります。（詳細： https://fb.me/react-refs-must-have-owner ）。
 
 *より古いバージョンの React*
 > Warning:
@@ -25,11 +25,11 @@ permalink: warnings/refs-must-have-owner.html
 
 - `ref` を関数コンポーネントに使用しようとしている
 - コンポーネントの render() 関数の外部で作成されている要素に `ref` を使用しようとしている
-- Reactの複数の（競合する）コピーがロードされている（例えばnpm依存関係の設定ミスによって）
+- React の複数の（競合する）コピーがロードされている（例えばnpm依存関係の設定ミスによって）
 
 ## 関数コンポーネントのRef
 
-`<Foo>`が関数コンポーネントである場合には、refを指定することはできません。
+`<Foo>` が関数コンポーネントである場合には、ref を指定することはできません。
 
 ```js
 // Doesn't work if Foo is a function!
@@ -70,4 +70,4 @@ Bower は依存関係の重複を上手く排除しますが、npm はそうで�
 ref に対して特別なことを何もしていないなら、原因は ref ではなく、複数の React のコピーがプロジェクトにロードされているからである可能性が高いでしょう。
 時々、サードパーティ製のモジュールを npm 経由で追加した場合、依存ライブラリの重複したコピーが問題を引き起こす可能性があります。
 
-npmを使用している場合、`npm ls` や `npm ls react` の実行が、問題の原因を探す役に立つかもしれません。
+npm を使用している場合、`npm ls` や `npm ls react` の実行が、問題の原因を探す役に立つかもしれません。
