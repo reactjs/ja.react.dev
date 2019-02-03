@@ -1,12 +1,12 @@
 ---
 id: code-splitting
-title: Code-Splitting
+title: コード分割
 permalink: docs/code-splitting.html
 ---
 
 ## バンドル
 
-多くの React アプリケーションは、[Webpack](https://webpack.js.org/)や [Browserify](http://browserify.org/) などのツールを使ってファイルを「バンドル」しています。バンドリングはインポートされたファイルをたどって、それらを一つのファイルにまとめるプロセスです。このバンドルされたファイルをWebページ内に置くことによって、アプリ全体を一度に読み込むことができます。
+多くの React アプリケーションは、[Webpack](https://webpack.js.org/)や [Browserify](http://browserify.org/) などのツールを使ってファイルを「バンドル」しています。バンドルはインポートされたファイルをたどって、それらを一つのファイルにまとめるプロセスです。このバンドルされたファイルを Web ページ内に置くことによって、アプリ全体を一度に読み込むことができます。
 
 #### 例
 
@@ -36,24 +36,24 @@ function add(a, b) {
 console.log(add(16, 26)); // 42
 ```
 
-> 補足:
+> 補足：
 >
 > バンドルされたファイルはこれらのファイルとは似てもつかないような見た目をしているでしょう。
 
 もしあなたが [Create React App](https://github.com/facebookincubator/create-react-app) や [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/) またはこれらに類するツールを使用している場合、Webpack は自動的にそれらをバンドルしてくれます。
 
-そうでない場合は、自分でバンドルを設定する必要があります。設定方法に関しては、Webpackのドキュメントにある [Installation](https://webpack.js.org/guides/installation/) や [Getting Started](https://webpack.js.org/guides/getting-started/) などを参照してみてください。
+そうでない場合は、自分でバンドルを設定する必要があります。設定方法に関しては、Webpack のドキュメントにある [Installation](https://webpack.js.org/guides/installation/) や [Getting Started](https://webpack.js.org/guides/getting-started/) などを参照してみてください。
 
 ## コード分割
 
 バンドルは確かに素晴らしいですが、アプリが大きくなるにつれて、バンドルのサイズも大きくなります。特にサイズの大きなサードパーティ製のライブラリを含む場合は顕著にサイズが増大します。
 不用意に大きなバンドルを作成してしまいアプリの読み込みに多くの時間がかかってしまうという事態にならないためにも、常に注意を払い続けなければなりません。
 
-大きなバンドルに巻き込まれないためには、コードを"分割"して問題を回避しましょう。
-[Code-Splitting](https://webpack.js.org/guides/code-splitting/) は、実行時にロードする複数のバンドルを生成できる Webpack や Browserify などのバンドル(但し [factor-bundle](https://github.com/browserify/factor-bundle) が必要)によってサポートされている機能です。
+大きなバンドルを不注意に生成してしまわないように、コードを「分割」して問題を回避しましょう。
+[Code-Splitting](https://webpack.js.org/guides/code-splitting/) は、実行時にロードする複数のバンドルを生成できる Webpack や Browserify などのバンドル（但し [factor-bundle](https://github.com/browserify/factor-bundle) が必要）によってサポートされている機能です。
 
-コード分割することによって"遅延ロード"が可能となり、アプリのパフォーマンスを劇的に向上させることができます。
-アプリの全体的なコード量を減らすことはできませんが、ユーザが必要としないコードをロードしなくて済むため、初期ロードの際にロードするコード量を削減することができます。
+コード分割することによって「遅延読み込み」が可能となり、アプリのパフォーマンスを劇的に向上させることができます。
+アプリの全体的なコード量を減らすことはできませんが、ユーザが必要としないコードを読み込まなくて済むため、初期ロードの際に読む込むコード量を削減でき、読み込みにかかる時間を短縮できます。
 
 ## `import()`
 
@@ -75,7 +75,7 @@ import("./math").then(math => {
 });
 ```
 
-> 補足:
+> 補足：
 >
 > `import()` 構文はECMAScript (JavaScript) が提案している、現時点(2018年2月)ではまだ言語標準として実装されていない構文です。近い将来に標準化される予定です。
 
@@ -83,15 +83,15 @@ Webpackがこの構文を見つけると、自動的にアプリのコードを�
 
 もし Webpack を自分でセットアップしていた場合には、Webpack の[コード分割に関するガイド](https://webpack.js.org/guides/code-splitting/)を読むと良いでしょう。きっとあなたの Webpack の設定は[これくらい](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269)がらんとしているでしょうから。
 
-もし [Babel](http://babeljs.io/) を使用している場合は、Babel が動的インポート構文を解析できても変換しないようにする必要があります。そのためには  [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import) を利用すると良いでしょう。
+もし [Babel](http://babeljs.io/) を使用している場合は、Babel が動的インポート構文を解析できても変換してしまわないようにする必要があります。そのためには  [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import) を利用すると良いでしょう。
 
 ## `React.lazy`
 
-> Note:
+> 補足:
 >
-> `React.lazy` and Suspense is not yet available for server-side rendering. If you want to do code-splitting in a server rendered app, we recommend [Loadable Components](https://github.com/smooth-code/loadable-components). It has a nice [guide for bundle splitting with server-side rendering](https://github.com/smooth-code/loadable-components/blob/master/packages/server/README.md).
+> `React.lazy`と Suspense はまだサーバーサイドレンダリングには使用できません。サーバーサイドでレンダリングされたアプリでコード分割をしたい場合には、[Loadable Components](https://github.com/smooth-code/loadable-components) の使用をおすすめします。こちらは[サーバーサイドレンダリングでのバンドル分割のための素晴らしいガイド](https://github.com/smooth-code/loadable-components/blob/master/packages/server/README.md)も提供していくれているので、参考にしてみてください。
 
-The `React.lazy` function lets you render a dynamic import as a regular component.
+`React.lazy` 関数を使用すると、動的インポートを通常のコンポーネントとしてレンダリングすることができます。
 
 **Before:**
 
@@ -121,13 +121,13 @@ function MyComponent() {
 }
 ```
 
-This will automatically load the bundle containing the `OtherComponent` when this component gets rendered.
+このコンポーネントがレンダリングされる際には、`OtherComponent` を含むバンドルを自動的にロードしてくれます。
 
-`React.lazy` takes a function that must call a dynamic `import()`. This must return a `Promise` which resolves to a module with a `default` export containing a React component.
+`React.lazy` は動的インポート構文 `import()` を呼び出す関数を引数として取ります。これは React コンポーネントを含む `default` export を持つモジュールに解決される `Promise`  を返さなければなりません。
 
 ### Suspense
 
-If the module containing the `OtherComponent` is not yet loaded by the time `MyComponent` renders, we must show some fallback content while we're waiting for it to load - such as a loading indicator. This is done using the `Suspense` component.
+`MyComponent` がレンダリングされるまでに、`OtherComponent` を含むモジュールがまだロードされていない場合、例えばロードインジケータなどのようなフォールバックコンテンツをロードが完了するまで表示する必要があります。これは `Suspense` コンポーネントを使って実装することができます。
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
@@ -143,7 +143,7 @@ function MyComponent() {
 }
 ```
 
-The `fallback` prop accepts any React elements that you want to render while waiting for the component to load. You can place the `Suspense` component anywhere above the lazy component. You can even wrap multiple lazy components with a single `Suspense` component.
+`fallback` プロパティはコンポーネントがロードされるのを待っている間に表示したいあらゆる React 要素を受け取ります。`Suspense` コンポーネントは遅延コンポーネントより上位のどこにでも配置することができます。また、複数の遅延コンポーネントを単一の`Suspense` コンポーネントでラップすることもできます。
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
@@ -165,7 +165,7 @@ function MyComponent() {
 
 ### Error boundaries
 
-If the other module fails to load (for example, due to network failure), it will trigger an error. You can handle these errors to show a nice user experience and manage recovery with [Error Boundaries](/docs/error-boundaries.html). Once you've created your Error Boundary, you can use it anywhere above your lazy components to display an error state when there's a network error.
+もし他のモジュールがロードに失敗した場合(例えば、ネットワークの障害など)、エラーが発生します。その際には [Error Boundaries](/docs/error-boundaries.html) を使用することによってこれらのエラーをハンドリングし、エラーの回復やユーザ体験の向上に繋げることができます。Error Boundary を作成したら、遅延コンポーネントより上位のあらゆる場所で使用でき、ネットワークエラーが発生した際にエラー内容を表示することができます。
 
 ```js
 import MyErrorBoundary from './MyErrorBoundary';
@@ -186,19 +186,13 @@ const MyComponent = () => (
 );
 ```
 
-## Route-based code splitting
+## ルート単位でのコード分割
 
-Deciding where in your app to introduce code splitting can be a bit tricky. You
-want to make sure you choose places that will split bundles evenly, but won't
-disrupt the user experience.
+アプリ内のどこにコード分割を導入するかを決めるのは少し面倒です。バンドルを均等に分割する場所を確実に選択したいところですが、ユーザ体験を妨げてななりません。
 
-A good place to start is with routes. Most people on the web are used to
-page transitions taking some amount of time to load. You also tend to be
-re-rendering the entire page at once so your users are unlikely to be
-interacting with other elements on the page at the same time.
+コード分割を導入するにあたって適している場所はルートです。Webを使用するほとんどの人は、ロード時間がかかるページ遷移に慣れています。また、ユーザはページ全体を一度に再描画する傾向にあるため、同時に他の要素を同時に見る機会はほとんどありません。
 
-Here's an example of how to setup route-based code splitting into your app using
-libraries like [React Router](https://reacttraining.com/react-router/) with `React.lazy`.
+これは [React Router](https://reacttraining.com/react-router/) のようなライブラリを `React.lazy` を使用することでアプリにルートベースのコード分割を導入する方法の例です。
 
 ```js
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -219,9 +213,11 @@ const App = () => (
 );
 ```
 
-## Named Exports
+## 名前付きエクスポート
 
 `React.lazy` currently only supports default exports. If the module you want to import uses named exports, you can create an intermediate module that reexports it as the default. This ensures that treeshaking keeps working and that you don't pull in unused components.
+
+`React.lazy` は現在デフォルトエクスポートのみサポートしています。インポートしたいモジュールが名前付きエクスポートを使用している場合、それを背フォルトとして最エクスポートする中間モジュールを作成できます。これにより、treeshaking が機能し未使用のコンポーネントを取り込まず済むようにできます。
 
 ```js
 // ManyComponents.js
