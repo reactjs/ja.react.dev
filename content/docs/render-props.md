@@ -1,12 +1,13 @@
 ---
 id: render-props
-title: Render Props
+title: レンダープロップ
 permalink: docs/render-props.html
 ---
 
-The term ["render prop"](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) refers to a technique for sharing code between React components using a prop whose value is a function.
+[「レンダープロップ」](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)とは、値が関数となる props を持ったコンポーネント間でコードを共有するためのテクニックの1つです。
 
-A component with a render prop takes a function that returns a React element and calls it instead of implementing its own render logic.
+レンダープロップを持つコンポーネントは、自身のレンダーロジックを実装する代わりに、React 要素を返す関数を受け取ってそれを呼び出します。
+
 
 ```jsx
 <DataProvider render={data => (
@@ -14,9 +15,9 @@ A component with a render prop takes a function that returns a React element and
 )}/>
 ```
 
-Libraries that use render props include [React Router](https://reacttraining.com/react-router/web/api/Route/Route-render-methods) and [Downshift](https://github.com/paypal/downshift).
+レンダープロップを用いたライブラリとしては、[React Router](https://reacttraining.com/react-router/web/api/Route/Route-render-methods) や [Downshift](https://github.com/paypal/downshift) などがあります。
 
-In this document, we’ll discuss why render props are useful, and how to write your own.
+このドキュメントでは、レンダープロップが役立つ理由と、その記述法について解説します。
 
 ## Use Render Props for Cross-Cutting Concerns
 
