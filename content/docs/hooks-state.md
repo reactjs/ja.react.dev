@@ -212,10 +212,6 @@ Let's now **recap what we learned line by line** and check our understanding.
 14:  }
 ```
 
-* **Line 1:** We import the `useState` Hook from React. It lets us keep local state in a function component.
-* **Line 4:** Inside the `Example` component, we declare a new state variable by calling the `useState` Hook. It returns a pair of values, to which we give names. We're calling our variable `count` because it holds the number of button clicks. We initialize it to zero by passing `0` as the only `useState` argument. The second returned item is itself a function. It lets us update the `count` so we'll name it `setCount`.
-* **Line 9:** When the user clicks, we call `setCount` with a new value. React will then re-render the `Example` component, passing the new `count` value to it.
-
 - **1 行目：** `useState` フックを React からインポートします。これが関数コンポーネント内でローカル state を使えるようにするためのものです。
 - **4 行目：** `Example` コンポーネント内で `useState` フックを呼び出すことで新しい state 変数を宣言します。2 つの値のペアが返されるので、それらに名前を与えます。ボタンのクリック回数を保持するための変数ですので `count` と名付けましょう。`useState` 唯一の引数として `0` を渡すことで、変数をゼロへと初期化します。返り値の 2 つ目はそれ自体が関数です。これにより `count` を更新するので、`setCount` とう名前にします。
 - **9 行目：** ユーザがクリックした時に、新しい値で `setCount` を呼びます。React は `Example` コンポーネントを再レンダーし、その際には新たな `count` の値を渡します。
@@ -235,8 +231,6 @@ state 変数を宣言するときのこの角カッコに気付かれたでし�
 ```js
   const [fruit, setFruit] = useState('banana');
 ```
-
-This JavaScript syntax is called ["array destructuring"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring). It means that we're making two new variables `fruit` and `setFruit`, where `fruit` is set to the first value returned by `useState`, and `setFruit` is the second. It is equivalent to this code:
 
 この JavaScript の構文は ["分割代入 (destructuring)"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring) と呼ばれています。これが意味するところは、`fruit` と `setFruit` という名前の 2 つの変数を作って、`useState` から返される値のうち 1 つ目を `fruit` に、2 つ目を `setFruit` に代入する、ということです。これは以下のコードと等価です：
 
