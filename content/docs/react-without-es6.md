@@ -162,7 +162,7 @@ class SayHello extends React.Component {
 安全にやりたい場合は他の選択肢もあります。
 
 * コンストラクターでメソッドをバインドする。
-* アロー関数を利用する。例： `onClick={(e) => this.handleClick(e)}`。
+* 例えば `onClick={(e) => this.handleClick(e)}` のような形でアロー関数を利用する。
 * 引き続き `createReactClass` を利用する。
 
 ## ミックスイン
