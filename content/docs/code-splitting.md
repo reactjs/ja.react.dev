@@ -50,7 +50,7 @@ console.log(add(16, 26)); // 42
 不用意に大きなバンドルを作成してしまいアプリの読み込みに多くの時間がかかってしまうという事態にならないためにも、常に注意を払い続けなければなりません。
 
 大きなバンドルを不注意に生成してしまわないように、コードを「分割」して問題を回避しましょう。
-[Code-Splitting](https://webpack.js.org/guides/code-splitting/) は、実行時にロードする複数のバンドルを生成できる Webpack や Browserify などのバンドル（但し [factor-bundle](https://github.com/browserify/factor-bundle) が必要）によってサポートされている機能です。
+[Code-Splitting](https://webpack.js.org/guides/code-splitting/) は、実行時にロードする複数のバンドルを生成できる Webpack や Browserify（[factor-bundle](https://github.com/browserify/factor-bundle) を使用）などのバンドルによってサポートされている機能です。
 
 コード分割することによって「遅延読み込み」が可能となり、アプリのパフォーマンスを劇的に向上させることができます。
 アプリの全体的なコード量を減らすことはできませんが、ユーザが必要としないコードを読み込まなくて済むため、初期ロードの際に読む込むコード量を削減でき、読み込みにかかる時間を短縮できます。
