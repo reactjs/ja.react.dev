@@ -79,31 +79,31 @@ React のすばらしい特長がいくつもありますが、あなたがど�
 
 React には 2 種類の「モデル」データが存在します。 props と state です。このふたつの相違を理解するのは重要なことです。もしあなたがこれらの違いについての知識に自信がない場合は、[公式の React ドキュメント](/docs/interactivity-and-dynamic-uis.html)に目を通すとよいでしょう。
 
-## Step 3: Identify The Minimal (but complete) Representation Of UI State
+## Step 3：UI の状態を最小の（しかし完全な）形で表現する
 
-To make your UI interactive, you need to be able to trigger changes to your underlying data model. React makes this easy with **state**.
+UI をインタラクティブなものにするにあたり、UIを構築する元となっているデータモデルを更新できるようにしておきたいですね。React なら **state** を使うことで容易に実現できます。
 
-To build your app correctly, you first need to think of the minimal set of mutable state that your app needs. The key here is [DRY: *Don't Repeat Yourself*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Figure out the absolute minimal representation of the state your application needs and compute everything else you need on-demand. For example, if you're building a TODO list, just keep an array of the TODO items around; don't keep a separate state variable for the count. Instead, when you want to render the TODO count, simply take the length of the TODO items array.
+適切に開発を進めていくにあたり、そのアプリに求められている更新可能な状態の最小構成を、最初に考えておいたほうがよいでしょう。ここで重要なのは、[DRY（*Don't Repeat Yourself*）](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)の原則です。アプリケーションが必要としている最小限の状態を把握しておき、他に必要なものが出てきたら、そのとき計算すればよいのです。例を挙げてみましょう。もしあなたがTODOリストを作ることになったら、TODOの各項目を配列で保持しますよね。個数のカウント用に、別の状態変数を持ったりはしません。その代わりに、TODOの項目数を表示したいのであれば、単純に配列の length を使えばよいのです。
 
-Think of all of the pieces of data in our example application. We have:
+今回のサンプルアプリを形作るデータについて考えてみましょう。次のようなデータがあります。
 
-  * The original list of products
-  * The search text the user has entered
-  * The value of the checkbox
-  * The filtered list of products
+  * 元となる商品のリスト
+  * ユーザーが入力した検索文字列
+  * チェックボックスの値
+  * フィルタ済みの商品のリスト
 
-Let's go through each one and figure out which one is state. Simply ask three questions about each piece of data:
+それぞれについて見ていき、どれが state になりうるのかを考えてみます。各データについて、 3 つの質問をするだけです。
 
-  1. Is it passed in from a parent via props? If so, it probably isn't state.
-  2. Does it remain unchanged over time? If so, it probably isn't state.
-  3. Can you compute it based on any other state or props in your component? If so, it isn't state.
+  1. 親から props を通じて与えられたデータでしょうか？　もしそうなら、それは state ではありません
+  2. 時間経過で変化しないままでいるデータでしょうか？　もしそうなら、それは state ではありません
+  3. コンポーネント内にある他の props や state を使って算出可能なデータでしょうか？　もしそうなら、それは state ではありません
 
-The original list of products is passed in as props, so that's not state. The search text and the checkbox seem to be state since they change over time and can't be computed from anything. And finally, the filtered list of products isn't state because it can be computed by combining the original list of products with the search text and value of the checkbox.
+元となる商品のリストは props から渡されるので、これは state ではありません。検索文字列とチェックボックスは時間の経過の中で変化し、また、算出することもできないため、state だと思われます。最後に、フィルタ済みの商品のリストは state ではありません。何故ならば、元となる商品のリストと検索文字列とチェックボックスの値を組み合わせることで、フィルタ済みの商品のリストを算出することが可能だからです。
 
-So finally, our state is:
+というわけで、state と呼べるのは次の 2 つです。
 
-  * The search text the user has entered
-  * The value of the checkbox
+  * ユーザーが入力した検索文字列
+  * チェックボックスの値
 
 ## Step 4: Identify Where Your State Should Live
 
