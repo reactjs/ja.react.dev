@@ -240,11 +240,11 @@ function withMouse(Component) {
 
 つまり、レンダープロップによってどちらのパターンも可能になります。
 
-## Using Props Other Than `render`
+## `render` 以外の props を使う
 
-It's important to remember that just because the pattern is called "render props" you don't *have to use a prop named `render` to use this pattern*. In fact, [*any* prop that is a function that a component uses to know what to render is technically a "render prop"](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce).
+「レンダープロップ」と呼ばれるパターンは、必ずしも*`render` という名前の props を使う必要はない*ということを念頭に置いてください。実際、[コンポーネントがレンダーするものを知るための関数型 props であれば、*その名前が何であれ*、技術的には「レンダープロップ」と呼ぶことができます](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)。
 
-Although the examples above use `render`, we could just as easily use the `children` prop!
+上記の例では `rendrer` を用いていますが、`children` props を使っても同じくらい簡単です！
 
 ```js
 <Mouse children={mouse => (
@@ -252,7 +252,7 @@ Although the examples above use `render`, we could just as easily use the `child
 )}/>
 ```
 
-And remember, the `children` prop doesn't actually need to be named in the list of "attributes" in your JSX element. Instead, you can put it directly *inside* the element!
+さらに、`children` props は実際には JSX 要素の「属性」の一覧内で名前を付ける必要がないことも忘れないでください。代わりに、要素*内部に*直接設定可能です！
 
 ```js
 <Mouse>
@@ -262,9 +262,12 @@ And remember, the `children` prop doesn't actually need to be named in the list 
 </Mouse>
 ```
 
-You'll see this technique used in the [react-motion](https://github.com/chenglou/react-motion) API.
+このテクニックは、 [react-motion](https://github.com/chenglou/react-motion)  の API などで使用されています。
+
 
 Since this technique is a little unusual, you'll probably want to explicitly state that `children` should be a function in your `propTypes` when designing an API like this.
+
+このテクニックは若干珍しいため、このようなAPI設計時には、`children` が関数であることを `propTypes` で明示した方が良いでしょう。
 
 ```js
 Mouse.propTypes = {
