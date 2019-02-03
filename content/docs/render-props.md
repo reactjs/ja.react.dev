@@ -275,13 +275,15 @@ Mouse.propTypes = {
 };
 ```
 
-## Caveats
+## 注意事項
 
 ### Be careful when using Render Props with React.PureComponent
 
-Using a render prop can negate the advantage that comes from using [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) if you create the function inside a `render` method. This is because the shallow prop comparison will always return `false` for new props, and each `render` in this case will generate a new value for the render prop.
+### レンダープロップを React.PureComponent で使うときの注意点
 
-For example, continuing with our `<Mouse>` component from above, if `Mouse` were to extend `React.PureComponent` instead of `React.Component`, our example would look like this:
+レンダープロップを使う際、`render` メソッド内で関数を作成していると、 [`React.PureComponent`](/docs/react-api.html#reactpurecomponent)  を使う利点が相殺されます。これは新しい props については、浅い比較が常に `false` を返し、このような `render` は毎回レンダープロップとして新しい値を生成するためです。
+
+たとえば、上記の `<Mouse>` コンポーネントの場合、`Mouse` が `React.Component` ではなく `React.PureComponent` を継承していたとすると、次のようになります。 
 
 ```js
 class Mouse extends React.PureComponent {
@@ -307,9 +309,9 @@ class MouseTracker extends React.Component {
 }
 ```
 
-In this example, each time `<MouseTracker>` renders, it generates a new function as the value of the `<Mouse render>` prop, thus negating the effect of `<Mouse>` extending `React.PureComponent` in the first place!
+この例では、`<MouseTracker>` がレンダーされるたび、`<Mouse render>` propsの値として新しい関数が生成されますので、冒頭で `React.PureComonent` を継承した `<Mouse>` の効果が相殺されます。
 
-To get around this problem, you can sometimes define the prop as an instance method, like so:
+この問題を回避するため、props をインスタンスメソッドとして次のように定義することもできます。
 
 ```js
 class MouseTracker extends React.Component {
@@ -330,4 +332,4 @@ class MouseTracker extends React.Component {
 }
 ```
 
-In cases where you cannot define the prop statically (e.g. because you need to close over the component's props and/or state) `<Mouse>` should extend `React.Component` instead.
+propsを静的に定義できない場合（たとえば、コンポーネントの props や state を閉じる必要があるなど）、`<Mouse>` は代わりに `React.Component` を継承すべきです。
