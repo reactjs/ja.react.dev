@@ -35,7 +35,7 @@ React コンポーネントは関数をラップして定義することもで�
 
 ### Creating React Elements
 
-UI がどのように見えるかを記述するために [using JSX](/docs/introducing-jsx.html) を推奨します。JSX のそれぞれの要素は [`React.createElement()`](#createelement) を呼ぶための単なる糖衣構文です。
+UI がどのように見えるかを記述するために [JSX の使用](/docs/introducing-jsx.html) を推奨します。JSX のそれぞれの要素は [`React.createElement()`](#createelement) を呼ぶための単なる糖衣構文です。
 JSX を使用している場合は、通常、次のメソッドを直接呼び出さないでください。
 
 - [`createElement()`](#createelement)
@@ -99,7 +99,7 @@ React コンポーネントの `render()` 関数が同じ props と state を与
 
 > 補足
 >
-> `React.PureComponent` の `shouldComponentUpdate()` は オブジェクトの浅い比較のみを行います。これらに複雑なデータ構造が含まれていると、深い部分のみに差分があるために、全体では差分があっても差分がないと見なされる場合があります。単純な props とstateを持つ場合にのみ `PureComponent` を継承するか、深いデータ構造が変更されたとわかっているときに [`forceUpdate()`](/docs/react-component.html#forceupdate) を使用してください。あるいは、ネストされたデータ構造の高速な比較を容易にするために [immutable objects](https://facebook.github.io/immutable-js/) の使用を検討してください。
+> `React.PureComponent` の `shouldComponentUpdate()` は オブジェクトの浅い比較のみを行います。これらに複雑なデータ構造が含まれていると、深い部分のみに差分があるために、本当は差分があるにも関わらず差分がないと見なされる場合があります。単純な props とstateを持つ場合にのみ `PureComponent` を継承するか、深いデータ構造が変更されたとわかっているときに [`forceUpdate()`](/docs/react-component.html#forceupdate) を使用してください。あるいは、ネストされたデータ構造の高速な比較を容易にするために [immutable objects](https://facebook.github.io/immutable-js/) の使用を検討してください。
 >
 > さらに、`React.PureComponent` の `shouldComponentUpdate()` はサブツリー全体のコンポーネントの props の更新をスキップします。子コンポーネントの全てが純粋コンポーネントであることを確認してください。
 
@@ -113,11 +113,11 @@ const MyComponent = React.memo(function MyComponent(props) {
 });
 ```
 
-`React.memo` は [higher order component](/docs/higher-order-components.html) です。これは [`React.PureComponent`](#reactpurecomponent) に似ていますが、クラスではなく関数コンポーネントです。
+`React.memo` は [高階コンポーネント](/docs/higher-order-components.html) です。これは [`React.PureComponent`](#reactpurecomponent) に似ていますが、クラスではなく関数コンポーネントです。
 
-ある関数コンポーネントが同じ props を与えられたときに同じ結果をレンダリングするとき、結果を記憶してパフォーマンスを向上させるためにそれを `React.memo` でラップして呼び出すことができます。つまり、Reactはコンポーネントのレンダリングをスキップし、最後のレンダリング結果を再利用します。
+ある関数コンポーネントが同じ props を与えられたときに同じ結果をレンダーするとき、結果を記憶してパフォーマンスを向上させるためにそれを `React.memo` でラップして呼び出すことができます。つまり、Reactはコンポーネントのレンダーをスキップし、最後のレンダー結果を再利用します。
 
-デフォルトでは props オブジェクト内の複雑なオブジェクトは浅い比較のみが行われます。比較を制御したい場合は2番目の引数でカスタム比較関数を指定することができます。
+デフォルトでは props オブジェクト内の複雑なオブジェクトは浅い比較のみが行われます。比較を制御したい場合は 2 番目の引数でカスタム比較関数を指定することができます。
 
 ```javascript
 function MyComponent(props) {
@@ -133,7 +133,7 @@ function areEqual(prevProps, nextProps) {
 export default React.memo(MyComponent, areEqual);
 ```
 
-これは **[performance optimization](/docs/optimizing-performance.html)** のためだけの方法です。バグを引き起こす可能性があるため、レンダリングを防ぐために使用しないでください。
+これは**[パフォーマンス最適化](/docs/optimizing-performance.html)**のためだけの方法です。バグを引き起こす可能性があるため、レンダーを「抑止する」ために使用しないでください。
 
 > 注意
 >
@@ -151,9 +151,9 @@ React.createElement(
 )
 ```
 
-与えられた型の新しい [React element](/docs/rendering-elements.html) を作成して返します。type 引数はタグ名の文字列（`div` や `span` など）、[React component](/docs/components-and-props.html) 型（クラスもしくは関数）、[React fragment](#reactfragment) 型のいずれかです。
+与えられた型の新しい [React 要素](/docs/rendering-elements.html)を作成して返します。`type` 引数はタグ名の文字列（`'div'` や `'span'` など）、[React component](/docs/components-and-props.html) 型（クラスもしくは関数）、[React fragment](#reactfragment) 型のいずれかです。
 
-JSX で書かれたコードは `React.createElement()` を用いて変換されます。JSX を使っていれば通常 `React.createElement()` を直接呼び出すことはありません。詳しくは [React Without JSX](/docs/react-without-jsx.html) を参照してください。
+JSX で書かれたコードは `React.createElement()` を用いるコードに変換されます。JSX を使っていれば通常 `React.createElement()` を直接呼び出すことはありません。詳しくは [JSX なしで React を使う](/docs/react-without-jsx.html)を参照してください。
 
 * * *
 
@@ -169,13 +169,13 @@ React.cloneElement(
 
 `element` から新しい React 要素を複製して返します。結果の要素は元の要素の props と新しい props が浅くマージされたものを持ちます。新しい小要素は既存の小要素を置き換えます。`key` と `ref` は元の要素から保持されます。
 
-`React.cloneElement()` とほぼ同等：
+`React.cloneElement()` は以下のコードとほぼ同等です：
 
 ```js
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
-ただし、`ref` は保持されます。つまり `ref` から子要素を得ても、間違って祖先から誤ってそれを盗むことはありません。新しい要素にも同じ `ref` が取り付けられます。
+ただし、`ref` も保持されます。つまり `ref` のある子要素を得ても、間違って祖先から誤ってそれを盗むことはありません。新しい要素にも同じ `ref` が取り付けられます。
 
 この API は非推奨の `React.addons.cloneWithProps()` の代替として導入されました。
 
@@ -187,11 +187,11 @@ React.cloneElement(
 React.createFactory(type)
 ```
 
-与えられた型の React 要素を生成する関数を返します。[`React.createElement()`](#createElement) と同様に、type 引数はタグ名の文字列（`div` や `span` など）、[React component](/docs/components-and-props.html) 型（クラスもしくは関数）、[React fragment](#reactfragment) 型のいずれかです。
+与えられた型の React 要素を生成する関数を返します。[`React.createElement()`](#createElement) と同様に、`type` 引数はタグ名の文字列（`'div'` や `'span'` など）、[React コンポーネント](/docs/components-and-props.html)型（クラスもしくは関数）、[React フラグメント](#reactfragment)型のいずれかです。
 
 このヘルパーはレガシーと見なされます。JSX か `React.createElement()` を直接使用することを勧めます。
 
-JSX を使っていれば通常  `React.createFactory()` を直接呼び出すことはありません。詳しくは [React Without JSX](/docs/react-without-jsx.html) を参照してください。
+JSX を使っていれば通常  `React.createFactory()` を直接呼び出すことはありません。詳しくは [JSX なしで React を使う](/docs/react-without-jsx.html)を参照してください。
 
 * * *
 
@@ -207,7 +207,7 @@ React.isValidElement(object)
 
 ### `React.Children`
 
-`React.Children` はデータ構造が不透明な `this.props.children` を扱うためのユーティリティを提供します。
+`React.Children` はデータ構造が非公開の `this.props.children` を扱うためのユーティリティを提供します。
 
 #### `React.Children.map`
 
@@ -255,11 +255,11 @@ React.Children.only(children)
 React.Children.toArray(children)
 ```
 
-それぞれの要素に割り当てられたキーを持つ不透明なデータ構造の `children` を平坦な配列として返します。レンダリングメソッド内で子の集合を操作したい場合、特に `this.props.children` を渡す前に並べ替えたりスライスしたい場合に便利です。
+データ構造が非公開の `children` を平坦な配列として返し、それぞれの要素に key を割り当てます。レンダーメソッド内で子の集合を操作したい場合、特に `this.props.children` を渡す前に並べ替えたりスライスしたい場合に便利です。
 
 > 補足:
 >
-> `React.Children.toArray()` は子のリストを平坦にするときにネストされた配列の意味を保つためにキーを変更します。つまり、`toArray` は配列のそれぞれの要素の key に接頭辞を付けて返します。
+> `React.Children.toArray()` は子のリストを平坦にするときにネストされた配列の意味を保つために key を変更します。つまり、`toArray` は配列のそれぞれの要素の key に接頭辞を付けて返します。
 
 * * *
 
@@ -296,7 +296,7 @@ render() {
 
 `embed:reference-react-forward-ref.js`
 
-上の例では、React は `<FancyButton ref={ref}>` 要素に与えた `ref` を `React.forwardRef` の呼び出し内のレンダリング関数の2番目の引数として渡します。このレンダリング関数は `ref` を `<button ref={ref}>` 要素に渡します。
+上の例では、React は `<FancyButton ref={ref}>` 要素に与えた `ref` を `React.forwardRef` の呼び出し内のレンダリング関数の 2 番目の引数として渡します。このレンダリング関数は `ref` を `<button ref={ref}>` 要素に渡します。
 
 結果として、Reactが `ref` を取り付けた後、`ref.current` は `<button>` の DOM 要素のインスタンスを直接指すようになります。
 
@@ -304,9 +304,9 @@ render() {
 
 ### `React.lazy`
 
-`React.lazy()` を使用すると、動的に読み込まれるコンポーネントを定義することができます。これにより、バンドルサイズを削減して、最初のレンダリング時に使用されなかったコンポーネントの読み込みを遅らせることができます。
+`React.lazy()` を使用すると、動的に読み込まれるコンポーネントを定義することができます。これにより、バンドルサイズを削減して、最初のレンダリング時に使用されないコンポーネントの読み込みを遅らせることができます。
 
-[code splitting documentation](/docs/code-splitting.html#reactlazy) から使用方法を学ぶことが出来ます。また、使い方をより詳しく説明した [this article](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d) もチェックしてみてください。
+[code splitting のドキュメント](/docs/code-splitting.html#reactlazy)から使用方法を学ぶことが出来ます。また、使い方をより詳しく説明した[こちらの記事](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d)もチェックしてみてください。
 
 ```js
 // This component is loaded dynamically
@@ -317,7 +317,7 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 > **補足**
 >
-> `React.lazy` を使って動的にインポートするには Promise が JS 環境で使用できる必要があります。これはIE11以前の環境にポリフィルを要求します。
+> `React.lazy` を使って動的にインポートするには JS 環境で Promise が使用できる必要があります。これは IE11 以前の環境ではポリフィルが必要だということです。
 
 ### `React.Suspense`
 
@@ -339,9 +339,9 @@ function MyComponent() {
 }
 ```
 
-これは [code splitting guide](/docs/code-splitting.html#reactlazy) で文書化されています。遅延コンポーネントを `Suspense` ツリーの奥深くに置くこともできますが、それらすべてをラップする必要はありません。ベストプラクティスは `<Suspense>` をローディングインジケータを表示したい場所に配置することですが、コードを分割したい場合は `lazy()` を使用してください。
+これは [code splitting guide](/docs/code-splitting.html#reactlazy) で文書化されています。遅延される (lazy) コンポーネントを `Suspense` ツリーの奥深くに置くことができ、それらを 1 つずつラップする必要はありません。ベストプラクティスは `<Suspense>` をローディングインジケータを表示したい場所に配置することですが、コードを分割したい場合は `lazy()` を使用してください。
 
-これらは現在サポートされていませんが、将来的には `Suspense` にデータの取得などのより多くのシナリオを処理させる予定です。この計画について、[our roadmap](/blog/2018/11/27/react-16-roadmap.html) を読むことができます。
+これらは現在サポートされていませんが、将来的には `Suspense` にデータの取得などのより多くのシナリオを処理させる予定です。これについては[ロードマップ](/blog/2018/11/27/react-16-roadmap.html)で読めます。
 
 >注意:
 >
