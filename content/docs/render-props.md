@@ -19,11 +19,13 @@ permalink: docs/render-props.html
 
 このドキュメントでは、レンダープロップが役立つ理由と、その記述法について解説します。
 
-## Use Render Props for Cross-Cutting Concerns
+## 横断的関心事にレンダープロップを使う
 
-Components are the primary unit of code reuse in React, but it's not always obvious how to share the state or behavior that one component encapsulates to other components that need that same state.
+コンポーネントは、React でコードを再利用するための主要な構成用要素ですが、あるコンポーネントがカプセル化した state や振る舞いを、同じ state を必要とする別のコンポーネントに共有する方法については、いつも明らかであるとは限りません。
 
 For example, the following component tracks the mouse position in a web app:
+
+たとえば、以下のコンポーネントは、ウェブアプリケーション内でのマウスの位置を追跡します。
 
 ```js
 class MouseTracker extends React.Component {
@@ -43,22 +45,22 @@ class MouseTracker extends React.Component {
   render() {
     return (
       <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
-        <h1>Move the mouse around!</h1>
-        <p>The current mouse position is ({this.state.x}, {this.state.y})</p>
+        <h1>マウスを動かしてみましょう！</h1>
+        <p>現在のマウスの位置は ({this.state.x}, {this.state.y})</p>
       </div>
     );
   }
 }
 ```
 
-As the cursor moves around the screen, the component displays its (x, y) coordinates in a `<p>`.
+画面上でカーソルが移動すると、コンポーネントはその (x, y) 座標を `<p>` 内に表示します。
 
-Now the question is: How can we reuse this behavior in another component? In other words, if another component needs to know about the cursor position, can we encapsulate that behavior so that we can easily share it with that component?
+ここで疑問となるのは、この振る舞いを他のコンポーネントで再利用する方法です。つまり、他のコンポーネントもカーソルの位置を知る必要がある時、この振る舞いだけをカプセル化し、そのコンポーネントと簡単に共有することは可能でしょうか？
 
-Since components are the basic unit of code reuse in React, let's try refactoring the code a bit to use a `<Mouse>` component that encapsulates the behavior we need to reuse elsewhere.
+コンポーネントは React におけるコード再利用の基本構成要素ですので、コードを少しリファクタリングして、他で再利用する必要のあるこの振る舞いをカプセル化するための `<Mouse>` コンポーネントを使ってみましょう。
 
 ```js
-// The <Mouse> component encapsulates the behavior we need...
+// <Mouse> コンポーネントは必要な振る舞いだけをカプセル化します...
 class Mouse extends React.Component {
   constructor(props) {
     super(props);
@@ -77,8 +79,8 @@ class Mouse extends React.Component {
     return (
       <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
 
-        {/* ...but how do we render something other than a <p>? */}
-        <p>The current mouse position is ({this.state.x}, {this.state.y})</p>
+        {/* ...しかし、どのようにして <p> 以外のものをレンダーするのでしょうか？ */}
+        <p>現在のマウスの位置は ({this.state.x}, {this.state.y})</p>
       </div>
     );
   }
@@ -88,7 +90,7 @@ class MouseTracker extends React.Component {
   render() {
     return (
       <div>
-        <h1>Move the mouse around!</h1>
+        <h1>マウスを動かしてみましょう！</h1>
         <Mouse />
       </div>
     );
@@ -96,11 +98,11 @@ class MouseTracker extends React.Component {
 }
 ```
 
-Now the `<Mouse>` component encapsulates all behavior associated with listening for `mousemove` events and storing the (x, y) position of the cursor, but it's not yet truly reusable.
+これで `<Mouse>` コンポーネントは、 `mousemove` イベントに応答しカーソルの (x, y) 座標を保持することで構成される全ての振る舞いをカプセル化できましたが、まだ再利用可能と言うには不十分です。
 
-For example, let's say we have a `<Cat>` component that renders the image of a cat chasing the mouse around the screen. We might use a `<Cat mouse={{ x, y }}>` prop to tell the component the coordinates of the mouse so it knows where to position the image on the screen.
+たとえば、 猫の画像が画面中のマウスを追いかけるという `<Cat>` コンポーネントがあるとしましょう。`<Cat mouse={{ x, y }}>` props を使って、このコンポーネントにマウスの座標を受け渡し、画面上のどこに猫の画像を配置すれば良いかを知らせたいでしょう。
 
-As a first pass, you might try rendering the `<Cat>` *inside `<Mouse>`'s `render` method*, like this:
+手始めに、*`<Mouse>` の `render` メソッド内* で、以下のように `<Cat>` をレンダーしようとするかもしれません。 
 
 ```js
 class Cat extends React.Component {
@@ -131,10 +133,10 @@ class MouseWithCat extends React.Component {
       <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
 
         {/*
-          We could just swap out the <p> for a <Cat> here ... but then
-          we would need to create a separate <MouseWithSomethingElse>
-          component every time we need to use it, so <MouseWithCat>
-          isn't really reusable yet.
+          ここで <p> を <Cat> に差し替えることができますが...
+          それを使用するたびに別途 <MouseWithSomethingElse>
+          コンポーネントを作成する必要があるため、
+          <MouseWithCat> はまだ真に再利用可能になったとは言えません。 
         */}
         <Cat mouse={this.state} />
       </div>
@@ -146,7 +148,7 @@ class MouseTracker extends React.Component {
   render() {
     return (
       <div>
-        <h1>Move the mouse around!</h1>
+        <h1>マウスを動かしてみましょう！</h1>
         <MouseWithCat />
       </div>
     );
@@ -154,9 +156,9 @@ class MouseTracker extends React.Component {
 }
 ```
 
-This approach will work for our specific use case, but we haven't achieved the objective of truly encapsulating the behavior in a reusable way. Now, every time we want the mouse position for a different use case, we have to create a new component (i.e. essentially another `<MouseWithCat>`) that renders something specifically for that use case.
+これだけが目的であればで正しく動作しますが、再利用可能な方法でこの振る舞いをカプセル化するという目的はまだ果たせていません。その他のユースケースでもマウス位置を知りたい場合、毎回新しいコンポーネント（つまり、別の `<MouseWithCat>` のようなもの）を作成して、そのユースケース固有のレンダー処理を行う必要があります。
 
-Here's where the render prop comes in: Instead of hard-coding a `<Cat>` inside a `<Mouse>` component, and effectively changing its rendered output, we can provide `<Mouse>` with a function prop that it uses to dynamically determine what to render–a render prop.
+ここでレンダープロップの出番となります。`<Mouse>` コンポーネント内でハードコードされた `<Cat>` でレンダーの出力を変更する代わりに、`<Mouse>` コンポーネントに関数型の props を渡して、 何をレンダーすべきかを動的に決定することが可能です。これがレンダープロップの役割です。
 
 ```js
 class Cat extends React.Component {
@@ -187,8 +189,8 @@ class Mouse extends React.Component {
       <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
 
         {/*
-          Instead of providing a static representation of what <Mouse> renders,
-          use the `render` prop to dynamically determine what to render.
+          <Mouse> がレンダーするものを静的に表現する代わりに、
+          propsとしての `render` を使うことでレンダーするものを動的に決定します。
         */}
         {this.props.render(this.state)}
       </div>
@@ -200,7 +202,7 @@ class MouseTracker extends React.Component {
   render() {
     return (
       <div>
-        <h1>Move the mouse around!</h1>
+        <h1>マウスを動かしてみましょう！</h1>
         <Mouse render={mouse => (
           <Cat mouse={mouse} />
         )}/>
@@ -210,17 +212,19 @@ class MouseTracker extends React.Component {
 }
 ```
 
-Now, instead of effectively cloning the `<Mouse>` component and hard-coding something else in its `render` method to solve for a specific use case, we provide a `render` prop that `<Mouse>` can use to dynamically determine what it renders.
+これで特定のユースケースを解決するために、`<Mouse>` コンポーネントを複製してレンダーメソッド内で何か他のものをハードコードする代わりに、`<Mouse>` が動的にレンダーの内容を決定するためのpropsとしての `render` が提供可能になります。
 
 More concretely, **a render prop is a function prop that a component uses to know what to render.**
 
-This technique makes the behavior that we need to share extremely portable. To get that behavior, render a `<Mouse>` with a `render` prop that tells it what to render with the current (x, y) of the cursor.
+より具体的には、**レンダープロップは関数型 props であり、それによってコンポーネントがレンダリングするものを知ることができます。**
 
-One interesting thing to note about render props is that you can implement most [higher-order components](/docs/higher-order-components.html) (HOC) using a regular component with a render prop. For example, if you would prefer to have a `withMouse` HOC instead of a `<Mouse>` component, you could easily create one using a regular `<Mouse>` with a render prop:
+このテクニックによって、再利用可能な振る舞いの移植性が極めて高くなります。この振る舞いが必要な時には、現在のカーソルの (x, y) からレンダリングするものを示す `render` props を使って `<Mouse>` をレンダーすれば良いのです。  
+
+レンダープロップの興味深い点として、多くの[高階コンポーネント](/docs/higher-order-components.html) (HOC) がレンダープロップを使った通常のコンポーネントによって実装可能ということが挙げられます。たとえば、`<Mouse>` コンポーネントよりも `withMouse` HOCが好みであれば、レンダープロップを有する `<Mouse>` を使って簡単に作成可能です。 
 
 ```js
-// If you really want a HOC for some reason, you can easily
-// create one using a regular component with a render prop!
+// HOCを選択する理由があれば、
+// 通常のコンポーネントとレンダープロップを使うことで簡単に作成可能です！
 function withMouse(Component) {
   return class extends React.Component {
     render() {
@@ -234,7 +238,7 @@ function withMouse(Component) {
 }
 ```
 
-So using a render prop makes it possible to use either pattern.
+つまり、レンダープロップによってどちらのパターンも可能になります。
 
 ## Using Props Other Than `render`
 
