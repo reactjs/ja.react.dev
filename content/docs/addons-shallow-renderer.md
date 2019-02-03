@@ -1,23 +1,23 @@
 ---
 id: shallow-renderer
-title: Shallow Renderer
+title: 浅いレンダリング
 permalink: docs/shallow-renderer.html
 layout: docs
-category: Reference
+category: リファレンス
 ---
 
-**Importing**
+**インポート**
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow'; // ES6
 var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 with npm
 ```
 
-## Overview
+## 概要
 
-When writing unit tests for React, shallow rendering can be helpful. Shallow rendering lets you render a component "one level deep" and assert facts about what its render method returns, without worrying about the behavior of child components, which are not instantiated or rendered. This does not require a DOM.
+Reactの単体テストを実装するときに、浅いレンダリング（Shallow Renderer）は役に立つことがあります。浅いレンダリングを使用すると、インスタンス化またはレンダリングされていない子コンポーネントの振る舞いを心配することなく、「1階層深く」レンダリングしてrenderメソッドが返すものをアサート（assert）できます。これにDOMは必要ありません。
 
-For example, if you have the following component:
+たとえば、以下のコンポーネントがある場合：
 
 ```javascript
 function MyComponent() {
@@ -30,7 +30,7 @@ function MyComponent() {
 }
 ```
 
-Then you can assert:
+以下のようにアサートできます：
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow';
@@ -47,22 +47,22 @@ expect(result.props.children).toEqual([
 ]);
 ```
 
-Shallow testing currently has some limitations, namely not supporting refs.
+浅いテストは現在いくつかの制限があります。すなわちrefsをサポートしていません。
 
-> Note:
+> 注意：
 >
-> We also recommend checking out Enzyme's [Shallow Rendering API](http://airbnb.io/enzyme/docs/api/shallow.html). It provides a nicer higher-level API over the same functionality.
+> またEnzymeの[Shallow Rendering API](http://airbnb.io/enzyme/docs/api/shallow.html)をチェックすることをお勧めします。それは同じ機能上でより良くより高いレベルのAPIを提供します。
 
-## Reference
+## リファレンス
 
 ### `shallowRenderer.render()`
 
-You can think of the shallowRenderer as a "place" to render the component you're testing, and from which you can extract the component's output.
+shallowRendererは、テストしているコンポーネントをレンダリングするための「場所」と捉えることができ、そこからコンポーネントの出力を抽出できます。
 
-`shallowRenderer.render()` is similar to [`ReactDOM.render()`](/docs/react-dom.html#render) but it doesn't require DOM and only renders a single level deep. This means you can test components isolated from how their children are implemented.
+`shallowRenderer.render()`は[`ReactDOM.render()`](/docs/react-dom.html#render)に似ていますが、DOMを必要とせず、1階層だけレンダリングします。つまり、テスト対象のコンポーネントが持つ子コンポーネントの実装から分離してテストを実施できます。
 
 ### `shallowRenderer.getRenderOutput()`
 
-After `shallowRenderer.render()` has been called, you can use `shallowRenderer.getRenderOutput()` to get the shallowly rendered output.
+`shallowRenderer.render()`が呼び出された後、`shallowRenderer.getRenderOutput()`を使用して浅くレンダリングされた出力を取得できます。
 
-You can then begin to assert facts about the output.
+そして出力から得た結果のアサートを開始できます。
