@@ -14,7 +14,7 @@ class Greeting extends React.Component {
 }
 ```
 
-もしあなたがまだ ES6 を使っていないのであれば、代わりに `create-react-class` モジュールを使うとよいかもしれません。
+もしあなたがまだ ES6 を使っていないのであれば、代わりに `create-react-class` モジュールを使うことができます。
 
 ```javascript
 var createReactClass = require('create-react-class');
