@@ -14,7 +14,7 @@ redirect_from:
 ---
 
 `React` は React ライブラリのエントリポイントです。`<script>` タグから React を読み込む場合、これらの最上位 API をグローバルの `React` から利用できます。
-npm と ES6 を使う場合、 `import React from 'react'` と書けます。npm と ES5 を使う場合、 `var React = require('react')` と書けます。
+npm と ES6 を使う場合、`import React from 'react'` と書けます。npm と ES5 を使う場合、`var React = require('react')` と書けます。
 
 ## Overview
 
@@ -26,7 +26,7 @@ React コンポーネントは `React.Component` または `React.PureComponent`
  - [`React.Component`](#reactcomponent)
  - [`React.PureComponent`](#reactpurecomponent)
 
-ES6 クラスを使う代わりに、 `create-react-class` を使うことができます。
+ES6 クラスを使う代わりに、`create-react-class` を使うことができます。
 詳しくは [Using React without ES6](/docs/react-without-es6.html) を見てください。
 
 React コンポーネントは関数をラップして定義することもできます：
@@ -35,7 +35,7 @@ React コンポーネントは関数をラップして定義することもで�
 
 ### Creating React Elements
 
-UI がどのように見えるかを記述するために [using JSX](/docs/introducing-jsx.html) を推奨します。 JSX のそれぞれの要素は [`React.createElement()`](#createelement) を呼ぶための単なる糖衣構文です。
+UI がどのように見えるかを記述するために [using JSX](/docs/introducing-jsx.html) を推奨します。JSX のそれぞれの要素は [`React.createElement()`](#createelement) を呼ぶための単なる糖衣構文です。
 JSX を使用している場合は、通常、次のメソッドを直接呼び出さないでください。
 
 - [`createElement()`](#createelement)
@@ -77,7 +77,7 @@ JSX を使用している場合は、通常、次のメソッドを直接呼び�
 
 ### `React.Component`
 
-React コンポーネントが [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) を用いて定義されている場合、 `React.Component` はそれらの基底クラスになります。
+React コンポーネントが [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) を用いて定義されている場合、`React.Component` はそれらの基底クラスになります。
 
 ```javascript
 class Greeting extends React.Component {
@@ -87,21 +87,21 @@ class Greeting extends React.Component {
 }
 ```
 
-基底クラス `React.Component` に関するメソッドとプロパティの一覧については、 [React.Component API Reference](/docs/react-component.html) を参照してください。
+基底クラス `React.Component` に関するメソッドとプロパティの一覧については、[React.Component API Reference](/docs/react-component.html) を参照してください。
 
 * * *
 
 ### `React.PureComponent`
 
-`React.PureComponent` は [`React.Component`](#reactcomponent) と似ています。両者の違いは [`React.Component`](#reactcomponent) が [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) を実装していないことに対し、 `React.PureComponent` は props と state を浅く (shallow) 比較することでそれを実装していることです。
+`React.PureComponent` は [`React.Component`](#reactcomponent) と似ています。両者の違いは [`React.Component`](#reactcomponent) が [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) を実装していないことに対し、`React.PureComponent` は props と state を浅く (shallow) 比較することでそれを実装していることです。
 
-React コンポーネントの `render()` 関数が同じ props と state を与えられたときに同じ結果をレンダリングするときは、 パフォーマンスを向上させるために `React.PureComponent` を使用することができます。
+React コンポーネントの `render()` 関数が同じ props と state を与えられたときに同じ結果をレンダリングするときは、パフォーマンスを向上させるために `React.PureComponent` を使用することができます。
 
 > 補足
 >
 > `React.PureComponent` の `shouldComponentUpdate()` は オブジェクトの浅い比較のみを行います。これらに複雑なデータ構造が含まれていると、深い部分のみに差分があるために、全体では差分があっても差分がないと見なされる場合があります。単純な props とstateを持つ場合にのみ `PureComponent` を継承するか、深いデータ構造が変更されたとわかっているときに [`forceUpdate()`](/docs/react-component.html#forceupdate) を使用してください。あるいは、ネストされたデータ構造の高速な比較を容易にするために [immutable objects](https://facebook.github.io/immutable-js/) の使用を検討してください。
 >
-> さらに、 `React.PureComponent` の `shouldComponentUpdate()` はサブツリー全体のコンポーネントの props の更新をスキップします。子コンポーネントの全てが純粋コンポーネントであることを確認してください。
+> さらに、`React.PureComponent` の `shouldComponentUpdate()` はサブツリー全体のコンポーネントの props の更新をスキップします。子コンポーネントの全てが純粋コンポーネントであることを確認してください。
 
 * * *
 
@@ -137,7 +137,7 @@ export default React.memo(MyComponent, areEqual);
 
 > 注意
 >
-> クラスコンポーネントの [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) とは異なり、この `areEqual` 関数は props が等しいときに `true` を返し、 props が等しくないときに `false` を返します。これは `shouldComponentUpdate` とは逆です。
+> クラスコンポーネントの [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) とは異なり、この `areEqual` 関数は props が等しいときに `true` を返し、props が等しくないときに `false` を返します。これは `shouldComponentUpdate` とは逆です。
 
 * * *
 
@@ -167,7 +167,7 @@ React.cloneElement(
 )
 ```
 
-`element` から新しい React 要素を複製して返します。結果の要素は元の要素の props と新しい props が浅くマージされたものを持ちます。新しい小要素は既存の小要素を置き換えます。 `key` と `ref` は元の要素から保持されます。
+`element` から新しい React 要素を複製して返します。結果の要素は元の要素の props と新しい props が浅くマージされたものを持ちます。新しい小要素は既存の小要素を置き換えます。`key` と `ref` は元の要素から保持されます。
 
 `React.cloneElement()` とほぼ同等：
 
@@ -175,7 +175,7 @@ React.cloneElement(
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
-ただし、 `ref` は保持されます。つまり `ref` から子要素を得ても、間違って祖先から誤ってそれを盗むことはありません。新しい要素にも同じ `ref` が取り付けられます。
+ただし、`ref` は保持されます。つまり `ref` から子要素を得ても、間違って祖先から誤ってそれを盗むことはありません。新しい要素にも同じ `ref` が取り付けられます。
 
 この API は非推奨の `React.addons.cloneWithProps()` の代替として導入されました。
 
@@ -201,7 +201,7 @@ JSX を使っていれば通常  `React.createFactory()` を直接呼び出す�
 React.isValidElement(object)
 ```
 
-オブジェクトが React 要素であることを確認します。 `true` または `false` を返します。
+オブジェクトが React 要素であることを確認します。`true` または `false` を返します。
 
 * * *
 
@@ -215,7 +215,7 @@ React.isValidElement(object)
 React.Children.map(children, function[(thisArg)])
 ```
 
-`this` を `thisArg` に設定して、 `children` 内に含まれるすべての直下の子要素に対して関数を呼び出します。 `children` が配列の場合は走査され、配列の各要素に対して関数が呼び出されます。 `children` が `null` または `undefined` の場合はこのメソッドは配列ではなく `null` または `undefined` を返します。
+`this` を `thisArg` に設定して、`children` 内に含まれるすべての直下の子要素に対して関数を呼び出します。`children` が配列の場合は走査され、配列の各要素に対して関数が呼び出されます。`children` が `null` または `undefined` の場合はこのメソッドは配列ではなく `null` または `undefined` を返します。
 
 > 補足
 >
@@ -247,7 +247,7 @@ React.Children.only(children)
 
 > 補足:
 >
-> [`React.Children.map()`](#reactchildrenmap) の返り値は React 要素ではなく配列なため、 `React.Children.only()` はそれを受け付けません。
+> [`React.Children.map()`](#reactchildrenmap) の返り値は React 要素ではなく配列なため、`React.Children.only()` はそれを受け付けません。
 
 #### `React.Children.toArray`
 
@@ -259,7 +259,7 @@ React.Children.toArray(children)
 
 > 補足:
 >
-> `React.Children.toArray()` は子のリストを平坦にするときにネストされた配列の意味を保つためにキーを変更します。つまり、 `toArray` は配列のそれぞれの要素の key に接頭辞を付けて返します。
+> `React.Children.toArray()` は子のリストを平坦にするときにネストされた配列の意味を保つためにキーを変更します。つまり、`toArray` は配列のそれぞれの要素の key に接頭辞を付けて返します。
 
 * * *
 
@@ -341,7 +341,7 @@ function MyComponent() {
 
 これは [code splitting guide](/docs/code-splitting.html#reactlazy) で文書化されています。遅延コンポーネントを `Suspense` ツリーの奥深くに置くこともできますが、それらすべてをラップする必要はありません。ベストプラクティスは `<Suspense>` をローディングインジケータを表示したい場所に配置することですが、コードを分割したい場合は `lazy()` を使用してください。
 
-これらは現在サポートされていませんが、将来的には `Suspense` にデータの取得などのより多くのシナリオを処理させる予定です。この計画について、 [our roadmap](/blog/2018/11/27/react-16-roadmap.html) を読むことができます。
+これらは現在サポートされていませんが、将来的には `Suspense` にデータの取得などのより多くのシナリオを処理させる予定です。この計画について、[our roadmap](/blog/2018/11/27/react-16-roadmap.html) を読むことができます。
 
 >注意:
 >
