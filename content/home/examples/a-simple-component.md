@@ -10,10 +10,4 @@ React コンポーネントを作成する場合には `render()` メソッド�
 コンポーネントに渡された input データを `this.props` で参照し、
 `render()` の中で使用しています。
 
-React components implement a `render()` method that takes input data and returns what to display. This example uses an XML-like syntax called JSX. Input data that is passed into the component can be accessed by `render()` via `this.props`.
-
-
 **React を使う際に JSX を必ず使わなくてはいけないわけではありません。** JSX のコンパイルによって生成される生の JavaScript コードを見るには、[Babel REPL](babel://es5-syntax-example) を参照してください。
-
-
-**JSX is optional and not required to use React.** Try the [Babel REPL](babel://es5-syntax-example) to see the raw JavaScript code produced by the JSX compilation step.

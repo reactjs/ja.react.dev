@@ -9,10 +9,3 @@ domid: todos-example
 それからユーザーが入力したテキストに関しても `state` で管理しています。
 イベントハンドラは、それが書かれた要素内部にレンダーされるように一見思われますが、
 実際にはこれらのハンドラは集められて、イベントデリゲーションを用いて実装されます。
-
-Using `props` and `state`, 
-we can put together a small Todo application. 
-This example uses `state` to track the current list of items 
-as well as the text that the user has entered. 
-Although event handlers appear to be rendered inline, 
-they will be collected and implemented using event delegation.
