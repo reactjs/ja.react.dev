@@ -6,7 +6,7 @@ permalink: docs/code-splitting.html
 
 ## バンドル
 
-多くの React アプリケーションは、[Webpack](https://webpack.js.org/)や [Browserify](http://browserify.org/) などのツールを使ってファイルを「バンドル」しています。バンドルはインポートされたファイルをたどって、それらを一つのファイルにまとめるプロセスです。このバンドルされたファイルを Web ページ内に置くことによって、アプリ全体を一度に読み込むことができます。
+多くの React アプリケーションは、[Webpack](https://webpack.js.org/)や [Browserify](http://browserify.org/) などのツールを使ってファイルを「バンドル」しています。バンドルはインポートされたファイルをたどって、それらを1つのファイルにまとめるプロセスです。このバンドルされたファイルを Web ページ内に置くことによって、アプリ全体を一度に読み込むことができます。
 
 #### 例
 
@@ -165,7 +165,7 @@ function MyComponent() {
 
 ### Error boundaries
 
-もし他のモジュールがロードに失敗した場合(例えば、ネットワークの障害など)、エラーが発生します。その際には [Error Boundaries](/docs/error-boundaries.html) を使用することによってこれらのエラーをハンドリングし、エラーの回復やユーザ体験の向上に繋げることができます。Error Boundary を作成したら、遅延コンポーネントより上位のあらゆる場所で使用でき、ネットワークエラーが発生した際にエラー内容を表示することができます。
+もし他のモジュールがロードに失敗した場合（例えば、ネットワークの障害など）、エラーが発生します。その際には [Error Boundaries](/docs/error-boundaries.html) を使用することによってこれらのエラーをハンドリングし、エラーの回復やユーザ体験の向上に繋げることができます。Error Boundary を作成したら、遅延コンポーネントより上位のあらゆる場所で使用でき、ネットワークエラーが発生した際にエラー内容を表示することができます。
 
 ```js
 import MyErrorBoundary from './MyErrorBoundary';
