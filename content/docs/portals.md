@@ -79,11 +79,14 @@ class Modal extends React.Component {
   }
 
   componentDidMount() {
-    // ポータルの要素が DOM ツリーに挿入されるのは、 Modal の子要素がマウントされた後になります。
-    // つまり、子要素は一旦どこにも結びつかない DOM ノードへとマウントされるということです。
+    // ポータルの要素が DOM ツリーに挿入されるのは、 
+    // Modal の子要素がマウントされた後になります。
+    // つまり、子要素は一旦どこにも結びつかない
+    // DOM ノードへとマウントされるということです。
     // もし子コンポーネントがマウント後すぐに DOM ツリーに結びついてほしい ――
     // たとえば DOM ノードの大きさを測りたい、子孫要素で `autoFocus` を使いたいなど
-    // ―― 場合は、 Modal に状態を持たせて Modal が DOM ツリーに挿入されているときだけ子要素をレンダーするようにします。
+    // ―― 場合は、 Modal に状態を持たせて Modal が
+    // DOM ツリーに挿入されているときだけ子要素をレンダーするようにします。
     modalRoot.appendChild(this.el);
   }
 
@@ -107,7 +110,8 @@ class Parent extends React.Component {
   }
 
   handleClick() {
-    // これは Child 内のボタンがクリックされた際に発火し、 Parent の state を更新します。
+    // これは Child 内のボタンがクリックされた際に発火し、
+    // Parent の state を更新します。
     // たとえそのボタンが DOM 上では直系の子孫でなかったとしてもです。
     this.setState(state => ({
       clicks: state.clicks + 1
