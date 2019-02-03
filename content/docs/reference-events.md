@@ -6,7 +6,7 @@ layout: docs
 category: Reference
 ---
 
-このリファレンスガイドでは、React の  イベントシステムの一部を構成する `SyntheticEvent`（合成イベント）ラッパについて説明します。詳細については、[イベント処理](/docs/handling-events.html)ガイドを参照してください。
+このリファレンスガイドでは、React のイベントシステムの一部を構成する `SyntheticEvent`（合成イベント）ラッパについて説明します。詳細については、[イベント処理](/docs/handling-events.html)ガイドを参照してください。
 
 ## 概要
 
@@ -59,11 +59,9 @@ function onClick(event) {
 }
 ```
 
-
 > 補足
 >
 > 非同期処理でイベントのプロパティにアクセスしたい場合は、`event.persist()` をイベント内で呼び出す必要があります。これにより、プールから合成イベントが削除され、イベントへの参照をコードで保持できるようになります。
-
 
 ## サポートするイベント
 
@@ -87,7 +85,6 @@ React はイベントを正規化して、異なるブラウザ間で一貫し�
 - [アニメーションイベント](#animation-events)
 - [遷移イベント](#transition-events)
 - [その他のイベント](#other-events)
-
 
 * * *
 
