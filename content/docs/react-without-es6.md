@@ -133,7 +133,7 @@ var SayHello = createReactClass({
 
 これはつまり、ES6 クラスで書くとイベントハンドラーのための定型文が少し多くなってしまうということなのですが、一方では大きなアプリケーションの場合にわずかながらパフォーマンスが向上するという側面もあります。
 
-この定型文的コードがあまりに醜く感じられる場合、Babelを使って **実験的** な [Class Properties](https://babeljs.io/docs/plugins/transform-class-properties/) 構文提案を有効にするとよいかもしれません。
+この定型文的コードがあまりに醜く感じられる場合、Babel を使って**実験的**な [Class Properties](https://babeljs.io/docs/plugins/transform-class-properties/) 構文提案を有効にするとよいかもしれません。
 
 ```javascript
 class SayHello extends React.Component {
