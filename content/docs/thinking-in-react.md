@@ -60,24 +60,24 @@ React のすばらしい特長がいくつもありますが、あなたがど�
       * `ProductCategoryRow`
       * `ProductRow`
 
-## Step 2: Build A Static Version in React
+## Step 2：Reactで静的なバージョンを作成する
 
 <p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-Now that you have your component hierarchy, it's time to implement your app. The easiest way is to build a version that takes your data model and renders the UI but has no interactivity. It's best to decouple these processes because building a static version requires a lot of typing and no thinking, and adding interactivity requires a lot of thinking and not a lot of typing. We'll see why.
+さて、コンポーネントの階層構造が決まったので、アプリの実装に取り掛かりましょう。最初は、データモデルを使用して UI の描画だけを行い、ユーザーからの操作はできないというバージョンを作っるのが、もっとも簡単でしょう。なぜ最初から操作できるバージョンを作らないのでしょうか。多くの場合、静的な（操作できない）バージョンを作る際には、タイピングする量が多い代わりに悩むことが少ない傾向があります。逆に、操作できるように改修するときには、悩ましいことが多い代わりにタイピングの量は少ない傾向があります。そういった理由から、先に操作できないバージョンを作ります。
 
-To build a static version of your app that renders your data model, you'll want to build components that reuse other components and pass data using *props*. *props* are a way of passing data from parent to child. If you're familiar with the concept of *state*, **don't use state at all** to build this static version. State is reserved only for interactivity, that is, data that changes over time. Since this is a static version of the app, you don't need it.
+データモデルを描画するだけの機能を持った、静的なバージョンのアプリを作る際には、再利用可能なコンポーネントを組み合わせて、それらに *props* を通じてデータを渡す形で、自分のコンポーネントを組み上げていきたいですよね。*props* は親から子へとデータを渡すための手段です。もし、あなたが *state* に慣れ親しんでいる場合でも、今回の静的なバージョンを作る上では**一切 state を使わないでください。** state はユーザー操作や時間経過などで動的に変化するデータを扱うために確保されている機能です。今回のアプリは静的なバージョンなので、stateは必要ありません。
 
-You can build top-down or bottom-up. That is, you can either start with building the components higher up in the hierarchy (i.e. starting with `FilterableProductTable`) or with the ones lower in it (`ProductRow`). In simpler examples, it's usually easier to go top-down, and on larger projects, it's easier to go bottom-up and write tests as you build.
+コンポーネントはトップダウンで作っても、ボトムアップで作っても問題ありません。 つまり、高い階層にあるコンポーネント（例えば `FilterableProductTable`）から作り始めても、低い階層にあるコンポーネント（`ProductRow` など）から作り始めても、どちらでもいいのです。身近な話題に置き換えて考えてみると、システム開発プロジェクトの進行は、多くの場合トップダウンで進めたほうがやりやすいですが、巨大なプロジェクトなら、ボトムアップで開発を進めるたびに自動テストを書いていったほうがやりやすい、といった話題が近いかもしれません。
 
-At the end of this step, you'll have a library of reusable components that render your data model. The components will only have `render()` methods since this is a static version of your app. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. If you make a change to your underlying data model and call `ReactDOM.render()` again, the UI will be updated. It's easy to see how your UI is updated and where to make changes since there's nothing complicated going on. React's **one-way data flow** (also called *one-way binding*) keeps everything modular and fast.
+最後に、再利用可能な、データモデルを描画するためのコンポーネントで作るライブラリについて考えてみましょう。今回のアプリは静的なバージョンなので、コンポーネントは `render()` メソッドだけを持つことになります。階層構造の中で最上位のコンポーネント（`FilterableProductTable`）が、データモデルを props として受け取ることになるでしょう。一度アプリを表示した後、あなたが元となるデータモデルを更新して再度 `ReactDOM.render()` を呼び出すと、UI が更新されることになります。このやり方なら、複雑なことをしていないので、UI がどのように更新されて、どこを変更すればよいか、容易に理解できることでしょう。React の**単方向データフロー**（あるいは*単方向バインディング*）は、すべてをモジュール化し、高速化します。
 
-Simply refer to the [React docs](/docs/) if you need help executing this step.
+このステップを実施する上で助けが必要な場合は、[React ドキュメント](/docs/)を参照してください。
 
-### A Brief Interlude: Props vs State
+### 幕間：Props vs State
 
-There are two types of "model" data in React: props and state. It's important to understand the distinction between the two; skim [the official React docs](/docs/interactivity-and-dynamic-uis.html) if you aren't sure what the difference is.
+React には 2 種類の「モデル」データが存在します。 props と state です。このふたつの相違を理解するのは重要なことです。もしあなたがこれらの違いについての知識に自信がない場合は、[公式の React ドキュメント](/docs/interactivity-and-dynamic-uis.html)に目を通すとよいでしょう。
 
 ## Step 3: Identify The Minimal (but complete) Representation Of UI State
 
