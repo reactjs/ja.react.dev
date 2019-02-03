@@ -130,20 +130,20 @@ UI をインタラクティブなものにするにあたり、UIを構築する
 
 これで、このアプリがどんな振る舞いをするのか見られるようになってきました。`filterText` に `"ball"` と入力した状態でアプリを更新すると、データの表が正しく更新されたことが確認できるはずです。
 
-## Step 5: Add Inverse Data Flow
+## Step 5：逆方向のデータフローを追加する
 
 <p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a> on <a href="http://codepen.io">CodePen</a>.</p>
 
-So far, we've built an app that renders correctly as a function of props and state flowing down the hierarchy. Now it's time to support data flowing the other way: the form components deep in the hierarchy need to update the state in `FilterableProductTable`.
+ここまでで、props と state が階層構造を流れ落ちていく関数として、正しく描画を行うアプリを作ることができました。それでは、別の方向のデータフローもサポートしてみましょう。階層構造の奥深くにあるフォームのコンポーネントが、`FilterableProductTable` にある state を更新できるようにするのです。
 
-React makes this data flow explicit to make it easy to understand how your program works, but it does require a little more typing than traditional two-way data binding.
+React はデータフローを明示的にしてプログラムの動作を理解しやすくするためのものですが、従来の双方向データバインディングよりも少し手を動かす必要があります。
 
-If you try to type or check the box in the current version of the example, you'll see that React ignores your input. This is intentional, as we've set the `value` prop of the `input` to always be equal to the `state` passed in from `FilterableProductTable`.
+試しに、現在のバージョンのサンプルで文字を打ち込んだり、チェックボックスを切り替えてみると、React がその入力を無視することがわかります。これは意図的な挙動で、`input` の `value` props が、常に `FilterableProductTable` から渡された `state` と同じ値になるようにセットしてあるのです。
 
-Let's think about what we want to happen. We want to make sure that whenever the user changes the form, we update the state to reflect the user input. Since components should only update their own state, `FilterableProductTable` will pass callbacks to `SearchBar` that will fire whenever the state should be updated. We can use the `onChange` event on the inputs to be notified of it. The callbacks passed by `FilterableProductTable` will call `setState()`, and the app will be updated.
+それでは、どんな挙動になってほしいのかを考えてみましょう。ユーザーがフォームを変更するたびに、ユーザー入力を反映するように state を更新したいですね。コンポーネントの state を更新できるのは自分自身だけであるべきなので、 `FilterableProductTable` は `SearchBar` にコールバックを渡して置いて、state を更新したいときにコールバックを実行してもらうようにします。入力のたびに呼び出される `onChange` イベントを利用するとよいでしょう。このコールバックを実行された `FilterableProductTable` は、`setState()` を呼び出し、その結果としてアプリが更新されます。
 
-Though this sounds complex, it's really just a few lines of code. And it's really explicit how your data is flowing throughout the app.
+これは複雑に思えるかもしれませんが、ほんの数行のコードです。 そして、これらはデータがアプリの中をどのように流れているのかを、明確に示しているのです。
 
-## And That's It
+## 終わりに
 
-Hopefully, this gives you an idea of how to think about building components and applications with React. While it may be a little more typing than you're used to, remember that code is read far more than it's written, and it's extremely easy to read this modular, explicit code. As you start to build large libraries of components, you'll appreciate this explicitness and modularity, and with code reuse, your lines of code will start to shrink. :)
+うまくいけば、これで React を使ってコンポーネントやアプリケーションを構築する方法について考えることができるようになります。それはもしかしたら、あなたのこれまでのやり方よりも、多くのコードを書くことになるかもしれません。しかしながら、コードは書くよりも読むことのほうが多いことや、モジュール化されていて明示的であるコードは非常に読みやすいということを思い出してください。大規模なコンポーネントのライブラリを構築し始めると、この明示性やモジュール化しやすさを高く評価することになり、コードを再利用することになり、あなたが書くコードの行数は減っていくのです。:)
