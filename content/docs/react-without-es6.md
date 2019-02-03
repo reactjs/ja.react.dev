@@ -25,7 +25,7 @@ var Greeting = createReactClass({
 });
 ```
 
-ES6 のクラス API は、一部の例外を除いて `createReactClass()` とよく似ています。
+ES6 のクラス API は `createReactClass()` とよく似ていますが、いくつかの例外があります。
 
 ## デフォルトPropsの宣言
 
