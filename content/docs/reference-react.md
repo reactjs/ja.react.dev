@@ -20,23 +20,20 @@ npm と ES6 を使う場合、`import React from 'react'` と書けます。npm 
 
 ### Components
 
-React コンポーネントを使用すると UI を独立した再利用可能な部分に分割し、各部分を個別に考えることができます。
-React コンポーネントは `React.Component` または `React.PureComponent` をサブクラス化することで定義することができます。
+React コンポーネントを使用すると UI を独立した再利用可能な部分に分割し、各部分を個別に考えることができます。React コンポーネントは `React.Component` または `React.PureComponent` をサブクラス化することで定義することができます。
 
  - [`React.Component`](#reactcomponent)
  - [`React.PureComponent`](#reactpurecomponent)
 
-ES6 クラスを使う代わりに、`create-react-class` を使うことができます。
-詳しくは [Using React without ES6](/docs/react-without-es6.html) を参照してください。
+ES6 クラスを使う代わりに、`create-react-class` を使うことができます。詳しくは [Using React without ES6](/docs/react-without-es6.html) を参照してください。
 
-React コンポーネントは関数をラップして定義することもできます：
+React コンポーネントは関数で定義することもでき、その際に以下の関数でラップすることもできます：
 
 - [`React.memo`](#reactmemo)
 
 ### Creating React Elements
 
-UI がどのように見えるかを記述するために [JSX の使用](/docs/introducing-jsx.html) を推奨します。JSX のそれぞれの要素は [`React.createElement()`](#createelement) を呼ぶための単なる糖衣構文です。
-JSX を使用している場合は、通常、次のメソッドを直接呼び出さないでください。
+UI がどのように見えるかを記述するために [JSX の使用](/docs/introducing-jsx.html) を推奨します。JSX のそれぞれの要素は [`React.createElement()`](#createelement) を呼ぶための単なる糖衣構文です。JSX を使用している場合は、通常、次のメソッドを直接呼び出さないでください。
 
 - [`createElement()`](#createelement)
 - [`createFactory()`](#createfactory)
@@ -53,7 +50,7 @@ JSX を使用している場合は、通常、次のメソッドを直接呼び�
 
 ### フラグメント (Fragment)
 
-`React` はラッパーなしで、複数の要素をレンダリングするコンポーネントを提供しています。
+`React` はラッパーなしで複数の要素をレンダリングするためのコンポーネントを提供しています。
 
 - [`React.Fragment`](#reactfragment)
 
@@ -64,7 +61,7 @@ JSX を使用している場合は、通常、次のメソッドを直接呼び�
 
 ### サスペンス (Suspense)
 
-サスペンスを使用すると、コンポーネントはレンダリングの前に何かを待機することができます。
+サスペンスを使用すると、コンポーネントはレンダーの前に何かを「待機」することができます。
 現在、サスペンスは 1 つのユースケースのみをサポートしています： [loading components dynamically with `React.lazy`](/docs/code-splitting.html#reactlazy)。
 将来的にはデータの取得のような他のユースケースもサポートされます。
 
