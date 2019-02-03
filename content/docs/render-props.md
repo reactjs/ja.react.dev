@@ -8,7 +8,6 @@ permalink: docs/render-props.html
 
 レンダープロップを持つコンポーネントは、自身のレンダーロジックを実装する代わりに、React 要素を返す関数を受け取ってそれを呼び出します。
 
-
 ```jsx
 <DataProvider render={data => (
   <h1>Hello {data.target}</h1>
