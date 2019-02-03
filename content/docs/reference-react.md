@@ -27,7 +27,7 @@ React コンポーネントは `React.Component` または `React.PureComponent`
  - [`React.PureComponent`](#reactpurecomponent)
 
 ES6 クラスを使う代わりに、`create-react-class` を使うことができます。
-詳しくは [Using React without ES6](/docs/react-without-es6.html) を見てください。
+詳しくは [Using React without ES6](/docs/react-without-es6.html) を参照してください。
 
 React コンポーネントは関数をラップして定義することもできます：
 
@@ -41,7 +41,7 @@ JSX を使用している場合は、通常、次のメソッドを直接呼び�
 - [`createElement()`](#createelement)
 - [`createFactory()`](#createfactory)
 
-詳しくは [Using React without JSX](/docs/react-without-jsx.html) を見てください。
+詳しくは [Using React without JSX](/docs/react-without-jsx.html) を参照してください。
 
 ### 要素を変換する
 
@@ -51,7 +51,7 @@ JSX を使用している場合は、通常、次のメソッドを直接呼び�
 - [`isValidElement()`](#isvalidelement)
 - [`React.Children`](#reactchildren)
 
-### フラグメント
+### フラグメント (Fragment)
 
 `React` はラッパーなしで、複数の要素をレンダリングするコンポーネントを提供しています。
 
@@ -62,10 +62,10 @@ JSX を使用している場合は、通常、次のメソッドを直接呼び�
 - [`React.createRef`](#reactcreateref)
 - [`React.forwardRef`](#reactforwardref)
 
-### サスペンス
+### サスペンス (Suspense)
 
 サスペンスを使用すると、コンポーネントはレンダリングの前に何かを待機することができます。
-現在、サスペンスは1つのユースケースのみをサポートしています： [loading components dynamically with `React.lazy`](/docs/code-splitting.html#reactlazy)。
+現在、サスペンスは 1 つのユースケースのみをサポートしています： [loading components dynamically with `React.lazy`](/docs/code-splitting.html#reactlazy)。
 将来的にはデータの取得のような他のユースケースもサポートされます。
 
 - [`React.lazy`](#reactlazy)
@@ -73,7 +73,7 @@ JSX を使用している場合は、通常、次のメソッドを直接呼び�
 
 * * *
 
-## 参考
+## レファレンス
 
 ### `React.Component`
 
@@ -191,7 +191,7 @@ React.createFactory(type)
 
 このヘルパーはレガシーと見なされます。JSX か `React.createElement()` を直接使用することを勧めます。
 
-JSX を使っていれば通常  `React.createFactory()` を直接呼び出すことはありません。詳しくは [React Without JSX](/docs/react-without-jsx.html) を見てください。
+JSX を使っていれば通常  `React.createFactory()` を直接呼び出すことはありません。詳しくは [React Without JSX](/docs/react-without-jsx.html) を参照してください。
 
 * * *
 
@@ -219,7 +219,7 @@ React.Children.map(children, function[(thisArg)])
 
 > 補足
 >
-> `children` が `Fragment` の場合、それは1つの子要素として扱われ、走査されません。
+> `children` が `Fragment` の場合、それは 1 つの子要素として扱われ、走査されません。
 
 #### `React.Children.forEach`
 
@@ -243,7 +243,7 @@ React.Children.count(children)
 React.Children.only(children)
 ```
 
-`children` が1つの子要素しか持たないことを確認します。そうでない場合、このメソッドはエラーを投げます。
+`children` が 1 つの子要素しか持たないことを確認します。そうでない場合、このメソッドはエラーを投げます。
 
 > 補足:
 >
@@ -278,7 +278,7 @@ render() {
 }
 ```
 
-また、フラグメントを `<></>` という短縮構文で使用することもできます。詳しくは [React v16.2.0: Improved Support for Fragments](/blog/2017/11/28/react-v16.2.0-fragment-support.html) を見てください。
+また、フラグメントを `<></>` という短縮構文で使用することもできます。詳しくは [React v16.2.0: Improved Support for Fragments](/blog/2017/11/28/react-v16.2.0-fragment-support.html) を参照してください。
 
 
 ### `React.createRef`
@@ -287,12 +287,12 @@ render() {
 
 ### `React.forwardRef`
 
-`React.forwardRef` は [ref](/docs/refs-and-the-dom.html) を配下のツリーの別のコンポーネントに受け渡す React コンポーネントを作成します。この手法はあまり一般的ではありませんが、2つのシナリオで特に役立ちます：
+`React.forwardRef` は [ref](/docs/refs-and-the-dom.html) を配下のツリーの別のコンポーネントに受け渡す React コンポーネントを作成します。この手法はあまり一般的ではありませんが、2 つのシナリオで特に役立ちます：
 
 * [Forwarding refs to DOM components](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)
 * [Forwarding refs in higher-order-components](/docs/forwarding-refs.html#forwarding-refs-in-higher-order-components)
 
-`React.forwardRef` はレンダリング関数を引数として受け入れます。Reactは props と ref を2つの引数として呼び出します。この関数は React ノードを返す必要があります。
+`React.forwardRef` はレンダリング関数を引数として受け入れます。Reactは props と ref を 2 つの引数として呼び出します。この関数は React ノードを返す必要があります。
 
 `embed:reference-react-forward-ref.js`
 
@@ -300,7 +300,7 @@ render() {
 
 結果として、Reactが `ref` を取り付けた後、`ref.current` は `<button>` の DOM 要素のインスタンスを直接指すようになります。
 
-詳しくは [forwarding refs](/docs/forwarding-refs.html) を見てください。
+詳しくは [forwarding refs](/docs/forwarding-refs.html) を参照してください。
 
 ### `React.lazy`
 
