@@ -162,8 +162,7 @@ isElementOfType(
 isDOMComponent(instance)
 ```
 
-Returns `true` if `instance` is a DOM component (such as a `<div>` or `<span>`).
-`instance` が DOM コンポーネント（ `<div>` や `<span>` など）である場合 `true` を返します。
+`instance` が DOM コンポーネント（`<div>` や `<span>` など）である場合 `true` を返します。
 
 * * *
 
