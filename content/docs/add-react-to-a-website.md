@@ -17,7 +17,7 @@ React は段階的に導入することができるように最初からデザ�
 ---
 
 - [1分で React を導入する](#add-react-in-one-minute)
-- [補足：React で JSX を使う](#optional-try-react-with-jsx) (バンドルツールは不要です！)
+- [オプション：React で JSX を使う](#optional-try-react-with-jsx) (バンドルツールは不要です！)
 
 ## 1分で React を導入する
 
@@ -25,7 +25,7 @@ React は段階的に導入することができるように最初からデザ�
 
 複雑なツール類や事前にインストールしておかなければいけないものはありません。**インターネットへの接続さえあれば、1分間でこのセクションを終わらせることができます。**
 
-補足：[お手本をダウンロードする (2KB ZIP圧縮)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
+オプション：[お手本をダウンロードする (2KB ZIP圧縮)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
 
 ### ステップ1：HTML に DOM コンテナを追加する
 
@@ -121,7 +121,7 @@ React コンポーネントを HTML ページの一箇所だけではなくい�
 
 自分のスクリプトを圧縮することがまだできていないのであれば、[例えばこんなやり方があります](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3)。
 
-## 補足：React で JSX を使う
+## オプション：React で JSX を使う
 
 今までのお手本は、ブラウザにもともと備わっている機能に沿ってきました。React コンポーネントを表示するために次のような JavaScript の関数を呼び出していたのはそのためです。
 
