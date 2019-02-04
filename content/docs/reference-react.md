@@ -63,7 +63,7 @@ UI がどのように見えるべきかを記述するために [JSX の使用](
 
 サスペンスを使用すると、コンポーネントはレンダーの前に何かを「待機」することができます。
 現在、サスペンスは 1 つのユースケースのみをサポートしています： [loading components dynamically with `React.lazy`](/docs/code-splitting.html#reactlazy)。
-将来的にはデータの取得のような他のユースケースもサポートされます。
+将来的にはデータの取得のような他のユースケースもサポートされるでしょう。
 
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
