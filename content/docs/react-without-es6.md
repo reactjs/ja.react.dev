@@ -58,7 +58,7 @@ var Greeting = createReactClass({
 
 ## state の初期値の設定
 
-ES6 クラスでは、コンストラクターで `this.state` へ代入することで state の初期値を定義できます。
+ES6 クラスでは、コンストラクタで `this.state` へ代入することで state の初期値を定義できます。
 
 ```javascript
 class Counter extends React.Component {
