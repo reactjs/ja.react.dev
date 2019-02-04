@@ -232,7 +232,7 @@ React.Children.forEach(children, function[(thisArg)])
 React.Children.count(children)
 ```
 
-`children` のコンポーネントの数を返します。これは `map` または `forEach` に渡したコールバックが呼ばれる回数と同じです。
+`children` に含まれるコンポーネントの総数を返します。これは `map` または `forEach` に渡したコールバックが呼ばれる回数と同じです。
 
 #### `React.Children.only`
 
