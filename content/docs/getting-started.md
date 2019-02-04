@@ -27,13 +27,13 @@ redirect_from:
 
 - [React を試す](#try-react)
 - [React を学ぶ](#learn-react)
-- [最新の情報を追う](#staying-informed)
+- [最新の情報を追いたい人へ](#staying-informed)
 - [バージョン管理されたドキュメント](#versioned-documentation)
 - [足りないものがある?](#something-missing)
 
 ## React を試す
 
-React は初めから既存のプロジェクトに徐々に追加していけるようなデザインとなっています。 **あなたは React をどれだけ使っても問題ありません**触りだけやってみるもよし、シンプルな HTML のページにインタラクティブな機能を追加するのに使うもよし、React をフル活用した複雑なアプリを作成するもよし。どのような目的にしても、このページにあるリンクが役に立つでしょう。
+React は初めから既存のプロジェクトに徐々に追加していけるようなデザインとなっています。 **あなたは React をどれだけ使っても問題ありません。** 触りだけやってみるもよし、シンプルな HTML のページにインタラクティブな機能を追加するのに使うもよし、React をフル活用した複雑なアプリを作成するもよし。どのような目的にしても、このページにあるリンクが役に立つでしょう。
 
 ### Web 上で試す
 
@@ -57,75 +57,85 @@ React を試してみたかったら、Web 上のコードエディタでも試�
 
 ## React を学ぶ
 
-People come to React from different backgrounds and with different learning styles. Whether you prefer a more theoretical or a practical approach, we hope you'll find this section helpful.
+React を学びたい人には様々な背景があり、それぞれいろんな学び方のスタイルがあるでしょう。
+理論から学びたい人も、実際に手を動かしながら学びたい人も、このセクションが役に立てれば幸いです。
 
-* If you prefer to **learn by doing**, start with our [practical tutorial](/tutorial/tutorial.html).
-* If you prefer to **learn concepts step by step**, start with our [guide to main concepts](/docs/hello-world.html).
+* **実際に手を動かしながら学びたい人**は[チュートリアル](/tutorial/tutorial.html)からはじめましょう。
+* **コンセプトから一つ一つ学んでいきたい人**は[こちらのガイド](/docs/hello-world.html)からはじめていきましょう。
 
-Like any unfamiliar technology, React does have a learning curve. With practice and some patience, you *will* get the hang of it.
+他の技術と新しく学ぶ時と同じように、 React には学習コストがあります。しかし、辛抱強く、地道にコツコツやっていくことで、*絶対に*できるようになります。
 
-### First Examples
+### 最初の数例
 
-The [React homepage](/) contains a few small React examples with a live editor. Even if you don't know anything about React yet, try changing their code and see how it affects the result.
+この [React 公式ドキュメント](/)にはライブエディタにて記入できる小さい React の例が散らばっています。 まだ React のことを何も知らなくても、実際に触ってみてどの様に変化するかを見てみましょう。
 
-### React for Beginners
+### React 初心者向けのガイド
 
-If you feel that the React documentation goes at a faster pace than you're comfortable with, check out [this overview of React by Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). It introduces the most important React concepts in a detailed, beginner-friendly way. Once you're done, give the documentation another try!
+もし、React の公式ドキュメントのペースが早すぎると感じた場合は、[Tania Rascia氏によって書かれた React の概要](https://www.taniarascia.com/getting-started-with-react/)を読んでみましょう。
+ここでは React の一番大事なコンセプトについて詳細にえがかれており、初心者にもとても易しい作りとなっています。それが終わったら、もう一度公式ドキュメントを読んでみましょう！
 
-### React for Designers
+### デザイナー向けのガイド
 
-If you're coming from a design background, [these resources](http://reactfordesigners.com/) are a great place to get started.
+デザイナーの背景がある方は、[これらの資料](http://reactfordesigners.com/)から始めることをおすすめします。
 
-### JavaScript Resources
+### JavaScript 資料
 
-The React documentation assumes some familiarity with programming in the JavaScript language. You don't have to be an expert, but it's harder to learn both React and JavaScript at the same time.
+React の公式ドキュメントはあなたがある程度 JavaScript について知っていることを想定しています。JavaScriptの達人である必要は全くありませんが、JavaScript と React を同時に取得するのは難しいでしょう。
 
-We recommend going through [this JavaScript overview](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) to check your knowledge level. It will take you between 30 minutes and an hour but you will feel more confident learning React.
+JavasScript について自分がどれだけ知っているかを知るために、[この JavaScript の概要](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)を読んでおくことをおすすめします。
+読むのに30分や1時間程かかってしまいますが、React を学ぶための自信へと繋がってくるでしょう。
 
 >Tip
 >
->Whenever you get confused by something in JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [javascript.info](http://javascript.info/) are great websites to check. There are also [community support forums](/community/support.html) where you can ask for help.
+>もし JavaScript で何か詰まった時は、 [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) と [javascript.info](http://javascript.info/) を確認すると良いでしょう。また、[コミュニティの助け](/community/support.html)を活用するのもおすすめします。
 
-### Practical Tutorial
+### 実践チュートリアル
 
-If you prefer to **learn by doing,** check out our [practical tutorial](/tutorial/tutorial.html). In this tutorial, we build a tic-tac-toe game in React. You might be tempted to skip it because you're not building games -- but give it a chance. The techniques you'll learn in the tutorial are fundamental to building *any* React apps, and mastering it will give you a much deeper understanding.
+**実際に手を動かしながら学びたい人**は[チュートリアル](/tutorial/tutorial.html)からはじめましょう。
+このチュートリアルでは React を使って ○×ゲームを作成します。ゲーム作成に興味が無い方は飛ばそうと思うかもしれませんが、試してみてください。
+ここで学ぶテクニックは*全ての* React アプリの基礎となることであり、習得することで React に関する深い理解を得るでしょう。
 
-### Step-by-Step Guide
+### 一歩づつ進めるためのガイド
 
-If you prefer to **learn concepts step by step,** our [guide to main concepts](/docs/hello-world.html) is the best place to start. Every next chapter in it builds on the knowledge introduced in the previous chapters so you won't miss anything as you go along.
+**コンセプトから一つ一つ学んでいきたい人**は[こちらのガイド](/docs/hello-world.html)からはじめていきましょう。
+このガイドは章ごとに分かれていて、各章がそれまでに習ったことを上乗せする知識となっているため、余すことなく学ぶことができます。
 
-### Thinking in React
+### React 的な考え方
 
-Many React users credit reading [Thinking in React](/docs/thinking-in-react.html) as the moment React finally "clicked" for them. It's probably the oldest React walkthrough but it's still just as relevant.
+多くの React のユーザーは　[React 的な考え方](/docs/thinking-in-react.html)を読んだ時に React のことがわかってきたと高く評価しています。この世に存在する一番古い React に関する資料ですが、今でも現役で使えます。
 
-### Recommended Courses
+### おすすめの資料
 
-Sometimes people find third-party books and video courses more helpful than the official documentation. We maintain [a list of commonly recommended resources](/community/courses.html), some of which are free.
+時には第三者が執筆した技術書やオンラインコース等が公式ドキュメントよりもわかりやすいという人もいます。我々は[よく勧められている資料集](/community/courses.html)についてもまとめています。無料のものもあります。
 
-### Advanced Concepts
+### 高度なコンセプト
 
-Once you're comfortable with the [main concepts](#main-concepts) and played with React a little bit, you might be interested in more advanced topics. This section will introduce you to the powerful, but less commonly used React features like [context](/docs/context.html) and [refs](/docs/refs-and-the-dom.html).
+React の[基本コンセプト](#main-concepts)について慣れてきて、実際手で動かしてみたら、今度はさらに高度な内容にも手を出したいと思うかもしれません。
+この資料では強力な、しかし普段使われることのない [context](/docs/context.html) や [ref](/docs/refs-and-the-dom.html) と言った React のさらなる機能について紹介します。 
 
-### API Reference
+### API リファレンス
 
-This documentation section is useful when you want to learn more details about a particular React API. For example, [`React.Component` API reference](/docs/react-component.html) can provide you with details on how `setState()` works, and what different lifecycle methods are useful for.
+この資料は特定の React API について学びたいときに役に立つでしょう。例えば、[`React.Component` API リファレンス](/docs/react-component.html)では `setState()` がどう機能しているかについてより詳細に記載されていたり、数々のライフサイクルメソッドがどの様に役に立つかについて書かれています。
 
-### Glossary and FAQ
+### 用語集と FAQ
 
-The [glossary](/docs/glossary.html) contains an overview of the most common terms you'll see in the React documentation. There is also a FAQ section dedicated to short questions and answers about common topics, including [making AJAX requests](/docs/faq-ajax.html), [component state](/docs/faq-state.html), and [file structure](/docs/faq-structure.html).
+この[用語集](/docs/glossary.html)にはこのドキュメントにてよく使われる単語等が記載されています。 
+[AJAX リクエストについて](/docs/faq-ajax.html)、[コンポーネントの state](/docs/faq-state.html)、[ファイル構成](/docs/faq-structure.html)等、よく頂く質問についても記載しています。
 
-## Staying Informed
+## 最新の情報を追いたい人へ
 
-The [React blog](/blog/) is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted there first.
+この [React ブログ](/blog/)は React チームからのアップデートについて記載する公式ブログです。
+機能が deprecated になる等、何か大事な発表がある時にはこのブログに真っ先に記載されます。
 
-You can also follow the [@reactjs account](https://twitter.com/reactjs) on Twitter, but you won't miss anything essential if you only read the blog.
+他にも [@reactjs](https://twitter.com/reactjs) のツイッターアカウントをフォローすることもできますが、公式ブログを追っていれば何も見落とすことはないでしょう。
 
-Not every React release deserves its own blog post, but you can find a detailed changelog for every release [in the `CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/master/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react) page.
+全ての React のリリースに記事があるわけではありませんが、リリース毎に詳細に書かれた changelog が [React リポジトリの`CHANGELOG.md`](https://github.com/facebook/react/blob/master/CHANGELOG.md)、および [Releases ページ](https://github.com/facebook/react)に記載されております。
 
-## Versioned Documentation
+## バージョン管理されたドキュメント
 
-This documentation always reflects the latest stable version of React. Since React 16, you can find older versions of the documentation [on a separate page](/versions). Note that documentation for past versions is snapshotted at the time of the release, and isn't being continuously updated.
+このドキュメントは常に最新の stable版の React に準拠しています。React 16 からは古いバージョンのドキュメントも[別のページ](/versions)から閲覧できます。
+古いバージョンのドキュメントは各バージョンリリース時のスナップショットであり、更新をかけることはありません。
 
-## Something Missing?
+## 他に聞きたいことは?
 
-If something is missing in the documentation or if you found some part confusing, please [file an issue for the documentation repository](https://github.com/reactjs/reactjs.org/issues/new) with your suggestions for improvement, or tweet at the [@reactjs account](https://twitter.com/reactjs). We love hearing from you!
+ドキュメントに記載されていないことがあったり、わかりにくい箇所があったりしたら、 困ったことや改善案等を[この公式ドキュメントのリポジトリ](https://github.com/reactjs/reactjs.org/issues/new)に issue として立てるか、もしくは公式の[@reactjs](https://twitter.com/reactjs)までご連絡ください。あなたのご意見をお待ちしております！
