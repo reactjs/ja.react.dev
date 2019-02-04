@@ -15,8 +15,6 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
 
 ## 概要
 
-`ReactTestUtils` makes it easy to test React components in the testing framework of your choice. At Facebook we use [Jest](https://facebook.github.io/jest/) for painless JavaScript testing. Learn how to get started with Jest through the Jest website's [React Tutorial](http://facebook.github.io/jest/docs/en/tutorial-react.html#content).
-
 `ReactTestUtils` はお好みのテストフレームワークで React コンポーネントをテストしやすくするものです。
 Facebook では快適に JavaScript をテストするために [Jest](https://facebook.github.io/jest/) を使用しています。
 Jest のウェブサイトにある [React Tutorial](http://facebook.github.io/jest/docs/en/tutorial-react.html#content) を通して Jest の始め方を学んでください。
@@ -26,7 +24,7 @@ Jest のウェブサイトにある [React Tutorial](http://facebook.github.io/j
 > Airbnb が Enzyme と呼ばれるテストユーティリティをリリースしています。 Enzymeは React コンポーネントの出力のアサート、操作、そして横断的な処理をしやすくしてくれます。
 もしあなたが Jest や他のテストランナーを単体テストユーティリティと一緒に使用すると決めたなら、チェックしてみる価値があります: [http://airbnb.io/enzyme/](http://airbnb.io/enzyme/)
 >
-> またその代替手段として、 `react-testing-library` と呼ばれる別のテストユーティリティがあります。
+> また別の手段として、 `react-testing-library` と呼ばれる別のテストユーティリティがあります。
 これは、エンドユーザーがコンポーネントを使用するのと同様の書き方でコンポーネントを使用するテストを書くことを可能にし、かつそれを促進するように設計されています。
 このテストユーティリティはあらゆるテストランナーと一緒に動作します: [https://git.io/react-testing-library](https://git.io/react-testing-library)
 
@@ -50,16 +48,14 @@ Jest のウェブサイトにある [React Tutorial](http://facebook.github.io/j
 
 ## Shallow Rendering
 
-When writing unit tests for React, shallow rendering can be helpful. Shallow rendering lets you render a component "one level deep" and assert facts about what its render method returns, without worrying about the behavior of child components, which are not instantiated or rendered. This does not require a DOM.
-
 Reactの単体テストを書くときには、 shallow rendering が役に立ちます。
-shallow rendering によって、インスタンス化またはレンダリングされていない子コンポーネントの動作を気にすることなく、コンポーネントを "1 階層深く" レンダリングしてその render メソッドが返す結果をアサートできます。
+shallow rendering によって、インスタンス化またはレンダーされていない子コンポーネントの動作を気にすることなく、コンポーネントを "1 階層深く" レンダーしてその render メソッドが返す結果をアサートできます。
 これは DOM を必要としません。
 
 > 補足:
 >
-> shallow renderer は `react-test-renderer/shallow` に移動されました<br>
-> [シャローレンダリングの詳細についてはリファレンスページを参照してください。](/docs/shallow-renderer.html)
+> shallow renderer は `react-test-renderer/shallow` に移動されました。<br>
+> [shallow rendererの詳細についてはリファレンスページを参照してください。](/docs/shallow-renderer.html)
 
 ## その他のユーティリティ
 
@@ -106,7 +102,7 @@ ReactTestUtils.Simulate.keyDown(node, {key: "Enter", keyCode: 13, which: 13});
 renderIntoDocument(element)
 ```
 
-React 要素をドキュメント内の独立したDOMノードにレンダリングします。**この関数を実行するには DOM が必要です。**
+React 要素をドキュメント内の独立したDOMノードにレンダーします。**この関数を実行するには DOM が必要です。**
 
 > 補足:
 >
@@ -125,7 +121,7 @@ mockComponent(
 ```
 
 モック化されたコンポーネントモジュールをこのメソッドに渡すことで、ダミーの React コンポーネントとして使用できるようになる便利なメソッドを追加することができます。
-通常のレンダリングの代わりに、コンポーネントは、与えられた子要素を含んだシンプルな `<div>`（もしくは `mockTagName` が与えられていれば他のタグ）になります。
+通常のレンダーの代わりに、コンポーネントは、与えられた子要素を含んだシンプルな `<div>`（もしくは `mockTagName` が与えられていれば他のタグ）になります。
 
 > 補足:
 >
@@ -185,7 +181,7 @@ isCompositeComponentWithType(
 )
 ```
 
-`instance` がReactの `componentClass` 型のコンポーネントである場合 `true` を返します。
+`instance` が React の `componentClass` 型のコンポーネントである場合 `true` を返します。
 
 * * *
 
@@ -212,7 +208,7 @@ scryRenderedDOMComponentsWithClass(
 )
 ```
 
-レンダリングされたツリー内に存在する、クラス名が `className` に一致するDOMコンポーネントが持つ全てのDOM要素を探し、その結果を返します。。
+レンダーされたツリー内に存在する、クラス名が `className` に一致する DOM コンポーネントが持つ全ての DOM 要素を探し、その結果を返します。
 
 * * *
 
@@ -225,7 +221,7 @@ findRenderedDOMComponentWithClass(
 )
 ```
 
-[`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass) と同様のメソッドですが、このメソッドは結果が1つだけであることを期待しており、その1つの結果を返すか、一致するものが1つでなかった場合には例外を返します。
+[`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass) と同様のメソッドですが、このメソッドは結果が 1 つだけであることを期待しており、その 1 つの結果を返すか、一致するものが 1 つでなかった場合には例外を返します。
 
 * * *
 
@@ -251,7 +247,7 @@ findRenderedDOMComponentWithTag(
 )
 ```
 
-[`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag) と同様のメソッドですが、このメソッドは結果が1つだけであることを期待しており、その1つの結果を返すか、一致するものが1つでなかった場合には例外を返します。
+[`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag) と同様のメソッドですが、このメソッドは結果が 1 つだけであることを期待しており、その 1 つの結果を返すか、一致するものが 1 つでなかった場合には例外を返します。
 
 * * *
 
@@ -277,6 +273,6 @@ findRenderedComponentWithType(
 )
 ```
 
-[`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) と同様のメソッドですが、このメソッドは結果が1つだけであることを期待しており、その1つの結果を返すか、一致するものが1つでなかった場合には例外を返します。
+[`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) と同様のメソッドですが、このメソッドは結果が 1 つだけであることを期待しており、その 1 つの結果を返すか、一致するものが 1 つでなかった場合には例外を返します。
 
 * * *
