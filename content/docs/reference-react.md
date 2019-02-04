@@ -50,7 +50,7 @@ UI がどのように見えるべきかを記述するために [JSX の使用](
 
 ### フラグメント (Fragment)
 
-`React` はラッパーなしで複数の要素をレンダリングするためのコンポーネントを提供しています。
+`React` はラッパーなしで複数の要素をレンダーするためのコンポーネントを提供しています。
 
 - [`React.Fragment`](#reactfragment)
 
@@ -92,13 +92,13 @@ class Greeting extends React.Component {
 
 `React.PureComponent` は [`React.Component`](#reactcomponent) と似ています。両者の違いは [`React.Component`](#reactcomponent) が [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) を実装していないことに対し、`React.PureComponent` は props と state を浅く (shallow) 比較することでそれを実装していることです。
 
-React コンポーネントの `render()` 関数が同じ props と state を与えられたときに同じ結果をレンダリングするときは、パフォーマンスを向上させるために `React.PureComponent` を使用できます。
+React コンポーネントの `render()` 関数が同じ props と state を与えられたときに同じ結果をレンダーするときは、パフォーマンスを向上させるために `React.PureComponent` を使用できます。
 
 > 補足
 >
 > `React.PureComponent` の `shouldComponentUpdate()` は オブジェクトの浅い比較のみを行います。これらに複雑なデータ構造が含まれていると、深い部分のみに差分があるために、本当は差分があるにも関わらず差分がないと見なされる場合があります。単純な props とstateを持つ場合にのみ `PureComponent` を継承するか、深いデータ構造が変更されたとわかっているときに [`forceUpdate()`](/docs/react-component.html#forceupdate) を使用してください。あるいは、ネストされたデータ構造の高速な比較を容易にするために [immutable objects](https://facebook.github.io/immutable-js/) の使用を検討してください。
 >
-> さらに、`React.PureComponent` の `shouldComponentUpdate()` はサブツリー全体のコンポーネントの props の更新をスキップします。子コンポーネントの全てが純粋コンポーネントであることを確認してください。
+> さらに、`React.PureComponent` の `shouldComponentUpdate()` はサブツリー全体のコンポーネントの props の更新をスキップします。子コンポーネントの全てが「純粋な」コンポーネントであることを確認してください。
 
 * * *
 
@@ -186,7 +186,7 @@ React.createFactory(type)
 
 与えられた型の React 要素を生成する関数を返します。[`React.createElement()`](#createElement) と同様に、`type` 引数はタグ名の文字列（`'div'` や `'span'` など）、[React コンポーネント](/docs/components-and-props.html)型（クラスもしくは関数）、[React フラグメント](#reactfragment)型のいずれかです。
 
-このヘルパーはレガシーと見なされます。JSX か `React.createElement()` を直接使用することを勧めます。
+このヘルパーはレガシーだと考えられているため、代わりに JSX か `React.createElement()` を直接使用することをおすすめします。
 
 JSX を使っていれば通常  `React.createFactory()` を直接呼び出すことはありません。詳しくは [JSX なしで React を使う](/docs/react-without-jsx.html)を参照してください。
 
@@ -240,7 +240,7 @@ React.Children.count(children)
 React.Children.only(children)
 ```
 
-`children` が 1 つの子要素しか持たないことを確認します。そうでない場合、このメソッドはエラーを投げます。
+`children` が 1 つの子要素しか持たないことを確認し、結果を返します。そうでない場合、このメソッドはエラーを投げます。
 
 > 補足:
 >
@@ -289,11 +289,11 @@ render() {
 * [Forwarding refs to DOM components](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)
 * [Forwarding refs in higher-order-components](/docs/forwarding-refs.html#forwarding-refs-in-higher-order-components)
 
-`React.forwardRef` はレンダリング関数を引数として受け入れます。Reactは props と ref を 2 つの引数として呼び出します。この関数は React ノードを返す必要があります。
+`React.forwardRef` はレンダー関数を引数として受け入れます。Reactは props と ref を 2 つの引数として呼び出します。この関数は React ノードを返す必要があります。
 
 `embed:reference-react-forward-ref.js`
 
-上の例では、React は `<FancyButton ref={ref}>` 要素に与えた `ref` を `React.forwardRef` の呼び出し内のレンダリング関数の 2 番目の引数として渡します。このレンダリング関数は `ref` を `<button ref={ref}>` 要素に渡します。
+上の例では、React は `<FancyButton ref={ref}>` 要素に与えた `ref` を `React.forwardRef` の呼び出し内のレンダー関数の 2 番目の引数として渡します。このレンダー関数は `ref` を `<button ref={ref}>` 要素に渡します。
 
 結果として、Reactが `ref` を取り付けた後、`ref.current` は `<button>` の DOM 要素のインスタンスを直接指すようになります。
 
@@ -301,7 +301,7 @@ render() {
 
 ### `React.lazy`
 
-`React.lazy()` を使用すると、動的に読み込まれるコンポーネントを定義できます。これにより、バンドルサイズを削減して、最初のレンダリング時に使用されないコンポーネントの読み込みを遅らせることができます。
+`React.lazy()` を使用すると、動的に読み込まれるコンポーネントを定義できます。これにより、バンドルサイズを削減して、最初のレンダー時に使用されないコンポーネントの読み込みを遅らせることができます。
 
 [code splitting のドキュメント](/docs/code-splitting.html#reactlazy)から使用方法を学ぶことができます。また、使い方をより詳しく説明した[こちらの記事](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d)もチェックしてみてください。
 
@@ -310,7 +310,7 @@ render() {
 const SomeComponent = React.lazy(() => import('./SomeComponent'));
 ```
 
-`lazy` コンポーネントをレンダリングするには `<React.Suspense>` がレンダリングツリーの上位に必要です。これはローディングインジケータを指定する方法です。
+`lazy` コンポーネントをレンダーするには `<React.Suspense>` がレンダリングツリーの上位に必要です。これはローディングインジケータを指定する方法です。
 
 > **補足**
 >
@@ -318,7 +318,7 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 ### `React.Suspense`
 
-`React.Suspense` を使用することで、その配下にレンダリングする準備ができていないコンポーネントがあるときにローディングインジケータを指定できます。現在、遅延読み込みコンポーネントは `<React.Suspense>` のみによってサポートされています。
+`React.Suspense` を使用することで、その配下にレンダーする準備ができていないコンポーネントがあるときにローディングインジケータを指定できます。現在、遅延読み込みコンポーネントは `<React.Suspense>` のみによってサポートされています。
 
 ```js
 // This component is loaded dynamically
