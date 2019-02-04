@@ -123,7 +123,7 @@ function MyComponent(props) {
 function areEqual(prevProps, nextProps) {
   /*
   nextPropsをrenderに渡したときに
-  prevPropsをrenderに渡したときと同じ結果になるときにtrue
+  prevPropsをrenderに渡したときと同じ結果になるときにtrueを返す
   それ以外のときにfalseを返す
   */
 }
