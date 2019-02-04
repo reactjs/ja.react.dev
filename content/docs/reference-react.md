@@ -62,7 +62,7 @@ UI がどのように見えるべきかを記述するために [JSX の使用](
 ### サスペンス (Suspense)
 
 サスペンスを使用すると、コンポーネントはレンダーの前に何かを「待機」できます。
-現在、サスペンスは 1 つのユースケースのみをサポートしています： [loading components dynamically with `React.lazy`](/docs/code-splitting.html#reactlazy)。
+現在、サスペンスは 1 つのユースケースのみをサポートしています：[`React.lazy` を使ってコンポーネントを動的に読み込む](/docs/code-splitting.html#reactlazy)。
 将来的にはデータの取得のような他のユースケースもサポートされるでしょう。
 
 - [`React.lazy`](#reactlazy)
@@ -74,7 +74,7 @@ UI がどのように見えるべきかを記述するために [JSX の使用](
 
 ### `React.Component`
 
-React コンポーネントが [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) を用いて定義されている場合、`React.Component` はそれらの基底クラスになります。
+React コンポーネントが [ES6 クラス](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) を用いて定義されている場合、`React.Component` はそれらの基底クラスになります。
 
 ```javascript
 class Greeting extends React.Component {
@@ -96,7 +96,7 @@ React コンポーネントの `render()` 関数が同じ props と state を与
 
 > 補足
 >
-> `React.PureComponent` の `shouldComponentUpdate()` は オブジェクトの浅い比較のみを行います。これらに複雑なデータ構造が含まれていると、深い部分のみに差分があるために、本当は差分があるにも関わらず差分がないと見なされる場合があります。単純な props とstateを持つ場合にのみ `PureComponent` を継承するか、深いデータ構造が変更されたとわかっているときに [`forceUpdate()`](/docs/react-component.html#forceupdate) を使用してください。あるいは、ネストされたデータ構造の高速な比較を容易にするために [immutable objects](https://facebook.github.io/immutable-js/) の使用を検討してください。
+> `React.PureComponent` の `shouldComponentUpdate()` は オブジェクトの浅い比較のみを行います。これらに複雑なデータ構造が含まれていると、深い部分のみに差分があるために、本当は差分があるにも関わらず差分がないと見なされる場合があります。単純な props とstateを持つ場合にのみ `PureComponent` を継承するか、深いデータ構造が変更されたとわかっているときに [`forceUpdate()`](/docs/react-component.html#forceupdate) を使用してください。あるいは、ネストされたデータ構造の高速な比較を容易にするために [イミュータブルなオブジェクト](https://facebook.github.io/immutable-js/) の使用を検討してください。
 >
 > さらに、`React.PureComponent` の `shouldComponentUpdate()` はサブツリー全体のコンポーネントの props の更新をスキップします。子コンポーネントの全てが「純粋な」コンポーネントであることを確認してください。
 
