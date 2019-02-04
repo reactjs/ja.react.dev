@@ -1,14 +1,14 @@
 ---
 id: react-without-jsx
-title: React Without JSX
+title: JSXを使用しない場合
 permalink: docs/react-without-jsx.html
 ---
 
-JSX is not a requirement for using React. Using React without JSX is especially convenient when you don't want to set up compilation in your build environment.
+JSXはReactを使うための要件ではありません。JSXなしでReactを使うことは、あなたのビルド環境でJSXのコンパイルの設定をしたくない時には便利です。
 
-Each JSX element is just syntactic sugar for calling `React.createElement(component, props, ...children)`. So, anything you can do with JSX can also be done with just plain JavaScript.
+各JSX要素は、`React.createElement(component, props, ...children)`を呼び出すための単なるシンタックスシュガーです。つまり、JSXを使ってできることは、普通のJavaScriptを使ってもできます。
 
-For example, this code written with JSX:
+例えば、JSXで書かれた以下のコードは:
 
 ```js
 class Hello extends React.Component {
@@ -23,7 +23,7 @@ ReactDOM.render(
 );
 ```
 
-can be compiled to this code that does not use JSX:
+JSXを使わない以下のコードにコンパイルできます:
 
 ```js
 class Hello extends React.Component {
@@ -38,11 +38,11 @@ ReactDOM.render(
 );
 ```
 
-If you're curious to see more examples of how JSX is converted to JavaScript, you can try out [the online Babel compiler](babel://jsx-simple-example).
+JSXからJavaScriptへの変換方法の例をもっと見たいなら、[オンラインのBabelコンパイラ](babel://jsx-simple-example)で試すことができます。
 
-The component can either be provided as a string, or as a subclass of `React.Component`, or a plain function for stateless components.
+コンポーネントは文字列、`React.Component`のサブクラス、もしくは(ステートレスコンポーネントの場合)プレーンな関数のいずれかで指定されます。
 
-If you get tired of typing `React.createElement` so much, one common pattern is to assign a shorthand:
+たくさんの`React.createElement`をタイピングするのに疲れたなら、一般的なパターンの1つはショートハンドを割り当てることです。
 
 ```js
 const e = React.createElement;
@@ -53,7 +53,7 @@ ReactDOM.render(
 );
 ```
 
-If you use this shorthand form for `React.createElement`, it can be almost as convenient to use React without JSX.
+このショートハンドを`React.createElement`に使用すれば、JSXなしでReactを使うのにとても便利です。
 
-Alternatively, you can refer to community projects such as [`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) and [`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers) which offer a terser syntax.
+あるいは、簡潔な構文を提供する[`react-hyperscript`](https://github.com/mlmorg/react-hyperscript)や[`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers) のようなコミュニティプロジェクトも参照してみてください。
 
