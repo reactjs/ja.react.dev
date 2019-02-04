@@ -122,9 +122,9 @@ function MyComponent(props) {
 }
 function areEqual(prevProps, nextProps) {
   /*
-  nextPropsをrenderに渡したときに
-  prevPropsをrenderに渡したときと同じ結果になるときにtrueを返す
-  それ以外のときにfalseを返す
+  nextProps を render に渡した結果が
+  prevProps を render に渡した結果となるときに true を返し
+  それ以外のときに false を返す
   */
 }
 export default React.memo(MyComponent, areEqual);
