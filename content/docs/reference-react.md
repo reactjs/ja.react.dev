@@ -33,7 +33,7 @@ React コンポーネントは関数で定義することもでき、その際�
 
 ### Creating React Elements
 
-UI がどのように見えるかを記述するために [JSX の使用](/docs/introducing-jsx.html) を推奨します。JSX のそれぞれの要素は [`React.createElement()`](#createelement) を呼ぶための単なる糖衣構文です。JSX を使用している場合は、通常、次のメソッドを直接呼び出さないでください。
+UI がどのように見えるべきかを記述するために [JSX の使用](/docs/introducing-jsx.html) を推奨します。JSX のそれぞれの要素は [`React.createElement()`](#createelement) を呼ぶための単なる糖衣構文です。JSX を使用している場合は、通常、次のメソッドを直接呼び出すことはありません。
 
 - [`createElement()`](#createelement)
 - [`createFactory()`](#createfactory)
