@@ -13,8 +13,7 @@ redirect_from:
   - "docs/top-level-api-zh-CN.html"
 ---
 
-`React` は React ライブラリのエントリポイントです。`<script>` タグから React を読み込む場合、これらの最上位 API をグローバルの `React` から利用できます。
-npm と ES6 を使う場合、`import React from 'react'` と書けます。npm と ES5 を使う場合、`var React = require('react')` と書けます。
+`React` は React ライブラリのエントリポイントです。`<script>` タグから React を読み込む場合、これらの最上位 API をグローバルの `React` から利用できます。npm と ES6 を使う場合、`import React from 'react'` と書けます。npm と ES5 を使う場合、`var React = require('react')` と書けます。
 
 ## Overview
 
@@ -61,9 +60,7 @@ UI がどのように見えるべきかを記述するために [JSX の使用](
 
 ### サスペンス (Suspense)
 
-サスペンスを使用すると、コンポーネントはレンダーの前に何かを「待機」できます。
-現在、サスペンスは 1 つのユースケースのみをサポートしています：[`React.lazy` を使ってコンポーネントを動的に読み込む](/docs/code-splitting.html#reactlazy)。
-将来的にはデータの取得のような他のユースケースもサポートされるでしょう。
+サスペンスを使用すると、コンポーネントはレンダーの前に何かを「待機」できます。現在、サスペンスは 1 つのユースケースのみをサポートしています：[`React.lazy` を使ってコンポーネントを動的に読み込む](/docs/code-splitting.html#reactlazy)。将来的にはデータの取得のような他のユースケースもサポートされるでしょう。
 
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
@@ -281,6 +278,8 @@ render() {
 ### `React.createRef`
 
 `React.createRef` は [ref](/docs/refs-and-the-dom.html) を作成します。ref は ref 属性を介して React 要素に取り付けることができます。
+
+`embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef`
 
