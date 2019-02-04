@@ -79,7 +79,7 @@ class Modal extends React.Component {
   }
 
   componentDidMount() {
-    // ポータルの要素が DOM ツリーに挿入されるのは、 
+    // ポータルの要素が DOM ツリーに挿入されるのは、
     // Modal の子要素がマウントされた後になります。
     // つまり、子要素は一旦どこにも結びつかない
     // DOM ノードへとマウントされるということです。
