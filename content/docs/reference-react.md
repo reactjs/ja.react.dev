@@ -172,7 +172,7 @@ React.cloneElement(
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
-ただし、`ref` も保持されます。つまり `ref` のある子要素を得ても、間違って祖先から誤ってそれを盗むことはありません。新しい要素にも同じ `ref` が取り付けられます。
+ただし、`ref` も保持されます。つまり `ref` のある子要素を受け取っても、間違って元の React 要素から  `ref` を盗むことはありません。新しい要素にも同じ `ref` が追加されます。
 
 この API は非推奨の `React.addons.cloneWithProps()` の代替として導入されました。
 
