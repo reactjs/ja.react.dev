@@ -1,6 +1,6 @@
 ---
 id: rendering-elements
-title: 要素のレンダリング
+title: 要素のレンダー
 permalink: docs/rendering-elements.html
 redirect_from:
   - "docs/displaying-data.html"
