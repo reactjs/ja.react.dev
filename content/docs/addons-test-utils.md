@@ -15,18 +15,13 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
 
 ## 概要
 
-`ReactTestUtils` はお好みのテストフレームワークで React コンポーネントをテストしやすくするものです。
-Facebook では快適に JavaScript をテストするために [Jest](https://facebook.github.io/jest/) を使用しています。
-Jest のウェブサイトにある [React Tutorial](http://facebook.github.io/jest/docs/en/tutorial-react.html#content) を通して Jest の始め方を学んでください。
+`ReactTestUtils` はお好みのテストフレームワークで React コンポーネントをテストしやすくするものです。Facebook では快適に JavaScript をテストするために [Jest](https://facebook.github.io/jest/) を使用しています。Jest のウェブサイトにある [React Tutorial](http://facebook.github.io/jest/docs/en/tutorial-react.html#content) を通して Jest の始め方を学んでください。
 
 > 補足:
 >
-> Airbnb が Enzyme と呼ばれるテストユーティリティをリリースしています。 Enzymeは React コンポーネントの出力のアサート、操作、そして横断的な処理をしやすくしてくれます。
-もしあなたが Jest や他のテストランナーを単体テストユーティリティと一緒に使用すると決めたなら、チェックしてみる価値があります: [http://airbnb.io/enzyme/](http://airbnb.io/enzyme/)
+> Airbnb が Enzyme と呼ばれるテストユーティリティをリリースしています。 Enzymeは React コンポーネントの出力のアサート、操作、そして横断的な処理をしやすくしてくれます。もしあなたが Jest や他のテストランナーを単体テストユーティリティと一緒に使用すると決めたなら、チェックしてみる価値があります: [http://airbnb.io/enzyme/](http://airbnb.io/enzyme/)
 >
-> また別の手段として、 `react-testing-library` と呼ばれる別のテストユーティリティがあります。
-これは、エンドユーザーがコンポーネントを使用するのと同様の書き方でコンポーネントを使用するテストを書くことを可能にし、かつそれを促進するように設計されています。
-このテストユーティリティはあらゆるテストランナーと一緒に動作します: [https://git.io/react-testing-library](https://git.io/react-testing-library)
+> また別の手段として、 `react-testing-library` と呼ばれる別のテストユーティリティがあります。これは、エンドユーザーがコンポーネントを使用するのと同様の書き方でコンポーネントを使用するテストを書くことを可能にし、かつそれを促進するように設計されています。このテストユーティリティはあらゆるテストランナーと一緒に動作します: [https://git.io/react-testing-library](https://git.io/react-testing-library)
 
  - [`Simulate`](#simulate)
  - [`renderIntoDocument()`](#renderintodocument)
@@ -48,13 +43,11 @@ Jest のウェブサイトにある [React Tutorial](http://facebook.github.io/j
 
 ## Shallow Rendering
 
-Reactの単体テストを書くときには、 shallow rendering が役に立ちます。
-shallow rendering によって、インスタンス化またはレンダーされていない子コンポーネントの動作を気にすることなく、コンポーネントを "1 階層深く" レンダーしてその render メソッドが返す結果をアサートできます。
-これは DOM を必要としません。
+Reactの単体テストを書くときには、 shallow rendering が役に立ちます。 shallow rendering によって、インスタンス化またはレンダーされていない子コンポーネントの動作を気にすることなく、コンポーネントを "1 階層深く" レンダーしてその render メソッドが返す結果をアサートできます。これは DOM を必要としません。
 
 > 補足:
 >
-> shallow renderer は `react-test-renderer/shallow` に移動されました。<br>
+> shallow renderer は `react-test-renderer/shallow` に移動しました。<br>
 > [shallow rendererの詳細についてはリファレンスページを参照してください。](/docs/shallow-renderer.html)
 
 ## その他のユーティリティ
@@ -106,8 +99,7 @@ React 要素をドキュメント内の独立したDOMノードにレンダー�
 
 > 補足:
 >
-> React をインポートする**前**に `window`, `window.document` および `window.document.createElement` をグローバルスコープに持っている必要があります。
-そうでなければ React は DOM にアクセスできないものと判断し `setState` のようなメソッドが動作しなくなります。
+> React をインポートする**前**に `window`, `window.document` および `window.document.createElement` をグローバルスコープに持っている必要があります。そうでなければ React は DOM にアクセスできないものと判断し `setState` のようなメソッドが動作しなくなります。
 
 * * *
 
@@ -120,8 +112,7 @@ mockComponent(
 )
 ```
 
-モック化されたコンポーネントモジュールをこのメソッドに渡すことで、ダミーの React コンポーネントとして使用できるようになる便利なメソッドを追加することができます。
-通常のレンダーの代わりに、コンポーネントは、与えられた子要素を含んだシンプルな `<div>`（もしくは `mockTagName` が与えられていれば他のタグ）になります。
+モック化されたコンポーネントモジュールをこのメソッドに渡すことで、ダミーの React コンポーネントとして使用できるようになる便利なメソッドを追加することができます。通常のレンダーの代わりに、コンポーネントは、与えられた子要素を含んだシンプルな `<div>`（もしくは `mockTagName` が与えられていれば他のタグ）になります。
 
 > 補足:
 >
@@ -194,8 +185,7 @@ findAllInRenderedTree(
 )
 ```
 
-`tree` 中のすべてのコンポーネントを横断して `test(component)` が `true` である全てのコンポーネントを集め、その結果を返します。
-このメソッド自身はそれほど有用ではありませんが、他のテストユーティリティのための基本メソッドとして使用されます。
+`tree` 中のすべてのコンポーネントを横断して `test(component)` が `true` である全てのコンポーネントを集め、その結果を返します。このメソッド自身はそれほど有用ではありませんが、他のテストユーティリティのための基本メソッドとして使用されます。
 
 * * *
 
