@@ -25,7 +25,7 @@ React コンポーネントを使用すると UI を独立した再利用可能�
  - [`React.Component`](#reactcomponent)
  - [`React.PureComponent`](#reactpurecomponent)
 
-ES6 クラスを使う代わりに、`create-react-class` を使うことができます。詳しくは [Using React without ES6](/docs/react-without-es6.html) を参照してください。
+ES6 クラスを使わない場合は、代わりに `create-react-class` モジュールを使うことができます。詳しくは [Using React without ES6](/docs/react-without-es6.html) を参照してください。
 
 React コンポーネントは関数で定義することもでき、その際に以下の関数でラップすることもできます：
 
