@@ -20,14 +20,14 @@ npm と ES6 を使う場合、`import React from 'react'` と書けます。npm 
 
 ### Components
 
-React コンポーネントを使用すると UI を独立した再利用可能な部分に分割し、各部分を個別に考えることができます。React コンポーネントは `React.Component` または `React.PureComponent` をサブクラス化することで定義することができます。
+React コンポーネントを使用すると UI を独立した再利用可能な部分に分割し、各部分を個別に考えることができます。React コンポーネントは `React.Component` または `React.PureComponent` をサブクラス化することで定義できます。
 
  - [`React.Component`](#reactcomponent)
  - [`React.PureComponent`](#reactpurecomponent)
 
 ES6 クラスを使わない場合は、代わりに `create-react-class` モジュールを使うことができます。詳しくは [Using React without ES6](/docs/react-without-es6.html) を参照してください。
 
-React コンポーネントは関数で定義することもでき、その際に以下の関数でラップすることもできます：
+React コンポーネントは関数で定義でき、その際に以下の関数でラップできます：
 
 - [`React.memo`](#reactmemo)
 
@@ -61,7 +61,7 @@ UI がどのように見えるべきかを記述するために [JSX の使用](
 
 ### サスペンス (Suspense)
 
-サスペンスを使用すると、コンポーネントはレンダーの前に何かを「待機」することができます。
+サスペンスを使用すると、コンポーネントはレンダーの前に何かを「待機」できます。
 現在、サスペンスは 1 つのユースケースのみをサポートしています： [loading components dynamically with `React.lazy`](/docs/code-splitting.html#reactlazy)。
 将来的にはデータの取得のような他のユースケースもサポートされるでしょう。
 
@@ -92,7 +92,7 @@ class Greeting extends React.Component {
 
 `React.PureComponent` は [`React.Component`](#reactcomponent) と似ています。両者の違いは [`React.Component`](#reactcomponent) が [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) を実装していないことに対し、`React.PureComponent` は props と state を浅く (shallow) 比較することでそれを実装していることです。
 
-React コンポーネントの `render()` 関数が同じ props と state を与えられたときに同じ結果をレンダリングするときは、パフォーマンスを向上させるために `React.PureComponent` を使用することができます。
+React コンポーネントの `render()` 関数が同じ props と state を与えられたときに同じ結果をレンダリングするときは、パフォーマンスを向上させるために `React.PureComponent` を使用できます。
 
 > 補足
 >
@@ -114,7 +114,7 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 ある関数コンポーネントが同じ props を与えられたときに同じ結果をレンダーするとき、結果を記憶してパフォーマンスを向上させるためにそれを `React.memo` でラップして呼び出すことができます。つまり、Reactはコンポーネントのレンダーをスキップし、最後のレンダー結果を再利用します。
 
-デフォルトでは props オブジェクト内の複雑なオブジェクトは浅い比較のみが行われます。比較を制御したい場合は 2 番目の引数でカスタム比較関数を指定することができます。
+デフォルトでは props オブジェクト内の複雑なオブジェクトは浅い比較のみが行われます。比較を制御したい場合は 2 番目の引数でカスタム比較関数を指定できます。
 
 ```javascript
 function MyComponent(props) {
@@ -275,7 +275,7 @@ render() {
 }
 ```
 
-また、フラグメントを `<></>` という短縮構文で使用することもできます。詳しくは [React v16.2.0: Improved Support for Fragments](/blog/2017/11/28/react-v16.2.0-fragment-support.html) を参照してください。
+また、フラグメントを `<></>` という短縮構文で使用できます。詳しくは [React v16.2.0: Improved Support for Fragments](/blog/2017/11/28/react-v16.2.0-fragment-support.html) を参照してください。
 
 
 ### `React.createRef`
@@ -301,9 +301,9 @@ render() {
 
 ### `React.lazy`
 
-`React.lazy()` を使用すると、動的に読み込まれるコンポーネントを定義することができます。これにより、バンドルサイズを削減して、最初のレンダリング時に使用されないコンポーネントの読み込みを遅らせることができます。
+`React.lazy()` を使用すると、動的に読み込まれるコンポーネントを定義できます。これにより、バンドルサイズを削減して、最初のレンダリング時に使用されないコンポーネントの読み込みを遅らせることができます。
 
-[code splitting のドキュメント](/docs/code-splitting.html#reactlazy)から使用方法を学ぶことが出来ます。また、使い方をより詳しく説明した[こちらの記事](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d)もチェックしてみてください。
+[code splitting のドキュメント](/docs/code-splitting.html#reactlazy)から使用方法を学ぶことができます。また、使い方をより詳しく説明した[こちらの記事](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d)もチェックしてみてください。
 
 ```js
 // This component is loaded dynamically
@@ -318,7 +318,7 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 ### `React.Suspense`
 
-`React.Suspense` を使用することで、その配下にレンダリングする準備ができていないコンポーネントがあるときにローディングインジケータを指定することができます。現在、遅延読み込みコンポーネントは `<React.Suspense>` のみによってサポートされています。
+`React.Suspense` を使用することで、その配下にレンダリングする準備ができていないコンポーネントがあるときにローディングインジケータを指定できます。現在、遅延読み込みコンポーネントは `<React.Suspense>` のみによってサポートされています。
 
 ```js
 // This component is loaded dynamically
