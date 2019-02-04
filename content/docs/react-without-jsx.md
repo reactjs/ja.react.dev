@@ -8,7 +8,7 @@ JSXはReactを使うための要件ではありません。JSXなしでReactを�
 
 各JSX要素は、`React.createElement(component, props, ...children)`を呼び出すための単なるシンタックスシュガーです。つまり、JSXを使ってできることは、普通のJavaScriptを使ってもできます。
 
-例えば、JSXで書かれた以下のコードは:
+例えば、JSXで書かれた以下のコードは：
 
 ```js
 class Hello extends React.Component {
@@ -23,7 +23,7 @@ ReactDOM.render(
 );
 ```
 
-JSXを使わない以下のコードにコンパイルできます:
+JSXを使わない以下のコードにコンパイルできます：
 
 ```js
 class Hello extends React.Component {
@@ -38,9 +38,9 @@ ReactDOM.render(
 );
 ```
 
-JSXからJavaScriptへの変換方法の例をもっと見たいなら、[オンラインのBabelコンパイラ](babel://jsx-simple-example)で試すことができます。
+JSXからJavaScriptへの変換方法の例をもっと見たいなら、[オンラインのBabelコンパイラ]（babel://jsx-simple-example）で試すことができます。
 
-コンポーネントは文字列、`React.Component`のサブクラス、もしくは(ステートレスコンポーネントの場合)プレーンな関数のいずれかで指定されます。
+コンポーネントは文字列、`React.Component`のサブクラス、もしくは（ステートレスコンポーネントの場合）プレーンな関数のいずれかで指定されます。
 
 たくさんの`React.createElement`をタイピングするのに疲れたなら、一般的なパターンの1つはショートハンドを割り当てることです。
 
@@ -55,5 +55,5 @@ ReactDOM.render(
 
 このショートハンドを`React.createElement`に使用すれば、JSXなしでReactを使うのにとても便利です。
 
-あるいは、簡潔な構文を提供する[`react-hyperscript`](https://github.com/mlmorg/react-hyperscript)や[`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers) のようなコミュニティプロジェクトも参照してみてください。
+あるいは、簡潔な構文を提供する[`react-hyperscript`]（https://github.com/mlmorg/react-hyperscript）や[`hyperscript-helpers`]（https://github.com/ohanhi/hyperscript-helpers）のようなコミュニティプロジェクトも参照してみてください。
 
