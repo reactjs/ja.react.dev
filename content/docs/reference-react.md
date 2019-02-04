@@ -277,8 +277,7 @@ render() {
 
 ### `React.createRef`
 
-`React.createRef` は [ref](/docs/refs-and-the-dom.html) を作成します。ref は ref 属性を介して React 要素に取り付けることができます。
-
+`React.createRef` は [ref](/docs/refs-and-the-dom.html) を作成します。ref は `ref` 属性を介して React 要素に取り付けることができます。
 `embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef`
