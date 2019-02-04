@@ -4,7 +4,7 @@ title: ポータル
 permalink: docs/portals.html
 ---
 
-ポータルは、親コンポーネントの DOM 階層外にある DOM ノードに対して子コンポーネントをレンダーするための公式の仕組みを提供します。
+ポータル (portal) は、親コンポーネントの DOM 階層外にある DOM ノードに対して子コンポーネントをレンダーするための公式の仕組みを提供します。
 
 ```js
 ReactDOM.createPortal(child, container)
