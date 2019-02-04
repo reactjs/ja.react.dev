@@ -58,11 +58,11 @@ function ExampleWithManyStates() {
 
 [配列の分割代入](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring)構文を使うことで、`useState` を呼び出して宣言した state 変数に、異なる名前をつけることができます。これらの名前自体は `useState` の API の一部ではありません。その代わりに、React は `useState` を何度も呼び出す場合は、それらが各レンダー間で同じ順番で呼び出されるものと仮定します。この後で、どうしてこれが上手く動作し、どのような場合に便利なのか改めて説明します。
 
-#### で、フックって？ {#but-what-is-a-hook}
+#### 要するにフックとは？ {#but-what-is-a-hook}
 
 フックとは、関数コンポーネントに state やライフサイクルといった React の機能を "接続する (hook into)" ための関数です。フックは React をクラスなしに使うための機能ですので、クラス内では機能しません。今すぐに既存のコンポーネントを書き換えることは[お勧めしません](/docs/hooks-intro.html#gradual-adoption-strategy)が、新しく書くコンポーネントで使いたければフックを利用し始めることができます。
 
-React は `useState` のような幾つかのビルトインのフックを提供します。異なるコンポーネント間でステートフルな振る舞いを共有するために自分自身のフックを作成することもできます。まずはビルトインのフックから見ていきましょう。
+React は `useState` のような幾つかのビルトインのフックを提供します。異なるコンポーネント間でステートフルな振る舞いを共有するために自分自身のフックを作成することもできます。まずは組み込みのフックから見ていきましょう。
 
 > 詳しくは
 >
@@ -265,7 +265,7 @@ function Todos() {
 
 ## 次のステップ {#next-steps}
 
-かなり駆け足の説明でしたね！　まだよく分からないことがあった場合や、より詳しく学びたいと思った場合は、[ステートフック](/docs/hooks-state.html)から始まるこの先の幾つかのページに進んでください。
+かなり駆け足の説明でしたね！　まだよく分からないことがあった場合や、より詳しく学びたいと思った場合は、[ステートフック](/docs/hooks-state.html)から始まるこの先のページに進んでください。
 
 [Hooks API リファレンス](/docs/hooks-reference.html) と [よくある質問](/docs/hooks-faq.html) も参照してください。
 
