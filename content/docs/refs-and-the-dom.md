@@ -81,7 +81,7 @@ class CustomTextInput extends React.Component {
   }
 
   focusTextInput() {
-    // 生の DOM API を使用してテキストの入力を絞り込みます。
+    // 生の DOM API を使用して明示的にテキストの入力にフォーカスします。
     // 補足：DOM ノードを取得するために "current" にアクセスしています。
     this.textInput.current.focus();
   }
