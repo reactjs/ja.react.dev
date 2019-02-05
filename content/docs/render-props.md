@@ -4,7 +4,7 @@ title: レンダープロップ
 permalink: docs/render-props.html
 ---
 
-[「レンダープロップ」](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)とは、値が関数となる props を持ったコンポーネント間でコードを共有するためのテクニックの1つです。
+[「レンダープロップ」](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)とは、値が関数となる props を持ったコンポーネント間でコードを共有するためのテクニックを表す用語です。
 
 レンダープロップを持つコンポーネントは、自身のレンダーロジックを実装する代わりに、React 要素を返す関数を受け取ってそれを呼び出します。
 
@@ -20,9 +20,8 @@ permalink: docs/render-props.html
 
 ## 横断的関心事にレンダープロップを使う
 
-コンポーネントは、React でコードを再利用するための主要な構成用要素ですが、あるコンポーネントがカプセル化した state や振る舞いを、同じ state を必要とする別のコンポーネントに共有する方法については、いつも明らかであるとは限りません。
+コンポーネントは、React でコードを再利用するための主な要素ですが、あるコンポーネントがカプセル化した state や振る舞いを、同じ state を必要とする別のコンポーネントに共有する方法については、いつも明らかであるとは限りません。
 
-For example, the following component tracks the mouse position in a web app:
 
 たとえば、以下のコンポーネントは、ウェブアプリケーション内でのマウスの位置を追跡します。
 
@@ -97,11 +96,11 @@ class MouseTracker extends React.Component {
 }
 ```
 
-これで `<Mouse>` コンポーネントは、 `mousemove` イベントに応答しカーソルの (x, y) 座標を保持することで構成される全ての振る舞いをカプセル化できましたが、まだ再利用可能と言うには不十分です。
+これで `<Mouse>` コンポーネントは、 `mousemove` イベントとカーソルの (x, y) 座標に紐付けられた全ての振る舞いをカプセル化できましたが、まだ再利用可能と言うには不十分です。
 
-たとえば、 猫の画像が画面中のマウスを追いかけるという `<Cat>` コンポーネントがあるとしましょう。`<Cat mouse={{ x, y }}>` props を使って、このコンポーネントにマウスの座標を受け渡し、画面上のどこに猫の画像を配置すれば良いかを知らせたいでしょう。
+たとえば、画面の中でマウスを追いかける猫の画像をレンダーする `<Cat>` コンポーネントがあるとしましょう。`<Cat mouse={{ x, y }}>` props を使って、このコンポーネントにマウスの座標を受け渡し、画面上のどこに猫の画像を配置すれば良いかを知らせたいでしょう。
 
-手始めに、*`<Mouse>` の `render` メソッド内* で、以下のように `<Cat>` をレンダーしようとするかもしれません。 
+手始めに、*`<Mouse>` の `render` メソッド内* で、以下のように `<Cat>` をレンダーしてみましょう。
 
 ```js
 class Cat extends React.Component {
@@ -155,7 +154,7 @@ class MouseTracker extends React.Component {
 }
 ```
 
-これだけが目的であればで正しく動作しますが、再利用可能な方法でこの振る舞いをカプセル化するという目的はまだ果たせていません。その他のユースケースでもマウス位置を知りたい場合、毎回新しいコンポーネント（つまり、別の `<MouseWithCat>` のようなもの）を作成して、そのユースケース固有のレンダー処理を行う必要があります。
+これだけが目的であれば正しく動作しますが、再利用可能な方法でこの振る舞いをカプセル化するという目的はまだ果たせていません。他の異なるユースケースでもマウスの位置を知りたい場合、毎回そのユースケースに沿ったものをレンダーする新しいコンポーネント（つまり、本質的に別の `<MouseWithCat>`）を作成する必要があります。
 
 ここでレンダープロップの出番となります。`<Mouse>` コンポーネント内でハードコードされた `<Cat>` でレンダーの出力を変更する代わりに、`<Mouse>` コンポーネントに関数型の props を渡して、 何をレンダーすべきかを動的に決定することが可能です。これがレンダープロップの役割です。
 
@@ -211,15 +210,14 @@ class MouseTracker extends React.Component {
 }
 ```
 
-これで特定のユースケースを解決するために、`<Mouse>` コンポーネントを複製してレンダーメソッド内で何か他のものをハードコードする代わりに、`<Mouse>` が動的にレンダーの内容を決定するためのpropsとしての `render` が提供可能になります。
+これで特定のユースケースを解決するために、`<Mouse>` コンポーネントを複製したり、`render` メソッド内で何か他のものをハードコードする代わりに、`<Mouse>` が動的に何をレンダーするかを決定するための `render` プロパティが使えるようになります。
 
-More concretely, **a render prop is a function prop that a component uses to know what to render.**
 
-より具体的には、**レンダープロップは関数型 props であり、それによってコンポーネントがレンダリングするものを知ることができます。**
+より具体的には、**レンダープロップはあるコンポーネントが何をレンダーすべきかを知るための関数型 props なのです。**
 
 このテクニックによって、再利用可能な振る舞いの移植性が極めて高くなります。この振る舞いが必要な時には、現在のカーソルの (x, y) からレンダリングするものを示す `render` props を使って `<Mouse>` をレンダーすれば良いのです。  
 
-レンダープロップの興味深い点として、多くの[高階コンポーネント](/docs/higher-order-components.html) (HOC) がレンダープロップを使った通常のコンポーネントによって実装可能ということが挙げられます。たとえば、`<Mouse>` コンポーネントよりも `withMouse` HOCが好みであれば、レンダープロップを有する `<Mouse>` を使って簡単に作成可能です。 
+レンダープロップの興味深い点として、多くの[高階コンポーネント](/docs/higher-order-components.html) (HOC) がレンダープロップを使った通常のコンポーネントによって実装可能ということが挙げられます。たとえば、`<Mouse>` コンポーネントよりも `withMouse` HOC が好みであれば、レンダープロップを持つ `<Mouse>` を使って簡単に作成可能です。 
 
 ```js
 // If you really want a HOC for some reason, you can easily
@@ -264,7 +262,6 @@ function withMouse(Component) {
 このテクニックは、 [react-motion](https://github.com/chenglou/react-motion)  の API などで使用されています。
 
 
-Since this technique is a little unusual, you'll probably want to explicitly state that `children` should be a function in your `propTypes` when designing an API like this.
 
 このテクニックは若干珍しいため、このようなAPI設計時には、`children` が関数であることを `propTypes` で明示した方が良いでしょう。
 
@@ -276,11 +273,10 @@ Mouse.propTypes = {
 
 ## 注意事項
 
-### Be careful when using Render Props with React.PureComponent
 
 ### レンダープロップを React.PureComponent で使うときの注意点
 
-レンダープロップを使う際、`render` メソッド内で関数を作成していると、 [`React.PureComponent`](/docs/react-api.html#reactpurecomponent)  を使う利点が相殺されます。これは新しい props については、浅い比較が常に `false` を返し、このような `render` は毎回レンダープロップとして新しい値を生成するためです。
+レンダープロップを使う際、`render` メソッド内で関数を作成していると、 [`React.PureComponent`](/docs/react-api.html#reactpurecomponent)  を使う利点が相殺されます。これは新しい props については、props 同士の浅い (shallow) 比較が常に `false` を返し、このような `render` は毎回レンダープロップとして新しい値を生成するためです。
 
 たとえば、上記の `<Mouse>` コンポーネントの場合、`Mouse` が `React.Component` ではなく `React.PureComponent` を継承していたとすると、次のようになります。 
 
