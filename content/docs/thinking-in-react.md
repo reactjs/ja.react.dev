@@ -109,7 +109,7 @@ UI をインタラクティブなものにするにあたり、UI を構築す�
 
 <p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a> on <a href="http://codepen.io">CodePen</a>.</p>
 
-さて、state の最小構成が明確になりました。次は、どのコンポーネントを変化させるのか、そして*どのコンポーネントが state を持つのか*を明確にしましょう。
+さて、state の最小構成が明確になりました。次は、どのコンポーネントが state を変化させるのか、つまり state を*所有*するのかを明確にしましょう。
 
 復習：React は、コンポーネントの階層構造をデータが下っていく、単方向データフローで成り立っています。もしかすると、どのコンポーネントがどんな state を持つべきなのかが、すぐにはわからないかもしれません。**これは、初学者がReactへの理解を深める上で、最も難しい問題になりがちなところ** なので、ステップを踏みながら理解していきましょう。
 
