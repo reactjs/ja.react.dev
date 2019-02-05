@@ -109,7 +109,7 @@ class CustomTextInput extends React.Component {
 
 #### クラスコンポーネントへの Ref の追加
 
-マウント直後にクリックされることをシミュレーションするために上記の CustomTextInput をラップしたい場合は、ref を使用してカスタムインプットにアクセスし、その focusTextInput メソッドを手動で呼び出せます。
+マウント直後にクリックされることをシミュレーションするために上記の CustomTextInput をラップしたい場合は、ref を使用してカスタムインプットにアクセスし、その `focusTextInput` メソッドを手動で呼び出せます。
 
 ```javascript{4,8,13}
 class AutoFocusTextInput extends React.Component {
