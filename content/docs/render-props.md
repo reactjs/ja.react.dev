@@ -215,7 +215,7 @@ class MouseTracker extends React.Component {
 
 より具体的には、**レンダープロップはあるコンポーネントが何をレンダーすべきかを知るための関数型 props なのです。**
 
-このテクニックによって、再利用可能な振る舞いの移植性が極めて高くなります。この振る舞いが必要な時には、現在のカーソルの (x, y) からレンダリングするものを示す `render` props を使って `<Mouse>` をレンダーすれば良いのです。  
+このテクニックによって、再利用する必要がある振る舞いの移植性が極めて高くなります。その振る舞いをさせるためには、現在のカーソルの (x, y) 座標からレンダーするものを示す `render` プロパティ を使って `<Mouse>` をレンダーすれば良いのです。  
 
 レンダープロップの興味深い点として、多くの[高階コンポーネント](/docs/higher-order-components.html) (HOC) がレンダープロップを使った通常のコンポーネントによって実装可能ということが挙げられます。たとえば、`<Mouse>` コンポーネントよりも `withMouse` HOC が好みであれば、レンダープロップを持つ `<Mouse>` を使って簡単に作成可能です。 
 
@@ -241,7 +241,7 @@ function withMouse(Component) {
 
 「レンダープロップ」と呼ばれるパターンは、必ずしも*`render` という名前の props を使う必要はない*ということを念頭に置いてください。実際、[コンポーネントがレンダーするものを知るための関数型 props であれば、*その名前が何であれ*、技術的には「レンダープロップ」と呼ぶことができます](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)。
 
-上記の例では `rendrer` を用いていますが、`children` props を使っても同じくらい簡単です！
+上記の例では `rendrer` を用いていますが、`children` プロパティを使っても同じくらい簡単です！
 
 ```js
 <Mouse children={mouse => (
@@ -249,7 +249,7 @@ function withMouse(Component) {
 )}/>
 ```
 
-さらに、`children` props は実際には JSX 要素の「属性」の一覧内で名前を付ける必要がないことも忘れないでください。代わりに、要素*内部に*直接設定可能です！
+さらに、`children` プロパティは実際には JSX 要素の「属性」の一覧内で名前を付ける必要がないことも忘れないでください。代わりに、要素*内部に*直接設定可能です！
 
 ```js
 <Mouse>
@@ -304,9 +304,9 @@ class MouseTracker extends React.Component {
 }
 ```
 
-この例では、`<MouseTracker>` がレンダーされるたび、`<Mouse render>` propsの値として新しい関数が生成されますので、冒頭で `React.PureComonent` を継承した `<Mouse>` の効果が相殺されます。
+この例では、`<MouseTracker>` がレンダーされるたびに `<Mouse render>` プロパティの値として新しい関数が生成されますので、冒頭で `React.PureComonent` を継承した `<Mouse>` の効果が相殺されます。
 
-この問題を回避するため、props をインスタンスメソッドとして次のように定義することもできます。
+この問題を回避するため、レンダープロップをインスタンスメソッドとして次のように定義することもできます。
 
 ```js
 class MouseTracker extends React.Component {
