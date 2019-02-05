@@ -1,6 +1,6 @@
 ---
 id: thinking-in-react
-title: Reactらしい考え方
+title: React の流儀
 permalink: docs/thinking-in-react.html
 redirect_from:
   - 'blog/2013/11/05/thinking-in-react.html'
