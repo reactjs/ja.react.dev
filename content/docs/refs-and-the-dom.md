@@ -140,7 +140,7 @@ class CustomTextInput extends React.Component {
 
 #### Refs と関数コンポーネント
 
-Function components にはインスタンスがないため、**Function components に `ref` 属性を使用することはできません。**
+関数コンポーネントにはインスタンスがないため、**関数コンポーネントに `ref` 属性を使用することはできません。**
 
 
 ```javascript{1,8,13}
