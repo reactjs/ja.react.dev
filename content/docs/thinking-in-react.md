@@ -60,7 +60,7 @@ JSON のデータモデルをユーザーに向けて表示することはよく
       * `ProductCategoryRow`
       * `ProductRow`
 
-## Step 2：Reactで静的なバージョンを作成する
+## Step 2: Reactで静的なバージョンを作成する
 
 <p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
