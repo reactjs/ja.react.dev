@@ -224,7 +224,7 @@ class CustomTextInput extends React.Component {
     };
 
     this.focusTextInput = () => {
-      // 生の DOM API を使用してテキストの入力にフォーカスします。
+      // 生の DOM API を使用して明示的にテキストの入力にフォーカスします。
       if (this.textInput) this.textInput.focus();
     };
   }
