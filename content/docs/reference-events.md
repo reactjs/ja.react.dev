@@ -35,13 +35,11 @@ string type
 >
 > v0.14以降、イベントハンドラから `false` を返してもイベントの伝播は止まりません。代わりに、`e.stopPropagation()` または `e.preventDefault()` を手動で呼び出す必要があります。
 
-
 ### イベントのプール
 
 `SyntheticEvent` はプールされます。つまり、`SyntheticEvent` オブジェクトは再利用され、すべてのプロパティはイベントコールバックが呼び出された後に `null` で初期化されます。
 これはパフォーマンス上の理由からです。
 そのため、非同期処理の中でイベントオブジェクトにアクセスすることはできません。
-
 
 ```javascript
 function onClick(event) {
