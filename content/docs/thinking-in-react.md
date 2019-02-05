@@ -105,7 +105,7 @@ UI をインタラクティブなものにするにあたり、UI を構築す�
   * ユーザーが入力した検索文字列
   * チェックボックスの値
 
-## Step 4：state をどこに配置するべきなのかを明確にする
+## Step 4: state をどこに配置するべきなのかを明確にする
 
 <p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a> on <a href="http://codepen.io">CodePen</a>.</p>
 
