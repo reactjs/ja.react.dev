@@ -82,7 +82,7 @@ export default function deprecated(propType, explanation) {
 }
 ```
 
-誤検知を修正するには、**すべての**引数をラップされた PropType に渡してください。これはES6の `...rest` 記法で簡単に行えます。
+誤検知を修正するには、**すべての**引数をラップされた PropType に渡してください。これは ES6 の `...rest` 記法で簡単に行えます。
 
 ```javascript
 export default function deprecated(propType, explanation) {
