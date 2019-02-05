@@ -53,7 +53,7 @@ class MyComponent extends React.Component {
 
 ### Refs へのアクセス
 
-ref が `render` メソッドの要素に渡されると、ノードへの参照は ref の `current` 属性でアクセスできるようになります。
+ref が `render` メソッドの要素に渡されると、そのノードへの参照は ref の `current` 属性でアクセスできるようになります。
 
 ```javascript
 const node = this.myRef.current;
