@@ -74,7 +74,7 @@ const Example = (props) => {
 }
 ```
 
-あるいは：
+あるいはこのようなものです：
 
 ```js
 function Example(props) {
@@ -189,7 +189,7 @@ function Example() {
 
 ## まとめ
 
-Let's now **recap what we learned line by line** and check our understanding.
+では **これまで学んだことを 1 行ずつまとめて**、理解を確認しましょう。
 
 <!--
   I'm not proud of this line markup. Please somebody fix this.
