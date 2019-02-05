@@ -194,7 +194,7 @@ function CustomTextInput(props) {
 
 まれに、親コンポーネントから子の DOM ノードにアクセスしたい場合があります。これは、コンポーネントのカプセル化を壊すため、一般的にはおすすめできませんが、フォーカスを発火させたり、子の DOM ノードのサイズや位置を計測するのに役立つことがあります。
 
-[子コンポーネントに ref を追加すること](#adding-a-ref-to-a-class-component)はできますが、DOM ノードではなくコンポーネントインスタンスしか取得できないため、これは理想的な解決策ではありません。 また、これは function components では機能しません。
+[子コンポーネントに ref を追加すること](#adding-a-ref-to-a-class-component)はできますが、DOM ノードではなくコンポーネントインスタンスしか取得できないため、これは理想的な解決策ではありません。また、これは関数コンポーネントでは機能しません。
 
 React 16.3 以降を使用している場合、これらの場合には [ref forwarding](/docs/forwarding-refs.html) を使用することをおすすめします。Ref forwarding では、コンポーネントは子コンポーネントの参照を自分のものとして公開することを選択できます。 [Ref forwarding のドキュメント](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)に、子の DOM ノードを親コンポーネントに公開する方法の詳細な例があります。
 
