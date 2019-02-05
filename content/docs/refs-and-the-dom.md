@@ -254,7 +254,7 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-コンポーネントがマウントされると React は DOM 要素で `ref` コールバックを呼び出し、マウントが解除されると `null` を呼び出します。 Refs は `componentDidMount` または `componentDidUpdate` が発火される前に最新のものであることが保証されています。
+コンポーネントがマウントされると React は DOM 要素とともに `ref` コールバックを呼び出し、マウントが解除されると `null` とともにコールバックを呼び出します。Refs は `componentDidMount` または `componentDidUpdate` が発火する前に最新のものであることが保証されています。
 
 `React.createRef()` で作成されたオブジェクトの refs と同様に、コンポーネント間でコールバック refs を渡すことができます。
 
