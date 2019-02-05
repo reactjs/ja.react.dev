@@ -130,7 +130,7 @@ UI をインタラクティブなものにするにあたり、UI を構築す�
 
 これで、このアプリがどんな振る舞いをするのか見られるようになってきました。`filterText` に `"ball"` と入力した状態でアプリを更新すると、データの表が正しく更新されたことが確認できるはずです。
 
-## Step 5：逆方向のデータフローを追加する
+## Step 5: 逆方向のデータフローを追加する
 
 <p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a> on <a href="http://codepen.io">CodePen</a>.</p>
 
