@@ -77,7 +77,7 @@ JSON のデータモデルをユーザーに向けて表示することはよく
 
 ### 幕間：Props vs State
 
-React には 2 種類の「モデル」データが存在します。 props と state です。このふたつの相違を理解するのは重要なことです。もしあなたがこれらの違いについての知識に自信がない場合は、[公式の React ドキュメント](/docs/interactivity-and-dynamic-uis.html)に目を通すとよいでしょう。
+React には 2 種類の「モデル」データが存在します。props と state です。このふたつの相違を理解するのは重要なことです。違いについて自信がない場合は、[公式の React ドキュメント](/docs/interactivity-and-dynamic-uis.html)に目を通すとよいでしょう。
 
 ## Step 3: UI 状態を表現する必要かつ十分な state を決定する
 
