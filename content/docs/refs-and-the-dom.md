@@ -37,7 +37,7 @@ Refs に適した使用例は以下の通りです。
 
 ### Refs を作成する
 
-Refs は `React.createRef()` を使用して作成され、 `ref` 属性を用いて React 要素に紐付けられます。 Refs は通常、コンポーネントの構築時にインスタンスプロパティに割り当てられるため、コンポーネント全体で参照できます。
+Refs は `React.createRef()` を使用して作成され、 `ref` 属性を用いて React 要素に紐付けられます。Refs は通常、コンポーネントの構築時にインスタンスプロパティに割り当てられるため、コンポーネントを通して参照が可能です。
 
 ```javascript{4,7}
 class MyComponent extends React.Component {
