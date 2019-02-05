@@ -6,6 +6,7 @@
       "3.1.1.全角文字と半角文字の間": false
     },
     "prh": {
+      "severity" : "warning",
       "rulePaths" :["./prh.yml"]
     }
   }
