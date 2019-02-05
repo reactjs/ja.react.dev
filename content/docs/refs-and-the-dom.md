@@ -198,7 +198,7 @@ function CustomTextInput(props) {
 
 React 16.3 以降を使用している場合、これらの場合には [ref forwarding](/docs/forwarding-refs.html) を使用することをおすすめします。**Ref forwarding では、コンポーネントは任意の子コンポーネントの ref を自分のものとして公開することを選択できます。** [Ref forwarding のドキュメント](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)に、子の DOM ノードを親コンポーネントに公開する方法の詳細な例があります。
 
-React 16.2 以下を使用している場合、または ref forwarding で提供される以上の柔軟性が必要な場合は、[この代替アプローチ](https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509)を使用して ref を別の名前の prop として明示的に渡すことができます。
+React 16.2 以下を使用している場合、または ref forwarding で提供される以上の柔軟性が必要な場合は、[この代替手法](https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509)を使用して ref を異なる名前の props として明示的に渡すことができます。
 
 可能であれば DOM ノードをさらさないことをおすすめしますが、これは便利な回避策になることもあります。この方法では、子コンポーネントにコードを追加する必要があります。子コンポーネントの実装を完全に制御できない場合、最後の選択肢は [`findDOMNode()`](/docs/react-dom.html#finddomnode) を使用することですが、[`StrictMode`](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage) では推奨されません。
 
