@@ -14,7 +14,7 @@ permalink: warnings/unknown-prop.html
 
 2. 指定した属性を React が標準仕様の一部として正しく認識していない場合。この振舞いはReact の将来のバージョンで修正される可能性は高いでしょう。しかし現時点では、React は知らない属性を全て削除するため、React アプリケーションで指定してもレンダリングされません。
 
-4. 大文字で始まらない名前の React コンポーネントを使おうとしている場合。React では [JSX の変換の際、ユーザ定義のコンポーネントと DOMタグとを区別するのに大文字と小文字との区別を用いる](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized)ため、小文字のタグは DOM タグとして解釈されてしまいます。
+4. 大文字で始まらない名前の React コンポーネントを使おうとしている。React では [JSX の変換の際、ユーザ定義のコンポーネントと DOM タグとを区別するのに大文字と小文字との区別を用いる](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized)ため、小文字のタグは DOM タグとして解釈されてしまいます。
 
 ---
 

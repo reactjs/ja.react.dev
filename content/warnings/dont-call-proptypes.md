@@ -7,7 +7,7 @@ permalink: warnings/dont-call-proptypes.html
 
 > 注意：
 >
-> React.PropTypes は React v15.5 から別パッケージに移動しました。代わりに [prop-typesライブラリ](https://www.npmjs.com/package/prop-types)を使用してください。
+> React.PropTypes は React v15.5 から別パッケージに移動しました。代わりに [prop-typesライブラリ](https://www.npmjs.com/package/prop-types) を使用してください。
 > コードを自動で変換するための [codemod スクリプト](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) も提供しています。
 
 React の将来のメジャーリリースでは、PropType のバリデーションを実装するコードは、本番用ビルドから削除される予定です。その際には、バリデーションを手動で呼び出す全てのコード（本番用ビルドで削除されないもの）はエラーを投げることになります。
