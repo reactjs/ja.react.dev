@@ -105,7 +105,7 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-コンポーネントがマウントされると React は `current` プロパティに DOM 要素を割り当て、マウントが解除されると `null` を割り当てます。`ref` の更新は `componentDidMount` または `componentDidUpdate` ライフサイクルメソッドの前に行われます。
+コンポーネントがマウントされると React は `current` プロパティに DOM 要素を割り当て、マウントが解除されると `null` に戻します。`ref` の更新は `componentDidMount` または `componentDidUpdate` ライフサイクルメソッドの前に行われます。
 
 #### クラスコンポーネントへの Ref の追加
 
