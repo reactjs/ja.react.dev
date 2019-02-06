@@ -325,4 +325,4 @@ class MouseTracker extends React.Component {
 }
 ```
 
-propsを静的に定義できない場合（たとえば、コンポーネントの props や state を閉じる必要があるなど）、`<Mouse>` は代わりに `React.Component` を継承すべきです。
+propsを静的に定義できない場合（たとえば、コンポーネントの props や state をクロージャで囲む場合など）、`<Mouse>` は代わりに `React.Component` を継承すべきです。
