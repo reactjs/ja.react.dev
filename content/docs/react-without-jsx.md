@@ -23,7 +23,7 @@ ReactDOM.render(
 );
 ```
 
-JSXを使わない以下のコードにコンパイルできます：
+JSX を使わない以下のコードにコンパイルできます：
 
 ```js
 class Hello extends React.Component {
