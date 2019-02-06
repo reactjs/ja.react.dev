@@ -1,6 +1,6 @@
 ---
 id: react-without-jsx
-title: JSXを使用しない場合
+title: JSX なしで React を使う
 permalink: docs/react-without-jsx.html
 ---
 
