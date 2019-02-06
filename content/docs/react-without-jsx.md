@@ -38,7 +38,7 @@ ReactDOM.render(
 );
 ```
 
-JSXからJavaScriptへの変換方法の例をもっと見たいなら、[オンラインのBabelコンパイラ]（babel://jsx-simple-example）で試すことができます。
+JSX から JavaScript への変換方法の例をもっと見たいなら、[オンラインの Babel コンパイラ](babel://jsx-simple-example)で試すことができます。
 
 コンポーネントは文字列、`React.Component`のサブクラス、もしくは（ステートレスコンポーネントの場合）プレーンな関数のいずれかで指定されます。
 
