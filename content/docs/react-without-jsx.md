@@ -53,7 +53,7 @@ ReactDOM.render(
 );
 ```
 
-このショートハンドを`React.createElement`に使用すれば、JSXなしでReactを使うのにとても便利です。
+このショートハンドを `React.createElement` に使用すれば、JSX なしで React を使うのにとても便利です。
 
 あるいは、簡潔な構文を提供する[`react-hyperscript`]（https://github.com/mlmorg/react-hyperscript）や[`hyperscript-helpers`]（https://github.com/ohanhi/hyperscript-helpers）のようなコミュニティプロジェクトも参照してみてください。
 
