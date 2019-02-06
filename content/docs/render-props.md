@@ -259,8 +259,6 @@ function withMouse(Component) {
 
 このテクニックは、[react-motion](https://github.com/chenglou/react-motion) の API などで使用されています。
 
-
-
 このテクニックは若干珍しいため、このような API 設計時には、`children` が関数であることを `propTypes` で明示した方が良いでしょう。
 
 ```js
@@ -270,7 +268,6 @@ Mouse.propTypes = {
 ```
 
 ## 注意事項
-
 
 ### レンダープロップを React.PureComponent で使うときの注意点
 
