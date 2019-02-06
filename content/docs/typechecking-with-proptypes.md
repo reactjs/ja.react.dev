@@ -12,7 +12,6 @@ redirect_from:
 >
 > コードを自動で変換するための [codemod スクリプト](/blog/2017/04/07/react-v15.5.0.html#migrating-from-reactproptypes)を提供しています。
 
-
 アプリケーションが成長するにつれて、型チェックによって多くの不具合を見つけられるようになります。 アプリケーションによっては、[Flow](https://flow.org/) もしくは [TypeScript](https://www.typescriptlang.org/) のような JavaScript 拡張を使ってアプリケーション全体の型チェックを行うことができるでしょう。 しかしそれらを使用せずとも、React は組み込みの型チェック機能を備えています。 コンポーネントの props に型チェックを行うために、特別な `propTypes` プロパティを割当てることがます。
 
 ```javascript
@@ -31,7 +30,7 @@ Greeting.propTypes = {
 };
 ```
 
-`PropTypes` は受け取ったデータが有効かどうかを確認するために使用できる種々のバリデーターをエクスポートしています。 上記の例では、`PropTypes.string` を使用しています。 無効な値がプロパティに与えられた場合、JavaScript のコンソールに警告文が出力されます。 パフォーマンス上の理由から、`propTypes` のチェックは開発モードでのみ行われます。
+`PropTypes` は受け取ったデータが有効かどうかを確認するために使用できる種々のバリデーターをエクスポートしています。上記の例では、`PropTypes.string` を使用しています。 無効な値がプロパティに与えられた場合、JavaScript のコンソールに警告文が出力されます。 パフォーマンス上の理由から、`propTypes` のチェックは開発モードでのみ行われます。
 
 ### PropTypes
 
@@ -169,7 +168,7 @@ ReactDOM.render(
 );
 ```
 
-もし、[transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/) のような Babel 変換のプラグインを使用している場合、`defaultProps` をクラス内の static プロパティとして定義することができます。この記法はまだ tc39 によって確定されていないため、ブラウザ上で正しく表示させるには、 Babel 等で変換する必要があります。詳細は [class fields proposal](https://github.com/tc39/proposal-class-fields) を参照してください。
+もし、[transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/) のような Babel 変換のプラグインを使用している場合、`defaultProps` をクラス内の static プロパティとして定義することができます。この記法はまだ TC39 によって確定されていないため、ブラウザ上で正しく表示させるには、Babel 等で変換する必要があります。詳細は [class fields proposal](https://github.com/tc39/proposal-class-fields) を参照してください。
 
 ```javascript
 class Greeting extends React.Component {
@@ -185,4 +184,4 @@ class Greeting extends React.Component {
 }
 ```
 
-`this.props.name` が親コンポーネントから値が指定されなかった場合でも `defaultProps` によって値が代入されます。 `propTypes` による型チェックは `defaultProps` が解決した後に行われるため、`defaultProps` にも型チェックが反映されます。
+`defaultProps` を使えば、`this.props.name` が親コンポーネントから値が指定されなかった場合でも値が代入されていることを保証できます。`propTypes` による型チェックは `defaultProps` が解決した後に行われるため、`defaultProps` にも型チェックが適用されます。
