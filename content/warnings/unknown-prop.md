@@ -3,7 +3,7 @@ title: Unknown Prop Warning
 layout: single
 permalink: warnings/unknown-prop.html
 ---
-「不明なプロパティ」（unknown-prop）警告は、DOM 標準仕様で定義された属性/プロパティであると React が認識していないプロパティでDOM をレンダリングしようとした場合に発生します。
+「不明なプロパティ」（unknown-prop）警告は、DOM 標準仕様で定義された属性/プロパティであると React が認識していないプロパティで DOM をレンダリングしようとした場合に発生します。
 該当箇所の近辺で非正規な props を使ってしまっていないことを確認してください。
 
 この警告が表示されるありそうな原因のいくつかを示します。
