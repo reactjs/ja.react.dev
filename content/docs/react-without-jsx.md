@@ -8,7 +8,7 @@ JSX は React を使うための必須事項ではありません。JSX なし�
 
 各 JSX 要素は、`React.createElement(component, props, ...children)` を呼び出すための単なるシンタックスシュガーです。つまり、JSX を使ってできることは、普通の JavaScript を使ってもできます。
 
-例えば、JSXで書かれた以下のコードは：
+例えば、JSX で書かれた以下のコードは：
 
 ```js
 class Hello extends React.Component {
