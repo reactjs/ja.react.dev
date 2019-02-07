@@ -2,7 +2,8 @@ const toString = require('mdast-util-to-string');
 const visit = require('unist-util-visit');
 
 const hasJapanese = str => {
-  return /[\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf。、]/.test(str);
+  // Detects katakana, hiragana, iteration mark (々), and CJK unified ideographs
+  return /[\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u4e00-\u9fea。、]/.test(str);
 };
 
 /**
