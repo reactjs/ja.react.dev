@@ -1,5 +1,5 @@
 ---
-title: Learn Once, Write Anywhere / 一度学習すれば、どこでも使える
+一度学習すれば、どこでも使える
 order: 2
 ---
 
