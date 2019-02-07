@@ -1,5 +1,5 @@
 ---
-title: 状態を持つことのできる Component
+title: 状態を持つコンポーネント
 order: 1
 domid: timer-example
 ---
