@@ -95,7 +95,7 @@ ReactTestUtils.Simulate.keyDown(node, {key: "Enter", keyCode: 13, which: 13});
 renderIntoDocument(element)
 ```
 
-React 要素をドキュメント内の独立したDOMノードにレンダーします。**この関数を実行するには DOM が必要です。**
+React 要素をドキュメントから切り離されたDOMノードにレンダーします。**この関数を実行するには DOM が必要です。**
 
 > 補足:
 >
