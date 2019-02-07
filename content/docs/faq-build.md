@@ -1,6 +1,6 @@
 ---
 id: faq-build
-title: Babel、JSX およびビルドステップ
+title: Babel、JSX、ビルドステップ
 permalink: docs/faq-build.html
 layout: docs
 category: FAQ
@@ -8,11 +8,11 @@ category: FAQ
 
 ### React では JSX を使用する必要がありますか？
 
-いいえ！詳細は ["JSX なしで React を使う"](/docs/react-without-jsx.html) をご覧ください。
+いいえ！　詳細は ["JSX なしで React を使う"](/docs/react-without-jsx.html) をご覧ください。
 
 ### React では ES6（もしくはそれ以降のバージョン）を使用する必要がありますか？
 
-いいえ！詳細は ["ES6 なしで React を使う"](/docs/react-without-es6.html) をご覧ください。
+いいえ！　詳細は ["ES6 なしで React を使う"](/docs/react-without-es6.html) をご覧ください。
 
 ### JSX の中にコメントを記述するには？
 
