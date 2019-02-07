@@ -1,6 +1,6 @@
 ---
 id: jsx-in-depth
-title: JSX を掘り下げる
+title: JSX を深く理解する
 permalink: docs/jsx-in-depth.html
 redirect_from:
   - "docs/jsx-spread.html"
@@ -13,9 +13,7 @@ redirect_from:
   - "docs/jsx-in-depth-ko-KR.html"
 ---
 
-JSX とは、つまるところ `React.createElement(component, props, ...children)` の糖衣構文にすぎません。
-
-例として、次の JSX コードを見てみましょう。
+JSX とは、つまるところ `React.createElement(component, props, ...children)` の糖衣構文にすぎません。例として、次の JSX コードを見てみましょう。
 
 ```js
 <MyButton color="blue" shadowSize={2}>
@@ -33,7 +31,7 @@ React.createElement(
 )
 ```
 
-子要素を持たない場合には、自己完結した (self-closing) タグを利用することもできます。次のコードを見てください。
+子要素を持たない場合には、自己クローズ (self-closing) タグを利用することもできます。次のコードを見てください。
 
 ```js
 <div className="sidebar" />
@@ -55,7 +53,7 @@ React.createElement(
 
 JSX タグの先頭の部分は、React 要素の型を決定しています。
 
-大文字で始まる型は JSX タグが React コンポーネントを参照していることを示しています。このような JSX タグはコンパイルを経て変数を直接参照するようになります。つまり JSX の `<Foo />` 式を使用する場合、`Foo` がスコープになければなりません。
+大文字で始まる型は JSX タグが React コンポーネントを参照していることを示しています。このような JSX タグはコンパイルを経てその大文字で始まる変数を直接参照するようになります。つまり JSX の `<Foo />` 式を使用する場合、`Foo` がスコープになければなりません。
 
 ### React がスコープ内にあること {#react-must-be-in-scope}
 
@@ -405,11 +403,11 @@ function ListOfTenThings() {
 }
 ```
 
-独自コンポーネントに渡される子要素は、レンダーが実行されるまでに React が実行できる要素に変換されている限りにおいては、どのようなものでも構いません。このようなやり方は一般的ではありませんが、JSX をさらに拡張したくなった時には活用してみてください。
+独自コンポーネントに渡される子要素は、レンダーが実行されるまでに React が理解できる要素に変換されている限りにおいては、どのようなものでも構いません。このようなやり方は一般的ではありませんが、JSX をさらに拡張したくなった時には活用してみてください。
 
 ### 真偽値、null、undefined は無視される {#booleans-null-and-undefined-are-ignored}
 
-真偽値つまり `true` と `false`、`null`、そして `undefined` は子要素として渡すことができます。これらは何も表示しないため、以下の JSX の式はすべて同じ結果となります。
+真偽値つまり `true` と `false`、`null`、そして `undefined` は子要素として渡すことができます。これらは何もレンダーしません。以下の JSX の式はすべて同じ結果となります。
 
 ```js
 <div />
