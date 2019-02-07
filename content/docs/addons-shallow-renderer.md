@@ -47,7 +47,7 @@ expect(result.props.children).toEqual([
 ]);
 ```
 
-Shallow testing には現在いくつかの制限があります。すなわち refs をサポートしていません。
+浅いレンダーによるテストには現在いくつかの制限があります。すなわち refs をサポートしていません。
 
 > 補足：
 >
