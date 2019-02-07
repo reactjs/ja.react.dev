@@ -11,7 +11,7 @@ const hasJapanese = str => {
  * so that it can be displayed differently.
  */
 
-module.exports = ({ markdownAST }, options) => {
+module.exports = ({markdownAST}, options) => {
   visit(markdownAST, 'emphasis', node => {
     const nodeStr = toString(node);
     if (hasJapanese(nodeStr)) {
