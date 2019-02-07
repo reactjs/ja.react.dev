@@ -66,7 +66,7 @@ class Columns extends React.Component {
 </table>
 ```
 
-このような場合のためにフラグメントが導入されました。
+フラグメントはこのような問題を解決します。
 
 ## 使い方
 
