@@ -63,6 +63,6 @@ shallowRenderer は、テストしているコンポーネントをレンダー�
 
 ### `shallowRenderer.getRenderOutput()`
 
-`shallowRenderer.render()` が呼び出された後、 `shallowRenderer.getRenderOutput()` を使用して shallowly rendered された出力を取得できます。
+`shallowRenderer.render()` が呼び出された後、`shallowRenderer.getRenderOutput()` を使用して浅くレンダーされた出力を取得できます。
 
 そして出力から得た結果の assert を開始できます。
