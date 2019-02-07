@@ -1,5 +1,5 @@
 ---
-title: 外部プラグインを使用する Component
+title: 外部プラグインを使用するコンポーネント
 order: 3
 domid: markdown-example
 ---
