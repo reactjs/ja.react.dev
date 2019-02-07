@@ -5,11 +5,7 @@ permalink: docs/hooks-intro.html
 next: hooks-overview.html
 ---
 
-<<<<<<< HEAD
-*フック (Hooks)* は近日実装予定の React の機能であり、state などの React の機能を、クラスを書かずに使えるようにするものです。現在 React v16.8.0-alpha.1 で利用可能です。
-=======
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
->>>>>>> 98c1d22fbef2638cafb03b07e0eabe2a6186fca8
+*フック (hook)* は React 16.8 で追加された新機能です。state などの React の機能を、クラスを書かずに使えるようになります。
 
 ```js{4,5}
 import React, { useState } from 'react';
@@ -33,15 +29,11 @@ function Example() {
 
 **[次のページ](/docs/hooks-overview.html)からフックについて学び始めることができます。** このページの残りの部分では、我々がなぜ React にフックの仕組みを加えることにしたのか、そして素晴らしいアプリケーションを作るためにどのように便利なのかについて説明していきます。
 
-<<<<<<< HEAD
-## ビデオによる紹介
-=======
->Note
+> 補足
 >
->React 16.8.0 is the first release to support Hooks. When upgrading, don't forget to update all packages, including React DOM. React Native will support Hooks in the next stable release.
+> React 16.8.0 がフックをサポートする最初のバージョンです。アップグレードの際は、React DOM を含むすべてのパッケージの更新を忘れないようにしてください。React Native は次の安定リリースでフックをサポートします。
 
-## Video Introduction
->>>>>>> 98c1d22fbef2638cafb03b07e0eabe2a6186fca8
+## ビデオによる紹介
 
 React Conf 2018 にて Sophie Alpert と Dan Abramov がフックについての発表を行い、続いて Ryan Florence がアプリケーションでフックを使うようにリファクタリングする方法についてのデモを行いました。ビデオは以下で見ることができます：
 
@@ -53,15 +45,9 @@ React Conf 2018 にて Sophie Alpert と Dan Abramov がフックについての
 
 先に進む前に注意すべきこととして、フックは：
 
-<<<<<<< HEAD
 - **完全にオプトイン**です。既存のコードを書き換えずに一部のコンポーネントでフックを試すことができます。またやりたくないのであれば、今すぐに学んだり使ったりする必要もありません。
 - **100% 後方互換**です。フックには破壊的な変更は一切含まれていません。
-- **今すぐ利用可能**です。フックは現時点ではアルファ版ですが、コミュニティのフィードバックを受けて React 16.x の間でのリリースを予定しています。
-=======
-* **Completely opt-in.** You can try Hooks in a few components without rewriting any existing code. But you don't have to learn or use Hooks right now if you don't want to.
-* **100% backwards-compatible.** Hooks don't contain any breaking changes.
-* **Available now.** Hooks are now available with the release of v16.8.0.
->>>>>>> 98c1d22fbef2638cafb03b07e0eabe2a6186fca8
+- **今すぐ利用可能**です。フックは v16.8.0 のリリースから利用可能です。
 
 **React からクラス型コンポーネントを削除する予定はありません。**このページの[下部](#gradual-adoption-strategy)で段階的にフックを採用していく方法について読むことができます。
 
@@ -117,14 +103,10 @@ React 開発者はプロダクト開発に注力する必要があり、リリ�
 
 クラスコンポーネントのユースケースをすべてフックがカバーできるようにする予定ではいますが、**クラスコンポーネントのサポートも予見可能な将来にわたって続けていきます。** Facebook では何万というコンポーネントがクラスとして書かれており、それらを書き換える予定は全くありません。代わりに、クラスと併用しながら新しいコードでフックを使っていく予定でいます。
 
-<<<<<<< HEAD
+## よくある質問
+
+[Hook の FAQ ページ](/docs/hooks-faq.html)では、フックに関するよくある質問にお答えしています。
+
 ## 次のステップ
-=======
-## Frequently Asked Questions
-
-We've prepared a [Hooks FAQ page](/docs/hooks-faq.html) that answers the most common questions about Hooks.
-
-## Next Steps
->>>>>>> 98c1d22fbef2638cafb03b07e0eabe2a6186fca8
 
 このページを読み終えたことで、フックがどのような問題を解決しようとしているのか大まかに知ることはできたと思いますが、おそらく細かい部分についてはまだ分からないと思います。心配は要りません。 **[次のページ](/docs/hooks-overview.html)に進み、例を使ってフックについて学び始めましょう。**
