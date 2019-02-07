@@ -1,5 +1,5 @@
 ---
-title: シンプルな Component
+title: シンプルなコンポーネント
 order: 0
 domid: hello-example
 ---
