@@ -200,9 +200,7 @@ React 16.3 以降を使用している場合、これらの場合には [ref for
 
 React 16.2 以下を使用している場合、または ref forwarding で提供される以上の柔軟性が必要な場合は、[この代替手法](https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509)を使用して ref を異なる名前の props として明示的に渡すことができます。
 
-可能であれば DOM ノードを公開しないことをおすすめしますが、これは便利な避難ハッチになることもあります。留意すべき点として、この方法では子コンポーネントにコードを追加する必要があります。子コンポーネントの実装にまったく手を加えられない場合、最後の選択肢は [`findDOMNode()`](/docs/react-dom.html#finddomnode) を使用することですが、
-おすすめできない上に、[`StrictMode`](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage) では
-廃止予定です。
+可能であれば DOM ノードを公開しないことをおすすめしますが、これは便利な避難ハッチになることもあります。留意すべき点として、この方法では子コンポーネントにコードを追加する必要があります。子コンポーネントの実装にまったく手を加えられない場合、最後の選択肢は [`findDOMNode()`](/docs/react-dom.html#finddomnode) を使用することですが、おすすめできない上に、[`StrictMode`](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage) では廃止予定です。
 
 ### コールバック Ref
 
