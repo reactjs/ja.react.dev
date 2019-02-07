@@ -15,7 +15,7 @@ var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 with npm
 
 ## 概要
 
-React の単体テストを実装するとき、Shallow Renderer が役立つでしょう。Shallow rendering を使用すると、インスタンス化またはレンダーされていない子コンポーネントの振る舞いを心配することなく、「1 階層深く」レンダーしてレンダーメソッドが返すものを assert できます。これに DOM は必要ありません。
+React の単体テストを実装するとき、Shallow Renderer が役立つでしょう。浅いレンダー (shallow rendering) を使用すると、インスタンス化またはレンダーされていない子コンポーネントの振る舞いを心配することなく、「1 階層深く」レンダーしてレンダーメソッドが返すものを assert できます。これに DOM は必要ありません。
 
 たとえば、以下のコンポーネントがある場合：
 
