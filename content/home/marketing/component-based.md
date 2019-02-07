@@ -1,5 +1,5 @@
 ---
-title: Component-Based / コンポーネントベース
+title: コンポーネントベース
 order: 1
 ---
 

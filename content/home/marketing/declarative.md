@@ -1,5 +1,5 @@
 ---
-title: Declarative / 宣言的な View
+title: 宣言的な View
 order: 0
 ---
 
