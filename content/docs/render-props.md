@@ -18,7 +18,7 @@ permalink: docs/render-props.html
 
 このドキュメントでは、レンダープロップが役立つ理由と、その実装手順について解説します。
 
-## 横断的関心事にレンダープロップを使う
+## 横断的関心事にレンダープロップを使う {#use-render-props-for-cross-cutting-concerns}
 
 コンポーネントは、React でコードを再利用するための主な要素ですが、あるコンポーネントがカプセル化した state や振る舞いを、同じ state を必要とする別のコンポーネントと共有する方法については、あまり自明ではありません。
 
@@ -235,7 +235,7 @@ function withMouse(Component) {
 
 つまり、レンダープロップによってどちらのパターンも可能になります。
 
-## `render` 以外の props を使う
+## `render` 以外の props を使う {#using-props-other-than-render}
 
 このパターンが「レンダープロップ」という名前だからといって、必ずしも *`render` という名前の props を使う必要はない*ということを念頭に置いてください。実際、[コンポーネントがレンダーするものを知るために使う関数の props は、*その名前が何であれ*、技術的には「レンダープロップ」と呼ぶことができます](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)。
 
@@ -267,9 +267,9 @@ Mouse.propTypes = {
 };
 ```
 
-## 注意事項
+## 注意事項 {#caveats}
 
-### レンダープロップを React.PureComponent で使うときの注意点
+### レンダープロップを React.PureComponent で使うときの注意点 {#be-careful-when-using-render-props-with-reactpurecomponent}
 
 レンダープロップを使う際、`render` メソッド内で関数を作成していると、[`React.PureComponent`](/docs/react-api.html#reactpurecomponent) を使う利点が相殺されます。これは props の浅い (shallow) 比較は新しい props の値に対して常に `false` を返し、そして `render` は毎回レンダープロップとして新しい値を生成するためです。
 

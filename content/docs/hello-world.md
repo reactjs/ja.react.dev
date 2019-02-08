@@ -22,7 +22,7 @@ ReactDOM.render(
 上記のリンクをクリックしてオンラインエディタを開いてください。好きなように書き換えて、出力にどう影響するのかを確認してみてください。このガイドのほとんどのページにはこのような編集可能な例が出てきます。
 
 <a id="how-to-read-this-guide"></a>
-## このガイドの読み方
+## このガイドの読み方 {#how-to-read-this-guide}
 
 このガイドでは、React アプリケーションの構成部品である React 要素やコンポーネントの使い方を見ていきます。一度それらをマスターすると、小さくて再利用可能な部品から複雑なアプリケーションを作成できるようになります。
 
@@ -34,13 +34,22 @@ ReactDOM.render(
 
 それぞれの章は、前の章までに学んだ知識を前提として構成されています。**「主なコンセプト」にある章をサイドバーに並んでいる順番に読んでいくことで、React のほとんどを学ぶことができます**。例えば [“JSX の導入”](/docs/introducing-jsx.html) がこの章の次の章です。
 
-## 前提となる知識
+## 前提となる知識 {#knowledge-level-assumptions}
 
 React は JavaScript ライブラリなので、JavaScript 言語の基本的な理解があることを想定しています。**あまり自信がない場合は、[JavaScript のチュートリアル](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)を一通り読んで知識レベルを確認し、**このガイドを迷わず読み進められるようにしてください。そうすれば 30 分から 1 時間ほどかかるかもしれませんが、JavaScript と React を同時に学んでいるような気分にならずにすむでしょう。
 
 >補足
 >
+<<<<<<< HEAD
 >このガイドでは時折比較的新しい JavaScript の構文を例の中で使用しています。ここ数年 JavaScript を使った仕事をしていこなかったという場合は、[この 3 点](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c)を理解すればだいたい理解したことになるでしょう。
+=======
+>This guide occasionally uses some of the newer JavaScript syntax in the examples. If you haven't worked with JavaScript in the last few years, [these three points](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) should get you most of the way.
+
+
+## Let's Get Started! {#lets-get-started}
+
+Keep scrolling down, and you'll find the link to the [next chapter of this guide](/docs/introducing-jsx.html) right before the website footer.
+>>>>>>> aada3a308493614b7d5b4b438b5c345d7ecc6c53
 
 <a id="lets-get-started"></a>
 ## 始めましょう！

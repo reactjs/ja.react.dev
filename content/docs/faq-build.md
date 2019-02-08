@@ -6,15 +6,15 @@ layout: docs
 category: FAQ
 ---
 
-### React では JSX を使用する必要がありますか？
+### React では JSX を使用する必要がありますか？ {#do-i-need-to-use-jsx-with-react}
 
 いいえ！　詳細は ["JSX なしで React を使う"](/docs/react-without-jsx.html) をご覧ください。
 
-### React では ES6（もしくはそれ以降のバージョン）を使用する必要がありますか？
+### React では ES6（もしくはそれ以降のバージョン）を使用する必要がありますか？ {#do-i-need-to-use-es6--with-react}
 
 いいえ！　詳細は ["ES6 なしで React を使う"](/docs/react-without-es6.html) をご覧ください。
 
-### JSX の中にコメントを記述するには？
+### JSX の中にコメントを記述するには？ {#how-can-i-write-comments-in-jsx}
 
 ```jsx
 <div>

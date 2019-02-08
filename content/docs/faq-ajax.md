@@ -6,15 +6,15 @@ layout: docs
 category: FAQ
 ---
 
-### AJAX コールをする方法は？
+### AJAX コールをする方法は？ {#how-can-i-make-an-ajax-call}
 
 任意の AJAX ライブラリを React と共に利用可能です。人気のあるものとしては、[Axios](https://github.com/axios/axios)、[jQuery AJAX](https://api.jquery.com/jQuery.ajax/)、ブラウザ組み込みの [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) などがあります。
 
-### コンポーネントのどのライフサイクルで AJAX コールすべきか？
+### コンポーネントのどのライフサイクルで AJAX コールすべきか？ {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
 
 AJAX コールによるデータ取得は[`componentDidMount`](/docs/react-component.html#mounting)のライフサイクルメソッドで行うべきです。データ取得後に `setState` でコンポーネントを更新できるようにするためです。
 
-### 例：ローカル state に AJAX の通信結果をセットする
+### 例：ローカル state に AJAX の通信結果をセットする {#example-using-ajax-results-to-set-local-state}
 
 下記のコンポーネントは、 `componentDidMount` で AJAX コールして得られたデータをローカルコンポーネントの state に流し込んでいます。 
 

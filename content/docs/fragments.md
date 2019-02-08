@@ -20,7 +20,7 @@ render() {
 
 このようなものを宣言するための[短い記法](#short-syntax)もありますが、現時点ではまだ人気のあるツールすべてでサポートされているわけではありません。
 
-## 動機
+## 動機 {#motivation}
 
 コンポーネントが子要素のリストを返すというのはよくあるパターンです。この React スニペットを例にしましょう：
 
@@ -68,7 +68,7 @@ class Columns extends React.Component {
 
 フラグメントはこのような問題を解決します。
 
-## 使い方
+## 使い方 {#usage}
 
 ```jsx{4,7}
 class Columns extends React.Component {
@@ -94,7 +94,7 @@ class Columns extends React.Component {
 </table>
 ```
 
-### 短い記法
+### 短い記法 {#short-syntax}
 
 フラグメントを宣言するための新しい短縮記法があります。それは空のタグのようにも見えます：
 
@@ -115,7 +115,7 @@ class Columns extends React.Component {
 
 **[現時点では多くのツールがまだこの記法をサポートしていない](/blog/2017/11/28/react-v16.2.0-fragment-support.html#support-for-fragment-syntax)**ため、ツールのサポートが追いつくまでは明示的に `<React.Fragment>` と記述する方がよいかもしれません。
 
-### key 付きフラグメント
+### key 付きフラグメント {#keyed-fragments}
 
 明示的に `<React.Fragment>` と宣言したフラグメントでは key を持つことができます。 これはコレクションをフラグメントの配列に変換するときに有用です。たとえば定義リストを作成する時に利用します：
 
@@ -137,6 +137,6 @@ function Glossary(props) {
 
 `key` はフラグメントに渡すことができる唯一の属性です。将来的には、イベントハンドラのような他の属性を渡すこともサポートするかもしれません。
 
-### ライブデモ
+### ライブデモ {#live-demo}
 
 この [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000) で新しい JSX フラグメントの記法を試すことができます。

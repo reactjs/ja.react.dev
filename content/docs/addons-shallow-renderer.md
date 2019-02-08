@@ -13,7 +13,7 @@ import ShallowRenderer from 'react-test-renderer/shallow'; // ES6
 var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 with npm
 ```
 
-## 概要
+## 概要 {#overview}
 
 React の単体テストを実装するとき、Shallow Renderer が役立つでしょう。浅いレンダー (shallow rendering) を使用すると、インスタンス化またはレンダーされていない子コンポーネントの振る舞いを心配することなく、「1 階層深く」レンダーしてレンダーメソッドが返すものを assert できます。これに DOM は必要ありません。
 
@@ -53,15 +53,15 @@ expect(result.props.children).toEqual([
 >
 > また Enzyme の [Shallow Rendering API](http://airbnb.io/enzyme/docs/api/shallow.html) をチェックすることをお勧めします。それは同じ機能上でより良くより高いレベルの API を提供します。
 
-## リファレンス
+## リファレンス {#reference}
 
-### `shallowRenderer.render()`
+### `shallowRenderer.render()` {#shallowrendererrender}
 
 shallowRenderer は、テストしているコンポーネントをレンダーするための「場所」と捉えることができ、そこからコンポーネントの出力を抽出できます。
 
 `shallowRenderer.render()` は [`ReactDOM.render()`](/docs/react-dom.html#render) に似ていますが、 DOM を必要とせず、1 階層だけレンダーします。つまり、テスト対象のコンポーネントが持つ子コンポーネントの実装から分離してテストを実行できます。
 
-### `shallowRenderer.getRenderOutput()`
+### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 
 `shallowRenderer.render()` が呼び出された後、`shallowRenderer.getRenderOutput()` を使用して浅くレンダーされた出力を取得できます。
 
