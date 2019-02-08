@@ -27,7 +27,7 @@ JSX は React "要素" を生成します。[次の章](/docs/rendering-elements
 
 React で JSX を使うことは[必須ではありません](/docs/react-without-jsx.html)が、ほとんどの人は JavaScript コード中で UI を扱う際に、JSX を見た目に有用なものだと感じています。また、JSX があるために React は有用なエラーや警告をより多く表示することができます。
 
-前置きはこのくらいにして、早速始めましょう.
+前置きはこのくらいにして、早速始めましょう。
 
 ### JSX に式を埋め込む {#embedding-expressions-in-jsx}
 
