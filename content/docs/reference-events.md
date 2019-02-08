@@ -8,7 +8,7 @@ category: Reference
 
 このリファレンスガイドでは、React のイベントシステムの一部を構成する `SyntheticEvent`（合成イベント）ラッパについて説明します。詳細については、[イベント処理](/docs/handling-events.html)ガイドを参照してください。
 
-## 概要
+## 概要 {#overview}
 
 イベントハンドラには、`SyntheticEvent` のインスタンスが渡されます。これはブラウザのネイティブイベントに対するクロスブラウザ版のラッパです。`stopPropagation()` と `preventDefault()` を含む、ブラウザのネイティブイベントと同じインターフェイスを持ちつつ、ブラウザ間で同じ挙動をするようになっています。
 
@@ -35,7 +35,7 @@ string type
 >
 > v0.14以降、イベントハンドラから `false` を返してもイベントの伝播は止まりません。代わりに、`e.stopPropagation()` または `e.preventDefault()` を手動で呼び出す必要があります。
 
-### イベントのプール
+### イベントのプール {#event-pooling}
 
 `SyntheticEvent` はプールされます。つまり、`SyntheticEvent` オブジェクトは再利用され、すべてのプロパティはイベントコールバックが呼び出された後に `null` で初期化されます。
 これはパフォーマンス上の理由からです。
@@ -64,7 +64,7 @@ function onClick(event) {
 >
 > 非同期処理の中でイベントのプロパティにアクセスしたい場合は、`event.persist()` をイベント内で呼び出す必要があります。これにより、合成イベントがイベントプールの対象から除外され、イベントへの参照をコードで保持できるようになります。
 
-## サポートするイベント
+## サポートするイベント {#supported-events}
 
 React は異なるブラウザ間でも一貫したプロパティを持つようにイベントを正規化します。
 
@@ -89,9 +89,9 @@ React は異なるブラウザ間でも一貫したプロパティを持つよ�
 
 * * *
 
-## リファレンス
+## リファレンス {#reference}
 
-### クリップボードイベント
+### クリップボードイベント {#clipboard-events}
 
 イベント名：
 
@@ -107,7 +107,7 @@ DOMDataTransfer clipboardData
 
 * * *
 
-### コンポジションイベント
+### コンポジションイベント {#composition-events}
 
 イベント名：
 
@@ -124,7 +124,7 @@ string data
 
 * * *
 
-### キーボードイベント
+### キーボードイベント {#keyboard-events}
 
 イベント名：
 
@@ -153,7 +153,7 @@ number which
 
 * * *
 
-### フォーカスイベント
+### フォーカスイベント {#focus-events}
 
 イベント名：
 
@@ -171,7 +171,7 @@ DOMEventTarget relatedTarget
 
 * * *
 
-### フォームイベント
+### フォームイベント {#form-events}
 
 イベント名：
 
@@ -183,7 +183,7 @@ onChange イベントの詳細については、[Forms](/docs/forms.html)を参�
 
 * * *
 
-### マウスイベント
+### マウスイベント {#mouse-events}
 
 イベント名：
 
@@ -216,7 +216,7 @@ boolean shiftKey
 
 * * *
 
-### ポインタイベント
+### ポインタイベント {#pointer-events}
 
 イベント名：
 
@@ -252,7 +252,7 @@ boolean isPrimary
 
 * * *
 
-### 選択イベント
+### 選択イベント {#selection-events}
 
 イベント名：
 
@@ -262,7 +262,7 @@ onSelect
 
 * * *
 
-### タッチイベント
+### タッチイベント {#touch-events}
 
 イベント名：
 
@@ -285,7 +285,7 @@ DOMTouchList touches
 
 * * *
 
-### UI イベント
+### UI イベント {#ui-events}
 
 イベント名：
 
@@ -302,7 +302,7 @@ DOMAbstractView view
 
 * * *
 
-### ホイールイベント
+### ホイールイベント {#wheel-events}
 
 イベント名：
 
@@ -321,7 +321,7 @@ number deltaZ
 
 * * *
 
-### メディアイベント
+### メディアイベント {#media-events}
 
 イベント名：
 
@@ -334,7 +334,7 @@ onTimeUpdate onVolumeChange onWaiting
 
 * * *
 
-### 画像イベント
+### 画像イベント {#image-events}
 
 イベント名：
 
@@ -344,7 +344,7 @@ onLoad onError
 
 * * *
 
-### アニメーションイベント
+### アニメーションイベント {#animation-events}
 
 イベント名：
 
@@ -362,7 +362,7 @@ float elapsedTime
 
 * * *
 
-### 遷移イベント
+### 遷移イベント {#transition-events}
 
 イベント名：
 
@@ -380,7 +380,7 @@ float elapsedTime
 
 * * *
 
-### その他のイベント
+### その他のイベント {#other-events}
 
 イベント名：
 

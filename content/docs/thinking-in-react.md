@@ -12,7 +12,7 @@ prev: composition-vs-inheritance.html
 
 React のすばらしい特長がいくつもありますが、あなたがどんなアプリを作ろうかと考えたことが、そのままアプリの作り方になる、というのはそのひとつです。本ドキュメントでは、検索可能な商品データ表を React で作っていく様子をお見せしましょう。
 
-## モックから始めよう
+## モックから始めよう {#start-with-a-mock}
 
 すでに、JSON API が実装済みで、デザイナーからもデザインモックがもらえているとしましょう。モックは次のような見た目だったとします。
 
@@ -31,7 +31,7 @@ React のすばらしい特長がいくつもありますが、あなたがど�
 ];
 ```
 
-## Step 1: UI をコンポーネントの階層構造に落とし込む
+## Step 1: UI をコンポーネントの階層構造に落とし込む {#step-1-break-the-ui-into-a-component-hierarchy}
 
 まず最初に行うのは、モックを形作っている各コンポーネント（構成要素）を四角で囲んで、それぞれに名前をつけていくことです。もしあなたがデザイナーと一緒に仕事をしている場合は、彼らがすでにこれに相当する作業を終えている可能性がありますので、話をしに行きましょう。彼らが Photoshop でレイヤ名にしていた名前が、最終的にはあなたの React コンポーネントの名前になりうるのです！
 
@@ -60,7 +60,7 @@ JSON のデータモデルをユーザーに向けて表示することはよく
       * `ProductCategoryRow`
       * `ProductRow`
 
-## Step 2: Reactで静的なバージョンを作成する
+## Step 2: Reactで静的なバージョンを作成する {#step-2-build-a-static-version-in-react}
 
 <p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
@@ -75,11 +75,11 @@ JSON のデータモデルをユーザーに向けて表示することはよく
 
 このステップを実施する上で助けが必要な場合は、[React ドキュメント](/docs/)を参照してください。
 
-### 幕間：Props vs State
+### 幕間：Props vs State {#a-brief-interlude-props-vs-state}
 
 React には 2 種類の「モデル」データが存在します。props と state です。このふたつの相違を理解するのは重要なことです。違いについて自信がない場合は、[公式の React ドキュメント](/docs/interactivity-and-dynamic-uis.html)に目を通すとよいでしょう。
 
-## Step 3: UI 状態を表現する必要かつ十分な state を決定する
+## Step 3: UI 状態を表現する必要かつ十分な state を決定する {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
 UI をインタラクティブなものにするためには元となっているデータモデルを更新できる必要があります。これは React なら **state** を使うことで容易に実現できます。
 
@@ -105,7 +105,7 @@ UI をインタラクティブなものにするためには元となってい�
   * ユーザーが入力した検索文字列
   * チェックボックスの値
 
-## Step 4: state をどこに配置するべきなのかを明確にする
+## Step 4: state をどこに配置するべきなのかを明確にする {#step-4-identify-where-your-state-should-live}
 
 <p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a> on <a href="http://codepen.io">CodePen</a>.</p>
 
@@ -130,7 +130,7 @@ UI をインタラクティブなものにするためには元となってい�
 
 これで、このアプリがどんな振る舞いをするのか見られるようになってきました。`filterText` に `"ball"` と入力した状態でアプリを更新すると、データの表が正しく更新されたことが確認できるはずです。
 
-## Step 5: 逆方向のデータフローを追加する
+## Step 5: 逆方向のデータフローを追加する {#step-5-add-inverse-data-flow}
 
 <p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a> on <a href="http://codepen.io">CodePen</a>.</p>
 
@@ -144,6 +144,6 @@ React ではデータフローが明示的になりプログラムの動作が�
 
 これは複雑に思えるかもしれませんが、ほんの数行のコードです。そして、これらはデータがアプリの中をどのように流れているのかを、明確に示しているのです。
 
-## 終わりに
+## 終わりに {#and-thats-it}
 
 これで React を使ってコンポーネントやアプリケーションを構築するときの考え方が身に付いたのではないでしょうか。それはもしかしたら、あなたのこれまでのやり方よりも、多くのコードを書くことになるかもしれません。しかしながら、コードは書くよりも読むことのほうが多いこと、そしてモジュール化されていて明示的であるコードは非常に読みやすいということを思い出してください。大規模なコンポーネントのライブラリを構築し始めると、この明示性やモジュール化しやすさのありがたみが分かり始めます。そしてコードを再利用できるようになるにつれて、あなたが書くコードの行数は減っていくのです。:)

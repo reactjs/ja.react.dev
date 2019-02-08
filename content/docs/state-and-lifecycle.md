@@ -74,7 +74,7 @@ state は props に似ていますが、コンポーネントによって完全�
 
 [以前に述べた](/docs/components-and-props.html#functional-and-class-components)ように、クラスとして定義されたコンポーネントにはいくつか追加の機能があります。ローカルな state がまさにそれです：クラスでのみ使用できる機能です。
 
-## 関数をクラスに変換する
+## 関数をクラスに変換する {#converting-a-function-to-a-class}
 
 以下の 5 ステップで、`Clock` のような関数コンポーネントをクラスに変換することができます。
 
@@ -107,7 +107,7 @@ class Clock extends React.Component {
 
 `render` メソッドは更新が発生した際に毎回呼ばれますが、同一の DOM ノード内で `<Clock />` をレンダーしている限り、`Clock` クラスのインスタンスは 1 つだけ使われます。このことにより、ローカル state やライフサイクルメソッドといった追加の機能が利用できるようになります。
 
-## クラスにローカルな state を追加する
+## クラスにローカルな state を追加する {#adding-local-state-to-a-class}
 
 以下の 3 ステップで `date` を props から state に移します：
 
@@ -197,7 +197,7 @@ ReactDOM.render(
 
 次に、`Clock` が自分でタイマーを設定し、毎秒ごとに自分を更新するようにします。
 
-## クラスにライフサイクルメソッドを追加する
+## クラスにライフサイクルメソッドを追加する {#adding-lifecycle-methods-to-a-class}
 
 多くのコンポーネントを有するアプリケーションでは、コンポーネントが破棄された場合にそのコンポーネントが占有していたリソースを開放することがとても重要です。
 
@@ -318,11 +318,11 @@ ReactDOM.render(
 
 5) この後に `Clock` コンポーネントが DOM から削除されることがあれば、React は`componentWillUnmount()` ライフサイクルメソッドを呼び出し、これによりタイマーが停止します。
 
-## state を正しく使用する
+## state を正しく使用する {#using-state-correctly}
 
 `setState()` について知っておくべきことが 3 つあります。
 
-### state を直接変更しないこと
+### state を直接変更しないこと {#do-not-modify-state-directly}
 
 例えば、以下のコードではコンポーネントは再レンダーされません：
 
@@ -340,7 +340,7 @@ this.setState({comment: 'Hello'});
 
 `this.state` に直接代入してよい唯一の場所はコンストラクタです。
 
-### state の更新は非同期に行われる可能性がある
+### state の更新は非同期に行われる可能性がある {#state-updates-may-be-asynchronous}
 
 React はパフォーマンスのために、複数の `setState()` 呼び出しを 1 度の更新にまとめて処理することがあります。
 
@@ -375,7 +375,7 @@ this.setState(function(state, props) {
 });
 ```
 
-### state の更新はマージされる
+### state の更新はマージされる {#state-updates-are-merged}
 
 `setState()` を呼び出した場合、 React は与えられたオブジェクトを現在の state にマージします。
 
@@ -411,7 +411,7 @@ this.setState(function(state, props) {
 
 マージは浅く (shallow) 行われるので、`this.setState({comments})` は `this.state.posts` をそのまま残しますが、`this.state.comments` は完全に置き換えます。
 
-## データは下方向に伝わる
+## データは下方向に伝わる {#the-data-flows-down}
 
 親コンポーネントであれ子コンポーネントであれ、特定の他のコンポーネントがステートフルかステートレスかを知ることはできませんし、特定のコンポーネントの定義が関数型かクラス型かを気にするべきではありません。
 

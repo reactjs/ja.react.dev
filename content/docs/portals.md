@@ -12,7 +12,7 @@ ReactDOM.createPortal(child, container)
 
 第 1 引数 (`child`) は [React の子要素としてレンダー可能なもの](/docs/react-component.html#render)、例えば、要素、文字列、フラグメントなどです。第 2 引数 (`container`) は DOM 要素を指定します。
 
-## 使い方
+## 使い方 {#usage}
 
 通常、コンポーネントの `render` メソッドから要素を返すと、最も近い親ノードの子として DOM にマウントされます。
 
@@ -50,7 +50,7 @@ render() {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/yzMaBd)
 
-## ポータルを介したイベントのバブリング
+## ポータルを介したイベントのバブリング {#event-bubbling-through-portals}
 
 ポータルは DOM ツリーのどこにでも存在できますが、他のあらゆる点では通常の React の子要素と変わらずに振る舞います。コンテクスト (context) のような機能は、たとえ子要素がポータルであろうと全く同じように動きます。というのも、*DOM ツリー*上の位置にかかわらず、ポータルは依然として *React のツリー*内にいるからです。
 

@@ -30,7 +30,7 @@ function Example() {
 
 このコードをクラスによる等価版と比較しながらフックについて学び始めましょう。
 
-## クラスによる同等の例
+## クラスによる同等の例 {#equivalent-class-example}
 
 以前 React でクラスを使っていたなら、このコードに馴染みがあるでしょう。
 
@@ -62,10 +62,9 @@ state は `{ count: 0 }` から始まり、ユーザがボタンをクリック�
 >
 > もっと現実的な例ではなくカウンタを使っているのはなぜか気になるかもしれません。フックについての第一歩の説明ですので API にフォーカスするためです。
 
-## フックと関数コンポーネント
+## フックと関数コンポーネント {#hooks-and-function-components}
 
 念のため、React の関数コンポーネントとはこのようなものです：
-
 
 ```js
 const Example = (props) => {
@@ -87,7 +86,7 @@ function Example(props) {
 
 フックはクラスの内部では動作**しません**。クラスを書く代わりに使うものです。
 
-## フックとは何か？
+## フックとは何か？ {#whats-a-hook}
 
 この新しい例では、React から `useState` をインポートするところから始めましょう。
 
@@ -107,7 +106,7 @@ function Example() {
 >
 > コンポーネント内のどこでフックが使えてどこで使えないかに関する特別なルールがあります。これについては[フックのルール](/docs/hooks-rules.html)で学びます。
 
-## state 変数の宣言
+## state 変数の宣言 {#declaring-a-state-variable}
 
 クラスでは、コンストラクタ内で `this.state` を `{ count: 0 }` にセットするという方法で、state である `count` を `0` へと初期化します。
 
@@ -155,7 +154,7 @@ function Example() {
 >
 > state が「作成」されるのはコンポーネントの初回レンダー時だけですので、`createState` という名前はあまり正確ではありません。次回以降のレンダー時には、`useState` からは既存の state の現在値を受け取ります。毎回作成していたのではそもそも「状態」になりませんね。また、フックの名前が*常に* `use` から始まることには理由があります。[フックのルール](/docs/hooks-rules.html)で改めて説明します。
 
-## state の読み出し
+## state の読み出し {#reading-state}
 
 クラス内で現在のカウント値を表示したい場合、`this.state.count` を読み出します：
 
@@ -169,7 +168,7 @@ function Example() {
   <p>You clicked {count} times</p>
 ```
 
-## state の更新
+## state の更新 {#updating-state}
 
 クラスでは、`this.setState()` を呼ぶことで `count` ステートを更新します：
 
@@ -187,7 +186,7 @@ function Example() {
   </button>
 ```
 
-## まとめ
+## まとめ {#recap}
 
 では **これまで学んだことを 1 行ずつまとめて**、理解を確認しましょう。
 
@@ -218,7 +217,7 @@ function Example() {
 
 最初は飲み込むのに時間がかかるかもしれません。急がないようにしましょう！　途中で分からなくなった場合は上記のコードを最初から最後まで読み直してください。一旦クラスで state がどう動くのかを「忘れて」新鮮な目でこのコードを見るようにすれば、必ず理解できるようになるはずです。
 
-### ヒント：この角カッコの意味は？
+### ヒント：この角カッコの意味は？ {#tip-what-do-square-brackets-mean}
 
 state 変数を宣言するときのこの角カッコに気付かれたでしょうか：
 
@@ -246,7 +245,7 @@ state 変数を宣言するときのこの角カッコに気付かれたでし�
 >
 > React に対して `this` のようなものを一切渡していないので、どのようにコンポーネントと `useState` の呼び出しの対応を知るのか不思議に思うかもしれません。FAQ セクションで、[この質問](/docs/hooks-faq.html#how-does-react-associate-hook-calls-with-components)およびその他の疑問についてお答えしています。
 
-### ヒント：複数の state 変数を使う
+### ヒント：複数の state 変数を使う {#tip-using-multiple-state-variables}
 
 state 変数の宣言を `[something, setSomething]` のペアの形で行うのが便利であるもうひとつの理由は、state 変数を複数使いたくなった場合にそれらに*異なる*名前をつけることができるからです：
 
@@ -271,7 +270,7 @@ function ExampleWithManyStates() {
 
 独立した state 変数を分割する際の推奨事項については [FAQ で](/docs/hooks-faq.html#should-i-use-one-or-many-state-variables)詳しく述べています。
 
-## 次のステップ
+## 次のステップ {#next-steps}
 
 このページでは React によって提供されるフックのうちのひとつである `useState` について学びました。これからは「ステートフック」という名前でも呼ぶことにします。ステートフックによって、React の歴史上はじめて、React の関数コンポーネントにローカル state を加えることができます！
 
