@@ -20,8 +20,7 @@ redirect_from:
 
 このページは React のドキュメント、および関連する資料の概要となります。
 
-**React** はユーザーインターフェースを作成する為の JavaScript のライブラリです。 
-[ここのホームページ](/)、または[このチュートリアル](/tutorial/tutorial.html)から React がどういうものかを学びましょう。
+**React** はユーザーインターフェースを作成する為の JavaScript のライブラリです。[ここのホームページ](/)、または[このチュートリアル](/tutorial/tutorial.html)から React がどういうものかを学びましょう。
 
 ---
 
@@ -49,8 +48,7 @@ React をちょっと試してみたい場合、Web 上のコードエディタ�
 
 新しく React のプロジェクトを始めたい場合でも、まずは[シンプルな HTML ページに script タグを追加](/docs/add-react-to-a-website.html)するのがおすすめです。数分でセットアップできます！
 
-アプリが成長するにつれて、より統合されたセットアップを行うことを考慮していきましょう。大きいアプリの場
-場合におすすめの[様々な JavaScript を用いたツールチェイン](/docs/create-a-new-react-app.html)が存在します。それぞれわずかな設定、もしくは設定要らずでリッチな React のエコシステムをフル活用できます。
+アプリが成長するにつれて、より統合されたセットアップを行うことを考慮していきましょう。大きいアプリの場合におすすめの[様々な JavaScript を用いたツールチェイン](/docs/create-a-new-react-app.html)が存在します。それぞれわずかな設定、もしくは設定要らずでリッチな React のエコシステムをフル活用できます。
 
 ## React を学ぶ
 
@@ -71,13 +69,13 @@ React を学びたい人には様々な背景があり、それぞれいろん�
 
 ### デザイナー向けのガイド
 
-デザイナーの背景がある方は、[これらの資料](http://reactfordesigners.com/)から始めることをおすすめします。
+もしあなたがデザイナーのバックグラウンドを持っているなら、[これらの資料](http://reactfordesigners.com/)から始めることをおすすめします。
 
 ### JavaScript 資料
 
 React の公式ドキュメントはあなたがある程度 JavaScript について知っていることを想定しています。JavaScriptの達人である必要は全くありませんが、JavaScript と React を同時に取得するのは難しいでしょう。
 
-JavasScript について自分がどれだけ知っているかを知るために、[この JavaScript の概要](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)を読んでおくことをおすすめします。読むのに 30 分や 1 時間程かかってしまいますが、React を学ぶための自信へと繋がってくるでしょう。
+JavaScript について自分がどれだけ知っているかを知るために、[この JavaScript の概要](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)を読んでおくことをおすすめします。読むのに 30 分から 1 時間程かかってしまいますが、React を学ぶための自信へと繋がってくるでしょう。
 
 > ヒント
 >
@@ -101,7 +99,7 @@ JavasScript について自分がどれだけ知っているかを知るため�
 
 ### 高度なコンセプト
 
-React の[基本コンセプト](#main-concepts)について慣れてきて、実際手で動かしてみたら、今度はさらに高度な内容にも手を出したいと思うかもしれません。この資料では強力な、しかし普段使われることのない [コンテキスト](/docs/context.html) や [ref](/docs/refs-and-the-dom.html) といった React のさらなる機能について紹介します。 
+React の[基本コンセプト](#main-concepts)について慣れてきて、実際に手で動かしてみたら、今度はさらに高度な内容にも手を出したいと思うかもしれません。この資料では強力な、しかし普段使われることのない [コンテキスト](/docs/context.html) や [ref](/docs/refs-and-the-dom.html) といった React のさらなる機能について紹介します。 
 
 ### API リファレンス
 
@@ -109,7 +107,7 @@ React の[基本コンセプト](#main-concepts)について慣れてきて、�
 
 ### 用語集と FAQ
 
-この[用語集](/docs/glossary.html)にはこのドキュメントにてよく使われる単語等が記載されています。 [AJAX リクエストについて](/docs/faq-ajax.html)、[コンポーネントの state](/docs/faq-state.html)、[ファイル構成](/docs/faq-structure.html)等、よく頂く質問についても記載しています。
+この[用語集](/docs/glossary.html)にはこのドキュメントにてよく使われる単語等が記載されています。 FAQもあり、[AJAX リクエストについて](/docs/faq-ajax.html)、[コンポーネントの state](/docs/faq-state.html)、[ファイル構成](/docs/faq-structure.html)などのよくある質問とそれらに対する回答が記載されています。
 
 ## 最新の情報を追いたい人へ
 
