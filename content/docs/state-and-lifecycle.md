@@ -80,7 +80,7 @@ state は props に似ていますが、コンポーネントによって完全�
 
 1. `React.Component` を継承する同名の [ES6 クラス](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)を作成する。
 
-2. `render()` と呼ばれる空のメソッドを1つ追加する。
+2. `render()` と呼ばれる空のメソッドを 1 つ追加する。
 
 3. 関数の中身を `render()` メソッドに移動する。
 
@@ -316,7 +316,7 @@ ReactDOM.render(
 
 4) ブラウザは、毎秒ごとに `tick()` メソッドを呼び出します。その中で `Clock` コンポーネントは、現在時刻を含んだオブジェクトを引数として `setState()` を呼び出すことで、UI の更新をスケジュールします。`setState()` が呼び出されたおかげで、React は state が変わったということが分かるので、`render()` メソッドを再度呼び出して、画面上に何を表示すべきかを知ります。今回は、`render()` メソッド内の `this.state.date` が異なっているので、レンダリングされる出力には新しく更新された時間が含まれています。それに従って React は DOM を更新します。
 
-5) この後に `Clock` コンポーネントが DOM から削除されることがあれば、React は`componentWillUnmount()` ライフサイクルメソッドを呼び出し、これによりタイマーが停止します。
+5) この後に `Clock` コンポーネントが DOM から削除されることがあれば、React は `componentWillUnmount()` ライフサイクルメソッドを呼び出し、これによりタイマーが停止します。
 
 ## state を正しく使用する {#using-state-correctly}
 
@@ -377,7 +377,7 @@ this.setState(function(state, props) {
 
 ### state の更新はマージされる {#state-updates-are-merged}
 
-`setState()` を呼び出した場合、 React は与えられたオブジェクトを現在の state にマージします。
+`setState()` を呼び出した場合、React は与えられたオブジェクトを現在の state にマージします。
 
 例えば、あなたの state はいくつかの独立した変数を含んでいるかもしれません：
 
@@ -443,7 +443,7 @@ function FormattedDate(props) {
 
 コンポーネントツリーとは props が流れ落ちる滝なのだと想像すると、各コンポーネントの state とは任意の場所で合流してくる追加の水源であり、それらもまた下に流れ落ちていくものなのです。
 
-全てのコンポーネントが本当に独立していることを示すのに、3つの `<Clock>` をレンダリングする `App` コンポーネントを作成します：
+全てのコンポーネントが本当に独立していることを示すのに、3 つの `<Clock>` をレンダリングする `App` コンポーネントを作成します：
 
 ```js{4-6}
 function App() {

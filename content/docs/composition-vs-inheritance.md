@@ -47,7 +47,7 @@ function WelcomeDialog() {
 
 **[Try it on CodePen](https://codepen.io/gaearon/pen/ozqNOV?editors=0010)**
 
-`<FancyBorder>` JSX タグの内側のあらゆる要素は `FancyBorder` に `children` という props として渡されます。 `FancyBorder` は `<div>` の内側に `{props.children}` をレンダリングするので、渡された要素が出力されます。
+`<FancyBorder>` JSX タグの内側のあらゆる要素は `FancyBorder` に `children` という props として渡されます。`FancyBorder` は `<div>` の内側に `{props.children}` をレンダリングするので、渡された要素が出力されます。
 
 あまり一般的ではありませんが、複数の箇所に子要素を追加したいケースも考えられます。そのようなケースでは以下のように `children` の props の代わりに独自の props を作成して渡すことができます。
 
