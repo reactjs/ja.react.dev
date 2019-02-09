@@ -8,7 +8,7 @@ permalink: docs/code-splitting.html
 
 多くの React アプリケーションは、[Webpack](https://webpack.js.org/)や [Browserify](http://browserify.org/) などの
 ツールを使ってファイルを「バンドル」しています。
-バンドルはインポートされたファイルをたどって、それらを1つのファイルにまとめるプロセスです。
+バンドルはインポートされたファイルをたどって、それらを 1 つのファイルにまとめるプロセスです。
 このバンドルされたファイルを Web ページ内に置くことによって、アプリ全体を一度に読み込むことができます。
 
 #### 例 {#example}
@@ -88,8 +88,8 @@ import("./math").then(math => {
 
 > 補足：
 >
-> `import()` 構文は ECMAScript (JavaScript) が[提案](https://github.com/tc39/proposal-dynamic-import)している、
-> 現時点ではまだ言語標準として実装されていない構文です。
+> `import()` 構文は ECMAScript (JavaScript) における[提案中](https://github.com/tc39/proposal-dynamic-import)の構文であり、
+> 現時点ではまだ言語標準となっていません。
 > 近い将来での標準化が期待されています。
 
 Webpackがこの構文を見つけると、自動的にアプリのコードを分割します。
@@ -99,7 +99,7 @@ Next.jsも同様です。
 もし Webpack を自分でセットアップしていた場合には、Webpack の[コード分割に関するガイド](https://webpack.js.org/guides/code-splitting/)を読むと良いでしょう。
 きっとあなたの Webpack の設定はおよそ[このように](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269)なっているはずでしょうから。
 
-もし [Babel](http://babeljs.io/) を使用している場合は、Babel が動的インポート構文を解析できても変換してしまわないようにする必要があります。
+もし [Babel](http://babeljs.io/) を使用している場合は、Babel が動的インポート構文をパースできても変換してしまわないようにする必要があります。
 そのためには  [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import) を利用すると良いでしょう。
 
 ## `React.lazy` {#reactlazy}
@@ -203,14 +203,14 @@ const MyComponent = () => (
 );
 ```
 
-## ルート単位でのコード分割 {#route-based-code-splitting}
+## ルーティング単位でのコード分割 {#route-based-code-splitting}
 
 アプリ内のどこにコード分割を導入するかを決めるのは少し面倒です。
 バンドルを均等に分割する場所を確実に選択したいところですが、ユーザ体験を妨げてはなりません。
 
 コード分割を導入するにあたって適している場所はルーティングです。
-Web を使用するほとんどの人は、ロード時間がかかるページ遷移に慣れています。
-また、ユーザーはページ上の他の要素を同時に操作しないだろうと、ページ全体を一度に再描画sする傾向があります。
+Web を使用するほとんどの人は、多少のロード時間がかかるページ遷移に慣れています。
+また、ユーザがページ上の他の要素を同時に操作する可能性を減らすよう、ページ全体を一度に再レンダーすることが多いでしょう。
 
 これは [React Router](https://reacttraining.com/react-router/) のようなライブラリを使ったアプリに `React.lazy` を使用することで
 ルーティングベースのコード分割を導入する方法の例です。
