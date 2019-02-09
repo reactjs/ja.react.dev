@@ -19,7 +19,7 @@ React は段階的に導入することができるように最初からデザ�
 - [1 分で React を追加する](#add-react-in-one-minute)
 - [オプション：React で JSX を使う](#optional-try-react-with-jsx)（バンドルツールは不要です！）
 
-## 1分で React を導入する
+## 1分で React を導入する {#add-react-in-one-minute}
 
 このセクションでは、既存の HTML ページに React コンポーネントを導入する方法を説明します。以下の部分では自分のウェブサイトを利用して進めてもいいですし、練習用に空の HTML ファイルを用意するのもいいでしょう。
 
@@ -27,7 +27,7 @@ React は段階的に導入することができるように最初からデザ�
 
 オプション：[お手本をダウンロードする (2KB ZIP圧縮)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
 
-### ステップ 1：HTML に DOM コンテナを追加する
+### ステップ 1：HTML に DOM コンテナを追加する {#step-1-add-a-dom-container-to-the-html}
 
 まずは編集したい HTML ファイルを開きましょう。React で描画したい箇所を決めて、空の `<div>` 要素を追加しましょう。例えばこんな感じです。
 
@@ -45,7 +45,7 @@ React は段階的に導入することができるように最初からデザ�
 >
 >「コンテナ」としての `<div>` 要素は `<body>` タグの中であれば**どこにでも**置くことができます。また空の `<div>` はひとつのページにひとつだけでも、あるいは必要なだけたくさんあっても大丈夫です。`<div>` 要素は空のことが多いですが、それはたとえ `<div>` の中に他の要素があったとしても、React が結局その中身を置き換えてしまうからです。
 
-### ステップ 2：script タグを追加する
+### ステップ 2：script タグを追加する {#step-2-add-the-script-tags}
 
 次に、同じ HTML ファイルの `</body>` タグの直前に、3 つの `<script>` タグを追加しましょう。
 
@@ -65,7 +65,7 @@ React は段階的に導入することができるように最初からデザ�
 
 最初のふたつのタグは React を読み込んでおり、最後のタグはこれから書くコンポーネントのコードを読み込んでいます。
 
-### ステップ 3：React コンポーネントを作成する
+### ステップ 3：React コンポーネントを作成する {#step-3-create-a-react-component}
 
 `like_button.js` という名前の新しいファイルを作成し、HTML ファイルのすぐ隣に置きましょう。
 
@@ -86,7 +86,7 @@ ReactDOM.render(e(LikeButton), domContainer);
 
 この 2 行のコードは、ステップ 1 で追加した空の `<div>` 要素を見つけてきて、その中に React コンポーネントの「いいね」ボタンを表示します。
 
-### これだけです！
+### これだけです！ {#thats-it}
 
 ステップ 4 はありません。**これであなたは自分のウェブサイトにはじめての React コンポーネントを導入できました**。
 
@@ -96,7 +96,7 @@ React の導入についてもっと知るには、次のセクションも見�
 
 **[完成したソースコードをダウンロードする (2KB ZIP圧縮)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
 
-### ヒント：コンポーネントを再利用する
+### ヒント：コンポーネントを再利用する {#tip-reuse-a-component}
 
 React コンポーネントを HTML ページの一箇所だけではなくいろいろな箇所で使いたくなることがあるかもしれません。そこで「いいね」ボタンを3回繰り返し表示し、さらにそこにちょっとしたデータを渡すプログラムを用意しました。
 
@@ -108,7 +108,7 @@ React コンポーネントを HTML ページの一箇所だけではなくい�
 >
 >このようなやり方は、主に React を利用する DOM コンテナがページ内でお互いに干渉していない場合において便利な手段です。 React 単体のコードとしては、[コンポーネントを組み合わせる](/docs/components-and-props.html#composing-components) やり方のほうが手軽です。
 
-### ヒント：本番環境用に JavaScript を圧縮する
+### ヒント：本番環境用に JavaScript を圧縮する {#tip-minify-javascript-for-production}
 
 ウェブサイトを本番環境にデプロイするにあたって、圧縮していない JavaScript はページの速度を著しく落としてしまうということに配慮してください。
 
@@ -121,7 +121,7 @@ React コンポーネントを HTML ページの一箇所だけではなくい�
 
 自分のスクリプトを圧縮することがまだできていないのであれば、[例えばこんなやり方があります](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3)。
 
-## オプション：React で JSX を使う
+## オプション：React で JSX を使う {#optional-try-react-with-jsx}
 
 今までの例では、ブラウザにもともと備わっている機能のみ使ってきました。React コンポーネントを表示するために次のような JavaScript の関数を呼び出していたのはそのためです。
 
@@ -151,7 +151,7 @@ return (
 
 [このコンバーター](http://babeljs.io/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=Q&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2%2Cstage-3&prettier=true&targets=Node-6.12&version=6.26.0&envVersion=)上で JSX を使って遊んでみてください。
 
-### JSX を手軽に試してみる
+### JSX を手軽に試してみる {#quickly-try-jsx}
 
 手っ取り早く JSX を自分のプロジェクトで試してみるには、次の `<script>` タグを追加してみてください。
 
@@ -163,7 +163,7 @@ return (
 
 この方法は学習やシンプルなデモの作成にはいいですが、これをそのまま使うとウェブサイトは重くなってしまい、**本番環境には向きません**。次のレベルに進む準備ができたら、先ほど追加した `<script>` タグと `type="text/babel"` 属性は削除してしまいましょう。そして次のセクションに進み、JSX プリプロセッサを設定して `<script>` タグを自動変換するようにしましょう。
 
-### JSX をプロジェクトに追加する
+### JSX をプロジェクトに追加する {#add-jsx-to-a-project}
 
 JSX をプロジェクトに追加するためには、バンドルツールや開発用サーバーといった複雑なツールは必要ありません。つまるところ、JSX を追加することは **CSS プリプロセッサを追加することにとてもよく似ています**。唯一必要となるのは、コンピューターに [Node.js](https://nodejs.org/) がインストールされていることだけです。
 
@@ -179,7 +179,7 @@ JSX をプロジェクトに追加するためには、バンドルツールや�
 お疲れ様です！　これで**本番環境用の JSX の設定**をプロジェクトに追加することができました。
 
 
-### JSX プリプロセッサを実行する
+### JSX プリプロセッサを実行する {#run-jsx-preprocessor}
 
 `src` というディレクトリを作成したうえで、次のコマンドをターミナルから実行してみてください。
 

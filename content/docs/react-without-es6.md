@@ -27,7 +27,7 @@ var Greeting = createReactClass({
 
 ES6 のクラス API は `createReactClass()` とよく似ていますが、いくつかの例外があります。
 
-## デフォルト props の宣言
+## デフォルト props の宣言 {#declaring-default-props}
 
 関数や ES6 クラスでは、`defaultProps` はコンポーネント自体のプロパティとして定義されます。
 
@@ -56,7 +56,7 @@ var Greeting = createReactClass({
 });
 ```
 
-## state の初期値の設定
+## state の初期値の設定 {#setting-the-initial-state}
 
 ES6 クラスでは、コンストラクタで `this.state` へ代入することで state の初期値を定義できます。
 
@@ -81,7 +81,7 @@ var Counter = createReactClass({
 });
 ```
 
-## 自動バインド
+## 自動バインド {#autobinding}
 
 ES6 クラスとして宣言された React コンポーネントでは、メソッドは通常の ES6 クラスと同様のセマンティクスに従います。つまり、`this` がそのインスタンスへ自動的にバインドされることはありません。コンストラクタで明示的に `.bind(this)` を利用する必要があります。
 
@@ -165,7 +165,7 @@ class SayHello extends React.Component {
 * 例えば `onClick={(e) => this.handleClick(e)}` のような形でアロー関数を利用する。
 * 引き続き `createReactClass` を利用する。
 
-## ミックスイン
+## ミックスイン {#mixins}
 
 >**補足：**
 >

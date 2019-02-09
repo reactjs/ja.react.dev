@@ -58,7 +58,7 @@ class Calculator extends React.Component {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/ZXeOBm?editors=0010)
 
-## 2 つ目の入力を追加する
+## 2 つ目の入力を追加する {#adding-a-second-input}
 
 新しい要件は、摂氏の入力に加えて、華氏の入力もできるようにして、それらを同期させておくことです。
 
@@ -116,7 +116,7 @@ class Calculator extends React.Component {
 
 `Calculator` から `BoilingVerdict` を表示することもできません。`Calculator` は `TemperatureInput` の中に隠されている現在の温度を知らないのです。
 
-## 変換関数の作成
+## 変換関数の作成 {#writing-conversion-functions}
 
 まず、摂氏から華氏に変換するものとその反対のものと、2 つの関数を書きます。
 
@@ -148,7 +148,7 @@ function tryConvert(temperature, convert) {
 
 例えば、`tryConvert('abc', toCelsius)` は空の文字列を返し、`tryConvert('10.22', toFahrenheit)` は `'50.396'` を返します。
 
-## state のリフトアップ
+## state のリフトアップ {#lifting-state-up}
 
 現時点では、両方の `TemperatureInput` コンポーネントは独立してローカルの state を保持しています：
 
@@ -316,7 +316,7 @@ class Calculator extends React.Component {
 
 全ての更新は同じ手順で実行されるので、2 つの入力コンポーネントは常に同期を保つことができます。
 
-## この章で学んだこと
+## この章で学んだこと {#lessons-learned}
 
 React アプリケーションで変化するどのようなデータも単一の "信頼出来る情報源" であるべきです。通常、state はレンダリング時にそれを必要とするコンポーネントに最初に追加されます。それから、他のコンポーネントもその state を必要としているなら、直近の共通祖先コンポーネントにその state をリフトアップすることができます。異なるコンポーネント間で state を同期しようとする代わりに、[トップダウン型のデータフロー](/docs/state-and-lifecycle.html#the-data-flows-down)の力を借りるべきです。
 

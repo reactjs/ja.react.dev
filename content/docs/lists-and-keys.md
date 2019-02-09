@@ -20,7 +20,7 @@ console.log(doubled);
 
 React では配列を[要素](/docs/rendering-elements.html)のリストに変換することが、ほぼこれと同様のものです。
 
-### 複数のコンポーネントをレンダリングする
+### 複数のコンポーネントをレンダリングする {#rendering-multiple-components}
 
 要素の集合を作成し中括弧 `{}` で囲むことで[JSXに含める](/docs/introducing-jsx.html#embedding-expressions-in-jsx)ことができます。
 
@@ -46,7 +46,7 @@ ReactDOM.render(
 
 このコードは、1 から 5 までの数字の箇条書きのリストを表示します。
 
-### 基本的なリストコンポーネント
+### 基本的なリストコンポーネント {#basic-list-component}
 
 通常、リストは何らかの[コンポーネント](/docs/components-and-props.html)の内部でレンダリングしたいと思うでしょう。
 
@@ -96,7 +96,7 @@ ReactDOM.render(
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
 
-## Key
+## Key {#keys}
 
 Key は、どの要素が変更、追加もしくは削除されたのかを React が識別するのに役立ちます。配列内の項目に安定した識別性を与えるため、それぞれの項目に key を与えるべきです。
 
@@ -132,7 +132,7 @@ const todoItems = todos.map((todo, index) =>
 
 要素の並び順が変更される可能性がある場合、インデックスを key として使用することはお勧めしません。パフォーマンスに悪い影響を与え、コンポーネントの状態に問題を起こす可能性があります。Robin Pokorny による、[key としてインデックスを用いる際の悪影響についての詳しい解説](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)をご覧ください。より詳しく学びたい場合は、[key が何故必要なのかについての詳しい解説](/docs/reconciliation.html#recursing-on-children)を参照してください。
 
-### key のあるコンポーネントの抽出
+### key のあるコンポーネントの抽出 {#extracting-components-with-keys}
 
 key が意味を持つのは、それをとり囲んでいる配列の側の文脈です。
 
@@ -204,7 +204,7 @@ ReactDOM.render(
 
 基本ルールとしては、`map()` 呼び出しの中に現れる要素に key が必要です。
 
-### key は兄弟要素の中で一意であればよい
+### key は兄弟要素の中で一意であればよい {#keys-must-only-be-unique-among-siblings}
 
 配列内で使われる key はその兄弟要素の中で一意である必要があります。しかし全体でユニークである必要はありません。2 つの異なる配列を作る場合は、同一の key が使われても構いません：
 
@@ -259,7 +259,7 @@ const content = posts.map((post) =>
 
 上記の例では、`Post` コンポーネントは `props.id` を読み取ることができますが、`props.key` は読み取れません。
 
-### map() を JSX に埋め込む
+### map() を JSX に埋め込む {#embedding-map-in-jsx}
 
 上記の例では `listItems` 変数を別途宣言して、それを JSX に含めました：
 

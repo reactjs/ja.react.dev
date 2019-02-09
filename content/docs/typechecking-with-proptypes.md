@@ -32,7 +32,7 @@ Greeting.propTypes = {
 
 `PropTypes` は受け取ったデータが有効かどうかを確認するために使用できる種々のバリデーターをエクスポートしています。上記の例では、`PropTypes.string` を使用しています。 無効な値がプロパティに与えられた場合、JavaScript のコンソールに警告文が出力されます。 パフォーマンス上の理由から、`propTypes` のチェックは開発モードでのみ行われます。
 
-### PropTypes
+### PropTypes {#proptypes}
 
 PropTypes によって提供されている様々なバリデーターの実例を紹介します。
 
@@ -119,7 +119,7 @@ MyComponent.propTypes = {
 };
 ```
 
-### 単一の子要素を要求する
+### 単一の子要素を要求する {#requiring-single-child}
 
 `PropTypes.element` を使うことで、コンポーネントに単一の子要素しか渡せないことを指定することができます。
 
@@ -143,7 +143,7 @@ MyComponent.propTypes = {
 };
 ```
 
-### props のデフォルト値
+### props のデフォルト値 {#default-prop-values}
 
 `defaultProps` というプロパティを割り当てることで、`props` に値が渡されなかった際のデフォルト値を定義することができます。
 

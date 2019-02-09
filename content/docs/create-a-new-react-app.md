@@ -20,13 +20,13 @@ next: cdn-links.html
 
 このページで推奨されているツールチェインは**始めるにあたって設定が不要です**。
 
-## ツールチェインが必要ない場合
+## ツールチェインが必要ない場合 {#you-might-not-need-a-toolchain}
 
 あなたが上記のような問題を経験していなかったり、まだ JavasScript のツールを利用するのに慣れていない場合、[HTML ページに簡単な `<script>` タグで React を追加](/docs/add-react-to-a-website.html)することを検討してください。（[JSX の利用](/docs/add-react-to-a-website.html#optional-try-react-with-jsx)も検討してみてください）
 
 これは**既存のウェブサイトに React を統合する最も簡単な方法**でもあります。あなたが役立つと思えばいつでもより大きなツールチェインを追加できます。
 
-## 推奨するツールチェイン
+## 推奨するツールチェイン {#recommended-toolchains}
 
 React チームは主に以下のソリューションを推奨します：
 
@@ -35,7 +35,7 @@ React チームは主に以下のソリューションを推奨します：
 - **静的なコンテンツ中心のウェブサイト**を構築するなら、[Gatsby](#gatsby) を試してください
 - **コンポーネントライブラリ**の構築や**既存のコードベースへの統合**をするなら、[その他の柔軟なツールチェイン](#more-flexible-toolchains)を試してください
 
-### Create React App
+### Create React App {#create-react-app}
 
 [Create React App](http://github.com/facebookincubator/create-react-app) は **React を学習する**のに快適な環境であり、React で**新しい[シングルページ](/docs/glossary.html#single-page-application)アプリケーション**を作成するのに最も良い方法です。
 
@@ -55,19 +55,19 @@ Create React App はバックエンドのロジックやデータベース接続
 
 本番環境にデプロイする準備ができたら、`npm run build` を実行すれば、`build` フォルダ内に最適化されたアプリケーションのビルドが生成されます。Create React App の詳細については、[該当ツールの README](https://github.com/facebookincubator/create-react-app#create-react-app-) および [ユーザガイド](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents) を参照してください。
 
-### Next.js
+### Next.js {#nextjs}
 
 [Next.js](https://nextjs.org/) は React を使って**静的なサイトやサーバサイドでレンダーされるアプリケーション**を構築する場合に人気のある軽量フレームワークです。すぐに使える**スタイルおよびルーティングのソリューション**を含み、サーバ環境として [Node.js](https://nodejs.org/) を利用することを想定しています。
 
 Next.js の[オフィシャルガイド](https://nextjs.org/learn/)を参照してください。
 
-### Gatsby
+### Gatsby {#gatsby}
 
 [Gatsby](https://www.gatsbyjs.org/) は React で**静的なウェブサイト**を作成するのに最も良い方法です。React コンポーネントを使用しながらも、事前レンダーされた HTML と CSS を出力することで最速のロード時間を保証します。
 
 Gatsby の[オフィシャルガイド](https://www.gatsbyjs.org/docs/) および [スターターキットのギャラリー](https://www.gatsbyjs.org/docs/gatsby-starters/)を参照してください。
 
-### その他の柔軟なツールチェイン
+### その他の柔軟なツールチェイン {#more-flexible-toolchains}
 
 以下のツールチェインはより大きな柔軟性や選択肢を提供します。経験豊富なユーザにこれらを推奨します。
 
@@ -79,7 +79,7 @@ Gatsby の[オフィシャルガイド](https://www.gatsbyjs.org/docs/) およ�
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** は設定不要のサーバレンダリングフレームワークでありながら、Next.js よりも柔軟性があります。
 
-## ゼロからツールチェインを作成する
+## ゼロからツールチェインを作成する {#creating-a-toolchain-from-scratch}
 
 JavaScript ビルドツールチェインは一般的に次から成ります：
 

@@ -18,7 +18,7 @@ const element = <h1>Hello, world!</h1>;
 
 JSX は React "要素" を生成します。[次の章](/docs/rendering-elements.html)で React 要素を DOM に変換する方法について見ていきます。以下では、 JSX を使い始めるのに必要な基礎を学ぶことができます。
 
-### JSXを使う理由
+### JSXを使う理由 {#why-jsx}
 
 表示のためのロジックは、イベントへの応答や経時的な状態の変化、画面表示のためのデータを準備する方法といった、他の UI ロジックと本質的に結合したものであり、React はその事実を受け入れます。
 
@@ -29,7 +29,7 @@ React で JSX を使うことは[必須ではありません](/docs/react-withou
 
 前置きはこのくらいにして、早速始めましょう。
 
-### JSX に式を埋め込む
+### JSX に式を埋め込む {#embedding-expressions-in-jsx}
 
 以下の例では、`name` という変数を宣言して、それを中括弧に囲んで JSX 内で使用しています。
 
@@ -73,7 +73,7 @@ ReactDOM.render(
 
 読みやすさのため JSX を複数行に分けています。必須ではありませんが、複数行に分割する場合には、[自動セミコロン挿入](http://stackoverflow.com/q/2846283)の落とし穴にはまらないように括弧で囲むことをおすすめします
 
-### JSX もまた式である
+### JSX もまた式である {#jsx-is-an-expression-too}
 
 コンパイルの後、JSX の式は普通の JavaScript の関数呼び出しに変換され、JavaScript オブジェクトへと評価されます。
 
@@ -88,7 +88,7 @@ function getGreeting(user) {
 }
 ```
 
-### JSX で属性を指定する
+### JSX で属性を指定する {#specifying-attributes-with-jsx}
 
 文字列リテラルを属性として指定するために引用符を使用できます。
 
@@ -110,7 +110,7 @@ const element = <img src={user.avatarUrl}></img>;
 >
 >JSX では例えば、`class` は [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) となり、`tabindex` は  [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/tabIndex) となります。
 
-### JSX で子要素を指定する
+### JSX で子要素を指定する {#specifying-children-with-jsx}
 
 タグが空の場合、XML のように `/> `でタグを閉じる事ができます：
 
@@ -129,7 +129,7 @@ const element = (
 );
 ```
 
-### JSX はインジェクション攻撃を防ぐ
+### JSX はインジェクション攻撃を防ぐ {#jsx-prevents-injection-attacks}
 
 JSX にユーザーの入力を埋め込むことは安全です：
 
@@ -141,7 +141,7 @@ const element = <h1>{title}</h1>;
 
 デフォルトでは、React DOM は JSX に埋め込まれた値をレンダリングされる前に[エスケープ](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html)します。このため、自分のアプリケーションで明示的に書かれたものではないあらゆるコードは、注入できないことが保証されます。レンダーの前に全てが文字列に変換されます。これは [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) 攻撃の防止に役立ちます。
 
-### JSX はオブジェクトの表現である
+### JSX はオブジェクトの表現である {#jsx-represents-objects}
 
 Babel は JSX を `React.createElement()` の呼び出しへとコンパイルします。
 

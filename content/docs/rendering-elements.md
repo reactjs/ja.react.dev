@@ -22,7 +22,7 @@ const element = <h1>Hello, world</h1>;
 >
 >要素のことを、より広く知られている概念である "コンポーネント" と混同する人もいるかもしれません。コンポーネントについては[次の章](/docs/components-and-props.html)で説明します。要素とはコンポーネントを "構成する" ものです。次に進む前にこの章を読んでいくことをお勧めします。
 
-## 要素を DOM として描画する
+## 要素を DOM として描画する {#rendering-an-element-into-the-dom}
 
 HTML ファイルの中に `<div>` 要素があったとしましょう：
 
@@ -42,7 +42,7 @@ React 要素をルートDOM ノードにレンダリングするには、その2
 
 このコードはページに "Hello, world" を表示します。
 
-## レンダリングされた要素の更新
+## レンダリングされた要素の更新 {#updating-the-rendered-element}
 
 React 要素は[イミュータブル](https://en.wikipedia.org/wiki/Immutable_object)です。一度要素を作成すると、その子要素もしくは属性を変更することはできません。要素は映画の中のひとつのフレームのようなものであり、それは特定のある時点の UI を表します。
 
@@ -62,7 +62,7 @@ React 要素は[イミュータブル](https://en.wikipedia.org/wiki/Immutable_o
 >
 >トピックはお互いを基礎として構成されているため、読み飛ばさないことをお勧めします。
 
-## React は必要な箇所のみを更新する
+## React は必要な箇所のみを更新する {#react-only-updates-whats-necessary}
 
 React DOM は要素とその子要素を以前のものと比較し、DOM を望ましい状態へと変えるのに必要なだけの DOM の更新を行います。
 

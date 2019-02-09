@@ -23,7 +23,7 @@ redirect_from:
 
 このフォームは、ユーザーがフォームを送信した際に新しいページに移動する、という、HTML フォームとしてのデフォルトの動作をします。React でこの振る舞いが必要なら、そのまま動きます。しかし大抵のケースでは、フォームの送信に応答してユーザーがフォームに入力したデータにアクセスするような JavaScript 関数があった方が便利です。これを実現する標準的な方法は、"制御された (controlled) コンポーネント" と呼ばれるテクニックを使うことです。
 
-## 制御されたコンポーネント
+## 制御されたコンポーネント {#controlled-components}
 
 HTMLでは `<input>`、`<textarea>`、そして `<select>` のようなフォーム要素は通常、自身で状態を保持しており、ユーザーの入力に基づいてそれを更新します。React では、変更されうる状態は通常はコンポーネントの state プロパティに保持され、[`setState()`](/docs/react-component.html#setstate) 関数でのみ更新されます。
 
@@ -76,7 +76,7 @@ handleChange(event) {
 }
 ```
 
-## textarea タグ
+## textarea タグ {#the-textarea-tag}
 
 HTML では、`<textarea>` 要素はテキストを子要素として定義します。
 
@@ -125,7 +125,7 @@ class EssayForm extends React.Component {
 
 `this.state.value` がコンストラクタで初期化されているので、テキストエリアには始めからテキストが入っていることに注意してください。
 
-## select タグ
+## select タグ {#the-select-tag}
 
 HTML では、`<select>` はドロップダウンリストを作成します。例えばこの HTML は味についてのドロップダウンリストを作成しています：
 
@@ -191,7 +191,7 @@ class FlavorForm extends React.Component {
 ><select multiple={true} value={['B', 'C']}>
 >```
 
-##file input タグ
+##file input タグ {#the-file-input-tag}
 
 HTMLでは、`<input type="file">` によってユーザにデバイス内の 1 つ以上のファイルを選ばせて、それをサーバにアップロードしたり [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications) を使って JavaScript で操作したりすることができます。
 
@@ -201,7 +201,7 @@ HTMLでは、`<input type="file">` によってユーザにデバイス内の 1 
 
 この値は読み取り専用ですので、これは**非制御**コンポーネントになります。[このドキュメントの後の方](/docs/uncontrolled-components.html#the-file-input-tag)で、他の非制御コンポーネントと併せて説明しています。
 
-## 複数の入力の処理
+## 複数の入力の処理 {#handling-multiple-inputs}
 
 複数の制御された `input` 要素を処理する必要がある場合、それぞれの入力要素に `name` 属性を追加すれば、ハンドラー関数に `event.target.name` に基づいて処理を選択させるようにできます。
 
@@ -275,7 +275,7 @@ this.setState(partialState);
 
 また、`setState()` は自動的に[部分的な state を現在の state にマージする](/docs/state-and-lifecycle.html#state-updates-are-merged)ので、変更された部分のみで呼び出せば大丈夫です。
 
-## 制御された入力における null 値
+## 制御された入力における null 値 {#controlled-input-null-value}
 
 [制御されたコンポーネント](/docs/forms.html#controlled-components)で value プロパティに値を指定することで、変更させたくない場合にユーザーが値を変更できないようになります。もしも 
 `value` を指定したのに入力フィールドが依然変更可能であるという場合は、`value` を誤って `undefined` もしくは `null` に設定してしまったのかもしれません。
@@ -291,10 +291,10 @@ setTimeout(function() {
 
 ```
 
-## 制御されたコンポーネントの代替手段
+## 制御されたコンポーネントの代替手段 {#alternatives-to-controlled-components}
 
 制御されたコンポーネントは、あらゆる種類のデータの変更に対してイベントハンドラを書き、あらゆる入力状態を React コンポーネントに通してやる必要があるため、時としてうんざりすることがあります。このことは既存のコードベースを React に変換する場合や、React アプリケーションを非 React のライブラリと統合する場合に、特に問題化します。これらの状況においては、 入力フォームを実装する代替手段である[非制御コンポーネント](/docs/uncontrolled-components.html)を検討してみてください。
 
-## 本格的なソリューション
+## 本格的なソリューション {#fully-fledged-solutions}
 
 入力値のバリデーション、訪問済みフィールドの追跡やフォーム送信を含む完全なソリューションをお探しの場合は、[Formik](https://jaredpalmer.com/formik) が人気のある選択肢のひとつです。しかしながらこれは制御されたコンポーネントや state の管理と同じ原理で作成されていますので、これらについて学ぶことを無視しないようにしましょう。
