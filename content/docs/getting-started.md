@@ -57,7 +57,7 @@ React を学びたい人には様々な背景があり、それぞれいろん�
 * **実際に手を動かしながら学びたい人**は[チュートリアル](/tutorial/tutorial.html)からはじめましょう。
 * **コンセプトからひとつひとつ学んでいきたい人**は[こちらのガイド](/docs/hello-world.html)からはじめていきましょう。
 
-他の新しい技術を新しく学ぶ時と同様、 React にも学習コストがあります。しかし、辛抱強く、地道にコツコツやっていくことで、*絶対に*できるようになります。
+他の新しい技術を新しく学ぶ時と同様、React にも学習コストがあります。しかし、辛抱強く、地道にコツコツやっていくことで、*絶対に*できるようになります。
 
 ### 最初の例 {#first-examples}
 
@@ -73,7 +73,7 @@ React を学びたい人には様々な背景があり、それぞれいろん�
 
 ### JavaScript 資料 {#javascript-resources}
 
-React の公式ドキュメントはあなたがある程度 JavaScript について知っていることを想定しています。JavaScriptの達人である必要は全くありませんが、JavaScript と React を同時に取得するのは難しいでしょう。
+React の公式ドキュメントはあなたがある程度 JavaScript について知っていることを想定しています。JavaScript の達人である必要は全くありませんが、JavaScript と React を同時に取得するのは難しいでしょう。
 
 JavaScript について自分がどれだけ知っているかを知るために、[この JavaScript の概要](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)を読んでおくことをおすすめします。読むのに 30 分から 1 時間程かかってしまいますが、React を学ぶための自信へと繋がってくるでしょう。
 
@@ -91,7 +91,7 @@ JavaScript について自分がどれだけ知っているかを知るために
 
 ### React 的な考え方 {#thinking-in-react}
 
-多くの React のユーザーは　[React の流儀](/docs/thinking-in-react.html)を読んだ時に React のことがわかってきたと高く評価しています。この世に存在する一番古い React に関する資料ですが、今でも現役で使えます。
+多くの React のユーザーは [React の流儀](/docs/thinking-in-react.html)を読んだ時に React についてピンときたと高く評価しています。この世に存在する一番古い React に関する資料ですが、今でも現役で使えます。
 
 ### おすすめの資料 {#recommended-courses}
 
@@ -123,4 +123,4 @@ React の[基本コンセプト](#main-concepts)について慣れてきて、�
 
 ## 他に聞きたいことは？ {#something-missing}
 
-ドキュメントに記載されていないことがあったり、わかりにくい箇所があったりしたら、 困ったことや改善案等を[この公式ドキュメントのリポジトリ](https://github.com/reactjs/reactjs.org/issues/new)に issue として立てるか、もしくは公式の[@reactjs](https://twitter.com/reactjs)までご連絡ください。あなたのご意見をお待ちしております！
+ドキュメントに記載されていないことがあったり、わかりにくい箇所があったりしたら、 困ったことや改善案等を[この公式ドキュメントのリポジトリ](https://github.com/reactjs/reactjs.org/issues/new)に issue として立てるか、もしくは公式の [@reactjs](https://twitter.com/reactjs) までご連絡ください。あなたのご意見をお待ちしております！
