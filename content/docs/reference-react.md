@@ -15,9 +15,9 @@ redirect_from:
 
 `React` は React ライブラリのエントリポイントです。`<script>` タグから React を読み込む場合、これらの最上位 API をグローバルの `React` から利用できます。npm と ES6 を使う場合、`import React from 'react'` と書けます。npm と ES5 を使う場合、`var React = require('react')` と書けます。
 
-## Overview
+## Overview {#overview}
 
-### Components
+### Components {#components}
 
 React コンポーネントを使用すると UI を独立した再利用可能な部分に分割し、各部分を個別に考えることができます。React コンポーネントは `React.Component` または `React.PureComponent` をサブクラス化することで定義できます。
 
@@ -30,7 +30,7 @@ React コンポーネントは関数で定義でき、その際に以下の関�
 
 - [`React.memo`](#reactmemo)
 
-### Creating React Elements
+### Creating React Elements {#creating-react-elements}
 
 UI がどのように見えるべきかを記述するために [JSX の使用](/docs/introducing-jsx.html) を推奨します。JSX のそれぞれの要素は [`React.createElement()`](#createelement) を呼ぶための単なる糖衣構文です。JSX を使用している場合は、通常、次のメソッドを直接呼び出すことはありません。
 
@@ -39,7 +39,7 @@ UI がどのように見えるべきかを記述するために [JSX の使用](
 
 詳しくは [Using React without JSX](/docs/react-without-jsx.html) を参照してください。
 
-### 要素を変換する
+### 要素を変換する #{transforming-elements}
 
 `React` は要素を操作するためのいくつかの API を提供しています。
 
@@ -47,29 +47,46 @@ UI がどのように見えるべきかを記述するために [JSX の使用](
 - [`isValidElement()`](#isvalidelement)
 - [`React.Children`](#reactchildren)
 
-### フラグメント (Fragment)
+### フラグメント (Fragment) {#fragments}
 
 `React` はラッパーなしで複数の要素をレンダーするためのコンポーネントを提供しています。
 
 - [`React.Fragment`](#reactfragment)
 
-### Refs
+### Refs {#refs}
 
 - [`React.createRef`](#reactcreateref)
 - [`React.forwardRef`](#reactforwardref)
 
-### サスペンス (Suspense)
+### サスペンス (Suspense) {#suspense}
 
 サスペンスを使用すると、コンポーネントはレンダーの前に何かを「待機」できます。現在、サスペンスは 1 つのユースケースのみをサポートしています：[`React.lazy` を使ってコンポーネントを動的に読み込む](/docs/code-splitting.html#reactlazy)。将来的にはデータの取得のような他のユースケースもサポートされるでしょう。
 
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
 
+### Hooks {#hooks}
+
+*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class. Hooks have a [dedicated docs section](/docs/hooks-intro.html) and a separate API reference:
+
+- [Basic Hooks](/docs/hooks-reference.html#basic-hooks)
+  - [`useState`](/docs/hooks-reference.html#usestate)
+  - [`useEffect`](/docs/hooks-reference.html#useeffect)
+  - [`useContext`](/docs/hooks-reference.html#usecontext)
+- [Additional Hooks](/docs/hooks-reference.html#additional-hooks)
+  - [`useReducer`](/docs/hooks-reference.html#usereducer)
+  - [`useCallback`](/docs/hooks-reference.html#usecallback)
+  - [`useMemo`](/docs/hooks-reference.html#usememo)
+  - [`useRef`](/docs/hooks-reference.html#useref)
+  - [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)
+  - [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect)
+  - [`useDebugValue`](/docs/hooks-reference.html#usedebugvalue)
+
 * * *
 
-## レファレンス
+## レファレンス {#reference}
 
-### `React.Component`
+### `React.Component` {#reactcomponent}
 
 React コンポーネントが [ES6 クラス](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) を用いて定義されている場合、`React.Component` はそれらの基底クラスになります。
 
@@ -85,7 +102,7 @@ class Greeting extends React.Component {
 
 * * *
 
-### `React.PureComponent`
+### `React.PureComponent` {#reactpurecomponent}
 
 `React.PureComponent` は [`React.Component`](#reactcomponent) と似ています。両者の違いは [`React.Component`](#reactcomponent) が [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) を実装していないことに対し、`React.PureComponent` は props と state を浅く (shallow) 比較することでそれを実装していることです。
 
@@ -99,7 +116,7 @@ React コンポーネントの `render()` 関数が同じ props と state を与
 
 * * *
 
-### `React.memo`
+### `React.memo` {#reactmemo}
 
 ```javascript
 const MyComponent = React.memo(function MyComponent(props) {
@@ -135,7 +152,7 @@ export default React.memo(MyComponent, areEqual);
 
 * * *
 
-### `createElement()`
+### `createElement()` {#createelement}
 
 ```javascript
 React.createElement(
@@ -151,7 +168,7 @@ JSX で書かれたコードは `React.createElement()` を用いるコードに
 
 * * *
 
-### `cloneElement()`
+### `cloneElement()` {#cloneelement}
 
 ```
 React.cloneElement(
@@ -175,7 +192,7 @@ React.cloneElement(
 
 * * *
 
-### `createFactory()`
+### `createFactory()` {#createfactory}
 
 ```javascript
 React.createFactory(type)
@@ -189,7 +206,7 @@ JSX を使っていれば通常  `React.createFactory()` を直接呼び出す�
 
 * * *
 
-### `isValidElement()`
+### `isValidElement()` {#isvalidelement}
 
 ```javascript
 React.isValidElement(object)
@@ -199,11 +216,11 @@ React.isValidElement(object)
 
 * * *
 
-### `React.Children`
+### `React.Children` {#reactchildren}
 
 `React.Children` はデータ構造が非公開の `this.props.children` を扱うためのユーティリティを提供します。
 
-#### `React.Children.map`
+#### `React.Children.map` {#reactchildrenmap}
 
 ```javascript
 React.Children.map(children, function[(thisArg)])
@@ -215,7 +232,7 @@ React.Children.map(children, function[(thisArg)])
 >
 > `children` が `Fragment` の場合、それは 1 つの子要素として扱われ、走査されません。
 
-#### `React.Children.forEach`
+#### `React.Children.forEach` {#reactchildrenforeach}
 
 ```javascript
 React.Children.forEach(children, function[(thisArg)])
@@ -223,7 +240,7 @@ React.Children.forEach(children, function[(thisArg)])
 
 [`React.Children.map()`](#reactchildrenmap) と似ていますが、配列を返しません。
 
-#### `React.Children.count`
+#### `React.Children.count` {#reactchildrencount}
 
 ```javascript
 React.Children.count(children)
@@ -231,7 +248,7 @@ React.Children.count(children)
 
 `children` に含まれるコンポーネントの総数を返します。これは `map` または `forEach` に渡したコールバックが呼ばれる回数と同じです。
 
-#### `React.Children.only`
+#### `React.Children.only` {#reactchildrenonly}
 
 ```javascript
 React.Children.only(children)
@@ -243,7 +260,7 @@ React.Children.only(children)
 >
 > [`React.Children.map()`](#reactchildrenmap) の返り値は React 要素ではなく配列なため、`React.Children.only()` はそれを受け付けません。
 
-#### `React.Children.toArray`
+#### `React.Children.toArray` {#reactchildrentoarray}
 
 ```javascript
 React.Children.toArray(children)
@@ -257,7 +274,7 @@ React.Children.toArray(children)
 
 * * *
 
-### `React.Fragment`
+### `React.Fragment` {#reactfragment}
 
 `React.Fragment` コンポーネントを使用すると追加の DOM 要素を作成することなく `render()` メソッドで複数の要素を返すことができます。
 
@@ -275,12 +292,12 @@ render() {
 また、フラグメントを `<></>` という短縮構文で使用できます。詳しくは [React v16.2.0: Improved Support for Fragments](/blog/2017/11/28/react-v16.2.0-fragment-support.html) を参照してください。
 
 
-### `React.createRef`
+### `React.createRef` {#reactcreateref}
 
 `React.createRef` は [ref](/docs/refs-and-the-dom.html) を作成します。ref は `ref` 属性を介して React 要素に取り付けることができます。
 `embed:16-3-release-blog-post/create-ref-example.js`
 
-### `React.forwardRef`
+### `React.forwardRef` {#reactforwardref}
 
 `React.forwardRef` は [ref](/docs/refs-and-the-dom.html) を配下のツリーの別のコンポーネントに受け渡す React コンポーネントを作成します。この手法はあまり一般的ではありませんが、2 つのシナリオで特に役立ちます：
 
@@ -297,7 +314,7 @@ render() {
 
 詳しくは [forwarding refs](/docs/forwarding-refs.html) を参照してください。
 
-### `React.lazy`
+### `React.lazy` {#reactlazy}
 
 `React.lazy()` を使用すると、動的に読み込まれるコンポーネントを定義できます。これにより、バンドルサイズを削減して、最初のレンダー時に使用されないコンポーネントの読み込みを遅らせることができます。
 
@@ -314,7 +331,7 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 >
 > `React.lazy` を使って動的にインポートするには JS 環境で Promise が使用できる必要があります。これは IE11 以前の環境ではポリフィルが必要だということです。
 
-### `React.Suspense`
+### `React.Suspense` {#reactsuspense}
 
 `React.Suspense` を使用することで、その配下にレンダーする準備ができていないコンポーネントがあるときにローディングインジケータを指定できます。現在、遅延読み込みコンポーネントは `<React.Suspense>` のみによってサポートされています。
 

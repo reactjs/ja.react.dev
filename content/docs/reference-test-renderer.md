@@ -13,7 +13,7 @@ import TestRenderer from 'react-test-renderer'; // ES6
 const TestRenderer = require('react-test-renderer'); // ES5 with npm
 ```
 
-## 概要
+## 概要 {#overview}
 
 このパッケージは、DOM やネイティブのモバイル環境に依存せずに React コンポーネントをピュアな JavaScript オブジェクトにレンダーすることができる React レンダラを提供します。
 
@@ -67,11 +67,11 @@ expect(testInstance.findByType(SubComponent).props.foo).toBe('bar');
 expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 ```
 
-### TestRenderer
+### TestRenderer {#testrenderer}
 
 * [`TestRenderer.create()`](#testrenderercreate)
 
-### TestRenderer instance
+### TestRenderer instance {#testrenderer-instance}
 
 * [`testRenderer.toJSON()`](#testrenderertojson)
 * [`testRenderer.toTree()`](#testrenderertotree)
@@ -80,7 +80,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 * [`testRenderer.getInstance()`](#testrenderergetinstance)
 * [`testRenderer.root`](#testrendererroot)
 
-### TestInstance
+### TestInstance {#testinstance}
 
 * [`testInstance.find()`](#testinstancefind)
 * [`testInstance.findByType()`](#testinstancefindbytype)
@@ -94,9 +94,9 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 * [`testInstance.parent`](#testinstanceparent)
 * [`testInstance.children`](#testinstancechildren)
 
-## リファレンス
+## リファレンス {#reference}
 
-### `TestRenderer.create()`
+### `TestRenderer.create()` {#testrenderercreate}
 
 ```javascript
 TestRenderer.create(element, options);
@@ -104,7 +104,7 @@ TestRenderer.create(element, options);
 
 渡された React 要素から `TestRenderer` インスタンスを作成します。実際の DOM は使用しませんが、コンポーネントを完全な形でメモリにレンダーするので、アサーションを行うことができます。返されたインスタンスは、次のメソッドとプロパティを持ちます。
 
-### `testRenderer.toJSON()`
+### `testRenderer.toJSON()` {#testrenderertojson}
 
 ```javascript
 testRenderer.toJSON()
@@ -112,7 +112,7 @@ testRenderer.toJSON()
 
 レンダーされたツリーを表すオブジェクトを返します。このツリーは `<div>` もしくは `<View>` のようなプラットフォーム固有のノードとそのプロパティを含みますが、ユーザー定義のコンポーネントは含まれません。[スナップショットテスト](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest)に便利です。
 
-### `testRenderer.toTree()`
+### `testRenderer.toTree()` {#testrenderertotree}
 
 ```javascript
 testRenderer.toTree()
@@ -120,7 +120,7 @@ testRenderer.toTree()
 
 レンダーされたツリーを表すオブジェクトを返します。`toJSON()` とは異なり、このツリーはより詳細なものであり、ユーザー定義のコンポーネントも含んでいます。テストレンダラを利用して自作のアサーションライブラリを作成している場合以外は、恐らくこのメソッドが必要となることはないでしょう。
 
-### `testRenderer.update()`
+### `testRenderer.update()` {#testrendererupdate}
 
 ```javascript
 testRenderer.update(element)
@@ -128,7 +128,7 @@ testRenderer.update(element)
 
 メモリ上のツリーを新規のルート要素で再レンダーします。ルートでの React の更新をシミュレートします。新しい要素が以前の要素と同じ型と key を持つ場合は、ツリーは更新されます。それ以外の場合は新しいツリーを再マウントします。
 
-### `testRenderer.unmount()`
+### `testRenderer.unmount()` {#testrendererunmount}
 
 ```javascript
 testRenderer.unmount()
@@ -136,7 +136,7 @@ testRenderer.unmount()
 
 メモリ上のツリーをアンマウントし、適切なライフサイクルイベントを発生させます。
 
-### `testRenderer.getInstance()`
+### `testRenderer.getInstance()` {#testrenderergetinstance}
 
 ```javascript
 testRenderer.getInstance()
@@ -144,7 +144,7 @@ testRenderer.getInstance()
 
 ルート要素に対応したインスタンスがある場合はそれを返します。関数コンポーネントはインスタンスを持たないため、ルート要素が関数コンポーネントの場合、このメソッドはうまく動作しません。
 
-### `testRenderer.root`
+### `testRenderer.root` {#testrendererroot}
 
 ```javascript
 testRenderer.root
@@ -152,7 +152,7 @@ testRenderer.root
 
 ツリー上の特定のノードに対してアサーションを行う際に役立つ、ルート「テストインスタンス」を返します。これは、配下の他の「テストインスタンス」を検索する際に使用することができます。
 
-### `testInstance.find()`
+### `testInstance.find()` {#testinstancefind}
 
 ```javascript
 testInstance.find(test)
@@ -160,7 +160,7 @@ testInstance.find(test)
 
 `test(testInstance)` が `true` を返す単一の子テストインスタンスを検索します。もし `test(testInstance)` に対して `true` を返すテストインスタンスの数がちょうど 1 でない場合は、エラーがスローされます。
 
-### `testInstance.findByType()`
+### `testInstance.findByType()` {#testinstancefindbytype}
 
 ```javascript
 testInstance.findByType(type)
@@ -168,7 +168,7 @@ testInstance.findByType(type)
 
 与えられた `type` を持つ単一の子テストインスタンスを検索します。もし与えられた `type` を持つテストインスタンスの数がちょうど 1 でない場合、エラーがスローされます。
 
-### `testInstance.findByProps()`
+### `testInstance.findByProps()` {#testinstancefindbyprops}
 
 ```javascript
 testInstance.findByProps(props)
@@ -176,7 +176,7 @@ testInstance.findByProps(props)
 
 与えられた `props` を持つ単一の子テストインスタンスを検索します。もし与えられた `props` を持つテストインスタンスの数がちょうど 1 でない場合、エラーがスローされます。
 
-### `testInstance.findAll()`
+### `testInstance.findAll()` {#testinstancefindall}
 
 ```javascript
 testInstance.findAll(test)
@@ -184,7 +184,7 @@ testInstance.findAll(test)
 
 `test(testInstance)` が `true` を返す全ての子テストインスタンスを検索します。
 
-### `testInstance.findAllByType()`
+### `testInstance.findAllByType()` {#testinstancefindallbytype}
 
 ```javascript
 testInstance.findAllByType(type)
@@ -192,7 +192,7 @@ testInstance.findAllByType(type)
 
 与えられた `type` を持つ全ての子テストインスタンスを検索します。
 
-### `testInstance.findAllByProps()`
+### `testInstance.findAllByProps()` {#testinstancefindallbyprops}
 
 ```javascript
 testInstance.findAllByProps(props)
@@ -200,7 +200,7 @@ testInstance.findAllByProps(props)
 
 与えられた `props` を持つ全ての子テストインスタンスを検索します。
 
-### `testInstance.instance`
+### `testInstance.instance` {#testinstanceinstance}
 
 ```javascript
 testInstance.instance
@@ -208,7 +208,7 @@ testInstance.instance
 
 当該テストインスタンスに対応するコンポーネントのインスタンスです。関数コンポーネントはインスタンスを持たないため、クラスコンポーネントでのみ使用することができます。与えられたコンポーネント内での `this` の値と一致します。
 
-### `testInstance.type`
+### `testInstance.type` {#testinstancetype}
 
 ```javascript
 testInstance.type
@@ -216,7 +216,7 @@ testInstance.type
 
 当該テストインスタンスに対応するコンポーネントの型です。例えば、`<Button />` コンポーネントは `Button` 型を持っています。
 
-### `testInstance.props`
+### `testInstance.props` {#testinstanceprops}
 
 ```javascript
 testInstance.props
@@ -224,7 +224,7 @@ testInstance.props
 
 当該テストインスタンスに対応するコンポーネントの props です。例えば、`<Button size="small" />` コンポーネントは `{size: 'small'}` を props として持っています。
 
-### `testInstance.parent`
+### `testInstance.parent` {#testinstanceparent}
 
 ```javascript
 testInstance.parent
@@ -232,7 +232,7 @@ testInstance.parent
 
 当該テストインスタンスの親テストインスタンスです。
 
-### `testInstance.children`
+### `testInstance.children` {#testinstancechildren}
 
 ```javascript
 testInstance.children
@@ -240,7 +240,7 @@ testInstance.children
 
 当該テストインスタンスの子テストインスタンスです。
 
-## 使い方の一例
+## 使い方の一例 {#ideas}
 
 オプションとして `createNodeMock` 関数を `TestRenderer.create` に渡すことで、独自のモック refs を作成することができます。`createNodeMock` は現在の要素を受け取り、モックの ref オブジェクトを返す必要があります。refs に依存したコンポーネントのテストに便利です。
 
