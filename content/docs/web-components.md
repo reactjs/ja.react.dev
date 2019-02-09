@@ -6,7 +6,7 @@ redirect_from:
   - "docs/webcomponents.html"
 ---
 
-React と [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) は異なる課題を解決する為に構築されました。Web Components はコンポーネントをパッケージ化して、高い再利用性を与えます。一方で React は DOM とデータを同期させる為の宣言型のライブラリを提供しています。この2つの目標は互いを補完しあっています。あなたは開発者として、Web Component 内で React を使用することも、React 内で Web Components を使用することも、あるいはその両方を行うこともできます。
+React と [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) は異なる課題を解決する為に構築されました。Web Components はコンポーネントをパッケージ化して、高い再利用性を与えます。一方で React は DOM とデータを同期させる為の宣言型のライブラリを提供しています。この 2 つの目標は互いを補完しあっています。あなたは開発者として、Web Components 内で React を使用することも、React 内で Web Components を使用することも、あるいはその両方を行うこともできます。
 
 React を使用するほとんどの人は Web Components を使用しませんが、Web Components を用いたサードパーティ製の UI コンポーネントを使用したい時などには活用できるかもしれません。
 
@@ -20,14 +20,14 @@ class HelloMessage extends React.Component {
 }
 ```
 
-> 注意:
+> 補足:
 >
 > Web Components はよく命令形の API を公開しています。例えば、`video` という Web Component が `play()` や `pause()` といった関数を公開しているかもしれません。Web Component が使う命令形の API にアクセスするには DOM ノードと直接やり取りするために ref を使う必要があります。サードパーティ製の Web Components を使用している場合は、Web Component の Wrapper として機能する React のコンポーネントを作成するのがベストな選択でしょう。 
 >
 > Web Component から発された Event は React のレンダーツリーを正しく伝わってこない可能性があります。
 > React コンポーネント内でイベントに適切に対応するにはそのためのイベントハンドラを与える必要があります。
 
-よくある混乱の1つとして、Web Components が "className" の代わりに "class" を使用しているケースがあります。
+よくある混乱のひとつとして、Web Components が "className" の代わりに "class" を使用しているケースがあります。
 
 ```javascript
 function BrickFlipbox() {
@@ -56,7 +56,7 @@ class XSearch extends HTMLElement {
 customElements.define('x-search', XSearch);
 ```
 
->注釈:
+>補足:
 >
->Babel を使ってクラス変換を行うと上記のコードは**機能しません**。 詳細や議論は[この issue](https://github.com/w3c/webcomponents/issues/587) を参照してください.
->この問題を解決するには [custom-elements-es5-adapter](https://github.com/webcomponents/webcomponentsjs#custom-elements-es5-adapterjs) を Web Component の前に読み込む必要があります。
+>Babel を使ってクラス変換を行うと上記のコードは**機能しません**。詳細や議論は[この issue](https://github.com/w3c/webcomponents/issues/587) を参照してください。
+>この問題を解決するには [custom-elements-es5-adapter](https://github.com/webcomponents/webcomponentsjs#custom-elements-es5-adapterjs) をあなたの web component の前に読み込む必要があります。
