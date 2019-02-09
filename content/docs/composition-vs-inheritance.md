@@ -12,7 +12,7 @@ React は強力なコンポジションモデルを備えており、コンポ�
 
 この章では、React を始めて間もない開発者が継承に手を出した時に陥りがちないくつかの問題と、コンポジションによりその問題がどのように解決できるのかについて考えてみます。
 
-## 子要素の出力 (Containment)
+## 子要素の出力 (Containment) {#containment}
 
 コンポーネントの中には事前には子要素を知らないものもあります。これは `Sidebar` や `Dialog` のような汎用的な "入れ物" をあらわすコンポーネントではよく使われています。
 
@@ -82,8 +82,7 @@ function App() {
 
 `<Contacts />` や `<Chat />` のような React の要素はただのオブジェクトなので、他のあらゆるデータと同様に props として渡すことができます。このアプローチは他のライブラリで言うところの slot に似ていると感じるかもしれませんが、React のコンポーネントに props として渡せるものに制限はありません。
 
-
-## 特化したコンポーネント (Specialization)
+## 特化したコンポーネント (Specialization) {#specialization}
 
 コンポーネントを他のコンポーネントの "特別なケース" として考えることがあります。例えば、`WelcomeDialog` は `Dialog` の特別なケースと言えるでしょう。
 
@@ -164,7 +163,7 @@ class SignUpDialog extends React.Component {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/gwZbYa?editors=0010)
 
-## 継承はどうするの？
+## 継承はどうするの？ {#so-what-about-inheritance}
 
 Facebook では、何千というコンポーネントで React を使用していますが、コンポーネント継承による階層構造が推奨されるケースは全く見つかっていません。
 

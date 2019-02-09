@@ -4,11 +4,11 @@ title: コード分割
 permalink: docs/code-splitting.html
 ---
 
-## バンドル
+## バンドル {#bundling}
 
 多くの React アプリケーションは、[Webpack](https://webpack.js.org/)や [Browserify](http://browserify.org/) などのツールを使ってファイルを「バンドル」しています。バンドルはインポートされたファイルをたどって、それらを1つのファイルにまとめるプロセスです。このバンドルされたファイルを Web ページ内に置くことによって、アプリ全体を一度に読み込むことができます。
 
-#### 例
+#### 例 {#example}
 
 **App:**
 
@@ -44,7 +44,7 @@ console.log(add(16, 26)); // 42
 
 そうでない場合は、自分でバンドルを設定する必要があります。設定方法に関しては、Webpack のドキュメントにある [Installation](https://webpack.js.org/guides/installation/) や [Getting Started](https://webpack.js.org/guides/getting-started/) などを参照してみてください。
 
-## コード分割
+## コード分割 {#code-splitting}
 
 バンドルは確かに素晴らしいですが、アプリが大きくなるにつれて、バンドルのサイズも大きくなります。特にサイズの大きなサードパーティ製のライブラリを含む場合は顕著にサイズが増大します。
 不用意に大きなバンドルを作成してしまいアプリの読み込みに多くの時間がかかってしまうという事態にならないためにも、常に注意を払い続けなければなりません。
@@ -55,7 +55,7 @@ console.log(add(16, 26)); // 42
 コード分割することによって「遅延読み込み」が可能となり、アプリのパフォーマンスを劇的に向上させることができます。
 アプリの全体的なコード量を減らすことはできませんが、ユーザが必要としないコードを読み込まなくて済むため、初期ロードの際に読む込むコード量を削減でき、読み込みにかかる時間を短縮できます。
 
-## `import()`
+## `import()` {#import}
 
 コード分割をアプリに導入する最も良い手段は動的インポート`import()`を使用することです。
 
@@ -85,7 +85,7 @@ Webpackがこの構文を見つけると、自動的にアプリのコードを�
 
 もし [Babel](http://babeljs.io/) を使用している場合は、Babel が動的インポート構文を解析できても変換してしまわないようにする必要があります。そのためには  [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import) を利用すると良いでしょう。
 
-## `React.lazy`
+## `React.lazy` {#reactlazy}
 
 > 補足:
 >
@@ -125,7 +125,7 @@ function MyComponent() {
 
 `React.lazy` は動的インポート構文 `import()` を呼び出す関数を引数として取ります。これは React コンポーネントを含む `default` export を持つモジュールに解決される `Promise`  を返さなければなりません。
 
-### Suspense
+### Suspense {#suspense}
 
 `MyComponent` がレンダリングされるまでに、`OtherComponent` を含むモジュールがまだロードされていない場合、例えばロードインジケータなどのようなフォールバックコンテンツをロードが完了するまで表示する必要があります。これは `Suspense` コンポーネントを使って実装することができます。
 
@@ -163,7 +163,7 @@ function MyComponent() {
 }
 ```
 
-### Error boundaries
+### Error boundaries {#error-boundaries}
 
 もし他のモジュールがロードに失敗した場合（例えば、ネットワークの障害など）、エラーが発生します。その際には [Error Boundaries](/docs/error-boundaries.html) を使用することによってこれらのエラーをハンドリングし、エラーの回復やユーザ体験の向上に繋げることができます。Error Boundary を作成したら、遅延コンポーネントより上位のあらゆる場所で使用でき、ネットワークエラーが発生した際にエラー内容を表示することができます。
 
@@ -186,7 +186,7 @@ const MyComponent = () => (
 );
 ```
 
-## ルート単位でのコード分割
+## ルート単位でのコード分割 {#route-based-code-splitting}
 
 アプリ内のどこにコード分割を導入するかを決めるのは少し面倒です。バンドルを均等に分割する場所を確実に選択したいところですが、ユーザ体験を妨げてはなりません。
 
@@ -213,7 +213,7 @@ const App = () => (
 );
 ```
 
-## 名前付きエクスポート
+## 名前付きエクスポート {#named-exports}
 
 `React.lazy` は現在デフォルトエクスポートのみサポートしています。インポートしたいモジュールが名前付きエクスポートを使用している場合、それをデフォルトとして再エクスポートする中間モジュールを作成できます。これにより、treeshaking が機能し未使用のコンポーネントを取り込まず済むようにできます。
 
