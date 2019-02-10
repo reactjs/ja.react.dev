@@ -39,7 +39,7 @@ handleSomething() {
   this.incrementCount();
   // React がコンポーネントを再レンダーしても、 `this.state.count` は意図通りの 3 ではなく 1 になります。
 
-  // これは上記の `incrementCount()` 関数は `this.state.count` の値を読むのですが、
+  // これは、上記の `incrementCount()` 関数は `this.state.count` の値を読むのですが、
   // しかしコンポーネントが再レンダーされるまで React が `this.state.count` を更新しないためです。
   // そして `incrementCount()` は値が 0 のままの `this.state.count` を毎回読み、そして 1 をセットしてしまいます。
 
@@ -51,11 +51,11 @@ handleSomething() {
 
 ### どうやって現在の state に依存する値を更新したらいいですか？ {#how-do-i-update-state-with-values-that-depend-on-the-current-state}
 
-`setState` へオブジェクトを渡す代わりに関数を渡してください。常に最新の状態の state を使ってその関数が呼ばれることが保証されています。（次項参照）
+`setState` へオブジェクトを渡す代わりに関数を渡してください。その関数は常に最新の状態の state を使って呼ばれることが保証されています。（次項参照）
 
 ### `setState` へオブジェクトを渡すのと関数を渡すのとのでは何が違いますか？ {#what-is-the-difference-between-passing-an-object-or-a-function-in-setstate}
 
-更新関数を与えると、その関数内で現在の state の値へアクセスできるようになります。`setState` 呼び出しはバッチ処理されるため、更新処理を連結して、それぞれの更新が競合せずに順序だって動作することが保証されます。
+更新関数を渡すと、その関数内で現在の state の値へアクセスできるようになります。`setState` 呼び出しはバッチ処理されるため、更新処理を連結して、それぞれの更新が競合せずに順序だって動作することが保証されます。
 
 ```jsx
 incrementCount() {
@@ -82,7 +82,7 @@ handleSomething() {
 
 現在、`setState` はイベントハンドラの内側では非同期です。
 
-これは、例えばクリックイベントの間に `Parent` と `Child` の両方が `setState` を呼ぶとき、`Child` が2度レンダーされないことを保証しています。その代わりにReactはブラウザイベントの最後に state の更新を「フラッシュ (flush)」します。これにより大規模アプリのパフォーマンスが大幅に向上します。
+例えばクリックイベントの間に `Parent` と `Child` の両方が `setState` を呼ぶとき、非同期処理のおかげで `Child` が2度レンダーされないことが保証されます。その代わりにReactはブラウザイベントの最後に state の更新を「フラッシュ (flush)」します。これにより大規模アプリのパフォーマンスが大幅に向上します。
 
 これは実装の詳細ですので、この仕組みに直接依存しないようにしてください。将来のバージョンにおいて、Reactはより多くの場合にバッチ更新するようになります。
 
