@@ -124,7 +124,7 @@ const MyComponent = React.memo(function MyComponent(props) {
 });
 ```
 
-`React.memo` は [高階コンポーネント](/docs/higher-order-components.html) です。これは [`React.PureComponent`](#reactpurecomponent) に似ていますが、クラスではなく関数コンポーネントです。
+`React.memo` は [高階コンポーネント](/docs/higher-order-components.html) です。これは [`React.PureComponent`](#reactpurecomponent) に似ていますが、クラスではなく関数コンポーネント用です。
 
 ある関数コンポーネントが同じ props を与えられたときに同じ結果をレンダーするとき、結果を記憶してパフォーマンスを向上させるためにそれを `React.memo` でラップして呼び出すことができます。つまり、Reactはコンポーネントのレンダーをスキップし、最後のレンダー結果を再利用します。
 
