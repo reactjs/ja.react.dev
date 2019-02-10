@@ -14,17 +14,17 @@ React はアクセシビリティを備えたウェブサイトの構築を全�
 
 ### WCAG {#wcag}
 
-[ウェブコンテンツアクセシビリティガイドライン (Web Content Accessibility Guidelines)](https://www.w3.org/WAI/intro/wcag) はアクセシビリティを備えたウェブサイトを構築するためのガイドラインを提供しています。
+[Web Content Accessibility Guidelines](https://www.w3.org/WAI/intro/wcag) はアクセシビリティを備えたウェブサイトを構築するためのガイドラインを提供しています。
 
 以下の WCAG のチェックリストはその概要を示します。
 
-- [Wuhcag による WCAG チェックリスト](https://www.wuhcag.com/wcag-checklist/)
-- [WebAIM による WCAG チェックリスト](http://webaim.org/standards/wcag/checklist)
-- [The A11Y Project によるチェックリスト](http://a11yproject.com/checklist.html)
+- [WCAG checklist from Wuhcag](https://www.wuhcag.com/wcag-checklist/)
+- [WCAG checklist from WebAIM](http://webaim.org/standards/wcag/checklist)
+- [Checklist from The A11Y Project](http://a11yproject.com/checklist.html)
 
 ### WAI-ARIA {#wai-aria}
 
-[ウェブアクセシブルイニシアチブ - アクセシビリティが高くリッチなインターネットアプリケーション (Web Accessibility Initiative - Accessible Rich Internet Applications)](https://www.w3.org/WAI/intro/aria) には十分なアクセシビリティを持つ JavaScript ウィジェットの構築テクニックが含まれています。
+[Web Accessibility Initiative - Accessible Rich Internet Applications](https://www.w3.org/WAI/intro/aria) には十分なアクセシビリティを持つ JavaScript ウィジェットの構築テクニックが含まれています。
 
 補足として、JSX ではすべての `aria-*` で始まるHTML 属性がサポートされています。React においてほとんどの DOM プロパティと属性がキャメルケースである一方で、これらの属性は純粋な HTML と同じようにハイフンケース（ケバブケースやリスプケースなどとも言われる）である必要があります。
 
@@ -151,13 +151,13 @@ React でこれらの標準的な HTML の実践知識を直接使用できま�
 
 スキップリンクやスキップナビゲーションリンクとは、ユーザがキーボードでページを操作する場合にのみ出現する、隠れたナビゲーションリンクです。これらのリンクはページ内アンカーといくらかのスタイルを用いて、とても簡単に実装できます：
 
-- [WebAIM - スキップナビゲーションのリンク](http://webaim.org/techniques/skipnav/)
+- [WebAIM - Skip Navigation Links](http://webaim.org/techniques/skipnav/)
 
 `<main>` や `<aside>` のようなランドマーク要素とロール属性も活用してページの領域を区切り、補助技術を使うユーザが素早くこれらのセクションに移動できるようにしてください。
 
 アクセシビリティを強化する、これらの要素の使い方についての詳細は以下を読んでください：
 
-- [アクセシビリティを備えたランドマーク要素について](http://www.scottohara.me/blog/2018/03/03/landmarks.html)
+- [Accessible Landmarks](http://www.scottohara.me/blog/2018/03/03/landmarks.html)
 
 ### プログラムによりフォーカスを管理する {#programmatically-managing-focus}
 
@@ -374,8 +374,8 @@ class BlurExample extends React.Component {
 
 それぞれの種類のウィジェットはそれぞれ特定のデザインパターンを持っており、ユーザやユーザーエージェントはそれらが特定の方法で機能することを期待します：
 
-- [WAI-ARIA 策定の実践例 - デザインパターンとウィジェット](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
-- [Heydon Pickering による ARIA の例](http://heydonworks.com/practical_aria_examples/)
+- [WAI-ARIA Authoring Practices - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
+- [Heydon Pickering - ARIA Examples](http://heydonworks.com/practical_aria_examples/)
 - [Inclusive Components](https://inclusive-components.design/)
 
 ## その他に考慮すべきポイント {#other-points-for-consideration}
@@ -384,13 +384,13 @@ class BlurExample extends React.Component {
 
 ページテキストで使用する自然言語を明示して、読み上げソフトが適切な音声設定を選ぶために利用できるようにしてください：
 
-- [WebAIM - 言語設定](http://webaim.org/techniques/screenreader/#language)
+- [WebAIM - Document Language](http://webaim.org/techniques/screenreader/#language)
 
 ### ドキュメントの title の設定 {#setting-the-document-title}
 
 ドキュメントの `<title>` は、ユーザが現在いるページのコンテキストを認識していられるように、そのページのコンテンツを正しく説明するものにしてください：
 
-- [WCAG - ドキュメントタイトル要件を理解する](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-title.html)
+- [WCAG - Understanding the Document Title Requirement](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-title.html)
 
 React では [React Document Title Component](https://github.com/gaearon/react-document-title) を使用することで title を設定できます。
 
@@ -398,9 +398,9 @@ React では [React Document Title Component](https://github.com/gaearon/react-d
 
 あなたのウェブサイトにある全ての読めるテキストが、ロービジョンのユーザにも最大限読めるように配慮した色のコントラストがあることを確認してください：
 
-- [WCAG - 色のコントラスト要件を理解する](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html)
-- [色のコントラストについてのすべてとそれを再考すべき理由](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
-- [A11yProject - 色のコントラストとは何か](http://a11yproject.com/posts/what-is-color-contrast/)
+- [WCAG - Understanding the Color Contrast Requirement](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html)
+- [Everything About Color Contrast And Why You Should Rethink It](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
+- [A11yProject - What is Color Contrast](http://a11yproject.com/posts/what-is-color-contrast/)
 
 適切な色の組み合わせをウェブサイト内の全てのケースについて手作業で行うのは面倒になりがちなので、代わりに[アクセシブルなカラーパレット全体を Colorable で計算する](http://jxnblk.com/colorable/)ことができます。
 
@@ -459,13 +459,13 @@ Deque System はアプリケーションの自動化された E2E アクセシ�
 
 #### アクセシビリティ検査ツールとアクセシビリティツリー {#accessibility-inspectors-and-the-accessibility-tree}
 
-[アクセシビリティツリー](https://www.paciellogroup.com/blog/2015/01/the-browser-accessibility-tree/)は、スクリーンリーダのような補助技術に公開されるべきすべての要素についてアクセス可能なオブジェクトを含んだ DOM ツリーのサブセットです。
+[アクセシビリティツリー (The Accessibility Tree)](https://www.paciellogroup.com/blog/2015/01/the-browser-accessibility-tree/) は、スクリーンリーダのような補助技術に公開されるべきすべての要素についてアクセス可能なオブジェクトを含んだ DOM ツリーのサブセットです。
 
 一部のブラウザではアクセシビリティツリー内の各要素のアクセシビリティに関する情報を簡単に見ることができます：
 
-- [Firefox で Accessibility Inspector を使う](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector)
-- [Chrome で Accessibility Inspector を有効化する](https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a)
-- [OS X Safari で Accessibility Inspector を使う](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
+- [Using the Accessibility Inspector in Firefox](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector)
+- [Activate the Accessibility Inspector in Chrome](https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a)
+- [Using the Accessibility Inspector in OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
 
 ### スクリーンリーダ {#screen-readers}
 
@@ -481,8 +481,8 @@ Deque System はアプリケーションの自動化された E2E アクセシ�
 
 NVDA を最大限に活用する方法は以下のガイドを参照してください：
 
-- [WebAIM - ウェブアクセシビリティを測るために NVDA を使う](http://webaim.org/articles/nvda/)
-- [Deque - NVDA キーボードショートカット](https://dequeuniversity.com/screenreaders/nvda-keyboard-shortcuts)
+- [WebAIM - Using NVDA to Evaluate Web Accessibility](http://webaim.org/articles/nvda/)
+- [Deque - NVDA Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/nvda-keyboard-shortcuts)
 
 #### VoiceOver と Safari {#voiceover-in-safari}
 
@@ -490,9 +490,9 @@ VoiceOver は Apple 社製品に統合されたスクリーンリーダーです
 
 VoiceOver を有効化して使用する方法は以下のガイドを参照してください：
 
-- [WebAIM - ウェブアクセシビリティを測るために VoiceOver を使う](http://webaim.org/articles/voiceover/)
-- [Deque - OS X 向け VoiceOver キーボードショートカット](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts)
-- [Deque - iOS 向け VoiceOver キーボードショートカット](https://dequeuniversity.com/screenreaders/voiceover-ios-shortcuts)
+- [WebAIM - Using VoiceOver to Evaluate Web Accessibility](http://webaim.org/articles/voiceover/)
+- [Deque - VoiceOver for OS X Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts)
+- [Deque - VoiceOver for iOS Shortcuts](https://dequeuniversity.com/screenreaders/voiceover-ios-shortcuts)
 
 #### JAWS と Internet Explorer {#jaws-in-internet-explorer}
 
@@ -500,8 +500,8 @@ VoiceOver を有効化して使用する方法は以下のガイドを参照し�
 
 JAWS を最大限に活用する方法は以下のガイドを参照してください：
 
-- [WebAIM - ウェブアクセシビリティを測るために JAWS を使う](http://webaim.org/articles/jaws/)
-- [Deque - JAWS キーボードショートカット](https://dequeuniversity.com/screenreaders/jaws-keyboard-shortcuts)
+- [WebAIM - Using JAWS to Evaluate Web Accessibility](http://webaim.org/articles/jaws/)
+- [Deque - JAWS Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/jaws-keyboard-shortcuts)
 
 ### 他のスクリーンリーダ {#other-screen-readers}
 
@@ -511,5 +511,5 @@ JAWS を最大限に活用する方法は以下のガイドを参照してくだ
 
 ChromeVox を最大限に活用する方法は以下のガイドを参照してください：
 
-- [Google Chromebook ヘルプ - 組み込みのスクリーンリーダを使う](https://support.google.com/chromebook/answer/7031755?hl=en)
-- [ChromeVox クラシックキーボードショートカットリファレンス](http://www.chromevox.com/keyboard_shortcuts.html)
+- [Google Chromebook Help - Use the Built-in Screen Reader](https://support.google.com/chromebook/answer/7031755?hl=en)
+- [ChromeVox Classic Keyboard Shortcuts Reference](http://www.chromevox.com/keyboard_shortcuts.html)
