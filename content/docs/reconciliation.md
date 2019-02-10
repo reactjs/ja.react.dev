@@ -92,8 +92,6 @@ React でそのアルゴリズムを使った場合、1000 個の要素を表示
 </ul>
 ```
 
-If you implement it naively, inserting an element at the beginning has worse performance. For example, converting between these two trees works poorly: -->
-
 React は 2 つの `<li>first</li>` ツリーを一致させ、2 つの `<li>second</li>` ツリーを一致させ、最後に `<li>third</li>` ツリーを挿入します。
 
 それを単純に実行した場合、先頭への要素の追加はパフォーマンスが悪くなります。
