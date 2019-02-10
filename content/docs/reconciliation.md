@@ -69,7 +69,7 @@ React でそのアルゴリズムを使った場合、1000 個の要素を表示
 
 ### 同じ型のコンポーネント要素 {#component-elements-of-the-same-type}
 
-コンポーネントが更新される場合、インスタンスは同じままとなり、レンダリング間で state は保持されます。React は対応するコンポーネントのインスタンスの props を新しい要素に合うように更新し、`componentWillReceiveProps()` と `componentWillUpdate()` を対応するインスタンスに対して呼び出します。
+コンポーネントが更新される場合、インスタンスは同じままとなり、レンダー間で state は保持されます。React は対応するコンポーネントのインスタンスの props を新しい要素に合うように更新し、`componentWillReceiveProps()` と `componentWillUpdate()` を対応するインスタンスに対して呼び出します。
 
 次に、`render()` メソッドが呼ばれ、差分アルゴリズムが再帰的に前の結果と新しい結果を処理します。
 
