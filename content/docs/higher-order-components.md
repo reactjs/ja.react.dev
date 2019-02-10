@@ -250,8 +250,8 @@ render() {
 ```js
 const NavbarWithRouter = withRouter(Navbar);
 ```
-通常、HOC は追加の引数を受け取ります。この Relay からの例では、config オブジェクトがコンポーネントのデータ依存を指定するために使われています：
 
+通常、HOC は追加の引数を受け取ります。この Relay からの例では、config オブジェクトがコンポーネントのデータ依存を指定するために使われています：
 
 ```js
 const CommentWithRelay = Relay.createContainer(Comment, config);
