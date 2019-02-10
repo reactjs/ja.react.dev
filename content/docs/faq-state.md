@@ -103,4 +103,4 @@ handleSomething() {
 
 [そうかもしれません。](https://redux.js.org/faq/general#when-should-i-use-redux)
 
-他のライブラリを追加する前にReactを理解することをお勧めします。React だけでも非常に複雑なアプリケーションを作り上げることができます。
+まずは他のライブラリを追加する前にReactを理解することをお勧めします。React だけでも非常に複雑なアプリケーションを作り上げることができます。
