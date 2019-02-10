@@ -63,7 +63,7 @@ React でそのアルゴリズムを使った場合、1000 個の要素を表示
 <div style={{color: 'green', fontWeight: 'bold'}} />
 ```
 
-2つの要素を変換する場合、React は `fontWeight` ではなく `color` のみを変更すればよいことが分かります。
+2 つの要素を変換する場合、React は `fontWeight` ではなく `color` のみを変更すればよいことが分かります。
 
 この DOM ノードを処理した後、React は子に対して再帰的に処理を行っていきます。
 
