@@ -37,7 +37,7 @@ UI がどのように見えるべきかを記述するために [JSX の使用](
 - [`createElement()`](#createelement)
 - [`createFactory()`](#createfactory)
 
-詳しくは [Using React without JSX](/docs/react-without-jsx.html) を参照してください。
+詳しくは [JSX なしで React を使う](/docs/react-without-jsx.html) を参照してください。
 
 ### 要素を変換する #{transforming-elements}
 
