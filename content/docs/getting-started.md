@@ -32,7 +32,7 @@ redirect_from:
 
 ## React を試す {#try-react}
 
-React は初めから既存のプロジェクトに徐々に追加していけるようなデザインとなっています。 **あなたは React をどれだけ使っても問題ありません。** 触りだけやってみるもよし、シンプルな HTML のページにインタラクティブな機能を追加するのに使うもよし、React をフル活用した複雑なアプリを作成するもよし。どのような目的にしても、このページにあるリンクが役に立つでしょう。
+React は初めから既存のプロジェクトに徐々に追加していけるようなデザインとなっています。**あなたは React をどれだけ使っても問題ありません。**触りだけやってみるもよし、シンプルな HTML のページにインタラクティブな機能を追加するのに使うもよし、React をフル活用した複雑なアプリを作成するもよし。どのような目的にしても、このページにあるリンクが役に立つでしょう。
 
 ### Web 上で試せるオンラインエディタ {#online-playgrounds}
 
@@ -65,7 +65,7 @@ React を学びたい人には様々な背景があり、それぞれいろん�
 
 ### React 初心者向けのガイド {#react-for-beginners}
 
-もし、React の公式ドキュメントのペースが早すぎると感じた場合は、[Tania Rascia氏によって書かれた React の概要](https://www.taniarascia.com/getting-started-with-react/)を読んでみましょう。React の重要なコンセプトについて詳細に説明されており、初心者にもとても易しい作りとなっています。それが終わったら、もう一度公式ドキュメントを読んでみましょう！
+もし、React の公式ドキュメントのペースが早すぎると感じた場合は、[Tania Rascia 氏によって書かれた React の概要](https://www.taniarascia.com/getting-started-with-react/)を読んでみましょう。React の重要なコンセプトについて詳細に説明されており、初心者にもとても易しい作りとなっています。それが終わったら、もう一度公式ドキュメントを読んでみましょう！
 
 ### デザイナー向けのガイド {#react-for-designers}
 
@@ -99,7 +99,7 @@ JavaScript について自分がどれだけ知っているかを知るために
 
 ### 高度なコンセプト {#advanced-concepts}
 
-React の[基本コンセプト](#main-concepts)について慣れてきて、実際に手で動かしてみたら、今度はさらに高度な内容にも手を出したいと思うかもしれません。この資料では強力な、しかし普段使われることのない [コンテキスト](/docs/context.html) や [ref](/docs/refs-and-the-dom.html) といった React のさらなる機能について紹介します。 
+React の[基本コンセプト](#main-concepts)について慣れてきて、実際に手で動かしてみたら、今度はさらに高度な内容にも手を出したいと思うかもしれません。この資料では強力な、しかし普段使われることのない [コンテキスト](/docs/context.html) や [ref](/docs/refs-and-the-dom.html) といった React のさらなる機能について紹介します。
 
 ### API リファレンス {#api-reference}
 
@@ -107,7 +107,7 @@ React の[基本コンセプト](#main-concepts)について慣れてきて、�
 
 ### 用語集と FAQ {#glossary-and-faq}
 
-この[用語集](/docs/glossary.html)にはこのドキュメントにてよく使われる単語等が記載されています。 FAQもあり、[AJAX リクエストについて](/docs/faq-ajax.html)、[コンポーネントの state](/docs/faq-state.html)、[ファイル構成](/docs/faq-structure.html)などのよくある質問とそれらに対する回答が記載されています。
+この[用語集](/docs/glossary.html)にはこのドキュメントにてよく使われる単語等が記載されています。FAQ もあり、[AJAX リクエストについて](/docs/faq-ajax.html)、[コンポーネントの state](/docs/faq-state.html)、[ファイル構成](/docs/faq-structure.html)などのよくある質問とそれらに対する回答が記載されています。
 
 ## 最新の情報を追いたい人へ {#staying-informed}
 
@@ -123,4 +123,4 @@ React の[基本コンセプト](#main-concepts)について慣れてきて、�
 
 ## 他に聞きたいことは？ {#something-missing}
 
-ドキュメントに記載されていないことがあったり、わかりにくい箇所があったりしたら、 困ったことや改善案等を[この公式ドキュメントのリポジトリ](https://github.com/reactjs/reactjs.org/issues/new)に issue として立てるか、もしくは公式の [@reactjs](https://twitter.com/reactjs) までご連絡ください。あなたのご意見をお待ちしております！
+ドキュメントに記載されていないことがあったり、わかりにくい箇所があったりしたら、困ったことや改善案等を[この公式ドキュメントのリポジトリ](https://github.com/reactjs/reactjs.org/issues/new)に issue として立てるか、もしくは公式の [@reactjs](https://twitter.com/reactjs) までご連絡ください。あなたのご意見をお待ちしております！

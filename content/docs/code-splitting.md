@@ -6,7 +6,7 @@ permalink: docs/code-splitting.html
 
 ## バンドル {#bundling}
 
-多くの React アプリケーションは、[Webpack](https://webpack.js.org/)や [Browserify](http://browserify.org/) などの
+多くの React アプリケーションは、[Webpack](https://webpack.js.org/) や [Browserify](http://browserify.org/) などの
 ツールを使ってファイルを「バンドル」しています。
 バンドルはインポートされたファイルをたどって、それらを 1 つのファイルにまとめるプロセスです。
 このバンドルされたファイルを Web ページ内に置くことによって、アプリ全体を一度に読み込むことができます。
@@ -92,9 +92,9 @@ import("./math").then(math => {
 > 現時点ではまだ言語標準となっていません。
 > 近い将来での標準化が期待されています。
 
-Webpackがこの構文を見つけると、自動的にアプリのコードを分割します。
+Webpack がこの構文を見つけると、自動的にアプリのコードを分割します。
 Create React App を使用している場合はすでに設定がされているため、[すぐに使用を開始することができます。](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting)
-Next.jsも同様です。
+Next.js も同様です。
 
 もし Webpack を自分でセットアップしていた場合には、Webpack の[コード分割に関するガイド](https://webpack.js.org/guides/code-splitting/)を読むと良いでしょう。
 きっとあなたの Webpack の設定はだいたい[このように](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269)なると思います。
