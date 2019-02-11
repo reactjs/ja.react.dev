@@ -89,7 +89,11 @@ ReactDOM.render(
 >
 >React は小文字で始まるコンポーネントを DOM タグとして扱います。例えば、`<div />` は HTML の div タグを表しますが、`<Welcome />` はコンポーネントを表しており、スコープ内に `Welcome` が存在する必要があります。
 >
+<<<<<<< HEAD
 >この規約の背後にある理由については[こちら](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized)で読むことができます。
+=======
+>To learn more about the reasoning behind this convention, please read [JSX In Depth](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized).
+>>>>>>> 6dea652a709af39e90a88be45f0f45849ab29d17
 
 ## コンポーネントを組み合わせる {#composing-components}
 
