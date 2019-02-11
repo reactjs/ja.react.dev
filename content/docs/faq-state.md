@@ -37,7 +37,7 @@ handleSomething() {
   this.incrementCount();
   this.incrementCount();
   this.incrementCount();
-  // React がコンポーネントを再レンダーしても、 `this.state.count` は意図通りの 3 ではなく 1 になります。
+  // React がコンポーネントを再レンダーしても、`this.state.count` は意図通りの 3 ではなく 1 になります。
 
   // これは、上記の `incrementCount()` 関数は `this.state.count` の値を読むのですが、
   // しかしコンポーネントが再レンダーされるまで React が `this.state.count` を更新しないためです。
