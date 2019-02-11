@@ -10,7 +10,7 @@ class App extends React.Component {
   render() {
     const {signedInUser, theme} = this.props;
 
-    // コンテクストの初期値を与える APP コンポーネント
+    // コンテクストの初期値を与える App コンポーネント
     // highlight-range{2-3,5-6}
     return (
       <ThemeContext.Provider value={theme}>

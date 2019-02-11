@@ -1,7 +1,7 @@
 import {ThemeContext, themes} from './theme-context';
 import ThemedButton from './themed-button';
 
-// ThemedButtonを使用する間のコンポーネント
+// ThemedButtonを使用する中間のコンポーネント
 function Toolbar(props) {
   return (
     <ThemedButton onClick={props.changeTheme}>
