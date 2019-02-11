@@ -12,7 +12,7 @@ category: FAQ
 
 ### `state` と `props` の違いは何ですか？ {#what-is-the-difference-between-state-and-props}
 
-[`props`](/docs/components-and-props.html)（"properties" を短くしたもの）と [`state`](/docs/state-and-lifecycle.html) は、両方ともプレーンなJavaScriptのオブジェクトです。どちらもレンダー結果に影響を及ぼす情報を持ってはいますが、ある重要な一点が異なっています。つまり、`props` は（関数引数のように）コンポーネント*へ*渡されるのに対し、`state` は（関数内で宣言された変数のように）コンポーネント*の内部*で制御されます。
+[`props`](/docs/components-and-props.html)（"properties" を短くしたもの）と [`state`](/docs/state-and-lifecycle.html) は、両方ともプレーンな JavaScript のオブジェクトです。どちらもレンダー結果に影響を及ぼす情報を持ってはいますが、ある重要な一点が異なっています。つまり、`props` は（関数引数のように）コンポーネント*へ*渡されるのに対し、`state` は（関数内で宣言された変数のように）コンポーネント*の内部*で制御されます。
 
 `props` と `state` のどちらをいつ使うべきかについて、こちらでより詳しく読むことができます。
 * [Props vs State](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
