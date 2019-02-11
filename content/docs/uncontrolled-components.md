@@ -8,7 +8,7 @@ permalink: docs/uncontrolled-components.html
 
 非制御コンポーネントを記述するには、各 state の更新に対してイベントハンドラを書く代わりに、[ref を使用](/docs/refs-and-the-dom.html)して DOM からフォームの値を取得します。
 
-例えば、以下のコードは非制御コンポーネントで 1 つの名前受け取ります：
+例えば、以下のコードは非制御コンポーネントで 1 つの名前を受け取ります：
 
 ```javascript{5,9,18}
 class NameForm extends React.Component {
