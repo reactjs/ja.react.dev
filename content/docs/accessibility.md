@@ -396,7 +396,7 @@ React では [React Document Title Component](https://github.com/gaearon/react-d
 
 ### 色のコントラスト {#color-contrast}
 
-あなたのウェブサイトにある全ての読めるテキストが、ロービジョンのユーザにも最大限読めるように配慮した色のコントラストがあることを確認してください：
+あなたのウェブサイトにある全ての読めるテキストが、色弱のユーザにも最大限読めるように配慮した色のコントラストがあることを確認してください：
 
 - [WCAG - Understanding the Color Contrast Requirement](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html)
 - [Everything About Color Contrast And Why You Should Rethink It](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
@@ -469,7 +469,7 @@ Deque System はアプリケーションの自動化された E2E アクセシ�
 
 ### スクリーンリーダ {#screen-readers}
 
-アクセシビリティのテストの一環として、スクリーンリーダーによるテストを行うべきです。
+アクセシビリティのテストの一環として、スクリーンリーダによるテストを行うべきです。
 
 ブラウザとスクリーンリーダの相性に注意してください。選択したスクリーンリーダに最適なブラウザでアプリケーションのテストをすることをおすすめします。
 
@@ -486,7 +486,7 @@ NVDA を最大限に活用する方法は以下のガイドを参照してくだ
 
 #### VoiceOver と Safari {#voiceover-in-safari}
 
-VoiceOver は Apple 社製品に統合されたスクリーンリーダーです。
+VoiceOver は Apple 社製品に統合されたスクリーンリーダです。
 
 VoiceOver を有効化して使用する方法は以下のガイドを参照してください：
 
@@ -496,7 +496,7 @@ VoiceOver を有効化して使用する方法は以下のガイドを参照し�
 
 #### JAWS と Internet Explorer {#jaws-in-internet-explorer}
 
-[Job Access With Speech](http://www.freedomscientific.com/Products/Blindness/JAWS) もしくは JAWS は、Windows 上での使用例が豊富なスクリーンリーダーです。
+[Job Access With Speech](http://www.freedomscientific.com/Products/Blindness/JAWS) もしくは JAWS は、Windows 上での使用例が豊富なスクリーンリーダです。
 
 JAWS を最大限に活用する方法は以下のガイドを参照してください：
 
