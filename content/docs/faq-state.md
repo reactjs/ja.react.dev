@@ -101,6 +101,6 @@ handleSomething() {
 
 ### Redux や MobX のような state 管理ライブラリを使うべきでしょうか？ {#should-i-use-a-state-management-library-like-redux-or-mobx}
 
-[そうかもしれません。](https://redux.js.org/faq/general#when-should-i-use-redux)
+[時には必要かもしれません。](https://redux.js.org/faq/general#when-should-i-use-redux)
 
 まずは他のライブラリを追加する前にReactを理解することをお勧めします。React だけでも非常に複雑なアプリケーションを作り上げることができます。
