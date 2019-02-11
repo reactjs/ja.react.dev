@@ -20,7 +20,7 @@ category: FAQ
 
 ### `setState` が誤った値を返すのはなぜですか？ {#why-is-setstate-giving-me-the-wrong-value}
 
-Reactでは、`this.props` の `this.state` いずれも*レンダーされた*もの、つまりスクリーン上の値を表しています。
+React では、`this.props` と `this.state` のいずれも、*レンダーされた*もの、つまりスクリーン上の値を表しています。
 
 `setState` 呼び出しは非同期です。呼び出し直後から `this.state` が新しい値を反映することを期待しないでください。もし現在の state に基づいた値を計算する必要がある場合は、オブジェクトの代わりに更新関数を渡してください。（詳しくは以下を参照）
 
