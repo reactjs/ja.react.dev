@@ -68,7 +68,7 @@ render() {
 
 ## ファイル input タグ {#the-file-input-tag}
 
-HTML では、`<input type="file">` を利用してユーザに 1 つ以上のファイルを彼らのデバイスストレージから選択させ、サーバにファイルをアップロードしたり [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications) を通じて JavaScript でファイルを操作したりします。
+HTML では、`<input type="file">` を利用してユーザに 1 つ以上のファイルをデバイスストレージから選択させ、サーバにアップロードしたり [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications) を通じて JavaScript で操作したりします。
 
 ```html
 <input type="file" />
