@@ -157,7 +157,7 @@ class MyComponent extends React.Component {
 }
 ```
 
-上記の例では、標準の JavaScript を使用して Error Boundary を使用していないことに注目してください。
+上記の例は標準の JavaScript の動作説明であって Error Boundary を使用していないことに注意してください。
 
 ## React 15からの命名の変更 {#naming-changes-from-react-15}
 
