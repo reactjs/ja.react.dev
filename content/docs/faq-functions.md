@@ -64,7 +64,7 @@ class Foo extends Component {
 }
 ```
 
-> **注意：**
+> **補足：**
 >
 > レンダー内で `Function.prototype.bind` を利用すると、コンポーネントがレンダーされるたびに新しい関数が作成され、パフォーマンスに影響を与える可能性があります（下記参照）。
 
@@ -112,7 +112,7 @@ React では、典型的にはコンポーネントに *渡す* メソッドの�
 
 ### どうしてコンポーネントをレンダーするたびに、関数が呼ばれるのか？ {#why-is-my-function-being-called-every-time-the-component-renders}
 
-関数の呼び出しをコンポーネントに渡していないことを確認してください：
+関数をコンポーネントに渡すときにその関数を*呼び出していない*ことを確認してください：
 
 ```jsx
 render() {
@@ -226,11 +226,11 @@ class Alphabet extends React.Component {
 - **デバウンス**：一定時間アクティブでなかった場合の出力の制御（例：[`_.debounce`](https://lodash.com/docs#debounce))
 - **`requestAnimationFrame` スロットル**：[`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) に基づくサンプルの制御 (例：[`raf-schd`](https://github.com/alexreardon/raf-schd))
 
-スロットルとデバウンスの比較は[この可視化](http://demo.nimius.net/debounce_throttle/) をご覧ください。
+スロットルとデバウンスの比較は[このビジュアルデモ](http://demo.nimius.net/debounce_throttle/) をご覧ください。
 
-> 注意：
+> 補足：
 > 
-> `_.debounce`、`_.throttle`、`raf-schd` は `cancel` メソッドを提供し、後続のコールバックをキャンセルします。また、`componentWillUnmount` からこのメソッドを呼び出したり、コンポーネントが後続の関数内でマウントされたことを保証したりすると良いでしょう。
+> `_.debounce`、`_.throttle`、`raf-schd` は遅延されるコールバックの呼び出しをキャンセルするための `cancel` メソッドを提供します。`componentWillUnmount` でこのキャンセルメソッドを呼び出すか、*あるいは*遅延されるコールバック関数内でコンポーネントがまだマウントされていることを確認するようにしてください。
 
 #### スロットル {#throttle}
 
@@ -308,7 +308,7 @@ class Searchbox extends React.Component {
 
 > **注意：**
 >
-> このテクニックにより、フレーム内の最後に公開された値のみがキャプチャされます。この最適化が動作する例は [`MDN`](https://developer.mozilla.org/en-US/docs/Web/Events/scroll) で確認できます。
+> このテクニックにより、フレーム内の最後に公開された値のみがキャプチャされます。この最適化がどのように動作するのかについての例は [`MDN`](https://developer.mozilla.org/en-US/docs/Web/Events/scroll) で確認できます。
 
 ```jsx
 import rafSchedule from 'raf-schd';
