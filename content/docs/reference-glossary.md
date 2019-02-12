@@ -2,7 +2,7 @@
 id: glossary
 title: React 用語集
 layout: docs
-category: リファレンス
+category: Reference
 permalink: docs/glossary.html
 
 ---
