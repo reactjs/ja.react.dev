@@ -273,7 +273,6 @@ const enhance = connect(commentListSelector, commentListActions);
 // to the Redux store
 const ConnectedComment = enhance(CommentList);
 ```
-
 言い換えれば、`connect` は高階コンポーネントを返す高階関数なのです！
 
 この形式は分かりにくかったり不要なものに思えるかもしれませんが、便利な性質を持っています。`connect` 関数によって返されるもののような単一引数の HOC は、`Component => Component` という型シグネチャを持ちます。入力の型と出力の型が同じ関数は一緒に組み合わせるのが大変簡単なのです。
