@@ -143,7 +143,7 @@ render() {
 <button onClick={this.handleClick.bind(this, id)} />
 ```
 
-#### 例: アロー関数を利用してパラメータを渡す {#example-passing-params-using-arrow-functions}
+#### 例：アロー関数を利用してパラメータを渡す {#example-passing-params-using-arrow-functions}
 
 ```jsx
 const A = 65 // ASCII character code
@@ -221,9 +221,9 @@ class Alphabet extends React.Component {
 
 `onClick` や `onScroll` のようなイベントハンドラがあって、それがあまりに高速に呼び出されるのを防ぎたい場合、コールバックが実行される頻度を制御するこができます。これは以下の方法で可能です：
 
-- **スロットル**：時間ベースの頻度に基づくサンプルの制御（例 [`_.throttle`](https://lodash.com/docs#throttle)）
-- **デバウンス**：一定時間アクティブでなかった場合の出力の制御（例 [`_.debounce`](https://lodash.com/docs#debounce))
-- **`requestAnimationFrame` スロットル**：[`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) に基づくサンプルの制御 (例 [`raf-schd`](https://github.com/alexreardon/raf-schd))
+- **スロットル**：時間ベースの頻度に基づくサンプルの制御（例：[`_.throttle`](https://lodash.com/docs#throttle)）
+- **デバウンス**：一定時間アクティブでなかった場合の出力の制御（例：[`_.debounce`](https://lodash.com/docs#debounce))
+- **`requestAnimationFrame` スロットル**：[`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) に基づくサンプルの制御 (例：[`raf-schd`](https://github.com/alexreardon/raf-schd))
 
 スロットルとデバウンスの比較は[この可視化](http://demo.nimius.net/debounce_throttle/) をご覧ください。
 
@@ -261,7 +261,7 @@ class LoadMoreButton extends React.Component {
 
 #### デバウンス {#debounce}
 
-デバウンスは、関数が最後に呼ばれてから一定時間経過するまで再実行されないようにします。これは、高速に発生するイベント（例 スクロールやキーボードイベントなど）に応じた高コストな計算処理が必要なときに役立ちます。下記の例は、250ミリ秒の遅延でテキスト入力をデバウンスします。
+デバウンスは、関数が最後に呼ばれてから一定時間経過するまで再実行されないようにします。これは、高速に発生するイベント（例：スクロールやキーボードイベントなど）に応じた高コストな計算処理が必要なときに役立ちます。下記の例は、250ミリ秒の遅延でテキスト入力をデバウンスします。
 
 ```jsx
 import debounce from 'lodash.debounce';
