@@ -130,7 +130,7 @@ function toFahrenheit(celsius) {
 }
 ```
 
-これら 2 つの関数は数字を変換します。 次に文字列で表現された `temperature` と変換関数を引数に取り文字列を返す、別の関数を作成します。この関数を一方の入力の値をもう一方の入力に基づいて計算するのに使用します。
+これら 2 つの関数は数字を変換します。次に文字列で表現された `temperature` と変換関数を引数に取り文字列を返す、別の関数を作成します。この関数を一方の入力の値をもう一方の入力に基づいて計算するのに使用します。
 
 常に値が小数第 3 位までで四捨五入されるようにし、無効な `temperature` には空の文字列を返します。
 
@@ -171,7 +171,7 @@ class TemperatureInput extends React.Component {
 
 しかし、2 つの入力フィールドはお互いに同期されていて欲しいです。摂氏の入力フィールドを更新したら、華氏の入力フィールドも華氏に変換された温度で反映されて欲しいですし、逆も同じです。
 
-React での state の共有は、state を、それを必要とするコンポーネントすべての直近の共通祖先コンポーネントに移動することによって実現します。これを "state のリフトアップ (lifting state up)" と呼びます。 `TemperatureInput` からローカルの state を削除して `Calculator` に移動しましょう。
+React での state の共有は、state を、それを必要とするコンポーネントすべての直近の共通祖先コンポーネントに移動することによって実現します。これを "state のリフトアップ (lifting state up)" と呼びます。`TemperatureInput` からローカルの state を削除して `Calculator` に移動しましょう。
 
 `Calculator` が共有の state を保持すれば、それが両方の入力における現在の温度の "信頼できる情報源 (source of truth)" となります。それによって、両方に対して相互に一貫性のある値を持たせることができるようになります。両方の `TemperatureInput` コンポーネントの props は同じ親コンポーネント `Calculator` から与えられるので、2 つの入力は常に同期されているようになります。
 
@@ -186,7 +186,7 @@ React での state の共有は、state を、それを必要とするコンポ�
     // ...
 ```
 
-[props が読み取り専用である](/docs/components-and-props.html#props-are-read-only)ことは周知の通りです。`temperature` がローカルの state に格納されている間は、`TemperatureInput` は `this.setState()` を呼び出すだけでそれを変更することができました。 しかし今や、`temperature` は親コンポーネントから与えられる props の一部ですから、`TemperatureInput` はそれを制御できません。
+[props が読み取り専用である](/docs/components-and-props.html#props-are-read-only)ことは周知の通りです。`temperature` がローカルの state に格納されている間は、`TemperatureInput` は `this.setState()` を呼び出すだけでそれを変更することができました。しかし今や、`temperature` は親コンポーネントから与えられる props の一部ですから、`TemperatureInput` はそれを制御できません。
 
 通常 React では、コンポーネントを "制御された (controlled)" ものとすることでこの問題を解決します。DOM である `<input>` が `value` と `onChange` プロパティの両方を受け取るように、カスタムコンポーネントの `TemperatureInput` は `temperature` と `onTemperatureChange` の両方を親コンポーネントの `Calculator` から受け取ることができます。
 
@@ -203,7 +203,7 @@ React での state の共有は、state を、それを必要とするコンポ�
 >
 > カスタムコンポーネントの `temperature` や `onTemperatureChange` といった props の名前に特別な意味があるわけではありません。慣習に則り `value` や `onChange` など、他の任意の名前を使うこともできます。
 
-`onTemperatureChange` プロパティは親コンポーネント `Calculator` から `temperature` プロパティと共に渡されます。 親コンポーネントは入力の変化に応じて自身のローカル state を更新し、結果的に両方の入力フォームは新しい値で再レンダーされます。`Calculator` をどう実装するかはこの後すぐに見ていきましょう。
+`onTemperatureChange` プロパティは親コンポーネント `Calculator` から `temperature` プロパティと共に渡されます。親コンポーネントは入力の変化に応じて自身のローカル state を更新し、結果的に両方の入力フォームは新しい値で再レンダーされます。`Calculator` をどう実装するかはこの後すぐに見ていきましょう。
 
 `Calculator` の変更点を見ていく前に、`TemperatureInput` コンポーネントで行った変更をおさらいしましょう。ローカルの state を削除し、`this.state.temperature` の代わりに `this.props.temperature` を読み取るようにしました。また、変更を加えたい場合は `this.setState()` を呼び出す代わりに `Calculator` から与えられる `this.props.onTemperatureChange()` を呼び出すことにしました：
 
@@ -311,8 +311,8 @@ class Calculator extends React.Component {
 * これらのメソッド内では、`Calculator` コンポーネントが新しい入力値と更新した方の入力値の単位を `this.setState()` に与えて呼び出して、React に `Calculator` コンポーネント自身を再レンダリングさせます。
 * React は `Calculator` コンポーネントの `render` メソッドを呼び出して、UI がどのような見た目になるべきかを学びます。両方の入力コンポーネントの値が、現在の温度とアクティブな単位に基づいて再計算されます。温度の変換処理はここで行われます。
 * React は `Calculator` により与えられた新しい props で各 `TemperatureInput` の `render` メソッドを呼び出します。React はそれらの UI がどのような見た目になるかを学びます。
-* React は propsとして摂氏温度を与えて、`BoilingVerdict` コンポーネントの `render` メソッドを呼び出します。
-* React DOM は沸騰したかどうかの判定結果と入力コンポーネントの値によって、 DOM を更新します。変更された入力コンポーネントは現在の値によって、もう一方の入力コンポーネントは変換された温度によって更新されます。
+* React は props として摂氏温度を与えて、`BoilingVerdict` コンポーネントの `render` メソッドを呼び出します。
+* React DOM は沸騰したかどうかの判定結果と入力コンポーネントの値によって、DOM を更新します。変更された入力コンポーネントは現在の値によって、もう一方の入力コンポーネントは変換された温度によって更新されます。
 
 全ての更新は同じ手順で実行されるので、2 つの入力コンポーネントは常に同期を保つことができます。
 
@@ -322,7 +322,7 @@ React アプリケーションで変化するどのようなデータも単一�
 
 state のリフトアップは双方向のバインディング (two-way binding) を行う方法より多くの "ボイラープレート" コードを生み出しますが、その効果としてバグを発見して切り出す作業が少なく済むようになります。あらゆる state はいずれかのコンポーネント内に存在し、そのコンポーネントのみがその state を変更できるので、バグが潜む範囲は大幅に削減されます。加えて、ユーザー入力を拒否したり変換したりする任意の独自ロジックを実装することもできます。
 
-props もしくは state から作りだす事のできるデータについては、おそらく state に保持すべきではないでしょう。例えば、今回は `celsiusValue` と `fahrenheitValue` の両方を保存する代わりに、 最後に変更された `temperature` と、その値の `scale` のみを保存しています。もう一方の入力の値は常に `render()` メソッド内で計算することができます。これにより元のユーザ入力の精度を全く損なうことなくもう一方の入力フィールドに丸めを適用したり、もう一方の入力フィールドをクリアしたりできます。
+props もしくは state から作りだす事のできるデータについては、おそらく state に保持すべきではないでしょう。例えば、今回は `celsiusValue` と `fahrenheitValue` の両方を保存する代わりに、最後に変更された `temperature` と、その値の `scale` のみを保存しています。もう一方の入力の値は常に `render()` メソッド内で計算することができます。これにより元のユーザ入力の精度を全く損なうことなくもう一方の入力フィールドに丸めを適用したり、もう一方の入力フィールドをクリアしたりできます。
 
 UI で何かおかしな箇所があれば、[React Developer Tools](https://github.com/facebook/react-devtools) を使用して props を調査したり state の更新について責任を持っているコンポーネントに辿り着くまでツリーをさかのぼることができます。これによりバグをその原因まで追いかけることができます。
 
