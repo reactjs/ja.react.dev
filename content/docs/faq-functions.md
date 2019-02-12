@@ -93,7 +93,7 @@ class Foo extends Component {
 
 ### そもそもバインドはなぜ必要なのか？ {#why-is-binding-necessary-at-all}
 
-JavaScriptにおいて、以下の2つのコードは同等 **ではありません**。
+JavaScript において、以下の 2 つのコードは同等 **ではありません**。
 
 ```js
 obj.method();
@@ -104,7 +104,7 @@ var method = obj.method;
 method();
 ```
 
-メソッドはバインドすることで、2つ目のコードが1つ目と同様に動作するようになります。
+メソッドはバインドすることで、2 つ目のコードが 1 つ目と同様に動作するようになります。
 
 React では、典型的にはコンポーネントに *渡す* メソッドのみをバインドする必要があります。たとえば、`<button onClick={this.handleClick}>` というコードは、`this.handleClick` を渡しているので、バインドする必要があります。しかし、レンダーやライフサイクルメソッドをバインドする必要はありません。それらは他のコンポーネントに渡すことがないからです。
 
@@ -234,7 +234,7 @@ class Alphabet extends React.Component {
 
 #### スロットル {#throttle}
 
-スロットルは、特定の時間枠内に関数が複数回呼ばれるのを防ぎます。以下の例では、「クリック」ハンドラをスロットルして、1秒間に2回以上呼ばれるのを防ぎます。
+スロットルは、特定の時間枠内に関数が複数回呼ばれるのを防ぎます。以下の例では、「クリック」ハンドラをスロットルして、1 秒間に 2 回以上呼ばれるのを防ぎます。
 
 ```jsx
 import throttle from 'lodash.throttle';
@@ -262,7 +262,7 @@ class LoadMoreButton extends React.Component {
 
 #### デバウンス {#debounce}
 
-デバウンスは、関数が最後に呼ばれてから一定時間経過するまで再実行されないようにします。これは、高速に発生するイベント（例：スクロールやキーボードイベントなど）に応じた高コストな計算処理が必要なときに役立ちます。下記の例は、250ミリ秒の遅延でテキスト入力をデバウンスします。
+デバウンスは、関数が最後に呼ばれてから一定時間経過するまで再実行されないようにします。これは、高速に発生するイベント（例：スクロールやキーボードイベントなど）に応じた高コストな計算処理が必要なときに役立ちます。下記の例は、250 ミリ秒の遅延でテキスト入力をデバウンスします。
 
 ```jsx
 import debounce from 'lodash.debounce';
@@ -304,7 +304,7 @@ class Searchbox extends React.Component {
 
 #### `requestAnimationFrame` スロットル {#requestanimationframe-throttling}
 
-[`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) は描画パフォーマンスが最適化されるタイミングでブラウザで実行される関数をキューに入れる方法です。`requerstAnimationFrame` でキューに入れられている関数は、次のフレームで実行されます。ブラウザは、毎秒60フレーム (60fps) を保証するために懸命に働きます。しかし、それができなかった場合には、自然に1秒間のフレーム数が *制限* されます。たとえば、デバイスが30 fps しか処理できなければ、1秒間に30フレームしか取得できません。`requestAnimationFrame` スロットルを使うことで、1秒間に60回以上になる更新を防ぐことができます。1秒間に100回の更新をする場合、ユーザーには確認できない追加作業をブラウザが作成することになります。
+[`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) は描画パフォーマンスが最適化されるタイミングでブラウザで実行される関数をキューに入れる方法です。`requerstAnimationFrame` でキューに入れられている関数は、次のフレームで実行されます。ブラウザは、毎秒 60 フレーム (60fps) を保証するために懸命に働きます。しかし、それができなかった場合には、自然に 1 秒間のフレーム数が *制限* されます。たとえば、デバイスが 30 fps しか処理できなければ、1 秒間に 30 フレームしか取得できません。`requestAnimationFrame` スロットルを使うことで、1 秒間に 60 回以上になる更新を防ぐことができます。1 秒間に 100 回の更新をする場合、ユーザーには確認できない追加作業をブラウザが作成することになります。
 
 > **注意：**
 >
