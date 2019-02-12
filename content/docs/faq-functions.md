@@ -65,6 +65,7 @@ class Foo extends Component {
 ```
 
 > **注意：**
+>
 > レンダー内で `Function.prototype.bind` を利用すると、コンポーネントがレンダーされるたびに新しい関数が作成され、パフォーマンスに影響を与える可能性があります（下記参照）。
 
 #### レンダー内でアロー関数を使用する {#arrow-function-in-render}
