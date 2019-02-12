@@ -11,7 +11,7 @@ permalink: docs/error-boundaries.html
 
 UI の一部に JavaScript エラーがあってもアプリ全体が壊れてはいけません。React ユーザーがこの問題に対応できるように、React 16 では “error boundary” という新しい概念を導入しました。
 
-error boundary は**自身の子コンポーネントツリーで発生した JavaScript エラーをキャッチ**し、**エラーを記録**し、クラッシュしたコンポーネントツリーの代わりに**フォールバック用の UI を表示**する React コンポーネントです。error boundary は配下のツリー全体のレンダリング中、ライフサイクルメソッド内、およびコンストラクタ内で発生したエラーをキャッチします。
+error boundary は**自身の子コンポーネントツリーで発生した JavaScript エラーをキャッチ**し、**エラーを記録**し、クラッシュしたコンポーネントツリーの代わりに**フォールバック用の UI を表示**する React コンポーネントです。error boundary は配下のツリー全体のレンダー中、ライフサイクルメソッド内、およびコンストラクタ内で発生したエラーをキャッチします。
 
 > 補足
 >
@@ -22,7 +22,7 @@ error boundary は**自身の子コンポーネントツリーで発生した Ja
 > * サーバーサイドレンダリング
 > * （子コンポーネントではなく）error boundary 自身がスローしたエラー
 
-クラスコンポーネントに、ライフサイクルメソッドの [`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) か [`componentDidCatch()`](/docs/react-component.html#componentdidcatch) のいずれか（または両方）を定義すると、error boundary になります。`static getDerivedStateFromError()` はエラーがスローされた後にフォールバック UI をレンダリングするために使用します。 `componentDidCatch()` はエラー情報をログに記録するために使用します。
+クラスコンポーネントに、ライフサイクルメソッドの [`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) か [`componentDidCatch()`](/docs/react-component.html#componentdidcatch) のいずれか（または両方）を定義すると、error boundary になります。`static getDerivedStateFromError()` はエラーがスローされた後にフォールバック UI をレンダーするために使用します。 `componentDidCatch()` はエラー情報をログに記録するために使用します。
 
 ```js{7-10,12-15,18-21}
 class ErrorBoundary extends React.Component {
@@ -62,7 +62,7 @@ class ErrorBoundary extends React.Component {
 
 error boundary はコンポーネントに対して JavaScript の `catch {}` ブロックのように動作します。error boundary になれるのはクラスコンポーネントだけです。実用上、一度だけ error boundary を定義してそれをアプリケーションの至るところで使用することがよくあります。
 
-**error boundary は配下のツリー内のコンポーネントで発生したエラーのみをキャッチする**ことに注意してください。error boundary は自身で起こるエラーをキャッチできません。error boundary がエラーメッセージのレンダリングに失敗した場合、そのエラーは最も近い上位の error boundary に伝搬します。この動作もまた、JavaScript の catch {} ブロックの動作と似ています。
+**error boundary は配下のツリー内のコンポーネントで発生したエラーのみをキャッチする**ことに注意してください。error boundary は自身で起こるエラーをキャッチできません。error boundary がエラーメッセージのレンダーに失敗した場合、そのエラーは最も近い上位の error boundary に伝搬します。この動作もまた、JavaScript の catch {} ブロックの動作と似ています。
 
 ## ライブデモ {#live-demo}
 
@@ -89,7 +89,7 @@ error boundary の粒度はあなた次第です。サーバサイドフレー�
 
 ## コンポーネントのスタックトレース {#component-stack-traces}
 
-React 16 は開発時に、レンダリング中に起こった全てのエラーをコンソールに出力します（アプリケーションが誤ってエラーを握り潰してしまっても出力します）。そこではエラーメッセージと JavaScript のスタックに加えて、コンポーネントのスタックトレースも提供します。これにより、コンポーネントツリーのどこでエラーが発生したのかが正確にわかります：
+React 16 は開発時に、レンダー中に起こった全てのエラーをコンソールに出力します（アプリケーションが誤ってエラーを握り潰してしまっても出力します）。そこではエラーメッセージと JavaScript のスタックに加えて、コンポーネントのスタックトレースも提供します。これにより、コンポーネントツリーのどこでエラーが発生したのかが正確にわかります：
 
 <img src="../images/docs/error-boundaries-stack-trace.png" style="max-width:100%" alt="Error caught by Error Boundary component">
 
@@ -116,7 +116,7 @@ try {
 }
 ```
 
-一方、React コンポーネントは宣言型であり、*何が*レンダリングされるべきなのかを指定します：
+一方、React コンポーネントは宣言型であり、*何が*レンダーされるべきなのかを指定します：
 
 ```js
 <Button />
@@ -128,7 +128,7 @@ error boundary は React の宣言型という性質を保持しつつ、期待�
 
 error boundary はイベントハンドラ内で発生したエラーをキャッチ**しません**。
 
-イベントハンドラ内のエラーから回復するのに error boundary は不要です。レンダリングメソッドやライフサイクルメソッドとは異なり、イベントハンドラはレンダリング中には実行されません。そのためイベントハンドラ内でエラーが発生しても、React が画面に表示する内容は変わりません。
+イベントハンドラ内のエラーから回復するのに error boundary は不要です。レンダーメソッドやライフサイクルメソッドとは異なり、イベントハンドラはレンダー中には実行されません。そのためイベントハンドラ内でエラーが発生しても、React が画面に表示する内容は変わりません。
 
 イベントハンドラ内のエラーをキャッチする必要がある場合は、普通の JavaScript の `try` / `catch` 文を使用してください：
 
