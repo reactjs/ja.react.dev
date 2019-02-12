@@ -121,7 +121,7 @@ render() {
 }
 ```
 
-代わりに、（カッコなしの）*関数自体を返すようにしてください*。
+代わりに、（カッコなしの）*関数自体を返すようにしてください*：
 
 ```jsx
 render() {
@@ -303,8 +303,6 @@ class Searchbox extends React.Component {
 ```
 
 #### `requestAnimationFrame` スロットル {#requestanimationframe-throttling}
-
-[`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) is a way of queuing a function to be executed in the browser at the optimal time for rendering performance. A function that is queued with `requestAnimationFrame` will fire in the next frame. The browser will work hard to ensure that there are 60 frames per second (60 fps). However, if the browser is unable to it will naturally *limit* the amount of frames in a second. For example, a device might only be able to handle 30 fps and so you will only get 30 frames in that second. Using `requestAnimationFrame` for throttling is a useful technique in that it prevents you from doing more than 60 updates in a second. If you are doing 100 updates in a second this creates additional work for the browser that the user will not see anyway.
 
 [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) は描画パフォーマンスが最適化されるタイミングでブラウザで実行される関数をキューに入れる方法です。`requerstAnimationFrame` でキューに入れられている関数は、次のフレームで実行されます。ブラウザは、毎秒60フレーム (60fps) を保証するために懸命に働きます。しかし、それができなかった場合には、自然に1秒間のフレーム数が *制限* されます。たとえば、デバイスが30 fps しか処理できなければ、1秒間に30フレームしか取得できません。`requestAnimationFrame` スロットルを使うことで、1秒間に60回以上になる更新を防ぐことができます。1秒間に100回の更新をする場合、ユーザーには確認できない追加作業をブラウザが作成することになります。
 
