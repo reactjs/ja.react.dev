@@ -14,7 +14,7 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 コンポーネントが props を UI に変換するのに対して、高階コンポーネントはコンポーネントを別のコンポーネントに変換します。
 
-HOC は Redux における [`connect関数`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) や Relay における [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) のように、サードパーティ製の React ライブラリでは一般的なものです。
+HOC は Redux における [`connect 関数`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) や Relay における [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) のように、サードパーティ製の React ライブラリでは一般的なものです。
 
 このドキュメントでは、なぜ高階コンポーネントが便利で、自身でどのように記述するのかを説明します。
 
@@ -22,7 +22,7 @@ HOC は Redux における [`connect関数`](https://github.com/reactjs/react-re
 
 > **補足**
 >
-> 以前に横断的関心事を処理する方法としてミックスインをお勧めしました。 私たちはその後にミックスインはそれが持つ価値以上の問題を引き起こすことに気づきました。 ミックスインから離れる理由と、既存のコンポーネントを移行する方法については[こちらの詳細な記事を読んでください](/blog/2016/07/13/mixins-considered-harmful.html)。
+> 以前に横断的関心事を処理する方法としてミックスインをお勧めしました。私たちはその後にミックスインはそれが持つ価値以上の問題を引き起こすことに気づきました。ミックスインから離れる理由と、既存のコンポーネントを移行する方法については[こちらの詳細な記事を読んでください](/blog/2016/07/13/mixins-considered-harmful.html)。
 
 コンポーネントは React のコード再利用における基本単位です。しかし、いくつかのパターンの中には、これまでのコンポーネントが素直に当てはまらないことがあることに気づいたかもしれません。
 
@@ -106,7 +106,7 @@ class BlogPost extends React.Component {
 - リスナの内部で、`setState` をデータソースが変更されるたびに呼び出す。
 - コンポーネントのアンマウント時には、イベントリスナを削除する。
 
-大規模なアプリケーションにおいては、`DataSource` を購読して `setState` を呼び出すという同様のパターンが何度も発生することが想像できるでしょう。 1 つの場所にロジックを定義し、多数のコンポーネントを横断してロジックを共有可能にするような抽象化が欲しいところです。このような場合には高階コンポーネントが有効です。
+大規模なアプリケーションにおいては、`DataSource` を購読して `setState` を呼び出すという同様のパターンが何度も発生することが想像できるでしょう。1 つの場所にロジックを定義し、多数のコンポーネントを横断してロジックを共有可能にするような抽象化が欲しいところです。このような場合には高階コンポーネントが有効です。
 
 コンポーネントを作成するような関数を書いて、`DataSource` からデータを受け取る、`CommentList` や `BlogPost` のようなコンポーネントを作り出せます。その関数は引数の 1 つとして子コンポーネントを受け取り、その子コンポーネントは購読したデータを props の一部として受け取ります。この関数を `withSubscription` と呼ぶことにしましょう。
 
@@ -163,13 +163,13 @@ function withSubscription(WrappedComponent, selectData) {
 }
 ```
 
-HOC は入力のコンポーネントを改変したり、振る舞いをコピーするのに継承を利用したりしません。むしろ HOC は元のコンポーネントをコンテナコンポーネント内に*ラップする*ことで*組み合わせる*のです。 HOC は副作用のない純関数です。
+HOC は入力のコンポーネントを改変したり、振る舞いをコピーするのに継承を利用したりしません。むしろ HOC は元のコンポーネントをコンテナコンポーネント内に*ラップする*ことで*組み合わせる*のです。HOC は副作用のない純関数です。
 
 それだけです！ ラップされたコンポーネントはコンテナの props のすべてに加えて新規のプロパティである `data` を受け取り、出力の描画に使用します。外側にある HOC は渡すデータが使われる方法や理由には関心がありませんし、ラップされたコンポーネントの側はデータがどこからやって来たのかには関心を持ちません。
 
 `withSubscription` は通常の関数なので、引数を好きなだけ増やしたり減らしたりできます。例えば、`data` プロパティの名前を変更可能にして、HOC をラップされるコンポーネントから更に分離させることもできるでしょう。もしくは `shouldComponentUpdate` を設定する引数を受け取ったり、データソースを設定する引数を受け取りたいこともあるかもしれません。HOC ではコンポーネントがどのように定義されるかを完全に管理できるため、上述のことは全て実現できます。
 
-コンポーネントのように、`withSubscription` とラップされるコンポーネントの間の契約は完全に props に基づいています。 これにより同じ props をラップされるコンポーネントに与える限りは、ある HOC を他の HOC と簡単に交換できます。このことは例えばデータ取得ライブラリを変更する場合に便利でしょう。
+コンポーネントのように、`withSubscription` とラップされるコンポーネントの間の契約は完全に props に基づいています。これにより同じ props をラップされるコンポーネントに与える限りは、ある HOC を他の HOC と簡単に交換できます。このことは例えばデータ取得ライブラリを変更する場合に便利でしょう。
 
 ## 元のコンポーネントを変更するのではなく、コンポジションを使うこと {#dont-mutate-the-original-component-use-composition}
 
@@ -294,7 +294,7 @@ const EnhancedComponent = enhance(WrappedComponent)
 
 （この性質を使えば、`connect` や他の機能追加方式の HOC をデコレータ（提唱中の JavaScript の実験的機能）で使用することも可能になります）
 
-`compose` ユーティリティ関数は lodash（[`lodash.flowRight`](https://lodash.com/docs/#flowRight)として）、[Redux](http://redux.js.org/docs/api/compose.html)、そして [Ramda](http://ramdajs.com/docs/#compose) といった多くのサードパーティ製ライブラリから提供されています。
+`compose` ユーティリティ関数は lodash（[`lodash.flowRight`](https://lodash.com/docs/#flowRight) として）、[Redux](http://redux.js.org/docs/api/compose.html)、そして [Ramda](http://ramdajs.com/docs/#compose) といった多くのサードパーティ製ライブラリから提供されています。
 
 ## 規則：デバッグしやすくするため表示名をラップすること {#convention-wrap-the-display-name-for-easy-debugging}
 
@@ -321,9 +321,9 @@ function getDisplayName(WrappedComponent) {
 
 ### render メソッド内部で HOC を使用しないこと {#dont-use-hocs-inside-the-render-method}
 
-React の差分アルゴリズム（"reconciliation" と呼ばれる）は、既存のサブツリーを更新すべきかそれを破棄して新しいものをマウントすべきかを決定する際に、コンポーネントの型が同一かどうかの情報を利用します。`render` メソッドから返されるコンポーネントが以前の描画から返されたコンポーネントと（`===`で検証して）同一だった場合、React はサブツリーを新しいツリーとの差分を取りながら再帰的に更新します。 コンポーネントが同一でなければ、以前のサブツリーは完全にアンマウントされます。
+React の差分アルゴリズム（"reconciliation" と呼ばれる）は、既存のサブツリーを更新すべきかそれを破棄して新しいものをマウントすべきかを決定する際に、コンポーネントの型が同一かどうかの情報を利用します。`render` メソッドから返されるコンポーネントが以前の描画から返されたコンポーネントと（`===`で検証して）同一だった場合、React はサブツリーを新しいツリーとの差分を取りながら再帰的に更新します。コンポーネントが同一でなければ、以前のサブツリーは完全にアンマウントされます。
 
-通常このことを考慮する必要はありません。ですが HOC に関しては考えるべきことです。このことが、 render メソッド中でコンポーネントに HOC を適用してはいけないということを意味しているからです：
+通常このことを考慮する必要はありません。ですが HOC に関しては考えるべきことです。このことが、render メソッド中でコンポーネントに HOC を適用してはいけないということを意味しているからです：
 
 ```js
 render() {
@@ -395,6 +395,6 @@ import MyComponent, { someFunction } from './MyComponent.js';
 
 ### ref 属性は渡されない {#refs-arent-passed-through}
 
-高階コンポーネントの通例としては、すべての props はラップされたコンポーネントに渡されますが、ref に関してはそうではありません。 これは `ref` 属性が（`key` と同様）実際のプロパティではなく、React によって特別に処理されているものだからです。HOC から出力されたコンポーネントの要素に ref 属性を追加する場合、ref 属性はラップされた内側のコンポーネントではなく、最も外側のコンテナコンポーネントを参照します。
+高階コンポーネントの通例としては、すべての props はラップされたコンポーネントに渡されますが、ref に関してはそうではありません。これは `ref` 属性が（`key` と同様）実際のプロパティではなく、React によって特別に処理されているものだからです。HOC から出力されたコンポーネントの要素に ref 属性を追加する場合、ref 属性はラップされた内側のコンポーネントではなく、最も外側のコンテナコンポーネントを参照します。
 
 この問題の解決方法は（React 16.3 で導入された）`React.forwardRef` API を使うことです。[詳しくは ref のフォワーディングの章をご覧ください](/docs/forwarding-refs.html)。
