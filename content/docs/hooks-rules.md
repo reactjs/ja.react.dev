@@ -8,7 +8,7 @@ prev: hooks-effect.html
 
 *フック (hook)* は React 16.8 で追加された新機能です。state などの React の機能を、クラスを書かずに使えるようになります。
 
-フックは JavaScript の関数ですが、それらを使う際には以下のルールに従う必要があります。我々は自動的にこのルールを強制するための [linter プラグイン](https://www.npmjs.com/package/eslint-plugin-react-hooks) を提供しています。
+フックは JavaScript の関数ですが、それらを使う際には以下の 2 つのルールに従う必要があります。我々は自動的にこのルールを強制するための [linter プラグイン](https://www.npmjs.com/package/eslint-plugin-react-hooks) を提供しています。
 
 ### フックを呼び出すのはトップレベルのみ {#only-call-hooks-at-the-top-level}
 
