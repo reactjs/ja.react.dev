@@ -25,7 +25,7 @@ redirect_from:
 
 ## 制御されたコンポーネント {#controlled-components}
 
-HTMLでは `<input>`、`<textarea>`、そして `<select>` のようなフォーム要素は通常、自身で状態を保持しており、ユーザーの入力に基づいてそれを更新します。React では、変更されうる状態は通常はコンポーネントの state プロパティに保持され、[`setState()`](/docs/react-component.html#setstate) 関数でのみ更新されます。
+HTML では `<input>`、`<textarea>`、そして `<select>` のようなフォーム要素は通常、自身で状態を保持しており、ユーザーの入力に基づいてそれを更新します。React では、変更されうる状態は通常はコンポーネントの state プロパティに保持され、[`setState()`](/docs/react-component.html#setstate) 関数でのみ更新されます。
 
 React の state を "信頼できる唯一の情報源 (single source of truth)" とすることで、上述の 2 つの状態を結合させることができます。そうすることで、フォームをレンダーしている React コンポーネントが、後続するユーザー入力でフォームで起きることも制御できるようになります。このような方法で React によって値が制御される入力フォーム要素は「制御されたコンポーネント」と呼ばれます。
 
@@ -86,7 +86,7 @@ HTML では、`<textarea>` 要素はテキストを子要素として定義し�
 </textarea>
 ```
 
-Reactでは、`<textarea>` は代わりに `value` 属性を使用します。こうすることで、`<textarea>` を使用するフォームは単一行の入力フォームと非常に似た書き方ができるようになります：
+React では、`<textarea>` は代わりに `value` 属性を使用します。こうすることで、`<textarea>` を使用するフォームは単一行の入力フォームと非常に似た書き方ができるようになります：
 
 ```javascript{4-6,12-14,26}
 class EssayForm extends React.Component {
@@ -185,7 +185,7 @@ class FlavorForm extends React.Component {
 
 > 補足
 >
-> `value` 属性に配列を渡すことで、 `select` タグ内の複数のオプションを選択することができます：
+> `value` 属性に配列を渡すことで、`select` タグ内の複数のオプションを選択することができます：
 >
 >```js
 ><select multiple={true} value={['B', 'C']}>
@@ -193,7 +193,7 @@ class FlavorForm extends React.Component {
 
 ##file input タグ {#the-file-input-tag}
 
-HTMLでは、`<input type="file">` によってユーザにデバイス内の 1 つ以上のファイルを選ばせて、それをサーバにアップロードしたり [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications) を使って JavaScript で操作したりすることができます。
+HTML では、`<input type="file">` によってユーザにデバイス内の 1 つ以上のファイルを選ばせて、それをサーバにアップロードしたり [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications) を使って JavaScript で操作したりすることができます。
 
 ```html
 <input type="file" />
@@ -293,7 +293,7 @@ setTimeout(function() {
 
 ## 制御されたコンポーネントの代替手段 {#alternatives-to-controlled-components}
 
-制御されたコンポーネントは、あらゆる種類のデータの変更に対してイベントハンドラを書き、あらゆる入力状態を React コンポーネントに通してやる必要があるため、時としてうんざりすることがあります。このことは既存のコードベースを React に変換する場合や、React アプリケーションを非 React のライブラリと統合する場合に、特に問題化します。これらの状況においては、 入力フォームを実装する代替手段である[非制御コンポーネント](/docs/uncontrolled-components.html)を検討してみてください。
+制御されたコンポーネントは、あらゆる種類のデータの変更に対してイベントハンドラを書き、あらゆる入力状態を React コンポーネントに通してやる必要があるため、時としてうんざりすることがあります。このことは既存のコードベースを React に変換する場合や、React アプリケーションを非 React のライブラリと統合する場合に、特に問題化します。これらの状況においては、入力フォームを実装する代替手段である[非制御コンポーネント](/docs/uncontrolled-components.html)を検討してみてください。
 
 ## 本格的なソリューション {#fully-fledged-solutions}
 
