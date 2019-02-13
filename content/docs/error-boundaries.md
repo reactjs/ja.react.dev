@@ -22,7 +22,7 @@ error boundary は**自身の子コンポーネントツリーで発生した Ja
 > * サーバーサイドレンダリング
 > * （子コンポーネントではなく）error boundary 自身がスローしたエラー
 
-クラスコンポーネントに、ライフサイクルメソッドの [`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) か [`componentDidCatch()`](/docs/react-component.html#componentdidcatch) のいずれか（または両方）を定義すると、error boundary になります。`static getDerivedStateFromError()` はエラーがスローされた後にフォールバック UI をレンダーするために使用します。 `componentDidCatch()` はエラー情報をログに記録するために使用します。
+クラスコンポーネントに、ライフサイクルメソッドの [`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) か [`componentDidCatch()`](/docs/react-component.html#componentdidcatch) のいずれか（または両方）を定義すると、error boundary になります。`static getDerivedStateFromError()` はエラーがスローされた後にフォールバック UI をレンダーするために使用します。`componentDidCatch()` はエラー情報をログに記録するために使用します。
 
 ```js{7-10,12-15,18-21}
 class ErrorBoundary extends React.Component {
@@ -76,7 +76,7 @@ error boundary の粒度はあなた次第です。サーバサイドフレー�
 
 ## エラーがキャッチされなかった場合の新しい動作 {#new-behavior-for-uncaught-errors}
 
-この変更には重要な意味があります。 **React 16 から、どの error boundary でもエラーがキャッチされなかった場合に React コンポーネントツリー全体がアンマウントされるようになりました。**
+この変更には重要な意味があります。**React 16 から、どの error boundary でもエラーがキャッチされなかった場合に React コンポーネントツリー全体がアンマウントされるようになりました。**
 
 この決定については議論がありましたが、我々の経験上、壊れた UI をそのまま表示しておくことは、完全に削除してしまうよりももっと悪いことです。例えば、Messenger のような製品において壊れた UI を表示したままにしておくと、誰かが誤って別の人にメッセージを送ってしまう可能性があります。同様に、支払いアプリで間違った金額を表示することは、何も表示しないよりも悪いことです。
 
@@ -159,8 +159,8 @@ class MyComponent extends React.Component {
 
 上記の例は標準の JavaScript の動作説明であって error boundary を使用していないことに注意してください。
 
-## React 15からの命名の変更 {#naming-changes-from-react-15}
+## React 15 からの命名の変更 {#naming-changes-from-react-15}
 
-React 15 は error boundary を異なるメソッド名（`unstable_handleError`）で非常に限定的にサポートしていました。このメソッドはもう動作しないため、16ベータ版リリース以降はコードを `componentDidCatch` に変更する必要があります。
+React 15 は error boundary を異なるメソッド名（`unstable_handleError`）で非常に限定的にサポートしていました。このメソッドはもう動作しないため、16 ベータ版リリース以降はコードを `componentDidCatch` に変更する必要があります。
 
 この変更について、自動的にコードを移行できる [codemod](https://github.com/reactjs/react-codemod#error-boundaries) が提供されています。
