@@ -33,7 +33,7 @@ string type
 
 > 補足
 >
-> v0.14以降、イベントハンドラから `false` を返してもイベントの伝播は止まりません。代わりに、`e.stopPropagation()` または `e.preventDefault()` を手動で呼び出す必要があります。
+> v0.14 以降、イベントハンドラから `false` を返してもイベントの伝播は止まりません。代わりに、`e.stopPropagation()` または `e.preventDefault()` を手動で呼び出す必要があります。
 
 ### イベントのプール {#event-pooling}
 
@@ -149,7 +149,7 @@ boolean shiftKey
 number which
 ```
 
-`key` プロパティは[DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values)に記載されている任意の値を取ることができます。
+`key` プロパティは [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values) に記載されている任意の値を取ることができます。
 
 * * *
 
@@ -179,7 +179,7 @@ DOMEventTarget relatedTarget
 onChange onInput onInvalid onSubmit
 ```
 
-onChange イベントの詳細については、[Forms](/docs/forms.html)を参照してください。
+onChange イベントの詳細については、[Forms](/docs/forms.html) を参照してください。
 
 * * *
 
@@ -229,7 +229,7 @@ onLostPointerCapture onPointerEnter onPointerLeave onPointerOver onPointerOut
 
 プロパティ：
 
-[W3 spec](https://www.w3.org/TR/pointerevents/)に定義されている通り、ポインタイベントは下記のプロパティを持つマウスイベントの拡張です。
+[W3 spec](https://www.w3.org/TR/pointerevents/) に定義されている通り、ポインタイベントは下記のプロパティを持つマウスイベントの拡張です。
 
 ```javascript
 number pointerId

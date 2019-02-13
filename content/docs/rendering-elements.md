@@ -34,7 +34,7 @@ HTML ファイルの中に `<div>` 要素があったとしましょう：
 
 React だけで構築されたアプリケーションは、通常ルート DOM ノードをひとつだけ持ちます。既存のアプリに React を統合しようとしている場合は、独立したルート DOM ノードを好きなだけ持つことができます。
 
-React 要素をルートDOM ノードにレンダリングするには、その2つを `ReactDOM.render()` に渡します：
+React 要素をルート DOM ノードにレンダリングするには、その 2 つを `ReactDOM.render()` に渡します：
 
 `embed:rendering-elements/render-an-element.js`
 
