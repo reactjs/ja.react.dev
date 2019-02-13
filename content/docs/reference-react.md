@@ -84,7 +84,7 @@ UI がどのように見えるべきかを記述するために [JSX の使用](
 
 * * *
 
-## レファレンス {#reference}
+## リファレンス {#reference}
 
 ### `React.Component` {#reactcomponent}
 
