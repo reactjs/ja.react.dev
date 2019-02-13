@@ -1,7 +1,7 @@
 // highlight-range{1-4}
 // コンテクストを使用すると、全てのコンポーネントを明示的に通すことなしに
 // コンポーネントツリーの深くまで値を渡すことができます。
-// 現在のテーマ（デフォルトは”light”）の為のコンテクストを作成します。
+// 現在のテーマ（デフォルトは "light"）の為のコンテクストを作成します。
 const ThemeContext = React.createContext('light');
 
 class App extends React.Component {
@@ -9,7 +9,7 @@ class App extends React.Component {
     // highlight-range{1-3,5}
     // 以下のツリーへ現在のテーマを渡すためにプロバイダを使用します。
     // どんな深さでも、どのようなコンポーネントでも読み取ることができます。
-    // このサンプルでは、”dark”を現在の値として渡しています。
+    // このサンプルでは、"dark" を現在の値として渡しています。
     return (
       <ThemeContext.Provider value="dark">
         <Toolbar />
@@ -33,7 +33,7 @@ class ThemedButton extends React.Component {
   // highlight-range{1-3,6}
   // 現在のテーマのコンテクストを読むために、contextType に指定します。
   // React は上位の最も近いテーマプロバイダを見つけ、その値を使用します。
-  // この例では、現在のテーマは”dark”です。
+  // この例では、現在のテーマは "dark" です。
   static contextType = ThemeContext;
   render() {
     return <Button theme={this.context} />;

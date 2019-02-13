@@ -6,8 +6,8 @@ class App extends React.Component {
 
 function Toolbar(props) {
   // highlight-range{1-4,7}
-  // Toolbar コンポーネントは外部から”theme”プロパティを受け取らなければなりません。
-  // そして、プロパティを ThemedButton へ渡します。
+  // Toolbar コンポーネントは外部から "theme" プロパティを受け取り、
+  // プロパティを ThemedButton へ渡します。
   // アプリ内の各ボタンがテーマを知る必要がある場合、
   // プロパティは全てのコンポーネントを通して渡される為、面倒になります。
   return (
