@@ -62,9 +62,7 @@ Button.propTypes = {
 あなたがサードパーティ製 PropTypes の作者で、利用者に既存の React PropTypes をラップさせる場合、ライブラリがこの警告を発生させるのを利用者は見かけるようになるでしょう。
 これは手動によるPropTypesの呼び出しを[検知するために渡す最後尾の引数 `secret`](https://github.com/facebook/react/pull/7132)を React が確認できないために起こります。
 
-以下に修正方法を示します。
-例として使用しているのは [react-bootstrap/react-prop-types](https://github.com/react-bootstrap/react-prop-types/blob/0d1cd3a49a93e513325e3258b28a82ce7d38e690/src/deprecated.js) にある `deprecated` です。
-現時点での実装では単に引数として `props`、 `propName`、そして `componentName` を渡しているだけです。
+以下に修正方法を示します。例として使用しているのは [react-bootstrap/react-prop-types](https://github.com/react-bootstrap/react-prop-types/blob/0d1cd3a49a93e513325e3258b28a82ce7d38e690/src/deprecated.js) にある `deprecated` です。現時点での実装では単に引数として `props`、 `propName`、そして `componentName` を渡しているだけです。
 
 ```javascript
 export default function deprecated(propType, explanation) {
