@@ -16,7 +16,7 @@ const element = <h1>Hello, world!</h1>;
 
 これは JSX と呼ばれる JavaScript の構文の拡張です。UI がどのような見た目かを記述するために、React とともに JSX を使用することを私たちはお勧めしています。JSX はテンプレート言語を連想させるでしょうが、JavaScript の機能を全て備えたものです。
 
-JSX は React "要素" を生成します。[次の章](/docs/rendering-elements.html)で React 要素を DOM に変換する方法について見ていきます。以下では、 JSX を使い始めるのに必要な基礎を学ぶことができます。
+JSX は React "要素" を生成します。[次の章](/docs/rendering-elements.html)で React 要素を DOM に変換する方法について見ていきます。以下では、JSX を使い始めるのに必要な基礎を学ぶことができます。
 
 ### JSXを使う理由 {#why-jsx}
 
@@ -77,7 +77,7 @@ ReactDOM.render(
 
 コンパイルの後、JSX の式は普通の JavaScript の関数呼び出しに変換され、JavaScript オブジェクトへと評価されます。
 
-これは JSXを `if` 文や `for` ループの中で使用したり、変数に代入したり、引数として受け取ったり、関数から返したりすることができるということです。
+これは JSX を `if` 文や `for` ループの中で使用したり、変数に代入したり、引数として受け取ったり、関数から返したりすることができるということです。
 
 ```js{3,5}
 function getGreeting(user) {
