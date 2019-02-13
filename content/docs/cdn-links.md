@@ -22,7 +22,7 @@ React および ReactDOM は CDN を介して利用することができます�
 
 特定のバージョンの `react` と `react-dom` をロードする場合は、`16` の部分をバージョン番号で置き換えてください。
 
-### なぜ `crossorigin` 属性が必要なのか？
+### なぜ `crossorigin` 属性が必要なのか？ {#why-the-crossorigin-attribute}
 
 CDN を使って React の機能を提供する場合、[`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) 属性を設定することをお勧めします。
 
