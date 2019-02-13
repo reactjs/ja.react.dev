@@ -22,7 +22,7 @@ class HelloMessage extends React.Component {
 
 > 補足:
 >
-> Web Components はよく命令形の API を公開しています。例えば、`video` という Web Component が `play()` や `pause()` といった関数を公開しているかもしれません。Web Component が使う命令形の API にアクセスするには DOM ノードと直接やり取りするために ref を使う必要があります。サードパーティ製の Web Components を使用している場合は、Web Component の Wrapper として機能する React のコンポーネントを作成するのがベストな選択でしょう。 
+> Web Components はよく命令型の API を公開しています。例えば、`video` という Web Component が `play()` や `pause()` といった関数を公開しているかもしれません。Web Component が使う命令型の API にアクセスするには DOM ノードと直接やり取りするために ref を使う必要があります。サードパーティ製の Web Components を使用している場合は、Web Component のラッパとして機能する React のコンポーネントを作成するのがベストな選択でしょう。 
 >
 > Web Component から発された Event は React のレンダーツリーを正しく伝わってこない可能性があります。
 > React コンポーネント内でイベントに適切に対応するにはそのためのイベントハンドラを与える必要があります。
