@@ -59,7 +59,7 @@ Button.propTypes = {
 
 ### サードパーティの PropTypes における誤検知を修正する
 
-あなたがサードパーティ製 PropTypes の作者で、利用者に既存の React PropTypes をラップさせる場合、ライブラリがこの警告を発生させるのを利用者は見かけるようになるでしょう。
+あなたがサードパーティ製 PropTypes の作者で、利用者に既存の React PropTypes をラップさせる場合、ライブラリがこの警告を発生させるのを利用者は目にするようになるでしょう。
 これは手動によるPropTypesの呼び出しを[検知するために渡す最後尾の引数 `secret`](https://github.com/facebook/react/pull/7132)を React が確認できないために起こります。
 
 以下に修正方法を示します。
