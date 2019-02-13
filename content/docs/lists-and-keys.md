@@ -50,7 +50,7 @@ ReactDOM.render(
 
 通常、リストは何らかの[コンポーネント](/docs/components-and-props.html)の内部でレンダリングしたいと思うでしょう。
 
-前の例をリファクタリングして、`numbers` という配列を受け取って要素の順序なしリストを出力するコンポーネントを作ることができます。
+前の例をリファクタリングして、`numbers` という配列を受け取って要素のリストを出力するコンポーネントを作ることができます。
 
 ```javascript{3-5,7,13}
 function NumberList(props) {
