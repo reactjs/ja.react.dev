@@ -110,7 +110,7 @@ React コンポーネントの `render()` 関数が同じ props と state を与
 
 > 補足
 >
-> `React.PureComponent` の `shouldComponentUpdate()` は オブジェクトの浅い比較のみを行います。これらに複雑なデータ構造が含まれていると、深い部分のみに差分があるために、本当は差分があるにも関わらず差分がないと見なされる場合があります。単純な props とstateを持つ場合にのみ `PureComponent` を継承するか、深いデータ構造が変更されたとわかっているときに [`forceUpdate()`](/docs/react-component.html#forceupdate) を使用してください。あるいは、ネストされたデータ構造の高速な比較を容易にするために [イミュータブルなオブジェクト](https://facebook.github.io/immutable-js/) の使用を検討してください。
+> `React.PureComponent` の `shouldComponentUpdate()` は オブジェクトの浅い比較のみを行います。これらに複雑なデータ構造が含まれていると、深い部分のみに差分があるために、本当は差分があるにも関わらず差分がないと見なされる場合があります。単純な props とstate を持つ場合にのみ `PureComponent` を継承するか、深いデータ構造が変更されたとわかっているときに [`forceUpdate()`](/docs/react-component.html#forceupdate) を使用してください。あるいは、ネストされたデータ構造の高速な比較を容易にするために [イミュータブルなオブジェクト](https://facebook.github.io/immutable-js/) の使用を検討してください。
 >
 > さらに、`React.PureComponent` の `shouldComponentUpdate()` はサブツリー全体のコンポーネントの props の更新をスキップします。子コンポーネントの全てが「純粋な」コンポーネントであることを確認してください。
 
@@ -126,7 +126,7 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 `React.memo` は [高階コンポーネント](/docs/higher-order-components.html) です。これは [`React.PureComponent`](#reactpurecomponent) に似ていますが、クラスではなく関数コンポーネント用です。
 
-もしある関数コンポーネントが同じ props を与えられたときに同じ結果をレンダーするなら、結果を記憶してパフォーマンスを向上させるためにそれを `React.memo` でラップすることができます。つまり、Reactはコンポーネントのレンダーをスキップし、最後のレンダー結果を再利用します。
+もしある関数コンポーネントが同じ props を与えられたときに同じ結果をレンダーするなら、結果を記憶してパフォーマンスを向上させるためにそれを `React.memo` でラップすることができます。つまり、React はコンポーネントのレンダーをスキップし、最後のレンダー結果を再利用します。
 
 デフォルトでは props オブジェクト内の複雑なオブジェクトは浅い比較のみが行われます。比較を制御したい場合は 2 番目の引数でカスタム比較関数を指定できます。
 
@@ -304,13 +304,13 @@ render() {
 * [Forwarding refs to DOM components](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)
 * [Forwarding refs in higher-order-components](/docs/forwarding-refs.html#forwarding-refs-in-higher-order-components)
 
-`React.forwardRef` はレンダー関数を引数として受け入れます。Reactは props と ref を 2 つの引数として呼び出します。この関数は React ノードを返す必要があります。
+`React.forwardRef` はレンダー関数を引数として受け入れます。React は props と ref を 2 つの引数として呼び出します。この関数は React ノードを返す必要があります。
 
 `embed:reference-react-forward-ref.js`
 
 上の例では、React は `<FancyButton ref={ref}>` 要素に与えた `ref` を `React.forwardRef` の呼び出し内のレンダー関数の 2 番目の引数として渡します。このレンダー関数は `ref` を `<button ref={ref}>` 要素に渡します。
 
-結果として、Reactが `ref` を取り付けた後、`ref.current` は `<button>` の DOM 要素のインスタンスを直接指すようになります。
+結果として、React が `ref` を取り付けた後、`ref.current` は `<button>` の DOM 要素のインスタンスを直接指すようになります。
 
 詳しくは [forwarding refs](/docs/forwarding-refs.html) を参照してください。
 
