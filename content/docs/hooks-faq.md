@@ -50,7 +50,7 @@ prev: hooks-reference.html
   * [useCallback からの頻繁に変わる値を読み出す方法は？](#how-to-read-an-often-changing-value-from-usecallback)
 * **[内部の仕組み](#under-the-hood)**
   * [React はフック呼び出しとコンポーネントとをどのように関連付けているのですか？](#how-does-react-associate-hook-calls-with-components)
-  * [フックの先行技術は？](#what-is-the-prior-art-for-hooks)
+  * [フックの先行技術にはどのようなものがありますか？](#what-is-the-prior-art-for-hooks)
 
 ## 導入の指針 {#adoption-strategy}
 
@@ -670,7 +670,7 @@ React は現在どのコンポーネントがレンダー中なのかを把握�
 
 それぞれのコンポーネントに関連付けられる形で、React 内に「メモリーセル」のリストが存在しています。それらは単に何らかのデータを保存できる JavaScript のオブジェクトです。あなたが `useState()` のようなフックを呼ぶと、フックは現在のセルの値を読み出し（あるいは初回レンダー時はセル内容を初期化し）、ポインタを次に進めます。これが複数の `useState()` の呼び出しが個別のローカル state を得る仕組みです。
 
-### フックの先行技術は？ {#what-is-the-prior-art-for-hooks}
+### フックの先行技術にはどのようなものがありますか？ {#what-is-the-prior-art-for-hooks}
 
 フックは複数の異なった出典からのアイディアを総合したものです：
 
