@@ -8,7 +8,7 @@ permalink: docs/react-dom.html
 
 `<script>` タグから React をロードすると、以下のトップレベル API をグローバル変数 `ReactDOM` で使用することができます。npm と ES6 を使用している場合は、`import ReactDOM from 'react-dom'` と記述できます。npm と ES5 を使用している場合は、`var ReactDOM = require('react-dom')` と記述できます。
 
-## 概要
+## 概要 {#overview}
 
 `react-dom` パッケージには、DOM 固有のメソッドが用意されており、アプリケーションのトップレベルで使用したり、必要に応じて React モデルから外れるための避難ハッチとして使用できます。ほとんどのコンポーネントでは、このモジュールを使用する必要はないはずです。
 
@@ -18,7 +18,7 @@ permalink: docs/react-dom.html
 - [`findDOMNode()`](#finddomnode)
 - [`createPortal()`](#createportal)
 
-### ブラウザサポート
+### ブラウザサポート {#browser-support}
 
 React は Internet Explorer 9 以降を含む全ての一般的なブラウザをサポートしていますが、IE 9 や IE 10 といった古いブラウザでは[いくつかのポリフィルが必要です](/docs/javascript-environment-requirements.html)。
 
@@ -28,9 +28,9 @@ React は Internet Explorer 9 以降を含む全ての一般的なブラウザ�
 
 * * *
 
-## リファレンス
+## リファレンス {#reference}
 
-### `render()`
+### `render()` {#render}
 
 ```javascript
 ReactDOM.render(element, container[, callback])
@@ -56,7 +56,7 @@ React 要素がすでに `container` にレンダーされている場合は更�
 
 * * *
 
-### `hydrate()`
+### `hydrate()` {#hydrate}
 
 ```javascript
 ReactDOM.hydrate(element, container[, callback])
@@ -74,7 +74,7 @@ React はレンダーされる内容が、サーバ・クライアント間で�
 
 * * *
 
-### `unmountComponentAtNode()`
+### `unmountComponentAtNode()` {#unmountcomponentatnode}
 
 ```javascript
 ReactDOM.unmountComponentAtNode(container)
@@ -84,7 +84,7 @@ DOM からマウントされた React コンポーネントを削除し、イベ
 
 * * *
 
-### `findDOMNode()`
+### `findDOMNode()` {#finddomnode}
 
 > 補足:
 >
@@ -105,7 +105,7 @@ DOM にこのコンポーネントがマウントされている場合、この�
 
 * * *
 
-### `createPortal()`
+### `createPortal()` {#createportal}
 
 ```javascript
 ReactDOM.createPortal(child, container)

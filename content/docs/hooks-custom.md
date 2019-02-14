@@ -67,7 +67,7 @@ function FriendListItem(props) {
 
 これまで React では、ステートを有するロジックをコンポーネント間で共有するための人気の手法が 2 つありました。[レンダープロップ](/docs/render-props.html) と [高階コンポーネント](/docs/higher-order-components.html)です。ツリーに新しいコンポーネントを加える必要なしに、フックが同じ問題をどのように解決するのかを見ていきましょう。
 
-## カスタムフックの抽出
+## カスタムフックの抽出 {#extracting-a-custom-hook}
 
 2 つの JavaScript の関数間でロジックを共有したい場合、それを別の関数に抽出します。コンポーネントもフックも関数ですので、同じ方法が使えます！
 
@@ -112,7 +112,7 @@ function useFriendStatus(friendID) {
 
 ではこのカスタムフックの使い方を見ていきましょう。
 
-## カスタムフックを使う
+## カスタムフックを使う {#using-a-custom-hook}
 
 そもそもの我々の目的は `FriendStatus` と `FriendListItem` コンポーネントでの重複したロジックを取り除くことでした。どちらのコンポーネントもフレンドがオンラインかどうかを知りたいのです。
 
@@ -149,7 +149,7 @@ function FriendListItem(props) {
 
 **どのようにしてカスタムフックは独立したステートを得るのか？**　それぞれのフックの*呼び出し*が独立した state を得ます。`useFriendStatus` を直接呼びだしていますので、React から見れば我々のコンポーネントが `useState` や `useEffect` を呼んだ場合と変わりません。すでに[ここ](/docs/hooks-state.html#tip-using-multiple-state-variables)や[ここ](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns)で学んだ通り、`useState` や `useEffect` はひとつのコンポーネント内で複数回呼ぶことができ、それらは完全に独立しています。
 
-### ヒント：フック間で情報を受け渡す
+### ヒント：フック間で情報を受け渡す {#tip-pass-information-between-hooks}
 
 フックは関数ですので、フック間で情報を受け渡すことができます。
 
@@ -195,7 +195,7 @@ function ChatRecipientPicker() {
 
 これにより*現在選択中の*フレンドがオンラインかどうかが分かります。別のフレンドを選択して `recipientID` 変数が更新された場合、`useFriendStatus` フックはこれまで選択されていたフレンドを購読解除して、新しく選択されたフレンドのステータスを購読開始します。
 
-## `useYourImagination()`
+## `useYourImagination()` {#useyourimagination}
 
 カスタムフックにより、これまでの React コンポーネントでは不可能であった、ロジック共有に関する柔軟性が得られます。フォーム操作、アニメーション、宣言的データ購読、タイマー、さらには我々が思いついたことのない多様なユースケースに対するカスタムフックを記述することが可能です。何より、作ったカスタムフックは React の組み込み機能と同じくらい簡単に使えるようになるのです。
 
