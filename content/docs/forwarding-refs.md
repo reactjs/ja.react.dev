@@ -11,7 +11,7 @@ ref のフォワーディングはあるコンポーネントからその子コ�
 ネイティブの `button` DOM 要素を描画する `FancyButton` というコンポーネントを考えてみましょう：
 `embed:forwarding-refs/fancy-button-simple.js`
 
-React コンポーネントは、描画される出力も含め、実装の詳細を隠蔽します。`FancyButton` を使用する他のコンポーネントは内部の `button` DOM 要素に対する [ref を取得する](/docs/refs-and-the-dom.html) **必要は通常ありません** 。これによって、互いのコンポーネントの DOM 構造に過剰に依存することが防がれるので、良いことではあります。
+React コンポーネントは、描画される出力も含め、実装の詳細を隠蔽します。`FancyButton` を使用する他のコンポーネントは内側の `button` DOM 要素に対する [ref を取得する](/docs/refs-and-the-dom.html) **必要は通常ありません** 。これによって、互いのコンポーネントの DOM 構造に過剰に依存することが防がれるので、良いことではあります。
 
 そういったカプセル化は `FeedStory` や `Comment` のようなアプリケーションレベルのコンポーネントでは望ましいことではありますが、`FancyButton` や `MyTextInput` といった非常に多くのところで再利用可能な "葉" コンポーネントでは不便である可能性があります。このようなコンポーネントは、通常の DOM である `button` や `input` と同様に、アプリケーションのいたるところで使われる傾向にあり、フォーカス、要素の選択、アニメーションをこなすにはそれらの DOM にアクセスすることが避けられないかもしれません。
 
@@ -35,13 +35,13 @@ React コンポーネントは、描画される出力も含め、実装の詳�
 >
 > 2 番目の引数 `ref` は `React.forwardRef` の呼び出しを使ってコンポーネントを定義したときにだけ存在します。通常の関数またはクラスコンポーネントは `ref` 引数を受け取らず、ref は props 中でも使用することができません。
 >
-> ref のフォワーディング先は DOM コンポーネントだけにとどまりません。クラスコンポーネントインスタンスへの ref もフォワ−ディングすることができます。
+> ref のフォワーディング先は DOM コンポーネントだけにとどまりません。クラスコンポーネントインスタンスへの ref もフォワーディングすることができます。
 
 ## コンポーネントライブラリのメンテナ向けの補足 {#note-for-component-library-maintainers}
 
-**コンポーネントライブラリの中で、`forawrdRef` を使い始めた場合、破壊的変更として扱い、ライブラリのメジャーバージョンをリリースすべきです。**ライブラリが今までと著しく違う挙動（何の ref が代入されるのか、どのような type がエクスポートされるかのような）をする可能性があるからです。
+**コンポーネントライブラリの中で、`forawrdRef` を使い始めた場合、破壊的変更として扱い、ライブラリのメジャーバージョンをリリースすべきです。**ライブラリが今までと著しく違う挙動（例えば、何の ref が代入されるのか、どのような type がエクスポートされるかのような動作）をする可能性があるからです。
 
-存在する場合だけ、条件的に `React.forwardRef` を適用することも同じ理由で推奨されません： そのような実装は、React そのものを更新したとき、ライブラリがどのように振る舞うかを変えてしまい、ユーザのアプリケーションを破壊する可能性があるからです。
+`React.forwardRef` が存在する場合だけ、条件的に `React.forwardRef` を適用することも同じ理由で推奨されません： そのような実装は、React そのものを更新したとき、ライブラリがどのように振る舞うかを変えてしまい、ユーザのアプリケーションを破壊する可能性があるからです。
 
 ## 高階コンポーネントにおける ref のフォワーディング {#forwarding-refs-in-higher-order-components}
 
@@ -56,10 +56,10 @@ React コンポーネントは、描画される出力も含め、実装の詳�
 このことは `FancyButton` コンポーネントが実際には `LogProps` コンポーネントに付与されることを意味します。
 `embed:forwarding-refs/fancy-button-ref.js`
 
-幸いにも、`React.forwardRef` API を使って、内側の `FancyButton` コンポーネントに対して ref を明示的に渡すことができます。`React.forwardRef` は引数を受け取る render 関数を受け取り、その関数は `props` と `ref` を引数としてとり、React ノードを返します。例えば、
+幸いにも、`React.forwardRef` API を使って、内側の `FancyButton` コンポーネントに対して ref を明示的に渡すことができます。`React.forwardRef` は render 関数を受け取り、その関数は `props` と `ref` を引数として取り、React ノードを返します。例えば、
 `embed:forwarding-refs/log-props-after.js`
 
-## DevTools でのカスタムの名表示{#displaying-a-custom-name-in-devtools}
+## DevTools でのカスタム名表示{#displaying-a-custom-name-in-devtools}
 
 `React.forwardRef` は render 関数を受け取ります。React DevTools は ref をフォワーディングしているコンポーネントとして何を表示すべきかを決定するために、この関数を使います。
 
