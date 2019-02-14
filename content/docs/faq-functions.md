@@ -106,9 +106,9 @@ method();
 
 メソッドはバインドすることで、2 つ目のコードが 1 つ目と同様に動作するようになります。
 
-React では、一般的に他のコンポーネントに *渡す* メソッドしかバインドする必要はありません。たとえば、`<button onClick={this.handleClick}>` というコードは、`this.handleClick` を渡しているので、バインドする必要があります。しかし、レンダーやライフサイクルメソッドをバインドする必要はありません。それらは他のコンポーネントに渡すことがないからです。
+React では、一般的に他のコンポーネントに *渡す* メソッドしかバインドする必要はありません。たとえば、`<button onClick={this.handleClick}>` というコードは、`this.handleClick` を渡しているので、バインドする必要があります。しかし、`render` メソッドやライフサイクルメソッドをバインドする必要はありません。それらは他のコンポーネントに渡すことがないからです。
 
-[Yefuda Kats の記事](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) はバインドとは何か、また JavaScript における関数の動作について詳細に説明してくれています。
+[Yehuda Katz の記事](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) はバインドとは何か、また JavaScript における関数の動作について詳細に説明してくれています。
 
 ### どうしてコンポーネントをレンダーするたびに、関数が呼ばれるのか？ {#why-is-my-function-being-called-every-time-the-component-renders}
 
