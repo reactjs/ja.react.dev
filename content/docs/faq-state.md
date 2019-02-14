@@ -33,7 +33,7 @@ incrementCount() {
 }
 
 handleSomething() {
-  // `this.state.count` は 0 から始まるとしす。
+  // `this.state.count` は 0 から始まるとします。
   this.incrementCount();
   this.incrementCount();
   this.incrementCount();
