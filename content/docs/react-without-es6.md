@@ -175,7 +175,7 @@ class SayHello extends React.Component {
 >
 >この節は参考のためだけに存在します。
 
-時には同じ機能が全く異なるコンポーネント間で共有されることがあります。これは[横断的関心事 (cross-cutting concerns)](https://en.wikipedia.org/wiki/Cross-cutting_concern) と呼ばれることがあります。 `createReactClass` であれば、横断的関心事のためにレガシーな `mixins` 機能を使うことができます。
+時には同じ機能が全く異なるコンポーネント間で共有されることがあります。これは[横断的関心事 (cross-cutting concerns)](https://en.wikipedia.org/wiki/Cross-cutting_concern) と呼ばれることがあります。`createReactClass` であれば、横断的関心事のためにレガシーな `mixins` 機能を使うことができます。
 
 よくある利用例のひとつは、一定時間ごとに自分自身を更新するコンポーネントです。`setInterval()` を使うのは簡単ですが、その場合はメモリ節約のため、コンポーネントが不要になった際にキャンセルすることが重要です。React は[ライフサイクルメソッド](/docs/react-component.html#the-component-lifecycle)を提供しており、コンポーネントが生成、破棄されるときに知らせてくれます。次のようなシンプルなミックスインを作ってみましょう。このミックスインのメソッドは簡単な `setInterval()` 機能を提供し、コンポーネントが破棄されるタイミングで自動的にクリーンアップされます。
 

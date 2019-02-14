@@ -25,7 +25,7 @@ React は段階的に導入することができるように最初からデザ�
 
 複雑なツール類や事前にインストールしておかなければいけないものはありません。**インターネットへの接続さえあれば、1 分間でこのセクションを終わらせることができます。**
 
-オプション：[お手本をダウンロードする (2KB ZIP圧縮)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
+オプション：[お手本をダウンロードする (2KB ZIP 圧縮)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
 
 ### ステップ 1：HTML に DOM コンテナを追加する {#step-1-add-a-dom-container-to-the-html}
 
@@ -94,19 +94,19 @@ React の導入についてもっと知るには、次のセクションも見�
 
 **[完成したソースコードをみる](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
 
-**[完成したソースコードをダウンロードする (2KB ZIP圧縮)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
+**[完成したソースコードをダウンロードする (2KB ZIP 圧縮)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
 
 ### ヒント：コンポーネントを再利用する {#tip-reuse-a-component}
 
-React コンポーネントを HTML ページの一箇所だけではなくいろいろな箇所で使いたくなることがあるかもしれません。そこで「いいね」ボタンを3回繰り返し表示し、さらにそこにちょっとしたデータを渡すプログラムを用意しました。
+React コンポーネントを HTML ページの一箇所だけではなくいろいろな箇所で使いたくなることがあるかもしれません。そこで「いいね」ボタンを 3 回繰り返し表示し、さらにそこにちょっとしたデータを渡すプログラムを用意しました。
 
 [ソースコードをみる](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)
 
-[ソースコードをダウンロードする (2KB ZIP圧縮)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
+[ソースコードをダウンロードする (2KB ZIP 圧縮)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
 
 >補足
 >
->このようなやり方は、主に React を利用する DOM コンテナがページ内でお互いに干渉していない場合において便利な手段です。 React 単体のコードとしては、[コンポーネントを組み合わせる](/docs/components-and-props.html#composing-components) やり方のほうが手軽です。
+>このようなやり方は、主に React を利用する DOM コンテナがページ内でお互いに干渉していない場合において便利な手段です。React 単体のコードとしては、[コンポーネントを組み合わせる](/docs/components-and-props.html#composing-components) やり方のほうが手軽です。
 
 ### ヒント：本番環境用に JavaScript を圧縮する {#tip-minify-javascript-for-production}
 
@@ -176,7 +176,7 @@ JSX をプロジェクトに追加するためには、バンドルツールや�
 >
 >ここでは **JSX プリプロセッサをインストールするためだけに npm を使っています**。それ以外の用途では必要ありません。React のソースコードもアプリケーションコードも引き続き `<script>` タグの中にそのまま書くことができます。
 
-お疲れ様です！　これで**本番環境用の JSX の設定**をプロジェクトに追加することができました。
+お疲れ様です！ これで**本番環境用の JSX の設定**をプロジェクトに追加することができました。
 
 
 ### JSX プリプロセッサを実行する {#run-jsx-preprocessor}
