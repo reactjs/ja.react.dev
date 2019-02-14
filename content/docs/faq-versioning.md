@@ -6,7 +6,7 @@ layout: docs
 category: FAQ
 ---
 
-React は[セマンティック バージョニング(semver)](https://semver.org/) の原則に従います。
+React は[セマンティック バージョニング (semantic versioning; semver)](https://semver.org/) の原則に従います。
 
 すなわちバージョン番号は **x.y.z** になります。
 
