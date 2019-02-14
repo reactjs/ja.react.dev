@@ -213,9 +213,9 @@ class MouseTracker extends React.Component {
 
 より具体的に述べると、**レンダープロップとは、あるコンポーネントが何をレンダーすべきかを知るために使う関数の props です。**
 
-このテクニックによって、再利用する必要がある振る舞いの移植性が極めて高くなります。その振る舞いをさせるためには、現在のカーソルの (x, y) 座標にレンダーするものを示す `render` プロパティを使って `<Mouse>` をレンダーすれば良いのです。  
+このテクニックによって、再利用する必要がある振る舞いの移植性が極めて高くなります。その振る舞いをさせるためには、現在のカーソルの (x, y) 座標にレンダーするものを示す `render` プロパティを使って `<Mouse>` をレンダーすれば良いのです。
 
-レンダープロップの興味深い点として、多くの[高階コンポーネント](/docs/higher-order-components.html) (HOC) がレンダープロップを使った通常のコンポーネントによって実装可能ということが挙げられます。たとえば、`<Mouse>` コンポーネントよりも `withMouse` HOC が好みであれば、レンダープロップを持つ `<Mouse>` を使って簡単に作成可能です。 
+レンダープロップの興味深い点として、多くの[高階コンポーネント](/docs/higher-order-components.html) (HOC) がレンダープロップを使った通常のコンポーネントによって実装可能ということが挙げられます。たとえば、`<Mouse>` コンポーネントよりも `withMouse` HOC が好みであれば、レンダープロップを持つ `<Mouse>` を使って簡単に作成可能です。
 
 ```js
 // If you really want a HOC for some reason, you can easily
@@ -273,7 +273,7 @@ Mouse.propTypes = {
 
 レンダープロップを使う際、`render` メソッド内で関数を作成していると、[`React.PureComponent`](/docs/react-api.html#reactpurecomponent) を使う利点が相殺されます。これは props の浅い (shallow) 比較は新しい props の値に対して常に `false` を返し、そして `render` は毎回レンダープロップとして新しい値を生成するためです。
 
-たとえば、上記の `<Mouse>` コンポーネントの場合、`Mouse` が `React.Component` ではなく `React.PureComponent` を継承していたとすると、次のようになります。 
+たとえば、上記の `<Mouse>` コンポーネントの場合、`Mouse` が `React.Component` ではなく `React.PureComponent` を継承していたとすると、次のようになります。
 
 ```js
 class Mouse extends React.PureComponent {

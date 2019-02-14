@@ -22,7 +22,7 @@ React では配列を[要素](/docs/rendering-elements.html)のリストに変�
 
 ### 複数のコンポーネントをレンダリングする {#rendering-multiple-components}
 
-要素の集合を作成し中括弧 `{}` で囲むことで[JSXに含める](/docs/introducing-jsx.html#embedding-expressions-in-jsx)ことができます。
+要素の集合を作成し中括弧 `{}` で囲むことで [JSX に含める](/docs/introducing-jsx.html#embedding-expressions-in-jsx)ことができます。
 
 以下では、JavaScript の `map()` 関数を利用して、`numbers` という配列に対して反復処理を行っています。それぞれの整数に対して `<li>` 要素を返しています。最後に、結果として得られる要素の配列を `listItems` に格納しています：
 
@@ -50,7 +50,7 @@ ReactDOM.render(
 
 通常、リストは何らかの[コンポーネント](/docs/components-and-props.html)の内部でレンダリングしたいと思うでしょう。
 
-前の例をリファクタリングして、`numbers` という配列を受け取って要素の順序なしリストを出力するコンポーネントを作ることができます。
+前の例をリファクタリングして、`numbers` という配列を受け取って要素のリストを出力するコンポーネントを作ることができます。
 
 ```javascript{3-5,7,13}
 function NumberList(props) {

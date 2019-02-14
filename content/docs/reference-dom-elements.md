@@ -62,7 +62,7 @@ function MyComponent() {
 
 >補足
 >
->このドキュメンテーションにあるいくつかの例では `style` を便宜上使用していますが、**`style` 属性を要素のスタイリングの主要な手段として使うことは一般的に推奨されません。** 多くの場合、[`className`](#classname) を使って外部の CSS スタイルシートに定義された CSS クラスを参照するべきです。React アプリケーションの中では、`style` は動的に計算されたスタイルをレンダー中に追加するために最もよく使われます。[FAQ: Styling and CSS](/docs/faq-styling.html) も参照してください。
+>このドキュメンテーションにあるいくつかの例では `style` を便宜上使用していますが、**`style` 属性を要素のスタイリングの主要な手段として使うことは一般的に推奨されません。**多くの場合、[`className`](#classname) を使って外部の CSS スタイルシートに定義された CSS クラスを参照するべきです。React アプリケーションの中では、`style` は動的に計算されたスタイルをレンダー中に追加するために最もよく使われます。[FAQ: Styling and CSS](/docs/faq-styling.html) も参照してください。
 
 `style` 属性は CSS 文字列ではなく、キャメルケースのプロパティを持った JavaScript オブジェクトを受け取ります。これは JavaScript での DOM の `style` プロパティとの一貫性があり、より効率的で、XSS 攻撃の対象となるセキュリティホールを防ぎます。例えば：
 
@@ -126,7 +126,7 @@ React はインラインスタイルでの特定の数値プロパティに対�
 
 React 16 では、標準[あるいは独自の](/blog/2017/09/08/dom-attributes-in-react-16.html) DOM 属性全てが完全にサポートされます。
 
-React は DOM に対して JavaScript 中心に設計された API を常に提供してきました。React コンポーネントは、独自および DOM に関連した props を頻繁に受け取るため、Reactは DOM API と同様にキャメルケース (`camelCase`) の命名規則を属性の名前付けに使用します。
+React は DOM に対して JavaScript 中心に設計された API を常に提供してきました。React コンポーネントは、独自および DOM に関連した props を頻繁に受け取るため、React は DOM API と同様にキャメルケース (`camelCase`) の命名規則を属性の名前付けに使用します。
 
 ```js
 <div tabIndex="-1" />      // DOM API の node.tabIndex と同様に

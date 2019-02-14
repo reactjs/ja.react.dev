@@ -12,11 +12,11 @@ category: FAQ
 
 ### コンポーネントのどのライフサイクルで AJAX コールすべきか？ {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
 
-AJAX コールによるデータ取得は[`componentDidMount`](/docs/react-component.html#mounting)のライフサイクルメソッドで行うべきです。データ取得後に `setState` でコンポーネントを更新できるようにするためです。
+AJAX コールによるデータ取得は [`componentDidMount`](/docs/react-component.html#mounting) のライフサイクルメソッドで行うべきです。データ取得後に `setState` でコンポーネントを更新できるようにするためです。
 
 ### 例：ローカル state に AJAX の通信結果をセットする {#example-using-ajax-results-to-set-local-state}
 
-下記のコンポーネントは、 `componentDidMount` で AJAX コールして得られたデータをローカルコンポーネントの state に流し込んでいます。 
+下記のコンポーネントは、`componentDidMount` で AJAX コールして得られたデータをローカルコンポーネントの state に流し込んでいます。
 
 このサンプル API が返す JSON オブジェクトはこのようになります：
 
