@@ -38,7 +38,7 @@ React は[セマンティック・バージョニング](http://semver.org/)の�
 
 #### 既知の問題を知るには {#where-to-find-known-issues}
 
-私たちはバグの公開に [GitHub Issues](https://github.com/facebook/react/issues) を使用しています。私たちはこれを注意深く見守り、修正中の作業があるかどうか明確にするようにします。新しい Issue を提出する前に、既に同じものが存在しないか確かめてください
+私たちはバグの公開に [GitHub Issues](https://github.com/facebook/react/issues) を使用しています。私たちはこれを注意深く見守り、修正中の作業があるかどうか明確にするようにします。新しい Issue を提出する前に、既に同じものが存在しないか確かめてください。
 
 #### 新しい問題の報告 {#reporting-new-issues}
 
