@@ -39,7 +39,7 @@ UI がどのように見えるべきかを記述するために [JSX の使用](
 
 詳しくは [JSX なしで React を使う](/docs/react-without-jsx.html) を参照してください。
 
-### 要素を変換する #{transforming-elements}
+### 要素を変換する #{transforming-elements} {#要素を変換する-transforming-elements}
 
 `React` は要素を操作するためのいくつかの API を提供しています。
 
