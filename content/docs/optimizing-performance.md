@@ -6,13 +6,13 @@ redirect_from:
   - "docs/advanced-performance.html"
 ---
 
-React は UI の更新時に必要となる高コストな DOM 操作の回数を最小化するために、内部的にいくつかの賢いテクニックを使用しています。多くのアプリケーションでは React を使用するだけで、パフォーマンス向上のための特別な最適化で苦労しなくても、反応速度の速いユーザーインターフェースを実現できます。それでもなお、React アプリケーションを高速化するための方法はいくつか存在します。
+React は UI の更新時に必要となる高コストな DOM 操作の回数を最小化するために、内部的にいくつかの賢いテクニックを使用しています。多くのアプリケーションでは React を使用するだけで、パフォーマンス向上のための特別な最適化を苦労して行わなくても、レスポンスの良いユーザーインターフェースを実現できますが、それでもなお、React アプリケーションを高速化するための方法はいくつか存在します。
 
 ## 本番用ビルドを使用する
 
 React アプリケーションでベンチマークを行う場合やパフォーマンスの問題が発生している場合には、ミニファイされた本番用ビルドでテストしていることを確認して下さい。
 
-デフォルトで React は多くの有用な警告チェックを行いますが、これは開発時にはとても有用です。でもそもために React アプリケーションのサイズは肥大化し、速度が低下してしまうので、アプリケーションのデプロイ時には本番バージョンを使用していることを確認してください。
+デフォルトで React は多くの有用な警告チェックを行い、開発時にはとても有用なのですが、それによって React アプリケーションのサイズは肥大化し、速度が低下してしまうので、アプリケーションのデプロイ時には本番バージョンを使用していることを確認してください。
 
 ビルドプロセスが正しく設定されているか分からない場合、[React Developer Tools for Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) をインストールして確認できます。
 本番用モードの React のサイトを訪れた場合、アイコンは暗い背景となっています。
@@ -35,7 +35,7 @@ React アプリケーションでベンチマークを行う場合やパフォ�
 npm run build
 ```
 
-これによりアプリケーションの本番用ビルドがプロジェクト内の `build/` フォルダに作成されます。
+これでアプリケーションの本番用ビルドがプロジェクト内の `build/` フォルダに作成されます。
 
 これが必要なのは本番用ビルドだけであることに留意してください。通常の開発作業では、`npm start` を使用してください。
 
@@ -52,7 +52,7 @@ React と ReactDOM をそれぞれ単一ファイル化した本番環境用の�
 
 ### Brunch
 
-Brunch で最も効率のよい本番用ビルドを行うためには、[`uglify-js-brunch`](https://github.com/brunch/uglify-js-brunch) をインストールしてください：
+Brunch で最も効率のよい本番用ビルドを行うには、[`uglify-js-brunch`](https://github.com/brunch/uglify-js-brunch) をインストールしてください：
 
 ```
 # If you use npm
@@ -72,7 +72,7 @@ brunch build -p
 
 ### Browserify
 
-Browserify で最も効率の良い本番用ビルドを行うため、いくつかのプラグインをインストールしてください。
+Browserify で最も効率の良い本番用ビルドを行うには、いくつかのプラグインをインストールしてください。
 
 ```
 # If you use npm
@@ -106,7 +106,7 @@ browserify ./index.js \
 
 ### Rollup
 
-Rollup で最も効率のよい本番用ビルドを行うためには、いくつかのプラグインを以下のようにインストールします。
+Rollup で最も効率のよい本番用ビルドを行うには、いくつかのプラグインを以下のようにインストールします。
 
 ```
 # If you use npm
@@ -142,9 +142,9 @@ plugins: [
 
 >**Note:**
 >
-> Create React App を利用している場合は、[Create React Appについての前述の説明](#create-react-app)に従ってください。<br/>このセクションは直接 webpack の設定を行いたい人向けです。
+> Create React App を利用している場合は、[Create React App についての前述の説明](#create-react-app)に従ってください。<br/>このセクションは直接 webpack の設定を行いたい人向けです。
 
-webpack で最も効率のよい本番用ビルドを行うためには、本番ビルドの設定中に必ず以下のプラグインを含めるようにしてください。
+webpack で最も効率のよい本番用ビルドを行うには、本番ビルドの設定中に必ず以下のプラグインを含めるようにしてください。
 
 ```js
 new webpack.DefinePlugin({
@@ -168,26 +168,34 @@ Chrome での操作は以下の通り。
 
 1. 一時的に **React DevTools を含むすべての Chrome 拡張機能を無効にする**。無効にしないと、結果が正確でなくなる可能性があります。
 2. アプリケーションが開発モードで動作していることを確認する。
+<<<<<<< HEAD
 3. Chrome DevTools の**[パフォーマンス](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)タブ**を開いて **Record(記録)** ボタンを押す。
 4. プロファイル対象のアクションを実行する。なお、20秒以上は記録しないでください。さもないと Chrome がハングアップすることがあります。
+||||||| parent of 257bc669... textlint checked
+3. Chrome DevTools の**[パフォーマンス](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)タブ**を開いて **Record（記録）** ボタンを押す。
+4. プロファイル対象のアクションを実行する。なお、20秒以上は記録しないでください。さもないと Chrome がハングアップすることがあります。
+=======
+3. Chrome DevTools の[**パフォーマンス**](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)タブを開いて **Record（記録）** ボタンを押す。
+4. プロファイル対象のアクションを実行する。なお、20 秒以上は記録しないでください。さもないと Chrome がハングアップすることがあります。
+>>>>>>> 257bc669... textlint checked
 5.  記録を停止する。
 6.  React イベントが **User Timing** ラベルの下にグループ化される。
 
 さらなる詳細については、[Ben Schwarz によるこの記事](https://calibreapp.com/blog/2017-11-28-debugging-react/)を参照ください。
 
-**プロファイル結果の数値は相対的なものであり、コンポーネントは本番環境ではより速くレンダリングされる**ことに注意してください。それでも、関係のない UI が誤って更新されているのを見つけたり、どの程度の頻度と深さで UI の更新が発生するのかを知る手助けになるはずです。
+**プロファイル結果の数値は相対的なものであり、コンポーネントは本番環境ではより速くレンダリングされる**ことに注意してください。それでも、無関係な UI 部分が誤って更新されているのを見つけたり、どの程度の頻度と深さで UI の更新が発生するのかを知る手助けになるはずです。
 
 現時点では、Chrome、Edge、そして IE のみがこの機能をサポートするブラウザですが、私達は標準の [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) を採用しているので、より多くのブラウザがサポートしてくれることを期待しています。
 
 ## DevToolsプロファイラを使用したコンポーネントのプロファイリング
 
-`react-dom` 16.5 以降と`react-native` 0.57 以降では、開発モードにおける強化されたプロファイリング機能を React DevTools プロファイラにて提供しています。このプロファイラの概要がブログ記事「[React プロファイラの紹介（Introduction the React Profiler）](/blog/2018/09/10/introducing-the-react-profiler.html)」で説明されています。チュートリアル動画も [YouTube で入手できます](https://www.youtube.com/watch?v=nySib7ipZdk)。
+`react-dom` 16.5 以降と `react-native` 0.57 以降では、開発モードにおける強化されたプロファイリング機能を React DevTools プロファイラにて提供しています。このプロファイラの概要がブログ記事「[React プロファイラの紹介（Introduction the React Profiler）](/blog/2018/09/10/introducing-the-react-profiler.html)」で説明されています。チュートリアル動画も [YouTube で入手できます](https://www.youtube.com/watch?v=nySib7ipZdk)。
 
-React DevToolsをまだインストールしていない場合は、以下で見つけることができます。
+React DevTools をまだインストールしていない場合は、以下で見つけることができます。
 
-- [Chromeブラウザ拡張](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
-- [Firefoxブラウザ拡張](https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/)
-- [スタンドアロンのNodeパッケージ](https://www.npmjs.com/package/react-devtools)
+- [Chrome ブラウザ拡張](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+- [Firefox ブラウザ拡張](https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/)
+- [スタンドアロンの Node パッケージ](https://www.npmjs.com/package/react-devtools)
 
 > Note:
 >
@@ -195,37 +203,51 @@ React DevToolsをまだインストールしていない場合は、以下で見
 
 ## 長いリストの仮想化
 
-アプリケーションが長いデータのリスト（数百〜数千行）をレンダリングする場合は、「ウィンドウイング」として知られるテクニックを使うことをおすすめします。このテクニックでは、ある瞬間ごとにはリストの小さな部分集合のみを描画することで、作成する DOM ノードの数およびコンポーネントの再描画にかかる時間を大幅に削減することができます。
+アプリケーションが長いデータのリスト（数百〜数千行）をレンダリングする場合は、「ウィンドウイング」として知られるテクニックを使うことをおすすめします。このテクニックでは、ある瞬間ごとにはリストの小さな部分集合のみを描画することで、生成する DOM ノードの数およびコンポーネントの再描画にかかる時間を大幅に削減することができます。
 
-[react-window](https://react-window.now.sh/)と[react-virtualized](https://bvaughn.github.io/react-virtualized/)は人気があるウィンドウイング処理のライブラリです。これらはリスト、グリッド、および表形式のデータを表示するための、いくつかの再利用可能コンポーネントを提供しています。[Twitter](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3) が行なっているように、アプリケーションの特定のユースケースに合わせた追加的な処理をする場合は、独自のウィンドウイング処理のコンポーネントを作成することもできます。
+[react-window](https://react-window.now.sh/) と [react-virtualized](https://bvaughn.github.io/react-virtualized/) は人気があるウィンドウイング処理のライブラリです。これらはリスト、グリッド、および表形式のデータを表示するための、いくつかの再利用可能コンポーネントを提供しています。[Twitter](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3) が行なっているような、アプリケーションの特定のユースケースに合わせた追加的な処理をする場合は、独自のウィンドウイング処理のコンポーネントを作成することもできます。
 
+<<<<<<< HEAD
 ## リコンシリエーション（差分検出、突き合せ処理）を避ける
+||||||| parent of 257bc669... textlint checked
+## リコンシリエーション（差分検出、突き合せ処理）を避ける {#avoid-reconciliation}
+=======
+## リコンシリエーション（差分検出処理）を避ける {#avoid-reconciliation}
+>>>>>>> 257bc669... textlint checked
 
+<<<<<<< HEAD
 React はレンダリングされた UI の内部表現を構築し、維持します。それにはコンポーネントが返した React 要素も含まれています。
 React は、この内部表現を使うことによってJavaScript オブジェクトの操作より遅くなりうる不要な DOM ノードの作成やアクセスを回避します。この内部表現はしばしば「仮想DOM 」と呼ばれますが、React Native 上でも同様に動くものです。
+||||||| parent of 257bc669... textlint checked
+React はレンダリングされた UI の内部表現を構築し、維持します。それにはコンポーネントが返した React 要素も含まれています。
+React は、この内部表現を使うことによってJavaScript オブジェクトの操作より遅くなりうる不要な DOM ノードの作成やアクセスを回避します。この内部表現はしばしば「仮想DOM」と呼ばれますが、React Native 上でも同様に動くものです。
+=======
+React はレンダリングされた UI の内部表現を構築し、維持します。その内部表現にはコンポーネントが返した React 要素も含まれています。
+React はこの内部表現を使うことによって、JavaScript オブジェクトの操作よりも操作が遅くなるかもしれない DOM ノードの不要な作成やアクセスを回避します。この内部表現はしばしば「仮想 DOM」と呼ばれますが、React Native 上でも同様に動くものです。
+>>>>>>> 257bc669... textlint checked
 
-コンポーネントの props や state が変更された場合、React は新しく返された要素と以前にレンダリングされたものとを比較することで、実 DOM の更新が必要かを判断します。それらが等しくない場合、React は DOM を更新します。
+コンポーネントの props や state が変更された場合、React は新しく返された要素と以前にレンダリングされたものとを比較することで、実際の DOM の更新が必要かを判断します。それらが等しくない場合、React は DOM を更新します。
 
-以下のReact DevToolsを使用することで、仮想DOMのこれらの再レンダリングを視覚化できるようになりました。
+以下の React DevTools を使用することで、仮想 DOM のこれらの再レンダリングを視覚化できるようになりました。
 
-- [Chromeブラウザ拡張](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
-- [Firefoxブラウザ拡張](https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/)
-- [スタンドアロンNodeパッケージ](https://www.npmjs.com/package/react-devtools)
+- [Chrome ブラウザ拡張](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+- [Firefox ブラウザ拡張](https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/)
+- [スタンドアロン Node パッケージ](https://www.npmjs.com/package/react-devtools)
 
 
 開発者コンソールの **React** タブで **Highlight Updates** オプションを選択します：
 
 <center><img src="../images/blog/devtools-highlight-updates.png" style="max-width:100%; margin-top:10px;" alt="How to enable highlight updates" /></center>
 
-ページを操作すると、再レンダリングされたコンポーネントの周囲に色付きの枠線が一定時間表示されます。これにより、不要な再レンダリングを見つけることができます。この React DevTools 機能の詳細については、[Ben Edelstein](https://blog.logrocket.com/@edelstein)による[このブログ投稿](https://blog.logrocket.com/make-react-fast-again-part-3-highlighting-component-updates-6119e45e6833)から学ぶことができます。
+ページを操作すると、再レンダリングされたコンポーネントの周囲に色付きの枠線が一定時間表示されます。これにより、不要な再レンダリングを見つけることができます。React DevTools のこの機能の詳細については、[Ben Edelstein](https://blog.logrocket.com/@edelstein) による[ブログ投稿](https://blog.logrocket.com/make-react-fast-again-part-3-highlighting-component-updates-6119e45e6833)から学ぶことができます。
 
 以下の例を考えて見ましょう。
 
 <center><img src="../images/blog/highlight-updates-example.gif" style="max-width:100%; margin-top:20px;" alt="React DevTools Highlight Updates example" /></center>
 
-2つ目の TODO 項目を入力しているとき、1つ目の TODO 項目もキーストロークの度に画面上で点滅することに注意してください。これは、React が入力によって一緒に再レンダリングしていることを意味します。 これは「無駄な」レンダリングと呼ばれることがあります。最初の TODO 項目の内容は変更されておらず、再レンダリングの必要がないことを我々は知っていますが、React はそれを知りません。
+2 つ目の TODO 項目を入力しているとき、1 つ目の TODO 項目もキーストロークの度に画面上で点滅することに注意してください。これは、入力によって React が一緒に再レンダリングしていることを意味します。これは「無駄な」レンダリングと呼ばれることがあります。最初の TODO 項目の内容は変更されていないので、再レンダリングの必要がないことを我々は知っていますが、React はそれを知りません。
 
-React は変更された DOM ノードだけを更新するとはいえ、再レンダリングには時間がかかります。多少の時間がかかっても多くの場合は問題にはなりませんが、遅延が目立つ場合、再レンダリングプロセスが開始される前にトリガーされるライフサイクル関数 `shouldComponentUpdate` をオーバーライドすることで、スピードを抜本的に向上できます。この関数のデフォルトの実装は `true`を返し、React にそのまま更新処理を実行させます：
+React は変更された DOM ノードだけを更新するとはいえ、再レンダリングには時間がかかります。多少の時間がかかっても多くの場合は問題にはなりませんが、遅延が目立つ場合、再レンダリングプロセスが開始される前にトリガーされるライフサイクル関数 `shouldComponentUpdate` をオーバーライド定義することで、スピードを抜本的に向上できます。この関数のデフォルトの実装は `true` を返し、React に更新処理をそのまま実行させます：
 
 ```javascript
 shouldComponentUpdate(nextProps, nextState) {
@@ -235,12 +257,12 @@ shouldComponentUpdate(nextProps, nextState) {
 
 ある状況においてコンポーネントを更新する必要がないと分かっているなら、`shouldComponentUpdate` から `false` を返すことにより、該当コンポーネントおよび配下への `render()` 呼び出しを含む、レンダリング処理の全体をスキップすることができます。
 
-ほとんどの場合には、手書きの `shouldComponentUpdate()` を定義する代わりに[`React.PureComponent`](/docs/react-api.html#reactpurecomponent)を継承できます。 これは現在と直前の props と state に対する浅い比較（Shallow Comparison）を行う `shouldComponentUpdate()` を実装することと同じです。
+ほとんどの場合には、手書きの `shouldComponentUpdate()` を定義する代わりに [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) を継承できます。これは現在と直前の props と state に対する浅い（Shallow）比較を行う `shouldComponentUpdate()` を実装することと同じです。
 
 ## shouldComponentUpdate の実際の動作
 
-以下のようなコンポーネントのサブツリーがあるとします。それぞれ、`SCU` は `shouldComponentUpdate` が返した値（訳注：緑はtrue、赤は false）を示し、`vDOMEq` はレンダリングされた React 要素が等しかったかどうか（訳注：緑は等しい、赤は等しくない）を示します。
-最後に、円の色はコンポーネントに対してツリーを比較して合わせ込むためのリコンシリエーション処理が本来は必要だったのかどうか（訳注：緑は不要、赤は必要）を示します。
+以下のようなコンポーネントのサブツリーがあるとします。それぞれ、`SCU` は `shouldComponentUpdate` が返した値（訳注：緑は true、赤は false）を示し、`vDOMEq` はレンダリングされた React 要素が等しかったかどうか（訳注：緑は等しい、赤は等しくない）を示します。
+最後に、円の色はコンポーネントに対してツリーの差分を検出するリコンシリエーション処理を必要としたのかどうか（訳注：緑は不要、赤は必要）を示します。
 <br/><br/>
 
 <figure><img src="../images/docs/should-component-update.png" style="max-width:100%" /></figure>
@@ -286,7 +308,7 @@ class CounterButton extends React.Component {
 }
 ```
 
-このコードは、`shouldComponentUpdate` は `props.color` と `state.count` のいずれかの変化を単にチェックしているだけです。これらの値が変化していなければコンポーネントは更新されません。コンポーネントがもっと複雑な場合は、`props` と `state` のすべてのフィールドに対して「浅い（Shallow）比較」をするという同種のパターンでコンポーネント更新の必要性を決定できます。このパターンはあまりに一般的なので、React はこのロジックのためのヘルパーを用意しており、`React.PureComponent` から継承するだけで使用できます。なので以下のコードで前述のコードと同じことをよりシンプルに実装できます。
+このコードは、`shouldComponentUpdate` は `props.color` または `state.count` の変化の有無を単にチェックしているだけです。これらの値が変化していなければコンポーネントは更新されません。コンポーネントがもっと複雑な場合は、`props` と `state` のすべてのフィールドに対して「浅い（Shallow）比較」をするという同種のパターンでコンポーネント更新の必要性を決定できます。このパターンはあまりに一般的なので、React はこのロジックのためのヘルパーを用意しており、`React.PureComponent` から継承するだけで使用できます。なので以下のコードで前述のコードと同じことをよりシンプルに実装できます。
 
 ```js
 class CounterButton extends React.PureComponent {
@@ -307,9 +329,9 @@ class CounterButton extends React.PureComponent {
 }
 ```
 
-ほとんどの場合、自分で `shouldComponentUpdate` を記述する代わりに `React.PureComponent` を使うことができます。もっとも、浅い（shallow）比較を行うだけですので、浅い比較では検出できない形で props や state が変更されている可能性がある場合には使えません。
+ほとんどの場合、自分で `shouldComponentUpdate` を記述する代わりに `React.PureComponent` を使うことができます。もっとも、浅い比較を行うだけですので、浅い比較では検出できない形で props や state が変更されている可能性がある場合には使えません。
 
-この事はより複雑なデータ構造の場合には問題となります。例えば、カンマ区切りで単語をレンダリングする `ListOfWords` コンポーネントと、ボタンをクリックしてリストに単語を追加できる親コンポーネント `WordAdder` が必要だとしましょう。以下のコードは正しく動作しません。
+この事はより複雑なデータ構造の場合には問題となります。例えば、カンマ区切りで単語をレンダリングする `ListOfWords` コンポーネントと、ボタンをクリックしてリストに単語を追加できる親コンポーネント `WordAdder` が必要だとして、以下のコードは正しく動作しません。
 
 ```javascript
 class ListOfWords extends React.PureComponent {
@@ -345,11 +367,11 @@ class WordAdder extends React.Component {
 }
 ```
 
-問題は `PureComponent` が `this.props.words` の古い値と新しい値を単純に比較していることにあります。上記のコードでは `WordAdder` の handleClick メソッド内で `words` 配列の内容を直接変更してしまうので、`this.props.words` の新旧の値は、たとえ配列内の実際の単語が変更されていたとしても、比較の結果同じだとみなしてしまうのです。そのため `ListOfWords` はレンダリングすべき新しい単語が追加されているにも関わらず、更新されません。
+問題は `PureComponent` が `this.props.words` の古い値と新しい値を単純に比較していることにあります。上記のコードでは `WordAdder` の handleClick メソッド内で `words` 配列の内容を破壊的に変更してしまうので、`this.props.words` の新旧の値は、たとえ配列内の実際の単語が変更されていたとしても、比較の結果同じだとみなしてしまうのです。そのため `ListOfWords` はレンダリングすべき新しい単語が追加されているにも関わらず、更新されません。
 
 ## データを変更しないことの効果
 
-この問題を避ける最も単純な方法は、props や state として使用する値の（破壊的）変更を避けることです。例えば、上記の `handleClick` メソッドは `concat` を使って以下のように書き換えることができます：
+この問題を避ける最も単純な方法は、props や state として使用する値の破壊的変更を避けることです。例えば、上記の `handleClick` メソッドは `concat` を使って以下のように書き換えることができます：
 
 ```javascript
 handleClick() {
@@ -370,7 +392,7 @@ handleClick() {
 };
 ```
 
-同様に、オブジェクトについても破壊的変更をするコードを破壊的変更をしないように書き換えることができます。例えば、`colormap` というオブジェクトがあり、`colormap.right` を `'blue'` に変更する関数が必要だとしましょう。以下のように書くことも可能ですが、
+同様に、オブジェクトについても破壊的変更をするコードをしないように書き換えることができます。例えば、`colormap` というオブジェクトがあり、`colormap.right` を `'blue'` に更新する関数が必要だとしましょう。以下のように書くことも可能ですが、
 
 ```js
 function updateColorMap(colormap) {
@@ -386,9 +408,9 @@ function updateColorMap(colormap) {
 }
 ```
 
-これで、`updateColorMap` は古いオブジェクトを破壊的に変更するのではなく新しいオブジェクトを返すようになります。`Object.assign` は ES6 からの機能であり、ポリフィルが必要です（訳注：ブラウザや処理系がES6に未対応の場合）。
+これで、`updateColorMap` は古いオブジェクトを破壊的変更するのではなく新しいオブジェクトを返すようになります。`Object.assign` は ES6 からの機能であり、ポリフィルが必要です（訳注：ブラウザや処理系が ES6 に未対応の場合）。
 
-オブジェクトに対して同様に破壊的変更を伴わない更新を容易にする[オブジェクトのスプレッドプロパティ構文](https://github.com/sebmarkbage/ecmascript-rest-spread)を JavaScript に追加することが提案されています：
+同様に、オブジェクトに対しても破壊的変更をしない更新を容易に記述できるようにする[オブジェクトのスプレッドプロパティ構文](https://github.com/sebmarkbage/ecmascript-rest-spread)を JavaScript に追加することが提案されています（訳注：[ECMAScript 2018](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Spread_syntax) で正式採用されました）：
 
 ```js
 function updateColorMap(colormap) {
@@ -398,15 +420,15 @@ function updateColorMap(colormap) {
 
 Create React App を使用しているなら、`Object.assign` およびオブジェクトのスプレッド構文の両方がデフォルトで利用できます。
 
-## イミュータブルなデータ構造の使用
+## 不変（イミュータブル）なデータ構造の使用 {#using-immutable-data-structures}
 
 [Immutable.js](https://github.com/facebook/immutable-js) はこの問題を解決する別の方法であり、構造の共有を元にした、不変で永続的なデータのコレクションを提供します。
 
-* *不変(イミュータブル)*: 一度作成されたら、データのコレクションはその後で変更することはできない。
-* *永続性*: 既存のコレクションに set などの変更操作を行うことで新しいデータのコレクションを作成できる。元のコレクションは新しいデータのコレクションが作成された後も有効である。
-* *構造の共有*: 新しいデータのコレクションは、元のコレクションが含む同じ構造を可能な限り共有されて作られるので、データのコピー量が減りパフォーマンスが向上する。
+* *不変性*: 一度作成されたら、データのコレクションはその後で変更されることはない。
+* *永続性*: 既存のコレクションから、あるいはそれに set などの変更操作を行うことで新しいデータのコレクションを作成することができる。元のコレクションは新しいデータのコレクションが作成された後も有効である。
+* *構造の共有*: 新しいデータのコレクションは、元のコレクションが含む同じ構造を可能な限り共有して作られるので、データのコピー量が減りパフォーマンスが向上する。
 
-不変性により、変化を検出するためのコストが下がります。変化したデータは常に新しいオブジェクトになるので、オブジェクトの参照が違うかをどうかをチェックすればよくなるのです。例えば、以下の通常の JavaScript コード：
+不変性により、変化を検出するためのコストが下がります。変化したデータは常に新しいオブジェクトになるので、オブジェクトの参照が違うかをどうかをチェックすればよくなるのです。例えば、以下の通常の JavaScript コードにおいて、
 
 ```javascript
 const x = { foo: 'bar' };
@@ -415,7 +437,7 @@ y.foo = 'baz';
 x === y; // true
 ```
 
-`y` は編集されたにも関わらず、`x` と同じオブジェクトを参照しているため、上記の比較は `true` を返します。これと似たコードを immutable.js で書くここうなります：
+ここで `y` は編集されたにも関わらず、`x` と同じオブジェクトを参照しているため、上記の比較は `true` を返します。これと似たコードを immutable.js で書くとこうなります：
 
 
 ```javascript
@@ -429,7 +451,7 @@ x === z; // true
 
 この場合、`x` を変更すると新しい参照が返されるので、参照の比較`(x === y)`をするだけで、`y` に保存されている新しい値は `x` に保存されていた値とは違うことが確認できます。
 
-他の2つのライブラリ、[seamless-immutable](https://github.com/rtfeldman/seamless-immutable) や [immutability-helper](https://github.com/kolodny/immutability-helper) なども不変データの使用に役立ちます。
+他にも 2 つのライブラリ、[seamless-immutable](https://github.com/rtfeldman/seamless-immutable) や [immutability-helper](https://github.com/kolodny/immutability-helper) なども不変データの使用を助けてくれます。
 
 
-不変データ構造はオブジェクトの変化の検出を容易にします。そのために必要なのは、`shouldComponentUpdate` の実装で使用することだけであり、パフォーマンスを大幅に向上できる場合があります。
+不変データ構造はオブジェクトの変化の検出を容易にします。そのために必要なのは、それを使用して `shouldComponentUpdate` を実装することだけです。これによってパフォーマンスを大幅に向上できる場合があります。
