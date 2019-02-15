@@ -26,7 +26,7 @@ React はアクセシビリティを備えたウェブサイトの構築を全�
 
 [Web Accessibility Initiative - Accessible Rich Internet Applications](https://www.w3.org/WAI/intro/aria) には十分なアクセシビリティを持つ JavaScript ウィジェットの構築テクニックが含まれています。
 
-補足として、JSX ではすべての `aria-*` で始まるHTML 属性がサポートされています。React においてほとんどの DOM プロパティと属性がキャメルケースである一方で、これらの属性は純粋な HTML と同じようにハイフンケース（ケバブケースやリスプケースなどとも言われる）である必要があります。
+補足として、JSX ではすべての `aria-*` で始まる HTML 属性がサポートされています。React においてほとんどの DOM プロパティと属性がキャメルケースである一方で、これらの属性は純粋な HTML と同じようにハイフンケース（ケバブケースやリスプケースなどとも言われる）である必要があります。
 
 ```javascript{3,4}
 <input
@@ -109,7 +109,7 @@ function ListItem({ item }) {
 
 ### ラベル付け {#labeling}
 
-`<input>` や `<textarea>` のような各 HTML フォームコントロールには、アクセシブルな形でのラベル付けが必要です。 スクリーンリーダに公開される、説明的なラベルを提供する必要があります。
+`<input>` や `<textarea>` のような各 HTML フォームコントロールには、アクセシブルな形でのラベル付けが必要です。スクリーンリーダに公開される、説明的なラベルを提供する必要があります。
 
 以下の資料にはその方法が示されています：
 
@@ -165,7 +165,7 @@ React アプリケーションは実行されている間、継続的に HTML �
 
 MDN のウェブドキュメントには、[キーボードで移動可能な JavaScript ウィジェット](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets) の作り方が解説されています。
 
-React でフォーカスをセットするには、[DOM 要素への Ref](/docs/refs-and-the-dom.html) が使えます。 
+React でフォーカスをセットするには、[DOM 要素への Ref](/docs/refs-and-the-dom.html) が使えます。
 
 これを使って、まずコンポーネントクラスの JSX 要素に ref を作成します：
 
@@ -228,11 +228,11 @@ this.inputElement.current.focus();
 
 コンポーネントを拡張するのに高階コンポーネント (HOC) を使う場合は、React の `forwardRef` 関数を用いて、関数に囲われたコンポーネントに [ref を差し出す](/docs/forwarding-refs.html) ことをおすすめします。もし、サードパーティの高階コンポーネントが ref フォワーディングを実装していないときでも、上記のパターンはフォールバックとして使えます。
 
-良いフォーカス管理の例は [react-aria-modal](https://github.com/davidtheclark/react-aria-modal) です。 これは完全にアクセシブルなモーダルウィンドウの比較的珍しい例です。このライブラリは、最初のフォーカスをキャンセルボタンに設定し（これは、キーボードを使っているユーザがうっかり次のアクションに移ってしまうのを防ぎます）、モーダルの中でキーボードフォーカスが閉じているだけでなく、最初にモーダルを開いた要素にフォーカスを戻してもくれます。
+良いフォーカス管理の例は [react-aria-modal](https://github.com/davidtheclark/react-aria-modal) です。これは完全にアクセシブルなモーダルウィンドウの比較的珍しい例です。このライブラリは、最初のフォーカスをキャンセルボタンに設定し（これは、キーボードを使っているユーザがうっかり次のアクションに移ってしまうのを防ぎます）、モーダルの中でキーボードフォーカスが閉じているだけでなく、最初にモーダルを開いた要素にフォーカスを戻してもくれます。
 
 > 補足：
 >
-> これはとても重要なアクセシビリティ機能ですが、慎重に使用されるべきテクニックでもあります。 このテクニックはキーボードフォーカスの流れが妨げられた場合の修正に使用し、ユーザがアプリケーションをどのように使いたいかを試したり予測するのに使わないでください。
+> これはとても重要なアクセシビリティ機能ですが、慎重に使用されるべきテクニックでもあります。このテクニックはキーボードフォーカスの流れが妨げられた場合の修正に使用し、ユーザがアプリケーションをどのように使いたいかを試したり予測するのに使わないでください。
 
 ## マウスとポインタのイベント {#mouse-and-pointer-events}
 
@@ -449,7 +449,7 @@ ESLint の [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx
 
 Deque System はアプリケーションの自動化された E2E アクセシビリティテストを行う [aXe-core](https://github.com/dequelabs/axe-core) を提供しています。このモジュールは Selenium に統合できます。
 
-[The Accessibility Engine](https://www.deque.com/products/axe/) もしくは aXe は、 `aXe-core` により構築されたアクセシビリティを検査するブラウザ拡張機能です。
+[The Accessibility Engine](https://www.deque.com/products/axe/) もしくは aXe は、`aXe-core` により構築されたアクセシビリティを検査するブラウザ拡張機能です。
 
 [react-axe](https://github.com/dylanb/react-axe) モジュールを使用して、開発時やデバッグ時にこれらによるアクセシビリティの検査結果を直接コンソールへ出力させることもできます。
 
