@@ -334,7 +334,8 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 static getDerivedStateFromError(error)
 ```
 
-このライフサイクルは、子孫コンポーネントによってエラーがスローされた後に呼び出されます。パラメータとしてスローされたエラーを受け取り、state を更新するための値を返すべきです。
+このライフサイクルは、子孫コンポーネントによってエラーがスローされた後に呼び出されます。
+パラメータとしてスローされたエラーを受け取り、state を更新するための値を返すべきです。
 
 ```js{7-10,13-16}
 class ErrorBoundary extends React.Component {
@@ -371,7 +372,8 @@ class ErrorBoundary extends React.Component {
 componentDidCatch(error, info)
 ```
 
-このライフサイクルは、子孫コンポーネントによってエラーがスローされた後に呼び出されます。2 つのパラメータを受け取ります。
+このライフサイクルは、子孫コンポーネントによってエラーがスローされた後に呼び出されます。
+以下の 2 つのパラメータを受け取ります。
 
 1. `error` - スローされたエラー
 2. `info` - [どのコンポーネントがエラーをスローしたかについての情報](/docs/error-boundaries.html#component-stack-traces)を含む `componentStack` キーを持つオブジェクト
