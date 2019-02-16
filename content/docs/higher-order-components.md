@@ -397,8 +397,4 @@ import MyComponent, { someFunction } from './MyComponent.js';
 
 高階コンポーネントの通例としては、すべての props はラップされたコンポーネントに渡されますが、ref に関してはそうではありません。これは `ref` 属性が（`key` と同様）実際のプロパティではなく、React によって特別に処理されているものだからです。HOC から出力されたコンポーネントの要素に ref 属性を追加する場合、ref 属性はラップされた内側のコンポーネントではなく、最も外側のコンテナコンポーネントを参照します。
 
-<<<<<<< HEAD
 この問題の解決方法は（React 16.3 で導入された）`React.forwardRef` API を使うことです。[詳しくは ref のフォワーディングの章をご覧ください](/docs/forwarding-refs.html)。
-=======
-The solution for this problem is to use the `React.forwardRef` API (introduced with React 16.3). [Learn more about it in the forwarding refs section](/docs/forwarding-refs.html).
->>>>>>> 99e97c33ae1a12d65c872361250f3ac92b043f38
