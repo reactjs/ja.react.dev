@@ -99,5 +99,16 @@
     "textlint": "^11.2.1",
     "textlint-rule-preset-jtf-style": "^2.3.3",
     "unist-util-map": "^1.0.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.md": [
+      "npm run lint:text",
+      "git add"
+    ]
   }
 }
