@@ -168,16 +168,8 @@ Chrome での操作は以下の通り。
 
 1. 一時的に **React DevTools を含むすべての Chrome 拡張機能を無効にする**。無効にしないと、結果が正確でなくなる可能性があります。
 2. アプリケーションが開発モードで動作していることを確認する。
-<<<<<<< HEAD
-3. Chrome DevTools の**[パフォーマンス](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)タブ**を開いて **Record(記録)** ボタンを押す。
-4. プロファイル対象のアクションを実行する。なお、20秒以上は記録しないでください。さもないと Chrome がハングアップすることがあります。
-||||||| parent of 257bc669... textlint checked
-3. Chrome DevTools の**[パフォーマンス](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)タブ**を開いて **Record（記録）** ボタンを押す。
-4. プロファイル対象のアクションを実行する。なお、20秒以上は記録しないでください。さもないと Chrome がハングアップすることがあります。
-=======
 3. Chrome DevTools の[**パフォーマンス**](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)タブを開いて **Record（記録）** ボタンを押す。
 4. プロファイル対象のアクションを実行する。なお、20 秒以上は記録しないでください。さもないと Chrome がハングアップすることがあります。
->>>>>>> 257bc669... textlint checked
 5.  記録を停止する。
 6.  React イベントが **User Timing** ラベルの下にグループ化される。
 
@@ -207,24 +199,10 @@ React DevTools をまだインストールしていない場合は、以下で�
 
 [react-window](https://react-window.now.sh/) と [react-virtualized](https://bvaughn.github.io/react-virtualized/) は人気があるウィンドウイング処理のライブラリです。これらはリスト、グリッド、および表形式のデータを表示するための、いくつかの再利用可能コンポーネントを提供しています。[Twitter](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3) が行なっているような、アプリケーションの特定のユースケースに合わせた追加的な処理をする場合は、独自のウィンドウイング処理のコンポーネントを作成することもできます。
 
-<<<<<<< HEAD
-## リコンシリエーション（差分検出、突き合せ処理）を避ける
-||||||| parent of 257bc669... textlint checked
-## リコンシリエーション（差分検出、突き合せ処理）を避ける {#avoid-reconciliation}
-=======
 ## リコンシリエーション（差分検出処理）を避ける {#avoid-reconciliation}
->>>>>>> 257bc669... textlint checked
 
-<<<<<<< HEAD
-React はレンダリングされた UI の内部表現を構築し、維持します。それにはコンポーネントが返した React 要素も含まれています。
-React は、この内部表現を使うことによってJavaScript オブジェクトの操作より遅くなりうる不要な DOM ノードの作成やアクセスを回避します。この内部表現はしばしば「仮想DOM 」と呼ばれますが、React Native 上でも同様に動くものです。
-||||||| parent of 257bc669... textlint checked
-React はレンダリングされた UI の内部表現を構築し、維持します。それにはコンポーネントが返した React 要素も含まれています。
-React は、この内部表現を使うことによってJavaScript オブジェクトの操作より遅くなりうる不要な DOM ノードの作成やアクセスを回避します。この内部表現はしばしば「仮想DOM」と呼ばれますが、React Native 上でも同様に動くものです。
-=======
 React はレンダリングされた UI の内部表現を構築し、維持します。その内部表現にはコンポーネントが返した React 要素も含まれています。
 React はこの内部表現を使うことによって、JavaScript オブジェクトの操作よりも操作が遅くなるかもしれない DOM ノードの不要な作成やアクセスを回避します。この内部表現はしばしば「仮想 DOM」と呼ばれますが、React Native 上でも同様に動くものです。
->>>>>>> 257bc669... textlint checked
 
 コンポーネントの props や state が変更された場合、React は新しく返された要素と以前にレンダリングされたものとを比較することで、実際の DOM の更新が必要かを判断します。それらが等しくない場合、React は DOM を更新します。
 
