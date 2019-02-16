@@ -37,10 +37,6 @@ class Welcome extends React.Component {
 >
 >React は ES6 クラスの構文を使うことを強制していません。回避したい場合は、代わりに `create-react-class` モジュールまたは、同様の独自の抽象化を使用できます。詳しくは、[Using React without ES6](/docs/react-without-es6.html) をご覧ください。
 
->Note:
->
->React doesn't force you to use the ES6 class syntax. If you prefer to avoid it, you may use the `create-react-class` module or a similar custom abstraction instead. Take a look at [Using React without ES6](/docs/react-without-es6.html) to learn more.
-
 ### コンポーネントライフサイクル {#the-component-lifecycle}
 
 各コンポーネントには、処理の過程の特定の時点でコードを実行するためにオーバーライドできるいくつかの「ライフサイクルメソッド」があります。**この[ライフサイクル図](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)をチートシートとして使用できます。**以下のリストでは、よく使われるライフサイクルメソッドは**太字**で表示されています。それらの残りは比較的まれなユースケースのために存在します。
