@@ -276,7 +276,7 @@ static getDerivedStateFromProps(props, state)
 
 `getDerivedStateFromProps` は、初期マウント時とその後の更新時の両方で、`render()` メソッドを呼び出す直前に呼び出されます。state を更新するためにオブジェクトを返すか、何も更新しないために `null` を返すべきです。
 
-このメソッドは、state が時間の経過とともに変化する propsに依存するような[まれな使用例](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state)のために存在します。たとえば、以前と以降の子を比較してどちらの子をアニメーションするかを決定する `<Transition>` コンポーネントを実装するときに便利です。
+このメソッドは、state が時間の経過とともに変化する props に依存するような[まれな使用例](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state)のために存在します。たとえば、以前と以降の子を比較してどちらの子をアニメーションするかを決定する `<Transition>` コンポーネントを実装するときに便利です。
 
 state を派生させると冗長なコードにつながり、コンポーネントを考えるのが難しくなります。
 [あなたがより簡単な方法に慣れていることを確認してください。](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
@@ -287,7 +287,7 @@ state を派生させると冗長なコードにつながり、コンポーネ�
 
 * **プロパティが変更されたときに何かの state を「リセット」したい**場合は、代わりにコンポーネントを[完全に制御する](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component)か、または [`key` で全く制御しない](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key)かを検討してください
 
-このメソッドはコンポーネントインスタンスにアクセスできません。必要に応じて、コンポーネントの props と state の純粋な関数を抽出し、クラス定義外に記述することで、 `getDerivedStateFromProps()` と他のクラスメソッドの間でコードを再利用できます。
+このメソッドはコンポーネントインスタンスにアクセスできません。必要に応じて、コンポーネントの props と state の純粋な関数を抽出し、クラス定義外に記述することで、`getDerivedStateFromProps()` と他のクラスメソッドの間でコードを再利用できます。
 
 このメソッドは、原因に関係なく、*すべての*レンダーで起動されることに注意してください。これは `UNSAFE_componentWillReceiveProps` とは対照的です。`UNSAFE_componentWillReceiveProps` は、ローカルの `setState()` に依らず、親が再レンダーを行ったときにのみ発生します。
 
@@ -323,7 +323,7 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 
 > 補足
 > 
-> error boundaries は、ツリー内でその**下**にあるコンポーネント内のエラーのみを捕捉します。 error boundaries はそれ自体の中でエラーを捉えることはできません。
+> error boundaries は、ツリー内でその**下**にあるコンポーネント内のエラーのみを捕捉します。error boundaries はそれ自体の中でエラーを捉えることはできません。
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
@@ -459,7 +459,7 @@ UNSAFE_componentWillReceiveProps(nextProps)
 
 `UNSAFE_componentWillReceiveProps()` は、マウントされたコンポーネントが新しい props を受け取る前に呼び出されます。prop の変更に応じて state を更新する必要がある場合（たとえばリセットする必要がある場合）は、`this.props` と `nextProps` を比較し、このメソッドで `this.setState()` を使用して状態遷移を実行できます。
 
-親コンポーネントによってコンポーネントが再レンダーされる場合、 props が変更されていなくてもこのメソッドが呼び出されることに注意してください。変更だけを処理したい場合は、必ず現在の値と次の値を比較してください。
+親コンポーネントによってコンポーネントが再レンダーされる場合、props が変更されていなくてもこのメソッドが呼び出されることに注意してください。変更だけを処理したい場合は、必ず現在の値と次の値を比較してください。
 
 [マウント](#mounting)時に、React は最初の props で `UNSAFE_componentWillReceiveProps()` を呼び出しません。一部のコンポーネントの props が更新される可能性がある場合にのみ、このメソッドを呼び出します。`this.setState()` を呼び出しても、通常 `UNSAFE_componentWillReceiveProps()` は呼び出されません。
 
@@ -622,7 +622,7 @@ CustomButton.defaultProps = {
 
 ### `props` {#props}
 
-`this.props` には、このコンポーネントの呼び出し元によって定義された props が含まれています。 props の紹介は [コンポーネントと props](/docs/components-and-props.html) を見てください。
+`this.props` には、このコンポーネントの呼び出し元によって定義された props が含まれています。props の紹介は [コンポーネントと props](/docs/components-and-props.html) を見てください。
 
 特に、`this.props.children` は特別なプロパティで、通常はタグ自体ではなく JSX 式の子タグによって定義されます。
 
