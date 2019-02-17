@@ -43,7 +43,7 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
 
 ## Shallow Rendering
 
-Reactの単体テストを書くときには、 shallow rendering が役に立ちます。 shallow rendering によって、インスタンス化またはレンダーされていない子コンポーネントの動作を気にすることなく、コンポーネントを "1 階層深く" レンダーしてその render メソッドが返す結果をアサートできます。これは DOM を必要としません。
+React の単体テストを実装するとき、Shallow Renderer が役立つでしょう。浅いレンダー (shallow rendering) を使用すると、インスタンス化またはレンダーされていない子コンポーネントの振る舞いを心配することなく、「1 階層深く」レンダーしてレンダーメソッドが返すものを assert できます。これに DOM は必要ありません。
 
 > 補足:
 >
