@@ -3,9 +3,10 @@ title: React Element Factories and JSX Warning
 layout: single
 permalink: warnings/legacy-factories.html
 ---
+
 React Element ファクトリと JSX についての警告。
 
-このページを閲覧しているのは、恐らくコンポーネントを普通の関数として呼び出ししているからでしょう。これは現在非推奨になっています。
+このページを閲覧しているのは、恐らくコンポーネントを普通の関数として呼び出しているからでしょう。これは現在非推奨になっています。
 
 ```javascript
 var MyComponent = require('MyComponent');

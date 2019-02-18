@@ -3,29 +3,26 @@ title: Refs Must Have Owner Warning
 layout: single
 permalink: warnings/refs-must-have-owner.html
 ---
-「refにはオーナーが必要である」の警告。
 
-このページを閲覧しているのは恐らく以下のエラーメッセージの1つが出力されたからでしょう。
+「ref にはオーナーが必要である」の警告。
+
+このページを閲覧しているのは恐らく以下のエラーメッセージの 1 つが出力されたからでしょう。
 
 *React 16.0.0+*
 > 警告:
 >
-> Element ref was specified as a string (myRefName) but no owner was set. You may have multiple copies of React loaded. (details: https://fb.me/react-refs-must-have-owner).
->
-> ref 要素が文字列 (myRefName) として指定されましたが、オーナーが設定されていませんでした。Reactの複数のコピーがロードされている可能性があります。（詳細： https://fb.me/react-refs-must-have-owner ）。
+> ref 要素が文字列 (myRefName) として指定されましたが、オーナーが設定されていませんでした。React の複数のコピーがロードされている可能性があります。（詳細：https://fb.me/react-refs-must-have-owner）
 
 *より古いバージョンの React*
 > Warning:
 >
-> addComponentAsRefTo(...): Only a ReactOwner can have refs. You might be adding a ref to a component that was not created inside a component's `render` method, or you have multiple copies of React loaded.
->
 > addComponentAsRefTo(...): ReactOwner だけが ref を持つことができます。コンポーネントの `render` メソッド内で作成されていないコンポーネントに ref を指定したか、React のコピーを複数ロードしているかもしれません。
 
-これは通常、以下の3つのいずれかを意味します：
+これは通常、以下の 3 つのいずれかを意味します：
 
 - `ref` を関数コンポーネントに使用しようとしている
 - コンポーネントの render() 関数の外部で作成されている要素に `ref` を使用しようとしている
-- React の複数の（競合する）コピーがロードされている（例えばnpm依存関係の設定ミスによって）
+- React の複数の（競合する）コピーがロードされている（例えば npm 依存関係の設定ミスによって）
 
 ## 関数コンポーネントの ref {#refs-on-function-components}
 
