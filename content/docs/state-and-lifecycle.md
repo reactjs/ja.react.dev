@@ -10,7 +10,7 @@ next: handling-events.html
 
 このページでは React コンポーネントにおける state とライフサイクルについての導入を行います。[詳細なコンポーネントの API リファレンスはこちら](/docs/react-component.html)にあります。
 
-[以前の章のひとつ](/docs/rendering-elements.html#updating-the-rendered-element)にあった秒刻みの時計の例を考えてみましょう。[要素のレンダリング](/docs/rendering-elements.html#rendering-an-element-into-the-dom)の章にて、UI を更新するための方法をひとつだけ学びました。それはレンダーされた出力を更新するために `ReactDOM.render()` を呼び出す、というものでした。
+[以前の章のひとつ](/docs/rendering-elements.html#updating-the-rendered-element)にあった秒刻みの時計の例を考えてみましょう。[要素のレンダー](/docs/rendering-elements.html#rendering-an-element-into-the-dom)の章にて、UI を更新するための方法をひとつだけ学びました。それはレンダーされた出力を更新するために `ReactDOM.render()` を呼び出す、というものでした。
 
 ```js{8-11}
 function tick() {
@@ -74,13 +74,13 @@ state は props に似ていますが、コンポーネントによって完全�
 
 [以前に述べた](/docs/components-and-props.html#functional-and-class-components)ように、クラスとして定義されたコンポーネントにはいくつか追加の機能があります。ローカルな state がまさにそれです：クラスでのみ使用できる機能です。
 
-## 関数をクラスに変換する
+## 関数をクラスに変換する {#converting-a-function-to-a-class}
 
 以下の 5 ステップで、`Clock` のような関数コンポーネントをクラスに変換することができます。
 
 1. `React.Component` を継承する同名の [ES6 クラス](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)を作成する。
 
-2. `render()` と呼ばれる空のメソッドを1つ追加する。
+2. `render()` と呼ばれる空のメソッドを 1 つ追加する。
 
 3. 関数の中身を `render()` メソッドに移動する。
 
@@ -107,7 +107,7 @@ class Clock extends React.Component {
 
 `render` メソッドは更新が発生した際に毎回呼ばれますが、同一の DOM ノード内で `<Clock />` をレンダーしている限り、`Clock` クラスのインスタンスは 1 つだけ使われます。このことにより、ローカル state やライフサイクルメソッドといった追加の機能が利用できるようになります。
 
-## クラスにローカルな state を追加する
+## クラスにローカルな state を追加する {#adding-local-state-to-a-class}
 
 以下の 3 ステップで `date` を props から state に移します：
 
@@ -197,13 +197,13 @@ ReactDOM.render(
 
 次に、`Clock` が自分でタイマーを設定し、毎秒ごとに自分を更新するようにします。
 
-## クラスにライフサイクルメソッドを追加する
+## クラスにライフサイクルメソッドを追加する {#adding-lifecycle-methods-to-a-class}
 
 多くのコンポーネントを有するアプリケーションでは、コンポーネントが破棄された場合にそのコンポーネントが占有していたリソースを開放することがとても重要です。
 
-最初に `Clock` が DOM としてレンダーされる際に、[タイマーを設定](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval)したいでしょう。このことを React では "マウント (mounting)" と呼びます。
+[タイマーを設定](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval)したいのは、最初に `Clock` が DOM として描画されるときです。このことを React では "マウント (mounting)" と呼びます。
 
-また `Clock` が生成した DOM が削除される際には[タイマーをクリア](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/clearInterval)したいです。このことを React では "アンマウント (unmounting)" と呼びます。
+また[タイマーをクリア](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/clearInterval)したいのは、`Clock` が生成した DOM が削除されるときです。このことを React では "アンマウント (unmounting)" と呼びます。
 
 コンポーネントクラスで特別なメソッドを宣言することで、コンポーネントがマウントしたりアンマウントしたりした際にコードを実行することができます：
 
@@ -316,13 +316,13 @@ ReactDOM.render(
 
 4) ブラウザは、毎秒ごとに `tick()` メソッドを呼び出します。その中で `Clock` コンポーネントは、現在時刻を含んだオブジェクトを引数として `setState()` を呼び出すことで、UI の更新をスケジュールします。`setState()` が呼び出されたおかげで、React は state が変わったということが分かるので、`render()` メソッドを再度呼び出して、画面上に何を表示すべきかを知ります。今回は、`render()` メソッド内の `this.state.date` が異なっているので、レンダリングされる出力には新しく更新された時間が含まれています。それに従って React は DOM を更新します。
 
-5) この後に `Clock` コンポーネントが DOM から削除されることがあれば、React は`componentWillUnmount()` ライフサイクルメソッドを呼び出し、これによりタイマーが停止します。
+5) この後に `Clock` コンポーネントが DOM から削除されることがあれば、React は `componentWillUnmount()` ライフサイクルメソッドを呼び出し、これによりタイマーが停止します。
 
-## state を正しく使用する
+## state を正しく使用する {#using-state-correctly}
 
 `setState()` について知っておくべきことが 3 つあります。
 
-### state を直接変更しないこと
+### state を直接変更しないこと {#do-not-modify-state-directly}
 
 例えば、以下のコードではコンポーネントは再レンダーされません：
 
@@ -340,7 +340,7 @@ this.setState({comment: 'Hello'});
 
 `this.state` に直接代入してよい唯一の場所はコンストラクタです。
 
-### state の更新は非同期に行われる可能性がある
+### state の更新は非同期に行われる可能性がある {#state-updates-may-be-asynchronous}
 
 React はパフォーマンスのために、複数の `setState()` 呼び出しを 1 度の更新にまとめて処理することがあります。
 
@@ -375,9 +375,9 @@ this.setState(function(state, props) {
 });
 ```
 
-### state の更新はマージされる
+### state の更新はマージされる {#state-updates-are-merged}
 
-`setState()` を呼び出した場合、 React は与えられたオブジェクトを現在の state にマージします。
+`setState()` を呼び出した場合、React は与えられたオブジェクトを現在の state にマージします。
 
 例えば、あなたの state はいくつかの独立した変数を含んでいるかもしれません：
 
@@ -411,11 +411,11 @@ this.setState(function(state, props) {
 
 マージは浅く (shallow) 行われるので、`this.setState({comments})` は `this.state.posts` をそのまま残しますが、`this.state.comments` は完全に置き換えます。
 
-## データは下方向に伝わる
+## データは下方向に伝わる {#the-data-flows-down}
 
 親コンポーネントであれ子コンポーネントであれ、特定の他のコンポーネントがステートフルかステートレスかを知ることはできませんし、特定のコンポーネントの定義が関数型かクラス型かを気にするべきではありません。
 
-これが、state はローカルのものである、ないしはカプセル化されている、と言われる理由です。state を所有してセットするコンポーネント自身以外からはアクセスすることができません。
+これが、state はローカルのものである、ないしはカプセル化されている、と言われる理由です。state を所有してセットするコンポーネント自身以外からはその state にアクセスすることができません。
 
 コンポーネントはその子コンポーネントに props として自身の state を渡してもかまいません。
 
@@ -443,7 +443,7 @@ function FormattedDate(props) {
 
 コンポーネントツリーとは props が流れ落ちる滝なのだと想像すると、各コンポーネントの state とは任意の場所で合流してくる追加の水源であり、それらもまた下に流れ落ちていくものなのです。
 
-全てのコンポーネントが本当に独立していることを示すのに、3つの `<Clock>` をレンダリングする `App` コンポーネントを作成します：
+全てのコンポーネントが本当に独立していることを示すのに、3 つの `<Clock>` をレンダリングする `App` コンポーネントを作成します：
 
 ```js{4-6}
 function App() {
@@ -464,6 +464,6 @@ ReactDOM.render(
 
 [**Try it on CodePen**](http://codepen.io/gaearon/pen/vXdGmd?editors=0010)
 
-各 `Clock` は独立してタイマーを設定して更新します。
+各 `Clock` は独立してタイマーをセットし、独立して更新します。
 
 React アプリケーションでは、コンポーネントがステートフルかステートレスかは、コンポーネントにおける内部実装の詳細 (implementation detail) とみなされ、それは時間と共に変化しうるものです。ステートレスなコンポーネントをステートフルなコンポーネントの中で使うことが可能であり、その逆も同様です。

@@ -15,7 +15,7 @@ function render() {
 }
 ```
 
-## JSX
+## JSX {#jsx}
 
 React コンポーネントは、このように直接呼び出すことはできなくなりました。代わりに [JSX を使用できます](/docs/jsx-in-depth.html)。
 
@@ -28,7 +28,7 @@ function render() {
 }
 ```
 
-## JSX を使用しない場合
+## JSX を使用しない場合 {#without-jsx}
 
 JSX を使いたくない、または使えない場合、コンポーネントを呼び出す前にファクトリでラップする必要があります。
 
@@ -43,7 +43,7 @@ function render() {
 
 呼び出しの箇所が大量である場合、この修正方法が簡単です。
 
-## JSX を使用しない動的なコンポーネント
+## JSX を使用しない動的なコンポーネント {#dynamic-components-without-jsx}
 
 コンポーネントのクラスが動的に与えられる場合は、すぐに実行してしまうファクトリを作成する必要はありません。その代わりにインラインで単に要素を作成します。
 
@@ -55,6 +55,6 @@ function render(MyComponent) {
 }
 ```
 
-## 詳細
+## 詳細 {#in-depth}
 
 [この変更がなされた理由について更に読む。](https://gist.github.com/sebmarkbage/d7bce729f38730399d28)

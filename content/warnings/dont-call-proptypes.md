@@ -12,7 +12,7 @@ permalink: warnings/dont-call-proptypes.html
 
 React の将来のメジャーリリースでは、PropType のバリデーションを実装するコードは、本番用ビルドから削除される予定です。その際には、バリデーションを手動で呼び出す全てのコード（本番用ビルドで削除されないもの）はエラーを投げることになります。
 
-### PropTypes 宣言については問題ありません
+### PropTypes 宣言については問題ありません {#declaring-proptypes-is-still-fine}
 
 PropType の通常の使用は引き続きサポートされます。
 
@@ -24,7 +24,7 @@ Button.propTypes = {
 
 これについては何も変わっていません。
 
-### PropTypes を直接呼び出さない
+### PropTypes を直接呼び出さない {#dont-call-proptypes-directly}
 
 React コンポーネントに注釈を付ける以外の方法で PropType を使用することはサポートされなくなりました。
 
@@ -42,7 +42,7 @@ var error = apiShape(json, 'response');
 
 警告に応じてコードを修正しなければ、このコードは React 16 の本番用ビルドではクラッシュします。
 
-### PropTypes を直接呼んでいないのに警告が発生するとき
+### PropTypes を直接呼んでいないのに警告が発生するとき {#if-you-dont-call-proptypes-directly-but-still-get-the-warning}
 
 警告で出力されているスタックトレースを調べることで、PropTypes を直接呼んでいるコンポーネント定義を見付けることができます。ほとんどの場合、React の PropType をラップするサードパーティ製の PropType が問題の原因です。たとえば、
 
@@ -57,7 +57,7 @@ Button.propTypes = {
 
 このケースでは、 `ThirdPartyPropTypes.deprecated` が `PropTypes.bool` を呼び出しているラッパーです。このパターンそのものは良いのですが、あなたが直接 PropTypes を呼び出したと React が判断するため、誤検出（=呼び出していないのに呼び出したと判定）を引き起こします。次節では `ThirdPartyPropTypes` のようなライブラリを実装する際に、この問題をどのように解決するかについて述べます。自分で書いたライブラリでなければ、そのライブラリについて issue を作成することもできます。
 
-### サードパーティの PropTypes における誤検知を修正する
+### サードパーティの PropTypes における誤検知を修正する {#fixing-the-false-positive-in-third-party-proptypes}
 
 あなたがサードパーティ製 PropTypes の作者で、利用者に既存の React PropTypes をラップさせる場合、ライブラリがこの警告を発生させるのを利用者は目にするようになるでしょう。
 これは手動によるPropTypesの呼び出しを[検知するために渡す最後尾の引数 `secret`](https://github.com/facebook/react/pull/7132)を React が確認できないために起こります。

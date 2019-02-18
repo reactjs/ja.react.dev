@@ -3,6 +3,7 @@ title: Special Props Warning
 layout: single
 permalink: warnings/special-props.html
 ---
+
 「特別な props」の警告。
 
 JSX 要素の大部分の props はコンポーネントに渡されますが、React が使用するため、コンポーネントに転送されない 2 つの特別な props（`ref` と `key`）があります。
