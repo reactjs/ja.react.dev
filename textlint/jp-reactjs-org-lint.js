@@ -14,6 +14,7 @@ module.exports = context => {
       noHanPunctSpace(node, text, context);
       enforceZenHanSpace(node, text, context);
       noLineEndSpace(node, text, context);
+      noConflictMarker(node, text, context);
     },
 
     [context.Syntax.Str]: node => {
@@ -68,8 +69,8 @@ const enforceZenHanSpace = (node, text, context) => {
     context.report(
       node,
       new context.RuleError(
-        `全角文字と半角英数字とが隣接しています("${matched}")。` + 
-        `半角スペースを挿入してください。`,
+        `全角文字と半角英数字とが隣接しています("${matched}")。` +
+          `半角スペースを挿入してください。`,
       ),
     );
   }
@@ -83,6 +84,19 @@ const noLineEndSpace = (node, text, context) => {
     context.report(
       node,
       new context.RuleError('行末にスペース文字を入れないでください。'),
+    );
+  }
+};
+
+const noConflictMarker = (node, text, context) => {
+  const reg = /<<<<<<< HEAD/;
+
+  if (reg.exec(text)) {
+    context.report(
+      node,
+      new context.RuleError(
+        'コンフリクトマーカーが残っています。コンフリクトを解消してください。',
+      ),
     );
   }
 };
