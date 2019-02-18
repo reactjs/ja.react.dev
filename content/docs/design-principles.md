@@ -1,6 +1,6 @@
 ---
 id: design-principles
-title: Design Principles
+title: 設計原則
 layout: contributing
 permalink: docs/design-principles.html
 prev: implementation-notes.html
@@ -8,156 +8,160 @@ redirect_from:
   - "contributing/design-principles.html"
 ---
 
-We wrote this document so that you have a better idea of how we decide what React does and what React doesn't do, and what our development philosophy is like. While we are excited to see community contributions, we are not likely to choose a path that violates one or more of these principles.
+このドキュメントを作成したのは、Reactが何をして何をしないのか、そして開発理念がどのようなものなのかをより理解できるようにするためです。 私たちはコミュニティへの貢献を見ることにはわくわくしています。しかしこれらの原則の1つ以上に違反する道を選ぶことはまずありません。
 
->**Note:**
+>**注意:**
 >
->This document assumes a strong understanding of React. It describes the design principles of *React itself*, not React components or applications.
+>このドキュメントはReactを強く理解していることを前提としています。 Reactのコンポーネントやアプリケーションではなく、React自体の設計原則について説明しています。
 >
->For an introduction to React, check out [Thinking in React](/docs/thinking-in-react.html) instead.
+>Reactの紹介については、代わりに[React の流儀](/docs/thinking-in-react.html)を調べてください。
 
-### Composition {#composition}
+### コンポジション {#composition}
 
-The key feature of React is composition of components. Components written by different people should work well together. It is important to us that you can add functionality to a component without causing rippling changes throughout the codebase.
+Reactの主な機能はコンポーネントのコンポジションです。異なる人々によって書かれたコンポーネントは一緒にうまく動くはずです。コードベース全体に波及する変更を引き起こすことなく、コンポーネントに機能を追加できることが重要です。
 
-For example, it should be possible to introduce some local state into a component without changing any of the components using it. Similarly, it should be possible to add some initialization and teardown code to any component when necessary.
+たとえば、コンポーネントを使用する側を変更せずに、コンポーネントにローカルステートを導入することが可能です。 同様に、必要に応じて初期化と終了処理を任意のコンポーネントに追加することも可能です。
 
-There is nothing "bad" about using state or lifecycle methods in components. Like any powerful feature, they should be used in moderation, but we have no intention to remove them. On the contrary, we think they are integral parts of what makes React useful. We might enable [more functional patterns](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) in the future, but both local state and lifecycle methods will be a part of that model.
+コンポーネントでステートまたはライフサイクルメソッドを使用することについて「悪い」ことは何もありません。他の強力な機能と同様に適度に使用する必要がありますが、削除するつもりはありません。それどころか、それらはReactを有用にするものとして不可欠な部分であると思います。 将来的には[より関数型的なパターン](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State)を使用可能にするかもしれませんが、ローカルステートとライフサイクルメソッドの両方がそのモデルの一部になるでしょう。
 
-Components are often described as "just functions" but in our view they need to be more than that to be useful. In React, components describe any composable behavior, and this includes rendering, lifecycle, and state. Some external libraries like [Relay](http://facebook.github.io/relay/) augment components with other responsibilities such as describing data dependencies. It is possible that those ideas might make it back into React too in some form.
+コンポーネントはしばしば「単なる関数」と表現されますが、私たちはコンポーネントを有用にするために単なる関数以上である必要があると考えています。 Reactでは、コンポーネントは組み合わせ可能な動作を記述します。これには、レンダリング、ライフサイクル、およびステートが含まれます。 [Relay](http://facebook.github.io/relay/) のようないくつかの外部ライブラリは、データの依存関係を記述することのような他の責任でコンポーネントを補強します。それらの考えが何らかの形でReactに戻るということも有り得ます。
 
-### Common Abstraction {#common-abstraction}
+### 共通の抽象化 {#common-abstraction}
 
-In general we [resist adding features](https://www.youtube.com/watch?v=4anAwXYqLG8) that can be implemented in userland. We don't want to bloat your apps with useless library code. However, there are exceptions to this.
+一般的に私達はユーザーランドに実装できる[機能の追加に抵抗](https://www.youtube.com/watch?v=4anAwXYqLG8)します。無駄なライブラリコードでアプリを肥大化させたくありません。ただし、これには例外があります。
 
-For example, if React didn't provide support for local state or lifecycle methods, people would create custom abstractions for them. When there are multiple abstractions competing, React can't enforce or take advantage of the properties of either of them. It has to work with the lowest common denominator.
+たとえば、Reactがローカルステートやライフサイクルメソッドをサポートしていない場合、人々はそれらに対してカスタム抽象化を作成します。 複数の抽象化が競合している場合、Reactはそれらのいずれかのプロパティを強制または利用することはできません。それは最小公倍数で動作する必要があります。
 
-This is why sometimes we add features to React itself. If we notice that many components implement a certain feature in incompatible or inefficient ways, we might prefer to bake it into React. We don't do it lightly. When we do it, it's because we are confident that raising the abstraction level benefits the whole ecosystem. State, lifecycle methods, cross-browser event normalization are good examples of this.
+これが、React自体に機能を追加することがある理由です。多くのコンポーネントが互換性のない、または非効率的な方法で特定の機能を実装していることに気づいたら、Reactにそれを焼き付けるかもしれませんが、私たちは簡単にはそれをしません。それをするときは抽象化レベルを上げることがエコシステム全体に利益をもたらすと確信しているからです。ステート、ライフサイクルメソッド、クロスブラウザのイベント正規化などがその好例です。
 
-We always discuss such improvement proposals with the community. You can find some of those discussions by the ["big picture"](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"Type:+Big+Picture") label on the React issue tracker.
+私たちは常にそのような改善提案をコミュニティーと話し合います。それらの議論のいくつかはReact issue trackerの ["big picture"](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"Type:+Big+Picture")ラベルで見つけることができます。
 
-### Escape Hatches {#escape-hatches}
+### 逃げ口 {#escape-hatches}
 
-React is pragmatic. It is driven by the needs of the products written at Facebook. While it is influenced by some paradigms that are not yet fully mainstream such as functional programming, staying accessible to a wide range of developers with different skills and experience levels is an explicit goal of the project.
+Reactは実用的です。それはFacebookで書かれた製品のニーズによって推進されています。 関数型プログラミングなど、まだ完全には主流になっていない、いくつかのパラダイムによって影響を受けますが、さまざまなスキルや経験レベルを持つ幅広い開発者がアクセスしやすいことがプロジェクトの明確な目標です。
 
-If we want to deprecate a pattern that we don't like, it is our responsibility to consider all existing use cases for it and [educate the community about the alternatives](/blog/2016/07/13/mixins-considered-harmful.html) before we deprecate it. If some pattern that is useful for building apps is hard to express in a declarative way, we will [provide an imperative API](/docs/more-about-refs.html) for it. If we can't figure out a perfect API for something that we found necessary in many apps, we will [provide a temporary subpar working API](/docs/legacy-context.html) as long as it is possible to get rid of it later and it leaves the door open for future improvements.
+私たちが好まないパターンを非推奨にしたい場合は非推奨にする前に、既存のすべてのユースケースを検討し、[コミュニティに代替案について教育する](/blog/2016/07/13/mixins-considered-harmful.html)ことが私たちの責任です。アプリを構築するのに便利なパターンを宣言的に表現するのが難しい場合は、[命令型APIを提供](/docs/more-about-refs.html)します。多くのアプリで必要と思われるものに最適なAPIを見つけられないときは、後で取り除くことが可能で、将来の改善のためのドアが開いている場合に限り、[一時的な標準以下の作業用API](/docs/legacy-context.html)を提供します。
 
-### Stability {#stability}
+### 安定性 {#stability}
 
-We value API stability. At Facebook, we have more than 50 thousand components using React. Many other companies, including [Twitter](https://twitter.com/) and [Airbnb](https://www.airbnb.com/), are also heavy users of React. This is why we are usually reluctant to change public APIs or behavior.
+APIの安定性を重視しています。 Facebookでは、Reactを使って5万以上のコンポーネントを持っています。 [Twitter](https://twitter.com/)や[Airbnb](https://www.airbnb.com/)を含む他の多くの会社もまたReactのヘビーユーザーです。これが私たちがいつもパブリックAPIや振る舞いを変えることに消極的である理由です。
 
-However we think stability in the sense of "nothing changes" is overrated. It quickly turns into stagnation. Instead, we prefer the stability in the sense of "It is heavily used in production, and when something changes, there is a clear (and preferably automated) migration path."
+しかし、「何も変わらない」という意味での安定性は過大評価されていると思います。それはすぐに停滞に変わります。代わりに、「本番環境では頻繁に使用され、何かが変わったときには明確な（できれば自動化された）移行パスがある」という意味での安定性を優先します。
 
-When we deprecate a pattern, we study its internal usage at Facebook and add deprecation warnings. They let us assess the impact of the change. Sometimes we back out if we see that it is too early, and we need to think more strategically about getting the codebases to the point where they are ready for this change.
+パターンを非推奨にするときは、Facebookでその内部使用法を調べ、非推奨警告を追加します。 彼らは私たちに変化の影響を評価させます。 時期尚早であると判断した場合は戻すことがありますが、コードベースをこの変更の準備が整うまで戦略的に検討する必要があります。
 
-If we are confident that the change is not too disruptive and the migration strategy is viable for all use cases, we release the deprecation warning to the open source community. We are closely in touch with many users of React outside of Facebook, and we monitor popular open source projects and guide them in fixing those deprecations.
+変更がそれほど邪魔にならず、移行戦略がすべてのユースケースで実行可能であると確信している場合は、非推奨の警告をオープンソースコミュニティに公開します。私たちはFacebook以外の多くのReactユーザーと密接に連絡を取り合っており、人気のあるオープンソースプロジェクトを監視し、それらの非推奨を修正するために彼らを指導しています。
 
-Given the sheer size of the Facebook React codebase, successful internal migration is often a good indicator that other companies won't have problems either. Nevertheless sometimes people point out additional use cases we haven't thought of, and we add escape hatches for them or rethink our approach.
+FacebookのReactコードベースのサイズが非常に大きいことを考えると、社内への移行が成功したことは、他の企業でも問題ないことを示す良い指標となります。 それにもかかわらず、時々人々は私達が考えていない追加のユースケースを指摘します、そして私達はそれらのために逃げ口を追加するかまたは私達のアプローチを再考します。
 
-We don't deprecate anything without a good reason. We recognize that sometimes deprecations warnings cause frustration but we add them because deprecations clean up the road for the improvements and new features that we and many people in the community consider valuable.
+正当な理由がない限り、私たちは何も非推奨にすることはありません。非推奨警告はフラストレーションを引き起こすことがあるということを認識していますが、それを追加するのは、私たちとコミュニティの多くの人々が価値あると考える改善と新機能のために、非推奨を解決するためです。
 
-For example, we added a [warning about unknown DOM props](/warnings/unknown-prop.html) in React 15.2.0. Many projects were affected by this. However fixing this warning is important so that we can introduce the support for [custom attributes](https://github.com/facebook/react/issues/140) to React. There is a reason like this behind every deprecation that we add.
+たとえば、React 15.2.0で[未知のDOMプロップに関する警告](/warnings/unknown-prop.html)を追加しました。多くのプロジェクトがこの影響を受けました。ただし、この警告を修正することは重要です。そのため、Reactに[カスタム属性](https://github.com/facebook/react/issues/140)のサポートを導入可能にしました。私たちが追加するすべての非推奨の背景には、このような理由があります。
 
-When we add a deprecation warning, we keep it for the rest of the current major version, and [change the behavior in the next major version](/blog/2016/02/19/new-versioning-scheme.html). If there is a lot of repetitive manual work involved, we release a [codemod](https://www.youtube.com/watch?v=d0pOgY8__JM) script that automates most of the change. Codemods enable us to move forward without stagnation in a massive codebase, and we encourage you to use them as well.
+非推奨警告を追加すると、現在のメジャーバージョンの残りの部分については警告が残され、[次のメジャーバージョンでは動作が変更](/blog/2016/02/19/new-versioning-scheme.html)されます。 繰り返し行われる手作業が多い場合は、変更の大部分を自動化する[codemod](https://www.youtube.com/watch?v=d0pOgY8__JM)スクリプトをリリースします。Codemodを使用すると、大規模なコードベースでも移行を滞りなく進めることができます。それらを使用することをお勧めします。
 
-You can find the codemods that we released in the [react-codemod](https://github.com/reactjs/react-codemod) repository.
+私たちがリリースしたcodemodは、[react-codemod](https://github.com/reactjs/react-codemod)リポジトリで見つけることができます。
 
-### Interoperability {#interoperability}
+### 相互運用性 {#interoperability}
 
-We place high value in interoperability with existing systems and gradual adoption. Facebook has a massive non-React codebase. Its website uses a mix of a server-side component system called XHP, internal UI libraries that came before React, and React itself. It is important to us that any product team can [start using React for a small feature](https://www.youtube.com/watch?v=BF58ZJ1ZQxY) rather than rewrite their code to bet on it.
+既存のシステムとの相互運用性と段階的な導入に高い価値を置いています。 Facebookは巨大な非Reactコードベースを持っています。 同社のWebサイトでは、XHPと呼ばれるサーバーサイドのコンポーネントシステム、Reactよりも前に開発された内部UIライブラリ、そしてReact自体を組み合わせて使用​​しています。私たちにとって重要なことは、どの製品チームでも、コードを書き換えて賭けるのではなく、[小さな機能に対してReactを使い始める](https://www.youtube.com/watch?v=BF58ZJ1ZQxY)ことができるということです。
 
-This is why React provides escape hatches to work with mutable models, and tries to work well together with other UI libraries. You can wrap an existing imperative UI into a declarative component, and vice versa. This is crucial for gradual adoption.
+これが、Reactが可変モデルを扱うための逃げ口を提供し、他のUIライブラリと一緒にうまく機能しようとする理由です。 既存の命令型UIを宣言型コンポーネントにラップすることも、その逆も可能です。これは段階的な採用には不可欠です。
 
-### Scheduling {#scheduling}
+### スケジューリング {#scheduling}
 
-Even when your components are described as functions, when you use React you don't call them directly. Every component returns a [description of what needs to be rendered](/blog/2015/12/18/react-components-elements-and-instances.html#elements-describe-the-tree), and that description may include both user-written components like `<LikeButton>` and platform-specific components like `<div>`. It is up to React to "unroll" `<LikeButton>` at some point in the future and actually apply changes to the UI tree according to the render results of the components recursively.
+コンポーネントが関数として記述されていても、Reactを使うときは直接それらを呼び出さないでください。すべてのコンポーネントは[何をレンダリングする必要があるかの説明](/blog/2015/12/18/react-components-elements-and-instances.html#elements-describe-the-tree)を返し、その説明には`<LikeButton>`のようなユーザー作成のコンポーネントと`<div>`のようなプラットフォーム固有のコンポーネントの両方を含めることができます。
+ある時点で`<LikeButton>`を「展開」して、再帰的なコンポーネントのレンダリング結果に従ってUIツリーに変更を実際に適用するのはReact次第です。
 
-This is a subtle distinction but a powerful one. Since you don't call that component function but let React call it, it means React has the power to delay calling it if necessary. In its current implementation React walks the tree recursively and calls render functions of the whole updated tree during a single tick. However in the future it might start [delaying some updates to avoid dropping frames](https://github.com/facebook/react/issues/6170).
+これは微妙な違いですが強力なものです。あなたはコンポーネント関数を呼び出さずにReactに呼び出させるため、Reactは必要に応じて呼び出しを遅らせる権限があります。現在のReactの実装ではツリーを再帰的に調べて、1回の描画の間に更新されたツリー全体のレンダリング関数を呼び出します。しかし、将来的には[フレームのドロップを避けるため](https://github.com/facebook/react/issues/6170)にいくつかの更新を遅らせるかもしれません。
 
-This is a common theme in React design. Some popular libraries implement the "push" approach where computations are performed when the new data is available. React, however, sticks to the "pull" approach where computations can be delayed until necessary.
 
-React is not a generic data processing library. It is a library for building user interfaces. We think that it is uniquely positioned in an app to know which computations are relevant right now and which are not.
+これはReactの設計の共通テーマです。いくつかの人気のあるライブラリは、新しいデータが利用可能になったときに計算が実行される「プッシュ」アプローチを実装しています。しかしReactは、計算が必要になるまで遅らせることができる「プル」アプローチを採用しています。
 
-If something is offscreen, we can delay any logic related to it. If data is arriving faster than the frame rate, we can coalesce and batch updates. We can prioritize work coming from user interactions (such as an animation caused by a button click) over less important background work (such as rendering new content just loaded from the network) to avoid dropping frames.
+Reactは一般的なデータ処理ライブラリではありません。 ユーザーインターフェイスを構築するためのライブラリです。 現在どの計算が関連しているのか、どの計算が関連していないのかを知ることは、アプリ内で一意に位置づけられていると考えています。
 
-To be clear, we are not taking advantage of this right now. However the freedom to do something like this is why we prefer to have control over scheduling, and why `setState()` is asynchronous. Conceptually, we think of it as "scheduling an update".
+何かが画面外にある場合は、それに関連するロジックを遅らせることができます。 データがフレームレートよりも早く到着する場合は、合体してバッチ更新することができます。 フレームを落とさないように、重要度の低いバックグラウンド作業（ネットワークからロードされたばかりの新しいコンテンツのレンダリングなど）よりも、ユーザーの操作による操作（ボタンクリックによるアニメーションなど）を優先できます。
 
-The control over scheduling would be harder for us to gain if we let the user directly compose views with a "push" based paradigm common in some variations of [Functional Reactive Programming](https://en.wikipedia.org/wiki/Functional_reactive_programming). We want to own the "glue" code.
+明確にするために、私達は今これを利用していません。しかし、このようなことを自由に行えるのは、スケジューリングを制御したいためにsetState()が非同期であるからです。概念的には、それを「更新をスケジュールする」と考えています。
 
-It is a key goal for React that the amount of the user code that executes before yielding back into React is minimal. This ensures that React retains the capability to schedule and split work in chunks according to what it knows about the UI.
+ユーザが[関数型リアクティブプログラミング](https://en.wikipedia.org/wiki/Functional_reactive_programming)のいくつかのバリエーションで一般的な「プッシュ」ベースのパラダイムでビューを直接構成させた場合、スケジューリングに対する制御を得るのが難しくなります。 私たちは「グルーコード」を所有したいのです。
 
-There is an internal joke in the team that React should have been called "Schedule" because React does not want to be fully "reactive".
+Reactの主な目標は、React内部に戻る前に実行されるユーザーコードの量を最小限にすることです。これはReactがUIについて知っていることに従ってチャンクで作業をスケジュールしたり分割したりする機能を保持することを保証します。
 
-### Developer Experience {#developer-experience}
+Reactは完全に「リアクティブ」であることを望んでいないため、Reactは「スケジュール」と呼ばれるべきだったというチーム内の冗談があります。
 
-Providing a good developer experience is important to us.
 
-For example, we maintain [React DevTools](https://github.com/facebook/react-devtools) which let you inspect the React component tree in Chrome and Firefox. We have heard that it brings a big productivity boost both to the Facebook engineers and to the community.
+### 開発体験 {#developer-experience}
 
-We also try to go an extra mile to provide helpful developer warnings. For example, React warns you in development if you nest tags in a way that the browser doesn't understand, or if you make a common typo in the API. Developer warnings and the related checks are the main reason why the development version of React is slower than the production version.
+良い開発者経験を提供することは私達にとって重要です。
 
-The usage patterns that we see internally at Facebook help us understand what the common mistakes are, and how to prevent them early. When we add new features, we try to anticipate the common mistakes and warn about them.
+たとえば、ChromeとFirefoxでReactコンポーネントツリーを調べることができる[React DevTools](https://github.com/facebook/react-devtools)を保持しています。私たちは、それがFacebookエンジニアとコミュニティの両方に大きな生産性向上をもたらすと耳にしました。
 
-We are always looking out for ways to improve the developer experience. We love to hear your suggestions and accept your contributions to make it even better.
+私たちは開発者向けの有用な警告を提供するために、一層の努力をするようにしています。たとえば、Reactは開発中にブラウザが理解できない方法でタグをネストした場合、またはAPIで一般的な入力ミスをした場合に警告します。開発者向けの警告とそれに関連するチェックが、Reactの開発版が製品版より遅い主な理由です。
 
-### Debugging {#debugging}
+Facebookで内部的に見られる使用パターンは、よくある間違いとは何か、そしてそれらを早期に防ぐ方法を理解するのに役立ちます。私たちが新しい機能を追加するとき、私たちはよくある間違いを予想してそれらについて警告しようとします。
 
-When something goes wrong, it is important that you have breadcrumbs to trace the mistake to its source in the codebase. In React, props and state are those breadcrumbs.
+私たちは開発者の経験を向上させる方法を常に探しています。私たちはあなたの提案を聞き、それをさらに良くするためにあなたの貢献を受け入れることが好きです。
 
-If you see something wrong on the screen, you can open React DevTools, find the component responsible for rendering, and then see if the props and state are correct. If they are, you know that the problem is in the component’s `render()` function, or some function that is called by `render()`. The problem is isolated.
+### デバッグ {#debugging}
 
-If the state is wrong, you know that the problem is caused by one of the `setState()` calls in this file. This, too, is relatively simple to locate and fix because usually there are only a few `setState()` calls in a single file.
+問題が発生した場合は、コードベースでその間違いの原因を突き止めるためのパンくずを作成することが重要です。 Reactでは、propsとstateはそれらのパンくずです。
 
-If the props are wrong, you can traverse the tree up in the inspector, looking for the component that first "poisoned the well" by passing bad props down.
+画面に問題がある場合は、React DevToolsを開いてレンダリングを担当するコンポーネントを見つけ、次にpropsとstateが正しいかどうかを確認できます。そうであれば、問題はコンポーネントの`render()`関数、または`render()`によって呼び出される関数にあることがわかります。問題は独立しています。
 
-This ability to trace any UI to the data that produced it in the form of current props and state is very important to React. It is an explicit design goal that state is not "trapped" in closures and combinators, and is available to React directly.
+stateが間違っている場合、問題はこのファイル内の`setState()`の呼び出しの1つによって引き起こされていることがわかります。これも、通常は1つのファイル内に`setState()`の呼び出しは数回しかないため、検索と修正が比較的簡単です。
 
-While the UI is dynamic, we believe that synchronous `render()` functions of props and state turn debugging from guesswork into a boring but finite procedure. We would like to preserve this constraint in React even though it makes some use cases, like complex animations, harder.
+propsが間違っている場合は、インスペクタでツリーを上にたどり、悪いpropsを渡して最初に「井戸に毒を入れた」コンポーネントを探します。
 
-### Configuration {#configuration}
+現在のpropsとstateで生成したデータから任意のUIをたどる、この能力はReactにとって非常に重要です。 状態がクロージャやコンビネータに「閉じ込め」られておらず、Reactで直接利用できることは明示的な設計目標です。
 
-We find global runtime configuration options to be problematic.
+UIは動的ですが、propsとstateの同期的な `render()`関数はデバッグをつまらない推測から有限の手順に変えると信じています。 複雑なアニメーションのようないくつかのユースケースをより困難にしますが、Reactではこの制約を保持したいと思います。
 
-For example, it is occasionally requested that we implement a function like `React.configure(options)` or `React.register(component)`. However this poses multiple problems, and we are not aware of good solutions to them.
 
-What if somebody calls such a function from a third-party component library? What if one React app embeds another React app, and their desired configurations are incompatible? How can a third-party component specify that it requires a particular configuration? We think that global configuration doesn't work well with composition. Since composition is central to React, we don't provide global configuration in code.
+### 設定 {#configuration}
 
-We do, however, provide some global configuration on the build level. For example, we provide separate development and production builds. We may also [add a profiling build](https://github.com/facebook/react/issues/6627) in the future, and we are open to considering other build flags.
+グローバルな実行時設定オプションは問題があることがわかりました。
 
-### Beyond the DOM {#beyond-the-dom}
+例えば、 `React.configure(options)`や `React.register(component)`のような関数を実装することが時々要求されます。 しかし、これは複数の問題を引き起こし、私たちはそれらに対する良い解決策を知りません。
 
-We see the value of React in the way it allows us to write components that have fewer bugs and compose together well. DOM is the original rendering target for React but [React Native](http://facebook.github.io/react-native/) is just as important both to Facebook and the community.
+誰かがサードパーティのコンポーネントライブラリからそのような関数を呼び出すとどうなりますか？ あるReactアプリに別のReactアプリが埋め込まれていて、それらの望ましい設定に互換性がない場合はどうなりますか？ サードパーティコンポーネントは特定の設定をどのように必須にしますか？ グローバル設定はコンポジションではうまく機能しないと思います。 コンポジションはReactの中心であるため、コードでグローバル設定を提供しません。
 
-Being renderer-agnostic is an important design constraint of React. It adds some overhead in the internal representations. On the other hand, any improvements to the core translate across platforms.
+ただし、ビルドレベルでグローバル設定をいくつか提供します。たとえば、開発ビルドと本番ビルドを別々に提供しています。将来[プロファイリングビルドを追加する](https://github.com/facebook/react/issues/6627)かもしれませんし、また、他のビルドフラグの検討を受け入れます。
 
-Having a single programming model lets us form engineering teams around products instead of platforms. So far the tradeoff has been worth it for us.
+### DOMを超えて {#beyond-the-dom}
 
-### Implementation {#implementation}
+私たちはReactの価値を、バグの少ないコンポーネントを書いてうまく構成することができるという点で見ています。 DOMはReactのオリジナルのレンダリングターゲットですが、[React Native](http://facebook.github.io/react-native/)はFacebookとコミュニティの両方にとって同じくらい重要です。
 
-We try to provide elegant APIs where possible. We are much less concerned with the implementation being elegant. The real world is far from perfect, and to a reasonable extent we prefer to put the ugly code into the library if it means the user does not have to write it. When we evaluate new code, we are looking for an implementation that is correct, performant and affords a good developer experience. Elegance is secondary.
+レンダラーにとらわれないことはReactの重要な設計上の制約です。 それは内部表現にいくらかのオーバーヘッドを追加します。 その一方で、コアへの改善はすべてのプラットフォーム間で変換されます。
 
-We prefer boring code to clever code. Code is disposable and often changes. So it is important that it [doesn't introduce new internal abstractions unless absolutely necessary](https://youtu.be/4anAwXYqLG8?t=13m9s). Verbose code that is easy to move around, change and remove is preferred to elegant code that is prematurely abstracted and hard to change.
+単一のプログラミングモデルを持つことで、プラットフォームではなく製品を中心にエンジニアリングチームを形成できます。 これまでのところ、そのトレードオフは私たちにとって価値があります。
 
-### Optimized for Tooling {#optimized-for-tooling}
+### 実装 {#implementation}
 
-Some commonly used APIs have verbose names. For example, we use `componentDidMount()` instead of `didMount()` or `onMount()`. This is [intentional](https://github.com/reactjs/react-future/issues/40#issuecomment-142442124). The goal is to make the points of interaction with the library highly visible.
+可能な限り洗練されたAPIを提供しようとしています。実装がエレガントであることにはそれほど関心がありません。現実の世界は完璧には程遠いので、合理的な範囲で、ユーザーがそれを書く必要がないという意味で醜いコードをライブラリに入れることを選びます。新しいコードを評価するときには、正しく、パフォーマンスが高く、優れた開発者エクスペリエンスを提供する実装を探しています。優雅さは第二です。
 
-In a massive codebase like Facebook, being able to search for uses of specific APIs is very important. We value distinct verbose names, and especially for the features that should be used sparingly. For example, `dangerouslySetInnerHTML` is hard to miss in a code review.
+私たちは賢いコードより退屈なコードを好む。 コードは使い捨てであり、しばしば変更されます。したがって、それが[絶対に必要でない限り、新しい内部抽象化を導入しない](https://youtu.be/4anAwXYqLG8?t=13m9s)ことが重要です。 移動、変更、削除が容易な冗長コードは、時期尚早に抽象化され変更が難しいエレガントなコードよりも優先されます。
 
-Optimizing for search is also important because of our reliance on [codemods](https://www.youtube.com/watch?v=d0pOgY8__JM) to make breaking changes. We want it to be easy and safe to apply vast automated changes across the codebase, and unique verbose names help us achieve this. Similarly, distinctive names make it easy to write custom [lint rules](https://github.com/yannickcr/eslint-plugin-react) about using React without worrying about potential false positives.
+### ツールに最適化 {#optimized-for-tooling}
 
-[JSX](/docs/introducing-jsx.html) plays a similar role. While it is not required with React, we use it extensively at Facebook both for aesthetic and pragmatic reasons.
+いくつかの一般的に使用されるAPIは冗長な名前を持っています。 例えば、`didMount()`や`onMount()`の代わりに`componentDidMount()`を使います。これは[意図的](https://github.com/reactjs/react-future/issues/40#issuecomment-142442124)です。 目的は、ライブラリとのやり取りのポイントをよく見えるようにすることです。
 
-In our codebase, JSX provides an unambiguous hint to the tools that they are dealing with a React element tree. This makes it possible to add build-time optimizations such as [hoisting constant elements](http://babeljs.io/docs/plugins/transform-react-constant-elements/), safely lint and codemod internal component usage, and [include JSX source location](https://github.com/facebook/react/pull/6771) into the warnings.
+Facebookのような大規模なコードベースでは、特定のAPIの使用を検索できることが非常に重要です。特に冗長な名前を大切にしています。特に、控えめに使用する必要がある機能については同様です。例えば、`dangerouslySetInnerHTML`はコードレビューで見逃すのが難しいです。
 
-### Dogfooding {#dogfooding}
+私たちが[codemods](https://www.youtube.com/watch?v=d0pOgY8__JM)に依存しているため、検索を最適化することも重要です。膨大な自動化された変更をコードベース全体に適用するのが簡単で安全であることを望みます。そして、固有の冗長名を使用すると、これを実現できます。同様に、識別可能な名前を使用すると、潜在的な誤検知を心配することなく、Reactの使用に関するカスタムの[lintルール](https://github.com/yannickcr/eslint-plugin-react)を簡単に作成できます。
 
-We try our best to address the problems raised by the community. However we are likely to prioritize the issues that people are *also* experiencing internally at Facebook. Perhaps counter-intuitively, we think this is the main reason why the community can bet on React.
+[JSX](/docs/introducing-jsx.html)も同様の役割を果たします。 Reactでは必須ではありませんが、美観上および実用上の理由から、Facebookで広く使用されています。
 
-Heavy internal usage gives us the confidence that React won't disappear tomorrow. React was created at Facebook to solve its problems. It brings tangible business value to the company and is used in many of its products. [Dogfooding](https://en.wikipedia.org/wiki/Eating_your_own_dog_food) it means that our vision stays sharp and we have a focused direction going forward.
+私たちのコードベースでは、JSXはそれらがReact要素ツリーを扱っているというツールへの明白なヒントを提供します。これにより、[定数要素の巻き上げ](http://babeljs.io/docs/plugins/transform-react-constant-elements/)、安全なlintおよびcodemod内部コンポーネントの使用などのビルド時の最適化を追加したり、[JSXソースの場所](https://github.com/facebook/react/pull/6771)を警告に含めることができます。
 
-This doesn't mean that we ignore the issues raised by the community. For example, we added support for [web components](/docs/webcomponents.html) and [SVG](https://github.com/facebook/react/pull/6243) to React even though we don't rely on either of them internally. We are actively [listening to your pain points](https://github.com/facebook/react/issues/2686) and [address them](/blog/2016/07/11/introducing-reacts-error-code-system.html) to the best of our ability. The community is what makes React special to us, and we are honored to contribute back.
+### ドッグフーディング {#dogfooding}
 
-After releasing many open source projects at Facebook, we have learned that trying to make everyone happy at the same time produced projects with poor focus that didn't grow well. Instead, we found that picking a small audience and focusing on making them happy brings a positive net effect. That's exactly what we did with React, and so far solving the problems encountered by Facebook product teams has translated well to the open source community.
+私たちはコミュニティーによって提起された問題に取り組むために最善を尽くします。 しかし、私たちはFacebook *も* 経験しているという問題を優先する可能性があります。 直感に反して、私たちはこれがコミュニティがReactに賭けることができる主な理由であると思います。
 
-The downside of this approach is that sometimes we fail to give enough focus to the things that Facebook teams don't have to deal with, such as the "getting started" experience. We are acutely aware of this, and we are thinking of how to improve in a way that would benefit everyone in the community without making the same mistakes we did with open source projects before.
+大量の内部使用は、Reactが明日消えないという自信を私たちに与えます。Reactは問題を解決するためにFacebookで作成されました。 それは企業に具体的なビジネス価値をもたらし、多くの製品で使用されています。 [ドッグフーディング](https://en.wikipedia.org/wiki/Eating_your_own_dog_food)は私たちのビジョンが鮮明なままであり、私たちは今後も焦点を絞った方向性を持っていることを意味します。
+
+これは、コミュニティが提起した問題を無視しているという意味ではありません。 たとえば、依存していなくてもReactに[Webコンポーネント](/docs/webcomponents.html)および[SVG](https://github.com/facebook/react/pull/6243)のサポートをどちらも内部的に追加しました。私達は積極的に[あなたの問題点を聞き](https://github.com/facebook/react/issues/2686)、私たちの能力の及ぶ限りで[それらを対処](/blog/2016/07/11/introducing-reacts-error-code-system.html)します。コミュニティはReactを私たちにとって特別なものにしています。そして私たちは貢献してくれて光栄です。
+
+Facebookで多くのオープンソースプロジェクトをリリースした後、みんなを同時に幸せにすることを試みるが焦点が不十分なプロジェクトを生み出してもうまく成長しないということを学びました。代わりに、少人数の観客を選んで満足させることに集中すると的を得た効果があることがわかりました。これこそまさに私たちがReactを使って行ったことです、そして今のところFacebook製品チームが遭遇した問題を解決することはオープンソースコミュニティにうまく移されました。
+
+このアプローチの欠点は、「getting started」など、Facebookチームが対処する必要がないことに十分に焦点を当てることができないことです。 私たちはこのことを強く認識しています、そして私たちは以前にオープンソースプロジェクトで行ったのと同じ過ちを犯さずにコミュニティのすべての人に利益をもたらすような方法で改善する方法を考えています。
