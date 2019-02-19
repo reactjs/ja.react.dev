@@ -1,7 +1,7 @@
-// Theme context, default to light theme
+// テーマのコンテクスト、デフォルトのテーマは light
 const ThemeContext = React.createContext('light');
 
-// Signed-in user context
+// サインイン済みのユーザのコンテクスト
 const UserContext = React.createContext({
   name: 'Guest',
 });
@@ -10,7 +10,7 @@ class App extends React.Component {
   render() {
     const {signedInUser, theme} = this.props;
 
-    // App component that provides initial context values
+    // コンテクストの初期値を与える App コンポーネント
     // highlight-range{2-3,5-6}
     return (
       <ThemeContext.Provider value={theme}>
@@ -31,7 +31,7 @@ function Layout() {
   );
 }
 
-// A component may consume multiple contexts
+// コンポーネントは複数のコンテクストを使用する可能性があります
 function Content() {
   // highlight-range{2-10}
   return (

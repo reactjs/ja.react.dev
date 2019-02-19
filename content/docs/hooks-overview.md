@@ -16,7 +16,7 @@ prev: hooks-intro.html
 
 **↑↑↑ それぞれの節の終わりに上のような黄色いボックスがあります。**より詳しい説明へのリンクとなっています。
 
-## 📌 ステートフック {#-state-hook}
+## 📌 ステートフック {#state-hook}
 
 この例ではカウンターを表示します。ボタンをクリックすると、カウンターの値が増えます：
 
@@ -68,7 +68,7 @@ React は `useState` のような幾つかのビルトインのフックを提�
 >
 > ステートフックについてはこちらのページを参照してください：[ステートフックの利用法](/docs/hooks-state.html).
 
-## ⚡️ 副作用フック {#️-effect-hook}
+## ⚡️ 副作用フック {#️effect-hook}
 
 これまでに React コンポーネントの内部から、外部データの取得や購読、あるいは手動での DOM 更新を行ったことがおありでしょう。これらの操作は他のコンポーネントに影響することがあり、またレンダーの最中に実行することができないので、われわれはこのような操作を "副作用 (side-effects)"、あるいは省略して "作用 (effects)" と呼んでいます。
 
@@ -159,7 +159,7 @@ function FriendStatusWithCounter(props) {
 >
 > `useEffect` についての更なる詳細は[副作用フックの利用法](/docs/hooks-effect.html)を参照してください。
 
-## ✌️ フックのルール {#️-rules-of-hooks}
+## ✌️ フックのルール {#️rules-of-hooks}
 
 フックは JavaScript の関数ですが、2 つの追加のルールがあります。
 
@@ -172,7 +172,7 @@ function FriendStatusWithCounter(props) {
 >
 > これらのルールについての詳細は[フックのルール](/docs/hooks-rules.html)を参照してください。
 
-## 💡 独自フックの作成 {#-building-your-own-hooks}
+## 💡 独自フックの作成 {#building-your-own-hooks}
 
 state を用いたロジックをコンポーネント間で再利用したいことがあります。これまでは、このような問題に対して 2 種類の人気の解決方法がありました。[高階コンポーネント](/docs/higher-order-components.html)と [レンダープロップ](/docs/render-props.html) です。カスタムフックを利用することで、同様のことが、ツリー内のコンポーネントを増やすことなく行えるようになります。
 
@@ -239,7 +239,7 @@ function FriendListItem(props) {
 >
 > カスタム Hooks についての詳しい情報は[独自フックの作成](/docs/hooks-custom.html)を参照してください。
 
-## 🔌 その他のフック {#-other-hooks}
+## 🔌 その他のフック {#other-hooks}
 
 その他にもいくつか、使用頻度は低いものの便利なフックが存在しています。例えば、[`useContext`](/docs/hooks-reference.html#usecontext) を使えば React のコンテクストをコンポーネントのネストなしに利用できるようになります：
 
