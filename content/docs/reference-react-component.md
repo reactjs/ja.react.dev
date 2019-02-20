@@ -307,7 +307,7 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 
 `embed:react-component-reference/get-snapshot-before-update.js`
 
-この例では、`getSnapshotBeforeUpdate` の `scrollHeight` プロパティを読み取ることが重要です。これは、（`render` のような）「描画」フェーズライフサイクルと（`getSnapshotBeforeUpdate` および `componentDidUpdate` のような）「コミット」フェーズライフサイクルの間に遅延が生じるためです。
+この例では、`getSnapshotBeforeUpdate` の中で `scrollHeight` プロパティを読み取ることが重要です。これは、（`render` のような）「描画」フェーズライフサイクルと（`getSnapshotBeforeUpdate` および `componentDidUpdate` のような）「コミット」フェーズライフサイクルの間に遅延が生じるためです。
 
 * * *
 
