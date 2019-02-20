@@ -615,7 +615,7 @@ CustomButton.defaultProps = {
 
 ### `displayName` {#displayname}
 
-`displayName` 文字列はデバッグメッセージに使用されます。通常、コンポーネントを定義する関数またはクラスの名前から推測されるため、明示的に設定する必要はありません。デバッグ目的で別の名前を表示する場合や、高次コンポーネントを作成する場合は、明示的に設定することをおすすめします。詳細については、[簡単なデバッグのために表示名をラップする](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging)を参照してください。
+`displayName` 文字列はデバッグメッセージに使用されます。通常、コンポーネントを定義する関数またはクラスの名前から推測されるため、明示的に設定する必要はありません。デバッグ目的で別の名前を表示する場合や、高階コンポーネントを作成する場合には、明示的に設定したくなるかもしれません。詳細については、[簡単なデバッグのために表示名をラップする](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging)を参照してください。
 
 * * *
 
