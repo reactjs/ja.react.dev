@@ -81,7 +81,7 @@ class Welcome extends React.Component {
 
 #### エラーハンドリング {#error-handling}
 
-これらのメソッドはレンダー中、ライフサイクルメソッド内、または任意の子コンポーネントのコンストラクタ内でエラーが発生したときに呼び出されます。
+これらのメソッドは任意の子コンポーネントのレンダー中、ライフサイクルメソッド内、またはコンストラクタ内でエラーが発生したときに呼び出されます。
 
 - [`static getDerivedStateFromError()`](#static-getderivedstatefromerror)
 - [`componentDidCatch()`](#componentdidcatch)
