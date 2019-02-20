@@ -285,7 +285,7 @@ state を派生させると冗長なコードにつながり、コンポーネ�
 
 * **プロパティが変更されたときにのみデータを再計算したい**場合は、[代わりにメモ化ヘルパーを使用してください](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization)
 
-* **プロパティが変更されたときに何かの state を「リセット」したい**場合は、代わりにコンポーネントを[完全に制御する](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component)か、または [`key` で全く制御しない](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key)かを検討してください
+* **プロパティが変更されたときに何かの state を「リセット」したい**場合は、代わりにコンポーネントを[完全に制御する](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component)か、または [`key` を使って全く制御しない](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key)かを検討してください
 
 このメソッドはコンポーネントインスタンスにアクセスできません。必要に応じて、コンポーネントの props と state の純粋な関数を抽出し、クラス定義外に記述することで、`getDerivedStateFromProps()` と他のクラスメソッドの間でコードを再利用できます。
 
