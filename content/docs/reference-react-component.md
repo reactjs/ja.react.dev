@@ -319,7 +319,7 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 
 クラスコンポーネントは、ライフサイクルメソッド `static getDerivedStateFromError()` または `componentDidCatch()` のいずれか（または両方）を定義すると、error boundaries になります。これらのライフサイクルから state を更新すると、下のツリーで発生した未処理の JavaScript エラーを捕捉してフォールバック UI を表示できます。
 
-予期しない例外からの回復には error boundaries のみを使用してください。**それらを制御フローに使用しないでください**。
+error boundaries は予期しない例外からの回復のためだけに使用してください。**それらを制御フローに使用しないでください**。
 
 詳細については、[*React 16 のエラーハンドリング*](/blog/2017/07/26/error-handling-in-react-16.html)を参照してください。
 
