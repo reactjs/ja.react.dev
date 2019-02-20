@@ -575,7 +575,7 @@ component.forceUpdate(callback)
 
 `forceUpdate()` を呼び出すと、`shouldComponentUpdate()` をスキップして、コンポーネントに対して `render()` が呼び出されます。これにより、それぞれの子の `shouldComponentUpdate()` メソッドを含む、子コンポーネントの通常のライフサイクルメソッドがトリガーされます。マークアップが変更された場合にのみ React は DOM を更新します。
 
-通常は `forceUpdate()` の使用をすべて避け、`render()` の `this.props` と `this.state` からのみ読み取るようにしてください。
+通常は全ての `forceUpdate()` の使用を避け、`render()` の `this.props` と `this.state` からのみ読み取るようにしてください。
 
 * * *
 
