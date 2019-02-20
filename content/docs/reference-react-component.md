@@ -303,7 +303,9 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 
 このユースケースは一般的ではありませんが、スクロール位置を特別な方法で処理する必要があるチャットのスレッドのような UI で発生する可能性があります。
 
-以下の例のように、スナップショット値（または `null`）が返されるべきです。
+スナップショット値（または `null`）が返されるべきです。
+
+例：
 
 `embed:react-component-reference/get-snapshot-before-update.js`
 
