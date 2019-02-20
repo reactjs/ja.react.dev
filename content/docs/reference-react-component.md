@@ -413,7 +413,7 @@ class ErrorBoundary extends React.Component {
 
 > 補足
 > 
-> エラーが発生した場合は、`setState` を呼び出して `componentDidCatch()` を使用してフォールバック UI をレンダーできますが、これは将来のリリースでは推奨されなくなります。
+> エラーが発生した場合は、`setState` を呼び出す `componentDidCatch()` を使用してフォールバック UI をレンダーできますが、これは将来のリリースでは推奨されなくなります。
 > 代わりにフォールバックの描画を扱うために、`static getDerivedStateFromError()` を使用してください。
 
 * * *
