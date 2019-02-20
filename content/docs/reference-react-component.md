@@ -478,7 +478,7 @@ UNSAFE_componentWillUpdate(nextProps, nextState)
 >
 > このライフサイクルは、以前は `componentWillUpdate` と呼ばれていました。その名前はバージョン 17 まで機能し続けます。コンポーネントを自動的に更新するには、[`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) を使用してください。
 
-`UNSAFE_componentWillUpdate()` は、新しい props または state を受け取ったときにレンダーの直前に呼び出されます。更新が発生の前に準備する機会としてこれを使用してください。このメソッドは最初のレンダーでは呼び出されません。
+`UNSAFE_componentWillUpdate()` は、新しい props または state を受け取ったときにレンダーの直前に呼び出されます。更新が発生する前の準備する機会としてこれを使用してください。このメソッドは最初のレンダーでは呼び出されません。
 
 ここで `this.setState()` を呼び出すことはできません。また、`UNSAFE_componentWillUpdate()` が返る前に React コンポーネントへの更新を引き起こすような何か他のこと（たとえば、Redux アクションのディスパッチ）をするべきでもありません。
 
