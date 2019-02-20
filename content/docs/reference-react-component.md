@@ -492,7 +492,7 @@ UNSAFE_componentWillUpdate(nextProps, nextState)
 
 ## 他の API {#other-apis-1}
 
-上記のライフサイクルメソッド（React から呼び出すもの）とは異なり、以下のメソッドは*あなたが*コンポーネントから呼び出すことができるメソッドです。
+上記のライフサイクルメソッド（React が呼び出すもの）とは異なり、以下のメソッドは*あなたが*コンポーネントから呼び出すことができるメソッドです。
 
 それは `setState()` と `forceUpdate()` の 2 つだけです。
 
