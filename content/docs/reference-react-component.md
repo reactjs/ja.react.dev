@@ -625,7 +625,7 @@ CustomButton.defaultProps = {
 
 `this.props` には、このコンポーネントの呼び出し元によって定義された props が含まれています。props の紹介は [コンポーネントと props](/docs/components-and-props.html) を見てください。
 
-特に、`this.props.children` は特別なプロパティで、通常はタグ自体ではなく JSX 式の子タグによって定義されます。
+特に、`this.props.children` は特別なプロパティで、通常はタグ自体にではなく JSX 式の子タグによって定義されます。
 
 ### `state` {#state}
 
