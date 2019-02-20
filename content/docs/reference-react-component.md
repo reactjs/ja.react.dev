@@ -264,7 +264,7 @@ shouldComponentUpdate(nextProps, nextState)
 
 等価性を深く調べることや `shouldComponentUpdate()` で `JSON.stringify()` を使用することはおすすめしません。これは非常に非効率的であり、パフォーマンスに悪影響を及ぼします。
 
-現在、`shouldComponentUpdate()` が `false` を返す場合、[`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)、[`render()`](#render)、および [`componentDidUpdate()`](#componentdidupdate) は呼び出されません。将来的には、React は `shouldComponentUpdate()` を厳密なディレクティブではなくヒントとして扱うようになり、`false` を返してもコンポーネントが再レンダーされる可能性があります。
+現在、`shouldComponentUpdate()` が `false` を返す場合、[`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)、[`render()`](#render)、および [`componentDidUpdate()`](#componentdidupdate) は呼び出されません。将来的には、React は `shouldComponentUpdate()` を厳密な命令ではなくヒントとして扱うようになり、`false` を返してもコンポーネントが再レンダーされる可能性があります。
 
 * * *
 
