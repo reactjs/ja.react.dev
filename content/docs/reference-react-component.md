@@ -313,7 +313,7 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 
 ### error boundaries {#error-boundaries}
 
-[error boundaries](/docs/error-boundaries.html) は、子コンポーネントツリーのどこかで JavaScript エラーを捕捉し、それらのエラーを記録し、クラッシュしたコンポーネントツリーの代わりにフォールバック UI を表示する React コンポーネントです。error boundaries は、レンダー中、ライフサイクルメソッド内、およびその下のツリー全体のコンストラクタ内でエラーを捕捉します。
+[error boundaries](/docs/error-boundaries.html) は、子コンポーネントツリーのどこかで JavaScript エラーを捕捉し、それらのエラーを記録し、クラッシュしたコンポーネントツリーの代わりにフォールバック UI を表示する React コンポーネントです。error boundaries は、その下のツリー全体のレンダー中、ライフサイクルメソッド内、およびコンストラクタ内で発生したエラーを捕捉します。
 
 クラスコンポーネントは、ライフサイクルメソッド `static getDerivedStateFromError()` または `componentDidCatch()` のいずれか（または両方）を定義すると、error boundaries になります。これらのライフサイクルから state を更新すると、未処理の JavaScript エラーを下のツリーで捕捉してフォールバック UI を表示できます。
 
