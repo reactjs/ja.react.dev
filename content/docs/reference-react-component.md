@@ -420,7 +420,7 @@ class ErrorBoundary extends React.Component {
 
 ### レガシーなライフサイクルメソッド {#legacy-lifecycle-methods}
 
-以下のライフサイクルメソッドは「レガシー」としてマークされています。動作はしますが、新しいコードで使用することはおすすめしません。この[ブログ記事](/blog/2018/03/27/update-on-async-rendering.html)では、従来のライフサイクルメソッドからの移行についてさらに学ぶことができます。
+以下のライフサイクルメソッドは「レガシー」としてマークされています。動作はしますが、新しいコードで使用することはおすすめしません。この[ブログ記事](/blog/2018/03/27/update-on-async-rendering.html)では、レガシーなライフサイクルメソッドからの移行についてさらに学ぶことができます。
 
 ### `UNSAFE_componentWillMount()` {#unsafe_componentwillmount}
 
