@@ -506,7 +506,7 @@ setState(updater[, callback])
 
 `setState()` は常にコンポーネントを直ちに更新するわけではありません。それはバッチ式に更新するか後で更新を延期するかもしれません。これは `setState()` を呼び出した直後に `this.state` を読み取ることが潜在的な危険になります。代わりに、`componentDidUpdate` または `setState` コールバック（`setState(updater, callback)`）を使用してください。どちらも更新が適用された後に起動することが保証されています。前の state に基づいて state を設定する必要がある場合は、下記の `updater` 引数についてお読みください。
 
-`shouldComponentUpdate()` が `false` を返さない限り、`setState()` は常に再レンダーされます。ミュータブルなオブジェクトが使用されていて、条件付きレンダーロジックが `shouldComponentUpdate()` で実装できない場合、新しい state が前の state と異なるときにのみ `setState()` を呼び出すと、不要な再レンダーを回避できます。
+`shouldComponentUpdate()` が `false` を返さない限り、`setState()` は常に再レンダーされます。ミュータブルなオブジェクトが使用されていて、条件付きでレンダーを行うためのロジックを `shouldComponentUpdate()` に実装できない場合、新しい state が前の state と異なるときにのみ `setState()` を呼び出すと、不要な再レンダーを回避できます。
 
 最初の引数の `updater` 関数は次のようなシグネチャです。
 
