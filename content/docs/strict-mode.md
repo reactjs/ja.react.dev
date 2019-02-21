@@ -4,7 +4,7 @@ title: strict モード
 permalink: docs/strict-mode.html
 ---
 
-`strict モード`（`StrictMode`）はアプリケーションの潜在的な問題点を洗い出すためのツールです。`フラグメント`と同様に、`strict モード`は目に見える UI を描画しません。`strict モード`では、その子孫要素に対して付加的な検査および警告が動くようになります。
+`StrictMode` はアプリケーションの潜在的な問題点を洗い出すためのツールです。`Fragment` と同様に、`StrictMode` は目に見える UI を描画しません。`StrictMode` の子孫要素に対しては、付加的な検査および警告が動くようになります。
 
 > メモ：
 >
