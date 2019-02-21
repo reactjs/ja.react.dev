@@ -68,7 +68,7 @@ React は `useState` のような幾つかのビルトインのフックを提�
 >
 > ステートフックについてはこちらのページを参照してください：[ステートフックの利用法](/docs/hooks-state.html).
 
-## ⚡️ 副作用フック {#️effect-hook}
+## ⚡️ 副作用フック {#effect-hook}
 
 これまでに React コンポーネントの内部から、外部データの取得や購読、あるいは手動での DOM 更新を行ったことがおありでしょう。これらの操作は他のコンポーネントに影響することがあり、またレンダーの最中に実行することができないので、われわれはこのような操作を "副作用 (side-effects)"、あるいは省略して "作用 (effects)" と呼んでいます。
 
@@ -159,7 +159,7 @@ function FriendStatusWithCounter(props) {
 >
 > `useEffect` についての更なる詳細は[副作用フックの利用法](/docs/hooks-effect.html)を参照してください。
 
-## ✌️ フックのルール {#️rules-of-hooks}
+## ✌️ フックのルール {#rules-of-hooks}
 
 フックは JavaScript の関数ですが、2 つの追加のルールがあります。
 
