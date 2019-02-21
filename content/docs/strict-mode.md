@@ -32,7 +32,7 @@ permalink: docs/strict-mode.html
 
 ![](../images/blog/strict-mode-unsafe-lifecycles-warning.png)
 
-_今_厳密モードによって特定された問題に対処しておくことで、将来的に将来の React のバージョンで、非同期レンダリングを活用しやすくなります。
+_今_厳密モードによって特定された問題に対処しておくことで、将来の React のリリース時に、非同期レンダリングを活用しやすくなります。
 
 ### レガシーな文字列 ref API の使用に対する警告 {#warning-about-legacy-string-ref-api-usage}
 
