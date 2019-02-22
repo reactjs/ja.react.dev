@@ -456,7 +456,7 @@ UNSAFE_componentWillReceiveProps(nextProps)
 >
 > * props の変更に応じて**副作用を実行する**必要がある場合は（データの取得やアニメーションなど）、代わりに [`componentDidUpdate`](#componentdidupdate) ライフサイクルを使用してください
 > * `componentWillReceiveProps` を** props が変更されたときにのみデータを再計算する**ために使う代わりに、[メモ化ヘルパーを使用してください](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization)
-> * `componentWillReceiveProps` を** props が変更されたときに何かの state を「リセット」する**ために使う代わりに、コンポーネントを[完全に制御する](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component)か、または [`key` を使って全く制御しない](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key)かを検討してください
+> * `componentWillReceiveProps` を **props が変更されたときに何かの state を「リセット」する**ために使う代わりに、コンポーネントを[完全に制御する](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component)か、または [`key` を使って全く制御しない](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key)かを検討してください
 >
 > その他の使用例については、[派生 state に関するこのブログ投稿の推奨事項に従ってください](/blog/2018/06/07/you-probably-dont-need-derived-state.html)。
 
