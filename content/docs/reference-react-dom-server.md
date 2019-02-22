@@ -37,9 +37,9 @@ var ReactDOMServer = require('react-dom/server');
 ReactDOMServer.renderToString(element)
 ```
 
-React 要素を初期状態の HTML へと変換します。React は HTML 文字列を返します。このメソッドにより、サーバ上で HTML を生成して最初のリクエストに対してマークアップを送信してページ読み込み速度を向上させたり、また SEO 目的で検索エンジンがページを巡回できるようにできます。
+React 要素を初期状態の HTML へと変換します。React は HTML 文字列を返します。このメソッドにより、サーバ上で HTML を生成して最初のリクエストに対してマークアップを送信してページ読み込み速度を向上させたり、また SEO 目的で検索エンジンがページを巡回することを可能にします。
 
-このようにしてサーバ側で変換されたマークアップをあらかじめ持つノード上で [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) を呼び出した場合、React はマークアップを保持しつつイベントハンドラのみを追加するので、非常にパフォーマンスの高いページの初回読み込みの体験が得られます。
+このようにしてサーバ側で変換されたマークアップをあらかじめ持つノード上で [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) を呼び出した場合、React はマークアップを保持しつつイベントハンドラのみを追加するので、非常にパフォーマンスの高い初回ページロードの体験が得られます。
 
 * * *
 
@@ -49,7 +49,7 @@ React 要素を初期状態の HTML へと変換します。React は HTML 文�
 ReactDOMServer.renderToStaticMarkup(element)
 ```
 
-React が内部的に使用する `data-reactroot` のような追加の DOM 属性を作成しないことを除いて、[`renderToString`](#rendertostring) と同様の動作をします。このメソッドは React を静的サイトジェネレーターとして使用したい場合に便利で、追加の属性を省略することでバイト数を削減できます。
+React が内部的に使用する `data-reactroot` のような追加の DOM 属性を作成しないことを除いて、[`renderToString`](#rendertostring) と同様の動作をします。このメソッドは React を単純な静的サイトジェネレータとして使用したい場合に便利で、追加の属性を省略することでバイト数を削減できます。
 
 マークアップをインタラクティブなものにするために、クライアントで React を導入しようとしている場合は、このメソッドを使用しないでください。代わりに、サーバで [`renderToString`](#rendertostring) を、そしてクライアントで [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) を使用してください。
 
@@ -61,9 +61,9 @@ React が内部的に使用する `data-reactroot` のような追加の DOM 属
 ReactDOMServer.renderToNodeStream(element)
 ```
 
-React 要素を初期状態の HTML へと変換します。HTML の文字列を出力する [Readable ストリーム](https://nodejs.org/api/stream.html#stream_readable_streams)を返します。このストリームによる HTML 出力は [`ReactDOMServer.renderToString`](#rendertostring) が返すものと全く同じです。このメソッドにより、サーバ上で HTML を生成して最初のリクエストに対してマークアップを送信してページ読み込み速度を向上させたり、また SEO 目的で検索エンジンがページを巡回できるようにできます。
+React 要素を初期状態の HTML へと変換します。HTML の文字列を出力する [Readable ストリーム](https://nodejs.org/api/stream.html#stream_readable_streams)を返します。このストリームによる HTML 出力は [`ReactDOMServer.renderToString`](#rendertostring) が返すものと全く同じです。このメソッドにより、サーバ上で HTML を生成して最初のリクエストに対してマークアップを送信してページ読み込み速度を向上させたり、また SEO 目的で検索エンジンがページを巡回することを可能にします。
 
-このようにしてサーバ側で変換されたマークアップをあらかじめ持つノード上で [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) を呼び出した場合、React はマークアップを保持しつつイベントハンドラのみを追加するので、非常にパフォーマンスの高いページの初回ロードの体験が得られます。
+このようにしてサーバ側で変換されたマークアップをあらかじめ持つノード上で [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) を呼び出した場合、React はマークアップを保持しつつイベントハンドラのみを追加するので、非常にパフォーマンスの高い初回ページロードの体験が得られます。
 
 > 補足：
 >
@@ -79,7 +79,7 @@ React 要素を初期状態の HTML へと変換します。HTML の文字列を
 ReactDOMServer.renderToStaticNodeStream(element)
 ```
 
-React が内部的に使用する `data-reactroot` のような追加の DOM 属性を作成しないことを除いて、[`renderToNodeStream`](#rendertonodestream) と同様の動作をします。このメソッドはシンプルな静的ページを生成するのに React を使用したい場合に便利で、追加の属性を省略することでバイト数を削減できます。
+React が内部的に使用する `data-reactroot` のような追加の DOM 属性を作成しないことを除いて、[`renderToNodeStream`](#rendertonodestream) と同様の動作をします。このメソッドは React を単純な静的サイトジェネレータとして使用したい場合に便利で、追加の属性を省略することでバイト数を削減できます。
 
 このストリームによる HTML 出力は [`ReactDOMServer.renderToStaticMarkup`](#rendertostaticmarkup) が返すものと全く同じです。
 
