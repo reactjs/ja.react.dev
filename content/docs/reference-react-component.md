@@ -432,7 +432,7 @@ UNSAFE_componentWillMount()
 >
 > このライフサイクルは、以前は `componentWillMount` という名前でした。その名前はバージョン 17 まで機能し続けます。コンポーネントを自動的に更新するには、[`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) を使用してください。
 
-マウントが行われる直前に `UNSAFE_componentWillMount()` が呼び出されます。これは `render()` の前に呼び出されるので、このメソッドで `setState()` を同期的に呼び出しても余分なレンダーは行われません。一般に、state を初期化するために代わりに `constructor()` を使うことをおすすめします。
+マウントが行われる直前に `UNSAFE_componentWillMount()` が呼び出されます。これは `render()` の前に呼び出されるので、このメソッドで `setState()` を同期的に呼び出しても余分なレンダーは行われません。一般に、state を初期化するためには代わりに `constructor()` を使うことをおすすめします。
 
 このメソッドでは、副作用や購読を導入しないでください。そのような場合は、代わりに `componentDidMount()` を使用してください。
 
