@@ -10,7 +10,11 @@ React は、各更新で実際に何が変更されるべきかを人間が心�
 
 React を使う際、`render()` 関数をある時点の React 要素のツリーを作成するものとして考えることができます。次回の state や props の更新時には、`render()` 関数は React 要素の別のツリーを返します。React はそこから直近のツリーに合致させるように効率よく UI を更新する方法を見つけ出す必要があります。
 
+<<<<<<< HEAD
 あるツリーを別のものに変換するための最小限の操作を求めるというアルゴリズム問題については、いくつかの一般的な解決方法が存在しています。しかし、[最新のアルゴリズム](http://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf)でもツリーの要素数を n として O(n<sup>3</sup>) ほどの計算量があります。
+=======
+There are some generic solutions to this algorithmic problem of generating the minimum number of operations to transform one tree into another. However, the [state of the art algorithms](https://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf) have a complexity in the order of O(n<sup>3</sup>) where n is the number of elements in the tree.
+>>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
 
 React でそのアルゴリズムを使った場合、1000 個の要素を表示するのに 10 億といったレベルの比較が必要となります。これではあまりに計算コストが高すぎます。代わりに、React は 2 つの仮定に基づくことで、ある程度近い結果を得ることができる O(n) ほどの計算量のアルゴリズムを実装しています。
 

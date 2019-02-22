@@ -294,7 +294,11 @@ const EnhancedComponent = enhance(WrappedComponent)
 
 （この性質を使えば、`connect` や他の機能追加方式の HOC をデコレータ（提唱中の JavaScript の実験的機能）で使用することも可能になります）
 
+<<<<<<< HEAD
 `compose` ユーティリティ関数は lodash（[`lodash.flowRight`](https://lodash.com/docs/#flowRight) として）、[Redux](http://redux.js.org/docs/api/compose.html)、そして [Ramda](http://ramdajs.com/docs/#compose) といった多くのサードパーティ製ライブラリから提供されています。
+=======
+The `compose` utility function is provided by many third-party libraries including lodash (as [`lodash.flowRight`](https://lodash.com/docs/#flowRight)), [Redux](https://redux.js.org/api/compose), and [Ramda](https://ramdajs.com/docs/#compose).
+>>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
 
 ## 規則：デバッグしやすくするため表示名をラップすること {#convention-wrap-the-display-name-for-easy-debugging}
 
