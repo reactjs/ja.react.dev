@@ -451,6 +451,7 @@ UNSAFE_componentWillReceiveProps(nextProps)
 > このライフサイクルは、以前は `componentWillReceiveProps` という名前でした。その名前はバージョン 17 まで機能し続けます。コンポーネントを自動的に更新するには、[`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) を使用してください。
 
 > 補足:
+
 >
 > このライフサイクルメソッドを使用すると、しばしばバグや矛盾が発生します。
 >
