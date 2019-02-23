@@ -8,7 +8,7 @@ permalink: docs/strict-mode.html
 
 > メモ：
 >
-> strict モードでの検査は開発モードでのみ動きます。_プロダクションビルドには影響を与えません_。
+> strict モードでの検査は開発モードでのみ動きます。_本番ビルドには影響を与えません_。
 
 strict モードはアプリケーションの任意の箇所で有効にできます。下はその一例です。
 `embed:strict-mode/enabling-strict-mode.js`
