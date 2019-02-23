@@ -4,17 +4,18 @@ layout: single
 permalink: warnings/dont-call-proptypes.html
 ---
 
-> Note:
+「PropTypes を呼び出してはならない」警告。
+
+> 補足：
 >
-> `React.PropTypes` has moved into a different package since React v15.5. Please use [the `prop-types` library instead](https://www.npmjs.com/package/prop-types).
->
->We provide [a codemod script](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) to automate the conversion.
+> React.PropTypes は React v15.5 から別パッケージに移動しました。代わりに [prop-types ライブラリ](https://www.npmjs.com/package/prop-types)を使用してください。
+> コードを自動で変換するための [codemod スクリプト](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes)も提供しています。
 
-In a future major release of React, the code that implements PropType validation functions will be stripped in production. Once this happens, any code that calls these functions manually (that isn't stripped in production) will throw an error.
+React の将来のメジャーリリースでは、PropType のバリデーションを実装するコードは、本番用ビルドから削除される予定です。その際には、バリデーションを手動で呼び出す全てのコード（本番用ビルドで削除されないもの）はエラーを投げることになります。
 
-### Declaring PropTypes is still fine {#declaring-proptypes-is-still-fine}
+### PropTypes 宣言については問題ありません {#declaring-proptypes-is-still-fine}
 
-The normal usage of PropTypes is still supported:
+PropType の通常の使用は引き続きサポートされます。
 
 ```javascript
 Button.propTypes = {
@@ -22,11 +23,11 @@ Button.propTypes = {
 };
 ```
 
-Nothing changes here.
+これについては何も変わっていません。
 
-### Don’t call PropTypes directly {#dont-call-proptypes-directly}
+### PropTypes を直接呼び出さない {#dont-call-proptypes-directly}
 
-Using PropTypes in any other way than annotating React components with them is no longer supported:
+React コンポーネントに注釈を付ける以外の方法で PropType を使用することはサポートされなくなりました。
 
 ```javascript
 var apiShape = PropTypes.shape({
@@ -38,13 +39,13 @@ var apiShape = PropTypes.shape({
 var error = apiShape(json, 'response');
 ```
 
-If you depend on using PropTypes like this, we encourage you to use or create a fork of PropTypes (such as [these](https://github.com/aackerman/PropTypes) [two](https://github.com/developit/proptypes) packages).
+この形で PropType を使用をする必要がある場合、PropType のフォーク版（[これら](https://github.com/aackerman/PropTypes) [2 つの](https://github.com/developit/proptypes)パッケージなど）を使用するか、あるいは新たにフォーク版を作成することをおすすめします。
 
-If you don't fix the warning, this code will crash in production with React 16.
+警告に応じてコードを修正しなければ、このコードは React 16 の本番用ビルドではクラッシュします。
 
-### If you don't call PropTypes directly but still get the warning {#if-you-dont-call-proptypes-directly-but-still-get-the-warning}
+### PropTypes を直接呼んでいないのに警告が発生するとき {#if-you-dont-call-proptypes-directly-but-still-get-the-warning}
 
-Inspect the stack trace produced by the warning. You will find the component definition responsible for the PropTypes direct call. Most likely, the issue is due to third-party PropTypes that wrap React’s PropTypes, for example:
+警告で出力されているスタックトレースを調べることで、PropTypes を直接呼んでいるコンポーネント定義を見付けることができます。ほとんどの場合、React の PropType をラップするサードパーティ製の PropType が問題の原因です。たとえば、
 
 ```js
 Button.propTypes = {
@@ -55,13 +56,14 @@ Button.propTypes = {
 }
 ```
 
-In this case, `ThirdPartyPropTypes.deprecated` is a wrapper calling `PropTypes.bool`. This pattern by itself is fine, but triggers a false positive because React thinks you are calling PropTypes directly. The next section explains how to fix this problem for a library implementing something like `ThirdPartyPropTypes`. If it's not a library you wrote, you can file an issue against it.
+このケースでは、`ThirdPartyPropTypes.deprecated` が `PropTypes.bool` を呼び出しているラッパーです。このパターンそのものは良いのですが、あなたが直接 PropTypes を呼び出したと React が判断するため、誤検出（=呼び出していないのに呼び出したと判定）を引き起こします。次節では `ThirdPartyPropTypes` のようなライブラリを実装する際に、この問題をどのように解決するかについて述べます。自分で書いたライブラリでなければ、そのライブラリについて issue を作成することもできます。
 
-### Fixing the false positive in third party PropTypes {#fixing-the-false-positive-in-third-party-proptypes}
+### サードパーティの PropTypes における誤検知を修正する {#fixing-the-false-positive-in-third-party-proptypes}
 
-If you are an author of a third party PropTypes library and you let consumers wrap existing React PropTypes, they might start seeing this warning coming from your library. This happens because React doesn't see a "secret" last argument that [it passes](https://github.com/facebook/react/pull/7132) to detect manual PropTypes calls.
+あなたがサードパーティ製 PropTypes の作者で、利用者に既存の React PropTypes をラップさせる場合、ライブラリがこの警告を発生させるのを利用者は目にするようになるでしょう。
+これは手動による PropTypes の呼び出しを[検知するために渡す最後尾の引数 `secret`](https://github.com/facebook/react/pull/7132) を React が確認できないために起こります。
 
-Here is how to fix it. We will use `deprecated` from [react-bootstrap/react-prop-types](https://github.com/react-bootstrap/react-prop-types/blob/0d1cd3a49a93e513325e3258b28a82ce7d38e690/src/deprecated.js) as an example. The current implementation only passes down the `props`, `propName`, and `componentName` arguments:
+以下に修正方法を示します。例として使用しているのは [react-bootstrap/react-prop-types](https://github.com/react-bootstrap/react-prop-types/blob/0d1cd3a49a93e513325e3258b28a82ce7d38e690/src/deprecated.js) にある `deprecated` です。現時点での実装では単に引数として `props`、`propName`、そして `componentName` を渡しているだけです。
 
 ```javascript
 export default function deprecated(propType, explanation) {
@@ -79,7 +81,7 @@ export default function deprecated(propType, explanation) {
 }
 ```
 
-In order to fix the false positive, make sure you pass **all** arguments down to the wrapped PropType. This is easy to do with the ES6 `...rest` notation:
+誤検知を修正するには、**すべての**引数をラップされた PropType に渡してください。これは ES6 の `...rest` 記法で簡単に行えます。
 
 ```javascript
 export default function deprecated(propType, explanation) {
@@ -97,4 +99,4 @@ export default function deprecated(propType, explanation) {
 }
 ```
 
-This will silence the warning.
+これで警告は出力されなくなります。

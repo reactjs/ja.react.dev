@@ -3,7 +3,7 @@ id: shallow-renderer
 title: Shallow Renderer
 permalink: docs/shallow-renderer.html
 layout: docs
-category: リファレンス
+category: Reference
 ---
 
 **インポート**
