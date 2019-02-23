@@ -1,10 +1,10 @@
 ---
 id: forwarding-refs
-title: refのフォワーディング
+title: ref のフォワーディング
 permalink: docs/forwarding-refs.html
 ---
 
-ref のフォワーディングはあるコンポーネントを通じてその子コンポーネントのひとつに [ref](/docs/refs-and-the-dom.html) を自動的に渡すテクニックです。これは基本的にはアプリケーション内のほとんどのコンポーネントで必要ありません。しかし、コンポーネントの種類によっては、特に再利用可能なコンポーネントライブラリにおいては、便利なものとなるかもしれません。ほとんどの一般的なシナリオは以下で述べます。
+ref のフォワーディングはあるコンポーネントを通じてその子コンポーネントのひとつに [ref](/docs/refs-and-the-dom.html) を自動的に渡すテクニックです。これは基本的にはアプリケーション内のほとんどのコンポーネントで必要ありません。しかし、コンポーネントの種類によっては、特に再利用可能なコンポーネントライブラリにおいては、便利なものとなるかもしれません。一般的なシナリオについて以下で述べます。
 
 ## DOM コンポーネントに ref をフォワーディングする {#forwarding-refs-to-dom-components}
 
@@ -15,7 +15,7 @@ React コンポーネントは、レンダーの結果も含め、実装の詳�
 
 そういったカプセル化は `FeedStory` や `Comment` のようなアプリケーションレベルのコンポーネントでは望ましいことではありますが、`FancyButton` や `MyTextInput` といった非常に多くのところで再利用可能な "葉" コンポーネントでは不便である可能性があります。このようなコンポーネントは、アプリケーションのいたるところで通常の DOM である `button` や `input` と同様に扱われる傾向にあり、フォーカス、要素の選択、アニメーションをこなすにはそれらの DOM にアクセスすることが避けられないかもしれません。
 
-**ref のフォワーディングはオプトインの機能で、それにより、コンポーネントは `ref` を取ることができるようになり、コンポーネントは `ref` をさらに下層の子に渡し（つまり、ref を "フォワーディング" し）ます。**
+**ref のフォワーディングはオプトインの機能であり、それにより、コンポーネントが `ref` を受け取って、それをさらに下層の子に渡せる（つまり、ref を "フォワーディング" できる）ようになります。**
 
 下の例では、`FancyButton` は渡された `ref` を取得して、それをレンダーする `button` DOM にフォワーディングするために、`React.forwardRef` を使っています。
 
@@ -27,7 +27,7 @@ React コンポーネントは、レンダーの結果も含め、実装の詳�
 
 1. `React.createRef` を呼び、[React ref](/docs/refs-and-the-dom.html) をつくり、それを `ref` 変数に代入します。
 1. `ref` を `<FancyButton ref={ref}>` に JSX の属性として指定することで渡します。
-1. React は `ref` を、`forwardRef` 内の関数 `(props, ref) => ...` の 2 番目の引数としてを渡します。
+1. React は `ref` を、`forwardRef` 内の関数 `(props, ref) => ...` の 2 番目の引数として渡します。
 1. この引数として受け取った `ref` を `<button ref={ref}>` に JSX の属性として指定することで渡します。
 1. この ref が紐付けられると、`ref.current` は `<button>` DOM ノードのことを指すようになります。
 
@@ -39,9 +39,9 @@ React コンポーネントは、レンダーの結果も含め、実装の詳�
 
 ## コンポーネントライブラリのメンテナ向けの補足 {#note-for-component-library-maintainers}
 
-**コンポーネントライブラリの中で、`forawrdRef` を使い始めた場合、破壊的変更として扱い、新しいメジャーバージョンをリリースすべきです。**ライブラリが今までと著しく違う挙動（例えば、どの値が ref に代入されるかや、どの型がエクスポートされるのか）をする可能性があり、古い挙動に依存しているアプリケーションや他のライブラリを壊す可能性があるからです。
+**コンポーネントライブラリの中で、`forawrdRef` を使い始めた場合、破壊的変更として扱い、新しいメジャーバージョンをリリースすべきです。**ライブラリが外から見て今までと違う挙動（例えば、どの値が ref に代入されるかや、どの型がエクスポートされるのか）をする可能性があり、古い挙動に依存しているアプリケーションや他のライブラリを壊す可能性があるからです。
 
-`React.forwardRef` が存在する場合だけ、条件的に `React.forwardRef` を適用することも同じ理由で推奨されません： そのような実装は、React そのものを更新したとき、ライブラリがどのように振る舞うかを変えてしまい、ユーザのアプリケーションを破壊する可能性があるからです。
+`React.forwardRef` が存在する場合だけ、条件的に `React.forwardRef` を適用することも同じ理由で推奨されません：そのような実装は、React そのものを更新したとき、ライブラリがどのように振る舞うかを変えてしまい、ユーザのアプリケーションを破壊する可能性があるからです。
 
 ## 高階コンポーネントにおける ref のフォワーディング {#forwarding-refs-in-higher-order-components}
 
@@ -59,7 +59,7 @@ React コンポーネントは、レンダーの結果も含め、実装の詳�
 幸いにも、`React.forwardRef` API を使って、内側の `FancyButton` コンポーネントに対して ref を明示的に渡すことができます。`React.forwardRef` は render 関数を受け取り、その関数は `props` と `ref` を引数として取り、React ノードを返します。例えば、
 `embed:forwarding-refs/log-props-after.js`
 
-## DevTools でのカスタム名表示{#displaying-a-custom-name-in-devtools}
+## DevTools でのカスタム名表示 {#displaying-a-custom-name-in-devtools}
 
 `React.forwardRef` は render 関数を受け取ります。React DevTools は ref をフォワーディングしているコンポーネントとして何を表示すべきかを決定するために、この関数を使います。
 
@@ -71,6 +71,6 @@ render 関数に名前をつけると、DevTools はその名前を含めるよ�
 
 `embed:forwarding-refs/wrapped-component-with-function-name.js`
 
-ラップしているコンポーネントを含めるために、render 関数の  `displayName` を設定することもできます：
+ラップしているコンポーネントを含めるために、render 関数の `displayName` を設定することもできます：
 
 `embed:forwarding-refs/customized-display-name.js`
