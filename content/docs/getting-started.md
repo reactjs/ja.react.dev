@@ -69,11 +69,7 @@ React を学びたい人には様々な背景があり、それぞれいろん�
 
 ### デザイナー向けのガイド {#react-for-designers}
 
-<<<<<<< HEAD
-もしあなたがデザイナーのバックグラウンドを持っているなら、[これらの資料](http://reactfordesigners.com/)から始めることをおすすめします。
-=======
-If you're coming from a design background, [these resources](https://reactfordesigners.com/) are a great place to get started.
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+もしあなたがデザイナーのバックグラウンドを持っているなら、[これらの資料](https://reactfordesigners.com/)から始めることをおすすめします。
 
 ### JavaScript 資料 {#javascript-resources}
 
@@ -83,11 +79,7 @@ JavaScript について自分がどれだけ知っているかを知るために
 
 > ヒント
 >
-<<<<<<< HEAD
->もし JavaScript で何か詰まった時は、[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) と [javascript.info](http://javascript.info/) を確認すると良いでしょう。また、[コミュニティ運営の掲示板](/community/support.html)を活用するのもおすすめします。
-=======
->Whenever you get confused by something in JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [javascript.info](https://javascript.info/) are great websites to check. There are also [community support forums](/community/support.html) where you can ask for help.
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+>もし JavaScript で何か詰まった時は、[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) と [javascript.info](https://javascript.info/) を確認すると良いでしょう。また、[コミュニティ運営の掲示板](/community/support.html)を活用するのもおすすめします。
 
 ### 実践チュートリアル {#practical-tutorial}
 

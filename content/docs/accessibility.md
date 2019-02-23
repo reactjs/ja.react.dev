@@ -113,15 +113,9 @@ function ListItem({ item }) {
 
 以下の資料にはその方法が示されています：
 
-<<<<<<< HEAD
 - [W3C による要素にラベルを付ける方法の解説](https://www.w3.org/WAI/tutorials/forms/labels/)
-- [WebAIM による要素にラベルを付ける方法の解説](http://webaim.org/techniques/forms/controls)
+- [WebAIM による要素にラベルを付ける方法の解説](https://webaim.org/techniques/forms/controls)
 - [The Paciello Group によるアクセシブルな名前についての解説](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
-=======
-- [The W3C shows us how to label elements](https://www.w3.org/WAI/tutorials/forms/labels/)
-- [WebAIM shows us how to label elements](https://webaim.org/techniques/forms/controls)
-- [The Paciello Group explains accessible names](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
 
 React でこれらの標準的な HTML の実践知識を直接使用できますが、JSX では `for` 属性は `htmlFor` として記述されることに注意してください。
 
@@ -134,23 +128,14 @@ React でこれらの標準的な HTML の実践知識を直接使用できま�
 
 すべてのユーザがエラーの起きた状況を理解できる必要があります。以下のリンクはどのようにエラーテキストをユーザーと同じくスクリーンリーダにも公開するかを解説しています。
 
-<<<<<<< HEAD
 - [W3C によるユーザーへの通知方法の例示](https://www.w3.org/WAI/tutorials/forms/notifications/)
-- [WebAIM によるフォームバリデーションの解説](http://webaim.org/techniques/formvalidation/)
-=======
-- [The W3C demonstrates user notifications](https://www.w3.org/WAI/tutorials/forms/notifications/)
-- [WebAIM looks at form validation](https://webaim.org/techniques/formvalidation/)
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+- [WebAIM によるフォームバリデーションの解説](https://webaim.org/techniques/formvalidation/)
 
 ## フォーカス制御 {#focus-control}
 
 あなたのウェブアプリケーションが完全にキーボードだけで操作できることを確かめてください：
 
-<<<<<<< HEAD
-- [WebAIM によるキーボードアクセシビリティの解説](http://webaim.org/techniques/keyboard/)
-=======
-- [WebAIM talks about keyboard accessibility](https://webaim.org/techniques/keyboard/)
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+- [WebAIM によるキーボードアクセシビリティの解説](https://webaim.org/techniques/keyboard/)
 
 ### キーボードフォーカスとフォーカス時のアウトライン（輪郭線）{#keyboard-focus-and-focus-outline}
 
@@ -417,11 +402,7 @@ React では [React Document Title Component](https://github.com/gaearon/react-d
 - [Everything About Color Contrast And Why You Should Rethink It](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
 - [A11yProject - What is Color Contrast](https://a11yproject.com/posts/what-is-color-contrast/)
 
-<<<<<<< HEAD
-適切な色の組み合わせをウェブサイト内の全てのケースについて手作業で行うのは面倒になりがちなので、代わりに[アクセシブルなカラーパレット全体を Colorable で計算する](http://jxnblk.com/colorable/)ことができます。
-=======
-It can be tedious to manually calculate the proper color combinations for all cases in your website so instead, you can [calculate an entire accessible color palette with Colorable](https://jxnblk.com/colorable/).
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+適切な色の組み合わせをウェブサイト内の全てのケースについて手作業で行うのは面倒になりがちなので、代わりに[アクセシブルなカラーパレット全体を Colorable で計算する](https://jxnblk.com/colorable/)ことができます。
 
 以下に述べる aXe および WAVE ツールのどちらも同じように色のコントラストのテストを備えておりコントラストの違反を報告してくれます。
 
@@ -474,11 +455,7 @@ Deque System はアプリケーションの自動化された E2E アクセシ�
 
 #### WebAIM WAVE {#webaim-wave}
 
-<<<<<<< HEAD
-[Web Accessibility Evaluation Tool](http://wave.webaim.org/extension/) はアクセシビリティに関する別のブラウザ拡張機能です。
-=======
-The [Web Accessibility Evaluation Tool](https://wave.webaim.org/extension/) is another accessibility browser extension.
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+[Web Accessibility Evaluation Tool](https://wave.webaim.org/extension/) はアクセシビリティに関する別のブラウザ拡張機能です。
 
 #### アクセシビリティ検査ツールとアクセシビリティツリー {#accessibility-inspectors-and-the-accessibility-tree}
 
@@ -519,11 +496,7 @@ VoiceOver を有効化して使用する方法は以下のガイドを参照し�
 
 #### JAWS と Internet Explorer {#jaws-in-internet-explorer}
 
-<<<<<<< HEAD
-[Job Access With Speech](http://www.freedomscientific.com/Products/Blindness/JAWS) もしくは JAWS は、Windows 上での使用例が豊富なスクリーンリーダです。
-=======
-[Job Access With Speech](https://www.freedomscientific.com/Products/software/JAWS/) or JAWS, is a prolifically used screen reader on Windows.
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+[Job Access With Speech](https://www.freedomscientific.com/Products/software/JAWS/) もしくは JAWS は、Windows 上での使用例が豊富なスクリーンリーダです。
 
 JAWS を最大限に活用する方法は以下のガイドを参照してください：
 
@@ -534,11 +507,7 @@ JAWS を最大限に活用する方法は以下のガイドを参照してくだ
 
 #### ChromeVox と Google Chrome {#chromevox-in-google-chrome}
 
-<<<<<<< HEAD
-[ChromeVox](http://www.chromevox.com/) は Chromebook に統合されたスクリーンリーダで、Google Chrome では[拡張機能](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en)として利用可能です。
-=======
-[ChromeVox](https://www.chromevox.com/) is an integrated screen reader on Chromebooks and is available [as an extension](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en) for Google Chrome.
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+[ChromeVox](https://www.chromevox.com/) は Chromebook に統合されたスクリーンリーダで、Google Chrome では[拡張機能](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en)として利用可能です。
 
 ChromeVox を最大限に活用する方法は以下のガイドを参照してください：
 

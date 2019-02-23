@@ -71,11 +71,7 @@ ReactDOM.render(
 
 [](codepen://introducing-jsx)
 
-<<<<<<< HEAD
-読みやすさのため JSX を複数行に分けています。必須ではありませんが、複数行に分割する場合には、[自動セミコロン挿入](http://stackoverflow.com/q/2846283)の落とし穴にはまらないように括弧で囲むことをおすすめします
-=======
-We split JSX over multiple lines for readability. While it isn't required, when doing this, we also recommend wrapping it in parentheses to avoid the pitfalls of [automatic semicolon insertion](https://stackoverflow.com/q/2846283).
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+読みやすさのため JSX を複数行に分けています。必須ではありませんが、複数行に分割する場合には、[自動セミコロン挿入](https://stackoverflow.com/q/2846283)の落とし穴にはまらないように括弧で囲むことをおすすめします
 
 ### JSX もまた式である {#jsx-is-an-expression-too}
 
@@ -143,11 +139,7 @@ const title = response.potentiallyMaliciousInput;
 const element = <h1>{title}</h1>;
 ```
 
-<<<<<<< HEAD
-デフォルトでは、React DOM は JSX に埋め込まれた値をレンダリングされる前に[エスケープ](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html)します。このため、自分のアプリケーションで明示的に書かれたものではないあらゆるコードは、注入できないことが保証されます。レンダーの前に全てが文字列に変換されます。これは [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) 攻撃の防止に役立ちます。
-=======
-By default, React DOM [escapes](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) any values embedded in JSX before rendering them. Thus it ensures that you can never inject anything that's not explicitly written in your application. Everything is converted to a string before being rendered. This helps prevent [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) attacks.
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+デフォルトでは、React DOM は JSX に埋め込まれた値をレンダリングされる前に[エスケープ](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html)します。このため、自分のアプリケーションで明示的に書かれたものではないあらゆるコードは、注入できないことが保証されます。レンダーの前に全てが文字列に変換されます。これは [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) 攻撃の防止に役立ちます。
 
 ### JSX はオブジェクトの表現である {#jsx-represents-objects}
 
@@ -190,9 +182,5 @@ const element = {
 
 >**ヒント:**
 >
-<<<<<<< HEAD
->利用したいエディタで ["Babel" 言語定義](http://babeljs.io/docs/editors)を使用して、ES6 と JSX が適切にハイライトされるようにしておくことをお勧めします。このウェブサイトはそれと互換性のある [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) カラースキームを使用しています。
+>利用したいエディタで ["Babel" 言語定義](https://babeljs.io/docs/editors)を使用して、ES6 と JSX が適切にハイライトされるようにしておくことをお勧めします。このウェブサイトはそれと互換性のある [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) カラースキームを使用しています。
 
-=======
->We recommend using the ["Babel" language definition](https://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted. This website uses the [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) color scheme which is compatible with it.
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a

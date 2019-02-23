@@ -4,11 +4,7 @@ title: 他のライブラリとのインテグレーション
 permalink: docs/integrating-with-other-libraries.html
 ---
 
-<<<<<<< HEAD
-React はどのような Web アプリケーションにも適用できます。React は他のアプリケーションに組み込むことができ、また少しだけ気を付ければ、React に他のアプリケーションを組み込むこともできます。ここでは一般的なユースケースである [jQuery](https://jquery.com/) と [Backbone](http://backbonejs.org/) を使った例を紹介しますが、同じ考え方はどのような既存のコードにも適用可能です。
-=======
-React can be used in any web application. It can be embedded in other applications and, with a little care, other applications can be embedded in React. This guide will examine some of the more common use cases, focusing on integration with [jQuery](https://jquery.com/) and [Backbone](https://backbonejs.org/), but the same ideas can be applied to integrating components with any existing code.
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+React はどのような Web アプリケーションにも適用できます。React は他のアプリケーションに組み込むことができ、また少しだけ気を付ければ、React に他のアプリケーションを組み込むこともできます。ここでは一般的なユースケースである [jQuery](https://jquery.com/) と [Backbone](https://backbonejs.org/) を使った例を紹介しますが、同じ考え方はどのような既存のコードにも適用可能です。
 
 ## DOM 操作プラグインとのインテグレーション {#integrating-with-dom-manipulation-plugins}
 
@@ -257,11 +253,7 @@ ReactDOM.render(
 
 ### Backbone View に React を組み込む {#embedding-react-in-a-backbone-view}
 
-<<<<<<< HEAD
-[Backbone](http://backbonejs.org/) view は通常、HTML 文字列、もしくは文字列を生成するテンプレート用関数を使って、DOM 要素の中身を作成します。この処理もまた React コンポーネントのレンダリングに置き換えられます。
-=======
-[Backbone](https://backbonejs.org/) views typically use HTML strings, or string-producing template functions, to create the content for their DOM elements. This process, too, can be replaced with rendering a React component.
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+[Backbone](https://backbonejs.org/) view は通常、HTML 文字列、もしくは文字列を生成するテンプレート用関数を使って、DOM 要素の中身を作成します。この処理もまた React コンポーネントのレンダリングに置き換えられます。
 
 以下で、`ParagraphView` と呼ばれる Backbone view を作成します。Backbone の `render()` 関数をオーバーライドして、React の `<Paragraph>` コンポーネントを Backbone が提供する DOM 要素 (this.el) にレンダリングします。ここでも [`ReactDOM.render()`](/docs/react-dom.html#render) を使用します：
 
@@ -291,19 +283,11 @@ React *ツリー内*からコンポーネントが削除されるとクリーン
 
 ## Model 層とのインテグレーション {#integrating-with-model-layers}
 
-<<<<<<< HEAD
-一般的には [React の state](/docs/lifting-state-up.html)、[Flux](http://facebook.github.io/flux/)、もしくは [Redux](http://redux.js.org/) のような一方向のデータフローの使用が推奨されますが、React コンポーネントは他のフレームワークやライブラリのモデル層を利用することができます。
-=======
-While it is generally recommended to use unidirectional data flow such as [React state](/docs/lifting-state-up.html), [Flux](https://facebook.github.io/flux/), or [Redux](https://redux.js.org/), React components can use a model layer from other frameworks and libraries.
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+一般的には [React の state](/docs/lifting-state-up.html)、[Flux](https://facebook.github.io/flux/)、もしくは [Redux](https://redux.js.org/) のような一方向のデータフローの使用が推奨されますが、React コンポーネントは他のフレームワークやライブラリのモデル層を利用することができます。
 
 ### React コンポーネントで Backbone Model を使用する {#using-backbone-models-in-react-components}
 
-<<<<<<< HEAD
-React コンポーネントから [Backbone](http://backbonejs.org/) のモデルとコレクションを利用する最もシンプルな方法は、様々な変更イベントを監視して手動で強制的に更新することです。
-=======
-The simplest way to consume [Backbone](https://backbonejs.org/) models and collections from a React component is to listen to the various change events and manually force an update.
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+React コンポーネントから [Backbone](https://backbonejs.org/) のモデルとコレクションを利用する最もシンプルな方法は、様々な変更イベントを監視して手動で強制的に更新することです。
 
 モデルのレンダーに責任をもつコンポーネントは `'change'` イベントを監視し、コレクションのレンダーに責任をもつコンポーネントは `'add'` および `'remove'` イベントを監視します。どちらの場合も、[`this.forceUpdate()`](/docs/react-component.html#forceupdate) を呼び出して新しいデータでコンポーネントを再レンダリングします。
 
