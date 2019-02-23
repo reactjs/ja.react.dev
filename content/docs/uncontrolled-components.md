@@ -41,7 +41,7 @@ class NameForm extends React.Component {
 
 非制御コンポーネントでは DOM に信頼できる情報源を保持するため、使用すれば React と非 React のコードの統合が簡単になることがあります。汚くても構わないので速く記述したいと思うなら少しだけコード量も減らせます。そうでなければ、通常の制御されたコンポーネントを使用するべきです。
 
-特定の状況に対してどちらのタイプのコンポーネントを使用すれば良いかまだはっきりしない場合は、[制御された入力 vs 非制御入力の記事](http://goshakkk.name/controlled-vs-uncontrolled-inputs-react/)が参考になるでしょう。
+特定の状況に対してどちらのタイプのコンポーネントを使用すれば良いかまだはっきりしない場合は、[制御された入力 vs 非制御入力の記事](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/)が参考になるでしょう。
 
 ### デフォルト値 {#default-values}
 
