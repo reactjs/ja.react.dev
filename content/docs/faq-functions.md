@@ -108,7 +108,7 @@ method();
 
 React では、一般的に他のコンポーネントに *渡す* メソッドしかバインドする必要はありません。たとえば、`<button onClick={this.handleClick}>` というコードは、`this.handleClick` を渡しているので、バインドする必要があります。しかし、`render` メソッドやライフサイクルメソッドをバインドする必要はありません。それらは他のコンポーネントに渡すことがないからです。
 
-[Yehuda Katz の記事](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) はバインドとは何か、また JavaScript における関数の動作について詳細に説明してくれています。
+[Yehuda Katz の記事](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) はバインドとは何か、また JavaScript における関数の動作について詳細に説明してくれています。
 
 ### どうしてコンポーネントをレンダーするたびに、関数が呼ばれるのか？ {#why-is-my-function-being-called-every-time-the-component-renders}
 

@@ -38,7 +38,7 @@ console.log(testRenderer.toJSON());
 //   children: [ 'Facebook' ] }
 ```
 
-JSON ツリーを自動的にファイルに保存し、変更が起こったかをテストで確認するには、Jest のスナップショットテスト機能が利用できます。[詳細について知る](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html)
+JSON ツリーを自動的にファイルに保存し、変更が起こったかをテストで確認するには、Jest のスナップショットテスト機能が利用できます。[詳細について知る](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html)
 
 出力を走査して特定のノードを検索し、それらに対してアサーションを行うこともできます。
 
@@ -110,7 +110,7 @@ TestRenderer.create(element, options);
 testRenderer.toJSON()
 ```
 
-レンダーされたツリーを表すオブジェクトを返します。このツリーは `<div>` もしくは `<View>` のようなプラットフォーム固有のノードとそのプロパティを含みますが、ユーザー定義のコンポーネントは含まれません。[スナップショットテスト](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest)に便利です。
+レンダーされたツリーを表すオブジェクトを返します。このツリーは `<div>` もしくは `<View>` のようなプラットフォーム固有のノードとそのプロパティを含みますが、ユーザー定義のコンポーネントは含まれません。[スナップショットテスト](https://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest)に便利です。
 
 ### `testRenderer.toTree()` {#testrenderertotree}
 
