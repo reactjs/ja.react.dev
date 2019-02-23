@@ -79,7 +79,7 @@ class MyComponent extends React.Component {
 
 ### 意図しない副作用の検出 {#detecting-unexpected-side-effects}
 
-概念的に、React は次の 2 つの段階で動作します。
+概念的に、React は次の 2 つのフェーズで動作します。
 * **レンダー**段階では、変更対象（例えば DOM）にどのような変更が必要か決めます。この段階において、React は `render` を呼び出し、1 つ前のレンダー結果と比較します。
 * **コミット**段階で React は変更を反映します（React DOM の場合ではここで React は DOM ノードの挿入、更新、削除を行います）。React はこの段階で `componentDidMount` や `componentDidUpdate` などのライフサイクルの呼び出しも行います。
 
