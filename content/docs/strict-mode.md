@@ -22,7 +22,7 @@ strict モードはアプリケーションの任意の箇所で有効にでき�
 * [意図しない副作用の検出](#detecting-unexpected-side-effects)
 * [レガシーなコンテクスト API の検出](#detecting-legacy-context-api)
 
-将来の React のリリースではこの他にも機能が追加予定です。
+将来の React のリリースではこの他にも機能が追加される予定です。
 
 ### 安全でないライフサイクルの特定 {#identifying-unsafe-lifecycles}
 
