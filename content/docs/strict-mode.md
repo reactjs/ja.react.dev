@@ -15,7 +15,7 @@ strict モードはアプリケーションの任意の箇所で有効にでき�
 
 上のコード例において、`Header` と `Footer` に対しては strict モードの検査は*されません*。しかし `ComponentOne`、`ComponentTwo` およびそのすべての子孫要素に対しては検査が働きます。
 
-現在、`strict モード`は以下のことに役立ちます。
+現在、`StrictMode` は以下のことに役立ちます。
 * [安全でないライフサイクルの特定](#identifying-unsafe-lifecycles)
 * [レガシーな文字列 ref API の使用に対する警告](#warning-about-legacy-string-ref-api-usage)
 * [非推奨な findDOMNode の使用に対する警告](#warning-about-deprecated-finddomnode-usage)
