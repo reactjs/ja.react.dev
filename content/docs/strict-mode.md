@@ -111,7 +111,7 @@ strict モードでは自動的には副作用を見つけてはくれません�
 例えば、次のようなコードを考えてみましょう。
 `embed:strict-mode/side-effects-in-constructor.js`
 
-はじめ見たとき、このコードには問題があるようには見えないかもしれません。しかし、`SharedApplicationState.recordEvent` が[冪等](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning)ではないとすると、このコンポーネントを複数回インスタンス化するとアプリケーションの無効な状態を引き起こしえます。このような分かりづらいバグは開発中には現れないかもしれないし、バグが一貫性のない挙動をして見逃してしまうかもしれません。
+はじめ見たとき、このコードには問題があるようには見えないかもしれません。しかし、`SharedApplicationState.recordEvent` が[冪等](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning)ではないとすると、このコンポーネントを複数回インスタンス化するとアプリケーションの無効な状態を引き起こしえます。このような分かりづらいバグは開発中には現れないかもしれませんし、バグが一貫性のない挙動をして見逃してしまうかもしれません。
 
 コンポーネントのコンストラクタなどのメソッドを意図的に 2 度呼び出すことによって、strict モードではこのようなことが起きた場合に気付きやすくしています。
 
