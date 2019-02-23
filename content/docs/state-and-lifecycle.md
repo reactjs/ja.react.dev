@@ -29,7 +29,7 @@ function tick() {
 setInterval(tick, 1000);
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/gwoJZk?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/gwoJZk?editors=0010)
 
 このセクションでは、この `Clock` コンポーネントを真に再利用可能かつカプセル化されたものにする方法を学びます。コンポーネントが自分でタイマーをセットアップし、自身を毎秒更新するようにします。
 
@@ -55,7 +55,7 @@ function tick() {
 setInterval(tick, 1000);
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/dpdoYR?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/dpdoYR?editors=0010)
 
 しかし上記のコードは重要な要件を満たしていません：`Clock` がタイマーを設定して UI を毎秒ごとに更新するという処理は、`Clock` の内部実装の詳細 (implementation detail) であるべきだということです。
 
@@ -101,7 +101,7 @@ class Clock extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/zKRGpo?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/zKRGpo?editors=0010)
 
 これでもう、`Clock` は関数ではなくクラスとして定義されています。
 
@@ -193,7 +193,7 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/KgQpJd?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/KgQpJd?editors=0010)
 
 次に、`Clock` が自分でタイマーを設定し、毎秒ごとに自分を更新するようにします。
 
@@ -302,7 +302,7 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/amqdNA?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/amqdNA?editors=0010)
 
 これで、この時計は毎秒ごとに時間を刻みます。
 
@@ -437,7 +437,7 @@ function FormattedDate(props) {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/zKRqNB?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/zKRqNB?editors=0010)
 
 このデータフローは一般的には "トップダウン" もしくは "単一方向" データフローと呼ばれます。いかなる state も必ず特定のコンポーネントが所有し、state から生ずる全てのデータまたは UI は、ツリーでそれらの "下" にいるコンポーネントにのみ影響します。
 
@@ -462,7 +462,7 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/vXdGmd?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/vXdGmd?editors=0010)
 
 各 `Clock` は独立してタイマーをセットし、独立して更新します。
 

@@ -27,7 +27,7 @@ JavaScript コンパイラは JavaScript コードを受け取って変換し、
 
 ## パッケージマネージャ {#package-managers}
 
-パッケージ マネージャーは、プロジェクト内の依存関係を管理するためのツールです。[npm](https://www.npmjs.com/) および [Yarn](https://yarnpkg.com/) の 2 つのパッケージマネージャが React アプリケーションで一般的に利用されています。どちらも同じ npm パッケージレジストリのクライアントです。
+パッケージ マネージャーは、プロジェクト内の依存関係を管理するためのツールです。[npm](https://www.npmjs.com/) および [Yarn](http://yarnpkg.com/) の 2 つのパッケージマネージャが React アプリケーションで一般的に利用されています。どちらも同じ npm パッケージレジストリのクライアントです。
 
 ## CDN {#cdn}
 

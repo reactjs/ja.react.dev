@@ -90,7 +90,7 @@ function ComponentWithTransition() {
 }
 ```
 
-JavaScript から DOM ノードのプロパティにアクセスする場合（例えば `node.style.backgroundImage`）と一致させるために、スタイルのキー名はキャメルケースです。[`ms` 以外](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/)のベンダープレフィックスは先頭を大文字にしてください。`WebkitTransition` に大文字 "W" があるのはこのためです。
+JavaScript から DOM ノードのプロパティにアクセスする場合（例えば `node.style.backgroundImage`）と一致させるために、スタイルのキー名はキャメルケースです。[`ms` 以外](http://www.andismith.com/blog/2012/02/modernizr-prefixed/)のベンダープレフィックスは先頭を大文字にしてください。`WebkitTransition` に大文字 "W" があるのはこのためです。
 
 React はインラインスタイルでの特定の数値プロパティに対して自動的に "px" サフィックスを付け加えます。"px" 以外の単位を使用したい場合は、その単位を付け加えた文字列で値を指定してください。例えば：
 
