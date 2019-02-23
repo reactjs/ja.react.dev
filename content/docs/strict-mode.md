@@ -73,7 +73,7 @@ class MyComponent extends React.Component {
 }
 ```
 
-> メモ：
+> 補足：
 >
 > CSS では、特定のノードをレイアウトの一部にしたくない場合 [`display: contents`](https://developer.mozilla.org/en-US/docs/Web/CSS/display#display_contents) 属性が利用できます。
 
