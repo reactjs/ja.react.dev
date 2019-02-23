@@ -19,8 +19,8 @@ React はアクセシビリティを備えたウェブサイトの構築を全�
 以下の WCAG のチェックリストはその概要を示します。
 
 - [WCAG checklist from Wuhcag](https://www.wuhcag.com/wcag-checklist/)
-- [WCAG checklist from WebAIM](https://webaim.org/standards/wcag/checklist)
-- [Checklist from The A11Y Project](https://a11yproject.com/checklist.html)
+- [WCAG checklist from WebAIM](http://webaim.org/standards/wcag/checklist)
+- [Checklist from The A11Y Project](http://a11yproject.com/checklist.html)
 
 ### WAI-ARIA {#wai-aria}
 
@@ -114,7 +114,7 @@ function ListItem({ item }) {
 以下の資料にはその方法が示されています：
 
 - [W3C による要素にラベルを付ける方法の解説](https://www.w3.org/WAI/tutorials/forms/labels/)
-- [WebAIM による要素にラベルを付ける方法の解説](https://webaim.org/techniques/forms/controls)
+- [WebAIM による要素にラベルを付ける方法の解説](http://webaim.org/techniques/forms/controls)
 - [The Paciello Group によるアクセシブルな名前についての解説](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
 
 React でこれらの標準的な HTML の実践知識を直接使用できますが、JSX では `for` 属性は `htmlFor` として記述されることに注意してください。
@@ -129,13 +129,13 @@ React でこれらの標準的な HTML の実践知識を直接使用できま�
 すべてのユーザがエラーの起きた状況を理解できる必要があります。以下のリンクはどのようにエラーテキストをユーザーと同じくスクリーンリーダにも公開するかを解説しています。
 
 - [W3C によるユーザーへの通知方法の例示](https://www.w3.org/WAI/tutorials/forms/notifications/)
-- [WebAIM によるフォームバリデーションの解説](https://webaim.org/techniques/formvalidation/)
+- [WebAIM によるフォームバリデーションの解説](http://webaim.org/techniques/formvalidation/)
 
 ## フォーカス制御 {#focus-control}
 
 あなたのウェブアプリケーションが完全にキーボードだけで操作できることを確かめてください：
 
-- [WebAIM によるキーボードアクセシビリティの解説](https://webaim.org/techniques/keyboard/)
+- [WebAIM によるキーボードアクセシビリティの解説](http://webaim.org/techniques/keyboard/)
 
 ### キーボードフォーカスとフォーカス時のアウトライン（輪郭線）{#keyboard-focus-and-focus-outline}
 
@@ -151,13 +151,13 @@ React でこれらの標準的な HTML の実践知識を直接使用できま�
 
 スキップリンクやスキップナビゲーションリンクとは、ユーザがキーボードでページを操作する場合にのみ出現する、隠れたナビゲーションリンクです。これらのリンクはページ内アンカーといくらかのスタイルを用いて、とても簡単に実装できます：
 
-- [WebAIM - Skip Navigation Links](https://webaim.org/techniques/skipnav/)
+- [WebAIM - Skip Navigation Links](http://webaim.org/techniques/skipnav/)
 
 `<main>` や `<aside>` のようなランドマーク要素とロール属性も活用してページの領域を区切り、補助技術を使うユーザが素早くこれらのセクションに移動できるようにしてください。
 
 アクセシビリティを強化する、これらの要素の使い方についての詳細は以下を読んでください：
 
-- [Accessible Landmarks](https://www.scottohara.me/blog/2018/03/03/landmarks.html)
+- [Accessible Landmarks](http://www.scottohara.me/blog/2018/03/03/landmarks.html)
 
 ### プログラムによりフォーカスを管理する {#programmatically-managing-focus}
 
@@ -375,7 +375,7 @@ class BlurExample extends React.Component {
 それぞれの種類のウィジェットはそれぞれ特定のデザインパターンを持っており、ユーザやユーザーエージェントはそれらが特定の方法で機能することを期待します：
 
 - [WAI-ARIA Authoring Practices - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
-- [Heydon Pickering - ARIA Examples](https://heydonworks.com/practical_aria_examples/)
+- [Heydon Pickering - ARIA Examples](http://heydonworks.com/practical_aria_examples/)
 - [Inclusive Components](https://inclusive-components.design/)
 
 ## その他に考慮すべきポイント {#other-points-for-consideration}
@@ -384,7 +384,7 @@ class BlurExample extends React.Component {
 
 ページテキストで使用する自然言語を明示して、読み上げソフトが適切な音声設定を選ぶために利用できるようにしてください：
 
-- [WebAIM - Document Language](https://webaim.org/techniques/screenreader/#language)
+- [WebAIM - Document Language](http://webaim.org/techniques/screenreader/#language)
 
 ### ドキュメントの title の設定 {#setting-the-document-title}
 
@@ -400,15 +400,15 @@ React では [React Document Title Component](https://github.com/gaearon/react-d
 
 - [WCAG - Understanding the Color Contrast Requirement](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html)
 - [Everything About Color Contrast And Why You Should Rethink It](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
-- [A11yProject - What is Color Contrast](https://a11yproject.com/posts/what-is-color-contrast/)
+- [A11yProject - What is Color Contrast](http://a11yproject.com/posts/what-is-color-contrast/)
 
-適切な色の組み合わせをウェブサイト内の全てのケースについて手作業で行うのは面倒になりがちなので、代わりに[アクセシブルなカラーパレット全体を Colorable で計算する](https://jxnblk.com/colorable/)ことができます。
+適切な色の組み合わせをウェブサイト内の全てのケースについて手作業で行うのは面倒になりがちなので、代わりに[アクセシブルなカラーパレット全体を Colorable で計算する](http://jxnblk.com/colorable/)ことができます。
 
 以下に述べる aXe および WAVE ツールのどちらも同じように色のコントラストのテストを備えておりコントラストの違反を報告してくれます。
 
 コントラストをチェックする能力を拡張したい場合は、以下のツールが利用できます：
 
-- [WebAIM - Color Contrast Checker](https://webaim.org/resources/contrastchecker/)
+- [WebAIM - Color Contrast Checker](http://webaim.org/resources/contrastchecker/)
 - [The Paciello Group - Color Contrast Analyzer](https://www.paciellogroup.com/resources/contrastanalyser/)
 
 ## 開発とテストのツール {#development-and-testing-tools}
@@ -455,7 +455,7 @@ Deque System はアプリケーションの自動化された E2E アクセシ�
 
 #### WebAIM WAVE {#webaim-wave}
 
-[Web Accessibility Evaluation Tool](https://wave.webaim.org/extension/) はアクセシビリティに関する別のブラウザ拡張機能です。
+[Web Accessibility Evaluation Tool](http://wave.webaim.org/extension/) はアクセシビリティに関する別のブラウザ拡張機能です。
 
 #### アクセシビリティ検査ツールとアクセシビリティツリー {#accessibility-inspectors-and-the-accessibility-tree}
 
@@ -481,7 +481,7 @@ Deque System はアプリケーションの自動化された E2E アクセシ�
 
 NVDA を最大限に活用する方法は以下のガイドを参照してください：
 
-- [WebAIM - Using NVDA to Evaluate Web Accessibility](https://webaim.org/articles/nvda/)
+- [WebAIM - Using NVDA to Evaluate Web Accessibility](http://webaim.org/articles/nvda/)
 - [Deque - NVDA Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/nvda-keyboard-shortcuts)
 
 #### VoiceOver と Safari {#voiceover-in-safari}
@@ -490,26 +490,26 @@ VoiceOver は Apple 社製品に統合されたスクリーンリーダです。
 
 VoiceOver を有効化して使用する方法は以下のガイドを参照してください：
 
-- [WebAIM - Using VoiceOver to Evaluate Web Accessibility](https://webaim.org/articles/voiceover/)
+- [WebAIM - Using VoiceOver to Evaluate Web Accessibility](http://webaim.org/articles/voiceover/)
 - [Deque - VoiceOver for OS X Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts)
 - [Deque - VoiceOver for iOS Shortcuts](https://dequeuniversity.com/screenreaders/voiceover-ios-shortcuts)
 
 #### JAWS と Internet Explorer {#jaws-in-internet-explorer}
 
-[Job Access With Speech](https://www.freedomscientific.com/Products/software/JAWS/) もしくは JAWS は、Windows 上での使用例が豊富なスクリーンリーダです。
+[Job Access With Speech](http://www.freedomscientific.com/Products/Blindness/JAWS) もしくは JAWS は、Windows 上での使用例が豊富なスクリーンリーダです。
 
 JAWS を最大限に活用する方法は以下のガイドを参照してください：
 
-- [WebAIM - Using JAWS to Evaluate Web Accessibility](https://webaim.org/articles/jaws/)
+- [WebAIM - Using JAWS to Evaluate Web Accessibility](http://webaim.org/articles/jaws/)
 - [Deque - JAWS Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/jaws-keyboard-shortcuts)
 
 ### 他のスクリーンリーダ {#other-screen-readers}
 
 #### ChromeVox と Google Chrome {#chromevox-in-google-chrome}
 
-[ChromeVox](https://www.chromevox.com/) は Chromebook に統合されたスクリーンリーダで、Google Chrome では[拡張機能](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en)として利用可能です。
+[ChromeVox](http://www.chromevox.com/) は Chromebook に統合されたスクリーンリーダで、Google Chrome では[拡張機能](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en)として利用可能です。
 
 ChromeVox を最大限に活用する方法は以下のガイドを参照してください：
 
 - [Google Chromebook Help - Use the Built-in Screen Reader](https://support.google.com/chromebook/answer/7031755?hl=en)
-- [ChromeVox Classic Keyboard Shortcuts Reference](https://www.chromevox.com/keyboard_shortcuts.html)
+- [ChromeVox Classic Keyboard Shortcuts Reference](http://www.chromevox.com/keyboard_shortcuts.html)

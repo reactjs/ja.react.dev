@@ -37,7 +37,7 @@ React チームは主に以下のソリューションを推奨します：
 
 ### Create React App {#create-react-app}
 
-[Create React App](https://github.com/facebookincubator/create-react-app) は **React を学習する**のに快適な環境であり、React で**新しい[シングルページ](/docs/glossary.html#single-page-application)アプリケーション**を作成するのに最も良い方法です。
+[Create React App](http://github.com/facebookincubator/create-react-app) は **React を学習する**のに快適な環境であり、React で**新しい[シングルページ](/docs/glossary.html#single-page-application)アプリケーション**を作成するのに最も良い方法です。
 
 開発環境をセットアップして最新の JavaScript の機能を使えるようにし、快適な開発体験を提供し、そして本番環境用の最適化を行います。あなたのマシンに Node >= 6 及び npm >= 5.2 の環境が必要です。プロジェクトを作成するには次を実行します：
 
@@ -51,7 +51,7 @@ npm start
 >
 >最初の行の `npx` は打ち間違いではありません -- これは [npm 5.2 から利用できるパッケージランナーツール](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b)です.
 
-Create React App はバックエンドのロジックやデータベース接続は扱いません。フロントエンドのビルドパイプラインを構築するだけであり、バックエンドに関しては好きなものを組み合わせて使って構いません。内部では [Babel](https://babeljs.io/) と [webpack](https://webpack.js.org/) を利用していますが、それらについて知る必要はありません。
+Create React App はバックエンドのロジックやデータベース接続は扱いません。フロントエンドのビルドパイプラインを構築するだけであり、バックエンドに関しては好きなものを組み合わせて使って構いません。内部では [Babel](http://babeljs.io/) と [webpack](https://webpack.js.org/) を利用していますが、それらについて知る必要はありません。
 
 本番環境にデプロイする準備ができたら、`npm run build` を実行すれば、`build` フォルダ内に最適化されたアプリケーションのビルドが生成されます。Create React App の詳細については、[該当ツールの README](https://github.com/facebookincubator/create-react-app#create-react-app-) および [ユーザガイド](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents) を参照してください。
 
@@ -87,7 +87,7 @@ JavaScript ビルドツールチェインは一般的に次から成ります：
 
 * **バンドラ**。[webpack](https://webpack.js.org/) や [Parcel](https://parceljs.org/) など。モジュール化されたコードを書けるようになり、それを小さなパッケージにまとめてバンドルしてロード時間の最適化を行います。
 
-* **コンパイラ**。[Babel](https://babeljs.io/) など。未だ動作している古いブラウザでもモダンな JavaScript コードを書いて動作させることができます。
+* **コンパイラ**。[Babel](http://babeljs.io/) など。未だ動作している古いブラウザでもモダンな JavaScript コードを書いて動作させることができます。
 
 ゼロから独自の JavaScript ツールチェインを設定したい場合、[こちらのガイドをチェック](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658)すると Create React App の機能の一部を再現できます。
 

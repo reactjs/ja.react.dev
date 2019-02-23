@@ -4,7 +4,7 @@ title: 他のライブラリとのインテグレーション
 permalink: docs/integrating-with-other-libraries.html
 ---
 
-React はどのような Web アプリケーションにも適用できます。React は他のアプリケーションに組み込むことができ、また少しだけ気を付ければ、React に他のアプリケーションを組み込むこともできます。ここでは一般的なユースケースである [jQuery](https://jquery.com/) と [Backbone](https://backbonejs.org/) を使った例を紹介しますが、同じ考え方はどのような既存のコードにも適用可能です。
+React はどのような Web アプリケーションにも適用できます。React は他のアプリケーションに組み込むことができ、また少しだけ気を付ければ、React に他のアプリケーションを組み込むこともできます。ここでは一般的なユースケースである [jQuery](https://jquery.com/) と [Backbone](http://backbonejs.org/) を使った例を紹介しますが、同じ考え方はどのような既存のコードにも適用可能です。
 
 ## DOM 操作プラグインとのインテグレーション {#integrating-with-dom-manipulation-plugins}
 
@@ -100,7 +100,7 @@ componentWillUnmount() {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/qmqeQx?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/qmqeQx?editors=0010)
 
 React からすると `this.el` フィールドに特別な意味はありません。以前に `render()` メソッドの中で `ref` からこれに代入したことによって成り立っています：
 
@@ -131,7 +131,7 @@ handleChange(e) {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/bWgbeE?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/bWgbeE?editors=0010)
 
 最後にもう 1 つ作業が残っています。React では props は時間と共に変更される可能性があります。例えば、親コンポーネントの state が変更されると、`<Chosen>` コンポーネントは異なる子を受け取るようになるかもしれません。つまり、React に DOM の管理を任せることはもうできないので、インテグレーションを行う部分では props の変更に応じて DOM を手動で更新することが重要です。
 
@@ -186,7 +186,7 @@ class Chosen extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/xdgKOz?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/xdgKOz?editors=0010)
 
 ## 他のビューライブラリとのインテグレーション {#integrating-with-other-view-libraries}
 
@@ -247,13 +247,13 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/RVKbvW?editors=1010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/RVKbvW?editors=1010)
 
 このような分離されたコンポーネントを好きなだけ持つことができ、`ReactDOM.render()` を使用して異なる DOM コンテナにそれらをレンダーすることができます。アプリケーションを少しずつ React に変換していくにつれて、より大きなコンポーネントへとインテグレーションできるようになり、`ReactDOM.render()` の呼び出しを階層の上の方へ移動させていけるようになるでしょう。
 
 ### Backbone View に React を組み込む {#embedding-react-in-a-backbone-view}
 
-[Backbone](https://backbonejs.org/) view は通常、HTML 文字列、もしくは文字列を生成するテンプレート用関数を使って、DOM 要素の中身を作成します。この処理もまた React コンポーネントのレンダリングに置き換えられます。
+[Backbone](http://backbonejs.org/) view は通常、HTML 文字列、もしくは文字列を生成するテンプレート用関数を使って、DOM 要素の中身を作成します。この処理もまた React コンポーネントのレンダリングに置き換えられます。
 
 以下で、`ParagraphView` と呼ばれる Backbone view を作成します。Backbone の `render()` 関数をオーバーライドして、React の `<Paragraph>` コンポーネントを Backbone が提供する DOM 要素 (this.el) にレンダリングします。ここでも [`ReactDOM.render()`](/docs/react-dom.html#render) を使用します：
 
@@ -275,7 +275,7 @@ const ParagraphView = Backbone.View.extend({
 });
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/gWgOYL?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/gWgOYL?editors=0010)
 
 `remove` メソッドで `ReactDOM.unmountComponentAtNode()` を呼び出して、コンポーネントツリーがデタッチされた際にイベントハンドラとコンポーネントツリーに関連付けられていたその他のリソースを React が解除することも重要です。
 
@@ -283,11 +283,11 @@ React *ツリー内*からコンポーネントが削除されるとクリーン
 
 ## Model 層とのインテグレーション {#integrating-with-model-layers}
 
-一般的には [React の state](/docs/lifting-state-up.html)、[Flux](https://facebook.github.io/flux/)、もしくは [Redux](https://redux.js.org/) のような一方向のデータフローの使用が推奨されますが、React コンポーネントは他のフレームワークやライブラリのモデル層を利用することができます。
+一般的には [React の state](/docs/lifting-state-up.html)、[Flux](http://facebook.github.io/flux/)、もしくは [Redux](http://redux.js.org/) のような一方向のデータフローの使用が推奨されますが、React コンポーネントは他のフレームワークやライブラリのモデル層を利用することができます。
 
 ### React コンポーネントで Backbone Model を使用する {#using-backbone-models-in-react-components}
 
-React コンポーネントから [Backbone](https://backbonejs.org/) のモデルとコレクションを利用する最もシンプルな方法は、様々な変更イベントを監視して手動で強制的に更新することです。
+React コンポーネントから [Backbone](http://backbonejs.org/) のモデルとコレクションを利用する最もシンプルな方法は、様々な変更イベントを監視して手動で強制的に更新することです。
 
 モデルのレンダーに責任をもつコンポーネントは `'change'` イベントを監視し、コレクションのレンダーに責任をもつコンポーネントは `'add'` および `'remove'` イベントを監視します。どちらの場合も、[`this.forceUpdate()`](/docs/react-component.html#forceupdate) を呼び出して新しいデータでコンポーネントを再レンダリングします。
 
@@ -347,7 +347,7 @@ class List extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/GmrREm?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/GmrREm?editors=0010)
 
 ### Backbone Model からデータを抽出する {#extracting-data-from-backbone-models}
 
@@ -434,6 +434,6 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/PmWwwa?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/PmWwwa?editors=0010)
 
 この手法は Backbone だけに限ったものではありません。ライフサイクルメソッドで変更を購読し必要に応じてデータをローカルの React 状態にコピーすることで、任意のモデルライブラリで React を使用できます。
