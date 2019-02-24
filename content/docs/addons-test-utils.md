@@ -296,7 +296,7 @@ findRenderedComponentWithType(
 renderIntoDocument(element)
 ```
 
-React 要素をドキュメントから切り離されたDOMノードにレンダーします。**この関数を実行するには DOM が必要です。**
+React 要素をドキュメントから切り離されたDOMノードにレンダーします。**この関数を実行するには DOM が必要です。**これは以下のコードと実質的に等価です：
 
 ```js
 const domContainer = document.createElement('div');
