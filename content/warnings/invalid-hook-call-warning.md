@@ -4,30 +4,30 @@ layout: single
 permalink: warnings/invalid-hook-call-warning.html
 ---
 
- You are probably here because you got the following error message:
+このページを見ているのは、恐らく以下のエラーメッセージが出たからでしょう。
 
- > Hooks can only be called inside the body of a function component.
+> Hooks can only be called inside the body of a function component.（フックは関数コンポーネントの本体でしか呼び出せません）
 
-There are three common reasons you might be seeing it:
+このエラーを目にする理由としてよくあるものは 3 つです。
 
-1. You might have **mismatching versions** of React and React DOM.
-2. You might be **breaking the [Rules of Hooks](/docs/hooks-rules.html)**.
-3. You might have **more than one copy of React** in the same app.
+1. React と React DOM の**バージョンがマッチしていない**。
+2. **[フックのルール](/docs/hooks-rules.html)**に違反している。
+3. 同じアプリ内に **2 つ以上の React のコピー**が含まれている。
 
-Let's look at each of these cases.
+それぞれのケースについて見てみましょう。
 
-## Mismatching Versions of React and React DOM {#mismatching-versions-of-react-and-react-dom}
+## React と React DOM のバージョン不整合 {#mismatching-versions-of-react-and-react-dom}
 
-You might be using a version of `react-dom` (&lt; 16.8.0) or `react-native` (&lt; 0.60) that doesn't yet support Hooks. You can run `npm ls react-dom` or `npm ls react-native` in your application folder to check which version you're using. If you find more than one of them, this might also create problems (more on that below).
+まだフックをサポートしてない `react-dom` (&lt; 16.8.0) や `react-native` (&lt; 0.60) を利用しているのかもしれません。アプリケーションフォルダで `npm ls react-dom` か `npm ls react-native` を実行して、どのバージョンを使っているのかを確認できます。もしも 2 つ以上出てきた場合は、それも問題になりえます（後述）。
 
-## Breaking the Rules of Hooks {#breaking-the-rules-of-hooks}
+## フックのルールへの違反 {#breaking-the-rules-of-hooks}
 
-You can only call Hooks **while React is rendering a function component**:
+フックを呼び出してよいのは **React が関数コンポーネントをレンダーしている最中**のみです。
 
-* ✅ Call them at the top level in the body of a function component.
-* ✅ Call them at the top level in the body of a [custom Hook](/docs/hooks-custom.html).
+* ✅ 関数コンポーネント本体のトップレベルで呼び出す。
+* ✅ [カスタムフック](/docs/hooks-custom.html)の本体のトップレベルで呼び出す。
 
-**Learn more about this in the [Rules of Hooks](/docs/hooks-rules.html).**
+**詳しくは[フックのルール](/docs/hooks-rules.html)を参照してください。**
 
 ```js{2-3,8-9}
 function Counter() {
@@ -43,13 +43,13 @@ function useWindowWidth() {
 }
 ```
 
-To avoid confusion, it’s **not** supported to call Hooks in other cases:
+念のためですが、上記と異なる以下のようなケースでは、フックはサポート**されません**：
 
-* 🔴 Do not call Hooks in class components.
-* 🔴 Do not call in event handlers.
-* 🔴 Do not call Hooks inside functions passed to `useMemo`, `useReducer`, or `useEffect`.
+* 🔴 クラスコンポーネント内で呼び出さないでください。
+* 🔴 イベントハンドラ内で呼び出さないでください。
+* 🔴 `useMemo`, `useReducer`, `useEffect` に渡す関数の内部で呼び出さないでください。
 
-If you break these rules, you might see this error.
+これらのルールに違反した場合には本エラーが発生します。
 
 ```js{3-4,11-12,20-21}
 function Bad1() {
@@ -78,26 +78,26 @@ class Bad3 extends React.Component {
 }
 ```
 
-You can use the [`eslint-plugin-react-hooks` plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to catch some of these mistakes.
+これらの誤りの一部は [`eslint-plugin-react-hooks` プラグイン](https://www.npmjs.com/package/eslint-plugin-react-hooks)を利用すると検出できます。
 
->Note
+> 補足
 >
->[Custom Hooks](/docs/hooks-custom.html) *may* call other Hooks (that's their whole purpose). This works because custom Hooks are also supposed to only be called while a function component is rendering.
+> [カスタムフック](/docs/hooks-custom.html)は他のフックを呼び出しても構いません（まさにそれが目的なので）。これはカスタムフックも関数コンポーネントがレンダーされる最中にのみ呼び出されるはずだからです。
 
 
-## Duplicate React {#duplicate-react}
+## 重複した React のコピー {#duplicate-react}
 
-In order for Hooks to work, the `react` import from your application code needs to resolve to the same module as the `react` import from inside the `react-dom` package.
+フックが動作するためには、あなたのアプリケーションコード内で `react` インポート文を使った時に解決される `react` が、`react-dom` パッケージ内でインポートしている `react` と同じでなければなりません。
 
-If these `react` imports resolve to two different exports objects, you will see this warning. This may happen if you **accidentally end up with two copies** of the `react` package.
+これらの `react` のインポート文が別々のオブジェクトへと解決された場合、この警告が発生します。これは**意図せず `react` パッケージの 2 つのコピーをプロジェクトに含めてしまった場合**に発生する可能性があります。
 
-If you use Node for package management, you can run this check in your project folder:
+パッケージ管理に Node を使っている場合は、プロジェクトフォルダ内で以下を実行することで確認できます：
 
     npm ls react
 
-If you see more than one React, you'll need to figure out why this happens and fix your dependency tree. For example, maybe a library you're using incorrectly specifies `react` as a dependency (rather than a peer dependency). Until that library is fixed, [Yarn resolutions](https://yarnpkg.com/lang/en/docs/selective-version-resolutions/) is one possible workaround.
+もし React のコピーが 2 つ以上あった場合、その原因を突き止めて依存ツリーを修正する必要があります。例えばあなたの利用しているライブラリが `react` を peer dependency ではなく誤って dependency として使用しているのかもしれません。そのライブラリが修正されるまでは、[Yarn resolutions](https://yarnpkg.com/lang/en/docs/selective-version-resolutions/) が問題の回避策になりえます。
 
-You can also try to debug this problem by adding some logs and restarting your development server:
+また、ログを加えて開発サーバを再起動することでもこの問題のデバッグが可能です。
 
 ```js
 // Add this in node_modules/react-dom/index.js
@@ -109,14 +109,14 @@ window.React2 = require('react');
 console.log(window.React1 === window.React2);
 ```
 
-If it prints `false` then you might have two Reacts and need to figure out why that happened. [This issue](https://github.com/facebook/react/issues/13991) includes some common reasons encountered by the community.
+これで `false` が出力された場合は React が 2 つ存在するということであり、原因を突き止める必要があるでしょう。[この issue](https://github.com/facebook/react/issues/13991) に、コミュニティ内で経験されたよくある原因がいくつか載っています。
 
-This problem can also come up when you use `npm link` or an equivalent. In that case, your bundler might "see" two Reacts — one in application folder and one in your library folder. Assuming `myapp` and `mylib` are sibling folders, one possible fix is to run `npm link ../myapp/node_modules/react` from `mylib`. This should make the library use the application's React copy.
+この問題は `npm link` やその同等物を使った場合にも発生することがあります。このケースでは、あなたのアプリケーションフォルダにあるものとライブラリフォルダにあるものの、2 つの React がバンドラから "見えて" いるのかもしれません。ひとつの解決法は、`myapp` と `mylib` が互いに兄弟関係にあるフォルダであるとして、`mylib` 側から `npm link ../myapp/node_modules/react` を実行する、というものです。これによりライブラリ側がアプリケーション側の React のコピーを使用するようになります。
 
->Note
+>補足
 >
->In general, React supports using multiple independent copies on one page (for example, if an app and a third-party widget both use it). It only breaks if `require('react')` resolves differently between the component and the `react-dom` copy it was rendered with.
+>一般的には、ひとつのページ内で複数の独立した React のコピーを利用することはサポートされています（例えば、あなたのアプリケーションとサードパーティのウィジェットが別の React のコピーを利用する場合など）。問題が発生するのはコンポーネントとそれをレンダーしている `react-dom` との間で `require('react')` が違うものに解決された場合です。
 
-## Other Causes {#other-causes}
+## その他の原因 {#other-causes}
 
-If none of this worked, please comment in [this issue](https://github.com/facebook/react/issues/13991) and we'll try to help. Try to create a small reproducing example — you might discover the problem as you're doing it.
+以上のいずれもうまくいかなかった場合は、[この issue](https://github.com/facebook/react/issues/13991) にコメントしていただければできるだけお手伝いします。小さな再現コードの例を作るようにしてください -- そうする過程で自分で問題に気づけるかもしれません。

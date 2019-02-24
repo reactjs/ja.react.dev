@@ -560,7 +560,7 @@ function Image(props) {
 const TodosDispatch = React.createContext(null);
 
 function TodosApp() {
-  // Tip: `dispatch` won't change between re-renders
+  // Note: `dispatch` won't change between re-renders
   const [todos, dispatch] = useReducer(todosReducer);
 
   return (
