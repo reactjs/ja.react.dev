@@ -19,7 +19,7 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
 
 > 補足:
 >
-> Airbnb が [Enzyme](http://airbnb.io/enzyme/) と呼ばれるテストユーティリティをリリースしています。 Enzymeは React コンポーネントの出力のアサート、操作、そして横断的な処理を簡単にしてくれます。もしあなたが Jest や他のテストランナーを単体テストユーティリティと一緒に使用すると決めたなら、チェックしてみる価値があります。
+> Airbnb が [Enzyme](http://airbnb.io/enzyme/) と呼ばれるテストユーティリティをリリースしています。Enzyme は React コンポーネントの出力のアサート、操作、そして横断的な処理を簡単にしてくれます。もしあなたが Jest や他のテストランナーを単体テストユーティリティと一緒に使用すると決めたなら、チェックしてみる価値があります。
 >
 > また別の手段として、[`react-testing-library`](https://git.io/react-testing-library) と呼ばれる別のテストユーティリティがあります。これは、エンドユーザーがコンポーネントを使用するのと同様の書き方でコンポーネントを使用するテストを書くことを可能にし、かつそれを促進するように設計されています。このテストユーティリティはあらゆるテストランナーと一緒に動作します。
 
@@ -40,17 +40,17 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
  - [`renderIntoDocument()`](#renderintodocument)
  - [`Simulate`](#simulate)
 
-## リファレンス {#reference}
+## Reference {#reference}
 
 ### `act()` {#act}
 
-アサーション用のコンポーネントを準備するために、それをレンダーして更新を実行するコードを `act()` でラップします。 これにより、テストはブラウザでの React の動作により近い状態で実行されます。
+アサーション用のコンポーネントを準備するために、それをレンダーして更新を実行するコードを `act()` でラップします。これにより、テストはブラウザでの React の動作により近い状態で実行されます。
 
 >補足
 >
 >`react-test-renderer` を使っている場合、それはこのメソッドと同じように振舞う `act` エクスポートも提供します。
 
-例えば、 次のような `Counter` コンポーネントがあるとしましょう:
+例えば、次のような `Counter` コンポーネントがあるとしましょう：
 
 ```js
 class App extends React.Component {
@@ -83,7 +83,7 @@ class App extends React.Component {
 }
 ```
 
-これをテストするには次のように書きます:
+これをテストするには次のように書きます：
 
 ```js{3,20-22,29-31}
 import React from 'react';
@@ -247,7 +247,7 @@ scryRenderedDOMComponentsWithTag(
 )
 ```
 
-レンダリングされたツリー内に存在する、タグ名が `tagName` に一致するDOMコンポーネントが持つ全てのDOM要素を探し、その結果を返します。
+レンダリングされたツリー内に存在する、タグ名が `tagName` に一致する DOM コンポーネントが持つ全ての DOM 要素を探し、その結果を返します。
 
 * * *
 
@@ -296,7 +296,7 @@ findRenderedComponentWithType(
 renderIntoDocument(element)
 ```
 
-React 要素をドキュメントから切り離されたDOMノードにレンダーします。**この関数を実行するには DOM が必要です。**これは以下のコードと実質的に等価です：
+React 要素をドキュメントから切り離された DOM ノードにレンダーします。**この関数を実行するには DOM が必要です。**これは以下のコードと実質的に等価です：
 
 ```js
 const domContainer = document.createElement('div');
