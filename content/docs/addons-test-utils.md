@@ -343,6 +343,6 @@ ReactTestUtils.Simulate.keyDown(node, {key: "Enter", keyCode: 13, which: 13});
 
 > 補足
 >
-> React はコンポーネントで使用しているイベントプロパティ（例えば keyCode 、 which など）を何も作成しないため、あなたはそれらをSimulateが持つメソッドに渡す必要があります。
+> React はコンポーネントで使用しているイベントプロパティ（例えば keyCode、which など）を何も作成しないため、あなたはそれらを Simulate が持つメソッドに渡す必要があります。
 
 * * *
