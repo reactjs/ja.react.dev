@@ -41,7 +41,7 @@ class CodeExample extends Component {
 
               '& h3': {
                 color: colors.dark,
-                maxWidth: '11em',
+                marginRight: 40, // patched in ja.reactjs.org
                 paddingTop: 0,
               },
 
