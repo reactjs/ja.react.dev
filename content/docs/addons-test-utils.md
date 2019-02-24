@@ -3,7 +3,7 @@ id: test-utils
 title: テストユーティリティ
 permalink: docs/test-utils.html
 layout: docs
-category: リファレンス
+category: Reference
 ---
 
 **インポート**
