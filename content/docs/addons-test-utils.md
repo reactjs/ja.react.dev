@@ -19,9 +19,9 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
 
 > 補足:
 >
-> Airbnb が [Enzyme](http://airbnb.io/enzyme/) と呼ばれるテストユーティリティをリリースしています。Enzyme は React コンポーネントの出力のアサート、操作、そして横断的な処理を簡単にしてくれます。もしあなたが Jest や他のテストランナーを単体テストユーティリティと一緒に使用すると決めたなら、チェックしてみる価値があります。
+> [`react-testing-library`](https://git.io/react-testing-library) の使用をおすすめします。これは、エンドユーザーがコンポーネントを使用するのと同様の書き方でコンポーネントを使用するテストを書くことを可能にし、かつそれを促進するように設計されています。
 >
-> また別の手段として、[`react-testing-library`](https://git.io/react-testing-library) と呼ばれる別のテストユーティリティがあります。これは、エンドユーザーがコンポーネントを使用するのと同様の書き方でコンポーネントを使用するテストを書くことを可能にし、かつそれを促進するように設計されています。このテストユーティリティはあらゆるテストランナーと一緒に動作します。
+> また別の手段として、Airbnb が [Enzyme](http://airbnb.io/enzyme/) と呼ばれるテストユーティリティをリリースしています。Enzyme は React コンポーネントの出力のアサート、操作、そして横断的な処理を簡単にしてくれます。
 
  - [`act()`](#act)
  - [`mockComponent()`](#mockcomponent)
