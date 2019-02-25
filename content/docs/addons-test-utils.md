@@ -122,7 +122,7 @@ it('can render and update a counter', () => {
 });
 ```
 
-DOM イベントのディスパッチは、DOM コンテナが `document` に追加されたときだけ動作することを忘れないでください。[`react-testing-library`]（https://github.com/kentcdodds/react-testing-library） のようなヘルパーを使えばボイラープレートのコードを減らせます。
+DOM イベントのディスパッチは、DOM コンテナが `document` に追加されたときだけ動作することを忘れないでください。[`react-testing-library`](https://github.com/kentcdodds/react-testing-library) のようなヘルパーを使えばボイラープレートのコードを減らせます。
 
 * * *
 
