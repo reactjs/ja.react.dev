@@ -37,7 +37,7 @@ React は[セマンティック・バージョニング](http://semver.org/)の�
 
 #### 既知の問題を知るには {#where-to-find-known-issues}
 
-私たちはバグの公開に [GitHub Issues](https://github.com/facebook/react/issues) を使用しています。私たちはこれを注意深く見守り、修正中の作業があるかどうか明確にするようにします。新しい Issue を提出する前に、既に同じものが存在しないか確かめてください。
+私たちは公開されるバグの管理に [GitHub Issues](https://github.com/facebook/react/issues) を使用しています。私たちはこれを注意深く見守り、修正中の作業がある場合はそれを明確にするようにします。新しい Issue を提出する前に、既に同じものが存在しないか確かめてください。
 
 #### 新しい問題の報告 {#reporting-new-issues}
 
@@ -45,7 +45,7 @@ React は[セマンティック・バージョニング](http://semver.org/)の�
 
 #### セキュリティバグ {#security-bugs}
 
-Facebook にはセキュリティバグの安全な開示のための [報奨金制度](https://www.facebook.com/whitehat/) が存在します。それを念頭において、セキュリティバグを公共の Issues に提出せず、上記のページの手順に従ってください。
+Facebook にはセキュリティバグの安全な開示のための[報奨金制度](https://www.facebook.com/whitehat/)が存在します。それを念頭において、セキュリティバグは公開の Issues に提出せず、上記のページの手順に従ってください。
 
 ### 連絡方法 {#how-to-get-in-touch}
 
@@ -58,7 +58,7 @@ Facebook にはセキュリティバグの安全な開示のための [報奨金
 
 もしあなたがパブリック API に変更を加えたり、実装に些細な変更を加えたくなったら、[Issue を提出する](https://github.com/facebook/react/issues/new)ことをお勧めします。これによって、あなたが大きな労力を割く前に提案について合意に達することができます。
 
-バグを修正するだけの場合は、すぐにプルリクエストを送信しても問題ありませんが、修正内容を詳細に記載した Issue を提出することをお勧めします。これは、特定の修正を受け入れたくないが、問題の追跡はしたい場合に役立ちます。
+バグを修正するだけの場合は、すぐにプルリクエストを送信しても問題ありませんが、修正したいバグの内容を詳細に記載した Issue を提出することをお勧めします。これは、あなたの修正自体は受け付けないがバグの追跡はしたいという場合に役立ちます。
 
 ### 初めてのプルリクエスト {#your-first-pull-request}
 
@@ -66,7 +66,7 @@ Facebook にはセキュリティバグの安全な開示のための [報奨金
 
 **[GitHub でオープンソースプロジェクトに貢献する方法](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)**
 
-あなたが新しい試みをする上で、貢献プロセスに慣れるのを助けるために、私たちは比較的影響範囲の少ないバグを含む **[good first issues](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"good+first+issue")**（最初の第一歩となる Issue）のリストを持っています。これはオープンソースプロジェクトへの貢献の入門に最適です。
+あなたが新しい試みをする上で、貢献プロセスに慣れるのを助けるために、私たちは比較的影響範囲の少ないバグを含む **[good first issues](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"good+first+issue")** のリストを持っています。これはオープンソースプロジェクトへの貢献の入門に最適です。
 
 あなたが Issue を解決することにした場合、誰かがすでに修正に取り組んでいる場合に備えて、コメントスレッドを必ず確認してください。現時点で誰も作業していない場合は、他の人が誤って重複して作業をしないように、作業する予定であることを示すコメントを残してください。
 
@@ -78,20 +78,20 @@ Facebook にはセキュリティバグの安全な開示のための [報奨金
 
 **プルリクエストを送信する前に、**以下のプロセスが行われているか確認してください：
 
-1. [リポジトリ](https://github.com/facebook/react) をフォークして `master` ブランチを作成します。
+1. [リポジトリ](https://github.com/facebook/react) をフォークして `master` から新しいブランチを作成します。
 2. `yarn` コマンドをリポジトリルートで実行します。
 3. バグを修正したり、テストが必要なコードを追加した場合は、テストを追加してください。
-4. テストスイートが (`yarn test`) に合格することを確認してください。ヒント： `yarn test --watch TestName` コマンドは開発に役立ちます。
+4. テストスイートが (`yarn test`) に合格することを確認してください。ヒント： `yarn test --watch TestName` コマンドは開発時に役立ちます。
 5. `yarn test-prod` コマンドを本番環境でテストするために実行します。これは `yarn test` と同じオプションをサポートします。
-6. デバッガが必要な場合は `yarn debug-test --watch TestName` を実行し `chrome://inspect` を開き"検証"を押してください。
+6. デバッガが必要な場合は `yarn debug-test --watch TestName` を実行し `chrome://inspect` を開き "Inspect" を押してください。
 7. [prettier](https://github.com/prettier/prettier) (`yarn prettier`) でコードをフォーマットしてください。
 8. (`yarn lint`) でリントを行ってください。ヒント： `yarn linc` は変更されたファイルのみに適用できます。
-9. (`yarn flow`) で [Flow](https://flowtype.org/) による型チェックを行ってください。
-10. まだ済ませていない場合は、先に CLA (Contributor License Agreement) を行ってください。
+9. [Flow](https://flowtype.org/) による型チェックを行ってください (`yarn flow`)。
+10. まだの場合は、先に CLA (Contributor License Agreement) の提出を済ませてください。
 
 ### Contributor License Agreement (CLA) {#contributor-license-agreement-cla}
 
-あなたのプルリクエストを受け付けるために、Contributor License Agreement (CLA) を行って頂く必要があります。これは一度だけ行えば良いので、あなたが他の Facebook オープンソースプロジェクトで既に完了させている場合は必要ありません。初めてプルリクエストを送信する場合は、CLA を完了させたことをお知らせください。そうすれば私たちは GitHub のユーザ名と照らし合わせてチェックを行います。
+あなたのプルリクエストを受け付けるために、Contributor License Agreement (CLA) の提出を行って頂く必要があります。これは一度だけ行えば良いので、あなたが他の Facebook オープンソースプロジェクトで既に完了させている場合は必要ありません。初めてプルリクエストを送信する場合は、CLA 提出を完了させたことをお知らせください。そうすれば私たちは GitHub のユーザ名と照らし合わせてチェックを行います。
 
 **[ここであなたの CLA を完了させてください。](https://code.facebook.com/cla)**
 
@@ -112,18 +112,18 @@ React リポジトリをクローンしたあと、`yarn` コマンドで依存�
 * `yarn test --watch` 対話式のテストウォッチャーを実行します。
 * `yarn test <pattern>` 指定したパターンにマッチするファイルのみテストを実行します。
 * `yarn test-prod` 本番環境でテストを実行します。`yarn test` と同じオプションをサポートしています。
-* `yarn debug-test` は `yarn test` に似ていますがデバッガ付きです。`chrome://inspect` を開き "検証"を押してください。
+* `yarn debug-test` は `yarn test` に似ていますがデバッガ付きです。`chrome://inspect` を開き "Inspect" を押してください。
 * `yarn flow` [Flow](https://flowtype.org/) による型チェックを行います。
 * `yarn build` 全てのパッケージを含む `build` フォルダを作成します。
 * `yarn build react/index,react-dom/index --type=UMD` React と ReactDOM だけの UMD ビルドを作成します。
 
-私たちは `yarn test`（またはそれに近い上記のコマンド）を実行し、あなたの行った変更によって何らかの異常を引き起こしていないか確認することをお勧めします。
+`yarn test`（またはそれに近い上記のコマンド）を実行し、あなたの行った変更によって何らかの異常を引き起こしていないか確認することをお勧めします。とはいえ実際のプロジェクトで自分の React のビルドを使ってみることも役に立つでしょう。
 
 まず `yarn build` を実行します。これによってビルド済みのバンドルファイルが `build` フォルダ内に作られ、同時に `build/packages` 内に npm パッケージも用意されます。
 
 変更を試す一番簡単な方法は `yarn build react/index,react-dom/index --type=UMD` を実行し、`fixtures/packaging/babel-standalone/dev.html` を開くことです。このファイルは `build` フォルダの `react.development.js` を既に使用しているので、変更が反映されます。
 
-既存の React プロジェクトに変更を加えたい場合、`build/dist/react.development.js`、`build/dist/react-dom.development.js`、もしくは他のビルドされたファイルをあなたのアプリケーションにコピーして安定版の代わりに使用することです。もし、npm を使用している場合は `react` と `react-dom` を依存関係から削除し、`yarn link` を使用してローカルの `build` を指すようにしてください：
+あなたの加えた変更を既存の React プロジェクトで試したい場合、`build/dist/react.development.js`、`build/dist/react-dom.development.js`、もしくは他のビルドされたファイルをあなたのアプリケーションにコピーして安定版の代わりに使用することができます。もし、npm 版の React を使用している場合は `react` と `react-dom` を依存関係から削除し、`yarn link` を使用してそれらがローカルの `build` を指すようにしてください：
 
 ```sh
 cd ~/path_to_your_react_clone/build/node_modules/react
@@ -136,7 +136,7 @@ yarn link react react-dom
 
 `yarn build` を React フォルダで実行するたびに、あなたのプロジェクトの node_modules フォルダに更新されたバージョンが現れるでしょう。その後、あなたはプロジェクトをビルドし直して変更を試すことができます。
 
-私たちはあなたのプルリクエストに新しい機能に応じたユニットテストが含まれることを期待します。これによって将来に渡ってコードが壊れていないことを担保します。
+ただしプルリクエストにあなたの新機能に応じたユニットテストを含めることは必須です。これによって将来あなたのコードを壊してしまわないことが担保されます。
 
 ### スタイルガイド {#style-guide}
 
@@ -165,9 +165,9 @@ React へ初めて貢献することについてのよりリアルな_感覚_に
 
 バグ修正やドキュメンテーションの改善を含む多くの変更は、通常の GitHub プルリクエストのワークフローを通して行われレビューされます。
 
-ただし、いくつかの "かなりの" 変更は、少しの設計プロセスと React コアチームの合意を得ることをお願いします。
+ただし、いくつかの "大きめの" 変更は、多少の設計プロセスと React コアチームの合意を経ることをお願いします。
 
-「RFC」（request for comments）プロセスは、プロジェクトに参加し新機能を追加するための一貫した、かつ整備された筋道を提供することを目的としています。あなたは [rfcs リポジトリ](https://github.com/reactjs/rfcs) を訪れることによって貢献することができます。
+"RFC" (request for comments) プロセスは、新機能がプロジェクトに取り込まれるまでの一貫性があり整備された筋道を提供することを目的としています。[rfcs リポジトリ](https://github.com/reactjs/rfcs) を訪れれば貢献することができます。
 
 ### ライセンス {#license}
 
