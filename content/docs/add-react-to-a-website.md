@@ -149,7 +149,7 @@ return (
 
 これらふたつのスニペットはまったく同じ内容です。**JSX の使用は[完全にオプションです](/docs/react-without-jsx.html)**が、React はもちろん他のライブラリで UI を記述する際にも、JSX は多くの人に支持されています。
 
-[このコンバーター](http://babeljs.io/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=Q&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2%2Cstage-3&prettier=true&targets=Node-6.12&version=6.26.0&envVersion=)上で JSX を使って遊んでみてください。
+[このコンバーター](https://babeljs.io/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=Q&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2%2Cstage-3&prettier=true&targets=Node-6.12&version=6.26.0&envVersion=)上で JSX を使って遊んでみてください。
 
 ### JSX を手軽に試してみる {#quickly-try-jsx}
 
@@ -197,6 +197,6 @@ npx babel --watch src --out-dir . --presets react-app/prod
 
 **[このお手本の JSX コード](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**を参考に `src/like_button.js` というファイルを作成すると、先ほど起動したコマンドがブラウザでの実行に適した `like_button.js` に変換してくれます。JSX ファイルを編集したら、自動的に再変換してくれます。
 
-さらにこの変換コマンドのおかげで、古いブラウザの互換性を気にすることなく、クラス構文といったモダンな JavaScript の構文を使うこともできるようになります。このツールは Babel というもので、もっと詳しく知りたければ[公式ドキュメント](http://babeljs.io/docs/en/babel-cli/)をご覧になってみてください。
+さらにこの変換コマンドのおかげで、古いブラウザの互換性を気にすることなく、クラス構文といったモダンな JavaScript の構文を使うこともできるようになります。このツールは Babel というもので、もっと詳しく知りたければ[公式ドキュメント](https://babeljs.io/docs/en/babel-cli/)をご覧になってみてください。
 
 ビルドツールの便利さを体感して、もっとたくさんのことをツールに任せたいと思っていただけたなら、[次のセクション](/docs/create-a-new-react-app.html)ではさらにいくつかの人気で扱いやすいツールチェーンを紹介しています。そうでもない場合は… `<script>` タグだけでも十分な機能を果たせます！
