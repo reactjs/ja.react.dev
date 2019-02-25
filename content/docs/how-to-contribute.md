@@ -9,11 +9,11 @@ redirect_from:
   - "tips/introduction.html"
 ---
 
-React は Facebook の最初のオープンソースプロジェクトの 1 つで現在も非常に活発に開発されており、[facebook.com](https://www.facebook.com) 上のあらゆる人々にコードを届けることにも使用されています。私たちはこのプロジェクトへの貢献を出来るだけ簡単かつ透明なものにするために努力していますが、まだ完全ではありません。このドキュメントがプロジェクトへの貢献の手順を明確にし、あなたの持つ疑問を解決出来れば幸いです。
+React は Facebook の最初のオープンソースプロジェクトの 1 つで現在も非常に活発に開発されており、[facebook.com](https://www.facebook.com) 上のあらゆる人々にコードを届けることにも使用されています。私たちはこのプロジェクトへの貢献をできるだけ簡単かつ透明なものにするために努力していますが、まだ完全ではありません。このドキュメントがプロジェクトへの貢献の手順を明確にし、あなたの持つ疑問を解決できれば幸いです。
 
 ### [行動規範](https://code.facebook.com/codeofconduct) {#code-of-conduct}
 
-Facebook が採用するプロジェクト参加者に期待する行動規範があります。[全文](https://code.facebook.com/codeofconduct)を読んでください、そうすれば参加者はどのような行動を取ればよいか、またどのような行動が許容されないのか理解出来るでしょう。
+Facebook が採用するプロジェクト参加者に期待する行動規範があります。[全文](https://code.facebook.com/codeofconduct)を読んでください、そうすれば参加者はどのような行動を取ればよいか、またどのような行動が許容されないのか理解できるでしょう。
 
 ### オープンな開発 {#open-development}
 
@@ -29,8 +29,7 @@ React に関する開発作業はすべて [GitHub](https://github.com/facebook/
 
 React は[セマンティック・バージョニング](http://semver.org/)の原則に従います。バグ修正のためのパッチバージョン、新機能のためのマイナーバージョン、そして重大な変更のためのメジャーバージョンをリリースします。私たちが重大な変更を加えるとき、ユーザーが今後の変更について前もって知り、コードを移行するために、私たちはマイナーバージョンで非推奨警告を行います。
 
-私たちは全てのプルリクエストにタグを付けます。タグは、行われる変更が[パッチ](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-patch)、[マイナー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-minor)、[メジャー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-major) バージョンのどれに該当するかによって決まります。
-数週間ごとにパッチバージョン、数ヶ月ごとにマイナーバージョン、そして年に 1、2 回メジャーバージョンをリリースします。
+私たちは全てのプルリクエストにタグを付けます。タグは、行われる変更が[パッチ](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-patch)、[マイナー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-minor)、[メジャー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-major) バージョンのどれに該当するかによって決まります。数週間ごとにパッチバージョン、数ヶ月ごとにマイナーバージョン、そして年に 1、2 回メジャーバージョンをリリースします。
 
 重要な変更はすべて [changelog file](https://github.com/facebook/react/blob/master/CHANGELOG.md) に文書化されています。
 
@@ -57,14 +56,13 @@ Facebook にはセキュリティバグの安全な開示のための [報奨金
 
 ### 変更の提案 {#proposing-a-change}
 
-もしあなたがパブリック API に変更を加えたり、実装に些細な変更を加えたくなったら、[Issue を提出する](https://github.com/facebook/react/issues/new)ことをお勧めします。これによって、あなたが大きな労力を割く前に提案について合意に達することが出来ます。
+もしあなたがパブリック API に変更を加えたり、実装に些細な変更を加えたくなったら、[Issue を提出する](https://github.com/facebook/react/issues/new)ことをお勧めします。これによって、あなたが大きな労力を割く前に提案について合意に達することができます。
 
 バグを修正するだけの場合は、すぐにプルリクエストを送信しても問題ありませんが、修正内容を詳細に記載した Issue を提出することをお勧めします。これは、特定の修正を受け入れたくないが、問題の追跡はしたい場合に役立ちます。
 
 ### 初めてのプルリクエスト {#your-first-pull-request}
 
-はじめてのプルリクエストに取り組んでみますか?  
-あなたはこの無料ビデオシリーズから手順を学ぶことができます：
+はじめてのプルリクエストに取り組んでみますか？ あなたはこの無料ビデオシリーズから手順を学ぶことができます：
 
 **[GitHub でオープンソースプロジェクトに貢献する方法](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)**
 
@@ -87,7 +85,7 @@ Facebook にはセキュリティバグの安全な開示のための [報奨金
 5. `yarn test-prod` コマンドを本番環境でテストするために実行します。これは `yarn test` と同じオプションをサポートします。
 6. デバッガが必要な場合は `yarn debug-test --watch TestName` を実行し `chrome://inspect` を開き"検証"を押してください。
 7. [prettier](https://github.com/prettier/prettier) (`yarn prettier`) でコードをフォーマットしてください。
-8. (`yarn lint`) でリントを行ってください。ヒント： `yarn linc` は変更されたファイルのみに適用出来ます。
+8. (`yarn lint`) でリントを行ってください。ヒント： `yarn linc` は変更されたファイルのみに適用できます。
 9. (`yarn flow`) で [Flow](https://flowtype.org/) による型チェックを行ってください。
 10. まだ済ませていない場合は、先に CLA (Contributor License Agreement) を行ってください。
 
@@ -100,7 +98,7 @@ Facebook にはセキュリティバグの安全な開示のための [報奨金
 ### 貢献の前提条件 {#contribution-prerequisites}
 
 * [Node](https://nodejs.org) v8.0.0+ と、[Yarn](https://yarnpkg.com/en/) v1.2.0+ がインストールされていること。
-* `gcc` がインストールされている、または必要に応じたコンパイラをインストールすることが出来ること。依存関係の中にはコンパイルステップが必要なものもあります。OS X では Xcode のコマンドラインツールが役立つでしょう。Ubuntu では `apt-get install build-essential` コマンドで必要なパッケージをインストール出来ます。他の Linux ディストリビューションでも似たようなコマンドで実現出来るでしょう。Windows では追加の手順が必要になり、詳しくは  [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) を参照してください。
+* `gcc` がインストールされている、または必要に応じたコンパイラをインストールすることができること。依存関係の中にはコンパイルステップが必要なものもあります。OS X では Xcode のコマンドラインツールが役立つでしょう。Ubuntu では `apt-get install build-essential` コマンドで必要なパッケージをインストールできます。他の Linux ディストリビューションでも似たようなコマンドで実現できるでしょう。Windows では追加の手順が必要になり、詳しくは  [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) を参照してください。
 * Git について精通していること。
 
 ### 開発ワークフロー {#development-workflow}
@@ -136,16 +134,17 @@ cd /path/to/your/project
 yarn link react react-dom
 ```
 
-`yarn build` を React フォルダで実行するたびに、あなたのプロジェクトの node_modules フォルダに更新されたバージョンが現れるでしょう。その後、あなたはプロジェクトをビルドし直して変更を試すことが出来ます。
+`yarn build` を React フォルダで実行するたびに、あなたのプロジェクトの node_modules フォルダに更新されたバージョンが現れるでしょう。その後、あなたはプロジェクトをビルドし直して変更を試すことができます。
 
 私たちはあなたのプルリクエストに新しい機能に応じたユニットテストが含まれることを期待します。これによって将来に渡ってコードが壊れていないことを担保します。
 
 ### スタイルガイド {#style-guide}
 
-[Prettier](https://prettier.io/) と呼ばれる自動コードフォーマッタを使います。`yarn prettier` コマンドをコードを変更した後に実行してください。
+[Prettier](https://prettier.io/) と呼ばれる自動コードフォーマッタを使います。
+`yarn prettier` コマンドをコードを変更した後に実行してください。
 
 そうすれば、後はリンターがあなたのコードに存在するほとんどの問題を捕らえるでしょう。
-`yarn linc` を単に実行すればコードスタイルのチェックが出来ます。
+`yarn linc` を単に実行すればコードスタイルのチェックができます。
 
 しかしながら、リンターでもチェックしきれないいくつかのスタイルがあります。何か分からないことがあれば [Airbnb's Style Guide](https://github.com/airbnb/javascript) が正しい方向に導いてくれるでしょう。
 
@@ -176,4 +175,4 @@ React に貢献するにあたって、あなたの貢献は MIT ライセンス
 
 ### 次のセクション {#what-next}
 
-[次のセクション](/docs/codebase-overview.html) を読んで、コードベースの構成方法について知ることが出来ます。
+[次のセクション](/docs/codebase-overview.html) を読んで、コードベースの構成方法について知ることができます。
