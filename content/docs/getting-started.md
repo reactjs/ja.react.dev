@@ -36,11 +36,7 @@ React は初めから既存のプロジェクトに徐々に追加していけ�
 
 ### Web 上で試せるオンラインエディタ {#online-playgrounds}
 
-<<<<<<< HEAD
-React をちょっと試してみたい場合、Web 上のコードエディタが使えます。[CodePen](codepen://hello-world) や [CodeSandbox](https://codesandbox.io/s/new) で Hello World のテンプレートを使って試してみましょう。
-=======
-If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), or [Glitch](https://glitch.com/edit/#!/remix/starter-react-template).
->>>>>>> bab2a3491a18e7074799272d60c8a159473bb7f5
+React をちょっと試してみたい場合、Web 上のコードエディタが使えます。[CodePen](codepen://hello-world)、[CodeSandbox](https://codesandbox.io/s/new) や [Glitch](https://glitch.com/edit/#!/remix/starter-react-template) で Hello World のテンプレートを使って試してみましょう。
 
 自前のテキストエディタを使いたい場合は、[この HTML ファイル](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)をダウンロード・編集して、ブラウザを使ってからローカルファイルシステムから開くことができます。ランタイムでの遅いコード変換が行われる為、簡単なデモに留めておくことをおすすめします。
 
