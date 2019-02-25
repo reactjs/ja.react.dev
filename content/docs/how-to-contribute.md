@@ -93,7 +93,7 @@ Facebook にはセキュリティバグの安全な開示のための [報奨金
 
 ### Contributor License Agreement (CLA) {#contributor-license-agreement-cla}
 
-あなたのプルリクエストを受け付けるために、Contributor License Agreement (CLA) を行って頂く必要があります。これは一度だけ行えば良いので、あなたが他の Facebook オープンソースプロジェクトで既に完了させている場合は必要ありません。初めてプルリクエストを送信する場合は、CLA を完了させたことをお知らせください。そうすれば私たちは Github のユーザ名と照らし合わせてチェックを行います。
+あなたのプルリクエストを受け付けるために、Contributor License Agreement (CLA) を行って頂く必要があります。これは一度だけ行えば良いので、あなたが他の Facebook オープンソースプロジェクトで既に完了させている場合は必要ありません。初めてプルリクエストを送信する場合は、CLA を完了させたことをお知らせください。そうすれば私たちは GitHub のユーザ名と照らし合わせてチェックを行います。
 
 **[ここであなたの CLA を完了させてください。](https://code.facebook.com/cla)**
 
