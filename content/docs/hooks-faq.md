@@ -546,7 +546,7 @@ function Image(props) {
     }, [a, b]);
     ```
 
-* [`useMemo` フック](/docs/hooks-faq.html#how-to-memoize-calculations) を使うことで個々の子コンポーネントをいつ更新するのかを制御しやすくなるため、純粋コンポーネントの必要性は低くなっています
+* [`useMemo` フック](/docs/hooks-faq.html#how-to-memoize-calculations) を使うことで個々の子コンポーネントをいつ更新するのかを制御しやすくなるため、コンポーネントが純粋である必要性は低くなっています
 
 * 最後に、以下で説明されているように、`useReducer` フックを使えば、複数のコールバックを深い階層に受け渡していく必要があまりなくなります
 
