@@ -9,7 +9,7 @@ redirect_from:
   - "tips/introduction.html"
 ---
 
-React は Facebook の最初のオープンソースプロジェクトの 1 つで現在も非常に活発に開発されており、[facebook.com](https://www.facebook.com) 上のあらゆる人々にコードを届けることにも使用されています。私たちはこのプロジェクトへの貢献をできるだけ簡単かつ透明なものにするために努力していますが、まだ完全ではありません。このドキュメントがプロジェクトへの貢献の手順を明確にし、あなたの持つ疑問を解決できれば幸いです。
+React は Facebook の最初のオープンソースプロジェクトの 1 つで現在も非常に活発に開発されており、[facebook.com](https://www.facebook.com) 上のあらゆる人々にコードを届けることにも使用されています。私たちはこのプロジェクトへの貢献をできるだけ簡単かつ透明性の高いものにするために努力していますが、まだ完全ではありません。このドキュメントがプロジェクトへの貢献の手順を明確にし、あなたの持つ疑問を解決できれば幸いです。
 
 ### [行動規範](https://code.facebook.com/codeofconduct) {#code-of-conduct}
 
@@ -29,7 +29,7 @@ React に関する開発作業はすべて [GitHub](https://github.com/facebook/
 
 React は[セマンティック・バージョニング](http://semver.org/)の原則に従います。バグ修正のためのパッチバージョン、新機能のためのマイナーバージョン、そして重大な変更のためのメジャーバージョンをリリースします。私たちが重大な変更を加えるとき、ユーザーが今後の変更について前もって知り、コードを移行するために、私たちはマイナーバージョンで非推奨警告を行います。
 
-私たちは全てのプルリクエストにタグを付けます。タグは、行われる変更が[パッチ](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-patch)、[マイナー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-minor)、[メジャー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-major) バージョンのどれに該当するかによって決まります。数週間ごとにパッチバージョン、数ヶ月ごとにマイナーバージョン、そして年に 1、2 回メジャーバージョンをリリースします。
+私たちは全てのプルリクエストにラベルを付けます。ラベルは、行われる変更が[パッチ](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-patch)、[マイナー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-minor)、[メジャー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-major) バージョンのどれに該当するかによって決まります。数週間ごとにパッチバージョン、数ヶ月ごとにマイナーバージョン、そして年に 1、2 回メジャーバージョンをリリースします。
 
 重要な変更はすべて [changelog file](https://github.com/facebook/react/blob/master/CHANGELOG.md) に文書化されています。
 
@@ -56,19 +56,19 @@ Facebook にはセキュリティバグの安全な開示のための[報奨金�
 
 ### 変更の提案 {#proposing-a-change}
 
-もしあなたがパブリック API に変更を加えたり、実装に些細な変更を加えたくなったら、[Issue を提出する](https://github.com/facebook/react/issues/new)ことをお勧めします。これによって、あなたが大きな労力を割く前に提案について合意に達することができます。
+もしあなたがパブリック API に変更を加えたり、実装に些細とはいえない変更を加えたりしたい場合、[Issue を提出する](https://github.com/facebook/react/issues/new)ことをお勧めします。これによって、あなたが大きな労力を割く前に提案について合意に達することができます。
 
 バグを修正するだけの場合は、すぐにプルリクエストを送信しても問題ありませんが、修正したいバグの内容を詳細に記載した Issue を提出することをお勧めします。これは、あなたの修正自体は受け付けないがバグの追跡はしたいという場合に役立ちます。
 
 ### 初めてのプルリクエスト {#your-first-pull-request}
 
-はじめてのプルリクエストに取り組んでみますか？ あなたはこの無料ビデオシリーズから手順を学ぶことができます：
+はじめてのプルリクエストに取り組んでみますか？ この無料ビデオシリーズから手順を学ぶことができます：
 
 **[GitHub でオープンソースプロジェクトに貢献する方法](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)**
 
 あなたが新しい試みをする上で、貢献プロセスに慣れるのを助けるために、私たちは比較的影響範囲の少ないバグを含む **[good first issues](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"good+first+issue")** のリストを持っています。これはオープンソースプロジェクトへの貢献の入門に最適です。
 
-あなたが Issue を解決することにした場合、誰かがすでに修正に取り組んでいる場合に備えて、コメントスレッドを必ず確認してください。現時点で誰も作業していない場合は、他の人が誤って重複して作業をしないように、作業する予定であることを示すコメントを残してください。
+Issue を解決することにした場合、誰かがすでに修正に取り組んでいる場合に備えて、コメントスレッドを必ず確認してください。現時点で誰も作業していない場合は、他の人が誤って重複して作業をしないように、作業する予定であることを示すコメントを残してください。
 
 誰かが取り組むと宣言した Issue が 2 週間以上放置されている場合、それを引き継ぐことは問題ありませんが、その場合もコメントを残すべきです。
 
@@ -81,11 +81,11 @@ Facebook にはセキュリティバグの安全な開示のための[報奨金�
 1. [リポジトリ](https://github.com/facebook/react) をフォークして `master` から新しいブランチを作成します。
 2. `yarn` コマンドをリポジトリルートで実行します。
 3. バグを修正したり、テストが必要なコードを追加した場合は、テストを追加してください。
-4. テストスイートが (`yarn test`) に合格することを確認してください。ヒント： `yarn test --watch TestName` コマンドは開発時に役立ちます。
+4. テストスイートが通ることを確認してください (`yarn test`)。ヒント： `yarn test --watch TestName` コマンドは開発時に役立ちます。
 5. `yarn test-prod` コマンドを本番環境でテストするために実行します。これは `yarn test` と同じオプションをサポートします。
 6. デバッガが必要な場合は `yarn debug-test --watch TestName` を実行し `chrome://inspect` を開き "Inspect" を押してください。
-7. [prettier](https://github.com/prettier/prettier) (`yarn prettier`) でコードをフォーマットしてください。
-8. (`yarn lint`) でリントを行ってください。ヒント： `yarn linc` は変更されたファイルのみに適用できます。
+7. [prettier](https://github.com/prettier/prettier) でコードをフォーマットしてください (`yarn prettier`)。
+8. リントを行ってください (`yarn lint`)。ヒント： `yarn linc` は変更されたファイルのみに適用できます。
 9. [Flow](https://flowtype.org/) による型チェックを行ってください (`yarn flow`)。
 10. まだの場合は、先に CLA (Contributor License Agreement) の提出を済ませてください。
 
@@ -93,7 +93,7 @@ Facebook にはセキュリティバグの安全な開示のための[報奨金�
 
 あなたのプルリクエストを受け付けるために、Contributor License Agreement (CLA) の提出を行って頂く必要があります。これは一度だけ行えば良いので、あなたが他の Facebook オープンソースプロジェクトで既に完了させている場合は必要ありません。初めてプルリクエストを送信する場合は、CLA 提出を完了させたことをお知らせください。そうすれば私たちは GitHub のユーザ名と照らし合わせてチェックを行います。
 
-**[ここであなたの CLA を完了させてください。](https://code.facebook.com/cla)**
+**[ここで CLA を完了させてください。](https://code.facebook.com/cla)**
 
 ### 貢献の前提条件 {#contribution-prerequisites}
 
@@ -134,7 +134,7 @@ cd /path/to/your/project
 yarn link react react-dom
 ```
 
-`yarn build` を React フォルダで実行するたびに、あなたのプロジェクトの node_modules フォルダに更新されたバージョンが現れるでしょう。その後、あなたはプロジェクトをビルドし直して変更を試すことができます。
+`yarn build` を React フォルダで実行するたびに、あなたのプロジェクトの `node_modules` フォルダに更新されたバージョンが現れるでしょう。その後、プロジェクトをビルドし直して変更を試すことができます。
 
 ただしプルリクエストにあなたの新機能に応じたユニットテストを含めることは必須です。これによって将来あなたのコードを壊してしまわないことが担保されます。
 
@@ -144,7 +144,7 @@ yarn link react react-dom
 `yarn prettier` コマンドをコードを変更した後に実行してください。
 
 そうすれば、後はリンターがあなたのコードに存在するほとんどの問題を捕らえるでしょう。
-`yarn linc` を単に実行すればコードスタイルのチェックができます。
+自分の書いたコードのスタイルをチェックしたい場合は単に `yarn linc` を実行してください。
 
 しかしながら、リンターでもチェックしきれないいくつかのスタイルがあります。何か分からないことがあれば [Airbnb's Style Guide](https://github.com/airbnb/javascript) が正しい方向に導いてくれるでしょう。
 
