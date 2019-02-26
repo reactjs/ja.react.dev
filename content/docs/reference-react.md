@@ -15,9 +15,9 @@ redirect_from:
 
 `React` は React ライブラリのエントリポイントです。`<script>` タグから React を読み込む場合、これらの最上位 API をグローバルの `React` から利用できます。npm と ES6 を使う場合、`import React from 'react'` と書けます。npm と ES5 を使う場合、`var React = require('react')` と書けます。
 
-## Overview {#overview}
+## 概要 {#overview}
 
-### Components {#components}
+### コンポーネント {#components}
 
 React コンポーネントを使用すると UI を独立した再利用可能な部分に分割し、各部分を個別に考えることができます。React コンポーネントは `React.Component` または `React.PureComponent` をサブクラス化することで定義できます。
 
@@ -30,7 +30,7 @@ React コンポーネントは関数で定義でき、その際に以下の関�
 
 - [`React.memo`](#reactmemo)
 
-### Creating React Elements {#creating-react-elements}
+### React 要素を作成する {#creating-react-elements}
 
 UI がどのように見えるべきかを記述するために [JSX の使用](/docs/introducing-jsx.html) を推奨します。JSX のそれぞれの要素は [`React.createElement()`](#createelement) を呼ぶための単なる糖衣構文です。JSX を使用している場合は、通常、次のメソッドを直接呼び出すことはありません。
 
@@ -39,7 +39,7 @@ UI がどのように見えるべきかを記述するために [JSX の使用](
 
 詳しくは [JSX なしで React を使う](/docs/react-without-jsx.html) を参照してください。
 
-### 要素を変換する #{transforming-elements}
+### 要素を変換する {#transforming-elements}
 
 `React` は要素を操作するためのいくつかの API を提供しています。
 
@@ -65,15 +65,15 @@ UI がどのように見えるべきかを記述するために [JSX の使用](
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
 
-### Hooks {#hooks}
+### フック (hook) {#hooks}
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class. Hooks have a [dedicated docs section](/docs/hooks-intro.html) and a separate API reference:
+*フック (hook)* は React 16.8 で追加された新機能です。state などの React の機能を、クラスを書かずに使えるようになります。フックには[専用のセクション](/docs/hooks-intro.html)と別の API リファレンスがあります。
 
-- [Basic Hooks](/docs/hooks-reference.html#basic-hooks)
+- [基本的なフック](/docs/hooks-reference.html#basic-hooks)
   - [`useState`](/docs/hooks-reference.html#usestate)
   - [`useEffect`](/docs/hooks-reference.html#useeffect)
   - [`useContext`](/docs/hooks-reference.html#usecontext)
-- [Additional Hooks](/docs/hooks-reference.html#additional-hooks)
+- [追加のフック](/docs/hooks-reference.html#additional-hooks)
   - [`useReducer`](/docs/hooks-reference.html#usereducer)
   - [`useCallback`](/docs/hooks-reference.html#usecallback)
   - [`useMemo`](/docs/hooks-reference.html#usememo)

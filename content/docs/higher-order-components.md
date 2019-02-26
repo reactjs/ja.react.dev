@@ -14,7 +14,7 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 コンポーネントが props を UI に変換するのに対して、高階コンポーネントはコンポーネントを別のコンポーネントに変換します。
 
-HOC は Redux における [`connect 関数`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) や Relay における [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) のように、サードパーティ製の React ライブラリでは一般的なものです。
+HOC は Redux における [`connect`](https://github.com/reactjs/react-redux/blob/master/docs/api/connect.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) や Relay における [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) のように、サードパーティ製の React ライブラリでは一般的なものです。
 
 このドキュメントでは、なぜ高階コンポーネントが便利で、自身でどのように記述するのかを説明します。
 
@@ -294,7 +294,7 @@ const EnhancedComponent = enhance(WrappedComponent)
 
 （この性質を使えば、`connect` や他の機能追加方式の HOC をデコレータ（提唱中の JavaScript の実験的機能）で使用することも可能になります）
 
-`compose` ユーティリティ関数は lodash（[`lodash.flowRight`](https://lodash.com/docs/#flowRight) として）、[Redux](http://redux.js.org/docs/api/compose.html)、そして [Ramda](http://ramdajs.com/docs/#compose) といった多くのサードパーティ製ライブラリから提供されています。
+`compose` ユーティリティ関数は lodash（[`lodash.flowRight`](https://lodash.com/docs/#flowRight) として）、[Redux](https://redux.js.org/api/compose)、そして [Ramda](https://ramdajs.com/docs/#compose) といった多くのサードパーティ製ライブラリから提供されています。
 
 ## 規則：デバッグしやすくするため表示名をラップすること {#convention-wrap-the-display-name-for-easy-debugging}
 
