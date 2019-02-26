@@ -122,7 +122,7 @@
       - id: hooks-reference
         title: Hooks API Reference
       - id: hooks-faq
-        title: Hooks FAQ
+        title: フックに関するよくある質問
 - title: Contributing
   items:
   - id: how-to-contribute
