@@ -192,7 +192,7 @@ it('can render and update a counter', () => {
 
 ### 個々のライフサイクルメソッドはフックとどのように対応するのですか？ {#how-do-lifecycle-methods-correspond-to-hooks}
 
-* `constructor`: 関数コンポーネントはコンストラクタを必要としません。state は [`useState`](/docs/hooks-reference.html#usestate) を呼び出すときに初期化します。初期値の計算が高価である場合、`useState` に関数を渡すことができます。
+* `constructor`: 関数コンポーネントはコンストラクタを必要としません。state は [`useState`](/docs/hooks-reference.html#usestate) を呼び出すときに初期化します。初期 state の計算が高価である場合、`useState` に関数を渡すことができます。
 
 * `getDerivedStateFromProps`: [レンダー中に](#how-do-i-implement-getderivedstatefromprops)更新をスケジューリングします。
 
