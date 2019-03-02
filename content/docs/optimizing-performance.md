@@ -286,7 +286,7 @@ class CounterButton extends React.Component {
 }
 ```
 
-このコードは、`shouldComponentUpdate` は `props.color` または `state.count` の変化の有無を単にチェックしているだけです。これらの値が変化していなければコンポーネントは更新されません。コンポーネントがもっと複雑な場合は、`props` と `state` のすべてのフィールドに対して「浅い（Shallow）比較」をするという同種のパターンでコンポーネント更新の必要性を決定できます。このパターンはあまりに一般的なので、React はこのロジックのためのヘルパーを用意しており、`React.PureComponent` から継承するだけで使用できます。なので以下のコードで前述のコードと同じことをよりシンプルに実装できます。
+このコードは、`shouldComponentUpdate` は `props.color` または `state.count` の変化の有無を単にチェックしているだけです。これらの値が変化していなければコンポーネントは更新されません。コンポーネントがもっと複雑な場合は、`props` と `state` のすべてのフィールドに対して「浅い比較」をするという同種のパターンでコンポーネント更新の必要性を決定できます。このパターンはとても一般的なので、React はこのロジックのためのヘルパーを用意しており、`React.PureComponent` から継承するだけで使用できます。なので以下のコードで前述のコードと同じことをよりシンプルに実装できます。
 
 ```js
 class CounterButton extends React.PureComponent {
