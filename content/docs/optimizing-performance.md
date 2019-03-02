@@ -427,7 +427,7 @@ x === y; // false
 x === z; // true
 ```
 
-この場合、`x` を変更すると新しい参照が返されるので、参照の比較`(x === y)`をするだけで、`y` に保存されている新しい値は `x` に保存されていた値とは違うことが確認できます。
+この場合、`x` を変更すると新しい参照が返されるので、参照の比較 `(x === y)` をするだけで、`y` に保存されている新しい値は `x` に保存されていた値とは違うことが確認できます。
 
 他にも 2 つのライブラリ、[seamless-immutable](https://github.com/rtfeldman/seamless-immutable) や [immutability-helper](https://github.com/kolodny/immutability-helper) なども不変データの使用を助けてくれます。
 
