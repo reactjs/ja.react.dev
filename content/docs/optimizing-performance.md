@@ -118,7 +118,7 @@ yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify
 
 本番用ビルドを作成するには、以下のプラグインを追加してください（**順番は重要**です）。
 
-* [`replace`](https://github.com/rollup/rollup-plugin-replace) プラグインは正しいビルド環境が確実に設定されるようにします。
+* [`replace`](https://github.com/rollup/rollup-plugin-replace) プラグインは正しいビルド用の環境変数が確実に設定されるようにします。
 * [`commonjs`](https://github.com/rollup/rollup-plugin-commonjs) プラグインは Rollup で CommonJS をサポートできるようにします。
 * [`uglify`](https://github.com/TrySound/rollup-plugin-uglify)  プラグインは出力された最終的なバンドルを圧縮し、mangle（訳注： 変数名や識別子を短縮）します。
 
