@@ -226,7 +226,7 @@ React はレンダーされた UI の内部表現を構築し、維持します�
 
 ページを操作すると、再レンダーされたコンポーネントの周囲に色付きの枠線が一定時間表示されます。これにより、不要な再レンダーを見つけることができます。React DevTools のこの機能の詳細については、[Ben Edelstein](https://blog.logrocket.com/@edelstein) による[ブログ投稿](https://blog.logrocket.com/make-react-fast-again-part-3-highlighting-component-updates-6119e45e6833)から学ぶことができます。
 
-以下の例を考えて見ましょう。
+以下の例を考えてみましょう。
 
 <center><img src="../images/blog/highlight-updates-example.gif" style="max-width:100%; margin-top:20px;" alt="React DevTools Highlight Updates example" /></center>
 
