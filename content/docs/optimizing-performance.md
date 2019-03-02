@@ -242,7 +242,7 @@ shouldComponentUpdate(nextProps, nextState) {
 
 ある状況においてコンポーネントを更新する必要がないと分かっているなら、`shouldComponentUpdate` から `false` を返すことにより、該当コンポーネントおよび配下への `render()` 呼び出しを含む、レンダー処理の全体をスキップすることができます。
 
-ほとんどの場合には、手書きの `shouldComponentUpdate()` を定義する代わりに [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) を継承できます。これは現在と直前の props と state に対する浅い（Shallow）比較を行う `shouldComponentUpdate()` を実装することと同じです。
+ほとんどの場合には、手書きの `shouldComponentUpdate()` を定義する代わりに [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) を継承できます。これは現在と直前の props と state に対する浅い (shallow) 比較を行う `shouldComponentUpdate()` を実装することと同じです。
 
 ## shouldComponentUpdate の実際の動作
 
