@@ -436,4 +436,4 @@ x === z; // true
 不変データの使用を助けてくる他のライブラリとして [seamless-immutable](https://github.com/rtfeldman/seamless-immutable) や [immutability-helper](https://github.com/kolodny/immutability-helper) の 2 つが挙がります。
 
 
-不変データ構造はオブジェクトの変化の検出を容易にします。そのために必要なのは、それを使用して `shouldComponentUpdate` を実装することだけです。これによってパフォーマンスを大幅に向上できる場合があります。
+不変データ構造はオブジェクトの変化の検出を容易にします。まさにそれが `shouldComponentUpdate` の実装に必要なことのすべてです。これによってパフォーマンスを大幅に向上できる場合があります。
