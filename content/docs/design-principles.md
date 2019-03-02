@@ -156,7 +156,7 @@ Facebook のような大規模なコードベースでは、特定の API の使
 
 大量に内部で使用していることで、React が明日消えないという自信が得られます。React は Facebook の問題を解決するために Facebook で作成されました。それは Facebook に確かなビジネス価値をもたらし、多くの製品で使用されています。[ドッグフーディング](https://en.wikipedia.org/wiki/Eating_your_own_dog_food)によって、私たちのビジョンが鮮明なままであり、私たちが今後も焦点を絞った方向性を持てるようになります。
 
-これは、コミュニティが提起した問題を無視しているという意味ではありません。たとえば、Facebook 内部で依存していないにも関わらず、React に [Web Component](/docs/webcomponents.html) および [SVG](https://github.com/facebook/react/pull/6243) のサポートを追加しました。私達は積極的に[皆さんの問題点を聞き](https://github.com/facebook/react/issues/2686)、私たちの能力の及ぶ限りで[それらに対処](/blog/2016/07/11/introducing-reacts-error-code-system.html)します。コミュニティは React を私たちにとって特別なものにしており、私たちもお返しとして喜んでコミュニティに貢献したいと考えています。
+これは、コミュニティが提起した問題を無視しているという意味ではありません。たとえば、Facebook 内部で依存していないにも関わらず、React に [Web Components](/docs/webcomponents.html) および [SVG](https://github.com/facebook/react/pull/6243) のサポートを追加しました。私達は積極的に[皆さんの問題点を聞き](https://github.com/facebook/react/issues/2686)、私たちの能力の及ぶ限りで[それらに対処](/blog/2016/07/11/introducing-reacts-error-code-system.html)します。コミュニティは React を私たちにとって特別なものにしており、私たちもお返しとして喜んでコミュニティに貢献したいと考えています。
 
 Facebook で多くのオープンソースプロジェクトをリリースした後、みんなを同時に幸せにすることを試みるが焦点が不十分なプロジェクトを生み出してもうまく成長しないということを学びました。代わりに、少人数の観客を選んで満足させることに集中すると最終的には良い効果があることがわかりました。これこそまさに私たちが React を使って行ったことであり、そして今のところ Facebook 製品チームが遭遇した問題を解決することは、オープンソースコミュニティにもうまく還元されています。
 
