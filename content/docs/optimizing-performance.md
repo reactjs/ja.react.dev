@@ -205,7 +205,7 @@ React DevTools をまだインストールしていない場合は、以下で�
 
 アプリケーションが長いデータのリスト（数百〜数千行）をレンダーする場合は、「ウィンドウイング」として知られるテクニックを使うことをおすすめします。このテクニックでは、ある瞬間ごとにはリストの小さな部分集合のみを描画することで、生成する DOM ノードの数およびコンポーネントの再描画にかかる時間を大幅に削減することができます。
 
-[react-window](https://react-window.now.sh/) と [react-virtualized](https://bvaughn.github.io/react-virtualized/) は人気があるウィンドウイング処理のライブラリです。これらはリスト、グリッド、および表形式のデータを表示するための、いくつかの再利用可能コンポーネントを提供しています。[Twitter](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3) が行なっているような、アプリケーションの特定のユースケースに合わせた追加的な処理をする場合は、独自のウィンドウイング処理のコンポーネントを作成することもできます。
+[react-window](https://react-window.now.sh/) と [react-virtualized](https://bvaughn.github.io/react-virtualized/) は人気があるウィンドウイング処理のライブラリです。これらはリスト、グリッド、および表形式のデータを表示するための、いくつかの再利用可能コンポーネントを提供しています。アプリケーションの特定のユースケースに合わせた追加的な処理をする場合は、[Twitter](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3) が行なっているように、独自のウィンドウイング処理のコンポーネントを作成することもできます。
 
 ## リコンシリエーション（差分検出処理）を避ける {#avoid-reconciliation}
 
@@ -226,7 +226,7 @@ React はレンダーされた UI の内部表現を構築し、維持します�
 
 ページを操作すると、再レンダーされたコンポーネントの周囲に色付きの枠線が一定時間表示されます。これにより、不要な再レンダーを見つけることができます。React DevTools のこの機能の詳細については、[Ben Edelstein](https://blog.logrocket.com/@edelstein) による[ブログ投稿](https://blog.logrocket.com/make-react-fast-again-part-3-highlighting-component-updates-6119e45e6833)から学ぶことができます。
 
-以下の例を考えて見ましょう。
+以下の例を考えてみましょう。
 
 <center><img src="../images/blog/highlight-updates-example.gif" style="max-width:100%; margin-top:20px;" alt="React DevTools Highlight Updates example" /></center>
 
@@ -242,7 +242,7 @@ shouldComponentUpdate(nextProps, nextState) {
 
 ある状況においてコンポーネントを更新する必要がないと分かっているなら、`shouldComponentUpdate` から `false` を返すことにより、該当コンポーネントおよび配下への `render()` 呼び出しを含む、レンダー処理の全体をスキップすることができます。
 
-ほとんどの場合には、手書きの `shouldComponentUpdate()` を定義する代わりに [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) を継承できます。これは現在と直前の props と state に対する浅い（Shallow）比較を行う `shouldComponentUpdate()` を実装することと同じです。
+ほとんどの場合には、手書きの `shouldComponentUpdate()` を定義する代わりに [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) を継承できます。これは現在と直前の props と state に対する浅い (shallow) 比較を行う `shouldComponentUpdate()` を実装することと同じです。
 
 ## shouldComponentUpdate の実際の動作
 
@@ -436,4 +436,4 @@ x === z; // true
 不変データの使用を助けてくる他のライブラリとして [seamless-immutable](https://github.com/rtfeldman/seamless-immutable) や [immutability-helper](https://github.com/kolodny/immutability-helper) の 2 つが挙がります。
 
 
-不変データ構造はオブジェクトの変化の検出を容易にします。そのために必要なのは、それを使用して `shouldComponentUpdate` を実装することだけです。これによってパフォーマンスを大幅に向上できる場合があります。
+不変データ構造はオブジェクトの変化の検出を容易にします。まさにそれが `shouldComponentUpdate` の実装に必要なことのすべてです。これによってパフォーマンスを大幅に向上できる場合があります。
