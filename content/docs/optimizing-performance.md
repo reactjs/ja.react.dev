@@ -82,7 +82,7 @@ npm install --save-dev envify uglify-js uglifyify
 yarn add --dev envify uglify-js uglifyify 
 ```
 
-本番用ビルドを作成するには、以下の変換（transform）を追加してください（**順番は重要です**）。
+本番用ビルドを作成するには、以下の変換 (transform) を追加してください（**順番は重要です**）。
 
 * [`envify`](https://github.com/hughsk/envify) 変換は正しいビルド環境が確実に設定されるようにします。グローバルに設定してください (`-g`)。
 * [`uglifyify`](https://github.com/hughsk/uglifyify) 変換は開発用にインポートしたライブラリを削除します。これもグローバルに設定してください (`-g`)。
