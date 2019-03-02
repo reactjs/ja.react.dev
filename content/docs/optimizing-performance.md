@@ -140,7 +140,7 @@ plugins: [
 
 ### webpack
 
->**Note:**
+>**補足：**
 >
 > Create React App を利用している場合は、[Create React App についての前述の説明](#create-react-app)に従ってください。<br/>このセクションは直接 webpack の設定を行いたい人向けです。
 
