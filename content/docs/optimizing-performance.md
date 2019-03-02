@@ -429,7 +429,7 @@ x === z; // true
 
 この場合、`x` を変更すると新しい参照が返されるので、参照の比較 `(x === y)` をするだけで、`y` に保存されている新しい値は `x` に保存されていた値とは違うことが確認できます。
 
-他にも 2 つのライブラリ、[seamless-immutable](https://github.com/rtfeldman/seamless-immutable) や [immutability-helper](https://github.com/kolodny/immutability-helper) なども不変データの使用を助けてくれます。
+不変データの使用を助けてくる他のライブラリとして [seamless-immutable](https://github.com/rtfeldman/seamless-immutable) や [immutability-helper](https://github.com/kolodny/immutability-helper) の 2 つが挙がります。
 
 
 不変データ構造はオブジェクトの変化の検出を容易にします。そのために必要なのは、それを使用して `shouldComponentUpdate` を実装することだけです。これによってパフォーマンスを大幅に向上できる場合があります。
