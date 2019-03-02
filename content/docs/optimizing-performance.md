@@ -181,7 +181,7 @@ Chrome での操作は以下の通り。
 
 ## DevToolsプロファイラを使用したコンポーネントのプロファイリング
 
-`react-dom` 16.5 以降と `react-native` 0.57 以降では、開発モードにおける強化されたプロファイリング機能を React DevTools プロファイラにて提供しています。このプロファイラの概要がブログ記事「[React プロファイラの紹介（Introduction the React Profiler）](/blog/2018/09/10/introducing-the-react-profiler.html)」で説明されています。チュートリアル動画も [YouTube で入手できます](https://www.youtube.com/watch?v=nySib7ipZdk)。
+`react-dom` 16.5 以降と `react-native` 0.57 以降では、開発モードにおける強化されたプロファイリング機能を React DevTools プロファイラにて提供しています。このプロファイラの概要はブログ記事 ["Introducing the React Profiler"](/blog/2018/09/10/introducing-the-react-profiler.html) で説明されています。チュートリアル動画も [YouTube で閲覧できます](https://www.youtube.com/watch?v=nySib7ipZdk)。
 
 React DevTools をまだインストールしていない場合は、以下で見つけることができます。
 
