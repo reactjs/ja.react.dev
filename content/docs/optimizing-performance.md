@@ -170,7 +170,7 @@ Chrome での操作は以下の通り。
 2. アプリケーションが開発モードで動作していることを確認する。
 3. Chrome DevTools の[**パフォーマンス**](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)タブを開いて **Record（記録）** ボタンを押す。
 4. プロファイル対象のアクションを実行する。なお、20 秒以上は記録しないでください。さもないと Chrome がハングアップすることがあります。
-5.  記録を停止する。
+5. 記録を停止する。
 6.  React イベントが **User Timing** ラベルの下にグループ化される。
 
 さらなる詳細については、[Ben Schwarz によるこの記事](https://calibreapp.com/blog/2017-11-28-debugging-react/)を参照ください。
