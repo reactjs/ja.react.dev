@@ -14,8 +14,7 @@ React アプリケーションでベンチマークを行う場合やパフォ�
 
 デフォルトで React は多くの有用な警告チェックを行い、開発時にはとても有用なのですが、それによって React アプリケーションのサイズは肥大化し、速度が低下してしまうので、アプリケーションのデプロイ時には本番バージョンを使用していることを確認してください。
 
-ビルドプロセスが正しく設定されているか分からない場合、[React Developer Tools for Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) をインストールして確認できます。
-本番用モードの React のサイトを訪れた場合、アイコンは暗い背景となっています。
+ビルドプロセスが正しく設定されているか分からない場合、[React Developer Tools for Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) をインストールして確認できます。本番用モードの React のサイトを訪れた場合、アイコンは暗い背景となっています。
 
 <img src="../images/docs/devtools-prod.png" style="max-width:100%" alt="React DevTools on a website with production version of React">
 
@@ -142,7 +141,8 @@ plugins: [
 
 >**Note:**
 >
-> Create React App を利用している場合は、[Create React App についての前述の説明](#create-react-app)に従ってください。<br/>このセクションは直接 webpack の設定を行いたい人向けです。
+> Create React App を利用している場合は、[Create React App についての前述の説明](#create-react-app)に従ってください。<br/>
+> このセクションは直接 webpack の設定を行いたい人向けです。
 
 webpack で最も効率のよい本番用ビルドを行うには、本番ビルドの設定中に必ず以下のプラグインを含めるようにしてください。
 
@@ -167,10 +167,15 @@ new webpack.optimize.UglifyJsPlugin()
 Chrome での操作は以下の通り。
 
 1. 一時的に **React DevTools を含むすべての Chrome 拡張機能を無効にする**。無効にしないと、結果が正確でなくなる可能性があります。
+
 2. アプリケーションが開発モードで動作していることを確認する。
+
 3. Chrome DevTools の[**パフォーマンス**](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)タブを開いて **Record（記録）** ボタンを押す。
+
 4. プロファイル対象のアクションを実行する。なお、20 秒以上は記録しないでください。さもないと Chrome がハングアップすることがあります。
+
 5.  記録を停止する。
+
 6.  React イベントが **User Timing** ラベルの下にグループ化される。
 
 さらなる詳細については、[Ben Schwarz によるこの記事](https://calibreapp.com/blog/2017-11-28-debugging-react/)を参照ください。
@@ -181,7 +186,9 @@ Chrome での操作は以下の通り。
 
 ## DevToolsプロファイラを使用したコンポーネントのプロファイリング
 
-`react-dom` 16.5 以降と `react-native` 0.57 以降では、開発モードにおける強化されたプロファイリング機能を React DevTools プロファイラにて提供しています。このプロファイラの概要がブログ記事「[React プロファイラの紹介（Introduction the React Profiler）](/blog/2018/09/10/introducing-the-react-profiler.html)」で説明されています。チュートリアル動画も [YouTube で入手できます](https://www.youtube.com/watch?v=nySib7ipZdk)。
+`react-dom` 16.5 以降と `react-native` 0.57 以降では、開発モードにおける強化されたプロファイリング機能を React DevTools プロファイラにて提供しています。
+このプロファイラの概要がブログ記事「[React プロファイラの紹介（Introduction the React Profiler）](/blog/2018/09/10/introducing-the-react-profiler.html)」で説明されています。
+チュートリアル動画も [YouTube で入手できます](https://www.youtube.com/watch?v=nySib7ipZdk)。
 
 React DevTools をまだインストールしていない場合は、以下で見つけることができます。
 
@@ -189,9 +196,10 @@ React DevTools をまだインストールしていない場合は、以下で�
 - [Firefox ブラウザ拡張](https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/)
 - [スタンドアロンの Node パッケージ](https://www.npmjs.com/package/react-devtools)
 
-> Note:
+> Note
 >
-> 本番ビルド版 `react-dom` のプロファイリング可能なバンドルとして `react-dom/profiling` が利用可能です。このバンドルの使い方の詳細については、[fb.me/react-profiling](https://fb.me/react-profiling) を参照してください。
+> 本番ビルド版 `react-dom` のプロファイリング可能なバンドルとして `react-dom/profiling` が利用可能です。
+> このバンドルの使い方の詳細については、[fb.me/react-profiling](https://fb.me/react-profiling) を参照してください。
 
 ## 長いリストの仮想化
 
@@ -201,8 +209,7 @@ React DevTools をまだインストールしていない場合は、以下で�
 
 ## リコンシリエーション（差分検出処理）を避ける {#avoid-reconciliation}
 
-React はレンダリングされた UI の内部表現を構築し、維持します。その内部表現にはコンポーネントが返した React 要素も含まれています。
-React はこの内部表現を使うことによって、JavaScript オブジェクトの操作よりも操作が遅くなるかもしれない DOM ノードの不要な作成やアクセスを回避します。この内部表現はしばしば「仮想 DOM」と呼ばれますが、React Native 上でも同様に動くものです。
+React はレンダリングされた UI の内部表現を構築し、維持します。その内部表現にはコンポーネントが返した React 要素も含まれています。React はこの内部表現を使うことによって、JavaScript オブジェクトの操作よりも操作が遅くなるかもしれない DOM ノードの不要な作成やアクセスを回避します。この内部表現はしばしば「仮想 DOM」と呼ばれますが、React Native 上でも同様に動くものです。
 
 コンポーネントの props や state が変更された場合、React は新しく返された要素と以前にレンダリングされたものとを比較することで、実際の DOM の更新が必要かを判断します。それらが等しくない場合、React は DOM を更新します。
 
@@ -239,9 +246,7 @@ shouldComponentUpdate(nextProps, nextState) {
 
 ## shouldComponentUpdate の実際の動作
 
-以下のようなコンポーネントのサブツリーがあるとします。それぞれ、`SCU` は `shouldComponentUpdate` が返した値（訳注：緑は true、赤は false）を示し、`vDOMEq` はレンダリングされた React 要素が等しかったかどうか（訳注：緑は等しい、赤は等しくない）を示します。
-最後に、円の色はコンポーネントに対してツリーの差分を検出するリコンシリエーション処理を必要としたのかどうか（訳注：緑は不要、赤は必要）を示します。
-<br/><br/>
+以下のようなコンポーネントのサブツリーがあるとします。それぞれ、`SCU` は `shouldComponentUpdate` が返した値（訳注：緑は true、赤は false）を示し、`vDOMEq` はレンダリングされた React 要素が等しかったかどうか（訳注：緑は等しい、赤は等しくない）を示します。最後に、円の色はコンポーネントに対してツリーの差分を検出するリコンシリエーション処理を必要としたのかどうか（訳注：緑は不要、赤は必要）を示します。
 
 <figure><img src="../images/docs/should-component-update.png" style="max-width:100%" /></figure>
 
@@ -359,8 +364,7 @@ handleClick() {
 }
 ```
 
-ES6 はこれをより簡潔に実装できる配列の[スプレッド構文](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)をサポートしています。
-Create React App を使用していれば、この構文はデフォルトで利用できます。
+ES6 はこれをより簡潔に実装できる配列の[スプレッド構文](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)をサポートしています。Create React App を使用していれば、この構文はデフォルトで利用できます。
 
 ```js
 handleClick() {
