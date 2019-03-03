@@ -128,7 +128,7 @@ function FriendStatus(props) {
 }
 ```
 
-以下の例では、コンポーネントがアンマウントされる時や再レンダーによって副作用が再実行時される時に `ChatAPI` の購読解除を行っています。（必要なら、`ChatAPI` に渡すための `props.friend.id` が変わっていない場合には[毎回購読しなおす処理をスキップする](/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects)方法があります）
+この例では、コンポーネントがアンマウントされる時や再レンダーによって副作用が再実行時される時に `ChatAPI` の購読解除を行っています。（必要なら、`ChatAPI` に渡すための `props.friend.id` が変わっていない場合には[毎回購読しなおす処理をスキップする](/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects)方法があります）
 
 `useState` の場合と同様、1 つのコンポーネント内で 2 つ以上の副作用を使用することが可能です。
 
