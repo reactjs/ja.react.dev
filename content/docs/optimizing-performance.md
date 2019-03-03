@@ -8,7 +8,7 @@ redirect_from:
 
 React は UI の更新時に必要となる高コストな DOM 操作の回数を最小化するために、内部的にいくつかの賢いテクニックを使用しています。多くのアプリケーションでは React を使用するだけで、パフォーマンス向上のための特別な最適化を苦労して行わなくても、レスポンスの良いユーザーインターフェースを実現できますが、それでもなお、React アプリケーションを高速化するための方法はいくつか存在します。
 
-## 本番用ビルドを使用する
+## 本番用ビルドを使用する {#use-the-production-build}
 
 React アプリケーションでベンチマークを行う場合やパフォーマンスの問題が発生している場合には、ミニファイされた本番用ビルドでテストしていることを確認して下さい。
 
@@ -26,7 +26,7 @@ React アプリケーションでベンチマークを行う場合やパフォ�
 
 本番用にアプリを構築するためのそれぞれのツールにおける手順を以下に示します。
 
-### Create React App
+### Create React App {#create-react-app}
 
 プロジェクトが [Create React App](https://github.com/facebookincubator/create-react-app) で構築されているなら、以下のコードを実行して下さい。
 
@@ -38,7 +38,7 @@ npm run build
 
 これが必要なのは本番用ビルドだけであることに留意してください。通常の開発作業では、`npm start` を使用してください。
 
-### 単一ファイル版ビルド
+### 単一ファイル版ビルド {#single-file-builds}
 
 React と ReactDOM をそれぞれ単一ファイル化した本番環境用のバージョンを提供しています。
 
@@ -49,7 +49,7 @@ React と ReactDOM をそれぞれ単一ファイル化した本番環境用の�
 
 本番用に適しているのは、React ファイル名の末尾が `.production.min.js` であるもののみであることに留意ください。
 
-### Brunch
+### Brunch {#brunch}
 
 Brunch で最も効率のよい本番用ビルドを行うには、[`uglify-js-brunch`](https://github.com/brunch/uglify-js-brunch) をインストールしてください：
 
@@ -69,7 +69,7 @@ brunch build -p
 
 これが必要なのは本番用ビルドだけであることに留意してください。React の有用な警告表示が隠されたり、ビルド速度が大幅に遅くなったりしますので、開発用では `-p` フラグを指定したり、`uglify-js-brunch` プラグインを適用したりしないでください。
 
-### Browserify
+### Browserify {#browserify}
 
 Browserify で最も効率の良い本番用ビルドを行うには、いくつかのプラグインをインストールしてください。
 
@@ -103,7 +103,7 @@ browserify ./index.js \
 
 これが必要なのは本番用ビルドだけであることに留意してください。React の有用な警告文が隠されたり、ビルド速度が大幅に遅くなったりしますので、開発用ではこれらのプラグインを適用しないで下さい。
 
-### Rollup
+### Rollup {#rollup}
 
 Rollup で最も効率のよい本番用ビルドを行うには、いくつかのプラグインを以下のようにインストールします。
 
@@ -137,7 +137,7 @@ plugins: [
 
 これらが必要なのは本番用ビルドだけであることに留意してください。React の有用な警告表示が隠されたり、ビルド速度が大幅に遅くなったりしますので、開発用では  `uglify` プラグインもしくは `replace` プラグインを `'production'` という値で適用しないでください。
 
-### webpack
+### webpack {#webpack}
 
 >**補足：**
 >
@@ -157,7 +157,7 @@ new webpack.optimize.UglifyJsPlugin()
 
 これらが必要なのは本番用ビルドだけであることに留意してください。React の有用な警告文が隠されたり、ビルド速度が大幅に遅くなったりしますので、開発用では `UglifyJsPlugin` もしくは `DefinePlugin` を`'production'` という値で適用しないでください。
 
-## Chrome のパフォーマンスタブでコンポーネントをプロファイルする
+## Chrome のパフォーマンスタブでコンポーネントをプロファイルする {#profiling-components-with-the-chrome-performance-tab}
 
 **開発**モードでは、対応するブラウザのパフォーマンス分析ツールで、コンポーネントのマウント・更新・アンマウントの様子を以下のように視覚化することができます。
 <br/><br/>
@@ -184,7 +184,7 @@ Chrome での操作は以下の通り。
 
 現時点では、Chrome、Edge、そして IE のみがこの機能をサポートするブラウザですが、私達は標準の [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) を採用しているので、より多くのブラウザがサポートしてくれることを期待しています。
 
-## DevToolsプロファイラを使用したコンポーネントのプロファイリング
+## DevToolsプロファイラを使用したコンポーネントのプロファイリング {#profiling-components-with-the-devtools-profiler}
 
 `react-dom` 16.5 以降と `react-native` 0.57 以降では、開発モードにおける強化されたプロファイリング機能を React DevTools プロファイラにて提供しています。
 このプロファイラの概要はブログ記事 ["Introducing the React Profiler"](/blog/2018/09/10/introducing-the-react-profiler.html) で説明されています。
@@ -201,7 +201,7 @@ React DevTools をまだインストールしていない場合は、以下で�
 > 本番ビルド版 `react-dom` のプロファイリング可能なバンドルとして `react-dom/profiling` が利用可能です。
 > このバンドルの使い方の詳細については、[fb.me/react-profiling](https://fb.me/react-profiling) を参照してください。
 
-## 長いリストの仮想化
+## 長いリストの仮想化 {#virtualize-long-lists}
 
 アプリケーションが長いデータのリスト（数百〜数千行）をレンダーする場合は、「ウィンドウイング」として知られるテクニックを使うことをおすすめします。このテクニックでは、ある瞬間ごとにはリストの小さな部分集合のみを描画することで、生成する DOM ノードの数およびコンポーネントの再描画にかかる時間を大幅に削減することができます。
 
@@ -244,7 +244,7 @@ shouldComponentUpdate(nextProps, nextState) {
 
 ほとんどの場合には、手書きの `shouldComponentUpdate()` を定義する代わりに [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) を継承できます。これは現在と直前の props と state に対する浅い (shallow) 比較を行う `shouldComponentUpdate()` を実装することと同じです。
 
-## shouldComponentUpdate の実際の動作
+## shouldComponentUpdate の実際の動作 {#shouldcomponentupdate-in-action}
 
 以下のようなコンポーネントのサブツリーがあるとします。それぞれ、`SCU` は `shouldComponentUpdate` が返した値（訳注：緑は true、赤は false）を示し、`vDOMEq` はレンダーされた React 要素が等しかったかどうか（訳注：緑は等しい、赤は等しくない）を示します。最後に、円の色はコンポーネントに対してツリーの差分を検出するリコンシリエーション処理を必要としたのかどうか（訳注：緑は不要、赤は必要）を示します。
 
@@ -258,7 +258,7 @@ C1 と C3 では、`shouldComponentUpdate` が `true` を返したので、React
 
 React が実 DOM を更新しなければならなかったのは、C6 だけだったことに注目してください。C6 の更新は避けられないものでした。C8 では、レンダーされた React 要素の比較のおかげで実 DOM を修正せずに済みました。C2 のサブツリーと C7 のケースでは `shouldComponentUpdate` のおかげで、`render` メソッドの呼び出しや React 要素の比較処理すらスキップすることができました。
 
-## 例
+## 例 {#examples}
 
 コンポーネントが変化するのが `props.color` または `state.count` 変数が変化した時だけだとしたら、`shouldComponentUpdate` では以下のようなチェックを行えます。
 
@@ -352,7 +352,7 @@ class WordAdder extends React.Component {
 
 問題は `PureComponent` が `this.props.words` の古い値と新しい値を単純に比較していることにあります。上記のコードでは `WordAdder` の handleClick メソッド内で `words` 配列の内容を破壊的に変更してしまうので、`this.props.words` の新旧の値は、たとえ配列内の実際の単語が変更されていたとしても、比較の結果同じだとみなしてしまうのです。そのため `ListOfWords` はレンダーすべき新しい単語が追加されているにも関わらず、更新されません。
 
-## データを変更しないことの効果
+## データを変更しないことの効果 {#the-power-of-not-mutating-data}
 
 この問題を避ける最も単純な方法は、props や state として使用する値の破壊的変更を避けることです。例えば、上記の `handleClick` メソッドは `concat` を使って以下のように書き換えることができます：
 
