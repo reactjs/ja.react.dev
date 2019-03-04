@@ -46,11 +46,11 @@ ReactDOM.render(
 
 この例では `isLoggedIn` プロパティの値によって異なる挨拶メッセージを表示します。
 
-### 要素変数
+### 要素変数 {#element-variables}
 
 要素を保持しておくために変数を使うことができます。これは、出力の他の部分を変えずにコンポーネントの一部を条件付きでレンダーしたい時に役立ちます。
 
-ログアウトとログインボタンを表す以下の2つの新しいコンポーネントを考えましょう：
+ログアウトとログインボタンを表す以下の 2 つの新しいコンポーネントを考えましょう：
 
 ```js
 function LoginButton(props) {
@@ -120,7 +120,7 @@ ReactDOM.render(
 
 変数を宣言して `if` 文を使用することはコンポーネントを条件的にレンダーするなかなか良い方法ではありますが、より短い構文を使いたくなる時もあります。以下で述べるように、JSX でインラインで条件を記述する方法がいくつか存在します。
 
-### 論理 && 演算子によるインライン If
+### 論理 && 演算子によるインライン If {#inline-if-with-logical--operator}
 
 中括弧で囲むことで、[JSX に任意の式を埋め込む](/docs/introducing-jsx.html#embedding-expressions-in-jsx)ことができます。これには JavaScript の論理 `&&` 演算子も含まれます。これは条件に応じて要素を含めたいというときに便利です。
 
@@ -152,7 +152,7 @@ ReactDOM.render(
 
 従って、条件部分が `true` であれば、`&&` の後に書かれた要素が出力に現れます。もし `false` でれば、React はそれを無視して飛ばします。
 
-### 条件演算子によるインライン If-Else
+### 条件演算子によるインライン If-Else {#inline-if-else-with-conditional-operator}
 
 条件的に要素をレンダリングするもうひとつの方法は JavaScript の [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) 条件演算子を利用することです。
 
@@ -188,7 +188,7 @@ render() {
 
 普通の JavaScript を書くときと同様、あなたとチームが読みやすいと思えるものに合わせて、適切なスタイルを選択してください。条件が複雑になりすぎたら、[コンポーネントを抽出](/docs/components-and-props.html#extracting-components)するべきタイミングかもしれない、ということにも留意してください。
 
-### コンポーネントのレンダーを防ぐ
+### コンポーネントのレンダーを防ぐ {#preventing-component-from-rendering}
 
 稀なケースですが、他のコンポーネントによってレンダーされているにも関わらず、コンポーネントが自分のことを隠したい、ということがあるかもしれません。その場合はレンダー出力の代わりに `null` を返すようにしてください。
 
