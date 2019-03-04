@@ -126,13 +126,13 @@
 - title: Contributing
   items:
   - id: how-to-contribute
-    title: How to Contribute
+    title: 貢献の方法
   - id: codebase-overview
     title: Codebase Overview
   - id: implementation-notes
     title: Implementation Notes
   - id: design-principles
-    title: Design Principles
+    title: 設計原則
 - title: FAQ
   items:
     - id: faq-ajax
