@@ -54,7 +54,7 @@ permalink: docs/context.html
 
 最終的に `Avatar` コンポーネントだけがプロパティを必要としているのであれば、多くの階層を通して `user` と `avatarSize` プロパティを下に渡すことは冗長に感じるかもしれません。また、`Avatar` コンポーネントが上のコンポーネントから追加のプロパティを必要とする時はいつでも、全ての間の階層にも追加しないといけないことも厄介です。
 
-**コンテクストを使用せずに**この問題を解決する 1 つの手法は、[`Avatar` コンポーネント自身を渡す](/docs/composition-vs-inheritance.html#containment)ようにするというもので、そうすれば間のコンポーネントは `user` プロパティを知る必要はありません。
+**コンテクストを使用せずに**この問題を解決する 1 つの手法は、[`Avatar` コンポーネント自身を渡す](/docs/composition-vs-inheritance.html#containment)ようにするというもので、そうすれば間のコンポーネントは `user` や `avatarSize` プロパティを知る必要はありません。
 
 ```js
 function Page(props) {
@@ -68,7 +68,7 @@ function Page(props) {
 }
 
 // これで以下のようになります。
-<Page user={user} />
+<Page user={user} avatarSize={avatarSize} />
 // ... Page コンポーネントは以下をレンダー ...
 <PageLayout userLink={...} />
 // ... PageLayout コンポーネントは以下をレンダー ...
