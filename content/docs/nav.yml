@@ -44,7 +44,7 @@
     - id: context
       title: コンテクスト
     - id: error-boundaries
-      title: Error Boundaries
+      title: Error Boundary
     - id: forwarding-refs
       title: ref のフォワーディング
     - id: fragments
