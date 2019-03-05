@@ -454,7 +454,7 @@ Square がクリックされると、Board から渡された `onClick` 関数�
 1. 組み込みの DOM コンポーネントである `<button>` に `onClick` プロパティが設定されているため React がクリックに対するイベントリスナを設定します。
 2. ボタンがクリックされると、React は Square の `render()` メソッド内に定義されている `onClick` のイベントハンドラをコールします。
 3. このイベントハンドラが `this.props.onClick()` をコールします。Square の `onClick` プロパティは Board から渡されているものです。
-4. Board は Square に `onClick={() => this.handleClick(i)}` を渡していたので、Squre はクリックされたときに `this.handleClick(i)` を呼び出します。
+4. Board は Square に `onClick={() => this.handleClick(i)}` を渡していたので、Square はクリックされたときに `this.handleClick(i)` を呼び出します。
 5. まだ `handleClick()` は定義していないので、コードがクラッシュします。Square をクリックすると、 "this.handleClick is not a function" といった赤いエラー画面が表示されるはずです。
 
 >補足
