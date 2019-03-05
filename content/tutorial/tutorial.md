@@ -31,13 +31,7 @@ redirect_from:
 
 このチュートリアルから価値を得るために全セクションを一度に終わらせる必要はありません。セクション 1 つや 2 つ分でも構いませんので、できるところまで進めましょう。
 
-<<<<<<< HEAD
-チュートリアルを進めながらコードをコピー・ペーストしても構いませんが、手でタイプすることをお勧めします。そうすれば手が動きを覚えるとともに、理解も進むようになるでしょう。
-
 ### これから作るもの {#what-are-we-building}
-=======
-### What Are We Building? {#what-are-we-building}
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 このチュートリアルでは、インタラクティブな三目並べゲーム (tic-tac-toe) の作り方をお見せします。
 
@@ -192,13 +186,9 @@ Square（マス目）コンポーネントは 1 つの `<button>` をレンダ�
 
 ### データを Props 経由で渡す {#passing-data-through-props}
 
-<<<<<<< HEAD
 では手始めに、Board コンポーネントから Square コンポーネントにデータを渡してみましょう。
-=======
-To get our feet wet, let's try passing some data from our Board component to our Square component.
 
-We strongly recommend typing code by hand as you're working through the tutorial and not using copy/paste. This will help you develop muscle memory and a stronger understanding.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+チュートリアルを進めるにあたって、コードをコピー・ペーストしないで、手でタイプすることをお勧めします。そうすれば手が動きを覚えるとともに、理解も進むようになるでしょう。
 
 Board の `renderSquare` メソッド内で、props として `value` という名前の値を Square に渡すようにコードを変更します：
 
@@ -252,11 +242,7 @@ class Square extends React.Component {
 }
 ```
 
-<<<<<<< HEAD
 ここで Square をクリックすると、ブラウザでアラートが表示されるはずです。
-=======
-If you click on a Square now, you should see an alert in your browser.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 >補足
 >
@@ -274,11 +260,7 @@ If you click on a Square now, you should see an alert in your browser.
 >}
 >```
 >
-<<<<<<< HEAD
-> `onClick={() => alert('click')}` と記載したときに `onClick` プロパティに渡しているのは*関数*であることに注意してください。この関数はクリックされるまで実行されません。`() =>` を書くのを忘れて `onClick={alert('click')}` と書くのはよくある間違いであり、こうするとコンポーネントが再レンダーされるたびにアラートが表示されてしまいます。
-=======
->Notice how with `onClick={() => alert('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={alert('click')}` is a common mistake, and would fire the alert every time the component re-renders.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+> `onClick={() => alert('click')}` と記載したときに `onClick` プロパティに渡しているのは*関数*であることに注意してください。React はクリックされるまでこの関数を実行しません。`() =>` を書くのを忘れて `onClick={alert('click')}` と書くのはよくある間違いであり、こうするとコンポーネントが再レンダーされるたびにアラートが表示されてしまいます。
 
 次のステップとして、Square コンポーネントに自分がクリックされたことを「覚えさせ」て、"X" マークでマスを埋めるようにさせます。コンポーネントが何かを「覚える」ためには、**state** というものを使います。
 
@@ -311,15 +293,9 @@ class Square extends React.Component {
 
 次に Square の `render` メソッドを書き換えて、クリックされた時に state の現在値を表示するようにします。
 
-<<<<<<< HEAD
 * `<button>` タグ内の `this.props.value` を `this.state.value` に置き換える。
-* `() => alert()` というイベントハンドラを `() => this.setState({value: 'X'})` に書き換える。
+* `onClick={...}` というイベントハンドラを `onClick={() => this.setState({value: 'X'})}` に書き換える。
 * 読みやすくするため、`className` と `onClick` の両プロパティをそれぞれ独立した行に配置する。
-=======
-* Replace `this.props.value` with `this.state.value` inside the `<button>` tag.
-* Replace the `onClick={...}` event handler with `onClick={() => this.setState({value: 'X'})}`.
-* Put the `className` and `onClick` props on separate lines for better readability.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 これらの書き換えの後、Square の `render` メソッドから返される `<button>` タグは以下のようになります。
 
@@ -380,13 +356,9 @@ Board が各 Square に、現時点の state がどうなっているか問い�
 
 **複数の子要素からデータを集めたい、または 2 つの子コンポーネントに互いにやりとりさせたいと思った場合は、代わりに親コンポーネント内で共有の state を宣言する必要があります。親コンポーネントは props を使うことで子に情報を返すことができます。こうすることで、子コンポーネントが兄弟同士、あるいは親との間で常に同期されるようになります。**
 
-<<<<<<< HEAD
-このように state を親コンポーネントにリフトアップ (lift up) することは React コンポーネントのリファクタリングでよくあることですので、この機会に挑戦してみましょう。Board にコンストラクタを追加し、初期 state をセットして 9 個の null 値を持つ配列が含まれるようにします。この 9 個の null が 9 個のマス目に対応します。
-=======
-Lifting state into a parent component is common when React components are refactored -- let's take this opportunity to try it out.
+このように state を親コンポーネントにリフトアップ (lift up) することは React コンポーネントのリファクタリングでよくあることですので、この機会に挑戦してみましょう。
 
-Add a constructor to the Board and set the Board's initial state to contain an array of 9 nulls corresponding to the 9 squares:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+Board にコンストラクタを追加し、初期 state に 9 個の null が 9 個のマス目に対応する 9 個の null 値をセットします。
 
 ```javascript{2-7}
 class Board extends React.Component {
@@ -402,11 +374,7 @@ class Board extends React.Component {
   }
 ```
 
-<<<<<<< HEAD
-後で盤面が埋まっていくと、このような見た目になるでしょう：
-=======
-When we fill the board in later, the `this.state.squares` array will look something like this:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+`this.state.squares` が埋まっていくと、このような見た目になるでしょう：
 
 ```javascript
 [
@@ -440,11 +408,8 @@ Board の `renderSquare` メソッドは現在以下のようになっていま�
 
 次に、マス目がクリックされた時の挙動を変更しましょう。現在、どのマス目に何が入っているのかを管理しているのは Board です。Square が Board の state を更新できるようにする必要があります。state はそれを定義しているコンポーネント内でプライベートなものですので、Square から Board の state を直接書き換えることはできません。
 
-<<<<<<< HEAD
-Board の state のプライベート性を保護するため、Board から Square に関数を渡すことにします。この関数はマス目がクリックされた時に呼び出されます。`renderSquare` メソッドを以下のように書き換えましょう：
-=======
-Instead, we'll pass down a function from the Board to the Square, and we'll have Square call that function when a square is clicked. We'll change the `renderSquare` method in Board to:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+代わりに、 Board から Square に関数を渡し、マス目がクリックされた時に呼び出されるようにします。
+`renderSquare` メソッドを以下のように書き換えましょう：
 
 ```javascript{5}
   renderSquare(i) {
@@ -486,27 +451,15 @@ class Square extends React.Component {
 
 Square がクリックされると、Board から渡された `onClick` 関数がコールされます。どのようになっているのかおさらいしましょう。
 
-<<<<<<< HEAD
 1. 組み込みの DOM コンポーネントである `<button>` に `onClick` プロパティが設定されているため React がクリックに対するイベントリスナを設定します。
 2. ボタンがクリックされると、React は Square の `render()` メソッド内に定義されている `onClick` のイベントハンドラをコールします。
 3. このイベントハンドラが `this.props.onClick()` をコールします。Square の `onClick` プロパティは Board から渡されているものです。
 4. Board は Square に `onClick={() => this.handleClick(i)}` を渡していたので、Squre はクリックされたときに `this.handleClick(i)` を呼び出します。
-5. まだ `handleClick()` は定義していないので、コードがクラッシュします。
-=======
-1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
-2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
-3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
-4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls `this.handleClick(i)` when clicked.
-5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+5. まだ `handleClick()` は定義していないので、コードがクラッシュします。Square をクリックすると、 "this.handleClick is not a function" といった赤いエラー画面が表示されるはずです。
 
 >補足
 >
-<<<<<<< HEAD
-> DOM 要素である `<button>` は組み込みコンポーネントなので、`onClick` 属性は React にとって特別な意味を持っています。Square のようなカスタムコンポーネントでは、名前の付け方はあなたの自由です。Square の `onClick` プロパティや Board の `handleClick` メソッドについては別の名前を付けたとしても構いません。しかし React では、イベントを表す props には `on[Event]` という名前、イベントを処理するメソッドには `handle[Event]` という名前を付けるのが慣習となっています。
-=======
->The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. We could give any name to the Square's `onClick` prop or Board's `handleClick` method, and the code would work the same. In React, it's conventional to use `on[Event]` names for props which represent events and `handle[Event]` for the methods which handle the events.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+> DOM 要素である `<button>` は組み込みコンポーネントなので、`onClick` 属性は React にとって特別な意味を持っています。Square のようなカスタムコンポーネントでは、名前の付け方はあなたの自由です。Square の `onClick` プロパティや Board の `handleClick` メソッドについては別の名前を付けたとしても同じように動作します。React では、イベントを表す props には `on[Event]` という名前、イベントを処理するメソッドには `handle[Event]` という名前を付けるのが慣習となっています。
 
 まだ `handleClick` を定義していないので、マス目をクリックしようとするとエラーが出るはずです。この `handleClick` を Board クラスに加えましょう。
 
@@ -563,11 +516,7 @@ class Board extends React.Component {
 
 **[この時点でのコード全体を見る](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
 
-<<<<<<< HEAD
 これらの変更を加えれば、再びマス目をクリックすると値が書き込まれるようになります。しかし今や、状態は個々の Square コンポーネントではなく Board コンポーネント内に保存されています。Board の state が変更になると、個々の Square コンポーネントも自動的に再レンダーされます。全てのマス目の状態を Board コンポーネント内で保持するようにしたことで、この後でどちらが勝者か判定できるようになります。
-=======
-After these changes, we're again able to click on the Squares to fill them, the same as we had before. However, now the state is stored in the Board component instead of the individual Square components. When the Board's state changes, the Square components re-render automatically. Keeping the state of all squares in the Board component will allow it to determine the winner in the future.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 Square コンポーネントはもう自分で state を管理しないようになったので、Board コンポーネントから値を受け取って、クリックされた時はそのことを Board コンポーネントに伝えるだけになりました。React 用語でいうと、Square コンポーネントは**制御されたコンポーネント** (controlled component) になったということです。Board が Square コンポーネントを全面的に制御しています。
 
@@ -609,11 +558,7 @@ var newPlayer = Object.assign({}, player, {score: 2});
 
 イミュータブルなオブジェクトでの変更の検出はとても簡単です。参照しているイミュータブルなオブジェクトが前と別のものであれば、変更があったということです。
 
-<<<<<<< HEAD
 #### React の再レンダータイミングの決定 {#determining-when-to-re-render-in-react}
-=======
-#### Determining When to Re-Render in React {#determining-when-to-re-render-in-react}
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 イミュータビリティの主な利点は、React で *pure component* を構築しやすくなるということです。イミュータブルなデータは変更があったかどうか簡単に分かるため、コンポーネントをいつ再レンダーすべきなのか決定しやすくなります。
 
@@ -643,11 +588,7 @@ function Square(props) {
 
 >補足
 >
-<<<<<<< HEAD
-> Square を関数コンポーネントに変えた際、`onClick={() => this.props.onClick()}` をより短い `onClick={props.onClick}` に書き換えました（*両側*でカッコが消えています）。クラスでは正しい `this` の値にアクセスするためにアロー関数を使いましたが、関数コンポーネントでは `this` について心配する必要はありません。
-=======
->When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides).
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+> Square を関数コンポーネントに変えた際、`onClick={() => this.props.onClick()}` をより短い `onClick={props.onClick}` に書き換えました（*両側*でカッコが消えています）。
 
 ### 手番の処理 {#taking-turns}
 
@@ -679,13 +620,9 @@ class Board extends React.Component {
   }
 ```
 
-<<<<<<< HEAD
-この変更により、"X" 側と "O" 側が交互に着手できるようになります。Board の `render` 内にある "status" テキストも変更して、どちらのプレーヤの手番なのかを表示するようにしましょう。
-=======
-With this change, "X"s and "O"s can take turns. Try it!
+この変更により、"X" 側と "O" 側が交互に着手できるようになります。試してみてください！
 
-Let's also change the "status" text in Board's `render` so that it displays which player has the next turn:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+Board の `render` 内にある "status" テキストも変更して、どちらのプレーヤの手番なのかを表示するようにしましょう。
 
 ```javascript{2}
   render() {
@@ -756,11 +693,7 @@ class Board extends React.Component {
 
 ### ゲーム勝者の判定 {#declaring-a-winner}
 
-<<<<<<< HEAD
-どちらの手番なのかを表示できたので、次にやることはゲームが決着して次の手番がなくなった時にそれを表示することです。ファイル末尾に以下のヘルパー関数を加えることで、勝者の判定ができるようになります。
-=======
-Now that we show which player's turn is next, we should also show when the game is won and there are no more turns to make. Copy this helper function and paste it at the end of the file:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+どちらの手番なのかを表示できたので、次にやることはゲームが決着して次の手番がなくなった時にそれを表示することです。ファイル末尾に以下のヘルパー関数をコピー・アンド・ペーストすることで、勝者の判定ができるようになります。
 
 ```javascript
 function calculateWinner(squares) {
@@ -784,13 +717,9 @@ function calculateWinner(squares) {
 }
 ```
 
-<<<<<<< HEAD
-Board の `render` 関数内で `calculateWinner(squares)` を呼び出して、いずれかのプレーヤが勝利したかどうか判定します。決着がついた場合は "Winner: X" あるいは "Winner: O" のようなテキストを表示するとよいでしょう。Board の `render` 関数の `status` 宣言を以下のコードで置き換えましょう。
-=======
-Given an array of 9 squares, this function will check for a winner and return `'X'`, `'O'`, or `null` as appropriate.
+9 つの square の配列が与えられると、この関数は勝者を確認し、必要に応じて `'X'` か `'O'`、 あるいは `null` を返します。
 
-We will call `calculateWinner(squares)` in the Board's `render` function to check if a player has won. If a player has won, we can display text such as "Winner: X" or "Winner: O". We'll replace the `status` declaration in Board's `render` function with this code:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+Board の `render` 関数内で `calculateWinner(squares)` を呼び出して、いずれかのプレーヤが勝利したかどうか判定します。決着がついた場合は "Winner: X" あるいは "Winner: O" のようなテキストを表示するとよいでしょう。Board の `render` 関数の `status` 宣言を以下のコードで置き換えましょう。
 
 ```javascript{2-8}
   render() {
