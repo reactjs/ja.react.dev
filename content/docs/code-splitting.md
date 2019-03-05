@@ -180,9 +180,9 @@ function MyComponent() {
 }
 ```
 
-### Error boundaries {#error-boundaries}
+### Error Boundary {#error-boundaries}
 
-もし他のモジュールがロードに失敗した場合（例えば、ネットワークの障害など）、エラーが発生します。その際には [Error Boundaries](/docs/error-boundaries.html) を使用することによってこれらのエラーをハンドリングし、エラーの回復やユーザ体験の向上に繋げることができます。Error Boundary を作成したら、遅延コンポーネントより上位のあらゆる場所で使用でき、ネットワークエラーが発生した際にエラー内容を表示することができます。
+もし他のモジュールがロードに失敗した場合（例えば、ネットワークの障害など）、エラーが発生します。その際には [error boundary](/docs/error-boundaries.html) を使用することによってこれらのエラーをハンドリングし、エラーの回復やユーザ体験の向上に繋げることができます。error boundary を作成したら、遅延コンポーネントより上位のあらゆる場所で使用でき、ネットワークエラーが発生した際にエラー内容を表示することができます。
 
 ```js
 import MyErrorBoundary from './MyErrorBoundary';
