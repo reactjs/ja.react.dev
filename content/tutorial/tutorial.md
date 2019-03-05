@@ -408,7 +408,7 @@ Board の `renderSquare` メソッドは現在以下のようになっていま�
 
 次に、マス目がクリックされた時の挙動を変更しましょう。現在、どのマス目に何が入っているのかを管理しているのは Board です。Square が Board の state を更新できるようにする必要があります。state はそれを定義しているコンポーネント内でプライベートなものですので、Square から Board の state を直接書き換えることはできません。
 
-代わりに、 Board から Square に関数を渡し、マス目がクリックされた時に呼び出されるようにします。
+代わりに、Board から Square に関数を渡し、マス目がクリックされた時に呼び出されるようにします。
 `renderSquare` メソッドを以下のように書き換えましょう：
 
 ```javascript{5}
@@ -455,7 +455,7 @@ Square がクリックされると、Board から渡された `onClick` 関数�
 2. ボタンがクリックされると、React は Square の `render()` メソッド内に定義されている `onClick` のイベントハンドラをコールします。
 3. このイベントハンドラが `this.props.onClick()` をコールします。Square の `onClick` プロパティは Board から渡されているものです。
 4. Board は Square に `onClick={() => this.handleClick(i)}` を渡していたので、Square はクリックされたときに `this.handleClick(i)` を呼び出します。
-5. まだ `handleClick()` は定義していないので、コードがクラッシュします。Square をクリックすると、 "this.handleClick is not a function" といった赤いエラー画面が表示されるはずです。
+5. まだ `handleClick()` は定義していないので、コードがクラッシュします。Square をクリックすると、"this.handleClick is not a function" といった赤いエラー画面が表示されるはずです。
 
 >補足
 >
@@ -717,7 +717,7 @@ function calculateWinner(squares) {
 }
 ```
 
-9 つの square の配列が与えられると、この関数は勝者を確認し、必要に応じて `'X'` か `'O'`、 あるいは `null` を返します。
+9 つの square の配列が与えられると、この関数は勝者を確認し、必要に応じて `'X'` か `'O'`、あるいは `null` を返します。
 
 Board の `render` 関数内で `calculateWinner(squares)` を呼び出して、いずれかのプレーヤが勝利したかどうか判定します。決着がついた場合は "Winner: X" あるいは "Winner: O" のようなテキストを表示するとよいでしょう。Board の `render` 関数の `status` 宣言を以下のコードで置き換えましょう。
 
