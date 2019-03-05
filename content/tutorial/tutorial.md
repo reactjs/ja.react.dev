@@ -716,7 +716,7 @@ function calculateWinner(squares) {
 }
 ```
 
-9 つの square の配列が与えられると、この関数は勝者がいるか適切に確認し、 `'X'` か `'O'`、あるいは `null` を返します。
+9 つの square の配列が与えられると、この関数は勝者がいるか適切に確認し、`'X'` か `'O'`、あるいは `null` を返します。
 
 Board の `render` 関数内で `calculateWinner(squares)` を呼び出して、いずれかのプレーヤが勝利したかどうか判定します。決着がついた場合は "Winner: X" あるいは "Winner: O" のようなテキストを表示するとよいでしょう。Board の `render` 関数の `status` 宣言を以下のコードで置き換えましょう。
 
