@@ -374,7 +374,7 @@ class Board extends React.Component {
   }
 ```
 
-`this.state.squares` が埋まっていくと、このような見た目になるでしょう：
+後で盤面が埋まっていくと、`this.state.squares` 配列はこのような見た目になるでしょう：
 
 ```javascript
 [
