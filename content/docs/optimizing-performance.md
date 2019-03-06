@@ -390,7 +390,7 @@ function updateColorMap(colormap) {
 }
 ```
 
-これで、`updateColorMap` は古いオブジェクトを破壊的変更するのではなく新しいオブジェクトを返すようになります。`Object.assign` は ES6 からの機能であり、ポリフィルが必要です（訳注：ブラウザや処理系が ES6 に未対応の場合）。
+これで、`updateColorMap` は古いオブジェクトをミューテートするのではなく新しいオブジェクトを返すようになります。`Object.assign` は ES6 からの機能であり、ポリフィルが必要です（訳注：ブラウザや処理系が ES6 に未対応の場合）。
 
 同様に、オブジェクトに対してもミューテートをしない更新を容易に記述できるようにする[オブジェクトのスプレッドプロパティ構文](https://github.com/sebmarkbage/ecmascript-rest-spread)を JavaScript に追加することが提案されています（訳注：[ECMAScript 2018](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Spread_syntax) で正式採用されました）：
 
