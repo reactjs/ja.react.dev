@@ -312,7 +312,7 @@ class CounterButton extends React.PureComponent {
 }
 ```
 
-ほとんどの場合、自分で `shouldComponentUpdate` を記述する代わりに `React.PureComponent` を使うことができます。もっとも、浅い比較を行うだけですので、浅い比較では検出できない形で props や state が破壊的変更されている可能性がある場合には使えません。
+ほとんどの場合、自分で `shouldComponentUpdate` を記述する代わりに `React.PureComponent` を使うことができます。もっとも、浅い比較を行うだけですので、浅い比較では検出できない形で props や state がミューテート（mutate; 書き換え）されている可能性がある場合には使えません。
 
 この事はより複雑なデータ構造の場合には問題となります。例えば、カンマ区切りで単語をレンダーする `ListOfWords` コンポーネントと、ボタンをクリックしてリストに単語を追加できる親コンポーネント `WordAdder` が必要だとして、以下のコードは正しく動作しません。
 
