@@ -110,7 +110,11 @@ React コンポーネントを HTML ページの一箇所だけではなくい�
 
 ### ヒント：本番環境用に JavaScript を圧縮する {#tip-minify-javascript-for-production}
 
+<<<<<<< HEAD
 ウェブサイトを本番環境にデプロイするにあたって、圧縮していない JavaScript はページの速度を著しく落としてしまうということに配慮してください。
+=======
+Before deploying your website to production, be mindful that unminified JavaScript can significantly slow down the page for your users.
+>>>>>>> b50fe64c1e88489022eddf2cfff0995778827f84
 
 自分のスクリプトの圧縮が完了していて、デプロイ後の HTML が `production.min.js` で終わる React スクリプトを読み込んでいることが検証できていれば、**あなたのウェブサイトは本番環境にリリースする準備ができています**。
 
