@@ -40,7 +40,7 @@ React は JavaScript ライブラリなので、JavaScript 言語の基本的な
 
 >補足
 >
->このガイドでは時折比較的新しい JavaScript の構文を例の中で使用しています。ここ数年 JavaScript を使った仕事をしていこなかったという場合は、[この 3 点](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c)を理解すればだいたい理解したことになるでしょう。
+>このガイドでは時折比較的新しい JavaScript の構文を例の中で使用しています。ここ数年 JavaScript を使った仕事をしていなかったという場合は、[この 3 点](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c)を理解すればだいたい理解したことになるでしょう。
 
 ## 始めましょう！ {#lets-get-started}
 
