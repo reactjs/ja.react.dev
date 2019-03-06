@@ -354,7 +354,7 @@ class WordAdder extends React.Component {
 
 ## データを変更しないことの効果 {#the-power-of-not-mutating-data}
 
-この問題を避ける最も単純な方法は、props や state として使用する値の破壊的変更を避けることです。例えば、上記の `handleClick` メソッドは `concat` を使って以下のように書き換えることができます：
+この問題を避ける最も単純な方法は、props や state として使用する値のミューテートを避けることです。例えば、上記の `handleClick` メソッドは `concat` を使って以下のように書き換えることができます：
 
 ```javascript
 handleClick() {
