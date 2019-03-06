@@ -382,7 +382,7 @@ function updateColorMap(colormap) {
 }
 ```
 
-この処理を、元オブジェクトを破壊的変更をせずに実装するために、[Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) を使用できます。
+この処理を、元オブジェクトをミューテートせずに実装するために、[Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) を使用できます。
 
 ```js
 function updateColorMap(colormap) {
