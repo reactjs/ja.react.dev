@@ -350,7 +350,7 @@ class WordAdder extends React.Component {
 }
 ```
 
-問題は `PureComponent` が `this.props.words` の古い値と新しい値を単純に比較していることにあります。上記のコードでは `WordAdder` の handleClick メソッド内で `words` 配列の内容を破壊的に変更してしまうので、`this.props.words` の新旧の値は、たとえ配列内の実際の単語が変更されていたとしても、比較の結果同じだとみなしてしまうのです。そのため `ListOfWords` はレンダーすべき新しい単語が追加されているにも関わらず、更新されません。
+問題は `PureComponent` が `this.props.words` の古い値と新しい値を単純に比較していることにあります。上記のコードでは `WordAdder` の handleClick メソッド内で `words` 配列の内容をミューテートしてしまうので、`this.props.words` の新旧の値は、たとえ配列内の実際の単語が変更されていたとしても、比較の結果同じだとみなしてしまうのです。そのため `ListOfWords` はレンダーすべき新しい単語が追加されているにも関わらず、更新されません。
 
 ## データを変更しないことの効果 {#the-power-of-not-mutating-data}
 
