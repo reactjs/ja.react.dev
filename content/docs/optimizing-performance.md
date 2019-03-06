@@ -160,7 +160,6 @@ new webpack.optimize.UglifyJsPlugin()
 ## Chrome のパフォーマンスタブでコンポーネントをプロファイルする {#profiling-components-with-the-chrome-performance-tab}
 
 **開発**モードでは、対応するブラウザのパフォーマンス分析ツールで、コンポーネントのマウント・更新・アンマウントの様子を以下のように視覚化することができます。
-<br/><br/>
 
 <center><img src="../images/blog/react-perf-chrome-timeline.png" style="max-width:100%" alt="React components in Chrome timeline" /></center>
 
@@ -218,7 +217,6 @@ React はレンダーされた UI の内部表現を構築し、維持します�
 - [Chrome ブラウザ拡張](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
 - [Firefox ブラウザ拡張](https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/)
 - [スタンドアロン Node パッケージ](https://www.npmjs.com/package/react-devtools)
-
 
 開発者コンソールの **React** タブで **Highlight Updates** オプションを選択します：
 
@@ -420,7 +418,6 @@ x === y; // true
 ```
 
 ここで `y` は編集されたにも関わらず、`x` と同じオブジェクトを参照しているため、上記の比較は `true` を返します。これと似たコードを immutable.js で書くとこうなります：
-
 
 ```javascript
 const SomeRecord = Immutable.Record({ foo: null });
