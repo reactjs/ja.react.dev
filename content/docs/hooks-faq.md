@@ -1,13 +1,13 @@
 ---
 id: hooks-faq
-title: Hooks FAQ
+title: フックに関するよくある質問
 permalink: docs/hooks-faq.html
 prev: hooks-reference.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*フック (hook)* は React 16.8 で追加された新機能です。state などの React の機能を、クラスを書かずに使えるようになります。
 
-This page answers some of the frequently asked questions about [Hooks](/docs/hooks-overview.html).
+このページでは[フック](/docs/hooks-overview.html)に関するよくある質問にいくつかお答えします。
 
 <!--
   if you ever need to regenerate this, this snippet in the devtools console might help:
@@ -18,102 +18,102 @@ This page answers some of the frequently asked questions about [Hooks](/docs/hoo
   ).join('\n')
 -->
 
-* **[Adoption Strategy](#adoption-strategy)**
-  * [Which versions of React include Hooks?](#which-versions-of-react-include-hooks)
-  * [Do I need to rewrite all my class components?](#do-i-need-to-rewrite-all-my-class-components)
-  * [What can I do with Hooks that I couldn't with classes?](#what-can-i-do-with-hooks-that-i-couldnt-with-classes)
-  * [How much of my React knowledge stays relevant?](#how-much-of-my-react-knowledge-stays-relevant)
-  * [Should I use Hooks, classes, or a mix of both?](#should-i-use-hooks-classes-or-a-mix-of-both)
-  * [Do Hooks cover all use cases for classes?](#do-hooks-cover-all-use-cases-for-classes)
-  * [Do Hooks replace render props and higher-order components?](#do-hooks-replace-render-props-and-higher-order-components)
-  * [What do Hooks mean for popular APIs like Redux connect() and React Router?](#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router)
-  * [Do Hooks work with static typing?](#do-hooks-work-with-static-typing)
-  * [How to test components that use Hooks?](#how-to-test-components-that-use-hooks)
-  * [What exactly do the lint rules enforce?](#what-exactly-do-the-lint-rules-enforce)
-* **[From Classes to Hooks](#from-classes-to-hooks)**
-  * [How do lifecycle methods correspond to Hooks?](#how-do-lifecycle-methods-correspond-to-hooks)
-  * [Is there something like instance variables?](#is-there-something-like-instance-variables)
-  * [Should I use one or many state variables?](#should-i-use-one-or-many-state-variables)
-  * [Can I run an effect only on updates?](#can-i-run-an-effect-only-on-updates)
-  * [How to get the previous props or state?](#how-to-get-the-previous-props-or-state)
-  * [How do I implement getDerivedStateFromProps?](#how-do-i-implement-getderivedstatefromprops)
-  * [Is there something like forceUpdate?](#is-there-something-like-forceupdate)
-  * [Can I make a ref to a function component?](#can-i-make-a-ref-to-a-function-component)
-  * [What does const [thing, setThing] = useState() mean?](#what-does-const-thing-setthing--usestate-mean)
-* **[Performance Optimizations](#performance-optimizations)**
-  * [Can I skip an effect on updates?](#can-i-skip-an-effect-on-updates)
-  * [How do I implement shouldComponentUpdate?](#how-do-i-implement-shouldcomponentupdate)
-  * [How to memoize calculations?](#how-to-memoize-calculations)
-  * [How to create expensive objects lazily?](#how-to-create-expensive-objects-lazily)
-  * [Are Hooks slow because of creating functions in render?](#are-hooks-slow-because-of-creating-functions-in-render)
-  * [How to avoid passing callbacks down?](#how-to-avoid-passing-callbacks-down)
-  * [How to read an often-changing value from useCallback?](#how-to-read-an-often-changing-value-from-usecallback)
-* **[Under the Hood](#under-the-hood)**
-  * [How does React associate Hook calls with components?](#how-does-react-associate-hook-calls-with-components)
-  * [What is the prior art for Hooks?](#what-is-the-prior-art-for-hooks)
+* **[導入の指針](#adoption-strategy)**
+  * [フックが使える React のバージョンはどれですか？](#which-versions-of-react-include-hooks)
+  * [クラスコンポーネントを全部書き換える必要があるのですか？](#do-i-need-to-rewrite-all-my-class-components)
+  * [クラスではできず、フックでできるようになることは何ですか？](#what-can-i-do-with-hooks-that-i-couldnt-with-classes)
+  * [これまでの React の知識はどの程度使えますか？](#how-much-of-my-react-knowledge-stays-relevant)
+  * [フック、クラスのいずれを使うべきですか、あるいはその両方でしょうか？](#should-i-use-hooks-classes-or-a-mix-of-both)
+  * [フックはクラスのユースケースのすべてをカバーしていますか？](#do-hooks-cover-all-use-cases-for-classes)
+  * [フックはレンダープロップや高階コンポーネントを置き換えるものですか？](#do-hooks-replace-render-props-and-higher-order-components)
+  * [Redux の connect() や React Router といった人気の API はフックによりどうなりますか？](#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router)
+  * [フックは静的型付けと組み合わせてうまく動きますか？](#do-hooks-work-with-static-typing)
+  * [フックを使ったコンポーネントはどのようにテストするのですか？](#how-to-test-components-that-use-hooks)
+  * [Lint ルールは具体的に何を強制するのですか？](#what-exactly-do-the-lint-rules-enforce)
+* **[クラスからフックへ](#from-classes-to-hooks)**
+  * [個々のライフサイクルメソッドはフックとどのように対応するのですか？](#how-do-lifecycle-methods-correspond-to-hooks)
+  * [インスタンス変数のようなものはありますか？](#is-there-something-like-instance-variables)
+  * [state 変数は 1 つにすべきですか、たくさん使うべきですか？](#should-i-use-one-or-many-state-variables)
+  * [コンポーネントの更新の時だけ副作用を実行することは可能ですか？](#can-i-run-an-effect-only-on-updates)
+  * [前回の props や state はどうすれば取得できますか？](#how-to-get-the-previous-props-or-state)
+  * [どうすれば getDerivedStateFromProps を実装できますか？](#how-do-i-implement-getderivedstatefromprops)
+  * [forceUpdate のようなものはありますか？](#is-there-something-like-forceupdate)
+  * [関数コンポーネントへの ref を作ることは可能ですか？](#can-i-make-a-ref-to-a-function-component)
+  * [const [thing, setThing] = useState() というのはどういう意味ですか？](#what-does-const-thing-setthing--usestate-mean)
+* **[パフォーマンス最適化](#performance-optimizations)**
+  * [更新時に副作用をスキップすることはできますか？](#can-i-skip-an-effect-on-updates)
+  * [どうすれば `shouldComponentUpdate` を実装できますか？](#how-do-i-implement-shouldcomponentupdate)
+  * [計算結果のメモ化はどのように行うのですか？](#how-to-memoize-calculations)
+  * [計算量の大きいオブジェクトの作成を遅延する方法はありますか？](#how-to-create-expensive-objects-lazily)
+  * [レンダー内で関数を作るせいでフックは遅くなるのではないですか？](#are-hooks-slow-because-of-creating-functions-in-render)
+  * [どうすれば複数のコールバックを深く受け渡すのを回避できますか？](#how-to-avoid-passing-callbacks-down)
+  * [useCallback からの頻繁に変わる値を読み出す方法は？](#how-to-read-an-often-changing-value-from-usecallback)
+* **[内部の仕組み](#under-the-hood)**
+  * [React はフック呼び出しとコンポーネントとをどのように関連付けているのですか？](#how-does-react-associate-hook-calls-with-components)
+  * [フックの先行技術にはどのようなものがありますか？](#what-is-the-prior-art-for-hooks)
 
-## Adoption Strategy {#adoption-strategy}
+## 導入の指針 {#adoption-strategy}
 
-### Which versions of React include Hooks? {#which-versions-of-react-include-hooks}
+### フックが使える React のバージョンはどれですか？ {#which-versions-of-react-include-hooks}
 
-Starting with 16.8.0, React includes a stable implementation of React Hooks for:
+React バージョン 16.8.0 より、以下においてフックの安定版の実装が含まれています。
 
 * React DOM
 * React DOM Server
 * React Test Renderer
 * React Shallow Renderer
 
-Note that **to enable Hooks, all React packages need to be 16.8.0 or higher**. Hooks won't work if you forget to update, for example, React DOM.
+**フックを利用するには、すべての React のパッケージが 16.8.0 以上である必要があります**。例えば React DOM の更新を忘れた場合、フックは動作しません。
 
-React Native will fully support Hooks in its next stable release.
+React Native は次の安定版リリースでフックを全面的にサポートします。
 
-### Do I need to rewrite all my class components? {#do-i-need-to-rewrite-all-my-class-components}
+### クラスコンポーネントを全部書き換える必要があるのですか？ {#do-i-need-to-rewrite-all-my-class-components}
 
-No. There are [no plans](/docs/hooks-intro.html#gradual-adoption-strategy) to remove classes from React -- we all need to keep shipping products and can't afford rewrites. We recommend trying Hooks in new code.
+いいえ。React からクラスを削除する[予定はありません](/docs/hooks-intro.html#gradual-adoption-strategy) -- 我々はみなプロダクトを世に出し続ける必要があり、クラスを書き換えている余裕はありません。新しいコードでフックを試すことをお勧めします。
 
-### What can I do with Hooks that I couldn't with classes? {#what-can-i-do-with-hooks-that-i-couldnt-with-classes}
+### クラスではできず、フックでできるようになることは何ですか？ {#what-can-i-do-with-hooks-that-i-couldnt-with-classes}
 
-Hooks offer a powerful and expressive new way to reuse functionality between components. ["Building Your Own Hooks"](/docs/hooks-custom.html) provides a glimpse of what's possible. [This article](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889) by a React core team member dives deeper into the new capabilities unlocked by Hooks.
+フックにより、コンポーネント間で機能を再利用するためのパワフルで表現力の高い手段が得られます。["独自フックの作成"](/docs/hooks-custom.html)を読めばできることの概要が掴めるでしょう。React のコアチームメンバーによって書かれた[この記事](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889)により、フックによって新たにもたらされる可能性についての洞察が得られます。
 
-### How much of my React knowledge stays relevant? {#how-much-of-my-react-knowledge-stays-relevant}
+### これまでの React の知識はどの程度使えますか？ {#how-much-of-my-react-knowledge-stays-relevant}
 
-Hooks are a more direct way to use the React features you already know -- such as state, lifecycle, context, and refs. They don't fundamentally change how React works, and your knowledge of components, props, and top-down data flow is just as relevant.
+フックとは、state やライフサイクル、コンテクストや ref といった、あなたが既に知っている React の機能をより直接的に利用できるようにする手段です。React の動作が根本的に変わるようなものではありませんし、コンポーネントや props、トップダウンのデータの流れについての知識はこれまと同様に重要です。
 
-Hooks do have a learning curve of their own. If there's something missing in this documentation, [raise an issue](https://github.com/reactjs/reactjs.org/issues/new) and we'll try to help.
+もちろんフックにはフックなりの学習曲線があります。このドキュメントに足りないことを見つけたら [Issue を報告](https://github.com/reactjs/reactjs.org/issues/new)していただければ、お手伝いします。
 
-### Should I use Hooks, classes, or a mix of both? {#should-i-use-hooks-classes-or-a-mix-of-both}
+### フック、クラスのいずれを使うべきですか、あるいはその両方でしょうか？ {#should-i-use-hooks-classes-or-a-mix-of-both}
 
-When you're ready, we'd encourage you to start trying Hooks in new components you write. Make sure everyone on your team is on board with using them and familiar with this documentation. We don't recommend rewriting your existing classes to Hooks unless you planned to rewrite them anyway (e.g. to fix bugs).
+準備ができしだい、新しいコンポーネントでフックを試すことをお勧めします。チームの全員の準備が完了し、このドキュメントに馴染んでいることを確かめましょう。（例えばバグを直すなどの理由で）何にせよ書き換える予定の場合を除いては、既存のクラスをフックに書き換えることはお勧めしません。
 
-You can't use Hooks *inside* of a class component, but you can definitely mix classes and function components with Hooks in a single tree. Whether a component is a class or a function that uses Hooks is an implementation detail of that component. In the longer term, we expect Hooks to be the primary way people write React components.
+クラスコンポーネントの*定義内で*でフックを使うことはできませんが、クラス型コンポーネントとフックを使った関数型コンポーネントとを 1 つのコンポーネントツリー内で混在させることは全く問題ありません。あるコンポーネントがクラスで書かれているかフックを用いた関数で書かれているかというのは、そのコンポーネントの実装の詳細です。長期的には、フックが React のコンポーネントを書く際の第一選択となることを期待しています。
 
-### Do Hooks cover all use cases for classes? {#do-hooks-cover-all-use-cases-for-classes}
+### フックはクラスのユースケースのすべてをカバーしていますか？ {#do-hooks-cover-all-use-cases-for-classes}
 
-Our goal is for Hooks to cover all use cases for classes as soon as possible. There are no Hook equivalents to the uncommon `getSnapshotBeforeUpdate` and `componentDidCatch` lifecycles yet, but we plan to add them soon.
+我々の目標はできるだけ早急にフックがすべてのクラスのユースケースをカバーできるようにすることです。まだ使用頻度の低い `getSnapshotBeforeUpdate` と `componentDidCatch` についてはフックでの同等物が存在していませんが、すぐに追加する予定です。
 
-It is an early time for Hooks, and some third-party libraries might not be compatible with Hooks at the moment.
+まだフックはできたばかりですので、幾つかのサードパーティ製のライブラリは現時点でフックとの互換性がないかもしれません。
 
-### Do Hooks replace render props and higher-order components? {#do-hooks-replace-render-props-and-higher-order-components}
+### フックはレンダープロップや高階コンポーネントを置き換えるものですか？ {#do-hooks-replace-render-props-and-higher-order-components}
 
-Often, render props and higher-order components render only a single child. We think Hooks are a simpler way to serve this use case. There is still a place for both patterns (for example, a virtual scroller component might have a `renderItem` prop, or a visual container component might have its own DOM structure). But in most cases, Hooks will be sufficient and can help reduce nesting in your tree.
+レンダープロップや高階コンポーネントは、ひとつの子だけをレンダーすることがよくあります。フックはこのようなユースケースを実現するより簡単な手段だと考えています。これらのパターンには引き続き利用すべき場面があります（例えば、バーチャルスクローラーコンポーネントは `renderItem` プロパティを持つでしょうし、コンテナコンポーネントは自分自身の DOM 構造を有しているでしょう）。とはいえ大抵の場合ではフックで十分であり、フックがツリーのネストを減らすのに役立つでしょう。
 
-### What do Hooks mean for popular APIs like Redux `connect()` and React Router? {#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router}
+### Redux の `connect()` や React Router といった人気の API はフックによりどうなりますか？ {#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router}
 
-You can continue to use the exact same APIs as you always have; they'll continue to work.
+これまでと同様に全く同じ API を使用し続けることができます。それらは動作し続けます。
 
-In the future, new versions of these libraries might also export custom Hooks such as `useRedux()` or `useRouter()` that let you use the same features without needing wrapper components.
+将来的には、これらのライブラリの新バージョンが、例えば `useRedux()` や `useRouter()` のようなカスタムフックをエクスポートし、ラッパコンポーネントなしで同様の機能が使えるようになるかもしれません。
 
-### Do Hooks work with static typing? {#do-hooks-work-with-static-typing}
+### フックは静的型付けと組み合わせてうまく動きますか？ {#do-hooks-work-with-static-typing}
 
-Hooks were designed with static typing in mind. Because they're functions, they are easier to type correctly than patterns like higher-order components. The latest Flow and TypeScript React definitions include support for React Hooks.
+フックは静的型付けを念頭に設計されました。フックは関数ですので、高階コンポーネントのようなパターンと比較しても正しく型付けするのは容易です。最新版の Flow と TypeScript における React の型定義には、React のフックについてのサポートが含まれています。
 
-Importantly, custom Hooks give you the power to constrain React API if you'd like to type them more strictly in some way. React gives you the primitives, but you can combine them in different ways than what we provide out of the box.
+重要なことですが、もしより厳密に型付けしたい場合は、カスタムフックを使うことで React API に何らかの制約を加えることが可能です。React は基本部品を提供しますが、最初から提供されているものと違う方法でそれらを様々に組み合わせることができます。
 
-### How to test components that use Hooks? {#how-to-test-components-that-use-hooks}
+### フックを使ったコンポーネントはどのようにテストするのですか？ {#how-to-test-components-that-use-hooks}
 
-From React's point of view, a component using Hooks is just a regular component. If your testing solution doesn't rely on React internals, testing components with Hooks shouldn't be different from how you normally test components.
+React の観点から見れば、フックを使ったコンポーネントは単なる普通のコンポーネントです。あなたのテストソリューションが React の内部動作に依存しているのでない場合、フックを使ったコンポーネントのテストのやり方は、あなたが普段コンポーネントをテストしているやり方と変わらないはずです。
 
-For example, let's say we have this counter component:
+例えばこのようなカウンタコンポーネントがあるとしましょう：
 
 ```js
 function Example() {
@@ -132,7 +132,7 @@ function Example() {
 }
 ```
 
-We'll test it using React DOM. To make sure that the behavior matches what happens in the browser, we'll wrap the code rendering and updating it into [`ReactTestUtils.act()`](/docs/test-utils.html#act) calls:
+これを React DOM を使ってテストします。ブラウザでの挙動と確実に合致させるため、これをレンダーしたり更新したりするコードを [`ReactTestUtils.act()`](/docs/test-utils.html#act) でラップします：
 
 ```js{3,20-22,29-31}
 import React from 'react';
@@ -171,44 +171,44 @@ it('can render and update a counter', () => {
 });
 ```
 
-The calls to `act()` will also flush the effects inside of them.
+`act()` を呼び出すと内部の副作用も処理されます。
 
-If you need to test a custom Hook, you can do so by creating a component in your test, and using your Hook from it. Then you can test the component you wrote.
+カスタムフックをテストしたい場合は、テスト内でコンポーネントを作って中でそのカスタムフックを使うようにしてください。そうすればそのコンポーネントをテストできます。
 
-To reduce the boilerplate, we recommend using [`react-testing-library`](https://git.io/react-testing-library) which is designed to encourage writing tests that use your components as the end users do.
+ボイラープレートを減らすため、エンドユーザが使うのと同じ形でコンポーネント使ってテストが記述できるように設計されている、[`react-testing-library`](https://git.io/react-testing-library) の利用をお勧めします。
 
-### What exactly do the [lint rules](https://www.npmjs.com/package/eslint-plugin-react-hooks) enforce? {#what-exactly-do-the-lint-rules-enforce}
+### [Lint ルール](https://www.npmjs.com/package/eslint-plugin-react-hooks) は具体的に何を強制するのですか？ {#what-exactly-do-the-lint-rules-enforce}
 
-We provide an [ESLint plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) that enforces [rules of Hooks](/docs/hooks-rules.html) to avoid bugs. It assumes that any function starting with "`use`" and a capital letter right after it is a Hook. We recognize this heuristic isn't perfect and there may be some false positives, but without an ecosystem-wide convention there is just no way to make Hooks work well -- and longer names will discourage people from either adopting Hooks or following the convention.
+我々は [ESLint プラグイン](https://www.npmjs.com/package/eslint-plugin-react-hooks) を提供しており、これにより[フックのルール](/docs/hooks-rules.html)を強制してバグを減らすことができます。このルールは、`use` で始まり大文字が続くような名前の関数はすべてフックであると仮定します。これは不完全な推測手段であり過剰検出があるかもしれないことは認識していますが、エコシステム全体での規約なくしてはフックはうまく動作しません。また名前を長くするとフックを利用したり規約を守ったりしてくれなくなるでしょう。
 
-In particular, the rule enforces that:
+具体的には、このルールは以下を強制します：
 
-* Calls to Hooks are either inside a `PascalCase` function (assumed to be a component) or another `useSomething` function (assumed to be a custom Hook).
-* Hooks are called in the same order on every render.
+* フックの呼び出しが `PascalCase` 名の関数内（コンポーネントと見なされます）か、あるいは他の `useSomething` 式の名前の関数内（カスタムフックと見なされます）にあること。
+* すべてのレンダー間でフックが同じ順番で呼び出されること。
 
-There are a few more heuristics, and they might change over time as we fine-tune the rule to balance finding bugs with avoiding false positives.
+これ以外にも幾つかの推測を行っており、また、バグ検出と過剰検出抑制とのバランスを調整していくなかで、これらは将来的に変わる可能性があります。
 
-## From Classes to Hooks {#from-classes-to-hooks}
+## クラスからフックへ {#from-classes-to-hooks}
 
-### How do lifecycle methods correspond to Hooks? {#how-do-lifecycle-methods-correspond-to-hooks}
+### 個々のライフサイクルメソッドはフックとどのように対応するのですか？ {#how-do-lifecycle-methods-correspond-to-hooks}
 
-* `constructor`: Function components don't need a constructor. You can initialize the state in the [`useState`](/docs/hooks-reference.html#usestate) call. If computing the initial state is expensive, you can pass a function to `useState`.
+* `constructor`: 関数コンポーネントはコンストラクタを必要としません。state は [`useState`](/docs/hooks-reference.html#usestate) を呼び出すときに初期化します。初期 state の計算が高価である場合、`useState` に関数を渡すことができます。
 
-* `getDerivedStateFromProps`: Schedule an update [while rendering](#how-do-i-implement-getderivedstatefromprops) instead.
+* `getDerivedStateFromProps`: [レンダー中に](#how-do-i-implement-getderivedstatefromprops)更新をスケジューリングします。
 
-* `shouldComponentUpdate`: See `React.memo` [below](#how-do-i-implement-shouldcomponentupdate).
+* `shouldComponentUpdate`: ページ[下部の](#how-do-i-implement-shouldcomponentupdate) `React.memo` についての説明を参照してください。
 
-* `render`: This is the function component body itself.
+* `render`: これは関数コンポーネントの本体そのものです。
 
-* `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`: The [`useEffect` Hook](/docs/hooks-reference.html#useeffect) can express all combinations of these (including [less](#can-i-skip-an-effect-on-updates) [common](#can-i-run-an-effect-only-on-updates) cases).
+* `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`: これらのあらゆる組み合わせは [`useEffect` フック](/docs/hooks-reference.html#useeffect) で表現できます（[これ](#can-i-skip-an-effect-on-updates)や[これ](#can-i-run-an-effect-only-on-updates)のような頻度の低いケースも含め）。
 
-* `componentDidCatch` and `getDerivedStateFromError`: There are no Hook equivalents for these methods yet, but they will be added soon.
+* `componentDidCatch` と `getDerivedStateFromError`: フックによる同等物はまだ存在していませんが、近日中に追加される予定です。
 
-### Is there something like instance variables? {#is-there-something-like-instance-variables}
+### インスタンス変数のようなものはありますか？ {#is-there-something-like-instance-variables}
 
-Yes! The [`useRef()`](/docs/hooks-reference.html#useref) Hook isn't just for DOM refs. The "ref" object is a generic container whose `current` property is mutable and can hold any value, similar to an instance property on a class.
+はい！ [`useRef()`](/docs/hooks-reference.html#useref) フックは DOM への参照を保持するためだけにあるのではありません。"ref" オブジェクトは汎用のコンテナであり、その `current` プロパティの値は変更可能かつどのような値でも保持することができますので、クラスのインスタンス変数と同様に利用できます。
 
-You can write to it from inside `useEffect`:
+例えば `useEffect` 内から "ref" オブジェクトを書き換えることができます。
 
 ```js{2,8}
 function Timer() {
@@ -228,7 +228,7 @@ function Timer() {
 }
 ```
 
-If we just wanted to set an interval, we wouldn't need the ref (`id` could be local to the effect), but it's useful if we want to clear the interval from an event handler:
+単にインターバルをセットしたいだけであれば（`id` はこの副作用内でローカルでよいので）この ref は必要ないところですが、もしもイベントハンドラ内でインターバルをクリアしたい場合には便利です：
 
 ```js{3}
   // ...
@@ -238,11 +238,11 @@ If we just wanted to set an interval, we wouldn't need the ref (`id` could be lo
   // ...
 ```
 
-Conceptually, you can think of refs as similar to instance variables in a class. Unless you're doing [lazy initialization](#how-to-create-expensive-objects-lazily), avoid setting refs during rendering -- this can lead to surprising behavior. Instead, typically you want to modify refs in event handlers and effects.
+概念的には、ref はクラスにおけるインスタンス変数と似たものだと考えることができます。[遅延初期化](#how-to-create-expensive-objects-lazily)をしたい場合を除き、レンダーの最中に ref を書き換えることはしないでください。その代わり、通常 ref はイベントハンドラや副作用内でだけ書き換えるようにしましょう。
 
-### Should I use one or many state variables? {#should-i-use-one-or-many-state-variables}
+### state 変数は 1 つにすべきですか、たくさん使うべきですか？ {#should-i-use-one-or-many-state-variables}
 
-If you're coming from classes, you might be tempted to always call `useState()` once and put all state into a single object. You can do it if you'd like. Here is an example of a component that follows the mouse movement. We keep its position and size in the local state:
+これまでクラスを使っていたなら、`useState()` を 1 回だけ呼んで、1 つのオブジェクト内にすべての state を入れたくなるかもしれません。そうしたければそのようにすることもできます。以下はマウスの動作を追跡するコンポーネントの例です。位置やサイズの情報を 1 つのローカル state に保持しています。
 
 ```js
 function Box() {
@@ -251,7 +251,7 @@ function Box() {
 }
 ```
 
-Now let's say we want to write some logic that changes `left` and `top` when the user moves their mouse. Note how we have to merge these fields into the previous state object manually:
+ここで例えば、ユーザがマウスを動かしたときに `left` と `top` を変更したいとしましょう。この際、これらのフィールドを古い state に手動でマージしないといけないことに注意してください：
 
 ```js{4,5}
   // ...
@@ -267,11 +267,11 @@ Now let's say we want to write some logic that changes `left` and `top` when the
   // ...
 ```
 
-This is because when we update a state variable, we *replace* its value. This is different from `this.setState` in a class, which *merges* the updated fields into the object.
+これは state 変数を更新する時には変数の値が*置換*されるからです。これは更新されるフィールドがオブジェクトに*マージ*されるというクラスでの `this.setState` の挙動とは異なります。
 
-If you miss automatic merging, you can write a custom `useLegacyState` Hook that merges object state updates. However, instead **we recommend to split state into multiple state variables based on which values tend to change together.**
+自動マージがないとつらい場合は、`useLegacyState` のようなカスタムフックを書いてオブジェクト型の state の更新をマージするようにすることはできます。しかし、我々は**どの値が一緒に更新されやすいのかに基づいて、state を複数の state 変数に分割することをお勧めします。**
 
-For example, we could split our component state into `position` and `size` objects, and always replace the `position` with no need for merging:
+例えば、コンポーネントの state を `position` と `size` という複数のオブジェクトに分割して、マージを行わなくても `position` を常に新たな値で置換するようにできるでしょう。
 
 ```js{2,7}
 function Box() {
@@ -285,7 +285,7 @@ function Box() {
     // ...
 ```
 
-Separating independent state variables also has another benefit. It makes it easy to later extract some related logic into a custom Hook, for example:
+互いに独立した state 変数を分割することには別の利点もあります。そうすることで後からそのロジックをカスタムフックに抽出しやすくなるのです。例えば：
 
 ```js{2,7}
 function Box() {
@@ -303,17 +303,17 @@ function useWindowPosition() {
 }
 ```
 
-Note how we were able to move the `useState` call for the `position` state variable and the related effect into a custom Hook without changing their code. If all state was in a single object, extracting it would be more difficult.
+`position` の state 変数に対する `useState` の呼び出しとそれに関連する副作用を、それらのコードを変えずにカスタムフックに移行できたことに注意してください。もしすべての state が単一のオブジェクトに入っていたら、抽出するのはもっと困難だったでしょう。
 
-Both putting all state in a single `useState` call, and having a `useState` call per each field can work. Components tend to be most readable when you find a balance between these two extremes, and group related state into a few independent state variables. If the state logic becomes complex, we recommend [managing it with a reducer](/docs/hooks-reference.html#usereducer) or a custom Hook.
+すべての state を 1 つの `useState` 呼び出しに含めても動作しますし、フィールドごとに別に `useState` を持たせることでも動作はします。しかしこれらの両極端の間でうまくバランスを取り、少数の独立した state 変数に関連する state をグループ化することで、コンポーネントは最も読みやすくなります。state のロジックが複雑になった場合は、それを[リデューサで管理する](/docs/hooks-reference.html#usereducer)か、カスタムフックを書くことをお勧めします。
 
-### Can I run an effect only on updates? {#can-i-run-an-effect-only-on-updates}
+### コンポーネントの更新の時だけ副作用を実行することは可能ですか？ {#can-i-run-an-effect-only-on-updates}
 
-This is a rare use case. If you need it, you can [use a mutable ref](#is-there-something-like-instance-variables) to manually store a boolean value corresponding to whether you are on the first or a subsequent render, then check that flag in your effect. (If you find yourself doing this often, you could create a custom Hook for it.)
+これは稀なユースケースです。必要であれば、[変更可能な ref](#is-there-something-like-instance-variables) を使って、初回レンダー中なのか更新中なのかに対応する真偽値を手動で保持し、副作用内でその値を参照するようにすることができます。（このようなことを何度もやる場合は、そのためのカスタムフックを書くことができます）
 
-### How to get the previous props or state? {#how-to-get-the-previous-props-or-state}
+### 前回の props や state はどうすれば取得できますか？ {#how-to-get-the-previous-props-or-state}
 
-Currently, you can do it manually [with a ref](#is-there-something-like-instance-variables):
+現時点では、これは [ref を使って](#is-there-something-like-instance-variables)手動で行うことができます：
 
 ```js{6,8}
 function Counter() {
@@ -329,7 +329,7 @@ function Counter() {
 }
 ```
 
-This might be a bit convoluted but you can extract it into a custom Hook:
+上記はちょっと複雑かもしれませんが、これをカスタムフックに抽出することができます。
 
 ```js{3,7}
 function Counter() {
@@ -347,7 +347,7 @@ function usePrevious(value) {
 }
 ```
 
-Note how this would work for props, state, or any other calculated value.
+これは props でも state でも、その他計算されたどのような値に対しても動作します。
 
 ```js{5}
 function Counter() {
@@ -358,15 +358,15 @@ function Counter() {
   // ...
 ```
 
-It's possible that in the future React will provide a `usePrevious` Hook out of the box since it's a relatively common use case.
+これは比較的よくあるユースケースですので、将来的に `usePrevious` というフックを React が最初から提供するようにする可能性があります。
 
-See also [the recommended pattern for derived state](#how-do-i-implement-getderivedstatefromprops).
+[派生 state における推奨されるパターン](#how-do-i-implement-getderivedstatefromprops)についても参照してください。
 
-### How do I implement `getDerivedStateFromProps`? {#how-do-i-implement-getderivedstatefromprops}
+### どうすれば `getDerivedStateFromProps` を実装できますか？ {#how-do-i-implement-getderivedstatefromprops}
 
-While you probably [don't need it](/blog/2018/06/07/you-probably-dont-need-derived-state.html), in rare cases that you do (such as implementing a `<Transition>` component), you can update the state right during rendering. React will re-run the component with updated state immediately after exiting the first render so it wouldn't be expensive.
+おそらくそのようなものは[必要ない](/blog/2018/06/07/you-probably-dont-need-derived-state.html)のですが、これが本当に必要になる稀なケースでは（例えば `<Transition>` コンポーネントを実装するときなど）、レンダーの最中に state を更新することができます。React は最初のレンダーの終了直後に更新された state を使ってコンポーネントを再実行しますので、計算量は高くなりません。
 
-Here, we store the previous value of the `row` prop in a state variable so that we can compare:
+以下の例では、`row` プロパティの前回の値を state 変数に格納し後で比較できるようにしています：
 
 ```js
 function ScrollView({row}) {
@@ -383,13 +383,13 @@ function ScrollView({row}) {
 }
 ```
 
-This might look strange at first, but an update during rendering is exactly what `getDerivedStateFromProps` has always been like conceptually.
+これは最初は奇妙に見えるかもしれませんが、これまでも概念的には `getDerivedStateFromProps` はレンダー中に更新を行うというのがまさに目的でした。
 
-### Is there something like forceUpdate? {#is-there-something-like-forceupdate}
+### forceUpdate のようなものはありますか？ {#is-there-something-like-forceupdate}
 
-Both `useState` and `useReducer` Hooks [bail out of updates](/docs/hooks-reference.html#bailing-out-of-a-state-update) if the next value is the same as the previous one. Mutating state in place and calling `setState` will not cause a re-render.
+`useState` フックと `useReducer` フックのいずれも、前回と今回で値が同じである場合は[更新を回避](/docs/hooks-reference.html#bailing-out-of-a-state-update)します。適当な場所で state を変化させた後に `setState` を呼び出しても再レンダーは発生しません。
 
-Normally, you shouldn't mutate local state in React. However, as an escape hatch, you can use an incrementing counter to force a re-render even if the state has not changed:
+通常、React でローカル state を直接変更すべきではありません。しかし避難ハッチとして、カウンターを使って state が変化していない場合でも再レンダーを強制することが可能です。
 
 ```js
   const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
@@ -399,26 +399,26 @@ Normally, you shouldn't mutate local state in React. However, as an escape hatch
   }
 ```
 
-Try to avoid this pattern if possible.
+可能であればこのパターンは避けるようにしてください。
 
-### Can I make a ref to a function component? {#can-i-make-a-ref-to-a-function-component}
+### 関数コンポーネントへの ref を作ることは可能ですか？ {#can-i-make-a-ref-to-a-function-component}
 
-While you shouldn't need this often, you may expose some imperative methods to a parent component with the [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle) Hook.
+このようなことをする必要はあまりないはずですが、命令型のメソッドを親コンポーネントに公開するために [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle) フックを利用することができます。
 
-### What does `const [thing, setThing] = useState()` mean? {#what-does-const-thing-setthing--usestate-mean}
+### `const [thing, setThing] = useState()` というのはどういう意味ですか？ {#what-does-const-thing-setthing--usestate-mean}
 
-If you're not familiar with this syntax, check out the [explanation](/docs/hooks-state.html#tip-what-do-square-brackets-mean) in the State Hook documentation.
+この構文に馴染みがない場合はステートフックのドキュメント内の[説明](/docs/hooks-state.html#tip-what-do-square-brackets-mean)をご覧ください。
 
 
-## Performance Optimizations {#performance-optimizations}
+## パフォーマンス最適化 {#performance-optimizations}
 
-### Can I skip an effect on updates? {#can-i-skip-an-effect-on-updates}
+### 更新時に副作用をスキップすることはできますか？ {#can-i-skip-an-effect-on-updates}
 
-Yes. See [conditionally firing an effect](/docs/hooks-reference.html#conditionally-firing-an-effect). Note that forgetting to handle updates often [introduces bugs](/docs/hooks-effect.html#explanation-why-effects-run-on-each-update), which is why this isn't the default behavior.
+はい。[条件付きで副作用を実行する](/docs/hooks-reference.html#conditionally-firing-an-effect)を参照してください。これがデフォルトの動作になっていないのは、更新時の対応を忘れることが[バグの元になる](/docs/hooks-effect.html#explanation-why-effects-run-on-each-update)からです。
 
-### How do I implement `shouldComponentUpdate`? {#how-do-i-implement-shouldcomponentupdate}
+### どうすれば `shouldComponentUpdate` を実装できますか？ {#how-do-i-implement-shouldcomponentupdate}
 
-You can wrap a function component with `React.memo` to shallowly compare its props:
+関数コンポーネントを `React.memo` でラップして props を浅く比較するようにしてください。
 
 ```js
 const Button = React.memo((props) => {
@@ -426,26 +426,26 @@ const Button = React.memo((props) => {
 });
 ```
 
-It's not a Hook because it doesn't compose like Hooks do. `React.memo` is equivalent to `PureComponent`, but it only compares props. (You can also add a second argument to specify a custom comparison function that takes the old and new props. If it returns true, the update is skipped.)
+これがフックになっていないのは、フックと違って組み合わせ可能ではないからです。`React.memo` は `PureComponent` の同等物ですが、props のみを比較するという違いがあります。（新旧の props を受け取るカスタムの比較関数を 2 つめの引数として加えることができます。その関数が true を返した場合はコンポーネントの更新はスキップされます）
 
-`React.memo` doesn't compare state because there is no single state object to compare. But you can make children pure too, or even [optimize individual children with `useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations).
+`React.memo` は state を比較しませんが、これは比較可能な単一の state オブジェクトが存在しないからです。しかし子コンポーネント側も純粋にしておくことや、[`useMemo` を使って個々のコンポーネントを最適化する](/docs/hooks-faq.html#how-to-memoize-calculations)ことが可能です。
 
 
-### How to memoize calculations? {#how-to-memoize-calculations}
+### 計算結果のメモ化はどのように行うのですか？ {#how-to-memoize-calculations}
 
-The [`useMemo`](/docs/hooks-reference.html#usememo) Hook lets you cache calculations between multiple renders by "remembering" the previous computation:
+[`useMemo`](/docs/hooks-reference.html#usememo) フックを使うと、前の計算結果を「記憶」しておくことで、複数のレンダー間で計算結果をキャッシュすることができます。
 
 ```js
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
 
-This code calls `computeExpensiveValue(a, b)`. But if the inputs `[a, b]` haven't changed since the last value, `useMemo` skips calling it a second time and simply reuses the last value it returned.
+このコードは `computeExpensiveValue(a, b)` を呼び出します。しかし入力である `[a, b]` の組み合わせが前回の値と変わっていない場合は、`useMemo` はこの関数の 2 回目の呼び出しをスキップし、単に前回返したのと同じ値を返します。
 
-Remember that the function passed to `useMemo` runs during rendering. Don't do anything there that you wouldn't normally do while rendering. For example, side effects belong in `useEffect`, not `useMemo`.
+`useMemo` に渡した関数はレンダー中に実行されるということを覚えておいてください。レンダー中に通常やらないようなことをやらないようにしましょう。例えば副作用は `useMemo` ではなく `useEffect` の仕事です。
 
-**You may rely on `useMemo` as a performance optimization, not as a semantic guarantee.** In the future, React may choose to "forget" some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components. Write your code so that it still works without `useMemo` — and then add it to optimize performance. (For rare cases when a value must *never* be recomputed, you can [lazily initialize](#how-to-create-expensive-objects-lazily) a ref.)
+**`useMemo` はパフォーマンス最適化のために使うものであり、意味上の保証があるものだと考えないでください。**将来的に React は、例えば画面外のコンポーネント用のメモリを解放する、などの理由で、メモ化された値を「忘れる」ようにする可能性があります。`useMemo` なしでも動作するコードを書き、パフォーマンス最適化のために `useMemo` を加えるようにしましょう。（値が*絶対に*再計算されてはいけないというような稀なケースでは、ref の[遅延初期化](#how-to-create-expensive-objects-lazily)を行うことができます）
 
-Conveniently, `useMemo` also lets you skip an expensive re-render of a child:
+便利なことに、`useMemo` は子コンポーネントの計算量の高い再レンダーをスキップするのにも使えます：
 
 ```js
 function Parent({ a, b }) {
@@ -462,13 +462,13 @@ function Parent({ a, b }) {
 }
 ```
 
-Note that this approach won't work in a loop because Hook calls [can't](/docs/hooks-rules.html) be placed inside loops. But you can extract a separate component for the list item, and call `useMemo` there.
+フック呼び出しはループ内に[配置できない](/docs/hooks-rules.html)ため、このアプローチはループ内では動作しないことに注意してください。ただしリストのアイテムの部分を別のコンポーネントに抽出してその中で `useMemo` を呼び出すことは可能です。
 
-### How to create expensive objects lazily? {#how-to-create-expensive-objects-lazily}
+### 計算量の大きいオブジェクトの作成を遅延する方法はありますか？ {#how-to-create-expensive-objects-lazily}
 
-`useMemo` lets you [memoize an expensive calculation](#how-to-memoize-calculations) if the inputs are the same. However, it only serves as a hint, and doesn't *guarantee* the computation won't re-run. But sometimes you need to be sure an object is only created once.
+`useMemo` を使えば入力が同じ場合のために[高価な計算の結果をメモ化](#how-to-memoize-calculations)することができます。しかしこれはあくまでヒントとして使われるものであり、計算が再実行されないということを*保証*しません。しかし時にはオブジェクトが一度しか作られないことを保証したい場合があります。
 
-**The first common use case is when creating the initial state is expensive:**
+**まずよくあるユースケースは state の初期値を作成することが高価な場合です。**
 
 ```js
 function Table(props) {
@@ -478,7 +478,7 @@ function Table(props) {
 }
 ```
 
-To avoid re-creating the ignored initial state, we can pass a **function** to `useState`:
+次回以降のレンダーでは無視される初期 state を毎回作成しなおすことを防ぐため、`useState` に**関数**を渡すことができます。
 
 ```js
 function Table(props) {
@@ -488,9 +488,9 @@ function Table(props) {
 }
 ```
 
-React will only call this function during the first render. See the [`useState` API reference](/docs/hooks-reference.html#usestate).
+React は初回レンダー時のみこの関数を呼び出します。[`useState` の API リファレンス](/docs/hooks-reference.html#usestate)を参照してください。
 
-**You might also occasionally want to avoid re-creating the `useRef()` initial value.** For example, maybe you want to ensure some imperative class instance only gets created once:
+また、**稀に `useRef()` の初期値を毎回再作成することを避けたいということもあります。**例えば、命令型で作成するクラスのインスタンスが一度しか作成されないことを保証したいということがあるかもしれません。
 
 ```js
 function Image(props) {
@@ -500,7 +500,7 @@ function Image(props) {
 }
 ```
 
-`useRef` **does not** accept a special function overload like `useState`. Instead, you can write your own function that creates and sets it lazily:
+`useRef` は `useState` のような関数を渡す形式のオーバーロード記法が**使えません**。代わりに、自分で関数を書いて高価なオブジェクトを遅延型で ref に設定することが可能です。
 
 ```js
 function Image(props) {
@@ -522,22 +522,22 @@ function Image(props) {
 }
 ```
 
-This avoids creating an expensive object until it's truly needed for the first time. If you use Flow or TypeScript, you can also give `getObserver()` a non-nullable type for convenience.
+これにより、本当に必要になるまで高価なオブジェクトの作成を避けることができます。Flow や TypeScript を使っているなら、`getObserver()` を non-nullable な型にしておくと便利でしょう。
 
 
-### Are Hooks slow because of creating functions in render? {#are-hooks-slow-because-of-creating-functions-in-render}
+### レンダー内で関数を作るせいでフックは遅くなるのではないですか？ {#are-hooks-slow-because-of-creating-functions-in-render}
 
-No. In modern browsers, the raw performance of closures compared to classes doesn't differ significantly except in extreme scenarios.
+いいえ。モダンブラウザでは、特殊な場合を除いて、クラスと比較してクロージャーの生の性能はそれほど変わりません。
 
-In addition, consider that the design of Hooks is more efficient in a couple ways:
+しかも、フックの設計は幾つかの点においてはより効率的です。
 
-* Hooks avoid a lot of the overhead that classes require, like the cost of creating class instances and binding event handlers in the constructor.
+* フックを使えば、クラスインスタンスの作成や、コンストラクタでのイベントハンドラのバインドといった、クラスの場合に必要な様々なオーバーヘッドを回避できます。
 
-* **Idiomatic code using Hooks doesn't need the deep component tree nesting** that is prevalent in codebases that use higher-order components, render props, and context. With smaller component trees, React has less work to do.
+* フックをうまく用いたコードは、高階コンポーネントやレンダープロップやコンテクストを多用するコードベースで見られるような**深いコンポーネントのネストを必要としません**。コンポーネントツリーが小さければ、React がやるべき仕事も減ります。
 
-Traditionally, performance concerns around inline functions in React have been related to how passing new callbacks on each render breaks `shouldComponentUpdate` optimizations in child components. Hooks approach this problem from three sides.
+過去には、インライン関数によるパフォーマンスの懸念というのは、レンダー毎に新しいコールバック関数を作って渡すと子コンポーネントでの `souldComponentUpdate` による最適化が動かなくなる、という問題と関連していました。フックではこの問題について 3 つの側面から対応します。
 
-* The [`useCallback`](/docs/hooks-reference.html#usecallback) Hook lets you keep the same callback reference between re-renders so that `shouldComponentUpdate` continues to work:
+* [`useCallback`](/docs/hooks-reference.html#usecallback) フックを使えば再レンダーをまたいで同じコールバックを保持できるので、`shouldComponentUpdate` がうまく動作し続けます
 
     ```js{2}
     // Will not change unless `a` or `b` changes
@@ -546,15 +546,15 @@ Traditionally, performance concerns around inline functions in React have been r
     }, [a, b]);
     ```
 
-* The [`useMemo` Hook](/docs/hooks-faq.html#how-to-memoize-calculations) makes it easier to control when individual children update, reducing the need for pure components.
+* [`useMemo` フック](/docs/hooks-faq.html#how-to-memoize-calculations) を使うことで個々の子コンポーネントをいつ更新するのかを制御しやすくなるため、コンポーネントが純粋である必要性は低くなっています
 
-* Finally, the `useReducer` Hook reduces the need to pass callbacks deeply, as explained below.
+* 最後に、以下で説明されているように、`useReducer` フックを使えば、複数のコールバックを深い階層に受け渡していく必要があまりなくなります
 
-### How to avoid passing callbacks down? {#how-to-avoid-passing-callbacks-down}
+### どうすれば複数のコールバックを深く受け渡すのを回避できますか？ {#how-to-avoid-passing-callbacks-down}
 
-We've found that most people don't enjoy manually passing callbacks through every level of a component tree. Even though it is more explicit, it can feel like a lot of "plumbing".
+我々が見たところ、ほとんどの人はコンポーネントツリーの各階層で手作業でコールバックを受け渡ししていく作業が好きではありません。それはより明示的ではありますが、面倒な『配管工事』をしている気分になることがあります。
 
-In large component trees, an alternative we recommend is to pass down a `dispatch` function from [`useReducer`](/docs/hooks-reference.html#usereducer) via context:
+大きなコンポーネントツリーにおいて我々がお勧めする代替手段は、[`useReducer`](/docs/hooks-reference.html#usereducer) で `dispatch` 関数を作って、それをコンテクスト経由で下の階層に渡す、というものです。
 
 ```js{4,5}
 const TodosDispatch = React.createContext(null);
@@ -571,7 +571,7 @@ function TodosApp() {
 }
 ```
 
-Any child in the tree inside `TodosApp` can use the `dispatch` function to pass actions up to `TodosApp`:
+`TodosApp` ツリーの中にいるあらゆる子コンポーネントはこの `dispatch` 関数を使うことができ、上位にいる `TodosApp` にアクションを伝えることができます。
 
 ```js{2,3}
 function DeepChild(props) {
@@ -588,19 +588,19 @@ function DeepChild(props) {
 }
 ```
 
-This is both more convenient from the maintenance perspective (no need to keep forwarding callbacks), and avoids the callback problem altogether. Passing `dispatch` down like this is the recommended pattern for deep updates.
+これは（複数のコールバックを何度も受け渡しする必要がないので）メンテナンスの観点から便利だ、というだけではなく、コールバックにまつわる問題をすべて回避できます。深い更新においてはこのように `dispatch` を渡すのがお勧めのパターンです。
 
-Note that you can still choose whether to pass the application *state* down as props (more explicit) or as context (more convenient for very deep updates). If you use context to pass down the state too, use two different context types -- the `dispatch` context never changes, so components that read it don't need to rerender unless they also need the application state.
+アプリケーションの **state** については、props として渡していくか（より明示的）、あるいはコンテクスト経由で渡すか（深い更新ではより便利）を選ぶ余地が依然あります。もしもコンテクストを使って state も渡すことにする場合は、2 つの別のコンテクストのタイプを使ってください -- `dispatch` のコンテクストは決して変わらないため、`dispatch` だけを使うコンポーネントは（アプリケーションの state も必要でない限り）再レンダーする必要がなくなります。
 
-### How to read an often-changing value from `useCallback`? {#how-to-read-an-often-changing-value-from-usecallback}
+### `useCallback` からの頻繁に変わる値を読み出す方法は？ {#how-to-read-an-often-changing-value-from-usecallback}
 
->Note
+> 補足
 >
->We recommend to [pass `dispatch` down in context](#how-to-avoid-passing-callbacks-down) rather than individual callbacks in props. The approach below is only mentioned here for completeness and as an escape hatch.
+> 我々は個別のコールバックを props として渡すのではなく、[コンテキスト経由で `dispatch` を渡す](#how-to-avoid-passing-callbacks-down)ことを推奨しています。以下のアプローチは網羅性と避難ハッチの目的で掲載しているものです。
 >
->Also note that this pattern might cause problems in the [concurrent mode](/blog/2018/03/27/update-on-async-rendering.html). We plan to provide more ergonomic alternatives in the future, but the safest solution right now is to always invalidate the callback if some value it depends on changes.
+> また、[concurrent mode](/blog/2018/03/27/update-on-async-rendering.html) においてこのパターンは問題を起こす可能性があることにも注意してください。将来的にはより使いやすい代替手段を提供することを計画していますが、現時点での最も安全な解決法は、コールバックが依存している何らかの値が変わった場合はコールバックを無効化して作り直すことです。
 
-In some rare cases you might need to memoize a callback with [`useCallback`](/docs/hooks-reference.html#usecallback) but the memoization doesn't work very well because the inner function has to be re-created too often. If the function you're memoizing is an event handler and isn't used during rendering, you can use [ref as an instance variable](#is-there-something-like-instance-variables), and save the last committed value into it manually:
+稀なケースですが、コールバックを [`useCallback`](/docs/hooks-reference.html#usecallback) でメモ化しているにも関わらず、内部関数を何度も再作成しないといけないためメモ化がうまく働かない、ということがあります。あなたがメモ化しようとしている関数がレンダー最中には使われないイベントハンドラーなのであれば、[インスタンス変数としての ref](#is-there-something-like-instance-variables) を使って最後に使われた値を手動で保持しておくことができます。
 
 ```js{6,10}
 function Form() {
@@ -625,7 +625,7 @@ function Form() {
 }
 ```
 
-This is a rather convoluted pattern but it shows that you can do this escape hatch optimization if you need it. It's more bearable if you extract it to a custom Hook:
+これはやや複雑なパターンですが、このような避難ハッチ的最適化は必要であれば可能だということです。カスタムフックに抽出すれば多少は読みやすくなります：
 
 ```js{4,16}
 function Form() {
@@ -659,27 +659,27 @@ function useEventCallback(fn, dependencies) {
 }
 ```
 
-In either case, we **don't recommend this pattern** and only show it here for completeness. Instead, it is preferable to [avoid passing callbacks deep down](#how-to-avoid-passing-callbacks-down).
+いずれにせよ、**このパターンは薦められず**、網羅性のために示しているに過ぎません。代わりに[コールバックを深く受け渡していくことを回避する](#how-to-avoid-passing-callbacks-down)のが望ましいパターンです。
 
 
-## Under the Hood {#under-the-hood}
+## 内部の仕組み {#under-the-hood}
 
-### How does React associate Hook calls with components? {#how-does-react-associate-hook-calls-with-components}
+### React はフック呼び出しとコンポーネントとをどのように関連付けているのですか？ {#how-does-react-associate-hook-calls-with-components}
 
-React keeps track of the currently rendering component. Thanks to the [Rules of Hooks](/docs/hooks-rules.html), we know that Hooks are only called from React components (or custom Hooks -- which are also only called from React components).
+React は現在どのコンポーネントがレンダー中なのかを把握しています。[フックのルール](/docs/hooks-rules.html)のお陰で、フックは React のコンポーネント内（あるいはそれらから呼び出されるカスタムフック内）でのみ呼び出されるということが分かっています。
 
-There is an internal list of "memory cells" associated with each component. They're just JavaScript objects where we can put some data. When you call a Hook like `useState()`, it reads the current cell (or initializes it during the first render), and then moves the pointer to the next one. This is how multiple `useState()` calls each get independent local state.
+それぞれのコンポーネントに関連付けられる形で、React 内に「メモリーセル」のリストが存在しています。それらは単に何らかのデータを保存できる JavaScript のオブジェクトです。あなたが `useState()` のようなフックを呼ぶと、フックは現在のセルの値を読み出し（あるいは初回レンダー時はセル内容を初期化し）、ポインタを次に進めます。これが複数の `useState()` の呼び出しが個別のローカル state を得る仕組みです。
 
-### What is the prior art for Hooks? {#what-is-the-prior-art-for-hooks}
+### フックの先行技術にはどのようなものがありますか？ {#what-is-the-prior-art-for-hooks}
 
-Hooks synthesize ideas from several different sources:
+フックは複数の異なった出典からのアイディアを総合したものです：
 
-* Our old experiments with functional APIs in the [react-future](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) repository.
-* React community's experiments with render prop APIs, including [Ryan Florence](https://github.com/ryanflorence)'s [Reactions Component](https://github.com/reactions/component).
-* [Dominic Gannaway](https://github.com/trueadm)'s [`adopt` keyword](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067) proposal as a sugar syntax for render props.
-* State variables and state cells in [DisplayScript](http://displayscript.org/introduction.html).
-* [Reducer components](https://reasonml.github.io/reason-react/docs/en/state-actions-reducer.html) in ReasonReact.
-* [Subscriptions](http://reactivex.io/rxjs/class/es6/Subscription.js~Subscription.html) in Rx.
-* [Algebraic effects](https://github.com/ocamllabs/ocaml-effects-tutorial#2-effectful-computations-in-a-pure-setting) in Multicore OCaml.
+* [react-future](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) リポジトリにおける関数型 API の古い実験。
+* [Ryan Florence](https://github.com/ryanflorence) の [Reactions Component](https://github.com/reactions/component) を含む、React コミュニティのレンダープロップ API に関する実験。
+* [Dominic Gannaway](https://github.com/trueadm) によって提案された、レンダープロップの糖衣構文としての [`adopt` keyword](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067)。
+* [DisplayScript](http://displayscript.org/introduction.html) のステート変数とステートセル。
+* ReasonReact の [Reducer components](https://reasonml.github.io/reason-react/docs/en/state-actions-reducer.html)。
+* Rx の [Subscriptions](http://reactivex.io/rxjs/class/es6/Subscription.js~Subscription.html)。
+* Multicore OCaml の [Algebraic effects](https://github.com/ocamllabs/ocaml-effects-tutorial#2-effectful-computations-in-a-pure-setting)。
 
-[Sebastian Markbåge](https://github.com/sebmarkbage) came up with the original design for Hooks, later refined by [Andrew Clark](https://github.com/acdlite), [Sophie Alpert](https://github.com/sophiebits), [Dominic Gannaway](https://github.com/trueadm), and other members of the React team.
+フックは [Sebastian Markbåge](https://github.com/sebmarkbage) が最初のデザインを作り、[Andrew Clark](https://github.com/acdlite)、[Sophie Alpert](https://github.com/sophiebits)、[Dominic Gannaway](https://github.com/trueadm) およびその他の React チームのメンバーが洗練させました。
