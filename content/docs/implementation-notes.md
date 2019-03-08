@@ -118,26 +118,27 @@ rootEl.appendChild(node);
 * ユーザー定義コンポーネント（例えば App）はクラスであっても関数であってもよいが、それらは全て要素へと「レンダリングされる」。
 * 「マウント」とは、最上位の React 要素（例えば <App />）を受け取り、DOM もしくはネイティブなツリーを構築する再帰的な処理である。
 
-### Mounting Host Elements {#mounting-host-elements}
+### host要素のマウント {#mounting-host-elements}
 
-This process would be useless if we didn't render something to the screen as a result.
+このようにして要素ができても、それを使って画面に何か表示しなければ意味がありません。
 
-In addition to user-defined ("composite") components, React elements may also represent platform-specific ("host") components. For example, `Button` might return a `<div />` from its render method.
+ユーザー定義 ("composite") コンポーネントに加え、React 要素はプラットフォームに固有な ("host") コンポーネントも表すことができます。例えば、Button は render メソッドから <div /> を返すことが考えられます。
 
-If element's `type` property is a string, we are dealing with a host element:
+もし要素の type プロパティが文字列なら、私たちはいま host 要素を扱っていることになります：
 
 ```js
 console.log(<div />);
 // { type: 'div', props: {} }
 ```
 
-There is no user-defined code associated with host elements.
+host 要素に関連付けられているユーザー定義のコードはありません。
 
-When the reconciler encounters a host element, it lets the renderer take care of mounting it. For example, React DOM would create a DOM node.
+レコンサイラは host 要素を見つけると、レンダラに host 要素のマウントを任せます。例えば、React DOM は DOM ノードを生成します。
 
-If the host element has children, the reconciler recursively mounts them following the same algorithm as above. It doesn't matter whether children are host (like `<div><hr /></div>`), composite (like `<div><Button /></div>`), or both.
+host 要素に子要素がある場合、リコンサイラは前節で述べたものと同じアルゴリズムに従い、子要素を再帰的にマウントします。
+子要素が（<div><hr /></div> のような）host 要素なのか、（<div><Button /></div> のような）composite 要素なのか、もしくはその両方が含まれているかに関わらず、再帰的な処理が実行されます。
 
-The DOM nodes produced by the child components will be appended to the parent DOM node, and recursively, the complete DOM structure will be assembled.
+子コンポーネントにより生成された DOM ノードは親の DOM ノードに追加され、それが再帰的に行われることで、完全な DOM 構造が組み立てられます。
 
 >**Note:**
 >
