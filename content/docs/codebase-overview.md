@@ -171,7 +171,7 @@ React core のコードはソースツリーの [`packages/react`](https://githu
 
 ### レンダラ {#renderers}
 
-React は元々 DOM のために作成されましたが、後になって [React Native](http://facebook.github.io/react-native/) によりネイティブなプラットフォームもサポートするようになりました。これにより React の内部に「レンダラ (renderer)」の概念が導入されました。
+React は元々 DOM のために作成されましたが、後になって [React Native](http://facebook.github.io/react-native/) によりネイティブなプラットフォームもサポートするようになりました。これにより React の内部に "レンダラ (renderer)" の概念が導入されました。
 
 **レンダラは React ツリーを、基盤となるプラットフォーム固有の呼び出しへと変換する方法を管理します。**
 
