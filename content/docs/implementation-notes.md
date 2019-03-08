@@ -12,49 +12,52 @@ redirect_from:
 この章は [stack リコンサイラ (reconciler)](/docs/codebase-overview.html#stack-reconciler) の実装に関するメモを集めたものです。
 
 これは非常に技術的な内容であり、React の公開 API だけでなく、React がどのようにコア、レンダラ (renderer) 、そしてリコンサイラに分割されているかについても、深く理解していることを前提としています。
-React のコードベースにあまり精通していないのであれば、まず[コードベースの概要](/docs/codebase-overview.html)を読んでください。
+React のコードベースにあまり精通していないのであれば、まず [コードベースの概要](/docs/codebase-overview.html) を読んでください。
 
-また、これは [React のコンポーネント、インスタンスおよび要素の違い](/blog/2015/12/18/react-components-elements-and-instances.html)についての理解を前提としています。
+また、これは [React のコンポーネント、インスタンスおよび要素の違い](/blog/2015/12/18/react-components-elements-and-instances.html) についての理解を前提としています。
 
+stack リコンサイラは、React 15 およびそれ以前のバージョンで使われていました。[src/renderers/shared/stack/reconciler](https://github.com/facebook/react/tree/15-stable/src/renderers/shared/stack/reconciler) で見つけることができます。
 
-The stack reconciler was used in React 15 and earlier. It is located at [src/renderers/shared/stack/reconciler](https://github.com/facebook/react/tree/15-stable/src/renderers/shared/stack/reconciler).
+### 動画： React をスクラッチで作成する {#video-building-react-from-scratch}
 
-### Video: Building React from Scratch {#video-building-react-from-scratch}
+このドキュメントは、[Paul O'Shannessy](https://twitter.com/zpao) 氏の行った講演 [building React from scratch](https://www.youtube.com/watch?v=_MAD4Oly9yg) に大いに啓発されています。
 
-[Paul O'Shannessy](https://twitter.com/zpao) gave a talk about [building React from scratch](https://www.youtube.com/watch?v=_MAD4Oly9yg) that largely inspired this document.
+このドキュメントと彼の講演は、ともに実際のコードベースを簡素化したもので、両方に親しむことでより深く理解することができるでしょう。
 
-Both this document and his talk are simplifications of the real codebase so you might get a better understanding by getting familiar with both of them.
+### 概要 {#overview}
 
-### Overview {#overview}
+リコンサイラそのものは公開 API を持ちません。
+リコンサイラは、React DOM や React Native のような [レンダラ](/docs/codebase-overview.html#stack-renderers) が、ユーザーの記述した React コンポーネントに応じてユーザーインターフェースを効率よく更新するために使用されます。
 
-The reconciler itself doesn't have a public API. [Renderers](/docs/codebase-overview.html#stack-renderers) like React DOM and React Native use it to efficiently update the user interface according to the React components written by the user.
+### 再帰的な処理としてマウントする {#mounting-as-a-recursive-process}
 
-### Mounting as a Recursive Process {#mounting-as-a-recursive-process}
-
-Let's consider the first time you mount a component:
+一番最初にコンポーネントをマウントするときのことを考えてみましょう：
 
 ```js
 ReactDOM.render(<App />, rootEl);
 ```
 
-React DOM will pass `<App />` along to the reconciler. Remember that `<App />` is a React element, that is, a description of *what* to render. You can think about it as a plain object:
+React DOM はリコンサイラに <App /> を渡します。
+<App /> が React 要素であること、つまり、「何」をレンダリングするかの叙述であることを思い出してください。
+これはプレーンなオブジェクトとして考えることができます：
 
 ```js
 console.log(<App />);
 // { type: App, props: {} }
 ```
 
-The reconciler will check if `App` is a class or a function.
+リコンサイラは App がクラスか関数かをチェックします。
 
-If `App` is a function, the reconciler will call `App(props)` to get the rendered element.
+もし App が関数なら、リコンサイラは App(props) を呼び出してレンダリングされた要素を取得します。
 
-If `App` is a class, the reconciler will instantiate an `App` with `new App(props)`, call the `componentWillMount()` lifecycle method, and then will call the `render()` method to get the rendered element.
+もし App がクラスなら、リコンサイラは new App(props) で App を初期化し、componentWillMount() ライフサイクルメソッドを呼び出し、それから render() メソッドを呼び出してレンダリングされた要素を取得します。
 
-Either way, the reconciler will learn the element `App` "rendered to".
+どちらにせよ、リコンサイラは App が「render された」結果となる要素を手に入れます。
 
-This process is recursive. `App` may render to a `<Greeting />`, `Greeting` may render to a `<Button />`, and so on. The reconciler will "drill down" through user-defined components recursively as it learns what each component renders to.
+このプロセスは再帰的です。App は <Greeting /> へとレンダリングされるかもしれませんし、Greeting は <Button /> にレンダリングされるかもしれない、といったように続いていきます。
+リコンサイラはそれぞれのコンポーネントが何にレンダリングされるかを学習しながら、ユーザー定義コンポーネントを再帰的に「掘り下げて」いきます。
 
-You can imagine this process as a pseudocode:
+この処理の流れは擬似コードで想像することができます：
 
 ```js
 function isClass(type) {
@@ -105,15 +108,15 @@ var node = mount(<App />);
 rootEl.appendChild(node);
 ```
 
->**Note:**
+>**注意:**
 >
->This really *is* a pseudo-code. It isn't similar to the real implementation. It will also cause a stack overflow because we haven't discussed when to stop the recursion.
+>これは「単なる」擬似コードです。本物の実装に近いものではありません。また、いつ再帰を止めるか検討していないため、このコードはスタックオーバーフローを引き起こします。
 
-Let's recap a few key ideas in the example above:
+上記の例でいくつかの鍵となるアイデアをおさらいしましょう：
 
-* React elements are plain objects representing the component type (e.g. `App`) and the props.
-* User-defined components (e.g. `App`) can be classes or functions but they all "render to" elements.
-* "Mounting" is a recursive process that creates a DOM or Native tree given the top-level React element (e.g. `<App />`).
+* React 要素とはコンポーネントの型（例えば App）と props を表すプレーンなオブジェクトである。
+* ユーザー定義コンポーネント（例えば App）はクラスであっても関数であってもよいが、それらは全て要素へと「レンダリングされる」。
+* 「マウント」とは、最上位の React 要素（例えば <App />）を受け取り、DOM もしくはネイティブなツリーを構築する再帰的な処理である。
 
 ### Mounting Host Elements {#mounting-host-elements}
 
