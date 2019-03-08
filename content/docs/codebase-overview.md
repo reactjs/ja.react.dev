@@ -177,7 +177,7 @@ React は元々 DOM のために作成されましたが、後になって [Reac
 
 レンダラは [`packages/`](https://github.com/facebook/react/tree/master/packages/) にも格納されています：
 
-* [React DOM Renderer](https://github.com/facebook/react/tree/master/packages/react-dom) は React コンポーネントを DOM にレンダリングします。[トップレベルの `ReactDOM` APIs](/docs/react-dom.html) を実装し、npm では [`react-dom`](https://www.npmjs.com/package/react-dom) パッケージとして利用可能です。`react-dom.js` と呼ばれるスタンドアロンなブラウザ向けバンドルとしても使用でき、`ReactDOM` というグローバル変数をエクスポートします
+* [React DOM Renderer](https://github.com/facebook/react/tree/master/packages/react-dom) は React コンポーネントを DOM に変換します。[トップレベルの `ReactDOM` API](/docs/react-dom.html) を実装し、npm では [`react-dom`](https://www.npmjs.com/package/react-dom) パッケージとして利用可能です。`react-dom.js` と呼ばれるスタンドアロンなブラウザ向けバンドルとしても使用でき、`ReactDOM` というグローバル変数をエクスポートします。
 * [React Native Renderer](https://github.com/facebook/react/tree/master/packages/react-native-renderer) は React コンポーネントをネイティブのビューにレンダリングします。React Native の内部で使われています
 * [React Test Renderer](https://github.com/facebook/react/tree/master/packages/react-test-renderer) は React コンポーネントを JSON ツリーにレンダリングします。Jest の[スナップショットテスト機能](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html)で使用され、npm では [react-test-renderer](https://www.npmjs.com/package/react-test-renderer) パッケージとして利用可能です
 
