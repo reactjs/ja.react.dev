@@ -165,7 +165,7 @@ React の「コア (core)」は[最上位の React API](/docs/top-level-api.html
 * `React.Component`
 * `React.Children`
 
-**React core にはコンポーネントの定義に必要な API のみが含まれています。**[リコンシリエーション](/docs/reconciliation.html)のアルゴリズムやあらゆるプラットフォーム固有のコードは含まれません。それは React DOM や React Native コンポーネントに使われています。
+**React core にはコンポーネントの定義に必要な API のみが含まれています。**[リコンシリエーション](/docs/reconciliation.html)のアルゴリズムやあらゆるプラットフォーム固有のコードは含まれません。コアは React DOM や React Native コンポーネントに使われています。
 
 React core のコードはソースツリーの [`packages/react`](https://github.com/facebook/react/tree/master/packages/react) に格納されています。npm では [`react`](https://www.npmjs.com/package/react) パッケージとして利用可能です。対応するスタンドアロンなブラウザ向けのビルドは `react.js` と呼ばれ、`React` というグローバル変数をエクスポートします。
 
