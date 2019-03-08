@@ -183,7 +183,7 @@ React は元々 DOM のために作成されましたが、後になって [Reac
 
 その他に公式にサポートしているレンダラは [`react-art`](https://github.com/facebook/react/tree/master/packages/react-art) だけです。個別の [GitHub リポジトリ](https://github.com/facebook/react/tree/master/packages/react-art)にありましたが、現在はメインのソースツリーに移動しました。
 
->**注意：**
+>**補足：**
 >
 >技術的に、[`react-native-renderer`](https://github.com/facebook/react/tree/master/packages/react-native-renderer) は React に React Native の実装とやり取りの方法を教える非常に薄い層です。ネイティブのビューを管理する実際のプラットフォーム固有のコードは、コンポーネントと共に [React Native リポジトリ](https://github.com/facebook/react/tree/master/packages/react-native-renderer) にあります。
 
