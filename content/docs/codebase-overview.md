@@ -82,7 +82,7 @@ invariant(
 );
 ```
 
-**invariant は `invariant` の条件が `false` の時スローされます。**
+**invariant は `invariant` 内の条件が `false` の時スローされます。**
 
 "Invariant" とは、"この条件は常に成り立つ"ということです。アサーションを作成していると考えることができます。
 
