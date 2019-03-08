@@ -27,7 +27,7 @@ React はほとんど外部の依存関係を持っていません。通常、`r
 
 * [`packages`](https://github.com/facebook/react/tree/master/packages) には React リポジトリの全てのパッケージのメタデータ（`package.json` など）や、ソースコード（`src` サブディレクトリ）が含まれています。**あなたの変更がコードに関するものなら、各パッケージの `src` サブディレクトリが作業時間のほとんどを過ごす場所となります。**
 * [`fixtures`](https://github.com/facebook/react/tree/master/fixtures) にはコントリビューター向けの React の小さなテスト用アプリケーションが含まれています。
-* `build` は React のビルド出力です。リポジトリには存在しませんが、最初に [React をビルドした](/docs/how-to-contribute.html#development-workflow)後に clone した React ディレクトリに現れます
+* `build` は React のビルド出力です。リポジトリには存在しませんが、最初に [React をビルドした](/docs/how-to-contribute.html#development-workflow)後に clone した React ディレクトリに現れます。
 
 ドキュメントは [React 本体とは異なるリポジトリ](https://github.com/reactjs/reactjs.org)にホスティングされています。
 
