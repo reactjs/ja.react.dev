@@ -155,7 +155,7 @@ module.exports = ReactHostComponent;
 
 ### 複数のパッケージ {#multiple-packages}
 
-React は[単一リポジトリ (monorepo)](http://danluu.com/monorepo/) です。そのリポジトリには複数の別々のパッケージが含まれているので、それらの変更はまとめて調整でき、問題は 1 箇所にまとまっています。
+React は[単一リポジトリ (monorepo)](http://danluu.com/monorepo/) です。そのリポジトリには複数の別々のパッケージが含まれているので、それらの変更はまとめて調整でき、issue も 1 箇所にまとまっています。
 
 ### React コア (core) {#react-core}
 
