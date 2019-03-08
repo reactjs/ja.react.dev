@@ -209,7 +209,7 @@ React DOM と React Native のように大幅に異なるレンダラでも多�
 * 進行中の作業に優先順位を付けたり、再配置や再利用をする機能
 * React でレイアウトをサポートするための親子間を行き来しながらレンダーする機能
 * render() から複数の要素を返す機能
-* Error Boundary のサポートの向上
+* error boundary のサポートの向上
 
 React Fiber のアーキテクチャに関して[ここ](https://github.com/acdlite/react-fiber-architecture)や[ここ](https://medium.com/react-in-depth/inside-fiber-in-depth-overview-of-the-new-reconciliation-algorithm-in-react-e1c04700ef6e)で読むことができます。React 16 と共にリリースされていますが、非同期機能についてはまだ非標準のままです。
 
