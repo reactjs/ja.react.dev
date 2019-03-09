@@ -259,9 +259,9 @@ function Todos() {
   // ...
 ```
 
->Detailed Explanation
+> 詳しくは
 >
->You can learn more about all the built-in Hooks on a dedicated page: [Hooks API Reference](/docs/hooks-reference.html).
+> 全てのビルトインフックについての詳細は [Hooks API リファレンス](/docs/hooks-reference.html)を参照してください。
 
 ## 次のステップ {#next-steps}
 
