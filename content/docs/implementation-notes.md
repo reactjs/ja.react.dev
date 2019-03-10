@@ -37,8 +37,8 @@ stack リコンサイラは、React 15 およびそれ以前のバージョン�
 ReactDOM.render(<App />, rootEl);
 ```
 
-React DOM はリコンサイラに <App /> を渡します。
-<App /> が React 要素であること、つまり、「何」をレンダリングするかの叙述であることを思い出してください。
+React DOM はリコンサイラに `<App />` を渡します。
+`<App />` が React 要素であること、つまり、「何」をレンダリングするかの記述であることを思い出してください。
 これはプレーンなオブジェクトとして考えることができます：
 
 ```js
@@ -46,15 +46,15 @@ console.log(<App />);
 // { type: App, props: {} }
 ```
 
-リコンサイラは App がクラスか関数かをチェックします。
+リコンサイラは `App` がクラスか関数かをチェックします。
 
-もし App が関数なら、リコンサイラは App(props) を呼び出してレンダリングされた要素を取得します。
+もし `App` が関数なら、リコンサイラは `App(props)` を呼び出してレンダリングされた要素を取得します。
 
-もし App がクラスなら、リコンサイラは new App(props) で App を初期化し、componentWillMount() ライフサイクルメソッドを呼び出し、それから render() メソッドを呼び出してレンダリングされた要素を取得します。
+もし `App` がクラスなら、リコンサイラは `new App(props)` で `App` を初期化し、`componentWillMount()` ライフサイクルメソッドを呼び出し、それから `render()` メソッドを呼び出してレンダリングされた要素を取得します。
 
-どちらにせよ、リコンサイラは App が「render された」結果となる要素を手に入れます。
+どちらにせよ、リコンサイラは `App` が「render された」結果となる要素を手に入れます。
 
-このプロセスは再帰的です。App は <Greeting /> へとレンダリングされるかもしれませんし、Greeting は <Button /> にレンダリングされるかもしれない、といったように続いていきます。
+このプロセスは再帰的です。`App` は `<Greeting />` へとレンダリングされるかもしれませんし、`Greeting` は `<Button />` にレンダリングされるかもしれない、といったように続いていきます。
 リコンサイラはそれぞれのコンポーネントが何にレンダリングされるかを学習しながら、ユーザー定義コンポーネントを再帰的に「掘り下げて」いきます。
 
 この処理の流れは擬似コードで想像することができます：
@@ -114,17 +114,17 @@ rootEl.appendChild(node);
 
 上記の例でいくつかの鍵となるアイデアをおさらいしましょう：
 
-* React 要素とはコンポーネントの型（例えば App）と props を表すプレーンなオブジェクトである。
-* ユーザー定義コンポーネント（例えば App）はクラスであっても関数であってもよいが、それらは全て要素へと「レンダリングされる」。
-* 「マウント」とは、最上位の React 要素（例えば <App />）を受け取り、DOM もしくはネイティブなツリーを構築する再帰的な処理である。
+* React 要素とはコンポーネントの型（例えば `App`）と props を表すプレーンなオブジェクトである。
+* ユーザー定義コンポーネント（例えば `App`）はクラスであっても関数であってもよいが、それらは全て要素へと「レンダリングされる」。
+* 「マウント」とは、最上位の React 要素（例えば `<App />`）を受け取り、DOM もしくはネイティブなツリーを構築する再帰的な処理である。
 
 ### host要素のマウント {#mounting-host-elements}
 
 このようにして要素ができても、それを使って画面に何か表示しなければ意味がありません。
 
-ユーザー定義 ("composite") コンポーネントに加え、React 要素はプラットフォームに固有な ("host") コンポーネントも表すことができます。例えば、Button は render メソッドから <div /> を返すことが考えられます。
+ユーザー定義 ("composite") コンポーネントに加え、React 要素はプラットフォームに固有な ("host") コンポーネントも表すことができます。例えば、`Button` は render メソッドから `<div />` を返すことが考えられます。
 
-もし要素の type プロパティが文字列なら、私たちはいま host 要素を扱っていることになります：
+もし要素の `type` プロパティが文字列なら、私たちはいま host 要素を扱っていることになります：
 
 ```js
 console.log(<div />);
@@ -136,15 +136,16 @@ host 要素に関連付けられているユーザー定義のコードはあり
 レコンサイラは host 要素を見つけると、レンダラに host 要素のマウントを任せます。例えば、React DOM は DOM ノードを生成します。
 
 host 要素に子要素がある場合、リコンサイラは前節で述べたものと同じアルゴリズムに従い、子要素を再帰的にマウントします。
-子要素が（<div><hr /></div> のような）host 要素なのか、（<div><Button /></div> のような）composite 要素なのか、もしくはその両方が含まれているかに関わらず、再帰的な処理が実行されます。
+子要素が（`<div><hr /></div>` のような）host 要素なのか、（`<div><Button /></div>` のような）composite 要素なのか、もしくはその両方が含まれているかに関わらず、再帰的な処理が実行されます。
 
 子コンポーネントにより生成された DOM ノードは親の DOM ノードに追加され、それが再帰的に行われることで、完全な DOM 構造が組み立てられます。
 
->**Note:**
+>**注意：**
 >
->The reconciler itself is not tied to the DOM. The exact result of mounting (sometimes called "mount image" in the source code) depends on the renderer, and can be a DOM node (React DOM), a string (React DOM Server), or a number representing a native view (React Native).
+>リコンサイラそのものは DOM と結合していません。
+>マウントの結果自体（時にソースコードでは "mount image" とも呼ばれます）はレンダラに依存し、それは（React DOM なら）DOM ノード であったり、（React DOM Server なら）文字列であったり、（React Native なら）ネイティブのビューを表す数字であったりします。
 
-If we were to extend the code to handle host elements, it would look like this:
+前出のコードを host 要素も扱えるように拡張するとすれば、以下のようなものになるでしょう：
 
 ```js
 function isClass(type) {
@@ -235,11 +236,11 @@ var node = mount(<App />);
 rootEl.appendChild(node);
 ```
 
-This is working but still far from how the reconciler is really implemented. The key missing ingredient is support for updates.
+このコードは動作しますが、それでもまだ現実のリコンサイラの実装方法からは隔たりがあります。まだ足りていない鍵となる要素は、更新に対応することです。
 
-### Introducing Internal Instances {#introducing-internal-instances}
+### 内部インスタンスの導入 {#introducing-internal-instances}
 
-The key feature of React is that you can re-render everything, and it won't recreate the DOM or reset the state:
+React の鍵となる機能は、あらゆるものを再描画できることであり、その際に DOM を再生成したり、state をリセットしたりしないことです：
 
 ```js
 ReactDOM.render(<App />, rootEl);
@@ -247,13 +248,17 @@ ReactDOM.render(<App />, rootEl);
 ReactDOM.render(<App />, rootEl);
 ```
 
-However, our implementation above only knows how to mount the initial tree. It can't perform updates on it because it doesn't store all the necessary information, such as all the `publicInstance`s, or which DOM `node`s correspond to which components.
+しかし、前節で実装したコードは最初のツリーをマウントする方法しか知りません。
+前節のコードは、全ての `publicInstance` や、どの DOM `node` がどのコンポーネントに対応しているかなど、必要な全情報を保有しているわけではないので、更新を実行することができません。
 
-The stack reconciler codebase solves this by making the `mount()` function a method and putting it on a class. There are drawbacks to this approach, and we are going in the opposite direction in the [ongoing rewrite of the reconciler](/docs/codebase-overview.html#fiber-reconciler). Nevertheless this is how it works now.
+stack リコンサイラのコードベースでは、この問題を `mount()` 関数をメソッドとしてクラスに置くことで解決しています。
+しかしこのアプローチには欠点があるため、[進行中のリコンサイラの書き直し作業](/docs/codebase-overview.html#fiber-reconciler)では、反対の方向に進んでいます。
+それでも現時点では、この方式で動作しています。
 
-Instead of separate `mountHost` and `mountComposite` functions, we will create two classes: `DOMComponent` and `CompositeComponent`.
+別々の `mountHost` と `mountComposite` 関数の代わりに、2 つのクラスを作成します： `DOMComponent` と `CompositeComponent` です。
 
-Both classes have a constructor accepting the `element`, as well as a `mount()` method returning the mounted node. We will replace a top-level `mount()` function with a factory that instantiates the correct class:
+両方のクラスが `element` を受け入れるコンストラクタと、マウントされたノードを返す `mount()` メソッドを持ちます。
+最上位の `mount()` 関数を、正しいクラスをインスタンス化するファクトリに置き換えます：
 
 ```js
 function instantiateComponent(element) {
@@ -268,7 +273,7 @@ function instantiateComponent(element) {
 }
 ```
 
-First, let's consider the implementation of `CompositeComponent`:
+まず、`CompositeComponent` の実装から考えてみましょう：
 
 ```js
 class CompositeComponent {
@@ -321,15 +326,20 @@ class CompositeComponent {
 }
 ```
 
-This is not much different from our previous `mountComposite()` implementation, but now we can save some information, such as `this.currentElement`, `this.renderedComponent`, and `this.publicInstance`, for use during updates.
+以前の `mountComposite()` の実装と大きな違いはありませんが、更新時に使用する `this.currentElement` 、`this.renderedComponent` や、`this.publicInstance` のような情報を保存できるようになりました。
 
-Note that an instance of `CompositeComponent` is not the same thing as an instance of the user-supplied `element.type`. `CompositeComponent` is an implementation detail of our reconciler, and is never exposed to the user. The user-defined class is the one we read from `element.type`, and `CompositeComponent` creates an instance of it.
+`CompositeComponent` のインスタンスは、ユーザーが指定する `element.type` のインスタンスとは同一ではないことに注意してください。
+`CompositeComponent` はリコンサイラの実装の詳細であり、ユーザーには決して公開されません。
+ユーザー定義クラスとは `element.type` から読み込むものであり、`CompositeComponent` がそのインスタンスを作成するのです。
 
-To avoid the confusion, we will call instances of `CompositeComponent` and `DOMComponent` "internal instances". They exist so we can associate some long-lived data with them. Only the renderer and the reconciler are aware that they exist.
+混乱を避けるために、`CompositeComponent` と `DOMComponent` のインスタンスを「内部インスタンス」と呼ぶことにします。
+内部インスタンスは、長期間利用されるデータとそれらを関連付けられるようにするために存在します。
+それらの存在はレンダラとリコンサイラのみが認識しています。
 
-In contrast, we call an instance of the user-defined class a "public instance". The public instance is what you see as `this` in the `render()` and other methods of your custom components.
+一方、ユーザー定義クラスのインスタンスは「公開インスタンス」と呼ぶことにします。
+公開インスタンスは、独自コンポーネントの `render()` やその他のメソッド内で `this` として現れるものです。
 
-The `mountHost()` function, refactored to be a `mount()` method on `DOMComponent` class, also looks familiar:
+`mountHost()` 関数は、`DOMComponent` クラスの `mount()` メソッドとしてリファクタリングされ、こちらも見慣れたものになります：
 
 ```js
 class DOMComponent {
@@ -380,9 +390,11 @@ class DOMComponent {
 }
 ```
 
-The main difference after refactoring from `mountHost()` is that we now keep `this.node` and `this.renderedChildren` associated with the internal DOM component instance. We will also use them for applying non-destructive updates in the future.
+mountHost() からリファクタリングした後の主な違いは、`this.node` と `this.renderedChildren` を内部の DOM コンポーネントインスタンスに関連付け続けていることです。
+これらは、将来的に非破壊的な更新を適用する際にも使用します。
 
-As a result, each internal instance, composite or host, now points to its child internal instances. To help visualize this, if a function `<App>` component renders a `<Button>` class component, and `Button` class renders a `<div>`, the internal instance tree would look like this:
+結果として、それが composite であれ host であれ、内部インスタンスはそれぞれの子内部インスタンスを指すようになります。
+`<App>` 関数コンポーネントが `<Button>` コンポーネントをレンダリングし、`<Button>` クラスが `<div>`をレンダリングする場合、視覚的にわかりやすくすると、内部インスタンスのツリーはこのようになります：
 
 ```js
 [object CompositeComponent] {
@@ -400,25 +412,26 @@ As a result, each internal instance, composite or host, now points to its child 
 }
 ```
 
-In the DOM you would only see the `<div>`. However the internal instance tree contains both composite and host internal instances.
+DOM の中では、`<div>`しか見えません。しかしながら、内部インスタンスのツリーは composite の内部インスタンスと host の内部インスタンスの両方を保有しています。
 
-The composite internal instances need to store:
+composite 内部インスタンスは以下のものを格納する必要があります：
 
-* The current element.
-* The public instance if element type is a class.
-* The single rendered internal instance. It can be either a `DOMComponent` or a `CompositeComponent`.
+* 現在の要素。
+* 要素の型がクラスの場合、公開インスタンス。
+* 単独の、レンダリングされた内部インスタンス。これは `DOMComponent` か `CompositeComponent` のいずれかにあたります。
 
-The host internal instances need to store:
+host 内部インスタンスは以下のものを格納する必要があります：
 
-* The current element.
-* The DOM node.
-* All the child internal instances. Each of them can be either a `DOMComponent` or a `CompositeComponent`.
+* 現在の要素。
+* DOM ノード。
+* すべての子内部インタスタンス。各インスタンスは、`DOMComponent` または `CompositeComponent` のいずれかになります。
 
-If you're struggling to imagine how an internal instance tree is structured in more complex applications, [React DevTools](https://github.com/facebook/react-devtools) can give you a close approximation, as it highlights host instances with grey, and composite instances with purple:
+より複雑なアプリケーションにおいて、内部インスタンスのツリーがどのような構造になるのか想像しづらい場合は、[React DevTools](https://github.com/facebook/react-devtools) が host インスタンスを灰色に、composite インスタンスを紫色にハイライトしてくれるので、内部インスタンスのツリーにかなり近いものを得ることができます：
 
  <img src="../images/docs/implementation-notes-tree.png" width="500" style="max-width: 100%" alt="React DevTools tree" />
 
-To complete this refactoring, we will introduce a function that mounts a complete tree into a container node, just like `ReactDOM.render()`. It returns a public instance, also like `ReactDOM.render()`:
+このリファクタリングを完了するため、コンテナノードへ完成したツリーをマウントする、`ReactDOM.render()` のような関数を導入します。
+この関数は `ReactDOM.render()` のように公開インスタンスを返します：
 
 ```js
 function mountTree(element, containerNode) {
