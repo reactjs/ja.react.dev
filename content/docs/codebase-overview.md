@@ -185,7 +185,7 @@ React は元々 DOM のために作成されましたが、後になって [Reac
 
 >**補足：**
 >
->技術的に、[`react-native-renderer`](https://github.com/facebook/react/tree/master/packages/react-native-renderer) は React に React Native の実装とやり取りの方法を教える非常に薄い層です。ネイティブのビューを管理する実際のプラットフォーム固有のコードは、コンポーネントと共に [React Native リポジトリ](https://github.com/facebook/react/tree/master/packages/react-native-renderer) にあります。
+>技術的に、[`react-native-renderer`](https://github.com/facebook/react/tree/master/packages/react-native-renderer) は React に React Native の実装とやり取りの方法を教える非常に薄い層です。ネイティブのビューを管理する実際のプラットフォーム固有のコードは、コンポーネントと共に [React Native リポジトリ](https://github.com/facebook/react-native) にあります。
 
 ### リコンサイラ (reconciler) {#reconcilers}
 
