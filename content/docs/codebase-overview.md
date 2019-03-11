@@ -39,7 +39,7 @@ React はほとんど外部の依存関係を持っていません。通常、`r
 
 例えば、[`setInnerHTML.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/setInnerHTML.js) のテストは、すぐ隣の [`__tests__/setInnerHTML-test.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/__tests__/setInnerHTML-test.js) にあります。
 
-### 警告と不変数 {#warnings-and-invariants}
+### 警告と不変数 (Invariant) {#warnings-and-invariants}
 
 React のコードベースは警告の表示に `warning` モジュールを使用します：
 
