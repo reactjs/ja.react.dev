@@ -53,7 +53,7 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
 例えば、次のような `Counter` コンポーネントがあるとしましょう：
 
 ```js
-class App extends React.Component {
+class Counter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {count: 0};
