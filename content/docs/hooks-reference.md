@@ -45,7 +45,15 @@ setState(newState);
 
 後続の再レンダー時には、`useState` から返される 1 番目の値は常に、更新を適用した後の最新版の state になります。
 
+<<<<<<< HEAD
 #### 関数型の更新 {#functional-updates}
+=======
+>Note
+>
+>React guarantees that `setState` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
+
+#### Functional updates {#functional-updates}
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
 
 新しい state が前の state に基づいて計算される場合は、`setState` に関数を渡すことができます。この関数は前回の state の値を受け取り、更新された値を返します。以下は、`setState` の両方の形式を用いたカウンタコンポーネントの例です。
 
@@ -133,7 +141,11 @@ useEffect(() => {
 
 #### 条件付きで副作用を実行する {#conditionally-firing-an-effect}
 
+<<<<<<< HEAD
 デフォルトの動作では、副作用関数はレンダーの完了時に毎回実行されます。これにより、コンポーネントの入力のうちのひとつが変化した場合に毎回副作用が再作成されます。
+=======
+The default behavior for effects is to fire the effect after every completed render. That way an effect is always recreated if one of its dependencies changes.
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
 
 しかし、上述のデータ購読の例でもそうですが、これは幾つかのケースではやりすぎです。新しい購読を設定する必要があるのは毎回の更新ごとではなく、`source` プロパティが変化した場合のみです。
 
@@ -153,11 +165,26 @@ useEffect(
 
 これで、データの購読は `props.source` が変更された場合にのみ再作成されるようになります。
 
+<<<<<<< HEAD
 空の配列 `[]` を渡すと、この副作用がコンポーネント内のどの値にも依存していないということを React に伝えることになります。つまり副作用はマウント時に実行されアンマウント時にクリーンアップされますが、更新時には実行されないようになります。
 
 > 補足
 >
 > 入力用配列は副作用関数に引数として渡されるわけではありません。しかし概念としては、この記法は副作用関数の引数が何なのかを表現しています。副作用関数の内部で参照されているすべての値は入力の配列内にも現れるべきです。将来的には、コンパイラが発達すればこの配列を自動で作成することも可能であるはずです。
+=======
+>Note
+>
+>If you use this optimization, make sure the array includes **all values from the component scope (such as props and state) that change over time and that are used by the effect**. Otherwise, your code will reference stale values from previous renders. Learn more about [how to deal with functions](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) and what to do when the [array values change too often](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often).
+>
+>If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty array (`[]`) as a second argument. This tells React that your effect doesn't depend on *any* values from props or state, so it never needs to re-run. This isn't handled as a special case -- it follows directly from how the dependencies array always works.
+>
+>If you pass an empty array (`[]`), the props and state as inside the effect will always have their initial values. While passing `[]` as the second argument is closer to the familiar `componentDidMount` and `componentWillUnmount` mental model, there are usually [better](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [solutions](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) to avoid re-running effects too often. Also, don't forget that React defers running `useEffect` until after the browser has painted, so doing extra work is less of a problem.
+>
+>
+>We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+
+The array of dependencies is not passed as arguments to the effect function. Conceptually, though, that's what they represent: every value referenced inside the effect function should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
 
 ### `useContext` {#usecontext}
 
@@ -211,7 +238,15 @@ function Counter({initialState}) {
 }
 ```
 
+<<<<<<< HEAD
 #### 初期 state の指定 {#specifying-the-initial-state}
+=======
+>Note
+>
+>React guarantees that `dispatch` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
+
+#### Specifying the initial state {#specifying-the-initial-state}
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
 
 `useReducer` の初期化の方法には 2 種類あります。ユースケースによりどちらかを選択してください。最も単純な方法は第 2 引数として初期 state を渡すものです。
 
@@ -283,13 +318,25 @@ const memoizedCallback = useCallback(
 
 [メモ化](https://en.wikipedia.org/wiki/Memoization)されたコールバックを返します。
 
+<<<<<<< HEAD
 インラインのコールバックとその入力の配列を渡してください。`useCallback` はそのコールバックをメモ化したものを返し、その関数は入力値のひとつが変化した場合にのみ変化します。これは、不必要なレンダーを避けるために（例えば `shouldComponentUpdate` などを使って）参照の同一性を見るよう最適化されたコンポーネントにコールバックを渡す場合に便利です。
 
 `useCallback(fn, inputs)` は `useMemo(() => fn, inputs)` と等価です。
+=======
+Pass an inline callback and an array of dependencies. `useCallback` will return a memoized version of the callback that only changes if one of the dependencies has changed. This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. `shouldComponentUpdate`).
+
+`useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`.
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
 
 > 補足
 >
+<<<<<<< HEAD
 > 入力用配列はコールバックに引数として渡されるわけではありません。しかし概念としては、この記法はコールバックの引数が何なのかを表現しています。コールバックの内部で参照されているすべての値は入力の配列内にも現れるべきです。将来的には、コンパイラが発達すればこの配列を自動で作成することも可能であるはずです。
+=======
+> The array of dependencies is not passed as arguments to the callback. Conceptually, though, that's what they represent: every value referenced inside the callback should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
+>
+> We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
 
 ### `useMemo` {#usememo}
 
@@ -299,7 +346,11 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
 [メモ化](https://en.wikipedia.org/wiki/Memoization)された値を返します。
 
+<<<<<<< HEAD
 "作成用" 関数とその入力の配列を渡してください。`useMemo` は入力値のひとつが変化した場合にのみメモ化された値を再計算します。この最適化によりレンダー毎に高価な計算が実行されるのを避けることができます。
+=======
+Pass a "create" function and an array of dependencies. `useMemo` will only recompute the memoized value when one of the dependencies has changed. This optimization helps to avoid expensive calculations on every render.
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
 
 `useMemo` に渡した関数はレンダー中に実行されるということを覚えておいてください。レンダー中に通常やらないようなことをこの関数内でやらないようにしましょう。例えば副作用は `useMemo` ではなく `useEffect` の仕事です。
 
@@ -309,7 +360,13 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
 > 補足
 >
+<<<<<<< HEAD
 > 入力用配列は第 1 引数の関数に引数として渡されるわけではありません。しかし概念としては、この記法は関数の引数が何なのかを表現しています。関数の内部で参照されているすべての値は入力の配列内にも現れるべきです。将来的には、コンパイラが発達すればこの配列を自動で作成することも可能であるはずです。
+=======
+> The array of dependencies is not passed as arguments to the function. Conceptually, though, that's what they represent: every value referenced inside the function should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
+>
+> We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
 
 ### `useRef` {#useref}
 
@@ -342,7 +399,7 @@ function TextInputWithFocusButton() {
 ### `useImperativeHandle` {#useimperativehandle}
 
 ```js
-useImperativeHandle(ref, createHandle, [inputs])
+useImperativeHandle(ref, createHandle, [deps])
 ```
 
 `useImperativeHandle` は `ref` が使われた時に親コンポーネントに渡されるインスタンス値をカスタマイズするのに使います。いつもの話ですが、ref を使った手続き的なコードはほとんどの場合に避けるべきです。`useImperativeHandle` は `forwardRef` と組み合わせて使います：

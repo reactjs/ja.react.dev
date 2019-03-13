@@ -198,17 +198,17 @@ class FriendStatus extends React.Component {
 
 クリーンアップ用の別の副作用が必要だとお考えかもしれません。しかし購読を開始するコードと解除するコードとは密に関連しているため、`useEffect` はそれらを一緒に書けるようにデザインされています。あなたの副作用が関数を返した場合、React はクリーンアップのタイミングが来たらそれを実行するのです。
 
-```js{10-16}
+```js{6-16}
 import React, { useState, useEffect } from 'react';
 
 function FriendStatus(props) {
   const [isOnline, setIsOnline] = useState(null);
 
-  function handleStatusChange(status) {
-    setIsOnline(status.isOnline);
-  }
-
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     // Specify how to clean up after this effect:
     return function cleanup() {
@@ -237,6 +237,10 @@ function FriendStatus(props) {
 
 ```js
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
@@ -316,15 +320,15 @@ function FriendStatusWithCounter(props) {
 
   const [isOnline, setIsOnline] = useState(null);
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
     };
   });
-
-  function handleStatusChange(status) {
-    setIsOnline(status.isOnline);
-  }
   // ...
 }
 ```
@@ -394,6 +398,7 @@ function FriendStatusWithCounter(props) {
 function FriendStatus(props) {
   // ...
   useEffect(() => {
+    // ...
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
@@ -449,8 +454,12 @@ useEffect(() => {
 
 クリーンアップフェーズがある副作用でも同様に動作します：
 
-```js{6}
+```js{10}
 useEffect(() => {
+  function handleStatusChange(status) {
+    setIsOnline(status.isOnline);
+  }
+
   ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
   return () => {
     ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
@@ -462,9 +471,19 @@ useEffect(() => {
 
 > 補足
 >
+<<<<<<< HEAD
 > この最適化を使う場合、**時間の経過とともに変化し副作用によって使用される外部スコープからの値**が配列に含まれていることを確認してください。さもないとあなたのコードは以前のレンダー時の古い値を参照してしまうことになります。その他の最適化のオプションについては [Hooks API リファレンス](/docs/hooks-reference.html)で説明しています。
 >
 > もしも副作用とそのクリーンアップを 1 度だけ（マウント時とアンマウント時にのみ）走らせたいという場合、空の配列 (`[]`) を第 2 引数として渡すことができます。こうすることで、あなたの副作用は props や state の値の*いずれにも*依存していないため再実行する必要が一切ない、ということを React に伝えることができます。これは特別なケースとして処理されているわけではなく、入力配列を普通に処理すればそうなるというだけの話です。`[]` を渡すことはおなじみの `componentDidMount` と `componentWillUnmount` による概念と似ているように感じるでしょうが、[上記で述べたような](#explanation-why-effects-run-on-each-update)バグの原因となりますので、癖でやってしまうことがないようにしてください。また `useEffect` はブラウザが描画し終えた後まで遅延されますので、追加の作業をしてもそれほど問題にならないということもお忘れなく。
+=======
+>If you use this optimization, make sure the array includes **all values from the component scope (such as props and state) that change over time and that are used by the effect**. Otherwise, your code will reference stale values from previous renders. Learn more about [how to deal with functions](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) and [what to do when the array changes too often](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often).
+>
+>If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty array (`[]`) as a second argument. This tells React that your effect doesn't depend on *any* values from props or state, so it never needs to re-run. This isn't handled as a special case -- it follows directly from how the inputs array always works.
+>
+>If you pass an empty array (`[]`), the props and state inside the effect will always have their initial values. While passing `[]` as the second argument is closer to the familiar `componentDidMount` and `componentWillUnmount` mental model, there are usually [better](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [solutions](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) to avoid re-running effects too often. Also, don't forget that React defers running `useEffect` until after the browser has painted, so doing extra work is less of a problem.
+>
+>We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+>>>>>>> 2cd4d0cf5ddadf90446b3a5038a9bc4875151355
 
 ## 次のステップ {#next-steps}
 
