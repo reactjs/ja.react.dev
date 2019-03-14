@@ -32,20 +32,20 @@ prev: hooks-reference.html
   * [Lint ルールは具体的に何を強制するのですか？](#what-exactly-do-the-lint-rules-enforce)
 * **[クラスからフックへ](#from-classes-to-hooks)**
   * [個々のライフサイクルメソッドはフックとどのように対応するのですか？](#how-do-lifecycle-methods-correspond-to-hooks)
-  * [How can I do data fetching with Hooks?](#how-can-i-do-data-fetching-with-hooks)
+  * [フックでデータの取得をどのように行うのですか？](#how-can-i-do-data-fetching-with-hooks)
   * [インスタンス変数のようなものはありますか？](#is-there-something-like-instance-variables)
   * [state 変数は 1 つにすべきですか、たくさん使うべきですか？](#should-i-use-one-or-many-state-variables)
   * [コンポーネントの更新の時だけ副作用を実行することは可能ですか？](#can-i-run-an-effect-only-on-updates)
   * [前回の props や state はどうすれば取得できますか？](#how-to-get-the-previous-props-or-state)
-  * [Why am I seeing stale props or state inside my function?](#why-am-i-seeing-stale-props-or-state-inside-my-function)
+  * [関数内で古い props や state が見えているのはなぜですか？](#why-am-i-seeing-stale-props-or-state-inside-my-function)
   * [どうすれば getDerivedStateFromProps を実装できますか？](#how-do-i-implement-getderivedstatefromprops)
   * [forceUpdate のようなものはありますか？](#is-there-something-like-forceupdate)
   * [関数コンポーネントへの ref を作ることは可能ですか？](#can-i-make-a-ref-to-a-function-component)
   * [const [thing, setThing] = useState() というのはどういう意味ですか？](#what-does-const-thing-setthing--usestate-mean)
 * **[パフォーマンス最適化](#performance-optimizations)**
   * [更新時に副作用をスキップすることはできますか？](#can-i-skip-an-effect-on-updates)
-  * [Is it safe to omit functions from the list of dependencies?](#is-it-safe-to-omit-functions-from-the-list-of-dependencies)
-  * [What can I do if my effect dependencies change too often?](#what-can-i-do-if-my-effect-dependencies-change-too-often)
+  * [依存の配列から関数を省略しても大丈夫ですか？](#is-it-safe-to-omit-functions-from-the-list-of-dependencies)
+  * [副作用の依存リストが頻繁に変わりすぎる場合はどうすればよいですか？](#what-can-i-do-if-my-effect-dependencies-change-too-often)
   * [どうすれば `shouldComponentUpdate` を実装できますか？](#how-do-i-implement-shouldcomponentupdate)
   * [計算結果のメモ化はどのように行うのですか？](#how-to-memoize-calculations)
   * [計算量の大きいオブジェクトの作成を遅延する方法はありますか？](#how-to-create-expensive-objects-lazily)
@@ -464,7 +464,7 @@ function ScrollView({row}) {
 
 ### 依存の配列から関数を省略しても大丈夫ですか？ {#is-it-safe-to-omit-functions-from-the-list-of-dependencies}
 
-一般的には、省略はできません。
+いいえ、一般的には省略できません。
 
 ```js{3,8}
 function Example() {
@@ -508,11 +508,11 @@ useEffect(() => {
 
 >補足
 >
->We provide the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) ESLint rule as a part of the [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It help you find components that don't handle updates consistently.
+> [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) パッケージの一部として [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) という ESLint のルールを提供しています。更新の一貫性が保たれていないコンポーネントを見つけるのに役立ちます。
 
 これがなぜ重要なのか説明します。
 
-`useEffect` や `useMemo` や `useCallback` や `useImperativeHandle` の最後の引数として[依存する値のリスト](/docs/hooks-reference.html#conditionally-firing-an-effect)を渡す場合、内部で使われ React のデータの流れに関わる値がすべて含まれている必要があります。すなわち props や state およびそれらより派生するあらゆるものです。
+`useEffect`、`useMemo`、`useCallback` あるいは `useImperativeHandle` の最後の引数として[依存する値のリスト](/docs/hooks-reference.html#conditionally-firing-an-effect)を渡す場合、内部で使われ React のデータの流れに関わる値が、すべて含まれている必要があります。すなわち props や state およびそれらより派生するあらゆるものです。
 
 関数を依存のリストから安全に省略できるのは、その関数（あるいはその関数から呼ばれる関数）が props、state ないしそれらから派生する値のいずれも含んでいない場合**のみ**です。以下の例にはバグがあります。
 
@@ -533,7 +533,7 @@ function ProductPage({ productId }) {
 }
 ```
 
-**推奨される修正方法は、この関数を副作用*内*に移動することです。**これにより、副作用がどの props や state を利用しているのかが把握して、それらが指定されていることを保証しやすくなります。
+**推奨される修正方法は、この関数を副作用*内*に移動することです。**これにより、副作用がどの props や state を利用しているのか把握しやすくなり、それらが指定されていることを保証しやすくなります。
 
 ```js{5-10,13}
 function ProductPage({ productId }) {
@@ -553,7 +553,7 @@ function ProductPage({ productId }) {
 }
 ```
 
-これにより、例外的なレスポンスに対して副作用内でローカル変数を使って対処することも可能になります。
+これにより、要らなくなったレスポンスに対して副作用内でローカル変数を使って対処することも可能になります。
 
 ```js{2,6,8}
   useEffect(() => {
@@ -575,7 +575,7 @@ function ProductPage({ productId }) {
 
 **何らかの理由で副作用内に関数を移動*できない*という場合、他にとりうる選択肢がいくつかあります。**
 
-* **そのコンポーネントの外部にその関数を移動できないか考えましょう**。その場合、関数は props や state を参照していないことが保証され、依存のリストに含まずに済むようになります。
+* **そのコンポーネントの外部にその関数を移動できないか考えましょう**。その場合、関数は props や state を参照していないことが保証されるので、依存のリストに含まずに済むようになります。
 * 使おうとしている関数が純粋な計算のみをするものでありレンダー中に呼んで構わないものであるなら、その関数を代わりに**副作用の外部で呼ぶ**ようにして、副作用中ではその返り値に依存するようにします。
 * 最終手段として、関数を依存リストに加えつつ、[`useCallback`](/docs/hooks-reference.html#usecallback) を使って**その定義をラップする**ことが可能です。これにより、*それ自体*の依存が変わらない限り関数が変化しないことを保証できます。
 
@@ -618,7 +618,7 @@ function Counter() {
 }
 ```
 
-依存のリストとして `[count]` を指定すればバグは起きなくなりますが、その場合変更のたびに interval がリセットされることになります。これは望ましい動作ではありません。これを修正するため、[`setState` 関数形式による更新](/docs/hooks-reference.html#functional-updates)を利用することができます。これにより state の*現在値*を参照せずに state が*どのように*更新されるべきかを指定できます。
+依存のリストとして `[count]` を指定すればバグは起きなくなりますが、その場合値が変化するたびに interval がリセットされることになります。これは望ましい動作ではありません。これを修正するため、[`setState` 関数形式による更新](/docs/hooks-reference.html#functional-updates)を利用することができます。これにより state の*現在値*を参照せずに state が*どのように*更新されるべきかを指定できます。
 
 ```js{6,9}
 function Counter() {
@@ -637,7 +637,7 @@ function Counter() {
 
 （`setCount` 関数については同一性が保たれることが保証されているので、省略して構いません）
 
-（ある state が別の state に依存している場合など）より複雑なケースにおいては、state の更新のロジックを [`useReducer` フック](/docs/hooks-reference.html#usereducer)を使って副作用の外部に移動することを考慮してください。[この記事](https://adamrackis.dev/state-and-use-reducer/)にこのやり方についての例があります。**`useReducer` から返される `dispatch` 関数は常に同一性が保たれます**。これはリデューサ (reducer) 関数がコンポーネント内で宣言されており props を読み出す場合でも同様です。
+より複雑なケース（ある state が別の state に依存している場合など）においては、state 更新のロジックを [`useReducer` フック](/docs/hooks-reference.html#usereducer)を使って副作用の外部に移動することを考慮してください。[こちらの記事](https://adamrackis.dev/state-and-use-reducer/)にこのやり方についての例があります。**`useReducer` から返される `dispatch` 関数は常に同一性が保たれます**。これはリデューサ (reducer) 関数がコンポーネント内で宣言されており props を読み出している場合でも同様です。
 
 最終手段として、クラスにおける `this` のようなものが欲しい場合は、[ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) を使ってミュータブルな値を保持させることができます。そうすればその値を読み書き可能です。例えば：
 
@@ -661,7 +661,7 @@ function Example(props) {
 }
 ```
 
-ミュータブルな値に依存することでコンポーネントの挙動が予測しづらくなるため、これは他の代替手段が思いつかない場合にのみ利用してください。うまくフックに移行できないパターンがあった場合は動作するコード例を添えて [issue を作成](https://github.com/facebook/react/issues/new)していただければお手伝いします。
+ミュータブルな値に依存することでコンポーネントの挙動が予測しづらくなるため、これは代替手段が思いつかない場合にのみ利用してください。うまくフックに移行できないパターンがあった場合は動作するコード例を添えて [issue を作成](https://github.com/facebook/react/issues/new)していただければお手伝いします。
 
 ### どうすれば `shouldComponentUpdate` を実装できますか？ {#how-do-i-implement-shouldcomponentupdate}
 
