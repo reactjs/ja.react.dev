@@ -224,7 +224,7 @@ function Counter({initialState}) {
 
 > 補足
 >
-> React では、リデューサの引数で `state = initialState` のようにして初期値を示すという、redux で普及した慣習を使用しません。初期値は props に依存している可能性があるため、フックの呼び出し部分で指定します。強いこだわりがある場合は `useReducer(reducer, undefined, reducer)` という呼び出し方で Redux の振る舞いを再現できますが、お勧めはしません。
+> React では、リデューサの引数で `state = initialState` のようにして初期値を示すという、Redux で普及した慣習を使用しません。初期値は props に依存している可能性があるため、フックの呼び出し部分で指定します。強いこだわりがある場合は `useReducer(reducer, undefined, reducer)` という呼び出し方で Redux の振る舞いを再現できますが、お勧めはしません。
 
 #### 遅延初期化 {#lazy-initialization}
 
