@@ -576,11 +576,11 @@ class DOMComponent {
 
 実際に行われているのは、内部ツリーを再帰的に巡回して各内部インスタンスが更新を受け取れるようにすることなのですが、この処理こそ「仮想 DOM の差分処理 (diffing)」としてしばしば説明される部分です。
 
-### Updating Composite Components {#updating-composite-components}
+### composite コンポーネントの更新 {#updating-composite-components}
 
-When a composite component receives a new element, we run the `componentWillUpdate()` lifecycle method.
+composite コンポーネントが新たな要素を受け取ったときに、`componentWillUpdate()' ライフサイクルメソッドを実行します。
 
-Then we re-render the component with the new props, and get the next rendered element:
+それからコンポーネントを新たな props で再レンダリングし、レンダリングされた次の要素を取得します：
 
 ```js
 class CompositeComponent {
@@ -618,9 +618,9 @@ class CompositeComponent {
     // ...
 ```
 
-Next, we can look at the rendered element's `type`. If the `type` has not changed since the last render, the component below can also be updated in place.
+続いて、レンダリングされた要素の `type` を見てみましょう。もし最後のレンダリング以降、`type` が変更されていなければ、下記のコンポーネントもその場で更新されれば良いということになります。
 
-For example, if it returned `<Button color="red" />` the first time, and `<Button color="blue" />` the second time, we can just tell the corresponding internal instance to `receive()` the next element:
+例えばコンポーネントが最初に `<Button color="red" />` を返し、2 回目に `<Button color="blue" />` を返したなら、対応する内部インスタンスには次の要素を receive() するよう伝えるだけでよいのです：
 
 ```js
     // ...
@@ -635,9 +635,11 @@ For example, if it returned `<Button color="red" />` the first time, and `<Butto
     // ...
 ```
 
-However, if the next rendered element has a different `type` than the previously rendered element, we can't update the internal instance. A `<button>` can't "become" an `<input>`.
+ただし、レンダリングされた次の要素が前のものと異なる `type` である場合、内部インスタンスの更新はできません。
+`<button>` が `<input>` に「なる」ことはできないのです。
 
-Instead, we have to unmount the existing internal instance and mount the new one corresponding to the rendered element type. For example, this is what happens when a component that previously rendered a `<button />` renders an `<input />`:
+代わりに、既存の内部インスタンスをアンマウントし、レンダリングされた要素の型に対応する新たな内部インスタンスをマウントします。
+例えば、前に `<button />` をレンダリングしていたコンポーネントが `<input />` をレンダリングした場合には、この処理が発生します：
 
 ```js
     // ...
@@ -664,11 +666,13 @@ Instead, we have to unmount the existing internal instance and mount the new one
 }
 ```
 
-To sum this up, when a composite component receives a new element, it may either delegate the update to its rendered internal instance, or unmount it and mount a new one in its place.
+まとめると、composite コンポーネントは新たな要素を受け取った際に、レンダリングされた内部インスタンスに更新を委任するか、もしくは内部インスタンスをアンマウントしてそこに新しいものをマウントする、ということになります。
 
-There is another condition under which a component will re-mount rather than receive an element, and that is when the element's `key` has changed. We don't discuss `key` handling in this document because it adds more complexity to an already complex tutorial.
+もう 1 つ、コンポーネントが要素を受け取らずに再マウントする状況があります。それは要素の `key` が変更された時です。
+既に複雑なチュートリアルがさらに複雑になってしまうので、このドキュメントでは `key` の取り扱いについては言及しません。
 
-Note that we needed to add a method called `getHostNode()` to the internal instance contract so that it's possible to locate the platform-specific node and replace it during the update. Its implementation is straightforward for both classes:
+プラットフォーム固有のノードを配置して更新時に置換できるよう、`getHostNode()` と呼ばれるメソッドを内部インスタンスに追加する必要があったことに注意してください。
+その実装は両方のクラスで簡単にできます：
 
 ```js
 class CompositeComponent {
