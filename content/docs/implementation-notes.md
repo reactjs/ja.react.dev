@@ -136,7 +136,7 @@ host 要素に関連付けられているユーザー定義のコードはあり
 レコンサイラは host 要素を見つけると、レンダラに host 要素のマウントを任せます。例えば、React DOM は DOM ノードを生成します。
 
 host 要素に子要素がある場合、リコンサイラは前節で述べたものと同じアルゴリズムに従い、子要素を再帰的にマウントします。
-子要素が（`<div><hr /></div>` のような）host 要素なのか、（`<div><Button /></div>` のような）composite 要素なのか、もしくはその両方が含まれているかに関わらず、再帰的な処理が実行されます。
+子要素が（`<div><hr /></div>` のような）host なのか、（`<div><Button /></div>` のような）composite なのか、もしくはその両方が含まれているかに関わらず、再帰的な処理が実行されます。
 
 子コンポーネントにより生成された DOM ノードは親の DOM ノードに追加され、それが再帰的に行われることで、完全な DOM 構造が組み立てられます。
 
@@ -236,7 +236,7 @@ var node = mount(<App />);
 rootEl.appendChild(node);
 ```
 
-このコードは動作しますが、それでもまだ現実のリコンサイラの実装方法からは隔たりがあります。まだ足りていない鍵となる要素は、更新に対応することです。
+このコードは動作しますが、それでもまだ現実のリコンサイラの実装方法からは隔たりがあります。ここにあるべき鍵となる要素は、更新に対応することです。
 
 ### 内部インスタンスの導入 {#introducing-internal-instances}
 
@@ -451,9 +451,9 @@ var rootEl = document.getElementById('root');
 mountTree(<App />, rootEl);
 ```
 
-### Unmounting {#unmounting}
+### アンマウント {#unmounting}
 
-Now that we have internal instances that hold onto their children and the DOM nodes, we can implement unmounting. For a composite component, unmounting calls a lifecycle method and recurses.
+これで、子内部インスタンスと DOM ノードを持った内部インスタンスができ、そこにアンマウントを実装できるようになります。composite 要素では、アンマウントはライフサイクルメソッドを呼び出し、再帰的な処理を行います。
 
 ```js
 class CompositeComponent {
@@ -476,7 +476,7 @@ class CompositeComponent {
 }
 ```
 
-For `DOMComponent`, unmounting tells each child to unmount:
+`DOMComponent` では、アンマウントは子要素それぞれにアンマウントするように伝えます：
 
 ```js
 class DOMComponent {
@@ -491,9 +491,9 @@ class DOMComponent {
 }
 ```
 
-In practice, unmounting DOM components also removes the event listeners and clears some caches, but we will skip those details.
+実際には、DOM コンポーネントをアンマウントすると、イベントリスナーの削除とキャッシュのクリアも行われますが、これらの詳細は省略します。
 
-We can now add a new top-level function called `unmountTree(containerNode)` that is similar to `ReactDOM.unmountComponentAtNode()`:
+これで `ReactDOM.unmountComponentAtNode()` と同様の `unmountTree(containerNode)` という新規の最上位関数を追加することができます：
 
 ```js
 function unmountTree(containerNode) {
@@ -508,7 +508,9 @@ function unmountTree(containerNode) {
 }
 ```
 
-In order for this to work, we need to read an internal root instance from a DOM node. We will modify `mountTree()` to add the `_internalInstance` property to the root DOM node. We will also teach `mountTree()` to destroy any existing tree so it can be called multiple times:
+これが動作するよう、DOM ノードから内部ルートインスタンスを読み込む必要があります。
+`mountTree()` を変更して、ルート DOM ノードに `_internalInstance` プロパティを追加します。
+`mountTree()` に既存の全てのツリーを破棄するようにも伝えて、複数回 `mountTree()` を呼び出せるようにします：
 
 ```js
 function mountTree(element, containerNode) {
@@ -533,9 +535,9 @@ function mountTree(element, containerNode) {
 }
 ```
 
-Now, running `unmountTree()`, or running `mountTree()` repeatedly, removes the old tree and runs the `componentWillUnmount()` lifecycle method on components.
+これで、`unmountTree()` を実行したり、`mountTree()` の実行を繰り返したりしても、古いツリーは破棄され、コンポーネント上で `componentWillUnmount()` ライフサイクルメソッドが実行されるようになりました。
 
-### Updating {#updating}
+### 更新 {#updating}
 
 In the previous section, we implemented unmounting. However React wouldn't be very useful if each prop change unmounted and mounted the whole tree. The goal of the reconciler is to reuse existing instances where possible to preserve the DOM and the state:
 
