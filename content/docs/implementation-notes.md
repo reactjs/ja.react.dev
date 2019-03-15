@@ -694,9 +694,11 @@ class DOMComponent {
 }
 ```
 
-### Updating Host Components {#updating-host-components}
+### host コンポーネントの更新 {#updating-host-components}
 
-Host component implementations, such as `DOMComponent`, update differently. When they receive an element, they need to update the underlying platform-specific view. In case of React DOM, this means updating the DOM attributes:
+`DOMComponent` のような host コンポーネントの実装では、異なった更新を行います。
+要素を受け取る際、背後のプラットフォーム固有のビューを更新する必要があるのです。
+React DOM の場合、これは DOM 属性の更新を意味します：
 
 ```js
 class DOMComponent {
@@ -725,11 +727,12 @@ class DOMComponent {
     // ...
 ```
 
-Then, host components need to update their children. Unlike composite components, they might contain more than a single child.
+そして、host コンポーネントは子コンポーネントを更新する必要があります。composite コンポーネントと異なり、host コンポーネントは 1 つ以上の子コンポーネントを保有している可能性があります。
 
-In this simplified example, we use an array of internal instances and iterate over it, either updating or replacing the internal instances depending on whether the received `type` matches their previous `type`. The real reconciler also takes element's `key` in the account and track moves in addition to insertions and deletions, but we will omit this logic.
+この簡素化した例では内部インスタンスの配列を用い、受け取った `type` と以前の `type` が一致するかによって、内部インスタンスを更新もしくは置換しながら、配列をイテレートしています。
+実際のリコンサイラでは処理時に要素の `key` を受け取って、要素の挿入と削除に加えて移動を追跡しますが、そのロジックは省略しています。
 
-We collect DOM operations on children in a list so we can execute them in batch:
+リストの子要素への DOM 操作は、バッチで実行できるようまとめておきます：
 
 ```js
     // ...
@@ -813,7 +816,7 @@ We collect DOM operations on children in a list so we can execute them in batch:
     // ...
 ```
 
-As the last step, we execute the DOM operations. Again, the real reconciler code is more complex because it also handles moves:
+最後のステップとして、DOM 操作を実行します。ここでも、実際のリコンサイラのコードは要素の移動を扱わなければいけないので、より複雑になります：
 
 ```js
     // ...
@@ -837,7 +840,7 @@ As the last step, we execute the DOM operations. Again, the real reconciler code
 }
 ```
 
-And that is it for updating host components.
+host コンポーネントの更新については以上です。
 
 ### Top-Level Updates {#top-level-updates}
 
