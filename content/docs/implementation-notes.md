@@ -539,7 +539,9 @@ function mountTree(element, containerNode) {
 
 ### 更新 {#updating}
 
-In the previous section, we implemented unmounting. However React wouldn't be very useful if each prop change unmounted and mounted the whole tree. The goal of the reconciler is to reuse existing instances where possible to preserve the DOM and the state:
+前節では、アンマウント機能を実装しました。
+しかし、各プロパティに変更があるたびにツリー全体をマウントしたりアンマウントしたりするようでは、React の使い勝手はあまり良いとは言えません。
+リコンサイラの目標は、DOM と state を保持できるような既存のインスタンスを再利用することです。
 
 ```js
 var rootEl = document.getElementById('root');
@@ -549,7 +551,8 @@ mountTree(<App />, rootEl);
 mountTree(<App />, rootEl);
 ```
 
-We will extend our internal instance contract with one more method. In addition to `mount()` and `unmount()`, both `DOMComponent` and `CompositeComponent` will implement a new method called `receive(nextElement)`:
+もう 1 つメソッドを追加して内部インスタンスを拡張しましょう。
+`mount()` と `unmount()` に加えて、`DOMComponent` と `CompositeComponent` の両方に `receive(nextElement)` と呼ばれる新しいメソッドを実装しましょう：
 
 ```js
 class CompositeComponent {
@@ -569,9 +572,9 @@ class DOMComponent {
 }
 ```
 
-Its job is to do whatever is necessary to bring the component (and any of its children) up to date with the description provided by the `nextElement`.
+このメソッドは、`nextElement` から受け取った指示に従って、コンポーネント（および全ての子要素）を最新の状態にするために必要なあらゆる作業を行う役割を担います。
 
-This is the part that is often described as "virtual DOM diffing" although what really happens is that we walk the internal tree recursively and let each internal instance receive an update.
+実際に行われているのは、内部ツリーを再帰的に巡回して各内部インスタンスが更新を受け取れるようにすることなのですが、この処理こそ「仮想 DOM の差分処理 (diffing)」としてしばしば説明される部分です。
 
 ### Updating Composite Components {#updating-composite-components}
 
