@@ -301,7 +301,7 @@ const memoizedCallback = useCallback(
 
 インラインのコールバックとそれが依存している値の配列を渡してください。`useCallback` はそのコールバックをメモ化したものを返し、その関数は依存配列の要素のひとつが変化した場合にのみ変化します。これは、不必要なレンダーを避けるために（例えば `shouldComponentUpdate` などを使って）参照の同一性を見るよう最適化されたコンポーネントにコールバックを渡す場合に便利です。
 
-`useCallback(fn, dpes)` は `useMemo(() => fn, dpes)` と等価です。
+`useCallback(fn, deps)` は `useMemo(() => fn, deps)` と等価です。
 
 > 補足
 >
