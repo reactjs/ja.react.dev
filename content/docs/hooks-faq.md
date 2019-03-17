@@ -32,16 +32,20 @@ prev: hooks-reference.html
   * [Lint ルールは具体的に何を強制するのですか？](#what-exactly-do-the-lint-rules-enforce)
 * **[クラスからフックへ](#from-classes-to-hooks)**
   * [個々のライフサイクルメソッドはフックとどのように対応するのですか？](#how-do-lifecycle-methods-correspond-to-hooks)
+  * [フックでデータの取得をどのように行うのですか？](#how-can-i-do-data-fetching-with-hooks)
   * [インスタンス変数のようなものはありますか？](#is-there-something-like-instance-variables)
   * [state 変数は 1 つにすべきですか、たくさん使うべきですか？](#should-i-use-one-or-many-state-variables)
   * [コンポーネントの更新の時だけ副作用を実行することは可能ですか？](#can-i-run-an-effect-only-on-updates)
   * [前回の props や state はどうすれば取得できますか？](#how-to-get-the-previous-props-or-state)
+  * [関数内で古い props や state が見えているのはなぜですか？](#why-am-i-seeing-stale-props-or-state-inside-my-function)
   * [どうすれば getDerivedStateFromProps を実装できますか？](#how-do-i-implement-getderivedstatefromprops)
   * [forceUpdate のようなものはありますか？](#is-there-something-like-forceupdate)
   * [関数コンポーネントへの ref を作ることは可能ですか？](#can-i-make-a-ref-to-a-function-component)
   * [const [thing, setThing] = useState() というのはどういう意味ですか？](#what-does-const-thing-setthing--usestate-mean)
 * **[パフォーマンス最適化](#performance-optimizations)**
   * [更新時に副作用をスキップすることはできますか？](#can-i-skip-an-effect-on-updates)
+  * [依存の配列から関数を省略しても大丈夫ですか？](#is-it-safe-to-omit-functions-from-the-list-of-dependencies)
+  * [副作用の依存リストが頻繁に変わりすぎる場合はどうすればよいですか？](#what-can-i-do-if-my-effect-dependencies-change-too-often)
   * [どうすれば `shouldComponentUpdate` を実装できますか？](#how-do-i-implement-shouldcomponentupdate)
   * [計算結果のメモ化はどのように行うのですか？](#how-to-memoize-calculations)
   * [計算量の大きいオブジェクトの作成を遅延する方法はありますか？](#how-to-create-expensive-objects-lazily)
@@ -204,6 +208,10 @@ it('can render and update a counter', () => {
 
 * `componentDidCatch` と `getDerivedStateFromError`: フックによる同等物はまだ存在していませんが、近日中に追加される予定です。
 
+### フックでデータの取得をどのように行うのですか？ {#how-can-i-do-data-fetching-with-hooks}
+
+フックを使ってデータの取得をする方法について、[こちらの記事](https://www.robinwieruch.de/react-hooks-fetch-data/)を参照してください。
+
 ### インスタンス変数のようなものはありますか？ {#is-there-something-like-instance-variables}
 
 はい！ [`useRef()`](/docs/hooks-reference.html#useref) フックは DOM への参照を保持するためだけにあるのではありません。"ref" オブジェクトは汎用のコンテナであり、その `current` プロパティの値は変更可能かつどのような値でも保持することができますので、クラスのインスタンス変数と同様に利用できます。
@@ -362,6 +370,44 @@ function Counter() {
 
 [派生 state における推奨されるパターン](#how-do-i-implement-getderivedstatefromprops)についても参照してください。
 
+### 関数内で古い props や state が見えているのはなぜですか？ {#why-am-i-seeing-stale-props-or-state-inside-my-function}
+
+イベントハンドラにせよ副作用関数にせよ、コンポーネント内に書かれた関数からは、その関数が作成された時の props や state が「見え」ます。以下のような例を考えてみましょう：
+
+```js
+function Example() {
+  const [count, setCount] = useState(0);
+
+  function handleAlertClick() {
+    setTimeout(() => {
+      alert('You clicked on: ' + count);
+    }, 3000);
+  }
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+      <button onClick={handleAlertClick}>
+        Show alert
+      </button>
+    </div>
+  );
+}
+```
+
+最初に "Show alert" ボタンをクリックして、次にカウンタを増加させた場合、アラートダイアログに表示されるのは **"Show alert" ボタンをクリックした時点での** `count` 変数の値になります。これにより props や state が変わらないことを前提として書かれたコードによるバグが防止できます。
+
+非同期的に実行されるコールバック内で、意図的に state の*最新*の値を読み出したいという場合は、その値を [ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) 内に保持して、それを書き換えたり読み出したりすることができます。
+
+最後に、古い props や state が見えている場合に考えられる他の理由は、「依存の配列」による最適化を使った際に正しく依存する値の全部を指定しなかった、というものです。例えば副作用フックの第 2 引数に `[]` を指定したにも関わらず副作用内で `someProps` を読み出しているという場合、副作用関数内では `someProps` の初期値がずっと見え続けることになります。解決方法は依存配列自体を削除するか、配列の中身を修正することです。[関数の扱い方](#is-it-safe-to-omit-functions-from-the-list-of-dependencies)、および依存する値の変化を誤って無視することなく副作用の実行回数を減らすための[よくある手法](#what-can-i-do-if-my-effect-dependencies-change-too-often)についてもご覧下さい。
+
+>補足
+>
+> [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) という ESLint のルールを [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) パッケージの一部として提供しています。依存配列が正しく指定されていない場合に警告し、修正を提案します。
+
 ### どうすれば `getDerivedStateFromProps` を実装できますか？ {#how-do-i-implement-getderivedstatefromprops}
 
 おそらくそのようなものは[必要ない](/blog/2018/06/07/you-probably-dont-need-derived-state.html)のですが、これが本当に必要になる稀なケースでは（例えば `<Transition>` コンポーネントを実装するときなど）、レンダーの最中に state を更新することができます。React は最初のレンダーの終了直後に更新された state を使ってコンポーネントを再実行しますので、計算量は高くなりません。
@@ -416,6 +462,207 @@ function ScrollView({row}) {
 
 はい。[条件付きで副作用を実行する](/docs/hooks-reference.html#conditionally-firing-an-effect)を参照してください。これがデフォルトの動作になっていないのは、更新時の対応を忘れることが[バグの元になる](/docs/hooks-effect.html#explanation-why-effects-run-on-each-update)からです。
 
+### 依存の配列から関数を省略しても大丈夫ですか？ {#is-it-safe-to-omit-functions-from-the-list-of-dependencies}
+
+いいえ、一般的には省略できません。
+
+```js{3,8}
+function Example() {
+  function doSomething() {
+    console.log(someProp);
+  }
+
+  useEffect(() => {
+    doSomething();
+  }, []); // 🔴 This is not safe (it calls `doSomething` which uses `someProp`)
+}
+```
+
+副作用関数の外側にある関数内でどの props や state が使われているのか覚えておくのは大変です。ですので**副作用関数内で使われる関数は副作用関数内で宣言する**のがよいでしょう。そうすればコンポーネントスコープ内のどの値に副作用が依存しているのかを把握するのは容易です。
+
+```js{4,8}
+function Example() {
+  useEffect(() => {
+    function doSomething() {
+      console.log(someProp);
+    }
+
+    doSomething();
+  }, [someProp]); // ✅ OK (our effect only uses `someProp`)
+}
+```
+
+このようにした後で、やはりコンポーネントスコープ内のどの値も使用していないのであれば、`[]` を指定することは安全です：
+
+```js{7}
+useEffect(() => {
+  function doSomething() {
+    console.log('hello');
+  }
+
+  doSomething();
+}, []); // ✅ OK in this example because we don't use *any* values from component scope
+```
+
+ユースケースによっては、以下に述べるような選択肢もあります。
+
+>補足
+>
+> [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) パッケージの一部として [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) という ESLint のルールを提供しています。更新の一貫性が保たれていないコンポーネントを見つけるのに役立ちます。
+
+これがなぜ重要なのか説明します。
+
+`useEffect`、`useMemo`、`useCallback` あるいは `useImperativeHandle` の最後の引数として[依存する値のリスト](/docs/hooks-reference.html#conditionally-firing-an-effect)を渡す場合、内部で使われ React のデータの流れに関わる値が、すべて含まれている必要があります。すなわち props や state およびそれらより派生するあらゆるものです。
+
+関数を依存のリストから安全に省略できるのは、その関数（あるいはその関数から呼ばれる関数）が props、state ないしそれらから派生する値のいずれも含んでいない場合**のみ**です。以下の例にはバグがあります。
+
+```js{5,12}
+function ProductPage({ productId }) {
+  const [product, setProduct] = useState(null);
+
+  async function fetchProduct() {
+    const response = await fetch('http://myapi/product' + productId); // Uses productId prop
+    const json = await response.json();
+    setProduct(json);
+  }
+
+  useEffect(() => {
+    fetchProduct();
+  }, []); // 🔴 Invalid because `fetchProduct` uses `productId`
+  // ...
+}
+```
+
+**推奨される修正方法は、この関数を副作用*内*に移動することです。**これにより、副作用がどの props や state を利用しているのか把握しやすくなり、それらが指定されていることを保証しやすくなります。
+
+```js{5-10,13}
+function ProductPage({ productId }) {
+  const [product, setProduct] = useState(null);
+
+  useEffect(() => {
+    // By moving this function inside the effect, we can clearly see the values it uses.
+    async function fetchProduct() {
+      const response = await fetch('http://myapi/product' + productId);
+      const json = await response.json();
+      setProduct(json);
+    }
+
+    fetchProduct();
+  }, [productId]); // ✅ Valid because our effect only uses productId
+  // ...
+}
+```
+
+これにより、要らなくなったレスポンスに対して副作用内でローカル変数を使って対処することも可能になります。
+
+```js{2,6,8}
+  useEffect(() => {
+    let ignore = false;
+    async function fetchProduct() {
+      const response = await fetch('http://myapi/product/' + productId);
+      const json = await response.json();
+      if (!ignore) setProduct(json);
+    }
+    return () => { ignore = true };
+  }, [productId]);
+```
+
+副作用内に関数を移動したことで、依存リスト内にこの関数を含めないでよくなりました。
+
+>ヒント
+>
+>フックでデータを取得する方法について[こちらの記事](https://www.robinwieruch.de/react-hooks-fetch-data/)をご覧ください。
+
+**何らかの理由で副作用内に関数を移動*できない*という場合、他にとりうる選択肢がいくつかあります。**
+
+* **そのコンポーネントの外部にその関数を移動できないか考えましょう**。その場合、関数は props や state を参照していないことが保証されるので、依存のリストに含まずに済むようになります。
+* 使おうとしている関数が純粋な計算のみを行い、レンダー中に呼んで構わないものであるなら、その関数を代わりに**副作用の外部で呼ぶ**ようにして、副作用中ではその返り値に依存するようにします。
+* 最終手段として、関数を依存リストに加えつつ、[`useCallback`](/docs/hooks-reference.html#usecallback) を使って**その定義をラップする**ことが可能です。これにより、*関数自体*の依存が変わらない限り関数も変化しないことを保証できます。
+
+```js{2-5}
+function ProductPage({ productId }) {
+  // ✅ Wrap with useCallback to avoid change on every render
+  const fetchProduct = useCallback(() => {
+    // ... Does something with productId ...
+  }, [productId]); // ✅ All useCallback dependencies are specified
+
+  return <ProductDetails fetchProduct={fetchProduct} />;
+}
+
+function ProductDetails({ fetchProduct })
+  useEffect(() => {
+    fetchProduct();
+  }, [fetchProduct]); // ✅ All useEffect dependencies are specified
+  // ...
+}
+```
+
+上記の例では関数を依存リストに含める**必要がある**ことに注意してください。これにより `ProductPage` の `productId` プロパティが変化した場合に自動的に `ProductDetail` コンポーネント内でデータの再取得が発生するようになります。
+
+### 副作用の依存リストが頻繁に変わりすぎる場合はどうすればよいですか？ {#what-can-i-do-if-my-effect-dependencies-change-too-often}
+
+しばしば、副作用がとても頻繁に変化する state からの読み出しを行う場合があります。依存のリストからその state を省略したくなるかもしれませんが、通常それはバグになります。
+
+```js{6,9}
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCount(count + 1); // This effect depends on the `count` state
+    }, 1000);
+    return () => clearInterval(id);
+  }, []); // 🔴 Bug: `count` is not specified as a dependency
+
+  return <h1>{count}</h1>;
+}
+```
+
+依存のリストとして `[count]` を指定すればバグは起きなくなりますが、その場合値が変化するたびに interval がリセットされることになります。これは望ましい動作ではありません。これを修正するため、[`setState` 関数形式による更新](/docs/hooks-reference.html#functional-updates)を利用することができます。これにより state の*現在値*を参照せずに state が*どのように*更新されるべきかを指定できます。
+
+```js{6,9}
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCount(c => c + 1); // ✅ This doesn't depend on `count` variable outside
+    }, 1000);
+    return () => clearInterval(id);
+  }, []); // ✅ Our effect doesn't use any variables in the component scope
+
+  return <h1>{count}</h1>;
+}
+```
+
+（`setCount` 関数については同一性が保たれることが保証されているので、省略して構いません）
+
+より複雑なケース（ある state が別の state に依存している場合など）においては、state 更新のロジックを [`useReducer` フック](/docs/hooks-reference.html#usereducer)を使って副作用の外部に移動することを考慮してください。[こちらの記事](https://adamrackis.dev/state-and-use-reducer/)にこのやり方についての例があります。**`useReducer` から返される `dispatch` 関数は常に同一性が保たれます**。これはリデューサ (reducer) 関数がコンポーネント内で宣言されており props を読み出している場合でも同様です。
+
+最終手段として、クラスにおける `this` のようなものが欲しい場合は、[ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) を使ってミュータブルな値を保持させることができます。そうすればその値を読み書き可能です。例えば：
+
+```js{2-6,10-11,16}
+function Example(props) {
+  // Keep latest props in a ref.
+  let latestProps = useRef(props);
+  useEffect(() => {
+    latestProps.current = props;
+  });
+
+  useEffect(() => {
+    function tick() {
+      // Read latest props at any time
+      console.log(latestProps.current);
+    }
+
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []); // This effect never re-runs
+}
+```
+
+ミュータブルな値に依存することでコンポーネントの挙動が予測しづらくなるため、これは代替手段が思いつかない場合にのみ利用してください。うまくフックに移行できないパターンがあった場合は動作するコード例を添えて [issue を作成](https://github.com/facebook/react/issues/new)していただければお手伝いします。
+
 ### どうすれば `shouldComponentUpdate` を実装できますか？ {#how-do-i-implement-shouldcomponentupdate}
 
 関数コンポーネントを `React.memo` でラップして props を浅く比較するようにしてください。
@@ -429,7 +676,6 @@ const Button = React.memo((props) => {
 これがフックになっていないのは、フックと違って組み合わせ可能ではないからです。`React.memo` は `PureComponent` の同等物ですが、props のみを比較するという違いがあります。（新旧の props を受け取るカスタムの比較関数を 2 つめの引数として加えることができます。その関数が true を返した場合はコンポーネントの更新はスキップされます）
 
 `React.memo` は state を比較しませんが、これは比較可能な単一の state オブジェクトが存在しないからです。しかし子コンポーネント側も純粋にしておくことや、[`useMemo` を使って個々のコンポーネントを最適化する](/docs/hooks-faq.html#how-to-memoize-calculations)ことが可能です。
-
 
 ### 計算結果のメモ化はどのように行うのですか？ {#how-to-memoize-calculations}
 
