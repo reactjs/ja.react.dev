@@ -45,6 +45,10 @@ setState(newState);
 
 後続の再レンダー時には、`useState` から返される 1 番目の値は常に、更新を適用した後の最新版の state になります。
 
+> 補足
+>
+> React は再レンダー間で `setState` 関数の同一性が保たれ、変化しないことを保証します。従って `useEffect` や `useCallback` の依存リストにはこの関数を含めないでも構いません。
+
 #### 関数型の更新 {#functional-updates}
 
 新しい state が前の state に基づいて計算される場合は、`setState` に関数を渡すことができます。この関数は前回の state の値を受け取り、更新された値を返します。以下は、`setState` の両方の形式を用いたカウンタコンポーネントの例です。
@@ -133,7 +137,7 @@ useEffect(() => {
 
 #### 条件付きで副作用を実行する {#conditionally-firing-an-effect}
 
-デフォルトの動作では、副作用関数はレンダーの完了時に毎回実行されます。これにより、コンポーネントの入力のうちのひとつが変化した場合に毎回副作用が再作成されます。
+デフォルトの動作では、副作用関数はレンダーの完了時に毎回実行されます。これにより、コンポーネントの依存配列のうちのひとつが変化した場合に毎回副作用が再作成されます。
 
 しかし、上述のデータ購読の例でもそうですが、これは幾つかのケースではやりすぎです。新しい購読を設定する必要があるのは毎回の更新ごとではなく、`source` プロパティが変化した場合のみです。
 
@@ -157,7 +161,15 @@ useEffect(
 
 > 補足
 >
-> 入力用配列は副作用関数に引数として渡されるわけではありません。しかし概念としては、この記法は副作用関数の引数が何なのかを表現しています。副作用関数の内部で参照されているすべての値は入力の配列内にも現れるべきです。将来的には、コンパイラが発達すればこの配列を自動で作成することも可能であるはずです。
+> この最適化を利用する場合、**時間の経過とともに変化し副作用によって利用される、コンポーネントスコープの値（props や state など）**がすべて配列に含まれていることを確認してください。さもないとあなたのコードは以前のレンダー時の古い値を参照してしまうことになります。[関数の扱い方](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies)と[この配列の値が頻繁に変わる場合の対処法](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often)も参照してください。
+>
+> もしも副作用とそのクリーンアップを 1 度だけ（マウント時とアンマウント時にのみ）実行したいという場合、空の配列 (`[]`) を第 2 引数として渡すことができます。こうすることで、あなたの副作用は props や state の値の*いずれにも*依存していないため再実行する必要が一切ない、ということを React に伝えることができます。これは特別なケースとして処理されているわけではなく、入力配列を普通に処理すればそうなるというだけの話です。
+>
+> 空の配列 (`[]`) を渡した場合、副作用内では props と state の値は常にその初期値のままになります。`[]` を渡すことはおなじみの `componentDidMount` と `componentWillUnmount` による概念と似ているように感じるでしょうが、通常は[こちら](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies)や[こちら](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often)のように、副作用を過度に再実行しないためのよりよい解決方法があります。また `useEffect` はブラウザが描画し終えた後まで遅延されますので、追加の作業をしてもそれほど問題にならないということもお忘れなく。
+>
+> [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) パッケージの [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) ルールを有効にすることをお勧めします。これは依存の配列が正しく記述されていない場合に警告し、修正を提案します。
+
+依存の配列は副作用関数に引数として渡されるわけではありません。しかし概念としては、この記法は副作用関数の引数が何なのかを表現しています。副作用関数の内部で参照されているすべての値は入力の配列内にも現れるべきです。将来的には、コンパイラが発達すればこの配列を自動で作成することも可能であるはずです。
 
 ### `useContext` {#usecontext}
 
@@ -210,6 +222,10 @@ function Counter({initialState}) {
   );
 }
 ```
+
+> 補足
+>
+> React は再レンダー間で `dispatch` 関数の同一性が保たれ、変化しないことを保証します。従って `useEffect` や `useCallback` の依存リストにはこの関数を含めないでも構いません。
 
 #### 初期 state の指定 {#specifying-the-initial-state}
 
@@ -283,13 +299,15 @@ const memoizedCallback = useCallback(
 
 [メモ化](https://en.wikipedia.org/wiki/Memoization)されたコールバックを返します。
 
-インラインのコールバックとその入力の配列を渡してください。`useCallback` はそのコールバックをメモ化したものを返し、その関数は入力値のひとつが変化した場合にのみ変化します。これは、不必要なレンダーを避けるために（例えば `shouldComponentUpdate` などを使って）参照の同一性を見るよう最適化されたコンポーネントにコールバックを渡す場合に便利です。
+インラインのコールバックとそれが依存している値の配列を渡してください。`useCallback` はそのコールバックをメモ化したものを返し、その関数は依存配列の要素のひとつが変化した場合にのみ変化します。これは、不必要なレンダーを避けるために（例えば `shouldComponentUpdate` などを使って）参照の同一性を見るよう最適化されたコンポーネントにコールバックを渡す場合に便利です。
 
-`useCallback(fn, inputs)` は `useMemo(() => fn, inputs)` と等価です。
+`useCallback(fn, deps)` は `useMemo(() => fn, deps)` と等価です。
 
 > 補足
 >
-> 入力用配列はコールバックに引数として渡されるわけではありません。しかし概念としては、この記法はコールバックの引数が何なのかを表現しています。コールバックの内部で参照されているすべての値は入力の配列内にも現れるべきです。将来的には、コンパイラが発達すればこの配列を自動で作成することも可能であるはずです。
+> 依存する値の配列はコールバックに引数として渡されるわけではありません。しかし概念としては、この記法はコールバックの引数が何なのかを表現しています。コールバックの内部で参照されているすべての値は依存の配列内にも現れるべきです。将来的には、コンパイラが発達すればこの配列を自動で作成することも可能であるはずです。
+>
+> [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) パッケージの [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) ルールを有効にすることをお勧めします。これは依存の配列が正しく記述されていない場合に警告し、修正を提案します。
 
 ### `useMemo` {#usememo}
 
@@ -299,7 +317,7 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
 [メモ化](https://en.wikipedia.org/wiki/Memoization)された値を返します。
 
-"作成用" 関数とその入力の配列を渡してください。`useMemo` は入力値のひとつが変化した場合にのみメモ化された値を再計算します。この最適化によりレンダー毎に高価な計算が実行されるのを避けることができます。
+"作成用" 関数とそれが依存する値の配列を渡してください。`useMemo` は依存配列の要素のひとつが変化した場合にのみメモ化された値を再計算します。この最適化によりレンダー毎に高価な計算が実行されるのを避けることができます。
 
 `useMemo` に渡した関数はレンダー中に実行されるということを覚えておいてください。レンダー中に通常やらないようなことをこの関数内でやらないようにしましょう。例えば副作用は `useMemo` ではなく `useEffect` の仕事です。
 
@@ -309,7 +327,9 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
 > 補足
 >
-> 入力用配列は第 1 引数の関数に引数として渡されるわけではありません。しかし概念としては、この記法は関数の引数が何なのかを表現しています。関数の内部で参照されているすべての値は入力の配列内にも現れるべきです。将来的には、コンパイラが発達すればこの配列を自動で作成することも可能であるはずです。
+> 依存する値の配列は第 1 引数の関数に引数として渡されるわけではありません。しかし概念としては、この記法は関数の引数が何なのかを表現しています。関数の内部で参照されているすべての値は依存の配列内にも現れるべきです。将来的には、コンパイラが発達すればこの配列を自動で作成することも可能であるはずです。
+>
+> [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) パッケージの [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) ルールを有効にすることをお勧めします。これは依存の配列が正しく記述されていない場合に警告し、修正を提案します。
 
 ### `useRef` {#useref}
 
@@ -342,7 +362,7 @@ function TextInputWithFocusButton() {
 ### `useImperativeHandle` {#useimperativehandle}
 
 ```js
-useImperativeHandle(ref, createHandle, [inputs])
+useImperativeHandle(ref, createHandle, [deps])
 ```
 
 `useImperativeHandle` は `ref` が使われた時に親コンポーネントに渡されるインスタンス値をカスタマイズするのに使います。いつもの話ですが、ref を使った手続き的なコードはほとんどの場合に避けるべきです。`useImperativeHandle` は `forwardRef` と組み合わせて使います：
