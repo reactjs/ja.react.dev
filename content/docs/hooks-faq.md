@@ -210,7 +210,11 @@ it('can render and update a counter', () => {
 
 ### フックでデータの取得をどのように行うのですか？ {#how-can-i-do-data-fetching-with-hooks}
 
+<<<<<<< HEAD
 フックを使ってデータの取得をする方法について、[こちらの記事](https://www.robinwieruch.de/react-hooks-fetch-data/)を参照してください。
+=======
+Here is a [small demo](https://codesandbox.io/s/jvvkoo8pq3) to get you started. To learn more, check out [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) about data fetching with Hooks.
+>>>>>>> 877431a60bb64c4694d51cca79dfc4230d6af603
 
 ### インスタンス変数のようなものはありますか？ {#is-there-something-like-instance-variables}
 
@@ -467,7 +471,7 @@ function ScrollView({row}) {
 いいえ、一般的には省略できません。
 
 ```js{3,8}
-function Example() {
+function Example({ someProp }) {
   function doSomething() {
     console.log(someProp);
   }
@@ -481,7 +485,7 @@ function Example() {
 副作用関数の外側にある関数内でどの props や state が使われているのか覚えておくのは大変です。ですので**副作用関数内で使われる関数は副作用関数内で宣言する**のがよいでしょう。そうすればコンポーネントスコープ内のどの値に副作用が依存しているのかを把握するのは容易です。
 
 ```js{4,8}
-function Example() {
+function Example({ someProp }) {
   useEffect(() => {
     function doSomething() {
       console.log(someProp);
@@ -571,7 +575,11 @@ function ProductPage({ productId }) {
 
 >ヒント
 >
+<<<<<<< HEAD
 >フックでデータを取得する方法について[こちらの記事](https://www.robinwieruch.de/react-hooks-fetch-data/)をご覧ください。
+=======
+>Check out [this small demo](https://codesandbox.io/s/jvvkoo8pq3) and [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) to learn more about data fetching with Hooks.
+>>>>>>> 877431a60bb64c4694d51cca79dfc4230d6af603
 
 **何らかの理由で副作用内に関数を移動*できない*という場合、他にとりうる選択肢がいくつかあります。**
 
