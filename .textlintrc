@@ -1,5 +1,8 @@
 {
   "rules": {
+    "textlint-rule-detect-bad-chars": {
+
+    },
     "preset-jtf-style": {
       "1.2.1.句点(。)と読点(、)": false,
       "1.2.2.ピリオド(.)とカンマ(,)": false,

@@ -12778,6 +12778,13 @@ text-table@0.2.0, text-table@^0.2.0, text-table@~0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
+textlint-rule-detect-bad-chars@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/textlint-rule-detect-bad-chars/-/textlint-rule-detect-bad-chars-1.0.2.tgz#cd53b23d3f47f9c8b22adbd71c3db7098b655785"
+  integrity sha512-KC7JNBXrFXghQ4blcCMV121jTXTxRomK5jaa+JEN2aOnOQGKB9Bz2dXDFqLbNchVB5zR3+PKVFAkdZEIijU5xA==
+  dependencies:
+    mdast-util-to-string "^1.0.5"
+
 textlint-rule-helper@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/textlint-rule-helper/-/textlint-rule-helper-2.1.1.tgz#d572588685359134bc779939b217e61f087dab0f"
