@@ -97,6 +97,8 @@ const [state, setState] = useState(() => {
 
 現在値と同じ値で更新を行った場合、React は子のレンダーや副作用の実行を回避して処理を終了します。（React は [`Object.is` による比較アルゴリズム](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description) を使用します）
 
+Note that React may still need to render that specific component again before bailing out. That shouldn't be a concern because React won't unnecessarily go "deeper" into the tree. If you're doing expensive calculations while rendering, you can optimize them with `useMemo`.
+
 ### `useEffect` {#useeffect}
 
 ```js
@@ -174,12 +176,32 @@ useEffect(
 ### `useContext` {#usecontext}
 
 ```js
-const context = useContext(Context);
+const value = useContext(MyContext);
 ```
 
+<<<<<<< HEAD
 コンテキストオブジェクト（`React.createContext` からの戻り値）を受け取り、該当コンテキストに対応する最も近いコンテキストプロバイダから得られる、コンテキストの現在値を返します。
 
 プロバイダが更新された場合、このフックは最新のコンテキストの値を使って再レンダーを発生させます。
+=======
+Accepts a context object (the value returned from `React.createContext`) and returns the current context value for that context. The current context value is determined by the `value` prop of the nearest `<MyContext.Provider>` above the calling component in the tree.
+
+When the nearest `<MyContext.Provider>` above the component updates, this Hook will trigger a rerender with the latest context `value` passed to that `MyContext` provider.
+
+Don't forget that the argument to `useContext` must be the *context object itself*:
+
+ * **Correct:** `useContext(MyContext)`
+ * **Incorrect:** `useContext(MyContext.Consumer)`
+ * **Incorrect:** `useContext(MyContext.Provider)`
+
+A component calling `useContext` will always re-render when the context value changes. If re-rendering the component is expensive, you can [optimize it by using memoization](https://github.com/facebook/react/issues/15156#issuecomment-474590693).
+
+>Tip
+>
+>If you're familiar with the context API before Hooks, `useContext(MyContext)` is equivalent to `static contextType = MyContext` in a class, or to `<MyContext.Consumer>`.
+>
+>`useContext(MyContext)` only lets you *read* the context and subscribe to its changes. You still need a `<MyContext.Provider>` above in the tree to *provide* the value for this context.
+>>>>>>> b1bc193dbad464f7c659b10f3f57e37e265a063e
 
 ## 追加のフック {#additional-hooks}
 
@@ -286,6 +308,8 @@ function Counter({initialCount}) {
 
 state の現在値として同じ値を返した場合、React は子のレンダーや副作用の実行を回避して処理を終了します。（React は [`Object.is` による比較アルゴリズム](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description) を使用します）
 
+Note that React may still need to render that specific component again before bailing out. That shouldn't be a concern because React won't unnecessarily go "deeper" into the tree. If you're doing expensive calculations while rendering, you can optimize them with `useMemo`.
+
 ### `useCallback` {#usecallback}
 
 ```js
@@ -321,7 +345,11 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
 `useMemo` に渡した関数はレンダー中に実行されるということを覚えておいてください。レンダー中に通常やらないようなことをこの関数内でやらないようにしましょう。例えば副作用は `useMemo` ではなく `useEffect` の仕事です。
 
+<<<<<<< HEAD
 配列が渡されなかった場合は、第 1 引数に新しい関数が渡された場合に常に新しい値が計算されます。（第 1 引数がインラインの関数だった場合、毎レンダー毎に値が計算されます）
+=======
+If no array is provided, a new value will be computed on every render.
+>>>>>>> b1bc193dbad464f7c659b10f3f57e37e265a063e
 
 **`useMemo` はパフォーマンス最適化のために使うものであり、意味上の保証があるものだと考えないでください。**将来的に React は、例えば画面外のコンポーネント用のメモリを解放するため、などの理由で、メモ化された値を「忘れる」ようにする可能性があります。`useMemo` なしでも動作するコードを書き、パフォーマンス最適化のために `useMemo` を加えるようにしましょう。
 
@@ -357,7 +385,20 @@ function TextInputWithFocusButton() {
 }
 ```
 
+<<<<<<< HEAD
 `useRef()` は `ref` 属性で使うだけではなく、より便利に使えるということに注意してください。これはクラスでインスタンス変数を使うのと同様にして、[あらゆるミュータブルな値を保持しておく](/docs/hooks-faq.html#is-there-something-like-instance-variables)のに便利です。
+=======
+Essentially, `useRef` is like a "box" that can hold a mutable value in its `.current` property.
+
+You might be familiar with refs primarily as a way to [access the DOM](/docs/refs-and-the-dom.html). If you pass a ref object to React with `<div ref={myRef} />`, React will set its `.current` property to the corresponding DOM node whenever that node changes.
+
+However, `useRef()` is useful for more than the `ref` attribute. It's [handy for keeping any mutable value around](/docs/hooks-faq.html#is-there-something-like-instance-variables) similar to how you'd use instance fields in classes.
+
+This works because `useRef()` creates a plain JavaScript object. The only difference between `useRef()` and creating a `{current: ...}` object yourself is that `useRef` will give you the same ref object on every render.
+
+Keep in mind that `useRef` *doesn't* notify you when its content changes. Mutating the `.current` property doesn't cause a re-render. If you want to run some code when React attaches or detaches a ref to a DOM node, you may want to use a [callback ref](/docs/hooks-faq.html#how-can-i-measure-a-dom-node) instead.
+
+>>>>>>> b1bc193dbad464f7c659b10f3f57e37e265a063e
 
 ### `useImperativeHandle` {#useimperativehandle}
 
@@ -390,7 +431,15 @@ FancyInput = forwardRef(FancyInput);
 
 > ヒント
 >
+<<<<<<< HEAD
 > `useLayoutEffect` は `componentDidMount` や `componentDidUpdate` と同じフェーズで実行されますので、クラスコンポーネントから移行しておりどちらのフックを使えばいいか自信がない場合は、恐らくリスクが最も低くなります。
+=======
+> If you're migrating code from a class component, note `useLayoutEffect` fires in the same phase as `componentDidMount` and `componentDidUpdate`. However, **we recommend starting with `useEffect` first** and only trying `useLayoutEffect` if that causes a problem.
+>
+>If you use server rendering, keep in mind that *neither* `useLayoutEffect` nor `useEffect` can run until the JavaScript is downloaded. This is why React warns when a server-rendered component contains `useLayoutEffect`. To fix this, either move that logic to `useEffect` (if it isn't necessary for the first render), or delay showing that component until after the client renders (if the HTML looks broken until `useLayoutEffect` runs).
+>
+>To exclude a component that needs layout effects from the server-rendered HTML, render it conditionally with `showChild && <Child />` and defer showing it with `useEffect(() => { setShowChild(true); }, [])`. This way, the UI doesn't appear broken before hydration.
+>>>>>>> b1bc193dbad464f7c659b10f3f57e37e265a063e
 
 ### `useDebugValue` {#usedebugvalue}
 
