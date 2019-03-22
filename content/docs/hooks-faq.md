@@ -41,6 +41,7 @@ prev: hooks-reference.html
   * [どうすれば getDerivedStateFromProps を実装できますか？](#how-do-i-implement-getderivedstatefromprops)
   * [forceUpdate のようなものはありますか？](#is-there-something-like-forceupdate)
   * [関数コンポーネントへの ref を作ることは可能ですか？](#can-i-make-a-ref-to-a-function-component)
+  * [DOM ノードの位置やサイズの測定はどのように行うのですか？](#how-can-i-measure-a-dom-node)
   * [const [thing, setThing] = useState() というのはどういう意味ですか？](#what-does-const-thing-setthing--usestate-mean)
 * **[パフォーマンス最適化](#performance-optimizations)**
   * [更新時に副作用をスキップすることはできますか？](#can-i-skip-an-effect-on-updates)
@@ -210,7 +211,7 @@ it('can render and update a counter', () => {
 
 ### フックでデータの取得をどのように行うのですか？ {#how-can-i-do-data-fetching-with-hooks}
 
-フックを使ってデータの取得をする方法について、[こちらの記事](https://www.robinwieruch.de/react-hooks-fetch-data/)を参照してください。
+まずはこちらの[小さなデモ](https://codesandbox.io/s/jvvkoo8pq3)をご覧ください。フックを使ってデータの取得をする方法について詳しく学ぶには[こちらの記事](https://www.robinwieruch.de/react-hooks-fetch-data/)を参照してください。
 
 ### インスタンス変数のようなものはありますか？ {#is-there-something-like-instance-variables}
 
@@ -451,6 +452,59 @@ function ScrollView({row}) {
 
 このようなことをする必要はあまりないはずですが、命令型のメソッドを親コンポーネントに公開するために [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle) フックを利用することができます。
 
+### DOM ノードの位置やサイズの測定はどのように行うのですか？ {#how-can-i-measure-a-dom-node}
+
+DOM ノードの位置やサイズを測定するためには、[コールバック形式の ref](/docs/refs-and-the-dom.html#callback-refs) が利用できます。React は ref が異なるノードに割り当てられるたびにコールバックを呼び出します。こちらの[小さなデモ](https://codesandbox.io/s/l7m0v5x4v9)をご覧ください。
+
+```js{4-8,12}
+function MeasureExample() {
+  const [height, setHeight] = useState(0);
+
+  const measuredRef = useCallback(node => {
+    if (node !== null) {
+      setHeight(node.getBoundingClientRect().height);
+    }
+  }, []);
+
+  return (
+    <>
+      <h1 ref={measuredRef}>Hello, world</h1>
+      <h2>The above header is {Math.round(height)}px tall</h2>
+    </>
+  );
+}
+```
+
+この例で `useRef` を使わなかったのは、オブジェクト型の ref には現在値が変わった時にそれを通知する機能がないためです。コールバック ref を使うことで、[子コンポーネントが測定されたノードを（例えばクリックに応じて）後から表示する場合でも](https://codesandbox.io/s/818zzk8m78)、親コンポーネントの側でその変更について通知を受け取り、測定値を反映させることができます。
+
+`useCallback` の依存値の配列として `[]` を渡したことに注意してください。これにより我々の ref コールバックが再レンダーごとに変化しないことが保証され、React が不必要にその関数を呼ばないで済みます。
+
+お望みであれば再利用可能なフックとして[このロジックを抽出](https://codesandbox.io/s/m5o42082xy)できます。
+
+```js{2}
+function MeasureExample() {
+  const [rect, ref] = useClientRect();
+  return (
+    <>
+      <h1 ref={ref}>Hello, world</h1>
+      {rect !== null &&
+        <h2>The above header is {Math.round(rect.height)}px tall</h2>
+      }
+    </>
+  );
+}
+
+function useClientRect() {
+  const [rect, setRect] = useState(null);
+  const ref = useCallback(node => {
+    if (node !== null) {
+      setRect(node.getBoundingClientRect());
+    }
+  }, []);
+  return [rect, ref];
+}
+```
+
 ### `const [thing, setThing] = useState()` というのはどういう意味ですか？ {#what-does-const-thing-setthing--usestate-mean}
 
 この構文に馴染みがない場合はステートフックのドキュメント内の[説明](/docs/hooks-state.html#tip-what-do-square-brackets-mean)をご覧ください。
@@ -467,7 +521,7 @@ function ScrollView({row}) {
 いいえ、一般的には省略できません。
 
 ```js{3,8}
-function Example() {
+function Example({ someProp }) {
   function doSomething() {
     console.log(someProp);
   }
@@ -481,7 +535,7 @@ function Example() {
 副作用関数の外側にある関数内でどの props や state が使われているのか覚えておくのは大変です。ですので**副作用関数内で使われる関数は副作用関数内で宣言する**のがよいでしょう。そうすればコンポーネントスコープ内のどの値に副作用が依存しているのかを把握するのは容易です。
 
 ```js{4,8}
-function Example() {
+function Example({ someProp }) {
   useEffect(() => {
     function doSomething() {
       console.log(someProp);
@@ -571,7 +625,7 @@ function ProductPage({ productId }) {
 
 >ヒント
 >
->フックでデータを取得する方法について[こちらの記事](https://www.robinwieruch.de/react-hooks-fetch-data/)をご覧ください。
+>フックでデータを取得する方法について[こちらの小さなデモ](https://codesandbox.io/s/jvvkoo8pq3)および[こちらの記事](https://www.robinwieruch.de/react-hooks-fetch-data/)をご覧ください。
 
 **何らかの理由で副作用内に関数を移動*できない*という場合、他にとりうる選択肢がいくつかあります。**
 
@@ -853,7 +907,7 @@ function Form() {
   const [text, updateText] = useState('');
   const textRef = useRef();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     textRef.current = text; // Write it to the ref
   });
 
@@ -894,7 +948,7 @@ function useEventCallback(fn, dependencies) {
     throw new Error('Cannot call an event handler while rendering.');
   });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     ref.current = fn;
   }, [fn, ...dependencies]);
 
