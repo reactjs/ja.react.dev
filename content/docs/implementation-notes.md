@@ -842,9 +842,9 @@ class DOMComponent {
 
 host コンポーネントの更新については以上です。
 
-### Top-Level Updates {#top-level-updates}
+### 最上位コンポーネントの更新 {#top-level-updates}
 
-Now that both `CompositeComponent` and `DOMComponent` implement the `receive(nextElement)` method, we can change the top-level `mountTree()` function to use it when the element `type` is the same as it was the last time:
+ここまでで `CompositeComponent` と `DOMComponent` の両方ともが `receive(nextElement)` メソッドを実装しているので、要素の type が前回と同じだった場合は最上位の `mountTree()`関数がそれを使えるよう、この関数を書き換えることができます：
 
 ```js
 function mountTree(element, containerNode) {
@@ -869,7 +869,7 @@ function mountTree(element, containerNode) {
 }
 ```
 
-Now calling `mountTree()` two times with the same type isn't destructive:
+これで、同じ型で `mountTree()` を 2 回呼び出しても、破壊的な変更にはなりません：
 
 ```js
 var rootEl = document.getElementById('root');
@@ -879,29 +879,33 @@ mountTree(<App />, rootEl);
 mountTree(<App />, rootEl);
 ```
 
-These are the basics of how React works internally.
+以上の処理が React 内部での動作の仕組みの基本です。
 
-### What We Left Out {#what-we-left-out}
+### このドキュメントで除外したもの {#what-we-left-out}
 
-This document is simplified compared to the real codebase. There are a few important aspects we didn't address:
+このドキュメントは、実際のコードベースよりもシンプルなものになっています。ここでは言及しなかった重要なポイントがいくつかあります：
 
-* Components can render `null`, and the reconciler can handle "empty slots" in arrays and rendered output.
+* コンポーネントは `null` をレンダリングでき、リコンサイラは配列やレンダリングされた出力における「空スロット」部分を扱うことができます。
 
-* The reconciler also reads `key` from the elements, and uses it to establish which internal instance corresponds to which element in an array. A bulk of complexity in the actual React implementation is related to that.
+* リコンサイラは要素から `key` も読み取り、どの内部インスタンスが配列中のどの要素と対応するかを確認するのに使用します。
+実際の React の実装における複雑さの大半は、この箇所に関わるものです。
 
-* In addition to composite and host internal instance classes, there are also classes for "text" and "empty" components. They represent text nodes and the "empty slots" you get by rendering `null`.
+* composite と host 型の内部インスタンスのクラスに加えて、"text" と "empty" コンポーネントのクラスもあります。
+それらはテキストノードと、`null` をレンダリングすると得られる「空のスロット」を表します。
 
-* Renderers use [injection](/docs/codebase-overview.html#dynamic-injection) to pass the host internal class to the reconciler. For example, React DOM tells the reconciler to use `ReactDOMComponent` as the host internal instance implementation.
+* レンダラは[依存性注入](/docs/codebase-overview.html#dynamic-injection)を利用して host 内部クラスをリコンサイラに渡します。
+例えば、React DOM はリコンサイラに `ReactDOMComponent` を host 内部インスタンスの実装として使用するように指示します。
 
-* The logic for updating the list of children is extracted into a mixin called `ReactMultiChild` which is used by the host internal instance class implementations both in React DOM and React Native.
+* 子要素のリストを更新するロジックは `ReactMultiChild` と呼ばれるミックスインに抽出され、そのミックスインが、React DOM および React Native 両方における host 内部インスタンスのクラスの実装に使用されます。
 
-* The reconciler also implements support for `setState()` in composite components. Multiple updates inside event handlers get batched into a single update.
+* リコンサイラは composite 要素における `setState()` のサポートも実装しています。イベントハンドラ内部での複数の更新は、単一の更新にバッチ処理されます。
 
-* The reconciler also takes care of attaching and detaching refs to composite components and host nodes.
+* リコンサイラは、composite コンポーネントおよび host ノードへの ref の追加と削除についても対応しています。
 
-* Lifecycle methods that are called after the DOM is ready, such as `componentDidMount()` and `componentDidUpdate()`, get collected into "callback queues" and are executed in a single batch.
+* DOM の準備ができあがった後に呼び出される、`componentDidMount()` や `componentDidUpdate()` のようなライフサイクルメソッドは `callback queues` によって回収され、単一のバッチの中で実行されます。
 
-* React puts information about the current update into an internal object called "transaction". Transactions are useful for keeping track of the queue of pending lifecycle methods, the current DOM nesting for the warnings, and anything else that is "global" to a specific update. Transactions also ensure React "cleans everything up" after updates. For example, the transaction class provided by React DOM restores the input selection after any update.
+* React は現時点での更新についての情報を「トランザクション」と呼ばれる内部オブジェクトに格納します。トランザクションは、ペンディングしているライフサイクルメソッドのキューや、警告のために入れ子になっている現在の DOM 、そしてある特定の更新に対して「グローバル」になっているその他のものの経過を追うのに重宝します。
+トランザクションによって React が更新後に「全てをクリーンアップした」ことも確認できます。例えば、React DOM が提供するトランザクションクラスは、入力フィールドの選択状態を更新後に復元します。
 
 ### Jumping into the Code {#jumping-into-the-code}
 
