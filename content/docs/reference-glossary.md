@@ -130,7 +130,7 @@ class Welcome extends React.Component {
 
 ライフサイクルメソッドは、コンポーネントの様々なフェーズにおいて実行される特別な関数です。コンポーネントが作成されて DOM に挿入（[マウント](/docs/react-component.html#mounting)）された時、コンポーネントが更新された時、コンポーネントが DOM からアンマウント（つまり削除）された時のそれぞれで、利用可能なメソッドがあります。
 
-## [制御されたコンポーネント](/docs/forms.html#controlled-components) vs. [非制御コンポーネント](/docs/uncontrolled-components.html)
+## [制御されたコンポーネント](/docs/forms.html#controlled-components) vs. [非制御コンポーネント](/docs/uncontrolled-components.html) {#docsuncontrolled-componentshtml}
 
 React では、フォームの入力を扱うのに 2 つの異なるアプローチがあります。
 
