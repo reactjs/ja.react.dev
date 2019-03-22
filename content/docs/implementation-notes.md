@@ -923,10 +923,11 @@ mountTree(<App />, rootEl);
 * `mount()` と `receive()`、そして `unmount()` は、実際の React のコードベースでは歴史的な理由から、`mountComponent()`、`receiveComponent()`、そして `unmountComponent()`と呼ばれていますが、これらは要素を受け取っています。
 * 内部インスタンス上のプロパティ名は、`_currentElement` のようにアンダースコアから始まります。これらはコードベース全体を通じて、読み取り専用の public なフィールドと見なされます。
 
-### Future Directions {#future-directions}
+### 今後の方向性 {#future-directions}
 
-Stack reconciler has inherent limitations such as being synchronous and unable to interrupt the work or split it in chunks. There is a work in progress on the [new Fiber reconciler](/docs/codebase-overview.html#fiber-reconciler) with a [completely different architecture](https://github.com/acdlite/react-fiber-architecture). In the future, we intend to replace stack reconciler with it, but at the moment it is far from feature parity.
+stack リコンサイラには、同期的処理であることや、作業を中断したりチャンクに分割したりできないといったことなど、固有の制限があります。
+現在、[全く異なるアーキテクチャ](https://github.com/acdlite/react-fiber-architecture)による[新たな Fiber リコンサイラ](/docs/codebase-overview.html#fiber-reconciler)の開発が進行中です。
 
-### Next Steps {#next-steps}
+### 次のステップ {#next-steps}
 
-Read the [next section](/docs/design-principles.html) to learn about the guiding principles we use for React development.
+React の開発時に私たちが使用するガイドラインについて学ぶには、[次の章](/docs/design-principles.html)を読んでください。
