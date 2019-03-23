@@ -7,6 +7,9 @@
       "4.2.1.感嘆符(！)": false,
       "4.2.2.疑問符(？)": false
     },
+    "@textlint-rule/no-invalid-control-character": {
+      "checkCode": true
+    },
     "prh": {
       "severity" : "warning",
       "rulePaths" :["./prh.yml"]

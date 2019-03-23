@@ -120,9 +120,9 @@
       - id: hooks-custom
         title: カスタムフックの作成
       - id: hooks-reference
-        title: Hooks API Reference
+        title: フック API Reference
       - id: hooks-faq
-        title: Hooks FAQ
+        title: フックに関するよくある質問
 - title: Contributing
   items:
   - id: how-to-contribute

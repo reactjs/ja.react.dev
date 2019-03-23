@@ -31,8 +31,6 @@ redirect_from:
 
 このチュートリアルから価値を得るために全セクションを一度に終わらせる必要はありません。セクション 1 つや 2 つ分でも構いませんので、できるところまで進めましょう。
 
-チュートリアルを進めながらコードをコピー・ペーストしても構いませんが、手でタイプすることをお勧めします。そうすれば手が動きを覚えるとともに、理解も進むようになるでしょう。
-
 ### これから作るもの {#what-are-we-building}
 
 このチュートリアルでは、インタラクティブな三目並べゲーム (tic-tac-toe) の作り方をお見せします。
@@ -190,6 +188,8 @@ Square（マス目）コンポーネントは 1 つの `<button>` をレンダ�
 
 では手始めに、Board コンポーネントから Square コンポーネントにデータを渡してみましょう。
 
+チュートリアルを進めるにあたって、コードをコピー・ペーストしないで、手でタイプすることをお勧めします。そうすれば手が動きを覚えるとともに、理解も進むようになるでしょう。
+
 Board の `renderSquare` メソッド内で、props として `value` という名前の値を Square に渡すようにコードを変更します：
 
 ```js{3}
@@ -260,7 +260,7 @@ class Square extends React.Component {
 >}
 >```
 >
-> `onClick={() => alert('click')}` と記載したときに `onClick` プロパティに渡しているのは*関数*であることに注意してください。この関数はクリックされるまで実行されません。`() =>` を書くのを忘れて `onClick={alert('click')}` と書くのはよくある間違いであり、こうするとコンポーネントが再レンダーされるたびにアラートが表示されてしまいます。
+> `onClick={() => alert('click')}` と記載したときに `onClick` プロパティに渡しているのは*関数*であることに注意してください。React はクリックされるまでこの関数を実行しません。`() =>` を書くのを忘れて `onClick={alert('click')}` と書くのはよくある間違いであり、こうするとコンポーネントが再レンダーされるたびにアラートが表示されてしまいます。
 
 次のステップとして、Square コンポーネントに自分がクリックされたことを「覚えさせ」て、"X" マークでマスを埋めるようにさせます。コンポーネントが何かを「覚える」ためには、**state** というものを使います。
 
@@ -294,7 +294,7 @@ class Square extends React.Component {
 次に Square の `render` メソッドを書き換えて、クリックされた時に state の現在値を表示するようにします。
 
 * `<button>` タグ内の `this.props.value` を `this.state.value` に置き換える。
-* `() => alert()` というイベントハンドラを `() => this.setState({value: 'X'})` に書き換える。
+* `onClick={...}` というイベントハンドラを `onClick={() => this.setState({value: 'X'})}` に書き換える。
 * 読みやすくするため、`className` と `onClick` の両プロパティをそれぞれ独立した行に配置する。
 
 これらの書き換えの後、Square の `render` メソッドから返される `<button>` タグは以下のようになります。
@@ -356,7 +356,9 @@ Board が各 Square に、現時点の state がどうなっているか問い�
 
 **複数の子要素からデータを集めたい、または 2 つの子コンポーネントに互いにやりとりさせたいと思った場合は、代わりに親コンポーネント内で共有の state を宣言する必要があります。親コンポーネントは props を使うことで子に情報を返すことができます。こうすることで、子コンポーネントが兄弟同士、あるいは親との間で常に同期されるようになります。**
 
-このように state を親コンポーネントにリフトアップ (lift up) することは React コンポーネントのリファクタリングでよくあることですので、この機会に挑戦してみましょう。Board にコンストラクタを追加し、初期 state をセットして 9 個の null 値を持つ配列が含まれるようにします。この 9 個の null が 9 個のマス目に対応します。
+このように state を親コンポーネントにリフトアップ (lift up) することは React コンポーネントのリファクタリングでよくあることですので、この機会に挑戦してみましょう。
+
+Board にコンストラクタを追加し、初期 state に 9 個の null が 9 個のマス目に対応する 9 個の null 値をセットします。
 
 ```javascript{2-7}
 class Board extends React.Component {
@@ -370,35 +372,9 @@ class Board extends React.Component {
   renderSquare(i) {
     return <Square value={i} />;
   }
-
-  render() {
-    const status = 'Next player: X';
-
-    return (
-      <div>
-        <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
-    );
-  }
-}
 ```
 
-後で盤面が埋まっていくと、このような見た目になるでしょう：
+後で盤面が埋まっていくと、`this.state.squares` 配列はこのような見た目になるでしょう：
 
 ```javascript
 [
@@ -432,7 +408,7 @@ Board の `renderSquare` メソッドは現在以下のようになっていま�
 
 次に、マス目がクリックされた時の挙動を変更しましょう。現在、どのマス目に何が入っているのかを管理しているのは Board です。Square が Board の state を更新できるようにする必要があります。state はそれを定義しているコンポーネント内でプライベートなものですので、Square から Board の state を直接書き換えることはできません。
 
-Board の state のプライベート性を保護するため、Board から Square に関数を渡すことにします。この関数はマス目がクリックされた時に呼び出されます。`renderSquare` メソッドを以下のように書き換えましょう：
+代わりに、Board から Square に関数を渡すことにして、マス目がクリックされた時に Square にその関数を呼んでもらうようにしましょう。`renderSquare` メソッドを以下のように書き換えましょう：
 
 ```javascript{5}
   renderSquare(i) {
@@ -477,12 +453,12 @@ Square がクリックされると、Board から渡された `onClick` 関数�
 1. 組み込みの DOM コンポーネントである `<button>` に `onClick` プロパティが設定されているため React がクリックに対するイベントリスナを設定します。
 2. ボタンがクリックされると、React は Square の `render()` メソッド内に定義されている `onClick` のイベントハンドラをコールします。
 3. このイベントハンドラが `this.props.onClick()` をコールします。Square の `onClick` プロパティは Board から渡されているものです。
-4. Board は Square に `onClick={() => this.handleClick(i)}` を渡していたので、Squre はクリックされたときに `this.handleClick(i)` を呼び出します。
-5. まだ `handleClick()` は定義していないので、コードがクラッシュします。
+4. Board は Square に `onClick={() => this.handleClick(i)}` を渡していたので、Square はクリックされたときに `this.handleClick(i)` を呼び出します。
+5. まだ `handleClick()` は定義していないので、コードがクラッシュします。Square をクリックすると、"this.handleClick is not a function" といった赤いエラー画面が表示されるはずです。
 
 >補足
 >
-> DOM 要素である `<button>` は組み込みコンポーネントなので、`onClick` 属性は React にとって特別な意味を持っています。Square のようなカスタムコンポーネントでは、名前の付け方はあなたの自由です。Square の `onClick` プロパティや Board の `handleClick` メソッドについては別の名前を付けたとしても構いません。しかし React では、イベントを表す props には `on[Event]` という名前、イベントを処理するメソッドには `handle[Event]` という名前を付けるのが慣習となっています。
+> DOM 要素である `<button>` は組み込みコンポーネントなので、`onClick` 属性は React にとって特別な意味を持っています。Square のようなカスタムコンポーネントでは、名前の付け方はあなたの自由です。Square の `onClick` プロパティや Board の `handleClick` メソッドについては別の名前を付けたとしても同じように動作します。React では、イベントを表す props には `on[Event]` という名前、イベントを処理するメソッドには `handle[Event]` という名前を付けるのが慣習となっています。
 
 まだ `handleClick` を定義していないので、マス目をクリックしようとするとエラーが出るはずです。この `handleClick` を Board クラスに加えましょう。
 
@@ -611,7 +587,7 @@ function Square(props) {
 
 >補足
 >
-> Square を関数コンポーネントに変えた際、`onClick={() => this.props.onClick()}` をより短い `onClick={props.onClick}` に書き換えました（*両側*でカッコが消えています）。クラスでは正しい `this` の値にアクセスするためにアロー関数を使いましたが、関数コンポーネントでは `this` について心配する必要はありません。
+> Square を関数コンポーネントに変えた際、`onClick={() => this.props.onClick()}` をより短い `onClick={props.onClick}` に書き換えました（*両側*でカッコが消えています）。
 
 ### 手番の処理 {#taking-turns}
 
@@ -643,7 +619,9 @@ class Board extends React.Component {
   }
 ```
 
-この変更により、"X" 側と "O" 側が交互に着手できるようになります。Board の `render` 内にある "status" テキストも変更して、どちらのプレーヤの手番なのかを表示するようにしましょう。
+この変更により、"X" 側と "O" 側が交互に着手できるようになります。試してみてください！
+
+Board の `render` 内にある "status" テキストも変更して、どちらのプレーヤの手番なのかを表示するようにしましょう。
 
 ```javascript{2}
   render() {
@@ -714,7 +692,7 @@ class Board extends React.Component {
 
 ### ゲーム勝者の判定 {#declaring-a-winner}
 
-どちらの手番なのかを表示できたので、次にやることはゲームが決着して次の手番がなくなった時にそれを表示することです。ファイル末尾に以下のヘルパー関数を加えることで、勝者の判定ができるようになります。
+どちらの手番なのかを表示できたので、次にやることはゲームが決着して次の手番がなくなった時にそれを表示することです。ファイル末尾に以下のヘルパー関数をコピーして貼り付けてください。
 
 ```javascript
 function calculateWinner(squares) {
@@ -737,6 +715,8 @@ function calculateWinner(squares) {
   return null;
 }
 ```
+
+9 つの square の配列が与えられると、この関数は勝者がいるか適切に確認し、`'X'` か `'O'`、あるいは `null` を返します。
 
 Board の `render` 関数内で `calculateWinner(squares)` を呼び出して、いずれかのプレーヤが勝利したかどうか判定します。決着がついた場合は "Winner: X" あるいは "Winner: O" のようなテキストを表示するとよいでしょう。Board の `render` 関数の `status` 宣言を以下のコードで置き換えましょう。
 
