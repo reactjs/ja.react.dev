@@ -97,6 +97,8 @@ const [state, setState] = useState(() => {
 
 現在値と同じ値で更新を行った場合、React は子のレンダーや副作用の実行を回避して処理を終了します。（React は [`Object.is` による比較アルゴリズム](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description) を使用します）
 
+更新の回避が起きる前に React により該当のコンポーネント自体はレンダーされるかもしれない、ということに注意してください。ツリーのそれ以上「深く」にまで処理は及ばないためこれは問題ではないはずです。もしレンダー中にコストの高い計算を行っている場合は `useMemo` を使った最適化が可能です。
+
 ### `useEffect` {#useeffect}
 
 ```js
@@ -174,12 +176,27 @@ useEffect(
 ### `useContext` {#usecontext}
 
 ```js
-const context = useContext(Context);
+const value = useContext(MyContext);
 ```
 
-コンテキストオブジェクト（`React.createContext` からの戻り値）を受け取り、該当コンテキストに対応する最も近いコンテキストプロバイダから得られる、コンテキストの現在値を返します。
+コンテクストオブジェクト（`React.createContext` からの戻り値）を受け取り、そのコンテクストの現在値をを返します。コンテクストの現在値は、ツリー内でこのフックを呼んだコンポーネントの直近にある `<MyContext.Provider>` の `value` の値によって決定されます。
 
-プロバイダが更新された場合、このフックは最新のコンテキストの値を使って再レンダーを発生させます。
+直近の `<MyContext.Provider>` が更新された場合、このフックはその `MyContext` プロバイダに渡された最新の `value` の値を使って再レンダーを発生させます。
+
+`useContext` に渡す引数は**コンテキストオブジェクト自体**であることを忘れないでください。
+
+ * **正しい：**`useContext(MyContext)`
+ * **間違い：**`useContext(MyContext.Consumer)`
+ * **間違い：**`useContext(MyContext.Provider)`
+
+`useContext` を呼び出すコンポーネントはコンテクストの値が変化するたびに毎回再レンダーされます。再レンダーが高価である場合は[メモ化を使って最適化](https://github.com/facebook/react/issues/15156#issuecomment-474590693)が可能です。
+
+> ヒント
+>
+> フック以前のコンテクスト API に馴染みがある場合は、`useContext(MyContext)` はクラスにおける `static contextType = MyContext`、あるいは `<MyContext.Consumer>` と同等のものであると考えることができます。
+>
+> `useContext(MyContext)` は現在のコンテクストの値を**読み取り**、その変化を購読することしかできません。コンテクストの値を**設定**するために、今後もツリーの上の階層で `<MyContext.Provider>` が必要です。
+
 
 ## 追加のフック {#additional-hooks}
 
@@ -284,7 +301,9 @@ function Counter({initialCount}) {
 
 #### dispatch による更新の回避 {#bailing-out-of-a-dispatch}
 
-state の現在値として同じ値を返した場合、React は子のレンダーや副作用の実行を回避して処理を終了します。（React は [`Object.is` による比較アルゴリズム](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description) を使用します）
+このフックから state の現在値として同じ値を返した場合、React は子のレンダーや副作用の実行を回避して処理を終了します。（React は [`Object.is` による比較アルゴリズム](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description) を使用します）
+
+更新の回避が起きる前に React により該当のコンポーネント自体はレンダーされるかもしれない、ということに注意してください。ツリーのそれ以上「深く」にまで処理は及ばないためこれは問題ではないはずです。もしレンダー中にコストの高い計算を行っている場合は `useMemo` を使った最適化が可能です。
 
 ### `useCallback` {#usecallback}
 
@@ -321,7 +340,7 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
 `useMemo` に渡した関数はレンダー中に実行されるということを覚えておいてください。レンダー中に通常やらないようなことをこの関数内でやらないようにしましょう。例えば副作用は `useMemo` ではなく `useEffect` の仕事です。
 
-配列が渡されなかった場合は、第 1 引数に新しい関数が渡された場合に常に新しい値が計算されます。（第 1 引数がインラインの関数だった場合、毎レンダー毎に値が計算されます）
+配列が渡されなかった場合は、新しい値がレンダーごとに毎回計算されます。
 
 **`useMemo` はパフォーマンス最適化のために使うものであり、意味上の保証があるものだと考えないでください。**将来的に React は、例えば画面外のコンポーネント用のメモリを解放するため、などの理由で、メモ化された値を「忘れる」ようにする可能性があります。`useMemo` なしでも動作するコードを書き、パフォーマンス最適化のために `useMemo` を加えるようにしましょう。
 
@@ -357,7 +376,15 @@ function TextInputWithFocusButton() {
 }
 ```
 
-`useRef()` は `ref` 属性で使うだけではなく、より便利に使えるということに注意してください。これはクラスでインスタンス変数を使うのと同様にして、[あらゆるミュータブルな値を保持しておく](/docs/hooks-faq.html#is-there-something-like-instance-variables)のに便利です。
+本質的に `useRef` とは、書き換え可能な値を `.current` プロパティ内に保持することができる「箱」のようなものです。
+
+まずは ref のことを [DOM にアクセスする](/docs/refs-and-the-dom.html)手段として理解しているかもしれません。`<div ref={myRef} />` のようにして React に ref オブジェクトを渡した場合、React は DOM ノードに変更があるたびに `.current` プロパティをその DOM ノードに設定します。
+
+しかしながら `useRef()` は `ref` 属性で使うだけではなく、より便利に使えます。これはクラスでインスタンス変数を使うのと同様にして、[あらゆる書き換え可能な値を保持しておくのに便利](/docs/hooks-faq.html#is-there-something-like-instance-variables)です。
+
+これは `useRef()` がプレーンな JavaScript オブジェクトを作成するからです。`useRef()` を使うことと自分で `{current: ...}` というオブジェクトを作成することとの唯一の違いとは、`useRef` は毎回のレンダーで同じ ref オブジェクトを返す、ということです。
+
+`useRef` は中身が変更になってもそのことを通知**しない**ということを覚えておいてください。`.current` プロパティを書き換えても再レンダーは発生しません。DOM ノードを ref に割り当てたり割り当てを解除したりする際に何らかのコードを走らせたいという場合は、[コールバック ref](/docs/hooks-faq.html#how-can-i-measure-a-dom-node) を代わりに使用してください。
 
 ### `useImperativeHandle` {#useimperativehandle}
 
@@ -390,7 +417,11 @@ FancyInput = forwardRef(FancyInput);
 
 > ヒント
 >
-> `useLayoutEffect` は `componentDidMount` や `componentDidUpdate` と同じフェーズで実行されますので、クラスコンポーネントから移行しておりどちらのフックを使えばいいか自信がない場合は、恐らくリスクが最も低くなります。
+> クラスコンポーネントからコードを移行している場合、`useLayoutEffect` は `componentDidMount` や `componentDidUpdate` と同じフェーズで実行されるということに注意してください。しかし**まず `useEffect` で始めてみて**、それで問題が発生する場合にのみ `useLayoutEffect` を試すことをお勧めします。
+>
+> サーバレンダリングを使用している場合は、`useLayoutEffect` と `useEffect` の**どちらも** JavaScript がダウンロードされるまでは実行できないということを覚えておいてください。サーバでレンダーされるコンポーネントに `useLayoutEffect` が含まれている場合に React が警告を発生するのは、これが理由です。これを修正するには、そのロジックを `useEffect` に移動する（初回レンダーで必要がないロジックである場合）か、クライアントでレンダーされるまでコンポーネントの表示を遅らせる（`useLayoutEffect` が実行されるまで該当 HTML が正しく表示できない場合）ようにしてください。
+>
+> サーバでレンダーされる HTML からレイアウト副作用を必要とするコンポーネントを除外したい場合は、それを `showChild && <Child />` のようにして条件付きでレンダーするようにして、表示を `useEffect(() => { setShowChild(true); }, [])` のようにして遅延させてください。これにより、JavaScript コードが注入される前に壊れた見た目の UI が表示されないようになります。
 
 ### `useDebugValue` {#usedebugvalue}
 
