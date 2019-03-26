@@ -11,8 +11,7 @@ redirect_from:
 
 この章は [stack リコンサイラ (reconciler)](/docs/codebase-overview.html#stack-reconciler) の実装に関するメモを集めたものです。
 
-これは非常に技術的な内容であり、React の公開 API だけでなく、React がどのようにコア、レンダラ (renderer) 、そしてリコンサイラに分割されているかについても、深く理解していることを前提としています。
-React のコードベースにあまり精通していないのであれば、まず [コードベースの概要](/docs/codebase-overview.html) を読んでください。
+これは非常に技術的な内容であり、React の公開 API だけでなく、React がどのようにコア、レンダラ (renderer) 、そしてリコンサイラに分割されているかについても、深く理解していることを前提としています。React のコードベースにあまり精通していないのであれば、まず [コードベースの概要](/docs/codebase-overview.html) を読んでください。
 
 また、これは [React のコンポーネント、インスタンスおよび要素の違い](/blog/2015/12/18/react-components-elements-and-instances.html) についての理解を前提としています。
 
@@ -26,8 +25,7 @@ stack リコンサイラは、React 15 およびそれ以前のバージョン�
 
 ### 概要 {#overview}
 
-リコンサイラそのものは公開 API を持ちません。
-リコンサイラは、React DOM や React Native のような [レンダラ](/docs/codebase-overview.html#stack-renderers) が、ユーザーの記述した React コンポーネントに応じてユーザーインターフェースを効率よく更新するために使用されます。
+リコンサイラそのものは公開 API を持ちません。リコンサイラは、React DOM や React Native のような [レンダラ](/docs/codebase-overview.html#stack-renderers) が、ユーザーの記述した React コンポーネントに応じてユーザーインターフェースを効率よく更新するために使用されます。
 
 ### 再帰的な処理としてマウントする {#mounting-as-a-recursive-process}
 
@@ -37,9 +35,7 @@ stack リコンサイラは、React 15 およびそれ以前のバージョン�
 ReactDOM.render(<App />, rootEl);
 ```
 
-React DOM はリコンサイラに `<App />` を渡します。
-`<App />` が React 要素であること、つまり、「何」をレンダリングするかの記述であることを思い出してください。
-これはプレーンなオブジェクトとして考えることができます：
+React DOM はリコンサイラに `<App />` を渡します。`<App />` が React 要素であること、つまり、「何」をレンダリングするかの記述であることを思い出してください。これはプレーンなオブジェクトとして考えることができます：
 
 ```js
 console.log(<App />);
@@ -54,8 +50,7 @@ console.log(<App />);
 
 どちらにせよ、リコンサイラは `App` が「render された」結果となる要素を手に入れます。
 
-このプロセスは再帰的です。`App` は `<Greeting />` へとレンダリングされるかもしれませんし、`Greeting` は `<Button />` にレンダリングされるかもしれない、といったように続いていきます。
-リコンサイラはそれぞれのコンポーネントが何にレンダリングされるかを学習しながら、ユーザー定義コンポーネントを再帰的に「掘り下げて」いきます。
+このプロセスは再帰的です。`App` は `<Greeting />` へとレンダリングされるかもしれませんし、`Greeting` は `<Button />` にレンダリングされるかもしれない、といったように続いていきます。リコンサイラはそれぞれのコンポーネントが何にレンダリングされるかを学習しながら、ユーザー定義コンポーネントを再帰的に「掘り下げて」いきます。
 
 この処理の流れは擬似コードで想像することができます：
 
@@ -135,15 +130,13 @@ host 要素に関連付けられているユーザー定義のコードはあり
 
 レコンサイラは host 要素を見つけると、レンダラに host 要素のマウントを任せます。例えば、React DOM は DOM ノードを生成します。
 
-host 要素に子要素がある場合、リコンサイラは前節で述べたものと同じアルゴリズムに従い、子要素を再帰的にマウントします。
-子要素が（`<div><hr /></div>` のような）host なのか、（`<div><Button /></div>` のような）composite なのか、もしくはその両方が含まれているかに関わらず、再帰的な処理が実行されます。
+host 要素に子要素がある場合、リコンサイラは前節で述べたものと同じアルゴリズムに従い、子要素を再帰的にマウントします。子要素が（`<div><hr /></div>` のような）host なのか、（`<div><Button /></div>` のような）composite なのか、もしくはその両方が含まれているかに関わらず、再帰的な処理が実行されます。
 
 子コンポーネントにより生成された DOM ノードは親の DOM ノードに追加され、それが再帰的に行われることで、完全な DOM 構造が組み立てられます。
 
 >**注意：**
 >
->リコンサイラそのものは DOM と結合していません。
->マウントの結果自体（時にソースコードでは "mount image" とも呼ばれます）はレンダラに依存し、それは（React DOM なら）DOM ノード であったり、（React DOM Server なら）文字列であったり、（React Native なら）ネイティブのビューを表す数字であったりします。
+>リコンサイラそのものは DOM と結合していません。マウントの結果自体（時にソースコードでは "mount image" とも呼ばれます）はレンダラに依存し、それは（React DOM なら）DOM ノード であったり、（React DOM Server なら）文字列であったり、（React Native なら）ネイティブのビューを表す数字であったりします。
 
 前出のコードを host 要素も扱えるように拡張するとすれば、以下のようなものになるでしょう：
 
@@ -248,17 +241,13 @@ ReactDOM.render(<App />, rootEl);
 ReactDOM.render(<App />, rootEl);
 ```
 
-しかし、前節で実装したコードは最初のツリーをマウントする方法しか知りません。
-前節のコードは、全ての `publicInstance` や、どの DOM `node` がどのコンポーネントに対応しているかなど、必要な全情報を保有しているわけではないので、更新を実行することができません。
+しかし、前節で実装したコードは最初のツリーをマウントする方法しか知りません。前節のコードは、全ての `publicInstance` や、どの DOM `node` がどのコンポーネントに対応しているかなど、必要な全情報を保有しているわけではないので、更新を実行することができません。
 
-stack リコンサイラのコードベースでは、この問題を `mount()` 関数をメソッドとしてクラスに置くことで解決しています。
-しかしこのアプローチには欠点があるため、[進行中のリコンサイラの書き直し作業](/docs/codebase-overview.html#fiber-reconciler)では、反対の方向に進んでいます。
-それでも現時点では、この方式で動作しています。
+stack リコンサイラのコードベースでは、この問題を `mount()` 関数をメソッドとしてクラスに置くことで解決しています。しかしこのアプローチには欠点があるため、[進行中のリコンサイラの書き直し作業](/docs/codebase-overview.html#fiber-reconciler)では、反対の方向に進んでいます。それでも現時点では、この方式で動作しています。
 
 別々の `mountHost` と `mountComposite` 関数の代わりに、2 つのクラスを作成します： `DOMComponent` と `CompositeComponent` です。
 
-両方のクラスが `element` を受け入れるコンストラクタと、マウントされたノードを返す `mount()` メソッドを持ちます。
-最上位の `mount()` 関数を、正しいクラスをインスタンス化するファクトリに置き換えます：
+両方のクラスが `element` を受け入れるコンストラクタと、マウントされたノードを返す `mount()` メソッドを持ちます。最上位の `mount()` 関数を、正しいクラスをインスタンス化するファクトリに置き換えます：
 
 ```js
 function instantiateComponent(element) {
@@ -328,16 +317,11 @@ class CompositeComponent {
 
 以前の `mountComposite()` の実装と大きな違いはありませんが、更新時に使用する `this.currentElement` 、`this.renderedComponent` や、`this.publicInstance` のような情報を保存できるようになりました。
 
-`CompositeComponent` のインスタンスは、ユーザーが指定する `element.type` のインスタンスとは同一ではないことに注意してください。
-`CompositeComponent` はリコンサイラの実装の詳細であり、ユーザーには決して公開されません。
-ユーザー定義クラスとは `element.type` から読み込むものであり、`CompositeComponent` がそのインスタンスを作成するのです。
+`CompositeComponent` のインスタンスは、ユーザーが指定する `element.type` のインスタンスとは同一ではないことに注意してください。`CompositeComponent` はリコンサイラの実装の詳細であり、ユーザーには決して公開されません。ユーザー定義クラスとは `element.type` から読み込むものであり、`CompositeComponent` がそのインスタンスを作成するのです。
 
-混乱を避けるために、`CompositeComponent` と `DOMComponent` のインスタンスを「内部インスタンス」と呼ぶことにします。
-内部インスタンスは、長期間利用されるデータとそれらを関連付けられるようにするために存在します。
-それらの存在はレンダラとリコンサイラのみが認識しています。
+混乱を避けるために、`CompositeComponent` と `DOMComponent` のインスタンスを「内部インスタンス」と呼ぶことにします。内部インスタンスは、長期間利用されるデータとそれらを関連付けられるようにするために存在します。それらの存在はレンダラとリコンサイラのみが認識しています。
 
-一方、ユーザー定義クラスのインスタンスは「公開インスタンス」と呼ぶことにします。
-公開インスタンスは、独自コンポーネントの `render()` やその他のメソッド内で `this` として現れるものです。
+一方、ユーザー定義クラスのインスタンスは「公開インスタンス」と呼ぶことにします。公開インスタンスは、独自コンポーネントの `render()` やその他のメソッド内で `this` として現れるものです。
 
 `mountHost()` 関数は、`DOMComponent` クラスの `mount()` メソッドとしてリファクタリングされ、こちらも見慣れたものになります：
 
@@ -390,11 +374,9 @@ class DOMComponent {
 }
 ```
 
-mountHost() からリファクタリングした後の主な違いは、`this.node` と `this.renderedChildren` を内部の DOM コンポーネントインスタンスに関連付け続けていることです。
-これらは、将来的に非破壊的な更新を適用する際にも使用します。
+mountHost() からリファクタリングした後の主な違いは、`this.node` と `this.renderedChildren` を内部の DOM コンポーネントインスタンスに関連付け続けていることです。これらは、将来的に非破壊的な更新を適用する際にも使用します。
 
-結果として、それが composite であれ host であれ、内部インスタンスはそれぞれの子内部インスタンスを指すようになります。
-`<App>` 関数コンポーネントが `<Button>` コンポーネントをレンダリングし、`<Button>` クラスが `<div>`をレンダリングする場合、視覚的にわかりやすくすると、内部インスタンスのツリーはこのようになります：
+結果として、それが composite であれ host であれ、内部インスタンスはそれぞれの子内部インスタンスを指すようになります。`<App>` 関数コンポーネントが `<Button>` コンポーネントをレンダリングし、`<Button>` クラスが `<div>`をレンダリングする場合、視覚的にわかりやすくすると、内部インスタンスのツリーはこのようになります：
 
 ```js
 [object CompositeComponent] {
@@ -430,8 +412,7 @@ host 内部インスタンスは以下のものを格納する必要がありま
 
  <img src="../images/docs/implementation-notes-tree.png" width="500" style="max-width: 100%" alt="React DevTools tree" />
 
-このリファクタリングを完了するため、コンテナノードへ完成したツリーをマウントする、`ReactDOM.render()` のような関数を導入します。
-この関数は `ReactDOM.render()` のように公開インスタンスを返します：
+このリファクタリングを完了するため、コンテナノードへ完成したツリーをマウントする、`ReactDOM.render()` のような関数を導入します。この関数は `ReactDOM.render()` のように公開インスタンスを返します：
 
 ```js
 function mountTree(element, containerNode) {
@@ -508,9 +489,7 @@ function unmountTree(containerNode) {
 }
 ```
 
-これが動作するよう、DOM ノードから内部ルートインスタンスを読み込む必要があります。
-`mountTree()` を変更して、ルート DOM ノードに `_internalInstance` プロパティを追加します。
-`mountTree()` に既存の全てのツリーを破棄するようにも伝えて、複数回 `mountTree()` を呼び出せるようにします：
+これが動作するよう、DOM ノードから内部ルートインスタンスを読み込む必要があります。`mountTree()` を変更して、ルート DOM ノードに `_internalInstance` プロパティを追加します。`mountTree()` に既存の全てのツリーを破棄するようにも伝えて、複数回 `mountTree()` を呼び出せるようにします：
 
 ```js
 function mountTree(element, containerNode) {
@@ -539,9 +518,7 @@ function mountTree(element, containerNode) {
 
 ### 更新 {#updating}
 
-前節では、アンマウント機能を実装しました。
-しかし、各プロパティに変更があるたびにツリー全体をマウントしたりアンマウントしたりするようでは、React の使い勝手はあまり良いとは言えません。
-リコンサイラの目標は、DOM と state を保持できるような既存のインスタンスを再利用することです。
+前節では、アンマウント機能を実装しました。しかし、各プロパティに変更があるたびにツリー全体をマウントしたりアンマウントしたりするようでは、React の使い勝手はあまり良いとは言えません。リコンサイラの目標は、DOM と state を保持できるような既存のインスタンスを再利用することです。
 
 ```js
 var rootEl = document.getElementById('root');
@@ -551,8 +528,7 @@ mountTree(<App />, rootEl);
 mountTree(<App />, rootEl);
 ```
 
-もう 1 つメソッドを追加して内部インスタンスを拡張しましょう。
-`mount()` と `unmount()` に加えて、`DOMComponent` と `CompositeComponent` の両方に `receive(nextElement)` と呼ばれる新しいメソッドを実装しましょう：
+もう 1 つメソッドを追加して内部インスタンスを拡張しましょう。`mount()` と `unmount()` に加えて、`DOMComponent` と `CompositeComponent` の両方に `receive(nextElement)` と呼ばれる新しいメソッドを実装しましょう：
 
 ```js
 class CompositeComponent {
@@ -635,11 +611,9 @@ class CompositeComponent {
     // ...
 ```
 
-ただし、レンダリングされた次の要素が前のものと異なる `type` である場合、内部インスタンスの更新はできません。
-`<button>` が `<input>` に「なる」ことはできないのです。
+ただし、レンダリングされた次の要素が前のものと異なる `type` である場合、内部インスタンスの更新はできません。`<button>` が `<input>` に「なる」ことはできないのです。
 
-代わりに、既存の内部インスタンスをアンマウントし、レンダリングされた要素の型に対応する新たな内部インスタンスをマウントします。
-例えば、前に `<button />` をレンダリングしていたコンポーネントが `<input />` をレンダリングした場合には、この処理が発生します：
+代わりに、既存の内部インスタンスをアンマウントし、レンダリングされた要素の型に対応する新たな内部インスタンスをマウントします。例えば、前に `<button />` をレンダリングしていたコンポーネントが `<input />` をレンダリングした場合には、この処理が発生します：
 
 ```js
     // ...
@@ -668,11 +642,9 @@ class CompositeComponent {
 
 まとめると、composite コンポーネントは新たな要素を受け取った際に、レンダリングされた内部インスタンスに更新を委任するか、もしくは内部インスタンスをアンマウントしてそこに新しいものをマウントする、ということになります。
 
-もう 1 つ、コンポーネントが要素を受け取らずに再マウントする状況があります。それは要素の `key` が変更された時です。
-既に複雑なチュートリアルがさらに複雑になってしまうので、このドキュメントでは `key` の取り扱いについては言及しません。
+もう 1 つ、コンポーネントが要素を受け取らずに再マウントする状況があります。それは要素の `key` が変更された時です。既に複雑なチュートリアルがさらに複雑になってしまうので、このドキュメントでは `key` の取り扱いについては言及しません。
 
-プラットフォーム固有のノードを配置して更新時に置換できるよう、`getHostNode()` と呼ばれるメソッドを内部インスタンスに追加する必要があったことに注意してください。
-その実装は両方のクラスで簡単にできます：
+プラットフォーム固有のノードを配置して更新時に置換できるよう、`getHostNode()` と呼ばれるメソッドを内部インスタンスに追加する必要があったことに注意してください。その実装は両方のクラスで簡単にできます：
 
 ```js
 class CompositeComponent {
@@ -696,9 +668,7 @@ class DOMComponent {
 
 ### host コンポーネントの更新 {#updating-host-components}
 
-`DOMComponent` のような host コンポーネントの実装では、異なった更新を行います。
-要素を受け取る際、背後のプラットフォーム固有のビューを更新する必要があるのです。
-React DOM の場合、これは DOM 属性の更新を意味します：
+`DOMComponent` のような host コンポーネントの実装では、異なった更新を行います。要素を受け取る際、背後のプラットフォーム固有のビューを更新する必要があるのです。React DOM の場合、これは DOM 属性の更新を意味します：
 
 ```js
 class DOMComponent {
@@ -729,8 +699,7 @@ class DOMComponent {
 
 そして、host コンポーネントは子コンポーネントを更新する必要があります。composite コンポーネントと異なり、host コンポーネントは 1 つ以上の子コンポーネントを保有している可能性があります。
 
-この簡素化した例では内部インスタンスの配列を用い、受け取った `type` と以前の `type` が一致するかによって、内部インスタンスを更新もしくは置換しながら、配列をイテレートしています。
-実際のリコンサイラでは処理時に要素の `key` を受け取って、要素の挿入と削除に加えて移動を追跡しますが、そのロジックは省略しています。
+この簡素化した例では内部インスタンスの配列を用い、受け取った `type` と以前の `type` が一致するかによって、内部インスタンスを更新もしくは置換しながら、配列をイテレートしています。実際のリコンサイラでは処理時に要素の `key` を受け取って、要素の挿入と削除に加えて移動を追跡しますが、そのロジックは省略しています。
 
 リストの子要素への DOM 操作は、バッチで実行できるようまとめておきます：
 
@@ -887,14 +856,11 @@ mountTree(<App />, rootEl);
 
 * コンポーネントは `null` をレンダリングでき、リコンサイラは配列やレンダリングされた出力における「空スロット」部分を扱うことができます。
 
-* リコンサイラは要素から `key` も読み取り、どの内部インスタンスが配列中のどの要素と対応するかを確認するのに使用します。
-実際の React の実装における複雑さの大半は、この箇所に関わるものです。
+* リコンサイラは要素から `key` も読み取り、どの内部インスタンスが配列中のどの要素と対応するかを確認するのに使用します。実際の React の実装における複雑さの大半は、この箇所に関わるものです。
 
-* composite と host 型の内部インスタンスのクラスに加えて、"text" と "empty" コンポーネントのクラスもあります。
-それらはテキストノードと、`null` をレンダリングすると得られる「空のスロット」を表します。
+* composite と host 型の内部インスタンスのクラスに加えて、"text" と "empty" コンポーネントのクラスもあります。それらはテキストノードと、`null` をレンダリングすると得られる「空のスロット」を表します。
 
-* レンダラは[依存性注入](/docs/codebase-overview.html#dynamic-injection)を利用して host 内部クラスをリコンサイラに渡します。
-例えば、React DOM はリコンサイラに `ReactDOMComponent` を host 内部インスタンスの実装として使用するように指示します。
+* レンダラは[依存性注入](/docs/codebase-overview.html#dynamic-injection)を利用して host 内部クラスをリコンサイラに渡します。例えば、React DOM はリコンサイラに `ReactDOMComponent` を host 内部インスタンスの実装として使用するように指示します。
 
 * 子要素のリストを更新するロジックは `ReactMultiChild` と呼ばれるミックスインに抽出され、そのミックスインが、React DOM および React Native 両方における host 内部インスタンスのクラスの実装に使用されます。
 
@@ -904,20 +870,16 @@ mountTree(<App />, rootEl);
 
 * DOM の準備ができあがった後に呼び出される、`componentDidMount()` や `componentDidUpdate()` のようなライフサイクルメソッドは `callback queues` によって回収され、単一のバッチの中で実行されます。
 
-* React は現時点での更新についての情報を「トランザクション」と呼ばれる内部オブジェクトに格納します。トランザクションは、ペンディングしているライフサイクルメソッドのキューや、警告のために入れ子になっている現在の DOM 、そしてある特定の更新に対して「グローバル」になっているその他のものの経過を追うのに重宝します。
-トランザクションによって React が更新後に「全てをクリーンアップした」ことも確認できます。例えば、React DOM が提供するトランザクションクラスは、入力フィールドの選択状態を更新後に復元します。
+* React は現時点での更新についての情報を「トランザクション」と呼ばれる内部オブジェクトに格納します。トランザクションは、ペンディングしているライフサイクルメソッドのキューや、警告のために入れ子になっている現在の DOM 、そしてある特定の更新に対して「グローバル」になっているその他のものの経過を追うのに重宝します。トランザクションによって React が更新後に「全てをクリーンアップした」ことも確認できます。例えば、React DOM が提供するトランザクションクラスは、入力フィールドの選択状態を更新後に復元します。
 
 ### コードに飛び込む {#jumping-into-the-code}
 
 * [`ReactMount`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/dom/client/ReactMount.js) はこのチュートリアルにある `mountTree()` や `unmountTree()` のようなコードがある場所です。ここでは最上位コンポーネントのマウントやアンマウントが行われます。[`ReactNativeMount`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/native/ReactNativeMount.js) はその React Native 版です。
 * [`ReactDOMComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/dom/shared/ReactDOMComponent.js) はこのチュートリアルでの `DOMComponent` にあたります。
 これは、React DOM レンダラ向けの host コンポーネントクラスを実装するものです。[`ReactNativeBaseComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/native/ReactNativeBaseComponent.js) はその React Native 版です。
-* [`ReactCompositeComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactCompositeComponent.js) はこのチュートリアルでの `CompositeComponent` にあたります。
-これは、ユーザー定義コンポーネントの呼び出しとその state の保持を扱います。
-* [`instantiateReactComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/instantiateReactComponent.js) はある要素に対して構築すべき正しい内部インスタンスクラスを選ぶスイッチを持っています。
-これは、このチュートリアルにおける `instantiateComponent()` にあたります。
-* [`ReactReconciler`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactReconciler.js) は `mountComponent()`、`receiveComponent()`、そして `unmountComponent()` メソッドのラッパーです。
-これは水面下で内部インスタンスの実装を呼び出しますが、それらに追加するコードも含んでおり、その追加コードは全ての内部インスタンスの実装で共有されます。
+* [`ReactCompositeComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactCompositeComponent.js) はこのチュートリアルでの `CompositeComponent` にあたります。これは、ユーザー定義コンポーネントの呼び出しとその state の保持を扱います。
+* [`instantiateReactComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/instantiateReactComponent.js) はある要素に対して構築すべき正しい内部インスタンスクラスを選ぶスイッチを持っています。これは、このチュートリアルにおける `instantiateComponent()` にあたります。
+* [`ReactReconciler`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactReconciler.js) は `mountComponent()`、`receiveComponent()`、そして `unmountComponent()` メソッドのラッパーです。これは水面下で内部インスタンスの実装を呼び出しますが、それらに追加するコードも含んでおり、その追加コードは全ての内部インスタンスの実装で共有されます。
 * [`ReactChildReconciler`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactChildReconciler.js) は子要素を要素の `key` に基づいてマウント、更新、そしてアンマウントするロジックを実装しています。
 * [`ReactMultiChild`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactMultiChild.js) は、子要素の挿入、削除、そして移動の操作に関するキューの処理を、レンダラとは独立して実装します。
 * `mount()` と `receive()`、そして `unmount()` は、実際の React のコードベースでは歴史的な理由から、`mountComponent()`、`receiveComponent()`、そして `unmountComponent()`と呼ばれていますが、これらは要素を受け取っています。
@@ -925,8 +887,7 @@ mountTree(<App />, rootEl);
 
 ### 今後の方向性 {#future-directions}
 
-stack リコンサイラには、同期的処理であることや、作業を中断したりチャンクに分割したりできないといったことなど、固有の制限があります。
-現在、[全く異なるアーキテクチャ](https://github.com/acdlite/react-fiber-architecture)による[新たな Fiber リコンサイラ](/docs/codebase-overview.html#fiber-reconciler)の開発が進行中です。
+stack リコンサイラには、同期的処理であることや、作業を中断したりチャンクに分割したりできないといったことなど、固有の制限があります。現在、[全く異なるアーキテクチャ](https://github.com/acdlite/react-fiber-architecture)による[新たな Fiber リコンサイラ](/docs/codebase-overview.html#fiber-reconciler)の開発が進行中です。
 
 ### 次のステップ {#next-steps}
 
