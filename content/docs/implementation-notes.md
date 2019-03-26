@@ -878,10 +878,15 @@ mountTree(<App />, rootEl);
 * [`ReactDOMComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/dom/shared/ReactDOMComponent.js) はこのチュートリアルでの `DOMComponent` にあたります。これは、React DOM レンダラ向けの host コンポーネントクラスを実装するものです。[`ReactNativeBaseComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/native/ReactNativeBaseComponent.js) はその React Native 版です。
 * [`ReactCompositeComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactCompositeComponent.js) はこのチュートリアルでの `CompositeComponent` にあたります。これは、ユーザー定義コンポーネントの呼び出しとその state の保持を扱います。
 * [`instantiateReactComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/instantiateReactComponent.js) はある要素に対して構築すべき正しい内部インスタンスクラスを選ぶスイッチを持っています。これは、このチュートリアルにおける `instantiateComponent()` にあたります。
+
 * [`ReactReconciler`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactReconciler.js) は `mountComponent()`、`receiveComponent()`、そして `unmountComponent()` メソッドのラッパーです。これは水面下で内部インスタンスの実装を呼び出しますが、それらに追加するコードも含んでおり、その追加コードは全ての内部インスタンスの実装で共有されます。
+
 * [`ReactChildReconciler`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactChildReconciler.js) は子要素を要素の `key` に基づいてマウント、更新、そしてアンマウントするロジックを実装しています。
+
 * [`ReactMultiChild`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactMultiChild.js) は、子要素の挿入、削除、そして移動の操作に関するキューの処理を、レンダラとは独立して実装します。
+
 * `mount()` と `receive()`、そして `unmount()` は、実際の React のコードベースでは歴史的な理由から、`mountComponent()`、`receiveComponent()`、そして `unmountComponent()`と呼ばれていますが、これらは要素を受け取っています。
+
 * 内部インスタンス上のプロパティ名は、`_currentElement` のようにアンダースコアから始まります。これらはコードベース全体を通じて、読み取り専用の public なフィールドと見なされます。
 
 ### 今後の方向性 {#future-directions}
