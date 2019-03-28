@@ -891,7 +891,7 @@ mountTree(<App />, rootEl);
 
 ### 今後の方向性 {#future-directions}
 
-stack リコンサイラには、同期的処理であることや、作業を中断したりチャンクに分割したりできないといったことなど、固有の制限があります。現在、[全く異なるアーキテクチャ](https://github.com/acdlite/react-fiber-architecture)による[新たな Fiber リコンサイラ](/docs/codebase-overview.html#fiber-reconciler)の開発が進行中です。
+stack リコンサイラには、同期的処理であることや、作業を中断したりチャンクに分割したりできないといったことなど、固有の制限があります。現在、[全く異なるアーキテクチャ](https://github.com/acdlite/react-fiber-architecture)による[新たな Fiber リコンサイラ](/docs/codebase-overview.html#fiber-reconciler)の開発が進行中です。将来的には、stack リコンサイラをこれに置き換える予定ですが、現時点では同等の機能を提供するには程遠い状態です。
 
 ### 次のステップ {#next-steps}
 
