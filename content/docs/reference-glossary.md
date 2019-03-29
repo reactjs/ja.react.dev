@@ -122,11 +122,7 @@ class Welcome extends React.Component {
 
 あるコンポーネントが時間とともに変化するデータと関連付けられている場合は、`state` が必要です。例えば、`Checkbox` というコンポーネントはその state に `isChecked` が必要となるかもしれません。また `NewsFeed` というコンポーネントは `fetchedPosts` を state に入れて管理したいかもしれません。
 
-<<<<<<< HEAD
-`state` と `props` の最も重要な違いは、`props` は親コンポーネントから渡されますが、`state` はコンポーネント自身によって管理されるということです。コンポーネントは自身の `props` を変更できませんが、`state` を変更することはできます。変更するには、`this.setState()` を呼び出す必要があります。クラスとして定義されたコンポーネントだけが state を持つことができます。
-=======
-The most important difference between `state` and `props` is that `props` are passed from a parent component, but `state` is managed by the component itself. A component cannot change its `props`, but it can change its `state`.
->>>>>>> 2304fa1a7c34b719c10cca1023003e22bf0fd137
+`state` と `props` の最も重要な違いは、`props` は親コンポーネントから渡されますが、`state` はコンポーネント自身によって管理されるということです。コンポーネントは自身の `props` を変更できませんが、`state` を変更することはできます。
 
 経時的に変化するそれぞれのデータについて、それを state として「所有する」コンポーネントは 1 つだけであるべきです。2 つの異なるコンポーネントの state を同期しようとしないでください。代わりに、それらの直近の共通祖先コンポーネントに state を[リフトアップ](/docs/lifting-state-up.html) して、両方に props として渡してください。
 
