@@ -430,6 +430,6 @@ x === z; // true
 
 この場合、`x` を変更すると新しい参照が返されるので、参照の比較 `(x === y)` をするだけで、`y` に保存されている新しい値は `x` に保存されていた値とは違うことが確認できます。
 
-不変データの使用を助けてくる他のライブラリに [Immer](https://github.com/mweststrate/immer) や [immutability-helper](https://github.com/kolodny/immutability-helper)、 [seamless-immutable](https://github.com/rtfeldman/seamless-immutable) があります。
+不変データの使用を助けてくる他のライブラリに [Immer](https://github.com/mweststrate/immer) や [immutability-helper](https://github.com/kolodny/immutability-helper)、[seamless-immutable](https://github.com/rtfeldman/seamless-immutable) があります。
 
 不変データ構造はオブジェクトの変化の検出を容易にします。まさにそれが `shouldComponentUpdate` の実装に必要なことのすべてです。これによってパフォーマンスを大幅に向上できる場合があります。
