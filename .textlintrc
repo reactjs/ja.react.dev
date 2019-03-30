@@ -9,6 +9,10 @@
     },
     "@textlint-rule/no-invalid-control-character": {
       "checkCode": true
+    },
+    "prh": {
+      "severity" : "warning",
+      "rulePaths" :["./prh.yml"]
     }
   }
 }
