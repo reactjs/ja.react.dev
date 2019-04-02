@@ -403,7 +403,7 @@ function Example() {
 
 非同期的に実行されるコールバック内で、意図的に state の*最新*の値を読み出したいという場合は、その値を [ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) 内に保持して、それを書き換えたり読み出したりすることができます。
 
-最後に、古い props や state が見えている場合に考えられる他の理由は、「依存の配列」による最適化を使った際に正しく依存する値の全部を指定しなかった、というものです。例えば副作用フックの第 2 引数に `[]` を指定したにも関わらず副作用内で `someProps` を読み出しているという場合、副作用関数内では `someProps` の初期値がずっと見え続けることになります。解決方法は依存配列自体を削除するか、配列の中身を修正することです。[関数の扱い方](#is-it-safe-to-omit-functions-from-the-list-of-dependencies)、および依存する値の変化を誤って無視することなく副作用の実行回数を減らすための[よくある手法](#what-can-i-do-if-my-effect-dependencies-change-too-often)についてもご覧下さい。
+最後に、古い props や state が見えている場合に考えられる他の理由は、「依存の配列」による最適化を使った際に正しく依存する値の全部を指定しなかった、というものです。例えば副作用フックの第 2 引数に `[]` を指定したにも関わらず副作用内で `someProps` を読み出しているという場合、副作用関数内では `someProps` の初期値がずっと見え続けることになります。解決方法は依存配列自体を削除するか、配列の中身を修正することです。[関数の扱い方](#is-it-safe-to-omit-functions-from-the-list-of-dependencies)、および依存する値の変化を誤って無視することなく副作用の実行回数を減らすための[よくある手法](#what-can-i-do-if-my-effect-dependencies-change-too-often)についてもご覧ください。
 
 >補足
 >
