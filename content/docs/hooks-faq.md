@@ -35,7 +35,7 @@ prev: hooks-reference.html
   * [フックでデータの取得をどのように行うのですか？](#how-can-i-do-data-fetching-with-hooks)
   * [インスタンス変数のようなものはありますか？](#is-there-something-like-instance-variables)
   * [state 変数は 1 つにすべきですか、たくさん使うべきですか？](#should-i-use-one-or-many-state-variables)
-  * [コンポーネントの更新の時だけ副作用を実行することは可能ですか？](#can-i-run-an-effect-only-on-updates)
+  * [コンポーネントの更新のときだけ副作用を実行することは可能ですか？](#can-i-run-an-effect-only-on-updates)
   * [前回の props や state はどうすれば取得できますか？](#how-to-get-the-previous-props-or-state)
   * [関数内で古い props や state が見えているのはなぜですか？](#why-am-i-seeing-stale-props-or-state-inside-my-function)
   * [どうすれば getDerivedStateFromProps を実装できますか？](#how-do-i-implement-getderivedstatefromprops)
@@ -316,7 +316,7 @@ function useWindowPosition() {
 
 すべての state を 1 つの `useState` 呼び出しに含めても動作しますし、フィールドごとに別に `useState` を持たせることでも動作はします。しかしこれらの両極端の間でうまくバランスを取り、少数の独立した state 変数に関連する state をグループ化することで、コンポーネントは最も読みやすくなります。state のロジックが複雑になった場合は、それを[リデューサで管理する](/docs/hooks-reference.html#usereducer)か、カスタムフックを書くことをお勧めします。
 
-### コンポーネントの更新の時だけ副作用を実行することは可能ですか？ {#can-i-run-an-effect-only-on-updates}
+### コンポーネントの更新のときだけ副作用を実行することは可能ですか？ {#can-i-run-an-effect-only-on-updates}
 
 これは稀なユースケースです。必要であれば、[変更可能な ref](#is-there-something-like-instance-variables) を使って、初回レンダー中なのか更新中なのかに対応する真偽値を手動で保持し、副作用内でその値を参照するようにすることができます。（このようなことを何度もやる場合は、そのためのカスタムフックを書くことができます）
 
@@ -403,7 +403,7 @@ function Example() {
 
 非同期的に実行されるコールバック内で、意図的に state の*最新*の値を読み出したいという場合は、その値を [ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) 内に保持して、それを書き換えたり読み出したりすることができます。
 
-最後に、古い props や state が見えている場合に考えられる他の理由は、「依存の配列」による最適化を使った際に正しく依存する値の全部を指定しなかった、というものです。例えば副作用フックの第 2 引数に `[]` を指定したにも関わらず副作用内で `someProps` を読み出しているという場合、副作用関数内では `someProps` の初期値がずっと見え続けることになります。解決方法は依存配列自体を削除するか、配列の中身を修正することです。[関数の扱い方](#is-it-safe-to-omit-functions-from-the-list-of-dependencies)、および依存する値の変化を誤って無視することなく副作用の実行回数を減らすための[よくある手法](#what-can-i-do-if-my-effect-dependencies-change-too-often)についてもご覧下さい。
+最後に、古い props や state が見えている場合に考えられる他の理由は、「依存の配列」による最適化を使った際に正しく依存する値の全部を指定しなかった、というものです。例えば副作用フックの第 2 引数に `[]` を指定したにも関わらず副作用内で `someProps` を読み出しているという場合、副作用関数内では `someProps` の初期値がずっと見え続けることになります。解決方法は依存配列自体を削除するか、配列の中身を修正することです。[関数の扱い方](#is-it-safe-to-omit-functions-from-the-list-of-dependencies)、および依存する値の変化を誤って無視することなく副作用の実行回数を減らすための[よくある手法](#what-can-i-do-if-my-effect-dependencies-change-too-often)についてもご覧ください。
 
 >補足
 >
@@ -790,7 +790,7 @@ function Table(props) {
 
 React は初回レンダー時のみこの関数を呼び出します。[`useState` の API リファレンス](/docs/hooks-reference.html#usestate)を参照してください。
 
-また、**稀に `useRef()` の初期値を毎回再作成することを避けたいということもあります。**例えば、命令型で作成するクラスのインスタンスが一度しか作成されないことを保証したいということがあるかもしれません。
+また、**まれに `useRef()` の初期値を毎回再作成することを避けたいということもあります。**例えば、命令型で作成するクラスのインスタンスが一度しか作成されないことを保証したいということがあるかもしれません。
 
 ```js
 function Image(props) {
