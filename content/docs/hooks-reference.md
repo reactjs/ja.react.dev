@@ -67,11 +67,7 @@ function Counter({initialCount}) {
 }
 ```
 
-<<<<<<< HEAD
-"+" と "-" のボタンは、更新後の値が更新前の値に基づいて計算されるため、関数形式を使っています。"Reset" ボタンは常にカウントを 0 に戻すので通常の形式を使っています。
-=======
-The "+" and "-" buttons use the functional form, because the updated value is based on the previous value. But the "Reset" button uses the normal form, because it always sets the count back to the initial value.
->>>>>>> 59c3c0a1551841cedfc8478524808492289e61f5
+"+" と "-" のボタンは、更新後の値が更新前の値に基づいて計算されるため、関数形式を使っています。"Reset" ボタンは常にカウントを初期値に戻すので、通常の形式を使っています。
 
 > 補足
 >
