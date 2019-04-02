@@ -35,7 +35,7 @@ prev: hooks-reference.html
   * [フックでデータの取得をどのように行うのですか？](#how-can-i-do-data-fetching-with-hooks)
   * [インスタンス変数のようなものはありますか？](#is-there-something-like-instance-variables)
   * [state 変数は 1 つにすべきですか、たくさん使うべきですか？](#should-i-use-one-or-many-state-variables)
-  * [コンポーネントの更新の時だけ副作用を実行することは可能ですか？](#can-i-run-an-effect-only-on-updates)
+  * [コンポーネントの更新のときだけ副作用を実行することは可能ですか？](#can-i-run-an-effect-only-on-updates)
   * [前回の props や state はどうすれば取得できますか？](#how-to-get-the-previous-props-or-state)
   * [関数内で古い props や state が見えているのはなぜですか？](#why-am-i-seeing-stale-props-or-state-inside-my-function)
   * [どうすれば getDerivedStateFromProps を実装できますか？](#how-do-i-implement-getderivedstatefromprops)
@@ -316,7 +316,7 @@ function useWindowPosition() {
 
 すべての state を 1 つの `useState` 呼び出しに含めても動作しますし、フィールドごとに別に `useState` を持たせることでも動作はします。しかしこれらの両極端の間でうまくバランスを取り、少数の独立した state 変数に関連する state をグループ化することで、コンポーネントは最も読みやすくなります。state のロジックが複雑になった場合は、それを[リデューサで管理する](/docs/hooks-reference.html#usereducer)か、カスタムフックを書くことをお勧めします。
 
-### コンポーネントの更新の時だけ副作用を実行することは可能ですか？ {#can-i-run-an-effect-only-on-updates}
+### コンポーネントの更新のときだけ副作用を実行することは可能ですか？ {#can-i-run-an-effect-only-on-updates}
 
 これは稀なユースケースです。必要であれば、[変更可能な ref](#is-there-something-like-instance-variables) を使って、初回レンダー中なのか更新中なのかに対応する真偽値を手動で保持し、副作用内でその値を参照するようにすることができます。（このようなことを何度もやる場合は、そのためのカスタムフックを書くことができます）
 
