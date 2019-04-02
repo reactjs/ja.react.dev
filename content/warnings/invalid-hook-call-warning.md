@@ -4,7 +4,7 @@ layout: single
 permalink: warnings/invalid-hook-call-warning.html
 ---
 
-このページを見ているのは、恐らく以下のエラーメッセージが出たからでしょう。
+このページを見ているのは、おそらく以下のエラーメッセージが出たからでしょう。
 
 > Hooks can only be called inside the body of a function component.（フックは関数コンポーネントの本体でしか呼び出せません）
 
