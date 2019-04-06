@@ -10,7 +10,7 @@ next: refs-and-the-dom.html
 
 ## Flow {#flow}
 
-[Flow](https://flow.org/) は JavaScript 用の静的型チェッカー機能です。Facebook で開発されており、React と一緒に使われることが多いです。変数、関数や React コンポーネントに型を足すことができ、型不整合を早期に発見できるようになります。[はじめての Flow](https://flow.org/en/docs/getting-started/) に基本情報が記載されているので、それを読むと良いでしょう。
+[Flow](https://flow.org/) は JavaScript 用の静的型チェック機能です。Facebook で開発されており、React と一緒に使われることが多いです。変数、関数や React コンポーネントに型を足すことができ、型不整合を早期に発見できるようになります。[はじめての Flow](https://flow.org/en/docs/getting-started/) に基本情報が記載されているので、それを読むと良いでしょう。
 
 Flow を使用するには以下の手順を踏みます：
 
