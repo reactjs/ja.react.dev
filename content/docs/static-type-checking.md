@@ -15,8 +15,8 @@ next: refs-and-the-dom.html
 Flow を使用するには以下の手順を踏みます：
 
 * Flow をプロジェクトの dependency に入れる。
-* Flow の記法をコンパイル時にコードから剥がすように設定する。
-* 型記法を追加し、Flow を起動して確認する。
+* Flow の型定義をコンパイル時にコードから剥がすように設定する。
+* 型定義を追加し、Flow を起動して確認する。
 
 順を追って説明します。
 
@@ -67,7 +67,7 @@ npm run flow init
 
 このコマンドで Flow の設定ファイルを生成することができます。この設定ファイルはバージョン管理しましょう。
 
-### Flow の記法をコンパイル時にコードから剥がす {#stripping-flow-syntax-from-the-compiled-code}
+### Flow の型定義をコンパイル時にコードから剥がす {#stripping-flow-syntax-from-the-compiled-code}
 
 Flow は JavaScript 言語を拡張し、型定義のための特殊な記法を使えるようにします。しかし、ブラウザはその記法について知らない為、ブラウザに送信されるコンパイル後の JavasScript バンドルに含まれないようにしなければいけません。
 
@@ -75,7 +75,7 @@ Flow は JavaScript 言語を拡張し、型定義のための特殊な記法を
 
 #### Create React App {#create-react-app}
 
-もし、あなたのプロジェクトが [Create React App](https://github.com/facebookincubator/create-react-app) によって生成されている場合、おめでとうございます！ 既にビルド時に Flow の記法は剥がされる設定になっているため、このステップで何もする必要はありません。
+もし、あなたのプロジェクトが [Create React App](https://github.com/facebookincubator/create-react-app) によって生成されている場合、おめでとうございます！ 既にビルド時に Flow の型定義は剥がされる設定になっているため、このステップで何もする必要はありません。
 
 #### Babel {#babel}
 
@@ -108,7 +108,7 @@ npm install --save-dev babel-preset-flow
 }
 ```
 
-これであなたのコードで Flow の記法が使えるようになります。
+これであなたのコードで Flow の型定義が使えるようになります。
 
 >補足:
 >
@@ -116,7 +116,7 @@ npm install --save-dev babel-preset-flow
 
 #### 他のビルド設定 {#other-build-setups}
 
-もし、Create React App も Babel も使用していない場合、[flow-remove-types](https://github.com/flowtype/flow-remove-types) を使って Flow の記法を剥がすことができます。
+もし、Create React App も Babel も使用していない場合、[flow-remove-types](https://github.com/flowtype/flow-remove-types) を使って Flow の型定義を剥がすことができます。
 
 ### Flow の実行 {#running-flow}
 
@@ -139,7 +139,7 @@ No errors!
 ✨  Done in 0.17s.
 ```
 
-### Flow の型記法の追記 {#adding-flow-type-annotations}
+### Flow の型定義の追記 {#adding-flow-type-annotations}
 
 Flow の初期設定では、以下のコメントが含まれているファイルのみ型チェックを行います。
 
