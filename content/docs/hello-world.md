@@ -36,7 +36,7 @@ ReactDOM.render(
 
 ## 前提となる知識 {#knowledge-level-assumptions}
 
-React は JavaScript ライブラリなので、JavaScript 言語の基本的な理解があることを想定しています。**あまり自信がない場合は、[JavaScript のチュートリアル](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)を一通り読んで知識レベルを確認し、**このガイドを迷わず読み進められるようにしてください。そうすれば 30 分から 1 時間ほどかかるかもしれませんが、JavaScript と React を同時に学んでいるような気分にならずにすむでしょう。
+React は JavaScript ライブラリなので、JavaScript 言語の基本的な理解があることを想定しています。**あまり自信がない場合は、[JavaScript のチュートリアル](https://developer.mozilla.org/ja/docs/Web/JavaScript/A_re-introduction_to_JavaScript)を一通り読んで知識レベルを確認し、**このガイドを迷わず読み進められるようにしてください。そうすれば 30 分から 1 時間ほどかかるかもしれませんが、JavaScript と React を同時に学んでいるような気分にならずにすむでしょう。
 
 >補足
 >
