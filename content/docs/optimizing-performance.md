@@ -10,7 +10,7 @@ React は UI の更新時に必要となる高コストな DOM 操作の回数�
 
 ## 本番用ビルドを使用する {#use-the-production-build}
 
-React アプリケーションでベンチマークを行う場合やパフォーマンスの問題が発生している場合には、ミニファイされた本番用ビルドでテストしていることを確認して下さい。
+React アプリケーションでベンチマークを行う場合やパフォーマンスの問題が発生している場合には、ミニファイされた本番用ビルドでテストしていることを確認してください。
 
 デフォルトで React は多くの有用な警告チェックを行い、開発時にはとても有用なのですが、それによって React アプリケーションのサイズは肥大化し、速度が低下してしまうので、アプリケーションのデプロイ時には本番バージョンを使用していることを確認してください。
 
@@ -28,7 +28,7 @@ React アプリケーションでベンチマークを行う場合やパフォ�
 
 ### Create React App {#create-react-app}
 
-プロジェクトが [Create React App](https://github.com/facebookincubator/create-react-app) で構築されているなら、以下のコードを実行して下さい。
+プロジェクトが [Create React App](https://github.com/facebookincubator/create-react-app) で構築されているなら、以下のコードを実行してください。
 
 ```
 npm run build
@@ -101,7 +101,7 @@ browserify ./index.js \
 >パッケージ名は `uglify-js` ですが、パッケージが提供するバイナリ名は `uglifyjs` です。<br/>
 >タイプミスではありません。
 
-これが必要なのは本番用ビルドだけであることに留意してください。React の有用な警告文が隠されたり、ビルド速度が大幅に遅くなったりしますので、開発用ではこれらのプラグインを適用しないで下さい。
+これが必要なのは本番用ビルドだけであることに留意してください。React の有用な警告文が隠されたり、ビルド速度が大幅に遅くなったりしますので、開発用ではこれらのプラグインを適用しないでください。
 
 ### Rollup {#rollup}
 
@@ -430,6 +430,6 @@ x === z; // true
 
 この場合、`x` を変更すると新しい参照が返されるので、参照の比較 `(x === y)` をするだけで、`y` に保存されている新しい値は `x` に保存されていた値とは違うことが確認できます。
 
-不変データの使用を助けてくる他のライブラリとして [seamless-immutable](https://github.com/rtfeldman/seamless-immutable) や [immutability-helper](https://github.com/kolodny/immutability-helper) の 2 つが挙がります。
+不変データの使用を助けてくる他のライブラリに [Immer](https://github.com/mweststrate/immer) や [immutability-helper](https://github.com/kolodny/immutability-helper)、[seamless-immutable](https://github.com/rtfeldman/seamless-immutable) があります。
 
 不変データ構造はオブジェクトの変化の検出を容易にします。まさにそれが `shouldComponentUpdate` の実装に必要なことのすべてです。これによってパフォーマンスを大幅に向上できる場合があります。

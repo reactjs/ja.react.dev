@@ -423,7 +423,7 @@ function ListOfTenThings() {
 <div>{true}</div>
 ```
 
-これは条件に応じて React 要素を表示する際に活用できます。次の例は `showHeader` が `true` の時に限って `<Header />` が表示されます。
+これは条件に応じて React 要素を表示する際に活用できます。次の例は `showHeader` が `true` のときに限って `<Header />` が表示されます。
 
 ```js{2}
 <div>
@@ -432,7 +432,7 @@ function ListOfTenThings() {
 </div>
 ```
 
-1 つ注意点として、数値 `0` のように[偽と評価されるいくつかの値](https://developer.mozilla.org/en-US/docs/Glossary/Falsy)は、React によって表示されます。つまり次のコードは `props.messages` が空の配列の時には `0` が表示されてしまうため、期待通りには動作しません。
+1 つ注意点として、数値 `0` のように[偽と評価されるいくつかの値](https://developer.mozilla.org/en-US/docs/Glossary/Falsy)は、React によって表示されます。つまり次のコードは `props.messages` が空の配列のときには `0` が表示されてしまうため、期待通りには動作しません。
 
 ```js{2}
 <div>

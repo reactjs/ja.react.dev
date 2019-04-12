@@ -72,8 +72,6 @@ ReactDOM.render(
 
 state は props に似ていますが、コンポーネントによって完全に管理されるプライベートなものです。
 
-[以前に述べた](/docs/components-and-props.html#functional-and-class-components)ように、クラスとして定義されたコンポーネントにはいくつか追加の機能があります。ローカルな state がまさにそれです：クラスでのみ使用できる機能です。
-
 ## 関数をクラスに変換する {#converting-a-function-to-a-class}
 
 以下の 5 ステップで、`Clock` のような関数コンポーネントをクラスに変換することができます。
