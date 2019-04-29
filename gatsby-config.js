@@ -55,7 +55,11 @@ module.exports = {
               maxWidth: 840,
             },
           },
+<<<<<<< HEAD
           'gatsby-remark-japanese-fix',
+=======
+          'gatsby-remark-external-links',
+>>>>>>> b8b3db7acbba117addeea8a7fb86957eb046d7ce
           'gatsby-remark-header-custom-ids',
           {
             resolve: 'gatsby-remark-code-repls',
