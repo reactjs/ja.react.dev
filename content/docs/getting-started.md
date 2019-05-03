@@ -99,7 +99,11 @@ JavaScript について自分がどれだけ知っているかを知るために
 
 ### 高度なコンセプト {#advanced-concepts}
 
+<<<<<<< HEAD
 React の[基本コンセプト](#main-concepts)について慣れてきて、実際に手で動かしてみたら、今度はさらに高度な内容にも手を出したいと思うかもしれません。この資料では強力な、しかし普段使われることのない [コンテキスト](/docs/context.html) や [ref](/docs/refs-and-the-dom.html) といった React のさらなる機能について紹介します。
+=======
+Once you're comfortable with the [main concepts](/docs/hello-world.html) and played with React a little bit, you might be interested in more advanced topics. This section will introduce you to the powerful, but less commonly used React features like [context](/docs/context.html) and [refs](/docs/refs-and-the-dom.html).
+>>>>>>> b1691780aa3178d39694264863210d34ad5a5f81
 
 ### API リファレンス {#api-reference}
 
@@ -115,7 +119,11 @@ React の[基本コンセプト](#main-concepts)について慣れてきて、�
 
 他にも [@reactjs](https://twitter.com/reactjs) のツイッターアカウントをフォローすることもできますが、公式ブログを追っていれば大事なことを見落とすことはないでしょう。
 
+<<<<<<< HEAD
 全ての React のリリースにブログ記事があるわけではありませんが、リリースごとに詳細に書かれた changelog が [React リポジトリの `CHANGELOG.md`](https://github.com/facebook/react/blob/master/CHANGELOG.md)、および [Releases ページ](https://github.com/facebook/react)に記載されています。
+=======
+Not every React release deserves its own blog post, but you can find a detailed changelog for every release [in the `CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/master/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react/releases) page.
+>>>>>>> b1691780aa3178d39694264863210d34ad5a5f81
 
 ## バージョン管理されたドキュメント {#versioned-documentation}
 

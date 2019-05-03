@@ -209,7 +209,11 @@ it('can render and update a counter', () => {
 
 * `componentDidCatch` と `getDerivedStateFromError`: フックによる同等物はまだ存在していませんが、近日中に追加される予定です。
 
+<<<<<<< HEAD
 ### フックでデータの取得をどのように行うのですか？ {#how-can-i-do-data-fetching-with-hooks}
+=======
+### How can I do data fetching with Hooks? {#how-can-i-do-data-fetching-with-hooks}
+>>>>>>> b1691780aa3178d39694264863210d34ad5a5f81
 
 まずはこちらの[小さなデモ](https://codesandbox.io/s/jvvkoo8pq3)をご覧ください。フックを使ってデータの取得をする方法について詳しく学ぶには[こちらの記事](https://www.robinwieruch.de/react-hooks-fetch-data/)を参照してください。
 
@@ -653,7 +657,11 @@ function ProductDetails({ fetchProduct })
 
 上記の例では関数を依存リストに含める**必要がある**ことに注意してください。これにより `ProductPage` の `productId` プロパティが変化した場合に自動的に `ProductDetail` コンポーネント内でデータの再取得が発生するようになります。
 
+<<<<<<< HEAD
 ### 副作用の依存リストが頻繁に変わりすぎる場合はどうすればよいですか？ {#what-can-i-do-if-my-effect-dependencies-change-too-often}
+=======
+### What can I do if my effect dependencies change too often? {#what-can-i-do-if-my-effect-dependencies-change-too-often}
+>>>>>>> b1691780aa3178d39694264863210d34ad5a5f81
 
 しばしば、副作用がとても頻繁に変化する state からの読み出しを行う場合があります。依存のリストからその state を省略したくなるかもしれませんが、通常それはバグになります。
 
