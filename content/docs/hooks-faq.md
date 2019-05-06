@@ -209,7 +209,11 @@ it('can render and update a counter', () => {
 
 * `componentDidCatch` と `getDerivedStateFromError`: フックによる同等物はまだ存在していませんが、近日中に追加される予定です。
 
+<<<<<<< HEAD
 ### フックでデータの取得をどのように行うのですか？ {#how-can-i-do-data-fetching-with-hooks}
+=======
+### How can I do data fetching with Hooks? {#how-can-i-do-data-fetching-with-hooks}
+>>>>>>> ad6687e25e021b79e8a7a2e071fd846cf657b71f
 
 まずはこちらの[小さなデモ](https://codesandbox.io/s/jvvkoo8pq3)をご覧ください。フックを使ってデータの取得をする方法について詳しく学ぶには[こちらの記事](https://www.robinwieruch.de/react-hooks-fetch-data/)を参照してください。
 
@@ -653,7 +657,11 @@ function ProductDetails({ fetchProduct })
 
 上記の例では関数を依存リストに含める**必要がある**ことに注意してください。これにより `ProductPage` の `productId` プロパティが変化した場合に自動的に `ProductDetail` コンポーネント内でデータの再取得が発生するようになります。
 
+<<<<<<< HEAD
 ### 副作用の依存リストが頻繁に変わりすぎる場合はどうすればよいですか？ {#what-can-i-do-if-my-effect-dependencies-change-too-often}
+=======
+### What can I do if my effect dependencies change too often? {#what-can-i-do-if-my-effect-dependencies-change-too-often}
+>>>>>>> ad6687e25e021b79e8a7a2e071fd846cf657b71f
 
 しばしば、副作用がとても頻繁に変化する state からの読み出しを行う場合があります。依存のリストからその state を省略したくなるかもしれませんが、通常それはバグになります。
 
@@ -808,13 +816,10 @@ function Image(props) {
 
   // ✅ IntersectionObserver is created lazily once
   function getObserver() {
-    let observer = ref.current;
-    if (observer !== null) {
-      return observer;
+    if (ref.current === null) {
+      ref.current = new IntersectionObserver(onIntersect);
     }
-    let newObserver = new IntersectionObserver(onIntersect);
-    ref.current = newObserver;
-    return newObserver;
+    return ref.current;
   }
 
   // When you need it, call getObserver()
