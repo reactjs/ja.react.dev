@@ -53,7 +53,7 @@ npm start
 
 Create React App はバックエンドのロジックやデータベース接続は扱いません。フロントエンドのビルドパイプラインを構築するだけであり、バックエンドに関しては好きなものを組み合わせて使って構いません。内部では [Babel](https://babeljs.io/) と [webpack](https://webpack.js.org/) を利用していますが、それらについて知る必要はありません。
 
-本番環境にデプロイする準備ができたら、`npm run build` を実行すれば、`build` フォルダ内に最適化されたアプリケーションのビルドが生成されます。Create React App の詳細については、[該当ツールの README](https://github.com/facebookincubator/create-react-app#create-react-app-) および [ユーザガイド](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents) を参照してください。
+本番環境にデプロイする準備ができたら、`npm run build` を実行すれば、`build` フォルダ内に最適化されたアプリケーションのビルドが生成されます。Create React App の詳細については、[該当ツールの README](https://github.com/facebookincubator/create-react-app#create-react-app--) および [ユーザガイド](https://facebook.github.io/create-react-app/) を参照してください。
 
 ### Next.js {#nextjs}
 

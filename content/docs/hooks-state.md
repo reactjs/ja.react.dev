@@ -8,7 +8,7 @@ prev: hooks-overview.html
 
 *フック (hook)* は React 16.8 で追加された新機能です。state などの React の機能を、クラスを書かずに使えるようになります。
 
-[以前のページ](/docs/hooks-intro.html)で以下の例を挙げてフックの紹介を行いました：
+[フックの導入のページ](/docs/hooks-intro.html)で以下の例を挙げてフックの紹介を行いました：
 
 ```js{4-5}
 import React, { useState } from 'react';
