@@ -236,7 +236,11 @@ const App = () => (
 
 ## 名前付きエクスポート {#named-exports}
 
+<<<<<<< HEAD
 `React.lazy` は現在デフォルトエクスポートのみサポートしています。インポートしたいモジュールが名前付きエクスポートを使用している場合、それをデフォルトとして再エクスポートする中間モジュールを作成できます。これにより、tree shaking が機能し未使用のコンポーネントを取り込まず済むようにできます。
+=======
+`React.lazy` currently only supports default exports. If the module you want to import uses named exports, you can create an intermediate module that reexports it as the default. This ensures that tree shaking keeps working and that you don't pull in unused components.
+>>>>>>> a211417f6680cce5b4e4f036dc1492c03bc588c7
 
 ```js
 // ManyComponents.js
