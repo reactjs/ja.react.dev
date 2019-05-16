@@ -83,11 +83,7 @@ class Foo extends Component {
 
 > **注意：**
 >
-<<<<<<< HEAD
-> レンダー内でアロー関数を利用するとコンポーネントがレンダーされるたびに新しい関数が作成され、パフォーマンスに影響を与える可能性があります（下記参照）。
-=======
->Using an arrow function in render creates a new function each time the component renders, which may break optimizations based on strict identity comparison.
->>>>>>> d2d2ee420de13803fa3f02dca55e2020d42a411f
+> レンダー内でアロー関数を利用するとコンポーネントがレンダーされるたびに新しい関数が作成されるため、厳密な一致に基づく最適化が動作しなくなる可能性があります。
 
 ### レンダー内でアロー関数を使用しても良いのか？ {#is-it-ok-to-use-arrow-functions-in-render-methods}
 
