@@ -10,7 +10,7 @@
 
 - @potato4d
 - @koba04
-- @smikity
+- @smikitky
 
 ## ドキュメント翻訳者向けガイド
 
