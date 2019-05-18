@@ -556,7 +556,7 @@ class DOMComponent {
 
 composite コンポーネントが新たな要素を受け取ったときに、`componentWillUpdate()' ライフサイクルメソッドを実行します。
 
-それからコンポーネントを新たな props で再レンダリングし、レンダリングされた次の要素を取得します：
+それからコンポーネントを新たな props で再レンダーし、レンダーされた次の要素を取得します：
 
 ```js
 class CompositeComponent {
