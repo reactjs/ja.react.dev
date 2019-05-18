@@ -11,7 +11,7 @@ redirect_from:
 
 この章は [stack リコンサイラ (reconciler)](/docs/codebase-overview.html#stack-reconciler) の実装に関するメモを集めたものです。
 
-これは非常に技術的な内容であり、React の公開 API だけでなく、React がどのようにコア、レンダラ (renderer) 、そしてリコンサイラに分割されているかについても、深く理解していることを前提としています。React のコードベースにあまり精通していないのであれば、まず [コードベースの概要](/docs/codebase-overview.html) を読んでください。
+これは非常に技術的な内容であり、React の公開 API だけでなく、React がどのようにコア、レンダラ (renderer) 、そしてリコンサイラに分割されているかについても、深く理解していることを前提としています。React のコードベースにあまり精通していないのであれば、まず[コードベースの概要](/docs/codebase-overview.html)を読んでください。
 
 また、これは [React のコンポーネント、インスタンスおよび要素の違い](/blog/2015/12/18/react-components-elements-and-instances.html)についての理解を前提としています。
 
