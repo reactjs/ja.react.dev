@@ -17,7 +17,7 @@ redirect_from:
 
 stack リコンサイラは、React 15 およびそれ以前のバージョンで使われていました。[src/renderers/shared/stack/reconciler](https://github.com/facebook/react/tree/15-stable/src/renderers/shared/stack/reconciler) で見つけることができます。
 
-### 動画： React をスクラッチで作成する {#video-building-react-from-scratch}
+### 動画：React をスクラッチで作成する {#video-building-react-from-scratch}
 
 このドキュメントは、[Paul O'Shannessy](https://twitter.com/zpao) 氏の行った講演 [building React from scratch](https://www.youtube.com/watch?v=_MAD4Oly9yg) に大いに啓発されています。
 
