@@ -333,11 +333,7 @@ function FriendStatusWithCounter(props) {
 }
 ```
 
-<<<<<<< HEAD
 フックを使うことで、ライフサイクルのメソッド名に基づくのではなく、**実際に何をやっているのかに基づいてコードを分割できます**。React はコンポーネントで利用されている*すべての*副作用を、指定されている順番で適用していきます。
-=======
-**Hooks let us split the code based on what it is doing** rather than a lifecycle method name. React will apply *every* effect used by the component, in the order they were specified.
->>>>>>> 06deefa56756f8dac13af59ee657186a81d28151
 
 ### 解説：なぜ副作用は毎回の更新ごとに実行されるのか {#explanation-why-effects-run-on-each-update}
 
