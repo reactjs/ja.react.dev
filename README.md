@@ -2,6 +2,8 @@
 
 This repo contains the source code and documentation powering [ja.reactjs.org](https://ja.reactjs.org/).
 
+> 以下はオリジナル（英語版）リポジトリの README です。日本語版 React ドキュメントへの貢献（翻訳・修正など）に興味がある方は [TRANSLATION.md](TRANSLATION.md) を参照してください。
+
 ## Getting started
 
 ### Prerequisites

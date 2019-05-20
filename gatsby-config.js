@@ -56,6 +56,7 @@ module.exports = {
             },
           },
           'gatsby-remark-japanese-fix',
+          'gatsby-remark-external-links',
           'gatsby-remark-header-custom-ids',
           {
             resolve: 'gatsby-remark-code-repls',

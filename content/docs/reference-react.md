@@ -198,7 +198,7 @@ React.cloneElement(
 React.createFactory(type)
 ```
 
-与えられた型の React 要素を生成する関数を返します。[`React.createElement()`](#createElement) と同様に、`type` 引数はタグ名の文字列（`'div'` や `'span'` など）、[React コンポーネント](/docs/components-and-props.html)型（クラスもしくは関数）、[React フラグメント](#reactfragment)型のいずれかです。
+与えられた型の React 要素を生成する関数を返します。[`React.createElement()`](#createelement) と同様に、`type` 引数はタグ名の文字列（`'div'` や `'span'` など）、[React コンポーネント](/docs/components-and-props.html)型（クラスもしくは関数）、[React フラグメント](#reactfragment)型のいずれかです。
 
 このヘルパーはレガシーだと考えられているため、代わりに JSX か `React.createElement()` を直接使用することをおすすめします。
 

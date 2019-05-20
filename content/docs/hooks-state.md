@@ -8,7 +8,7 @@ prev: hooks-overview.html
 
 *フック (hook)* は React 16.8 で追加された新機能です。state などの React の機能を、クラスを書かずに使えるようになります。
 
-[以前のページ](/docs/hooks-intro.html)で以下の例を挙げてフックの紹介を行いました：
+[フックの導入のページ](/docs/hooks-intro.html)で以下の例を挙げてフックの紹介を行いました：
 
 ```js{4-5}
 import React, { useState } from 'react';
@@ -276,4 +276,4 @@ function ExampleWithManyStates() {
 
 またフックが一体何なのかについても少々学びました。フックとは関数コンポーネント内から React の機能に「接続する (hook into)」ための関数のことです。フックの名前は必ず `use` から始まり、他にもまだ説明していない様々なフックがあります。
 
-**それでは[次のフックである `useEffect` について学びましょう。](/docs/hooks-effect.html)**これらは関数におけるライフサイクルメソッドと似ており、コンポーネント内で副作用を実行することができるようにするものです。
+**それでは[次のフックである `useEffect` について学びましょう。](/docs/hooks-effect.html)**これらはクラスにおけるライフサイクルメソッドと似ており、コンポーネント内で副作用を実行することができるようにするものです。
