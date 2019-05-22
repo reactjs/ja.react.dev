@@ -693,7 +693,11 @@ function Counter() {
 
 より複雑なケース（ある state が別の state に依存している場合など）においては、state 更新のロジックを [`useReducer` フック](/docs/hooks-reference.html#usereducer)を使って副作用の外部に移動することを考慮してください。[こちらの記事](https://adamrackis.dev/state-and-use-reducer/)にこのやり方についての例があります。**`useReducer` から返される `dispatch` 関数は常に同一性が保たれます**。これはリデューサ (reducer) 関数がコンポーネント内で宣言されており props を読み出している場合でも同様です。
 
+<<<<<<< HEAD
 最終手段として、クラスにおける `this` のようなものが欲しい場合は、[ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) を使ってミュータブルな値を保持させることができます。そうすればその値を読み書き可能です。例えば：
+=======
+As a last resort, if you want something like `this` in a class, you can [use a ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) to hold a mutable variable. Then you can write and read to it. For example:
+>>>>>>> 1f27bba9484f26ec6dab383b09730ad7ed59f732
 
 ```js{2-6,10-11,16}
 function Example(props) {
@@ -843,9 +847,15 @@ function Image(props) {
     }, [a, b]);
     ```
 
+<<<<<<< HEAD
 * [`useMemo` フック](/docs/hooks-faq.html#how-to-memoize-calculations) を使うことで個々の子コンポーネントをいつ更新するのかを制御しやすくなるため、コンポーネントが純粋である必要性は低くなっています
 
 * 最後に、以下で説明されているように、`useReducer` フックを使えば、複数のコールバックを深い階層に受け渡していく必要があまりなくなります
+=======
+* The [`useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations) Hook makes it easier to control when individual children update, reducing the need for pure components.
+
+* Finally, the [`useReducer`](/docs/hooks-reference.html#usereducer) Hook reduces the need to pass callbacks deeply, as explained below.
+>>>>>>> 1f27bba9484f26ec6dab383b09730ad7ed59f732
 
 ### どうすれば複数のコールバックを深く受け渡すのを回避できますか？ {#how-to-avoid-passing-callbacks-down}
 
