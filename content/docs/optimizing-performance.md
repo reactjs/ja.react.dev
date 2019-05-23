@@ -153,7 +153,7 @@ new webpack.DefinePlugin({
 new webpack.optimize.UglifyJsPlugin()
 ```
 
-より詳細な説明については [webpack のドキュメント](https://webpack.js.org/guides/production-build/)を参照ください。
+より詳細な説明については [webpack のドキュメント](https://webpack.js.org/guides/production/)を参照ください。
 
 これらが必要なのは本番用ビルドだけであることに留意してください。React の有用な警告文が隠されたり、ビルド速度が大幅に遅くなったりしますので、開発用では `UglifyJsPlugin` もしくは `DefinePlugin` を`'production'` という値で適用しないでください。
 
