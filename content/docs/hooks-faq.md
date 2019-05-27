@@ -655,11 +655,7 @@ function ProductDetails({ fetchProduct })
 
 ### 副作用の依存リストが頻繁に変わりすぎる場合はどうすればよいですか？ {#what-can-i-do-if-my-effect-dependencies-change-too-often}
 
-<<<<<<< HEAD
-しばしば、副作用がとても頻繁に変化する state からの読み出しを行う場合があります。依存のリストからその state を省略したくなるかもしれませんが、通常それはバグになります。
-=======
-Sometimes, your effect may be using state that changes too often. You might be tempted to omit that state from a list of dependencies, but that usually leads to bugs:
->>>>>>> 23b242edc4c7eeee5798953ba205e36cc71016b8
+しばしば、ある副作用がとても頻繁に変化する state を利用しないといけない場合があります。依存のリストからその state を省略したくなるかもしれませんが、通常それはバグになります。
 
 ```js{6,9}
 function Counter() {
@@ -697,11 +693,7 @@ function Counter() {
 
 より複雑なケース（ある state が別の state に依存している場合など）においては、state 更新のロジックを [`useReducer` フック](/docs/hooks-reference.html#usereducer)を使って副作用の外部に移動することを考慮してください。[こちらの記事](https://adamrackis.dev/state-and-use-reducer/)にこのやり方についての例があります。**`useReducer` から返される `dispatch` 関数は常に同一性が保たれます**。これはリデューサ (reducer) 関数がコンポーネント内で宣言されており props を読み出している場合でも同様です。
 
-<<<<<<< HEAD
 最終手段として、クラスにおける `this` のようなものが欲しい場合は、[ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) を使ってミュータブルな値を保持させることができます。そうすればその値を読み書き可能です。例えば：
-=======
-As a last resort, if you want something like `this` in a class, you can [use a ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) to hold a mutable variable. Then you can write and read to it. For example:
->>>>>>> 23b242edc4c7eeee5798953ba205e36cc71016b8
 
 ```js{2-6,10-11,16}
 function Example(props) {

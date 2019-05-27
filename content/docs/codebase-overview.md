@@ -211,11 +211,7 @@ React DOM と React Native のように大幅に異なるレンダラでも多�
 * render() から複数の要素を返す機能
 * error boundary のサポートの向上
 
-<<<<<<< HEAD
-React Fiber のアーキテクチャに関して[ここ](https://github.com/acdlite/react-fiber-architecture)や[ここ](https://medium.com/react-in-depth/inside-fiber-in-depth-overview-of-the-new-reconciliation-algorithm-in-react-e1c04700ef6e)で読むことができます。React 16 と共にリリースされていますが、非同期機能についてはデフォルトではまだ有効化されていません。
-=======
-You can read more about React Fiber Architecture [here](https://github.com/acdlite/react-fiber-architecture) and [here](https://blog.ag-grid.com/inside-fiber-an-in-depth-overview-of-the-new-reconciliation-algorithm-in-react). While it has shipped with React 16, the async features are not enabled by default yet.
->>>>>>> 23b242edc4c7eeee5798953ba205e36cc71016b8
+React Fiber のアーキテクチャに関して[ここ](https://github.com/acdlite/react-fiber-architecture)や[ここ](https://blog.ag-grid.com/inside-fiber-an-in-depth-overview-of-the-new-reconciliation-algorithm-in-react)で読むことができます。React 16 と共にリリースされていますが、非同期機能についてはデフォルトではまだ有効化されていません。
 
 ソースコードは [`packages/react-reconciler`](https://github.com/facebook/react/tree/master/packages/react-reconciler) に格納されています。
 
