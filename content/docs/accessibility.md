@@ -149,7 +149,11 @@ React でこれらの標準的な HTML の実践知識を直接使用できま�
 
 キーボードによる操作を補助して高速化するために、あなたのアプリケーションのナビゲーション（メニューや目次）部分をユーザが読み飛ばせるような仕組みを提供しましょう。
 
+<<<<<<< HEAD
 スキップリンクやスキップナビゲーションリンクとは、ユーザがキーボードでページを操作する場合にのみ出現する、隠れたナビゲーションリンクです。これらのリンクはページ内アンカーといくらかのスタイルを用いて、とても簡単に実装できます：
+=======
+Skiplinks or Skip Navigation Links are hidden navigation links that only become visible when keyboard users interact with the page. They are very easy to implement with internal page anchors and some styling:
+>>>>>>> 23b242edc4c7eeee5798953ba205e36cc71016b8
 
 - [WebAIM - Skip Navigation Links](https://webaim.org/techniques/skipnav/)
 
@@ -161,7 +165,11 @@ React でこれらの標準的な HTML の実践知識を直接使用できま�
 
 ### プログラムによりフォーカスを管理する {#programmatically-managing-focus}
 
+<<<<<<< HEAD
 React アプリケーションは実行されている間、継続的に HTML の DOM を変更するため、時にキーボードフォーカスが失われたり、予期しない要素にセットされたりすることがあります。これを修正するためには、プログラムによってキーボードフォーカスを正しい位置に移動させる必要があります。例えばモーダルウィンドウを閉じた後には、モーダルを開いたボタンにキーボードフォーカスを戻すことなどです。
+=======
+Our React applications continuously modify the HTML DOM during runtime, sometimes leading to keyboard focus being lost or set to an unexpected element. In order to repair this, we need to programmatically nudge the keyboard focus in the right direction. For example, by resetting keyboard focus to a button that opened a modal window after that modal window is closed.
+>>>>>>> 23b242edc4c7eeee5798953ba205e36cc71016b8
 
 MDN のウェブドキュメントには、[キーボードで移動可能な JavaScript ウィジェット](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets) の作り方が解説されています。
 
@@ -199,7 +207,11 @@ class CustomTextInput extends React.Component {
  }
  ```
 
+<<<<<<< HEAD
 ときおり、親コンポーネントは子コンポーネント内にフォーカスをセットする必要があります。これは、子コンポーネントの特定のプロパティを通して[親コンポーネントに DOM の ref をさらし](/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components) 、親の ref を子の DOM ノードに伝播させることで可能になります。
+=======
+Sometimes a parent component needs to set focus to an element in a child component. We can do this by [exposing DOM refs to parent components](/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components) through a special prop on the child component that forwards the parent's ref to the child's DOM node.
+>>>>>>> 23b242edc4c7eeee5798953ba205e36cc71016b8
 
 ```javascript{4,12,16}
 function CustomTextInput(props) {
@@ -226,9 +238,16 @@ class Parent extends React.Component {
 this.inputElement.current.focus();
 ```
 
+<<<<<<< HEAD
 コンポーネントを拡張するのに高階コンポーネント (HOC) を使う場合は、React の `forwardRef` 関数を用いて、関数に囲われたコンポーネントに [ref を差し出す](/docs/forwarding-refs.html) ことをおすすめします。もし、サードパーティの高階コンポーネントが ref フォワーディングを実装していないときでも、上記のパターンはフォールバックとして使えます。
 
 良いフォーカス管理の例は [react-aria-modal](https://github.com/davidtheclark/react-aria-modal) です。これは完全にアクセシブルなモーダルウィンドウの比較的珍しい例です。このライブラリは、最初のフォーカスをキャンセルボタンに設定し（これは、キーボードを使っているユーザがうっかり次のアクションに移ってしまうのを防ぎます）、モーダルの中でキーボードフォーカスが閉じているだけでなく、最初にモーダルを開いた要素にフォーカスを戻してもくれます。
+=======
+When using a HOC to extend components, it is recommended to [forward the ref](/docs/forwarding-refs.html) to the wrapped component using the `forwardRef` function of React. If a third party HOC does not implement ref forwarding, the above pattern can still be used as a fallback.
+
+A great focus management example is the [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). This is a relatively rare example of a fully accessible modal window. Not only does it set initial focus on
+the cancel button (preventing the keyboard user from accidentally activating the success action) and trap keyboard focus inside the modal, it also resets focus back to the element that initially triggered the modal.
+>>>>>>> 23b242edc4c7eeee5798953ba205e36cc71016b8
 
 > 補足：
 >
@@ -238,7 +257,11 @@ this.inputElement.current.focus();
 
 マウスまたは、ポインタのイベントを通じて使われる機能がキーボード単体でも同じように使用できるようにしてください。ポインタデバイスだけに依存した実装は、多くの場合にキーボードユーザがアプリケーションを使えない原因になります。
 
+<<<<<<< HEAD
 これを説明するために、クリックイベントによってアクセシビリティが損なわれるよくある例を見てみましょう。以下の画像はアウトサイドクリックパターンというユーザが要素の外側をクリックして開いている要素を閉じられるパターンです。
+=======
+Ensure that all functionality exposed through a mouse or pointer event can also be accessed using the keyboard alone. Depending only on the pointer device will lead to many cases where keyboard users cannot use your application.
+>>>>>>> 23b242edc4c7eeee5798953ba205e36cc71016b8
 
 <img src="../images/docs/outerclick-with-mouse.gif" alt="クリックアウトサイドパターンで実装されたトグルボタンがポップアップリストを開き、閉じる動作が機能することを示すマウスで操作される様子" />
 
@@ -294,7 +317,11 @@ constructor(props) {
 }
 ```
 
+<<<<<<< HEAD
 これはマウスのようなポインタデバイスでは問題なく機能しますが、キーボード単体で操作しようとした場合、タブキーによって次の要素に移動しても `window` オブジェクトは `click` イベントを受け取らないため、うまく機能しません。
+=======
+This may work fine for users with pointer devices, such as a mouse, but operating this with the keyboard alone leads to broken functionality when tabbing to the next element as the `window` object never receives a `click` event. This can lead to obscured functionality which blocks users from using your application.
+>>>>>>> 23b242edc4c7eeee5798953ba205e36cc71016b8
 
 <img src="../images/docs/outerclick-with-keyboard.gif" alt="クリックアウトサイドパターンで実装されたトグルボタンがポップアップを開き、キーボードによってフォーカスが外れてもポップアップが閉じず、他の画面上の要素を隠してしまう様子" />
 
@@ -360,15 +387,27 @@ class BlurExample extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 上記のコードは、ポインタデバイス使うユーザとキーボードを使うユーザの双方にこの機能を公開します。さらに、`aria-*` props を加えるとスクリーンリーダを使うユーザーもサポートできます。話を簡単にするため、ポップアップの選択肢を `矢印キー` で操作できるようにするキーボードイベントは実装していません。
+=======
+This code exposes the functionality to both pointer device and keyboard users. Also note the added `aria-*` props to support screen-reader users. For simplicity's sake the keyboard events to enable `arrow key` interaction of the popover options have not been implemented.
+>>>>>>> 23b242edc4c7eeee5798953ba205e36cc71016b8
 
 <img src="../images/docs/blur-popover-close.gif" alt="ポップアップリストがマウスとキーボードのどちらを使うユーザーにも使いやすくなった様子" />
 
+<<<<<<< HEAD
 これはポインタデバイスとマウスイベントだけに依存するとキーボードを使うユーザにとって機能が損なわれてしまう数多くの具体例のうちのひとつです。つねにキーボードによるテストをすれば、キーボードに対応するイベントを使うことで解決できる問題をすばやく発見できるでしょう。
+=======
+This is one example of many cases where depending on only pointer and mouse events will break functionality for keyboard users. Always testing with the keyboard will immediately highlight the problem areas which can then be fixed by using keyboard aware event handlers.
+>>>>>>> 23b242edc4c7eeee5798953ba205e36cc71016b8
 
 ## より複雑なウィジェット {#more-complex-widgets}
 
+<<<<<<< HEAD
 ユーザ体験がより複雑であるほど、よりアクセシビリティが損なわれるということがあってはいけません。できるだけ HTML に近くなるようコーディングすればアクセシビリティを最も簡単に達成できますが、一方でかなり複雑なウィジェットでもアクセシビリティを保ってコーディングすることができます。
+=======
+A more complex user experience should not mean a less accessible one. Whereas accessibility is most easily achieved by coding as close to HTML as possible, even the most complex widget can be coded accessibly.
+>>>>>>> 23b242edc4c7eeee5798953ba205e36cc71016b8
 
 ここでは [ARIA のロール](https://www.w3.org/TR/wai-aria/#roles) や [ARIA のステートとプロパティ](https://www.w3.org/TR/wai-aria/#states_and_properties)についての知識も必要となります。これらは JSX で完全にサポートされている HTML 属性が詰まったツールボックスであり、十分にアクセシブルで高機能な React コンポーネントの構築を可能にしてくれます。
 
@@ -419,13 +458,21 @@ React では [React Document Title Component](https://github.com/gaearon/react-d
 
 最も簡単で最も重要なチェックのうちのひとつは、ウェブサイト全体がキーボード単体であまねく探索でき、使えるかどうかのテストです。これは以下の手順でチェックできます。
 
+<<<<<<< HEAD
 1. マウスを外します。
 2. `Tab` と `Shift+Tab` を使ってブラウズします。
 3. 要素を起動するのに `Enter` を使用します。
 4. 必要に応じて、キーボードの矢印キーを使ってメニューやドロップダウンリストなどの要素を操作します。
+=======
+1. Disconnecting your mouse.
+1. Using `Tab` and `Shift+Tab` to browse.
+1. Using `Enter` to activate elements.
+1. Where required, using your keyboard arrow keys to interact with some elements, such as menus and dropdowns.
+>>>>>>> 23b242edc4c7eeee5798953ba205e36cc71016b8
 
 ### 開発支援 {#development-assistance}
 
+<<<<<<< HEAD
 アクセシビリティ機能には JSX のコード内で直接チェックできるものもあります。JSX に対応した IDE では、ARIA ロールやステートやプロパティに対する intellisense によるチェックが既に提供されていることが多いでしょう。他にも以下のツールを使うこともできます：
 
 #### eslint-plugin-jsx-a11y {#eslint-plugin-jsx-a11y}
@@ -433,6 +480,15 @@ React では [React Document Title Component](https://github.com/gaearon/react-d
 ESLint の [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) プラグインはあなたの JSX コードのアクセシビリティに対して、AST による lint のフィードバックを提供します。多くの IDE はコード解析とソースコードのウィンドウに直接そのフィードバックを統合できるようになっています。
 
 [Create React App](https://github.com/facebookincubator/create-react-app) はこのプラグインを備えており、一部のルールを有効化しています。もし、より多くのアクセシビリティルールを有効化したいときは、プロジェクトルートに `.eslintrc` ファイルを作成し、以下の内容を書き込んでください：
+=======
+We can check some accessibility features directly in our JSX code. Often intellisense checks are already provided in JSX aware IDE's for the ARIA roles, states and properties. We also have access to the following tool:
+
+#### eslint-plugin-jsx-a11y {#eslint-plugin-jsx-a11y}
+
+The [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) plugin for ESLint provides AST linting feedback regarding accessibility issues in your JSX. Many IDE's allow you to integrate these findings directly into code analysis and source code windows.
+
+[Create React App](https://github.com/facebookincubator/create-react-app) has this plugin with a subset of rules activated. If you want to enable even more accessibility rules, you can create an `.eslintrc` file in the root of your project with this content:
+>>>>>>> 23b242edc4c7eeee5798953ba205e36cc71016b8
 
   ```json
   {

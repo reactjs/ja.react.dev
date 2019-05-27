@@ -201,7 +201,11 @@ function ChatRecipientPicker() {
 
 あまり焦って抽象化を加えないようにしましょう。関数コンポーネントがやれることが増えたので、平均的な関数コンポーネントはこれまでより長いものになるでしょう。それは普通のことですので、いますぐカスタムフックに分割しないと*いけない*とは考えないでください。一方で、カスタムフックをどこで使えば複雑なロジックをシンプルなインターフェースに置き換えたり、ごちゃっとしたコンポーネントを整理したりできるのか、考え始めることをお勧めします。
 
+<<<<<<< HEAD
 一例として、その場しのぎで多くのローカル state が含まれるようになった複雑なコンポーネントをお持ちかもしれません。`useState` を使っても更新ロジックの集中化が簡単になるわけではありませんので、それを [Redux](https://redux.js.org/) のリデューサ (reducer) で書きたくなることがあるでしょう：
+=======
+For example, maybe you have a complex component that contains a lot of local state that is managed in an ad-hoc way. `useState` doesn't make centralizing the update logic any easier so you might prefer to write it as a [Redux](https://redux.js.org/) reducer:
+>>>>>>> 23b242edc4c7eeee5798953ba205e36cc71016b8
 
 ```js
 function todosReducer(state, action) {
