@@ -56,7 +56,7 @@
     - id: jsx-in-depth
       title: JSX を深く理解する
     - id: optimizing-performance
-      title: Optimizing Performance
+      title: パフォーマンス最適化
     - id: portals
       title: ポータル
     - id: react-without-es6
@@ -70,11 +70,11 @@
     - id: render-props
       title: レンダープロップ
     - id: static-type-checking
-      title: Static Type Checking
+      title: 静的型チェック
     - id: strict-mode
       title: strict モード
     - id: typechecking-with-proptypes
-      title: Typechecking With PropTypes
+      title: PropTypes を用いた型チェック
     - id: uncontrolled-components
       title: 非制御コンポーネント
     - id: web-components
@@ -120,7 +120,7 @@
       - id: hooks-custom
         title: カスタムフックの作成
       - id: hooks-reference
-        title: フック API Reference
+        title: フック API リファレンス
       - id: hooks-faq
         title: フックに関するよくある質問
 - title: Contributing
@@ -128,7 +128,7 @@
   - id: how-to-contribute
     title: 貢献の方法
   - id: codebase-overview
-    title: Codebase Overview
+    title: コードベースの概要
   - id: implementation-notes
     title: Implementation Notes
   - id: design-principles

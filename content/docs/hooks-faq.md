@@ -843,9 +843,9 @@ function Image(props) {
     }, [a, b]);
     ```
 
-* [`useMemo` フック](/docs/hooks-faq.html#how-to-memoize-calculations) を使うことで個々の子コンポーネントをいつ更新するのかを制御しやすくなるため、コンポーネントが純粋である必要性は低くなっています
+* [`useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations) フックを使うことで個々の子コンポーネントをいつ更新するのかを制御しやすくなるため、コンポーネントが純粋である必要性は低くなっています
 
-* 最後に、以下で説明されているように、`useReducer` フックを使えば、複数のコールバックを深い階層に受け渡していく必要があまりなくなります
+* 最後に、以下で説明されているように、[`useReducer`](/docs/hooks-reference.html#usereducer) フックを使えば、複数のコールバックを深い階層に受け渡していく必要があまりなくなります
 
 ### どうすれば複数のコールバックを深く受け渡すのを回避できますか？ {#how-to-avoid-passing-callbacks-down}
 
