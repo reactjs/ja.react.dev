@@ -246,7 +246,7 @@ this.inputElement.current.focus();
 
 ```javascript{12-14,26-30}
 class OuterClickExample extends React.Component {
-constructor(props) {
+  constructor(props) {
     super(props);
 
     this.state = { isOpen: false };
@@ -280,13 +280,13 @@ constructor(props) {
     return (
       <div ref={this.toggleContainer}>
         <button onClick={this.onClickHandler}>Select an option</button>
-        {this.state.isOpen ? (
+        {this.state.isOpen && (
           <ul>
             <li>Option 1</li>
             <li>Option 2</li>
             <li>Option 3</li>
           </ul>
-        ) : null}
+        )}
       </div>
     );
   }
@@ -297,7 +297,11 @@ constructor(props) {
 
 <img src="../images/docs/outerclick-with-keyboard.gif" alt="クリックアウトサイドパターンで実装されたトグルボタンがポップアップを開き、キーボードによってフォーカスが外れてもポップアップが閉じず、他の画面上の要素を隠してしまう様子" />
 
+<<<<<<< HEAD
 これと同じ機能は `onBlur` と `onFocus` のような適切なイベントハンドラを代わりに用いることで実現できます。
+=======
+The same functionality can be achieved by using appropriate event handlers instead, such as `onBlur` and `onFocus`:
+>>>>>>> 5849f604ccd59b009f7f3e03d5460757bfc2ab34
 
 ```javascript{19-29,31-34,37-38,40-41}
 class BlurExample extends React.Component {
@@ -346,13 +350,13 @@ class BlurExample extends React.Component {
                 aria-expanded={this.state.isOpen}>
           Select an option
         </button>
-        {this.state.isOpen ? (
+        {this.state.isOpen && (
           <ul>
             <li>Option 1</li>
             <li>Option 2</li>
             <li>Option 3</li>
           </ul>
-        ) : null}
+        )}
       </div>
     );
   }
