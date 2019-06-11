@@ -297,11 +297,7 @@ class OuterClickExample extends React.Component {
 
 <img src="../images/docs/outerclick-with-keyboard.gif" alt="クリックアウトサイドパターンで実装されたトグルボタンがポップアップを開き、キーボードによってフォーカスが外れてもポップアップが閉じず、他の画面上の要素を隠してしまう様子" />
 
-<<<<<<< HEAD
 これと同じ機能は `onBlur` と `onFocus` のような適切なイベントハンドラを代わりに用いることで実現できます。
-=======
-The same functionality can be achieved by using appropriate event handlers instead, such as `onBlur` and `onFocus`:
->>>>>>> 5849f604ccd59b009f7f3e03d5460757bfc2ab34
 
 ```javascript{19-29,31-34,37-38,40-41}
 class BlurExample extends React.Component {
