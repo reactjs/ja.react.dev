@@ -38,7 +38,11 @@ console.log(testRenderer.toJSON());
 //   children: [ 'Facebook' ] }
 ```
 
+<<<<<<< HEAD
 JSON ツリーを自動的にファイルに保存し、変更が起こったかをテストで確認するには、Jest のスナップショットテスト機能が利用できます。[詳細について知る](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html)
+=======
+You can use Jest's snapshot testing feature to automatically save a copy of the JSON tree to a file and check in your tests that it hasn't changed: [Learn more about it](https://jestjs.io/docs/en/snapshot-testing).
+>>>>>>> 899411236d5b1520ab8b8e7fad7d48c681abc69b
 
 出力を走査して特定のノードを検索し、それらに対してアサーションを行うこともできます。
 
