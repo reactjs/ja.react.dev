@@ -655,7 +655,7 @@ function ProductDetails({ fetchProduct })
 
 ### 副作用の依存リストが頻繁に変わりすぎる場合はどうすればよいですか？ {#what-can-i-do-if-my-effect-dependencies-change-too-often}
 
-しばしば、副作用がとても頻繁に変化する state からの読み出しを行う場合があります。依存のリストからその state を省略したくなるかもしれませんが、通常それはバグになります。
+しばしば、ある副作用がとても頻繁に変化する state を利用しないといけない場合があります。依存のリストからその state を省略したくなるかもしれませんが、通常それはバグになります。
 
 ```js{6,9}
 function Counter() {
