@@ -31,7 +31,7 @@ class Welcome extends React.Component {
 
 `React.Component` サブクラスで*必ず*定義しなければならない唯一のメソッドは [`render()`](#render) です。このページで説明されている他のすべてのメソッドは任意です。
 
-**独自の基底コンポーネントクラスを作成しないことを強くおすすめします。**React コンポーネントでは、[コードの再利用は主に継承ではなく合成によって行われます]((/docs/composition-vs-inheritance.html))。
+**独自の基底コンポーネントクラスを作成しないことを強くおすすめします。**React コンポーネントでは、[コードの再利用は主に継承ではなく合成によって行われます](/docs/composition-vs-inheritance.html)。
 
 >補足:
 >
