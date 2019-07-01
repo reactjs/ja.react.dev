@@ -37,7 +37,11 @@ React のすばらしい特長がいくつもありますが、あなたがど�
 
 しかし、どうやって単一のコンポーネントに括るべき範囲を見つけられるのでしょうか。ちょうど、新しい関数やオブジェクトをいつ作るのかを決めるときと、同じ手法が使えます。このような手法のひとつに、[単一責任の原則 (single responsibility principle)](https://en.wikipedia.org/wiki/Single_responsibility_principle) があり、これはすなわち、ひとつのコンポーネントは理想的にはひとつのことだけをするべきだということです。将来、コンポーネントが肥大化してしまった場合には、小さなコンポーネントに分割するべきです。
 
+<<<<<<< HEAD
 JSON のデータモデルをユーザーに向けて表示することはよくありますので、モデルを正しく構築できているか、UI（つまりコンポーネントの構造）へのマッピングがうまくいっているか、といったことを、皆さんはよく判断できます。これは、UI とデータモデルが同じ **情報の構造** を持つ傾向があるためです。このおかげで、UI をコンポーネントに切り分ける作業は自明なものになりがちです。モックを分割して、データモデルの厳密に一部分だけを表現するコンポーネントへと落とし込みましょう。
+=======
+Since you're often displaying a JSON data model to a user, you'll find that if your model was built correctly, your UI (and therefore your component structure) will map nicely. That's because UI and data models tend to adhere to the same *information architecture*. Separate your UI into components, where each component matches one piece of your data model.
+>>>>>>> c024001caf50180a896c09467d06b2ad7b2fb8f4
 
 ![コンポーネント図](../images/blog/thinking-in-react-components.png)
 

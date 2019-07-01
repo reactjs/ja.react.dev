@@ -51,14 +51,18 @@ React と ReactDOM をそれぞれ単一ファイル化した本番環境用の�
 
 ### Brunch {#brunch}
 
+<<<<<<< HEAD
 Brunch で最も効率のよい本番用ビルドを行うには、[`uglify-js-brunch`](https://github.com/brunch/uglify-js-brunch) をインストールしてください：
+=======
+For the most efficient Brunch production build, install the [`terser-brunch`](https://github.com/brunch/terser-brunch) plugin:
+>>>>>>> c024001caf50180a896c09467d06b2ad7b2fb8f4
 
 ```
 # If you use npm
-npm install --save-dev uglify-js-brunch
+npm install --save-dev terser-brunch
 
 # If you use Yarn
-yarn add --dev uglify-js-brunch
+yarn add --dev terser-brunch
 ```
 
 そして、本番用ビルドを作成するために、`build` コマンドに`-p` オプションを指定して実行します。
@@ -75,17 +79,23 @@ Browserify で最も効率の良い本番用ビルドを行うには、いくつ
 
 ```
 # If you use npm
-npm install --save-dev envify uglify-js uglifyify 
+npm install --save-dev envify terser uglifyify 
 
 # If you use Yarn
-yarn add --dev envify uglify-js uglifyify 
+yarn add --dev envify terser uglifyify 
 ```
 
 本番用ビルドを作成するには、以下の変換 (transform) を追加してください（**順番は重要です**）。
 
+<<<<<<< HEAD
 * [`envify`](https://github.com/hughsk/envify) 変換は正しいビルド用の環境変数が確実に設定されるようにします。グローバルに設定してください (`-g`)。
 * [`uglifyify`](https://github.com/hughsk/uglifyify) 変換は開発用にインポートしたライブラリを削除します。これもグローバルに設定してください (`-g`)。
 * 最後に結果として出力されたものを、名前の圧縮のために [`uglify-js`](https://github.com/mishoo/UglifyJS2) にパイプします（[理由を読む](https://github.com/hughsk/uglifyify#motivationusage)）。
+=======
+* The [`envify`](https://github.com/hughsk/envify) transform ensures the right build environment is set. Make it global (`-g`).
+* The [`uglifyify`](https://github.com/hughsk/uglifyify) transform removes development imports. Make it global too (`-g`).
+* Finally, the resulting bundle is piped to [`terser`](https://github.com/terser-js/terser) for mangling ([read why](https://github.com/hughsk/uglifyify#motivationusage)).
+>>>>>>> c024001caf50180a896c09467d06b2ad7b2fb8f4
 
 以下に例を示します。
 
@@ -93,33 +103,43 @@ yarn add --dev envify uglify-js uglifyify
 browserify ./index.js \
   -g [ envify --NODE_ENV production ] \
   -g uglifyify \
-  | uglifyjs --compress --mangle > ./bundle.js
+  | terser --compress --mangle > ./bundle.js
 ```
 
+<<<<<<< HEAD
 >**補足：**
 >
 >パッケージ名は `uglify-js` ですが、パッケージが提供するバイナリ名は `uglifyjs` です。<br/>
 >タイプミスではありません。
 
 これが必要なのは本番用ビルドだけであることに留意してください。React の有用な警告文が隠されたり、ビルド速度が大幅に遅くなったりしますので、開発用ではこれらのプラグインを適用しないでください。
+=======
+Remember that you only need to do this for production builds. You shouldn't apply these plugins in development because they will hide useful React warnings, and make the builds much slower.
+>>>>>>> c024001caf50180a896c09467d06b2ad7b2fb8f4
 
 ### Rollup {#rollup}
 
 Rollup で最も効率のよい本番用ビルドを行うには、いくつかのプラグインを以下のようにインストールします。
 
-```
+```bash
 # If you use npm
-npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify 
+npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-terser
 
 # If you use Yarn
-yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify 
+yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-terser
 ```
 
 本番用ビルドを作成するには、以下のプラグインを追加してください（**順番は重要**です）。
 
+<<<<<<< HEAD
 * [`replace`](https://github.com/rollup/rollup-plugin-replace) プラグインは正しいビルド用の環境変数が確実に設定されるようにします。
 * [`commonjs`](https://github.com/rollup/rollup-plugin-commonjs) プラグインは Rollup で CommonJS をサポートできるようにします。
 * [`uglify`](https://github.com/TrySound/rollup-plugin-uglify)  プラグインは出力された最終的なバンドルを圧縮し、mangle（訳注： 変数名や識別子を短縮）します。
+=======
+* The [`replace`](https://github.com/rollup/rollup-plugin-replace) plugin ensures the right build environment is set.
+* The [`commonjs`](https://github.com/rollup/rollup-plugin-commonjs) plugin provides support for CommonJS in Rollup.
+* The [`terser`](https://github.com/TrySound/rollup-plugin-terser) plugin compresses and mangles the final bundle.
+>>>>>>> c024001caf50180a896c09467d06b2ad7b2fb8f4
 
 ```js
 plugins: [
@@ -128,14 +148,18 @@ plugins: [
     'process.env.NODE_ENV': JSON.stringify('production')
   }),
   require('rollup-plugin-commonjs')(),
-  require('rollup-plugin-uglify')(),
+  require('rollup-plugin-terser')(),
   // ...
 ]
 ```
 
 設定例の全体はこの [gist を参照](https://gist.github.com/Rich-Harris/cb14f4bc0670c47d00d191565be36bf0)してください。
 
+<<<<<<< HEAD
 これらが必要なのは本番用ビルドだけであることに留意してください。React の有用な警告表示が隠されたり、ビルド速度が大幅に遅くなったりしますので、開発用では  `uglify` プラグインもしくは `replace` プラグインを `'production'` という値で適用しないでください。
+=======
+Remember that you only need to do this for production builds. You shouldn't apply the `terser` plugin or the `replace` plugin with `'production'` value in development because they will hide useful React warnings, and make the builds much slower.
+>>>>>>> c024001caf50180a896c09467d06b2ad7b2fb8f4
 
 ### webpack {#webpack}
 
@@ -144,18 +168,30 @@ plugins: [
 > Create React App を利用している場合は、[Create React App についての前述の説明](#create-react-app)に従ってください。<br/>
 > このセクションは直接 webpack の設定を行いたい人向けです。
 
+<<<<<<< HEAD
 webpack で最も効率のよい本番用ビルドを行うには、本番ビルドの設定中に必ず以下のプラグインを含めるようにしてください。
+=======
+Webpack v4+ will minify your code by default in production mode.
+>>>>>>> c024001caf50180a896c09467d06b2ad7b2fb8f4
 
 ```js
-new webpack.DefinePlugin({
-  'process.env.NODE_ENV': JSON.stringify('production')
-}),
-new webpack.optimize.UglifyJsPlugin()
+const TerserPlugin = require('terser-webpack-plugin');
+
+module.exports = {
+  mode: 'production'
+  optimization: {
+    minimizer: [new TerserPlugin({ /* additional options here */ })],
+  },
+};
 ```
 
 より詳細な説明については [webpack のドキュメント](https://webpack.js.org/guides/production/)を参照ください。
 
+<<<<<<< HEAD
 これらが必要なのは本番用ビルドだけであることに留意してください。React の有用な警告文が隠されたり、ビルド速度が大幅に遅くなったりしますので、開発用では `UglifyJsPlugin` もしくは `DefinePlugin` を`'production'` という値で適用しないでください。
+=======
+Remember that you only need to do this for production builds. You shouldn't apply `TerserPlugin` in development because it will hide useful React warnings, and make the builds much slower.
+>>>>>>> c024001caf50180a896c09467d06b2ad7b2fb8f4
 
 ## Chrome のパフォーマンスタブでコンポーネントをプロファイルする {#profiling-components-with-the-chrome-performance-tab}
 

@@ -246,7 +246,11 @@ function Counter() {
 
 #### 初期 state の指定 {#specifying-the-initial-state}
 
+<<<<<<< HEAD
 `useReducer` の初期化の方法には 2 種類あります。ユースケースによりどちらかを選択してください。最も単純な方法は第 2 引数として初期 state を渡すものです。
+=======
+There are two different ways to initialize `useReducer` state. You may choose either one depending on the use case. The simplest way is to pass the initial state as a second argument:
+>>>>>>> c024001caf50180a896c09467d06b2ad7b2fb8f4
 
 ```js{3}
   const [state, dispatch] = useReducer(
