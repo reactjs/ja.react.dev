@@ -18,11 +18,7 @@ render() {
 }
 ```
 
-<<<<<<< HEAD
-このようなものを宣言するための[短い記法](#short-syntax)もありますが、現時点ではまだ人気のあるツールすべてでサポートされているわけではありません。
-=======
-There is also a new [short syntax](#short-syntax) for declaring them.
->>>>>>> c024001caf50180a896c09467d06b2ad7b2fb8f4
+このようなものを宣言するための[短い記法](#short-syntax)もあります。
 
 ## 動機 {#motivation}
 
@@ -117,13 +113,7 @@ class Columns extends React.Component {
 
 この `<></>` は他の要素と同じように使うことが可能ですが、key や属性のサポートはありません。
 
-<<<<<<< HEAD
-**[現時点では多くのツールがまだこの記法をサポートしていない](/blog/2017/11/28/react-v16.2.0-fragment-support.html#support-for-fragment-syntax)**ため、ツールのサポートが追いつくまでは明示的に `<React.Fragment>` と記述する方がよいかもしれません。
-
 ### key 付きフラグメント {#keyed-fragments}
-=======
-### Keyed Fragments {#keyed-fragments}
->>>>>>> c024001caf50180a896c09467d06b2ad7b2fb8f4
 
 明示的に `<React.Fragment>` と宣言したフラグメントでは key を持つことができます。これはコレクションをフラグメントの配列に変換するときに有用です。たとえば定義リストを作成する時に利用します：
 

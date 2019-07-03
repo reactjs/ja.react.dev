@@ -106,11 +106,7 @@ Create React App を使用している場合はすでに設定がされている
 
 > 補足:
 >
-<<<<<<< HEAD
 > `React.lazy` と Suspense はまだサーバーサイドレンダリングには使用できません。サーバーサイドでレンダリングされたアプリでコード分割をしたい場合には、[Loadable Components](https://github.com/smooth-code/loadable-components) の使用をおすすめします。こちらは[サーバーサイドレンダリングでのバンドル分割のための素晴らしいガイド](https://github.com/smooth-code/loadable-components/blob/master/packages/server/README.md)も提供していくれているので、参考にしてみてください。
-=======
-> `React.lazy` and Suspense are not yet available for server-side rendering. If you want to do code-splitting in a server rendered app, we recommend [Loadable Components](https://github.com/smooth-code/loadable-components). It has a nice [guide for bundle splitting with server-side rendering](https://github.com/smooth-code/loadable-components/blob/master/packages/server/README.md).
->>>>>>> c024001caf50180a896c09467d06b2ad7b2fb8f4
 
 `React.lazy` 関数を使用すると、動的インポートを通常のコンポーネントとしてレンダリングすることができます。
 
