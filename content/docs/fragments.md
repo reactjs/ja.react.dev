@@ -18,7 +18,7 @@ render() {
 }
 ```
 
-このようなものを宣言するための[短い記法](#short-syntax)もありますが、現時点ではまだ人気のあるツールすべてでサポートされているわけではありません。
+このようなものを宣言するための[短い記法](#short-syntax)もあります。
 
 ## 動機 {#motivation}
 
@@ -112,8 +112,6 @@ class Columns extends React.Component {
 ```
 
 この `<></>` は他の要素と同じように使うことが可能ですが、key や属性のサポートはありません。
-
-**[現時点では多くのツールがまだこの記法をサポートしていない](/blog/2017/11/28/react-v16.2.0-fragment-support.html#support-for-fragment-syntax)**ため、ツールのサポートが追いつくまでは明示的に `<React.Fragment>` と記述する方がよいかもしれません。
 
 ### key 付きフラグメント {#keyed-fragments}
 
