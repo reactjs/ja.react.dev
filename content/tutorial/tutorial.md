@@ -16,11 +16,7 @@ redirect_from:
 
 ## チュートリアルを始める前に {#before-we-start-the-tutorial}
 
-<<<<<<< HEAD
 このチュートリアルでは小さなゲームを作成します。**自分はゲームを作りたいのではないから、と飛ばしたくなるかもしれませんが、是非目を通してみてください。**このチュートリアルで学ぶ技法はどのような React のアプリにおいても基本的なものであり、マスターすることで React への深い理解が得られます。
-=======
-We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React app, and mastering it will give you a deep understanding of React.
->>>>>>> 40e96a44e5d42b57a453afeb5f6daed792025371
 
 >ヒント
 >

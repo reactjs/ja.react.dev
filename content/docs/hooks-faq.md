@@ -674,13 +674,9 @@ function Counter() {
 }
 ```
 
-<<<<<<< HEAD
-依存のリストとして `[count]` を指定すればバグは起きなくなりますが、その場合値が変化するたびに interval がリセットされることになります。これは望ましい動作ではありません。これを修正するため、[`setState` 関数形式による更新](/docs/hooks-reference.html#functional-updates)を利用することができます。これにより state の*現在値*を参照せずに state が*どのように*更新されるべきかを指定できます。
-=======
-The empty set of dependencies, `[]`, means that the effect will only run once when the component mounts, and not on every re-render. The problem is that inside the `setInterval` callback, the value of `count` does not change, because we've created a closure with the value of `count` set to `0` as it was when the effect callback ran. Every second, this callback then calls `setCount(0 + 1)`, so the count never goes above 1.
+依存のリストが空であるということ (`[]`) は、コンポーネントのマウント時に副作用が一度のみ実行され、毎回の再レンダー時には実行されないということを意味します。ここでの問題は、副作用コールバックが実行された時点で `count` の値が `0` に設定されたクロージャを作成したため、`setInterval` 内のコールバックで `count` の値が変わらなくなってしまう、ということです。毎秒ごとにこのコールバックは `setCount(0 + 1)` を呼び出すので、カウントは 1 のまま変わらなくなってしまいます。
 
-Specifying `[count]` as a list of dependencies would fix the bug, but would cause the interval to be reset on every change. Effectively, each `setInterval` would get one chance to execute before being cleared (similar to a `setTimout`.) That may not be desirable. To fix this, we can use the [functional update form of `setState`](/docs/hooks-reference.html#functional-updates). It lets us specify *how* the state needs to change without referencing the *current* state:
->>>>>>> 40e96a44e5d42b57a453afeb5f6daed792025371
+依存のリストとして `[count]` を指定すればバグは起きなくなりますが、その場合値が変化するたびにタイマーがリセットされることになります。事実上それぞれの `setInterval` は一度しか実行されずに（`setTimeout` のように）クリアされてしまうのです。これは望ましい動作ではありません。これを修正するため、[`setState` 関数形式による更新](/docs/hooks-reference.html#functional-updates)を利用することができます。これにより state の*現在値*を参照せずに state が*どのように*更新されるべきかを指定できます。
 
 ```js{6,9}
 function Counter() {
@@ -699,13 +695,9 @@ function Counter() {
 
 （`setCount` 関数については同一性が保たれることが保証されているので、省略して構いません）
 
-<<<<<<< HEAD
-より複雑なケース（ある state が別の state に依存している場合など）においては、state 更新のロジックを [`useReducer` フック](/docs/hooks-reference.html#usereducer)を使って副作用の外部に移動することを考慮してください。[こちらの記事](https://adamrackis.dev/state-and-use-reducer/)にこのやり方についての例があります。**`useReducer` から返される `dispatch` 関数は常に同一性が保たれます**。これはリデューサ (reducer) 関数がコンポーネント内で宣言されており props を読み出している場合でも同様です。
-=======
-Now, the `setInterval` callback executes once a second, but each time the inner call to `setCount` can use an up-to-date value for `count` (called `c` in the callback here.)
+これで、`setInterval` のコールバックは 1 秒に 1 回実行されますが、内部の `setCont` は `count` の最新の値（この例では `c`）を参照できるようになります。
 
-In more complex cases (such as if one state depends on another state), try moving the state update logic outside the effect with the [`useReducer` Hook](/docs/hooks-reference.html#usereducer). [This article](https://adamrackis.dev/state-and-use-reducer/) offers an example of how you can do this. **The identity of the `dispatch` function from `useReducer` is always stable** — even if the reducer function is declared inside the component and reads its props.
->>>>>>> 40e96a44e5d42b57a453afeb5f6daed792025371
+より複雑なケース（ある state が別の state に依存している場合など）においては、state 更新のロジックを [`useReducer` フック](/docs/hooks-reference.html#usereducer)を使って副作用の外部に移動することを考慮してください。[こちらの記事](https://adamrackis.dev/state-and-use-reducer/)にこのやり方についての例があります。**`useReducer` から返される `dispatch` 関数は常に同一性が保たれます**。これはリデューサ (reducer) 関数がコンポーネント内で宣言されており props を読み出している場合でも同様です。
 
 最終手段として、クラスにおける `this` のようなものが欲しい場合は、[ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) を使ってミュータブルな値を保持させることができます。そうすればその値を読み書き可能です。例えば：
 
