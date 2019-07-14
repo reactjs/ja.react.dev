@@ -50,7 +50,7 @@ Facebook にはセキュリティバグの安全な開示のための[報奨金�
 ### 連絡方法 {#how-to-get-in-touch}
 
 * IRC：[# freenode の reactjs](https://webchat.freenode.net/?channels=reactjs)
-* ディスカッションフォーラム：[discuss.reactjs.org](https://discuss.reactjs.org/)
+* [ディスカッションフォーラム](https://reactjs.org/community/support.html#popular-discussion-forums)
 
 また、React に関して助けが必要な場合は、[Discord 上の React コミュニティ](http://www.reactiflux.com/)も存在します。
 
