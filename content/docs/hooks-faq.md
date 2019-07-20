@@ -695,7 +695,7 @@ function Counter() {
 
 （`setCount` 関数については同一性が保たれることが保証されているので、省略して構いません）
 
-これで、`setInterval` のコールバックは 1 秒に 1 回実行されますが、内部の `setCont` は `count` の最新の値（この例では `c`）を参照できるようになります。
+これで、`setInterval` のコールバックは 1 秒に 1 回実行されますが、内部の `setCount` は `count` の最新の値（この例では `c`）を参照できるようになります。
 
 より複雑なケース（ある state が別の state に依存している場合など）においては、state 更新のロジックを [`useReducer` フック](/docs/hooks-reference.html#usereducer)を使って副作用の外部に移動することを考慮してください。[こちらの記事](https://adamrackis.dev/state-and-use-reducer/)にこのやり方についての例があります。**`useReducer` から返される `dispatch` 関数は常に同一性が保たれます**。これはリデューサ (reducer) 関数がコンポーネント内で宣言されており props を読み出している場合でも同様です。
 
