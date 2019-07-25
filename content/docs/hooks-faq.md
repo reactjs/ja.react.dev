@@ -70,11 +70,7 @@ React バージョン 16.8.0 より、以下においてフックの安定版の
 
 **フックを利用するには、すべての React のパッケージが 16.8.0 以上である必要があります**。例えば React DOM の更新を忘れた場合、フックは動作しません。
 
-<<<<<<< HEAD
-React Native は次の安定版リリースでフックを全面的にサポートします。
-=======
-React Native 0.59 and above support Hooks.
->>>>>>> d00058b1f922438cd9a6ac858cf4c0883c28eddc
+React Native はバージョン 0.59 以降でフックをサポートします。
 
 ### クラスコンポーネントを全部書き換える必要があるのですか？ {#do-i-need-to-rewrite-all-my-class-components}
 
@@ -570,11 +566,7 @@ useEffect(() => {
 
 これがなぜ重要なのか説明します。
 
-<<<<<<< HEAD
 `useEffect`、`useMemo`、`useCallback` あるいは `useImperativeHandle` の最後の引数として[依存する値のリスト](/docs/hooks-reference.html#conditionally-firing-an-effect)を渡す場合、内部で使われ React のデータの流れに関わる値が、すべて含まれている必要があります。すなわち props や state およびそれらより派生するあらゆるものです。
-=======
-If you specify a [list of dependencies](/docs/hooks-reference.html#conditionally-firing-an-effect) as the last argument to `useEffect`, `useMemo`, `useCallback`, or `useImperativeHandle`, it must include all values used inside that participate in the React data flow. That includes props, state, and anything derived from them.
->>>>>>> d00058b1f922438cd9a6ac858cf4c0883c28eddc
 
 関数を依存のリストから安全に省略できるのは、その関数（あるいはその関数から呼ばれる関数）が props、state ないしそれらから派生する値のいずれも含んでいない場合**のみ**です。以下の例にはバグがあります。
 
@@ -684,11 +676,7 @@ function Counter() {
 
 依存のリストが空であるということ (`[]`) は、コンポーネントのマウント時に副作用が一度のみ実行され、毎回の再レンダー時には実行されないということを意味します。ここでの問題は、副作用コールバックが実行された時点で `count` の値が `0` に設定されたクロージャを作成したため、`setInterval` 内のコールバックで `count` の値が変わらなくなってしまう、ということです。毎秒ごとにこのコールバックは `setCount(0 + 1)` を呼び出すので、カウントは 1 のまま変わらなくなってしまいます。
 
-<<<<<<< HEAD
 依存のリストとして `[count]` を指定すればバグは起きなくなりますが、その場合値が変化するたびにタイマーがリセットされることになります。事実上それぞれの `setInterval` は一度しか実行されずに（`setTimeout` のように）クリアされてしまうのです。これは望ましい動作ではありません。これを修正するため、[`setState` 関数形式による更新](/docs/hooks-reference.html#functional-updates)を利用することができます。これにより state の*現在値*を参照せずに state が*どのように*更新されるべきかを指定できます。
-=======
-Specifying `[count]` as a list of dependencies would fix the bug, but would cause the interval to be reset on every change. Effectively, each `setInterval` would get one chance to execute before being cleared (similar to a `setTimeout`.) That may not be desirable. To fix this, we can use the [functional update form of `setState`](/docs/hooks-reference.html#functional-updates). It lets us specify *how* the state needs to change without referencing the *current* state:
->>>>>>> d00058b1f922438cd9a6ac858cf4c0883c28eddc
 
 ```js{6,9}
 function Counter() {
