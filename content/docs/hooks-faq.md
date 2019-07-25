@@ -70,7 +70,7 @@ React バージョン 16.8.0 より、以下においてフックの安定版の
 
 **フックを利用するには、すべての React のパッケージが 16.8.0 以上である必要があります**。例えば React DOM の更新を忘れた場合、フックは動作しません。
 
-React Native は次の安定版リリースでフックを全面的にサポートします。
+React Native はバージョン 0.59 以降でフックをサポートします。
 
 ### クラスコンポーネントを全部書き換える必要があるのですか？ {#do-i-need-to-rewrite-all-my-class-components}
 
@@ -617,7 +617,7 @@ function ProductPage({ productId }) {
       const json = await response.json();
       if (!ignore) setProduct(json);
     }
-    
+
     fetchProduct();
     return () => { ignore = true };
   }, [productId]);
