@@ -239,7 +239,7 @@ function withMouse(Component) {
 
 このパターンが「レンダープロップ」という名前だからといって、必ずしも *`render` という名前の props を使う必要はない*ということを念頭に置いてください。実際、[コンポーネントがレンダーするものを知るために使う関数の props は、*その名前が何であれ*、技術的には「レンダープロップ」と呼ぶことができます](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)。
 
-上記の例では `rendrer` を用いていますが、`children` プロパティを使っても同じくらい簡単です！
+上記の例では `render` を用いていますが、`children` プロパティを使っても同じくらい簡単です！
 
 ```js
 <Mouse children={mouse => (
