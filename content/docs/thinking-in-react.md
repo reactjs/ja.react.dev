@@ -76,11 +76,8 @@ JSON のデータモデルをユーザーに向けて表示することはよく
 
 ### 幕間：Props vs State {#a-brief-interlude-props-vs-state}
 
-<<<<<<< HEAD
-React には 2 種類の「モデル」データが存在します。props と state です。このふたつの相違を理解するのは重要なことです。違いについて自信がない場合は、[公式の React ドキュメント](/docs/interactivity-and-dynamic-uis.html)に目を通すとよいでしょう。
-=======
-There are two types of "model" data in React: props and state. It's important to understand the distinction between the two; skim [the official React docs](/docs/state-and-lifecycle.html) if you aren't sure what the difference is. See also [FAQ: What is the difference between state and props?](/docs/faq-state.html#what-is-the-difference-between-state-and-props)
->>>>>>> 4b8aa88fe29e637439af4e08df02539d828175f4
+
+React には 2 種類の「モデル」データが存在します。props と state です。このふたつの相違を理解するのは重要なことです。違いについて自信がない場合は、[公式の React ドキュメント](/docs/state-and-lifecycle.html)に目を通すとよいでしょう。 [FAQ: state と props の違いは何ですか？](/docs/faq-state.html#what-is-the-difference-between-state-and-props) もご覧ください。
 
 ## Step 3: UI 状態を表現する必要かつ十分な state を決定する {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
