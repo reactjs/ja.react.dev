@@ -130,7 +130,7 @@
   - id: codebase-overview
     title: コードベースの概要
   - id: implementation-notes
-    title: Implementation Notes
+    title: 実装に関するメモ
   - id: design-principles
     title: 設計原則
 - title: FAQ
