@@ -49,11 +49,7 @@ JSON のデータモデルをユーザーに向けて表示することはよく
   4. **`ProductCategoryRow`（水色）：** *カテゴリ*を見出しとして表示する
   5. **`ProductRow`（赤色）：** 各*商品*を 1 行で表示する
 
-<<<<<<< HEAD
 `ProductTable` を見てみると、表のヘッダー（「Name」や「Price」のラベルを含む）が単独のコンポーネントになっていないことがわかります。これは好みの問題で、コンポーネントにするかしないかは両論あります。今回の例でいえば、ヘッダーを `ProductTable` の一部にしたのは、*データの集合*を描画するという `ProductTable` の責務の一環として適切だったからです。しかしながら、将来ヘッダーが肥大化して複雑になった場合（例えばソート機能を追加した場合など）は、`ProductTableHeader` のようなコンポーネントにするのが適切になるでしょう。
-=======
-If you look at `ProductTable`, you'll see that the table header (containing the "Name" and "Price" labels) isn't its own component. This is a matter of preference, and there's an argument to be made either way. For this example, we left it as part of `ProductTable` because it is part of rendering the *data collection* which is `ProductTable`'s responsibility. However, if this header grows to be complex (e.g., if we were to add affordances for sorting), it would certainly make sense to make this its own `ProductTableHeader` component.
->>>>>>> 986381c56879983269c52863d9c205c7a7ba0174
 
 さて、モック内にコンポーネントを特定できましたので、階層構造に並べてみましょう。モックで他のコンポーネントの中にあるコンポーネントを、階層構造でも子要素として配置すればいいのです。次のようになります。
 
