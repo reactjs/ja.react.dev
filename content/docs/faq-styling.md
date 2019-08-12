@@ -48,4 +48,8 @@ _注意：この機能は React の一部ではありません。サードパー
 
 ### React でアニメーションは使えますか？ {#can-i-do-animations-in-react}
 
+<<<<<<< HEAD
 React を使ってアニメーションを動かすことは可能です。例として、[React Transition Group](https://reactcommunity.org/react-transition-group/) や [React Motion](https://github.com/chenglou/react-motion) をご覧ください。
+=======
+React can be used to power animations. See [React Transition Group](https://reactcommunity.org/react-transition-group/) and [React Motion](https://github.com/chenglou/react-motion) or [React Spring](https://github.com/react-spring/react-spring), for example.
+>>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
