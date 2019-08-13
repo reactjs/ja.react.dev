@@ -106,13 +106,9 @@ React Native はバージョン 0.59 以降でフックをサポートします�
 
 これまでと同様に全く同じ API を使用し続けることができます。それらは動作し続けます。
 
-<<<<<<< HEAD
-将来的には、これらのライブラリの新バージョンが、例えば `useRedux()` や `useRouter()` のようなカスタムフックをエクスポートし、ラッパコンポーネントなしで同様の機能が使えるようになるかもしれません。
-=======
-React Redux since v7.1.0 [supports Hooks API](https://react-redux.js.org/api/hooks) and exposes hooks like `useDispatch` or `useSelector`.
+React Redux は v7.1.0 より [フック API をサポート](https://react-redux.js.org/api/hooks)しており、`useDispatch` や `useSelector` といったフックを提供しています。
 
-Libraries like React Router might support hooks in the future.
->>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
+React Router のようなライブラリも将来的にフックをサポートするかもしれません。
 
 ### フックは静的型付けと組み合わせてうまく動きますか？ {#do-hooks-work-with-static-typing}
 
@@ -124,15 +120,11 @@ Libraries like React Router might support hooks in the future.
 
 React の観点から見れば、フックを使ったコンポーネントは単なる普通のコンポーネントです。あなたのテストソリューションが React の内部動作に依存しているのでない場合、フックを使ったコンポーネントのテストのやり方は、あなたが普段コンポーネントをテストしているやり方と変わらないはずです。
 
-<<<<<<< HEAD
-例えばこのようなカウンタコンポーネントがあるとしましょう：
-=======
->Note
+> 補足
 >
->[Testing Recipes](/docs/testing-recipes.html) include many examples that you can copy and paste.
+> [Testing Recipes](/docs/testing-recipes.html) にコピー・ペーストで使えるたくさんの例が掲載されています。
 
-For example, let's say we have this counter component:
->>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
+例えばこのようなカウンタコンポーネントがあるとしましょう：
 
 ```js
 function Example() {
@@ -194,13 +186,9 @@ it('can render and update a counter', () => {
 
 カスタムフックをテストしたい場合は、テスト内でコンポーネントを作って中でそのカスタムフックを使うようにしてください。そうすればそのコンポーネントをテストできます。
 
-<<<<<<< HEAD
-ボイラープレートを減らすため、エンドユーザが使うのと同じ形でコンポーネントを使ってテストが記述できるように設計されている、[`react-testing-library`](https://git.io/react-testing-library) の利用をお勧めします。
-=======
-To reduce the boilerplate, we recommend using [React Testing Library](https://testing-library.com/react) which is designed to encourage writing tests that use your components as the end users do.
+ボイラープレートを減らすため、エンドユーザが使うのと同じ形でコンポーネントを使ってテストが記述できるように設計されている、[React Testing Library](https://testing-library.com/react) の利用をお勧めします。
 
-For more information, check out [Testing Recipes](/docs/testing-recipes.html).
->>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
+詳細については、[Testing Recipes](/docs/testing-recipes.html) をご覧ください。
 
 ### [Lint ルール](https://www.npmjs.com/package/eslint-plugin-react-hooks) は具体的に何を強制するのですか？ {#what-exactly-do-the-lint-rules-enforce}
 
@@ -582,11 +570,7 @@ useEffect(() => {
 
 >補足
 >
-<<<<<<< HEAD
 > [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) パッケージの一部として [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) という ESLint のルールを提供しています。更新の一貫性が保たれていないコンポーネントを見つけるのに役立ちます。
-=======
->We provide the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) ESLint rule as a part of the [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It helps you find components that don't handle updates consistently.
->>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
 
 これがなぜ重要なのか説明します。
 

@@ -128,10 +128,7 @@
       - id: hooks-reference
         title: フック API リファレンス
       - id: hooks-faq
-<<<<<<< HEAD
         title: フックに関するよくある質問
-=======
-        title: Hooks FAQ
 - title: Testing
   items:
     - id: testing 
@@ -140,7 +137,6 @@
       title: Testing Recipes
     - id: testing-environments
       title: Testing Environments
->>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
 - title: Contributing
   items:
   - id: how-to-contribute
