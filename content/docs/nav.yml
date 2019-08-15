@@ -58,13 +58,9 @@
     - id: optimizing-performance
       title: パフォーマンス最適化
     - id: portals
-<<<<<<< HEAD
       title: ポータル
-=======
-      title: Portals
     - id: profiler
       title: Profiler
->>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
     - id: react-without-es6
       title: ES6 なしで React を使う
     - id: react-without-jsx
