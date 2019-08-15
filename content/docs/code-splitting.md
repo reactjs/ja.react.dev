@@ -6,7 +6,7 @@ permalink: docs/code-splitting.html
 
 ## バンドル {#bundling}
 
-多くの React アプリケーションは、[Webpack](https://webpack.js.org/) や [Browserify](http://browserify.org/) などの
+多くの React アプリケーションは、[Webpack](https://webpack.js.org/)、[Rollup](https://rollupjs.org/) や [Browserify](http://browserify.org/) などの
 ツールを使ってファイルを「バンドル」しています。
 バンドルはインポートされたファイルをたどって、それらを 1 つのファイルにまとめるプロセスです。
 このバンドルされたファイルを Web ページ内に置くことによって、アプリ全体を一度に読み込むことができます。

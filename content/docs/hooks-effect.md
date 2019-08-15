@@ -131,6 +131,7 @@ function Example() {
   useEffect(() => {
     document.title = `You clicked ${count} times`;
   });
+}
 ```
 
 ここでは `count` という state 変数を宣言し、次に副作用を使うことを React に伝えています。`useEffect` フックには関数を渡しています。この関数こそが副作用関数です。この副作用関数内で `document.title` というブラウザ API を使ってドキュメントのタイトルを設定しています。副作用関数は関数スコープ内にあるため最新の `count` の値は副作用内から参照可能です。React がコンポーネントをレンダーする際に React はこの副作用を覚えておき、DOM を更新した後に呼び出します。これは初回を含む毎回のレンダー時に発生します。

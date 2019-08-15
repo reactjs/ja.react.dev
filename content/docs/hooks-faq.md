@@ -106,7 +106,9 @@ React Native はバージョン 0.59 以降でフックをサポートします�
 
 これまでと同様に全く同じ API を使用し続けることができます。それらは動作し続けます。
 
-将来的には、これらのライブラリの新バージョンが、例えば `useRedux()` や `useRouter()` のようなカスタムフックをエクスポートし、ラッパコンポーネントなしで同様の機能が使えるようになるかもしれません。
+React Redux は v7.1.0 より [フック API をサポート](https://react-redux.js.org/api/hooks)しており、`useDispatch` や `useSelector` といったフックを提供しています。
+
+React Router のようなライブラリも将来的にフックをサポートするかもしれません。
 
 ### フックは静的型付けと組み合わせてうまく動きますか？ {#do-hooks-work-with-static-typing}
 
@@ -117,6 +119,10 @@ React Native はバージョン 0.59 以降でフックをサポートします�
 ### フックを使ったコンポーネントはどのようにテストするのですか？ {#how-to-test-components-that-use-hooks}
 
 React の観点から見れば、フックを使ったコンポーネントは単なる普通のコンポーネントです。あなたのテストソリューションが React の内部動作に依存しているのでない場合、フックを使ったコンポーネントのテストのやり方は、あなたが普段コンポーネントをテストしているやり方と変わらないはずです。
+
+> 補足
+>
+> [Testing Recipes](/docs/testing-recipes.html) にコピー・ペーストで使えるたくさんの例が掲載されています。
 
 例えばこのようなカウンタコンポーネントがあるとしましょう：
 
@@ -180,7 +186,9 @@ it('can render and update a counter', () => {
 
 カスタムフックをテストしたい場合は、テスト内でコンポーネントを作って中でそのカスタムフックを使うようにしてください。そうすればそのコンポーネントをテストできます。
 
-ボイラープレートを減らすため、エンドユーザが使うのと同じ形でコンポーネントを使ってテストが記述できるように設計されている、[`react-testing-library`](https://git.io/react-testing-library) の利用をお勧めします。
+ボイラープレートを減らすため、エンドユーザが使うのと同じ形でコンポーネントを使ってテストが記述できるように設計されている、[React Testing Library](https://testing-library.com/react) の利用をお勧めします。
+
+詳細については、[Testing Recipes](/docs/testing-recipes.html) をご覧ください。
 
 ### [Lint ルール](https://www.npmjs.com/package/eslint-plugin-react-hooks) は具体的に何を強制するのですか？ {#what-exactly-do-the-lint-rules-enforce}
 

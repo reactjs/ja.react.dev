@@ -122,7 +122,9 @@ it('can render and update a counter', () => {
 });
 ```
 
-DOM イベントのディスパッチは、DOM コンテナが `document` に追加されたときだけ動作することを忘れないでください。[`react-testing-library`](https://github.com/kentcdodds/react-testing-library) のようなヘルパーを使えばボイラープレートのコードを減らせます。
+- DOM イベントのディスパッチは、DOM コンテナが `document` に追加されたときだけ動作することを忘れないでください。[React Testing Library](https://testing-library.com/react) のようなヘルパーを使えばボイラープレートのコードを減らせます。
+
+- [`recipes`](/docs/recipes.html) ドキュメントには `act()` がどのように動作するのかについて例や使用法を交えた詳しい解説があります。
 
 * * *
 
@@ -139,7 +141,7 @@ mockComponent(
 
 > 補足:
 >
-> `mockComponent()` はレガシーな API です。その代わりとして [shallow rendering](/docs/test-utils.html#shallow-rendering) や [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) の使用をおすすめします。
+> `mockComponent()` はレガシーな API です。その代わりとして [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) の使用をおすすめします。
 
 * * *
 
