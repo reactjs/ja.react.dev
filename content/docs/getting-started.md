@@ -73,7 +73,7 @@ React を学びたい人には様々な背景があり、それぞれいろん�
 
 ### JavaScript 資料 {#javascript-resources}
 
-React の公式ドキュメントはあなたがある程度 JavaScript について知っていることを想定しています。JavaScript の達人である必要は全くありませんが、JavaScript と React を同時に取得するのは難しいでしょう。
+React の公式ドキュメントはあなたがある程度 JavaScript について知っていることを想定しています。JavaScript の達人である必要は全くありませんが、JavaScript と React を同時に習得するのは難しいでしょう。
 
 JavaScript について自分がどれだけ知っているかを知るために、[この JavaScript の概要](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)を読んでおくことをおすすめします。読むのに 30 分から 1 時間程かかってしまいますが、React を学ぶための自信へと繋がってくるでしょう。
 
