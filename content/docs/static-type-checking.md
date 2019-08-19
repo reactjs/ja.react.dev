@@ -88,13 +88,13 @@ Flow は JavaScript 言語を拡張し、型定義のための特殊な記法を
 yarn を使っている場合：
 
 ```bash
-yarn add --dev babel-preset-flow
+yarn add --dev @babel/preset-flow
 ```
 
 npm を使っている場合：
 
 ```bash
-npm install --save-dev babel-preset-flow
+npm install --save-dev @babel/preset-flow
 ```
 
 そして、`flow` のプリセットを [Babel の設定ファイル](https://babeljs.io/docs/usage/babelrc/) に追加してください。例えば、Babel の設定を `.babelrc` ファイルで行っている場合は以下のようになります。
@@ -102,7 +102,7 @@ npm install --save-dev babel-preset-flow
 ```js{3}
 {
   "presets": [
-    "flow",
+    "@babel/preset-flow",
     "react"
   ]
 }

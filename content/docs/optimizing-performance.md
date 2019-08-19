@@ -211,6 +211,7 @@ React はレンダーされた UI の内部表現を構築し、維持します�
 
 コンポーネントの props や state が変更された場合、React は新しく返された要素と以前にレンダーされたものとを比較することで、実際の DOM の更新が必要かを判断します。それらが等しくない場合、React は DOM を更新します。
 
+<<<<<<< HEAD
 以下の React DevTools を使用することで、仮想 DOM のこれらの再レンダーを視覚化できるようになりました。
 
 - [Chrome ブラウザ拡張](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
@@ -230,6 +231,9 @@ React はレンダーされた UI の内部表現を構築し、維持します�
 2 つ目の TODO 項目を入力しているとき、1 つ目の TODO 項目もキーストロークの度に画面上で点滅することに注意してください。これは、入力によって React が一緒に再レンダーしていることを意味します。これは「無駄な」レンダーと呼ばれることがあります。最初の TODO 項目の内容は変更されていないので、再レンダーの必要がないことを我々は知っていますが、React はそれを知りません。
 
 React は変更された DOM ノードだけを更新するとはいえ、再レンダーには時間がかかります。多少の時間がかかっても多くの場合は問題にはなりませんが、遅延が目立つ場合、再レンダープロセスが開始される前にトリガーされるライフサイクル関数 `shouldComponentUpdate` をオーバーライド定義することで、スピードを抜本的に向上できます。この関数のデフォルトの実装は `true` を返し、React に更新処理をそのまま実行させます：
+=======
+Even though React only updates the changed DOM nodes, re-rendering still takes some time. In many cases it's not a problem, but if the slowdown is noticeable, you can speed all of this up by overriding the lifecycle function `shouldComponentUpdate`, which is triggered before the re-rendering process starts. The default implementation of this function returns `true`, leaving React to perform the update:
+>>>>>>> de497e250340ff597ce4964279369f16315b8b4b
 
 ```javascript
 shouldComponentUpdate(nextProps, nextState) {
@@ -399,6 +403,7 @@ function updateColorMap(colormap) {
 
 Create React App を使用しているなら、`Object.assign` およびオブジェクトのスプレッド構文の両方がデフォルトで利用できます。
 
+<<<<<<< HEAD
 ## 不変（イミュータブル）なデータ構造の使用 {#using-immutable-data-structures}
 
 [Immutable.js](https://github.com/facebook/immutable-js) はこの問題を解決する別の方法であり、構造の共有を元にした、不変で永続的なデータのコレクションを提供します。
@@ -432,3 +437,6 @@ x === z; // true
 不変データの使用を助けてくる他のライブラリに [Immer](https://github.com/mweststrate/immer) や [immutability-helper](https://github.com/kolodny/immutability-helper)、[seamless-immutable](https://github.com/rtfeldman/seamless-immutable) があります。
 
 不変データ構造はオブジェクトの変化の検出を容易にします。まさにそれが `shouldComponentUpdate` の実装に必要なことのすべてです。これによってパフォーマンスを大幅に向上できる場合があります。
+=======
+When you deal with deeply nested objects, updating them in an immutable way can feel convoluted. If you run into this problem, check out [Immer](https://github.com/mweststrate/immer) or [immutability-helper](https://github.com/kolodny/immutability-helper). These libraries let you write highly readable code without losing the benefits of immutability.
+>>>>>>> de497e250340ff597ce4964279369f16315b8b4b
