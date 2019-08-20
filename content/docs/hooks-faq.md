@@ -71,11 +71,7 @@ React バージョン 16.8.0 より、以下においてフックの安定版の
 
 **フックを利用するには、すべての React のパッケージが 16.8.0 以上である必要があります**。例えば React DOM の更新を忘れた場合、フックは動作しません。
 
-<<<<<<< HEAD
-React Native はバージョン 0.59 以降でフックをサポートします。
-=======
-[React Native 0.59](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059) and above support Hooks.
->>>>>>> de497e250340ff597ce4964279369f16315b8b4b
+React Native は[バージョン 0.59](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059) 以降でフックをサポートします。
 
 ### クラスコンポーネントを全部書き換える必要があるのですか？ {#do-i-need-to-rewrite-all-my-class-components}
 

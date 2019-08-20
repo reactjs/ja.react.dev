@@ -211,29 +211,7 @@ React はレンダーされた UI の内部表現を構築し、維持します�
 
 コンポーネントの props や state が変更された場合、React は新しく返された要素と以前にレンダーされたものとを比較することで、実際の DOM の更新が必要かを判断します。それらが等しくない場合、React は DOM を更新します。
 
-<<<<<<< HEAD
-以下の React DevTools を使用することで、仮想 DOM のこれらの再レンダーを視覚化できるようになりました。
-
-- [Chrome ブラウザ拡張](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
-- [Firefox ブラウザ拡張](https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/)
-- [スタンドアロン Node パッケージ](https://www.npmjs.com/package/react-devtools)
-
-開発者コンソールの **React** タブで **Highlight Updates** オプションを選択します：
-
-<center><img src="../images/blog/devtools-highlight-updates.png" style="max-width:100%; margin-top:10px;" alt="How to enable highlight updates" /></center>
-
-ページを操作すると、再レンダーされたコンポーネントの周囲に色付きの枠線が一定時間表示されます。これにより、不要な再レンダーを見つけることができます。React DevTools のこの機能の詳細については、[Ben Edelstein](https://blog.logrocket.com/@edelstein) による[ブログ投稿](https://blog.logrocket.com/make-react-fast-again-part-3-highlighting-component-updates-6119e45e6833)から学ぶことができます。
-
-以下の例を考えてみましょう。
-
-<center><img src="../images/blog/highlight-updates-example.gif" style="max-width:100%; margin-top:20px;" alt="React DevTools Highlight Updates example" /></center>
-
-2 つ目の TODO 項目を入力しているとき、1 つ目の TODO 項目もキーストロークの度に画面上で点滅することに注意してください。これは、入力によって React が一緒に再レンダーしていることを意味します。これは「無駄な」レンダーと呼ばれることがあります。最初の TODO 項目の内容は変更されていないので、再レンダーの必要がないことを我々は知っていますが、React はそれを知りません。
-
 React は変更された DOM ノードだけを更新するとはいえ、再レンダーには時間がかかります。多少の時間がかかっても多くの場合は問題にはなりませんが、遅延が目立つ場合、再レンダープロセスが開始される前にトリガーされるライフサイクル関数 `shouldComponentUpdate` をオーバーライド定義することで、スピードを抜本的に向上できます。この関数のデフォルトの実装は `true` を返し、React に更新処理をそのまま実行させます：
-=======
-Even though React only updates the changed DOM nodes, re-rendering still takes some time. In many cases it's not a problem, but if the slowdown is noticeable, you can speed all of this up by overriding the lifecycle function `shouldComponentUpdate`, which is triggered before the re-rendering process starts. The default implementation of this function returns `true`, leaving React to perform the update:
->>>>>>> de497e250340ff597ce4964279369f16315b8b4b
 
 ```javascript
 shouldComponentUpdate(nextProps, nextState) {
@@ -403,40 +381,4 @@ function updateColorMap(colormap) {
 
 Create React App を使用しているなら、`Object.assign` およびオブジェクトのスプレッド構文の両方がデフォルトで利用できます。
 
-<<<<<<< HEAD
-## 不変（イミュータブル）なデータ構造の使用 {#using-immutable-data-structures}
-
-[Immutable.js](https://github.com/facebook/immutable-js) はこの問題を解決する別の方法であり、構造の共有を元にした、不変で永続的なデータのコレクションを提供します。
-
-* *不変性*: 一度作成されたら、データのコレクションはその後で変更されることはない。
-* *永続性*: 既存のコレクションから、あるいはそれに set などの変更操作を行うことで新しいデータのコレクションを作成することができる。元のコレクションは新しいデータのコレクションが作成された後も有効である。
-* *構造の共有*: 新しいデータのコレクションは、元のコレクションが含む同じ構造を可能な限り共有して作られるので、データのコピー量が減りパフォーマンスが向上する。
-
-不変性により、変化を検出するためのコストが下がります。変化したデータは常に新しいオブジェクトになるので、オブジェクトの参照が違うかをどうかをチェックすればよくなるのです。例えば、以下の通常の JavaScript コードにおいて、
-
-```javascript
-const x = { foo: 'bar' };
-const y = x;
-y.foo = 'baz';
-x === y; // true
-```
-
-ここで `y` は編集されたにも関わらず、`x` と同じオブジェクトを参照しているため、上記の比較は `true` を返します。これと似たコードを immutable.js で書くとこうなります：
-
-```javascript
-const SomeRecord = Immutable.Record({ foo: null });
-const x = new SomeRecord({ foo: 'bar' });
-const y = x.set('foo', 'baz');
-const z = x.set('foo', 'bar');
-x === y; // false
-x === z; // true
-```
-
-この場合、`x` を変更すると新しい参照が返されるので、参照の比較 `(x === y)` をするだけで、`y` に保存されている新しい値は `x` に保存されていた値とは違うことが確認できます。
-
-不変データの使用を助けてくる他のライブラリに [Immer](https://github.com/mweststrate/immer) や [immutability-helper](https://github.com/kolodny/immutability-helper)、[seamless-immutable](https://github.com/rtfeldman/seamless-immutable) があります。
-
-不変データ構造はオブジェクトの変化の検出を容易にします。まさにそれが `shouldComponentUpdate` の実装に必要なことのすべてです。これによってパフォーマンスを大幅に向上できる場合があります。
-=======
-When you deal with deeply nested objects, updating them in an immutable way can feel convoluted. If you run into this problem, check out [Immer](https://github.com/mweststrate/immer) or [immutability-helper](https://github.com/kolodny/immutability-helper). These libraries let you write highly readable code without losing the benefits of immutability.
->>>>>>> de497e250340ff597ce4964279369f16315b8b4b
+深くネストされたオブジェクトを扱っている場合、ミューテートを行わない形式で更新することが複雑に感じることがあります。このような問題がある場合は [Immer](https://github.com/mweststrate/immer) や [immutability-helper](https://github.com/kolodny/immutability-helper) を試してみてください。これらのライブラリはミューテートを行わないことによる利点を損なわずに、読みやすいコードを書くのに役立ちます。
