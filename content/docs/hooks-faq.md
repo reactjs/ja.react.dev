@@ -64,13 +64,18 @@ prev: hooks-reference.html
 React バージョン 16.8.0 より、以下においてフックの安定版の実装が含まれています。
 
 * React DOM
+* React Native
 * React DOM Server
 * React Test Renderer
 * React Shallow Renderer
 
 **フックを利用するには、すべての React のパッケージが 16.8.0 以上である必要があります**。例えば React DOM の更新を忘れた場合、フックは動作しません。
 
+<<<<<<< HEAD
 React Native はバージョン 0.59 以降でフックをサポートします。
+=======
+[React Native 0.59](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059) and above support Hooks.
+>>>>>>> 519a3aec91a426b0c8c9ae59e292d064df48c66a
 
 ### クラスコンポーネントを全部書き換える必要があるのですか？ {#do-i-need-to-rewrite-all-my-class-components}
 

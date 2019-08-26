@@ -103,7 +103,11 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 TestRenderer.create(element, options);
 ```
 
+<<<<<<< HEAD
 渡された React 要素から `TestRenderer` インスタンスを作成します。実際の DOM は使用しませんが、コンポーネントを完全な形でメモリにレンダーするので、アサーションを行うことができます。返されたインスタンスは、次のメソッドとプロパティを持ちます。
+=======
+Create a `TestRenderer` instance with the passed React element. It doesn't use the real DOM, but it still fully renders the component tree into memory so you can make assertions about it. Returns a [TestRenderer instance](#testrenderer-instance).
+>>>>>>> 519a3aec91a426b0c8c9ae59e292d064df48c66a
 
 ### `TestRenderer.act()` {#testrendereract}
 

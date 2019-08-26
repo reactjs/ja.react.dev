@@ -423,7 +423,11 @@ function ListOfTenThings() {
 <div>{true}</div>
 ```
 
+<<<<<<< HEAD
 これは条件に応じて React 要素を表示する際に活用できます。次の例は `showHeader` が `true` のときに限って `<Header />` が表示されます。
+=======
+This can be useful to conditionally render React elements. This JSX renders the `<Header />` component only if `showHeader` is `true`:
+>>>>>>> 519a3aec91a426b0c8c9ae59e292d064df48c66a
 
 ```js{2}
 <div>
