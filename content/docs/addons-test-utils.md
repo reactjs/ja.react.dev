@@ -124,7 +124,7 @@ it('can render and update a counter', () => {
 
 - DOM イベントのディスパッチは、DOM コンテナが `document` に追加されたときだけ動作することを忘れないでください。[React Testing Library](https://testing-library.com/react) のようなヘルパーを使えばボイラープレートのコードを減らせます。
 
-- [`recipes`](/docs/recipes.html) ドキュメントには `act()` がどのように動作するのかについて例や使用法を交えた詳しい解説があります。
+- [`recipes`](/docs/testing-recipes.html) ドキュメントには `act()` がどのように動作するのかについて例や使用法を交えた詳しい解説があります。
 
 * * *
 

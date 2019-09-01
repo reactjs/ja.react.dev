@@ -103,7 +103,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 TestRenderer.create(element, options);
 ```
 
-渡された React 要素から `TestRenderer` インスタンスを作成します。実際の DOM は使用しませんが、コンポーネントを完全な形でメモリにレンダーするので、アサーションを行うことができます。返されたインスタンスは、次のメソッドとプロパティを持ちます。
+渡された React 要素から `TestRenderer` インスタンスを作成します。実際の DOM は使用しませんが、コンポーネントを完全な形でメモリにレンダーするので、アサーションを行うことができます。返り値は [TestRenderer のインスタンス](#testrenderer-instance)となります。
 
 ### `TestRenderer.act()` {#testrendereract}
 
