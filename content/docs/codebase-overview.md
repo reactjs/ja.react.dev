@@ -217,7 +217,11 @@ React Fiber のアーキテクチャに関して[ここ](https://github.com/acdl
 
 ### イベントシステム {#event-system}
 
+<<<<<<< HEAD
 React は React DOM と React Native の両方で動作し、レンダラに依存しない合成 (synthetic) イベントシステムを実装しています。ソースコードは [`packages/events`](https://github.com/facebook/react/tree/master/packages/events) に格納されています。
+=======
+React implements a synthetic event system which is agnostic of the renderers and works both with React DOM and React Native. Its source code is located in [`packages/react-events`](https://github.com/facebook/react/tree/master/packages/react-events).
+>>>>>>> 941f54180ef5e652221f54ef6d1f6f2e9e063597
 
 このイベントシステムのコードについて[深く掘り下げた動画](https://www.youtube.com/watch?v=dRo_egw7tBc)（66 分）があります。
 

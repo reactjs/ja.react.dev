@@ -14,7 +14,11 @@ permalink: docs/render-props.html
 )}/>
 ```
 
+<<<<<<< HEAD
 レンダープロップを用いたライブラリとしては、[React Router](https://reacttraining.com/react-router/web/api/Route/render-func) や [Downshift](https://github.com/paypal/downshift) などがあります。
+=======
+Libraries that use render props include [React Router](https://reacttraining.com/react-router/web/api/Route/render-func), [Downshift](https://github.com/paypal/downshift) and [Formik](https://github.com/jaredpalmer/formik).
+>>>>>>> 941f54180ef5e652221f54ef6d1f6f2e9e063597
 
 このドキュメントでは、レンダープロップが役立つ理由と、その実装手順について解説します。
 
