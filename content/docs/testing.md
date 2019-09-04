@@ -36,5 +36,5 @@ React コンポーネントをテストするのにはいくつか方法があ�
 
 このセクションは 2 つのページに分かれます：
 
-- [レシピ集](/docs/testing-recipes.html)： React コンポーネントのテストを書く一般的なパターン集
+- [レシピ集](/docs/testing-recipes.html)： React コンポーネントのテストを書く際の一般的なパターン集
 - [Environments](/docs/testing-environments.html)： React コンポーネントのためのテスト環境をセットアップする際に何を考えるべきか
