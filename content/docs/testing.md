@@ -7,7 +7,7 @@ redirect_from:
 next: testing-recipes.html
 ---
 
-React コンポーネントは他の JavaScript のコードと同じようにテストすることができます。
+React コンポーネントは他の JavaScript のコードと同じようにテストできます。
 
 React コンポーネントをテストするのにはいくつか方法がありますが、大きく 2 つのカテゴリに分けられます。
 
