@@ -11,9 +11,15 @@ redirect_from:
 
 React は Facebook の最初のオープンソースプロジェクトの 1 つで現在も非常に活発に開発されており、[facebook.com](https://www.facebook.com) 上のあらゆる人々にコードを届けることにも使用されています。私たちはこのプロジェクトへの貢献をできるだけ簡単かつ透明性の高いものにするために努力していますが、まだ完全ではありません。このドキュメントがプロジェクトへの貢献の手順を明確にし、あなたの持つ疑問を解決できれば幸いです。
 
+<<<<<<< HEAD
 ### [行動規範](https://code.facebook.com/codeofconduct) {#code-of-conduct}
 
 Facebook が採用するプロジェクト参加者に期待する行動規範があります。[全文](https://code.facebook.com/codeofconduct)を読んでください、そうすれば参加者はどのような行動を取ればよいか、またどのような行動が許容されないのか理解できるでしょう。
+=======
+### [Code of Conduct](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) {#code-of-conduct}
+
+Facebook has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it. Please read [the full text](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+>>>>>>> 6dcb963479953586f462ce31fddf35158c0598a0
 
 ### オープンな開発 {#open-development}
 
@@ -21,7 +27,11 @@ React に関する開発作業はすべて [GitHub](https://github.com/facebook/
 
 ### ブランチの構成 {#branch-organization}
 
+<<<<<<< HEAD
 私たちは [`master` branch](https://github.com/facebook/react/tree/master) を全てのテストが通るベストな状態に保つために努力しています。しかし素早い開発のため、あなたのアプリケーションと互換性がないかもしれない API の変更を行うことがあります。そのため [最新安定版の React](/downloads.html) を利用することをお勧めします。
+=======
+We will do our best to keep the [`master` branch](https://github.com/facebook/react/tree/master) in good shape, with tests passing at all times. But in order to move fast, we will make API changes that your application might not be compatible with. We recommend that you use [the latest stable version of React](/versions.html).
+>>>>>>> 6dcb963479953586f462ce31fddf35158c0598a0
 
 プルリクエストを送信する場合は、`master` ブランチに対して行ってください。私たちはメジャーバージョンの安定版ブランチを別々に管理していますが、それらへのプルリクエストは直接受け付けません。代わりに、master から最新の安定したメジャーバージョンへコードを壊さない cherry-pick を行います。
 
