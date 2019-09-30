@@ -118,7 +118,11 @@ import './index.css';
 
 ### 助けて、ハマった！ {#help-im-stuck}
 
+<<<<<<< HEAD
 もし問題にはまったら、[コミュニティーによるサポート情報](/community/support.html)をチェックしてみてください。特に [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) は迅速なヘルプが得られます。良い回答が得られなかった場合や問題が解決しない場合は、issue を作成して下さったら、私たちがお手伝いします。
+=======
+If you get stuck, check out the [community support resources](/community/support.html). In particular, [Reactiflux Chat](https://discord.gg/reactiflux) is a great way to get help quickly. If you don't receive an answer, or if you remain stuck, please file an issue, and we'll help you out.
+>>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
 
 ## 概要 {#overview}
 
@@ -335,7 +339,11 @@ Square の `render` メソッド内に書かれた `onClick` ハンドラ内で 
 
 React DevTools を使えば React コンポーネントの props と state を確認できます。
 
+<<<<<<< HEAD
 インストールした後は、ページ上の任意の要素で右クリックして、"Inspect" をクリックして開発者向けツールを開いてください。React タブが右端のタブとして表示されます。
+=======
+After installing React DevTools, you can right-click on any element on the page, click "Inspect" to open the developer tools, and the React tabs ("⚛️ Components" and "⚛️ Profiler") will appear as the last tabs to the right. Use "⚛️ Components" to inspect the component tree.
+>>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
 
 **ただし、開発者向けツールを CodePen で動作させるには追加のステップが必要です：**
 

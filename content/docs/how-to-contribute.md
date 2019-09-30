@@ -11,14 +11,21 @@ redirect_from:
 
 React は Facebook の最初のオープンソースプロジェクトの 1 つで現在も非常に活発に開発されており、[facebook.com](https://www.facebook.com) 上のあらゆる人々にコードを届けることにも使用されています。私たちはこのプロジェクトへの貢献をできるだけ簡単かつ透明性の高いものにするために努力していますが、まだ完全ではありません。このドキュメントがプロジェクトへの貢献の手順を明確にし、あなたの持つ疑問を解決できれば幸いです。
 
+<<<<<<< HEAD
 ### [行動規範](https://code.facebook.com/codeofconduct) {#code-of-conduct}
 
 Facebook が採用するプロジェクト参加者に期待する行動規範があります。[全文](https://code.facebook.com/codeofconduct)を読んでください、そうすれば参加者はどのような行動を取ればよいか、またどのような行動が許容されないのか理解できるでしょう。
+=======
+### [Code of Conduct](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) {#code-of-conduct}
+
+Facebook has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it. Please read [the full text](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+>>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
 
 ### オープンな開発 {#open-development}
 
 React に関する開発作業はすべて [GitHub](https://github.com/facebook/react) 上で直接行われます。コアチームメンバーと外部のコントリビューターの両方が、同じレビュープロセスを経由するプルリクエストを送ります。
 
+<<<<<<< HEAD
 ### ブランチの構成 {#branch-organization}
 
 私たちは [`master` branch](https://github.com/facebook/react/tree/master) を全てのテストが通るベストな状態に保つために努力しています。しかし素早い開発のため、あなたのアプリケーションと互換性がないかもしれない API の変更を行うことがあります。そのため [最新安定版の React](/downloads.html) を利用することをお勧めします。
@@ -32,6 +39,27 @@ React は[セマンティック・バージョニング](http://semver.org/)の�
 私たちは全てのプルリクエストにラベルを付けます。ラベルは、行われる変更が[パッチ](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-patch)、[マイナー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-minor)、[メジャー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-major) バージョンのどれに該当するかによって決まります。数週間ごとにパッチバージョン、数ヶ月ごとにマイナーバージョン、そして年に 1、2 回メジャーバージョンをリリースします。
 
 重要な変更はすべて [changelog file](https://github.com/facebook/react/blob/master/CHANGELOG.md) に文書化されています。
+=======
+### Semantic Versioning {#semantic-versioning}
+
+React follows [semantic versioning](https://semver.org/). We release patch versions for critical bugfixes, minor versions for new features or non-essential changes, and major versions for any breaking changes. When we make breaking changes, we also introduce deprecation warnings in a minor version so that our users learn about the upcoming changes and migrate their code in advance. Learn more about our commitment to stability and incremental migration in [our versioning policy](https://reactjs.org/docs/faq-versioning.html).
+
+Every significant change is documented in the [changelog file](https://github.com/facebook/react/blob/master/CHANGELOG.md).
+
+### Branch Organization {#branch-organization}
+
+Submit all changes directly to the [`master branch`](https://github.com/facebook/react/tree/master). We don't use separate branches for development or for upcoming releases. We do our best to keep `master` in good shape, with all tests passing.
+
+Code that lands in `master` must be compatible with the latest stable release. It may contain additional features, but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
+
+### Feature Flags {#feature-flags}
+
+To keep the `master` branch in a releasable state, breaking changes and experimental features must be gated behind a feature flag.
+
+Feature flags are defined in [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/master/packages/shared/ReactFeatureFlags.js). Some builds of React may enable different sets of feature flags; for example, the React Native build may be configured differently than React DOM. These flags are found in [`packages/shared/forks`](https://github.com/facebook/react/tree/master/packages/shared/forks). Feature flags are statically typed by Flow, so you can run `yarn flow` to confirm that you've updated all the necessary files.
+
+React's build system will strip out disabled feature branches before publishing. A continuous integration job runs on every commit to check for changes in bundle size. You can use the change in size as a signal that a feature was gated correctly.
+>>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
 
 ### バグ {#bugs}
 

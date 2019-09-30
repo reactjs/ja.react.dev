@@ -109,7 +109,13 @@ React Native は[バージョン 0.59](https://facebook.github.io/react-native/b
 
 React Redux は v7.1.0 より [フック API をサポート](https://react-redux.js.org/api/hooks)しており、`useDispatch` や `useSelector` といったフックを提供しています。
 
+<<<<<<< HEAD
 React Router のようなライブラリも将来的にフックをサポートするかもしれません。
+=======
+React Router [supports hooks](https://reacttraining.com/react-router/web/api/Hooks) since v5.1.
+
+Other libraries might support hooks in the future too.
+>>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
 
 ### フックは静的型付けと組み合わせてうまく動きますか？ {#do-hooks-work-with-static-typing}
 
@@ -654,7 +660,7 @@ function ProductPage({ productId }) {
   return <ProductDetails fetchProduct={fetchProduct} />;
 }
 
-function ProductDetails({ fetchProduct })
+function ProductDetails({ fetchProduct }) {
   useEffect(() => {
     fetchProduct();
   }, [fetchProduct]); // ✅ All useEffect dependencies are specified

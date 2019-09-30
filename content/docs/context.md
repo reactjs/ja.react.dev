@@ -15,12 +15,22 @@ permalink: docs/context.html
   - [Context.Provider](#contextprovider)
   - [Class.contextType](#classcontexttype)
   - [Context.Consumer](#contextconsumer)
+<<<<<<< HEAD
 - [例](#例)
   - [動的なコンテクスト](#dynamic-context)
   - [ネストしたコンポーネントからコンテクストを更新する](#updating-context-from-a-nested-component)
   - [複数のコンテクストを使用する](#consuming-multiple-contexts)
 - [注意事項](#caveats)
 - [レガシーな API](#legacy-api)
+=======
+  - [Context.displayName](#contextdisplayname)
+- [Examples](#examples)
+  - [Dynamic Context](#dynamic-context)
+  - [Updating Context from a Nested Component](#updating-context-from-a-nested-component)
+  - [Consuming Multiple Contexts](#consuming-multiple-contexts)
+- [Caveats](#caveats)
+- [Legacy API](#legacy-api)
+>>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
 
 ## コンテクストをいつ使用すべきか {#when-to-use-context}
 
@@ -195,7 +205,25 @@ class MyClass extends React.Component {
 > 
 > "function as a child" パターンについてさらに情報が必要な場合は [レンダープロップ](/docs/render-props.html) を参照してください。
 
+<<<<<<< HEAD
 ## 例 {#examples}
+=======
+### `Context.displayName` {#contextdisplayname}
+
+Context object accepts a `displayName` string property. React DevTools uses this string to determine what to display for the context.
+
+For example, the following component will appear as MyDisplayName in the DevTools:
+
+```js{2}
+const MyContext = React.createContext(/* some value */);
+MyContext.displayName = 'MyDisplayName';
+
+<MyContext.Provider> // "MyDisplayName.Provider" in DevTools
+<MyContext.Consumer> // "MyDisplayName.Consumer" in DevTools
+```
+
+## Examples {#examples}
+>>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
 
 ### 動的なコンテクスト {#dynamic-context}
 
