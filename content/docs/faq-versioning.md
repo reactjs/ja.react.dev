@@ -10,25 +10,15 @@ React は[セマンティック バージョニング (semantic versioning; semv
 
 すなわちバージョン番号は **x.y.z** になります。
 
-<<<<<<< HEAD
-* **破壊的変更**をする時、**x** の番号を変更することで**メジャーリリース**をします。（例 15.6.2 から 16.0.0）
-* **新機能追加**をする時、**y** の番号を変更することで**マイナーリリース**をします。（例 15.6.2 から 15.7.0）
 * **バグ修正**をする時、**z** の番号を変更することで**パッチリリース**をします。（例 15.6.2 から 15.6.3）
-=======
-* When releasing **critical bug fixes**, we make a **patch release** by changing the **z** number (ex: 15.6.2 to 15.6.3).
-* When releasing **new features** or **non-critical fixes**, we make a **minor release** by changing the **y** number (ex: 15.6.2 to 15.7.0).
-* When releasing **breaking changes**, we make a **major release** by changing the **x** number (ex: 15.6.2 to 16.0.0).
->>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
+* **新機能追加**をする時、**y** の番号を変更することで**マイナーリリース**をします。（例 15.6.2 から 15.7.0）
+* **破壊的変更**をする時、**x** の番号を変更することで**メジャーリリース**をします。（例 15.6.2 から 16.0.0）
 
 メジャーリリースには新機能を含むことができ、全てのリリースにバグ修正を含められます。
 
-<<<<<<< HEAD
-### 破壊的変更 {#breaking-changes}
-=======
-Minor releases are the most common type of release.
+マイナーリリースは、最も一般的なリリースです。
 
-### Breaking Changes {#breaking-changes}
->>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
+### 破壊的変更 {#breaking-changes}
 
 破壊的変更は誰にとっても不便なので、私たちはメジャーリリースを最小限にするようにしています。例えば React 15 は 2016 年 4 月にリリースされており、React 16 は 2017 年の 9 月にリリースされています。そして React 17 は 2019 年までリリースが見込まれていません。
 
@@ -57,10 +47,7 @@ React の開発ビルドは多くの有益な警告を含みます。可能な�
 
 このポリシーはみなさんの頭痛の種とならないよう、実用的に構成されています。上記の全ての変更のためにメジャーバージョンを上げると、より多くメジャーリリースが必要になり、最終的により多くのバージョニングの問題をコミュニティに対して引き起こすことになります。それは React の改善を私たちが望むほど早くできないことも意味します。
 
-<<<<<<< HEAD
 それでも、上記のリストのような変更がコミュニティ内で広域に渡る問題を引き起こすと予想される場合は、私たちは段階的な移行手段を提供するように最善を尽くします。
-=======
-That said, if we expect that a change on this list will cause broad problems in the community, we will still do our best to provide a gradual migration path.
 
 ### If a Minor Release Includes No New Features, Why Isn't It a Patch? {#minors-versus-patches}
 
@@ -75,4 +62,3 @@ We have a pretty good track record for keeping React releases free of bugs, but 
 For these reasons, we reserve patch releases only for the most critical bugs and security vulnerabilities.
 
 If a release includes non-essential changes — such as internal refactors, changes to implementation details, performance improvements, or minor bugfixes — we will bump the minor version even when there are no new features.
->>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
