@@ -14,7 +14,7 @@ permalink: docs/render-props.html
 )}/>
 ```
 
-レンダープロップを用いたライブラリとしては、[React Router](https://reacttraining.com/react-router/web/api/Route/render-func) や [Downshift](https://github.com/paypal/downshift)、 [Formik](https://github.com/jaredpalmer/formik) などがあります。
+レンダープロップを用いたライブラリとしては、[React Router](https://reacttraining.com/react-router/web/api/Route/render-func) や [Downshift](https://github.com/paypal/downshift)、[Formik](https://github.com/jaredpalmer/formik) などがあります。
 
 このドキュメントでは、レンダープロップが役立つ理由と、その実装手順について解説します。
 
