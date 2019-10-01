@@ -149,11 +149,7 @@ testRenderer.toJSON()
 testRenderer.toTree()
 ```
 
-<<<<<<< HEAD
 レンダーされたツリーを表すオブジェクトを返します。`toJSON()` とは異なり、このツリーはより詳細なものであり、ユーザー定義のコンポーネントも含んでいます。テストレンダラを利用して自作のアサーションライブラリを作成している場合以外は、おそらくこのメソッドが必要となることはないでしょう。
-=======
-Return an object representing the rendered tree. The representation is more detailed than the one provided by `toJSON()`, and includes the user-written components. You probably don't need this method unless you're writing your own assertion library on top of the test renderer.
->>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
 
 ### `testRenderer.update()` {#testrendererupdate}
 
