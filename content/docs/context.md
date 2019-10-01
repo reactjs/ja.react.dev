@@ -15,22 +15,13 @@ permalink: docs/context.html
   - [Context.Provider](#contextprovider)
   - [Class.contextType](#classcontexttype)
   - [Context.Consumer](#contextconsumer)
-<<<<<<< HEAD
+  - [Context.displayName](#contextdisplayname)
 - [例](#例)
   - [動的なコンテクスト](#dynamic-context)
   - [ネストしたコンポーネントからコンテクストを更新する](#updating-context-from-a-nested-component)
   - [複数のコンテクストを使用する](#consuming-multiple-contexts)
 - [注意事項](#caveats)
 - [レガシーな API](#legacy-api)
-=======
-  - [Context.displayName](#contextdisplayname)
-- [Examples](#examples)
-  - [Dynamic Context](#dynamic-context)
-  - [Updating Context from a Nested Component](#updating-context-from-a-nested-component)
-  - [Consuming Multiple Contexts](#consuming-multiple-contexts)
-- [Caveats](#caveats)
-- [Legacy API](#legacy-api)
->>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
 
 ## コンテクストをいつ使用すべきか {#when-to-use-context}
 
