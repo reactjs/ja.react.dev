@@ -196,9 +196,6 @@ class MyClass extends React.Component {
 > 
 > "function as a child" パターンについてさらに情報が必要な場合は [レンダープロップ](/docs/render-props.html) を参照してください。
 
-<<<<<<< HEAD
-## 例 {#examples}
-=======
 ### `Context.displayName` {#contextdisplayname}
 
 Context object accepts a `displayName` string property. React DevTools uses this string to determine what to display for the context.
@@ -213,8 +210,7 @@ MyContext.displayName = 'MyDisplayName';
 <MyContext.Consumer> // "MyDisplayName.Consumer" in DevTools
 ```
 
-## Examples {#examples}
->>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
+## 例 {#examples}
 
 ### 動的なコンテクスト {#dynamic-context}
 
