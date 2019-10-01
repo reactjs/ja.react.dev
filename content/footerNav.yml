@@ -1,24 +1,24 @@
 community:
-  title: Community
+  title: コミュニティ
 
 docs:
-  title: Docs
+  title: ドキュメント
 
 more:
-  title: More
+  title: その他
   items:
-    - title: Tutorial
+    - title: チュートリアル
       to: /tutorial/tutorial.html
-    - title: Blog
+    - title: ブログ
       to: /blog
-    - title: Acknowledgements
+    - title: 謝辞
       to: /acknowledgements.html
     - title: React Native
       to: https://facebook.github.io/react-native/
       external: true
 
 channels:
-  title: Channels
+  title: チャンネル
   items:
     - title: GitHub
       to: https://github.com/facebook/react
