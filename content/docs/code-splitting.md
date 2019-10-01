@@ -128,7 +128,7 @@ const OtherComponent = React.lazy(() => import('./OtherComponent'));
 
 ### Suspense {#suspense}
 
-遅延コンポーネントは、 `Suspense` コンポーネント内でレンダーされる必要があります。これによって、遅延コンポーネントのローディングの待機中にフォールバック用のコンテンツ（ローディングインジケータなど）を表示できます。
+遅延コンポーネントは、`Suspense` コンポーネント内でレンダーされる必要があります。これによって、遅延コンポーネントのローディングの待機中にフォールバック用のコンテンツ（ローディングインジケータなど）を表示できます。
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
