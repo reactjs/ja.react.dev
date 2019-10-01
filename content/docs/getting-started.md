@@ -119,11 +119,7 @@ React の[基本コンセプト](/docs/hello-world.html)について慣れてき
 
 ## バージョン管理されたドキュメント {#versioned-documentation}
 
-<<<<<<< HEAD
 このドキュメントは常に最新の stable 版の React に準拠しています。React 16 からは古いバージョンのドキュメントも[別のページ](/versions)から閲覧できます。古いバージョンのドキュメントは各バージョンリリース時のスナップショットであり、更新をかけることはありません。
-=======
-This documentation always reflects the latest stable version of React. Since React 16, you can find older versions of the documentation on a [separate page](/versions). Note that documentation for past versions is snapshotted at the time of the release, and isn't being continuously updated.
->>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
 
 ## 他に聞きたいことは？ {#something-missing}
 
