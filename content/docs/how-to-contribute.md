@@ -13,11 +13,7 @@ React は Facebook の最初のオープンソースプロジェクトの 1 つ�
 
 ### [行動規範](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) {#code-of-conduct}
 
-<<<<<<< HEAD
-Facebook が採用するプロジェクト参加者に期待する行動規範があります。[全文](https://code.facebook.com/codeofconduct)を読んでください、そうすれば参加者はどのような行動を取ればよいか、またどのような行動が許容されないのか理解できるでしょう。
-=======
-Facebook has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it. Please read [the full text](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
->>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
+Facebook は行動規範として [Contributor Covenant](https://www.contributor-covenant.org/) を採用しており、プロジェクト参加者が遵守することを期待しています。[全文](https://code.facebook.com/codeofconduct)を読んでください、そうすれば参加者はどのような行動を取ればよいか、またどのような行動が許容されないのか理解できるでしょう。
 
 ### オープンな開発 {#open-development}
 
