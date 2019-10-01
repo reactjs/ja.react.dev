@@ -2,8 +2,6 @@
 id: static-type-checking
 title: 静的型チェック
 permalink: docs/static-type-checking.html
-prev: typechecking-with-proptypes.html
-next: refs-and-the-dom.html
 ---
 
 [Flow](https://flow.org/) や [TypeScript](https://www.typescriptlang.org/) のような静的型チェッカーを使用することでコードを実行する前の早期段階に型不整合等の問題を検知することができます。他にも型解析言語を使用することで補完などの機能が追加され、開発体験を上げることができます。これらの理由から、大きいコードベースでは `PropTypes` の代わりに Flow や TypeScript を使うことをおすすめします。

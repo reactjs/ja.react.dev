@@ -114,37 +114,21 @@ Create React App を使用している場合はすでに設定がされている
 
 ```js
 import OtherComponent from './OtherComponent';
-
-function MyComponent() {
-  return (
-    <div>
-      <OtherComponent />
-    </div>
-  );
-}
 ```
 
 **After:**
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
-
-function MyComponent() {
-  return (
-    <div>
-      <OtherComponent />
-    </div>
-  );
-}
 ```
 
-このコンポーネントがレンダリングされる際には、`OtherComponent` を含むバンドルを自動的にロードしてくれます。
+このコンポーネントがはじめてレンダリングされる時、`OtherComponent` を含むバンドルを自動的にロードしてくれます。
 
 `React.lazy` は動的インポート構文 `import()` を呼び出す関数を引数として取ります。この関数は React コンポーネントを含む `default` export を持つモジュールに解決される `Promise` を返さなければなりません。
 
 ### Suspense {#suspense}
 
-`MyComponent` がレンダリングされるまでに、`OtherComponent` を含むモジュールがまだロードされていない場合、例えばロードインジケータなどのようなフォールバックコンテンツをロードが完了するまで表示する必要があります。これは `Suspense` コンポーネントを使って実装することができます。
+遅延コンポーネントは、`Suspense` コンポーネント内でレンダーされる必要があります。これによって、遅延コンポーネントのローディングの待機中にフォールバック用のコンテンツ（ローディングインジケータなど）を表示できます。
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));

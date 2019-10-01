@@ -118,7 +118,7 @@ import './index.css';
 
 ### 助けて、ハマった！ {#help-im-stuck}
 
-もし問題にはまったら、[コミュニティーによるサポート情報](/community/support.html)をチェックしてみてください。特に [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) は迅速なヘルプが得られます。良い回答が得られなかった場合や問題が解決しない場合は、issue を作成して下さったら、私たちがお手伝いします。
+もし問題にはまったら、[コミュニティーによるサポート情報](/community/support.html)をチェックしてみてください。特に [Reactiflux Chat](https://discord.gg/reactiflux) は迅速なヘルプが得られます。良い回答が得られなかった場合や問題が解決しない場合は、issue を作成して下さったら、私たちがお手伝いします。
 
 ## 概要 {#overview}
 
@@ -335,7 +335,7 @@ Square の `render` メソッド内に書かれた `onClick` ハンドラ内で 
 
 React DevTools を使えば React コンポーネントの props と state を確認できます。
 
-インストールした後は、ページ上の任意の要素で右クリックして、"Inspect" をクリックして開発者向けツールを開いてください。React タブが右端のタブとして表示されます。
+インストールした後は、ページ上の任意の要素で右クリックして、"Inspect" をクリックして開発者向けツールを開くと、React タブ（"⚛️ Components" and "⚛️ Profiler"）が右端のタブとして表示されます。"⚛️ Components" を利用して、コンポーネントツリーを検証します。
 
 **ただし、開発者向けツールを CodePen で動作させるには追加のステップが必要です：**
 

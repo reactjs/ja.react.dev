@@ -28,7 +28,7 @@ React コンポーネントをテストするのにはいくつか方法があ�
 
 ### 推奨ツール {#tools}
 
-**[Jest](https://facebook.github.io/jest/)** は [`jsdom`](#mocking-a-rendering-surface) を通じて DOM にアクセスできる JavaScript のテストランナーです。jsdom はブラウザの模倣環境にすぎませんが、React コンポーネントをテストするのには十分なことが多いです。Jest は [モジュール](#mocking-modules) や [タイマー](#mocking-timers) のモックのような機能を組み合わせて、高速にイテレーションを回すことができ、コードをどう実行するかをよりコントロールできます。
+**[Jest](https://facebook.github.io/jest/)** は [`jsdom`](/docs/testing-environments.html#mocking-a-rendering-surface) を通じて DOM にアクセスできる JavaScript のテストランナーです。jsdom はブラウザの模倣環境にすぎませんが、React コンポーネントをテストするのには十分なことが多いです。Jest は [モジュール](/docs/testing-environments.html#mocking-modules) や [タイマー](/docs/testing-environments.html#mocking-timers) のモックのような機能を組み合わせて、高速にイテレーションを回すことができ、コードをどう実行するかをよりコントロールできます。
 
 **[React Testing Library](https://testing-library.com/react)** は実装の詳細に依存せずに React コンポーネントをテストすることができるツールセットです。このアプローチはリファクタリングを容易にし、さらにアクセスビリティのベスト・プラクティスへと手向けてくれます。コンポーネントを children 抜きに「浅く」レンダリングする方法は提供していませんが、Jest のようなテストランナーで [モック](/docs/testing-recipes.html#mocking-modules) することで可能です。
 

@@ -59,4 +59,4 @@ customElements.define('x-search', XSearch);
 >補足:
 >
 >Babel を使ってクラス変換を行うと上記のコードは**機能しません**。詳細や議論は[この issue](https://github.com/w3c/webcomponents/issues/587) を参照してください。
->この問題を解決するには [custom-elements-es5-adapter](https://github.com/webcomponents/webcomponentsjs#custom-elements-es5-adapterjs) をあなたの web component の前に読み込む必要があります。
+>この問題を解決するには [custom-elements-es5-adapter](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs#custom-elements-es5-adapterjs) をあなたの web component の前に読み込む必要があります。
