@@ -118,11 +118,7 @@ import './index.css';
 
 ### 助けて、ハマった！ {#help-im-stuck}
 
-<<<<<<< HEAD
-もし問題にはまったら、[コミュニティーによるサポート情報](/community/support.html)をチェックしてみてください。特に [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) は迅速なヘルプが得られます。良い回答が得られなかった場合や問題が解決しない場合は、issue を作成して下さったら、私たちがお手伝いします。
-=======
-If you get stuck, check out the [community support resources](/community/support.html). In particular, [Reactiflux Chat](https://discord.gg/reactiflux) is a great way to get help quickly. If you don't receive an answer, or if you remain stuck, please file an issue, and we'll help you out.
->>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
+もし問題にはまったら、[コミュニティーによるサポート情報](/community/support.html)をチェックしてみてください。特に [Reactiflux Chat](https://discord.gg/reactiflux) は迅速なヘルプが得られます。良い回答が得られなかった場合や問題が解決しない場合は、issue を作成して下さったら、私たちがお手伝いします。
 
 ## 概要 {#overview}
 
