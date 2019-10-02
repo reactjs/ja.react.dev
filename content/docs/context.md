@@ -198,9 +198,9 @@ class MyClass extends React.Component {
 
 ### `Context.displayName` {#contextdisplayname}
 
-Context object accepts a `displayName` string property. React DevTools uses this string to determine what to display for the context.
+コンテクストオブジェクトは `displayName` という文字列型のプロパティを有しています。React DevTools はこの文字列を利用してコンテクストの表示のしかたを決定します。
 
-For example, the following component will appear as MyDisplayName in the DevTools:
+例えば以下のコンポーネントは DevTools で MyDisplayName と表示されます。
 
 ```js{2}
 const MyContext = React.createContext(/* some value */);
