@@ -33,13 +33,13 @@ React は[セマンティック・バージョニング](http://semver.org/)の�
 
 プルリクエストを送信する場合は、`master` ブランチに対して行ってください。私たちはメジャーバージョンの安定版ブランチを別々に管理していますが、それらへのプルリクエストは直接受け付けません。代わりに、master から最新の安定したメジャーバージョンへコードを壊さない cherry-pick を行います。
 
-### Feature Flags {#feature-flags}
+### フィーチャー・フラグ (Feature Flags) {#feature-flags}
 
-To keep the `master` branch in a releasable state, breaking changes and experimental features must be gated behind a feature flag.
+`master` ブランチをリリース可能な状態に保つため、破壊的な変更や実験的な機能はフィーチャー・フラグの背後で動作させます。
 
-Feature flags are defined in [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/master/packages/shared/ReactFeatureFlags.js). Some builds of React may enable different sets of feature flags; for example, the React Native build may be configured differently than React DOM. These flags are found in [`packages/shared/forks`](https://github.com/facebook/react/tree/master/packages/shared/forks). Feature flags are statically typed by Flow, so you can run `yarn flow` to confirm that you've updated all the necessary files.
+フィーチャー・フラグは [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/master/packages/shared/ReactFeatureFlags.js) で定義されています。React のいくつかのビルドでは別のフィーチャー・フラグを有効化していることがあります。例えば React Native のビルドは React DOM とは別に設定されているかもしれません。そのようなフラグは [`packages/shared/forks`](https://github.com/facebook/react/tree/master/packages/shared/forks) にあります。フィーチャー・フラグは Flow で静的に型付けされているため `yan flow` を実行することで必要なフラグを更新したことを確認できます。
 
-React's build system will strip out disabled feature branches before publishing. A continuous integration job runs on every commit to check for changes in bundle size. You can use the change in size as a signal that a feature was gated correctly.
+React のビルドシステムが、無効化されている機能を公開前に取り除きます。すべてのコミットについて継続的インテグレーションのジョブが実行され、バンドルサイズの変化を確認します。このサイズの変化の情報を使って、ある機能が正しくフラグ管理されていることを確認することが可能です。
 
 ### バグ {#bugs}
 
