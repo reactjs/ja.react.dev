@@ -49,16 +49,16 @@ React の開発ビルドは多くの有益な警告を含みます。可能な�
 
 それでも、上記のリストのような変更がコミュニティ内で広域に渡る問題を引き起こすと予想される場合は、私たちは段階的な移行手段を提供するように最善を尽くします。
 
-### If a Minor Release Includes No New Features, Why Isn't It a Patch? {#minors-versus-patches}
+### 新機能がない場合でもパッチではなくマイナーリリースになる理由は？ {#minors-versus-patches}
 
-It's possible that a minor release will not include new features. [This is allowed by semver](https://semver.org/#spec-item-7), which states **"[a minor version] MAY be incremented if substantial new functionality or improvements are introduced within the private code. It MAY include patch level changes."**
+マイナーリリースに新機能がないということはあり得ます。[これは semver で許容されており](https://semver.org/#spec-item-7)、具体的には**「（マイナーバージョンは）非公開のコード内で大きな機能追加や改善があった場合に上げても良い (MAY)。パッチレベルの変更を含んでいても良い (MAY)」**ことになっています。
 
-However, it does raise the question of why these releases aren't versioned as patches instead.
+それでも、そのようなリリースがパッチリリースとしてバージョニングされないのは何故かというもっともな疑問が湧いてきます。
 
-The answer is that any change to React (or other software) carries some risk of breaking in unexpected ways. Imagine a scenario where a patch release that fixes one bug accidentally introduces a different bug. This would not only be disruptive to developers, but also harm their confidence in future patch releases. It's especially regrettable if the original fix is for a bug that is rarely encountered in practice.
+答えは、React やその他のソフトウエアに対するあらゆる変更には、想定外にコードが壊れるリスクがあるからです。とあるバグを修正するためのパッチリリースが別のバグを引き起こすという状況を想像してください。開発者を混乱させるだけでなく、将来のパッチリリースに対する信頼を失わせることになります。元の修正が現実には滅多に発生しないバグに対するものだった場合は、特に残念なことになります。
 
-We have a pretty good track record for keeping React releases free of bugs, but patch releases have an even higher bar for reliability because most developers assume they can be adopted without adverse consequences.
+React のリリースにバグを含めないことに関して我々はかなり良い成績を残してきていますが、ほとんどの開発者はパッチリリースは有害な副作用なしに採用できるものと当然に考えているので、パッチリリースに関しては信頼性のハードルがさらに上がります。
 
-For these reasons, we reserve patch releases only for the most critical bugs and security vulnerabilities.
+このような理由により、我々はパッチリリースを重大なバグやセキュリティの脆弱性の修正のみに利用することにしています。
 
-If a release includes non-essential changes — such as internal refactors, changes to implementation details, performance improvements, or minor bugfixes — we will bump the minor version even when there are no new features.
+リリースがあまり本質的でない変更、例えば内部のリファクタリング、実装の詳細の変更、パフォーマンス改善、小さなバグ修正といったものに関する場合、我々は新機能がなくともマイナーバージョンを上げます。
