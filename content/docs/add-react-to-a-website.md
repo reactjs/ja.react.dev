@@ -69,21 +69,13 @@ React は段階的に導入することができるように最初からデザ�
 
 `like_button.js` という名前の新しいファイルを作成し、HTML ファイルのすぐ隣に置きましょう。
 
-<<<<<<< HEAD
-**[サンプルコード](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**を開いて、自分のファイルにコピーアンドペーストしてください。
-=======
-Open **[this starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** and paste it into the file you created.
->>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
+**[サンプルコード](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**を開いて、自分のファイルにコピーアンドペーストしてください。
 
 >ヒント
 >
 >このコードは `LikeButton` という React コンポーネントを定義しています。まだわからなくても心配しなくて大丈夫です。こういった React の構成要素については、[チュートリアル](/tutorial/tutorial.html) と [Hello World](/docs/hello-world.html) のページで後ほど見ていくことにして、まずはサンプルコードを画面に表示させてみましょう！
 
-<<<<<<< HEAD
-**[サンプルコード](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**の末尾に次の 2 行を追加してみましょう。
-=======
-After **[the starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, add two lines to the bottom of `like_button.js`:
->>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
+**[サンプルコード](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**の末尾に次の 2 行を追加してみましょう。
 
 ```js{3,4}
 // ... コピーアンドペーストしたサンプルコード ...
@@ -203,11 +195,7 @@ npx babel --watch src --out-dir . --presets react-app/prod
 
 このコマンドは JSX を継続的に監視するため、実行が完了するのを待つ必要はありません。
 
-<<<<<<< HEAD
-**[このお手本の JSX コード](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**を参考に `src/like_button.js` というファイルを作成すると、先ほど起動したコマンドがブラウザでの実行に適した `like_button.js` に変換してくれます。JSX ファイルを編集したら、自動的に再変換してくれます。
-=======
-If you now create a file called `src/like_button.js` with this **[JSX starter code](https://gist.github.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**, the watcher will create a preprocessed `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the source file with JSX, the transform will re-run automatically.
->>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
+**[このお手本の JSX コード](https://gist.github.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**を参考に `src/like_button.js` というファイルを作成すると、先ほど起動したコマンドがブラウザでの実行に適した `like_button.js` に変換してくれます。JSX ファイルを編集したら、自動的に再変換してくれます。
 
 さらにこの変換コマンドのおかげで、古いブラウザの互換性を気にすることなく、クラス構文といったモダンな JavaScript の構文を使うこともできるようになります。このツールは Babel というもので、もっと詳しく知りたければ[公式ドキュメント](https://babeljs.io/docs/en/babel-cli/)をご覧になってみてください。
 

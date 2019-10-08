@@ -58,17 +58,8 @@ console.log(add(16, 26)); // 42
 不用意に大きなバンドルを作成してしまいアプリの読み込みに多くの時間がかかってしまうという事態にならないためにも、
 常に注意を払い続けなければなりません。
 
-<<<<<<< HEAD
 大きなバンドルを不注意に生成してしまわないように、あらかじめコードを「分割」して問題を回避しましょう。
-[Code-Splitting](https://webpack.js.org/guides/code-splitting/) は、実行時にロードする複数のバンドルを生成できる Webpack や Browserify（[factor-bundle](https://github.com/browserify/factor-bundle) を使用）などのバンドラによってサポートされている機能です。
-=======
-To avoid winding up with a large bundle, it's good to get ahead of the problem
-and start "splitting" your bundle.
-Code-Splitting is a feature
-supported by bundlers like [Webpack](https://webpack.js.org/guides/code-splitting/), [Rollup](https://rollupjs.org/guide/en/#code-splitting) and Browserify (via
-[factor-bundle](https://github.com/browserify/factor-bundle)) which can create
-multiple bundles that can be dynamically loaded at runtime.
->>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
+Code-Splitting は、[Webpack](https://webpack.js.org/guides/code-splitting/)、[Rollup](https://rollupjs.org/guide/en/#code-splitting) や Browserify（[factor-bundle](https://github.com/browserify/factor-bundle) を使用）などのバンドラによってサポートされている機能であり、実行時に動的にロードされる複数のバンドルを生成することができます。
 
 コード分割は、ユーザが必要とするコードだけを「遅延読み込み」する手助けとなり、
 アプリのパフォーマンスを劇的に向上させることができます。
