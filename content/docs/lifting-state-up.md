@@ -324,7 +324,11 @@ state のリフトアップは双方向のバインディング (two-way binding
 
 props もしくは state から作りだす事のできるデータについては、おそらく state に保持すべきではないでしょう。例えば、今回は `celsiusValue` と `fahrenheitValue` の両方を保存する代わりに、最後に変更された `temperature` と、その値の `scale` のみを保存しています。もう一方の入力の値は常に `render()` メソッド内で計算することができます。これにより元のユーザ入力の精度を全く損なうことなくもう一方の入力フィールドに丸めを適用したり、もう一方の入力フィールドをクリアしたりできます。
 
+<<<<<<< HEAD
 UI で何かおかしな箇所があれば、[React Developer Tools](https://github.com/facebook/react-devtools) を使用して props を調査したり state の更新について責任を持っているコンポーネントに辿り着くまでツリーをさかのぼることができます。これによりバグをその原因まで追いかけることができます。
+=======
+When you see something wrong in the UI, you can use [React Developer Tools](https://github.com/facebook/react/tree/master/packages/react-devtools) to inspect the props and move up the tree until you find the component responsible for updating the state. This lets you trace the bugs to their source:
+>>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
 
 <img src="../images/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" max-width="100%" height="100%">
 

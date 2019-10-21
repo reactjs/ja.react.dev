@@ -197,6 +197,54 @@ const value = useContext(MyContext);
 >
 > `useContext(MyContext)` は現在のコンテクストの値を**読み取り**、その変化を購読することしかできません。コンテクストの値を**設定**するために、今後もツリーの上の階層で `<MyContext.Provider>` が必要です。
 
+<<<<<<< HEAD
+=======
+**Putting it together with Context.Provider**
+```js{31-36}
+const themes = {
+  light: {
+    foreground: "#000000",
+    background: "#eeeeee"
+  },
+  dark: {
+    foreground: "#ffffff",
+    background: "#222222"
+  }
+};
+
+const ThemeContext = React.createContext(themes.light);
+
+function App() {
+  return (
+    <ThemeContext.Provider value={themes.dark}>
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+
+function Toolbar(props) {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+
+  return (
+    <button style={{ background: theme.background, color: theme.foreground }}>
+      I am styled by theme context!
+    </button>
+  );
+}
+```
+This example is modified for hooks from a previous example in the [Context Advanced Guide](/docs/context.html), where you can find more information about when and how to use Context.
+
+
+## Additional Hooks {#additional-hooks}
+>>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
 
 ## 追加のフック {#additional-hooks}
 
