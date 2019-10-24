@@ -132,7 +132,7 @@
     - id: testing-recipes
       title: Testing Recipes
     - id: testing-environments
-      title: Testing Environments
+      title: テスト環境
 - title: Contributing
   items:
   - id: how-to-contribute
