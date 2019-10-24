@@ -46,11 +46,7 @@ React をちょっと試してみたい場合、Web 上のコードエディタ�
 
 ### 新規 React アプリの作成 {#create-a-new-react-app}
 
-<<<<<<< HEAD
 新しく React のプロジェクトを始めたい場合でも、まずは[シンプルな HTML ページに script タグを追加](/docs/add-react-to-a-website.html)するのがおすすめです。数分でセットアップできます！
-=======
-When starting a React project, a [simple HTML page with script tags](/docs/add-react-to-a-website.html) might still be the best option. It only takes a minute to set up!
->>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
 
 アプリが成長するにつれて、より統合されたセットアップを行うことを考慮していきましょう。大きいアプリの場合におすすめの[様々な JavaScript を用いたツールチェイン](/docs/create-a-new-react-app.html)が存在します。それぞれわずかな設定、もしくは設定要らずでリッチな React のエコシステムをフル活用できます。
 
@@ -119,11 +115,7 @@ React の[基本コンセプト](/docs/hello-world.html)について慣れてき
 
 他にも [@reactjs](https://twitter.com/reactjs) のツイッターアカウントをフォローすることもできますが、公式ブログを追っていれば大事なことを見落とすことはないでしょう。
 
-<<<<<<< HEAD
 全ての React のリリースにブログ記事があるわけではありませんが、リリースごとに詳細に書かれた changelog が [React リポジトリの `CHANGELOG.md`](https://github.com/facebook/react/blob/master/CHANGELOG.md)、および [Releases ページ](https://github.com/facebook/react/releases)に記載されています。
-=======
-Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/master/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react/releases) page.
->>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
 
 ## バージョン管理されたドキュメント {#versioned-documentation}
 

@@ -197,9 +197,7 @@ const value = useContext(MyContext);
 >
 > `useContext(MyContext)` は現在のコンテクストの値を**読み取り**、その変化を購読することしかできません。コンテクストの値を**設定**するために、今後もツリーの上の階層で `<MyContext.Provider>` が必要です。
 
-<<<<<<< HEAD
-=======
-**Putting it together with Context.Provider**
+**Context.Provider と組み合わせて使用する方法**
 ```js{31-36}
 const themes = {
   light: {
@@ -240,11 +238,7 @@ function ThemedButton() {
   );
 }
 ```
-This example is modified for hooks from a previous example in the [Context Advanced Guide](/docs/context.html), where you can find more information about when and how to use Context.
-
-
-## Additional Hooks {#additional-hooks}
->>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
+この例は[コンテクストのガイド](/docs/context.html)をフック用に変更したものです。コンテクストをいつどのように使うべきかについては同記事を参照してください。
 
 ## 追加のフック {#additional-hooks}
 

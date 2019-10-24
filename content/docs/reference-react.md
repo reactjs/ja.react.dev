@@ -333,11 +333,7 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 ### `React.Suspense` {#reactsuspense}
 
-<<<<<<< HEAD
 `React.Suspense` を使用することで、その配下にレンダーする準備ができていないコンポーネントがあるときにローディングインジケータを指定できます。現在、遅延読み込みコンポーネントは `<React.Suspense>` のみによってサポートされています。
-=======
-`React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:
->>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
 
 ```js
 // This component is loaded dynamically

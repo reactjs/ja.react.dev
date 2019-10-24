@@ -4,11 +4,7 @@ title: 非制御コンポーネント
 permalink: docs/uncontrolled-components.html
 ---
 
-<<<<<<< HEAD
-ほとんどの場合では、フォームの実装には[制御されたコンポーネント](/docs/forms.html)を使用することをお勧めしています。制御されたコンポーネントでは、フォームのデータは React コンポーネントが扱います。非制御コンポーネントはその代替となるものであり、フォームデータを DOM 自身が扱います。
-=======
-In most cases, we recommend using [controlled components](/docs/forms.html#controlled-components) to implement forms. In a controlled component, form data is handled by a React component. The alternative is uncontrolled components, where form data is handled by the DOM itself.
->>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
+ほとんどの場合では、フォームの実装には[制御されたコンポーネント](/docs/forms.html#controlled-components)を使用することをお勧めしています。制御されたコンポーネントでは、フォームのデータは React コンポーネントが扱います。非制御コンポーネントはその代替となるものであり、フォームデータを DOM 自身が扱います。
 
 非制御コンポーネントを記述するには、各 state の更新に対してイベントハンドラを書く代わりに、[ref を使用](/docs/refs-and-the-dom.html)して DOM からフォームの値を取得します。
 
