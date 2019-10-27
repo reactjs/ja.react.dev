@@ -153,7 +153,7 @@ class ShoppingList extends React.Component {
 
 ここで `ShoppingList` は **React コンポーネントのクラス**、もしくは **React コンポーネントの型**です。コンポーネントは props（"properties" の略）と呼ばれるパラメータを受け取り、`render` メソッドを通じて、表示するビューの階層構造を返します。
 
-`render` メソッドが返すのははあなたが画面上に表示したいものの*説明書き*です。React はその説明書きを受け取って画面に描画します。具体的には、`render` は、描画すべきものの軽量な記述形式である **React 要素**というものを返します。たいていの React 開発者は、これらの構造を簡単に記述できる "JSX" と呼ばれる構文を使用しています。`<div />` という構文は、ビルド時に `React.createElement('div')` に変換されます。上記の例は以下のコードと同等です：
+`render` メソッドが返すのはあなたが画面上に表示したいものの*説明書き*です。React はその説明書きを受け取って画面に描画します。具体的には、`render` は、描画すべきものの軽量な記述形式である **React 要素**というものを返します。たいていの React 開発者は、これらの構造を簡単に記述できる "JSX" と呼ばれる構文を使用しています。`<div />` という構文は、ビルド時に `React.createElement('div')` に変換されます。上記の例は以下のコードと同等です：
 
 ```javascript
 return React.createElement('div', {className: 'shopping-list'},
