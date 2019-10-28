@@ -27,7 +27,7 @@ prev: testing-recipes.html
 
 UI テストの大部分は上記のようなセットアップを行って書くことができます。すなわちテストランナーとして Jest を使い、jsdom にレンダーし、ブラウザイベントの羅列としてユーザ操作を定義し、`act()` ヘルパを活用します[<small>（例）</small>](/docs/testing-recipes.html)。例えば、React 自体のテストの多くもこの組み合わせで書かれています。
 
-主にブラウザ特有の動作をテストする必要があるライブラリを書いており、レイアウトや本物のユーザ入力などネイティブなブラウザーの挙動が必要な場合は、[mocha](https://mochajs.org/) のようなフレームワークを利用できます。
+主にブラウザ特有の動作をテストする必要があるライブラリを書いており、レイアウトや本物のユーザ入力などネイティブなブラウザの挙動が必要な場合は、[mocha](https://mochajs.org/) のようなフレームワークを利用できます。
 
 DOM をシミュレート*できない*環境（例えば Node.js で React Native のコンポーネントをテストする場合など）では、[イベントシミュレーションヘルパ](https://reactjs.org/docs/test-utils.html#simulate)を使って要素とのインタラクションをシミュレーションできます。あるいは、[`@testing-library/react-native`](https://testing-library.com/docs/native-testing-library) の `fireEvent` ヘルパを利用することもできます。
 
