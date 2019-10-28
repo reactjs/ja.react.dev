@@ -141,7 +141,7 @@ it("renders with or without a name", () => {
 
 ### データの取得 {#data-fetching}
 
-あなたのテスト内で本物の API を呼ぶかわりに、リクエストをモック化してダミーのデータを返すようにできます。データ取得をモック化して「フェイク」のデータを使うことで、バックエンドが利用できないせいでテストが不安定にならずに済み、テストの動作が高速になります。とはいえ、テストの一部については、アプリケーション全体が協調して動作しているかを確認できる ["end-to-end"](/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) のフレームワークを利用して実行したいかもしれません。
+あなたのテスト内で本物の API を呼ぶかわりに、リクエストをモック化してダミーのデータを返すようにできます。データ取得をモック化して「フェイク」のデータを使うことで、バックエンドが利用できないせいでテストが不確実にならずに済み、テストの動作が高速になります。とはいえ、テストの一部については、アプリケーション全体が協調して動作しているかを確認できる ["end-to-end"](/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) のフレームワークを利用して実行したいかもしれません。
 
 ```jsx
 // user.js
@@ -543,7 +543,7 @@ it("should accept selections", () => {
 
 ### スナップショットテスト {#snapshot-testing}
 
-Jest のようなフレームワークでは、[`toMatchSnapshot` / `toMatchInlineSnapshot`](https://jestjs.io/docs/en/snapshot-testing) を使ってデータの「スナップショット」を保存することができます。これを使うことで、レンダーされたコンポーネントの出力を「セーブ」しておき、変更がスナップショットへの変更として明示的にコミットされるよう保証することができます。
+Jest のようなフレームワークでは、[`toMatchSnapshot` / `toMatchInlineSnapshot`](https://jestjs.io/docs/en/snapshot-testing) を使ってデータの「スナップショット」を保存することができます。これを使うことで、レンダーされたコンポーネントの出力を「セーブ」しておき、変更がスナップショットへの変更として明示的にコミットされるよう保証できます。
 
 以下の例では、コンポーネントをレンダーし、作成された HTML を [`pretty`](https://www.npmjs.com/package/pretty) パッケージで整形し、インラインスナップショットとして保存します：
 
