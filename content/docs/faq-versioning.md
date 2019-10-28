@@ -18,7 +18,13 @@ React は[セマンティック バージョニング (semantic versioning; semv
 
 マイナーリリースは、最も一般的なリリースです。
 
+<<<<<<< HEAD
 ### 破壊的変更 {#breaking-changes}
+=======
+> This versioning policy does not apply to prerelease builds in the Next or Experimental channels. [Learn more about prereleases.](/docs/release-channels.html)
+
+### Breaking Changes {#breaking-changes}
+>>>>>>> 081bb31226919062938ef924472ba1b4170facfc
 
 破壊的変更は誰にとっても不便なので、私たちはメジャーリリースを最小限にするようにしています。例えば React 15 は 2016 年 4 月にリリースされており、React 16 は 2017 年の 9 月にリリースされています。そして React 17 は 2019 年までリリースが見込まれていません。
 
