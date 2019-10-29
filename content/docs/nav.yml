@@ -111,49 +111,26 @@
     - id: javascript-environment-requirements
       title: JavaScript 環境の要件
     - id: glossary
-<<<<<<< HEAD
       title: React 用語集
-- title: Hooks (New)
-  isOrdered: true
-  items:
-      - id: hooks-intro
-        title: フックの導入
-      - id: hooks-overview
-        title: フック早わかり
-      - id: hooks-state
-        title: ステートフックの利用法
-      - id: hooks-effect
-        title: 副作用フックの利用法
-      - id: hooks-rules
-        title: フックのルール
-      - id: hooks-custom
-        title: カスタムフックの作成
-      - id: hooks-reference
-        title: フック API リファレンス
-      - id: hooks-faq
-        title: フックに関するよくある質問
-=======
-      title: Glossary
 - title: Hooks
   isOrdered: true
   items:
     - id: hooks-intro
-      title: Introducing Hooks
+      title: フックの導入
     - id: hooks-overview
-      title: Hooks at a Glance
+      title: フック早わかり
     - id: hooks-state
-      title: Using the State Hook
+      title: ステートフックの利用法
     - id: hooks-effect
-      title: Using the Effect Hook
+      title: 副作用フックの利用法
     - id: hooks-rules
-      title: Rules of Hooks
+      title: フックのルール
     - id: hooks-custom
-      title: Building Your Own Hooks
+      title: カスタムフックの作成
     - id: hooks-reference
-      title: Hooks API Reference
+      title: フック API リファレンス
     - id: hooks-faq
-      title: Hooks FAQ
->>>>>>> 081bb31226919062938ef924472ba1b4170facfc
+      title: フックに関するよくある質問
 - title: Testing
   items:
     - id: testing
