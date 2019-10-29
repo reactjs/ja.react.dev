@@ -7,13 +7,9 @@
     - id: create-a-new-react-app
       title: 新しい React アプリを作る
     - id: cdn-links
-<<<<<<< HEAD
       title: CDN リンク
-=======
-      title: CDN Links
     - id: release-channels
       title: Release Channels
->>>>>>> 081bb31226919062938ef924472ba1b4170facfc
 - title: Main Concepts
   isOrdered: true
   items:
@@ -154,25 +150,14 @@
       title: Concurrent Mode API Reference
 - title: Contributing
   items:
-<<<<<<< HEAD
-  - id: how-to-contribute
-    title: 貢献の方法
-  - id: codebase-overview
-    title: コードベースの概要
-  - id: implementation-notes
-    title: 実装に関するメモ
-  - id: design-principles
-    title: 設計原則
-=======
     - id: how-to-contribute
-      title: How to Contribute
+      title: 貢献の方法
     - id: codebase-overview
-      title: Codebase Overview
+      title: コードベースの概要
     - id: implementation-notes
-      title: Implementation Notes
+      title: 実装に関するメモ
     - id: design-principles
-      title: Design Principles
->>>>>>> 081bb31226919062938ef924472ba1b4170facfc
+      title: 設計原則
 - title: FAQ
   items:
     - id: faq-ajax
@@ -190,8 +175,4 @@
     - id: faq-versioning
       title: バージョニングポリシー
     - id: faq-internals
-<<<<<<< HEAD
       title: 仮想 DOM と内部処理
-=======
-      title: Virtual DOM and Internals
->>>>>>> 081bb31226919062938ef924472ba1b4170facfc
