@@ -1,37 +1,37 @@
 ---
 id: testing-recipes
-title: Testing Recipes
+title: テストのレシピ集
 permalink: docs/testing-recipes.html
 prev: testing.html
 next: testing-environments.html
 ---
 
-Common testing patterns for React components.
+React コンポーネントのための一般的なテストのパターン集です。
 
-> Note:
+> 補足：
 >
-> This page assumes you're using [Jest](https://jestjs.io/) as a test runner. If you use a different test runner, you may need to adjust the API, but the overall shape of the solution will likely be the same. Read more details on setting up a testing environment on the [Testing Environments](/docs/testing-environments.html) page.
+> このページではテストランナーとして [Jest](https://jestjs.io/) を使用することを前提としています。もし別のテストランナーを使う場合は API を修正する必要があるかもしれませんが、やり方の全体的な見た目についてはおそらく同じようなものになるはずです。テスト環境のセットアップについては [テスト環境](/docs/testing-environments.html) のページをご覧ください。
 
-On this page, we will primarily use function components. However, these testing strategies don't depend on implementation details, and work just as well for class components too.
+このページでは主に関数コンポーネントを利用します。しかし以下に述べるテスト手法は実装の詳細には依存しませんので、クラスコンポーネントでも全く同様に動作します。
 
-- [Setup/Teardown](#setup--teardown)
+- [セットアップ/後始末](#setup--teardown)
 - [`act()`](#act)
-- [Rendering](#rendering)
-- [Data Fetching](#data-fetching)
-- [Mocking Modules](#mocking-modules)
-- [Events](#events)
-- [Timers](#timers)
-- [Snapshot Testing](#snapshot-testing)
-- [Multiple Renderers](#multiple-renderers)
-- [Something Missing?](#something-missing)
+- [レンダー](#rendering)
+- [データの取得](#data-fetching)
+- [モジュールのモック化](#mocking-modules)
+- [イベント](#events)
+- [タイマー](#timers)
+- [スナップショットテスト](#snapshot-testing)
+- [複数のレンダラ](#multiple-renderers)
+- [何かが足りない？](#something-missing)
 
 ---
 
-### Setup/Teardown {#setup--teardown}
+### セットアップ/後始末 {#setup--teardown}
 
-For each test, we usually want to render our React tree to a DOM element that's attached to `document`. This is important so that it can receive DOM events. When the test ends, we want to "clean up" and unmount the tree from the `document`.
+それぞれのテストにおいて、通常われわれは React ツリーを `document` に結びついた DOM 要素として描画することになります。これは DOM イベントを受け取れるようにするために重要です。テストが終了した際に「クリーンアップ」を行い、`document` からツリーをアンマウントします。
 
-A common way to do it is to use a pair of `beforeEach` and `afterEach` blocks so that they'll always run and isolate the effects of a test to itself:
+このためによく行うのは `beforeEach` と `afterEach` ブロックのペアを使い、それらを常に実行することで、各テストの副作用がそれ自身にとどまるようにすることです。
 
 ```jsx
 import { unmountComponentAtNode } from "react-dom";
@@ -51,13 +51,13 @@ afterEach(() => {
 });
 ```
 
-You may use a different pattern, but keep in mind that we want to execute the cleanup _even if a test fails_. Otherwise, tests can become "leaky", and one test can change the behavior of another test. That makes them difficult to debug.
+他のパターンを利用しても構いませんが、*仮にテストが失敗した場合でも*クリーンアップコードを実行するようにするべき、ということを覚えておいてください。さもなくば、テストは「穴の開いた」ものとなってしまい、あるテストが他のテストの挙動に影響するようになってしまいます。これはデバッグを困難にします。
 
 ---
 
 ### `act()` {#act}
 
-When writing UI tests, tasks like rendering, user events, or data fetching can be considered as "units" of interaction with a user interface. React provides a helper called `act()` that makes sure all updates related to these "units" have been processed and applied to the DOM before you make any assertions:
+UI テストを記述する際、レンダー、ユーザイベント、データの取得といったタスクはユーザインターフェースへのインタラクションの「ユニット ("unit")」であると考えることができます。React が提供する `act()` というヘルパーは、あなたが何らかのアサーションを行う前に、これらの「ユニット」に関連する更新がすべて処理され、DOM に反映されていることを保証します。
 
 ```js
 act(() => {
@@ -66,19 +66,19 @@ act(() => {
 // make assertions
 ```
 
-This helps make your tests run closer to what real users would experience when using your application. The rest of these examples use `act()` to make these guarantees.
+これによりあなたのテストは、実際のユーザがアプリケーションを使う時に体験するのと近い状況で実行されるようになります。以下の例ではこのような保証を得るために `act()` を利用しています。
 
-You might find using `act()` directly a bit too verbose. To avoid some of the boilerplate, you could use a library like [React Testing Library](https://testing-library.com/react), whose helpers are wrapped with `act()`.
+直接 `act()` を使うのはちょっと冗長だと感じるかもしれません。ボイラープレートの記述を軽減するために、[React Testing Library](https://testing-library.com/react) のようなライブラリを使うこともできます。このライブラリのヘルパは `act()` でラップされています。
 
-> Note:
+> 補足：
 >
-> The name `act` comes from the [Arrange-Act-Assert](http://wiki.c2.com/?ArrangeActAssert) pattern.
+> `act` という名称は [Arrange-Act-Assert](http://wiki.c2.com/?ArrangeActAssert) パターンから来ています。
 
 ---
 
-### Rendering {#rendering}
+### レンダー {#rendering}
 
-Commonly, you might want to test whether a component renders correctly for given props. Consider a simple component that renders a message based on a prop:
+与えられた props に対してコンポーネントが正しくレンダーされているかをテストしたいことがよくあります。props の内容に応じてメッセージをレンダーする以下のシンプルなコンポーネントを考えてください。
 
 ```jsx
 // hello.js
@@ -94,7 +94,7 @@ export default function Hello(props) {
 }
 ```
 
-We can write a test for this component:
+このコンポーネントのテストは以下のように書くことができます：
 
 ```jsx{24-27}
 // hello.test.js
@@ -139,9 +139,9 @@ it("renders with or without a name", () => {
 
 ---
 
-### Data Fetching {#data-fetching}
+### データの取得 {#data-fetching}
 
-Instead of calling real APIs in all your tests, you can mock requests with dummy data. Mocking data fetching with "fake" data prevents flaky tests due to an unavailable backend, and makes them run faster. Note: you may still want to run a subset of tests using an ["end-to-end"](/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) framework that tells whether the whole app is working together.
+あなたのテスト内で本物の API を呼ぶかわりに、リクエストをモック化してダミーのデータを返すようにできます。データ取得をモック化して「フェイク」のデータを使うことで、バックエンドが利用できないせいでテストが不確実にならずに済み、テストの動作が高速になります。とはいえ、テストの一部については、アプリケーション全体が協調して動作しているかを確認できる ["end-to-end"](/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) のフレームワークを利用して実行したいかもしれません。
 
 ```jsx
 // user.js
@@ -175,7 +175,7 @@ export default function User(props) {
 }
 ```
 
-We can write tests for it:
+このコンポーネントに対するテストは以下のように書けます：
 
 ```jsx{23-33,44-45}
 // user.test.js
@@ -228,11 +228,11 @@ it("renders user data", async () => {
 
 ---
 
-### Mocking Modules {#mocking-modules}
+### モジュールのモック化 {#mocking-modules}
 
-Some modules might not work well inside a testing environment, or may not be as essential to the test itself. Mocking out these modules with dummy replacements can make it easier to write tests for your own code.
+モジュールによってはテスト環境でうまく動かないものや、テスト自体にとって本質的でないものがあります。これらのモジュールをモック化してダミーに置き換えることで、あなた自身のコードに対するテストが記述しやすくなることがあります。
 
-Consider a `Contact` component that embeds a third-party `GoogleMap` component:
+サードパーティーの `GoogleMap` を埋め込んでいる `Contact` というコンポーネントがあるとします：
 
 ```jsx
 // map.js
@@ -271,7 +271,7 @@ function Contact(props) {
 }
 ```
 
-If we don't want to load this component in our tests, we can mock out the dependency itself to a dummy component, and run our tests:
+我々のテスト中でこのコンポーネントをロードしたくない場合、この依存モジュール自体をダミーのコンポーネントにモック化した上でテストを実行することができます：
 
 ```jsx{10-18}
 // contact.test.js
@@ -337,9 +337,9 @@ it("should render contact information", () => {
 
 ---
 
-### Events {#events}
+### イベント {#events}
 
-We recommend dispatching real DOM events on DOM elements, and then asserting on the result. Consider a `Toggle` component:
+DOM 要素に対して本物の DOM イベントをディスパッチし、その結果に対してアサーションを行うことをお勧めします。以下の `Toggle` コンポーネントを考えてみましょう：
 
 ```jsx
 // toggle.js
@@ -362,7 +362,7 @@ export default function Toggle(props) {
 }
 ```
 
-We could write tests for it:
+これに対するテストは以下のように書けます：
 
 ```jsx{13-14,35,43}
 // toggle.test.js
@@ -416,17 +416,17 @@ it("changes value when clicked", () => {
 });
 ```
 
-Different DOM events and their properties are described in [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Note that you need to pass `{ bubbles: true }` in each event you create for it to reach the React listener because React automatically delegates events to the document.
+その他の DOM イベントやそれらのプロパティは [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) で解説されています。React のリスナにイベントが到達するように、作成するそれぞれのイベントに対して `{ bubbles: true }` を指定する必要があることに気を付けてください。React ではイベントは自動的に document にデリゲートする形で処理されるためです。
 
-> Note:
+> 補足：
 >
-> React Testing Library offers a [more concise helper](https://testing-library.com/docs/dom-testing-library/api-events) for firing events.
+> React Testing Library にはイベントを発火するための[より簡便なヘルパ](https://testing-library.com/docs/dom-testing-library/api-events)があります。
 
 ---
 
-### Timers {#timers}
+### タイマー {#timers}
 
-Your code might use timer-based functions like `setTimeout` to schedule more work in the future. In this example, a multiple choice panel waits for a selection and advances, timing out if a selection isn't made in 5 seconds:
+あなたのコードでは、未来に行う作業をスケジュールするために `setTimeout` のようなタイマーベースの関数を使っているかもしれません。以下の例では、選択肢のパネルを表示してどれかが選択されるまで待ちますが、5 秒以内に選択が起きなければタイムアウトするようになっています。
 
 ```jsx
 // card.js
@@ -455,7 +455,7 @@ export default function Card(props) {
 }
 ```
 
-We can write tests for this component by leveraging [Jest's timer mocks](https://jestjs.io/docs/en/timer-mocks), and testing the different states it can be in.
+このコンポーネントに対するテストは、[Jest のタイマーモック](https://jestjs.io/docs/en/timer-mocks)を活用し、可能性のある状態のそれぞれをテストする、というやりかたで書くことができます。
 
 ```jsx{7,31,37,49,59}
 // card.test.js
@@ -537,15 +537,15 @@ it("should accept selections", () => {
 });
 ```
 
-You can use fake timers only in some tests. Above, we enabled them by calling `jest.useFakeTimers()`. The main advantage they provide is that your test doesn't actually have to wait five seconds to execute, and you also didn't need to make the component code more convoluted just for testing.
+フェイクタイマーは一部のテストでのみ使うようにすることができます。上記の例では、`jest.useFakeTimers()` を呼ぶことでフェイクタイマーを有効化しています。これによる主な利点は、実行されるまで実際に 5 秒待つ必要がないということと、テストのためだけにコンポーネントのコードをより複雑にする必要がない、ということです。
 
 ---
 
-### Snapshot Testing {#snapshot-testing}
+### スナップショットテスト {#snapshot-testing}
 
-Frameworks like Jest also let you save "snapshots" of data with [`toMatchSnapshot` / `toMatchInlineSnapshot`](https://jestjs.io/docs/en/snapshot-testing). With these, we can "save" the rendered component output and ensure that a change to it has to be explicitly committed as a change to the snapshot.
+Jest のようなフレームワークでは、[`toMatchSnapshot` / `toMatchInlineSnapshot`](https://jestjs.io/docs/en/snapshot-testing) を使ってデータの「スナップショット」を保存することができます。これを使うことで、レンダーされたコンポーネントの出力を「セーブ」しておき、変更がスナップショットへの変更として明示的にコミットされるよう保証できます。
 
-In this example, we render a component and format the rendered HTML with the [`pretty`](https://www.npmjs.com/package/pretty) package, before saving it as an inline snapshot:
+以下の例では、コンポーネントをレンダーし、作成された HTML を [`pretty`](https://www.npmjs.com/package/pretty) パッケージで整形し、インラインスナップショットとして保存します：
 
 ```jsx{29-31}
 // hello.test.js, again
@@ -598,13 +598,13 @@ it("should render a greeting", () => {
 });
 ```
 
-It's typically better to make more specific assertions than to use snapshots. These kinds of tests include implementation details so they break easily, and teams can get desensitized to snapshot breakages. Selectively [mocking some child components](#mocking-modules) can help reduce the size of snapshots and keep them readable for the code review.
+一般的には、スナップショットを使うよりもより個別的なアサーションを行う方がベターです。このようなテストは実装の詳細を含んでいるために壊れやすく、チームはスナップショットが壊れても気にならないようになってしまうかもしれません。選択的に[一部の子コンポーネントをモックする](#mocking-modules)ことで、スナップショットのサイズを減らし、コードレビューで読みやすく保つことができるようになります。
 
 ---
 
-### Multiple Renderers {#multiple-renderers}
+### 複数のレンダラ {#multiple-renderers}
 
-In rare cases, you may be running a test on a component that uses multiple renderers. For example, you may be running snapshot tests on a component with `react-test-renderer`, that internally uses `ReactDOM.render` inside a child component to render some content. In this scenario, you can wrap updates with `act()`s corresponding to their renderers.
+稀なケースにおいて、複数のレンダラを使うコンポーネントに対するテストを実行することがあるかもしれません。例えば、`react-test-renderer` を使ってコンポーネントのスナップショットテストを走らせているが、その内部で子コンポーネントが何かを表示するのに `ReactDOM.render` が使われている、ということがあるかもしれません。このようなシナリオでは、それらのレンダラーに対応する複数の `act()` で更新をラップすることができます。
 
 ```jsx
 import { act as domAct } from "react-dom/test-utils";
@@ -621,6 +621,6 @@ expect(root).toMatchSnapshot();
 
 ---
 
-### Something Missing? {#something-missing}
+### 何かが足りない？ {#something-missing}
 
-If some common scenario is not covered, please let us know on the [issue tracker](https://github.com/reactjs/reactjs.org/issues) for the documentation website.
+もしよくあるシナリオがカバーされていない場合は、ドキュメント用ウェブサイトの[イシュートラッカ](https://github.com/reactjs/reactjs.org/issues)でお知らせください。

@@ -150,7 +150,7 @@ ReactDOM.render(
 
 これが動作するのは、JavaScript では `true && expression` は必ず `expression` と評価され、`false && expression` は必ず `false` と評価されるからです。
 
-従って、条件部分が `true` であれば、`&&` の後に書かれた要素が出力に現れます。もし `false` でれば、React はそれを無視して飛ばします。
+従って、条件部分が `true` であれば、`&&` の後に書かれた要素が出力に現れます。もし `false` であれば、React はそれを無視して飛ばします。
 
 ### 条件演算子によるインライン If-Else {#inline-if-else-with-conditional-operator}
 

@@ -129,10 +129,10 @@
       title: フックに関するよくある質問
 - title: Testing
   items:
-    - id: testing
-      title: Testing Overview
+    - id: testing 
+      title: テスト概要
     - id: testing-recipes
-      title: Testing Recipes
+      title: テストのレシピ集
     - id: testing-environments
       title: Testing Environments
 - title: Concurrent Mode (Experimental)
