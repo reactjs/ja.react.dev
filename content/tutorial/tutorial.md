@@ -802,7 +802,7 @@ history = [
 
 トップレベルの Game コンポーネント内で過去の着手の履歴を表示したいと思います。そのためには Game コンポーネントが `history` にアクセスできる必要がありますので、`history` という state はトップレベルの Game コンポーネントに置くようにしましょう。
 
-`hisotory` state を Game コンポーネント内に置くことで、`squares` の state を、子である Board コンポーネントから取り除くことができます。Square コンポーネントにあった[「state をリフトアップ」](#lifting-state-up)して Board コンポーネントに移動したときと全く同様にして、今度は Board にある state をトップレベルの Game コンポーネントにリフトアップしましょう。これにより Game コンポーネントは Board のデータを完全に制御することになり、`history` 内の過去の手番のデータを Board にレンダーさせることができるようになります。
+`history` state を Game コンポーネント内に置くことで、`squares` の state を、子である Board コンポーネントから取り除くことができます。Square コンポーネントにあった[「state をリフトアップ」](#lifting-state-up)して Board コンポーネントに移動したときと全く同様にして、今度は Board にある state をトップレベルの Game コンポーネントにリフトアップしましょう。これにより Game コンポーネントは Board のデータを完全に制御することになり、`history` 内の過去の手番のデータを Board にレンダーさせることができるようになります。
 
 まず、Game コンポーネントの初期 state をコンストラクタ内でセットします。
 
