@@ -83,7 +83,7 @@ React Native は[バージョン 0.59](https://facebook.github.io/react-native/b
 
 ### これまでの React の知識はどの程度使えますか？ {#how-much-of-my-react-knowledge-stays-relevant}
 
-フックとは、state やライフサイクル、コンテクストや ref といった、あなたが既に知っている React の機能をより直接的に利用できるようにする手段です。React の動作が根本的に変わるようなものではありませんし、コンポーネントや props、トップダウンのデータの流れについての知識はこれまと同様に重要です。
+フックとは、state やライフサイクル、コンテクストや ref といった、あなたが既に知っている React の機能をより直接的に利用できるようにする手段です。React の動作が根本的に変わるようなものではありませんし、コンポーネントや props、トップダウンのデータの流れについての知識はこれまでと同様に重要です。
 
 もちろんフックにはフックなりの学習曲線があります。このドキュメントに足りないことを見つけたら [Issue を報告](https://github.com/reactjs/reactjs.org/issues/new)していただければ、お手伝いします。
 
