@@ -8,6 +8,8 @@
       title: 新しい React アプリを作る
     - id: cdn-links
       title: CDN リンク
+    - id: release-channels
+      title: Release Channels
 - title: Main Concepts
   isOrdered: true
   items:
@@ -106,25 +108,25 @@
       title: JavaScript 環境の要件
     - id: glossary
       title: React 用語集
-- title: Hooks (New)
+- title: Hooks
   isOrdered: true
   items:
-      - id: hooks-intro
-        title: フックの導入
-      - id: hooks-overview
-        title: フック早わかり
-      - id: hooks-state
-        title: ステートフックの利用法
-      - id: hooks-effect
-        title: 副作用フックの利用法
-      - id: hooks-rules
-        title: フックのルール
-      - id: hooks-custom
-        title: カスタムフックの作成
-      - id: hooks-reference
-        title: フック API リファレンス
-      - id: hooks-faq
-        title: フックに関するよくある質問
+    - id: hooks-intro
+      title: フックの導入
+    - id: hooks-overview
+      title: フック早わかり
+    - id: hooks-state
+      title: ステートフックの利用法
+    - id: hooks-effect
+      title: 副作用フックの利用法
+    - id: hooks-rules
+      title: フックのルール
+    - id: hooks-custom
+      title: カスタムフックの作成
+    - id: hooks-reference
+      title: フック API リファレンス
+    - id: hooks-faq
+      title: フックに関するよくある質問
 - title: Testing
   items:
     - id: testing 
@@ -133,16 +135,29 @@
       title: テストのレシピ集
     - id: testing-environments
       title: Testing Environments
+- title: Concurrent Mode (Experimental)
+  isOrdered: true
+  items:
+    - id: concurrent-mode-intro
+      title: Introducing Concurrent Mode
+    - id: concurrent-mode-suspense
+      title: Suspense for Data Fetching
+    - id: concurrent-mode-patterns
+      title: Concurrent UI Patterns
+    - id: concurrent-mode-adoption
+      title: Adopting Concurrent Mode
+    - id: concurrent-mode-reference
+      title: Concurrent Mode API Reference
 - title: Contributing
   items:
-  - id: how-to-contribute
-    title: 貢献の方法
-  - id: codebase-overview
-    title: コードベースの概要
-  - id: implementation-notes
-    title: 実装に関するメモ
-  - id: design-principles
-    title: 設計原則
+    - id: how-to-contribute
+      title: 貢献の方法
+    - id: codebase-overview
+      title: コードベースの概要
+    - id: implementation-notes
+      title: 実装に関するメモ
+    - id: design-principles
+      title: 設計原則
 - title: FAQ
   items:
     - id: faq-ajax
