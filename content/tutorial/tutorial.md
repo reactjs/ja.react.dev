@@ -197,6 +197,7 @@ class Board extends React.Component {
   renderSquare(i) {
     return <Square value={i} />;
   }
+}
 ```
 
 そして Square の `render` メソッドで、渡された値を表示するように、`{/* TODO */}` を `{this.props.value}` に書き換えます。
