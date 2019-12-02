@@ -16,4 +16,10 @@ React community には選定された多くの素晴らしいリソースがあ�
 
 - [Awesome React Components](https://github.com/brillout/awesome-react-components) - React components についての選定されたリストです。
 
+<<<<<<< HEAD
 - [Awesome React Talks](https://github.com/tiaanduplessis/awesome-react-talks) - React talks についての選定されたリストです。
+=======
+- [Awesome React Talks](https://github.com/tiaanduplessis/awesome-react-talks) - A curated list of React talks.
+
+- [Hero35 React Hub](https://hero35.com/stack/react) - A website with _all_ React conferences and talks, categorized & curated.
+>>>>>>> e0a0ec3dad47804d0b41d4a7bb81841638dc79dd
