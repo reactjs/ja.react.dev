@@ -5,11 +5,22 @@ permalink: docs/concurrent-mode-intro.html
 next: concurrent-mode-suspense.html
 ---
 
->警告：
+<style>
+.scary > blockquote {
+  background-color: rgba(237, 51, 21, 0.2);
+  border-left-color: #ed3315;
+}
+</style>
+
+<div class="scary">
+
+>警告:
 >
 > このページでは**安定リリースで[まだ利用できない](/docs/concurrent-mode-adoption.html)実験的機能**を説明しています。本番のアプリケーションで React の実験的ビルドを利用しないでください。これらの機能は React の一部となる前に警告なく大幅に変更される可能性があります。
 >
 > このドキュメントは興味のある読者やアーリーアダプター向けのものです。React が初めての方はこれらの機能を気にしないで構いません -- 今すぐに学ぶ必要はありません。
+
+</div>
 
 このページでは並列モードの理論的な概要について説明します。**より実践的な導入方法についてはこれ以降のセクションをお読みください**：
 
