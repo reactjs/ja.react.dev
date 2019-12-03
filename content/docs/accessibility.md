@@ -487,11 +487,7 @@ NVDA を最大限に活用する方法は以下のガイドを参照してくだ
 
 VoiceOver は Apple 社製品に統合されたスクリーンリーダです。
 
-<<<<<<< HEAD
 VoiceOver を有効化して使用する方法は以下のガイドを参照してください：
-=======
-Refer to the following guides on how to activate and use VoiceOver:
->>>>>>> e0a0ec3dad47804d0b41d4a7bb81841638dc79dd
 
 - [WebAIM - Using VoiceOver to Evaluate Web Accessibility](https://webaim.org/articles/voiceover/)
 - [Deque - VoiceOver for OS X Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts)
