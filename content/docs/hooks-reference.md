@@ -183,7 +183,7 @@ const value = useContext(MyContext);
 
 直近の `<MyContext.Provider>` が更新された場合、このフックはその `MyContext` プロバイダに渡された最新の `value` の値を使って再レンダーを発生させます。
 
-`useContext` に渡す引数は**コンテキストオブジェクト自体**であることを忘れないでください。
+`useContext` に渡す引数は**コンテクストオブジェクト自体**であることを忘れないでください。
 
  * **正しい：**`useContext(MyContext)`
  * **間違い：**`useContext(MyContext.Consumer)`

@@ -99,7 +99,7 @@ JavaScript について自分がどれだけ知っているかを知るために
 
 ### 高度なコンセプト {#advanced-concepts}
 
-React の[基本コンセプト](/docs/hello-world.html)について慣れてきて、実際に手で動かしてみたら、今度はさらに高度な内容にも手を出したいと思うかもしれません。この資料では強力な、しかし普段使われることのない [コンテキスト](/docs/context.html) や [ref](/docs/refs-and-the-dom.html) といった React のさらなる機能について紹介します。
+React の[基本コンセプト](/docs/hello-world.html)について慣れてきて、実際に手で動かしてみたら、今度はさらに高度な内容にも手を出したいと思うかもしれません。この資料では強力な、しかし普段使われることのない [コンテクスト](/docs/context.html) や [ref](/docs/refs-and-the-dom.html) といった React のさらなる機能について紹介します。
 
 ### API リファレンス {#api-reference}
 
