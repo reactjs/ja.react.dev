@@ -183,7 +183,7 @@ const value = useContext(MyContext);
 
 直近の `<MyContext.Provider>` が更新された場合、このフックはその `MyContext` プロバイダに渡された最新の `value` の値を使って再レンダーを発生させます。
 
-`useContext` に渡す引数は**コンテキストオブジェクト自体**であることを忘れないでください。
+`useContext` に渡す引数は**コンテクストオブジェクト自体**であることを忘れないでください。
 
  * **正しい：**`useContext(MyContext)`
  * **間違い：**`useContext(MyContext.Consumer)`
@@ -449,7 +449,7 @@ function FancyInput(props, ref) {
 FancyInput = forwardRef(FancyInput);
 ```
 
-この例では、`<FancyInput ref={fancyInputRef} />` をレンダーする親コンポーネントは `fancyInputRef.current.focus()` を呼べるようになります。
+この例では、`<FancyInput ref={inputRef} />` をレンダーする親コンポーネントは `inputRef.current.focus()` を呼べるようになります。
 
 ### `useLayoutEffect` {#uselayouteffect}
 
