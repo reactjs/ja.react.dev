@@ -6,11 +6,22 @@ prev: concurrent-mode-patterns.html
 next: concurrent-mode-reference.html
 ---
 
->警告：
+<style>
+.scary > blockquote {
+  background-color: rgba(237, 51, 21, 0.2);
+  border-left-color: #ed3315;
+}
+</style>
+
+<div class="scary">
+
+>警告:
 >
 > このページでは**安定リリースで[まだ利用できない](/docs/concurrent-mode-adoption.html)実験的機能**を説明しています。本番のアプリケーションで React の実験的ビルドを利用しないでください。これらの機能は React の一部となる前に警告なく大幅に変更される可能性があります。
 >
-> このドキュメントは興味のある読者やアーリーアダプター向けのものです。React が初めての方はこれらの機能を気にしないで構いません -- 今すぐに学ぶ必要はありません。
+> このドキュメントは興味のある読者やアーリーアダプター向けのものです。**React が初めての方はこれらの機能を気にしないで構いません** -- 今すぐに学ぶ必要はありません。
+
+</div>
 
 - [インストール](#installation)
   - [この実験的リリースは誰のためのものか？](#who-is-this-experimental-release-for)
@@ -107,21 +118,21 @@ ReactDOM.createRoot(
 
 |   |レガシーモード  |ブロッキングモード  |並列モード  |
 |---  |---  |---  |---  |
-|文字列 Ref  |✅  |🚫**  |🚫**  |
-|レガシー版コンテクスト |✅  |🚫**  |🚫**  |
-|findDOMNode  |✅  |🚫**  |🚫**  |
-|Suspense |✅  |✅  |✅  |
-|SuspenseList |🚫  |✅  |✅  |
+|[文字列 Ref](/docs/refs-and-the-dom.html#legacy-api-string-refs)  |✅  |🚫**  |🚫**  |
+|[レガシー版コンテクスト](/docs/legacy-context.html) |✅  |🚫**  |🚫**  |
+|[findDOMNode](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)  |✅  |🚫**  |🚫**  |
+|[Suspense](/docs/concurrent-mode-suspense.html#what-is-suspense-exactly) |✅  |✅  |✅  |
+|[SuspenseList](/docs/concurrent-mode-patterns.html#suspenselist) |🚫  |✅  |✅  |
 |Suspense SSR + Hydration |🚫  |✅  |✅  |
 |Progressive Hydration  |🚫  |✅  |✅  |
 |Selective Hydration  |🚫  |🚫  |✅  |
 |Cooperative Multitasking |🚫  |🚫  |✅  |
-|複数の setStates の自動バッチ処理    |🚫* |✅  |✅  |
-|優先度ベースのレンダー |🚫  |🚫  |✅  |
-|中断可能なプリレンダリング |🚫  |🚫  |✅  |
-|useTransition  |🚫  |🚫  |✅  |
-|useDeferredValue |🚫  |🚫  |✅  |
-|「電車式」サスペンス開放  |🚫  |🚫  |✅  |
+|Automatic batching of multiple setStates     |🚫* |✅  |✅  |
+|[優先度ベースのレンダー](/docs/concurrent-mode-patterns.html#splitting-high-and-low-priority-state) |🚫  |🚫  |✅  |
+|[中断可能なプリレンダリング](/docs/concurrent-mode-intro.html#interruptible-rendering) |🚫  |🚫  |✅  |
+|[useTransition](/docs/concurrent-mode-patterns.html#transitions)  |🚫  |🚫  |✅  |
+|[useDeferredValue](/docs/concurrent-mode-patterns.html#deferring-a-value) |🚫  |🚫  |✅  |
+|[「電車式」サスペンス開放](/docs/concurrent-mode-patterns.html#suspense-reveal-train)  |🚫  |🚫  |✅  |
 
 </div>
 
