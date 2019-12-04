@@ -86,7 +86,7 @@
       forceInternal: true
       subitems:
         - id: storing-a-history-of-moves
-          title: Storing a History of Moves
+          title: 着手の履歴の保存
           href: /tutorial/tutorial.html#storing-a-history-of-moves
           forceInternal: true
         - id: lifting-state-up-again

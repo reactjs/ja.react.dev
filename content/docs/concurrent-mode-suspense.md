@@ -6,12 +6,22 @@ prev: concurrent-mode-intro.html
 next: concurrent-mode-patterns.html
 ---
 
->警告：
+<style>
+.scary > blockquote {
+  background-color: rgba(237, 51, 21, 0.2);
+  border-left-color: #ed3315;
+}
+</style>
+
+<div class="scary">
+
+>警告:
 >
 > このページでは**安定リリースで[まだ利用できない](/docs/concurrent-mode-adoption.html)実験的機能**を説明しています。本番のアプリケーションで React の実験的ビルドを利用しないでください。これらの機能は React の一部となる前に警告なく大幅に変更される可能性があります。
 >
-> このドキュメントは興味のある読者やアーリーアダプター向けのものです。React が初めての方はこれらの機能を気にしないで構いません -- 今すぐに学ぶ必要はありません。
+> このドキュメントは興味のある読者やアーリーアダプター向けのものです。React が初めての方はこれらの機能を気にしないで構いません -- 今すぐに学ぶ必要はありません。例えば、もし今すぐ使えるデータ取得のチュートリアルをお探しの場合は、代わりに[この記事](https://www.robinwieruch.de/react-hooks-fetch-data/)をご覧ください。
 
+</div>
 
 React 16.6 で、コードのロードを「待機」して宣言的にロード中状態（スピナーのようなもの）を指定することができる `<Suspense>` コンポーネントが追加されました。
 
@@ -36,6 +46,7 @@ const ProfilePage = React.lazy(() => import('./ProfilePage')); // Lazy-loaded
   - [アプローチ 1: Fetch-on-Render（サスペンス不使用）](#approach-1-fetch-on-render-not-using-suspense)
   - [アプローチ 2: Fetch-Then-Render（サスペンス不使用）](#approach-2-fetch-then-render-not-using-suspense)
   - [アプローチ 3: Render-as-You-Fetch（サスペンスを使用）](#approach-3-render-as-you-fetch-using-suspense)
+- [早期から取得を開始する](#start-fetching-early)
   - [まだ仕様は検討中です](#were-still-figuring-this-out)
 - [サスペンスと競合状態](#suspense-and-race-conditions)
   - [`useEffect` に伴う競合状態](#race-conditions-with-useeffect)
@@ -86,7 +97,7 @@ function ProfileTimeline() {
 
 このデモはチラ見せです。まだあまり意味が分からなくても心配は要りません。以下でこれがどのように動作しているのかをお話しします。サスペンスは*仕組み*であり、上記の例の `fetchProfileData()` や `resource.posts.read()` といった特定の API はあまり重要ではないということを覚えておいてください。興味があれば[デモ用サンドボックス](https://codesandbox.io/s/frosty-hermann-bztrp)に定義があります。
 
-サスペンスはデータ取得ライブラリではありません。サスペンスとは**データ取得ライブラリのための仕組み**であり、*コンポーネントが読み出そうとしているデータがまだ準備できていない*と React に伝えられるようにします。これにより React はデータが準備できるまで待機してから UI を更新します。Facebook では、Relay と[新しい Suspense 連携機能](https://relay.dev/docs/en/experimental/a-guided-tour-of-relay#loading-states-with-suspense)を利用しています。Apollo のような他のライブラリも似たような連携機能が提供できることを期待しています。
+サスペンスはデータ取得ライブラリではありません。サスペンスとは**データ取得ライブラリのための仕組み**であり、*コンポーネントが読み出そうとしているデータがまだ準備できていない*と React に伝えられるようにします。これにより React はデータが準備できるまで待機してから UI を更新します。Facebook では、Relay と[新しい Suspense 連携機能](https://relay.dev/docs/en/experimental/step-by-step)を利用しています。Apollo のような他のライブラリも似たような連携機能が提供できることを期待しています。
 
 長期的にはサスペンスが、コンポーネントで非同期的なデータ（それがどこから来るのかに関わらず）を読み込む際の主要な方法となることを意図しています。
 
@@ -112,7 +123,7 @@ function ProfileTimeline() {
 
 ## 現実環境でのサスペンスの使用 {#using-suspense-in-practice}
 
-Facebook では今のところ、本番環境において Relay のサスペンス連携機能のみを利用しています。**今すぐ始めるための実用的なガイドが見たい場合は、[Relay のガイドをご覧ください](https://relay.dev/docs/en/experimental/a-guided-tour-of-relay)！** 本番環境で既にうまく動作しているパターンについて述べられています。
+Facebook では今のところ、本番環境において Relay のサスペンス連携機能のみを利用しています。**今すぐ始めるための実用的なガイドが見たい場合は、[Relay のガイドをご覧ください](https://relay.dev/docs/en/experimental/step-by-step)！** 本番環境で既にうまく動作しているパターンについて述べられています。
 
 **このページのコードデモでは Relay ではなくフェイクの API 実装を使っています。**このため GraphQL に馴染みがない場合でも理解しやすくなっていますが、サスペンスを使ってアプリケーションを構築するための「正しいやり方」については述べていません。このページは概念的なものであり、サスペンスが*なぜ*このように動作し、どんな問題を解決するのかについて理解できるようにすることを目的としています。
 
@@ -128,9 +139,9 @@ Facebook では今のところ、本番環境において Relay のサスペン�
 
 これからコミュニティ内で他のライブラリを使った多くの実験がなされると思います。ライブラリ作者が覚えておいて欲しい重要なことが 1 つあります。
 
-技術的には可能ですが、サスペンスはコンポーネントがレンダーされてからデータ取得を開始するための方法であることを意図して*いません*。そうではなく、*既に取得されつつある*データに対して、コンポーネントがそれを「待機」中であると宣言できるようにします。ウォーターフォール (waterfall) の問題を避けられるアイディアをお持ちなのでない限り、レンダー前にデータ取得を行うことを推奨する、あるいは強制するような API が望ましいと考えています。現状の [Relay Suspense API](https://relay.dev/docs/en/experimental/api-reference#usepreloadedquery) のドキュメントはプリローディングについてまだ詳しく解説していませんが、近い将来にこれらの技術について公開する予定です。
+技術的には可能ですが、サスペンスはコンポーネントがレンダーされてからデータ取得を開始するための方法であることを意図して*いません*。そうではなく、*既に取得されつつある*データに対して、コンポーネントがそれを「待機」中であると宣言できるようにします。**[Building Great User Experiences with Concurrent Mode and Suspense](/blog/2019/11/06/building-great-user-experiences-with-concurrent-mode-and-suspense.html) で、なぜこのことが重要で、実際にどう実装すればよいのかについて説明しています。**
 
-ここでの我々のメッセージは、過去にはあまり一貫したものではありませんでした。サスペンスによるデータ取得はまだ実験的なものであり、我々が本番環境での使用のされ方について学び、この問題領域についてより理解するに従って、我々の推奨も変わるかもしれません。
+ウォーターフォール (waterfall) の問題を回避できるソリューションをお持ちなのでない限り、レンダー前にデータ取得を行うことを推奨する、あるいは強制するような API が望ましいと考えています。具体例として、[Relay Suspense API](https://relay.dev/docs/en/experimental/api-reference#usepreloadedquery) がどのようにプリロードを強制するのかについて見ることができます。ここでの我々のメッセージは、過去にはあまり一貫したものではありませんでした。サスペンスによるデータ取得はまだ実験的なものであり、我々が本番環境での使用のされ方について学び、この問題領域についてより理解するに従って、我々の推奨も変わるかもしれません。
 
 ## 既存アプローチ vs サスペンス {#traditional-approaches-vs-suspense}
 
@@ -363,6 +374,56 @@ function ProfileTimeline() {
 これは興味深い事実を意味します。単一のリクエストで必要なすべてのデータを集めてくる GraphQL クライアントを使っていたとしても、*リソースのストリーミングのお陰で、より多くのコンテンツを早期から表示できるようになる*のです。データ取得の*後*ではなくデータ取得を*行いながら*レンダーするので、レスポンス中で `user` が `posts` より先に現れたなら、レスポンスが終了する前に外側の `<Suspense>` バウンダリを "アンロック" 可能です。見逃していたかもしれないので繰り返しますが、fetch-then-render のソリューションにも、データ取得とレンダーとの間でウォーターフォールが存在していました。サスペンスにはこのウォーターフォールの問題がなく、Relay のようなライブラリはこのことをうまく利用します。
 
 これにより `if (...)` による「ロード中か」のチェックが消えたことにも注意してください。これによりボイラープレートを減らせるだけでなく、素早い設計の変更が簡単になります。例えば、プロフィール詳細とタイムライン投稿が同時に「ぱっと」出現するようにしたくなったなら、その 2 つの間にある `<Suspense>` を取り除けばいいのです。あるいはそれぞれに*個別の* `<Suspense>` バウンダリを与えることでそれぞれを独立させることもできます。サスペンスにより、コードに大きく手を加えることなしに、ロード中状態の粒度を変更し順番を制御できるようになります。
+
+## 早期から取得を開始する {#start-fetching-early}
+
+データ取得ライブラリを作成中なのであれば、Render-as-You-Fetch に関して忘れてはならない重要な特徴があります。**レンダーより*前に*取得を開始する**ということです。コード例で詳しく見てみましょう：
+
+```js
+// Start fetching early!
+const resource = fetchProfileData();
+
+// ...
+
+function ProfileDetails() {
+  // Try to read user info
+  const user = resource.user.read();
+  return <h1>{user.name}</h1>;
+}
+```
+
+**[CodeSandbox で試す](https://codesandbox.io/s/frosty-hermann-bztrp)**
+
+この例の `read()` 呼び出しが取得を*開始*しているのではありません。**既に取得の最中である**データの読み出しを試みているだけです。サスペンスを使って高速なアプリケーションを作成するにあたってこの違いは非常に重要です。コンポーネントのレンダーが始まるまでデータのロードを遅らせたくないのです。データ取得ライブラリ作者は、実際のデータフェッチを始めないと `resource` オブジェクトが取得できないようにすることで、これを強制できます。このページの「フェイク API」を使ったすべてのデモは、これを強制しています。
+
+この例のように「トップレベルで」データを取得するのは非現実的だと思われるかもしれません。別のプロフィールページに移動したくなったらどうするのでしょうか？ props の値に応じてデータ取得をしたいのかもしれませんよね。答えは、**イベントハンドラーでデータ取得を開始する**ことです。ユーザページ間を移動するシンプルな例です：
+
+```js{1,2,10,11}
+// First fetch: as soon as possible
+const initialResource = fetchProfileData(0);
+
+function App() {
+  const [resource, setResource] = useState(initialResource);
+  return (
+    <>
+      <button onClick={() => {
+        const nextUserId = getNextId(resource.userId);
+        // Next fetch: when the user clicks
+        setResource(fetchProfileData(nextUserId));
+      }}>
+        Next
+      </button>
+      <ProfilePage resource={resource} />
+    </>
+  );
+}
+```
+
+**[CodeSandbox で試す](https://codesandbox.io/s/infallible-feather-xjtbu)**
+
+このアプローチにより、**コードとデータを並行して取得**できます。ページ間でナビゲートする場合、ページのデータのロードを開始するためにそのページのコードがロードされるのを待つ必要はありません。（リンクのクリック時に）コードとデータの両方の取得を開始すればよく、それでユーザ体験はずっと向上します。
+
+次に湧いてくる疑問は、次の画面をレンダーしていないのに**何を**取得するのかをどうやって知るのか、です。これを解決するいくつかの方法があります（例えばデータ取得をルーティングソリューションの近くに統合する、など）。あなたがデータ取得ライブラリの開発をしている場合は、[Building Great User Experiences with Concurrent Mode and Suspense](/blog/2019/11/06/building-great-user-experiences-with-concurrent-mode-and-suspense.html) で、どのようにこれを実現し、なぜこれが重要なのかについて説明されています。
 
 ### まだ仕様は検討中です {#were-still-figuring-this-out}
 
@@ -666,7 +727,7 @@ function ProfilePage() {
 
 サスペンスによりいくつかの疑問が解決しましたが、新たな疑問も生じていることでしょう：
 
-* コンポーネントが "サスペンド" するというのはアプリがフリーズするということか？ 回避方法は？
+* コンポーネントが "サスペンド" するとアプリはフリーズするのか？ 回避方法は？
 * コンポーネントツリーの「上側」以外の場所でスピナーを表示したい場合は？
 * 不整合な UI を意図的に短時間表示*したい*場合に、それは可能か？
 * スピナーを表示するのではなく「グレーアウト」のような視覚効果を加えることは可能か？
