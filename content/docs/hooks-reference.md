@@ -183,7 +183,7 @@ const value = useContext(MyContext);
 
 直近の `<MyContext.Provider>` が更新された場合、このフックはその `MyContext` プロバイダに渡された最新の `value` の値を使って再レンダーを発生させます。
 
-`useContext` に渡す引数は**コンテキストオブジェクト自体**であることを忘れないでください。
+`useContext` に渡す引数は**コンテクストオブジェクト自体**であることを忘れないでください。
 
  * **正しい：**`useContext(MyContext)`
  * **間違い：**`useContext(MyContext.Consumer)`
@@ -197,6 +197,48 @@ const value = useContext(MyContext);
 >
 > `useContext(MyContext)` は現在のコンテクストの値を**読み取り**、その変化を購読することしかできません。コンテクストの値を**設定**するために、今後もツリーの上の階層で `<MyContext.Provider>` が必要です。
 
+**Context.Provider と組み合わせて使用する方法**
+```js{31-36}
+const themes = {
+  light: {
+    foreground: "#000000",
+    background: "#eeeeee"
+  },
+  dark: {
+    foreground: "#ffffff",
+    background: "#222222"
+  }
+};
+
+const ThemeContext = React.createContext(themes.light);
+
+function App() {
+  return (
+    <ThemeContext.Provider value={themes.dark}>
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+
+function Toolbar(props) {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+
+  return (
+    <button style={{ background: theme.background, color: theme.foreground }}>
+      I am styled by theme context!
+    </button>
+  );
+}
+```
+この例は[コンテクストのガイド](/docs/context.html)をフック用に変更したものです。コンテクストをいつどのように使うべきかについては同記事を参照してください。
 
 ## 追加のフック {#additional-hooks}
 
@@ -407,7 +449,7 @@ function FancyInput(props, ref) {
 FancyInput = forwardRef(FancyInput);
 ```
 
-この例では、`<FancyInput ref={fancyInputRef} />` をレンダーする親コンポーネントは `fancyInputRef.current.focus()` を呼べるようになります。
+この例では、`<FancyInput ref={inputRef} />` をレンダーする親コンポーネントは `inputRef.current.focus()` を呼べるようになります。
 
 ### `useLayoutEffect` {#uselayouteffect}
 

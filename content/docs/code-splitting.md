@@ -86,12 +86,6 @@ import("./math").then(math => {
 });
 ```
 
-> 補足：
->
-> `import()` 構文は ECMAScript (JavaScript) における[提案中](https://github.com/tc39/proposal-dynamic-import)の構文であり、
-> 現時点ではまだ言語標準となっていません。
-> 近い将来での標準化が期待されています。
-
 Webpack がこの構文を見つけると、自動的にアプリのコードを分割します。
 Create React App を使用している場合はすでに設定がされているため、[すぐに使用を開始することができます。](https://facebook.github.io/create-react-app/docs/code-splitting)
 [Next.js](https://github.com/zeit/next.js/#dynamic-import) も同様です。
@@ -106,7 +100,7 @@ Create React App を使用している場合はすでに設定がされている
 
 > 補足:
 >
-> `React.lazy` と Suspense はまだサーバーサイドレンダリングには使用できません。サーバーサイドでレンダリングされたアプリでコード分割をしたい場合には、[Loadable Components](https://github.com/smooth-code/loadable-components) の使用をおすすめします。こちらは[サーバーサイドレンダリングでのバンドル分割のための素晴らしいガイド](https://github.com/smooth-code/loadable-components/blob/master/packages/server/README.md)も提供していくれているので、参考にしてみてください。
+> `React.lazy` と Suspense はまだサーバーサイドレンダリングには使用できません。サーバーサイドでレンダリングされたアプリでコード分割をしたい場合には、[Loadable Components](https://github.com/smooth-code/loadable-components) の使用をおすすめします。こちらは[サーバーサイドレンダリングでのバンドル分割のための素晴らしいガイド](https://www.smooth-code.com/open-source/loadable-components/docs/server-side-rendering/)も提供していくれているので、参考にしてみてください。
 
 `React.lazy` 関数を使用すると、動的インポートを通常のコンポーネントとしてレンダリングすることができます。
 

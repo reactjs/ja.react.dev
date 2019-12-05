@@ -162,7 +162,7 @@ class MyClass extends React.Component {
 MyClass.contextType = MyContext;
 ```
 
-クラスの `contextType` プロパティには [`React.createContext()`](#reactcreatecontext) により作成されたコンテキストオブジェクトを指定することができます。これにより、`this.context` を使って、そのコンテクストタイプの最も近い現在値を利用できます。レンダー関数を含むあらゆるライフサイクルメソッドで参照できます。
+クラスの `contextType` プロパティには [`React.createContext()`](#reactcreatecontext) により作成されたコンテクストオブジェクトを指定することができます。これにより、`this.context` を使って、そのコンテクストタイプの最も近い現在値を利用できます。レンダー関数を含むあらゆるライフサイクルメソッドで参照できます。
 
 > 補足:
 >

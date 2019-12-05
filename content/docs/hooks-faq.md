@@ -83,7 +83,7 @@ React Native は[バージョン 0.59](https://facebook.github.io/react-native/b
 
 ### これまでの React の知識はどの程度使えますか？ {#how-much-of-my-react-knowledge-stays-relevant}
 
-フックとは、state やライフサイクル、コンテクストや ref といった、あなたが既に知っている React の機能をより直接的に利用できるようにする手段です。React の動作が根本的に変わるようなものではありませんし、コンポーネントや props、トップダウンのデータの流れについての知識はこれまと同様に重要です。
+フックとは、state やライフサイクル、コンテクストや ref といった、あなたが既に知っている React の機能をより直接的に利用できるようにする手段です。React の動作が根本的に変わるようなものではありませんし、コンポーネントや props、トップダウンのデータの流れについての知識はこれまでと同様に重要です。
 
 もちろんフックにはフックなりの学習曲線があります。このドキュメントに足りないことを見つけたら [Issue を報告](https://github.com/reactjs/reactjs.org/issues/new)していただければ、お手伝いします。
 
@@ -125,7 +125,7 @@ React の観点から見れば、フックを使ったコンポーネントは�
 
 > 補足
 >
-> [Testing Recipes](/docs/testing-recipes.html) にコピー・ペーストで使えるたくさんの例が掲載されています。
+> [テストのレシピ集](/docs/testing-recipes.html) にコピー・ペーストで使えるたくさんの例が掲載されています。
 
 例えばこのようなカウンタコンポーネントがあるとしましょう：
 
@@ -191,7 +191,7 @@ it('can render and update a counter', () => {
 
 ボイラープレートを減らすため、エンドユーザが使うのと同じ形でコンポーネントを使ってテストが記述できるように設計されている、[React Testing Library](https://testing-library.com/react) の利用をお勧めします。
 
-詳細については、[Testing Recipes](/docs/testing-recipes.html) をご覧ください。
+詳細については、[テストのレシピ集](/docs/testing-recipes.html) をご覧ください。
 
 ### [Lint ルール](https://www.npmjs.com/package/eslint-plugin-react-hooks) は具体的に何を強制するのですか？ {#what-exactly-do-the-lint-rules-enforce}
 
@@ -910,7 +910,7 @@ function DeepChild(props) {
 
 > 補足
 >
-> 我々は個別のコールバックを props として渡すのではなく、[コンテキスト経由で `dispatch` を渡す](#how-to-avoid-passing-callbacks-down)ことを推奨しています。以下のアプローチは網羅性と避難ハッチの目的で掲載しているものです。
+> 我々は個別のコールバックを props として渡すのではなく、[コンテクスト経由で `dispatch` を渡す](#how-to-avoid-passing-callbacks-down)ことを推奨しています。以下のアプローチは網羅性と避難ハッチの目的で掲載しているものです。
 >
 > また、[concurrent mode](/blog/2018/03/27/update-on-async-rendering.html) においてこのパターンは問題を起こす可能性があることにも注意してください。将来的にはより使いやすい代替手段を提供することを計画していますが、現時点での最も安全な解決法は、コールバックが依存している何らかの値が変わった場合はコールバックを無効化して作り直すことです。
 
