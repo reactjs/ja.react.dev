@@ -586,7 +586,7 @@ class ProfileTimeline extends React.Component {
 
 **[CodeSandbox で試す](https://codesandbox.io/s/trusting-clarke-8twuq)**
 
-これは見かけほど簡単ではありません。
+見た目ほど難しいことをしている訳ではありません。
 
 残念ながら、クラスを使っても `async` / `await` 構文を使っても、この問題は解決しませんでした。このバージョンでも同じ理由により、全く同じような競合状態が発生しています。
 
