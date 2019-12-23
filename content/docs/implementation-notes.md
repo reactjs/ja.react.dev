@@ -25,7 +25,11 @@ stack リコンサイラは、React 15 およびそれ以前のバージョン�
 
 ### 概要 {#overview}
 
+<<<<<<< HEAD
 リコンサイラそのものは公開 API を持ちません。リコンサイラは、React DOM や React Native のような [レンダラ](/docs/codebase-overview.html#stack-renderers) が、ユーザーの記述した React コンポーネントに応じてユーザーインターフェースを効率よく更新するために使用されます。
+=======
+The reconciler itself doesn't have a public API. [Renderers](/docs/codebase-overview.html#renderers) like React DOM and React Native use it to efficiently update the user interface according to the React components written by the user.
+>>>>>>> 1dd4e325f070ce198aed69fd9cc5467563679e54
 
 ### 再帰的な処理としてマウントする {#mounting-as-a-recursive-process}
 
