@@ -558,7 +558,7 @@ class DOMComponent {
 
 ### composite コンポーネントの更新 {#updating-composite-components}
 
-composite コンポーネントが新たな要素を受け取るときに、`componentWillUpdate()' ライフサイクルメソッドを実行します。
+composite コンポーネントが新たな要素を受け取るときに、`componentWillUpdate()` ライフサイクルメソッドを実行します。
 
 それからコンポーネントを新たな props で再レンダーし、レンダーされた次の要素を取得します：
 
