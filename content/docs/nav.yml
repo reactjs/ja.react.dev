@@ -139,15 +139,15 @@
   isOrdered: true
   items:
     - id: concurrent-mode-intro
-      title: Introducing Concurrent Mode
+      title: 並列モードの導入
     - id: concurrent-mode-suspense
-      title: Suspense for Data Fetching
+      title: サスペンスを使ったデータ取得
     - id: concurrent-mode-patterns
-      title: Concurrent UI Patterns
+      title: 並列的 UI パターン
     - id: concurrent-mode-adoption
-      title: Adopting Concurrent Mode
+      title: 並列モードの利用開始
     - id: concurrent-mode-reference
-      title: Concurrent Mode API Reference
+      title: 並列モード API リファレンス
 - title: Contributing
   items:
     - id: how-to-contribute
