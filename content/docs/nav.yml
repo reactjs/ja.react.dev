@@ -9,7 +9,7 @@
     - id: cdn-links
       title: CDN リンク
     - id: release-channels
-      title: Release Channels
+      title: リリースチャンネル
 - title: Main Concepts
   isOrdered: true
   items:
