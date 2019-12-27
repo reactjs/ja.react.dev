@@ -134,7 +134,7 @@
     - id: testing-recipes
       title: テストのレシピ集
     - id: testing-environments
-      title: Testing Environments
+      title: テスト環境
 - title: Concurrent Mode (Experimental)
   isOrdered: true
   items:
