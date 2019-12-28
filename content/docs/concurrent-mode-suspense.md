@@ -733,4 +733,4 @@ function ProfilePage() {
 * スピナーを表示するのではなく「グレーアウト」のような視覚効果を加えることは可能か？
 * [最後のサスペンスの例](https://codesandbox.io/s/infallible-feather-xjtbu)で "Next" ボタンをクリックしたときにログに警告が記録されているのは何故か？
 
-これらの疑問に答えるために、次の [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html) に進みます。
+これらの疑問に答えるために、次の記事、[並列的 UI パターン](/docs/concurrent-mode-patterns.html)に進みます。

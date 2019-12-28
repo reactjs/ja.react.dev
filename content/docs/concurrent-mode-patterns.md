@@ -49,7 +49,7 @@ next: concurrent-mode-adoption.html
 
 ## トランジション {#transitions}
 
-前のページ [Suspense for Data Fetching](/docs/concurrent-mode-suspense.html) にある[こちらのデモ](https://codesandbox.io/s/infallible-feather-xjtbu)について改めて考えましょう。
+前のページ、[サスペンスを使ったデータ取得](/docs/concurrent-mode-suspense.html)にある[こちらのデモ](https://codesandbox.io/s/infallible-feather-xjtbu)について改めて考えましょう。
 
 "Next" ボタンをクリックしてアクティブなプロフィールを切り替えた際、既存のページデータは即座に消えて、新しい画面のためのローディングインジケータを見ることになります。これは「望ましくない」ローディング中状態と呼べるでしょう。**これをスキップして、新しい画面に遷移 (transition) する前に新しいコンテンツがロードされるのを待機できれば良さそうです。**
 

@@ -22,7 +22,7 @@ prev: concurrent-mode-adoption.html
 
 </div>
 
-このページは React の[並列モード](/docs/concurrent-mode-intro.html) についての API リファレンスです。ガイド付きの案内記事を探している場合は、[Concurrent UI Patterns](/docs/concurrent-mode-patterns.html) を参照してください。
+このページは React の[並列モード](/docs/concurrent-mode-intro.html) についての API リファレンスです。ガイド付きの案内記事を探している場合は、[並列的 UI パターン](/docs/concurrent-mode-patterns.html)を参照してください。
 
 **補足：これは公開プレビューであり最終安定板ではありません。これらの API は将来高確率で変更されます。自己責任で使ってください！**
 
@@ -157,7 +157,7 @@ function App() {
 
 真偽値である `isPending` によってコンポーネントのトランジションが進行中かどうかを知ることができ、ユーザに前のプロフィールページ内で何らかのロード中テキストを表示してトランジションの進行中状態を伝えることができます。
 
-**トランジションについての詳細な解説は [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html#transitions) で読めます。**
+**トランジションについての詳細な解説は[並列的 UI パターン](/docs/concurrent-mode-patterns.html#transitions)で読めます。**
 
 #### useTransition 設定 {#usetransition-config}
 
@@ -201,7 +201,7 @@ function App() {
 
 これにより `input` が即座に新しいテキストを表示し始めることができ、ウェブページがレスポンシブに保たれます。その一方で `MySlowList` は、`timeoutMs` に書かれているとおり更新まで最大 2 秒間遅延されるので、バックグラウンドで現在のテキストの値がレンダーできるようになります。
 
-**値の遅延についての詳細な解説は [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html#deferring-a-value) で読めます。**
+**値の遅延についての詳細な解説は[並列的 UI パターン](/docs/concurrent-mode-patterns.html#deferring-a-value)で読めます。**
 
 #### useDeferredValue 設定 {#usedeferredvalue-config}
 

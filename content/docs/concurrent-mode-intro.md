@@ -24,10 +24,10 @@ next: concurrent-mode-suspense.html
 
 このページでは並列モードの理論的な概要について説明します。**より実践的な導入方法についてはこれ以降のセクションをお読みください**：
 
-* [Suspense for Data Fetching](/docs/concurrent-mode-suspense.html) では React コンポーネントでデータを取得するための新たな仕組みについて解説します。
-* [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html) では並列モードとサスペンスにより可能となるいくつかの UI パターンを提示します。
-* [Adopting Concurrent Mode](/docs/concurrent-mode-adoption.html) ではあなたのプロジェクトで並列モードを試す方法について説明します。
-* [Concurrent Mode API Reference](/docs/concurrent-mode-reference.html) では実験ビルドで利用可能な新しい API について述べます。
+* [サスペンスを使ったデータ取得](/docs/concurrent-mode-suspense.html)では React コンポーネントでデータを取得するための新たな仕組みについて解説します。
+* [並列的 UI パターン](/docs/concurrent-mode-patterns.html)では並列モードとサスペンスにより可能となるいくつかの UI パターンを提示します。
+* [並列モードの利用開始](/docs/concurrent-mode-adoption.html)ではあなたのプロジェクトで並列モードを試す方法について説明します。
+* [並列モード API リファレンス](/docs/concurrent-mode-reference.html)では実験ビルドで利用可能な新しい API について述べます。
 
 ## 並列モードとは？ {#what-is-concurrent-mode}
 
@@ -94,7 +94,7 @@ React は更新の「緊急性」を判断するための推測を行い、ま�
 
 以降のページでは、具体的なトピックに関して詳細を学んでいきます。
 
-* [Suspense for Data Fetching](/docs/concurrent-mode-suspense.html) では React コンポーネントでデータを取得するための新たな仕組みについて解説します。
-* [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html) では並列モードとサスペンスにより可能となるいくつかの UI パターンを提示します。
-* [Adopting Concurrent Mode](/docs/concurrent-mode-adoption.html) ではあなたのプロジェクトで並列モードを試す方法について説明します。
-* [Concurrent Mode API Reference](/docs/concurrent-mode-reference.html) では実験的ビルドで利用可能な新しい API について述べます。
+* [サスペンスを使ったデータ取得](/docs/concurrent-mode-suspense.html)では React コンポーネントでデータを取得するための新たな仕組みについて解説します。
+* [並列的 UI パターン](/docs/concurrent-mode-patterns.html)では並列モードとサスペンスにより可能となるいくつかの UI パターンを提示します。
+* [並列モードの利用開始](/docs/concurrent-mode-adoption.html)ではあなたのプロジェクトで並列モードを試す方法について説明します。
+* [並列モード API リファレンス](/docs/concurrent-mode-reference.html)では実験的ビルドで利用可能な新しい API について述べます。
