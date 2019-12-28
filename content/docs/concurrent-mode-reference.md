@@ -126,7 +126,7 @@ const [startTransition, isPending] = useTransition(SUSPENSE_CONFIG);
 **何らかの state の更新がコンポーネントのサスペンドを引き起こす場合は、その更新はトランジションでラップされるべきです。**
 
 ```js
-const SUSPENSE_CONFIG = {timeoutMs: 2000 };
+const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 
 function App() {
   const [resource, setResource] = useState(initialResource);

@@ -36,7 +36,7 @@ React は Internet Explorer 9 以降を含む全ての一般的なブラウザ�
 ReactDOM.render(element, container[, callback])
 ```
 
-渡された `container` の DOM に React 要素をレンダーし、コンポーネントへの[参照](/docs/more-about-refs.html)（[ステートレスコンポーネント](/docs/components-and-props.html#functional-and-class-components)の場合は `null`）を返します。
+渡された `container` の DOM に React 要素をレンダーし、コンポーネントへの[参照](/docs/more-about-refs.html)（[ステートレスコンポーネント](/docs/components-and-props.html#function-and-class-components)の場合は `null`）を返します。
 
 React 要素がすでに `container` にレンダーされている場合は更新を行い、最新の React 要素を反映するために必要な DOM のみを変更します。
 

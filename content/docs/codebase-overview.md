@@ -217,7 +217,7 @@ React Fiber のアーキテクチャに関して[ここ](https://github.com/acdl
 
 ### イベントシステム {#event-system}
 
-React は React DOM と React Native の両方で動作し、レンダラに依存しない合成 (synthetic) イベントシステムを実装しています。ソースコードは [`packages/react-events`](https://github.com/facebook/react/tree/master/packages/react-events) に格納されています。
+React は React DOM と React Native の両方で動作し、レンダラに依存しない合成 (synthetic) イベントシステムを実装しています。ソースコードは [`packages/legacy-events`](https://github.com/facebook/react/tree/master/packages/legacy-events) に格納されています。
 
 このイベントシステムのコードについて[深く掘り下げた動画](https://www.youtube.com/watch?v=dRo_egw7tBc)（66 分）があります。
 
