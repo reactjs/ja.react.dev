@@ -56,7 +56,11 @@ function ActionLink() {
 
 ここで、`e` は合成 (synthetic) イベントです。React はこれらの合成イベントを [W3C の仕様](https://www.w3.org/TR/DOM-Level-3-Events/)に則って定義しているので、ブラウザ間の互換性を心配する必要はありません。詳細については、[`SyntheticEvent`](/docs/events.html) のリファレンスガイドを参照してください。
 
+<<<<<<< HEAD
 React を使う場合、一般的には DOM 要素の生成後に `addEventListener` を呼び出してリスナーを追加するべきではありません。代わりに、要素が最初にレンダリングされる際にリスナーを指定するようにしてください。
+=======
+When using React, you generally don't need to call `addEventListener` to add listeners to a DOM element after it is created. Instead, just provide a listener when the element is initially rendered.
+>>>>>>> 5b6ad388804aaa5cf5504ccd04329f52960e17ae
 
 コンポーネントを [ES6 のクラス](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)を使用して定義した場合、一般的なパターンではイベントハンドラはクラスのメソッドになります。例えば、以下の `Toggle` コンポーネントはユーザーが "ON" 状態 "OFF" 状態を切り替えられるようなボタンをレンダーします。
 
@@ -143,7 +147,11 @@ class LoggingButton extends React.Component {
 
 ## イベントハンドラに引数を渡す {#passing-arguments-to-event-handlers}
 
+<<<<<<< HEAD
 ループ内では、イベントハンドラに追加のパラメータを渡したくなることがよくあります。例えば、`id` という行の ID がある場合、以下のどちらでも動作します：
+=======
+Inside a loop, it is common to want to pass an extra parameter to an event handler. For example, if `id` is the row ID, either of the following would work:
+>>>>>>> 5b6ad388804aaa5cf5504ccd04329f52960e17ae
 
 ```js
 <button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>
