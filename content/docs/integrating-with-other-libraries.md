@@ -39,7 +39,7 @@ class SomePlugin extends React.Component {
 }
 ```
 
-`componentDidMount` と `componentWillUnmount` の両方の [ライフサイクルメソッド](/docs/react-component.html#the-component-lifecycle) を定義したことに注意してください。多くの jQuery プラグインは DOM にイベントリスナーをアタッチするので、それらを `componentWillUnmount` でデタッチすることが重要です。もしプラグインがクリーンアップの方法を提供していない場合、あなた自身で提供する必要があります。メモリリークを防ぐためにプラグインが登録したイベントリスナを削除することを忘れないでください。
+`componentDidMount` と `componentWillUnmount` の両方の [ライフサイクルメソッド](/docs/react-component.html#the-component-lifecycle) を定義したことに注意してください。多くの jQuery プラグインは DOM にイベントリスナをアタッチするので、それらを `componentWillUnmount` でデタッチすることが重要です。もしプラグインがクリーンアップの方法を提供していない場合、あなた自身で提供する必要があります。メモリリークを防ぐためにプラグインが登録したイベントリスナを削除することを忘れないでください。
 
 ### jQuery Chosen プラグインとのインテグレーション {#integrating-with-jquery-chosen-plugin}
 

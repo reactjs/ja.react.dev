@@ -91,7 +91,7 @@ function BlueDatePicker() {
 }
 ```
 
-### ユーザー定義のコンポーネントの名前は大文字で始めること {#user-defined-components-must-be-capitalized}
+### ユーザ定義のコンポーネントの名前は大文字で始めること {#user-defined-components-must-be-capitalized}
 
 ある要素の型が小文字から始まっているような場合、それは `<div>` や `<span>` のような組み込みのコンポーネントを参照しており、これらはそれぞれ `'div'` や `'span'` といった文字列に変換されて `React.createElement` に渡されます。一方で `<Foo />` のように大文字で始まる型は `React.createElement(Foo)` にコンパイルされ、JavaScript ファイルにおいて定義あるいはインポートされたコンポーネントを参照します。
 

@@ -25,7 +25,7 @@ stack リコンサイラは、React 15 およびそれ以前のバージョン�
 
 ### 概要 {#overview}
 
-リコンサイラそのものは公開 API を持ちません。リコンサイラは、React DOM や React Native のような [レンダラ](/docs/codebase-overview.html#renderers) が、ユーザーの記述した React コンポーネントに応じてユーザーインターフェースを効率よく更新するために使用されます。
+リコンサイラそのものは公開 API を持ちません。リコンサイラは、React DOM や React Native のような [レンダラ](/docs/codebase-overview.html#renderers) が、ユーザの記述した React コンポーネントに応じてユーザインターフェースを効率よく更新するために使用されます。
 
 ### 再帰的な処理としてマウントする {#mounting-as-a-recursive-process}
 
@@ -110,14 +110,14 @@ rootEl.appendChild(node);
 上記の例でいくつかの鍵となるアイデアをおさらいしましょう：
 
 * React 要素とはコンポーネントの型（例えば `App`）と props を表すプレーンなオブジェクトである。
-* ユーザー定義コンポーネント（例えば `App`）はクラスであっても関数であってもよいが、それらは全て要素へと「レンダーされる」。
+* ユーザ定義コンポーネント（例えば `App`）はクラスであっても関数であってもよいが、それらは全て要素へと「レンダーされる」。
 * 「マウント」とは、最上位の React 要素（例えば `<App />`）を受け取り、DOM もしくはネイティブなツリーを構築する再帰的な処理である。
 
 ### host要素のマウント {#mounting-host-elements}
 
 このようにして要素ができても、それを使って画面に何か表示しなければ意味がありません。
 
-ユーザー定義 ("composite") コンポーネントに加え、React 要素はプラットフォームに固有な ("host") コンポーネントも表すことができます。例えば、`Button` は render メソッドから `<div />` を返すことが考えられます。
+ユーザ定義 ("composite") コンポーネントに加え、React 要素はプラットフォームに固有な ("host") コンポーネントも表すことができます。例えば、`Button` は render メソッドから `<div />` を返すことが考えられます。
 
 もし要素の `type` プロパティが文字列なら、私たちはいま host 要素を扱っていることになります：
 
@@ -126,7 +126,7 @@ console.log(<div />);
 // { type: 'div', props: {} }
 ```
 
-host 要素に関連付けられているユーザー定義のコードはありません。
+host 要素に関連付けられているユーザ定義のコードはありません。
 
 リコンサイラは host 要素を見つけると、レンダラに host 要素のマウントを任せます。例えば、React DOM は DOM ノードを生成します。
 
@@ -317,11 +317,11 @@ class CompositeComponent {
 
 以前の `mountComposite()` の実装と大きな違いはありませんが、更新時に使用する `this.currentElement` 、`this.renderedComponent` や、`this.publicInstance` のような情報を保存できるようになりました。
 
-`CompositeComponent` のインスタンスは、ユーザーが指定する `element.type` のインスタンスとは同一ではないことに注意してください。`CompositeComponent` はリコンサイラの実装の詳細であり、ユーザーには決して公開されません。ユーザー定義クラスとは `element.type` から読み込むものであり、`CompositeComponent` がそのインスタンスを作成するのです。
+`CompositeComponent` のインスタンスは、ユーザが指定する `element.type` のインスタンスとは同一ではないことに注意してください。`CompositeComponent` はリコンサイラの実装の詳細であり、ユーザには決して公開されません。ユーザ定義クラスとは `element.type` から読み込むものであり、`CompositeComponent` がそのインスタンスを作成するのです。
 
 混乱を避けるために、`CompositeComponent` と `DOMComponent` のインスタンスを「内部インスタンス」と呼ぶことにします。内部インスタンスは、長期間利用されるデータとそれらを関連付けられるようにするために存在します。それらの存在はレンダラとリコンサイラのみが認識しています。
 
-一方、ユーザー定義クラスのインスタンスは「公開インスタンス」と呼ぶことにします。公開インスタンスは、独自コンポーネントの `render()` やその他のメソッド内で `this` として現れるものです。
+一方、ユーザ定義クラスのインスタンスは「公開インスタンス」と呼ぶことにします。公開インスタンスは、独自コンポーネントの `render()` やその他のメソッド内で `this` として現れるものです。
 
 `mountHost()` 関数は、`DOMComponent` クラスの `mount()` メソッドとしてリファクタリングされ、こちらも見慣れたものになります：
 
@@ -876,7 +876,7 @@ mountTree(<App />, rootEl);
 
 * [`ReactMount`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/dom/client/ReactMount.js) はこのチュートリアルにある `mountTree()` や `unmountTree()` のようなコードがある場所です。ここでは最上位コンポーネントのマウントやアンマウントが行われます。[`ReactNativeMount`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/native/ReactNativeMount.js) はその React Native 版です。
 * [`ReactDOMComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/dom/shared/ReactDOMComponent.js) はこのチュートリアルでの `DOMComponent` にあたります。これは、React DOM レンダラ向けの host コンポーネントクラスを実装するものです。[`ReactNativeBaseComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/native/ReactNativeBaseComponent.js) はその React Native 版です。
-* [`ReactCompositeComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactCompositeComponent.js) はこのチュートリアルでの `CompositeComponent` にあたります。これは、ユーザー定義コンポーネントの呼び出しとその state の保持を扱います。
+* [`ReactCompositeComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactCompositeComponent.js) はこのチュートリアルでの `CompositeComponent` にあたります。これは、ユーザ定義コンポーネントの呼び出しとその state の保持を扱います。
 * [`instantiateReactComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/instantiateReactComponent.js) はある要素に対して構築すべき正しい内部インスタンスクラスを選ぶスイッチを持っています。これは、このチュートリアルにおける `instantiateComponent()` にあたります。
 
 * [`ReactReconciler`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactReconciler.js) は `mountComponent()`、`receiveComponent()`、そして `unmountComponent()` メソッドのラッパーです。これは水面下で内部インスタンスの実装を呼び出しますが、それらに追加するコードも含んでおり、その追加コードは全ての内部インスタンスの実装で共有されます。
