@@ -62,7 +62,7 @@
     - id: portals
       title: ポータル
     - id: profiler
-      title: Profiler
+      title: プロファイラ
     - id: react-without-es6
       title: ES6 なしで React を使う
     - id: react-without-jsx
