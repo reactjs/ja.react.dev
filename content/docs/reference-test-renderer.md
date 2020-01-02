@@ -111,7 +111,7 @@ TestRenderer.create(element, options);
 TestRenderer.act(callback);
 ```
 
-`TestRenderer.act` は [`react-dom/test-utils` の `act` ヘルパー](/docs/test-utils.html#act)と同じように、アサーション用のコンポーネントを準備します。このバージョンの `act()` を使って、`TestRenderer.create` と `testRenderer.update` の呼び出しをラップします。
+`TestRenderer.act` は [`react-dom/test-utils` の `act` ヘルパ](/docs/test-utils.html#act)と同じように、アサーション用のコンポーネントを準備します。このバージョンの `act()` を使って、`TestRenderer.create` と `testRenderer.update` の呼び出しをラップします。
 
 ```javascript
 import {create, act} from 'react-test-renderer';
