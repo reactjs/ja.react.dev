@@ -106,7 +106,11 @@ function Page(props) {
 
 このパターンは、そのすぐ上の親から子を切り離す必要がある多くのケースにとって十分です。レンダリングの前に子が親とやり取りする必要がある場合、さらに[レンダープロップ](/docs/render-props.html)と合わせて使うことができます。
 
+<<<<<<< HEAD
 しかし、たまに同じデータがツリー内の異なるネスト階層にある多くのコンポーネントからアクセス可能であることが必要となります。コンテクストはそのようなデータとその変更を以下の全てのコンポーネントへ「ブロードキャスト」できます。コンテクストを使うことが他の手法よりシンプルである一般的な例としては、現在のロケール、テーマ、またはデータキャッシュの管理が挙げられます。
+=======
+However, sometimes the same data needs to be accessible by many components in the tree, and at different nesting levels. Context lets you "broadcast" such data, and changes to it, to all components below. Common examples where using context might be simpler than the alternatives include managing the current locale, theme, or a data cache.
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 ## API {#api}
 
@@ -130,6 +134,7 @@ const MyContext = React.createContext(defaultValue);
 
 プロバイダは `value` プロパティを受け取り、これが子孫であるコンシューマコンポーネントに渡されます。1 つのプロバイダは多くのコンシューマと接続することが出来ます。プロバイダは値を上書きするために、ツリー内のより深い位置でネストできます。
 
+<<<<<<< HEAD
 プロバイダの子孫の全てのコンシューマは、プロバイダの `value` プロパティが変更されるたびに再レンダーされます。プロバイダからその子孫コンシューマへの伝播は `shouldComponentUpdate` メソッドの影響を受けないため、コンシューマは祖先のコンポーネントで更新処理が止められた場合でも更新されます。
 
 変更は、[`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description) と同じアルゴリズムを使用し、新しい値と古い値の比較によって判断されます。
@@ -137,6 +142,15 @@ const MyContext = React.createContext(defaultValue);
 > 補足
 > 
 > この方法で変更の有無を判断するため、オブジェクトを `value` として渡した場合にいくつかの問題が発生する可能性があります。詳細は[注意事項](#caveats)を参照。
+=======
+All consumers that are descendants of a Provider will re-render whenever the Provider's `value` prop changes. The propagation from Provider to its descendant consumers (including [`.contextType`](#classcontexttype) and [`useContext`](/docs/hooks-reference.html#usecontext)) is not subject to the `shouldComponentUpdate` method, so the consumer is updated even when an ancestor component skips an update.
+
+Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).
+
+> Note
+>
+> The way changes are determined can cause some issues when passing objects as `value`: see [Caveats](#caveats).
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 ### `Class.contextType` {#classcontexttype}
 
@@ -192,9 +206,15 @@ class MyClass extends React.Component {
 
 [function as a child](/docs/render-props.html#using-props-other-than-render) が必要です。この関数は現在のコンテクストの値を受け取り、React ノードを返します。この関数に渡される引数 `value` は、ツリー内の上位で一番近いこのコンテクスト用のプロバイダの `value` プロパティと等しくなります。このコンテクスト用のプロバイダが上位に存在しない場合、引数の `value` は `createContext()` から渡された `defaultValue` と等しくなります。
 
+<<<<<<< HEAD
 > 補足
 > 
 > "function as a child" パターンについてさらに情報が必要な場合は [レンダープロップ](/docs/render-props.html) を参照してください。
+=======
+> Note
+>
+> For more information about the 'function as a child' pattern, see [render props](/docs/render-props.html).
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 ### `Context.displayName` {#contextdisplayname}
 
@@ -240,7 +260,11 @@ MyContext.displayName = 'MyDisplayName';
 
 ### 複数のコンテクストを使用する {#consuming-multiple-contexts}
 
+<<<<<<< HEAD
 コンテクストの再レンダーを高速に保つために、React は各コンテクストのコンシューマをツリー内の別々のノードにする必要があります。
+=======
+To keep context re-rendering fast, React needs to make each context consumer a separate node in the tree.
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 `embed:context/multiple-contexts.js`
 
@@ -258,6 +282,13 @@ MyContext.displayName = 'MyDisplayName';
 
 ## レガシーな API {#legacy-api}
 
+<<<<<<< HEAD
 > 補足
 > 
 > React は以前に実験的なコンテクスト API を公開していました。その古い API は全ての 16.x 系のリリースでサポートされる予定ですが、アプリケーションで使用しているのであれば、新しいバージョンにマイグレーションすべきです。レガシーな API は将来の React メジャーバージョンで削除されます。[レガシーなコンテクストのドキュメントはここにあります。](/docs/legacy-context.html)
+=======
+> Note
+>
+> React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. The legacy API will be removed in a future major React version. Read the [legacy context docs here](/docs/legacy-context.html).
+
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4

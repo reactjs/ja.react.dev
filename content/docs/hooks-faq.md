@@ -428,8 +428,8 @@ function Example() {
 
 ```js
 function ScrollView({row}) {
-  let [isScrollingDown, setIsScrollingDown] = useState(false);
-  let [prevRow, setPrevRow] = useState(null);
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const [prevRow, setPrevRow] = useState(null);
 
   if (row !== prevRow) {
     // Row changed since last render. Update isScrollingDown.
@@ -465,7 +465,11 @@ function ScrollView({row}) {
 
 ### DOM ノードの位置やサイズの測定はどのように行うのですか？ {#how-can-i-measure-a-dom-node}
 
+<<<<<<< HEAD
 DOM ノードの位置やサイズを測定するためには、[コールバック形式の ref](/docs/refs-and-the-dom.html#callback-refs) が利用できます。React は ref が異なるノードに割り当てられるたびにコールバックを呼び出します。こちらの[小さなデモ](https://codesandbox.io/s/l7m0v5x4v9)をご覧ください。
+=======
+One rudimentary way to measure the position or size of a DOM node is to use a [callback ref](/docs/refs-and-the-dom.html#callback-refs). React will call that callback whenever the ref gets attached to a different node. Here is a [small demo](https://codesandbox.io/s/l7m0v5x4v9):
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 ```js{4-8,12}
 function MeasureExample() {
@@ -490,7 +494,13 @@ function MeasureExample() {
 
 `useCallback` の依存値の配列として `[]` を渡したことに注意してください。これにより我々の ref コールバックが再レンダーごとに変化しないことが保証され、React が不必要にその関数を呼ばないで済みます。
 
+<<<<<<< HEAD
 お望みであれば再利用可能なフックとして[このロジックを抽出](https://codesandbox.io/s/m5o42082xy)できます。
+=======
+In this example, the callback ref will be called only when the component mounts and unmounts, since the rendered `<h1>` component stays present throughout any rerenders. If you want to be notified any time a component resizes, you may want to use [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) or a third-party Hook built on it.
+
+If you want, you can [extract this logic](https://codesandbox.io/s/m5o42082xy) into a reusable Hook:
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 ```js{2}
 function MeasureExample() {
@@ -715,7 +725,7 @@ function Counter() {
 ```js{2-6,10-11,16}
 function Example(props) {
   // Keep latest props in a ref.
-  let latestProps = useRef(props);
+  const latestProps = useRef(props);
   useEffect(() => {
     latestProps.current = props;
   });
