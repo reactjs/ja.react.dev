@@ -79,7 +79,7 @@ React Native は[バージョン 0.59](https://facebook.github.io/react-native/b
 
 ### クラスではできず、フックでできるようになることは何ですか？ {#what-can-i-do-with-hooks-that-i-couldnt-with-classes}
 
-フックにより、コンポーネント間で機能を再利用するためのパワフルで表現力の高い手段が得られます。["独自フックの作成"](/docs/hooks-custom.html)を読めばできることの概要が掴めるでしょう。React のコアチームメンバーによって書かれた[この記事](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889)により、フックによって新たにもたらされる可能性についての洞察が得られます。
+フックにより、コンポーネント間で機能を再利用するためのパワフルで表現力の高い手段が得られます。["カスタムフックの作成"](/docs/hooks-custom.html)を読めばできることの概要が掴めるでしょう。React のコアチームメンバーによって書かれた[この記事](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889)により、フックによって新たにもたらされる可能性についての洞察が得られます。
 
 ### これまでの React の知識はどの程度使えますか？ {#how-much-of-my-react-knowledge-stays-relevant}
 

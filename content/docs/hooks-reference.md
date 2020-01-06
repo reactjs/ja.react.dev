@@ -473,7 +473,7 @@ useDebugValue(value)
 
 `useDebugValue` を使って React DevTools でカスタムフックのラベルを表示することができます。
 
-例えば ["独自フックの作成"](/docs/hooks-custom.html) で説明した `useFriendStatus` を例にします：
+例えば ["カスタムフックの作成"](/docs/hooks-custom.html) で説明した `useFriendStatus` を例にします：
 
 ```js{6-8}
 function useFriendStatus(friendID) {

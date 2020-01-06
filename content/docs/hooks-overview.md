@@ -172,7 +172,7 @@ function FriendStatusWithCounter(props) {
 >
 > これらのルールについての詳細は[フックのルール](/docs/hooks-rules.html)を参照してください。
 
-## 💡 独自フックの作成 {#building-your-own-hooks}
+## 💡 カスタムフックの作成 {#building-your-own-hooks}
 
 state を用いたロジックをコンポーネント間で再利用したいことがあります。これまでは、このような問題に対して 2 種類の人気の解決方法がありました。[高階コンポーネント](/docs/higher-order-components.html)と [レンダープロップ](/docs/render-props.html) です。カスタムフックを利用することで、同様のことが、ツリー内のコンポーネントを増やすことなく行えるようになります。
 
@@ -237,7 +237,7 @@ function FriendListItem(props) {
 
 > 詳しくは
 >
-> カスタム Hooks についての詳しい情報は[独自フックの作成](/docs/hooks-custom.html)を参照してください。
+> カスタム Hooks についての詳しい情報は[カスタムフックの作成](/docs/hooks-custom.html)を参照してください。
 
 ## 🔌 その他のフック {#other-hooks}
 
