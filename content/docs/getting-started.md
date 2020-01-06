@@ -20,7 +20,7 @@ redirect_from:
 
 このページは React のドキュメント、および関連する資料の概要となります。
 
-**React** はユーザーインターフェースを作成する為の JavaScript のライブラリです。[ここのホームページ](/)、または[このチュートリアル](/tutorial/tutorial.html)から React がどういうものかを学びましょう。
+**React** はユーザインターフェースを作成する為の JavaScript のライブラリです。[ここのホームページ](/)、または[このチュートリアル](/tutorial/tutorial.html)から React がどういうものかを学びましょう。
 
 ---
 
@@ -91,7 +91,7 @@ JavaScript について自分がどれだけ知っているかを知るために
 
 ### React 的な考え方 {#thinking-in-react}
 
-多くの React のユーザーは [React の流儀](/docs/thinking-in-react.html)を読んだ時に React についてピンときたと高く評価しています。この世に存在する一番古い React に関する資料ですが、今でも現役で使えます。
+多くの React のユーザは [React の流儀](/docs/thinking-in-react.html)を読んだ時に React についてピンときたと高く評価しています。この世に存在する一番古い React に関する資料ですが、今でも現役で使えます。
 
 ### おすすめの資料 {#recommended-courses}
 

@@ -21,7 +21,7 @@ React に関する開発作業はすべて [GitHub](https://github.com/facebook/
 
 ### セマンティック・バージョニング {#semantic-versioning}
 
-React は[セマンティック・バージョニング](http://semver.org/)の原則に従います。バグ修正のためのパッチバージョン、新機能のためのマイナーバージョン、そして重大な変更のためのメジャーバージョンをリリースします。私たちが重大な変更を加えるとき、ユーザーが今後の変更について前もって知り、コードを移行するために、私たちはマイナーバージョンで非推奨警告を行います。
+React は[セマンティック・バージョニング](http://semver.org/)の原則に従います。バグ修正のためのパッチバージョン、新機能のためのマイナーバージョン、そして重大な変更のためのメジャーバージョンをリリースします。私たちが重大な変更を加えるとき、ユーザが今後の変更について前もって知り、コードを移行するために、私たちはマイナーバージョンで非推奨警告を行います。
 
 私たちは全てのプルリクエストにラベルを付けます。ラベルは、行われる変更が[パッチ](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-patch)、[マイナー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-minor)、[メジャー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-major) バージョンのどれに該当するかによって決まります。数週間ごとにパッチバージョン、数ヶ月ごとにマイナーバージョン、そして年に 1、2 回メジャーバージョンをリリースします。
 

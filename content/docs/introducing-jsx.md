@@ -131,7 +131,7 @@ const element = (
 
 ### JSX はインジェクション攻撃を防ぐ {#jsx-prevents-injection-attacks}
 
-JSX にユーザーの入力を埋め込むことは安全です：
+JSX にユーザの入力を埋め込むことは安全です：
 
 ```js
 const title = response.potentiallyMaliciousInput;

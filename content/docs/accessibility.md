@@ -124,11 +124,11 @@ React でこれらの標準的な HTML の実践知識を直接使用できま�
 <input id="namedInput" type="text" name="name"/>
 ```
 
-### ユーザーへのエラー通知 {#notifying-the-user-of-errors}
+### ユーザへのエラー通知 {#notifying-the-user-of-errors}
 
-すべてのユーザがエラーの起きた状況を理解できる必要があります。以下のリンクはどのようにエラーテキストをユーザーと同じくスクリーンリーダにも公開するかを解説しています。
+すべてのユーザがエラーの起きた状況を理解できる必要があります。以下のリンクはどのようにエラーテキストをユーザと同じくスクリーンリーダにも公開するかを解説しています。
 
-- [W3C によるユーザーへの通知方法の例示](https://www.w3.org/WAI/tutorials/forms/notifications/)
+- [W3C によるユーザへの通知方法の例示](https://www.w3.org/WAI/tutorials/forms/notifications/)
 - [WebAIM によるフォームバリデーションの解説](https://webaim.org/techniques/formvalidation/)
 
 ## フォーカス制御 {#focus-control}
@@ -359,9 +359,9 @@ class BlurExample extends React.Component {
 }
 ```
 
-上記のコードは、ポインタデバイス使うユーザとキーボードを使うユーザの双方にこの機能を公開します。さらに、`aria-*` props を加えるとスクリーンリーダを使うユーザーもサポートできます。話を簡単にするため、ポップアップの選択肢を `矢印キー` で操作できるようにするキーボードイベントは実装していません。
+上記のコードは、ポインタデバイス使うユーザとキーボードを使うユーザの双方にこの機能を公開します。さらに、`aria-*` props を加えるとスクリーンリーダを使うユーザもサポートできます。話を簡単にするため、ポップアップの選択肢を `矢印キー` で操作できるようにするキーボードイベントは実装していません。
 
-<img src="../images/docs/blur-popover-close.gif" alt="ポップアップリストがマウスとキーボードのどちらを使うユーザーにも使いやすくなった様子" />
+<img src="../images/docs/blur-popover-close.gif" alt="ポップアップリストがマウスとキーボードのどちらを使うユーザにも使いやすくなった様子" />
 
 これはポインタデバイスとマウスイベントだけに依存するとキーボードを使うユーザにとって機能が損なわれてしまう数多くの具体例のうちのひとつです。つねにキーボードによるテストをすれば、キーボードに対応するイベントを使うことで解決できる問題領域をすばやく発見できるでしょう。
 
@@ -371,7 +371,7 @@ class BlurExample extends React.Component {
 
 ここでは [ARIA のロール](https://www.w3.org/TR/wai-aria/#roles) や [ARIA のステートとプロパティ](https://www.w3.org/TR/wai-aria/#states_and_properties)についての知識も必要となります。これらは JSX で完全にサポートされている HTML 属性が詰まったツールボックスであり、十分にアクセシブルで高機能な React コンポーネントの構築を可能にしてくれます。
 
-それぞれの種類のウィジェットはそれぞれ特定のデザインパターンを持っており、ユーザやユーザーエージェントはそれらが特定の方法で機能することを期待します：
+それぞれの種類のウィジェットはそれぞれ特定のデザインパターンを持っており、ユーザやユーザエージェントはそれらが特定の方法で機能することを期待します：
 
 - [WAI-ARIA Authoring Practices - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
 - [Heydon Pickering - ARIA Examples](https://heydonworks.com/practical_aria_examples/)

@@ -111,7 +111,7 @@ TestRenderer.create(element, options);
 TestRenderer.act(callback);
 ```
 
-Similar to the [`act()` helper from `react-dom/test-utils`](/docs/test-utils.html#act), `TestRenderer.act` prepares a component for assertions. Use this version of `act()` to wrap calls to `TestRenderer.create` and `testRenderer.update`.
+`TestRenderer.act` は [`react-dom/test-utils` の `act` ヘルパ](/docs/test-utils.html#act)と同じように、アサーション用のコンポーネントを準備します。このバージョンの `act()` を使って、`TestRenderer.create` と `testRenderer.update` の呼び出しをラップします。
 
 ```javascript
 import {create, act} from 'react-test-renderer';
@@ -141,7 +141,7 @@ expect(root.toJSON()).toMatchSnapshot();
 testRenderer.toJSON()
 ```
 
-レンダーされたツリーを表すオブジェクトを返します。このツリーは `<div>` もしくは `<View>` のようなプラットフォーム固有のノードとそのプロパティを含みますが、ユーザー定義のコンポーネントは含まれません。[スナップショットテスト](https://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest)に便利です。
+レンダーされたツリーを表すオブジェクトを返します。このツリーは `<div>` もしくは `<View>` のようなプラットフォーム固有のノードとそのプロパティを含みますが、ユーザ定義のコンポーネントは含まれません。[スナップショットテスト](https://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest)に便利です。
 
 ### `testRenderer.toTree()` {#testrenderertotree}
 
@@ -149,7 +149,7 @@ testRenderer.toJSON()
 testRenderer.toTree()
 ```
 
-レンダーされたツリーを表すオブジェクトを返します。`toJSON()` とは異なり、このツリーはより詳細なものであり、ユーザー定義のコンポーネントも含んでいます。テストレンダラを利用して自作のアサーションライブラリを作成している場合以外は、おそらくこのメソッドが必要となることはないでしょう。
+レンダーされたツリーを表すオブジェクトを返します。`toJSON()` とは異なり、このツリーはより詳細なものであり、ユーザ定義のコンポーネントも含んでいます。テストレンダラを利用して自作のアサーションライブラリを作成している場合以外は、おそらくこのメソッドが必要となることはないでしょう。
 
 ### `testRenderer.update()` {#testrendererupdate}
 

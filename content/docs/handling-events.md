@@ -58,7 +58,7 @@ function ActionLink() {
 
 React を使う場合、一般的には DOM 要素の生成後に `addEventListener` を呼び出してリスナを追加する必要はありません。代わりに、要素が最初にレンダーされる際にリスナを指定するようにしてください。
 
-コンポーネントを [ES6 のクラス](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)を使用して定義した場合、一般的なパターンではイベントハンドラはクラスのメソッドになります。例えば、以下の `Toggle` コンポーネントはユーザーが "ON" 状態 "OFF" 状態を切り替えられるようなボタンをレンダーします。
+コンポーネントを [ES6 のクラス](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)を使用して定義した場合、一般的なパターンではイベントハンドラはクラスのメソッドになります。例えば、以下の `Toggle` コンポーネントはユーザが "ON" 状態 "OFF" 状態を切り替えられるようなボタンをレンダーします。
 
 ```js{6,7,10-14,18}
 class Toggle extends React.Component {
