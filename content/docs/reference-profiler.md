@@ -110,10 +110,10 @@ function onRenderCallback(
 現在の更新を React がコミットした時刻に対応するタイムスタンプ。
 必要に応じてグループ化できるよう、1 コミット内のすべてのプロファイラ間でこの値は共有されます。
 * **`interactions: Set`** -
-更新がスケジュールされた（`render` や `setState` の呼び出しなどにより）際に trace された ["interaction"](http://fb.me/react-interaction-tracing) の Set。
+更新がスケジュールされた（`render` や `setState` の呼び出しなどにより）際に trace された ["interaction"](https://fb.me/react-interaction-tracing) の Set。
 
 > 補足
 >
 > 更新の原因を特定するために interaction を利用可能ですが、trace 用の API は依然実験的です。
 >
-> [fb.me/react-interaction-tracing](http://fb.me/react-interaction-tracing) に詳細があります。
+> [fb.me/react-interaction-tracing](https://fb.me/react-interaction-tracing) に詳細があります。
