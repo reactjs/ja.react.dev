@@ -111,7 +111,7 @@ TestRenderer.create(element, options);
 TestRenderer.act(callback);
 ```
 
-Similar to the [`act()` helper from `react-dom/test-utils`](/docs/test-utils.html#act), `TestRenderer.act` prepares a component for assertions. Use this version of `act()` to wrap calls to `TestRenderer.create` and `testRenderer.update`.
+`TestRenderer.act` は [`react-dom/test-utils` の `act` ヘルパ](/docs/test-utils.html#act)と同じように、アサーション用のコンポーネントを準備します。このバージョンの `act()` を使って、`TestRenderer.create` と `testRenderer.update` の呼び出しをラップします。
 
 ```javascript
 import {create, act} from 'react-test-renderer';
