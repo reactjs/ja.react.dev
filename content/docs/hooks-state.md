@@ -234,9 +234,9 @@ state 変数を宣言するときのこの角カッコに気付かれたでし�
 この JavaScript の構文は ["分割代入 (destructuring)"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring) と呼ばれています。これが意味するところは、`fruit` と `setFruit` という名前の 2 つの変数を作って、`useState` から返される値のうち 1 つ目を `fruit` に、2 つ目を `setFruit` に代入する、ということです。これは以下のコードと等価です：
 
 ```js
-  var fruitStateVariable = useState('banana'); // Returns a pair
-  var fruit = fruitStateVariable[0]; // First item in a pair
-  var setFruit = fruitStateVariable[1]; // Second item in a pair
+  const fruitStateVariable = useState('banana'); // Returns a pair
+  const fruit = fruitStateVariable[0]; // First item in a pair
+  const setFruit = fruitStateVariable[1]; // Second item in a pair
 ```
 
 `useState` で state 変数を宣言する際、ペア、つまり 2 つの要素を含んだ配列が返されます。1 つ目の要素は state の現在の値、2 つ目の要素はそれを更新するための関数です。これらには特定の意味があるので、アクセスするのに `[0]` や `[1]` を使うのではちょっと分かりづらくなります。だから代わりに分割代入を使うというわけです。
