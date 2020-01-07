@@ -12,7 +12,7 @@ redirect_from:
 >
 > コードを自動で変換するための [codemod スクリプト](/blog/2017/04/07/react-v15.5.0.html#migrating-from-reactproptypes)を提供しています。
 
-アプリケーションが成長するにつれて、型チェックによって多くの不具合を見つけられるようになります。アプリケーションによっては、[Flow](https://flow.org/) もしくは [TypeScript](https://www.typescriptlang.org/) のような JavaScript 拡張を使ってアプリケーション全体の型チェックを行うことができるでしょう。しかしそれらを使用せずとも、React は組み込みの型チェック機能を備えています。コンポーネントの props に型チェックを行うために、特別な `propTypes` プロパティを割当てることがます。
+アプリケーションが成長するにつれて、型チェックによって多くの不具合を見つけられるようになります。アプリケーションによっては、[Flow](https://flow.org/) もしくは [TypeScript](https://www.typescriptlang.org/) のような JavaScript 拡張を使ってアプリケーション全体の型チェックを行うことができるでしょう。しかしそれらを使用せずとも、React は組み込みの型チェック機能を備えています。コンポーネントの props に型チェックを行うために、特別な `propTypes` プロパティを割当てることができます。
 
 ```javascript
 import PropTypes from 'prop-types';
