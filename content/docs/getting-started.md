@@ -48,11 +48,7 @@ React をちょっと試してみたい場合、Web 上のコードエディタ�
 
 新しく React のプロジェクトを始めたい場合でも、まずは[シンプルな HTML ページに script タグを追加](/docs/add-react-to-a-website.html)するのがおすすめです。数分でセットアップできます！
 
-<<<<<<< HEAD
-アプリが成長するにつれて、より統合されたセットアップを行うことを考慮していきましょう。大きいアプリの場合におすすめの[様々な JavaScript を用いたツールチェイン](/docs/create-a-new-react-app.html)が存在します。それぞれわずかな設定、もしくは設定要らずでリッチな React のエコシステムをフル活用できます。
-=======
-As your application grows, you might want to consider a more integrated setup. There are several JavaScript toolchains we recommend for larger applications. Each of them can work with little to no configuration and lets you take full advantage of the rich React ecosystem. [Learn how.](/docs/create-a-new-react-app.html)
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
+アプリが成長するにつれて、より統合されたセットアップを行うことを考慮していきましょう。大きいアプリの場合におすすめの様々な JavaScript を用いたツールチェインが存在します。それぞれわずかな設定、もしくは設定要らずでリッチな React のエコシステムをフル活用できます。[詳細はこちら。](/docs/create-a-new-react-app.html)
 
 ## React を学ぶ {#learn-react}
 

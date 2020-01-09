@@ -69,13 +69,9 @@ function Counter({initialCount}) {
 
 "+" と "-" のボタンは、更新後の値が更新前の値に基づいて計算されるため、関数形式を使っています。"Reset" ボタンは常にカウントを初期値に戻すので、通常の形式を使っています。
 
-<<<<<<< HEAD
-> 補足
-=======
-If your update function returns the exact same value, the subsequent rerender will be skipped completely.
+この更新用関数が全く同じ値を返す場合は、後続する再レンダーは完全にスキップされます。
 
-> Note
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
+> 補足
 >
 > クラスコンポーネントの `setState` メソッドとは異なり、`useState` は自動的な更新オブジェクトのマージを行いません。この動作は関数型の更新形式をスプレッド構文と併用することで再現可能です：
 >
@@ -187,11 +183,7 @@ const value = useContext(MyContext);
 
 コンテクストオブジェクト（`React.createContext` からの戻り値）を受け取り、そのコンテクストの現在値を返します。コンテクストの現在値は、ツリー内でこのフックを呼んだコンポーネントの直近にある `<MyContext.Provider>` の `value` の値によって決定されます。
 
-<<<<<<< HEAD
-直近の `<MyContext.Provider>` が更新された場合、このフックはその `MyContext` プロバイダに渡された最新の `value` の値を使って再レンダーを発生させます。
-=======
-When the nearest `<MyContext.Provider>` above the component updates, this Hook will trigger a rerender with the latest context `value` passed to that `MyContext` provider. Even if an ancestor uses [`React.memo`](/docs/react-api.html#reactmemo) or [`shouldComponentUpdate`](/docs/react-component.html#shouldcomponentupdate), a rerender will still happen starting at the component itself using `useContext`.
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
+直近の `<MyContext.Provider>` が更新された場合、このフックはその `MyContext` プロバイダに渡された最新の `value` の値を使って再レンダーを発生させます。祖先コンポーネントが [`React.memo`](/docs/react-api.html#reactmemo) や [`shouldComponentUpdate`](/docs/react-component.html#shouldcomponentupdate) を使っている場合でも、`useContext` を使っているコンポーネント自体から再レンダーが発生します。
 
 `useContext` に渡す引数は**コンテクストオブジェクト自体**であることを忘れないでください。
 
