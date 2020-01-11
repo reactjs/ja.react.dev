@@ -69,6 +69,8 @@ function Counter({initialCount}) {
 
 "+" と "-" のボタンは、更新後の値が更新前の値に基づいて計算されるため、関数形式を使っています。"Reset" ボタンは常にカウントを初期値に戻すので、通常の形式を使っています。
 
+この更新用関数が全く同じ値を返す場合は、後続する再レンダーは完全にスキップされます。
+
 > 補足
 >
 > クラスコンポーネントの `setState` メソッドとは異なり、`useState` は自動的な更新オブジェクトのマージを行いません。この動作は関数型の更新形式をスプレッド構文と併用することで再現可能です：
@@ -181,7 +183,7 @@ const value = useContext(MyContext);
 
 コンテクストオブジェクト（`React.createContext` からの戻り値）を受け取り、そのコンテクストの現在値を返します。コンテクストの現在値は、ツリー内でこのフックを呼んだコンポーネントの直近にある `<MyContext.Provider>` の `value` の値によって決定されます。
 
-直近の `<MyContext.Provider>` が更新された場合、このフックはその `MyContext` プロバイダに渡された最新の `value` の値を使って再レンダーを発生させます。
+直近の `<MyContext.Provider>` が更新された場合、このフックはその `MyContext` プロバイダに渡された最新の `value` の値を使って再レンダーを発生させます。祖先コンポーネントが [`React.memo`](/docs/react-api.html#reactmemo) や [`shouldComponentUpdate`](/docs/react-component.html#shouldcomponentupdate) を使っている場合でも、`useContext` を使っているコンポーネント自体から再レンダーが発生します。
 
 `useContext` に渡す引数は**コンテクストオブジェクト自体**であることを忘れないでください。
 

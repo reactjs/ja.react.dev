@@ -428,8 +428,8 @@ function Example() {
 
 ```js
 function ScrollView({row}) {
-  let [isScrollingDown, setIsScrollingDown] = useState(false);
-  let [prevRow, setPrevRow] = useState(null);
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const [prevRow, setPrevRow] = useState(null);
 
   if (row !== prevRow) {
     // Row changed since last render. Update isScrollingDown.
@@ -465,7 +465,7 @@ function ScrollView({row}) {
 
 ### DOM ノードの位置やサイズの測定はどのように行うのですか？ {#how-can-i-measure-a-dom-node}
 
-DOM ノードの位置やサイズを測定するためには、[コールバック形式の ref](/docs/refs-and-the-dom.html#callback-refs) が利用できます。React は ref が異なるノードに割り当てられるたびにコールバックを呼び出します。こちらの[小さなデモ](https://codesandbox.io/s/l7m0v5x4v9)をご覧ください。
+DOM ノードの位置やサイズを測定するための基本的な方法として、[コールバック形式の ref](/docs/refs-and-the-dom.html#callback-refs) が利用できます。React は ref が異なるノードに割り当てられるたびにコールバックを呼び出します。こちらの[小さなデモ](https://codesandbox.io/s/l7m0v5x4v9)をご覧ください。
 
 ```js{4-8,12}
 function MeasureExample() {
@@ -489,6 +489,8 @@ function MeasureExample() {
 この例で `useRef` を使わなかったのは、オブジェクト型の ref には現在値が変わった時にそれを通知する機能がないためです。コールバック ref を使うことで、[子コンポーネントが測定されたノードを（例えばクリックに応じて）後から表示する場合でも](https://codesandbox.io/s/818zzk8m78)、親コンポーネントの側でその変更について通知を受け取り、測定値を反映させることができます。
 
 `useCallback` の依存値の配列として `[]` を渡したことに注意してください。これにより我々の ref コールバックが再レンダーごとに変化しないことが保証され、React が不必要にその関数を呼ばないで済みます。
+
+この例では、レンダーされている `<h1>` はどの再レンダー間でも同じように存在するため、コールバック ref はコンポーネントのマウント時とアンマウント時にのみ呼び出されます。コンポーネントのリサイズが発生した際に毎回通知を受け取りたい場合は、[`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) や、これを使って作成されているサードパーティのフックの利用を検討してください。
 
 お望みであれば再利用可能なフックとして[このロジックを抽出](https://codesandbox.io/s/m5o42082xy)できます。
 
@@ -715,7 +717,7 @@ function Counter() {
 ```js{2-6,10-11,16}
 function Example(props) {
   // Keep latest props in a ref.
-  let latestProps = useRef(props);
+  const latestProps = useRef(props);
   useEffect(() => {
     latestProps.current = props;
   });

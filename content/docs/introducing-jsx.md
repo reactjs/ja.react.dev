@@ -182,5 +182,4 @@ const element = {
 
 >**ヒント:**
 >
->利用したいエディタで ["Babel" 言語定義](https://babeljs.io/docs/editors)を使用して、ES6 と JSX が適切にハイライトされるようにしておくことをお勧めします。このウェブサイトはそれと互換性のある [Oceanic Next](https://github.com/voronianski/oceanic-next-color-scheme) カラースキームを使用しています。
-
+>利用したいエディタで ["Babel" 言語定義](https://babeljs.io/docs/editors)を使用して、ES6 と JSX が適切にハイライトされるようにしておくことをお勧めします。

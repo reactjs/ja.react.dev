@@ -46,7 +46,7 @@ npm install eslint-plugin-react-hooks --save-dev
 }
 ```
 
-将来的にはこのプラグインを Create React App や類似のツールキットにデフォルトで含めるつもりです。
+このプラグインは [Create React App](/docs/create-a-new-react-app.html#create-react-app) ではデフォルトで含まれています。
 
 **次のページまで飛ばして[独自のフック](/docs/hooks-custom.html)を書く方法について学んでも構いません。**このページの続きの部分ではこれらのルールの背後にある根拠について述べていきます。
 
