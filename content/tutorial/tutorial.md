@@ -835,7 +835,7 @@ class Game extends React.Component {
 }
 ```
 
-次に、Board コンポーネントが `squares` と `onClick` プロパティを Game コンポーネントから受け取るようにします。Board 内には多数のマス目に対応するクリックハンドラが 1 つだけあるので、Square の位置を `onClick` ハンドラーに渡してどのマス目がクリックされたのかを伝えるようにします。以下の手順で Board コンポーネントを書き換えます。
+次に、Board コンポーネントが `squares` と `onClick` プロパティを Game コンポーネントから受け取るようにします。Board 内には多数のマス目に対応するクリックハンドラが 1 つだけあるので、Square の位置を `onClick` ハンドラに渡してどのマス目がクリックされたのかを伝えるようにします。以下の手順で Board コンポーネントを書き換えます。
 
 * Board の `constructor` を削除する。
 * Board の `renderSquare` にある `this.state.squares[i]` を `this.props.squares[i]` に置き換える。
