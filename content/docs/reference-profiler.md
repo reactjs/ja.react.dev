@@ -99,7 +99,7 @@ function onRenderCallback(
 ツリーが初回マウントされたのか、props や state、フックの変更によって再レンダーされたのかを区別します。
 * **`actualDuration: number`** -
 現在の更新で `Profiler` とその子孫のレンダーに要した時間。
-これが（[`React.memo`](/docs/react-api.html#reactmemo)、[`useMemo`](/docs/hooks-reference.html#usememo)、[`shouldComponentUpdate`](/docs/hooks-faq.html#how-do-i-implement-shouldcomponentupdate))などの）メモ化をどれだけうまく有効に使えているかの指標となります。
+これが（[`React.memo`](/docs/react-api.html#reactmemo)、[`useMemo`](/docs/hooks-reference.html#usememo)、[`shouldComponentUpdate`](/docs/hooks-faq.html#how-do-i-implement-shouldcomponentupdate) などの）メモ化をどれだけうまく有効に使えているかの指標となります。
 理想的には、子孫要素は特定の props が変化した場合にのみ再レンダーされるため、初回マウント時以降にこの値は大幅に小さくなるはずです。
 * **`baseDuration: number`** -
 `Profiler` ツリー内のそれぞれのコンポーネントの直近の `render` 時間。
