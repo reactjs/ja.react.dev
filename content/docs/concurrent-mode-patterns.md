@@ -133,7 +133,7 @@ function App() {
   const [startTransition, isPending] = useTransition({ timeoutMs: 3000 });
 ```
 
-`useTransition` はもう使っています。ここで `isPending` も使うようにします。React がこの真偽値を渡してくれることで、**このトランジションの完了を待っているところかどうか**が分かります。何かが起こっている、ということを示すためにこれを使いましょう：
+`startTransition` はもう使っています。ここで `isPending` も使うようにします。React がこの真偽値を渡してくれることで、**このトランジションの完了を待っているところかどうか**が分かります。何かが起こっている、ということを示すためにこれを使いましょう：
 
 ```js{4,14}
 return (
