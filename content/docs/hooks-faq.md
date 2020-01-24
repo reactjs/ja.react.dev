@@ -916,7 +916,7 @@ function DeepChild(props) {
 >
 > また、[concurrent mode](/blog/2018/03/27/update-on-async-rendering.html) においてこのパターンは問題を起こす可能性があることにも注意してください。将来的にはより使いやすい代替手段を提供することを計画していますが、現時点での最も安全な解決法は、コールバックが依存している何らかの値が変わった場合はコールバックを無効化して作り直すことです。
 
-稀なケースですが、コールバックを [`useCallback`](/docs/hooks-reference.html#usecallback) でメモ化しているにも関わらず、内部関数を何度も再作成しないといけないためメモ化がうまく働かない、ということがあります。あなたがメモ化しようとしている関数がレンダー最中には使われないイベントハンドラーなのであれば、[インスタンス変数としての ref](#is-there-something-like-instance-variables) を使って最後に使われた値を手動で保持しておくことができます。
+稀なケースですが、コールバックを [`useCallback`](/docs/hooks-reference.html#usecallback) でメモ化しているにも関わらず、内部関数を何度も再作成しないといけないためメモ化がうまく働かない、ということがあります。あなたがメモ化しようとしている関数がレンダー最中には使われないイベントハンドラなのであれば、[インスタンス変数としての ref](#is-there-something-like-instance-variables) を使って最後に使われた値を手動で保持しておくことができます。
 
 ```js{6,10}
 function Form() {

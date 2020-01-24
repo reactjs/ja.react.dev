@@ -150,7 +150,7 @@ React コンポーネントのコンストラクタは、マウントされる�
 通常、React では、コンストラクタは 2 つの目的にのみ使用されます。
 
 * `this.state` にオブジェクトを代入して [ローカル state](/docs/state-and-lifecycle.html) を初期化すること
-* [イベントハンドラー](/docs/handling-events.html) をインスタンスにバインドすること
+* [イベントハンドラ](/docs/handling-events.html) をインスタンスにバインドすること
 
 `constructor()` の中で **`setState()` を呼び出さないでください**。代わりに、コンポーネントがローカル state を使用する必要がある場合は、コンストラクタで直接 **`this.state` に初期状態を割り当てます**。
 

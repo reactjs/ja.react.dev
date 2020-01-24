@@ -70,3 +70,7 @@ rules:
   - expected: リスナ
     pattern: リスナー
     prh: 3音以上の語の最後の長音府は原則として省略します
+
+  - expected: ハンドラ
+    pattern: ハンドラー
+    prh: 3音以上の語の最後の長音府は原則として省略します
