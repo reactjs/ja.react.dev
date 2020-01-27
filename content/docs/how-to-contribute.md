@@ -105,9 +105,16 @@ Issue を解決することにした場合、誰かがすでに修正に取り�
 
 ### 貢献の前提条件 {#contribution-prerequisites}
 
+<<<<<<< HEAD
 * [Node](https://nodejs.org) v8.0.0+ と、[Yarn](https://yarnpkg.com/en/) v1.2.0+ がインストールされていること。
 * `gcc` がインストールされている、または必要に応じたコンパイラをインストールすることができること。依存関係の中にはコンパイルステップが必要なものもあります。OS X では Xcode のコマンドラインツールが役立つでしょう。Ubuntu では `apt-get install build-essential` コマンドで必要なパッケージをインストールできます。他の Linux ディストリビューションでも似たようなコマンドで実現できるでしょう。Windows では追加の手順が必要になり、詳しくは  [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) を参照してください。
 * Git について精通していること。
+=======
+* You have [Node](https://nodejs.org) installed at v8.0.0+ and [Yarn](https://yarnpkg.com/en/) at v1.2.0+.
+* You have [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) installed.
+* You have `gcc` installed or are comfortable installing a compiler if needed. Some of our dependencies may require a compilation step. On OS X, the Xcode Command Line Tools will cover this. On Ubuntu, `apt-get install build-essential` will install the required packages. Similar commands should work on other Linux distros. Windows will require some additional steps, see the [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) for details.
+* You are familiar with Git.
+>>>>>>> 335d64336234bcb7ba527ff94919a07da27f8549
 
 ### 開発ワークフロー {#development-workflow}
 
@@ -156,6 +163,7 @@ yarn link react react-dom
 
 しかしながら、リンターでもチェックしきれないいくつかのスタイルがあります。何か分からないことがあれば [Airbnb's Style Guide](https://github.com/airbnb/javascript) が正しい方向に導いてくれるでしょう。
 
+<<<<<<< HEAD
 ### 紹介ビデオ {#introductory-video}
 
 React への貢献方法について紹介している [この短いビデオ](https://www.youtube.com/watch?v=wUpPsEcGsg8)（26 分）にあなたは興味があるかもしれません。
@@ -169,6 +177,8 @@ React への貢献方法について紹介している [この短いビデオ](h
 
 React へ初めて貢献することについてのよりリアルな_感覚_については、[この面白い ReactNYC talk](https://www.youtube.com/watch?v=GWCcZ6fnpn4) をチェックしてください。
 
+=======
+>>>>>>> 335d64336234bcb7ba527ff94919a07da27f8549
 ### Request for Comments (RFC) {#request-for-comments-rfc}
 
 バグ修正やドキュメンテーションの改善を含む多くの変更は、通常の GitHub プルリクエストのワークフローを通して行われレビューされます。

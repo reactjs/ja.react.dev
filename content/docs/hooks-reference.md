@@ -143,7 +143,11 @@ useEffect(() => {
 
 デフォルトの動作では、副作用関数はレンダーの完了時に毎回実行されます。これにより、コンポーネントの依存配列のうちのひとつが変化した場合に毎回副作用が再作成されます。
 
+<<<<<<< HEAD
 しかし、上述のデータ購読の例でもそうですが、これは幾つかのケースではやりすぎです。新しい購読を設定する必要があるのは毎回の更新ごとではなく、`source` プロパティが変化した場合のみです。
+=======
+However, this may be overkill in some cases, like the subscription example from the previous section. We don't need to create a new subscription on every update, only if the `source` prop has changed.
+>>>>>>> 335d64336234bcb7ba527ff94919a07da27f8549
 
 これを実装するためには、`useEffect` の第 2 引数として、この副作用が依存している値の配列を渡します。変更後の例は以下のようになります。
 

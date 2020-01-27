@@ -18,4 +18,8 @@ React community には選定された多くの素晴らしいリソースがあ�
 
 - [Awesome React Talks](https://github.com/tiaanduplessis/awesome-react-talks) - React talks についての選定されたリストです。
 
+<<<<<<< HEAD
 - [Hero35 React Hub](https://hero35.com/stack/react) - React の*すべて*のカンファや講演がカテゴリ別に選定されて収録されているウェブサイトです。
+=======
+- [Hero35 React Hub](https://hero35.com/topic/react) - A website with _all_ React conferences and talks, categorized & curated.
+>>>>>>> 335d64336234bcb7ba527ff94919a07da27f8549

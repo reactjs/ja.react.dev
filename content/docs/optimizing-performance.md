@@ -176,7 +176,11 @@ Chrome での操作は以下の通り。
 
 6. React イベントが **User Timing** ラベルの下にグループ化される。
 
+<<<<<<< HEAD
 さらなる詳細については、[Ben Schwarz によるこの記事](https://building.calibreapp.com/debugging-react-performance-with-react-16-and-chrome-devtools-c90698a522ad)を参照ください。
+=======
+For a more detailed walkthrough, check out [this article by Ben Schwarz](https://calibreapp.com/blog/react-performance-profiling-optimization).
+>>>>>>> 335d64336234bcb7ba527ff94919a07da27f8549
 
 **プロファイル結果の数値は相対的なものであり、コンポーネントは本番環境ではより速くレンダーされる**ことに注意してください。それでも、無関係な UI 部分が誤って更新されているのを見つけたり、どの程度の頻度と深さで UI の更新が発生するのかを知る手助けになるはずです。
 
