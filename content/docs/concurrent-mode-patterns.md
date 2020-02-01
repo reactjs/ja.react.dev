@@ -790,11 +790,7 @@ function ProfileTimeline({ isStale, resource }) {
 
 ここで生まれたトレードオフは、`<ProfileTimeline>` は他のコンポーネントとの整合性が保たれず、古いアイテムを表示するかもしれない、ということです。"Next" を何度かクリックすると分かるでしょう。しかしこのお陰で、トランジションにかかる時間が 1000ms から 300ms になりました。
 
-<<<<<<< HEAD
 これが適切なトレードオフなのかどうかは状況によります。しかしこれは有用なツールであり、特にコンテンツの変化があまり目立たず、ユーザが古い情報を一瞬見ていることに気付きすらしないような場合には有用です。
-=======
-Whether or not it's an appropriate tradeoff depends on the situation. But it's a handy tool, especially when the content doesn't change noticeably between items, and the user might not even realize they were looking at a stale version for a second.
->>>>>>> 335d64336234bcb7ba527ff94919a07da27f8549
 
 `useDeferredValue` はデータ取得のときに*のみ*有用であるというわけではない、ということを知っておいてください。これは高価な計算が必要なコンポーネントツリーがユーザ操作（テキスト入力へのタイピングなど）を遅くしている場合にも有効です。取得するのに時間のかかりすぎる値を「遅延」できる（そして他のコンポーネントが更新されているにも関わらず古い値を表示できる）のと全く同様に、レンダーに時間のかかりすぎるツリーに対しても同じことが行えます。
 

@@ -53,10 +53,6 @@ Node.js では、Jest のようなテストランナーは[モジュールのモ
 
 ### End-to-end テスト {#end-to-end-tests-aka-e2e-tests}
 
-<<<<<<< HEAD
-End-to-end テストは長いワークフロー、特にあなたの業務にとってとても重要なワークフロー（例えば支払いやサインアップ）をテストするのに有用です。これらのテストをする際は、本物のブラウザがアプリケーション全体をいかに描画し、本物の API エンドポイントからいかにデータを取得し、セッションやクッキーをいかに使い、さまざまなリンク間でいかにナビゲーションするかを試験したいでしょう。また、おそらく DOM の状態だけではなく、バックエンドのデータに対する検証（例えばデータベースに更新が正しく永続化されているかの確認）も行いたいかもしれません。
-=======
-End-to-end tests are useful for testing longer workflows, especially when they're critical to your business (such as payments or signups). For these tests, you'd probably want to test how a real browser renders the whole app, fetches data from the real API endpoints, uses sessions and cookies, navigates between different links. You might also likely want to make assertions not just on the DOM state, but on the backing data as well (e.g. to verify whether the updates have been persisted to the database).
->>>>>>> 335d64336234bcb7ba527ff94919a07da27f8549
+End-to-end テストは長いワークフロー、特にあなたの業務にとってとても重要なワークフロー（例えば支払いやサインアップ）をテストするのに有用です。これらのテストをする際は、本物のブラウザがアプリケーション全体をいかに描画し、本物の API エンドポイントからいかにデータを取得し、セッションやクッキーをいかに使い、さまざまなリンク間でいかにナビゲーションするかをすべて試験したいでしょう。また、おそらく DOM の状態だけではなく、バックエンドのデータに対する検証（例えばデータベースに更新が正しく永続化されているかの確認）も行いたいかもしれません。
 
 このようなシナリオの場合は、[Cypress](https://www.cypress.io/) のようなフレームワークや [puppeteer](https://github.com/GoogleChrome/puppeteer) のようなライブラリを使うことで、複数のルート間をナビゲートし、ブラウザのみならず、必要に応じてバックエンド側の副作用についても検証を行うことができるでしょう。
