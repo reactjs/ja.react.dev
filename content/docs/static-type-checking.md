@@ -175,7 +175,7 @@ Create React App は最初から TypeScript のサポートが含まれていま
 TypeScript サポートが含まれている**新規プロジェクト**を作成するには、以下のコマンドを実行します。
 
 ```bash
-npx create-react-app my-app --typescript
+npx create-react-app my-app --template typescript
 ```
 
 [この資料に記載されているように、](https://facebook.github.io/create-react-app/docs/adding-typescript)**既存の Create React App のプロジェクト**にも TypeScript のサポートを追加することができます。

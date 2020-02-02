@@ -140,7 +140,7 @@ class CustomTextInput extends React.Component {
 
 #### Ref と関数コンポーネント {#refs-and-function-components}
 
-関数コンポーネントにはインスタンスがないため、**関数コンポーネントに `ref` 属性を使用することはできません。**
+関数コンポーネントにはインスタンスがないため、デフォルトでは**関数コンポーネントに `ref` 属性を使用することはできません。**
 
 ```javascript{1,8,13}
 function MyFunctionComponent() {
@@ -161,7 +161,7 @@ class Parent extends React.Component {
 }
 ```
 
-Ref が必要な場合は、ライフサイクルメソッドや state が必要なときと同じように、コンポーネントをクラスに変換しなければなりません。
+関数コンポーネントに対して `ref` が使用できるようにしたい場合は、[`forwardRef`](https://reactjs.org/docs/forwarding-refs.html) を（必要に応じて [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle) と組み合わせて）利用するか、コンポーネントをクラスに書き換えます。
 
 ただし、DOM 要素またはクラスコンポーネントを参照している限り、**関数コンポーネント内で ref 属性を使用することはできます。**
 

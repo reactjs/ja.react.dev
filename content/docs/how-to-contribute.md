@@ -106,6 +106,7 @@ Issue を解決することにした場合、誰かがすでに修正に取り�
 ### 貢献の前提条件 {#contribution-prerequisites}
 
 * [Node](https://nodejs.org) v8.0.0+ と、[Yarn](https://yarnpkg.com/en/) v1.2.0+ がインストールされていること。
+* [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) がインストールされていること。
 * `gcc` がインストールされている、または必要に応じたコンパイラをインストールすることができること。依存関係の中にはコンパイルステップが必要なものもあります。OS X では Xcode のコマンドラインツールが役立つでしょう。Ubuntu では `apt-get install build-essential` コマンドで必要なパッケージをインストールできます。他の Linux ディストリビューションでも似たようなコマンドで実現できるでしょう。Windows では追加の手順が必要になり、詳しくは  [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) を参照してください。
 * Git について精通していること。
 
@@ -155,19 +156,6 @@ yarn link react react-dom
 自分の書いたコードのスタイルをチェックしたい場合は単に `yarn linc` を実行してください。
 
 しかしながら、リンターでもチェックしきれないいくつかのスタイルがあります。何か分からないことがあれば [Airbnb's Style Guide](https://github.com/airbnb/javascript) が正しい方向に導いてくれるでしょう。
-
-### 紹介ビデオ {#introductory-video}
-
-React への貢献方法について紹介している [この短いビデオ](https://www.youtube.com/watch?v=wUpPsEcGsg8)（26 分）にあなたは興味があるかもしれません。
-
-#### ビデオの概要： {#video-highlights}
-- [4:12](https://youtu.be/wUpPsEcGsg8?t=4m12s) - ローカルで React のテストとビルドを行う
-- [6:07](https://youtu.be/wUpPsEcGsg8?t=6m7s) - プルリクエストの作成と送信
-- [8:25](https://youtu.be/wUpPsEcGsg8?t=8m25s) - コードを整理する
-- [14:43](https://youtu.be/wUpPsEcGsg8?t=14m43s) - React npm レジストリ
-- [19:15](https://youtu.be/wUpPsEcGsg8?t=19m15s) - React に新しい機能を追加する
-
-React へ初めて貢献することについてのよりリアルな_感覚_については、[この面白い ReactNYC talk](https://www.youtube.com/watch?v=GWCcZ6fnpn4) をチェックしてください。
 
 ### Request for Comments (RFC) {#request-for-comments-rfc}
 
