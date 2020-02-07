@@ -122,7 +122,7 @@
     - id: hooks-rules
       title: フックのルール
     - id: hooks-custom
-      title: カスタムフックの作成
+      title: 独自フックの作成
     - id: hooks-reference
       title: フック API リファレンス
     - id: hooks-faq

@@ -1,6 +1,6 @@
 ---
 id: hooks-custom
-title: カスタムフックの作成
+title: 独自フックの作成
 permalink: docs/hooks-custom.html
 next: hooks-reference.html
 prev: hooks-rules.html
