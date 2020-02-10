@@ -40,7 +40,11 @@ ReactDOM.render(
 
 JSX から JavaScript への変換方法の例をもっと見たいなら、[オンラインの Babel コンパイラ](babel://jsx-simple-example)で試すことができます。
 
+<<<<<<< HEAD
 コンポーネントは文字列、`React.Component` のサブクラス、もしくは（ステートレスコンポーネントの場合）プレーンな関数のいずれかで指定されます。
+=======
+The component can either be provided as a string, as a subclass of `React.Component`, or a plain function.
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 たくさんの `React.createElement` をタイピングするのにうんざりした場合、一般的なパターンの 1 つは以下のショートハンドを割り当てることです。
 
