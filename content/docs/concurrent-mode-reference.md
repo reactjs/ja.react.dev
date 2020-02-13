@@ -99,7 +99,7 @@ ReactDOM.createBlockingRoot(rootNode).render(<App />)
 
 複数のコンポーネントがデータを取得する必要がある場合、それらのデータは予測不能な順番で到着するかもしれません。しかし、`SuspenseList` でこれらの要素をラップすることで、React は手前にある要素が全て表示されるまで、ある要素を表示しないようになります（この挙動は変更可能です）。
 
-`SuspenseList` は 2 つの prosp を受け取ります：
+`SuspenseList` は 2 つの props を受け取ります：
 * **revealOrder (forwards, backwards, together)** は `SuspenseList` の子要素が表示される順番を定義します。
   * `together` は 1 つずつではなく、*すべての*子要素を準備完了した時点でまとめて表示します。
 * **tail (collapsed, hidden)** `SuspenseList` 内のロードされていない要素がどのように表示されるかを記述します。
