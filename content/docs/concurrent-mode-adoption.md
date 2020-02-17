@@ -80,7 +80,11 @@ ReactDOM.createRoot(
 >
 > `createRoot` のような並列モードの API は React の実験的ビルドにのみ存在しています。
 
+<<<<<<< HEAD
 並列モードでは、"unsafe" であると[以前にマークされている](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html)ライフサイクルメソッドは*本当に*安全ではなくなっており、現行の React よりもさらに多くのバグを引き起こします。あなたのアプリケーションが [Strict Mode](/docs/strict-mode.html) 互換になっていない限り、並列モードを試すことは勧められません。
+=======
+In Concurrent Mode, the lifecycle methods [previously marked](/blog/2018/03/27/update-on-async-rendering.html) as "unsafe" actually *are* unsafe, and lead to bugs even more than in today's React. We don't recommend trying Concurrent Mode until your app is [Strict Mode](/docs/strict-mode.html)-compatible.
+>>>>>>> 5af5fba65a7e9570a4d00c85d8a17b6cdc166bb6
 
 ## 期待されること {#what-to-expect}
 

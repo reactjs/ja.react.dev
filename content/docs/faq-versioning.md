@@ -22,7 +22,11 @@ React は[セマンティック バージョニング (semantic versioning; semv
 
 ### 破壊的変更 {#breaking-changes}
 
+<<<<<<< HEAD
 破壊的変更は誰にとっても不便なので、私たちはメジャーリリースを最小限にするようにしています。例えば React 15 は 2016 年 4 月にリリースされており、React 16 は 2017 年の 9 月にリリースされています。そして React 17 は 2019 年までリリースが見込まれていません。
+=======
+Breaking changes are inconvenient for everyone, so we try to minimize the number of major releases – for example, React 15 was released in April 2016 and React 16 was released in September 2017; React 17 isn't expected until sometime in 2020.
+>>>>>>> 5af5fba65a7e9570a4d00c85d8a17b6cdc166bb6
 
 その代わり、新機能のリリースをマイナーバージョンでしています。つまりマイナーリリースは控えめな名前にも関わらず、メジャーリリースよりしばしば興味深く魅力的です。
 

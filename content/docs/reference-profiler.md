@@ -6,12 +6,21 @@ category: Reference
 permalink: docs/profiler.html
 ---
 
+<<<<<<< HEAD
 `Profiler` を使って、React アプリケーションのレンダーの頻度やレンダーの「コスト」を計測することができます。
 本機能の目的は、アプリケーション中の、低速で[メモ化などの最適化](https://reactjs.org/docs/hooks-faq.html#how-to-memoize-calculations)が有効な可能性のある部位を特定する手助けをすることです。
+=======
+The `Profiler` measures how often a React application renders and what the "cost" of rendering is.
+Its purpose is to help identify parts of an application that are slow and may benefit from [optimizations such as memoization](/docs/hooks-faq.html#how-to-memoize-calculations).
+>>>>>>> 5af5fba65a7e9570a4d00c85d8a17b6cdc166bb6
 
 > 補足:
 >
+<<<<<<< HEAD
 > プロファイリングによる追加のオーバーヘッドが生じますので、**[本番ビルド](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build)では無効化されます**.
+=======
+> Profiling adds some additional overhead, so **it is disabled in [the production build](/docs/optimizing-performance.html#use-the-production-build)**.
+>>>>>>> 5af5fba65a7e9570a4d00c85d8a17b6cdc166bb6
 >
 > 本番環境でプロファイリングを利用するために、React はプロファイリングを有効化した特別な本番用ビルドを提供しています。
 > このビルドの使用方法については [fb.me/react-profiling](https://fb.me/react-profiling) をご覧ください。
