@@ -37,11 +37,7 @@ redirect_from:
 
 最終的な結果をここで確認することができます：**[最終結果](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**。まだコードが理解できなくても、あるいはよく知らない構文があっても、心配は要りません。このチュートリアルの目的は、React とその構文について学ぶことです。
 
-<<<<<<< HEAD
 チュートリアルを進める前に三目並べゲームで遊んでみることをお勧めします。いくつか機能がありますが、ひとつには、盤面の右側に番号付きリストがあることに気づかれるでしょう。このリストにはゲーム内で起きたすべての着手 (move) のリストが表示され、ゲームが進むにつれて更新されていきます。
-=======
-We recommend that you check out the tic-tac-toe game before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and it is updated as the game progresses.
->>>>>>> 5af5fba65a7e9570a4d00c85d8a17b6cdc166bb6
 
 どんな物か分かったら三目並べゲームを閉じて構いません。もっと小さな雛形から始めましょう。次のステップはゲームの構築ができるようにするための環境のセットアップ作業です。
 

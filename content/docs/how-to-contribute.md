@@ -21,11 +21,7 @@ React に関する開発作業はすべて [GitHub](https://github.com/facebook/
 
 ### セマンティック・バージョニング {#semantic-versioning}
 
-<<<<<<< HEAD
-React は[セマンティック・バージョニング](http://semver.org/)の原則に従います。バグ修正のためのパッチバージョン、新機能のためのマイナーバージョン、そして重大な変更のためのメジャーバージョンをリリースします。私たちが重大な変更を加えるとき、ユーザが今後の変更について前もって知り、コードを移行するために、私たちはマイナーバージョンで非推奨警告を行います。
-=======
-React follows [semantic versioning](https://semver.org/). We release patch versions for critical bugfixes, minor versions for new features or non-essential changes, and major versions for any breaking changes. When we make breaking changes, we also introduce deprecation warnings in a minor version so that our users learn about the upcoming changes and migrate their code in advance. Learn more about our commitment to stability and incremental migration in [our versioning policy](/docs/faq-versioning.html).
->>>>>>> 5af5fba65a7e9570a4d00c85d8a17b6cdc166bb6
+React は[セマンティック・バージョニング](http://semver.org/)に従います。重要なバグ修正のためにパッチバージョンを、新機能や非本質的な変更のためにマイナーバージョンを、そして互換性のない変更のためにメジャーバージョンをリリースします。私たちが互換性のない変更を加える場合、ユーザが今後の変更について前もって知り、コードを移行できるようにするため、私たちはマイナーバージョンで非推奨警告を行います。我々の安定性および逐次的なマイグレーションに関する取り決めについては、[バージョニング・ポリシー](/docs/faq-versioning.html)をご覧ください。
 
 私たちは全てのプルリクエストにラベルを付けます。ラベルは、行われる変更が[パッチ](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-patch)、[マイナー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-minor)、[メジャー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-major) バージョンのどれに該当するかによって決まります。数週間ごとにパッチバージョン、数ヶ月ごとにマイナーバージョン、そして年に 1、2 回メジャーバージョンをリリースします。
 
@@ -59,15 +55,10 @@ React のビルドシステムが、無効化されている機能を公開前�
 
 Facebook にはセキュリティバグの安全な開示のための[報奨金制度](https://www.facebook.com/whitehat/)が存在します。それを念頭において、セキュリティバグは公開の Issues に提出せず、上記のページの手順に従ってください。
 
-<<<<<<< HEAD
 ### 連絡方法 {#how-to-get-in-touch}
-=======
-* IRC: [#reactjs on freenode](https://webchat.freenode.net/?channels=reactjs)
-* [Discussion forums](/community/support.html#popular-discussion-forums)
->>>>>>> 5af5fba65a7e9570a4d00c85d8a17b6cdc166bb6
 
 * IRC：[# freenode の reactjs](https://webchat.freenode.net/?channels=reactjs)
-* [ディスカッションフォーラム](https://reactjs.org/community/support.html#popular-discussion-forums)
+* [ディスカッションフォーラム](/community/support.html#popular-discussion-forums)
 
 また、React に関して助けが必要な場合は、[Discord 上の React コミュニティ](http://www.reactiflux.com/)も存在します。
 
