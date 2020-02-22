@@ -97,7 +97,7 @@ const [state, setState] = useState(() => {
 
 #### state 更新の回避 {#bailing-out-of-a-state-update}
 
-現在値と同じ値で更新を行った場合、React は子のレンダーや副作用の実行を回避して処理を終了します。（React は [`Object.is` による比較アルゴリズム](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description) を使用します）
+現在値と同じ値で更新を行った場合、React は子のレンダーや副作用の実行を回避して処理を終了します。（React は [`Object.is` による比較アルゴリズム](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description)を使用します）
 
 更新の回避が起きる前に React により該当のコンポーネント自体はレンダーされるかもしれない、ということに注意してください。ツリーのそれ以上「深く」にまで処理は及ばないためこれは問題ではないはずです。もしレンダー中にコストの高い計算を行っている場合は `useMemo` を使った最適化が可能です。
 
@@ -400,7 +400,7 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 const refContainer = useRef(initialValue);
 ```
 
-`useRef` はミュータブルな ref オブジェクトを返し、`.current` プロパティは渡された引数 (`initialValue`) に初期化されています。返されるオブジェクトはコンポーネントの存在期間全体にわたって存在し続けます。
+`useRef` は、`.current` プロパティが渡された引数 (`initialValue`) に初期化されているミュータブルな ref オブジェクトを返します。返されるオブジェクトはコンポーネントの存在期間全体にわたって存在し続けます。
 
 よくあるユースケースは、子コンポーネントに命令型でアクセスするというものです：
 

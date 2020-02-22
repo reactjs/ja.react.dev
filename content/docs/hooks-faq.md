@@ -125,7 +125,7 @@ React の観点から見れば、フックを使ったコンポーネントは�
 
 > 補足
 >
-> [テストのレシピ集](/docs/testing-recipes.html) にコピー・ペーストで使えるたくさんの例が掲載されています。
+> [テストのレシピ集](/docs/testing-recipes.html)にコピー・ペーストで使えるたくさんの例が掲載されています。
 
 例えばこのようなカウンタコンポーネントがあるとしましょう：
 
@@ -191,11 +191,11 @@ it('can render and update a counter', () => {
 
 ボイラープレートを減らすため、エンドユーザが使うのと同じ形でコンポーネントを使ってテストが記述できるように設計されている、[React Testing Library](https://testing-library.com/react) の利用をお勧めします。
 
-詳細については、[テストのレシピ集](/docs/testing-recipes.html) をご覧ください。
+詳細については、[テストのレシピ集](/docs/testing-recipes.html)をご覧ください。
 
-### [Lint ルール](https://www.npmjs.com/package/eslint-plugin-react-hooks) は具体的に何を強制するのですか？ {#what-exactly-do-the-lint-rules-enforce}
+### [Lint ルール](https://www.npmjs.com/package/eslint-plugin-react-hooks)は具体的に何を強制するのですか？ {#what-exactly-do-the-lint-rules-enforce}
 
-我々は [ESLint プラグイン](https://www.npmjs.com/package/eslint-plugin-react-hooks) を提供しており、これにより[フックのルール](/docs/hooks-rules.html)を強制してバグを減らすことができます。このルールは、`use` で始まり大文字が続くような名前の関数はすべてフックであると仮定します。これは不完全な推測手段であり過剰検出があるかもしれないことは認識していますが、エコシステム全体での規約なくしてはフックはうまく動作しません。また名前を長くするとフックを利用したり規約を守ったりしてくれなくなるでしょう。
+我々は [ESLint プラグイン](https://www.npmjs.com/package/eslint-plugin-react-hooks)を提供しており、これにより[フックのルール](/docs/hooks-rules.html)を強制してバグを減らすことができます。このルールは、`use` で始まり大文字が続くような名前の関数はすべてフックであると仮定します。これは不完全な推測手段であり過剰検出があるかもしれないことは認識していますが、エコシステム全体での規約なくしてはフックはうまく動作しません。また名前を長くするとフックを利用したり規約を守ったりしてくれなくなるでしょう。
 
 具体的には、このルールは以下を強制します：
 
@@ -216,7 +216,7 @@ it('can render and update a counter', () => {
 
 * `render`: これは関数コンポーネントの本体そのものです。
 
-* `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`: これらのあらゆる組み合わせは [`useEffect` フック](/docs/hooks-reference.html#useeffect) で表現できます（[これ](#can-i-skip-an-effect-on-updates)や[これ](#can-i-run-an-effect-only-on-updates)のような頻度の低いケースも含め）。
+* `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`: これらのあらゆる組み合わせは [`useEffect` フック](/docs/hooks-reference.html#useeffect)で表現できます（[これ](#can-i-skip-an-effect-on-updates)や[これ](#can-i-run-an-effect-only-on-updates)のような頻度の低いケースも含め）。
 
 * `componentDidCatch` と `getDerivedStateFromError`: フックによる同等物はまだ存在していませんが、近日中に追加される予定です。
 
@@ -226,7 +226,7 @@ it('can render and update a counter', () => {
 
 ### インスタンス変数のようなものはありますか？ {#is-there-something-like-instance-variables}
 
-はい！ [`useRef()`](/docs/hooks-reference.html#useref) フックは DOM への参照を保持するためだけにあるのではありません。"ref" オブジェクトは汎用のコンテナであり、その `current` プロパティの値は変更可能かつどのような値でも保持することができますので、クラスのインスタンス変数と同様に利用できます。
+はい！ [`useRef()`](/docs/hooks-reference.html#useref) フックは DOM への参照を保持するためだけにあるのではありません。"ref" オブジェクトは汎用のコンテナであり、その `current` プロパティの値は書き換え可能かつどのような値でも保持することができますので、クラスのインスタンス変数と同様に利用できます。
 
 例えば `useEffect` 内から "ref" オブジェクトを書き換えることができます。
 
