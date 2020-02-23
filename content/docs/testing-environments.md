@@ -29,7 +29,7 @@ UI テストの大部分は上記のようなセットアップを行って書�
 
 主にブラウザ特有の動作をテストする必要があるライブラリを書いており、レイアウトや本物のユーザ入力などネイティブなブラウザの挙動が必要な場合は、[mocha](https://mochajs.org/) のようなフレームワークを利用できます。
 
-DOM をシミュレート*できない*環境（例えば Node.js で React Native のコンポーネントをテストする場合など）では、[イベントシミュレーションヘルパ](https://reactjs.org/docs/test-utils.html#simulate)を使って要素とのインタラクションをシミュレーションできます。あるいは、[`@testing-library/react-native`](https://testing-library.com/docs/native-testing-library) の `fireEvent` ヘルパを利用することもできます。
+DOM をシミュレート*できない*環境（例えば Node.js で React Native のコンポーネントをテストする場合など）では、[イベントシミュレーションヘルパ](/docs/test-utils.html#simulate)を使って要素とのインタラクションをシミュレーションできます。あるいは、[`@testing-library/react-native`](https://testing-library.com/docs/native-testing-library) の `fireEvent` ヘルパを利用することもできます。
 
 [Cypress](https://www.cypress.io/)、[puppeteer](https://github.com/GoogleChrome/puppeteer)、[webdriver](https://www.seleniumhq.org/projects/webdriver/) のようなフレームワークは [end-to-end テスト](#end-to-end-tests-aka-e2e-tests)を実行するのに有用です。
 

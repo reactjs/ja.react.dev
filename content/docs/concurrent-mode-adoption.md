@@ -80,7 +80,7 @@ ReactDOM.createRoot(
 >
 > `createRoot` のような並列モードの API は React の実験的ビルドにのみ存在しています。
 
-並列モードでは、"unsafe" であると[以前にマークされている](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html)ライフサイクルメソッドは*本当に*安全ではなくなっており、現行の React よりもさらに多くのバグを引き起こします。あなたのアプリケーションが [Strict Mode](/docs/strict-mode.html) 互換になっていない限り、並列モードを試すことは勧められません。
+並列モードでは、"unsafe" であると[以前にマークされている](/blog/2018/03/27/update-on-async-rendering.html)ライフサイクルメソッドは*本当に*安全ではなくなっており、現行の React よりもさらに多くのバグを引き起こします。あなたのアプリケーションが [Strict Mode](/docs/strict-mode.html) 互換になっていない限り、並列モードを試すことは勧められません。
 
 ## 期待されること {#what-to-expect}
 

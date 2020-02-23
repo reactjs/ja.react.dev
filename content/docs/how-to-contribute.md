@@ -21,7 +21,7 @@ React に関する開発作業はすべて [GitHub](https://github.com/facebook/
 
 ### セマンティック・バージョニング {#semantic-versioning}
 
-React は[セマンティック・バージョニング](http://semver.org/)の原則に従います。バグ修正のためのパッチバージョン、新機能のためのマイナーバージョン、そして重大な変更のためのメジャーバージョンをリリースします。私たちが重大な変更を加えるとき、ユーザが今後の変更について前もって知り、コードを移行するために、私たちはマイナーバージョンで非推奨警告を行います。
+React は[セマンティック・バージョニング](http://semver.org/)に従います。重要なバグ修正のためにパッチバージョンを、新機能や非本質的な変更のためにマイナーバージョンを、そして破壊的変更のためにメジャーバージョンをリリースします。私たちが破壊的変更を加える場合、ユーザが今後の変更について前もって知り、コードを移行できるようにするため、私たちはマイナーバージョンで非推奨警告を行います。我々の安定性および逐次的なマイグレーションに関する取り決めについては、[バージョニングポリシー](/docs/faq-versioning.html)をご覧ください。
 
 私たちは全てのプルリクエストにラベルを付けます。ラベルは、行われる変更が[パッチ](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-patch)、[マイナー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-minor)、[メジャー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-major) バージョンのどれに該当するかによって決まります。数週間ごとにパッチバージョン、数ヶ月ごとにマイナーバージョン、そして年に 1、2 回メジャーバージョンをリリースします。
 
@@ -58,7 +58,7 @@ Facebook にはセキュリティバグの安全な開示のための[報奨金�
 ### 連絡方法 {#how-to-get-in-touch}
 
 * IRC：[# freenode の reactjs](https://webchat.freenode.net/?channels=reactjs)
-* [ディスカッションフォーラム](https://reactjs.org/community/support.html#popular-discussion-forums)
+* [ディスカッションフォーラム](/community/support.html#popular-discussion-forums)
 
 また、React に関して助けが必要な場合は、[Discord 上の React コミュニティ](http://www.reactiflux.com/)も存在します。
 

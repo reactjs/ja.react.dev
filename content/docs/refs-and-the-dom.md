@@ -161,7 +161,7 @@ class Parent extends React.Component {
 }
 ```
 
-関数コンポーネントに対して `ref` が使用できるようにしたい場合は、[`forwardRef`](https://reactjs.org/docs/forwarding-refs.html) を（必要に応じて [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle) と組み合わせて）利用するか、コンポーネントをクラスに書き換えます。
+関数コンポーネントに対して `ref` が使用できるようにしたい場合は、[`forwardRef`](/docs/forwarding-refs.html) を（必要に応じて [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle) と組み合わせて）利用するか、コンポーネントをクラスに書き換えます。
 
 ただし、DOM 要素またはクラスコンポーネントを参照している限り、**関数コンポーネント内で ref 属性を使用することはできます。**
 
