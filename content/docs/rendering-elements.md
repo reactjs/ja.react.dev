@@ -70,6 +70,10 @@ React DOM は要素とその子要素を以前のものと比較し、DOM を望
 
 ![DOM inspector showing granular updates](../images/docs/granular-dom-updates.gif)
 
+<<<<<<< HEAD
 毎秒ごとに UI ツリー全体を表す要素を作成しているにも関わらず、内容が変更されたテキストノードのみが React DOM により更新されます。
+=======
+Even though we create an element describing the whole UI tree on every tick, only the text node whose contents have changed gets updated by React DOM.
+>>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
 
 私達の経験上、時間の経過によりどのように UI が変更されるかを考えるよりも、任意の時点において UI がどのように見えるべきかを考えることで、あらゆる類のバグを排除することができます。

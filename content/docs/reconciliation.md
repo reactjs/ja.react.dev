@@ -142,7 +142,11 @@ React は `<li>Duke</li>` と `<li>Villanova</li>` サブツリーをそのま�
 
 key として配列のインデックスが使用されている場合、並べ替えはコンポーネントの状態に関しても問題を起こすことがあります。コンポーネントのインスタンスは key に基づいて更新、再利用されます。インデックスが key の場合、要素の移動はインデックスの変更を伴います。結果として、非制御の入力などに対するコンポーネントの状態が混乱し、予期せぬ形で更新されてしまうことがあります。
 
+<<<<<<< HEAD
 [CodePen](codepen://reconciliation/index-used-as-key) に配列のインデックスを key として使うことで生じる問題についての例があります。また、[こちら](codepen://reconciliation/no-index-used-as-key)が同じ例の更新版であり、配列のインデックスを使わないことで、ソートや並び替え、要素の先頭への追加にまつわる問題がどのように解決されるのかを示しています。
+=======
+Here is [an example of the issues that can be caused by using indexes as keys](codepen://reconciliation/index-used-as-key) on CodePen, and here is [an updated version of the same example showing how not using indexes as keys will fix these reordering, sorting, and prepending issues](codepen://reconciliation/no-index-used-as-key).
+>>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
 
 ## トレードオフ {#tradeoffs}
 
