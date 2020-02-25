@@ -65,7 +65,7 @@ function FriendListItem(props) {
 
 代わりに、このロジックを `FriendStatus` と `FriendListeItem` 間で共有したいと思います。
 
-これまで React では、ステートを有するロジックをコンポーネント間で共有するための人気の手法が 2 つありました。[レンダープロップ](/docs/render-props.html) と [高階コンポーネント](/docs/higher-order-components.html)です。ツリーに新しいコンポーネントを加える必要なしに、フックが同じ問題をどのように解決するのかを見ていきましょう。
+これまで React には、ステートを有するロジックをコンポーネント間で共有するための人気の手法が 2 つありました。[レンダープロップ](/docs/render-props.html)と[高階コンポーネント](/docs/higher-order-components.html)です。ツリーに新しいコンポーネントを加える必要なしに、フックが同じ問題をどのように解決するのかを見ていきましょう。
 
 ## カスタムフックの抽出 {#extracting-a-custom-hook}
 
@@ -249,4 +249,4 @@ function Todos() {
 }
 ```
 
-ローカルステートをリデューサで管理したいという要求はとてもよくあるので、React にその機能を含めてあります。[Hooks API reference](/docs/hooks-reference.html) のページで他のビルトインフックと共に解説しています。
+ローカルステートをリデューサで管理したいという要求はとてもよくあるので、React にその機能を含めてあります。[フック API リファレンス](/docs/hooks-reference.html)で他の組み込みフックと共に解説しています。

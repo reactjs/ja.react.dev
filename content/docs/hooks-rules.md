@@ -98,7 +98,7 @@ useEffect(updateTitle)     // 4. Replace the effect for updating the title
 // ...
 ```
 
-フックへの呼び出しの順番がレンダー間で変わらなければ、React はそれらのフックにローカル state を割り当てることができます。ですがフックの呼び出しを条件分岐内（例えば `persistForm` 副作用の内部で）で行ったらどうなるでしょうか？
+フックへの呼び出しの順番がレンダー間で変わらない限り、React はそれらのフックにローカル state を割り当てることができます。ですがフックの呼び出しを条件分岐内（例えば `persistForm` 副作用の内部で）で行ったらどうなるでしょうか？
 
 ```js
   // 🔴 We're breaking the first rule by using a Hook in a condition
