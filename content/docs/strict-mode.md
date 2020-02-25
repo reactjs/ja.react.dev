@@ -32,11 +32,7 @@ strict モードが有効のとき、React は安全でないライフサイク�
 
 ![](../images/blog/strict-mode-unsafe-lifecycles-warning.png)
 
-<<<<<<< HEAD
-_今_ strict モードによって特定された問題に対処しておくことで、将来の React のリリース時に、非同期レンダリングを活用しやすくなります。
-=======
-Addressing the issues identified by strict mode _now_ will make it easier for you to take advantage of concurrent rendering in future releases of React.
->>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
+_今_ strict モードによって特定された問題に対処しておくことで、将来の React のリリース時に、並列レンダリングを活用しやすくなります。
 
 ### レガシーな文字列 ref API の使用に対する警告 {#warning-about-legacy-string-ref-api-usage}
 
@@ -87,11 +83,7 @@ class MyComponent extends React.Component {
 * **レンダー**フェーズでは、変更対象（例えば DOM）にどのような変更が必要か決めます。このフェーズにおいて、React は `render` を呼び出し、1 つ前のレンダー結果と比較します。
 * **コミット**フェーズで React は変更を反映します（React DOM の場合ではここで React は DOM ノードの挿入、更新、削除を行います）。React はこのフェーズで `componentDidMount` や `componentDidUpdate` などのライフサイクルの呼び出しも行います。
 
-<<<<<<< HEAD
-コミットフェーズは大体の場合非常に高速ですが、レンダーは低速になることがあります。このため、今後追加される非同期モード（現状ではまだデフォルトでは無効です）ではレンダリングの処理を細分化し、ブラウザをブロックしてしまうことを避けるために処理を中断、再開するようになります。これは、React がコミットの前にレンダーフェーズのライフサイクルを複数回呼び出しうるということであり、（エラーや優先度の高い割り込みによって）コミットを行わずに呼び出しうるということを意味します。
-=======
-The commit phase is usually very fast, but rendering can be slow. For this reason, the upcoming concurrent mode (which is not enabled by default yet) breaks the rendering work into pieces, pausing and resuming the work to avoid blocking the browser. This means that React may invoke render phase lifecycles more than once before committing, or it may invoke them without committing at all (because of an error or a higher priority interruption).
->>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
+コミットフェーズは大体の場合非常に高速ですが、レンダーは低速になることがあります。このため、今後追加される並列モード（現状ではまだデフォルトでは無効です）ではレンダー処理を細分化し、ブラウザをブロックしてしまうことを避けるために処理を中断、再開するようになります。これは、React がコミットの前にレンダーフェーズのライフサイクルを複数回呼び出しうるということであり、（エラーや優先度の高い割り込みによって）コミットを行わずに呼び出しうるということを意味します。
 
 レンダーフェーズのライフサイクルには次のクラス型コンポーネントのメソッドが含まれます。
 * `constructor`
