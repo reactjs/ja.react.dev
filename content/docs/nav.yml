@@ -99,9 +99,13 @@
     - id: events
       title: 合成イベント (SyntheticEvent)
     - id: test-utils
+<<<<<<< HEAD
       title: テストユーティリティ
     - id: shallow-renderer
       title: Shallow Renderer
+=======
+      title: Test Utilities
+>>>>>>> 2ab1ca5007a37ca509863a212293f1c6b26d0afc
     - id: test-renderer
       title: Test Renderer
     - id: javascript-environment-requirements
@@ -175,4 +179,8 @@
     - id: faq-versioning
       title: バージョニングポリシー
     - id: faq-internals
+<<<<<<< HEAD
       title: 仮想 DOM と内部処理
+=======
+      title: Virtual DOM and Internals
+>>>>>>> 2ab1ca5007a37ca509863a212293f1c6b26d0afc
