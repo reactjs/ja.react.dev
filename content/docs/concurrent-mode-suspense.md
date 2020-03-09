@@ -113,13 +113,21 @@ function ProfileTimeline() {
 
 ### サスペンスで何ができるのか {#what-suspense-lets-you-do}
 
+<<<<<<< HEAD
 ではサスペンスとは要するに何なのでしょうか。これに対する答え方はいくつかあります：
+=======
+So what's the point of Suspense? There are a few ways we can answer this:
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 * **データ取得ライブラリが React と深く連携できるようにするためのものです。**データ取得ライブラリがサスペンスをサポートすることで、React コンポーネントからそれを非常に自然に扱えるようになります。
 
 * **ロード中状態の表示を注意深く設計することが容易になります**。サスペンスは*どのように*データが取得されるのかについて関知しませんが、アプリケーションのローディングシーケンスを細かく制御することができるようになります。
 
+<<<<<<< HEAD
 * **競合状態 (race condition) を避ける手助けになります。**`await` を使っていてすら、非同期のコードはエラーを起こしがちです。サスペンスを使うことで、データが*同期的に*読み出されているかのように、まるで既にロード済みであるかのように感じられます。
+=======
+* **It helps you avoid race conditions.** Even with `await`, asynchronous code is often error-prone. Suspense feels more like reading data *synchronously* — as if it were already loaded.
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 ## 現実環境でのサスペンスの使用 {#using-suspense-in-practice}
 
@@ -231,7 +239,11 @@ function ProfileTimeline() {
 
 ユーザ詳細情報の取得に 3 秒かかる場合、投稿の取得の*開始*が 3 秒後になってしまいます！ これが「ウォーターフォール」、つまり並列化可能にもかかわらず意図せず混入してしまった*シーケンス*です。
 
+<<<<<<< HEAD
 レンダー時にデータを取得するコードではウォーターフォールはよく発生します。修正することは可能ですが、プロダクトが成長するにつれて多くの人はこの問題を解決しづらくするような手法を使うようになります。
+=======
+Waterfalls are common in code that fetches data on render. They're possible to solve, but as the product grows, many people prefer to use a solution that guards against this problem.
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 ### アプローチ 2: Fetch-Then-Render（サスペンス不使用）{#approach-2-fetch-then-render-not-using-suspense}
 
@@ -250,7 +262,11 @@ function fetchProfileData() {
 }
 ```
 
+<<<<<<< HEAD
 この例では `<ProfilePage>` は両方のリクエストを待機しますが、同時に開始します：
+=======
+In this example, `<ProfilePage>` waits for both requests but starts them in parallel:
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 ```js{1,2,8-13}
 // Kick off fetching as early as possible

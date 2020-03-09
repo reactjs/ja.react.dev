@@ -99,10 +99,18 @@ class MyComponent extends React.Component {
 
 strict モードでは自動的には副作用を見つけてはくれませんが、それらの副作用をほんの少し決定的にすることによって特定できる助けになります。これは、以下のメソッドを意図的に 2 回呼び出すことによって行われます。
 
+<<<<<<< HEAD
 * クラス型コンポーネントの `constructor` メソッド
 * `render` メソッド
 * `setState` 更新関数（第 1 引数）
 * スタティックなライフサイクル `getDerivedStateFromProps`
+=======
+* Class component `constructor` method
+* The `render` method
+* `setState` updater functions (the first argument)
+* The static `getDerivedStateFromProps` lifecycle
+* The `shouldComponentUpdate` method
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 > 補足：
 >
