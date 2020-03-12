@@ -120,8 +120,6 @@ const OtherComponent = React.lazy(() => import('./OtherComponent'));
 
 `React.lazy` は動的インポート構文 `import()` を呼び出す関数を引数として取ります。この関数は React コンポーネントを含む `default` export を持つモジュールに解決される `Promise` を返さなければなりません。
 
-### Suspense {#suspense}
-
 遅延コンポーネントは、`Suspense` コンポーネント内でレンダーされる必要があります。これによって、遅延コンポーネントのローディングの待機中にフォールバック用のコンテンツ（ローディングインジケータなど）を表示できます。
 
 ```js
