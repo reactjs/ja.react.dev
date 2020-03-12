@@ -54,11 +54,7 @@ API は `@experimental` のどのリリースにおいても追加・変更・�
 
 ### 並列モードの有効化 {#enabling-concurrent-mode}
 
-<<<<<<< HEAD
 通常、React に機能を加える際は、それをすぐ使い始めることができます。フラグメント、コンテクスト、そしてフックですら、そのような機能の例です。既存のコードに何ら変更を加えずに新しいコードで使うことができます。
-=======
-Normally, when we add features to React, you can start using them immediately. Fragments, Context, and even Hooks are examples of such features. You can use them in new code without making any changes to the existing code.
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 並列モードは違います。React がどのように動作するのかについて意味上の変更が行われています。そうしなければ並列モードで有効になる[新機能](/docs/concurrent-mode-patterns.html)は*実現不可能だった*でしょう。これが、新機能がひとつずつ分離してリリースされるのではなく、新しい「モード」としてグループ化されている理由です。
 

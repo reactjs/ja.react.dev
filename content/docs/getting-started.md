@@ -36,11 +36,7 @@ React は初めから既存のプロジェクトに徐々に追加していけ�
 
 ### Web 上で試せるオンラインエディタ {#online-playgrounds}
 
-<<<<<<< HEAD
-React をちょっと試してみたい場合、Web 上のコードエディタが使えます。[CodePen](codepen://hello-world)、[CodeSandbox](https://codesandbox.io/s/new) や [Glitch](https://glitch.com/edit/#!/remix/starter-react-template) で Hello World のテンプレートを使って試してみましょう。
-=======
-If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), [Glitch](https://glitch.com/edit/#!/remix/starter-react-template), or [Stackblitz](https://stackblitz.com/fork/react).
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+React をちょっと試してみたい場合、Web 上のコードエディタが使えます。[CodePen](codepen://hello-world)、[CodeSandbox](https://codesandbox.io/s/new)、[Glitch](https://glitch.com/edit/#!/remix/starter-react-template) や [Stackblitz](https://stackblitz.com/fork/react) で Hello World のテンプレートを使って試してみましょう。
 
 自前のテキストエディタを使いたい場合は、[この HTML ファイル](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)をダウンロード・編集して、ブラウザを使ってからローカルファイルシステムから開くことができます。ランタイムでの遅いコード変換が行われる為、簡単なデモに留めておくことをおすすめします。
 
@@ -87,11 +83,7 @@ JavaScript について自分がどれだけ知っているかを知るために
 
 ### 実践チュートリアル {#practical-tutorial}
 
-<<<<<<< HEAD
 **実際に手を動かしながら学びたい人**は[チュートリアル](/tutorial/tutorial.html)からはじめましょう。このチュートリアルでは React を使って三目並べゲームを作成します。ゲーム作成に興味が無い方は飛ばそうと思うかもしれませんが、試してみてください。ここで学ぶテクニックは*全ての* React アプリの基礎となることであり、習得することで React に関する深い理解を得るでしょう。
-=======
-If you prefer to **learn by doing,** check out our [practical tutorial](/tutorial/tutorial.html). In this tutorial, we build a tic-tac-toe game in React. You might be tempted to skip it because you're not into building games -- but give it a chance. The techniques you'll learn in the tutorial are fundamental to building *any* React apps, and mastering it will give you a much deeper understanding.
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 ### 一歩づつ進めるためのガイド {#step-by-step-guide}
 

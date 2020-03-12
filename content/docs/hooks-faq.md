@@ -91,19 +91,11 @@ React Native は[バージョン 0.59](https://facebook.github.io/react-native/b
 
 準備ができしだい、新しいコンポーネントでフックを試すことをお勧めします。チームの全員の準備が完了し、このドキュメントに馴染んでいることを確かめましょう。（例えばバグを直すなどの理由で）何にせよ書き換える予定の場合を除いては、既存のクラスをフックに書き換えることはお勧めしません。
 
-<<<<<<< HEAD
 クラスコンポーネントの*定義内で*フックを使うことはできませんが、クラス型コンポーネントとフックを使った関数コンポーネントとを 1 つのコンポーネントツリー内で混在させることは全く問題ありません。あるコンポーネントがクラスで書かれているかフックを用いた関数で書かれているかというのは、そのコンポーネントの実装の詳細です。長期的には、フックが React のコンポーネントを書く際の第一選択となることを期待しています。
-=======
-You can't use Hooks *inside* a class component, but you can definitely mix classes and function components with Hooks in a single tree. Whether a component is a class or a function that uses Hooks is an implementation detail of that component. In the longer term, we expect Hooks to be the primary way people write React components.
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 ### フックはクラスのユースケースのすべてをカバーしていますか？ {#do-hooks-cover-all-use-cases-for-classes}
 
-<<<<<<< HEAD
-我々の目標はできるだけ早急にフックがすべてのクラスのユースケースをカバーできるようにすることです。まだ使用頻度の低い `getSnapshotBeforeUpdate` と `componentDidCatch` についてはフックでの同等物が存在していませんが、すぐに追加する予定です。
-=======
-Our goal is for Hooks to cover all use cases for classes as soon as possible. There are no Hook equivalents to the uncommon `getSnapshotBeforeUpdate`, `getDerivedStateFromError` and `componentDidCatch` lifecycles yet, but we plan to add them soon.
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+我々の目標はできるだけ早急にフックがすべてのクラスのユースケースをカバーできるようにすることです。まだ使用頻度の低い `getSnapshotBeforeUpdate`、`getDerivedStateFromError` および `componentDidCatch` についてはフックでの同等物が存在していませんが、すぐに追加する予定です。
 
 まだフックはできたばかりですので、幾つかのサードパーティ製のライブラリは現時点でフックとの互換性がないかもしれません。
 
@@ -226,11 +218,7 @@ it('can render and update a counter', () => {
 
 * `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`: これらのあらゆる組み合わせは [`useEffect` フック](/docs/hooks-reference.html#useeffect)で表現できます（[これ](#can-i-skip-an-effect-on-updates)や[これ](#can-i-run-an-effect-only-on-updates)のような頻度の低いケースも含め）。
 
-<<<<<<< HEAD
-* `componentDidCatch` と `getDerivedStateFromError`: フックによる同等物はまだ存在していませんが、近日中に追加される予定です。
-=======
-* `getSnapshotBeforeUpdate`, `componentDidCatch` and `getDerivedStateFromError`: There are no Hook equivalents for these methods yet, but they will be added soon.
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+* `getSnapshotBeforeUpdate`、`componentDidCatch` および `getDerivedStateFromError`: フックによる同等物はまだ存在していませんが、近日中に追加される予定です。
 
 ### フックでデータの取得をどのように行うのですか？ {#how-can-i-do-data-fetching-with-hooks}
 
@@ -301,11 +289,7 @@ function Box() {
 
 これは state 変数を更新する時には変数の値が*置換*されるからです。これは更新されるフィールドがオブジェクトに*マージ*されるというクラスでの `this.setState` の挙動とは異なります。
 
-<<<<<<< HEAD
-自動マージがないとつらい場合は、`useLegacyState` のようなカスタムフックを書いてオブジェクト型の state の更新をマージするようにすることはできます。しかし、我々は**どの値が一緒に更新されやすいのかに基づいて、state を複数の state 変数に分割することをお勧めします。**
-=======
-If you miss automatic merging, you could write a custom `useLegacyState` Hook that merges object state updates. However, **we recommend to split state into multiple state variables based on which values tend to change together.**
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+自動マージがないとつらい場合は、`useLegacyState` のようなカスタムフックを書いてオブジェクト型の state の更新をマージするようにすることはできます。しかし、我々は代わりに、**どの値が一緒に更新されやすいのかに基づいて、state を複数の state 変数に分割することをお勧めします。**
 
 例えば、コンポーネントの state を `position` と `size` という複数のオブジェクトに分割して、マージを行わなくても `position` を常に新たな値で置換するようにできるでしょう。
 
@@ -595,11 +579,7 @@ useEffect(() => {
 
 これがなぜ重要なのか説明します。
 
-<<<<<<< HEAD
-`useEffect`、`useMemo`、`useCallback` あるいは `useImperativeHandle` の最後の引数として[依存する値のリスト](/docs/hooks-reference.html#conditionally-firing-an-effect)を渡す場合、内部で使われ React のデータの流れに関わる値が、すべて含まれている必要があります。すなわち props や state およびそれらより派生するあらゆるものです。
-=======
-If you specify a [list of dependencies](/docs/hooks-reference.html#conditionally-firing-an-effect) as the last argument to `useEffect`, `useMemo`, `useCallback`, or `useImperativeHandle`, it must include all values that are used inside the callback and participate in the React data flow. That includes props, state, and anything derived from them.
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+`useEffect`、`useMemo`、`useCallback` あるいは `useImperativeHandle` の最後の引数として[依存する値のリスト](/docs/hooks-reference.html#conditionally-firing-an-effect)を渡す場合、コールバック内部で使われ React のデータの流れに関わる値が、すべて含まれている必要があります。すなわち props や state およびそれらより派生するあらゆるものです。
 
 関数を依存のリストから安全に省略できるのは、その関数（あるいはその関数から呼ばれる関数）が props、state ないしそれらから派生する値のいずれも含んでいない場合**のみ**です。以下の例にはバグがあります。
 

@@ -34,11 +34,7 @@ HTML ファイルの中に `<div>` 要素があったとしましょう：
 
 React だけで構築されたアプリケーションは、通常ルート DOM ノードをひとつだけ持ちます。既存のアプリに React を統合しようとしている場合は、独立したルート DOM ノードを好きなだけ持つことができます。
 
-<<<<<<< HEAD
-React 要素をルート DOM ノードにレンダリングするには、その 2 つを `ReactDOM.render()` に渡します：
-=======
-To render a React element into a root DOM node, pass both to [`ReactDOM.render()`](/docs/react-dom.html#render):
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+React 要素をルート DOM ノードにレンダリングするには、その 2 つを [`ReactDOM.render()`](/docs/react-dom.html#render) に渡します：
 
 `embed:rendering-elements/render-an-element.js`
 
@@ -50,11 +46,7 @@ To render a React element into a root DOM node, pass both to [`ReactDOM.render()
 
 React 要素は[イミュータブル](https://en.wikipedia.org/wiki/Immutable_object)です。一度要素を作成すると、その子要素もしくは属性を変更することはできません。要素は映画の中のひとつのフレームのようなものであり、それは特定のある時点の UI を表します。
 
-<<<<<<< HEAD
-ここまでで分かる通り、UI を更新する唯一の方法は、新しい要素を作成して `ReactDOM.render()` に渡すことです。
-=======
-With our knowledge so far, the only way to update the UI is to create a new element, and pass it to [`ReactDOM.render()`](/docs/react-dom.html#render).
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+ここまでで分かる通り、UI を更新する唯一の方法は、新しい要素を作成して [`ReactDOM.render()`](/docs/react-dom.html#render) に渡すことです。
 
 以下の秒刻みで動く時計の例について考えます：
 
@@ -62,19 +54,11 @@ With our knowledge so far, the only way to update the UI is to create a new elem
 
 [](codepen://rendering-elements/update-rendered-element)
 
-<<<<<<< HEAD
-上記のコードでは [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) のコールバックから `ReactDOM.render()` を毎秒呼び出しています。
-=======
-It calls [`ReactDOM.render()`](/docs/react-dom.html#render) every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+上記のコードでは [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) のコールバックから [`ReactDOM.render()`](/docs/react-dom.html#render) を毎秒呼び出しています。
 
 >**補足:**
 >
-<<<<<<< HEAD
->実際には大抵の React アプリケーションは `ReactDOM.render()` を一度しか呼び出しません。次の章では上記のようなコードをどのように[ステート付きコンポーネント](/docs/state-and-lifecycle.html)へとカプセル化するのかを学びます。
-=======
->In practice, most React apps only call [`ReactDOM.render()`](/docs/react-dom.html#render) once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+>実際には大抵の React アプリケーションは [`ReactDOM.render()`](/docs/react-dom.html#render) を一度しか呼び出しません。次の章では上記のようなコードをどのように[ステート付きコンポーネント](/docs/state-and-lifecycle.html)へとカプセル化するのかを学びます。
 >
 >トピックはお互いを基礎として構成されているため、読み飛ばさないことをお勧めします。
 
@@ -88,8 +72,4 @@ React DOM は要素とその子要素を以前のものと比較し、DOM を望
 
 毎秒ごとに UI ツリー全体を表す要素を作成しているにも関わらず、内容が変更されたテキストノードのみが React DOM により更新されます。
 
-<<<<<<< HEAD
 私達の経験上、時間の経過によりどのように UI が変更されるかを考えるよりも、任意の時点において UI がどのように見えるべきかを考えることで、あらゆる類のバグを排除することができます。
-=======
-In our experience, thinking about how the UI should look at any given moment, rather than how to change it over time, eliminates a whole class of bugs.
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504

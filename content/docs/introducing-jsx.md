@@ -178,11 +178,7 @@ const element = {
 
 このようなオブジェクトは "React 要素" と呼ばれます。これらは画面に表示したいものの説明書きとして考えることができます。React はこれらのオブジェクトを読み取り、DOM を構築して最新に保ちます。
 
-<<<<<<< HEAD
-次の章では React 要素を DOM に変換することについて見ていきましょう。
-=======
-We will explore rendering React elements to the DOM in the [next section](/docs/rendering-elements.html).
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
+[次の章](/docs/rendering-elements.html)では React 要素を DOM に変換することについて見ていきましょう。
 
 >**ヒント:**
 >

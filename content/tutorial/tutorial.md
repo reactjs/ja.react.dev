@@ -290,11 +290,7 @@ class Square extends React.Component {
 
 >補足
 >
-<<<<<<< HEAD
 > [JavaScript のクラス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)では、サブクラスのコンストラクタを定義する際は常に `super` を呼ぶ必要があります。`constructor` を持つ React のクラスコンポーネントでは、すべてコンストラクタを `super(props)` の呼び出しから始めるべきです。
-=======
->In [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), you need to always call `super` when defining the constructor of a subclass. All React component classes that have a `constructor` should start with a `super(props)` call.
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 次に Square の `render` メソッドを書き換えて、クリックされた時に state の現在値を表示するようにします。
 

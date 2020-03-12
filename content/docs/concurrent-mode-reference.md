@@ -199,11 +199,7 @@ function App() {
  }
 ```
 
-<<<<<<< HEAD
 これにより `input` が即座に新しいテキストを表示し始めることができ、ウェブページがレスポンシブに保たれます。その一方で `MySlowList` は、`timeoutMs` に書かれているとおり更新まで最大 2 秒間遅延されるので、バックグラウンドで現在のテキストの値がレンダーできるようになります。
-=======
-This allows us to start showing the new text for the `input` immediately, which allows the webpage to feel responsive. Meanwhile, `MySlowList` "lags behind" for up to 2 seconds according to the `timeoutMs` before updating, allowing it to render with the current text in the background.
->>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 **値の遅延についての詳細な解説は[並列的 UI パターン](/docs/concurrent-mode-patterns.html#deferring-a-value)で読めます。**
 
