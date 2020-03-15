@@ -177,9 +177,9 @@ HOC の中でコンポーネントのプロトタイプを変更したり、あ�
 
 ```js
 function logProps(InputComponent) {
-  InputComponent.prototype.componentWillReceiveProps = function(nextProps) {
+  InputComponent.prototype.componentDidUpdate = function(prevProps) {
     console.log('Current props: ', this.props);
-    console.log('Next props: ', nextProps);
+    console.log('Previous props: ', prevProps);
   };
   // The fact that we're returning the original input is a hint that it has
   // been mutated.
@@ -190,7 +190,7 @@ function logProps(InputComponent) {
 const EnhancedComponent = logProps(InputComponent);
 ```
 
-このコードにはいくつかの問題があります。1 つは入力のコンポーネントを改変されたコンポーネントとは別に再利用できなくなってしまうことです。さらに悪いことに、もしこの `EnhancedComponent` に別の HOC を適用し、それが*同様に* `componentWillReceiveProps` に変更を加えるものであった場合、最初の HOC が加えた機能は上書きされてしまいます！ またこの HOC はライフサイクルメソッドを持たない関数コンポーネントには機能しません。
+このコードにはいくつかの問題があります。1 つは入力のコンポーネントを改変されたコンポーネントとは別に再利用できなくなってしまうことです。さらに悪いことに、もしこの `EnhancedComponent` に別の HOC を適用し、それが*同様に* `componentDidUpdate` に変更を加えるものであった場合、最初の HOC が加えた機能は上書きされてしまいます！ またこの HOC はライフサイクルメソッドを持たない関数コンポーネントには機能しません。
 
 コンポーネントの改変を行うような HOC は不完全な抽象化です。つまり、利用する側は他の HOC との競合を避けるため、どのように実装されているかを知っておく必要があるのです。
 
@@ -199,9 +199,9 @@ const EnhancedComponent = logProps(InputComponent);
 ```js
 function logProps(WrappedComponent) {
   return class extends React.Component {
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate(prevProps) {
       console.log('Current props: ', this.props);
-      console.log('Next props: ', nextProps);
+      console.log('Previous props: ', prevProps);
     }
     render() {
       // Wraps the input component in a container, without mutating it. Good!

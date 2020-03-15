@@ -34,7 +34,7 @@ HTML ファイルの中に `<div>` 要素があったとしましょう：
 
 React だけで構築されたアプリケーションは、通常ルート DOM ノードをひとつだけ持ちます。既存のアプリに React を統合しようとしている場合は、独立したルート DOM ノードを好きなだけ持つことができます。
 
-React 要素をルート DOM ノードにレンダリングするには、その 2 つを `ReactDOM.render()` に渡します：
+React 要素をルート DOM ノードにレンダリングするには、その 2 つを [`ReactDOM.render()`](/docs/react-dom.html#render) に渡します：
 
 `embed:rendering-elements/render-an-element.js`
 
@@ -46,7 +46,7 @@ React 要素をルート DOM ノードにレンダリングするには、その
 
 React 要素は[イミュータブル](https://en.wikipedia.org/wiki/Immutable_object)です。一度要素を作成すると、その子要素もしくは属性を変更することはできません。要素は映画の中のひとつのフレームのようなものであり、それは特定のある時点の UI を表します。
 
-ここまでで分かる通り、UI を更新する唯一の方法は、新しい要素を作成して `ReactDOM.render()` に渡すことです。
+ここまでで分かる通り、UI を更新する唯一の方法は、新しい要素を作成して [`ReactDOM.render()`](/docs/react-dom.html#render) に渡すことです。
 
 以下の秒刻みで動く時計の例について考えます：
 
@@ -54,11 +54,11 @@ React 要素は[イミュータブル](https://en.wikipedia.org/wiki/Immutable_o
 
 [](codepen://rendering-elements/update-rendered-element)
 
-上記のコードでは [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) のコールバックから `ReactDOM.render()` を毎秒呼び出しています。
+上記のコードでは [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) のコールバックから [`ReactDOM.render()`](/docs/react-dom.html#render) を毎秒呼び出しています。
 
 >**補足:**
 >
->実際には大抵の React アプリケーションは `ReactDOM.render()` を一度しか呼び出しません。次の章では上記のようなコードをどのように[ステート付きコンポーネント](/docs/state-and-lifecycle.html)へとカプセル化するのかを学びます。
+>実際には大抵の React アプリケーションは [`ReactDOM.render()`](/docs/react-dom.html#render) を一度しか呼び出しません。次の章では上記のようなコードをどのように[ステート付きコンポーネント](/docs/state-and-lifecycle.html)へとカプセル化するのかを学びます。
 >
 >トピックはお互いを基礎として構成されているため、読み飛ばさないことをお勧めします。
 

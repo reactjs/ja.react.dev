@@ -250,7 +250,7 @@ function fetchProfileData() {
 }
 ```
 
-この例では `<ProfilePage>` は両方のリクエストを待機しますが、同時に開始します：
+この例では `<ProfilePage>` は両方のリクエストを待機しますが、それらを同時に開始しています：
 
 ```js{1,2,8-13}
 // Kick off fetching as early as possible

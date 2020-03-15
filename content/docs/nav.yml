@@ -100,8 +100,6 @@
       title: 合成イベント (SyntheticEvent)
     - id: test-utils
       title: テストユーティリティ
-    - id: shallow-renderer
-      title: Shallow Renderer
     - id: test-renderer
       title: Test Renderer
     - id: javascript-environment-requirements

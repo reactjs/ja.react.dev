@@ -26,6 +26,7 @@ void preventDefault()
 boolean isDefaultPrevented()
 void stopPropagation()
 boolean isPropagationStopped()
+void persist()
 DOMEventTarget target
 number timeStamp
 string type
@@ -75,6 +76,7 @@ React は異なるブラウザ間でも一貫したプロパティを持つよ�
 - [キーボードイベント](#keyboard-events)
 - [フォーカスイベント](#focus-events)
 - [フォームイベント](#form-events)
+- [汎用イベント](#generic-events)
 - [マウスイベント](#mouse-events)
 - [ポインタイベント](#pointer-events)
 - [選択イベント](#selection-events)
@@ -176,10 +178,20 @@ DOMEventTarget relatedTarget
 イベント名：
 
 ```
-onChange onInput onInvalid onSubmit
+onChange onInput onInvalid onReset onSubmit 
 ```
 
 onChange イベントの詳細については、[Forms](/docs/forms.html) を参照してください。
+
+* * *
+
+### 汎用イベント {#generic-events}
+
+イベント名：
+
+```
+onError onLoad
+```
 
 * * *
 

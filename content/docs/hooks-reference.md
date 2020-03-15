@@ -69,7 +69,7 @@ function Counter({initialCount}) {
 
 "+" と "-" のボタンは、更新後の値が更新前の値に基づいて計算されるため、関数形式を使っています。"Reset" ボタンは常にカウントを初期値に戻すので、通常の形式を使っています。
 
-この更新用関数が全く同じ値を返す場合は、後続する再レンダーは完全にスキップされます。
+この更新用関数が現在の state と全く同じ値を返す場合は、後続する再レンダーは完全にスキップされます。
 
 > 補足
 >
@@ -436,7 +436,7 @@ function TextInputWithFocusButton() {
 useImperativeHandle(ref, createHandle, [deps])
 ```
 
-`useImperativeHandle` は `ref` が使われた時に親コンポーネントに渡されるインスタンス値をカスタマイズするのに使います。いつもの話ですが、ref を使った手続き的なコードはほとんどの場合に避けるべきです。`useImperativeHandle` は `forwardRef` と組み合わせて使います：
+`useImperativeHandle` は `ref` が使われた時に親コンポーネントに渡されるインスタンス値をカスタマイズするのに使います。いつもの話ですが、ref を使った手続き的なコードはほとんどの場合に避けるべきです。`useImperativeHandle` は [`forwardRef`](/docs/react-api.html#reactforwardref) と組み合わせて使います：
 
 ```js
 function FancyInput(props, ref) {

@@ -95,7 +95,7 @@ React Native は[バージョン 0.59](https://facebook.github.io/react-native/b
 
 ### フックはクラスのユースケースのすべてをカバーしていますか？ {#do-hooks-cover-all-use-cases-for-classes}
 
-我々の目標はできるだけ早急にフックがすべてのクラスのユースケースをカバーできるようにすることです。まだ使用頻度の低い `getSnapshotBeforeUpdate` と `componentDidCatch` についてはフックでの同等物が存在していませんが、すぐに追加する予定です。
+我々の目標はできるだけ早急にフックがすべてのクラスのユースケースをカバーできるようにすることです。まだ使用頻度の低い `getSnapshotBeforeUpdate`、`getDerivedStateFromError` および `componentDidCatch` についてはフックでの同等物が存在していませんが、すぐに追加する予定です。
 
 まだフックはできたばかりですので、幾つかのサードパーティ製のライブラリは現時点でフックとの互換性がないかもしれません。
 
@@ -218,7 +218,7 @@ it('can render and update a counter', () => {
 
 * `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`: これらのあらゆる組み合わせは [`useEffect` フック](/docs/hooks-reference.html#useeffect)で表現できます（[これ](#can-i-skip-an-effect-on-updates)や[これ](#can-i-run-an-effect-only-on-updates)のような頻度の低いケースも含め）。
 
-* `componentDidCatch` と `getDerivedStateFromError`: フックによる同等物はまだ存在していませんが、近日中に追加される予定です。
+* `getSnapshotBeforeUpdate`、`componentDidCatch` および `getDerivedStateFromError`: フックによる同等物はまだ存在していませんが、近日中に追加される予定です。
 
 ### フックでデータの取得をどのように行うのですか？ {#how-can-i-do-data-fetching-with-hooks}
 
@@ -289,7 +289,7 @@ function Box() {
 
 これは state 変数を更新する時には変数の値が*置換*されるからです。これは更新されるフィールドがオブジェクトに*マージ*されるというクラスでの `this.setState` の挙動とは異なります。
 
-自動マージがないとつらい場合は、`useLegacyState` のようなカスタムフックを書いてオブジェクト型の state の更新をマージするようにすることはできます。しかし、我々は**どの値が一緒に更新されやすいのかに基づいて、state を複数の state 変数に分割することをお勧めします。**
+自動マージがないとつらい場合は、`useLegacyState` のようなカスタムフックを書いてオブジェクト型の state の更新をマージするようにすることはできます。しかし、我々は代わりに、**どの値が一緒に更新されやすいのかに基づいて、state を複数の state 変数に分割することをお勧めします。**
 
 例えば、コンポーネントの state を `position` と `size` という複数のオブジェクトに分割して、マージを行わなくても `position` を常に新たな値で置換するようにできるでしょう。
 
@@ -579,7 +579,7 @@ useEffect(() => {
 
 これがなぜ重要なのか説明します。
 
-`useEffect`、`useMemo`、`useCallback` あるいは `useImperativeHandle` の最後の引数として[依存する値のリスト](/docs/hooks-reference.html#conditionally-firing-an-effect)を渡す場合、内部で使われ React のデータの流れに関わる値が、すべて含まれている必要があります。すなわち props や state およびそれらより派生するあらゆるものです。
+`useEffect`、`useMemo`、`useCallback` あるいは `useImperativeHandle` の最後の引数として[依存する値のリスト](/docs/hooks-reference.html#conditionally-firing-an-effect)を渡す場合、コールバック内部で使われ React のデータの流れに関わる値が、すべて含まれている必要があります。すなわち props や state およびそれらより派生するあらゆるものです。
 
 関数を依存のリストから安全に省略できるのは、その関数（あるいはその関数から呼ばれる関数）が props、state ないしそれらから派生する値のいずれも含んでいない場合**のみ**です。以下の例にはバグがあります。
 

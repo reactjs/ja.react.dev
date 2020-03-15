@@ -44,7 +44,7 @@ class Welcome extends React.Component {
 
 上記 2 つのコンポーネントは React の視点からは等価です。
 
-クラスには[次のセクション](/docs/state-and-lifecycle.html)で説明するいくつかの追加の機能があります。それまでは、簡単なので関数コンポーネントの方を使いましょう。
+関数コンポーネントとクラスコンポーネントには、[次のセクション](/docs/state-and-lifecycle.html)で説明するようにそれぞれ幾つかの追加機能があります。
 
 ## コンポーネントのレンダー {#rendering-a-component}
 
@@ -60,7 +60,7 @@ const element = <div />;
 const element = <Welcome name="Sara" />;
 ```
 
-React がユーザ定義のコンポーネントを見つけた場合、JSX の属性を単一のオブジェクトとしてこのコンポーネントに渡します。このオブジェクトのことを "props" と呼びます。
+React がユーザ定義のコンポーネントを見つけた場合、JSX に書かれている属性と子要素を単一のオブジェクトとしてこのコンポーネントに渡します。このオブジェクトのことを "props" と呼びます。
 
 例えば以下のコードではページ上に "Hello, Sara" を表示します：
 
