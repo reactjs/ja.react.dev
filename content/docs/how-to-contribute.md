@@ -132,20 +132,36 @@ React リポジトリをクローンしたあと、`yarn` コマンドで依存�
 
 変更を試す一番簡単な方法は `yarn build react/index,react-dom/index --type=UMD` を実行し、`fixtures/packaging/babel-standalone/dev.html` を開くことです。このファイルは `build` フォルダの `react.development.js` を既に使用しているので、変更が反映されます。
 
+<<<<<<< HEAD
 あなたの加えた変更を既存の React プロジェクトで試したい場合、`build/dist/react.development.js`、`build/dist/react-dom.development.js`、もしくは他のビルドされたファイルをあなたのアプリケーションにコピーして安定版の代わりに使用することができます。もし、npm 版の React を使用している場合は `react` と `react-dom` を依存関係から削除し、`yarn link` を使用してそれらがローカルの `build` を指すようにしてください：
+=======
+If you want to try your changes in your existing React project, you may copy `build/dist/react.development.js`, `build/dist/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. 
+
+If your project uses React from npm, you may delete `react` and `react-dom` in its dependencies and use `yarn link` to point them to your local `build` folder. Note that **instead of `--type=UMD` you'll want to pass `--type=NODE` when building**. You'll also need to build the `scheduler` package:
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 ```sh
-cd ~/path_to_your_react_clone/build/node_modules/react
+cd ~/path_to_your_react_clone/
+yarn build react/index,react-dom/index,scheduler --type=NODE
+
+cd build/node_modules/react
 yarn link
-cd ~/path_to_your_react_clone/build/node_modules/react-dom
+cd build/node_modules/react-dom
 yarn link
-cd /path/to/your/project
+
+cd ~/path/to/your/project
 yarn link react react-dom
 ```
 
 `yarn build` を React フォルダで実行するたびに、あなたのプロジェクトの `node_modules` フォルダに更新されたバージョンが現れるでしょう。その後、プロジェクトをビルドし直して変更を試すことができます。
 
+<<<<<<< HEAD
 ただしプルリクエストにあなたの新機能に応じたユニットテストを含めることは必須です。これによって将来あなたのコードを壊してしまわないことが担保されます。
+=======
+If some package is still missing (e.g. maybe you use `react-dom/server` in your project), you can always do a full build with `yarn build`. Note that running `yarn build` without options takes a long time.
+
+We still require that your pull request contains unit tests for any new functionality. This way we can ensure that we don't break your code in the future.
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 ### スタイルガイド {#style-guide}
 
