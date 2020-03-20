@@ -100,7 +100,7 @@ Create React App を使用している場合はすでに設定がされている
 
 > 補足:
 >
-> `React.lazy` と Suspense はまだサーバーサイドレンダリングには使用できません。サーバーサイドでレンダリングされたアプリでコード分割をしたい場合には、[Loadable Components](https://github.com/gregberge/loadable-components) の使用をおすすめします。こちらは[サーバーサイドレンダリングでのバンドル分割のための素晴らしいガイド](https://loadable-components.com/docs/server-side-rendering/)も提供していくれているので、参考にしてみてください。
+> `React.lazy` と Suspense はまだサーバーサイドレンダリングには使用できません。サーバーサイドでレンダリングされたアプリでコード分割をしたい場合には、[Loadable Components](https://github.com/gregberge/loadable-components) の使用をおすすめします。[サーバーサイドレンダリングでのバンドル分割のための素晴らしいガイド](https://loadable-components.com/docs/server-side-rendering/)も提供されているので、参考にしてみてください。
 
 `React.lazy` 関数を使用すると、動的インポートを通常のコンポーネントとしてレンダリングすることができます。
 
