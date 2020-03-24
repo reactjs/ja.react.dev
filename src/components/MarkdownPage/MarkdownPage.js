@@ -112,8 +112,15 @@ const MarkdownPage = ({
                   <div css={{marginTop: 80}}>
                     <a
                       css={sharedStyles.articleLayout.editLink}
+<<<<<<< HEAD
                       href={`https://github.com/reactjs/reactjs.org/tree/master/${markdownRemark.fields.path}`}>
                       Edit this page
+=======
+                      href={`https://github.com/reactjs/ja.reactjs.org/tree/master/${
+                        markdownRemark.fields.path
+                      }`}>
+                      このページを編集する
+>>>>>>> ac4b5d74278df9484f640d83c9f136ecccf60fc4
                     </a>
                   </div>
                 )}

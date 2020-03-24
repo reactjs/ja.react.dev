@@ -1,6 +1,6 @@
 ---
 id: handling-events
-title: Handling Events
+title: イベント処理
 permalink: docs/handling-events.html
 prev: state-and-lifecycle.html
 next: conditional-rendering.html
@@ -8,12 +8,16 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
+<<<<<<< HEAD
 Handling events with React elements is very similar to handling events on DOM elements. There are some syntax differences:
+=======
+React でのイベント処理は DOM 要素のイベントの処理と非常に似ています。いくつかの文法的な違いがあります：
+>>>>>>> ac4b5d74278df9484f640d83c9f136ecccf60fc4
 
-* React events are named using camelCase, rather than lowercase.
-* With JSX you pass a function as the event handler, rather than a string.
+* React のイベントは小文字ではなく camelCase で名付けられています。
+* JSX ではイベントハンドラとして文字列ではなく関数を渡します。
 
-For example, the HTML:
+例えば、以下の HTML：
 
 ```html
 <button onclick="activateLasers()">
@@ -21,7 +25,7 @@ For example, the HTML:
 </button>
 ```
 
-is slightly different in React:
+は、React では少し異なります：
 
 ```js{1}
 <button onClick={activateLasers}>
@@ -29,7 +33,7 @@ is slightly different in React:
 </button>
 ```
 
-Another difference is that you cannot return `false` to prevent default behavior in React. You must call `preventDefault` explicitly. For example, with plain HTML, to prevent the default link behavior of opening a new page, you can write:
+別の違いとして、React では `false` を返してもデフォルトの動作を抑止することができません。明示的に `preventDefault` を呼び出す必要があります。例えば、プレーンな HTML では、「新しいページを開く」というリンクのデフォルト動作を抑止するために次のように書くことができます。
 
 ```html
 <a href="#" onclick="console.log('The link was clicked.'); return false">
@@ -37,7 +41,7 @@ Another difference is that you cannot return `false` to prevent default behavior
 </a>
 ```
 
-In React, this could instead be:
+React では、代わりに次のようになります：
 
 ```js{2-5,8}
 function ActionLink() {
@@ -54,11 +58,11 @@ function ActionLink() {
 }
 ```
 
-Here, `e` is a synthetic event. React defines these synthetic events according to the [W3C spec](https://www.w3.org/TR/DOM-Level-3-Events/), so you don't need to worry about cross-browser compatibility. See the [`SyntheticEvent`](/docs/events.html) reference guide to learn more.
+ここで、`e` は合成 (synthetic) イベントです。React はこれらの合成イベントを [W3C の仕様](https://www.w3.org/TR/DOM-Level-3-Events/)に則って定義しているので、ブラウザ間の互換性を心配する必要はありません。詳細については、[`SyntheticEvent`](/docs/events.html) のリファレンスガイドを参照してください。
 
-When using React, you generally don't need to call `addEventListener` to add listeners to a DOM element after it is created. Instead, just provide a listener when the element is initially rendered.
+React を使う場合、一般的には DOM 要素の生成後に `addEventListener` を呼び出してリスナを追加する必要はありません。代わりに、要素が最初にレンダーされる際にリスナを指定するようにしてください。
 
-When you define a component using an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes), a common pattern is for an event handler to be a method on the class. For example, this `Toggle` component renders a button that lets the user toggle between "ON" and "OFF" states:
+コンポーネントを [ES6 のクラス](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)を使用して定義した場合、一般的なパターンではイベントハンドラはクラスのメソッドになります。例えば、以下の `Toggle` コンポーネントはユーザが "ON" 状態 "OFF" 状態を切り替えられるようなボタンをレンダーします。
 
 ```js{6,7,10-14,18}
 class Toggle extends React.Component {
@@ -93,11 +97,11 @@ ReactDOM.render(
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/xEmzGg?editors=0010)
 
-You have to be careful about the meaning of `this` in JSX callbacks. In JavaScript, class methods are not [bound](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind) by default. If you forget to bind `this.handleClick` and pass it to `onClick`, `this` will be `undefined` when the function is actually called.
+JSX のコールバックにおける `this` の意味に注意しなければなりません。JavaScript では、クラスのメソッドはデフォルトでは[バインド](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind)されません。`this.handleClick` へのバインドを忘れて `onClick` に渡した場合、実際に関数が呼ばれた時に `this` は `undefined` となってしまいます。
 
-This is not React-specific behavior; it is a part of [how functions work in JavaScript](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/). Generally, if you refer to a method without `()` after it, such as `onClick={this.handleClick}`, you should bind that method.
+これは React に限った動作ではなく、[JavaScript における関数の仕組み](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/)の一部です。一般的に、`onClick={this.handleClick}` のように `()` を末尾に付けずに何らかのメソッドを参照する場合、そのメソッドはバインドしておく必要があります。
 
-If calling `bind` annoys you, there are two ways you can get around this. If you are using the experimental [public class fields syntax](https://babeljs.io/docs/plugins/transform-class-properties/), you can use class fields to correctly bind callbacks:
+`bind` の呼び出しが苦痛なら、それを回避する方法が 2 つあります。実験的な[パブリッククラスフィールド構文](https://babeljs.io/docs/plugins/transform-class-properties/)を使用しているなら、コールバックを正しくバインドするのにクラスフィールドを利用できます：
 
 ```js{2-6}
 class LoggingButton extends React.Component {
@@ -117,9 +121,9 @@ class LoggingButton extends React.Component {
 }
 ```
 
-This syntax is enabled by default in [Create React App](https://github.com/facebookincubator/create-react-app).
+この構文は、[Create React App](https://github.com/facebookincubator/create-react-app) ではデフォルトで有効です。
 
-If you aren't using class fields syntax, you can use an [arrow function](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) in the callback:
+クラスフィールド構文を使用していない場合、コールバック内で[アロー関数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)を使用することもできます：
 
 ```js{7-9}
 class LoggingButton extends React.Component {
@@ -138,17 +142,18 @@ class LoggingButton extends React.Component {
 }
 ```
 
-The problem with this syntax is that a different callback is created each time the `LoggingButton` renders. In most cases, this is fine. However, if this callback is passed as a prop to lower components, those components might do an extra re-rendering. We generally recommend binding in the constructor or using the class fields syntax, to avoid this sort of performance problem.
+この構文での問題は、`LoggingButton` がレンダリングされるたびに異なるコールバック関数が毎回作成されるということです。大抵のケースではこれは問題ありません。しかし、このコールバックが props の一部として下層のコンポーネントに渡される場合、それら下層コンポーネントが余分に再描画されることになります。
+一般的にはコンストラクタでバインドするかクラスフィールド構文を使用して、この種のパフォーマンスの問題を避けるようおすすめします。
 
-## Passing Arguments to Event Handlers {#passing-arguments-to-event-handlers}
+## イベントハンドラに引数を渡す {#passing-arguments-to-event-handlers}
 
-Inside a loop, it is common to want to pass an extra parameter to an event handler. For example, if `id` is the row ID, either of the following would work:
+ループ内では、イベントハンドラに追加のパラメータを渡したくなることがよくあります。例えば、`id` という行の ID がある場合、以下のどちらでも動作します：
 
 ```js
 <button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>
 <button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>
 ```
 
-The above two lines are equivalent, and use [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) and [`Function.prototype.bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind) respectively.
+上記の 2 行は等価であり、上側では[アロー関数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)が、下側では [`Function.prototype.bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind) が使われています。
 
-In both cases, the `e` argument representing the React event will be passed as a second argument after the ID. With an arrow function, we have to pass it explicitly, but with `bind` any further arguments are automatically forwarded.
+どちらの場合でも、React イベントを表す `e` という引数は ID の次の 2 番目の引数として渡されることになります。アロー関数では `e` を明示的に渡す必要がありますが、`bind` の場合には `id` 以降の追加の引数は自動的に転送されます。

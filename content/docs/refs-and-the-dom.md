@@ -1,6 +1,6 @@
 ---
 id: refs-and-the-dom
-title: Refs and the DOM
+title: Ref と DOM
 redirect_from:
   - "docs/working-with-the-browser.html"
   - "docs/more-about-refs.html"
@@ -11,33 +11,33 @@ redirect_from:
 permalink: docs/refs-and-the-dom.html
 ---
 
-Refs provide a way to access DOM nodes or React elements created in the render method.
+Ref は render メソッドで作成された DOM ノードもしくは React の要素にアクセスする方法を提供します。
 
-In the typical React dataflow, [props](/docs/components-and-props.html) are the only way that parent components interact with their children. To modify a child, you re-render it with new props. However, there are a few cases where you need to imperatively modify a child outside of the typical dataflow. The child to be modified could be an instance of a React component, or it could be a DOM element. For both of these cases, React provides an escape hatch.
+一般的な React のデータフローでは、[props](/docs/components-and-props.html) が、親コンポーネントがその子要素とやりとりする唯一の方法です。子要素を変更するには、新しい props でそれを再レンダーします。ただし、この一般的なデータフロー以外で、子要素を命令型のコードを使って変更する必要がある場合もあります。変更したい子要素が React コンポーネントのインスタンスのことも、DOM 要素のこともあるでしょう。どちらの場合でも、React は避難ハッチを提供します。
 
-### When to Use Refs {#when-to-use-refs}
+### いつ Ref を使うか {#when-to-use-refs}
 
-There are a few good use cases for refs:
+Ref に適した使用例は以下の通りです。
 
-* Managing focus, text selection, or media playback.
-* Triggering imperative animations.
-* Integrating with third-party DOM libraries.
+* フォーカス、テキストの選択およびメディアの再生の管理
+* アニメーションの発火
+* サードパーティの DOM ライブラリとの統合
 
-Avoid using refs for anything that can be done declaratively.
+宣言的に行えるものには ref を使用しないでください。
 
-For example, instead of exposing `open()` and `close()` methods on a `Dialog` component, pass an `isOpen` prop to it.
+例えば、`Dialog` コンポーネントに `open()` と `close()` メソッドを実装するかわりに、`isOpen` プロパティを渡してください。
 
-### Don't Overuse Refs {#dont-overuse-refs}
+### Ref を使いすぎない {#dont-overuse-refs}
 
-Your first inclination may be to use refs to "make things happen" in your app. If this is the case, take a moment and think more critically about where state should be owned in the component hierarchy. Often, it becomes clear that the proper place to "own" that state is at a higher level in the hierarchy. See the [Lifting State Up](/docs/lifting-state-up.html) guide for examples of this.
+最初はアプリ内で「何かを起こす」ために ref を使いがちかもしれません。そんなときは、少し時間をかけて、コンポーネントの階層のどこで状態を保持すべきかについて、よりしっかりと考えてみてください。多くの場合、その状態を「保持する」ための適切な場所は階層のより上位にあることが明らかになるでしょう。具体例については [state のリフトアップ](/docs/lifting-state-up.html)ガイドを参照してください。
 
-> Note
+> 補足
 >
-> The examples below have been updated to use the `React.createRef()` API introduced in React 16.3. If you are using an earlier release of React, we recommend using [callback refs](#callback-refs) instead.
+> 以下の例は React 16.3 で導入された `React.createRef()` API を使うように更新されました。以前のリリースの React を使用している場合は、代わりに [callback ref](#callback-refs) を使用することをおすすめします。
 
-### Creating Refs {#creating-refs}
+### Ref を作成する {#creating-refs}
 
-Refs are created using `React.createRef()` and attached to React elements via the `ref` attribute. Refs are commonly assigned to an instance property when a component is constructed so they can be referenced throughout the component.
+Ref は `React.createRef()` を使用して作成され、`ref` 属性を用いて React 要素に紐付けられます。Ref は通常、コンポーネントの構築時にインスタンスプロパティに割り当てられるため、コンポーネントを通して参照が可能です。
 
 ```javascript{4,7}
 class MyComponent extends React.Component {
@@ -51,44 +51,44 @@ class MyComponent extends React.Component {
 }
 ```
 
-### Accessing Refs {#accessing-refs}
+### Ref へのアクセス {#accessing-refs}
 
-When a ref is passed to an element in `render`, a reference to the node becomes accessible at the `current` attribute of the ref.
+ref が `render` メソッドの要素に渡されると、そのノードへの参照は ref の `current` 属性でアクセスできるようになります。
 
 ```javascript
 const node = this.myRef.current;
 ```
 
-The value of the ref differs depending on the type of the node:
+ref の値はノードの種類によって異なります。
 
-- When the `ref` attribute is used on an HTML element, the `ref` created in the constructor with `React.createRef()` receives the underlying DOM element as its `current` property.
-- When the `ref` attribute is used on a custom class component, the `ref` object receives the mounted instance of the component as its `current`.
-- **You may not use the `ref` attribute on function components** because they don't have instances.
+- HTML 要素に対して `ref` 属性が使用されている場合、`React.createRef()` を使ってコンストラクタ内で作成された `ref` は、その `current` プロパティとして根底にある DOM 要素を受け取ります
+- `ref` 属性がカスタムクラスコンポーネントで使用されるとき、`ref` オブジェクトはコンポーネントのマウントされたインスタンスを `current` として受け取ります
+- **関数コンポーネント (function components) には `ref` 属性を使用してはいけません。**なぜなら、関数コンポーネントはインスタンスを持たないからです
 
-The examples below demonstrate the differences.
+以下の例ではその違いを示しています。
 
-#### Adding a Ref to a DOM Element {#adding-a-ref-to-a-dom-element}
+#### DOM 要素への Ref の追加 {#adding-a-ref-to-a-dom-element}
 
-This code uses a `ref` to store a reference to a DOM node:
+このコードでは DOM ノードへの参照を保持するために `ref` を使います。
 
 ```javascript{5,12,22}
 class CustomTextInput extends React.Component {
   constructor(props) {
     super(props);
-    // create a ref to store the textInput DOM element
+    // textInput DOM 要素を保持するための ref を作成します。
     this.textInput = React.createRef();
     this.focusTextInput = this.focusTextInput.bind(this);
   }
 
   focusTextInput() {
-    // Explicitly focus the text input using the raw DOM API
-    // Note: we're accessing "current" to get the DOM node
+    // 生の DOM API を使用して明示的にテキストの入力にフォーカスします。
+    // 補足：DOM ノードを取得するために "current" にアクセスしています。
     this.textInput.current.focus();
   }
 
   render() {
-    // tell React that we want to associate the <input> ref
-    // with the `textInput` that we created in the constructor
+    // コンストラクタで作成した `textInput` に <input> ref を関連付けることを
+    // React に伝えます。
     return (
       <div>
         <input
@@ -105,11 +105,11 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-React will assign the `current` property with the DOM element when the component mounts, and assign it back to `null` when it unmounts. `ref` updates happen before `componentDidMount` or `componentDidUpdate` lifecycle methods.
+コンポーネントがマウントされると React は `current` プロパティに DOM 要素を割り当て、マウントが解除されると `null` に戻します。`ref` の更新は `componentDidMount` または `componentDidUpdate` ライフサイクルメソッドの前に行われます。
 
-#### Adding a Ref to a Class Component {#adding-a-ref-to-a-class-component}
+#### クラスコンポーネントへの Ref の追加 {#adding-a-ref-to-a-class-component}
 
-If we wanted to wrap the `CustomTextInput` above to simulate it being clicked immediately after mounting, we could use a ref to get access to the custom input and call its `focusTextInput` method manually:
+マウント直後にクリックされることをシミュレーションするために上記の CustomTextInput をラップしたい場合は、ref を使用してカスタムインプットにアクセスし、その `focusTextInput` メソッドを手動で呼び出せます。
 
 ```javascript{4,8,13}
 class AutoFocusTextInput extends React.Component {
@@ -130,7 +130,7 @@ class AutoFocusTextInput extends React.Component {
 }
 ```
 
-Note that this only works if `CustomTextInput` is declared as a class:
+これは `CustomTextInput` がクラスとして宣言されている場合にのみ機能することに注意してください。
 
 ```js{1}
 class CustomTextInput extends React.Component {
@@ -138,9 +138,9 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-#### Refs and Function Components {#refs-and-function-components}
+#### Ref と関数コンポーネント {#refs-and-function-components}
 
-By default, **you may not use the `ref` attribute on function components** because they don't have instances:
+関数コンポーネントにはインスタンスがないため、デフォルトでは**関数コンポーネントに `ref` 属性を使用することはできません。**
 
 ```javascript{1,8,13}
 function MyFunctionComponent() {
@@ -153,7 +153,7 @@ class Parent extends React.Component {
     this.textInput = React.createRef();
   }
   render() {
-    // This will *not* work!
+    // これは動き「ません」！
     return (
       <MyFunctionComponent ref={this.textInput} />
     );
@@ -161,15 +161,21 @@ class Parent extends React.Component {
 }
 ```
 
-If you want to allow people to take a `ref` to your function component, you can use [`forwardRef`](/docs/forwarding-refs.html) (possibly in conjunction with [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)), or you can convert the component to a class.
+関数コンポーネントに対して `ref` が使用できるようにしたい場合は、[`forwardRef`](/docs/forwarding-refs.html) を（必要に応じて [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle) と組み合わせて）利用するか、コンポーネントをクラスに書き換えます。
 
-You can, however, **use the `ref` attribute inside a function component** as long as you refer to a DOM element or a class component:
+ただし、DOM 要素またはクラスコンポーネントを参照している限り、**関数コンポーネント内で ref 属性を使用することはできます。**
 
 ```javascript{2,3,6,13}
 function CustomTextInput(props) {
+<<<<<<< HEAD
   // textInput must be declared here so the ref can refer to it
   const textInput = useRef(null);
   
+=======
+  // ref が参照できるように、textInput をここで宣言する必要があります。
+  let textInput = useRef();
+
+>>>>>>> ac4b5d74278df9484f640d83c9f136ecccf60fc4
   function handleClick() {
     textInput.current.focus();
   }
@@ -189,25 +195,25 @@ function CustomTextInput(props) {
 }
 ```
 
-### Exposing DOM Refs to Parent Components {#exposing-dom-refs-to-parent-components}
+### DOM の Ref を親コンポーネントに公開する {#exposing-dom-refs-to-parent-components}
 
-In rare cases, you might want to have access to a child's DOM node from a parent component. This is generally not recommended because it breaks component encapsulation, but it can occasionally be useful for triggering focus or measuring the size or position of a child DOM node.
+まれに、親コンポーネントから子コンポーネントの DOM ノードにアクセスしたい場合があります。これは、コンポーネントのカプセル化を壊すため、一般的にはおすすめできませんが、フォーカスを発火させたり、子の DOM ノードのサイズや位置を計測するのに役立つことがあります。
 
-While you could [add a ref to the child component](#adding-a-ref-to-a-class-component), this is not an ideal solution, as you would only get a component instance rather than a DOM node. Additionally, this wouldn't work with function components.
+[子コンポーネントに ref を追加すること](#adding-a-ref-to-a-class-component)はできますが、DOM ノードではなくコンポーネントインスタンスしか取得できないため、これは理想的な解決策ではありません。また、これは関数コンポーネントでは機能しません。
 
-If you use React 16.3 or higher, we recommend to use [ref forwarding](/docs/forwarding-refs.html) for these cases. **Ref forwarding lets components opt into exposing any child component's ref as their own**. You can find a detailed example of how to expose a child's DOM node to a parent component [in the ref forwarding documentation](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
+React 16.3 以降を使用している場合、これらの場合には [ref forwarding](/docs/forwarding-refs.html) を使用することをおすすめします。**Ref forwarding では、コンポーネントは任意の子コンポーネントの ref を自分のものとして公開することを選択できます。**[Ref forwarding のドキュメント](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)に、子の DOM ノードを親コンポーネントに公開する方法の詳細な例があります。
 
-If you use React 16.2 or lower, or if you need more flexibility than provided by ref forwarding, you can use [this alternative approach](https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509) and explicitly pass a ref as a differently named prop.
+React 16.2 以下を使用している場合、または ref forwarding で提供される以上の柔軟性が必要な場合は、[この代替手法](https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509)を使用して ref を異なる名前の props として明示的に渡すことができます。
 
-When possible, we advise against exposing DOM nodes, but it can be a useful escape hatch. Note that this approach requires you to add some code to the child component. If you have absolutely no control over the child component implementation, your last option is to use [`findDOMNode()`](/docs/react-dom.html#finddomnode), but it is discouraged and deprecated in [`StrictMode`](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
+可能であれば DOM ノードを公開しないことをおすすめしますが、これは便利な避難ハッチになることもあります。留意すべき点として、この方法では子コンポーネントにコードを追加する必要があります。子コンポーネントの実装にまったく手を加えられない場合、最後の選択肢は [`findDOMNode()`](/docs/react-dom.html#finddomnode) を使用することですが、おすすめできない上に、[`StrictMode`](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage) では非推奨です。
 
-### Callback Refs {#callback-refs}
+### コールバック Ref {#callback-refs}
 
-React also supports another way to set refs called "callback refs", which gives more fine-grain control over when refs are set and unset.
+React はまた「コールバック Ref」と呼ばれる、より細かい制御が可能な ref を設定するための別の方法をサポートします。
 
-Instead of passing a `ref` attribute created by `createRef()`, you pass a function. The function receives the React component instance or HTML DOM element as its argument, which can be stored and accessed elsewhere. 
+`createRef()` によって作成された `ref` 属性を渡す代わりに、関数を渡します。この関数は、引数として React コンポーネントのインスタンスまたは HTML DOM 要素を受け取ります。これを保持することで、他の場所からアクセスできます。
 
-The example below implements a common pattern: using the `ref` callback to store a reference to a DOM node in an instance property.
+以下は、`ref` コールバックを用いて DOM ノードへの参照をインスタンスプロパティに格納する一般的な実装例です。
 
 ```javascript{5,7-9,11-14,19,29,34}
 class CustomTextInput extends React.Component {
@@ -221,19 +227,19 @@ class CustomTextInput extends React.Component {
     };
 
     this.focusTextInput = () => {
-      // Focus the text input using the raw DOM API
+      // 生の DOM API を使用して明示的にテキストの入力にフォーカスします。
       if (this.textInput) this.textInput.focus();
     };
   }
 
   componentDidMount() {
-    // autofocus the input on mount
+    // マウント時に入力をオートフォーカスします。
     this.focusTextInput();
   }
 
   render() {
-    // Use the `ref` callback to store a reference to the text input DOM
-    // element in an instance field (for example, this.textInput).
+    // インスタンスフィールド（例えば this.textInput）にテキスト入力の DOM 要素への
+    // 参照を保存するために `ref` コールバックを使用してください。
     return (
       <div>
         <input
@@ -251,9 +257,9 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-React will call the `ref` callback with the DOM element when the component mounts, and call it with `null` when it unmounts. Refs are guaranteed to be up-to-date before `componentDidMount` or `componentDidUpdate` fires.
+コンポーネントがマウントされると React は DOM 要素とともに `ref` コールバックを呼び出し、マウントが解除されると `null` とともにコールバックを呼び出します。Ref は `componentDidMount` または `componentDidUpdate` が発火する前に最新のものであることが保証されています。
 
-You can pass callback refs between components like you can with object refs that were created with `React.createRef()`.
+`React.createRef()` で作成されたオブジェクトの ref と同様に、コンポーネント間でコールバック ref を渡すことができます。
 
 ```javascript{4,13}
 function CustomTextInput(props) {
@@ -275,16 +281,16 @@ class Parent extends React.Component {
 }
 ```
 
-In the example above, `Parent` passes its ref callback as an `inputRef` prop to the `CustomTextInput`, and the `CustomTextInput` passes the same function as a special `ref` attribute to the `<input>`. As a result, `this.inputElement` in `Parent` will be set to the DOM node corresponding to the `<input>` element in the `CustomTextInput`.
+上記の例では、`Parent` は ref コールバックを `inputRef` プロパティとして `CustomTextInput` に渡し、`CustomTextInput` は同じ関数を特別な `ref` 属性として `<input>` に渡します。その結果、`Parent` の `this.inputElement` は、`CustomTextInput` の `<input>` 要素に対応する DOM ノードに設定されます。
 
-### Legacy API: String Refs {#legacy-api-string-refs}
+### レガシー API：String Ref {#legacy-api-string-refs}
 
-If you worked with React before, you might be familiar with an older API where the `ref` attribute is a string, like `"textInput"`, and the DOM node is accessed as `this.refs.textInput`. We advise against it because string refs have [some issues](https://github.com/facebook/react/pull/8333#issuecomment-271648615), are considered legacy, and **are likely to be removed in one of the future releases**. 
+以前に React を使用したことがある場合は、`ref` 属性が `"textInput"` のような文字列で、DOM ノードが `this.refs.textInput` としてアクセスされる古い API に慣れているかもしれません。String ref には[いくつかの問題](https://github.com/facebook/react/pull/8333#issuecomment-271648615)があり、レガシーと見なされ、**将来のリリースのいずれかで削除される可能性が高い**ため、使用することをおすすめしません。
 
-> Note
+> 補足
 >
-> If you're currently using `this.refs.textInput` to access refs, we recommend using either the [callback pattern](#callback-refs) or the [`createRef` API](#creating-refs) instead.
+> Ref にアクセスするために `this.refs.textInput` を現在使用している場合は、代わりに[コールバックパターン](#callback-refs)もしくは [`createRef` API](#creating-refs) を使用することをおすすめします。
 
-### Caveats with callback refs {#caveats-with-callback-refs}
+### コールバック Ref の注意事項 {#caveats-with-callback-refs}
 
-If the `ref` callback is defined as an inline function, it will get called twice during updates, first with `null` and then again with the DOM element. This is because a new instance of the function is created with each render, so React needs to clear the old ref and set up the new one. You can avoid this by defining the `ref` callback as a bound method on the class, but note that it shouldn't matter in most cases.
+`ref` コールバックがインライン関数として定義されている場合、更新中に 2 回呼び出されます。最初は `null`、次に DOM 要素で呼び出されます。これは、それぞれのレンダーで関数の新しいインスタンスが作成されるため、React は古い ref を削除し、新しい ref を設定する必要があるためです。`ref` コールバックをクラス内のバインドされたメソッドとして定義することでこれを回避できますが、ほとんどの場合は問題にならないはずです。

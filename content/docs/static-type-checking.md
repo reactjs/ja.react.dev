@@ -1,42 +1,42 @@
 ---
 id: static-type-checking
-title: Static Type Checking
+title: 静的型チェック
 permalink: docs/static-type-checking.html
 ---
 
-Static type checkers like [Flow](https://flow.org/) and [TypeScript](https://www.typescriptlang.org/) identify certain types of problems before you even run your code. They can also improve developer workflow by adding features like auto-completion. For this reason, we recommend using Flow or TypeScript instead of `PropTypes` for larger code bases.
+[Flow](https://flow.org/) や [TypeScript](https://www.typescriptlang.org/) のような静的型チェッカーを使用することでコードを実行する前の早期段階に型不整合等の問題を検知することができます。他にも型解析言語を使用することで補完などの機能が追加され、開発体験を上げることができます。これらの理由から、大きいコードベースでは `PropTypes` の代わりに Flow や TypeScript を使うことをおすすめします。
 
 ## Flow {#flow}
 
-[Flow](https://flow.org/) is a static type checker for your JavaScript code. It is developed at Facebook and is often used with React. It lets you annotate the variables, functions, and React components with a special type syntax, and catch mistakes early. You can read an [introduction to Flow](https://flow.org/en/docs/getting-started/) to learn its basics.
+[Flow](https://flow.org/) は JavaScript 用の静的型チェック機能です。Facebook で開発されており、React と一緒に使われることが多いです。変数、関数や React コンポーネントに型を足すことができ、型不整合を早期に発見できるようになります。[はじめての Flow](https://flow.org/en/docs/getting-started/) に基本情報が記載されているので、それを読むと良いでしょう。
 
-To use Flow, you need to:
+Flow を使用するには以下の手順を踏みます：
 
-* Add Flow to your project as a dependency.
-* Ensure that Flow syntax is stripped from the compiled code.
-* Add type annotations and run Flow to check them.
+* Flow をプロジェクトの dependency に入れる。
+* Flow の型定義をコンパイル時にコードから剥がすように設定する。
+* 型定義を追加し、Flow を起動して確認する。
 
-We will explain these steps below in detail.
+順を追って説明します。
 
-### Adding Flow to a Project {#adding-flow-to-a-project}
+### Flow をプロジェクトに追加する {#adding-flow-to-a-project}
 
-First, navigate to your project directory in the terminal. You will need to run the following command:
+まず、ターミナル上であなたのプロジェクトが含まれているディレクトリに入り、以下のコマンドを入力してください。
 
-If you use [Yarn](https://yarnpkg.com/), run:
+[Yarn](https://yarnpkg.com/) を使っている場合：
 
 ```bash
 yarn add --dev flow-bin
 ```
 
-If you use [npm](https://www.npmjs.com/), run:
+[npm](https://www.npmjs.com/) を使っている場合：
 
 ```bash
 npm install --save-dev flow-bin
 ```
 
-This command installs the latest version of Flow into your project.
+このコマンドによって Flow の最新版をあなたのプロジェクトに入れることができます。
 
-Now, add `flow` to the `"scripts"` section of your `package.json` to be able to use this from the terminal:
+次に、`package.json` の `"scripts"` に `flow` を追加しましょう。これで、ターミナルで Flow を実行できるようになります。
 
 ```js{4}
 {
@@ -49,53 +49,53 @@ Now, add `flow` to the `"scripts"` section of your `package.json` to be able to 
 }
 ```
 
-Finally, run one of the following commands:
+最後に、以下のコマンドを実行します：
 
-If you use [Yarn](https://yarnpkg.com/), run:
+[Yarn](https://yarnpkg.com/) を使っている場合：
 
 ```bash
 yarn run flow init
 ```
 
-If you use [npm](https://www.npmjs.com/), run:
+[npm](https://www.npmjs.com/) を使っている場合：
 
 ```bash
 npm run flow init
 ```
 
-This command will create a Flow configuration file that you will need to commit.
+このコマンドで Flow の設定ファイルを生成することができます。この設定ファイルはバージョン管理しましょう。
 
-### Stripping Flow Syntax from the Compiled Code {#stripping-flow-syntax-from-the-compiled-code}
+### Flow の型定義をコンパイル時にコードから剥がす {#stripping-flow-syntax-from-the-compiled-code}
 
-Flow extends the JavaScript language with a special syntax for type annotations. However, browsers aren't aware of this syntax, so we need to make sure it doesn't end up in the compiled JavaScript bundle that is sent to the browser.
+Flow は JavaScript 言語を拡張し、型定義のための特殊な記法を使えるようにします。しかし、ブラウザはその記法について知らない為、ブラウザに送信されるコンパイル後の JavaScript バンドルに含まれないようにしなければいけません。
 
-The exact way to do this depends on the tools you use to compile JavaScript.
+剥がす方法は使用している JavaScript のコンパイルツールによって変わってきます。
 
 #### Create React App {#create-react-app}
 
-If your project was set up using [Create React App](https://github.com/facebookincubator/create-react-app), congratulations! The Flow annotations are already being stripped by default so you don't need to do anything else in this step.
+もし、あなたのプロジェクトが [Create React App](https://github.com/facebookincubator/create-react-app) によって生成されている場合、おめでとうございます！ 既にビルド時に Flow の型定義は剥がされる設定になっているため、このステップで何もする必要はありません。
 
 #### Babel {#babel}
 
->Note:
+>補足:
 >
->These instructions are *not* for Create React App users. Even though Create React App uses Babel under the hood, it is already configured to understand Flow. Only follow this step if you *don't* use Create React App.
+>以下の手順は Create React App で React をセットアップしている方向けでは*ありません*。Create React App も内部で Babel を使用していますが、既に Flow を使えるように設定されています。以下の手順は Create React App を使って*いない*場合のみ実行してください。
 
-If you manually configured Babel for your project, you will need to install a special preset for Flow.
+もし、あなたが手動で Babel の設定を行っていた場合、以下のコマンドで Flow 用の Babel プリセットをインストールする必要があります。
 
-If you use Yarn, run:
+yarn を使っている場合：
 
 ```bash
 yarn add --dev @babel/preset-flow
 ```
 
-If you use npm, run:
+npm を使っている場合：
 
 ```bash
 npm install --save-dev @babel/preset-flow
 ```
 
-Then add the `flow` preset to your [Babel configuration](https://babeljs.io/docs/usage/babelrc/). For example, if you configure Babel through `.babelrc` file, it could look like this:
+そして、`flow` のプリセットを [Babel の設定ファイル](https://babeljs.io/docs/usage/babelrc/) に追加してください。例えば、Babel の設定を `.babelrc` ファイルで行っている場合は以下のようになります。
 
 ```js{3}
 {
@@ -106,50 +106,50 @@ Then add the `flow` preset to your [Babel configuration](https://babeljs.io/docs
 }
 ```
 
-This will let you use the Flow syntax in your code.
+これであなたのコードで Flow の型定義が使えるようになります。
 
->Note:
+>補足:
 >
->Flow does not require the `react` preset, but they are often used together. Flow itself understands JSX syntax out of the box.
+>Flow を使うためには必ず `react` のプリセットが必要というわけではありません。ただ、よく組み合わせて使われています。Flow はそのままでも JSX のシンタックスを認識できます。
 
-#### Other Build Setups {#other-build-setups}
+#### 他のビルド設定 {#other-build-setups}
 
-If you don't use either Create React App or Babel, you can use [flow-remove-types](https://github.com/flowtype/flow-remove-types) to strip the type annotations.
+もし、Create React App も Babel も使用していない場合、[flow-remove-types](https://github.com/flowtype/flow-remove-types) を使って Flow の型定義を剥がすことができます。
 
-### Running Flow {#running-flow}
+### Flow の実行 {#running-flow}
 
-If you followed the instructions above, you should be able to run Flow for the first time.
+もし、今までの手順を踏んでいる場合、以下のコマンドで Flow が実行されます。
 
 ```bash
 yarn flow
 ```
 
-If you use npm, run:
+npm を使っている場合：
 
 ```bash
 npm run flow
 ```
 
-You should see a message like:
+以下のようなメッセージが表示されます。
 
 ```
 No errors!
 ✨  Done in 0.17s.
 ```
 
-### Adding Flow Type Annotations {#adding-flow-type-annotations}
+### Flow の型定義の追記 {#adding-flow-type-annotations}
 
-By default, Flow only checks the files that include this annotation:
+Flow の初期設定では、以下のコメントが含まれているファイルのみ型チェックを行います。
 
 ```js
 // @flow
 ```
 
-Typically it is placed at the top of a file. Try adding it to some files in your project and run `yarn flow` or `npm run flow` to see if Flow already found any issues.
+上記コメントは基本的にファイルの頭に記載します。あなたのプロジェクトのいくつかのファイルに足してみて、`yarn flow` や `npm run flow` を実行して Flow が何か問題を検知するかどうかを確認してみましょう。
 
-There is also [an option](https://flow.org/en/docs/config/options/#toc-all-boolean) to force Flow to check *all* files regardless of the annotation. This can be too noisy for existing projects, but is reasonable for a new project if you want to fully type it with Flow.
+Flow の型チェックを、コメントが含まれているかにかかわらず*全て*のファイルに対してかける[設定](https://flow.org/en/docs/config/options/#toc-all-boolean)も存在します。これは既存のプロジェクトに対してかけると確認箇所が大量に出てしまいますが、新規プロジェクトの立ち上げで全てのファイルに型を入れたい場合は合理的な選択でしょう。
 
-Now you're all set! We recommend to check out the following resources to learn more about Flow:
+これで準備は整いました！ Flow についてより深く知りたい場合には以下の資料が役立つでしょう。
 
 * [Flow Documentation: Type Annotations](https://flow.org/en/docs/types/)
 * [Flow Documentation: Editors](https://flow.org/en/docs/editors/)
@@ -158,49 +158,49 @@ Now you're all set! We recommend to check out the following resources to learn m
 
 ## TypeScript {#typescript}
 
-[TypeScript](https://www.typescriptlang.org/) is a programming language developed by Microsoft. It is a typed superset of JavaScript, and includes its own compiler. Being a typed language, TypeScript can catch errors and bugs at build time, long before your app goes live. You can learn more about using TypeScript with React [here](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter).
+[TypeScript](https://www.typescriptlang.org/) は Microsoft によって開発されたプログラミング言語です。型を所有した Javascript のスーパーセットで、独自のコンパイラを所持しています。TypeScript は型言語であるため、実行前のビルド時にエラーやバグを検知することができます。React と TypeScript を組み合わせて使うことに関しては、[ここ](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter)にも詳しく記載されています。
 
-To use TypeScript, you need to:
-* Add TypeScript as a dependency to your project
-* Configure the TypeScript compiler options
-* Use the right file extensions
-* Add definitions for libraries you use
+TypeScript を使うためには以下のことを行います。
+* TypeScript をプロジェクトの dependency に入れる。
+* TypeScript のコンパイラの設定を行う。
+* TypeScript 用のファイル拡張子を使用する。
+* 使用するライブラリの型定義をインストールする。
 
-Let's go over these in detail.
+順を追って説明します。
 
-### Using TypeScript with Create React App {#using-typescript-with-create-react-app}
+### Create React App で TypeScript を使用する{#using-typescript-with-create-react-app}
 
-Create React App supports TypeScript out of the box.
+Create React App は最初から TypeScript のサポートが含まれています。
 
-To create a **new project** with TypeScript support, run:
+TypeScript サポートが含まれている**新規プロジェクト**を作成するには、以下のコマンドを実行します。
 
 ```bash
 npx create-react-app my-app --template typescript
 ```
 
-You can also add it to an **existing Create React App project**, [as documented here](https://facebook.github.io/create-react-app/docs/adding-typescript).
+[この資料に記載されているように、](https://facebook.github.io/create-react-app/docs/adding-typescript)**既存の Create React App のプロジェクト**にも TypeScript のサポートを追加することができます。
 
->Note:
+>補足:
 >
->If you use Create React App, you can **skip the rest of this page**. It describes the manual setup which doesn't apply to Create React App users.
+>もし、Create React App を使っている場合、**以下の記述は全て飛ばして大丈夫です**。Create React App を使用していない場合のセットアップ手順について記載しています。
 
 
-### Adding TypeScript to a Project {#adding-typescript-to-a-project}
-It all begins with running one command in your terminal.
+### TypeScript をプロジェクトに追加する {#adding-typescript-to-a-project}
+全ては TypeScript をインストールするところから始まります。プロジェクトが入っているフォルダで以下のコマンドを入力してください。
 
-If you use [Yarn](https://yarnpkg.com/), run:
+[Yarn](https://yarnpkg.com/) を使っている場合：
 
 ```bash
 yarn add --dev typescript
 ```
 
-If you use [npm](https://www.npmjs.com/), run:
+[npm](https://www.npmjs.com/) を使っている場合：
 
 ```bash
 npm install --save-dev typescript
 ```
 
-Congrats! You've installed the latest version of TypeScript into your project. Installing TypeScript gives us access to the `tsc` command. Before configuration, let's add `tsc` to the "scripts" section in our `package.json`:
+おめでとうございます！ これで最新の TypeScript があなたのプロジェクトにインストールされました。これによって、`tsc` コマンドが使えるようになります。設定をする前に、まずは `tsc` を `package.json` の `"scripts"` に追加しましょう。
 
 ```js{4}
 {
@@ -213,27 +213,27 @@ Congrats! You've installed the latest version of TypeScript into your project. I
 }
 ```
 
-### Configuring the TypeScript Compiler {#configuring-the-typescript-compiler}
-The compiler is of no help to us until we tell it what to do. In TypeScript, these rules are defined in a special file called `tsconfig.json`. To generate this file:
+### TypeScript コンパイラの設定 {#configuring-the-typescript-compiler}
+コンパイラはこちらから設定しないと無価値です。TypeScript ではコンパイラの設定は `tsconfig.json` というファイルで定義します。このファイルを生成するには以下のコマンドを実行してください。
 
-If you use [Yarn](https://yarnpkg.com/), run:
+[Yarn](https://yarnpkg.com/) を使っている場合：
 
 ```bash
 yarn run tsc --init
 ```
 
-If you use [npm](https://www.npmjs.com/), run:
+[npm](https://www.npmjs.com/) を使っている場合：
 
 ```bash
 npx tsc --init
 ```
 
-Looking at the now generated `tsconfig.json`, you can see that there are many options you can use to configure the compiler. For a detailed description of all the options, check [here](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html).
+新しく生成された `tsconfig.json` を見てみると、コンパイラ設定用の様々なオプションがあることがわかります。これら全てのオプションの詳細に関しては[こちら](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)を参照してください。
 
-Of the many options, we'll look at `rootDir` and `outDir`. In its true fashion, the compiler will take in typescript files and generate javascript files. However we don't want to get confused with our source files and the generated output.
+たくさんの設定の中から `rootDir` と `outDir` に注目します。本来、コンパイラは TypeScript のファイルから JavaScript のファイルを生成します。しかし、既存のソースコードと生成されたコードが混合してしまうことは避けるべきです。
 
-We'll address this in two steps:
-* Firstly, let's arrange our project structure like this. We'll place all our source code in the `src` directory.
+以上の問題を 2 つの手順によって対応します。
+* まず、プロジェクトの構成を以下のように変更しましょう。全てのソースコードを `src` ディレクトリに移動します。
 
 ```
 ├── package.json
@@ -242,7 +242,7 @@ We'll address this in two steps:
 └── tsconfig.json
 ```
 
-* Next, we'll tell the compiler where our source code is and where the output should go.
+* 次に、`tsconfig.json` を編集してコンパイラにソースコードの場所と生成する場所を設定します。
 
 ```js{6,7}
 // tsconfig.json
@@ -257,40 +257,40 @@ We'll address this in two steps:
 }
 ```
 
-Great! Now when we run our build script the compiler will output the generated javascript to the `build` folder. The [TypeScript React Starter](https://github.com/Microsoft/TypeScript-React-Starter/blob/master/tsconfig.json) provides a `tsconfig.json` with a good set of rules to get you started.
+素晴らしい！ これで `build` のスクリプトを実行した際、コンパイラが生成したコードは `build` ディレクトリに格納されます。他の設定に関しては、[TypeScript React Starter](https://github.com/Microsoft/TypeScript-React-Starter/blob/master/tsconfig.json) に React プロジェクト始めるのにおすすめな `tsconfig.json` を提供しているので、そちらを参照してください。
 
-Generally, you don't want to keep the generated javascript in your source control, so be sure to add the build folder to your `.gitignore`.
+基本的に、生成された JavaScript のコードはバージョン管理するべきではありません。`build` フォルダは `.gitignore` に追記しましょう。
 
-### File extensions {#file-extensions}
-In React, you most likely write your components in a `.js` file. In TypeScript we have 2 file extensions:
+### ファイル拡張子 {#file-extensions}
+React ではおそらくコンポーネントを `.js` ファイルに書いていたと思います。TypeScript には 2 種類のファイル拡張子が存在します。
 
-`.ts` is the default file extension while `.tsx` is a special extension used for files which contain `JSX`.
+`.ts` がデフォルトの拡張子で、`JSX` が含まれているファイルは `.tsx` を使います。
 
-### Running TypeScript {#running-typescript}
+### TypeScript の実行 {#running-typescript}
 
-If you followed the instructions above, you should be able to run TypeScript for the first time.
+上記の手順を踏んでいれば、以下のコマンドで TypeScript を実行することができます。
 
 ```bash
 yarn build
 ```
 
-If you use npm, run:
+[npm](https://www.npmjs.com/) を使っている場合：
 
 ```bash
 npm run build
 ```
 
-If you see no output, it means that it completed successfully.
+実行結果に何も表示されない場合は、正常に完了したと言うことです。
 
 
-### Type Definitions {#type-definitions}
-To be able to show errors and hints from other packages, the compiler relies on declaration files. A declaration file provides all the type information about a library. This enables us to use javascript libraries like those on npm in our project. 
+### 型宣言 {#type-definitions}
+他のライブラリを使用している時の型エラーやヒントを表示させるために、コンパイラは型宣言ファイルを参照します。型宣言ファイルにはそのライブラリが使用する全ての型の情報が含まれています。これを使うことによって、npm 等から取得した JavaScript のライブラリをそのまま使うことができます。
 
-There are two main ways to get declarations for a library:
+ライブラリの型宣言ファイルを取得するには主に以下の 2 つの方法があります。
 
-__Bundled__ - The library bundles its own declaration file. This is great for us, since all we need to do is install the library, and we can use it right away. To check if a library has bundled types, look for an `index.d.ts` file in the project. Some libraries will have it specified in their `package.json` under the `typings` or `types` field.
+__Bundled__ - これはライブラリ自体が型宣言ファイルを所有している場合です。この場合、ライブラリをインストールするだけでそのまま使用することができます。ライブラリが型宣言ファイルを所有しているかどうか確認するには、プロジェクトに `index.d.ts` ファイルがあるかどうかをみます。一部のライブラリは `package.json` の `typings`、または `types` の下に型宣言ファイルのパスを指定しています。
 
-__[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)__ - DefinitelyTyped is a huge repository of declarations for libraries that don't bundle a declaration file. The declarations are crowd-sourced and managed by Microsoft and open source contributors. React for example doesn't bundle its own declaration file. Instead we can get it from DefinitelyTyped. To do so enter this command in your terminal.
+__[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)__ - DefinitelyTyped には型宣言ファイルがバンドルされていない様々なライブラリのための型定義が用意されています。これらの型定義はクラウドソースにより Microsoft とオープンソースのコントリビュータが管理しています。例えば、React には型宣言ファイルが含まれておりませんが、DefinitelyTyped から取得することができます。取得するにはターミナルに以下のコマンドを入力してください。
 
 ```bash
 # yarn
@@ -300,8 +300,8 @@ yarn add --dev @types/react
 npm i --save-dev @types/react
 ```
 
-__Local Declarations__
-Sometimes the package that you want to use doesn't bundle declarations nor is it available on DefinitelyTyped. In that case, we can have a local declaration file. To do this, create a `declarations.d.ts` file in the root of your source directory. A simple declaration could look like this:
+__ローカル型定義__
+もし、使用しているライブラリに型宣言ファイルが含まれておらず、DefinitelyTyped にも該当する型宣言ファイルがない場合、自前で型宣言ファイルを作成することができます。それを行うには `declarations.d.ts` をソースディレクトリのルートに作成します。型宣言は以下のように行なえます。
 
 ```typescript
 declare module 'querystring' {
@@ -310,7 +310,7 @@ declare module 'querystring' {
 }
 ```
 
-You are now ready to code! We recommend to check out the following resources to learn more about TypeScript:
+これでコードを書く準備は整いました！ Typescript についてより深く知りたい場合には以下の資料が役立つでしょう。
 
 * [TypeScript Documentation: Basic Types](https://www.typescriptlang.org/docs/handbook/basic-types.html)
 * [TypeScript Documentation: Migrating from Javascript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
@@ -318,16 +318,16 @@ You are now ready to code! We recommend to check out the following resources to 
 
 ## Reason {#reason}
 
-[Reason](https://reasonml.github.io/) is not a new language; it's a new syntax and toolchain powered by the battle-tested language, [OCaml](https://ocaml.org/). Reason gives OCaml a familiar syntax geared toward JavaScript programmers, and caters to the existing NPM/Yarn workflow folks already know.
+[Reason](https://reasonml.github.io/) は新しい言語ではありません。歴戦の言語である [OCaml](https://ocaml.org/) によって動く新しい記法及びツールチェインです。Reason は OCaml に JavaScript を書く人には見慣れた記法を提供し、既存の NPM/Yarn を使ったワークフローに寄せています。
 
-Reason is developed at Facebook, and is used in some of its products like Messenger. It is still somewhat experimental but it has [dedicated React bindings](https://reasonml.github.io/reason-react/) maintained by Facebook and a [vibrant community](https://reasonml.github.io/docs/en/community.html).
+Reason は Facebook で開発されており、Messenger 等のプロダクトに既に使われてます。まだ試験的段階ですが、Facebook によって管理された [React を書くためのライブラリ](https://reasonml.github.io/reason-react/) や、[活発なコミュニティ](https://reasonml.github.io/docs/en/community.html)が存在します。
 
 ## Kotlin {#kotlin}
 
-[Kotlin](https://kotlinlang.org/) is a statically typed language developed by JetBrains. Its target platforms include the JVM, Android, LLVM, and [JavaScript](https://kotlinlang.org/docs/reference/js-overview.html). 
+[Kotlin](https://kotlinlang.org/) は JetBrains により開発された静的型言語です。JVM、Android、LLVM、や [JavaScript](https://kotlinlang.org/docs/reference/js-overview.html) といったプラットフォームを対象としています。
 
-JetBrains develops and maintains several tools specifically for the React community: [React bindings](https://github.com/JetBrains/kotlin-wrappers) as well as [Create React Kotlin App](https://github.com/JetBrains/create-react-kotlin-app). The latter helps you start building React apps with Kotlin with no build configuration.
+JetBrains は [React bindings](https://github.com/JetBrains/kotlin-wrappers) や [Create React Kotlin App](https://github.com/JetBrains/create-react-kotlin-app) のような様々な React コミュニティの為のツールの開発、運営を行っています。後者は React アプリをビルド設定いらずで Kotlin で書き始めることができます。
 
-## Other Languages {#other-languages}
+## 他の言語 {#other-languages}
 
-Note there are other statically typed languages that compile to JavaScript and are thus React compatible. For example, [F#/Fable](https://fable.io/) with [elmish-react](https://elmish.github.io/react). Check out their respective sites for more information, and feel free to add more statically typed languages that work with React to this page!
+JavaScript にコンパイルされ、React にも活用できる静的型言語は他にも存在します。例えば、[F#/Fable](https://fable.io/) と [elmish-react](https://elmish.github.io/react) の組み合わせです。詳細はそれぞれのサイトを確認してください。他にも React を活用できる静的型言語があれば、ぜひこのページに追記してください！

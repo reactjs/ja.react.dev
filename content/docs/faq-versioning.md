@@ -1,66 +1,66 @@
 ---
 id: faq-versioning
-title: Versioning Policy
+title: バージョニングポリシー
 permalink: docs/faq-versioning.html
 layout: docs
 category: FAQ
 ---
 
-React follows [semantic versioning (semver)](https://semver.org/) principles.
+React は[セマンティック バージョニング (semantic versioning; semver)](https://semver.org/) の原則に従います。
 
-That means that with a version number **x.y.z**:
+すなわちバージョン番号は **x.y.z** になります。
 
-* When releasing **critical bug fixes**, we make a **patch release** by changing the **z** number (ex: 15.6.2 to 15.6.3).
-* When releasing **new features** or **non-critical fixes**, we make a **minor release** by changing the **y** number (ex: 15.6.2 to 15.7.0).
-* When releasing **breaking changes**, we make a **major release** by changing the **x** number (ex: 15.6.2 to 16.0.0).
+* **バグ修正**をする時、**z** の番号を変更することで**パッチリリース**をします。（例 15.6.2 から 15.6.3）
+* **新機能追加**をする時、**y** の番号を変更することで**マイナーリリース**をします。（例 15.6.2 から 15.7.0）
+* **破壊的変更**をする時、**x** の番号を変更することで**メジャーリリース**をします。（例 15.6.2 から 16.0.0）
 
-Major releases can also contain new features, and any release can include bug fixes.
+メジャーリリースには新機能を含むことができ、全てのリリースにバグ修正を含められます。
 
-Minor releases are the most common type of release.
+マイナーリリースは、最も一般的なリリースです。
 
-> This versioning policy does not apply to prerelease builds in the Next or Experimental channels. [Learn more about prereleases.](/docs/release-channels.html)
+> このバージョニングポリシーは Next と Experimental チャンネルのプレリリースビルドには適用されません。[プレリリースについての詳細](/docs/release-channels.html)
 
-### Breaking Changes {#breaking-changes}
+### 破壊的変更 {#breaking-changes}
 
-Breaking changes are inconvenient for everyone, so we try to minimize the number of major releases – for example, React 15 was released in April 2016 and React 16 was released in September 2017; React 17 isn't expected until sometime in 2020.
+破壊的変更は誰にとっても不便なので、私たちはメジャーリリースを最小限にするようにしています。例えば React 15 は 2016 年 4 月にリリースされており、React 16 は 2017 年の 9 月にリリースされています。そして React 17 は 2020 年のどこかの時点まで、リリースが見込まれていません。
 
-Instead, we release new features in minor versions. That means that minor releases are often more interesting and compelling than majors, despite their unassuming name.
+その代わり、新機能のリリースをマイナーバージョンでしています。つまりマイナーリリースは控えめな名前にも関わらず、メジャーリリースよりしばしば興味深く魅力的です。
 
-### Commitment to Stability {#commitment-to-stability}
+### 安定性への取り組み {#commitment-to-stability}
 
-As we change React over time, we try to minimize the effort required to take advantage of new features. When possible, we'll keep an older API working, even if that means putting it in a separate package. For example, [mixins have been discouraged for years](/blog/2016/07/13/mixins-considered-harmful.html) but they're supported to this day [via create-react-class](/docs/react-without-es6.html#mixins) and many codebases continue to use them in stable, legacy code.
+React が徐々に変化していく中で、私たちは新機能を取り入れるために必要な労力を最小限にするようにしています。別のパッケージに入れることはあっても、可能な限り古い API が動作するように保ちます。例えば[ミックスインは長年推奨されていません](/blog/2016/07/13/mixins-considered-harmful.html)が [create-react-class を通じて](/docs/react-without-es6.html#mixins)今日までサポートされており、多くのレガシーコードが安定してそれらを継続使用しています。
 
-Over a million developers use React, collectively maintaining millions of components. The Facebook codebase alone has over 50,000 React components. That means we need to make it as easy as possible to upgrade to new versions of React; if we make large changes without a migration path, people will be stuck on old versions. We test these upgrade paths on Facebook itself – if our team of less than 10 people can update 50,000+ components alone, we hope the upgrade will be manageable for anyone using React. In many cases, we write [automated scripts](https://github.com/reactjs/react-codemod) to upgrade component syntax, which we then include in the open-source release for everyone to use.
+100 万人を超える開発者が React を使用し、合わせると何百万ものコンポーネントを管理しています。Facebook のコードベースだけでも 5 万以上の React コンポーネントがあります。なので React はできるだけ簡単に新バージョンにアップグレードできるようにする必要があります。もし移行手段なしに React へ大きな変更を行えば、開発者は古いバージョンにとどまるでしょう。私たちはアップグレード方法を Facebook 自体でテストしています。10 人以下の私たちのチームが単独で 5 万以上のコンポーネントをアップデートできるなら、React を使用している全ての人にとって管理しやすいアップグレードであると見込めます。多くの場合、私たちはコンポーネントの構文をアップグレードするための[自動化スクリプト](https://github.com/reactjs/react-codemod)を書き、オープンソースのリリースに含め誰でも使用できるようにしています。
 
-### Gradual Upgrades via Warnings {#gradual-upgrades-via-warnings}
+### 警告による段階的アップグレード {#gradual-upgrades-via-warnings}
 
-Development builds of React include many helpful warnings. Whenever possible, we add warnings in preparation for future breaking changes. That way, if your app has no warnings on the latest release, it will be compatible with the next major release. This allows you to upgrade your apps one component at a time.
+React の開発ビルドは多くの有益な警告を含みます。可能な限り、私たちは将来の破壊的変更に備える警告を追加します。最新のリリースでもしあなたのアプリが警告を出さないのであれば、次期メジャーリリースとの互換性があるでしょう。これによりアプリを 1 つのコンポーネントずつアップグレードすることが可能になります。
 
-Development warnings won't affect the runtime behavior of your app. That way, you can feel confident that your app will behave the same way between the development and production builds -- the only differences are that the production build won't log the warnings and that it is more efficient. (If you ever notice otherwise, please file an issue.)
+開発時の警告はあなたのアプリの実行に影響しません。なので開発ビルドと本番ビルドでアプリの動作は同じであると確信できます。違いは、本番ビルドは警告をロギングしないこと、そして本番ビルドはより効率的に動作すること、の 2 点のみです（万一そうなっていないことに気づいた場合は、issue を作成してください）。
 
-### What Counts as a Breaking Change? {#what-counts-as-a-breaking-change}
+### 何を破壊的変更とみなすのか？ {#what-counts-as-a-breaking-change}
 
-In general, we *don't* bump the major version number for changes to:
+通常、私たちは下記の変更ではメジャー番号を*上げません*。
 
-* **Development warnings.** Since these don't affect production behavior, we may add new warnings or modify existing warnings in between major versions. In fact, this is what allows us to reliably warn about upcoming breaking changes.
-* **APIs starting with `unstable_`.** These are provided as experimental features whose APIs we are not yet confident in. By releasing these with an `unstable_` prefix, we can iterate faster and get to a stable API sooner.
-* **Alpha and canary versions of React.** We provide alpha versions of React as a way to test new features early, but we need the flexibility to make changes based on what we learn in the alpha period. If you use these versions, note that APIs may change before the stable release.
-* **Undocumented APIs and internal data structures.** If you access internal property names like `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` or `__reactInternalInstance$uk43rzhitjg`, there is no warranty.  You are on your own.
+* **開発時の警告。**これらは本番環境の動作に影響を与えないので、新しい警告の追加や既存の警告の修正はメジャーバージョンの間で行います。これにより次期の破壊的変更を確実に警告することができるのです。
+* **`unstable_` から始まる API 。**これらは、API をまだ信頼することができない、実験的な機能として提供されます。`unstable_`という接頭語をつけてリリースすることで、より速く開発サイクルを進め、より早く安定した API にすることができます。
+* **React のアルファバージョンとカナリア (canary) バージョン。**新機能を早くテストするために React のアルファバージョンを提供しますが、アルファで学んだことを基に柔軟に変更を加える必要があります。もしこれらのバージョンを使用する場合は、安定板のリリース前に API が変わる可能性に注意してください。
+* **ドキュメント化されていない API と内部データ構造。**もし内部プロパティである `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` や `__reactInternalInstance$uk43rzhitjg` などにアクセスしたいのであれば保証はされません。自己責任で行ってください。
 
-This policy is designed to be pragmatic: certainly, we don't want to cause headaches for you. If we bumped the major version for all of these changes, we would end up releasing more major versions and ultimately causing more versioning pain for the community. It would also mean that we can't make progress in improving React as fast as we'd like.
+このポリシーはみなさんの頭痛の種とならないよう、実用的に構成されています。上記の全ての変更のためにメジャーバージョンを上げると、より多くメジャーリリースが必要になり、最終的により多くのバージョニングの問題をコミュニティに対して引き起こすことになります。それは React の改善を私たちが望むほど早くできないことも意味します。
 
-That said, if we expect that a change on this list will cause broad problems in the community, we will still do our best to provide a gradual migration path.
+それでも、上記のリストのような変更がコミュニティ内で広域に渡る問題を引き起こすと予想される場合は、私たちは段階的な移行手段を提供するように最善を尽くします。
 
-### If a Minor Release Includes No New Features, Why Isn't It a Patch? {#minors-versus-patches}
+### 新機能がない場合でもパッチではなくマイナーリリースになる理由は？ {#minors-versus-patches}
 
-It's possible that a minor release will not include new features. [This is allowed by semver](https://semver.org/#spec-item-7), which states **"[a minor version] MAY be incremented if substantial new functionality or improvements are introduced within the private code. It MAY include patch level changes."**
+マイナーリリースに新機能がないということはあり得ます。[これは semver で許容されており](https://semver.org/#spec-item-7)、具体的には**「（マイナーバージョンは）非公開のコード内で大きな機能追加や改善があった場合に上げても良い (MAY)。パッチレベルの変更を含んでいても良い (MAY)」**ことになっています。
 
-However, it does raise the question of why these releases aren't versioned as patches instead.
+それでも、そのようなリリースがパッチリリースとしてバージョニングされないのは何故かというもっともな疑問が湧いてきます。
 
-The answer is that any change to React (or other software) carries some risk of breaking in unexpected ways. Imagine a scenario where a patch release that fixes one bug accidentally introduces a different bug. This would not only be disruptive to developers, but also harm their confidence in future patch releases. It's especially regrettable if the original fix is for a bug that is rarely encountered in practice.
+答えは、React やその他のソフトウエアに対するあらゆる変更には、想定外にコードが壊れるリスクがあるからです。とあるバグを修正するためのパッチリリースが別のバグを引き起こすという状況を想像してください。開発者を混乱させるだけでなく、将来のパッチリリースに対する信頼を失わせることになります。元の修正が現実には滅多に発生しないバグに対するものだった場合は、特に残念なことになります。
 
-We have a pretty good track record for keeping React releases free of bugs, but patch releases have an even higher bar for reliability because most developers assume they can be adopted without adverse consequences.
+React のリリースにバグを含めないことに関して我々はかなり良い成績を残してきていますが、ほとんどの開発者はパッチリリースは有害な副作用なしに採用できるものと当然に考えているので、パッチリリースに関しては信頼性のハードルがさらに上がります。
 
-For these reasons, we reserve patch releases only for the most critical bugs and security vulnerabilities.
+このような理由により、我々はパッチリリースを重大なバグやセキュリティの脆弱性の修正のみに利用することにしています。
 
-If a release includes non-essential changes — such as internal refactors, changes to implementation details, performance improvements, or minor bugfixes — we will bump the minor version even when there are no new features.
+リリースがあまり本質的でない変更、例えば内部のリファクタリング、実装の詳細の変更、パフォーマンス改善、小さなバグ修正といったものに関する場合、我々は新機能がなくともマイナーバージョンを上げます。

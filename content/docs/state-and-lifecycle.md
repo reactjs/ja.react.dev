@@ -1,6 +1,6 @@
 ---
 id: state-and-lifecycle
-title: State and Lifecycle
+title: state とライフサイクル
 permalink: docs/state-and-lifecycle.html
 redirect_from:
   - "docs/interactivity-and-dynamic-uis.html"
@@ -8,9 +8,9 @@ prev: components-and-props.html
 next: handling-events.html
 ---
 
-This page introduces the concept of state and lifecycle in a React component. You can find a [detailed component API reference here](/docs/react-component.html).
+このページでは React コンポーネントにおける state とライフサイクルについての導入を行います。[詳細なコンポーネントの API リファレンスはこちら](/docs/react-component.html)にあります。
 
-Consider the ticking clock example from [one of the previous sections](/docs/rendering-elements.html#updating-the-rendered-element). In [Rendering Elements](/docs/rendering-elements.html#rendering-an-element-into-the-dom), we have only learned one way to update the UI. We call `ReactDOM.render()` to change the rendered output:
+[以前の章のひとつ](/docs/rendering-elements.html#updating-the-rendered-element)にあった秒刻みの時計の例を考えてみましょう。[要素のレンダー](/docs/rendering-elements.html#rendering-an-element-into-the-dom)の章にて、UI を更新するための方法をひとつだけ学びました。それはレンダーされた出力を更新するために `ReactDOM.render()` を呼び出す、というものでした。
 
 ```js{8-11}
 function tick() {
@@ -31,9 +31,9 @@ setInterval(tick, 1000);
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/gwoJZk?editors=0010)
 
-In this section, we will learn how to make the `Clock` component truly reusable and encapsulated. It will set up its own timer and update itself every second.
+このセクションでは、この `Clock` コンポーネントを真に再利用可能かつカプセル化されたものにする方法を学びます。コンポーネントが自分でタイマーをセットアップし、自身を毎秒更新するようにします。
 
-We can start by encapsulating how the clock looks:
+時計の見た目をカプセル化するところから始めてみましょう：
 
 ```js{3-6,12}
 function Clock(props) {
@@ -57,9 +57,9 @@ setInterval(tick, 1000);
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/dpdoYR?editors=0010)
 
-However, it misses a crucial requirement: the fact that the `Clock` sets up a timer and updates the UI every second should be an implementation detail of the `Clock`.
+しかし上記のコードは重要な要件を満たしていません：`Clock` がタイマーを設定して UI を毎秒ごとに更新するという処理は、`Clock` の内部実装の詳細 (implementation detail) であるべきだということです。
 
-Ideally we want to write this once and have the `Clock` update itself:
+理想的には以下のコードを一度だけ記述して、`Clock` に自身を更新させたいのです：
 
 ```js{2}
 ReactDOM.render(
@@ -68,23 +68,23 @@ ReactDOM.render(
 );
 ```
 
-To implement this, we need to add "state" to the `Clock` component.
+これを実装するには、`Clock` コンポーネントに "ステート (state)" を追加する必要があります。
 
-State is similar to props, but it is private and fully controlled by the component.
+state は props に似ていますが、コンポーネントによって完全に管理されるプライベートなものです。
 
-## Converting a Function to a Class {#converting-a-function-to-a-class}
+## 関数をクラスに変換する {#converting-a-function-to-a-class}
 
-You can convert a function component like `Clock` to a class in five steps:
+以下の 5 ステップで、`Clock` のような関数コンポーネントをクラスに変換することができます。
 
-1. Create an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes), with the same name, that extends `React.Component`.
+1. `React.Component` を継承する同名の [ES6 クラス](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)を作成する。
 
-2. Add a single empty method to it called `render()`.
+2. `render()` と呼ばれる空のメソッドを 1 つ追加する。
 
-3. Move the body of the function into the `render()` method.
+3. 関数の中身を `render()` メソッドに移動する。
 
-4. Replace `props` with `this.props` in the `render()` body.
+4. `render()` 内の `props` を `this.props` に書き換える。
 
-5. Delete the remaining empty function declaration.
+5. 空になった関数の宣言部分を削除する。
 
 ```js
 class Clock extends React.Component {
@@ -101,15 +101,15 @@ class Clock extends React.Component {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/zKRGpo?editors=0010)
 
-`Clock` is now defined as a class rather than a function.
+これでもう、`Clock` は関数ではなくクラスとして定義されています。
 
-The `render` method will be called each time an update happens, but as long as we render `<Clock />` into the same DOM node, only a single instance of the `Clock` class will be used. This lets us use additional features such as local state and lifecycle methods.
+`render` メソッドは更新が発生した際に毎回呼ばれますが、同一の DOM ノード内で `<Clock />` をレンダーしている限り、`Clock` クラスのインスタンスは 1 つだけ使われます。このことにより、ローカル state やライフサイクルメソッドといった追加の機能が利用できるようになります。
 
-## Adding Local State to a Class {#adding-local-state-to-a-class}
+## クラスにローカルな state を追加する {#adding-local-state-to-a-class}
 
-We will move the `date` from props to state in three steps:
+以下の 3 ステップで `date` を props から state に移します：
 
-1) Replace `this.props.date` with `this.state.date` in the `render()` method:
+1) `render()` メソッド内の `this.props.date` を `this.state.date` に書き換える：
 
 ```js{6}
 class Clock extends React.Component {
@@ -124,7 +124,7 @@ class Clock extends React.Component {
 }
 ```
 
-2) Add a [class constructor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor) that assigns the initial `this.state`:
+2) `this.state` の初期状態を設定する[クラスコンストラクタ](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)を追加する：
 
 ```js{4}
 class Clock extends React.Component {
@@ -144,7 +144,7 @@ class Clock extends React.Component {
 }
 ```
 
-Note how we pass `props` to the base constructor:
+親クラスのコンストラクタへの `props` の渡し方に注目してください：
 
 ```js{2}
   constructor(props) {
@@ -153,9 +153,9 @@ Note how we pass `props` to the base constructor:
   }
 ```
 
-Class components should always call the base constructor with `props`.
+クラスのコンポーネントは常に `props` を引数として親クラスのコンストラクタを呼び出す必要があります。
 
-3) Remove the `date` prop from the `<Clock />` element:
+3) `<Clock />` 要素から `date` プロパティを削除する：
 
 ```js{2}
 ReactDOM.render(
@@ -164,9 +164,9 @@ ReactDOM.render(
 );
 ```
 
-We will later add the timer code back to the component itself.
+タイマーのコードはコンポーネント自身に後で追加しなおします。
 
-The result looks like this:
+結果は以下のようになります：
 
 ```js{2-5,11,18}
 class Clock extends React.Component {
@@ -193,17 +193,17 @@ ReactDOM.render(
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/KgQpJd?editors=0010)
 
-Next, we'll make the `Clock` set up its own timer and update itself every second.
+次に、`Clock` が自分でタイマーを設定し、毎秒ごとに自分を更新するようにします。
 
-## Adding Lifecycle Methods to a Class {#adding-lifecycle-methods-to-a-class}
+## クラスにライフサイクルメソッドを追加する {#adding-lifecycle-methods-to-a-class}
 
-In applications with many components, it's very important to free up resources taken by the components when they are destroyed.
+多くのコンポーネントを有するアプリケーションでは、コンポーネントが破棄された場合にそのコンポーネントが占有していたリソースを開放することがとても重要です。
 
-We want to [set up a timer](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) whenever the `Clock` is rendered to the DOM for the first time. This is called "mounting" in React.
+[タイマーを設定](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval)したいのは、最初に `Clock` が DOM として描画されるときです。このことを React では "マウント (mounting)" と呼びます。
 
-We also want to [clear that timer](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/clearInterval) whenever the DOM produced by the `Clock` is removed. This is called "unmounting" in React.
+また[タイマーをクリア](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/clearInterval)したいのは、`Clock` が生成した DOM が削除されるときです。このことを React では "アンマウント (unmounting)" と呼びます。
 
-We can declare special methods on the component class to run some code when a component mounts and unmounts:
+コンポーネントクラスで特別なメソッドを宣言することで、コンポーネントがマウントしたりアンマウントしたりした際にコードを実行することができます：
 
 ```js{7-9,11-13}
 class Clock extends React.Component {
@@ -231,9 +231,9 @@ class Clock extends React.Component {
 }
 ```
 
-These methods are called "lifecycle methods".
+これらのメソッドは "ライフサイクルメソッド (lifecycle method)" と呼ばれます。
 
-The `componentDidMount()` method runs after the component output has been rendered to the DOM. This is a good place to set up a timer:
+`componentDidMount()` メソッドは、出力が DOM にレンダーされた後に実行されます。ここがタイマーをセットアップするのによい場所です：
 
 ```js{2-5}
   componentDidMount() {
@@ -244,11 +244,11 @@ The `componentDidMount()` method runs after the component output has been render
   }
 ```
 
-Note how we save the timer ID right on `this` (`this.timerID`).
+タイマー ID を直接 `this` 上に（`this.timerID` として）格納したことに注目してください。
 
-While `this.props` is set up by React itself and `this.state` has a special meaning, you are free to add additional fields to the class manually if you need to store something that doesn’t participate in the data flow (like a timer ID).
+`this.props` は React 自体によって設定され、また `this.state` は特別な意味を持っていますが、何かデータフローに影響しないデータ（タイマー ID のようなもの）を保存したい場合に、追加のフィールドを手動でクラスに追加することは自由です。
 
-We will tear down the timer in the `componentWillUnmount()` lifecycle method:
+タイマーの後片付けは `componentWillUnmount()` というライフサイクルメソッドで行います：
 
 ```js{2}
   componentWillUnmount() {
@@ -256,9 +256,9 @@ We will tear down the timer in the `componentWillUnmount()` lifecycle method:
   }
 ```
 
-Finally, we will implement a method called `tick()` that the `Clock` component will run every second.
+最後に、`Clock` コンポーネントが毎秒ごとに実行する `tick()` メソッドを実装します。
 
-It will use `this.setState()` to schedule updates to the component local state:
+コンポーネントのローカル state の更新をスケジュールするために `this.setState()` を使用します：
 
 ```js{18-22}
 class Clock extends React.Component {
@@ -302,49 +302,49 @@ ReactDOM.render(
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/amqdNA?editors=0010)
 
-Now the clock ticks every second.
+これで、この時計は毎秒ごとに時間を刻みます。
 
-Let's quickly recap what's going on and the order in which the methods are called:
+何が起こったのかをメソッドが呼び出される順序にそって簡単に振り返ってみましょう：
 
-1) When `<Clock />` is passed to `ReactDOM.render()`, React calls the constructor of the `Clock` component. Since `Clock` needs to display the current time, it initializes `this.state` with an object including the current time. We will later update this state.
+1) `<Clock />` が `ReactDOM.render()` に渡されると、React は `Clock` コンポーネントのコンストラクタを呼び出します。`Clock` は現在時刻を表示する必要があるので、現在時刻を含んだオブジェクトで `this.state` を初期化します。あとでこの state を更新していきます。
 
-2) React then calls the `Clock` component's `render()` method. This is how React learns what should be displayed on the screen. React then updates the DOM to match the `Clock`'s render output.
+2) 次に React は `Clock` コンポーネントの `render()` メソッドを呼び出します。これにより React は画面に何を表示すべきか知ります。そののちに、React は DOM を `Clock` のレンダー出力と一致するように更新します。
 
-3) When the `Clock` output is inserted in the DOM, React calls the `componentDidMount()` lifecycle method. Inside it, the `Clock` component asks the browser to set up a timer to call the component's `tick()` method once a second.
+3) `Clock` の出力が DOM に挿入されると、React は `componentDidMount()` ライフサイクルメソッドを呼び出します。その中で、`Clock` コンポーネントは毎秒ごとにコンポーネントの `tick()` メソッドを呼び出すためにタイマーを設定するようブラウザに要求します。
 
-4) Every second the browser calls the `tick()` method. Inside it, the `Clock` component schedules a UI update by calling `setState()` with an object containing the current time. Thanks to the `setState()` call, React knows the state has changed, and calls the `render()` method again to learn what should be on the screen. This time, `this.state.date` in the `render()` method will be different, and so the render output will include the updated time. React updates the DOM accordingly.
+4) ブラウザは、毎秒ごとに `tick()` メソッドを呼び出します。その中で `Clock` コンポーネントは、現在時刻を含んだオブジェクトを引数として `setState()` を呼び出すことで、UI の更新をスケジュールします。`setState()` が呼び出されたおかげで、React は state が変わったということが分かるので、`render()` メソッドを再度呼び出して、画面上に何を表示すべきかを知ります。今回は、`render()` メソッド内の `this.state.date` が異なっているので、レンダリングされる出力には新しく更新された時間が含まれています。それに従って React は DOM を更新します。
 
-5) If the `Clock` component is ever removed from the DOM, React calls the `componentWillUnmount()` lifecycle method so the timer is stopped.
+5) この後に `Clock` コンポーネントが DOM から削除されることがあれば、React は `componentWillUnmount()` ライフサイクルメソッドを呼び出し、これによりタイマーが停止します。
 
-## Using State Correctly {#using-state-correctly}
+## state を正しく使用する {#using-state-correctly}
 
-There are three things you should know about `setState()`.
+`setState()` について知っておくべきことが 3 つあります。
 
-### Do Not Modify State Directly {#do-not-modify-state-directly}
+### state を直接変更しないこと {#do-not-modify-state-directly}
 
-For example, this will not re-render a component:
+例えば、以下のコードではコンポーネントは再レンダーされません：
 
 ```js
 // Wrong
 this.state.comment = 'Hello';
 ```
 
-Instead, use `setState()`:
+代わりに `setState()` を使用してください：
 
 ```js
 // Correct
 this.setState({comment: 'Hello'});
 ```
 
-The only place where you can assign `this.state` is the constructor.
+`this.state` に直接代入してよい唯一の場所はコンストラクタです。
 
-### State Updates May Be Asynchronous {#state-updates-may-be-asynchronous}
+### state の更新は非同期に行われる可能性がある {#state-updates-may-be-asynchronous}
 
-React may batch multiple `setState()` calls into a single update for performance.
+React はパフォーマンスのために、複数の `setState()` 呼び出しを 1 度の更新にまとめて処理することがあります。
 
-Because `this.props` and `this.state` may be updated asynchronously, you should not rely on their values for calculating the next state.
+`this.props` と `this.state` は非同期に更新されるため、次の state を求める際に、それらの値に依存するべきではありません。
 
-For example, this code may fail to update the counter:
+例えば、以下のコードはカウンターの更新に失敗することがあります：
 
 ```js
 // Wrong
@@ -353,7 +353,7 @@ this.setState({
 });
 ```
 
-To fix it, use a second form of `setState()` that accepts a function rather than an object. That function will receive the previous state as the first argument, and the props at the time the update is applied as the second argument:
+これを修正するために、オブジェクトではなく関数を受け取る `setState()` の 2 つ目の形を使用します。その関数は前の state を最初の引数として受け取り、更新が適用される時点での props を第 2 引数として受け取ります：
 
 ```js
 // Correct
@@ -362,7 +362,7 @@ this.setState((state, props) => ({
 }));
 ```
 
-We used an [arrow function](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) above, but it also works with regular functions:
+上記のコードでは[アロー関数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)を使いましたが、通常の関数でも動作します：
 
 ```js
 // Correct
@@ -373,11 +373,11 @@ this.setState(function(state, props) {
 });
 ```
 
-### State Updates are Merged {#state-updates-are-merged}
+### state の更新はマージされる {#state-updates-are-merged}
 
-When you call `setState()`, React merges the object you provide into the current state.
+`setState()` を呼び出した場合、React は与えられたオブジェクトを現在の state にマージします。
 
-For example, your state may contain several independent variables:
+例えば、あなたの state はいくつかの独立した変数を含んでいるかもしれません：
 
 ```js{4,5}
   constructor(props) {
@@ -389,7 +389,7 @@ For example, your state may contain several independent variables:
   }
 ```
 
-Then you can update them independently with separate `setState()` calls:
+その場合、別々の `setState()` 呼び出しで、それらの変数を独立して更新することができます：
 
 ```js{4,10}
   componentDidMount() {
@@ -407,27 +407,27 @@ Then you can update them independently with separate `setState()` calls:
   }
 ```
 
-The merging is shallow, so `this.setState({comments})` leaves `this.state.posts` intact, but completely replaces `this.state.comments`.
+マージは浅く (shallow) 行われるので、`this.setState({comments})` は `this.state.posts` をそのまま残しますが、`this.state.comments` は完全に置き換えます。
 
-## The Data Flows Down {#the-data-flows-down}
+## データは下方向に伝わる {#the-data-flows-down}
 
-Neither parent nor child components can know if a certain component is stateful or stateless, and they shouldn't care whether it is defined as a function or a class.
+親コンポーネントであれ子コンポーネントであれ、特定の他のコンポーネントがステートフルかステートレスかを知ることはできませんし、特定のコンポーネントの定義が関数型かクラス型かを気にするべきではありません。
 
-This is why state is often called local or encapsulated. It is not accessible to any component other than the one that owns and sets it.
+これが、state はローカルのものである、ないしはカプセル化されている、と言われる理由です。state を所有してセットするコンポーネント自身以外からはその state にアクセスすることができません。
 
-A component may choose to pass its state down as props to its child components:
+コンポーネントはその子コンポーネントに props として自身の state を渡してもかまいません。
 
 ```js
 <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
 ```
 
-This also works for user-defined components:
+ユーザ定義のコンポーネントでも動作します：
 
 ```js
 <FormattedDate date={this.state.date} />
 ```
 
-The `FormattedDate` component would receive the `date` in its props and wouldn't know whether it came from the `Clock`'s state, from the `Clock`'s props, or was typed by hand:
+`FormattedDate` コンポーネントは props 経由で `date` を受け取りますが、それが `Clock` の state から来たのか、`Clock` の props から来たのか、もしくは手書きされたものなのかは分かりません：
 
 ```js
 function FormattedDate(props) {
@@ -437,11 +437,11 @@ function FormattedDate(props) {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/zKRqNB?editors=0010)
 
-This is commonly called a "top-down" or "unidirectional" data flow. Any state is always owned by some specific component, and any data or UI derived from that state can only affect components "below" them in the tree.
+このデータフローは一般的には "トップダウン" もしくは "単一方向" データフローと呼ばれます。いかなる state も必ず特定のコンポーネントが所有し、state から生ずる全てのデータまたは UI は、ツリーでそれらの "下" にいるコンポーネントにのみ影響します。
 
-If you imagine a component tree as a waterfall of props, each component's state is like an additional water source that joins it at an arbitrary point but also flows down.
+コンポーネントツリーとは props が流れ落ちる滝なのだと想像すると、各コンポーネントの state とは任意の場所で合流してくる追加の水源であり、それらもまた下に流れ落ちていくものなのです。
 
-To show that all components are truly isolated, we can create an `App` component that renders three `<Clock>`s:
+全てのコンポーネントが本当に独立していることを示すのに、3 つの `<Clock>` をレンダリングする `App` コンポーネントを作成します：
 
 ```js{4-6}
 function App() {
@@ -462,6 +462,6 @@ ReactDOM.render(
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/vXdGmd?editors=0010)
 
-Each `Clock` sets up its own timer and updates independently.
+各 `Clock` は独立してタイマーをセットし、独立して更新します。
 
-In React apps, whether a component is stateful or stateless is considered an implementation detail of the component that may change over time. You can use stateless components inside stateful components, and vice versa.
+React アプリケーションでは、コンポーネントがステートフルかステートレスかは、コンポーネントにおける内部実装の詳細 (implementation detail) とみなされ、それは時間と共に変化しうるものです。ステートレスなコンポーネントをステートフルなコンポーネントの中で使うことが可能であり、その逆も同様です。

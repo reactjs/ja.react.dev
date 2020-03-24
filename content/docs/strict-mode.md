@@ -1,65 +1,65 @@
 ---
 id: strict-mode
-title: Strict Mode
+title: strict モード
 permalink: docs/strict-mode.html
 ---
 
-`StrictMode` is a tool for highlighting potential problems in an application. Like `Fragment`, `StrictMode` does not render any visible UI. It activates additional checks and warnings for its descendants.
+`StrictMode` はアプリケーションの潜在的な問題点を洗い出すためのツールです。`Fragment` と同様に、`StrictMode` は目に見える UI を描画しません。`StrictMode` の子孫要素に対しては、付加的な検査および警告が動くようになります。
 
-> Note:
+> 補足：
 >
-> Strict mode checks are run in development mode only; _they do not impact the production build_.
+> strict モードでの検査は開発モードでのみ動きます。_本番ビルドには影響を与えません_。
 
-You can enable strict mode for any part of your application. For example:
+strict モードはアプリケーションの任意の箇所で有効にできます。下はその一例です。
 `embed:strict-mode/enabling-strict-mode.js`
 
-In the above example, strict mode checks will *not* be run against the `Header` and `Footer` components. However, `ComponentOne` and `ComponentTwo`, as well as all of their descendants, will have the checks.
+上のコード例において、`Header` と `Footer` に対しては strict モードの検査は*されません*。しかし `ComponentOne`、`ComponentTwo` およびそのすべての子孫要素に対しては検査が働きます。
 
-`StrictMode` currently helps with:
-* [Identifying components with unsafe lifecycles](#identifying-unsafe-lifecycles)
-* [Warning about legacy string ref API usage](#warning-about-legacy-string-ref-api-usage)
-* [Warning about deprecated findDOMNode usage](#warning-about-deprecated-finddomnode-usage)
-* [Detecting unexpected side effects](#detecting-unexpected-side-effects)
-* [Detecting legacy context API](#detecting-legacy-context-api)
+現在、`StrictMode` は以下のことに役立ちます。
+* [安全でないライフサイクルの特定](#identifying-unsafe-lifecycles)
+* [レガシーな文字列 ref API の使用に対する警告](#warning-about-legacy-string-ref-api-usage)
+* [非推奨な findDOMNode の使用に対する警告](#warning-about-deprecated-finddomnode-usage)
+* [意図しない副作用の検出](#detecting-unexpected-side-effects)
+* [レガシーなコンテクスト API の検出](#detecting-legacy-context-api)
 
-Additional functionality will be added with future releases of React.
+将来の React のリリースではこの他にも機能が追加される予定です。
 
-### Identifying unsafe lifecycles {#identifying-unsafe-lifecycles}
+### 安全でないライフサイクルの特定 {#identifying-unsafe-lifecycles}
 
-As explained [in this blog post](/blog/2018/03/27/update-on-async-rendering.html), certain legacy lifecycle methods are unsafe for use in async React applications. However, if your application uses third party libraries, it can be difficult to ensure that these lifecycles aren't being used. Fortunately, strict mode can help with this!
+[このブログ記事](/blog/2018/03/27/update-on-async-rendering.html)で書かれているように、いくつかのライフサイクルメソッドは非同期な React アプリケーションで使用するにあたって安全ではありません。しかしながら、アプリケーションがサードパーティーのライブラリを用いているなら、そのような安全でないライフサイクルが使用されていないと保証することは難しくなります。strict モードは、幸運にもこのような場合に役立ちます！
 
-When strict mode is enabled, React compiles a list of all class components using the unsafe lifecycles, and logs a warning message with information about these components, like so:
+strict モードが有効のとき、React は安全でないライフサイクルを使用した全てのクラス型コンポーネントのリストをまとめあげ、それらのコンポーネントの情報を含む下のような警告のログを出力します。
 
 ![](../images/blog/strict-mode-unsafe-lifecycles-warning.png)
 
-Addressing the issues identified by strict mode _now_ will make it easier for you to take advantage of concurrent rendering in future releases of React.
+_今_ strict モードによって特定された問題に対処しておくことで、将来の React のリリース時に、並列レンダリングを活用しやすくなります。
 
-### Warning about legacy string ref API usage {#warning-about-legacy-string-ref-api-usage}
+### レガシーな文字列 ref API の使用に対する警告 {#warning-about-legacy-string-ref-api-usage}
 
-Previously, React provided two ways for managing refs: the legacy string ref API and the callback API. Although the string ref API was the more convenient of the two, it had [several downsides](https://github.com/facebook/react/issues/1373) and so our official recommendation was to [use the callback form instead](/docs/refs-and-the-dom.html#legacy-api-string-refs).
+以前は、React は ref を管理するためにレガシーな文字列 ref API とコールバック API の 2 つの手法を提供していました。文字列 ref API はより便利なものでしたが、[いくつか不都合な点](https://github.com/facebook/react/issues/1373)があり、公式に[コールバック形式を代わりに用いること](/docs/refs-and-the-dom.html#legacy-api-string-refs)を推奨しました。
 
-React 16.3 added a third option that offers the convenience of a string ref without any of the downsides:
+React 16.3 ではこれらの不都合なく文字列 ref の利点を活かせるような次の第 3 の選択を追加しました。
 `embed:16-3-release-blog-post/create-ref-example.js`
 
-Since object refs were largely added as a replacement for string refs, strict mode now warns about usage of string refs.
+オブジェクトによる ref は文字列 ref を置きかえるため主に追加されたため、現在 strict モードでは文字列 ref の使用に対して警告します。
 
-> **Note:**
+> **補足：**
 >
-> Callback refs will continue to be supported in addition to the new `createRef` API.
+> コールバックによる ref は新しい `createRef` API に加えて継続してサポートされます。
 >
-> You don't need to replace callback refs in your components. They are slightly more flexible, so they will remain as an advanced feature.
+> コンポーネント内のコールバックによる ref を置きかえる必要はありません。コールバック ref は少しだけ柔軟に使えるため、発展的な機能として残り続けます。
 
-[Learn more about the new `createRef` API here.](/docs/refs-and-the-dom.html)
+[新しい `createRef` API についてはこちらを参照してください。](/docs/refs-and-the-dom.html)
 
-### Warning about deprecated findDOMNode usage {#warning-about-deprecated-finddomnode-usage}
+### 非推奨な findDOMNode の使用に対する警告 {#warning-about-deprecated-finddomnode-usage}
 
-React used to support `findDOMNode` to search the tree for a DOM node given a class instance. Normally you don't need this because you can [attach a ref directly to a DOM node](/docs/refs-and-the-dom.html#creating-refs).
+React ではかつてクラスのインスタンスを元にツリー内の DOM ノードを見つける `findDOMNode` がサポートされていました。通常、[DOM ノードに ref を付与する](/docs/refs-and-the-dom.html#creating-refs)ことができるため、このような操作は必要ありません。
 
-`findDOMNode` can also be used on class components but this was breaking abstraction levels by allowing a parent to demand that certain children was rendered. It creates a refactoring hazard where you can't change the implementation details of a component because a parent might be reaching into its DOM node. `findDOMNode` only returns the first child, but with the use of Fragments, it is possible for a component to render multiple DOM nodes. `findDOMNode` is a one time read API. It only gave you an answer when you asked for it. If a child component renders a different node, there is no way to handle this change. Therefore `findDOMNode` only worked if components always return a single DOM node that never changes.
+`findDOMNode` はクラスコンポーネントでも使用可能でしたが、これによって親要素が特定の子要素がレンダーされるのを要求する状況が許されてしまい、抽象レベルを破壊してしまっていました。このことにより、親要素が子の DOM ノードにまで踏み込んでしまう可能性があるためにコンポーネントの詳細な実装を変更できない、というようなリファクタリングの危険要因を生み出してしまっていました。`findDOMNode` は 1 番目の子要素しか返しませんが、フラグメントを使うことによりコンポーネントは複数の DOM ノードをレンダーできます。`findDOMNode` は 1 回限りの読みこみ API で、問い合わせたときの解答しか返しません。もし子コンポーネントが別のノードをレンダーしていても、この変化を管理することはできません。このため、`findDOMNode` はコンポーネントが絶対に変化することのない単一の DOM ノードのみを返す場合のみ有効といえます。
 
-You can instead make this explicit by passing a ref to your custom component and pass that along to the DOM using [ref forwarding](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
+代わりに [ref のフォワーディング](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)を使うことで、カスタムコンポーネントに ref を渡し、DOM にまで引き継ぐことでこれを明示的にすることができます。
 
-You can also add a wrapper DOM node in your component and attach a ref directly to it.
+コンポーネントのラッパーの DOM ノードを追加し、そこに直接 ref を付与することもできます。
 
 ```javascript{4,7}
 class MyComponent extends React.Component {
@@ -73,19 +73,19 @@ class MyComponent extends React.Component {
 }
 ```
 
-> Note:
+> 補足：
 >
-> In CSS, the [`display: contents`](https://developer.mozilla.org/en-US/docs/Web/CSS/display#display_contents) attribute can be used if you don't want the node to be part of the layout.
+> CSS では、特定のノードをレイアウトの一部にしたくない場合 [`display: contents`](https://developer.mozilla.org/en-US/docs/Web/CSS/display#display_contents) 属性が利用できます。
 
-### Detecting unexpected side effects {#detecting-unexpected-side-effects}
+### 意図しない副作用の検出 {#detecting-unexpected-side-effects}
 
-Conceptually, React does work in two phases:
-* The **render** phase determines what changes need to be made to e.g. the DOM. During this phase, React calls `render` and then compares the result to the previous render.
-* The **commit** phase is when React applies any changes. (In the case of React DOM, this is when React inserts, updates, and removes DOM nodes.) React also calls lifecycles like `componentDidMount` and `componentDidUpdate` during this phase.
+概念的に、React は次の 2 つのフェーズで動作します。
+* **レンダー**フェーズでは、変更対象（例えば DOM）にどのような変更が必要か決めます。このフェーズにおいて、React は `render` を呼び出し、1 つ前のレンダー結果と比較します。
+* **コミット**フェーズで React は変更を反映します（React DOM の場合ではここで React は DOM ノードの挿入、更新、削除を行います）。React はこのフェーズで `componentDidMount` や `componentDidUpdate` などのライフサイクルの呼び出しも行います。
 
-The commit phase is usually very fast, but rendering can be slow. For this reason, the upcoming concurrent mode (which is not enabled by default yet) breaks the rendering work into pieces, pausing and resuming the work to avoid blocking the browser. This means that React may invoke render phase lifecycles more than once before committing, or it may invoke them without committing at all (because of an error or a higher priority interruption).
+コミットフェーズは大体の場合非常に高速ですが、レンダーは低速になることがあります。このため、今後追加される並列モード（現状ではまだデフォルトでは無効です）ではレンダー処理を細分化し、ブラウザをブロックしてしまうことを避けるために処理を中断、再開するようになります。これは、React がコミットの前にレンダーフェーズのライフサイクルを複数回呼び出しうるということであり、（エラーや優先度の高い割り込みによって）コミットを行わずに呼び出しうるということを意味します。
 
-Render phase lifecycles include the following class component methods:
+レンダーフェーズのライフサイクルには次のクラス型コンポーネントのメソッドが含まれます。
 * `constructor`
 * `componentWillMount` (or `UNSAFE_componentWillMount`)
 * `componentWillReceiveProps` (or `UNSAFE_componentWillReceiveProps`)
@@ -93,33 +93,33 @@ Render phase lifecycles include the following class component methods:
 * `getDerivedStateFromProps`
 * `shouldComponentUpdate`
 * `render`
-* `setState` updater functions (the first argument)
+* `setState` 更新関数（第 1 引数）
 
-Because the above methods might be called more than once, it's important that they do not contain side-effects. Ignoring this rule can lead to a variety of problems, including memory leaks and invalid application state. Unfortunately, it can be difficult to detect these problems as they can often be [non-deterministic](https://en.wikipedia.org/wiki/Deterministic_algorithm).
+上記のメソッドは複数回呼ばれることがあるため、副作用を持たないようにすることが大切です。このルールを破ると、メモリリークやアプリケーションの無効な状態など、多くの問題を引き起こしえます。不幸にも、これらの問題はしばしば[非決定的な](https://en.wikipedia.org/wiki/Deterministic_algorithm)ため、検出が難しくなります。
 
-Strict mode can't automatically detect side effects for you, but it can help you spot them by making them a little more deterministic. This is done by intentionally double-invoking the following methods:
+strict モードでは自動的には副作用を見つけてはくれませんが、それらの副作用をほんの少し決定的にすることによって特定できる助けになります。これは、以下のメソッドを意図的に 2 回呼び出すことによって行われます。
 
-* Class component `constructor` method
-* The `render` method
-* `setState` updater functions (the first argument)
-* The static `getDerivedStateFromProps` lifecycle
-* The `shouldComponentUpdate` method
+* クラス型コンポーネントの `constructor` メソッド
+* `render` メソッド
+* `setState` 更新関数（第 1 引数）
+* スタティックなライフサイクル `getDerivedStateFromProps`
+* `shouldComponentUpdate` メソッド
 
-> Note:
+> 補足：
 >
-> This only applies to development mode. _Lifecycles will not be double-invoked in production mode._
+> この機能は開発モードのみで適用されます。_ライフサイクルは本番モードでは 2 回呼び出されることはありません。_
 
-For example, consider the following code:
+例えば、次のようなコードを考えてみましょう。
 `embed:strict-mode/side-effects-in-constructor.js`
 
-At first glance, this code might not seem problematic. But if `SharedApplicationState.recordEvent` is not [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning), then instantiating this component multiple times could lead to invalid application state. This sort of subtle bug might not manifest during development, or it might do so inconsistently and so be overlooked.
+はじめ見たとき、このコードには問題があるようには見えないかもしれません。しかし、`SharedApplicationState.recordEvent` が[冪等](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning)ではないとすると、このコンポーネントを複数回インスタンス化するとアプリケーションの無効な状態を引き起こしえます。このような分かりづらいバグは開発中には現れないかもしれませんし、バグが一貫性のない挙動をして見逃してしまうかもしれません。
 
-By intentionally double-invoking methods like the component constructor, strict mode makes patterns like this easier to spot.
+コンポーネントのコンストラクタなどのメソッドを意図的に 2 度呼び出すことによって、strict モードではこのようなことが起きた場合に気付きやすくしています。
 
-### Detecting legacy context API {#detecting-legacy-context-api}
+### レガシーなコンテクスト API の検出 {#detecting-legacy-context-api}
 
-The legacy context API is error-prone, and will be removed in a future major version. It still works for all 16.x releases but will show this warning message in strict mode:
+レガシーなコンテクスト API はエラーを起こしがちで、将来のメジャーバージョンで削除予定です。16.x の全てのバージョンでは依然として動きますが、strict モードでは下のような警告文が表示されます。
 
 ![](../images/blog/warn-legacy-context-in-strict-mode.png)
 
-Read the [new context API documentation](/docs/context.html) to help migrate to the new version.
+新バージョンへの移行にあたっては[新コンテクスト API のドキュメント](/docs/context.html)を参考にしてください。

@@ -8,8 +8,8 @@
 
 module.exports = {
   siteMetadata: {
-    title: 'React: A JavaScript library for building user interfaces',
-    siteUrl: 'https://reactjs.org',
+    title: 'React: ユーザインターフェース構築のための JavaScript ライブラリ',
+    siteUrl: 'https://ja.reactjs.org',
     rssFeedTitle: 'React',
     rssFeedDescription: 'A JavaScript library for building user interfaces',
   },
@@ -55,6 +55,7 @@ module.exports = {
               maxWidth: 840,
             },
           },
+          'gatsby-remark-japanese-fix',
           'gatsby-remark-external-links',
           'gatsby-remark-header-custom-ids',
           {

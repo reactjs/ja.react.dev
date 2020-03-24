@@ -1,11 +1,11 @@
 ---
 id: hooks-intro
-title: Introducing Hooks
+title: フックの導入
 permalink: docs/hooks-intro.html
 next: hooks-overview.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*フック (hook)* は React 16.8 で追加された新機能です。state などの React の機能を、クラスを書かずに使えるようになります。
 
 ```js{4,5}
 import React, { useState } from 'react';
@@ -25,87 +25,91 @@ function Example() {
 }
 ```
 
-This new function `useState` is the first "Hook" we'll learn about, but this example is just a teaser. Don't worry if it doesn't make sense yet!
+この `useState` という関数が、これから説明する最初のフック (Hook) です。これは単なるチラ見せですので、まだ意味が分からなくても問題ありません！
 
-**You can start learning Hooks [on the next page](/docs/hooks-overview.html).** On this page, we'll continue by explaining why we're adding Hooks to React and how they can help you write great applications.
+**[次のページ](/docs/hooks-overview.html)からフックについて学び始めることができます。**このページの残りの部分では、我々がなぜ React にフックの仕組みを加えることにしたのか、そして素晴らしいアプリケーションを作るためにどのように便利なのかについて説明していきます。
 
->Note
+> 補足
 >
+<<<<<<< HEAD
 >React 16.8.0 is the first release to support Hooks. When upgrading, don't forget to update all packages, including React DOM.
 >React Native supports Hooks since [the 0.59 release of React Native](https://reactnative.dev/blog/2019/03/12/releasing-react-native-059).
+=======
+> React 16.8.0 がフックをサポートする最初のバージョンです。アップグレードの際は、React DOM を含むすべてのパッケージの更新を忘れないようにしてください。React Native は [React Native 0.59 リリース](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059)以降でフックをサポートします。
+>>>>>>> ac4b5d74278df9484f640d83c9f136ecccf60fc4
 
-## Video Introduction {#video-introduction}
+## ビデオによる紹介 {#video-introduction}
 
-At React Conf 2018, Sophie Alpert and Dan Abramov introduced Hooks, followed by Ryan Florence demonstrating how to refactor an application to use them. Watch the video here:
+React Conf 2018 にて Sophie Alpert と Dan Abramov がフックについての発表を行い、続いて Ryan Florence がアプリケーションでフックを使うようにリファクタリングする方法についてのデモを行いました。ビデオは以下で見ることができます：
 
 <br>
 
 <iframe width="650" height="366" src="//www.youtube.com/embed/dpw9EHDh2bM" frameborder="0" allowfullscreen></iframe>
 
-## No Breaking Changes {#no-breaking-changes}
+## 互換性のない変更はありません {#no-breaking-changes}
 
-Before we continue, note that Hooks are:
+先に進む前に注意すべきこととして、フックは：
 
-* **Completely opt-in.** You can try Hooks in a few components without rewriting any existing code. But you don't have to learn or use Hooks right now if you don't want to.
-* **100% backwards-compatible.** Hooks don't contain any breaking changes.
-* **Available now.** Hooks are now available with the release of v16.8.0.
+- **完全にオプトイン**です。既存のコードを書き換えずに一部のコンポーネントでフックを試すことができます。またやりたくないのであれば、今すぐに学んだり使ったりする必要もありません。
+- **100% 後方互換**です。フックには破壊的な変更は一切含まれていません。
+- **今すぐ利用可能**です。フックは v16.8.0 のリリースから利用可能です。
 
-**There are no plans to remove classes from React.** You can read more about the gradual adoption strategy for Hooks in the [bottom section](#gradual-adoption-strategy) of this page.
+**React からクラス型コンポーネントを削除する予定はありません。**このページの[下部](#gradual-adoption-strategy)で段階的にフックを採用していく方法について読むことができます。
 
-**Hooks don't replace your knowledge of React concepts.** Instead, Hooks provide a more direct API to the React concepts you already know: props, state, context, refs, and lifecycle. As we will show later, Hooks also offer a new powerful way to combine them.
+**フックは既にあなたが知っている React のコンセプトを置き換えるものではありません。**むしろ、フックはあなたが既に知っている props、state、コンテクスト、ref、ライフサイクルといったコンセプトに対してより直接的な API を提供するものです。後でお見せするように、フックによって、これらを組み合わせるパワフルな手段も得ることができます。
 
-**If you just want to start learning Hooks, feel free to [jump directly to the next page!](/docs/hooks-overview.html)** You can also keep reading this page to learn more about why we're adding Hooks, and how we're going to start using them without rewriting our applications.
+**とにかくフックを学び始めたいという方は、どうぞ[直接次のページに進んでください](/docs/hooks-overview.html)！** 以下には、なぜ React にフックを導入することにしたのか、アプリケーションを書き換えずにどのようにしてフックを使い始めることができるのかについて解説しています。
 
-## Motivation {#motivation}
+## 動機 {#motivation}
 
-Hooks solve a wide variety of seemingly unconnected problems in React that we've encountered over five years of writing and maintaining tens of thousands of components. Whether you're learning React, use it daily, or even prefer a different library with a similar component model, you might recognize some of these problems.
+フックによって、過去 5 年で何万というコンポーネントを作成・メンテナンスする中で我々が遭遇してきた、一見互いにあまり関係なさそうに見える様々な問題が解決されます。あなたが React を学習中の場合でも、毎日使っている場合でも、似たようなコンポーネントモデルを持つ別のライブラリが好きな場合でも、これらの問題の幾つかを認識しているかもしれません。
 
-### It's hard to reuse stateful logic between components {#its-hard-to-reuse-stateful-logic-between-components}
+### ステートフルなロジックをコンポーネント間で再利用するのは難しい {#its-hard-to-reuse-stateful-logic-between-components}
 
-React doesn't offer a way to "attach" reusable behavior to a component (for example, connecting it to a store). If you've worked with React for a while, you may be familiar with patterns like [render props](/docs/render-props.html) and [higher-order components](/docs/higher-order-components.html) that try to solve this. But these patterns require you to restructure your components when you use them, which can be cumbersome and make code harder to follow. If you look at a typical React application in React DevTools, you will likely find a "wrapper hell" of components surrounded by layers of providers, consumers, higher-order components, render props, and other abstractions. While we could [filter them out in DevTools](https://github.com/facebook/react-devtools/pull/503), this points to a deeper underlying problem: React needs a better primitive for sharing stateful logic.
+React は再利用可能な振る舞いをコンポーネントに「付加する」方法（例えばストアオブジェクトを connect するなど）を提供していません。React をしばらく使った事があれば、この問題を解決するための[レンダープロップ](/docs/render-props.html)や[高階コンポーネント](/docs/higher-order-components.html)といったパターンをご存じかもしれません。しかしこれらのパターンを使おうとするとコンポーネントの再構成が必要であり、面倒なうえにコードを追うのが難しくなります。典型的な React アプリを React DevTools で見てみると、おそらくプロバイダやらコンシューマやら高階コンポーネントやらレンダープロップやら、その他諸々の抽象化が多層に積み重なった『ラッパー地獄』を見ることになるでしょう。[DevTools でそれらをフィルタして隠す](https://github.com/facebook/react-devtools/pull/503)ことはできますが、この背景にはもっと根本的な問題があるということがわかります：React にはステートフルなロジックを共有するためのよりよい基本機能が必要なのです。
 
-With Hooks, you can extract stateful logic from a component so it can be tested independently and reused. **Hooks allow you to reuse stateful logic without changing your component hierarchy.** This makes it easy to share Hooks among many components or with the community.
+フックを使えば、ステートを持ったロジックをコンポーネントから抽出して、単独でテストしたり、また再利用したりすることができます。**フックを使えば、ステートを持ったロジックを、コンポーネントの階層構造を変えることなしに再利用できるのです。**このため、多数のコンポーネント間で、あるいはコミュニティ全体で、フックを共有することが簡単になります。
 
-We'll discuss this more in [Building Your Own Hooks](/docs/hooks-custom.html).
+この点については[独自フックの作成](/docs/hooks-custom.html)にてより詳しく述べていきます。
 
-### Complex components become hard to understand {#complex-components-become-hard-to-understand}
+### 複雑なコンポーネントは理解しづらくなる {#complex-components-become-hard-to-understand}
 
-We've often had to maintain components that started out simple but grew into an unmanageable mess of stateful logic and side effects. Each lifecycle method often contains a mix of unrelated logic. For example, components might perform some data fetching in `componentDidMount` and `componentDidUpdate`. However, the same `componentDidMount` method might also contain some unrelated logic that sets up event listeners, with cleanup performed in `componentWillUnmount`. Mutually related code that changes together gets split apart, but completely unrelated code ends up combined in a single method. This makes it too easy to introduce bugs and inconsistencies.
+我々はよく、最初はシンプルだったのに、state を使うロジックや副作用によって管理不能なごちゃ混ぜ状態に陥ってしまったコンポーネントをメンテナンスさせられてきました。それぞれのライフサイクルメソッドには、しばしば互いに関係のないロジックが混在してしまいます。例えばとあるコンポーネントは `componentDidMount` と `componentDidUpdate` で何かデータを取得しているかもしれません。しかし同じ `componentDidMount` 内には、イベントリスナを登録する何か無関係なロジックがあるかもしれませんし、そのクリーンアップのコードは `componentWillUnmount` に書かれているかもしれません、といった具合です。一緒に更新されるべき互いに関連したコードがバラバラにされ、一方でまったく無関係なコードが 1 つのメソッド内に書かれています。このような状態は簡単にバグや非整合性を引き起こします。
 
-In many cases it's not possible to break these components into smaller ones because the stateful logic is all over the place. It's also difficult to test them. This is one of the reasons many people prefer to combine React with a separate state management library. However, that often introduces too much abstraction, requires you to jump between different files, and makes reusing components more difficult.
+多くの場合、state を使ったロジックはコンポーネント内のあらゆる場所にあるため、小さなコンポーネントに分割することは不可能です。テストも困難になります。これが、多くの人が単体の状態管理ライブラリの利用を好む理由のひとつでもあります。しかし、そのようなライブラリを利用するとしばしば過剰な抽象化を引き起こしたり、様々なファイルにジャンプさせられたり、コンポーネントの再利用がより困難になってしまったりします。
 
-To solve this, **Hooks let you split one component into smaller functions based on what pieces are related (such as setting up a subscription or fetching data)**, rather than forcing a split based on lifecycle methods. You may also opt into managing the component's local state with a reducer to make it more predictable.
+この問題を解決するため、関連する機能（例えばデータの購読や取得）をライフサイクルメソッドによって無理矢理分割する代わりに、**フックは関連する機能に基づいて、1 つのコンポーネントを複数の小さな関数に分割することを可能にします。**より state 管理を予測しやすくするため、必要に応じてリデューサ (reducer) を使って管理するようにしてもよいでしょう。
 
-We'll discuss this more in [Using the Effect Hook](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns).
+これについては[副作用フックの利用法](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns)で詳しく述べます。
 
-### Classes confuse both people and machines {#classes-confuse-both-people-and-machines}
+### クラスは人間と機械の両方を混乱させる {#classes-confuse-both-people-and-machines}
 
-In addition to making code reuse and code organization more difficult, we've found that classes can be a large barrier to learning React. You have to understand how `this` works in JavaScript, which is very different from how it works in most languages. You have to remember to bind the event handlers. Without unstable [syntax proposals](https://babeljs.io/docs/en/babel-plugin-transform-class-properties/), the code is very verbose. People can understand props, state, and top-down data flow perfectly well but still struggle with classes. The distinction between function and class components in React and when to use each one leads to disagreements even between experienced React developers.
+コードの再利用や整頓が難しくなるということに加えてクラスについて我々が学んだことは、クラスが React を学ぶ上で障壁となっているということです。JavaScript で `this` がどのように動作するのか理解しなければなりませんが、それは他の多くの言語での動作とは非常に異なっています。イベントハンドラを `bind` するよう覚えておく必要があります。仕様が不確定な[提案中の構文](https://babeljs.io/docs/en/babel-plugin-transform-class-properties/)を使わない限り、コードは非常に冗長になってしまいます。開発者は props や state やトップダウンのデータフローについて完璧に理解できても、クラスの部分でつまづいてしまいます。React における関数コンポーネントとクラスコンポーネントの違いや使い分けについては経験のある React 開発者の間でも意見の差異が出てきます。
 
-Additionally, React has been out for about five years, and we want to make sure it stays relevant in the next five years. As [Svelte](https://svelte.dev/), [Angular](https://angular.io/), [Glimmer](https://glimmerjs.com/), and others show, [ahead-of-time compilation](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) of components has a lot of future potential. Especially if it's not limited to templates. Recently, we've been experimenting with [component folding](https://github.com/facebook/react/issues/7323) using [Prepack](https://prepack.io/), and we've seen promising early results. However, we found that class components can encourage unintentional patterns that make these optimizations fall back to a slower path. Classes present issues for today's tools, too. For example, classes don't minify very well, and they make hot reloading flaky and unreliable. We want to present an API that makes it more likely for code to stay on the optimizable path.
+加えて、React は登場から約 5 年が経ちましたが、これからの 5 年間も使える選択肢のままであって欲しいと考えています。[Svelte](https://svelte.dev/) や [Angular](https://angular.io/) や [Glimmer](https://glimmerjs.com/) などのライブラリが示したように、コンポーネントの[事前コンパイル](https://en.wikipedia.org/wiki/Ahead-of-time_compilation)には大きな将来性があります。特に使用法がテンプレートに限られていない場合はそうです。最近我々は [Prepack](https://prepack.io/) を使った [component folding](https://github.com/facebook/react/issues/7323) を試しており、有望な初期結果が得られています。しかし、クラスコンポーネントを使うことで、これらの最適化機能が遅い経路にフォールバックしてしまうようなパターンを助長してしまうことが分かりました。クラスは今まさに使われているツール群でも問題を引き起こします。例えば、クラスはあまりよく minify されませんし、ホットリローディングも不安定で信頼できないものになってしまいます。我々は、コードが最適化しやすい状態でいられる可能性を高くできるような API を提示したいのです。
 
-To solve these problems, **Hooks let you use more of React's features without classes.** Conceptually, React components have always been closer to functions. Hooks embrace functions, but without sacrificing the practical spirit of React. Hooks provide access to imperative escape hatches and don't require you to learn complex functional or reactive programming techniques.
+これらの問題を解決するため、**フックは、より多くの React の機能をクラスを使わずに利用できるようにします**。コンセプト的には、React のコンポーネントは常に関数に近いものでした。フックは関数を活用しながらも、React の実用性を犠牲にしません。フックは命令型コードへの避難ハッチへのアクセスを提供しますし、複雑な関数型プログラミングやリアクティブプログラミングの技法を学ばせることもありません。
 
->Examples
+> 例
 >
->[Hooks at a Glance](/docs/hooks-overview.html) is a good place to start learning Hooks.
+> [フック早わかり](/docs/hooks-overview.html)はフックを学び始めるのに良い記事です。
 
-## Gradual Adoption Strategy {#gradual-adoption-strategy}
+## 段階的な採用戦略 {#gradual-adoption-strategy}
 
->**TLDR: There are no plans to remove classes from React.**
+> **TLDR: React からクラスを削除する予定はありません。**
 
-We know that React developers are focused on shipping products and don't have time to look into every new API that's being released. Hooks are very new, and it might be better to wait for more examples and tutorials before considering learning or adopting them.
+React 開発者はプロダクト開発に注力する必要があり、リリースされるあらゆる新しい API を確かめている時間はない、ということを、我々は理解しています。フックはとても新しい機能ですので、多くの例やチュートリアルが揃うまで、学んだり採用したりするのを待つ方がいいかもしれません。
 
-We also understand that the bar for adding a new primitive to React is extremely high. For curious readers, we have prepared a [detailed RFC](https://github.com/reactjs/rfcs/pull/68) that dives into motivation with more details, and provides extra perspective on the specific design decisions and related prior art.
+また、React に新しい基本機能を付け加えるハードルが非常に高いということも理解しています。興味ある読者のために我々は[詳しい RFC](https://github.com/reactjs/rfcs/pull/68) を用意しています。そこではより詳しく動機を掘り下げており、関連する先行技術や個別の設計上の選択についての概要が述べられています。
 
-**Crucially, Hooks work side-by-side with existing code so you can adopt them gradually.** There is no rush to migrate to Hooks. We recommend avoiding any "big rewrites", especially for existing, complex class components. It takes a bit of a mindshift to start "thinking in Hooks". In our experience, it's best to practice using Hooks in new and non-critical components first, and ensure that everybody on your team feels comfortable with them. After you give Hooks a try, please feel free to [send us feedback](https://github.com/facebook/react/issues/new), positive or negative.
+**肝心なことですが、フックは既存のコードと併用することができるので、段階的に採用していくことが可能です。**フックへの移行を急ぐ必要はありません。特に既存の複雑なコンポーネントについては、「大幅な書き換え」は避けることを推奨します。『フックで考えられる』ようになるには若干の思考の転換が必要です。我々の経験上は、あまり重要でない新しいコンポーネントでまずフックの使い方を練習し、チームの全員が慣れるようにすることが最良です。フックを試してみたら、どうぞお気軽に[フィードバックを送って](https://github.com/facebook/react/issues/new)ください。ポジティブなものでもネガティブなものでも構いません。
 
-We intend for Hooks to cover all existing use cases for classes, but **we will keep supporting class components for the foreseeable future.** At Facebook, we have tens of thousands of components written as classes, and we have absolutely no plans to rewrite them. Instead, we are starting to use Hooks in the new code side by side with classes.
+クラスコンポーネントのユースケースをすべてフックがカバーできるようにする予定ではいますが、**クラスコンポーネントのサポートも予見可能な将来にわたって続けていきます。**Facebook では何万というコンポーネントがクラスとして書かれており、それらを書き換える予定は全くありません。代わりに、クラスと併用しながら新しいコードでフックを使っていく予定でいます。
 
-## Frequently Asked Questions {#frequently-asked-questions}
+## よくある質問 {#frequently-asked-questions}
 
-We've prepared a [Hooks FAQ page](/docs/hooks-faq.html) that answers the most common questions about Hooks.
+[Hook の FAQ ページ](/docs/hooks-faq.html)では、フックに関するよくある質問にお答えしています。
 
-## Next Steps {#next-steps}
+## 次のステップ {#next-steps}
 
-By the end of this page, you should have a rough idea of what problems Hooks are solving, but many details are probably unclear. Don't worry! **Let's now go to [the next page](/docs/hooks-overview.html) where we start learning about Hooks by example.**
+このページを読み終えたことで、フックがどのような問題を解決しようとしているのか大まかに知ることはできたと思いますが、おそらく細かい部分についてはまだ分からないと思います。心配は要りません。**[次のページ](/docs/hooks-overview.html)に進み、例を使ってフックについて学び始めましょう。**
