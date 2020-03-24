@@ -15,17 +15,7 @@ redirect_from:
 
 これらの規約のいずれかをあなたの React アプリケーションで推奨しているというわけでは必ずしもありません。規約の多くは歴史的な理由で存在しており、時間とともに変化する可能性があります。
 
-<<<<<<< HEAD
-### Top-Level Folders {#top-level-folders}
-=======
-### 外部の依存関係 {#external-dependencies}
-
-React はほとんど外部の依存関係を持っていません。通常、`require()` は React 自身のコードベースのファイルを指します。ただし、比較的にまれな例外がいくつかあります。
-
-[fbjs リポジトリ](https://github.com/facebook/fbjs)は React がいくつかの小さなユーティリティを [Relay](https://github.com/facebook/relay) のようなライブラリと共有し、それらと同期を保つために存在しています。Facebook のエンジニアが必要に応じて変更を行えるようであってほしいので、Node のエコシステムにある同等の小さなモジュール群には依存しません。fbjs 内にあるユーティリティは全て非公開 API であり、それらは React のような Facebook プロジェクトでのみ使用されるためのものです。
-
 ### 最上位フォルダ {#top-level-folders}
->>>>>>> ac4b5d74278df9484f640d83c9f136ecccf60fc4
 
 [React リポジトリ](https://github.com/facebook/react)をクローンした後、プロジェクトのルートディレクトリに複数のフォルダがあることに気がつくでしょう：
 
@@ -175,11 +165,7 @@ React core のコードはソースツリーの [`packages/react`](https://githu
 
 ### レンダラ {#renderers}
 
-<<<<<<< HEAD
-React was originally created for the DOM but it was later adapted to also support native platforms with [React Native](https://reactnative.dev/). This introduced the concept of "renderers" to React internals.
-=======
-React は元々 DOM のために作成されましたが、後になって [React Native](http://facebook.github.io/react-native/) によりネイティブなプラットフォームもサポートするようになりました。これにより React の内部に "レンダラ (renderer)" の概念が導入されました。
->>>>>>> ac4b5d74278df9484f640d83c9f136ecccf60fc4
+React は元々 DOM のために作成されましたが、後になって [React Native](https://reactnative.dev/) によりネイティブなプラットフォームもサポートするようになりました。これにより React の内部に "レンダラ (renderer)" の概念が導入されました。
 
 **レンダラは React ツリーを、基盤となるプラットフォーム固有の呼び出しへと変換する方法を管理します。**
 

@@ -126,11 +126,7 @@ UI は動的ですが、props と state の同期的な `render()` 関数によ�
 
 ### DOM を超えて {#beyond-the-dom}
 
-<<<<<<< HEAD
-We see the value of React in the way it allows us to write components that have fewer bugs and compose together well. DOM is the original rendering target for React but [React Native](https://reactnative.dev/) is just as important both to Facebook and the community.
-=======
-私たちは React の価値を、バグの少ないコンポーネントを書いてうまく構成することができるという点に見ています。DOM は React のオリジナルのレンダーターゲットですが、[React Native](https://facebook.github.io/react-native/) は Facebook とコミュニティの両方において同じくらい重要です。
->>>>>>> ac4b5d74278df9484f640d83c9f136ecccf60fc4
+私たちは React の価値を、バグの少ないコンポーネントを書いてうまく構成することができるという点に見ています。DOM は React のオリジナルのレンダーターゲットですが、[React Native](https://reactnative.dev/) は Facebook とコミュニティの両方において同じくらい重要です。
 
 レンダラーに依存しないことは React の重要な設計上の制約です。それは内部表現にいくらかのオーバーヘッドを追加します。その一方で、コアへの改善はすべてのプラットフォームに行きわたります。
 

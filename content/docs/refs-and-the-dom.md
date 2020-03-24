@@ -167,15 +167,9 @@ class Parent extends React.Component {
 
 ```javascript{2,3,6,13}
 function CustomTextInput(props) {
-<<<<<<< HEAD
-  // textInput must be declared here so the ref can refer to it
+  // ref が参照できるように、textInput をここで宣言する必要があります。
   const textInput = useRef(null);
   
-=======
-  // ref が参照できるように、textInput をここで宣言する必要があります。
-  let textInput = useRef();
-
->>>>>>> ac4b5d74278df9484f640d83c9f136ecccf60fc4
   function handleClick() {
     textInput.current.focus();
   }

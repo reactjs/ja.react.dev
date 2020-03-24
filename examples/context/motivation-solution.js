@@ -19,15 +19,9 @@ class App extends React.Component {
 }
 
 // highlight-range{1,2}
-<<<<<<< HEAD
-// A component in the middle doesn't have to
-// pass the theme down explicitly anymore.
-function Toolbar() {
-=======
-// 間のコンポーネントはもう明示的にテーマを
+// 中間のコンポーネントはもう明示的にテーマを
 // 下に渡す必要はありません。
-function Toolbar(props) {
->>>>>>> ac4b5d74278df9484f640d83c9f136ecccf60fc4
+function Toolbar() {
   return (
     <div>
       <ThemedButton />
