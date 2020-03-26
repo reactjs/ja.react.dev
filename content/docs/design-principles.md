@@ -126,7 +126,7 @@ UI は動的ですが、props と state の同期的な `render()` 関数によ�
 
 ### DOM を超えて {#beyond-the-dom}
 
-私たちは React の価値を、バグの少ないコンポーネントを書いてうまく構成することができるという点に見ています。DOM は React のオリジナルのレンダーターゲットですが、[React Native](https://facebook.github.io/react-native/) は Facebook とコミュニティの両方において同じくらい重要です。
+私たちは React の価値を、バグの少ないコンポーネントを書いてうまく構成することができるという点に見ています。DOM は React のオリジナルのレンダーターゲットですが、[React Native](https://reactnative.dev/) は Facebook とコミュニティの両方において同じくらい重要です。
 
 レンダラーに依存しないことは React の重要な設計上の制約です。それは内部表現にいくらかのオーバーヘッドを追加します。その一方で、コアへの改善はすべてのプラットフォームに行きわたります。
 

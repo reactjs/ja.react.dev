@@ -31,7 +31,7 @@ function Example() {
 
 > 補足
 >
-> React 16.8.0 がフックをサポートする最初のバージョンです。アップグレードの際は、React DOM を含むすべてのパッケージの更新を忘れないようにしてください。React Native は [React Native 0.59 リリース](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059)以降でフックをサポートします。
+> React 16.8.0 がフックをサポートする最初のバージョンです。アップグレードの際は、React DOM を含むすべてのパッケージの更新を忘れないようにしてください。React Native は [React Native 0.59 リリース](https://reactnative.dev/blog/2019/03/12/releasing-react-native-059)以降でフックをサポートします。
 
 ## ビデオによる紹介 {#video-introduction}
 

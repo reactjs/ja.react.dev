@@ -71,7 +71,7 @@ React バージョン 16.8.0 より、以下においてフックの安定版の
 
 **フックを利用するには、すべての React のパッケージが 16.8.0 以上である必要があります**。例えば React DOM の更新を忘れた場合、フックは動作しません。
 
-React Native は[バージョン 0.59](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059) 以降でフックをサポートします。
+React Native は[バージョン 0.59](https://reactnative.dev/blog/2019/03/12/releasing-react-native-059) 以降でフックをサポートします。
 
 ### クラスコンポーネントを全部書き換える必要があるのですか？ {#do-i-need-to-rewrite-all-my-class-components}
 
@@ -588,7 +588,7 @@ function ProductPage({ productId }) {
   const [product, setProduct] = useState(null);
 
   async function fetchProduct() {
-    const response = await fetch('http://myapi/product' + productId); // Uses productId prop
+    const response = await fetch('http://myapi/product/' + productId); // Uses productId prop
     const json = await response.json();
     setProduct(json);
   }
@@ -609,7 +609,7 @@ function ProductPage({ productId }) {
   useEffect(() => {
     // By moving this function inside the effect, we can clearly see the values it uses.
     async function fetchProduct() {
-      const response = await fetch('http://myapi/product' + productId);
+      const response = await fetch('http://myapi/product/' + productId);
       const json = await response.json();
       setProduct(json);
     }

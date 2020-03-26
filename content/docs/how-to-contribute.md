@@ -132,20 +132,28 @@ React リポジトリをクローンしたあと、`yarn` コマンドで依存�
 
 変更を試す一番簡単な方法は `yarn build react/index,react-dom/index --type=UMD` を実行し、`fixtures/packaging/babel-standalone/dev.html` を開くことです。このファイルは `build` フォルダの `react.development.js` を既に使用しているので、変更が反映されます。
 
-あなたの加えた変更を既存の React プロジェクトで試したい場合、`build/dist/react.development.js`、`build/dist/react-dom.development.js`、もしくは他のビルドされたファイルをあなたのアプリケーションにコピーして安定版の代わりに使用することができます。もし、npm 版の React を使用している場合は `react` と `react-dom` を依存関係から削除し、`yarn link` を使用してそれらがローカルの `build` を指すようにしてください：
+あなたの加えた変更を既存の React プロジェクトで試したい場合、`build/dist/react.development.js`、`build/dist/react-dom.development.js`、もしくは他のビルドされたファイルをあなたのアプリケーションにコピーして安定版の代わりに使用することができます。
+
+もし、npm 版の React を使用している場合は `react` と `react-dom` を依存関係から削除し、`yarn link` を使用してそれらがローカルの `build` フォルダを指すようにしてください。ビルド時には **`--type=UMD` の代わりに `--type=NODE` を渡す必要があることに注意してください**。また `scheduler` パッケージもビルドする必要があります：
 
 ```sh
-cd ~/path_to_your_react_clone/build/node_modules/react
+cd ~/path_to_your_react_clone/
+yarn build react/index,react-dom/index,scheduler --type=NODE
+
+cd build/node_modules/react
 yarn link
-cd ~/path_to_your_react_clone/build/node_modules/react-dom
+cd build/node_modules/react-dom
 yarn link
-cd /path/to/your/project
+
+cd ~/path/to/your/project
 yarn link react react-dom
 ```
 
 `yarn build` を React フォルダで実行するたびに、あなたのプロジェクトの `node_modules` フォルダに更新されたバージョンが現れるでしょう。その後、プロジェクトをビルドし直して変更を試すことができます。
 
-ただしプルリクエストにあなたの新機能に応じたユニットテストを含めることは必須です。これによって将来あなたのコードを壊してしまわないことが担保されます。
+もしまだいくつかのパッケージが不足している場合（例えばプロジェクトで `react-dom/server` を使っている場合）、常に `yarn build` でフルのビルドを行うことができます。ただしオプションなしの `yarn build` は時間がかかることに注意してください。
+
+プルリクエストにあなたの新機能に応じたユニットテストを含めることは必須です。これによって将来あなたのコードを壊してしまわないことが担保されます。
 
 ### スタイルガイド {#style-guide}
 

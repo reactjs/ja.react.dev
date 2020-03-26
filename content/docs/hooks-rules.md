@@ -27,6 +27,8 @@ prev: hooks-effect.html
 
 これらの 2 つのルールを強制できる [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) という ESLint のプラグインをリリースしました。試したい場合はあなたのプロジェクトに以下のようにして加えることができます。
 
+このプラグインは [Create React App](/docs/create-a-new-react-app.html#create-react-app) ではデフォルトで含まれています。
+
 ```bash
 npm install eslint-plugin-react-hooks --save-dev
 ```
@@ -45,8 +47,6 @@ npm install eslint-plugin-react-hooks --save-dev
   }
 }
 ```
-
-このプラグインは [Create React App](/docs/create-a-new-react-app.html#create-react-app) ではデフォルトで含まれています。
 
 **次のページまで飛ばして[独自のフック](/docs/hooks-custom.html)を書く方法について学んでも構いません。**このページの続きの部分ではこれらのルールの背後にある根拠について述べていきます。
 

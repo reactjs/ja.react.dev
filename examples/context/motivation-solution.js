@@ -19,9 +19,9 @@ class App extends React.Component {
 }
 
 // highlight-range{1,2}
-// 間のコンポーネントはもう明示的にテーマを
+// 中間のコンポーネントはもう明示的にテーマを
 // 下に渡す必要はありません。
-function Toolbar(props) {
+function Toolbar() {
   return (
     <div>
       <ThemedButton />
