@@ -97,6 +97,7 @@ class MyComponent extends React.Component {
 
 上記のメソッドは複数回呼ばれることがあるため、副作用を持たないようにすることが大切です。このルールを破ると、メモリリークやアプリケーションの無効な状態など、多くの問題を引き起こしえます。不幸にも、これらの問題はしばしば[非決定的な](https://en.wikipedia.org/wiki/Deterministic_algorithm)ため、検出が難しくなります。
 
+<<<<<<< HEAD
 strict モードでは自動的には副作用を見つけてはくれませんが、それらの副作用をほんの少し決定的にすることによって特定できる助けになります。これは、以下のメソッドを意図的に 2 回呼び出すことによって行われます。
 
 * クラス型コンポーネントの `constructor` メソッド
@@ -104,6 +105,15 @@ strict モードでは自動的には副作用を見つけてはくれません�
 * `setState` 更新関数（第 1 引数）
 * スタティックなライフサイクル `getDerivedStateFromProps`
 * `shouldComponentUpdate` メソッド
+=======
+Strict mode can't automatically detect side effects for you, but it can help you spot them by making them a little more deterministic. This is done by intentionally double-invoking the following functions:
+
+* Class component `constructor`, `render`, and `shouldComponentUpdate` methods
+* Class component static `getDerivedStateFromProps` method
+* Function component bodies
+* State updater functions (the first argument to `setState`)
+* Functions passed to `useState`, `useMemo`, or `useReducer`
+>>>>>>> b3c7f041586b71b31f556403426fcd7cab342535
 
 > 補足：
 >
