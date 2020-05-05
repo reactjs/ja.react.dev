@@ -82,7 +82,7 @@
     "format:examples": "prettier --config examples/.prettierrc --write \"examples/**/*.js\"",
     "generate-ids": "node scripts/generateHeadingIDs.js content",
     "lint": "eslint .",
-    "lint:text": "textlint --rulesdir=./textlint content/{docs,home,tutorial,warnings}/*.md",
+    "lint:text": "textlint --rulesdir=./textlint content/{docs,home,tutorial,warnings}/*.md content/blog/20[2-9]*.md",
     "netlify": "yarn --version && rimraf node_modules && yarn install --frozen-lockfile --check-files && yarn build",
     "nit:source": "prettier --config .prettierrc --list-different \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",
     "nit:examples": "prettier --config examples/.prettierrc --list-different \"examples/**/*.js\"",
