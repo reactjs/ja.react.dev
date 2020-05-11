@@ -1045,7 +1045,11 @@ Game の `render` メソッド内で `history` に `map` を作用させてみ�
 
 **[この時点でのコード全体を見る](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
+<<<<<<< HEAD
 ゲームの履歴内にある三目並べのそれぞれの着手に対応して、ボタン `<button>` を有するリストアイテム `<li>` を作ります。ボタンには `onClick` ハンドラがあり、それは `this.jumpTo()` というメソッドを呼び出します。まだ `jumpTo()` は実装していません。ひとまずこのコードにより、ゲーム内で行われた着手のリストが表示されるようになりましたが、同時に開発者ツールのコンソール内に以下の警告も出力されているはずです：
+=======
+For each move in the tic-tac-toe game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
+>>>>>>> bc91fe4101420f98454a59ac34c1cf1d4d4f4476
 
 >  Warning:
 >  Each child in an array or iterator should have a unique "key" prop. Check the render method of "Game".
