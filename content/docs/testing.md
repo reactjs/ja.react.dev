@@ -14,11 +14,7 @@ React コンポーネントをテストするのにはいくつか方法があ�
 * **コンポーネントツリーのレンダリング** をシンプルなテスト環境で行い、その結果を検証する
 * **アプリケーション全体の動作** をブラウザ同等の環境で検証する（end-to-end テストとして知られる）
 
-<<<<<<< HEAD
 このセクションでは、最初のケースにおけるテスト戦略にフォーカスします。end-to-end テストが重要な機能のリグレッションを防ぐのに有効である一方で、そのようなテストは React コンポーネントとは特に関係なく、このセクションのスコープ外です。
-=======
-This documentation section focuses on testing strategies for the first case. While full end-to-end tests can be very useful to prevent regressions to important workflows, such tests are not concerned with React components in particular, and are out of the scope of this section.
->>>>>>> bc91fe4101420f98454a59ac34c1cf1d4d4f4476
 
 ### トレードオフ {#tradeoffs}
 
