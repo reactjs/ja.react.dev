@@ -68,13 +68,7 @@ class NameForm extends React.Component {
 
 フォーム要素の `value` 属性が設定されているので、表示される値は常に `this.state.value` となり、React の state が信頼できる情報源となります。`handleChange` はキーストロークごとに実行されて React の state を更新するので、表示される値はユーザがタイプするたびに更新されます。
 
-制御されたコンポーネントを使うと、すべての state の変更には紐付けられたハンドラ関数が存在することになります。これによりユーザ入力の改変や検証が簡単になります。例えば、名前が全て大文字で書かれるように強制したいなら、`handleChange` を次のように書くことができます：
-
-```javascript{2}
-handleChange(event) {
-  this.setState({value: event.target.value.toUpperCase()});
-}
-```
+制御されたコンポーネントを使うと、ユーザ入力の値は常に React の state によって制御されるようになります。これによりタイプするコード量は少し増えますが、その値を他の UI 要素に渡したり、他のイベントハンドラからリセットしたりできるようになります。
 
 ## textarea タグ {#the-textarea-tag}
 

@@ -18,4 +18,6 @@ React community には選定された多くの素晴らしいリソースがあ�
 
 - [Awesome React Talks](https://github.com/tiaanduplessis/awesome-react-talks) - React talks についての選定されたリストです。
 
+- [Awesome React Videos](https://www.awesomereact.com) - すばらしい React 関連のビデオを集めたウェブサイトです。
+
 - [Hero35 React Hub](https://hero35.com/topic/react) - React の*すべて*のカンファや講演がカテゴリ別に選定されて収録されているウェブサイトです。
