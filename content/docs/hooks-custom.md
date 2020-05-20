@@ -63,7 +63,7 @@ function FriendListItem(props) {
 }
 ```
 
-代わりに、このロジックを `FriendStatus` と `FriendListeItem` 間で共有したいと思います。
+代わりに、このロジックを `FriendStatus` と `FriendListItem` 間で共有したいと思います。
 
 これまで React には、ステートを有するロジックをコンポーネント間で共有するための人気の手法が 2 つありました。[レンダープロップ](/docs/render-props.html)と[高階コンポーネント](/docs/higher-order-components.html)です。ツリーに新しいコンポーネントを加える必要なしに、フックが同じ問題をどのように解決するのかを見ていきましょう。
 
