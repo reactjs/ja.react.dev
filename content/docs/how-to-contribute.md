@@ -37,7 +37,7 @@ React は[セマンティック・バージョニング](http://semver.org/)に�
 
 `master` ブランチをリリース可能な状態に保つため、破壊的な変更や実験的な機能はフィーチャー・フラグの背後で動作させます。
 
-フィーチャー・フラグは [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/master/packages/shared/ReactFeatureFlags.js) で定義されています。React のいくつかのビルドでは別のフィーチャー・フラグを有効化していることがあります。例えば React Native のビルドは React DOM とは別に設定されているかもしれません。そのようなフラグは [`packages/shared/forks`](https://github.com/facebook/react/tree/master/packages/shared/forks) にあります。フィーチャー・フラグは Flow で静的に型付けされているため `yan flow` を実行することで必要なフラグを更新したことを確認できます。
+フィーチャー・フラグは [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/master/packages/shared/ReactFeatureFlags.js) で定義されています。React のいくつかのビルドでは別のフィーチャー・フラグを有効化していることがあります。例えば React Native のビルドは React DOM とは別に設定されているかもしれません。そのようなフラグは [`packages/shared/forks`](https://github.com/facebook/react/tree/master/packages/shared/forks) にあります。フィーチャー・フラグは Flow で静的に型付けされているため `yarn flow` を実行することで必要なフラグを更新したことを確認できます。
 
 React のビルドシステムが、無効化されている機能を公開前に取り除きます。すべてのコミットについて継続的インテグレーションのジョブが実行され、バンドルサイズの変化を確認します。このサイズの変化の情報を使って、ある機能が正しくフラグ管理されていることを確認することが可能です。
 
