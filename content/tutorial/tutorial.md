@@ -1195,7 +1195,11 @@ class Game extends React.Component {
 * ゲーム進行にあわせて履歴が保存される
 * 着手の履歴の見直しや盤面の以前の状態の参照ができる
 
+<<<<<<< HEAD
 よくできました！ あなたが React がどのように動作するのか、ちゃんと理解できたと感じていることを願っています。
+=======
+Nice work! We hope you now feel like you have a decent grasp of how React works.
+>>>>>>> e548bd7e65086a8206fee46bd9e24b18b68bf045
 
 最終的な結果は、ここで確認することができます：**[最終結果](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
 
