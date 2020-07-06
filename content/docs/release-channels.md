@@ -4,6 +4,8 @@ title: リリースチャンネル
 permalink: docs/release-channels.html
 layout: docs
 category: installation
+prev: cdn-links.html
+next: hello-world.html
 ---
 
 React はバグを報告し、プルリクエストをオープンし、[RFC を投稿](https://github.com/reactjs/rfcs)してくださっている活発なオープンソースコミュニティを頼りにしています。フィードバックを促すため、私たちはリリースされていない機能を含んだ React の特別なビルドを共有することがあります。
