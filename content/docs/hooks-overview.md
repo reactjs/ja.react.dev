@@ -229,7 +229,11 @@ function FriendListItem(props) {
 }
 ```
 
+<<<<<<< HEAD
 これらのコンポーネントの state は完全に独立しています。フックは *state を用いたロジック*を再利用するものであって、state そのものを再利用するものではありません。実のところ、フックのそれぞれの*呼び出し*が独立した state を持っていますので、全く同じカスタムフックを 1 つのコンポーネント内で 2 回呼び出すことも可能です。
+=======
+The state of each component is completely independent. Hooks are a way to reuse *stateful logic*, not state itself. In fact, each *call* to a Hook has a completely isolated state -- so you can even use the same custom Hook twice in one component.
+>>>>>>> 63332462bb5afa18ac7a716975b679f4c23cc8a1
 
 カスタムフックは、機能というよりはむしろ慣習のようなものです。関数の名前が "`use`" から始まって、その関数が他のフックを呼び出しているなら、それをカスタムフックと言うことにする、ということです。この `useSomething` という命名規約によって、我々の linter プラグインはフックを利用しているコードのバグを見つけることができます。
 

@@ -12,7 +12,11 @@ React はファイルをどのようにフォルダ分けするかについて�
 
 #### 機能ないしルート別にグループ化する {#grouping-by-features-or-routes}
 
+<<<<<<< HEAD
 プロジェクトを構成する一般的な方法の 1 つは、CSS や JS やテストをまとめて機能ないしルート別のフォルダにグループ化するというものです。
+=======
+One common way to structure projects is to locate CSS, JS, and tests together inside folders grouped by feature or route.
+>>>>>>> 63332462bb5afa18ac7a716975b679f4c23cc8a1
 
 ```
 common/

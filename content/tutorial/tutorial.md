@@ -560,7 +560,11 @@ var newPlayer = Object.assign({}, player, {score: 2});
 
 #### React の再レンダータイミングの決定 {#determining-when-to-re-render-in-react}
 
+<<<<<<< HEAD
 イミュータビリティの主な利点は、React で *pure component* を構築しやすくなるということです。イミュータブルなデータは変更があったかどうか簡単に分かるため、コンポーネントをいつ再レンダーすべきなのか決定しやすくなります。
+=======
+The main benefit of immutability is that it helps you build _pure components_ in React. Immutable data can easily determine if changes have been made, which helps to determine when a component requires re-rendering.
+>>>>>>> 63332462bb5afa18ac7a716975b679f4c23cc8a1
 
 `shouldComponentUpdate()` および *pure component* をどのように作成するのかについては、[パフォーマンス最適化](/docs/optimizing-performance.html#examples)のページで説明しています。
 
@@ -1195,7 +1199,11 @@ class Game extends React.Component {
 * ゲーム進行にあわせて履歴が保存される
 * 着手の履歴の見直しや盤面の以前の状態の参照ができる
 
+<<<<<<< HEAD
 よくできました！ あなたが React がどのように動作するのか、ちゃんと理解できたと感じていることを願っています。
+=======
+Nice work! We hope you now feel like you have a decent grasp of how React works.
+>>>>>>> 63332462bb5afa18ac7a716975b679f4c23cc8a1
 
 最終的な結果は、ここで確認することができます：**[最終結果](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
 

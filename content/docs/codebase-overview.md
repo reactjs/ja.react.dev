@@ -35,6 +35,7 @@ redirect_from:
 
 ### 警告と不変数 (Invariant) {#warnings-and-invariants}
 
+<<<<<<< HEAD
 React のコードベースは警告の表示に `warning` モジュールを使用します：
 
 ```js
@@ -62,6 +63,13 @@ if (!didWarnAboutMath) {
     'Math is not working today.'
   );
   didWarnAboutMath = true;
+=======
+The React codebase uses `console.error` to display warnings:
+
+```js
+if (__DEV__) {
+  console.error('Something is wrong.');
+>>>>>>> 63332462bb5afa18ac7a716975b679f4c23cc8a1
 }
 ```
 
@@ -114,6 +122,7 @@ ReactRef.detachRefs = function(
 可能であれば、新しいコードは Flow アノテーションを使うべきです。
 `yarn flow` を実行することでローカル環境で Flow を使ってコードをチェックできます。
 
+<<<<<<< HEAD
 ### 動的な依存性注入 {#dynamic-injection}
 
 React は動的な依存性注入を一部のモジュールで使用しています。注入は常に明示的ですが、残念ながらこれはコードの理解の妨げにもなっています。この注入は React が元々 DOM のみをターゲットとしてサポートしていたために存在しています。React Native は React のフォークプロジェクトとして始まりました。React Native に動作の一部をオーバーライドさせるために動的な依存性注入が必要だったのです。
@@ -148,6 +157,9 @@ module.exports = ReactHostComponent;
 コードベースには複数の依存性注入ポイントがあります。将来的には、動的注入メカニズムを取り除き、ビルド中にすべての部品を静的に結合する予定です。
 
 ### 複数のパッケージ {#multiple-packages}
+=======
+### Multiple Packages {#multiple-packages}
+>>>>>>> 63332462bb5afa18ac7a716975b679f4c23cc8a1
 
 React は[単一リポジトリ (monorepo)](http://danluu.com/monorepo/) です。そのリポジトリには複数の別々のパッケージが含まれているので、それらの変更はまとめて調整でき、issue も 1 箇所にまとまっています。
 
@@ -211,9 +223,13 @@ React Fiber のアーキテクチャに関して[ここ](https://github.com/acdl
 
 ### イベントシステム {#event-system}
 
+<<<<<<< HEAD
 React は React DOM と React Native の両方で動作し、レンダラに依存しない合成 (synthetic) イベントシステムを実装しています。ソースコードは [`packages/legacy-events`](https://github.com/facebook/react/tree/master/packages/legacy-events) に格納されています。
 
 このイベントシステムのコードについて[深く掘り下げた動画](https://www.youtube.com/watch?v=dRo_egw7tBc)（66 分）があります。
+=======
+React implements a layer over native events to smooth out cross-browser differences. Its source code is located in [`packages/react-dom/src/events`](https://github.com/facebook/react/tree/master/packages/react-dom/src/events).
+>>>>>>> 63332462bb5afa18ac7a716975b679f4c23cc8a1
 
 ### この次は？ {#what-next}
 
