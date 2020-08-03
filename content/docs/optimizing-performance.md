@@ -371,7 +371,11 @@ function updateColorMap(colormap) {
 
 これで、`updateColorMap` は古いオブジェクトをミューテートするのではなく新しいオブジェクトを返すようになります。`Object.assign` は ES6 からの機能であり、ポリフィルが必要です（訳注：ブラウザや処理系が ES6 に未対応の場合）。
 
+<<<<<<< HEAD
 同様に、オブジェクトに対してもミューテートをしない更新を容易に記述できるようにする[オブジェクトのスプレッドプロパティ構文](https://github.com/sebmarkbage/ecmascript-rest-spread)を JavaScript に追加することが提案されています（訳注：[ECMAScript 2018](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Spread_syntax) で正式採用されました）：
+=======
+[Object spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) makes it easier to update objects without mutation as well:
+>>>>>>> c89c38241278804b48bf34b1d8d9ee0b9f1b6e8c
 
 ```js
 function updateColorMap(colormap) {
@@ -379,6 +383,12 @@ function updateColorMap(colormap) {
 }
 ```
 
+<<<<<<< HEAD
 Create React App を使用しているなら、`Object.assign` およびオブジェクトのスプレッド構文の両方がデフォルトで利用できます。
+=======
+This feature was added to JavaScript in ES2018. 
+
+If you're using Create React App, both `Object.assign` and the object spread syntax are available by default.
+>>>>>>> c89c38241278804b48bf34b1d8d9ee0b9f1b6e8c
 
 深くネストされたオブジェクトを扱っている場合、ミューテートを行わない形式で更新することが複雑に感じることがあります。このような問題がある場合は [Immer](https://github.com/mweststrate/immer) や [immutability-helper](https://github.com/kolodny/immutability-helper) を試してみてください。これらのライブラリはミューテートを行わないことによる利点を損なわずに、読みやすいコードを書くのに役立ちます。

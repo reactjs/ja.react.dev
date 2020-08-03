@@ -122,7 +122,11 @@ ReactDOM.render(
 
 ### 論理 && 演算子によるインライン If {#inline-if-with-logical--operator}
 
+<<<<<<< HEAD
 中括弧で囲むことで、[JSX に任意の式を埋め込む](/docs/introducing-jsx.html#embedding-expressions-in-jsx)ことができます。これには JavaScript の論理 `&&` 演算子も含まれます。これは条件に応じて要素を含めたいというときに便利です。
+=======
+You may [embed expressions in JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) by wrapping them in curly braces. This includes the JavaScript logical `&&` operator. It can be handy for conditionally including an element:
+>>>>>>> c89c38241278804b48bf34b1d8d9ee0b9f1b6e8c
 
 ```js{6-10}
 function Mailbox(props) {

@@ -418,12 +418,15 @@ this.setState(function(state, props) {
 コンポーネントはその子コンポーネントに props として自身の state を渡してもかまいません。
 
 ```js
+<<<<<<< HEAD
 <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
 ```
 
 ユーザ定義のコンポーネントでも動作します：
 
 ```js
+=======
+>>>>>>> c89c38241278804b48bf34b1d8d9ee0b9f1b6e8c
 <FormattedDate date={this.state.date} />
 ```
 
