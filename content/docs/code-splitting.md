@@ -43,8 +43,7 @@ console.log(add(16, 26)); // 42
 >
 > 実際のバンドルはこれとは大幅に異なった見た目になります。
 
-If you're using [Create React App](https://create-react-app.dev/), [Next.js](https://nextjs.org/), [Gatsby](https://www.gatsbyjs.org/), or a similar tool, you will have a Webpack setup out of the box to bundle your
-app.
+もし [Create React App](https://create-react-app.dev/)、[Next.js](https://nextjs.org/)、[Gatsby](https://www.gatsbyjs.org/) やこれらに類するツールを使用している場合、アプリケーションをバンドルするための Webpack のセットアップが最初から含まれています。
 
 そうでない場合は、自分でバンドルを設定する必要があります。
 設定方法に関しては、Webpack のドキュメントにある [Installation](https://webpack.js.org/guides/installation/) や
