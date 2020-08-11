@@ -35,41 +35,11 @@ redirect_from:
 
 ### 警告と不変数 (Invariant) {#warnings-and-invariants}
 
-<<<<<<< HEAD
-The React codebase uses `console.error` to display warnings:
+React のコードベースは警告の表示に `console.error` を使用しています：
 
 ```js
 if (__DEV__) {
   console.error('Something is wrong.');
-=======
-React のコードベースは警告の表示に `warning` モジュールを使用します：
-
-```js
-var warning = require('warning');
-
-warning(
-  2 + 2 === 4,
-  'Math is not working today.'
-);
-```
-
-**警告は `warning` 内の条件が `false` のときに表示されます。**
-
-この警告の出力条件についての 1 つの考え方は、例外に対応する条件を書くのではなく、正常の状況を反映する条件を書くべきだ、ということです。
-
-重複した警告文をコンソールにスパムすることを避けることをお勧めします：
-
-```js
-var warning = require('warning');
-
-var didWarnAboutMath = false;
-if (!didWarnAboutMath) {
-  warning(
-    2 + 2 === 4,
-    'Math is not working today.'
-  );
-  didWarnAboutMath = true;
->>>>>>> 8f3e0a64124da74b2113b327ea329a3ab1bcce49
 }
 ```
 
@@ -122,44 +92,7 @@ ReactRef.detachRefs = function(
 可能であれば、新しいコードは Flow アノテーションを使うべきです。
 `yarn flow` を実行することでローカル環境で Flow を使ってコードをチェックできます。
 
-<<<<<<< HEAD
-### Multiple Packages {#multiple-packages}
-=======
-### 動的な依存性注入 {#dynamic-injection}
-
-React は動的な依存性注入を一部のモジュールで使用しています。注入は常に明示的ですが、残念ながらこれはコードの理解の妨げにもなっています。この注入は React が元々 DOM のみをターゲットとしてサポートしていたために存在しています。React Native は React のフォークプロジェクトとして始まりました。React Native に動作の一部をオーバーライドさせるために動的な依存性注入が必要だったのです。
-
-以下のように動的に依存性を宣言するモジュールを見かけるかもしれません：
-
-```js
-// Dynamically injected
-var textComponentClass = null;
-
-// Relies on dynamically injected value
-function createInstanceForText(text) {
-  return new textComponentClass(text);
-}
-
-var ReactHostComponent = {
-  createInstanceForText,
-
-  // Provides an opportunity for dynamic injection
-  injection: {
-    injectTextComponentClass: function(componentClass) {
-      textComponentClass = componentClass;
-    },
-  },
-};
-
-module.exports = ReactHostComponent;
-```
-
-`injection`  フィールドは何らかの特殊な方法で処理されることはありません。しかし慣例として、実行時にこのモジュールに（おそらくプラットフォーム固有の）依存性を注入する必要があることを表します。
-
-コードベースには複数の依存性注入ポイントがあります。将来的には、動的注入メカニズムを取り除き、ビルド中にすべての部品を静的に結合する予定です。
-
 ### 複数のパッケージ {#multiple-packages}
->>>>>>> 8f3e0a64124da74b2113b327ea329a3ab1bcce49
 
 React は[単一リポジトリ (monorepo)](http://danluu.com/monorepo/) です。そのリポジトリには複数の別々のパッケージが含まれているので、それらの変更はまとめて調整でき、issue も 1 箇所にまとまっています。
 
@@ -223,13 +156,7 @@ React Fiber のアーキテクチャに関して[ここ](https://github.com/acdl
 
 ### イベントシステム {#event-system}
 
-<<<<<<< HEAD
-React implements a layer over native events to smooth out cross-browser differences. Its source code is located in [`packages/react-dom/src/events`](https://github.com/facebook/react/tree/master/packages/react-dom/src/events).
-=======
-React は React DOM と React Native の両方で動作し、レンダラに依存しない合成 (synthetic) イベントシステムを実装しています。ソースコードは [`packages/legacy-events`](https://github.com/facebook/react/tree/master/packages/legacy-events) に格納されています。
-
-このイベントシステムのコードについて[深く掘り下げた動画](https://www.youtube.com/watch?v=dRo_egw7tBc)（66 分）があります。
->>>>>>> 8f3e0a64124da74b2113b327ea329a3ab1bcce49
+React はブラウザ間でのイベント挙動の差異を吸収するため、ネイティブイベントの上にレイヤーを実装しています。ソースコードは [`packages/react-dom/src/events`](https://github.com/facebook/react/tree/master/packages/react-dom/src/events) にあります。
 
 ### この次は？ {#what-next}
 

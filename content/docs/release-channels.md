@@ -88,11 +88,7 @@ Experimental に対してインテグレーションテストを実行するこ�
 
 #### 実験的機能の詳細をどのように知ればよいですか？ {#how-can-i-learn-more-about-experimental-features}
 
-<<<<<<< HEAD
-Experimental features may or may not be documented. Usually, experiments aren't documented until they are close to shipping in Next or Latest.
-=======
-実験的機能については、ドキュメント化されることもあれば、されないこともあります。通常、Next もしくは安定版でのリリースが近づくまで、ドキュメント化されません。
->>>>>>> 8f3e0a64124da74b2113b327ea329a3ab1bcce49
+実験的機能については、ドキュメント化されることもあれば、されないこともあります。通常、Next もしくは Latest でのリリースが近づくまで、ドキュメント化されません。
 
 ドキュメント化されていない機能については、[RFC](https://github.com/reactjs/rfcs) が付随することがあります。
 

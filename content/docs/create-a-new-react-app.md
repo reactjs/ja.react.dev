@@ -73,13 +73,9 @@ Gatsby の[オフィシャルガイド](https://www.gatsbyjs.org/docs/) およ�
 
 - **[Neutrino](https://neutrinojs.org/)** は [webpack](https://webpack.js.org/) のパワーとプリセットのシンプルさを兼ね備えています。プリセットには [React アプリ](https://neutrinojs.org/packages/react/) と [React コンポーネント](https://neutrinojs.org/packages/react-components/)用のものがあります。
 
-<<<<<<< HEAD
-- **[Nx](https://nx.dev/react)** is a toolkit for full-stack monorepo development, with built-in support for React, Next.js, [Express](https://expressjs.com/), and more.
+- **[Nx](https://nx.dev/react)** はフルスタックの monorepo 開発用ツールキットであり、React、Next.js、[Express](https://expressjs.com/) などのビルトインサポートを有しています。
 
-- **[Parcel](https://parceljs.org/)** is a fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes.html#react).
-=======
 - **[Parcel](https://parceljs.org/)** は高速な、ゼロ設定のウェブアプリケーションバンドラであり、[React と共に利用](https://parceljs.org/recipes.html#react)できます。
->>>>>>> 8f3e0a64124da74b2113b327ea329a3ab1bcce49
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** は設定不要のサーバレンダリングフレームワークでありながら、Next.js よりも柔軟性があります。
 

@@ -792,11 +792,7 @@ function ProfileTimeline({ isStale, resource }) {
 
 これが適切なトレードオフなのかどうかは状況によります。しかしこれは有用なツールであり、特にコンテンツの変化があまり目立たず、ユーザが古い情報を一瞬見ていることに気付きすらしないような場合には有用です。
 
-<<<<<<< HEAD
-It's worth noting that `useDeferredValue` is not *only* useful for data fetching. It also helps when an expensive component tree causes an interaction (e.g. typing in an input) to be sluggish. Just like we can "defer" a value that takes too long to fetch (and show its old value despite other components updating), we can do this with trees that take too long to render.
-=======
 `useDeferredValue` はデータ取得のときに*のみ*有用であるというわけではない、ということを知っておいてください。これは高価な計算が必要なコンポーネントツリーがユーザ操作（テキスト入力へのタイピングなど）を遅くしている場合にも有効です。取得するのに時間のかかりすぎる値を「遅延」できる（そして他のコンポーネントが更新されているにも関わらず古い値を表示できる）のと全く同様に、レンダーに時間のかかりすぎるツリーに対しても同じことが行えます。
->>>>>>> 8f3e0a64124da74b2113b327ea329a3ab1bcce49
 
 例えば以下のようなフィルタ可能なリストを考えてみましょう：
 
@@ -930,11 +926,7 @@ function ProfilePage({ resource }) {
 
 `revealOrder="forwards"` というオプションは、このリスト内部にある直近の `<Suspense>` ノードは、**データが異なった順番で到着した場合でも、ツリーに現れる順番でしか「開放」されない**ということを意味します。`<SuspenseList>` には他にも興味深いモードがあります。`"forwards"` を `"backwards"` や `"together"` に変えてみて、何が起こるか確認してください。
 
-<<<<<<< HEAD
-You can control how many loading states are visible at once with the `tail` prop. If we specify `tail="collapsed"`, we'll see *at most one* fallback at a time. You can play with it [here](https://codesandbox.io/s/adoring-almeida-1zzjh).
-=======
 `tail` プロパティを使って同時に表示されるローディング中状態の数を制御することができます。`tail="collapsed"` と指定すると、同時に*最大でも 1 つ*しかフォールバックが表示されないようになります。[こちら](https://codesandbox.io/s/adoring-almeida-1zzjh)で試すことができます。
->>>>>>> 8f3e0a64124da74b2113b327ea329a3ab1bcce49
 
 React の他のあらゆるものと同様に、`<SuspenseList>` は合成可能であることを覚えておいてください。例えば、`<SuspenseList>` の行を `<SuspenseList>` のテーブル内に入れてグリッドを作ることができます。
 
