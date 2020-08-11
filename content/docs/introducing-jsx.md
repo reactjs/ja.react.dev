@@ -1,36 +1,37 @@
 ---
 id: introducing-jsx
-title: Introducing JSX
+title: JSX の導入
 permalink: docs/introducing-jsx.html
 prev: hello-world.html
 next: rendering-elements.html
 ---
 
-Consider this variable declaration:
+以下の変数宣言を考えてみましょう：
 
 ```js
 const element = <h1>Hello, world!</h1>;
 ```
 
-This funny tag syntax is neither a string nor HTML.
+このおかしなタグ構文は文字列でも HTML でもありません。
 
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using it with React to describe what the UI should look like. JSX may remind you of a template language, but it comes with the full power of JavaScript.
+これは JSX と呼ばれる JavaScript の構文の拡張です。UI がどのような見た目かを記述するために、React とともに JSX を使用することを私たちはお勧めしています。JSX はテンプレート言語を連想させるでしょうが、JavaScript の機能を全て備えたものです。
 
-JSX produces React "elements". We will explore rendering them to the DOM in the [next section](/docs/rendering-elements.html). Below, you can find the basics of JSX necessary to get you started.
+JSX は React "要素" を生成します。[次の章](/docs/rendering-elements.html)で React 要素を DOM に変換する方法について見ていきます。以下では、JSX を使い始めるのに必要な基礎を学ぶことができます。
 
-### Why JSX? {#why-jsx}
+### JSXを使う理由 {#why-jsx}
 
-React embraces the fact that rendering logic is inherently coupled with other UI logic: how events are handled, how the state changes over time, and how the data is prepared for display.
+表示のためのロジックは、イベントへの応答や経時的な状態の変化、画面表示のためのデータを準備する方法といった、他の UI ロジックと本質的に結合したものであり、React はその事実を受け入れます。
 
-Instead of artificially separating *technologies* by putting markup and logic in separate files, React [separates *concerns*](https://en.wikipedia.org/wiki/Separation_of_concerns) with loosely coupled units called "components" that contain both. We will come back to components in a [further section](/docs/components-and-props.html), but if you're not yet comfortable putting markup in JS, [this talk](https://www.youtube.com/watch?v=x7cQ3mrcKaY) might convince you otherwise.
+マークアップとロジックを別々のファイルに書いて人為的に*技術*を分離するのではなく、React はマークアップとロジックを両方含む疎結合の「コンポーネント」という単位を用いて[*関心*を分離](https://en.wikipedia.org/wiki/Separation_of_concerns)します。[後のセクション](/docs/components-and-props.html)でコンポーネントについては改めて詳しく紹介しますが、現時点で JavaScript にマークアップを書くことが気にくわない場合、[こちらの議論](https://www.youtube.com/watch?v=x7cQ3mrcKaY)で考えが改まるかもしれません。
 
-React [doesn't require](/docs/react-without-jsx.html) using JSX, but most people find it helpful as a visual aid when working with UI inside the JavaScript code. It also allows React to show more useful error and warning messages.
 
-With that out of the way, let's get started!
+React で JSX を使うことは[必須ではありません](/docs/react-without-jsx.html)が、ほとんどの人は JavaScript コード中で UI を扱う際に、JSX を見た目に有用なものだと感じています。また、JSX があるために React は有用なエラーや警告をより多く表示することができます。
 
-### Embedding Expressions in JSX {#embedding-expressions-in-jsx}
+前置きはこのくらいにして、早速始めましょう。
 
-In the example below, we declare a variable called `name` and then use it inside JSX by wrapping it in curly braces:
+### JSX に式を埋め込む {#embedding-expressions-in-jsx}
+
+以下の例では、`name` という変数を宣言して、それを中括弧に囲んで JSX 内で使用しています。
 
 ```js{1,2}
 const name = 'Josh Perez';
@@ -42,9 +43,9 @@ ReactDOM.render(
 );
 ```
 
-You can put any valid [JavaScript expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) inside the curly braces in JSX. For example, `2 + 2`, `user.firstName`, or `formatName(user)` are all valid JavaScript expressions.
+あらゆる有効な [JavaScript の式](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions)を JSX 内で中括弧に囲んで使用できます。例えば、`2 + 2` や `user.firstName` や `formatName(user)` はすべて有効な JavaScript の式です。
 
-In the example below, we embed the result of calling a JavaScript function, `formatName(user)`, into an `<h1>` element.
+以下の例では、`formatName(user)` という JavaScript 関数の結果を `<h1>` 要素内に埋め込んでいます。
 
 ```js{12}
 function formatName(user) {
@@ -70,13 +71,13 @@ ReactDOM.render(
 
 [](codepen://introducing-jsx)
 
-We split JSX over multiple lines for readability. While it isn't required, when doing this, we also recommend wrapping it in parentheses to avoid the pitfalls of [automatic semicolon insertion](https://stackoverflow.com/q/2846283).
+読みやすさのため JSX を複数行に分けています。必須ではありませんが、複数行に分割する場合には、[自動セミコロン挿入](https://stackoverflow.com/q/2846283)の落とし穴にはまらないように括弧で囲むことをおすすめします
 
-### JSX is an Expression Too {#jsx-is-an-expression-too}
+### JSX もまた式である {#jsx-is-an-expression-too}
 
-After compilation, JSX expressions become regular JavaScript function calls and evaluate to JavaScript objects.
+コンパイルの後、JSX の式は普通の JavaScript の関数呼び出しに変換され、JavaScript オブジェクトへと評価されます。
 
-This means that you can use JSX inside of `if` statements and `for` loops, assign it to variables, accept it as arguments, and return it from functions:
+これは JSX を `if` 文や `for` ループの中で使用したり、変数に代入したり、引数として受け取ったり、関数から返したりすることができるということです。
 
 ```js{3,5}
 function getGreeting(user) {
@@ -87,37 +88,37 @@ function getGreeting(user) {
 }
 ```
 
-### Specifying Attributes with JSX {#specifying-attributes-with-jsx}
+### JSX で属性を指定する {#specifying-attributes-with-jsx}
 
-You may use quotes to specify string literals as attributes:
+文字列リテラルを属性として指定するために引用符を使用できます。
 
 ```js
 const element = <div tabIndex="0"></div>;
 ```
 
-You may also use curly braces to embed a JavaScript expression in an attribute:
+属性に JavaScript 式を埋め込むために中括弧を使用することもできます。
 
 ```js
 const element = <img src={user.avatarUrl}></img>;
 ```
 
-Don't put quotes around curly braces when embedding a JavaScript expression in an attribute. You should either use quotes (for string values) or curly braces (for expressions), but not both in the same attribute.
+属性に JavaScript 式を埋め込む時に中括弧を囲む引用符を書かないでください。（文字列の場合は）引用符、もしくは（式の場合は）中括弧のどちらか一方を使用するようにし、同じ属性に対して両方を使用するべきではありません。
 
->**Warning:**
+>**警告:**
 >
->Since JSX is closer to JavaScript than to HTML, React DOM uses `camelCase` property naming convention instead of HTML attribute names.
+>JSX は HTML よりも JavaScript に近いものですので、React DOM は HTML の属性ではなくキャメルケース (camelCase) のプロパティ命名規則を使用します。
 >
->For example, `class` becomes [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) in JSX, and `tabindex` becomes [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/tabIndex).
+>JSX では例えば、`class` は [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) となり、`tabindex` は  [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/tabIndex) となります。
 
-### Specifying Children with JSX {#specifying-children-with-jsx}
+### JSX で子要素を指定する {#specifying-children-with-jsx}
 
-If a tag is empty, you may close it immediately with `/>`, like XML:
+タグが空の場合、XML のように `/> `でタグを閉じる事ができます：
 
 ```js
 const element = <img src={user.avatarUrl} />;
 ```
 
-JSX tags may contain children:
+JSX のタグは子要素を持つことができます：
 
 ```js
 const element = (
@@ -128,9 +129,9 @@ const element = (
 );
 ```
 
-### JSX Prevents Injection Attacks {#jsx-prevents-injection-attacks}
+### JSX はインジェクション攻撃を防ぐ {#jsx-prevents-injection-attacks}
 
-It is safe to embed user input in JSX:
+JSX にユーザの入力を埋め込むことは安全です：
 
 ```js
 const title = response.potentiallyMaliciousInput;
@@ -138,13 +139,13 @@ const title = response.potentiallyMaliciousInput;
 const element = <h1>{title}</h1>;
 ```
 
-By default, React DOM [escapes](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) any values embedded in JSX before rendering them. Thus it ensures that you can never inject anything that's not explicitly written in your application. Everything is converted to a string before being rendered. This helps prevent [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) attacks.
+デフォルトでは、React DOM は JSX に埋め込まれた値をレンダリングされる前に[エスケープ](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html)します。このため、自分のアプリケーションで明示的に書かれたものではないあらゆるコードは、注入できないことが保証されます。レンダーの前に全てが文字列に変換されます。これは [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) 攻撃の防止に役立ちます。
 
-### JSX Represents Objects {#jsx-represents-objects}
+### JSX はオブジェクトの表現である {#jsx-represents-objects}
 
-Babel compiles JSX down to `React.createElement()` calls.
+Babel は JSX を `React.createElement()` の呼び出しへとコンパイルします。
 
-These two examples are identical:
+以下の 2 つの例は等価です：
 
 ```js
 const element = (
@@ -162,7 +163,7 @@ const element = React.createElement(
 );
 ```
 
-`React.createElement()` performs a few checks to help you write bug-free code but essentially it creates an object like this:
+`React.createElement()` はバグの混入を防止するためにいくつかのチェックも行いますが、本質的には以下のようなオブジェクトを生成します：
 
 ```js
 // Note: this structure is simplified
@@ -175,10 +176,10 @@ const element = {
 };
 ```
 
-These objects are called "React elements". You can think of them as descriptions of what you want to see on the screen. React reads these objects and uses them to construct the DOM and keep it up to date.
+このようなオブジェクトは "React 要素" と呼ばれます。これらは画面に表示したいものの説明書きとして考えることができます。React はこれらのオブジェクトを読み取り、DOM を構築して最新に保ちます。
 
-We will explore rendering React elements to the DOM in the [next section](/docs/rendering-elements.html).
+[次の章](/docs/rendering-elements.html)では React 要素を DOM に変換することについて見ていきましょう。
 
->**Tip:**
+>**ヒント:**
 >
->We recommend using the ["Babel" language definition](https://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted.
+>利用したいエディタで ["Babel" 言語定義](https://babeljs.io/docs/editors)を使用して、ES6 と JSX が適切にハイライトされるようにしておくことをお勧めします。

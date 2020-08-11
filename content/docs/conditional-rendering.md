@@ -1,6 +1,6 @@
 ---
 id: conditional-rendering
-title: Conditional Rendering
+title: 条件付きレンダー
 permalink: docs/conditional-rendering.html
 prev: handling-events.html
 next: lists-and-keys.html
@@ -8,11 +8,11 @@ redirect_from:
   - "tips/false-in-jsx.html"
 ---
 
-In React, you can create distinct components that encapsulate behavior you need. Then, you can render only some of them, depending on the state of your application.
+React ではあなたの必要なふるまいをカプセル化した独立したコンポーネントを作ることができます。そして、あなたのアプリケーションの状態に応じて、その一部だけを描画することが可能です。
 
-Conditional rendering in React works the same way conditions work in JavaScript. Use JavaScript operators like [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) or the [conditional operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) to create elements representing the current state, and let React update the UI to match them.
+React における条件付きレンダーは JavaScript における条件分岐と同じように動作します。[`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) もしくは[条件演算子](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)のような JavaScript 演算子を使用して現在の状態を表す要素を作成すれば、React はそれに一致するように UI を更新します。
 
-Consider these two components:
+以下の 2 つのコンポーネントを考えてみましょう：
 
 ```js
 function UserGreeting(props) {
@@ -24,7 +24,7 @@ function GuestGreeting(props) {
 }
 ```
 
-We'll create a `Greeting` component that displays either of these components depending on whether a user is logged in:
+ユーザがログインしているかどうかによって、これらのコンポーネントの一方だけを表示する `Greeting` コンポーネントを作成しましょう：
 
 ```javascript{3-7,11,12}
 function Greeting(props) {
@@ -44,13 +44,13 @@ ReactDOM.render(
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
 
-This example renders a different greeting depending on the value of `isLoggedIn` prop.
+この例では `isLoggedIn` プロパティの値によって異なる挨拶メッセージを表示します。
 
-### Element Variables {#element-variables}
+### 要素変数 {#element-variables}
 
-You can use variables to store elements. This can help you conditionally render a part of the component while the rest of the output doesn't change.
+要素を保持しておくために変数を使うことができます。これは、出力の他の部分を変えずにコンポーネントの一部を条件付きでレンダーしたい時に役立ちます。
 
-Consider these two new components representing Logout and Login buttons:
+ログアウトとログインボタンを表す以下の 2 つの新しいコンポーネントを考えましょう：
 
 ```js
 function LoginButton(props) {
@@ -70,9 +70,9 @@ function LogoutButton(props) {
 }
 ```
 
-In the example below, we will create a [stateful component](/docs/state-and-lifecycle.html#adding-local-state-to-a-class) called `LoginControl`.
+以下の例では、`LoginControl` という[ステート付きコンポーネント](/docs/state-and-lifecycle.html#adding-local-state-to-a-class)を作成します。
 
-It will render either `<LoginButton />` or `<LogoutButton />` depending on its current state. It will also render a `<Greeting />` from the previous example:
+`LoginControl` は現在の state によって `<LoginButton />` もしくは `<LogoutButton />` の一方をレンダーします。加えて、前の例の `<Greeting />` もレンダーします：
 
 ```javascript{20-25,29,30}
 class LoginControl extends React.Component {
@@ -118,11 +118,15 @@ ReactDOM.render(
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
 
-While declaring a variable and using an `if` statement is a fine way to conditionally render a component, sometimes you might want to use a shorter syntax. There are a few ways to inline conditions in JSX, explained below.
+変数を宣言して `if` 文を使用することはコンポーネントを条件的にレンダーするなかなか良い方法ではありますが、より短い構文を使いたくなる時もあります。以下で述べるように、JSX でインラインで条件を記述する方法がいくつか存在します。
 
-### Inline If with Logical && Operator {#inline-if-with-logical--operator}
+### 論理 && 演算子によるインライン If {#inline-if-with-logical--operator}
 
+<<<<<<< HEAD
 You may [embed expressions in JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) by wrapping them in curly braces. This includes the JavaScript logical `&&` operator. It can be handy for conditionally including an element:
+=======
+中括弧で囲むことで、[JSX に任意の式を埋め込む](/docs/introducing-jsx.html#embedding-expressions-in-jsx)ことができます。これには JavaScript の論理 `&&` 演算子も含まれます。これは条件に応じて要素を含めたいというときに便利です。
+>>>>>>> 8f3e0a64124da74b2113b327ea329a3ab1bcce49
 
 ```js{6-10}
 function Mailbox(props) {
@@ -148,15 +152,15 @@ ReactDOM.render(
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
 
-It works because in JavaScript, `true && expression` always evaluates to `expression`, and `false && expression` always evaluates to `false`.
+これが動作するのは、JavaScript では `true && expression` は必ず `expression` と評価され、`false && expression` は必ず `false` と評価されるからです。
 
-Therefore, if the condition is `true`, the element right after `&&` will appear in the output. If it is `false`, React will ignore and skip it.
+従って、条件部分が `true` であれば、`&&` の後に書かれた要素が出力に現れます。もし `false` であれば、React はそれを無視して飛ばします。
 
-### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
+### 条件演算子によるインライン If-Else {#inline-if-else-with-conditional-operator}
 
-Another method for conditionally rendering elements inline is to use the JavaScript conditional operator [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
+条件的に要素をレンダリングするもうひとつの方法は JavaScript の [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) 条件演算子を利用することです。
 
-In the example below, we use it to conditionally render a small block of text.
+以下の例では条件演算子を用いて、条件に応じてテキストの小さなブロックをレンダリングします。
 
 ```javascript{5}
 render() {
@@ -169,7 +173,7 @@ render() {
 }
 ```
 
-It can also be used for larger expressions although it is less obvious what's going on:
+より大きな式にも適用することができますが、何が起こっているのか分かりづらくはなります：
 
 ```js{5,7,9}
 render() {
@@ -185,13 +189,13 @@ render() {
 }
 ```
 
-Just like in JavaScript, it is up to you to choose an appropriate style based on what you and your team consider more readable. Also remember that whenever conditions become too complex, it might be a good time to [extract a component](/docs/components-and-props.html#extracting-components).
+普通の JavaScript を書くときと同様、あなたとチームが読みやすいと思えるものに合わせて、適切なスタイルを選択してください。条件が複雑になりすぎたら、[コンポーネントを抽出](/docs/components-and-props.html#extracting-components)するべきタイミングかもしれない、ということにも留意してください。
 
-### Preventing Component from Rendering {#preventing-component-from-rendering}
+### コンポーネントのレンダーを防ぐ {#preventing-component-from-rendering}
 
-In rare cases you might want a component to hide itself even though it was rendered by another component. To do this return `null` instead of its render output.
+稀なケースですが、他のコンポーネントによってレンダーされているにも関わらず、コンポーネントが自分のことを隠したい、ということがあるかもしれません。その場合はレンダー出力の代わりに `null` を返すようにしてください。
 
-In the example below, the `<WarningBanner />` is rendered depending on the value of the prop called `warn`. If the value of the prop is `false`, then the component does not render:
+以下の例では、`<WarningBanner />` バナーは `warn` と呼ばれるプロパティの値に応じてレンダーされます。そのプロパティの値が `false` なら、コンポーネントはレンダリングされません：
 
 ```javascript{2-4,29}
 function WarningBanner(props) {
@@ -239,4 +243,4 @@ ReactDOM.render(
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
 
-Returning `null` from a component's `render` method does not affect the firing of the component's lifecycle methods. For instance `componentDidUpdate` will still be called.
+コンポーネントの `render` メソッドから `null` を返してもコンポーネントのライフサイクルメソッドの発火には影響しません。例えば `componentDidMount` は変わらず呼び出されます。

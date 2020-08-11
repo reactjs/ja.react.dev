@@ -1,6 +1,6 @@
 ---
 id: add-react-to-a-website
-title: Add React to a Website
+title: 既存のウェブサイトに React を追加する
 permalink: docs/add-react-to-a-website.html
 redirect_from:
   - "docs/add-react-to-an-existing-app.html"
@@ -8,46 +8,46 @@ prev: getting-started.html
 next: create-a-new-react-app.html
 ---
 
-Use as little or as much React as you need.
+まずは必要なぶんだけ使ってみましょう。
 
-React has been designed from the start for gradual adoption, and **you can use as little or as much React as you need**. Perhaps you only want to add some "sprinkles of interactivity" to an existing page. React components are a great way to do that.
+React は段階的に導入することができるように最初からデザインされています。つまり**最小限の部分で React を利用することも、あるいは大規模に React を利用することも可能です**。既存のページにちょっとしたインタラクティブ性をもたせたいだけでも構いません。React コンポーネントを使えばお手の物です。
 
-The majority of websites aren't, and don't need to be, single-page apps. With **a few lines of code and no build tooling**, try React in a small part of your website. You can then either gradually expand its presence, or keep it contained to a few dynamic widgets.
+多くのウェブサイトはシングルページアプリケーションではありませんし、そうする必要もありません。まずは**たった数行のコード**から、あなたのウェブサイトに React を取り入れてみましょう。**ビルドツールは必要ありません**。そこから徐々に React の使用範囲を広げていくのもいいですし、あるいは少しの動的なウィジェットだけにとどめておくのもいいでしょう。
 
 ---
 
-- [Add React in One Minute](#add-react-in-one-minute)
-- [Optional: Try React with JSX](#optional-try-react-with-jsx) (no bundler necessary!)
+- [1 分で React を追加する](#add-react-in-one-minute)
+- [オプション：React で JSX を使う](#optional-try-react-with-jsx)（バンドルツールは不要です！）
 
-## Add React in One Minute {#add-react-in-one-minute}
+## 1分で React を導入する {#add-react-in-one-minute}
 
-In this section, we will show how to add a React component to an existing HTML page. You can follow along with your own website, or create an empty HTML file to practice.
+このセクションでは、既存の HTML ページに React コンポーネントを導入する方法を説明します。以下の部分では自分のウェブサイトを利用して進めてもいいですし、練習用に空の HTML ファイルを用意するのもいいでしょう。
 
-There will be no complicated tools or install requirements -- **to complete this section, you only need an internet connection, and a minute of your time.**
+複雑なツール類や事前にインストールしておかなければいけないものはありません。**インターネットへの接続さえあれば、1 分間でこのセクションを終わらせることができます。**
 
-Optional: [Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
+オプション：[お手本をダウンロードする (2KB ZIP 圧縮)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
 
-### Step 1: Add a DOM Container to the HTML {#step-1-add-a-dom-container-to-the-html}
+### ステップ 1：HTML に DOM コンテナを追加する {#step-1-add-a-dom-container-to-the-html}
 
-First, open the HTML page you want to edit. Add an empty `<div>` tag to mark the spot where you want to display something with React. For example:
+まずは編集したい HTML ファイルを開きましょう。React で描画したい箇所を決めて、空の `<div>` 要素を追加しましょう。例えばこんな感じです。
 
 ```html{3}
-<!-- ... existing HTML ... -->
+<!-- ... 既存の HTML ... -->
 
 <div id="like_button_container"></div>
 
-<!-- ... existing HTML ... -->
+<!-- ... 既存の HTML ... -->
 ```
 
-We gave this `<div>` a unique `id` HTML attribute. This will allow us to find it from the JavaScript code later and display a React component inside of it.
+ここでは `<div>` 要素にユニークな `id` 属性を指定しています。こうしておけば、後から JavaScript のコードでこの `<div>` 要素を探し出し、この中に React コンポーネントを表示できます。
 
->Tip
+>ヒント
 >
->You can place a "container" `<div>` like this **anywhere** inside the `<body>` tag. You may have as many independent DOM containers on one page as you need. They are usually empty -- React will replace any existing content inside DOM containers.
+>「コンテナ」としての `<div>` 要素は `<body>` タグの中であれば**どこにでも**置くことができます。また空の `<div>` はひとつのページにひとつだけでも、あるいは必要なだけたくさんあっても大丈夫です。`<div>` 要素は空のことが多いですが、それはたとえ `<div>` の中に他の要素があったとしても、React が結局その中身を置き換えてしまうからです。
 
-### Step 2: Add the Script Tags {#step-2-add-the-script-tags}
+### ステップ 2：script タグを追加する {#step-2-add-the-script-tags}
 
-Next, add three `<script>` tags to the HTML page right before the closing `</body>` tag:
+次に、同じ HTML ファイルの `</body>` タグの直前に、3 つの `<script>` タグを追加しましょう。
 
 ```html{5,6,9}
   <!-- ... other HTML ... -->
@@ -63,67 +63,67 @@ Next, add three `<script>` tags to the HTML page right before the closing `</bod
 </body>
 ```
 
-The first two tags load React. The third one will load your component code.
+最初のふたつのタグは React を読み込んでおり、最後のタグはこれから書くコンポーネントのコードを読み込んでいます。
 
-### Step 3: Create a React Component {#step-3-create-a-react-component}
+### ステップ 3：React コンポーネントを作成する {#step-3-create-a-react-component}
 
-Create a file called `like_button.js` next to your HTML page.
+`like_button.js` という名前の新しいファイルを作成し、HTML ファイルのすぐ隣に置きましょう。
 
-Open **[this starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** and paste it into the file you created.
+**[サンプルコード](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**を開いて、自分のファイルにコピーアンドペーストしてください。
 
->Tip
+>ヒント
 >
->This code defines a React component called `LikeButton`. Don't worry if you don't understand it yet -- we'll cover the building blocks of React later in our [hands-on tutorial](/tutorial/tutorial.html) and [main concepts guide](/docs/hello-world.html). For now, let's just get it showing on the screen!
+>このコードは `LikeButton` という React コンポーネントを定義しています。まだわからなくても心配しなくて大丈夫です。こういった React の構成要素については、[チュートリアル](/tutorial/tutorial.html) と [Hello World](/docs/hello-world.html) のページで後ほど見ていくことにして、まずはサンプルコードを画面に表示させてみましょう！
 
-After **[the starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, add two lines to the bottom of `like_button.js`:
+**[サンプルコード](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**の末尾に次の 2 行を追加してみましょう。
 
 ```js{3,4}
-// ... the starter code you pasted ...
+// ... コピーアンドペーストしたサンプルコード ...
 
 const domContainer = document.querySelector('#like_button_container');
 ReactDOM.render(e(LikeButton), domContainer);
 ```
 
-These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it. 
+この 2 行のコードは、ステップ 1 で追加した空の `<div>` 要素を見つけてきて、その中に React コンポーネントの「いいね」ボタンを表示します。
 
-### That's It! {#thats-it}
+### これだけです！ {#thats-it}
 
-There is no step four. **You have just added the first React component to your website.**
+ステップ 4 はありません。**これであなたは自分のウェブサイトにはじめての React コンポーネントを導入できました**。
 
-Check out the next sections for more tips on integrating React.
+React の導入についてもっと知るには、次のセクションも見てみてください。
 
-**[View the full example source code](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
+**[完成したソースコードをみる](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
 
-**[Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
+**[完成したソースコードをダウンロードする (2KB ZIP 圧縮)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
 
-### Tip: Reuse a Component {#tip-reuse-a-component}
+### ヒント：コンポーネントを再利用する {#tip-reuse-a-component}
 
-Commonly, you might want to display React components in multiple places on the HTML page. Here is an example that displays the "Like" button three times and passes some data to it:
+React コンポーネントを HTML ページの一箇所だけではなくいろいろな箇所で使いたくなることがあるかもしれません。そこで「いいね」ボタンを 3 回繰り返し表示し、さらにそこにちょっとしたデータを渡すプログラムを用意しました。
 
-[View the full example source code](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)
+[ソースコードをみる](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)
 
-[Download the full example (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
+[ソースコードをダウンロードする (2KB ZIP 圧縮)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
 
->Note
+>補足
 >
->This strategy is mostly useful while React-powered parts of the page are isolated from each other. Inside React code, it's easier to use [component composition](/docs/components-and-props.html#composing-components) instead.
+>このようなやり方は、主に React を利用する DOM コンテナがページ内でお互いに干渉していない場合において便利な手段です。React 単体のコードとしては、[コンポーネントを組み合わせる](/docs/components-and-props.html#composing-components) やり方のほうが手軽です。
 
-### Tip: Minify JavaScript for Production {#tip-minify-javascript-for-production}
+### ヒント：本番環境用に JavaScript を圧縮する {#tip-minify-javascript-for-production}
 
-Before deploying your website to production, be mindful that unminified JavaScript can significantly slow down the page for your users.
+ウェブサイトを本番環境にデプロイするにあたって、圧縮していない JavaScript はページの速度を著しく落としてしまうということに配慮してください。
 
-If you already minify the application scripts, **your site will be production-ready** if you ensure that the deployed HTML loads the versions of React ending in `production.min.js`:
+自分のスクリプトの圧縮が完了していて、デプロイ後の HTML が `production.min.js` で終わる React スクリプトを読み込んでいることが検証できていれば、**あなたのウェブサイトは本番環境にリリースする準備ができています**。
 
 ```js
 <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
-If you don't have a minification step for your scripts, [here's one way to set it up](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
+自分のスクリプトを圧縮することがまだできていないのであれば、[例えばこんなやり方があります](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3)。
 
-## Optional: Try React with JSX {#optional-try-react-with-jsx}
+## オプション：React で JSX を使う {#optional-try-react-with-jsx}
 
-In the examples above, we only relied on features that are natively supported by the browsers. This is why we used a JavaScript function call to tell React what to display:
+今までの例では、ブラウザにもともと備わっている機能のみ使ってきました。React コンポーネントを表示するために次のような JavaScript の関数を呼び出していたのはそのためです。
 
 ```js
 const e = React.createElement;
@@ -136,7 +136,7 @@ return e(
 );
 ```
 
-However, React also offers an option to use [JSX](/docs/introducing-jsx.html) instead:
+ただし、React においては [JSX](/docs/introducing-jsx.html) を利用することもできます。
 
 ```js
 // Display a "Like" <button>
@@ -147,56 +147,56 @@ return (
 );
 ```
 
-These two code snippets are equivalent. While **JSX is [completely optional](/docs/react-without-jsx.html)**, many people find it helpful for writing UI code -- both with React and with other libraries.
+これらふたつのスニペットはまったく同じ内容です。**JSX の使用は[完全にオプションです](/docs/react-without-jsx.html)**が、React はもちろん他のライブラリで UI を記述する際にも、JSX は多くの人に支持されています。
 
-You can play with JSX using [this online converter](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.3).
+[このコンバーター](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.3)上で JSX を使って遊んでみてください。
 
-### Quickly Try JSX {#quickly-try-jsx}
+### JSX を手軽に試してみる {#quickly-try-jsx}
 
-The quickest way to try JSX in your project is to add this `<script>` tag to your page:
+手っ取り早く JSX を自分のプロジェクトで試してみるには、次の `<script>` タグを追加してみてください。
 
 ```html
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
 
-Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribute to it. Here is [an example HTML file with JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html) that you can download and play with.
+この状態で、任意の `<script>` タグに `type="text/babel"` 属性を持たせることで、その `<script>` タグの中では JSX が使えるようになります。[サンプル用 HTML ファイル](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)をダウンロードして遊んでみてください。
 
-This approach is fine for learning and creating simple demos. However, it makes your website slow and **isn't suitable for production**. When you're ready to move forward, remove this new `<script>` tag and the `type="text/babel"` attributes you've added. Instead, in the next section you will set up a JSX preprocessor to convert all your `<script>` tags automatically.
+この方法は学習やシンプルなデモの作成にはいいですが、これをそのまま使うとウェブサイトは重くなってしまい、**本番環境には向きません**。次のレベルに進む準備ができたら、先ほど追加した `<script>` タグと `type="text/babel"` 属性は削除してしまいましょう。そして次のセクションに進み、JSX プリプロセッサを設定して `<script>` タグを自動変換するようにしましょう。
 
-### Add JSX to a Project {#add-jsx-to-a-project}
+### JSX をプロジェクトに追加する {#add-jsx-to-a-project}
 
-Adding JSX to a project doesn't require complicated tools like a bundler or a development server. Essentially, adding JSX **is a lot like adding a CSS preprocessor.** The only requirement is to have [Node.js](https://nodejs.org/) installed on your computer.
+JSX をプロジェクトに追加するためには、バンドルツールや開発用サーバーといった複雑なツールは必要ありません。つまるところ、JSX を追加することは **CSS プリプロセッサを追加することにとてもよく似ています**。唯一必要となるのは、コンピューターに [Node.js](https://nodejs.org/) がインストールされていることだけです。
 
-Go to your project folder in the terminal, and paste these two commands:
+ターミナルを開き、プロジェクトのディレクトリに移動した上で、次のふたつのコマンドを実行してください。
 
-1. **Step 1:** Run `npm init -y` (if it fails, [here's a fix](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d))
-2. **Step 2:** Run `npm install babel-cli@6 babel-preset-react-app@3`
+1. **ステップ 1：** `npm init -y` (うまくいかなければ[こうやってみてください](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d))
+2. **ステップ 2：** `npm install babel-cli@6 babel-preset-react-app@3`
 
->Tip
+>ヒント
 >
->We're **using npm here only to install the JSX preprocessor;** you won't need it for anything else. Both React and the application code can stay as `<script>` tags with no changes.
+>ここでは **JSX プリプロセッサをインストールするためだけに npm を使っています**。それ以外の用途では必要ありません。React のソースコードもアプリケーションコードも引き続き `<script>` タグの中にそのまま書くことができます。
 
-Congratulations! You just added a **production-ready JSX setup** to your project.
+お疲れ様です！ これで**本番環境用の JSX の設定**をプロジェクトに追加することができました。
 
 
-### Run JSX Preprocessor {#run-jsx-preprocessor}
+### JSX プリプロセッサを実行する {#run-jsx-preprocessor}
 
-Create a folder called `src` and run this terminal command:
+`src` というディレクトリを作成したうえで、次のコマンドをターミナルから実行してみてください。
 
 ```
 npx babel --watch src --out-dir . --presets react-app/prod 
 ```
 
->Note
+>補足
 >
->`npx` is not a typo -- it's a [package runner tool that comes with npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
+>`npx` はタイプミスではありません。[npm 5.2 以上で利用可能なパッケージ実行ツール](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b)です。
 >
->If you see an error message saying "You have mistakenly installed the `babel` package", you might have missed [the previous step](#add-jsx-to-a-project). Perform it in the same folder, and then try again.
+>万が一 "You have mistakenly installed the `babel` package" というエラーが表示されたのであれば、[JSX をプロジェクトに追加する](#add-jsx-to-a-project)のステップがうまく実行できていなかったのかもしれません。今いるディレクトリと同じディレクトリで改めて実行してみてください。
 
-Don't wait for it to finish -- this command starts an automated watcher for JSX.
+このコマンドは JSX を継続的に監視するため、実行が完了するのを待つ必要はありません。
 
-If you now create a file called `src/like_button.js` with this **[JSX starter code](https://gist.github.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**, the watcher will create a preprocessed `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the source file with JSX, the transform will re-run automatically.
+**[このお手本の JSX コード](https://gist.github.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**を参考に `src/like_button.js` というファイルを作成すると、先ほど起動したコマンドがブラウザでの実行に適した `like_button.js` に変換してくれます。JSX ファイルを編集したら、自動的に再変換してくれます。
 
-As a bonus, this also lets you use modern JavaScript syntax features like classes without worrying about breaking older browsers. The tool we just used is called Babel, and you can learn more about it from [its documentation](https://babeljs.io/docs/en/babel-cli/).
+さらにこの変換コマンドのおかげで、古いブラウザの互換性を気にすることなく、クラス構文といったモダンな JavaScript の構文を使うこともできるようになります。このツールは Babel というもので、もっと詳しく知りたければ[公式ドキュメント](https://babeljs.io/docs/en/babel-cli/)をご覧になってみてください。
 
-If you notice that you're getting comfortable with build tools and want them to do more for you, [the next section](/docs/create-a-new-react-app.html) describes some of the most popular and approachable toolchains. If not -- those script tags will do just fine!
+ビルドツールの便利さを体感して、もっとたくさんのことをツールに任せたいと思っていただけたなら、[次のセクション](/docs/create-a-new-react-app.html)ではさらにいくつかの人気で扱いやすいツールチェーンを紹介しています。そうでもない場合は… `<script>` タグだけでも十分な機能を果たせます！

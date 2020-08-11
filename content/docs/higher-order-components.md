@@ -1,32 +1,32 @@
 ---
 id: higher-order-components
-title: Higher-Order Components
+title: 高階 (Higher-Order) コンポーネント
 permalink: docs/higher-order-components.html
 ---
 
-A higher-order component (HOC) is an advanced technique in React for reusing component logic. HOCs are not part of the React API, per se. They are a pattern that emerges from React's compositional nature.
+高階コンポーネント (higher-order component; HOC) はコンポーネントのロジックを再利用するための React における応用テクニックです。HOC それ自体は React の API の一部ではありません。HOC は、React のコンポジションの性質から生まれる設計パターンです。
 
-Concretely, **a higher-order component is a function that takes a component and returns a new component.**
+具体的には、**高階コンポーネントとは、あるコンポーネントを受け取って新規のコンポーネントを返すような関数です。**
 
 ```js
 const EnhancedComponent = higherOrderComponent(WrappedComponent);
 ```
 
-Whereas a component transforms props into UI, a higher-order component transforms a component into another component.
+コンポーネントが props を UI に変換するのに対して、高階コンポーネントはコンポーネントを別のコンポーネントに変換します。
 
-HOCs are common in third-party React libraries, such as Redux's [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) and Relay's [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html).
+HOC は Redux における [`connect`](https://github.com/reactjs/react-redux/blob/master/docs/api/connect.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) や Relay における [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) のように、サードパーティ製の React ライブラリでは一般的なものです。
 
-In this document, we'll discuss why higher-order components are useful, and how to write your own.
+このドキュメントでは、なぜ高階コンポーネントが便利で、自身でどのように記述するのかを説明します。
 
-## Use HOCs For Cross-Cutting Concerns {#use-hocs-for-cross-cutting-concerns}
+## 横断的関心事に HOC を適用する {#use-hocs-for-cross-cutting-concerns}
 
-> **Note**
+> **補足**
 >
-> We previously recommended mixins as a way to handle cross-cutting concerns. We've since realized that mixins create more trouble than they are worth. [Read more](/blog/2016/07/13/mixins-considered-harmful.html) about why we've moved away from mixins and how you can transition your existing components.
+> 以前に横断的関心事を処理する方法としてミックスインをお勧めしました。私たちはその後にミックスインはそれが持つ価値以上の問題を引き起こすことに気づきました。ミックスインから離れる理由と、既存のコンポーネントを移行する方法については[こちらの詳細な記事を読んでください](/blog/2016/07/13/mixins-considered-harmful.html)。
 
-Components are the primary unit of code reuse in React. However, you'll find that some patterns aren't a straightforward fit for traditional components.
+コンポーネントは React のコード再利用における基本単位です。しかし、いくつかのパターンの中には、これまでのコンポーネントが素直に当てはまらないことがあることに気づいたかもしれません。
 
-For example, say you have a `CommentList` component that subscribes to an external data source to render a list of comments:
+例えば、コメントのリストを描画するのに外部のデータソースの購読を行う `CommentList` コンポーネントがあるとしましょう：
 
 ```js
 class CommentList extends React.Component {
@@ -68,7 +68,7 @@ class CommentList extends React.Component {
 }
 ```
 
-Later, you write a component for subscribing to a single blog post, which follows a similar pattern:
+後になって、前述のパターンと似たような形で、1 件のブログ記事に関する情報を購読するコンポーネントを書くとしましょう：
 
 ```js
 class BlogPost extends React.Component {
@@ -100,15 +100,15 @@ class BlogPost extends React.Component {
 }
 ```
 
-`CommentList` and `BlogPost` aren't identical — they call different methods on `DataSource`, and they render different output. But much of their implementation is the same:
+`CommentList` と `BlogPost` は同一ではありません。`DataSource` に対して異なるメソッドを呼び出し、異なる出力を描画します。しかし、それらの実装の大部分は同じです：
 
-- On mount, add a change listener to `DataSource`.
-- Inside the listener, call `setState` whenever the data source changes.
-- On unmount, remove the change listener.
+- コンポーネントのマウント時に、`DataSource` にイベントリスナを登録する。
+- リスナの内部で、`setState` をデータソースが変更されるたびに呼び出す。
+- コンポーネントのアンマウント時には、イベントリスナを削除する。
 
-You can imagine that in a large app, this same pattern of subscribing to `DataSource` and calling `setState` will occur over and over again. We want an abstraction that allows us to define this logic in a single place and share it across many components. This is where higher-order components excel.
+大規模なアプリケーションにおいては、`DataSource` を購読して `setState` を呼び出すという同様のパターンが何度も発生することが想像できるでしょう。1 つの場所にロジックを定義し、多数のコンポーネントを横断してロジックを共有可能にするような抽象化が欲しいところです。このような場合には高階コンポーネントが有効です。
 
-We can write a function that creates components, like `CommentList` and `BlogPost`, that subscribe to `DataSource`. The function will accept as one of its arguments a child component that receives the subscribed data as a prop. Let's call the function `withSubscription`:
+コンポーネントを作成するような関数を書いて、`DataSource` からデータを受け取る、`CommentList` や `BlogPost` のようなコンポーネントを作り出せます。その関数は引数の 1 つとして子コンポーネントを受け取り、その子コンポーネントは購読したデータを props の一部として受け取ります。この関数を `withSubscription` と呼ぶことにしましょう。
 
 ```js
 const CommentListWithSubscription = withSubscription(
@@ -122,9 +122,9 @@ const BlogPostWithSubscription = withSubscription(
 );
 ```
 
-The first parameter is the wrapped component. The second parameter retrieves the data we're interested in, given a `DataSource` and the current props.
+1 つ目の引数はラップされるコンポーネントです。2 つ目の引数は、与えられた `DataSource` と現在の props をもとに、関心のあるデータを取り出します。
 
-When `CommentListWithSubscription` and `BlogPostWithSubscription` are rendered, `CommentList` and `BlogPost` will be passed a `data` prop with the most current data retrieved from `DataSource`:
+`CommentListWithSubscription` と `BlogPostWithSubscription` が描画されると、`CommentList` と `BlogPost` は `DataSource` から取得した最新データを `data` プロパティとして受け取ります：
 
 ```js
 // This function takes a component...
@@ -163,17 +163,17 @@ function withSubscription(WrappedComponent, selectData) {
 }
 ```
 
-Note that a HOC doesn't modify the input component, nor does it use inheritance to copy its behavior. Rather, a HOC *composes* the original component by *wrapping* it in a container component. A HOC is a pure function with zero side-effects.
+HOC は入力のコンポーネントを改変したり、振る舞いをコピーするのに継承を利用したりしません。むしろ HOC は元のコンポーネントをコンテナコンポーネント内に*ラップする*ことで*組み合わせる*のです。HOC は副作用のない純関数です。
 
-And that's it! The wrapped component receives all the props of the container, along with a new prop, `data`, which it uses to render its output. The HOC isn't concerned with how or why the data is used, and the wrapped component isn't concerned with where the data came from.
+それだけです！ ラップされたコンポーネントはコンテナの props のすべてに加えて新規のプロパティである `data` を受け取り、出力の描画に使用します。外側にある HOC は渡すデータが使われる方法や理由には関心がありませんし、ラップされたコンポーネントの側はデータがどこからやって来たのかには関心を持ちません。
 
-Because `withSubscription` is a normal function, you can add as many or as few arguments as you like. For example, you may want to make the name of the `data` prop configurable, to further isolate the HOC from the wrapped component. Or you could accept an argument that configures `shouldComponentUpdate`, or one that configures the data source. These are all possible because the HOC has full control over how the component is defined.
+`withSubscription` は通常の関数なので、引数を好きなだけ増やしたり減らしたりできます。例えば、`data` プロパティの名前を変更可能にして、HOC をラップされるコンポーネントから更に分離させることもできるでしょう。もしくは `shouldComponentUpdate` を設定する引数を受け取ったり、データソースを設定する引数を受け取りたいこともあるかもしれません。HOC ではコンポーネントがどのように定義されるかを完全に管理できるため、上述のことは全て実現できます。
 
-Like components, the contract between `withSubscription` and the wrapped component is entirely props-based. This makes it easy to swap one HOC for a different one, as long as they provide the same props to the wrapped component. This may be useful if you change data-fetching libraries, for example.
+コンポーネントのように、`withSubscription` とラップされるコンポーネントの間の契約は完全に props に基づいています。これにより同じ props をラップされるコンポーネントに与える限りは、ある HOC を他の HOC と簡単に交換できます。このことは例えばデータ取得ライブラリを変更する場合に便利でしょう。
 
-## Don't Mutate the Original Component. Use Composition. {#dont-mutate-the-original-component-use-composition}
+## 元のコンポーネントを変更するのではなく、コンポジションを使うこと {#dont-mutate-the-original-component-use-composition}
 
-Resist the temptation to modify a component's prototype (or otherwise mutate it) inside a HOC.
+HOC の中でコンポーネントのプロトタイプを変更したり、あるいは何にせよコンポーネントに変更を加えたりしたくなる誘惑に負けてはいけません。
 
 ```js
 function logProps(InputComponent) {
@@ -190,11 +190,11 @@ function logProps(InputComponent) {
 const EnhancedComponent = logProps(InputComponent);
 ```
 
-There are a few problems with this. One is that the input component cannot be reused separately from the enhanced component. More crucially, if you apply another HOC to `EnhancedComponent` that *also* mutates `componentDidUpdate`, the first HOC's functionality will be overridden! This HOC also won't work with function components, which do not have lifecycle methods.
+このコードにはいくつかの問題があります。1 つは入力のコンポーネントを改変されたコンポーネントとは別に再利用できなくなってしまうことです。さらに悪いことに、もしこの `EnhancedComponent` に別の HOC を適用し、それが*同様に* `componentDidUpdate` に変更を加えるものであった場合、最初の HOC が加えた機能は上書きされてしまいます！ またこの HOC はライフサイクルメソッドを持たない関数コンポーネントには機能しません。
 
-Mutating HOCs are a leaky abstraction—the consumer must know how they are implemented in order to avoid conflicts with other HOCs.
+コンポーネントの改変を行うような HOC は不完全な抽象化です。つまり、利用する側は他の HOC との競合を避けるため、どのように実装されているかを知っておく必要があるのです。
 
-Instead of mutation, HOCs should use composition, by wrapping the input component in a container component:
+改変を行う代わりに、HOC はコンテナコンポーネントで入力されたコンポーネントをラップすることによるコンポジションを使用するべきです：
 
 ```js
 function logProps(WrappedComponent) {
@@ -211,15 +211,15 @@ function logProps(WrappedComponent) {
 }
 ```
 
-This HOC has the same functionality as the mutating version while avoiding the potential for clashes. It works equally well with class and function components. And because it's a pure function, it's composable with other HOCs, or even with itself.
+この HOC は改変を行うバージョンと同等の機能を持ちつつ、衝突の可能性を回避しています。クラス型と関数コンポーネントのどちらでも同様にうまく動作します。そして純関数なので、自分自身を含めた他の HOC と組み合わせることができます。
 
-You may have noticed similarities between HOCs and a pattern called **container components**. Container components are part of a strategy of separating responsibility between high-level and low-level concerns. Containers manage things like subscriptions and state, and pass props to components that handle things like rendering UI. HOCs use containers as part of their implementation. You can think of HOCs as parameterized container component definitions.
+おそらく HOC と**コンテナコンポーネント**と呼ばれるパターンの類似性に気づいたでしょう。コンテナコンポーネントは高レベルと低レベルの関心事の責任を分離する戦略の一部です。コンテナはデータ購読や state を管理してコンポーネントに props を渡し、渡された側のコンポーネントは UI の描画などの事柄を取り扱います。HOC はコンテナをその実装の一部として使用します。HOC をパラメータ化されたコンテナコンポーネントの定義であると考えることができます。
 
-## Convention: Pass Unrelated Props Through to the Wrapped Component {#convention-pass-unrelated-props-through-to-the-wrapped-component}
+## 規則：自身に関係のない props はラップされるコンポーネントにそのまま渡すこと {#convention-pass-unrelated-props-through-to-the-wrapped-component}
 
-HOCs add features to a component. They shouldn't drastically alter its contract. It's expected that the component returned from a HOC has a similar interface to the wrapped component.
+HOC はコンポーネントに機能を追加するものです。その props にもとづく契約は大きく変更すべきではありません。HOC の返り値のコンポーネントはラップされたコンポーネントと似たようなインターフェースを持つことが期待されます。
 
-HOCs should pass through props that are unrelated to its specific concern. Most HOCs contain a render method that looks something like this:
+HOC はその特定の関心とは関係のない props はラップされる関数に渡すべきです。大抵の HOC はこのような描画メソッドを持ちます：
 
 ```js
 render() {
@@ -241,30 +241,30 @@ render() {
 }
 ```
 
-This convention helps ensure that HOCs are as flexible and reusable as possible.
+この決まり事により、HOC が可能な限り柔軟で再利用しやすいものになります。
 
-## Convention: Maximizing Composability {#convention-maximizing-composability}
+## 規則：組み立てやすさを最大限保つこと {#convention-maximizing-composability}
 
-Not all HOCs look the same. Sometimes they accept only a single argument, the wrapped component:
+すべての HOC が同じ見た目になるわけではありません。引数としてラップされるコンポーネント 1 つだけを受け取ることがあります。
 
 ```js
 const NavbarWithRouter = withRouter(Navbar);
 ```
 
-Usually, HOCs accept additional arguments. In this example from Relay, a config object is used to specify a component's data dependencies:
+通常、HOC は追加の引数を受け取ります。この Relay からの例では、config オブジェクトがコンポーネントのデータ依存を指定するために使われています：
 
 ```js
 const CommentWithRelay = Relay.createContainer(Comment, config);
 ```
 
-The most common signature for HOCs looks like this:
+もっとも一般的な HOC の型シグネチャはこのようなものです：
 
 ```js
 // React Redux's `connect`
 const ConnectedComment = connect(commentSelector, commentActions)(CommentList);
 ```
 
-*What?!* If you break it apart, it's easier to see what's going on.
+*これは何なのでしょう?!* バラバラにしてみると、何が起こっているのかを理解しやすくなります。
 
 ```js
 // connect is a function that returns another function
@@ -273,9 +273,10 @@ const enhance = connect(commentListSelector, commentListActions);
 // to the Redux store
 const ConnectedComment = enhance(CommentList);
 ```
-In other words, `connect` is a higher-order function that returns a higher-order component!
 
-This form may seem confusing or unnecessary, but it has a useful property. Single-argument HOCs like the one returned by the `connect` function have the signature `Component => Component`. Functions whose output type is the same as its input type are really easy to compose together.
+言い換えれば、`connect` は高階コンポーネントを返す高階関数なのです！
+
+この形式は分かりにくかったり不要なものに思えるかもしれませんが、便利な性質を持っています。`connect` 関数によって返されるもののような単一引数の HOC は、`Component => Component` という型シグネチャを持ちます。入力の型と出力の型が同じ関数は一緒に組み合わせるのが大変簡単なのです。
 
 ```js
 // Instead of doing this...
@@ -291,15 +292,15 @@ const enhance = compose(
 const EnhancedComponent = enhance(WrappedComponent)
 ```
 
-(This same property also allows `connect` and other enhancer-style HOCs to be used as decorators, an experimental JavaScript proposal.)
+（この性質を使えば、`connect` や他の機能追加方式の HOC をデコレータ（提唱中の JavaScript の実験的機能）で使用することも可能になります）
 
-The `compose` utility function is provided by many third-party libraries including lodash (as [`lodash.flowRight`](https://lodash.com/docs/#flowRight)), [Redux](https://redux.js.org/api/compose), and [Ramda](https://ramdajs.com/docs/#compose).
+`compose` ユーティリティ関数は lodash（[`lodash.flowRight`](https://lodash.com/docs/#flowRight) として）、[Redux](https://redux.js.org/api/compose)、そして [Ramda](https://ramdajs.com/docs/#compose) といった多くのサードパーティ製ライブラリから提供されています。
 
-## Convention: Wrap the Display Name for Easy Debugging {#convention-wrap-the-display-name-for-easy-debugging}
+## 規則：デバッグしやすくするため表示名をラップすること {#convention-wrap-the-display-name-for-easy-debugging}
 
-The container components created by HOCs show up in the [React Developer Tools](https://github.com/facebook/react-devtools) like any other component. To ease debugging, choose a display name that communicates that it's the result of a HOC.
+HOC により作成されたコンテナコンポーネントは他のあらゆるコンポーネントと同様、[React Developer Tools](https://github.com/facebook/react-devtools) に表示されます。デバッグを容易にするため、HOC の結果だと分かるよう表示名を選んでください。
 
-The most common technique is to wrap the display name of the wrapped component. So if your higher-order component is named `withSubscription`, and the wrapped component's display name is `CommentList`, use the display name `WithSubscription(CommentList)`:
+最も一般的な手法は、ラップされるコンポーネントの表示名をラップすることです。つまり高階コンポーネントが `withSubscription` と名付けられ、ラップされるコンポーネントの表示名が `CommentList` である場合、`WithSubscription(CommentList)` という表示名を使用しましょう：
 
 ```js
 function withSubscription(WrappedComponent) {
@@ -314,15 +315,15 @@ function getDisplayName(WrappedComponent) {
 ```
 
 
-## Caveats {#caveats}
+## 注意事項 {#caveats}
 
-Higher-order components come with a few caveats that aren't immediately obvious if you're new to React.
+高階コンポーネントには、あなたが React を始めて間もないならすぐには分からないような、いくつかの注意事項があります。
 
-### Don't Use HOCs Inside the render Method {#dont-use-hocs-inside-the-render-method}
+### render メソッド内部で HOC を使用しないこと {#dont-use-hocs-inside-the-render-method}
 
-React's diffing algorithm (called reconciliation) uses component identity to determine whether it should update the existing subtree or throw it away and mount a new one. If the component returned from `render` is identical (`===`) to the component from the previous render, React recursively updates the subtree by diffing it with the new one. If they're not equal, the previous subtree is unmounted completely.
+React の差分アルゴリズム（"reconciliation" と呼ばれる）は、既存のサブツリーを更新すべきかそれを破棄して新しいものをマウントすべきかを決定する際に、コンポーネントの型が同一かどうかの情報を利用します。`render` メソッドから返されるコンポーネントが以前の描画から返されたコンポーネントと（`===`で検証して）同一だった場合、React はサブツリーを新しいツリーとの差分を取りながら再帰的に更新します。コンポーネントが同一でなければ、以前のサブツリーは完全にアンマウントされます。
 
-Normally, you shouldn't need to think about this. But it matters for HOCs because it means you can't apply a HOC to a component within the render method of a component:
+通常このことを考慮する必要はありません。ですが HOC に関しては考えるべきことです。このことが、render メソッド中でコンポーネントに HOC を適用してはいけないということを意味しているからです：
 
 ```js
 render() {
@@ -334,17 +335,17 @@ render() {
 }
 ```
 
-The problem here isn't just about performance — remounting a component causes the state of that component and all of its children to be lost.
+ここでの問題はパフォーマンスだけではありません。コンポーネントの再マウントによりコンポーネントとその子要素全ての state が失われるのです。
 
-Instead, apply HOCs outside the component definition so that the resulting component is created only once. Then, its identity will be consistent across renders. This is usually what you want, anyway.
+こうするのではなく、結果としてのコンポーネントが 1 回だけつくられるようにするため、コンポーネント定義の外で HOC を適用してください。そうすれば、レンダー間でその同一性が保たれるようになるでしょう。何にせよ、通常の場合これが望ましい実装になります。
 
-In those rare cases where you need to apply a HOC dynamically, you can also do it inside a component's lifecycle methods or its constructor.
+HOC を動的に適用する必要があるような稀なケースでも、コンポーネントのライフサイクルメソッドやコンストラクタの中で行うようにしましょう。
 
-### Static Methods Must Be Copied Over {#static-methods-must-be-copied-over}
+### 静的メソッドは必ずコピーすること {#static-methods-must-be-copied-over}
 
-Sometimes it's useful to define a static method on a React component. For example, Relay containers expose a static method `getFragment` to facilitate the composition of GraphQL fragments.
+React のコンポーネントで静的メソッドを定義することは便利であることがあります。例えば、Relay のコンテナは GraphQL fragment のコンポジションを容易に実現するため、`getFragment` という静的メソッドを公開しています。
 
-When you apply a HOC to a component, though, the original component is wrapped with a container component. That means the new component does not have any of the static methods of the original component.
+しかし、HOC をコンポーネントに適用すると、元のコンポーネントはコンテナコンポーネントにラップされます。つまり新しいコンポーネントは元のコンポーネントの静的メソッドを 1 つも持っていないということになってしまいます。
 
 ```js
 // Define a static method
@@ -356,7 +357,7 @@ const EnhancedComponent = enhance(WrappedComponent);
 typeof EnhancedComponent.staticMethod === 'undefined' // true
 ```
 
-To solve this, you could copy the methods onto the container before returning it:
+この問題を解決するために、コンテナコンポーネントを返す前にメソッドをコピーすることができます。
 
 ```js
 function enhance(WrappedComponent) {
@@ -367,7 +368,7 @@ function enhance(WrappedComponent) {
 }
 ```
 
-However, this requires you to know exactly which methods need to be copied. You can use [hoist-non-react-statics](https://github.com/mridgway/hoist-non-react-statics) to automatically copy all non-React static methods:
+しかし、この方法ではどのメソッドがコピーされる必要があるのか正確に知っておく必要があります。[hoist-non-react-statics](https://github.com/mridgway/hoist-non-react-statics) を使用することで、全ての非 React の静的メソッドを自動的にコピーできます：
 
 ```js
 import hoistNonReactStatic from 'hoist-non-react-statics';
@@ -378,7 +379,7 @@ function enhance(WrappedComponent) {
 }
 ```
 
-Another possible solution is to export the static method separately from the component itself.
+もう 1 つの解決策となりうる方法はコンポーネント自身とは分離して静的メソッドをエクスポートすることです。
 
 ```js
 // Instead of...
@@ -392,8 +393,8 @@ export { someFunction };
 import MyComponent, { someFunction } from './MyComponent.js';
 ```
 
-### Refs Aren't Passed Through {#refs-arent-passed-through}
+### ref 属性は渡されない {#refs-arent-passed-through}
 
-While the convention for higher-order components is to pass through all props to the wrapped component, this does not work for refs. That's because `ref` is not really a prop — like `key`, it's handled specially by React. If you add a ref to an element whose component is the result of a HOC, the ref refers to an instance of the outermost container component, not the wrapped component.
+高階コンポーネントの通例としては、すべての props はラップされたコンポーネントに渡されますが、ref に関してはそうではありません。これは `ref` 属性が（`key` と同様）実際のプロパティではなく、React によって特別に処理されているものだからです。HOC から出力されたコンポーネントの要素に ref 属性を追加する場合、ref 属性はラップされた内側のコンポーネントではなく、最も外側のコンテナコンポーネントを参照します。
 
-The solution for this problem is to use the `React.forwardRef` API (introduced with React 16.3). [Learn more about it in the forwarding refs section](/docs/forwarding-refs.html).
+この問題の解決方法は（React 16.3 で導入された）`React.forwardRef` API を使うことです。[詳しくは ref のフォワーディングの章をご覧ください](/docs/forwarding-refs.html)。

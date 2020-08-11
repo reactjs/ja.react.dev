@@ -1,6 +1,6 @@
 ---
 id: create-a-new-react-app
-title: Create a New React App
+title: 新しい React アプリを作る
 permalink: docs/create-a-new-react-app.html
 redirect_from:
   - "docs/add-react-to-a-new-app.html"
@@ -8,38 +8,38 @@ prev: add-react-to-a-website.html
 next: cdn-links.html
 ---
 
-Use an integrated toolchain for the best user and developer experience.
+もっとも良いユーザ・開発体験を得るために統合されたツールチェインを使いましょう。
 
-This page describes a few popular React toolchains which help with tasks like:
+このページではいくつかの人気のある React ツールチェインを説明します。これは次のようなタスクに役立ちます：
 
-* Scaling to many files and components.
-* Using third-party libraries from npm.
-* Detecting common mistakes early.
-* Live-editing CSS and JS in development.
-* Optimizing the output for production.
+* 大量のファイルとコンポーネントでスケールする
+* npm を通してサードパーティライブラリを利用する
+* よくある間違いを早期に発見する
+* 開発環境で CSS と JS をライブ編集する
+* 本番用の出力を最適化する
 
-The toolchains recommended on this page **don't require configuration to get started**.
+このページで推奨されているツールチェインは**始めるにあたって設定が不要です**。
 
-## You Might Not Need a Toolchain {#you-might-not-need-a-toolchain}
+## ツールチェインが必要ない場合 {#you-might-not-need-a-toolchain}
 
-If you don't experience the problems described above or don't feel comfortable using JavaScript tools yet, consider [adding React as a plain `<script>` tag on an HTML page](/docs/add-react-to-a-website.html), optionally [with JSX](/docs/add-react-to-a-website.html#optional-try-react-with-jsx).
+あなたが上記のような問題を経験していなかったり、まだ JavasScript のツールを利用するのに慣れていない場合、[HTML ページに簡単な `<script>` タグで React を追加](/docs/add-react-to-a-website.html)することを検討してください。（[JSX の利用](/docs/add-react-to-a-website.html#optional-try-react-with-jsx)も検討してみてください）
 
-This is also **the easiest way to integrate React into an existing website.** You can always add a larger toolchain if you find it helpful!
+これは**既存のウェブサイトに React を統合する最も簡単な方法**でもあります。あなたが役立つと思えばいつでもより大きなツールチェインを追加できます。
 
-## Recommended Toolchains {#recommended-toolchains}
+## 推奨するツールチェイン {#recommended-toolchains}
 
-The React team primarily recommends these solutions:
+React チームは主に以下のソリューションを推奨します：
 
-- If you're **learning React** or **creating a new [single-page](/docs/glossary.html#single-page-application) app,** use [Create React App](#create-react-app).
-- If you're building a **server-rendered website with Node.js,** try [Next.js](#nextjs).
-- If you're building a **static content-oriented website,** try [Gatsby](#gatsby).
-- If you're building a **component library** or **integrating with an existing codebase**, try [More Flexible Toolchains](#more-flexible-toolchains).
+- **React を学習中**か、**新しい[シングルページ](/docs/glossary.html#single-page-application)アプリケーションを作成したい**場合、[Create React App](#create-react-app) を利用してください
+- **Node.js でサーバサイドでレンダーされたウェブサイト**を構築するなら、[Next.js](#nextjs) を試してください
+- **静的なコンテンツ中心のウェブサイト**を構築するなら、[Gatsby](#gatsby) を試してください
+- **コンポーネントライブラリ**の構築や**既存のコードベースへの統合**をするなら、[その他の柔軟なツールチェイン](#more-flexible-toolchains)を試してください
 
 ### Create React App {#create-react-app}
 
-[Create React App](https://github.com/facebookincubator/create-react-app) is a comfortable environment for **learning React**, and is the best way to start building **a new [single-page](/docs/glossary.html#single-page-application) application** in React.
+[Create React App](https://github.com/facebookincubator/create-react-app) は **React を学習する**のに快適な環境であり、React で**新しい[シングルページ](/docs/glossary.html#single-page-application)アプリケーション**を作成するのに最も良い方法です。
 
-It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have [Node >= 8.10 and npm >= 5.6](https://nodejs.org/en/) on your machine. To create a project, run:
+開発環境をセットアップして最新の JavaScript の機能を使えるようにし、快適な開発体験を提供し、そして本番環境用の最適化を行います。あなたのマシンに [Node >= 8.10 及び npm >= 5.6](https://nodejs.org/en/) の環境が必要です。プロジェクトを作成するには次を実行します：
 
 ```bash
 npx create-react-app my-app
@@ -47,48 +47,52 @@ cd my-app
 npm start
 ```
 
->Note
+>注釈
 >
->`npx` on the first line is not a typo -- it's a [package runner tool that comes with npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
+>最初の行の `npx` は打ち間違いではありません -- これは [npm 5.2 から利用できるパッケージランナーツール](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b)です.
 
-Create React App doesn't handle backend logic or databases; it just creates a frontend build pipeline, so you can use it with any backend you want. Under the hood, it uses [Babel](https://babeljs.io/) and [webpack](https://webpack.js.org/), but you don't need to know anything about them.
+Create React App はバックエンドのロジックやデータベース接続は扱いません。フロントエンドのビルドパイプラインを構築するだけであり、バックエンドに関しては好きなものを組み合わせて使って構いません。内部では [Babel](https://babeljs.io/) と [webpack](https://webpack.js.org/) を利用していますが、それらについて知る必要はありません。
 
-When you're ready to deploy to production, running `npm run build` will create an optimized build of your app in the `build` folder. You can learn more about Create React App [from its README](https://github.com/facebookincubator/create-react-app#create-react-app--) and the [User Guide](https://facebook.github.io/create-react-app/).
+本番環境にデプロイする準備ができたら、`npm run build` を実行すれば、`build` フォルダ内に最適化されたアプリケーションのビルドが生成されます。Create React App の詳細については、[該当ツールの README](https://github.com/facebookincubator/create-react-app#create-react-app--) および [ユーザガイド](https://facebook.github.io/create-react-app/) を参照してください。
 
 ### Next.js {#nextjs}
 
-[Next.js](https://nextjs.org/) is a popular and lightweight framework for **static and server‑rendered applications** built with React. It includes **styling and routing solutions** out of the box, and assumes that you're using [Node.js](https://nodejs.org/) as the server environment.
+[Next.js](https://nextjs.org/) は React を使って**静的なサイトやサーバサイドでレンダーされるアプリケーション**を構築する場合に人気のある軽量フレームワークです。すぐに使える**スタイルおよびルーティングのソリューション**を含み、サーバ環境として [Node.js](https://nodejs.org/) を利用することを想定しています。
 
-Learn Next.js from [its official guide](https://nextjs.org/learn/).
+Next.js の[オフィシャルガイド](https://nextjs.org/learn/)を参照してください。
 
 ### Gatsby {#gatsby}
 
-[Gatsby](https://www.gatsbyjs.org/) is the best way to create **static websites** with React. It lets you use React components, but outputs pre-rendered HTML and CSS to guarantee the fastest load time.
+[Gatsby](https://www.gatsbyjs.org/) は React で**静的なウェブサイト**を作成するのに最も良い方法です。React コンポーネントを使用しながらも、事前レンダーされた HTML と CSS を出力することで最速のロード時間を保証します。
 
-Learn Gatsby from [its official guide](https://www.gatsbyjs.org/docs/) and a [gallery of starter kits](https://www.gatsbyjs.org/docs/gatsby-starters/).
+Gatsby の[オフィシャルガイド](https://www.gatsbyjs.org/docs/) および [スターターキットのギャラリー](https://www.gatsbyjs.org/docs/gatsby-starters/)を参照してください。
 
-### More Flexible Toolchains {#more-flexible-toolchains}
+### その他の柔軟なツールチェイン {#more-flexible-toolchains}
 
-The following toolchains offer more flexibility and choice. We recommend them to more experienced users:
+以下のツールチェインはより大きな柔軟性や選択肢を提供します。経験豊富なユーザにこれらを推奨します。
 
-- **[Neutrino](https://neutrinojs.org/)** combines the power of [webpack](https://webpack.js.org/) with the simplicity of presets, and includes a preset for [React apps](https://neutrinojs.org/packages/react/) and [React components](https://neutrinojs.org/packages/react-components/).
+- **[Neutrino](https://neutrinojs.org/)** は [webpack](https://webpack.js.org/) のパワーとプリセットのシンプルさを兼ね備えています。プリセットには [React アプリ](https://neutrinojs.org/packages/react/) と [React コンポーネント](https://neutrinojs.org/packages/react-components/)用のものがあります。
 
+<<<<<<< HEAD
 - **[Nx](https://nx.dev/react)** is a toolkit for full-stack monorepo development, with built-in support for React, Next.js, [Express](https://expressjs.com/), and more.
 
 - **[Parcel](https://parceljs.org/)** is a fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes.html#react).
+=======
+- **[Parcel](https://parceljs.org/)** は高速な、ゼロ設定のウェブアプリケーションバンドラであり、[React と共に利用](https://parceljs.org/recipes.html#react)できます。
+>>>>>>> 8f3e0a64124da74b2113b327ea329a3ab1bcce49
 
-- **[Razzle](https://github.com/jaredpalmer/razzle)** is a server-rendering framework that doesn't require any configuration, but offers more flexibility than Next.js.
+- **[Razzle](https://github.com/jaredpalmer/razzle)** は設定不要のサーバレンダリングフレームワークでありながら、Next.js よりも柔軟性があります。
 
-## Creating a Toolchain from Scratch {#creating-a-toolchain-from-scratch}
+## ゼロからツールチェインを作成する {#creating-a-toolchain-from-scratch}
 
-A JavaScript build toolchain typically consists of:
+JavaScript ビルドツールチェインは一般的に次から成ります：
 
-* A **package manager**, such as [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/). It lets you take advantage of a vast ecosystem of third-party packages, and easily install or update them.
+* **パッケージマネジャ**。[Yarn](https://yarnpkg.com/) や [npm](https://www.npmjs.com/) など。サードパーティのパッケージの広大なエコシステムを利用でき、それらを簡単にインストールしたりアップデートしたりできます。
 
-* A **bundler**, such as [webpack](https://webpack.js.org/) or [Parcel](https://parceljs.org/). It lets you write modular code and bundle it together into small packages to optimize load time.
+* **バンドラ**。[webpack](https://webpack.js.org/) や [Parcel](https://parceljs.org/) など。モジュール化されたコードを書けるようになり、それを小さなパッケージにまとめてバンドルしてロード時間の最適化を行います。
 
-* A **compiler** such as [Babel](https://babeljs.io/). It lets you write modern JavaScript code that still works in older browsers.
+* **コンパイラ**。[Babel](https://babeljs.io/) など。未だ動作している古いブラウザでもモダンな JavaScript コードを書いて動作させることができます。
 
-If you prefer to set up your own JavaScript toolchain from scratch, [check out this guide](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) that re-creates some of the Create React App functionality.
+ゼロから独自の JavaScript ツールチェインを設定したい場合、[こちらのガイドをチェック](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658)すると Create React App の機能の一部を再現できます。
 
-Don't forget to ensure your custom toolchain [is correctly set up for production](/docs/optimizing-performance.html#use-the-production-build).
+カスタムしたツールチェインは忘れずに[本番環境用に正しく設定](/docs/optimizing-performance.html#use-the-production-build)してください。

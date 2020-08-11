@@ -54,7 +54,7 @@ class CodeExample extends Component<Props> {
 
               '& h3': {
                 color: colors.dark,
-                maxWidth: '11em',
+                marginRight: 40, // patched in ja.reactjs.org
                 paddingTop: 0,
               },
 
@@ -74,7 +74,7 @@ class CodeExample extends Component<Props> {
         {loaded ? (
           <CodeEditor code={code} containerNodeID={containerNodeID} />
         ) : (
-          <h4>Loading code example...</h4>
+          <h4>サンプルコードを読み込んでいます……</h4>
         )}
       </div>
     );
