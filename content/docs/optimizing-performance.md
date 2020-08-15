@@ -371,13 +371,15 @@ function updateColorMap(colormap) {
 
 これで、`updateColorMap` は古いオブジェクトをミューテートするのではなく新しいオブジェクトを返すようになります。`Object.assign` は ES6 からの機能であり、ポリフィルが必要です（訳注：ブラウザや処理系が ES6 に未対応の場合）。
 
-同様に、オブジェクトに対してもミューテートをしない更新を容易に記述できるようにする[オブジェクトのスプレッドプロパティ構文](https://github.com/sebmarkbage/ecmascript-rest-spread)を JavaScript に追加することが提案されています（訳注：[ECMAScript 2018](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Spread_syntax) で正式採用されました）：
+同様に、[オブジェクトのスプレッドプロパティ構文](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)を使うことで、ミューテートを避けてのオブジェクト更新が容易になります。
 
 ```js
 function updateColorMap(colormap) {
   return {...colormap, right: 'blue'};
 }
 ```
+
+この機能は ES2018 で JavaScript に追加されたものです。
 
 Create React App を使用しているなら、`Object.assign` およびオブジェクトのスプレッド構文の両方がデフォルトで利用できます。
 

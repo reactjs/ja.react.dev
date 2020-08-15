@@ -4,6 +4,8 @@ title: リリースチャンネル
 permalink: docs/release-channels.html
 layout: docs
 category: installation
+prev: cdn-links.html
+next: hello-world.html
 ---
 
 React はバグを報告し、プルリクエストをオープンし、[RFC を投稿](https://github.com/reactjs/rfcs)してくださっている活発なオープンソースコミュニティを頼りにしています。フィードバックを促すため、私たちはリリースされていない機能を含んだ React の特別なビルドを共有することがあります。
@@ -86,7 +88,7 @@ Experimental に対してインテグレーションテストを実行するこ�
 
 #### 実験的機能の詳細をどのように知ればよいですか？ {#how-can-i-learn-more-about-experimental-features}
 
-実験的機能については、ドキュメント化されることもあれば、されないこともあります。通常、Next もしくは安定版でのリリースが近づくまで、ドキュメント化されません。
+実験的機能については、ドキュメント化されることもあれば、されないこともあります。通常、Next もしくは Latest でのリリースが近づくまで、ドキュメント化されません。
 
 ドキュメント化されていない機能については、[RFC](https://github.com/reactjs/rfcs) が付随することがあります。
 

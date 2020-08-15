@@ -122,7 +122,7 @@ ReactDOM.render(
 
 ### 論理 && 演算子によるインライン If {#inline-if-with-logical--operator}
 
-中括弧で囲むことで、[JSX に任意の式を埋め込む](/docs/introducing-jsx.html#embedding-expressions-in-jsx)ことができます。これには JavaScript の論理 `&&` 演算子も含まれます。これは条件に応じて要素を含めたいというときに便利です。
+中括弧で囲むことで、[JSX に式を埋め込む](/docs/introducing-jsx.html#embedding-expressions-in-jsx)ことができます。これには JavaScript の論理 `&&` 演算子も含まれます。これは条件に応じて要素を含めたいというときに便利です。
 
 ```js{6-10}
 function Mailbox(props) {
