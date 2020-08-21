@@ -108,6 +108,28 @@ const MarkdownPage = ({
                 </div>
               )}
 
+              {hasAuthors && date && new Date(date).getFullYear() >= 2020 && (
+                <div
+                  style={{
+                    fontSize: '80%',
+                    marginTop: '2em',
+                    padding: '10px 15px',
+                    lineHeight: '1.5',
+                    background: 'rgba(255,229,100,0.3)',
+                  }}>
+                  日本語版サイト (ja.reactjs.org)
+                  のブログセクションへの記事掲載には
+                  <a css={sharedStyles.link} href="https://reactjs.org/blog">
+                    英語版サイト
+                  </a>
+                  と比べてタイムラグがあります。
+                  最新のブログ記事は英語版でご確認ください。
+                  <br />
+                  日本語版サイトでは英語版ブログに定期的に追従しつつ、2020
+                  年以降の記事を随時翻訳しています。
+                </div>
+              )}
+
               <div css={sharedStyles.articleLayout.content}>
                 <div
                   css={[sharedStyles.markdown]}
