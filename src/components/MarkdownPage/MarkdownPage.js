@@ -108,7 +108,7 @@ const MarkdownPage = ({
                 </div>
               )}
 
-              {(date || hasAuthors) && (
+              {hasAuthors && date && new Date(date).getFullYear() >= 2020 && (
                 <div
                   style={{
                     fontSize: '80%',
