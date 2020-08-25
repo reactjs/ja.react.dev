@@ -56,12 +56,8 @@ function MyComponent() {
 
 ### selected {#selected}
 
-<<<<<<< HEAD
-If you want to mark an `<option>` as selected, reference the value of that option in the `value` of its `<select>` instead.
-Check out ["The select Tag"](/docs/forms.html#the-select-tag) for detailed instructions.
-=======
-`selected` 属性が `<option>` コンポーネントでサポートされています。この属性でコンポーネントが選択されているかを設定することができます。制御されたコンポーネントを構築する際に役立ちます。
->>>>>>> origin
+`<option>` 要素を選択済みとしてマークしたい場合、その option の value を対応する `<select>` の `value` として参照してください。
+詳細は [select タグ](/docs/forms.html#the-select-tag) を確認してください。
 
 ### style {#style}
 
@@ -125,11 +121,7 @@ React はインラインスタイルでの特定の数値プロパティに対�
 
 ### value {#value}
 
-<<<<<<< HEAD
-The `value` attribute is supported by `<input>`, `<select>` and `<textarea>` components. You can use it to set the value of the component. This is useful for building controlled components. `defaultValue` is the uncontrolled equivalent, which sets the value of the component when it is first mounted.
-=======
-`value` 属性は `<input>` コンポーネントと `<textarea>` コンポーネントでサポートされています。コンポーネントの値を設定することに使用できます。これは制御されたコンポーネントを構築する際に役立ちます。`defaultValue` は非制御コンポーネントにおいて同様の働きをする属性で、コンポーネントが最初にマウントされた時の値を設定します。
->>>>>>> origin
+`value` 属性は `<input>`、`<select>` および `<textarea>` コンポーネントでサポートされています。コンポーネントの値を設定することに使用できます。これは制御されたコンポーネントを構築する際に役立ちます。`defaultValue` は非制御コンポーネントにおいて同様の働きをする属性で、コンポーネントが最初にマウントされた時の値を設定します。
 
 ## サポートされている全ての HTML 属性 {#all-supported-html-attributes}
 

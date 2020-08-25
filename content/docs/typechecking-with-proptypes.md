@@ -32,13 +32,9 @@ Greeting.propTypes = {
 };
 ```
 
-<<<<<<< HEAD
-In this example, we are using a class component, but the same functionality could also be applied to function components, or components created by [`React.memo`](https://reactjs.org/docs/react-api.html#reactmemo) or [`React.forwardRef`](https://reactjs.org/docs/react-api.html#reactforwardref).
+この例ではクラスコンポーネントを使っていますが、同様の機能は関数コンポーネントや [`React.memo`](https://reactjs.org/docs/react-api.html#reactmemo) および [`React.forwardRef`](https://reactjs.org/docs/react-api.html#reactforwardref) で作ったコンポーネントでも使用できます。
 
-`PropTypes` exports a range of validators that can be used to make sure the data you receive is valid. In this example, we're using `PropTypes.string`. When an invalid value is provided for a prop, a warning will be shown in the JavaScript console. For performance reasons, `propTypes` is only checked in development mode.
-=======
 `PropTypes` は受け取ったデータが有効かどうかを確認するために使用できる種々のバリデーターをエクスポートしています。上記の例では、`PropTypes.string` を使用しています。無効な値がプロパティに与えられた場合、JavaScript のコンソールに警告文が出力されます。パフォーマンス上の理由から、`propTypes` のチェックは開発モードでのみ行われます。
->>>>>>> origin
 
 ### PropTypes {#proptypes}
 

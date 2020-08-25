@@ -10,15 +10,9 @@ category: Reference
 
 ## 概要 {#overview}
 
-<<<<<<< HEAD
-Your event handlers will be passed instances of `SyntheticEvent`, a cross-browser wrapper around the browser's native event. It has the same interface as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers. 
-
-If you find that you need the underlying browser event for some reason, simply use the `nativeEvent` attribute to get it. The synthetic events are different from, and do not map directly to, the browser's native events. For example in `onMouseLeave` `event.nativeEvent` will point to a `mouseout` event. The specific mapping is not part of the public API and may change at any time. Every `SyntheticEvent` object has the following attributes:
-=======
 イベントハンドラには、`SyntheticEvent` のインスタンスが渡されます。これはブラウザのネイティブイベントに対するクロスブラウザ版のラッパです。`stopPropagation()` と `preventDefault()` を含む、ブラウザのネイティブイベントと同じインターフェイスを持ちつつ、ブラウザ間で同じ挙動をするようになっています。
 
-何らかの理由で実際のブラウザイベントが必要な場合は、単に `nativeEvent` 属性を使用するだけで取得できます。すべての `SyntheticEvent` オブジェクトは以下の属性を持っています。
->>>>>>> origin
+何らかの理由で実際のブラウザイベントが必要な場合は、単に `nativeEvent` 属性を使用するだけで取得できます。合成イベントはブラウザのネイティブイベントとは別物であり、直接の対応があるわけでもありません。例えば `onMouseLeave` イベントの場合、`event.nativeEvent` は `mouseout` イベントになっています。個々の対応については公開 API の範疇ではなく、常に変わる可能性があります。すべての `SyntheticEvent` オブジェクトは以下の属性を持っています。
 
 ```javascript
 boolean bubbles

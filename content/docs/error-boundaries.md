@@ -99,11 +99,7 @@ React 16 は開発時に、レンダー中に起こった全てのエラーを�
 
 <img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="Error caught by Error Boundary component with line numbers">
 
-<<<<<<< HEAD
-If you don’t use Create React App, you can add [this plugin](https://www.npmjs.com/package/@babel/plugin-transform-react-jsx-source) manually to your Babel configuration. Note that it’s intended only for development and **must be disabled in production**.
-=======
-Create React App を使用しない場合は、[このプラグイン](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source)を手動で Babel の設定に追加してください。ただし、この機能は開発専用であり、**本番では必ず無効化しなければならない**ことに注意してください。
->>>>>>> origin
+Create React App を使用しない場合は、[このプラグイン](https://www.npmjs.com/package/@babel/plugin-transform-react-jsx-source)を手動で Babel の設定に追加してください。ただし、この機能は開発専用であり、**本番では必ず無効化しなければならない**ことに注意してください。
 
 > 補足
 >

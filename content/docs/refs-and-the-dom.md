@@ -1,12 +1,8 @@
 ---
 id: refs-and-the-dom
-<<<<<<< HEAD
-title: Refs and the DOM
+title: Ref と DOM
 prev: static-type-checking.html
 next: uncontrolled-components.html
-=======
-title: Ref と DOM
->>>>>>> origin
 redirect_from:
   - "docs/working-with-the-browser.html"
   - "docs/more-about-refs.html"
