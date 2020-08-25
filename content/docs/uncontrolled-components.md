@@ -1,16 +1,16 @@
 ---
 id: uncontrolled-components
-title: Uncontrolled Components
+title: 非制御コンポーネント
 permalink: docs/uncontrolled-components.html
 prev: refs-and-the-dom.html
 next: optimizing-performance.html
 ---
 
-In most cases, we recommend using [controlled components](/docs/forms.html#controlled-components) to implement forms. In a controlled component, form data is handled by a React component. The alternative is uncontrolled components, where form data is handled by the DOM itself.
+ほとんどの場合では、フォームの実装には[制御されたコンポーネント](/docs/forms.html#controlled-components)を使用することをお勧めしています。制御されたコンポーネントでは、フォームのデータは React コンポーネントが扱います。非制御コンポーネントはその代替となるものであり、フォームデータを DOM 自身が扱います。
 
-To write an uncontrolled component, instead of writing an event handler for every state update, you can [use a ref](/docs/refs-and-the-dom.html) to get form values from the DOM.
+非制御コンポーネントを記述するには、各 state の更新に対してイベントハンドラを書く代わりに、[ref を使用](/docs/refs-and-the-dom.html)して DOM からフォームの値を取得します。
 
-For example, this code accepts a single name in an uncontrolled component:
+例えば、以下のコードは非制御コンポーネントで 1 つの名前を受け取ります：
 
 ```javascript{5,9,18}
 class NameForm extends React.Component {
@@ -39,15 +39,15 @@ class NameForm extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
+[**CodePen で試す**](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
 
-Since an uncontrolled component keeps the source of truth in the DOM, it is sometimes easier to integrate React and non-React code when using uncontrolled components. It can also be slightly less code if you want to be quick and dirty. Otherwise, you should usually use controlled components.
+非制御コンポーネントでは DOM に信頼できる情報源を保持するため、使用すれば React と非 React のコードの統合が簡単になることがあります。汚くても構わないので速く記述したいと思うなら少しだけコード量も減らせます。そうでなければ、通常の制御されたコンポーネントを使用するべきです。
 
-If it's still not clear which type of component you should use for a particular situation, you might find [this article on controlled versus uncontrolled inputs](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/) to be helpful.
+特定の状況に対してどちらのタイプのコンポーネントを使用すれば良いかまだはっきりしない場合は、[制御された入力 vs 非制御入力の記事](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/)が参考になるでしょう。
 
-### Default Values {#default-values}
+### デフォルト値 {#default-values}
 
-In the React rendering lifecycle, the `value` attribute on form elements will override the value in the DOM. With an uncontrolled component, you often want React to specify the initial value, but leave subsequent updates uncontrolled. To handle this case, you can specify a `defaultValue` attribute instead of `value`.
+React のレンダーのライフサイクルでは、フォーム要素の `value` 属性は DOM の値を上書きします。非制御コンポーネントでは、React に初期値を指定させるが後続の更新処理には関与しないようにしたいことがよくあるでしょう。このケースを扱うために、`defaultValue` 属性を `value` の代わりに指定できます。
 
 ```javascript{7}
 render() {
@@ -66,21 +66,21 @@ render() {
 }
 ```
 
-Likewise, `<input type="checkbox">` and `<input type="radio">` support `defaultChecked`, and `<select>` and `<textarea>` supports `defaultValue`.
+同様に、`<input type="checkbox">` と `<input type="radio">` が `defaultChecked` を、そして `<select>` と `<textarea>` が `defaultValue` をサポートしています。
 
-## The file input Tag {#the-file-input-tag}
+## ファイル input タグ {#the-file-input-tag}
 
-In HTML, an `<input type="file">` lets the user choose one or more files from their device storage to be uploaded to a server or manipulated by JavaScript via the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications).
+HTML では、`<input type="file">` を利用してユーザに 1 つ以上のファイルをデバイスストレージから選択させ、サーバにアップロードしたり [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications) を通じて JavaScript で操作したりします。
 
 ```html
 <input type="file" />
 ```
 
-In React, an `<input type="file" />` is always an uncontrolled component because its value can only be set by a user, and not programmatically.
+React では、`<input type="file" />` は値がユーザだけが設定できるものでありプログラムでは操作できないため、常に非制御コンポーネントです。
 
-You should use the File API to interact with the files. The following example shows how to create a [ref to the DOM node](/docs/refs-and-the-dom.html) to access file(s) in a submit handler:
+ファイルをやり取りするのに File API を使用してください。以下の例では [DOM ノードへの ref](/docs/refs-and-the-dom.html) を作成し submit ハンドラでファイルにアクセスしています。
 
 `embed:uncontrolled-components/input-type-file.js`
 
-[](codepen://uncontrolled-components/input-type-file)
+**[CodePen で試す](codepen://uncontrolled-components/input-type-file)**
 

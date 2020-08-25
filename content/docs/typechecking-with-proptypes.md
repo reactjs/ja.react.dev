@@ -1,6 +1,6 @@
 ---
 id: typechecking-with-proptypes
-title: Typechecking With PropTypes
+title: PropTypes を用いた型チェック
 permalink: docs/typechecking-with-proptypes.html
 prev: jsx-in-depth.html
 next: static-type-checking.html
@@ -8,13 +8,13 @@ redirect_from:
   - "docs/react-api.html#typechecking-with-proptypes"
 ---
 
-> Note:
+> 注意:
 >
-> `React.PropTypes` has moved into a different package since React v15.5. Please use [the `prop-types` library instead](https://www.npmjs.com/package/prop-types).
+> React.PropTypes は React v15.5 において別パッケージに移動しました。代わりに [`prop-types` ライブラリ](https://www.npmjs.com/package/prop-types)を利用するようにしてください。
 >
->We provide [a codemod script](/blog/2017/04/07/react-v15.5.0.html#migrating-from-reactproptypes) to automate the conversion.
+> コードを自動で変換するための [codemod スクリプト](/blog/2017/04/07/react-v15.5.0.html#migrating-from-reactproptypes)を提供しています。
 
-As your app grows, you can catch a lot of bugs with typechecking. For some applications, you can use JavaScript extensions like [Flow](https://flow.org/) or [TypeScript](https://www.typescriptlang.org/) to typecheck your whole application. But even if you don't use those, React has some built-in typechecking abilities. To run typechecking on the props for a component, you can assign the special `propTypes` property:
+アプリケーションが成長するにつれて、型チェックによって多くの不具合を見つけられるようになります。アプリケーションによっては、[Flow](https://flow.org/) もしくは [TypeScript](https://www.typescriptlang.org/) のような JavaScript 拡張を使ってアプリケーション全体の型チェックを行うことができるでしょう。しかしそれらを使用せずとも、React は組み込みの型チェック機能を備えています。コンポーネントの props に型チェックを行うために、特別な `propTypes` プロパティを割当てることができます。
 
 ```javascript
 import PropTypes from 'prop-types';
@@ -32,13 +32,17 @@ Greeting.propTypes = {
 };
 ```
 
+<<<<<<< HEAD
 In this example, we are using a class component, but the same functionality could also be applied to function components, or components created by [`React.memo`](https://reactjs.org/docs/react-api.html#reactmemo) or [`React.forwardRef`](https://reactjs.org/docs/react-api.html#reactforwardref).
 
 `PropTypes` exports a range of validators that can be used to make sure the data you receive is valid. In this example, we're using `PropTypes.string`. When an invalid value is provided for a prop, a warning will be shown in the JavaScript console. For performance reasons, `propTypes` is only checked in development mode.
+=======
+`PropTypes` は受け取ったデータが有効かどうかを確認するために使用できる種々のバリデーターをエクスポートしています。上記の例では、`PropTypes.string` を使用しています。無効な値がプロパティに与えられた場合、JavaScript のコンソールに警告文が出力されます。パフォーマンス上の理由から、`propTypes` のチェックは開発モードでのみ行われます。
+>>>>>>> origin
 
 ### PropTypes {#proptypes}
 
-Here is an example documenting the different validators provided:
+PropTypes によって提供されている様々なバリデーターの実例を紹介します。
 
 ```javascript
 import PropTypes from 'prop-types';
@@ -132,9 +136,9 @@ MyComponent.propTypes = {
 };
 ```
 
-### Requiring Single Child {#requiring-single-child}
+### 単一の子要素を要求する {#requiring-single-child}
 
-With `PropTypes.element` you can specify that only a single child can be passed to a component as children.
+`PropTypes.element` を使うことで、コンポーネントに単一の子要素しか渡せないことを指定することができます。
 
 ```javascript
 import PropTypes from 'prop-types';
@@ -156,9 +160,9 @@ MyComponent.propTypes = {
 };
 ```
 
-### Default Prop Values {#default-prop-values}
+### props のデフォルト値 {#default-prop-values}
 
-You can define default values for your `props` by assigning to the special `defaultProps` property:
+`defaultProps` というプロパティを割り当てることで、`props` に値が渡されなかった際のデフォルト値を定義することができます。
 
 ```javascript
 class Greeting extends React.Component {
@@ -181,7 +185,7 @@ ReactDOM.render(
 );
 ```
 
-If you are using a Babel transform like [transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/) , you can also declare `defaultProps` as static property within a React component class. This syntax has not yet been finalized though and will require a compilation step to work within a browser. For more information, see the [class fields proposal](https://github.com/tc39/proposal-class-fields).
+もし、[transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/) のような Babel 変換のプラグインを使用している場合、`defaultProps` をクラス内の static プロパティとして定義することができます。この記法はまだ TC39 によって確定されていないため、ブラウザ上で正しく表示させるには、Babel 等で変換する必要があります。詳細は [class fields proposal](https://github.com/tc39/proposal-class-fields) を参照してください。
 
 ```javascript
 class Greeting extends React.Component {
@@ -197,4 +201,4 @@ class Greeting extends React.Component {
 }
 ```
 
-The `defaultProps` will be used to ensure that `this.props.name` will have a value if it was not specified by the parent component. The `propTypes` typechecking happens after `defaultProps` are resolved, so typechecking will also apply to the `defaultProps`.
+`defaultProps` を使えば、`this.props.name` が親コンポーネントから値が指定されなかった場合でも値が代入されていることを保証できます。`propTypes` による型チェックは `defaultProps` が解決した後に行われるため、`defaultProps` にも型チェックが適用されます。

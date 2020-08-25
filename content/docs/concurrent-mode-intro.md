@@ -1,6 +1,6 @@
 ---
 id: concurrent-mode-intro
-title: Introducing Concurrent Mode (Experimental)
+title: 並列モードの導入（実験的機能）
 permalink: docs/concurrent-mode-intro.html
 next: concurrent-mode-suspense.html
 ---
@@ -14,87 +14,87 @@ next: concurrent-mode-suspense.html
 
 <div class="scary">
 
->Caution:
+>警告:
 >
->This page describes **experimental features that are [not yet available](/docs/concurrent-mode-adoption.html) in a stable release**. Don't rely on experimental builds of React in production apps. These features may change significantly and without a warning before they become a part of React.
+> このページでは**安定リリースで[まだ利用できない](/docs/concurrent-mode-adoption.html)実験的機能**を説明しています。本番のアプリケーションで React の実験的ビルドを利用しないでください。これらの機能は React の一部となる前に警告なく大幅に変更される可能性があります。
 >
->This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now.
+> このドキュメントは興味のある読者やアーリーアダプター向けのものです。**React が初めての方はこれらの機能を気にしないで構いません** -- 今すぐに学ぶ必要はありません。
 
 </div>
 
-This page provides a theoretical overview of Concurrent Mode. **For a more practical introduction, you might want to check out the next sections:**
+このページでは並列モードの理論的な概要について説明します。**より実践的な導入方法についてはこれ以降のセクションをお読みください**：
 
-* [Suspense for Data Fetching](/docs/concurrent-mode-suspense.html) describes a new mechanism for fetching data in React components.
-* [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html) shows some UI patterns made possible by Concurrent Mode and Suspense.
-* [Adopting Concurrent Mode](/docs/concurrent-mode-adoption.html) explains how you can try Concurrent Mode in your project.
-* [Concurrent Mode API Reference](/docs/concurrent-mode-reference.html) documents the new APIs available in experimental builds.
+* [サスペンスを使ったデータ取得](/docs/concurrent-mode-suspense.html)では React コンポーネントでデータを取得するための新たな仕組みについて解説します。
+* [並列的 UI パターン](/docs/concurrent-mode-patterns.html)では並列モードとサスペンスにより可能となるいくつかの UI パターンを提示します。
+* [並列モードの利用開始](/docs/concurrent-mode-adoption.html)ではあなたのプロジェクトで並列モードを試す方法について説明します。
+* [並列モード API リファレンス](/docs/concurrent-mode-reference.html)では実験ビルドで利用可能な新しい API について述べます。
 
-## What Is Concurrent Mode? {#what-is-concurrent-mode}
+## 並列モードとは？ {#what-is-concurrent-mode}
 
-Concurrent Mode is a set of new features that help React apps stay responsive and gracefully adjust to the user's device capabilities and network speed.
+並列モードは、React アプリケーションをレスポンシブに保ち、デバイスの能力やネットワークの速度にうまく適応できるようにするための新機能群です。
 
-These features are still experimental and are subject to change. They are not yet a part of a stable React release, but you can try them in an experimental build.
+これらの機能はまだ実験的なものであり変更される可能性があります。まだ安定リリースには入っていませんが、実験的ビルドで試すことができます。
 
-## Blocking vs Interruptible Rendering {#blocking-vs-interruptible-rendering}
+## ブロッキングレンダリングと中断可能レンダリング {#blocking-vs-interruptible-rendering}
 
-**To explain Concurrent Mode, we'll use version control as a metaphor.** If you work on a team, you probably use a version control system like Git and work on branches. When a branch is ready, you can merge your work into master so that other people can pull it.
+**並列モードの説明のために、バージョンコントロールを使った例え話をします。**チームで働いていれば、Git のようなバージョンコントロールを使ってブランチで作業していることでしょう。ブランチの準備が完了したら、マスターブランチに作業をマージして、他の人が pull できるようにします。
 
-Before version control existed, the development workflow was very different. There was no concept of branches. If you wanted to edit some files, you had to tell everyone not to touch those files until you've finished your work. You couldn't even start working on them concurrently with that person — you were literally *blocked* by them.
+バージョンコントロールが存在するより前は、開発のワークフローはとても異なったものでした。ブランチという概念はありませんでした。何かのファイルを編集したいと思ったら、作業が終わるまでそのファイルに触れないよう全員に伝える必要がありました。その人と同時には作業を始めることすらできませんでした。文字通り**ブロック**されていたのです。
 
-This illustrates how UI libraries, including React, typically work today. Once they start rendering an update, including creating new DOM nodes and running the code inside components, they can't interrupt this work. We'll call this approach "blocking rendering".
+これが React も含む UI ライブラリの現在の動作のしかたです。新しい DOM ノード作成やコンポーネント内部のコードの実行も含む更新のレンダーを一度始めたら、それを中断することはできません。このアプローチのことを "ブロッキングレンダリング (blocking rendering)" と呼ぶことにします。
 
-In Concurrent Mode, rendering is not blocking. It is interruptible. This improves the user experience. It also unlocks new features that weren't possible before. Before we look at concrete examples in the [next](/docs/concurrent-mode-suspense.html) [chapters](/docs/concurrent-mode-patterns.html), we'll do a high-level overview of new features.
+並列モードにおいては、レンダーはブロッキングではありません。中断可能 (interruptible) です。これによりユーザ体験は向上します。またこれまで不可能だった新たな機能が実現可能になります。後で[こちら](/docs/concurrent-mode-suspense.html)や[こちら](/docs/concurrent-mode-patterns.html)の章で具体的な例を見る前に、新たな機能について高所からの概観を見てみましょう。
 
-### Interruptible Rendering {#interruptible-rendering}
+### 中断可能なレンダリング {#interruptible-rendering}
 
-Consider a filterable product list. Have you ever typed into a list filter and felt that it stutters on every key press? Some of the work to update the product list might be unavoidable, such as creating new DOM nodes or the browser performing layout. However, *when* and *how* we perform that work plays a big role.
+フィルタ可能な商品リストを考えてみましょう。リストのフィルタ欄にタイピングしようとして、一打ごとに引っかかりを感じたことはないでしょうか。商品リストを更新するにあたって、新しい DOM ノードを作成してレイアウトを行う、といった幾つかの作業は必須のものですが、それらを**いつ**、そして**どのように**行うのかが重要です。
 
-A common way to work around the stutter is to "debounce" the input. When debouncing, we only update the list *after* the user stops typing. However, it can be frustrating that the UI doesn't update while we're typing. As an alternative, we could "throttle" the input, and update the list with a certain maximum frequency. But then on lower-powered devices we'd still end up with stutter. Both debouncing and throttling create a suboptimal user experience.
+引っかかりを回避するのによくある手段のひとつは入力のデバウンス (debounce) です。デバウンスを行うと、ユーザがタイピングを止めた**後に**初めてリストの更新を行います。しかしながら、タイプしている間は UI が更新されないというのはもどかしいものです。代わりに、入力をスロットル (throttle) して更新が一定以上の頻度で起きないようにすることもできます。しかし低パワーのデバイスではやはり引っかかりを感じることになってしまうでしょう。デバウンスもスロットルも理想的なユーザ体験にはならないのです。
 
-The reason for the stutter is simple: once rendering begins, it can't be interrupted. So the browser can't update the text input right after the key press. No matter how good a UI library (such as React) might look on a benchmark, if it uses blocking rendering, a certain amount of work in your components will always cause stutter. And, often, there is no easy fix.
+引っかかりが発生する理由はシンプルです。レンダーが始まってしまったら中断できないからです。このため、ブラウザがキーの押下に応じてテキストを更新できなくなってしまうのです。ベンチマーク上で（React のような）UI ライブラリの性能がどれだけ良く見えようとも、それがブロッキングレンダリングを使用している限り、あなたのコンポーネントがやっている作業の一定の割合が引っかかりを発生させます。そして簡単な修正方法はしばしば存在しません。
 
-**Concurrent Mode fixes this fundamental limitation by making rendering interruptible.** This means when the user presses another key, React doesn't need to block the browser from updating the text input. Instead, it can let the browser paint an update to the input, and then continue rendering the updated list *in memory*. When the rendering is finished, React updates the DOM, and changes are reflected on the screen.
+**並列モードは、レンダーを中断可能にすることで、この本質的な制限を修正します。**つまり、ユーザが別のキーを押下した時に、ブラウザによるテキストの入力フィールドの更新を、React はブロックする必要がない、ということです。代わりに、ブラウザに入力フィールドの描画をさせつつ、**メモリ内**で更新後のリストのレンダーを継続することができます。レンダーが終わったところで、React は DOM を更新し、変更が画面に反映されます。
 
-Conceptually, you can think of this as React preparing every update "on a branch". Just like you can abandon work in branches or switch between them, React in Concurrent Mode can interrupt an ongoing update to do something more important, and then come back to what it was doing earlier. This technique might also remind you of [double buffering](https://wiki.osdev.org/Double_Buffering) in video games.
+概念的には、これは React がすべての更新を "ブランチ内で" 行っているようなものと考えることができます。ブランチでの作業内容を破棄したりブランチ間を移動したりできるのと全く同様に、並列モードにおける React は、現在進行中の更新を中断してより重要な作業を行って、前にやっていた作業に戻ることができるのです。この技術はビデオゲームにおける[ダブルバッファリング](https://wiki.osdev.org/Double_Buffering)と似ているとも感じるかもしれません。
 
-Concurrent Mode techniques reduce the need for debouncing and throttling in UI. Because rendering is interruptible, React doesn't need to artificially *delay* work to avoid stutter. It can start rendering right away, but interrupt this work when needed to keep the app responsive.
+並列モードの技術を使うことで、UI でのデバウンスやスロットルの必要性が下がります。レンダーが中断可能なので、引っかかりを避けるために React は意図的にわざわざ作業を*遅らせる*必要がないのです。即座にレンダーを開始して、必要に応じて中断することで、アプリケーションをレスポンシブに保つことができます。
 
-### Intentional Loading Sequences {#intentional-loading-sequences}
+### 計画的なローディングシーケンス {#intentional-loading-sequences}
 
-We've said before that Concurrent Mode is like React working "on a branch". Branches are useful not only for short-term fixes, but also for long-running features. Sometimes you might work on a feature, but it could take weeks before it's in a "good enough state" to merge into master. This side of our version control metaphor applies to rendering too.
+並列モードとは React が "ブランチで" 作業するようなものだと言いました。ブランチは短期的な修正のためだけではなく、長期的な機能の実装の際にも有用ですね。ある機能のために作業をしていて、master にマージするのに「十分良い」状態になるまで何週間もかかる、ということがありえます。バージョンコントロールの比喩は、この部分でもレンダーに当てはまります。
 
-Imagine we're navigating between two screens in an app. Sometimes, we might not have enough code and data loaded to show a "good enough" loading state to the user on the new screen. Transitioning to an empty screen or a large spinner can be a jarring experience. However, it's also common that the necessary code and data doesn't take too long to fetch. **Wouldn't it be nicer if React could stay on the old screen for a little longer, and "skip" the "bad loading state" before showing the new screen?**
+例えばアプリケーションの 2 つの画面を遷移しているところを考えてください。時に、新しい画面ではユーザに表示するだけの「十分な」コードやデータがまだロードされていない、ということがあります。空のスクリーンや大きなスピナーに遷移することは不快なユーザ体験につながります。一方で必要なコードやデータは取得するのにそれほど長い時間はかからないことも多いです。**もし React が旧画面にもう少しだけ留まることで、新画面を表示する前の「望ましくないロード中状態」をスキップできたら良いと思いませんか？**
 
-While this is possible today, it can be difficult to orchestrate. In Concurrent Mode, this feature is built-in. React starts preparing the new screen in memory first — or, as our metaphor goes, "on a different branch". So React can wait before updating the DOM so that more content can load. In Concurrent Mode, we can tell React to keep showing the old screen, fully interactive, with an inline loading indicator. And when the new screen is ready, React can take us to it.
+現在でもこれは可能ですが、うまく統合して行うのは困難です。並列モードでは、この機能はビルトインされています。React は新しい画面の準備をメモリ内で（つまりこれまでの比喩で言うところの「新しいブランチで」）まず行います。従って、React はより多くの読み込みができるよう、DOM を更新する前に待つことができます。並列モードでは、完全に操作可能な旧画面を表示したまま、ローディングのインジケータをインライン表示するよう React に伝えることができます。新しい画面の準備が完了したら、React が自動的にそちらを表示します。
 
-### Concurrency {#concurrency}
+### 並列性 {#concurrency}
 
-Let's recap the two examples above and see how Concurrent Mode unifies them. **In Concurrent Mode, React can work on several state updates *concurrently*** — just like branches let different team members work independently:
+上記の 2 つの例をまとめて、並列モードがこれらをどのように統合するのか見てみましょう。**並列モードでは、React は複数の状態の更新を*同時に*行うことができます**。ブランチによって複数のチームメンバーが同時に作業できるのと同様です。
 
-* For CPU-bound updates (such as creating DOM nodes and running component code), concurrency means that a more urgent update can "interrupt" rendering that has already started.
-* For IO-bound updates (such as fetching code or data from the network), concurrency means that React can start rendering in memory even before all the data arrives, and skip showing jarring empty loading states.
+* CPU バウンドな更新（DOM ノードの作成やコンポーネント内のコードの実行など）の場合、並列化とはより緊急性の高い更新が既に始まった他のレンダーを中断できるということを意味します。
+* IO バウンドな更新（ネットワークからのコードやデータの取得など）の場合、並列化とは全データが到着する前に React がメモリ内でレンダーを始められ、目障りな空のロード中状態を表示しないで済むということを意味します。
 
-Importantly, the way you *use* React is the same. Concepts like components, props, and state fundamentally work the same way. When you want to update the screen, you set the state.
+重要なことは、React の*使い方*は変わらないということです。コンポーネント、props、state といったコンセプトは本質的に同様に動作します。画面を更新したいと思ったら state を更新します。
 
-React uses a heuristic to decide how "urgent" an update is, and lets you adjust it with a few lines of code so that you can achieve the desired user experience for every interaction.
+React は更新の「緊急性」を判断するための推測を行い、また数行のコードを使ってそれを調整することができるので、すべてのユーザ操作に対して望ましいユーザ体験を実現することができます。
 
-## Putting Research into Production {#putting-research-into-production}
+## 研究からプロダクトへ {#putting-research-into-production}
 
-There is a common theme around Concurrent Mode features. **Its mission is to help integrate the findings from the Human-Computer Interaction research into real UIs.**
+並列モードの機能には共通のテーマがあります。**目標は、人間・コンピュータ間の相互作用に関する研究から得られた知見を現実の UI に取り込むことです。**
 
-For example, research shows that displaying too many intermediate loading states when transitioning between screens makes a transition feel *slower*. This is why Concurrent Mode shows new loading states on a fixed "schedule" to avoid jarring and too frequent updates.
+例えば、研究によれば、画面間遷移の際にローディング中状態を多く表示しすぎることで、遷移が**遅く**感じられるようになります。これが並列モードにおいて目障りで頻繁すぎる更新を避けるため、ロード中状態を固定の「スケジュール」（遅延）を用いて表示する理由です。
 
-Similarly, we know from research that interactions like hover and text input need to be handled within a very short period of time, while clicks and page transitions can wait a little longer without feeling laggy. The different "priorities" that Concurrent Mode uses internally roughly correspond to the interaction categories in the human perception research.
+同様に、研究によって、ホバーやテキスト入力といった操作は非常に短い時間で処理される必要があり、一方でクリックやページ遷移は少し時間がかかっても遅いと感じられずに済む、ということが分かっています。並列モードが内部で使用している様々な「優先度」は、人間の知覚に関する研究で使われる操作カテゴリに概ね対応しています。
 
-Teams with a strong focus on user experience sometimes solve similar problems with one-off solutions. However, those solutions rarely survive for a long time, as they're hard to maintain. With Concurrent Mode, our goal is to bake the UI research findings into the abstraction itself, and provide idiomatic ways to use them. As a UI library, React is well-positioned to do that.
+ユーザ体験を非常に重視するチームであれば、しばしば似たような問題をその場限りの手段で解決することでしょう。しかしそのような解決手段はメンテナンスが困難で、滅多に長続きしません。並列モードにおける我々の目的は、UI 研究の知見を抽象化そのものに組み入れて、それを使うための理想的な手段を提供することです。UI ライブラリとして、React はそれができる良い立場にあります。
 
-## Next Steps {#next-steps}
+## 次のステップ {#next-steps}
 
-Now you know what Concurrent Mode is all about!
+これで並列モードが一体何物なのかについて分かりました！
 
-On the next pages, you'll learn more details about specific topics:
+以降のページでは、具体的なトピックに関して詳細を学んでいきます。
 
-* [Suspense for Data Fetching](/docs/concurrent-mode-suspense.html) describes a new mechanism for fetching data in React components.
-* [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html) shows some UI patterns made possible by Concurrent Mode and Suspense.
-* [Adopting Concurrent Mode](/docs/concurrent-mode-adoption.html) explains how you can try Concurrent Mode in your project.
-* [Concurrent Mode API Reference](/docs/concurrent-mode-reference.html) documents the new APIs available in experimental builds.
+* [サスペンスを使ったデータ取得](/docs/concurrent-mode-suspense.html)では React コンポーネントでデータを取得するための新たな仕組みについて解説します。
+* [並列的 UI パターン](/docs/concurrent-mode-patterns.html)では並列モードとサスペンスにより可能となるいくつかの UI パターンを提示します。
+* [並列モードの利用開始](/docs/concurrent-mode-adoption.html)ではあなたのプロジェクトで並列モードを試す方法について説明します。
+* [並列モード API リファレンス](/docs/concurrent-mode-reference.html)では実験的ビルドで利用可能な新しい API について述べます。

@@ -1,28 +1,28 @@
 ---
 id: integrating-with-other-libraries
-title: Integrating with Other Libraries
+title: 他のライブラリとのインテグレーション
 permalink: docs/integrating-with-other-libraries.html
 prev: render-props.html
 next: accessibility.html
 ---
 
-React can be used in any web application. It can be embedded in other applications and, with a little care, other applications can be embedded in React. This guide will examine some of the more common use cases, focusing on integration with [jQuery](https://jquery.com/) and [Backbone](https://backbonejs.org/), but the same ideas can be applied to integrating components with any existing code.
+React はどのような Web アプリケーションにも適用できます。React は他のアプリケーションに組み込むことができ、また少しだけ気を付ければ、React に他のアプリケーションを組み込むこともできます。ここでは一般的なユースケースである [jQuery](https://jquery.com/) と [Backbone](https://backbonejs.org/) を使った例を紹介しますが、同じ考え方はどのような既存のコードにも適用可能です。
 
-## Integrating with DOM Manipulation Plugins {#integrating-with-dom-manipulation-plugins}
+## DOM 操作プラグインとのインテグレーション {#integrating-with-dom-manipulation-plugins}
 
-React is unaware of changes made to the DOM outside of React. It determines updates based on its own internal representation, and if the same DOM nodes are manipulated by another library, React gets confused and has no way to recover.
+React は、React の外で DOM に加えられた変更を認識しません。React は自身の内部表現に基づいて更新を決定します。もし同じ DOM ノードが別のライブラリによって操作された場合、React は混乱してしまい、回復する方法がありません。
 
-This does not mean it is impossible or even necessarily difficult to combine React with other ways of affecting the DOM, you just have to be mindful of what each is doing.
+とはいえ、React と操作プラグインを組み合わせることが不可能、あるいは必ずしも難しいと言っているのではありません。それぞれがやっていることを正しく認識する必要があるのです。
 
-The easiest way to avoid conflicts is to prevent the React component from updating. You can do this by rendering elements that React has no reason to update, like an empty `<div />`.
+コンフリクトを回避する最も簡単な方法は、React コンポーネントが更新されないようにすることです。これは、空の`<div />`のように、React から更新する理由がない要素をレンダーすることで実現できます。
 
-### How to Approach the Problem {#how-to-approach-the-problem}
+### この問題への取り組み方法 {#how-to-approach-the-problem}
 
-To demonstrate this, let's sketch out a wrapper for a generic jQuery plugin.
+上記の方法を実証するために、一般的な jQuery プラグインのラッパーを作ってみましょう。
 
-We will attach a [ref](/docs/refs-and-the-dom.html) to the root DOM element. Inside `componentDidMount`, we will get a reference to it so we can pass it to the jQuery plugin.
+まず、ルート DOM 要素へ [ref](/docs/refs-and-the-dom.html) をアタッチします。`componentDidMount` を使い、ref へのリファレンスを取得し、jQuery プラグインに渡します。
 
-To prevent React from touching the DOM after mounting, we will return an empty `<div />` from the `render()` method. The `<div />` element has no properties or children, so React has no reason to update it, leaving the jQuery plugin free to manage that part of the DOM:
+マウントの後に React が DOM をいじってしまうことを防ぐため、`render()` メソッドからは空の `<div />` 要素を返すようにします。この空の `<div />` 要素はプロパティや子要素を持たないので、React はそれを更新する理由がなく、jQuery プラグインの側が DOM のその部分を自由に管理できるのです：
 
 ```js{3,4,8,12}
 class SomePlugin extends React.Component {
@@ -41,21 +41,21 @@ class SomePlugin extends React.Component {
 }
 ```
 
-Note that we defined both `componentDidMount` and `componentWillUnmount` [lifecycle methods](/docs/react-component.html#the-component-lifecycle). Many jQuery plugins attach event listeners to the DOM so it's important to detach them in `componentWillUnmount`. If the plugin does not provide a method for cleanup, you will probably have to provide your own, remembering to remove any event listeners the plugin registered to prevent memory leaks.
+`componentDidMount` と `componentWillUnmount` の両方の [ライフサイクルメソッド](/docs/react-component.html#the-component-lifecycle) を定義したことに注意してください。多くの jQuery プラグインは DOM にイベントリスナをアタッチするので、それらを `componentWillUnmount` でデタッチすることが重要です。もしプラグインがクリーンアップの方法を提供していない場合、あなた自身で提供する必要があります。メモリリークを防ぐためにプラグインが登録したイベントリスナを削除することを忘れないでください。
 
-### Integrating with jQuery Chosen Plugin {#integrating-with-jquery-chosen-plugin}
+### jQuery Chosen プラグインとのインテグレーション {#integrating-with-jquery-chosen-plugin}
 
-For a more concrete example of these concepts, let's write a minimal wrapper for the plugin [Chosen](https://harvesthq.github.io/chosen/), which augments `<select>` inputs.
+このアイディアの具体的な例として、`<select>` 要素を拡張する [Chosen](https://harvesthq.github.io/chosen/) プラグインの最小のラッパーを書いてみましょう。
 
 >**Note:**
 >
->Just because it's possible, doesn't mean that it's the best approach for React apps. We encourage you to use React components when you can. React components are easier to reuse in React applications, and often provide more control over their behavior and appearance.
+>それが可能だからといって、それが React アプリケーションに最適なアプローチであるという意味ではありません。可能であれば React コンポーネントを使用することをお勧めします。React コンポーネントは React アプリケーションで簡単に再利用でき、また多くの場合、それらの動作や外観をより細かくコントロールできます。
 
-First, let's look at what Chosen does to the DOM.
+まず、Chosen が DOM に対してどういった操作をしているのか確認しましょう。
 
-If you call it on a `<select>` DOM node, it reads the attributes off of the original DOM node, hides it with an inline style, and then appends a separate DOM node with its own visual representation right after the `<select>`. Then it fires jQuery events to notify us about the changes.
+`<select>` DOM ノードで Chosen を呼ぶと元の DOM ノードから属性を読み取り、インライン CSS で隠してから、`<select>` の直後に独自の視覚表現を持つ別の DOM ノードを追加します。その後に jQuery イベントを発生させて変更を通知します。
 
-Let's say that this is the API we're striving for with our `<Chosen>` wrapper React component:
+我々の `<Chosen>` というラッパー React コンポーネントで作成したい API は以下のようなものであるとしましょう：
 
 ```js
 function Example() {
@@ -69,9 +69,9 @@ function Example() {
 }
 ```
 
-We will implement it as an [uncontrolled component](/docs/uncontrolled-components.html) for simplicity.
+わかりやすくするために[非制御コンポーネント](/docs/uncontrolled-components.html)として実装します。
 
-First, we will create an empty component with a `render()` method where we return `<select>` wrapped in a `<div>`:
+まず、`<select>` を `<div>` で囲んで返す `render()` メソッドを持った、空のコンポーネントを作成します：
 
 ```js{4,5}
 class Chosen extends React.Component {
@@ -87,9 +87,9 @@ class Chosen extends React.Component {
 }
 ```
 
-Notice how we wrapped `<select>` in an extra `<div>`. This is necessary because Chosen will append another DOM element right after the `<select>` node we passed to it. However, as far as React is concerned, `<div>` always only has a single child. This is how we ensure that React updates won't conflict with the extra DOM node appended by Chosen. It is important that if you modify the DOM outside of React flow, you must ensure React doesn't have a reason to touch those DOM nodes.
+余分な `<div>` で `<select>` をラップしていることに注目してください。これが必要なのは、Chosen は渡された `<select>` の直後に別の DOM 要素を追加するからです。しかし、React からみれば、この `<div>` は常に 1 つの子要素しか持っていません。これにより React による更新が Chosen によって追加された DOM ノードと確実に競合しないようにできるのです。重要なことは、React フローの外側で DOM を変更する場合は、React がその DOM ノードに触る理由を確実になくす必要がある、ということです。
 
-Next, we will implement the lifecycle methods. We need to initialize Chosen with the ref to the `<select>` node in `componentDidMount`, and tear it down in `componentWillUnmount`:
+次に、ライフサイクルメソッドを実装しましょう。`componentDidMount` の中で ref 経由で渡された `<select>` ノードで Chosen を初期化する必要があります。そして `componentWillUnmount` でそれを破棄します：
 
 ```js{2,3,7}
 componentDidMount() {
@@ -104,15 +104,15 @@ componentWillUnmount() {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/qmqeQx?editors=0010)
 
-Note that React assigns no special meaning to the `this.el` field. It only works because we have previously assigned this field from a `ref` in the `render()` method:
+React からすると `this.el` フィールドに特別な意味はありません。以前に `render()` メソッドの中で `ref` からこれに代入したことによって成り立っています：
 
 ```js
 <select className="Chosen-select" ref={el => this.el = el}>
 ```
 
-This is enough to get our component to render, but we also want to be notified about the value changes. To do this, we will subscribe to the jQuery `change` event on the `<select>` managed by Chosen.
+コンポーネントをレンダーするにはこれで十分ですが、値の変更について通知を受ける必要もあります。この通知を実現するために、Chosen が管理する `<select>` で起こる jQuery の `change` イベントを受け取るようにします。
 
-We won't pass `this.props.onChange` directly to Chosen because component's props might change over time, and that includes event handlers. Instead, we will declare a `handleChange()` method that calls `this.props.onChange`, and subscribe it to the jQuery `change` event:
+コンポーネントの props（およびその一部として渡されるイベントハンドラ）は時間の経過とともに変わってしまう可能性があるので、Chosen に直接 `this.props.onChange` を渡さないようにします。代わりに、`this.props.onChange` を呼び出す `handleChange()` メソッドを宣言し、そちらを jQuery の `change` イベントのコールバックに設定します：
 
 ```js{5,6,10,14-16}
 componentDidMount() {
@@ -135,9 +135,9 @@ handleChange(e) {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/bWgbeE?editors=0010)
 
-Finally, there is one more thing left to do. In React, props can change over time. For example, the `<Chosen>` component can get different children if parent component's state changes. This means that at integration points it is important that we manually update the DOM in response to prop updates, since we no longer let React manage the DOM for us.
+最後にもう 1 つ作業が残っています。React では props は時間と共に変更される可能性があります。例えば、親コンポーネントの state が変更されると、`<Chosen>` コンポーネントは異なる子を受け取るようになるかもしれません。つまり、React に DOM の管理を任せることはもうできないので、インテグレーションを行う部分では props の変更に応じて DOM を手動で更新することが重要です。
 
-Chosen's documentation suggests that we can use jQuery `trigger()` API to notify it about changes to the original DOM element. We will let React take care of updating `this.props.children` inside `<select>`, but we will also add a `componentDidUpdate()` lifecycle method that notifies Chosen about changes in the children list:
+Chosen のドキュメントによると元の DOM 要素への変更について通知するための API として jQuery `trigger()` API が使えます。`<select>` 要素の中の `this.props.children` の更新に関しては React にやってもらいましょう。しかしまた、`componentDidUpdate()` のライフサイクルメソッドを追加し、Chosen に変更を通知する必要があります：
 
 ```js{2,3}
 componentDidUpdate(prevProps) {
@@ -147,9 +147,9 @@ componentDidUpdate(prevProps) {
 }
 ```
 
-This way, Chosen will know to update its DOM element when the `<select>` children managed by React change.
+のようにして Chosen は、React が管理する `<select>` の子要素に変更があった場合に自分が管理する DOM 要素を変更すべき事が分かるようになります。
 
-The complete implementation of the `Chosen` component looks like this:
+`Chosen` コンポーネントの完全な実装は以下のようになります：
 
 ```js
 class Chosen extends React.Component {
@@ -190,19 +190,19 @@ class Chosen extends React.Component {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/xdgKOz?editors=0010)
 
-## Integrating with Other View Libraries {#integrating-with-other-view-libraries}
+## 他のビューライブラリとのインテグレーション {#integrating-with-other-view-libraries}
 
-React can be embedded into other applications thanks to the flexibility of [`ReactDOM.render()`](/docs/react-dom.html#render).
+React は [`ReactDOM.render()`](/docs/react-dom.html#render) の柔軟性のおかげで、他のアプリケーションに組み込むことができます。
 
-Although React is commonly used at startup to load a single root React component into the DOM, `ReactDOM.render()` can also be called multiple times for independent parts of the UI which can be as small as a button, or as large as an app.
+React は一般的に起動時に単一のルート React コンポーネントを DOM にロードして使用されるものですが、`ReactDOM.render()` はボタンのような小さなものからアプリケーション全体に至るまで、独立した UI のパーツに対して複数回呼び出すこともできます。
 
-In fact, this is exactly how React is used at Facebook. This lets us write applications in React piece by piece, and combine them with our existing server-generated templates and other client-side code.
+実際、これはまさに React が Facebook で使用されている方法でもあります。これにより React でアプリケーションを少しずつ作成し、それらを既存のサーバー生成テンプレートやその他のクライアントサイドコードと組み合わせることができます。
 
-### Replacing String-Based Rendering with React {#replacing-string-based-rendering-with-react}
+### React で文字列ベースのレンダーを置き換える {#replacing-string-based-rendering-with-react}
 
-A common pattern in older web applications is to describe chunks of the DOM as a string and insert it into the DOM like so: `$el.html(htmlString)`. These points in a codebase are perfect for introducing React. Just rewrite the string based rendering as a React component.
+古いウェブアプリケーションによくあるパターンは、DOM のまとまりを文字列として記述して、`$el.html(htmlString)` のような形で DOM に挿入することです。このような箇所は React の導入にぴったりです。文字列ベースのレンダーを React コンポーネントに置き換えるだけで良いのです。
 
-So the following jQuery implementation...
+つまり、次のような jQuery による実装は
 
 ```js
 $('#container').html('<button id="btn">Say Hello</button>');
@@ -211,7 +211,7 @@ $('#btn').click(function() {
 });
 ```
 
-...could be rewritten using a React component:
+React コンポーネントを使用して次のように書き換えられます：
 
 ```js
 function Button() {
@@ -229,7 +229,7 @@ ReactDOM.render(
 );
 ```
 
-From here you could start moving more logic into the component and begin adopting more common React practices. For example, in components it is best not to rely on IDs because the same component can be rendered multiple times. Instead, we will use the [React event system](/docs/handling-events.html) and register the click handler directly on the React `<button>` element:
+ここから始めて、コンポーネントにロジック部分を更に移植していくことや、より一般的な React のプラクティスを採用していくことができます。例えば、コンポーネントでは同じコンポーネントが複数回レンダーされる可能性があるので、ID に依存しないことがベストプラクティスです。かわりに React の [React event system](/docs/handling-events.html) を使用してクリックハンドラを React の `<button>` 要素に直接登録します：
 
 ```js{2,6,9}
 function Button(props) {
@@ -251,13 +251,13 @@ ReactDOM.render(
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/RVKbvW?editors=1010)
 
-You can have as many such isolated components as you like, and use `ReactDOM.render()` to render them to different DOM containers. Gradually, as you convert more of your app to React, you will be able to combine them into larger components, and move some of the `ReactDOM.render()` calls up the hierarchy.
+このような分離されたコンポーネントを好きなだけ持つことができ、`ReactDOM.render()` を使用して異なる DOM コンテナにそれらをレンダーすることができます。アプリケーションを少しずつ React に変換していくにつれて、より大きなコンポーネントへとインテグレーションできるようになり、`ReactDOM.render()` の呼び出しを階層の上の方へ移動させていけるようになるでしょう。
 
-### Embedding React in a Backbone View {#embedding-react-in-a-backbone-view}
+### Backbone View に React を組み込む {#embedding-react-in-a-backbone-view}
 
-[Backbone](https://backbonejs.org/) views typically use HTML strings, or string-producing template functions, to create the content for their DOM elements. This process, too, can be replaced with rendering a React component.
+[Backbone](https://backbonejs.org/) view は通常、HTML 文字列、もしくは文字列を生成するテンプレート用関数を使って、DOM 要素の中身を作成します。この処理もまた React コンポーネントのレンダリングに置き換えられます。
 
-Below, we will create a Backbone view called `ParagraphView`. It will override Backbone's `render()` function to render a React `<Paragraph>` component into the DOM element provided by Backbone (`this.el`). Here, too, we are using [`ReactDOM.render()`](/docs/react-dom.html#render):
+以下で、`ParagraphView` と呼ばれる Backbone view を作成します。Backbone の `render()` 関数をオーバーライドして、React の `<Paragraph>` コンポーネントを Backbone が提供する DOM 要素 (this.el) にレンダリングします。ここでも [`ReactDOM.render()`](/docs/react-dom.html#render) を使用します：
 
 ```js{1,5,8,12}
 function Paragraph(props) {
@@ -279,21 +279,21 @@ const ParagraphView = Backbone.View.extend({
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/gWgOYL?editors=0010)
 
-It is important that we also call `ReactDOM.unmountComponentAtNode()` in the `remove` method so that React unregisters event handlers and other resources associated with the component tree when it is detached.
+`remove` メソッドで `ReactDOM.unmountComponentAtNode()` を呼び出して、コンポーネントツリーがデタッチされた際にイベントハンドラとコンポーネントツリーに関連付けられていたその他のリソースを React が解除することも重要です。
 
-When a component is removed *from within* a React tree, the cleanup is performed automatically, but because we are removing the entire tree by hand, we must call this method.
+React *ツリー内*からコンポーネントが削除されるとクリーンアップは自動的に実行されますが、ツリー全体を手動で削除するため、このメソッドを呼び出す必要があります。
 
-## Integrating with Model Layers {#integrating-with-model-layers}
+## Model 層とのインテグレーション {#integrating-with-model-layers}
 
-While it is generally recommended to use unidirectional data flow such as [React state](/docs/lifting-state-up.html), [Flux](https://facebook.github.io/flux/), or [Redux](https://redux.js.org/), React components can use a model layer from other frameworks and libraries.
+一般的には [React の state](/docs/lifting-state-up.html)、[Flux](https://facebook.github.io/flux/)、もしくは [Redux](https://redux.js.org/) のような一方向のデータフローの使用が推奨されますが、React コンポーネントは他のフレームワークやライブラリのモデル層を利用することができます。
 
-### Using Backbone Models in React Components {#using-backbone-models-in-react-components}
+### React コンポーネントで Backbone Model を使用する {#using-backbone-models-in-react-components}
 
-The simplest way to consume [Backbone](https://backbonejs.org/) models and collections from a React component is to listen to the various change events and manually force an update.
+React コンポーネントから [Backbone](https://backbonejs.org/) のモデルとコレクションを利用する最もシンプルな方法は、様々な変更イベントを監視して手動で強制的に更新することです。
 
-Components responsible for rendering models would listen to `'change'` events, while components responsible for rendering collections would listen for `'add'` and `'remove'` events. In both cases, call [`this.forceUpdate()`](/docs/react-component.html#forceupdate) to rerender the component with the new data.
+モデルのレンダーに責任をもつコンポーネントは `'change'` イベントを監視し、コレクションのレンダーに責任をもつコンポーネントは `'add'` および `'remove'` イベントを監視します。どちらの場合も、[`this.forceUpdate()`](/docs/react-component.html#forceupdate) を呼び出して新しいデータでコンポーネントを再レンダリングします。
 
-In the example below, the `List` component renders a Backbone collection, using the `Item` component to render individual items.
+以下の例では、`List` コンポーネントは Backbone のコレクションをレンダーします。個別の要素のレンダーには `Item` コンポーネントを使用します。
 
 ```js{1,7-9,12,16,24,30-32,35,39,46}
 class Item extends React.Component {
@@ -351,17 +351,17 @@ class List extends React.Component {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/GmrREm?editors=0010)
 
-### Extracting Data from Backbone Models {#extracting-data-from-backbone-models}
+### Backbone Model からデータを抽出する {#extracting-data-from-backbone-models}
 
-The approach above requires your React components to be aware of the Backbone models and collections. If you later plan to migrate to another data management solution, you might want to concentrate the knowledge about Backbone in as few parts of the code as possible.
+上記のアプローチでは React コンポーネントが Backbone のモデルとコレクションを認識することが必要です。後で別のデータ管理ソリューションに移行する予定がある場合は、Backbone とのインテグレーション箇所はできるだけコードの一部に集中させることをお勧めします。
 
-One solution to this is to extract the model's attributes as plain data whenever it changes, and keep this logic in a single place. The following is [a higher-order component](/docs/higher-order-components.html) that extracts all attributes of a Backbone model into state, passing the data to the wrapped component.
+1 つの解決法は、変更があるたびにモデルの属性をプレーンなデータとして抽出するようにし、そのロジックを一箇所だけで保持することです。以下のコードは Backbone モデルの全ての属性を state へと抽出し、そのデータをラップされるコンポーネントへと渡す[高階コンポーネント](/docs/higher-order-components.html)です。
 
-This way, only the higher-order component needs to know about Backbone model internals, and most components in the app can stay agnostic of Backbone.
+このようにすれば、高階コンポーネントだけが Backbone モデルの内部動作について知っておく必要があり、アプリケーション内のほとんどのコンポーネントは Backbone について知らないままでいられるのです。
 
-In the example below, we will make a copy of the model's attributes to form the initial state. We subscribe to the `change` event (and unsubscribe on unmounting), and when it happens, we update the state with the model's current attributes. Finally, we make sure that if the `model` prop itself changes, we don't forget to unsubscribe from the old model, and subscribe to the new one.
+以下の例では、モデルの属性のコピーを state の初期値に設定します。`change` イベントを監視して（アンマウント時には監視を解除し）、変更が発生した際には state をモデルの現在の属性で更新します。最後に、`model` プロパティそのものが変更となった場合には、必ず忘れずに古いモデルの監視を解除し、新しいモデルから情報を受け取るようにします。
 
-Note that this example is not meant to be exhaustive with regards to working with Backbone, but it should give you an idea for how to approach this in a generic way:
+この例は Backbone と協調して動作させるための網羅的なものとして書かれているわけではないことに注意すべきですが、この種の問題にどうアプローチすべきかの一般的な理解の助けになるはずです：
 
 ```js{1,5,10,14,16,17,22,26,32}
 function connectToBackboneModel(WrappedComponent) {
@@ -401,7 +401,7 @@ function connectToBackboneModel(WrappedComponent) {
 }
 ```
 
-To demonstrate how to use it, we will connect a `NameInput` React component to a Backbone model, and update its `firstName` attribute every time the input changes:
+このコードの使い方を例示するために、`NameInput` という React コンポーネントを Backbone モデルと接続して、入力が変更されるたびに `firstName` 属性を更新します：
 
 ```js{4,6,11,15,19-21}
 function NameInput(props) {
@@ -438,4 +438,4 @@ ReactDOM.render(
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/PmWwwa?editors=0010)
 
-This technique is not limited to Backbone. You can use React with any model library by subscribing to its changes in the lifecycle methods and, optionally, copying the data into the local React state.
+この手法は Backbone だけに限ったものではありません。ライフサイクルメソッドで変更を購読し必要に応じてデータをローカルの React 状態にコピーすることで、任意のモデルライブラリで React を使用できます。

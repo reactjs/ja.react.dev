@@ -1,18 +1,24 @@
 ---
 id: events
-title: SyntheticEvent
+title: 合成イベント (SyntheticEvent)
 permalink: docs/events.html
 layout: docs
 category: Reference
 ---
 
-This reference guide documents the `SyntheticEvent` wrapper that forms part of React's Event System. See the [Handling Events](/docs/handling-events.html) guide to learn more.
+このリファレンスガイドでは、React のイベントシステムの一部を構成する `SyntheticEvent`（合成イベント）ラッパについて説明します。詳細については、[イベント処理](/docs/handling-events.html)ガイドを参照してください。
 
-## Overview {#overview}
+## 概要 {#overview}
 
+<<<<<<< HEAD
 Your event handlers will be passed instances of `SyntheticEvent`, a cross-browser wrapper around the browser's native event. It has the same interface as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers. 
 
 If you find that you need the underlying browser event for some reason, simply use the `nativeEvent` attribute to get it. The synthetic events are different from, and do not map directly to, the browser's native events. For example in `onMouseLeave` `event.nativeEvent` will point to a `mouseout` event. The specific mapping is not part of the public API and may change at any time. Every `SyntheticEvent` object has the following attributes:
+=======
+イベントハンドラには、`SyntheticEvent` のインスタンスが渡されます。これはブラウザのネイティブイベントに対するクロスブラウザ版のラッパです。`stopPropagation()` と `preventDefault()` を含む、ブラウザのネイティブイベントと同じインターフェイスを持ちつつ、ブラウザ間で同じ挙動をするようになっています。
+
+何らかの理由で実際のブラウザイベントが必要な場合は、単に `nativeEvent` 属性を使用するだけで取得できます。すべての `SyntheticEvent` オブジェクトは以下の属性を持っています。
+>>>>>>> origin
 
 ```javascript
 boolean bubbles
@@ -32,19 +38,19 @@ number timeStamp
 string type
 ```
 
-> Note:
+> 補足
 >
-> As of v0.14, returning `false` from an event handler will no longer stop event propagation. Instead, `e.stopPropagation()` or `e.preventDefault()` should be triggered manually, as appropriate.
+> v0.14 以降、イベントハンドラから `false` を返してもイベントの伝播は止まりません。代わりに、`e.stopPropagation()` または `e.preventDefault()` を手動で呼び出す必要があります。
 
-### Event Pooling {#event-pooling}
+### イベントのプール {#event-pooling}
 
-The `SyntheticEvent` is pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event callback has been invoked.
-This is for performance reasons.
-As such, you cannot access the event in an asynchronous way.
+`SyntheticEvent` はプールされます。つまり、`SyntheticEvent` オブジェクトは再利用され、すべてのプロパティはイベントコールバックが呼び出された後に `null` で初期化されます。
+これはパフォーマンス上の理由からです。
+そのため、非同期処理の中でイベントオブジェクトにアクセスすることはできません。
 
 ```javascript
 function onClick(event) {
-  console.log(event); // => nullified object.
+  console.log(event); // => null で初期化されるオブジェクト
   console.log(event.type); // => "click"
   const eventType = event.type; // => "click"
 
@@ -53,55 +59,55 @@ function onClick(event) {
     console.log(eventType); // => "click"
   }, 0);
 
-  // Won't work. this.state.clickEvent will only contain null values.
+  // これは動作しません。this.state.clickEvent は null 値のみを持つオブジェクトとなります。
   this.setState({clickEvent: event});
 
-  // You can still export event properties.
+  // イベントプロパティをエクスポートすることは可能です。
   this.setState({eventType: event.type});
 }
 ```
 
-> Note:
+> 補足
 >
-> If you want to access the event properties in an asynchronous way, you should call `event.persist()` on the event, which will remove the synthetic event from the pool and allow references to the event to be retained by user code.
+> 非同期処理の中でイベントのプロパティにアクセスしたい場合は、`event.persist()` をイベント内で呼び出す必要があります。これにより、合成イベントがイベントプールの対象から除外され、イベントへの参照をコードで保持できるようになります。
 
-## Supported Events {#supported-events}
+## サポートするイベント {#supported-events}
 
-React normalizes events so that they have consistent properties across different browsers.
+React は異なるブラウザ間でも一貫したプロパティを持つようにイベントを正規化します。
 
-The event handlers below are triggered by an event in the bubbling phase. To register an event handler for the capture phase, append `Capture` to the event name; for example, instead of using `onClick`, you would use `onClickCapture` to handle the click event in the capture phase.
+以下のイベントハンドラはイベント伝搬のバブリングフェーズで呼び出されます。キャプチャフェーズのイベントハンドラを登録するには、イベント名に `Capture` を追加します。たとえば、キャプチャフェーズでクリックイベントを処理するには `onClick` の代わりに `onClickCapture` を使用します。
 
-- [Clipboard Events](#clipboard-events)
-- [Composition Events](#composition-events)
-- [Keyboard Events](#keyboard-events)
-- [Focus Events](#focus-events)
-- [Form Events](#form-events)
-- [Generic Events](#generic-events)
-- [Mouse Events](#mouse-events)
-- [Pointer Events](#pointer-events)
-- [Selection Events](#selection-events)
-- [Touch Events](#touch-events)
-- [UI Events](#ui-events)
-- [Wheel Events](#wheel-events)
-- [Media Events](#media-events)
-- [Image Events](#image-events)
-- [Animation Events](#animation-events)
-- [Transition Events](#transition-events)
-- [Other Events](#other-events)
+- [クリップボードイベント](#clipboard-events)
+- [コンポジションイベント](#composition-events)
+- [キーボードイベント](#keyboard-events)
+- [フォーカスイベント](#focus-events)
+- [フォームイベント](#form-events)
+- [汎用イベント](#generic-events)
+- [マウスイベント](#mouse-events)
+- [ポインタイベント](#pointer-events)
+- [選択イベント](#selection-events)
+- [タッチイベント](#touch-events)
+- [UI イベント](#ui-events)
+- [ホイールイベント](#wheel-events)
+- [メディアイベント](#media-events)
+- [画像イベント](#image-events)
+- [アニメーションイベント](#animation-events)
+- [遷移イベント](#transition-events)
+- [その他のイベント](#other-events)
 
 * * *
 
-## Reference {#reference}
+## リファレンス {#reference}
 
-### Clipboard Events {#clipboard-events}
+### クリップボードイベント {#clipboard-events}
 
-Event names:
+イベント名：
 
 ```
 onCopy onCut onPaste
 ```
 
-Properties:
+プロパティ：
 
 ```javascript
 DOMDataTransfer clipboardData
@@ -109,15 +115,15 @@ DOMDataTransfer clipboardData
 
 * * *
 
-### Composition Events {#composition-events}
+### コンポジションイベント {#composition-events}
 
-Event names:
+イベント名：
 
 ```
 onCompositionEnd onCompositionStart onCompositionUpdate
 ```
 
-Properties:
+プロパティ：
 
 ```javascript
 string data
@@ -126,15 +132,15 @@ string data
 
 * * *
 
-### Keyboard Events {#keyboard-events}
+### キーボードイベント {#keyboard-events}
 
-Event names:
+イベント名：
 
 ```
 onKeyDown onKeyPress onKeyUp
 ```
 
-Properties:
+プロパティ：
 
 ```javascript
 boolean altKey
@@ -151,21 +157,21 @@ boolean shiftKey
 number which
 ```
 
-The `key` property can take any of the values documented in the [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values).
+`key` プロパティは [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values) に記載されている任意の値を取ることができます。
 
 * * *
 
-### Focus Events {#focus-events}
+### フォーカスイベント {#focus-events}
 
-Event names:
+イベント名：
 
 ```
 onFocus onBlur
 ```
 
-These focus events work on all elements in the React DOM, not just form elements.
+これらのフォーカスイベントは、フォーム要素だけでなくすべての React DOM 要素で動作します。
 
-Properties:
+プロパティ：
 
 ```javascript
 DOMEventTarget relatedTarget
@@ -173,21 +179,21 @@ DOMEventTarget relatedTarget
 
 * * *
 
-### Form Events {#form-events}
+### フォームイベント {#form-events}
 
-Event names:
+イベント名：
 
 ```
 onChange onInput onInvalid onReset onSubmit 
 ```
 
-For more information about the onChange event, see [Forms](/docs/forms.html).
+onChange イベントの詳細については、[Forms](/docs/forms.html) を参照してください。
 
 * * *
 
-### Generic Events {#generic-events}
+### 汎用イベント {#generic-events}
 
-Event names:
+イベント名：
 
 ```
 onError onLoad
@@ -195,9 +201,9 @@ onError onLoad
 
 * * *
 
-### Mouse Events {#mouse-events}
+### マウスイベント {#mouse-events}
 
-Event names:
+イベント名：
 
 ```
 onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit
@@ -205,9 +211,9 @@ onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
 onMouseMove onMouseOut onMouseOver onMouseUp
 ```
 
-The `onMouseEnter` and `onMouseLeave` events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
+`onMouseEnter` と `onMouseLeave` イベントは通常のバブリングとは異なり、（ポインタが）出て行った要素から入ってきた要素に伝播し、キャプチャフェーズを持ちません。
 
-Properties:
+プロパティ：
 
 ```javascript
 boolean altKey
@@ -228,20 +234,20 @@ boolean shiftKey
 
 * * *
 
-### Pointer Events {#pointer-events}
+### ポインタイベント {#pointer-events}
 
-Event names:
+イベント名：
 
 ```
 onPointerDown onPointerMove onPointerUp onPointerCancel onGotPointerCapture
 onLostPointerCapture onPointerEnter onPointerLeave onPointerOver onPointerOut
 ```
 
-The `onPointerEnter` and `onPointerLeave` events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
+`onPointerEnter` と `onPointerLeave` イベントは通常のバブリングとは異なり、（ポインタが）出て行った要素から入ってきた要素に伝播し、キャプチャフェーズを持ちません。
 
-Properties:
+プロパティ：
 
-As defined in the [W3 spec](https://www.w3.org/TR/pointerevents/), pointer events extend [Mouse Events](#mouse-events) with the following properties:
+[W3 spec](https://www.w3.org/TR/pointerevents/) に定義されている通り、ポインタイベントは下記のプロパティを持つマウスイベントの拡張です。
 
 ```javascript
 number pointerId
@@ -256,17 +262,17 @@ string pointerType
 boolean isPrimary
 ```
 
-A note on cross-browser support:
+クロスブラウザサポートについての補足：
 
-Pointer events are not yet supported in every browser (at the time of writing this article, supported browsers include: Chrome, Firefox, Edge, and Internet Explorer). React deliberately does not polyfill support for other browsers because a standard-conform polyfill would significantly increase the bundle size of `react-dom`.
+すべてのブラウザでポインタイベントがサポートされているわけではありません（この記事の執筆時点でサポートされているブラウザは、Chrome、Firefox、Edge、および Internet Explorer です）。標準に準拠したポリフィルは `react-dom` のバンドルサイズを大幅に増加させるため、React は意図的にその他ブラウザのためのポリフィルを提供しません。
 
-If your application requires pointer events, we recommend adding a third party pointer event polyfill.
+アプリケーションでポインタイベントが必要な場合は、サードパーティのポインタイベントポリフィルを追加することをお勧めします。
 
 * * *
 
-### Selection Events {#selection-events}
+### 選択イベント {#selection-events}
 
-Event names:
+イベント名：
 
 ```
 onSelect
@@ -274,15 +280,15 @@ onSelect
 
 * * *
 
-### Touch Events {#touch-events}
+### タッチイベント {#touch-events}
 
-Event names:
+イベント名：
 
 ```
 onTouchCancel onTouchEnd onTouchMove onTouchStart
 ```
 
-Properties:
+プロパティ：
 
 ```javascript
 boolean altKey
@@ -297,15 +303,15 @@ DOMTouchList touches
 
 * * *
 
-### UI Events {#ui-events}
+### UI イベント {#ui-events}
 
-Event names:
+イベント名：
 
 ```
 onScroll
 ```
 
-Properties:
+プロパティ：
 
 ```javascript
 number detail
@@ -314,15 +320,15 @@ DOMAbstractView view
 
 * * *
 
-### Wheel Events {#wheel-events}
+### ホイールイベント {#wheel-events}
 
-Event names:
+イベント名：
 
 ```
 onWheel
 ```
 
-Properties:
+プロパティ：
 
 ```javascript
 number deltaMode
@@ -333,9 +339,9 @@ number deltaZ
 
 * * *
 
-### Media Events {#media-events}
+### メディアイベント {#media-events}
 
-Event names:
+イベント名：
 
 ```
 onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted
@@ -346,9 +352,9 @@ onTimeUpdate onVolumeChange onWaiting
 
 * * *
 
-### Image Events {#image-events}
+### 画像イベント {#image-events}
 
-Event names:
+イベント名：
 
 ```
 onLoad onError
@@ -356,15 +362,15 @@ onLoad onError
 
 * * *
 
-### Animation Events {#animation-events}
+### アニメーションイベント {#animation-events}
 
-Event names:
+イベント名：
 
 ```
 onAnimationStart onAnimationEnd onAnimationIteration
 ```
 
-Properties:
+プロパティ：
 
 ```javascript
 string animationName
@@ -374,15 +380,15 @@ float elapsedTime
 
 * * *
 
-### Transition Events {#transition-events}
+### 遷移イベント {#transition-events}
 
-Event names:
+イベント名：
 
 ```
 onTransitionEnd
 ```
 
-Properties:
+プロパティ：
 
 ```javascript
 string propertyName
@@ -392,9 +398,9 @@ float elapsedTime
 
 * * *
 
-### Other Events {#other-events}
+### その他のイベント {#other-events}
 
-Event names:
+イベント名：
 
 ```
 onToggle

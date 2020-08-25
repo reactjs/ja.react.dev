@@ -1,26 +1,26 @@
 ---
 id: faq-functions
-title: Passing Functions to Components
+title: コンポーネントに関数を渡す
 permalink: docs/faq-functions.html
 layout: docs
 category: FAQ
 ---
 
-### How do I pass an event handler (like onClick) to a component? {#how-do-i-pass-an-event-handler-like-onclick-to-a-component}
+### コンポーネントに（onClick のような）イベントハンドラを渡すには？ {#how-do-i-pass-an-event-handler-like-onclick-to-a-component}
 
-Pass event handlers and other functions as props to child components:
+イベントハンドラやその他の関数を props として、子コンポーネントに渡してください。
 
 ```jsx
 <button onClick={this.handleClick}>
 ```
 
-If you need to have access to the parent component in the handler, you also need to bind the function to the component instance (see below).
+ハンドラ内で親コンポーネントにアクセスする必要がある場合は、関数をコンポーネントインスタンスにバインドする必要があります（以下を参照）。
 
-### How do I bind a function to a component instance? {#how-do-i-bind-a-function-to-a-component-instance}
+### 関数をコンポーネントインスタンスにバインドするには？ {#how-do-i-bind-a-function-to-a-component-instance}
 
-There are several ways to make sure functions have access to component attributes like `this.props` and `this.state`, depending on which syntax and build steps you are using.
+使用する構文やビルドステップにより、`this.props` や `this.state` のようなコンポーネントの属性に、関数がアクセスできるようにする方法がいくつかあります。
 
-#### Bind in Constructor (ES2015) {#bind-in-constructor-es2015}
+#### コンストラクタでバインドする (ES2015) {#bind-in-constructor-es2015}
 
 ```jsx
 class Foo extends Component {
@@ -37,7 +37,7 @@ class Foo extends Component {
 }
 ```
 
-#### Class Properties (Stage 3 Proposal) {#class-properties-stage-3-proposal}
+#### クラスプロパティ (Stage 3 Proposal) {#class-properties-stage-3-proposal}
 
 ```jsx
 class Foo extends Component {
@@ -51,7 +51,7 @@ class Foo extends Component {
 }
 ```
 
-#### Bind in Render {#bind-in-render}
+#### レンダー内でバインドする {#bind-in-render}
 
 ```jsx
 class Foo extends Component {
@@ -64,11 +64,11 @@ class Foo extends Component {
 }
 ```
 
->**Note:**
+> **補足：**
 >
->Using `Function.prototype.bind` in render creates a new function each time the component renders, which may have performance implications (see below).
+> レンダー内で `Function.prototype.bind` を利用すると、コンポーネントがレンダーされるたびに新しい関数が作成され、パフォーマンスに影響を与える可能性があります（下記参照）。
 
-#### Arrow Function in Render {#arrow-function-in-render}
+#### レンダー内でアロー関数を使用する {#arrow-function-in-render}
 
 ```jsx
 class Foo extends Component {
@@ -81,19 +81,19 @@ class Foo extends Component {
 }
 ```
 
->**Note:**
+> **注意：**
 >
->Using an arrow function in render creates a new function each time the component renders, which may break optimizations based on strict identity comparison.
+> レンダー内でアロー関数を利用するとコンポーネントがレンダーされるたびに新しい関数が作成されるため、厳密な一致による比較に基づいた最適化が動作しなくなる可能性があります。
 
-### Is it OK to use arrow functions in render methods? {#is-it-ok-to-use-arrow-functions-in-render-methods}
+### レンダー内でアロー関数を使用しても良いのか？ {#is-it-ok-to-use-arrow-functions-in-render-methods}
 
-Generally speaking, yes, it is OK, and it is often the easiest way to pass parameters to callback functions.
+一般的には問題ありません。コールバック関数にパラメータを渡すのに最も簡単な方法です。
 
-If you do have performance issues, by all means, optimize!
+しかしパフォーマンス上の問題が出た際には、ぜひ最適化しましょう！
 
-### Why is binding necessary at all? {#why-is-binding-necessary-at-all}
+### そもそもバインドはなぜ必要なのか？ {#why-is-binding-necessary-at-all}
 
-In JavaScript, these two code snippets are **not** equivalent:
+JavaScript において、以下の 2 つのコードは同等 **ではありません**。
 
 ```js
 obj.method();
@@ -104,15 +104,15 @@ var method = obj.method;
 method();
 ```
 
-Binding methods helps ensure that the second snippet works the same way as the first one.
+メソッドはバインドすることで、2 つ目のコードが 1 つ目と同様に動作するようになります。
 
-With React, typically you only need to bind the methods you *pass* to other components. For example, `<button onClick={this.handleClick}>` passes `this.handleClick` so you want to bind it. However, it is unnecessary to bind the `render` method or the lifecycle methods: we don't pass them to other components.
+React では、一般的に他のコンポーネントに *渡す* メソッドしかバインドする必要はありません。たとえば、`<button onClick={this.handleClick}>` というコードは、`this.handleClick` を渡しているので、バインドする必要があります。しかし、`render` メソッドやライフサイクルメソッドをバインドする必要はありません。それらは他のコンポーネントに渡すことがないからです。
 
-[This post by Yehuda Katz](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) explains what binding is, and how functions work in JavaScript, in detail.
+[Yehuda Katz の記事](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) はバインドとは何か、また JavaScript における関数の動作について詳細に説明してくれています。
 
-### Why is my function being called every time the component renders? {#why-is-my-function-being-called-every-time-the-component-renders}
+### どうしてコンポーネントをレンダーするたびに、関数が呼ばれるのか？ {#why-is-my-function-being-called-every-time-the-component-renders}
 
-Make sure you aren't _calling the function_ when you pass it to the component:
+関数をコンポーネントに渡すときにその関数を*呼び出していない*ことを確認してください：
 
 ```jsx
 render() {
@@ -121,7 +121,7 @@ render() {
 }
 ```
 
-Instead, *pass the function itself* (without parens):
+代わりに、（カッコなしの）*関数自体を返すようにしてください*：
 
 ```jsx
 render() {
@@ -130,21 +130,21 @@ render() {
 }
 ```
 
-### How do I pass a parameter to an event handler or callback? {#how-do-i-pass-a-parameter-to-an-event-handler-or-callback}
+### イベントハンドラやコールバックにパラメータを渡すには？ {#how-do-i-pass-a-parameter-to-an-event-handler-or-callback}
 
-You can use an arrow function to wrap around an event handler and pass parameters:
+イベントハンドラをラップするアロー関数を作成してパラメータを渡すことができます：
 
 ```jsx
 <button onClick={() => this.handleClick(id)} />
 ```
 
-This is equivalent to calling `.bind`:
+これは `.bind` を呼び出すのと同じことです：
 
 ```jsx
 <button onClick={this.handleClick.bind(this, id)} />
 ```
 
-#### Example: Passing params using arrow functions {#example-passing-params-using-arrow-functions}
+#### 例：アロー関数を利用してパラメータを渡す {#example-passing-params-using-arrow-functions}
 
 ```jsx
 const A = 65 // ASCII character code
@@ -178,9 +178,9 @@ class Alphabet extends React.Component {
 }
 ```
 
-#### Example: Passing params using data-attributes {#example-passing-params-using-data-attributes}
+#### 例：データ属性を利用してパラメータを渡す {#example-passing-params-using-data-attributes}
 
-Alternately, you can use DOM APIs to store data needed for event handlers. Consider this approach if you need to optimize a large number of elements or have a render tree that relies on React.PureComponent equality checks.
+ほかにも、DOM API をイベントハンドラに必要なデータの保存に使用することができます。大量の要素を最適化したり、React.PureComponent による等価性チェックに依存したレンダーツリーがある場合に、この方法を検討してください。
 
 ```jsx
 const A = 65 // ASCII character code
@@ -218,23 +218,23 @@ class Alphabet extends React.Component {
 }
 ```
 
-### How can I prevent a function from being called too quickly or too many times in a row? {#how-can-i-prevent-a-function-from-being-called-too-quickly-or-too-many-times-in-a-row}
+### 関数があまりに頻繁にあるいは連続して呼ばれる場合の対処法は？ {#how-can-i-prevent-a-function-from-being-called-too-quickly-or-too-many-times-in-a-row}
 
-If you have an event handler such as `onClick` or `onScroll` and want to prevent the callback from being fired too quickly, then you can limit the rate at which callback is executed. This can be done by using:
+`onClick` や `onScroll` のようなイベントハンドラがあって、それが高頻度で呼び出されるのを防ぎたい場合、コールバックが実行される頻度を制御するこができます。これは以下の方法で可能です：
 
-- **throttling**: sample changes based on a time based frequency (eg [`_.throttle`](https://lodash.com/docs#throttle))
-- **debouncing**: publish changes after a period of inactivity (eg [`_.debounce`](https://lodash.com/docs#debounce))
-- **`requestAnimationFrame` throttling**: sample changes based on [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) (eg [`raf-schd`](https://github.com/alexreardon/raf-schd))
+- **スロットル**：時間ベースの頻度に基づくサンプルの制御（例：[`_.throttle`](https://lodash.com/docs#throttle)）
+- **デバウンス**：一定時間アクティブでなかった場合の出力の制御（例：[`_.debounce`](https://lodash.com/docs#debounce))
+- **`requestAnimationFrame` スロットル**：[`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) に基づくサンプルの制御 (例：[`raf-schd`](https://github.com/alexreardon/raf-schd))
 
-See [this visualization](http://demo.nimius.net/debounce_throttle/) for a comparison of `throttle` and `debounce` functions.
+スロットルとデバウンスの比較は[このビジュアルデモ](http://demo.nimius.net/debounce_throttle/) をご覧ください。
 
-> Note:
->
-> `_.debounce`, `_.throttle` and `raf-schd` provide a `cancel` method to cancel delayed callbacks. You should either call this method from `componentWillUnmount` _or_ check to ensure that the component is still mounted within the delayed function.
+> 補足：
+> 
+> `_.debounce`、`_.throttle`、`raf-schd` は遅延されるコールバックの呼び出しをキャンセルするための `cancel` メソッドを提供します。`componentWillUnmount` でこのキャンセルメソッドを呼び出すか、*あるいは*遅延されるコールバック関数内でコンポーネントがまだマウントされていることを確認するようにしてください。
 
-#### Throttle {#throttle}
+#### スロットル {#throttle}
 
-Throttling prevents a function from being called more than once in a given window of time. The example below throttles a "click" handler to prevent calling it more than once per second.
+スロットルは、特定の時間枠内に関数が複数回呼ばれるのを防ぎます。以下の例では、「クリック」ハンドラをスロットルして、1 秒間に 2 回以上呼ばれるのを防ぎます。
 
 ```jsx
 import throttle from 'lodash.throttle';
@@ -260,9 +260,9 @@ class LoadMoreButton extends React.Component {
 }
 ```
 
-#### Debounce {#debounce}
+#### デバウンス {#debounce}
 
-Debouncing ensures that a function will not be executed until after a certain amount of time has passed since it was last called. This can be useful when you have to perform some expensive calculation in response to an event that might dispatch rapidly (eg scroll or keyboard events). The example below debounces text input with a 250ms delay.
+デバウンスは、関数が最後に呼ばれてから一定時間経過するまで実行されないようにします。これは、高頻度で発生するイベント（例：スクロールやキーボードイベントなど）に応じた高コストな計算処理が必要なときに役立ちます。下記の例は、250 ミリ秒の遅延でテキスト入力をデバウンスします。
 
 ```jsx
 import debounce from 'lodash.debounce';
@@ -302,13 +302,13 @@ class Searchbox extends React.Component {
 }
 ```
 
-#### `requestAnimationFrame` throttling {#requestanimationframe-throttling}
+#### `requestAnimationFrame` スロットル {#requestanimationframe-throttling}
 
-[`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) is a way of queuing a function to be executed in the browser at the optimal time for rendering performance. A function that is queued with `requestAnimationFrame` will fire in the next frame. The browser will work hard to ensure that there are 60 frames per second (60 fps). However, if the browser is unable to it will naturally *limit* the amount of frames in a second. For example, a device might only be able to handle 30 fps and so you will only get 30 frames in that second. Using `requestAnimationFrame` for throttling is a useful technique in that it prevents you from doing more than 60 updates in a second. If you are doing 100 updates in a second this creates additional work for the browser that the user will not see anyway.
+[`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) は描画パフォーマンスが最適化されるタイミングでブラウザで実行される関数をキューに入れる方法です。`requerstAnimationFrame` でキューに入れられている関数は、次のフレームで実行されます。ブラウザは、毎秒 60 フレーム (60fps) を確保するように努めます。しかし、それができなかった場合には、自然に 1 秒間のフレーム数が *制限* されます。たとえば、デバイスが 30 fps しか処理できなければ、1 秒間に 30 フレームしか取得できません。`requestAnimationFrame` スロットルを使うことで、1 秒間に 60 回以上になる更新を防ぐことができます。1 秒間に 100 回の更新をする場合、ユーザには確認できない追加作業をブラウザが作成することになります。
 
->**Note:**
+> **注意：**
 >
->Using this technique will only capture the last published value in a frame. You can see an example of how this optimization works on [`MDN`](https://developer.mozilla.org/en-US/docs/Web/Events/scroll)
+> このテクニックにより、フレーム内の最後に公開された値のみがキャプチャされます。この最適化がどのように動作するのかについての例は [`MDN`](https://developer.mozilla.org/en-US/docs/Web/Events/scroll) で確認できます。
 
 ```jsx
 import rafSchedule from 'raf-schd';
@@ -349,6 +349,6 @@ class ScrollListener extends React.Component {
 }
 ```
 
-#### Testing your rate limiting {#testing-your-rate-limiting}
+#### レート制限をテストする {#testing-your-rate-limiting}
 
-When testing your rate limiting code works correctly it is helpful to have the ability to fast forward time. If you are using [`jest`](https://facebook.github.io/jest/) then you can use [`mock timers`](https://facebook.github.io/jest/docs/en/timer-mocks.html) to fast forward time. If you are using `requestAnimationFrame` throttling then you may find [`raf-stub`](https://github.com/alexreardon/raf-stub) to be a useful tool to control the ticking of animation frames.
+レート制限コードを正しくテストするとき、早送り機能があると便利です。もし [`jest`](https://facebook.github.io/jest/) を使っているのであれば、[`mock timers`](https://facebook.github.io/jest/docs/en/timer-mocks.html) を使って時間を早送りすることができます。`requestAnimationFrame` スロットルを使っているのであれば、[`raf-stub`](https://github.com/alexreardon/raf-stub) がアニメーションフレームの間隔を制御するのに役立つでしょう。

@@ -1,14 +1,14 @@
 ---
 id: lists-and-keys
-title: Lists and Keys
+title: リストと key
 permalink: docs/lists-and-keys.html
 prev: conditional-rendering.html
 next: forms.html
 ---
 
-First, let's review how you transform lists in JavaScript.
+まず、JavaScript でリストを変換する方法についておさらいしましょう。
 
-Given the code below, we use the [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) function to take an array of `numbers` and double their values. We assign the new array returned by `map()` to the variable `doubled` and log it:
+以下のコードでは、[`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 関数を用い、`numbers` という配列を受け取って中身の値を 2 倍しています。`map()` 関数が返す新しい配列を変数 `doubled` に格納し、ログに出力します：
 
 ```javascript{2}
 const numbers = [1, 2, 3, 4, 5];
@@ -16,15 +16,15 @@ const doubled = numbers.map((number) => number * 2);
 console.log(doubled);
 ```
 
-This code logs `[2, 4, 6, 8, 10]` to the console.
+このコードはコンソールに `[2, 4, 6, 8, 10]` と出力します。
 
-In React, transforming arrays into lists of [elements](/docs/rendering-elements.html) is nearly identical.
+React では配列を[要素](/docs/rendering-elements.html)のリストに変換することが、ほぼこれと同様のものです。
 
-### Rendering Multiple Components {#rendering-multiple-components}
+### 複数のコンポーネントをレンダリングする {#rendering-multiple-components}
 
-You can build collections of elements and [include them in JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) using curly braces `{}`.
+要素の集合を作成し中括弧 `{}` で囲むことで [JSX に含める](/docs/introducing-jsx.html#embedding-expressions-in-jsx)ことができます。
 
-Below, we loop through the `numbers` array using the JavaScript [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) function. We return a `<li>` element for each item. Finally, we assign the resulting array of elements to `listItems`:
+以下では、JavaScript の `map()` 関数を利用して、`numbers` という配列に対して反復処理を行っています。それぞれの整数に対して `<li>` 要素を返しています。最後に、結果として得られる要素の配列を `listItems` に格納しています：
 
 ```javascript{2-4}
 const numbers = [1, 2, 3, 4, 5];
@@ -33,7 +33,7 @@ const listItems = numbers.map((number) =>
 );
 ```
 
-We include the entire `listItems` array inside a `<ul>` element, and [render it to the DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom):
+`listItems` という配列全体を `<ul>` 要素の内側に含め、[それを DOM へレンダー](/docs/rendering-elements.html#rendering-an-element-into-the-dom)します：
 
 ```javascript{2}
 ReactDOM.render(
@@ -44,13 +44,13 @@ ReactDOM.render(
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
 
-This code displays a bullet list of numbers between 1 and 5.
+このコードは、1 から 5 までの数字の箇条書きのリストを表示します。
 
-### Basic List Component {#basic-list-component}
+### 基本的なリストコンポーネント {#basic-list-component}
 
-Usually you would render lists inside a [component](/docs/components-and-props.html).
+通常、リストは何らかの[コンポーネント](/docs/components-and-props.html)の内部でレンダリングしたいと思うでしょう。
 
-We can refactor the previous example into a component that accepts an array of `numbers` and outputs a list of elements.
+前の例をリファクタリングして、`numbers` という配列を受け取って要素のリストを出力するコンポーネントを作ることができます。
 
 ```javascript{3-5,7,13}
 function NumberList(props) {
@@ -70,9 +70,9 @@ ReactDOM.render(
 );
 ```
 
-When you run this code, you'll be given a warning that a key should be provided for list items. A "key" is a special string attribute you need to include when creating lists of elements. We'll discuss why it's important in the next section.
+このコードを実行すると、「リスト項目には key を与えるべきだ」という警告を受け取るでしょう。"key" とは特別な文字列の属性であり、要素のリストを作成する際に含めておく必要があるものです。なぜ key が重要なのか、次の節で説明します。
 
-Let's assign a `key` to our list items inside `numbers.map()` and fix the missing key issue.
+`numbers.map()` 内のリスト項目に `key` を割り当てて、key が見つからないという問題を修正しましょう。
 
 ```javascript{4}
 function NumberList(props) {
@@ -96,9 +96,9 @@ ReactDOM.render(
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
 
-## Keys {#keys}
+## Key {#keys}
 
-Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside the array to give the elements a stable identity:
+Key は、どの要素が変更、追加もしくは削除されたのかを React が識別するのに役立ちます。配列内の項目に安定した識別性を与えるため、それぞれの項目に key を与えるべきです。
 
 ```js{3}
 const numbers = [1, 2, 3, 4, 5];
@@ -109,7 +109,7 @@ const listItems = numbers.map((number) =>
 );
 ```
 
-The best way to pick a key is to use a string that uniquely identifies a list item among its siblings. Most often you would use IDs from your data as keys:
+兄弟間でその項目を一意に特定できるような文字列を key として選ぶのが最良の方法です。多くの場合、あなたのデータ内にある ID を key として使うことになるでしょう：
 
 ```js{2}
 const todoItems = todos.map((todo) =>
@@ -119,7 +119,7 @@ const todoItems = todos.map((todo) =>
 );
 ```
 
-When you don't have stable IDs for rendered items, you may use the item index as a key as a last resort:
+レンダリングされる要素に安定した ID がない場合、最終手段として項目のインデックスを使うことができます：
 
 ```js{2,3}
 const todoItems = todos.map((todo, index) =>
@@ -130,17 +130,15 @@ const todoItems = todos.map((todo, index) =>
 );
 ```
 
-We don't recommend using indexes for keys if the order of items may change. This can negatively impact performance and may cause issues with component state. Check out Robin Pokorny's article for an [in-depth explanation on the negative impacts of using an index as a key](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). If you choose not to assign an explicit key to list items then React will default to using indexes as keys.
+要素の並び順が変更される可能性がある場合、インデックスを key として使用することはお勧めしません。パフォーマンスに悪い影響を与え、コンポーネントの状態に問題を起こす可能性があります。Robin Pokorny による、[key としてインデックスを用いる際の悪影響についての詳しい解説](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)をご覧ください。より詳しく学びたい場合は、[key が何故必要なのかについての詳しい解説](/docs/reconciliation.html#recursing-on-children)を参照してください。
 
-Here is an [in-depth explanation about why keys are necessary](/docs/reconciliation.html#recursing-on-children) if you're interested in learning more.
+### key のあるコンポーネントの抽出 {#extracting-components-with-keys}
 
-### Extracting Components with Keys {#extracting-components-with-keys}
+key が意味を持つのは、それをとり囲んでいる配列の側の文脈です。
 
-Keys only make sense in the context of the surrounding array.
+例えば、`ListItem` コンポーネントを抽出する際には、key は `ListItem` 自体の `<li>` 要素に書くのではなく、配列内の `<ListItem />` 要素に残しておくべきです。
 
-For example, if you [extract](/docs/components-and-props.html#extracting-components) a `ListItem` component, you should keep the key on the `<ListItem />` elements in the array rather than on the `<li>` element in the `ListItem` itself.
-
-**Example: Incorrect Key Usage**
+**例： 不適切な key の使用法**
 
 ```javascript{4,5,14,15}
 function ListItem(props) {
@@ -173,7 +171,7 @@ ReactDOM.render(
 );
 ```
 
-**Example: Correct Key Usage**
+**例： 正しい key の使用法**
 
 ```javascript{2,3,9,10}
 function ListItem(props) {
@@ -203,11 +201,11 @@ ReactDOM.render(
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
 
-A good rule of thumb is that elements inside the `map()` call need keys.
+基本ルールとしては、`map()` 呼び出しの中に現れる要素に key が必要です。
 
-### Keys Must Only Be Unique Among Siblings {#keys-must-only-be-unique-among-siblings}
+### key は兄弟要素の中で一意であればよい {#keys-must-only-be-unique-among-siblings}
 
-Keys used within arrays should be unique among their siblings. However they don't need to be globally unique. We can use the same keys when we produce two different arrays:
+配列内で使われる key はその兄弟要素の中で一意である必要があります。しかし全体でユニークである必要はありません。2 つの異なる配列を作る場合は、同一の key が使われても構いません：
 
 ```js{2,5,11,12,19,21}
 function Blog(props) {
@@ -247,7 +245,7 @@ ReactDOM.render(
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)
 
-Keys serve as a hint to React but they don't get passed to your components. If you need the same value in your component, pass it explicitly as a prop with a different name:
+key は React へのヒントとして使われますが、あなたが書くコンポーネントには渡されません。同じ値をコンポーネントの中でも必要としている場合は、別の名前の prop として明示的に渡してください：
 
 ```js{3,4}
 const content = posts.map((post) =>
@@ -258,11 +256,11 @@ const content = posts.map((post) =>
 );
 ```
 
-With the example above, the `Post` component can read `props.id`, but not `props.key`.
+上記の例では、`Post` コンポーネントは `props.id` を読み取ることができますが、`props.key` は読み取れません。
 
-### Embedding map() in JSX {#embedding-map-in-jsx}
+### map() を JSX に埋め込む {#embedding-map-in-jsx}
 
-In the examples above we declared a separate `listItems` variable and included it in JSX:
+上記の例では `listItems` 変数を別途宣言して、それを JSX に含めました：
 
 ```js{3-6}
 function NumberList(props) {
@@ -279,7 +277,7 @@ function NumberList(props) {
 }
 ```
 
-JSX allows [embedding any expression](/docs/introducing-jsx.html#embedding-expressions-in-jsx) in curly braces so we could inline the `map()` result:
+JSX では[任意の式を埋め込む](/docs/introducing-jsx.html#embedding-expressions-in-jsx)ことができますので、`map()` の結果をインライン化することもできます。
 
 ```js{5-8}
 function NumberList(props) {
@@ -297,4 +295,4 @@ function NumberList(props) {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/BLvYrB?editors=0010)
 
-Sometimes this results in clearer code, but this style can also be abused. Like in JavaScript, it is up to you to decide whether it is worth extracting a variable for readability. Keep in mind that if the `map()` body is too nested, it might be a good time to [extract a component](/docs/components-and-props.html#extracting-components).
+時としてこの結果はよりすっきりしたコードとなりますが、この記法は乱用されることもあります。普通の JavaScript でそうであるように、読みやすさのために変数を抽出する価値があるかどうか決めるのはあなたです。`map()` の中身がネストされすぎている場合は、[コンポーネントに抽出](/docs/components-and-props.html#extracting-components)する良いタイミングかもしれない、ということにも留意してください。

@@ -1,63 +1,63 @@
 ---
 id: context
-title: Context
+title: コンテクスト
 permalink: docs/context.html
 prev: reconciliation.html
 next: fragments.html
 ---
 
-Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+コンテクストは各階層で手動でプロパティを下に渡すことなく、コンポーネントツリー内でデータを渡す方法を提供します。
 
-In a typical React application, data is passed top-down (parent to child) via props, but this can be cumbersome for certain types of props (e.g. locale preference, UI theme) that are required by many components within an application. Context provides a way to share values like these between components without having to explicitly pass a prop through every level of the tree.
+典型的な React アプリケーションでは、データは props を通してトップダウン（親から子）で渡されますが、アプリケーション内の多くのコンポーネントから必要とされる特定のタイプのプロパティ（例： ロケール設定、UI テーマ）にとっては面倒です。コンテクストはツリーの各階層で明示的にプロパティを渡すことなく、コンポーネント間でこれらの様な値を共有する方法を提供します。
 
-- [When to Use Context](#when-to-use-context)
-- [Before You Use Context](#before-you-use-context)
+- [コンテクストをいつ使用すべきか](#when-to-use-context)
+- [コンテクストを使用する前に](#before-you-use-context)
 - [API](#api)
   - [React.createContext](#reactcreatecontext)
   - [Context.Provider](#contextprovider)
   - [Class.contextType](#classcontexttype)
   - [Context.Consumer](#contextconsumer)
   - [Context.displayName](#contextdisplayname)
-- [Examples](#examples)
-  - [Dynamic Context](#dynamic-context)
-  - [Updating Context from a Nested Component](#updating-context-from-a-nested-component)
-  - [Consuming Multiple Contexts](#consuming-multiple-contexts)
-- [Caveats](#caveats)
-- [Legacy API](#legacy-api)
+- [例](#例)
+  - [動的なコンテクスト](#dynamic-context)
+  - [ネストしたコンポーネントからコンテクストを更新する](#updating-context-from-a-nested-component)
+  - [複数のコンテクストを使用する](#consuming-multiple-contexts)
+- [注意事項](#caveats)
+- [レガシーな API](#legacy-api)
 
-## When to Use Context {#when-to-use-context}
+## コンテクストをいつ使用すべきか {#when-to-use-context}
 
-Context is designed to share data that can be considered "global" for a tree of React components, such as the current authenticated user, theme, or preferred language. For example, in the code below we manually thread through a "theme" prop in order to style the Button component:
+コンテクストは、ある React コンポーネントのツリーに対して「グローバル」とみなすことができる、現在の認証済みユーザ・テーマ・優先言語といったデータを共有するために設計されています。例えば、以下のコードでは Button コンポーネントをスタイルする為に、手動で "theme" プロパティを通しています。
 
 `embed:context/motivation-problem.js`
 
-Using context, we can avoid passing props through intermediate elements:
+コンテクストを使用することで、中間の要素群を経由してプロパティを渡すことを避けることができます。
 
 `embed:context/motivation-solution.js`
 
-## Before You Use Context {#before-you-use-context}
+## コンテクストを使用する前に {#before-you-use-context}
 
-Context is primarily used when some data needs to be accessible by *many* components at different nesting levels. Apply it sparingly because it makes component reuse more difficult.
+コンテクストは主に、何らかのデータが、ネストレベルの異なる*多く*のコンポーネントからアクセスできる必要がある時に使用されます。コンテクストはコンポーネントの再利用をより難しくする為、慎重に利用してください。
 
-**If you only want to avoid passing some props through many levels, [component composition](/docs/composition-vs-inheritance.html) is often a simpler solution than context.**
+**もし多くの階層を経由していくつかの props を渡すことを避けたいだけであれば、[コンポーネントコンポジション](/docs/composition-vs-inheritance.html)は多くの場合、コンテクストよりシンプルな解決策です。**
 
-For example, consider a `Page` component that passes a `user` and `avatarSize` prop several levels down so that deeply nested `Link` and `Avatar` components can read it:
+例えば、深くネストされた `Link` と `Avatar` コンポーネントがプロパティを読み取ることが出来るように、`user` と `avatarSize` プロパティをいくつかの階層下へ渡す `Page` コンポーネントを考えてみましょう。
 
 ```js
 <Page user={user} avatarSize={avatarSize} />
-// ... which renders ...
+// ... Page コンポーネントは以下をレンダー ...
 <PageLayout user={user} avatarSize={avatarSize} />
-// ... which renders ...
+// ... PageLayout コンポーネントは以下をレンダー ...
 <NavigationBar user={user} avatarSize={avatarSize} />
-// ... which renders ...
+// ... NavigationBar コンポーネントは以下をレンダー ...
 <Link href={user.permalink}>
   <Avatar user={user} size={avatarSize} />
 </Link>
 ```
 
-It might feel redundant to pass down the `user` and `avatarSize` props through many levels if in the end only the `Avatar` component really needs it. It's also annoying that whenever the `Avatar` component needs more props from the top, you have to add them at all the intermediate levels too.
+最終的に `Avatar` コンポーネントだけがプロパティを必要としているのであれば、多くの階層を通して `user` と `avatarSize` プロパティを下に渡すことは冗長に感じるかもしれません。また、`Avatar` コンポーネントが上のコンポーネントから追加のプロパティを必要とする時はいつでも、全ての間の階層にも追加しないといけないことも厄介です。
 
-One way to solve this issue **without context** is to [pass down the `Avatar` component itself](/docs/composition-vs-inheritance.html#containment) so that the intermediate components don't need to know about the `user` or `avatarSize` props:
+**コンテクストを使用せずに**この問題を解決する 1 つの手法は、[`Avatar` コンポーネント自身を渡す](/docs/composition-vs-inheritance.html#containment)ようにするというもので、そうすれば間のコンポーネントは `user` や `avatarSize` プロパティを知る必要はありません。
 
 ```js
 function Page(props) {
@@ -70,21 +70,21 @@ function Page(props) {
   return <PageLayout userLink={userLink} />;
 }
 
-// Now, we have:
+// これで以下のようになります。
 <Page user={user} avatarSize={avatarSize} />
-// ... which renders ...
+// ... Page コンポーネントは以下をレンダー ...
 <PageLayout userLink={...} />
-// ... which renders ...
+// ... PageLayout コンポーネントは以下をレンダー ...
 <NavigationBar userLink={...} />
-// ... which renders ...
+// ... NavigationBar コンポーネントは以下をレンダー ...
 {props.userLink}
 ```
 
-With this change, only the top-most Page component needs to know about the `Link` and `Avatar` components' use of `user` and `avatarSize`.
+この変更により、一番上の Page コンポーネントだけが、`Link` と `Avatar` コンポーネントの `user` と `avatarSize` の使い道について知る必要があります。
 
-This *inversion of control* can make your code cleaner in many cases by reducing the amount of props you need to pass through your application and giving more control to the root components. However, this isn't the right choice in every case: moving more complexity higher in the tree makes those higher-level components more complicated and forces the lower-level components to be more flexible than you may want.
+この*制御の反転*はアプリケーション内で取り回す必要のあるプロパティの量を減らし、ルートコンポーネントにより多くの制御を与えることにより、多くのケースでコードを綺麗にすることができます。しかし、この方法は全てのケースで正しい選択とはなりません：ツリー内の上層に複雑性が移ることは、それら高い階層のコンポーネントをより複雑にして、低い階層のコンポーネントに必要以上の柔軟性を強制します。
 
-You're not limited to a single child for a component. You may pass multiple children, or even have multiple separate "slots" for children, [as documented here](/docs/composition-vs-inheritance.html#containment):
+コンポーネントに対して 1 つの子までという制限はありません。複数の子を渡したり、子のために複数の別々の「スロット」を持つことさえできます。[ドキュメントはここにあります。](/docs/composition-vs-inheritance.html#containment)
 
 ```js
 function Page(props) {
@@ -106,9 +106,9 @@ function Page(props) {
 }
 ```
 
-This pattern is sufficient for many cases when you need to decouple a child from its immediate parents. You can take it even further with [render props](/docs/render-props.html) if the child needs to communicate with the parent before rendering.
+このパターンは、そのすぐ上の親から子を切り離す必要がある多くのケースにとって十分です。レンダリングの前に子が親とやり取りする必要がある場合、さらに[レンダープロップ](/docs/render-props.html)と合わせて使うことができます。
 
-However, sometimes the same data needs to be accessible by many components in the tree, and at different nesting levels. Context lets you "broadcast" such data, and changes to it, to all components below. Common examples where using context might be simpler than the alternatives include managing the current locale, theme, or a data cache.
+しかし、たまに同じデータがツリー内の異なるネスト階層にある多くのコンポーネントからアクセス可能であることが必要となります。コンテクストはそのようなデータとその変更を以下の全てのコンポーネントへ「ブロードキャスト」できます。コンテクストを使うことが他の手法よりシンプルである一般的な例としては、現在のロケール、テーマ、またはデータキャッシュの管理が挙げられます。
 
 ## API {#api}
 
@@ -118,27 +118,27 @@ However, sometimes the same data needs to be accessible by many components in th
 const MyContext = React.createContext(defaultValue);
 ```
 
-Creates a Context object. When React renders a component that subscribes to this Context object it will read the current context value from the closest matching `Provider` above it in the tree.
+コンテクストオブジェクトを作成します。React がこのコンテクストオブジェクトが登録されているコンポーネントをレンダーする場合、ツリー内の最も近い上位の一致する `Provider` から現在のコンテクストの値を読み取ります。
 
-The `defaultValue` argument is **only** used when a component does not have a matching Provider above it in the tree. This can be helpful for testing components in isolation without wrapping them. Note: passing `undefined` as a Provider value does not cause consuming components to use `defaultValue`.
+`defaultValue` 引数は、コンポーネントがツリー内の上位に一致するプロバイダを持っていない場合のみ使用されます。これは、ラップしない単独でのコンポーネントのテストにて役に立ちます。補足： `undefined` をプロバイダの値として渡しても、コンシューマコンポーネントが `defaultValue` を使用することはありません。
 
 ### `Context.Provider` {#contextprovider}
 
 ```js
-<MyContext.Provider value={/* some value */}>
+<MyContext.Provider value={/* 何らかの値 */}>
 ```
 
-Every Context object comes with a Provider React component that allows consuming components to subscribe to context changes.
+全てのコンテクストオブジェクトにはプロバイダ (Provider) コンポーネントが付属しており、これによりコンシューマコンポーネントはコンテクストの変更を購読できます。
 
-Accepts a `value` prop to be passed to consuming components that are descendants of this Provider. One Provider can be connected to many consumers. Providers can be nested to override values deeper within the tree.
+プロバイダは `value` プロパティを受け取り、これが子孫であるコンシューマコンポーネントに渡されます。1 つのプロバイダは多くのコンシューマと接続することが出来ます。プロバイダは値を上書きするために、ツリー内のより深い位置でネストできます。
 
-All consumers that are descendants of a Provider will re-render whenever the Provider's `value` prop changes. The propagation from Provider to its descendant consumers (including [`.contextType`](#classcontexttype) and [`useContext`](/docs/hooks-reference.html#usecontext)) is not subject to the `shouldComponentUpdate` method, so the consumer is updated even when an ancestor component skips an update.
+プロバイダの子孫の全てのコンシューマは、プロバイダの `value` プロパティが変更されるたびに再レンダーされます。プロバイダからその子孫コンシューマ（[`.contextType`](#classcontexttype) や [`useContext`](/docs/hooks-reference.html#usecontext) を含む）への伝播は `shouldComponentUpdate` メソッドの影響を受けないため、コンシューマは祖先のコンポーネントが更新をスキップしている場合でも更新されます。
 
-Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).
+変更は、[`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description) と同じアルゴリズムを使用し、新しい値と古い値の比較によって判断されます。
 
-> Note
+> 補足
 >
-> The way changes are determined can cause some issues when passing objects as `value`: see [Caveats](#caveats).
+> この方法で変更の有無を判断するため、オブジェクトを `value` として渡した場合にいくつかの問題が発生する可能性があります。詳細は[注意事項](#caveats)を参照。
 
 ### `Class.contextType` {#classcontexttype}
 
@@ -146,7 +146,7 @@ Changes are determined by comparing the new and old values using the same algori
 class MyClass extends React.Component {
   componentDidMount() {
     let value = this.context;
-    /* perform a side-effect at mount using the value of MyContext */
+    /* MyContextの値を使用し、マウント時に副作用を実行します */
   }
   componentDidUpdate() {
     let value = this.context;
@@ -158,27 +158,26 @@ class MyClass extends React.Component {
   }
   render() {
     let value = this.context;
-    /* render something based on the value of MyContext */
+    /* MyContextの値に基づいて何かをレンダーします */
   }
 }
 MyClass.contextType = MyContext;
 ```
 
-The `contextType` property on a class can be assigned a Context object created by [`React.createContext()`](#reactcreatecontext). This lets you consume the nearest current value of that Context type using `this.context`. You can reference this in any of the lifecycle methods including the render function.
+クラスの `contextType` プロパティには [`React.createContext()`](#reactcreatecontext) により作成されたコンテクストオブジェクトを指定することができます。これにより、`this.context` を使って、そのコンテクストタイプの最も近い現在値を利用できます。レンダー関数を含むあらゆるライフサイクルメソッドで参照できます。
 
-> Note:
+> 補足:
 >
-> You can only subscribe to a single context using this API. If you need to read more than one see [Consuming Multiple Contexts](#consuming-multiple-contexts).
+> この API では、1 つのコンテクストだけ登録することができます。もし 2 つ以上を読み取る必要がある場合、[複数のコンテクストを使用する](#consuming-multiple-contexts) を参照してください。
 >
-> If you are using the experimental [public class fields syntax](https://babeljs.io/docs/plugins/transform-class-properties/), you can use a **static** class field to initialize your `contextType`.
-
+> 実験的な [public class fields syntax](https://babeljs.io/docs/plugins/transform-class-properties/) を使用している場合、**static** クラスフィールドを使用することで `contextType` を初期化することができます。
 
 ```js
 class MyClass extends React.Component {
   static contextType = MyContext;
   render() {
     let value = this.context;
-    /* render something based on the value */
+    /* 値に基づいて何かをレンダーします */
   }
 }
 ```
@@ -187,23 +186,23 @@ class MyClass extends React.Component {
 
 ```js
 <MyContext.Consumer>
-  {value => /* render something based on the context value */}
+  {value => /* コンテクストの値に基づいて何かをレンダーします */}
 </MyContext.Consumer>
 ```
 
-A React component that subscribes to context changes. This lets you subscribe to a context within a [function component](/docs/components-and-props.html#function-and-class-components).
+コンテクストの変更を購読する React コンポーネントです。[関数コンポーネント](/docs/components-and-props.html#function-and-class-components) 内でコンテクストを購読することができます。
 
-Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). The function receives the current context value and returns a React node. The `value` argument passed to the function will be equal to the `value` prop of the closest Provider for this context above in the tree. If there is no Provider for this context above, the `value` argument will be equal to the `defaultValue` that was passed to `createContext()`.
+[function as a child](/docs/render-props.html#using-props-other-than-render) が必要です。この関数は現在のコンテクストの値を受け取り、React ノードを返します。この関数に渡される引数 `value` は、ツリー内の上位で一番近いこのコンテクスト用のプロバイダの `value` プロパティと等しくなります。このコンテクスト用のプロバイダが上位に存在しない場合、引数の `value` は `createContext()` から渡された `defaultValue` と等しくなります。
 
-> Note
->
-> For more information about the 'function as a child' pattern, see [render props](/docs/render-props.html).
+> 補足
+> 
+> "function as a child" パターンについてさらに情報が必要な場合は [レンダープロップ](/docs/render-props.html) を参照してください。
 
 ### `Context.displayName` {#contextdisplayname}
 
-Context object accepts a `displayName` string property. React DevTools uses this string to determine what to display for the context.
+コンテクストオブジェクトは `displayName` という文字列型のプロパティを有しています。React DevTools はこの文字列を利用してコンテクストの表示のしかたを決定します。
 
-For example, the following component will appear as MyDisplayName in the DevTools:
+例えば以下のコンポーネントは DevTools で MyDisplayName と表示されます。
 
 ```js{2}
 const MyContext = React.createContext(/* some value */);
@@ -213,11 +212,11 @@ MyContext.displayName = 'MyDisplayName';
 <MyContext.Consumer> // "MyDisplayName.Consumer" in DevTools
 ```
 
-## Examples {#examples}
+## 例 {#examples}
 
-### Dynamic Context {#dynamic-context}
+### 動的なコンテクスト {#dynamic-context}
 
-A more complex example with dynamic values for the theme:
+テーマに動的な値を使用したより複雑な例：
 
 **theme-context.js**
 `embed:context/theme-detailed-theme-context.js`
@@ -228,9 +227,9 @@ A more complex example with dynamic values for the theme:
 **app.js**
 `embed:context/theme-detailed-app.js`
 
-### Updating Context from a Nested Component {#updating-context-from-a-nested-component}
+### ネストしたコンポーネントからコンテクストを更新する {#updating-context-from-a-nested-component}
 
-It is often necessary to update the context from a component that is nested somewhere deeply in the component tree. In this case you can pass a function down through the context to allow consumers to update the context:
+コンポーネントツリーのどこか深くネストされたコンポーネントからコンテクストを更新することはよく必要になります。このケースでは、コンテクストを通して下に関数を渡すことで、コンシューマがコンテクストを更新可能にすることができます。
 
 **theme-context.js**
 `embed:context/updating-nested-context-context.js`
@@ -241,28 +240,26 @@ It is often necessary to update the context from a component that is nested some
 **app.js**
 `embed:context/updating-nested-context-app.js`
 
-### Consuming Multiple Contexts {#consuming-multiple-contexts}
+### 複数のコンテクストを使用する {#consuming-multiple-contexts}
 
-To keep context re-rendering fast, React needs to make each context consumer a separate node in the tree.
+コンテクストの再レンダーを高速に保つために、React は各コンテクストのコンシューマをツリー内の別々のノードにする必要があります。
 
 `embed:context/multiple-contexts.js`
 
-If two or more context values are often used together, you might want to consider creating your own render prop component that provides both.
+2 つ以上のコンテクストの値が一緒に使用されることが多い場合、両方を提供する独自のレンダープロップコンポーネントの作成を検討した方が良いかもしれません。
 
-## Caveats {#caveats}
+## 注意事項 {#caveats}
 
-Because context uses reference identity to determine when to re-render, there are some gotchas that could trigger unintentional renders in consumers when a provider's parent re-renders. For example, the code below will re-render all consumers every time the Provider re-renders because a new object is always created for `value`:
+コンテクストは参照の同一性を使用していつ再レンダーするかを決定するため、プロバイダの親が再レンダーするときにコンシューマで意図しないレンダーを引き起こす可能性があるいくつかの問題があります。例えば以下のコードでは、新しいオブジェクトが `value` に対して常に作成されるため、プロバイダが再レンダーするたびにすべてのコンシューマを再レンダーしてしまいます。
 
 `embed:context/reference-caveats-problem.js`
 
-
-To get around this, lift the value into the parent's state:
+この問題を回避するためには、親の state に値をリフトアップします。
 
 `embed:context/reference-caveats-solution.js`
 
-## Legacy API {#legacy-api}
+## レガシーな API {#legacy-api}
 
-> Note
+> 補足
 >
-> React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. The legacy API will be removed in a future major React version. Read the [legacy context docs here](/docs/legacy-context.html).
-
+> React は以前に実験的なコンテクスト API を公開していました。その古い API は全ての 16.x 系のリリースでサポートされる予定ですが、アプリケーションで使用しているのであれば、新しいバージョンにマイグレーションすべきです。レガシーな API は将来の React メジャーバージョンで削除されます。[レガシーなコンテクストのドキュメントはここにあります。](/docs/legacy-context.html)

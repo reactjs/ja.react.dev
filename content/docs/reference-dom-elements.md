@@ -1,6 +1,6 @@
 ---
 id: dom-elements
-title: DOM Elements
+title: DOM 要素
 layout: docs
 category: Reference
 permalink: docs/dom-elements.html
@@ -14,27 +14,27 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
-React implements a browser-independent DOM system for performance and cross-browser compatibility. We took the opportunity to clean up a few rough edges in browser DOM implementations.
+React はパフォーマンスとブラウザ間での互換性のために、ブラウザから独立した DOM システムを実装しています。このことを機に、ブラウザの DOM 実装にあるいくつかの粗削りな部分が取り払われました。
 
-In React, all DOM properties and attributes (including event handlers) should be camelCased. For example, the HTML attribute `tabindex` corresponds to the attribute `tabIndex` in React. The exception is `aria-*` and `data-*` attributes, which should be lowercased. For example, you can keep `aria-label` as `aria-label`.
+React では、DOM のプロパティと属性（イベントハンドラを含む）全てがキャメルケースで名前付けされる必要があります。例えば、HTML 属性 `tabindex` に React で対応する属性は `tabIndex` です。例外は `aria-*` と `data-*` 属性であり、これらは全て小文字に揃える必要があります。例えば、`aria-label` は `aria-label` のままにできます。
 
-## Differences In Attributes {#differences-in-attributes}
+## 属性についての差異 {#differences-in-attributes}
 
-There are a number of attributes that work differently between React and HTML:
+React と HTML で挙動が異なる属性がいくつか存在します。
 
 ### checked {#checked}
 
-The `checked` attribute is supported by `<input>` components of type `checkbox` or `radio`. You can use it to set whether the component is checked. This is useful for building controlled components. `defaultChecked` is the uncontrolled equivalent, which sets whether the component is checked when it is first mounted.
+`checked` 属性はインプットタイプが `checkbox` または `radio` の `<input>` コンポーネントでサポートされています。コンポーネントがチェックされた状態かどうかの設定に、この属性を使うことができます。これは制御されたコンポーネント (controlled component) を構築する際に役立ちます。`defaultChecked` は非制御コンポーネント (uncontrolled component) において同様の働きをする属性で、そのコンポーネントが最初にマウントされた時に、チェックされた状態かどうかを設定します。
 
 ### className {#classname}
 
-To specify a CSS class, use the `className` attribute. This applies to all regular DOM and SVG elements like `<div>`, `<a>`, and others.
+CSS クラスを指定するには、`className` 属性を使用してください。このことは `<div>`、`<a>` など全ての標準 DOM 要素と SVG 要素に当てはまります。
 
-If you use React with Web Components (which is uncommon), use the `class` attribute instead.
+React を（一般的ではありませんが）Web Components とともに使用する場合は、代わりに class 属性を使用してください。
 
 ### dangerouslySetInnerHTML {#dangerouslysetinnerhtml}
 
-`dangerouslySetInnerHTML` is React's replacement for using `innerHTML` in the browser DOM. In general, setting HTML from code is risky because it's easy to inadvertently expose your users to a [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) attack. So, you can set HTML directly from React, but you have to type out `dangerouslySetInnerHTML` and pass an object with a `__html` key, to remind yourself that it's dangerous. For example:
+`dangerouslySetInnerHTML` は、ブラウザ DOM における `innerHTML` の React での代替です。一般に、コードから HTML を設定することは、誤ってあなたのユーザを[クロスサイトスクリプティング (XSS) ](https://en.wikipedia.org/wiki/Cross-site_scripting)攻撃に晒してしまいやすいため、危険です。そのため、React では直接 HTML を設定することはできますが、それは危険であることを自覚するために `dangerouslySetInnerHTML` と入力し `__html` というキーを持つオブジェクトを渡す必要があります。例えば：
 
 ```js
 function createMarkup() {
@@ -48,24 +48,28 @@ function MyComponent() {
 
 ### htmlFor {#htmlfor}
 
-Since `for` is a reserved word in JavaScript, React elements use `htmlFor` instead.
+`for` は JavaScript での予約語であるため、React 要素では代わりに `htmlFor` を使用します。
 
 ### onChange {#onchange}
 
-The `onChange` event behaves as you would expect it to: whenever a form field is changed, this event is fired. We intentionally do not use the existing browser behavior because `onChange` is a misnomer for its behavior and React relies on this event to handle user input in real time.
+`onChange` イベントはあなたが期待しているような挙動をします。フォームフィールドに変更があるたび、このイベントが発生します。React の `onChange` という名前は既存のブラウザの挙動に対しては適切な名前では無く、React はリアルタイムでのユーザ入力を扱うためにこのイベントに依存しているため、React では意図的に既存のブラウザの挙動は使用していません。
 
 ### selected {#selected}
 
+<<<<<<< HEAD
 If you want to mark an `<option>` as selected, reference the value of that option in the `value` of its `<select>` instead.
 Check out ["The select Tag"](/docs/forms.html#the-select-tag) for detailed instructions.
+=======
+`selected` 属性が `<option>` コンポーネントでサポートされています。この属性でコンポーネントが選択されているかを設定することができます。制御されたコンポーネントを構築する際に役立ちます。
+>>>>>>> origin
 
 ### style {#style}
 
->Note
+>補足
 >
->Some examples in the documentation use `style` for convenience, but **using the `style` attribute as the primary means of styling elements is generally not recommended.** In most cases, [`className`](#classname) should be used to reference classes defined in an external CSS stylesheet. `style` is most often used in React applications to add dynamically-computed styles at render time. See also [FAQ: Styling and CSS](/docs/faq-styling.html).
+>このドキュメンテーションにあるいくつかの例では `style` を便宜上使用していますが、**`style` 属性を要素のスタイリングの主要な手段として使うことは一般的に推奨されません。**多くの場合、[`className`](#classname) を使って外部の CSS スタイルシートに定義された CSS クラスを参照するべきです。React アプリケーションの中では、`style` は動的に計算されたスタイルをレンダー中に追加するために最もよく使われます。[FAQ: Styling and CSS](/docs/faq-styling.html) も参照してください。
 
-The `style` attribute accepts a JavaScript object with camelCased properties rather than a CSS string. This is consistent with the DOM `style` JavaScript property, is more efficient, and prevents XSS security holes. For example:
+`style` 属性は CSS 文字列ではなく、キャメルケースのプロパティを持った JavaScript オブジェクトを受け取ります。これは JavaScript での DOM の `style` プロパティとの一貫性があり、より効率的で、XSS 攻撃の対象となるセキュリティホールを防ぎます。例えば：
 
 ```js
 const divStyle = {
@@ -78,12 +82,12 @@ function HelloWorldComponent() {
 }
 ```
 
-Note that styles are not autoprefixed. To support older browsers, you need to supply corresponding style properties:
+ベンダープレフィックスの自動追加は行われないことに注意してください。古いブラウザをサポートするには、対応するスタイルのプロパティを与える必要があります：
 
 ```js
 const divStyle = {
-  WebkitTransition: 'all', // note the capital 'W' here
-  msTransition: 'all' // 'ms' is the only lowercase vendor prefix
+  WebkitTransition: 'all', // ここでは大文字の 'W' です
+  msTransition: 'all' // 'ms' は小文字である必要がある唯一のベンダープレフィックスです
 };
 
 function ComponentWithTransition() {
@@ -91,53 +95,57 @@ function ComponentWithTransition() {
 }
 ```
 
-Style keys are camelCased in order to be consistent with accessing the properties on DOM nodes from JS (e.g. `node.style.backgroundImage`). Vendor prefixes [other than `ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) should begin with a capital letter. This is why `WebkitTransition` has an uppercase "W".
+JavaScript から DOM ノードのプロパティにアクセスする場合（例えば `node.style.backgroundImage`）と一致させるために、スタイルのキー名はキャメルケースです。[`ms` 以外](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/)のベンダープレフィックスは先頭を大文字にしてください。`WebkitTransition` に大文字 "W" があるのはこのためです。
 
-React will automatically append a "px" suffix to certain numeric inline style properties. If you want to use units other than "px", specify the value as a string with the desired unit. For example:
+React はインラインスタイルでの特定の数値プロパティに対して自動的に "px" サフィックスを付け加えます。"px" 以外の単位を使用したい場合は、その単位を付け加えた文字列で値を指定してください。例えば：
 
 ```js
-// Result style: '10px'
+// 最終的なスタイルは '10px'
 <div style={{ height: 10 }}>
   Hello World!
 </div>
 
-// Result style: '10%'
+// 最終的なスタイルは '10%'
 <div style={{ height: '10%' }}>
   Hello World!
 </div>
 ```
 
-Not all style properties are converted to pixel strings though. Certain ones remain unitless (eg `zoom`, `order`, `flex`). A complete list of unitless properties can be seen [here](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59).
+全てのスタイルプロパティがピクセル指定に変換されるわけではありません。特定のプロパティ（例えば `zoom`、`order`、`flex`）は単位が無いままとなります。単位の無いプロパティの完全なリストは[こちら](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59)で確認できます。
 
 ### suppressContentEditableWarning {#suppresscontenteditablewarning}
 
-Normally, there is a warning when an element with children is also marked as `contentEditable`, because it won't work. This attribute suppresses that warning. Don't use this unless you are building a library like [Draft.js](https://facebook.github.io/draft-js/) that manages `contentEditable` manually.
+子要素を持つ要素に `contentEditable` 属性が付与されている場合、それは動作しないため通常は警告が出力されます。この属性は、その警告が出力されないようにします。`contentEditable` を自身で管理している [Draft.js](https://facebook.github.io/draft-js/) のようなライブラリを開発するときでもない限り、この属性は使用しないでください。
 
 ### suppressHydrationWarning {#suppresshydrationwarning}
 
-If you use server-side React rendering, normally there is a warning when the server and the client render different content. However, in some rare cases, it is very hard or impossible to guarantee an exact match. For example, timestamps are expected to differ on the server and on the client.
+サーバサイドの React レンダリングを使用している場合、サーバとクライアントが違う内容をレンダーする時に通常は警告が出力されます。しかし、まれに両者の内容が完全に一致することの保証が非常に困難あるいは不可能な場合があります。例えば、サーバとクライアントでは、タイムスタンプは異なることが予想されます。
 
-If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. You can read more about hydration in the [`ReactDOM.hydrate()` documentation](/docs/react-dom.html#hydrate).
+`suppressHydrationWarning` を `true` に設定した場合、その要素の属性と内容の、サーバとクライアントでの差異について React は警告しません。この機能は単一レベルの深さでのみ動作し、避難ハッチとして使われることが想定されています。そのため、むやみに使用しないでください。この "hydration" 機能の詳細については [`ReactDOM.hydrate()` のドキュメンテーション](/docs/react-dom.html#hydrate)で読むことができます。
 
 ### value {#value}
 
+<<<<<<< HEAD
 The `value` attribute is supported by `<input>`, `<select>` and `<textarea>` components. You can use it to set the value of the component. This is useful for building controlled components. `defaultValue` is the uncontrolled equivalent, which sets the value of the component when it is first mounted.
+=======
+`value` 属性は `<input>` コンポーネントと `<textarea>` コンポーネントでサポートされています。コンポーネントの値を設定することに使用できます。これは制御されたコンポーネントを構築する際に役立ちます。`defaultValue` は非制御コンポーネントにおいて同様の働きをする属性で、コンポーネントが最初にマウントされた時の値を設定します。
+>>>>>>> origin
 
-## All Supported HTML Attributes {#all-supported-html-attributes}
+## サポートされている全ての HTML 属性 {#all-supported-html-attributes}
 
-As of React 16, any standard [or custom](/blog/2017/09/08/dom-attributes-in-react-16.html) DOM attributes are fully supported.
+React 16 では、標準[あるいは独自の](/blog/2017/09/08/dom-attributes-in-react-16.html) DOM 属性全てが完全にサポートされます。
 
-React has always provided a JavaScript-centric API to the DOM. Since React components often take both custom and DOM-related props, React uses the `camelCase` convention just like the DOM APIs:
+React は DOM に対して JavaScript 中心に設計された API を常に提供してきました。React コンポーネントは、独自および DOM に関連した props を頻繁に受け取るため、React は DOM API と同様にキャメルケース (`camelCase`) の命名規則を属性の名前付けに使用します。
 
 ```js
-<div tabIndex="-1" />      // Just like node.tabIndex DOM API
-<div className="Button" /> // Just like node.className DOM API
-<input readOnly={true} />  // Just like node.readOnly DOM API
+<div tabIndex="-1" />      // DOM API の node.tabIndex と同様に
+<div className="Button" /> // DOM API の node.className と同様に
+<input readOnly={true} />  // DOM API の node.readOnly と同様に
 ```
 
-These props work similarly to the corresponding HTML attributes, with the exception of the special cases documented above.
+このような props は、これまでドキュメントで述べられてきた特殊な例外を除き、対応する HTML 属性と同様に機能します。
 
-Some of the DOM attributes supported by React include:
+React でサポートされている DOM 属性には、以下が含まれます：
 
 ```
 accept acceptCharset accessKey action allowFullScreen alt async autoComplete
@@ -155,7 +163,7 @@ sizes span spellCheck src srcDoc srcLang srcSet start step style summary
 tabIndex target title type useMap value width wmode wrap
 ```
 
-Similarly, all SVG attributes are fully supported:
+同様に、全ての SVG 属性を完全にサポートしています：
 
 ```
 accentHeight accumulate additive alignmentBaseline allowReorder alphabetic
@@ -194,4 +202,4 @@ xlinkHref xlinkRole xlinkShow xlinkTitle xlinkType xmlns xmlnsXlink xmlBase
 xmlLang xmlSpace y y1 y2 yChannelSelector z zoomAndPan
 ```
 
-You may also use custom attributes as long as they're fully lowercase.
+独自の属性も、その名前が全て小文字であれば使用できます。

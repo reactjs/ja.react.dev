@@ -6,7 +6,7 @@ prev: cdn-links.html
 next: introducing-jsx.html
 ---
 
-The smallest React example looks like this:
+React のいちばん短い例はこのようになります：
 
 ```js
 ReactDOM.render(
@@ -15,36 +15,33 @@ ReactDOM.render(
 );
 ```
 
-It displays a heading saying "Hello, world!" on the page.
+これは "Hello, world!" という見出しをページに表示します。
 
 [](codepen://hello-world)
 
-Click the link above to open an online editor. Feel free to make some changes, and see how they affect the output. Most pages in this guide will have editable examples like this one.
+上記のリンクをクリックしてオンラインエディタを開いてください。好きなように書き換えて、出力にどう影響するのかを確認してみてください。このガイドのほとんどのページにはこのような編集可能な例が出てきます。
 
+<a id="how-to-read-this-guide"></a>
+## このガイドの読み方 {#how-to-read-this-guide}
 
-## How to Read This Guide {#how-to-read-this-guide}
+このガイドでは、React アプリケーションの構成部品である React 要素やコンポーネントの使い方を見ていきます。一度それらをマスターすると、小さくて再利用可能な部品から複雑なアプリケーションを作成できるようになります。
 
-In this guide, we will examine the building blocks of React apps: elements and components. Once you master them, you can create complex apps from small reusable pieces.
-
->Tip
+>ヒント
 >
->This guide is designed for people who prefer **learning concepts step by step**. If you prefer to learn by doing, check out our [practical tutorial](/tutorial/tutorial.html). You might find this guide and the tutorial complementary to each other.
+>このガイドはコンセプトを一段階ずつ学んでいきたい人向けに構成されています。手を動かして学びたい方は[実践的なチュートリアル](/tutorial/tutorial.html)を参照してください。このガイドとチュートリアルは互いに相補的なものです。
 
-This is the first chapter in a step-by-step guide about main React concepts. You can find a list of all its chapters in the navigation sidebar. If you're reading this from a mobile device, you can access the navigation by pressing the button in the bottom right corner of your screen.
+このページは、React のコンセプトをステップバイステップで学ぶためのガイドのうち最初の章です。全ての章のリストはナビゲーション用のサイドバーにあります。モバイルデバイスで読んでいる場合は、画面の右下にあるボタンを押すことでナビゲーションにアクセスできます。
 
-Every chapter in this guide builds on the knowledge introduced in earlier chapters. **You can learn most of React by reading the “Main Concepts” guide chapters in the order they appear in the sidebar.** For example, [“Introducing JSX”](/docs/introducing-jsx.html) is the next chapter after this one.
+それぞれの章は、前の章までに学んだ知識を前提として構成されています。**「主なコンセプト」にある章をサイドバーに並んでいる順番に読んでいくことで、React のほとんどを学ぶことができます**。例えば [“JSX の導入”](/docs/introducing-jsx.html) がこの章の次の章です。
 
-## Knowledge Level Assumptions {#knowledge-level-assumptions}
+## 前提となる知識 {#knowledge-level-assumptions}
 
-React is a JavaScript library, and so we'll assume you have a basic understanding of the JavaScript language. **If you don't feel very confident, we recommend [going through a JavaScript tutorial](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) to check your knowledge level** and enable you to follow along this guide without getting lost. It might take you between 30 minutes and an hour, but as a result you won't have to feel like you're learning both React and JavaScript at the same time.
+React は JavaScript ライブラリなので、JavaScript 言語の基本的な理解があることを想定しています。**あまり自信がない場合は、[JavaScript のチュートリアル](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)を一通り読んで知識レベルを確認し、**このガイドを迷わず読み進められるようにしてください。そうすれば 30 分から 1 時間ほどかかるかもしれませんが、JavaScript と React を同時に学んでいるような気分にならずにすむでしょう。
 
->Note
+>補足
 >
->This guide occasionally uses some of the newer JavaScript syntax in the examples. If you haven't worked with JavaScript in the last few years, [these three points](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) should get you most of the way.
+>このガイドでは時折比較的新しい JavaScript の構文を例の中で使用しています。ここ数年 JavaScript を使った仕事をしていなかったという場合は、[この 3 点](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c)を理解すればだいたい理解したことになるでしょう。
 
+## 始めましょう！ {#lets-get-started}
 
-## Let's Get Started! {#lets-get-started}
-
-Keep scrolling down, and you'll find the link to the [next chapter of this guide](/docs/introducing-jsx.html) right before the website footer.
-
-
+下にスクロールすればウェブサイトのフッターのすぐ手前に[このガイドの次の章へのリンク](/docs/introducing-jsx.html)が出てきます。

@@ -1,27 +1,27 @@
 ---
 id: profiler
-title: Profiler API
+title: プロファイラ API
 layout: docs
 category: Reference
 permalink: docs/profiler.html
 ---
 
-The `Profiler` measures how often a React application renders and what the "cost" of rendering is.
-Its purpose is to help identify parts of an application that are slow and may benefit from [optimizations such as memoization](/docs/hooks-faq.html#how-to-memoize-calculations).
+`Profiler` を使って、React アプリケーションのレンダーの頻度やレンダーの「コスト」を計測することができます。
+本機能の目的は、アプリケーション中の、低速で[メモ化などの最適化](/docs/hooks-faq.html#how-to-memoize-calculations)が有効な可能性のある部位を特定する手助けをすることです。
 
-> Note:
+> 補足:
 >
-> Profiling adds some additional overhead, so **it is disabled in [the production build](/docs/optimizing-performance.html#use-the-production-build)**.
+> プロファイリングには追加のオーバーヘッドが生じますので、**[本番ビルド](/docs/optimizing-performance.html#use-the-production-build)では無効化されます**。
 >
-> To opt into production profiling, React provides a special production build with profiling enabled.
-> Read more about how to use this build at [fb.me/react-profiling](https://fb.me/react-profiling)
+> 本番環境でプロファイリングを利用するために、React はプロファイリングを有効化した特別な本番用ビルドを提供しています。
+> このビルドの使用方法については [fb.me/react-profiling](https://fb.me/react-profiling) をご覧ください。
 
-## Usage {#usage}
+## 使用法 {#usage}
 
-A `Profiler` can be added anywhere in a React tree to measure the cost of rendering that part of the tree.
-It requires two props: an `id` (string) and an `onRender` callback (function) which React calls any time a component within the tree "commits" an update.
+`Profiler` は React ツリー内の特定部位におけるレンダーのコストを計測するため、ツリー内のどこにでも追加できます。
+2 つの props が必要です。`id`（文字列）と、ツリー内のコンポーネントが更新を「コミット」した際に React が毎回呼び出す `onRender` コールバック（関数）です。
 
-For example, to profile a `Navigation` component and its descendants:
+例えば、`Navigation` コンポーネントとその子孫のプロファイリングを行うには：
 
 ```js{3}
 render(
@@ -34,7 +34,7 @@ render(
 );
 ```
 
-Multiple `Profiler` components can be used to measure different parts of an application:
+アプリケーション内の複数部位の計測を行うために複数の `Profiler` コンポーネントを使うことができます：
 ```js{3,6}
 render(
   <App>
@@ -48,7 +48,7 @@ render(
 );
 ```
 
-`Profiler` components can also be nested to measure different components within the same subtree:
+同一のサブツリー内の複数のコンポーネントで計測を行うために `Profiler` コンポーネントをネストすることもできます：
 ```js{2,6,8}
 render(
   <App>
@@ -66,15 +66,15 @@ render(
 );
 ```
 
-> Note
+> 補足
 >
-> Although `Profiler` is a light-weight component, it should be used only when necessary; each use adds some CPU and memory overhead to an application.
+> `Profiler` は軽いコンポーネントですが、必要な時にのみ利用すべきです。使うごとにアプリケーションに多少の CPU およびメモリオーバーヘッドが生じます。
 
-## `onRender` Callback {#onrender-callback}
+## `onRender` コールバック {#onrender-callback}
 
-The `Profiler` requires an `onRender` function as a prop.
-React calls this function any time a component within the profiled tree "commits" an update.
-It receives parameters describing what was rendered and how long it took.
+`Profiler` には props として `onRender` 関数を渡す必要があります。
+プロファイリングされているツリー内のコンポーネントが更新を「コミット」した際に、React がこの関数を毎回呼び出します。
+この関数は、レンダー内容とかかった時間に関する情報を引数として受け取ります。
 
 ```js
 function onRenderCallback(
@@ -90,30 +90,30 @@ function onRenderCallback(
 }
 ```
 
-Let's take a closer look at each of the props:
+それぞれを詳細に見てみましょう：
 
 * **`id: string`** - 
-The `id` prop of the `Profiler` tree that has just committed.
-This can be used to identify which part of the tree was committed if you are using multiple profilers.
+コミットが起きた `Profiler` の `id` プロパティ。
+複数のプロファイラを使用している場合にどのツリーにコミットが起きたのかを区別するのに使うことができます。
 * **`phase: "mount" | "update"`** -
-Identifies whether the tree has just been mounted for the first time or re-rendered due to a change in props, state, or hooks.
+ツリーが初回マウントされたのか、props や state、フックの変更によって再レンダーされたのかを区別します。
 * **`actualDuration: number`** -
-Time spent rendering the `Profiler` and its descendants for the current update.
-This indicates how well the subtree makes use of memoization (e.g. [`React.memo`](/docs/react-api.html#reactmemo), [`useMemo`](/docs/hooks-reference.html#usememo), [`shouldComponentUpdate`](/docs/hooks-faq.html#how-do-i-implement-shouldcomponentupdate)).
-Ideally this value should decrease significantly after the initial mount as many of the descendants will only need to re-render if their specific props change.
+現在の更新で `Profiler` とその子孫のレンダーに要した時間。
+これが（[`React.memo`](/docs/react-api.html#reactmemo)、[`useMemo`](/docs/hooks-reference.html#usememo)、[`shouldComponentUpdate`](/docs/hooks-faq.html#how-do-i-implement-shouldcomponentupdate) などの）メモ化をどれだけうまく有効に使えているかの指標となります。
+理想的には、子孫要素は特定の props が変化した場合にのみ再レンダーされるため、初回マウント時以降にこの値は大幅に小さくなるはずです。
 * **`baseDuration: number`** -
-Duration of the most recent `render` time for each individual component within the `Profiler` tree.
-This value estimates a worst-case cost of rendering (e.g. the initial mount or a tree with no memoization).
+`Profiler` ツリー内のそれぞれのコンポーネントの直近の `render` 時間。
+この値を使って最悪の場合のレンダーコスト（初回マウント時や、メモ化の一切ないツリーの場合）を見積もることができます。
 * **`startTime: number`** -
-Timestamp when React began rendering the current update.
+現在の更新のレンダーを React が開始した時刻に対応するタイムスタンプ。
 * **`commitTime: number`** -
-Timestamp when React committed the current update.
-This value is shared between all profilers in a commit, enabling them to be grouped if desirable.
+現在の更新を React がコミットした時刻に対応するタイムスタンプ。
+必要に応じてグループ化できるよう、1 コミット内のすべてのプロファイラ間でこの値は共有されます。
 * **`interactions: Set`** -
-Set of ["interactions"](https://fb.me/react-interaction-tracing) that were being traced when the update was scheduled (e.g. when `render` or `setState` were called).
+更新がスケジュールされた（`render` や `setState` の呼び出しなどにより）際に trace された ["interaction"](https://fb.me/react-interaction-tracing) の Set。
 
-> Note
+> 補足
 >
-> Interactions can be used to identify the cause of an update, although the API for tracing them is still experimental.
+> 更新の原因を特定するために interaction を利用可能ですが、trace 用の API は依然実験的です。
 >
-> Learn more about it at [fb.me/react-interaction-tracing](https://fb.me/react-interaction-tracing)
+> [fb.me/react-interaction-tracing](https://fb.me/react-interaction-tracing) に詳細があります。
