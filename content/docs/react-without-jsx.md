@@ -2,6 +2,8 @@
 id: react-without-jsx
 title: JSX なしで React を使う
 permalink: docs/react-without-jsx.html
+prev: react-without-es6.html
+next: reconciliation.html
 ---
 
 JSX は React を使うための必須事項ではありません。JSX なしで React を使うことは、あなたのビルド環境で JSX のコンパイルの設定をしたくない時には便利です。

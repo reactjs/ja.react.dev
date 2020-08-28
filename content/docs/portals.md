@@ -2,6 +2,8 @@
 id: portals
 title: ポータル
 permalink: docs/portals.html
+prev: fragments.html
+next: error-boundaries.html
 ---
 
 ポータル (portal) は、親コンポーネントの DOM 階層外にある DOM ノードに対して子コンポーネントをレンダーするための公式の仕組みを提供します。

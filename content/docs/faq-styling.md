@@ -42,7 +42,7 @@ render() {
 
 ### CSS-in-JS とは? {#what-is-css-in-js}
 
-"CSS-in-JS" とは外部ファイルでスタイルを定義するのとは違い、JavaScript を用いて CSS を生成するパターンのことを指します。数々の CSS-in-JS ライブラリの比較については[この資料](https://github.com/MicheleBertoli/css-in-js)をご覧ください。
+"CSS-in-JS" とは外部ファイルでスタイルを定義するのとは違い、JavaScript を用いて CSS を生成するパターンのことを指します。
 
 _注意：この機能は React の一部ではありません。サードパーティのライブラリ群により提供される機能です。_React はスタイルがどのように定義されているかには関心を持ちません。判断に困った場合は、まずは別の `*.css` にスタイルを定義して、[`className`](/docs/dom-elements.html#classname) を使って参照するところからはじめると良いでしょう。
 

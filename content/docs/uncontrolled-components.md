@@ -2,6 +2,8 @@
 id: uncontrolled-components
 title: 非制御コンポーネント
 permalink: docs/uncontrolled-components.html
+prev: refs-and-the-dom.html
+next: optimizing-performance.html
 ---
 
 ほとんどの場合では、フォームの実装には[制御されたコンポーネント](/docs/forms.html#controlled-components)を使用することをお勧めしています。制御されたコンポーネントでは、フォームのデータは React コンポーネントが扱います。非制御コンポーネントはその代替となるものであり、フォームデータを DOM 自身が扱います。

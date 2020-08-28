@@ -2,6 +2,8 @@
 id: context
 title: コンテクスト
 permalink: docs/context.html
+prev: reconciliation.html
+next: fragments.html
 ---
 
 コンテクストは各階層で手動でプロパティを下に渡すことなく、コンポーネントツリー内でデータを渡す方法を提供します。

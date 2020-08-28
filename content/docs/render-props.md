@@ -2,6 +2,8 @@
 id: render-props
 title: レンダープロップ
 permalink: docs/render-props.html
+prev: higher-order-components.html
+next: integrating-with-other-libraries.html
 ---
 
 ["レンダープロップ (render prop)"](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)という用語は、値が関数である props を使って、コンポーネント間でコードを共有するためのテクニックを指します。

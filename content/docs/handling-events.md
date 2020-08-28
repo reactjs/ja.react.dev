@@ -54,7 +54,7 @@ function ActionLink() {
 }
 ```
 
-ここで、`e` は合成 (synthetic) イベントです。React はこれらの合成イベントを [W3C の仕様](https://www.w3.org/TR/DOM-Level-3-Events/)に則って定義しているので、ブラウザ間の互換性を心配する必要はありません。詳細については、[`SyntheticEvent`](/docs/events.html) のリファレンスガイドを参照してください。
+ここで、`e` は合成 (synthetic) イベントです。React はこれらの合成イベントを [W3C の仕様](https://www.w3.org/TR/DOM-Level-3-Events/)に則って定義しているので、ブラウザ間の互換性を心配する必要はありません。React のイベントはネイティブのイベントと全く同様に動作するわけではありません。詳細については、[`SyntheticEvent`](/docs/events.html) のリファレンスガイドを参照してください。
 
 React を使う場合、一般的には DOM 要素の生成後に `addEventListener` を呼び出してリスナを追加する必要はありません。代わりに、要素が最初にレンダーされる際にリスナを指定するようにしてください。
 
