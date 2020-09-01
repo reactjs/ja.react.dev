@@ -124,15 +124,9 @@ const MyComponent = React.memo(function MyComponent(props) {
 });
 ```
 
-<<<<<<< HEAD
-`React.memo` は [高階コンポーネント](/docs/higher-order-components.html) です。これは [`React.PureComponent`](#reactpurecomponent) に似ていますが、クラスではなく関数コンポーネント用です。
+`React.memo` は[高階コンポーネント](/docs/higher-order-components.html)です。
 
-もしある関数コンポーネントが同じ props を与えられたときに同じ結果をレンダーするなら、結果を記憶してパフォーマンスを向上させるためにそれを `React.memo` でラップすることができます。つまり、React はコンポーネントのレンダーをスキップし、最後のレンダー結果を再利用します。
-=======
-`React.memo` is a [higher order component](/docs/higher-order-components.html).
-
-If your component renders the same result given the same props, you can wrap it in a call to `React.memo` for a performance boost in some cases by memoizing the result. This means that React will skip rendering the component, and reuse the last rendered result.
->>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
+もしあるコンポーネントが同じ props を与えられたときに同じ結果をレンダーするなら、結果を記憶してパフォーマンスを向上させるためにそれを `React.memo` でラップすることができます。つまり、React はコンポーネントのレンダーをスキップし、最後のレンダー結果を再利用します。
 
 `React.memo` は props の変更のみをチェックします。`React.memo` でラップしているあなたのコンポーネントがその実装内で [`useState`](/docs/hooks-state.html) や [`useContext`](/docs/hooks-reference.html#usecontext) フックを使っている場合、state やコンテクストの変化に応じた再レンダーは発生します。
 
