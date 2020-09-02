@@ -579,7 +579,7 @@ useEffect(() => {
 
 これがなぜ重要なのか説明します。
 
-`useEffect`、`useMemo`、`useCallback` あるいは `useImperativeHandle` の最後の引数として[依存する値のリスト](/docs/hooks-reference.html#conditionally-firing-an-effect)を渡す場合、コールバック内部で使われ React のデータの流れに関わる値が、すべて含まれている必要があります。すなわち props や state およびそれらより派生するあらゆるものです。
+`useEffect`、`useLayoutEffect`、`useMemo`、`useCallback` あるいは `useImperativeHandle` の最後の引数として[依存する値のリスト](/docs/hooks-reference.html#conditionally-firing-an-effect)を渡す場合、コールバック内部で使われ React のデータの流れに関わる値が、すべて含まれている必要があります。すなわち props や state およびそれらより派生するあらゆるものです。
 
 関数を依存のリストから安全に省略できるのは、その関数（あるいはその関数から呼ばれる関数）が props、state ないしそれらから派生する値のいずれも含んでいない場合**のみ**です。以下の例にはバグがあります。
 
