@@ -2,8 +2,6 @@
 id: react-without-es6
 title: ES6 なしで React を使う
 permalink: docs/react-without-es6.html
-prev: optimizing-performance.html
-next: react-without-jsx.html
 ---
 
 通常、React コンポーネントはプレーンな JavaScript クラスとして定義されます。

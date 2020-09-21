@@ -2,8 +2,6 @@
 id: error-boundaries
 title: Error Boundary
 permalink: docs/error-boundaries.html
-prev: portals.html
-next: web-components.html
 ---
 
 かつて、コンポーネント内で発生した JavaScript エラーは React の内部状態を破壊し、以降のレンダーで[不可解な](https://github.com/facebook/react/issues/4026) [エラーを](https://github.com/facebook/react/issues/6895) [引き起こして](https://github.com/facebook/react/issues/8579)いました。このようなエラーはアプリケーションコード中のどこか前の段階で発生したエラーによって引き起こされますが、React はエラーをコンポーネント内で適切に処理する方法を提供していなかったため回復できませんでした。

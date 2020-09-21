@@ -2,8 +2,6 @@
 id: fragments
 title: フラグメント
 permalink: docs/fragments.html
-prev: context.html
-next: portals.html
 ---
 
 React でよくあるパターンの 1 つに、コンポーネントが複数の要素を返すというものがあります。フラグメント (fragment) を使うことで、DOM に余分なノードを追加することなく子要素をまとめることができるようになります。

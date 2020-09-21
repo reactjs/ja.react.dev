@@ -57,7 +57,11 @@ afterEach(() => {
 
 ### `act()` {#act}
 
+<<<<<<< HEAD
 UI テストを記述する際、レンダー、ユーザイベント、データの取得といったタスクはユーザインターフェースへのインタラクションの「ユニット ("unit")」であると考えることができます。React が提供する `act()` というヘルパーは、あなたが何らかのアサーションを行う前に、これらの「ユニット」に関連する更新がすべて処理され、DOM に反映されていることを保証します。
+=======
+When writing UI tests, tasks like rendering, user events, or data fetching can be considered as "units" of interaction with a user interface. `react-dom/test-utils` provides a helper called [`act()`](/docs/test-utils.html#act) that makes sure all updates related to these "units" have been processed and applied to the DOM before you make any assertions:
+>>>>>>> 1becaff62ae228d909b83ef6d08f48c01660300f
 
 ```js
 act(() => {
