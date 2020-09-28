@@ -1,0 +1,76 @@
+# prh version
+version: 1
+rules:
+
+  - expected: ください
+    pattern: 下さい
+    prh: 補助動詞はかな書きにします
+
+  - expected: てみる
+    pattern: て見る
+    prh: 補助動詞はかな書きにします
+
+  - expected: てくる
+    pattern: て来る
+    prh: 補助動詞はかな書きにします
+
+  - expected: てしまう
+    pattern: /て(仕舞|終|蔵|了)う/
+    prh: 補助動詞はかな書きにします
+
+  - expected: ついに
+    pattern: /(遂|終)に/
+    prh: 語彙化した副詞はなるべくかな書きにします
+
+  - expected: まれに
+    pattern: /(希|稀)に/
+    prh: 語彙化した副詞はなるべくかな書きにします
+
+  - expected: $1とき
+    pattern:  /(な|の)時(?!点|代|々|間|計)/
+    prh: 語彙化した副詞はなるべくかな書きにします
+    specs:
+      - from: その時
+        to:   そのとき
+      - from: その時点
+        to:   その時点
+      - from: その時代
+        to:   その時代
+      - from: それまでの時間
+        to:   それまでの時間
+      - from: 同時
+        to:   同時
+      - from: 実行時
+        to:   実行時
+      - from: 利用時
+        to:   利用時
+      - from: 開発時
+        to:   開発時
+      - from: 時点
+        to:   時点
+      - from: 時代
+        to:   時代
+      - from: 時間
+        to:   時間
+      - from: 時計
+        to:   時計
+
+  - expected: ようやく
+    pattern: 漸く
+    prh: 語彙化した副詞はかな書きにします
+
+  - expected: おそらく
+    pattern: 恐らく
+    prh: 語彙化した副詞はかな書きにします
+
+  - expected: ユーザ
+    pattern: ユーザー
+    prh: 3音以上の語の最後の長音府は原則として省略します
+
+  - expected: リスナ
+    pattern: リスナー
+    prh: 3音以上の語の最後の長音府は原則として省略します
+
+  - expected: ハンドラ
+    pattern: ハンドラー
+    prh: 3音以上の語の最後の長音府は原則として省略します

@@ -1,43 +1,43 @@
 ---
 id: glossary
-title: Glossary of React Terms
+title: React 用語集
 layout: docs
 category: Reference
 permalink: docs/glossary.html
 
 ---
 
-## Single-page Application {#single-page-application}
+## シングルページアプリケーション {#single-page-application}
 
-A single-page application is an application that loads a single HTML page and all the necessary assets (such as JavaScript and CSS) required for the application to run. Any interactions with the page or subsequent pages do not require a round trip to the server which means the page is not reloaded.
+シングルページアプリケーション (single-page application) は、単一の HTML ページでアプリケーションの実行に必要なすべてのアセット（JavaScript や CSS など）をロードするようなアプリケーションです。初回ページもしくはそれ以降のページでのユーザとのやりとりにおいて、サーバーとの往復が不要、すなわちページのリロードが発生しません。
 
-Though you may build a single-page application in React, it is not a requirement. React can also be used for enhancing small parts of existing websites with additional interactivity. Code written in React can coexist peacefully with markup rendered on the server by something like PHP, or with other client-side libraries. In fact, this is exactly how React is being used at Facebook.
+React でシングルページアプリケーションを構築することができますが、そうすることは必須ではありません。React は、既存のウェブサイトの小さな一部分を拡張してよりインタラクティブにするために使用することもできます。React で記述されたコードは、PHP などによりサーバーでレンダリングされたマークアップや、他のクライアントサイドのライブラリと問題なく共存できます。実際に、Facebook では React はそのように利用されています。
 
-## ES6, ES2015, ES2016, etc {#es6-es2015-es2016-etc}
+## ES6、ES2015、ES2016 など {#es6-es2015-es2016-etc}
 
-These acronyms all refer to the most recent versions of the ECMAScript Language Specification standard, which the JavaScript language is an implementation of. The ES6 version (also known as ES2015) includes many additions to the previous versions such as: arrow functions, classes, template literals, `let` and `const` statements. You can learn more about specific versions [here](https://en.wikipedia.org/wiki/ECMAScript#Versions).
+これらの頭字語は全て、ECMAScript 言語の標準仕様の最近のバージョンのことを指しており、JavaScript 言語とはこれらの仕様に対する実装です。ES6 バージョン（ES2015 とも呼ばれます）はそれ以前のバージョンから、多くのものが追加されています：アロー関数、クラス、テンプレートリテラル、`let` および `const` ステートメントなどです。特定のバージョンの詳細については[こちら](https://en.wikipedia.org/wiki/ECMAScript#Versions)で学ぶことができます。
 
-## Compilers {#compilers}
+## コンパイラ {#compilers}
 
-A JavaScript compiler takes JavaScript code, transforms it and returns JavaScript code in a different format. The most common use case is to take ES6 syntax and transform it into syntax that older browsers are capable of interpreting. [Babel](https://babeljs.io/) is the compiler most commonly used with React.
+JavaScript コンパイラは JavaScript コードを受け取って変換し、別のフォーマットの JavaScript コードを返します。最も一般的なユースケースは ES6 構文を受け取り、古いブラウザーが解釈できる構文に変換することです。Babel は React とともに利用されることが最も多いコンパイラです。
 
-## Bundlers {#bundlers}
+## バンドラ {#bundlers}
 
-Bundlers take JavaScript and CSS code written as separate modules (often hundreds of them), and combine them together into a few files better optimized for the browsers. Some bundlers commonly used in React applications include [Webpack](https://webpack.js.org/) and [Browserify](http://browserify.org/).
+バンドラは別々のモジュールとして記述された（しばしば数百個になる）JavaScript および CSS のコードを受け取り、ブラウザに最適化された数個のファイルに結合します。[Webpack](https://webpack.js.org/) や [Browserify](http://browserify.org/) を含む、いくつかのバンドラが React アプリケーションで一般的に利用されています。
 
-## Package Managers {#package-managers}
+## パッケージマネージャ {#package-managers}
 
-Package managers are tools that allow you to manage dependencies in your project. [npm](https://www.npmjs.com/) and [Yarn](https://yarnpkg.com/) are two package managers commonly used in React applications. Both of them are clients for the same npm package registry.
+パッケージ マネージャーは、プロジェクト内の依存関係を管理するためのツールです。[npm](https://www.npmjs.com/) および [Yarn](https://yarnpkg.com/) の 2 つのパッケージマネージャが React アプリケーションで一般的に利用されています。どちらも同じ npm パッケージレジストリのクライアントです。
 
 ## CDN {#cdn}
 
-CDN stands for Content Delivery Network. CDNs deliver cached, static content from a network of servers across the globe. 
+CDN は Content Delivery Network の略です。CDN はキャッシュされた静的なコンテンツをネットワーク化されたサーバから世界中に配信します。
 
 ## JSX {#jsx}
 
-JSX is a syntax extension to JavaScript. It is similar to a template language, but it has full power of JavaScript. JSX gets compiled to `React.createElement()` calls which return plain JavaScript objects called "React elements". To get a basic introduction to JSX [see the docs here](/docs/introducing-jsx.html) and find a more in-depth tutorial on JSX [here](/docs/jsx-in-depth.html).
+JSX は JavaScript の拡張構文です。テンプレート言語に似ていますが、完全に JavaScript だけで動作します。JSX は、"React 要素" と呼ばれるプレーンな JavaScript オブジェクトを返す、`React.createElement()` のコールにコンパイルされます。JSX の基本的な導入部分を学ぶには[こちらのドキュメントを参照してください](/docs/introducing-jsx.html)。また、さらに JSX について詳細に学ぶには[こちら](/docs/jsx-in-depth.html)を参照してください。
 
-React DOM uses camelCase property naming convention instead of HTML attribute names. For example, `tabindex` becomes `tabIndex` in JSX. The attribute `class` is also written as `className` since `class` is a reserved word in JavaScript:
+React DOM は HTML の属性名ではなく、キャメルケースの命名規則を使用します。例えば、`tabindex` は、JSX では `tabIndex` となります。`class` も `className` と記述されますが、これは `class` が JavaScript において予約語であるためです：
 
 ```js
 const name = 'Clementine';
@@ -45,21 +45,21 @@ ReactDOM.render(
   <h1 className="hello">My name is {name}!</h1>,
   document.getElementById('root')
 );
-```  
+```
 
-## [Elements](/docs/rendering-elements.html) {#elements}
+## [要素](/docs/rendering-elements.html) {#elements}
 
-React elements are the building blocks of React applications. One might confuse elements with a more widely known concept of "components". An element describes what you want to see on the screen. React elements are immutable.
+React 要素は React アプリケーションを構成するブロックです。要素を、より広く知られている概念である "コンポーネント" と混同する人もいるかもしれません。要素はあなたが画面上に表示したいものの説明書きとなるものです。React 要素はイミュータブルです。
 
 ```js
 const element = <h1>Hello, world</h1>;
 ```
 
-Typically, elements are not used directly, but get returned from components.
+通常、要素は直接使用されるものではなく、コンポーネントから返されるものです。
 
-## [Components](/docs/components-and-props.html) {#components}
+## [コンポーネント](/docs/components-and-props.html) {#components}
 
-React components are small, reusable pieces of code that return a React element to be rendered to the page. The simplest version of React component is a plain JavaScript function that returns a React element:
+React のコンポーネントとは、ページに表示される React 要素を返す、小さく再利用可能なコードのことです。もっともシンプルな形の React コンポーネントは、React 要素を返すプレーンな JavaScript 関数です：
 
 ```js
 function Welcome(props) {
@@ -67,7 +67,7 @@ function Welcome(props) {
 }
 ```
 
-Components can also be ES6 classes:
+コンポーネントは ES6 クラスであることもあります：
 
 ```js
 class Welcome extends React.Component {
@@ -77,30 +77,30 @@ class Welcome extends React.Component {
 }
 ```
 
-Components can be broken down into distinct pieces of functionality and used within other components. Components can return other components, arrays, strings and numbers. A good rule of thumb is that if a part of your UI is used several times (Button, Panel, Avatar), or is complex enough on its own (App, FeedStory, Comment), it is a good candidate to be a reusable component. Component names should also always start with a capital letter (`<Wrapper/>` **not** `<wrapper/>`). See [this documentation](/docs/components-and-props.html#rendering-a-component) for more information on rendering components. 
+コンポーネントは機能的に異なる部品に分割でき、他のコンポーネントの中で使用することができます。コンポーネントは別のコンポーネント、配列、文字列および数値を返すことができます。役に立つ経験則として、UI の一部（Button、Panel、Avatar など）が複数回使われている場合、または UI の一部が独立できるほど複雑（App、FeedStory、Comment など）な場合、それらは再利用可能なコンポーネントの有力な候補であるといえます。コンポーネント名は常に大文字で始める必要があります（`<wrapper/>` ではなく `<Wrapper/>` とすること）。コンポーネントのレンダーについての詳細は[このドキュメント](/docs/components-and-props.html#rendering-a-component)を参照してください。
 
 ### [`props`](/docs/components-and-props.html) {#props}
 
-`props` are inputs to a React component. They are data passed down from a parent component to a child component.
+`props` は、React コンポーネントへの入力のことです。親コンポーネントから子コンポーネントへと順番に渡されるようなデータです。
 
-Remember that `props` are readonly. They should not be modified in any way:
+`props` は読み取り専用です。どのような形であれ変更されるべきではありません：
 
 ```js
-// Wrong!
+// 間違った例
 props.number = 42;
 ```
 
-If you need to modify some value in response to user input or a network response, use `state` instead.
+ある値を、ユーザの入力やネットワークのレスポンスに応じて変更する必要がある場合は、代わりに state を使用してください。
 
 ### `props.children` {#propschildren}
 
-`props.children` is available on every component. It contains the content between the opening and closing tags of a component. For example:
+`props.children` は全てのコンポーネントで使用可能です。これには、コンポーネントの開始タグと終了タグの間の全てのコンテンツが含まれています。例えば：
 
 ```js
 <Welcome>Hello world!</Welcome>
 ```
 
-The string `Hello world!` is available in `props.children` in the `Welcome` component:
+文字列 `Hello world!` は `Welcome` コンポーネントの `props.children` で利用できます：
 
 ```js
 function Welcome(props) {
@@ -108,7 +108,7 @@ function Welcome(props) {
 }
 ```
 
-For components defined as classes, use `this.props.children`:
+クラスとして定義されたコンポーネントでは、`this.props.children` を使用してください：
 
 ```js
 class Welcome extends React.Component {
@@ -120,47 +120,47 @@ class Welcome extends React.Component {
 
 ### [`state`](/docs/state-and-lifecycle.html#adding-local-state-to-a-class) {#state}
 
-A component needs `state` when some data associated with it changes over time. For example, a `Checkbox` component might need `isChecked` in its state, and a `NewsFeed` component might want to keep track of `fetchedPosts` in its state.
+あるコンポーネントが時間とともに変化するデータと関連付けられている場合は、`state` が必要です。例えば、`Checkbox` というコンポーネントはその state に `isChecked` が必要となるかもしれません。また `NewsFeed` というコンポーネントは `fetchedPosts` を state に入れて管理したいかもしれません。
 
-The most important difference between `state` and `props` is that `props` are passed from a parent component, but `state` is managed by the component itself. A component cannot change its `props`, but it can change its `state`.
+`state` と `props` の最も重要な違いは、`props` は親コンポーネントから渡されますが、`state` はコンポーネント自身によって管理されるということです。コンポーネントは自身の `props` を変更できませんが、`state` を変更することはできます。
 
-For each particular piece of changing data, there should be just one component that "owns" it in its state. Don't try to synchronize states of two different components. Instead, [lift it up](/docs/lifting-state-up.html) to their closest shared ancestor, and pass it down as props to both of them.
+経時的に変化するそれぞれのデータについて、それを state として「所有する」コンポーネントは 1 つだけであるべきです。2 つの異なるコンポーネントの state を同期しようとしないでください。代わりに、それらの直近の共通祖先コンポーネントに state を[リフトアップ](/docs/lifting-state-up.html) して、両方に props として渡してください。
 
-## [Lifecycle Methods](/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class) {#lifecycle-methods}
+## [ライフサイクルメソッド](/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class) {#lifecycle-methods}
 
-Lifecycle methods are custom functionality that gets executed during the different phases of a component. There are methods available when the component gets created and inserted into the DOM ([mounting](/docs/react-component.html#mounting)), when the component updates, and when the component gets unmounted or removed from the DOM.
+ライフサイクルメソッドは、コンポーネントの様々なフェーズにおいて実行される特別な関数です。コンポーネントが作成されて DOM に挿入（[マウント](/docs/react-component.html#mounting)）された時、コンポーネントが更新された時、コンポーネントが DOM からアンマウント（つまり削除）された時のそれぞれで、利用可能なメソッドがあります。
 
- ## [Controlled](/docs/forms.html#controlled-components) vs. [Uncontrolled Components](/docs/uncontrolled-components.html)
+## [制御されたコンポーネント](/docs/forms.html#controlled-components) vs. [非制御コンポーネント](/docs/uncontrolled-components.html)
 
-React has two different approaches to dealing with form inputs. 
+React では、フォームの入力を扱うのに 2 つの異なるアプローチがあります。
 
-An input form element whose value is controlled by React is called a *controlled component*. When a user enters data into a controlled component a change event handler is triggered and your code decides whether the input is valid (by re-rendering with the updated value). If you do not re-render then the form element will remain unchanged.
+React によって値が制御される入力フォーム要素は *制御されたコンポーネント* (controlled component) と呼ばれます。ユーザが制御されたコンポーネントにデータを入力すると、変更イベントハンドラがトリガーされ、コードが入力が有効であるか（更新された値で再レンダリングすることで）決定します。再レンダリングしなければフォーム要素は変更されないままとなります。
 
-An *uncontrolled component* works like form elements do outside of React. When a user inputs data into a form field (an input box, dropdown, etc) the updated information is reflected without React needing to do anything. However, this also means that you can't force the field to have a certain value.
+*非制御コンポーネント* (uncontrolled component) は React の管理外にあるフォーム要素と同様に動作します。ユーザがフォームフィールド（入力ボックス、ドロップダウンなど）にデータを入力した場合、更新された情報が反映され、その際に React は何もする必要がありません。しかし、このことはフィールドに特定の値を設定できないということでもあります。
 
-In most cases you should use controlled components.
+ほとんどの場合では、制御されたコンポーネントを使用するべきでしょう。
 
-## [Keys](/docs/lists-and-keys.html) {#keys}
+## [key](/docs/lists-and-keys.html) {#keys}
 
-A "key" is a special string attribute you need to include when creating arrays of elements. Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside an array to give the elements a stable identity.
+"key" は特別な文字列の属性で、要素の配列を作成する際に含めておく必要があります。key は React がどの要素が変更、追加もしくは削除されたかを識別するのに役立ちます。key は配列内の要素に安定した一意性を与えるよう設定されるべきです。
 
-Keys only need to be unique among sibling elements in the same array. They don't need to be unique across the whole application or even a single component.
+key は同じ配列内の兄弟要素間で一意としなければなりません。アプリケーション全体、単一のコンポーネントに渡ってすべて一意である必要はありません。
 
-Don't pass something like `Math.random()` to keys. It is important that keys have a "stable identity" across re-renders so that React can determine when items are added, removed, or re-ordered. Ideally, keys should correspond to unique and stable identifiers coming from your data, such as `post.id`.
+`Math.random()` のようなものを key として設定しないでください。key には再レンダリングをまたいだ「安定した一意性」を持たせることで、要素の追加、削除および並べ替えがあった時に React が識別できることが重要です。理想的には key は `post.id` のように、データから得られる一意で安定した識別子に対応するべきです。
 
-## [Refs](/docs/refs-and-the-dom.html) {#refs}
+## [ref](/docs/refs-and-the-dom.html) {#refs}
 
-React supports a special attribute that you can attach to any component. The `ref` attribute can be an object created by [`React.createRef()` function](/docs/react-api.html#reactcreateref) or a callback function, or a string (in legacy API). When the `ref` attribute is a callback function, the function receives the underlying DOM element or class instance (depending on the type of element) as its argument. This allows you to have direct access to the DOM element or component instance.
+React は任意のコンポーネントに追加できる特別な属性をサポートしています。`ref` 属性は、[`React.createRef()` 関数](/docs/react-api.html#reactcreateref)、コールバック関数、あるいは（古い API では）文字列によって生成されるオブジェクトです。`ref` 属性がコールバック関数の場合、その関数は引数として（要素の種類によって）DOM 要素またはクラスインスタンスを受け取ります。これによって、DOM 要素またはコンポーネントのインスタンスへと直接アクセスできます。
 
-Use refs sparingly. If you find yourself often using refs to "make things happen" in your app, consider getting more familiar with [top-down data flow](/docs/lifting-state-up.html).
+ref は消極的に利用してください。アプリケーション内で何かを実行するために ref を頻繁に使用している場合、[トップダウンのデータフロー](/docs/lifting-state-up.html)に慣れ親しむことを検討してください。
 
-## [Events](/docs/handling-events.html) {#events}
+## [イベント](/docs/handling-events.html) {#events}
 
-Handling events with React elements has some syntactic differences:
+React 要素でイベントを扱う場合には、構文上の違いがあります：
 
-* React event handlers are named using camelCase, rather than lowercase.
-* With JSX you pass a function as the event handler, rather than a string.
+* React のイベントハンドラは小文字ではなく、キャメルケースで名前が付けられます。
+* JSX ではイベントハンドラとして文字列ではなく関数を渡します。
 
-## [Reconciliation](/docs/reconciliation.html) {#reconciliation}
+## [リコンシリエーション（更新検出処理）](/docs/reconciliation.html) {#reconciliation}
 
-When a component's props or state change, React decides whether an actual DOM update is necessary by comparing the newly returned element with the previously rendered one. When they are not equal, React will update the DOM. This process is called "reconciliation".
+コンポーネントの props か state が変更された場合、React は新しく返された要素を以前にレンダーされた要素と比較することで、本物の DOM の更新が必要かを判断します。それらが等しくない場合、React は DOM を更新します。このプロセスを "リコンシリエーション (reconciliation)" と呼びます。

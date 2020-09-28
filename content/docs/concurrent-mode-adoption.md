@@ -1,6 +1,6 @@
 ---
 id: concurrent-mode-adoption
-title: Adopting Concurrent Mode (Experimental)
+title: 並列モードの利用開始 (実験的機能)
 permalink: docs/concurrent-mode-adoption.html
 prev: concurrent-mode-patterns.html
 next: concurrent-mode-reference.html
@@ -15,52 +15,52 @@ next: concurrent-mode-reference.html
 
 <div class="scary">
 
->Caution:
+>警告:
 >
->This page describes **experimental features that are not yet available in a stable release**. Don't rely on experimental builds of React in production apps. These features may change significantly and without a warning before they become a part of React.
+> このページでは**安定リリースで[まだ利用できない](/docs/concurrent-mode-adoption.html)実験的機能**を説明しています。本番のアプリケーションで React の実験的ビルドを利用しないでください。これらの機能は React の一部となる前に警告なく大幅に変更される可能性があります。
 >
->This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now.
+> このドキュメントは興味のある読者やアーリーアダプター向けのものです。**React が初めての方はこれらの機能を気にしないで構いません** -- 今すぐに学ぶ必要はありません。
 
 </div>
 
-- [Installation](#installation)
-  - [Who Is This Experimental Release For?](#who-is-this-experimental-release-for)
-  - [Enabling Concurrent Mode](#enabling-concurrent-mode)
-- [What to Expect](#what-to-expect)
-  - [Migration Step: Blocking Mode](#migration-step-blocking-mode)
-  - [Why So Many Modes?](#why-so-many-modes)
-  - [Feature Comparison](#feature-comparison)
+- [インストール](#installation)
+  - [この実験的リリースは誰のためのものか？](#who-is-this-experimental-release-for)
+  - [並列モードの有効化](#enabling-concurrent-mode)
+- [期待されること](#what-to-expect)
+  - [移行ステップ：ブロッキングモード](#migration-step-blocking-mode)
+  - [何故こんなにモードがあるのか？](#why-so-many-modes)
+  - [機能の比較](#feature-comparison)
 
-## Installation {#installation}
+## インストール {#installation}
 
-Concurrent Mode is only available in the [experimental builds](/blog/2019/10/22/react-release-channels.html#experimental-channel) of React. To install them, run:
+並列モードは React の[実験的ビルド (experimental build)](/blog/2019/10/22/react-release-channels.html#experimental-channel) でのみ利用可能です。インストールするには以下を実行してください：
 
 ```
 npm install react@experimental react-dom@experimental
 ```
 
-**There are no semantic versioning guarantees for the experimental builds.**  
-APIs may be added, changed, or removed with any `@experimental` release.
+**実験的ビルドにはセマンティック・バージョニングに準拠するという保証がありません。**  
+API は `@experimental` のどのリリースにおいても追加・変更・削除される可能性があります。
 
-**Experimental releases will have frequent breaking changes.**
+**実験的ビルドは破壊的変更が頻繁に起こります。**
 
-You can try these builds on personal projects or in a branch, but we don't recommend running them in production. At Facebook, we *do* run them in production, but that's because we're also there to fix bugs when something breaks. You've been warned!
+これらのビルドを個人的プロジェクトやブランチで試すのは構いませんが、本番環境で実行することは推奨しません。Facebook では実際に本番環境で実行しているのですが、それは何かが壊れた時に直せるよう我々もそこにいるからです。警告はしましたよ！
 
-### Who Is This Experimental Release For? {#who-is-this-experimental-release-for}
+### この実験的リリースは誰のためのものか？ {#who-is-this-experimental-release-for}
 
-This release is primarily aimed at early adopters, library authors, and curious people.
+このリリースは主にアーリーアダプター、ライブラリ作者、その他興味がある人向けです。
 
-We're using this code in production (and it works for us) but there are still some bugs, missing features, and gaps in the documentation. We'd like to hear more about what breaks in Concurrent Mode so we can better prepare it for an official stable release in the future.
+我々はこのコードを本番環境で使っています（我々のところでは動いています）が、まだいくつかのバグや欠けている機能、ドキュメントとの齟齬があります。将来の公式安定リリースに向けてよりよい準備ができるよう、並列モードでどこが壊れるのかについてもっと意見を集めたいと思っています。
 
-### Enabling Concurrent Mode {#enabling-concurrent-mode}
+### 並列モードの有効化 {#enabling-concurrent-mode}
 
-Normally, when we add features to React, you can start using them immediately. Fragments, Context, and even Hooks are examples of such features. You can use them in new code without making any changes to the existing code.
+通常、React に機能を加える際は、それをすぐ使い始めることができます。フラグメント、コンテクスト、そしてフックですら、そのような機能の例です。既存のコードに何ら変更を加えずに新しいコードで使うことができます。
 
-Concurrent Mode is different. It introduces semantic changes to how React works. Otherwise, the [new features](/docs/concurrent-mode-patterns.html) enabled by it *wouldn't be possible*. This is why they're grouped into a new "mode" rather than released one by one in isolation.
+並列モードは違います。React がどのように動作するのかについて意味上の変更が行われています。そうしなければ並列モードで有効になる[新機能](/docs/concurrent-mode-patterns.html)は*実現不可能だった*でしょう。これが、新機能がひとつずつ分離してリリースされるのではなく、新しい「モード」としてグループ化されている理由です。
 
-You can't opt into Concurrent Mode on a per-subtree basis. Instead, to opt in, you have to do it in the place where today you call `ReactDOM.render()`.
+サブツリーごとの単位で並列モードを使い始めることはできません。代わりに、オプトインするには、現在 `ReactDOM.render()` を呼んでいる場所で行う必要があります。
 
-**This will enable Concurrent Mode for the whole `<App />` tree:**
+**これにより並列モードが `<App />` のツリー全体で有効化されます：**
 
 ```js
 import ReactDOM from 'react-dom';
@@ -76,37 +76,37 @@ ReactDOM.unstable_createRoot(
 ).render(<App />);
 ```
 
->Note:
+> 補足:
 >
->Concurrent Mode APIs such as `createRoot` only exist in the experimental builds of React.
+> `createRoot` のような並列モードの API は React の実験的ビルドにのみ存在しています。
 
-In Concurrent Mode, the lifecycle methods [previously marked](/blog/2018/03/27/update-on-async-rendering.html) as "unsafe" actually *are* unsafe, and lead to bugs even more than in today's React. We don't recommend trying Concurrent Mode until your app is [Strict Mode](/docs/strict-mode.html)-compatible.
+並列モードでは、"unsafe" であると[以前にマークされている](/blog/2018/03/27/update-on-async-rendering.html)ライフサイクルメソッドは*本当に*安全ではなくなっており、現行の React よりもさらに多くのバグを引き起こします。あなたのアプリケーションが [Strict Mode](/docs/strict-mode.html) 互換になっていない限り、並列モードを試すことは勧められません。
 
-## What to Expect {#what-to-expect}
+## 期待されること {#what-to-expect}
 
-If you have a large existing app, or if your app depends on a lot of third-party packages, please don't expect that you can use the Concurrent Mode immediately. **For example, at Facebook we are using Concurrent Mode for the new website, but we're not planning to enable it on the old website.** This is because our old website still uses unsafe lifecycle methods in the product code, incompatible third-party libraries, and patterns that don't work well with the Concurrent Mode.
+もし大きな既存のアプリケーションがあるか、あなたのアプリケーションが多くのサードパーティのパッケージに依存している場合、並列モードがすぐに使えるとは期待しないでください。**例えば、Facebook では新ウェブサイトで並列モードを使っていますが、旧サイトで有効化する予定はありません。**これは我々の旧サイトでは依然 unsafe なライフライクルメソッドや互換性のないサードパーティのライブラリ、並列モードではうまく動かないパターンが本番コードで使われているからです。
 
-In our experience, code that uses idiomatic React patterns and doesn't rely on external state management solutions is the easiest to get running in the Concurrent Mode. We will describe common problems we've seen and the solutions to them separately in the coming weeks.
+我々の経験上、理想的な React のパターンを利用し、外部の状態管理ソリューションに依存していないコードが、並列モードで最も動作させやすくなっています。向こう数週で、我々が見てきたよくある問題やそれらの解決方法について個別に説明していく予定です。
 
-### Migration Step: Blocking Mode {#migration-step-blocking-mode}
+### 移行ステップ：ブロッキングモード {#migration-step-blocking-mode}
 
-For older codebases, Concurrent Mode might be a step too far. This is why we also provide a new "Blocking Mode" in the experimental React builds. You can try it by substituting `createRoot` with `createBlockingRoot`. It only offers a *small subset* of the Concurrent Mode features, but it is closer to how React works today and can serve as a migration step.
+古いコードベースにとって、並列モードはあまりにかけ離れたステップになっているかもしれません。このため、実験用 React ビルドは新たな "ブロッキングモード (Blocking Mode)" を提供しています。これは `createRoot` を `createBlockingRoot` で置き換えることで試すことができます。これは並列モードの機能の*小さなサブセット*のみを提供しますが、現行の React の動作に近いため、移行用のステップとして利用することができます。
 
-To recap:
+まとめると：
 
-* **Legacy Mode:** `ReactDOM.render(<App />, rootNode)`. This is what React apps use today. There are no plans to remove the legacy mode in the observable future — but it won't be able to support these new features.
-* **Blocking Mode:** `ReactDOM.createBlockingRoot(rootNode).render(<App />)`. It is currently experimental. It is intended as a first migration step for apps that want to get a subset of Concurrent Mode features.
-* **Concurrent Mode:** `ReactDOM.createRoot(rootNode).render(<App />)`. It is currently experimental. In the future, after it stabilizes, we intend to make it the default React mode. This mode enables *all* the new features.
+* **レガシーモード：**`ReactDOM.render(<App />, rootNode)`. 現行の React アプリケーションが使っているものです。予見可能な範囲でレガシーモードを削除する予定はありません。しかし新機能をサポートすることはできません。
+* **ブロッキングモード：**`ReactDOM.createBlockingRoot(rootNode).render(<App />)`. 現在は実験用です。並列モードの機能の一部を使いたい場合の移行用ステップとして使われることが意図されています。
+* **並列モード：**`ReactDOM.createRoot(rootNode).render(<App />)`. 現在は実験用です。将来的に安定した後でデフォルトの React モードになることが意図されています。新機能の*すべて*が有効になります。
 
-### Why So Many Modes? {#why-so-many-modes}
+### 何故こんなにモードがあるのか？ {#why-so-many-modes}
 
-We think it is better to offer a [gradual migration strategy](/docs/faq-versioning.html#commitment-to-stability) than to make huge breaking changes — or to let React stagnate into irrelevance.
+[段階的な移行方法](/docs/faq-versioning.html#commitment-to-stability)を提供することが望ましいと考えているからです -- さもなくば React の成長は止まり、使われないものになってしまうでしょう。
 
-In practice, we expect that most apps using Legacy Mode today should be able to migrate at least to the Blocking Mode (if not Concurrent Mode). This fragmentation can be annoying for libraries that aim to support all Modes in the short term. However, gradually moving the ecosystem away from the Legacy Mode will also *solve* problems that affect major libraries in the React ecosystem, such as [confusing Suspense behavior when reading layout](https://github.com/facebook/react/issues/14536) and [lack of consistent batching guarantees](https://github.com/facebook/react/issues/15080). There's a number of bugs that can't be fixed in Legacy Mode without changing semantics, but don't exist in Blocking and Concurrent Modes.
+現実的には、現在レガシーモードを利用しているほとんどのアプリケーションは、（並列モードは難しくとも）少なくともブロッキングモードには移行可能であると期待しています。このような分断化は、すべてのモードをサポートしようとするライブラリにとって短期的には煩わしいものかもしれません。しかし、エコシステムを徐々にレガシーモードから移行させることによって、[レイアウトを読み出す際の混乱を招くサスペンスの挙動](https://github.com/facebook/react/issues/14536)や[一貫性のあるバッチ保証の欠如](https://github.com/facebook/react/issues/15080)といった、著名ライブラリに影響する問題を*解決する*ことにもなります。レガシーモードではコードの意味を変えずには修正不可能だったが、ブロッキングモードや並列モードには存在しないというバグが数多くあります。
 
-You can think of the Blocking Mode as a "gracefully degraded" version of the Concurrent Mode. **As a result, in longer term we should be able to converge and stop thinking about different Modes altogether.** But for now, Modes are an important migration strategy. They let everyone decide when a migration is worth it, and upgrade at their own pace.
+ブロッキングモードは並列モードが「うまく劣化した」バージョンであると考えることができます。**そのため、長期的には移行が完了でき、異なるモードについて考える必要が全くなくなるはずです。**しかし今のところは、モードの存在は移行のための重要な戦略です。これにより全員がマイグレーションに価値があるかを決められるようになり、個々のペースでアップグレードが行えるようになります。
 
-### Feature Comparison {#feature-comparison}
+### 機能の比較 {#feature-comparison}
 
 <style>
   #feature-table table { border-collapse: collapse; }
@@ -116,10 +116,10 @@ You can think of the Blocking Mode as a "gracefully degraded" version of the Con
 
 <div id="feature-table">
 
-|   |Legacy Mode  |Blocking Mode  |Concurrent Mode  |
+|   |レガシーモード  |ブロッキングモード  |並列モード  |
 |---  |---  |---  |---  |
-|[String Refs](/docs/refs-and-the-dom.html#legacy-api-string-refs)  |✅  |🚫**  |🚫**  |
-|[Legacy Context](/docs/legacy-context.html) |✅  |🚫**  |🚫**  |
+|[文字列 Ref](/docs/refs-and-the-dom.html#legacy-api-string-refs)  |✅  |🚫**  |🚫**  |
+|[レガシー版コンテクスト](/docs/legacy-context.html) |✅  |🚫**  |🚫**  |
 |[findDOMNode](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)  |✅  |🚫**  |🚫**  |
 |[Suspense](/docs/concurrent-mode-suspense.html#what-is-suspense-exactly) |✅  |✅  |✅  |
 |[SuspenseList](/docs/concurrent-mode-patterns.html#suspenselist) |🚫  |✅  |✅  |
@@ -128,14 +128,14 @@ You can think of the Blocking Mode as a "gracefully degraded" version of the Con
 |Selective Hydration  |🚫  |🚫  |✅  |
 |Cooperative Multitasking |🚫  |🚫  |✅  |
 |Automatic batching of multiple setStates     |🚫* |✅  |✅  |
-|[Priority-based Rendering](/docs/concurrent-mode-patterns.html#splitting-high-and-low-priority-state) |🚫  |🚫  |✅  |
-|[Interruptible Prerendering](/docs/concurrent-mode-intro.html#interruptible-rendering) |🚫  |🚫  |✅  |
+|[優先度ベースのレンダー](/docs/concurrent-mode-patterns.html#splitting-high-and-low-priority-state) |🚫  |🚫  |✅  |
+|[中断可能なプリレンダリング](/docs/concurrent-mode-intro.html#interruptible-rendering) |🚫  |🚫  |✅  |
 |[useTransition](/docs/concurrent-mode-patterns.html#transitions)  |🚫  |🚫  |✅  |
 |[useDeferredValue](/docs/concurrent-mode-patterns.html#deferring-a-value) |🚫  |🚫  |✅  |
-|[Suspense Reveal "Train"](/docs/concurrent-mode-patterns.html#suspense-reveal-train)  |🚫  |🚫  |✅  |
+|[「電車式」サスペンス開放](/docs/concurrent-mode-patterns.html#suspense-reveal-train)  |🚫  |🚫  |✅  |
 
 </div>
 
-\*: Legacy mode has automatic batching in React-managed events but it's limited to one browser task. Non-React events must opt-in using `unstable_batchedUpdates`. In Blocking Mode and Concurrent Mode, all `setState`s are batched by default.
+\*: レガシーモードには React で管理されるイベントの自動的なバッチ処理がありますが、単一のブラウザタスクに制限されています。非 React のイベントは `unstable_batchedUpdates` を使ってオプトインする必要があります。ブロッキングモードと並列モードではすべての `setState` は自動でバッチ化されます。
 
-\*\*: Warns in development.
+\*\*: 開発モードでは警告を表示します。

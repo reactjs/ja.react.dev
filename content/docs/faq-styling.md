@@ -1,14 +1,14 @@
 ---
 id: faq-styling
-title: Styling and CSS
+title: CSS とスタイルの使用
 permalink: docs/faq-styling.html
 layout: docs
 category: FAQ
 ---
 
-### How do I add CSS classes to components? {#how-do-i-add-css-classes-to-components}
+### CSS のクラスをコンポーネントに適用するにはどうすれば？ {#how-do-i-add-css-classes-to-components}
 
-Pass a string as the `className` prop:
+このようにクラス名を文字列として `className` プロパティに与えてください。
 
 ```jsx
 render() {
@@ -16,7 +16,7 @@ render() {
 }
 ```
 
-It is common for CSS classes to depend on the component props or state:
+このようにコンポーネントの props や state の状態を元に CSS クラスを割り当てる方法もよく使用されています。
 
 ```jsx
 render() {
@@ -28,24 +28,24 @@ render() {
 }
 ```
 
->Tip
+>ヒント
 >
->If you often find yourself writing code like this, [classnames](https://www.npmjs.com/package/classnames#usage-with-reactjs) package can simplify it.
+>もしあなたが上記のようなコードを書くことが多い場合、[classnames](https://www.npmjs.com/package/classnames#usage-with-reactjs) という npm パッケージを使うことで簡略化できます。
 
-### Can I use inline styles? {#can-i-use-inline-styles}
+### インラインスタイルは使えますか？ {#can-i-use-inline-styles}
 
-Yes, see the docs on styling [here](/docs/dom-elements.html#style).
+はい、スタイルの書き方については[この資料](/docs/dom-elements.html#style)をご覧ください。
 
-### Are inline styles bad? {#are-inline-styles-bad}
+### インラインスタイルは悪なの？ {#are-inline-styles-bad}
 
-CSS classes are generally better for performance than inline styles.
+パフォーマンス観点から言えば、基本的に CSS クラスを使う方が、インラインスタイルを用いるよりも優れています。
 
-### What is CSS-in-JS? {#what-is-css-in-js}
+### CSS-in-JS とは? {#what-is-css-in-js}
 
-"CSS-in-JS" refers to a pattern where CSS is composed using JavaScript instead of defined in external files.
+"CSS-in-JS" とは外部ファイルでスタイルを定義するのとは違い、JavaScript を用いて CSS を生成するパターンのことを指します。
 
-_Note that this functionality is not a part of React, but provided by third-party libraries._ React does not have an opinion about how styles are defined; if in doubt, a good starting point is to define your styles in a separate `*.css` file as usual and refer to them using [`className`](/docs/dom-elements.html#classname).
+_注意：この機能は React の一部ではありません。サードパーティのライブラリ群により提供される機能です。_React はスタイルがどのように定義されているかには関心を持ちません。判断に困った場合は、まずは別の `*.css` にスタイルを定義して、[`className`](/docs/dom-elements.html#classname) を使って参照するところからはじめると良いでしょう。
 
-### Can I do animations in React? {#can-i-do-animations-in-react}
+### React でアニメーションは使えますか？ {#can-i-do-animations-in-react}
 
-React can be used to power animations. See [React Transition Group](https://reactcommunity.org/react-transition-group/) and [React Motion](https://github.com/chenglou/react-motion) or [React Spring](https://github.com/react-spring/react-spring), for example.
+React を使ってアニメーションを動かすことは可能です。例として、[React Transition Group](https://reactcommunity.org/react-transition-group/) や [React Motion](https://github.com/chenglou/react-motion)、[React Spring](https://github.com/react-spring/react-spring) をご覧ください。

@@ -1,10 +1,10 @@
 ---
 id: react-without-es6
-title: React Without ES6
+title: ES6 なしで React を使う
 permalink: docs/react-without-es6.html
 ---
 
-Normally you would define a React component as a plain JavaScript class:
+通常、React コンポーネントはプレーンな JavaScript クラスとして定義されます。
 
 ```javascript
 class Greeting extends React.Component {
@@ -14,8 +14,7 @@ class Greeting extends React.Component {
 }
 ```
 
-If you don't use ES6 yet, you may use the `create-react-class` module instead:
-
+もしあなたがまだ ES6 を使っていないのであれば、代わりに `create-react-class` モジュールを使うことができます。
 
 ```javascript
 var createReactClass = require('create-react-class');
@@ -26,11 +25,11 @@ var Greeting = createReactClass({
 });
 ```
 
-The API of ES6 classes is similar to `createReactClass()` with a few exceptions.
+ES6 のクラス API は `createReactClass()` とよく似ていますが、いくつかの例外があります。
 
-## Declaring Default Props {#declaring-default-props}
+## デフォルト props の宣言 {#declaring-default-props}
 
-With functions and ES6 classes `defaultProps` is defined as a property on the component itself:
+関数や ES6 クラスでは、`defaultProps` はコンポーネント自体のプロパティとして定義されます。
 
 ```javascript
 class Greeting extends React.Component {
@@ -42,7 +41,7 @@ Greeting.defaultProps = {
 };
 ```
 
-With `createReactClass()`, you need to define `getDefaultProps()` as a function on the passed object:
+`createReactClass()` の場合、渡されるオブジェクト内の関数として `getDefaultProps()` を定義する必要があります。
 
 ```javascript
 var Greeting = createReactClass({
@@ -57,9 +56,9 @@ var Greeting = createReactClass({
 });
 ```
 
-## Setting the Initial State {#setting-the-initial-state}
+## state の初期値の設定 {#setting-the-initial-state}
 
-In ES6 classes, you can define the initial state by assigning `this.state` in the constructor:
+ES6 クラスでは、コンストラクタで `this.state` へ代入することで state の初期値を定義できます。
 
 ```javascript
 class Counter extends React.Component {
@@ -71,7 +70,7 @@ class Counter extends React.Component {
 }
 ```
 
-With `createReactClass()`, you have to provide a separate `getInitialState` method that returns the initial state:
+`createReactClass()` の場合、state の初期値を返す `getInitialState` メソッドを別途用意しなければなりません。
 
 ```javascript
 var Counter = createReactClass({
@@ -82,9 +81,9 @@ var Counter = createReactClass({
 });
 ```
 
-## Autobinding {#autobinding}
+## 自動バインド {#autobinding}
 
-In React components declared as ES6 classes, methods follow the same semantics as regular ES6 classes. This means that they don't automatically bind `this` to the instance. You'll have to explicitly use `.bind(this)` in the constructor:
+ES6 クラスとして宣言された React コンポーネントでは、メソッドは通常の ES6 クラスと同様のセマンティクスに従います。つまり、`this` がそのインスタンスへ自動的にバインドされることはありません。コンストラクタで明示的に `.bind(this)` を利用する必要があります。
 
 ```javascript
 class SayHello extends React.Component {
@@ -110,7 +109,7 @@ class SayHello extends React.Component {
 }
 ```
 
-With `createReactClass()`, this is not necessary because it binds all methods:
+`createReactClass()` の場合は全てのメソッドがバインドされるため、明示的なバインドは必要ありません。
 
 ```javascript
 var SayHello = createReactClass({
@@ -132,10 +131,9 @@ var SayHello = createReactClass({
 });
 ```
 
-This means writing ES6 classes comes with a little more boilerplate code for event handlers, but the upside is slightly better performance in large applications.
+これはつまり、ES6 クラスで書くとイベントハンドラのための定型文が少し多くなってしまうということなのですが、一方では大きなアプリケーションの場合にわずかながらパフォーマンスが向上するという側面もあります。
 
-If the boilerplate code is too unattractive to you, you may enable the **experimental** [Class Properties](https://babeljs.io/docs/plugins/transform-class-properties/) syntax proposal with Babel:
-
+この定型文的コードがあまりに醜く感じられる場合、Babel を使って**実験的**な [Class Properties](https://babeljs.io/docs/plugins/transform-class-properties/) 構文提案を有効にするとよいかもしれません。
 
 ```javascript
 class SayHello extends React.Component {
@@ -159,27 +157,27 @@ class SayHello extends React.Component {
 }
 ```
 
-Please note that the syntax above is **experimental** and the syntax may change, or the proposal might not make it into the language.
+上記の構文は**実験的**なものであり、構文が変わるかもしれないこと、あるいは言語に取り入れられないかもしれないことに留意してください。
 
-If you'd rather play it safe, you have a few options:
+安全にやりたい場合は他の選択肢もあります。
 
-* Bind methods in the constructor.
-* Use arrow functions, e.g. `onClick={(e) => this.handleClick(e)}`.
-* Keep using `createReactClass`.
+* コンストラクタでメソッドをバインドする。
+* 例えば `onClick={(e) => this.handleClick(e)}` のような形でアロー関数を利用する。
+* 引き続き `createReactClass` を利用する。
 
-## Mixins {#mixins}
+## ミックスイン {#mixins}
 
->**Note:**
+>**補足：**
 >
->ES6 launched without any mixin support. Therefore, there is no support for mixins when you use React with ES6 classes.
+>ES6 はミックスインのサポートを含んでいません。従って、React を ES6 クラスで使う場合にミックスインのサポートはありません。
 >
->**We also found numerous issues in codebases using mixins, [and don't recommend using them in the new code](/blog/2016/07/13/mixins-considered-harmful.html).**
+>**加えて、ミックスインを用いたコードによる多くの問題が見つかっており、[新規コードで利用することは推奨されません](/blog/2016/07/13/mixins-considered-harmful.html)。**
 >
->This section exists only for the reference.
+>この節は参考のためだけに存在します。
 
-Sometimes very different components may share some common functionality. These are sometimes called [cross-cutting concerns](https://en.wikipedia.org/wiki/Cross-cutting_concern). `createReactClass` lets you use a legacy `mixins` system for that.
+時には同じ機能が全く異なるコンポーネント間で共有されることがあります。これは[横断的関心事 (cross-cutting concerns)](https://en.wikipedia.org/wiki/Cross-cutting_concern) と呼ばれることがあります。`createReactClass` であれば、横断的関心事のためにレガシーな `mixins` 機能を使うことができます。
 
-One common use case is a component wanting to update itself on a time interval. It's easy to use `setInterval()`, but it's important to cancel your interval when you don't need it anymore to save memory. React provides [lifecycle methods](/docs/react-component.html#the-component-lifecycle) that let you know when a component is about to be created or destroyed. Let's create a simple mixin that uses these methods to provide an easy `setInterval()` function that will automatically get cleaned up when your component is destroyed.
+よくある利用例のひとつは、一定時間ごとに自分自身を更新するコンポーネントです。`setInterval()` を使うのは簡単ですが、その場合はメモリ節約のため、コンポーネントが不要になった際にキャンセルすることが重要です。React は[ライフサイクルメソッド](/docs/react-component.html#the-component-lifecycle)を提供しており、コンポーネントが生成、破棄されるときに知らせてくれます。次のようなシンプルなミックスインを作ってみましょう。このミックスインのメソッドは簡単な `setInterval()` 機能を提供し、コンポーネントが破棄されるタイミングで自動的にクリーンアップされます。
 
 ```javascript
 var SetIntervalMixin = {
@@ -222,4 +220,4 @@ ReactDOM.render(
 );
 ```
 
-If a component is using multiple mixins and several mixins define the same lifecycle method (i.e. several mixins want to do some cleanup when the component is destroyed), all of the lifecycle methods are guaranteed to be called. Methods defined on mixins run in the order mixins were listed, followed by a method call on the component.
+コンポーネントが複数のミックスインを使っており、いくつかのミックスインが同じライフサイクルメソッドを定義している場合（例：コンポーネント破棄時に複数のミックスインがクリーンアップ処理をする）、全てのライフサイクルメソッドが呼ばれることが保証されています。ミックスインで定義されているメソッドはミックスインとして列挙された順に実行され、そのあとにコンポーネントのメソッドが呼ばれます。

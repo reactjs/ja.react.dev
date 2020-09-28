@@ -21,7 +21,7 @@ type Props = {|
 export default class HTML extends React.Component<Props> {
   render() {
     return (
-      <html lang="en" {...this.props.htmlAttributes}>
+      <html lang="ja" {...this.props.htmlAttributes}>
         <head>
           {JS_NPM_URLS.map(url => (
             <link key={url} rel="preload" href={url} as="script" />

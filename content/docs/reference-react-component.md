@@ -15,11 +15,11 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
-This page contains a detailed API reference for the React component class definition. It assumes you're familiar with fundamental React concepts, such as [Components and Props](/docs/components-and-props.html), as well as [State and Lifecycle](/docs/state-and-lifecycle.html). If you're not, read them first.
+このページには React コンポーネントクラス定義の詳細な API リファレンスがあります。また、あなたが [コンポーネントや props](/docs/components-and-props.html) などの基本的な React の概念、および [state やライフサイクル](/docs/state-and-lifecycle.html)に精通していることを前提としています。そうでない場合は、まずそれらを読んでください。
 
-## Overview {#overview}
+## 概要 {#overview}
 
-React lets you define components as classes or functions. Components defined as classes currently provide more features which are described in detail on this page. To define a React component class, you need to extend `React.Component`:
+React では、コンポーネントをクラスまたは関数として定義できます。クラスとして定義されたコンポーネントは現在このページで詳細に説明されているより多くの機能を提供します。React コンポーネントクラスを定義するには、`React.Component` を継承する必要があります。
 
 ```js
 class Welcome extends React.Component {
@@ -29,36 +29,36 @@ class Welcome extends React.Component {
 }
 ```
 
-The only method you *must* define in a `React.Component` subclass is called [`render()`](#render). All the other methods described on this page are optional.
+`React.Component` サブクラスで*必ず*定義しなければならない唯一のメソッドは [`render()`](#render) です。このページで説明されている他のすべてのメソッドは任意です。
 
-**We strongly recommend against creating your own base component classes.** In React components, [code reuse is primarily achieved through composition rather than inheritance](/docs/composition-vs-inheritance.html).
+**独自の基底コンポーネントクラスを作成しないことを強くおすすめします。**React コンポーネントでは、[コードの再利用は主に継承ではなく合成によって行われます](/docs/composition-vs-inheritance.html)。
 
->Note:
+>補足:
 >
->React doesn't force you to use the ES6 class syntax. If you prefer to avoid it, you may use the `create-react-class` module or a similar custom abstraction instead. Take a look at [Using React without ES6](/docs/react-without-es6.html) to learn more.
+>React は ES6 クラスの構文を使うことを強制していません。回避したい場合は、代わりに `create-react-class` モジュールまたは、同様の独自の抽象化を使用できます。詳しくは、[Using React without ES6](/docs/react-without-es6.html) をご覧ください。
 
-### The Component Lifecycle {#the-component-lifecycle}
+### コンポーネントライフサイクル {#the-component-lifecycle}
 
-Each component has several "lifecycle methods" that you can override to run code at particular times in the process. **You can use [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.** In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
+各コンポーネントには、処理の過程の特定の時点でコードを実行するためにオーバーライドできるいくつかの「ライフサイクルメソッド」があります。**この[ライフサイクル図](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)をチートシートとして使用できます。**以下のリストでは、よく使われるライフサイクルメソッドは**太字**で表示されています。それらの残りは比較的まれなユースケースのために存在します。
 
-#### Mounting {#mounting}
+#### マウント {#mounting}
 
-These methods are called in the following order when an instance of a component is being created and inserted into the DOM:
+コンポーネントのインスタンスが作成されて DOM に挿入されるときに、これらのメソッドが次の順序で呼び出されます。
 
 - [**`constructor()`**](#constructor)
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
 - [**`render()`**](#render)
 - [**`componentDidMount()`**](#componentdidmount)
 
->Note:
+>補足:
 >
->These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>これらのメソッドはレガシーだと考えられているため、新しいコードでは[避ける](/blog/2018/03/27/update-on-async-rendering.html)べきです。
 >
 >- [`UNSAFE_componentWillMount()`](#unsafe_componentwillmount)
 
-#### Updating {#updating}
+#### 更新 {#updating}
 
-An update can be caused by changes to props or state. These methods are called in the following order when a component is being re-rendered:
+更新は props や state の変更によって発生する可能性があります。コンポーネントが再レンダーされるときに、これらのメソッドは次の順序で呼び出されます。
 
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
 - [`shouldComponentUpdate()`](#shouldcomponentupdate)
@@ -66,50 +66,50 @@ An update can be caused by changes to props or state. These methods are called i
 - [`getSnapshotBeforeUpdate()`](#getsnapshotbeforeupdate)
 - [**`componentDidUpdate()`**](#componentdidupdate)
 
->Note:
+>補足:
 >
->These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>これらのメソッドはレガシーと見なされ、新しいコードでは避けるべきです。
 >
 >- [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)
 >- [`UNSAFE_componentWillReceiveProps()`](#unsafe_componentwillreceiveprops)
 
-#### Unmounting {#unmounting}
+#### アンマウント {#unmounting}
 
-This method is called when a component is being removed from the DOM:
+このメソッドは、コンポーネントが DOM から削除されるときに呼び出されます。
 
 - [**`componentWillUnmount()`**](#componentwillunmount)
 
-#### Error Handling {#error-handling}
+#### エラーハンドリング {#error-handling}
 
-These methods are called when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.
+これらのメソッドは任意の子コンポーネントのレンダー中、ライフサイクルメソッド内、またはコンストラクタ内でエラーが発生したときに呼び出されます。
 
 - [`static getDerivedStateFromError()`](#static-getderivedstatefromerror)
 - [`componentDidCatch()`](#componentdidcatch)
 
-### Other APIs {#other-apis}
+### 他の API {#other-apis}
 
-Each component also provides some other APIs:
+各コンポーネントはその他にもいくつかの API を提供します。
 
   - [`setState()`](#setstate)
   - [`forceUpdate()`](#forceupdate)
 
-### Class Properties {#class-properties}
+### クラスプロパティ {#class-properties}
 
   - [`defaultProps`](#defaultprops)
   - [`displayName`](#displayname)
 
-### Instance Properties {#instance-properties}
+### インスタンスプロパティ {#instance-properties}
 
   - [`props`](#props)
   - [`state`](#state)
 
 * * *
 
-## Reference {#reference}
+## リファレンス {#reference}
 
-### Commonly Used Lifecycle Methods {#commonly-used-lifecycle-methods}
+### よく使われるライフサイクルメソッド {#commonly-used-lifecycle-methods}
 
-The methods in this section cover the vast majority of use cases you'll encounter creating React components. **For a visual reference, check out [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+このセクションのメソッドは、React コンポーネントを作成する際に遭遇する大部分のユースケースを網羅しています。視覚的なリファレンスとして、この[ライフサイクル図](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)もチェックしてみてください。
 
 ### `render()` {#render}
 
@@ -117,23 +117,23 @@ The methods in this section cover the vast majority of use cases you'll encounte
 render()
 ```
 
-The `render()` method is the only required method in a class component.
+`render()` メソッドは、クラスコンポーネントで必ず定義しなければならない唯一のメソッドです。
 
-When called, it should examine `this.props` and `this.state` and return one of the following types:
+呼び出されると、`this.props` と `this.state` を調べて、次のいずれかの型を返します。
 
-- **React elements.** Typically created via [JSX](/docs/introducing-jsx.html). For example, `<div />` and `<MyComponent />` are React elements that instruct React to render a DOM node, or another user-defined component, respectively.
-- **Arrays and fragments.** Let you return multiple elements from render. See the documentation on [fragments](/docs/fragments.html) for more details.
-- **Portals**. Let you render children into a different DOM subtree. See the documentation on [portals](/docs/portals.html) for more details.
-- **String and numbers.** These are rendered as text nodes in the DOM.
-- **Booleans or `null`**. Render nothing. (Mostly exists to support `return test && <Child />` pattern, where `test` is boolean.)
+- **React 要素** 通常は [JSX](/docs/introducing-jsx.html) 経由で作成されます。例えば、`<div />` や `<MyComponent />` はそれぞれ React に DOM ノードやユーザが定義した他のコンポーネントをレンダーするように指示する React 要素です
+- **配列とフラグメント** 複数の要素を `render()` から返します。詳しくは [フラグメント](/docs/fragments.html) を参照してください
+- **ポータル** 子を異なる DOM サブツリーにレンダーします。詳しくは [ポータル](/docs/portals.html) を参照してください
+- **文字列と数値** これは DOM のテキストノードとしてレンダーされます
+- **真偽値または `null`** 何もレンダーしません。(ほとんどの場合、`return test && <Child />` パターンをサポートするために存在しています。ここで、`test` は真偽値です）
 
-The `render()` function should be pure, meaning that it does not modify component state, it returns the same result each time it's invoked, and it does not directly interact with the browser.
+`render()` 関数は「純粋」でなければなりません。つまり、コンポーネントの state を変更せず、呼び出されるたびに同じ結果を返し、ブラウザと直接対話しないということです。
 
-If you need to interact with the browser, perform your work in `componentDidMount()` or the other lifecycle methods instead. Keeping `render()` pure makes components easier to think about.
+ブラウザと対話する必要がある場合は、代わりに `componentDidMount()` や他のライフサイクルメソッドで行います。`render()` を純粋にしておくことで、コンポーネントについて考えやすくなります。
 
-> Note
+> 補足
 >
-> `render()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
+> [`shouldComponentUpdate()`](#shouldcomponentupdate) が false を返した場合、`render()` は呼び出されません。
 
 * * *
 
@@ -143,47 +143,47 @@ If you need to interact with the browser, perform your work in `componentDidMoun
 constructor(props)
 ```
 
-**If you don't initialize state and you don't bind methods, you don't need to implement a constructor for your React component.**
+**state の初期化もメソッドのバインドもしないのであれば、React コンポーネントのコンストラクタを実装する必要はありません。**
 
-The constructor for a React component is called before it is mounted. When implementing the constructor for a `React.Component` subclass, you should call `super(props)` before any other statement. Otherwise, `this.props` will be undefined in the constructor, which can lead to bugs.
+React コンポーネントのコンストラクタは、マウントされる前に呼び出されます。`React.Component` サブクラスのコンストラクタを実装するときは、他の文の前に `super(props)` を呼び出す必要があります。そうでなければ、`this.props` はコンストラクタ内で未定義になり、バグの原因となる可能性があります。
 
-Typically, in React constructors are only used for two purposes:
+通常、React では、コンストラクタは 2 つの目的にのみ使用されます。
 
-* Initializing [local state](/docs/state-and-lifecycle.html) by assigning an object to `this.state`.
-* Binding [event handler](/docs/handling-events.html) methods to an instance.
+* `this.state` にオブジェクトを代入して [ローカル state](/docs/state-and-lifecycle.html) を初期化すること
+* [イベントハンドラ](/docs/handling-events.html) をインスタンスにバインドすること
 
-You **should not call `setState()`** in the `constructor()`. Instead, if your component needs to use local state, **assign the initial state to `this.state`** directly in the constructor:
+`constructor()` の中で **`setState()` を呼び出さないでください**。代わりに、コンポーネントがローカル state を使用する必要がある場合は、コンストラクタで直接 **`this.state` に初期状態を割り当てます**。
 
 ```js
 constructor(props) {
   super(props);
-  // Don't call this.setState() here!
+  // ここで this.setState() を呼び出さないでください
   this.state = { counter: 0 };
   this.handleClick = this.handleClick.bind(this);
 }
 ```
 
-Constructor is the only place where you should assign `this.state` directly. In all other methods, you need to use `this.setState()` instead.
+コンストラクタは、`this.state` を直接代入する唯一の場所です。他のすべてのメソッドでは、代わりに `this.setState()` を使う必要があります。
 
-Avoid introducing any side-effects or subscriptions in the constructor. For those use cases, use `componentDidMount()` instead.
+コンストラクタに副作用や購読を導入しないでください。そのような場合は、代わりに `componentDidMount()` を使用してください。
 
->Note
+>補足
 >
->**Avoid copying props into state! This is a common mistake:**
+>**props を state にコピーしないでください。これはよくある間違いです。**
 >
 >```js
 >constructor(props) {
 >  super(props);
->  // Don't do this!
+>  // してはいけません
 >  this.state = { color: props.color };
 >}
 >```
 >
->The problem is that it's both unnecessary (you can use `this.props.color` directly instead), and creates bugs (updates to the `color` prop won't be reflected in the state).
+>この問題はそれが不要(代わりに `this.props.color` を直接使用することができるため)であり、バグの作成につながる(`color` プロパティの更新は state に反映されないため)ことです。
 >
->**Only use this pattern if you intentionally want to ignore prop updates.** In that case, it makes sense to rename the prop to be called `initialColor` or `defaultColor`. You can then force a component to "reset" its internal state by [changing its `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) when necessary.
+>**意図的にプロパティの更新を無視したい場合にのみ、このパターンを使用してください。**その場合は、プロパティの名前を `initialColor` または `defaultColor` に変更してください。その後、必要に応じて[キーを変更する](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key)ことで、コンポーネントにその内部の state を「リセット」させることができます。
 >
->Read our [blog post on avoiding derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html) to learn about what to do if you think you need some state to depend on the props.
+>もしあなたが props に依存する何らかの state が必要だと思うなら、どうすればいいのか学ぶために私達の[派生 state を避けることについてのブログ記事](/blog/2018/06/07/you-probably-dont-need-derived-state.html)を読んでください。
 
 
 * * *
@@ -194,11 +194,11 @@ Avoid introducing any side-effects or subscriptions in the constructor. For thos
 componentDidMount()
 ```
 
-`componentDidMount()` is invoked immediately after a component is mounted (inserted into the tree). Initialization that requires DOM nodes should go here. If you need to load data from a remote endpoint, this is a good place to instantiate the network request.
+`componentDidMount()` は、コンポーネントがマウントされた（ツリーに挿入された）直後に呼び出されます。DOM ノードを必要とする初期化はここで行われるべきです。リモートエンドポイントからデータをロードする必要がある場合、これはネットワークリクエストを送信するのに適した場所です。
 
-This method is a good place to set up any subscriptions. If you do that, don't forget to unsubscribe in `componentWillUnmount()`.
+このメソッドは、購読を設定するのに適した場所です。設定した場合は、`componentWillUnmount()` で購読を解除することを忘れないでください。
 
-You **may call `setState()` immediately** in `componentDidMount()`. It will trigger an extra rendering, but it will happen before the browser updates the screen. This guarantees that even though the `render()` will be called twice in this case, the user won't see the intermediate state. Use this pattern with caution because it often causes performance issues. In most cases, you should be able to assign the initial state in the `constructor()` instead. It can, however, be necessary for cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
+`componentDidMount()` の中で、あなたは**すぐに `setState()` を呼び出すことができます**。それは余分なレンダーを引き起こしますが、ブラウザが画面を更新する前に起こります。これにより、この場合 `render()` が 2 回呼び出されても、ユーザには中間状態が表示されません。このパターンはパフォーマンス上の問題を引き起こすことが多いので、慎重に使用してください。ほとんどの場合、代わりに `constructor()` で初期状態を state に代入できるはずです。ただし、モーダルやツールチップのような場合に、サイズや位置に応じて何かをレンダーする前に DOM ノードを測定することが必要になる場合があります。
 
 * * *
 
@@ -208,26 +208,26 @@ You **may call `setState()` immediately** in `componentDidMount()`. It will trig
 componentDidUpdate(prevProps, prevState, snapshot)
 ```
 
-`componentDidUpdate()` is invoked immediately after updating occurs. This method is not called for the initial render.
+更新が行われた直後に `componentDidUpdate()` が呼び出されます。このメソッドは最初のレンダーでは呼び出されません。
 
-Use this as an opportunity to operate on the DOM when the component has been updated. This is also a good place to do network requests as long as you compare the current props to previous props (e.g. a network request may not be necessary if the props have not changed).
+コンポーネントが更新されたときに DOM を操作する機会にこれを使用してください。現在の props と前の props を比較している限り、これはネットワークリクエストを行うのにも適した場所です（たとえば、props が変更されていない場合、ネットワークリクエストは必要ないかもしれません）。
 
 ```js
 componentDidUpdate(prevProps) {
-  // Typical usage (don't forget to compare props):
+  // 典型的な使い方(props を比較することを忘れないでください)
   if (this.props.userID !== prevProps.userID) {
     this.fetchData(this.props.userID);
   }
 }
 ```
 
-You **may call `setState()` immediately** in `componentDidUpdate()` but note that **it must be wrapped in a condition** like in the example above, or you'll cause an infinite loop. It would also cause an extra re-rendering which, while not visible to the user, can affect the component performance. If you're trying to "mirror" some state to a prop coming from above, consider using the prop directly instead. Read more about [why copying props into state causes bugs](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
+`componentDidUpdate()` の中で、あなたは**すぐに `setState()` を呼び出すことができます**が、それは上記の例のような**条件でラップされなければならない**ことに注意してください。そうしなければ、無限ループを引き起こすでしょう。また、余分な再レンダーが発生し、ユーザには見えないものの、コンポーネントのパフォーマンスに影響を与える可能性があります。親から来る props を何らかの state に「反映」しようとしている場合は、代わりに props を直接使用することを検討してください。[props を state にコピーするとバグが発生する理由](/blog/2018/06/07/you-probably-dont-need-derived-state.html)をよく読んでください。
 
-If your component implements the `getSnapshotBeforeUpdate()` lifecycle (which is rare), the value it returns will be passed as a third "snapshot" parameter to `componentDidUpdate()`. Otherwise this parameter will be undefined.
+コンポーネントが `getSnapshotBeforeUpdate()` ライフサイクルを実装している場合（これはまれです）、それが返す値は 3 番目の「スナップショット」パラメータとして `componentDidUpdate()` に渡されます。それ以外の場合、このパラメータは未定義になります。
 
-> Note
+> 補足
 >
-> `componentDidUpdate()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
+> [`shouldComponentUpdate()`](#shouldcomponentupdate) が false を返した場合、`componentDidUpdate()` は呼び出されません。
 
 * * *
 
@@ -237,15 +237,15 @@ If your component implements the `getSnapshotBeforeUpdate()` lifecycle (which is
 componentWillUnmount()
 ```
 
-`componentWillUnmount()` is invoked immediately before a component is unmounted and destroyed. Perform any necessary cleanup in this method, such as invalidating timers, canceling network requests, or cleaning up any subscriptions that were created in `componentDidMount()`.
+`componentWillUnmount()` は、コンポーネントがアンマウントされて破棄される直前に呼び出されます。タイマーの無効化、ネットワークリクエストのキャンセル、`componentDidMount()` で作成された購読の解除など、このメソッドで必要なクリーンアップを実行します。
 
-You **should not call `setState()`** in `componentWillUnmount()` because the component will never be re-rendered. Once a component instance is unmounted, it will never be mounted again.
+コンポーネントは再レンダーされないため、`componentWillUnmount()` で **`setState()` を呼び出さないでください**。コンポーネントインスタンスがアンマウントされると、再度マウントされることはありません。
 
 * * *
 
-### Rarely Used Lifecycle Methods {#rarely-used-lifecycle-methods}
+### まれに使われるライフサイクルメソッド {#rarely-used-lifecycle-methods}
 
-The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them. **You can see most of the methods below on [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
+このセクションのメソッドは、一般的でないユースケースに対応しています。これらは時々便利に使えますが、あなたのコンポーネントのほとんどはおそらくそれらのどれも必要としないでしょう。**この[ライフサイクル図](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)の上部にある「あまり一般的ではないライフサイクルを表示する」チェックボックスをクリックすると、以下のほとんどの方法が表示されます。**
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -254,17 +254,17 @@ The methods in this section correspond to uncommon use cases. They're handy once
 shouldComponentUpdate(nextProps, nextState)
 ```
 
-Use `shouldComponentUpdate()` to let React know if a component's output is not affected by the current change in state or props. The default behavior is to re-render on every state change, and in the vast majority of cases you should rely on the default behavior.
+コンポーネントの出力が現在の state の変化や props の影響を受けていないかどうかを React に知らせるには `shouldComponentUpdate()` を使用します。デフォルトの振る舞いはすべての状態変化を再レンダーすることです、そして大部分の場合、あなたはデフォルトの振る舞いに頼るべきです。
 
-`shouldComponentUpdate()` is invoked before rendering when new props or state are being received. Defaults to `true`. This method is not called for the initial render or when `forceUpdate()` is used.
+新しい props または state が受け取られると、レンダーする前に `shouldComponentUpdate()` が呼び出されます。デフォルトは `true` です。このメソッドは最初のレンダーや `forceUpdate()` の使用時には呼び出されません。
 
-This method only exists as a **[performance optimization](/docs/optimizing-performance.html).** Do not rely on it to "prevent" a rendering, as this can lead to bugs. **Consider using the built-in [`PureComponent`](/docs/react-api.html#reactpurecomponent)** instead of writing `shouldComponentUpdate()` by hand. `PureComponent` performs a shallow comparison of props and state, and reduces the chance that you'll skip a necessary update.
+このメソッドは[パフォーマンスの最適化](/docs/optimizing-performance.html)としてのみ存在します。バグを引き起こす可能性があるので、レンダーを「抑止する」ためにそれを使用しないでください。`shouldComponentUpdate()` を書く代わりに、**組み込みの [PureComponent](/docs/react-api.html#reactpurecomponent)** を使用することを検討してください。`PureComponent` は props と state を浅く比較し、必要なアップデートをスキップする可能性を減らします。
 
-If you are confident you want to write it by hand, you may compare `this.props` with `nextProps` and `this.state` with `nextState` and return `false` to tell React the update can be skipped. Note that returning `false` does not prevent child components from re-rendering when *their* state changes.
+あなたが手でそれを書きたいと確信しているなら、あなたは `nextProps` と `this.props` または `nextState` と `this.state` を比較して、更新をスキップできることを React に伝えるために `false` を返すことができます。`false` を返しても、*子コンポーネントの* state が変化したときに子コンポーネントが再レンダーされるのを防ぐことはできません。
 
-We do not recommend doing deep equality checks or using `JSON.stringify()` in `shouldComponentUpdate()`. It is very inefficient and will harm performance.
+等価性を深く調べることや `shouldComponentUpdate()` で `JSON.stringify()` を使用することはおすすめしません。これは非常に非効率的であり、パフォーマンスに悪影響を及ぼします。
 
-Currently, if `shouldComponentUpdate()` returns `false`, then [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate), [`render()`](#render), and [`componentDidUpdate()`](#componentdidupdate) will not be invoked. In the future React may treat `shouldComponentUpdate()` as a hint rather than a strict directive, and returning `false` may still result in a re-rendering of the component.
+現在、`shouldComponentUpdate()` が `false` を返す場合、[`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)、[`render()`](#render)、および [`componentDidUpdate()`](#componentdidupdate) は呼び出されません。将来的には、React は `shouldComponentUpdate()` を厳密な命令ではなくヒントとして扱うようになり、`false` を返してもコンポーネントが再レンダーされる可能性があります。
 
 * * *
 
@@ -274,22 +274,26 @@ Currently, if `shouldComponentUpdate()` returns `false`, then [`UNSAFE_component
 static getDerivedStateFromProps(props, state)
 ```
 
+<<<<<<< HEAD
 `getDerivedStateFromProps` is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update the state, or `null` to update nothing.
+=======
+`getDerivedStateFromProps` は、初期マウント時とその後の更新時の両方で、`render()` メソッドを呼び出す直前に呼び出されます。state を更新するためにオブジェクトを返すか、何も更新しないために `null` を返すべきです。
+>>>>>>> origin
 
-This method exists for [rare use cases](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) where the state depends on changes in props over time. For example, it might be handy for implementing a `<Transition>` component that compares its previous and next children to decide which of them to animate in and out.
+このメソッドは、state が時間の経過とともに変化する props に依存するような[まれな使用例](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state)のために存在します。たとえば、以前と以降の子を比較してどちらの子をアニメーションするかを決定する `<Transition>` コンポーネントを実装するときに便利です。
 
-Deriving state leads to verbose code and makes your components difficult to think about.  
-[Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+state を派生させると冗長なコードにつながり、コンポーネントを考えるのが難しくなります。
+[あなたがより簡単な方法に慣れていることを確認してください。](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
 
-* If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
+* props の変更に応じて**副作用を実行する**必要がある場合は（データのフェッチやアニメーションなど）、代わりに [`componentDidUpdate`](#componentdidupdate) ライフサイクルを使用してください
 
-* If you want to **re-compute some data only when a prop changes**, [use a memoization helper instead](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
+* **プロパティが変更されたときにのみデータを再計算したい**場合は、[代わりにメモ化ヘルパーを使用してください](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization)
 
-* If you want to **"reset" some state when a prop changes**, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
+* **プロパティが変更されたときに何かの state を「リセット」したい**場合は、代わりにコンポーネントを[完全に制御する](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component)か、または [`key` を使って全く制御しない](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key)かを検討してください
 
-This method doesn't have access to the component instance. If you'd like, you can reuse some code between `getDerivedStateFromProps()` and the other class methods by extracting pure functions of the component props and state outside the class definition.
+このメソッドはコンポーネントインスタンスにアクセスできません。必要に応じて、コンポーネントの props と state の純粋な関数を抽出し、クラス定義外に記述することで、`getDerivedStateFromProps()` と他のクラスメソッドの間でコードを再利用できます。
 
-Note that this method is fired on *every* render, regardless of the cause. This is in contrast to `UNSAFE_componentWillReceiveProps`, which only fires when the parent causes a re-render and not as a result of a local `setState`.
+このメソッドは、原因に関係なく、*すべての*レンダーで起動されることに注意してください。これは `UNSAFE_componentWillReceiveProps` とは対照的です。`UNSAFE_componentWillReceiveProps` は、ローカルの `setState()` に依らず、親が再レンダーを行ったときにのみ発生します。
 
 * * *
 
@@ -299,41 +303,41 @@ Note that this method is fired on *every* render, regardless of the cause. This 
 getSnapshotBeforeUpdate(prevProps, prevState)
 ```
 
-`getSnapshotBeforeUpdate()` is invoked right before the most recently rendered output is committed to e.g. the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle will be passed as a parameter to `componentDidUpdate()`.
+`getSnapshotBeforeUpdate()` は、最後にレンダーされた出力が、たとえば DOM にコミットされる直前に呼び出されます。これはコンポーネントが変更される可能性があるときに、変更される前に DOM からある情報（たとえば、スクロール位置）を取得することを可能にします。このライフサイクルによって返された値はすべて、`componentDidUpdate()` へのパラメータとして渡されます。
 
-This use case is not common, but it may occur in UIs like a chat thread that need to handle scroll position in a special way.
+このユースケースは一般的ではありませんが、スクロール位置を特別な方法で処理する必要があるチャットのスレッドのような UI で発生する可能性があります。
 
-A snapshot value (or `null`) should be returned.
+スナップショット値（または `null`）が返されるべきです。
 
-For example:
+例：
 
 `embed:react-component-reference/get-snapshot-before-update.js`
 
-In the above examples, it is important to read the `scrollHeight` property in `getSnapshotBeforeUpdate` because there may be delays between "render" phase lifecycles (like `render`) and "commit" phase lifecycles (like `getSnapshotBeforeUpdate` and `componentDidUpdate`).
+この例では、`getSnapshotBeforeUpdate` の中で `scrollHeight` プロパティを読み取ることが重要です。これは、（`render` のような）「描画」フェーズライフサイクルと（`getSnapshotBeforeUpdate` および `componentDidUpdate` のような）「コミット」フェーズライフサイクルの間に遅延が生じるためです。
 
 * * *
 
-### Error boundaries {#error-boundaries}
+### error boundary {#error-boundaries}
 
-[Error boundaries](/docs/error-boundaries.html) are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
+[error boundary](/docs/error-boundaries.html) は、子コンポーネントツリーのどこかで JavaScript エラーを捕捉し、それらのエラーを記録し、クラッシュしたコンポーネントツリーの代わりにフォールバック UI を表示する React コンポーネントです。error boundary は、その下のツリー全体のレンダー中、ライフサイクルメソッド内、およびコンストラクタ内で発生したエラーを捕捉します。
 
-A class component becomes an error boundary if it defines either (or both) of the lifecycle methods `static getDerivedStateFromError()` or `componentDidCatch()`. Updating state from these lifecycles lets you capture an unhandled JavaScript error in the below tree and display a fallback UI.
+クラスコンポーネントは、ライフサイクルメソッド `static getDerivedStateFromError()` または `componentDidCatch()` のいずれか（または両方）を定義すると、error boundary になります。これらのライフサイクルから state を更新すると、下のツリーで発生した未処理の JavaScript エラーを捕捉してフォールバック UI を表示できます。
 
-Only use error boundaries for recovering from unexpected exceptions; **don't try to use them for control flow.**
+error boundary は予期しない例外からの回復のためだけに使用してください。**それらを制御フローに使用しないでください**。
 
-For more details, see [*Error Handling in React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
+詳細については、[*React 16 のエラーハンドリング*](/blog/2017/07/26/error-handling-in-react-16.html)を参照してください。
 
-> Note
+> 補足
 > 
-> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
+> error boundary は、ツリー内でその**下**にあるコンポーネント内のエラーのみを捕捉します。error boundary はそれ自体の中でエラーを捉えることはできません。
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
 static getDerivedStateFromError(error)
 ```
 
-This lifecycle is invoked after an error has been thrown by a descendant component.
-It receives the error that was thrown as a parameter and should return a value to update state.
+このライフサイクルは、子孫コンポーネントによってエラーがスローされた後に呼び出されます。
+パラメータとしてスローされたエラーを受け取り、state を更新するための値を返すべきです。
 
 ```js{7-10,13-16}
 class ErrorBoundary extends React.Component {
@@ -343,13 +347,13 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // 次のレンダーでフォールバック UI が表示されるように state を更新する
     return { hasError: true };
   }
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
+      // 任意のフォールバック UI をレンダーできます
       return <h1>Something went wrong.</h1>;
     }
 
@@ -358,10 +362,9 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-> Note
+> 補足
 >
-> `getDerivedStateFromError()` is called during the "render" phase, so side-effects are not permitted.
-For those use cases, use `componentDidCatch()` instead.
+> `getDerivedStateFromError()` は「描画」フェーズ中に呼び出されるので、副作用は許可されていません。そのような場合は、代わりに `componentDidCatch()` を使用してください。
 
 * * *
 
@@ -371,15 +374,14 @@ For those use cases, use `componentDidCatch()` instead.
 componentDidCatch(error, info)
 ```
 
-This lifecycle is invoked after an error has been thrown by a descendant component.
-It receives two parameters:
+このライフサイクルは、子孫コンポーネントによってエラーがスローされた後に呼び出されます。
+以下の 2 つのパラメータを受け取ります。
 
-1. `error` - The error that was thrown.
-2. `info` - An object with a `componentStack` key containing [information about which component threw the error](/docs/error-boundaries.html#component-stack-traces).
+1. `error` - スローされたエラー
+2. `info` - [どのコンポーネントがエラーをスローしたかについての情報](/docs/error-boundaries.html#component-stack-traces)を含む `componentStack` キーを持つオブジェクト
 
-
-`componentDidCatch()` is called during the "commit" phase, so side-effects are permitted.
-It should be used for things like logging errors:
+`componentDidCatch()` は「コミット」フェーズ中に呼び出されるため、副作用は許可されています。
+ロギング時のエラーなどのために使用されるべきです。
 
 ```js{12-19}
 class ErrorBoundary extends React.Component {
@@ -389,7 +391,7 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // 次のレンダーでフォールバック UI が表示されるように state を更新します
     return { hasError: true };
   }
 
@@ -404,7 +406,7 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
+      // 任意のフォールバック UI をレンダーできます
       return <h1>Something went wrong.</h1>;
     }
 
@@ -413,16 +415,16 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-> Note
+> 補足
 > 
-> In the event of an error, you can render a fallback UI with `componentDidCatch()` by calling `setState`, but this will be deprecated in a future release.
-> Use `static getDerivedStateFromError()` to handle fallback rendering instead.
+> エラーが発生した場合は、`setState` を呼び出す `componentDidCatch()` を使用してフォールバック UI をレンダーできますが、これは将来のリリースでは推奨されなくなります。
+> 代わりにフォールバックの描画を扱うために、`static getDerivedStateFromError()` を使用してください。
 
 * * *
 
-### Legacy Lifecycle Methods {#legacy-lifecycle-methods}
+### レガシーなライフサイクルメソッド {#legacy-lifecycle-methods}
 
-The lifecycle methods below are marked as "legacy". They still work, but we don't recommend using them in the new code. You can learn more about migrating away from legacy lifecycle methods in [this blog post](/blog/2018/03/27/update-on-async-rendering.html).
+以下のライフサイクルメソッドは「レガシー」としてマークされています。動作はしますが、新しいコードで使用することはおすすめしません。この[ブログ記事](/blog/2018/03/27/update-on-async-rendering.html)では、レガシーなライフサイクルメソッドからの移行についてさらに学ぶことができます。
 
 ### `UNSAFE_componentWillMount()` {#unsafe_componentwillmount}
 
@@ -430,15 +432,15 @@ The lifecycle methods below are marked as "legacy". They still work, but we don'
 UNSAFE_componentWillMount()
 ```
 
-> Note
+> 補足
 >
-> This lifecycle was previously named `componentWillMount`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+> このライフサイクルは、以前は `componentWillMount` という名前でした。その名前はバージョン 17 まで機能し続けます。コンポーネントを自動的に更新するには、[`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) を使用してください。
 
-`UNSAFE_componentWillMount()` is invoked just before mounting occurs. It is called before `render()`, therefore calling `setState()` synchronously in this method will not trigger an extra rendering. Generally, we recommend using the `constructor()` instead for initializing state.
+マウントが行われる直前に `UNSAFE_componentWillMount()` が呼び出されます。これは `render()` の前に呼び出されるので、このメソッドで `setState()` を同期的に呼び出しても余分なレンダーは行われません。一般に、state を初期化するためには代わりに `constructor()` を使うことをおすすめします。
 
-Avoid introducing any side-effects or subscriptions in this method. For those use cases, use `componentDidMount()` instead.
+このメソッドでは、副作用や購読を導入しないでください。そのような場合は、代わりに `componentDidMount()` を使用してください。
 
-This is the only lifecycle method called on server rendering.
+これは、サーバーレンダリングで呼び出される唯一のライフサイクルメソッドです。
 
 * * *
 
@@ -448,25 +450,26 @@ This is the only lifecycle method called on server rendering.
 UNSAFE_componentWillReceiveProps(nextProps)
 ```
 
-> Note
+> 補足
 >
-> This lifecycle was previously named `componentWillReceiveProps`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+> このライフサイクルは、以前は `componentWillReceiveProps` という名前でした。その名前はバージョン 17 まで機能し続けます。コンポーネントを自動的に更新するには、[`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) を使用してください。
 
-> Note:
+> 補足:
 >
-> Using this lifecycle method often leads to bugs and inconsistencies
 >
-> * If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
-> * If you used `componentWillReceiveProps` for **re-computing some data only when a prop changes**, [use a memoization helper instead](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
-> * If you used `componentWillReceiveProps` to **"reset" some state when a prop changes**, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
+> このライフサイクルメソッドを使用すると、しばしばバグや矛盾が発生します。
 >
-> For other use cases, [follow the recommendations in this blog post about derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
+> * props の変更に応じて**副作用を実行する**必要がある場合は（データの取得やアニメーションなど）、代わりに [`componentDidUpdate`](#componentdidupdate) ライフサイクルを使用してください
+> * `componentWillReceiveProps` を **props が変更されたときにのみデータを再計算する**ために使う代わりに、[メモ化ヘルパーを使用してください](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization)
+> * `componentWillReceiveProps` を **props が変更されたときに何かの state を「リセット」する**ために使う代わりに、コンポーネントを[完全に制御する](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component)か、または [`key` を使って全く制御しない](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key)かを検討してください
+>
+> その他の使用例については、[派生 state に関するこのブログ投稿の推奨事項に従ってください](/blog/2018/06/07/you-probably-dont-need-derived-state.html)。
 
-`UNSAFE_componentWillReceiveProps()` is invoked before a mounted component receives new props. If you need to update the state in response to prop changes (for example, to reset it), you may compare `this.props` and `nextProps` and perform state transitions using `this.setState()` in this method.
+`UNSAFE_componentWillReceiveProps()` は、マウントされたコンポーネントが新しい props を受け取る前に呼び出されます。prop の変更に応じて state を更新する必要がある場合（たとえばリセットする必要がある場合）は、`this.props` と `nextProps` を比較し、このメソッドで `this.setState()` を使用して状態遷移を実行できます。
 
-Note that if a parent component causes your component to re-render, this method will be called even if props have not changed. Make sure to compare the current and next values if you only want to handle changes.
+親コンポーネントによってコンポーネントが再レンダーされる場合、props が変更されていなくてもこのメソッドが呼び出されることに注意してください。変更だけを処理したい場合は、必ず現在の値と次の値を比較してください。
 
-React doesn't call `UNSAFE_componentWillReceiveProps()` with initial props during [mounting](#mounting). It only calls this method if some of component's props may update. Calling `this.setState()` generally doesn't trigger `UNSAFE_componentWillReceiveProps()`.
+[マウント](#mounting)時に、React は最初の props で `UNSAFE_componentWillReceiveProps()` を呼び出しません。一部のコンポーネントの props が更新される可能性がある場合にのみ、このメソッドを呼び出します。`this.setState()` を呼び出しても、通常 `UNSAFE_componentWillReceiveProps()` は呼び出されません。
 
 * * *
 
@@ -476,27 +479,27 @@ React doesn't call `UNSAFE_componentWillReceiveProps()` with initial props durin
 UNSAFE_componentWillUpdate(nextProps, nextState)
 ```
 
-> Note
+> 補足
 >
-> This lifecycle was previously named `componentWillUpdate`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+> このライフサイクルは、以前は `componentWillUpdate` と呼ばれていました。その名前はバージョン 17 まで機能し続けます。コンポーネントを自動的に更新するには、[`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) を使用してください。
 
-`UNSAFE_componentWillUpdate()` is invoked just before rendering when new props or state are being received. Use this as an opportunity to perform preparation before an update occurs. This method is not called for the initial render.
+`UNSAFE_componentWillUpdate()` は、新しい props または state を受け取ったときにレンダーの直前に呼び出されます。更新が発生する前の準備する機会としてこれを使用してください。このメソッドは最初のレンダーでは呼び出されません。
 
-Note that you cannot call `this.setState()` here; nor should you do anything else (e.g. dispatch a Redux action) that would trigger an update to a React component before `UNSAFE_componentWillUpdate()` returns.
+ここで `this.setState()` を呼び出すことはできません。また、`UNSAFE_componentWillUpdate()` が返る前に React コンポーネントへの更新を引き起こすような何か他のこと（たとえば、Redux アクションのディスパッチ）をするべきでもありません。
 
-Typically, this method can be replaced by `componentDidUpdate()`. If you were reading from the DOM in this method (e.g. to save a scroll position), you can move that logic to `getSnapshotBeforeUpdate()`.
+通常、このメソッドは `componentDidUpdate()` に置き換えることができます。このメソッドで DOM から読んでいる場合（スクロール位置を保存するなど）は、そのロジックを `getSnapshotBeforeUpdate()` に移動できます。
 
-> Note
+> 補足
 >
-> `UNSAFE_componentWillUpdate()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
+> [`shouldComponentUpdate()`](#shouldcomponentupdate) が false を返した場合、`UNSAFE_componentWillUpdate()` は呼び出されません。
 
 * * *
 
-## Other APIs {#other-apis-1}
+## 他の API {#other-apis-1}
 
-Unlike the lifecycle methods above (which React calls for you), the methods below are the methods *you* can call from your components.
+上記のライフサイクルメソッド（React が呼び出すもの）とは異なり、以下のメソッドは*あなたが*コンポーネントから呼び出すことができるメソッドです。
 
-There are just two of them: `setState()` and `forceUpdate()`.
+それは `setState()` と `forceUpdate()` の 2 つだけです。
 
 ### `setState()` {#setstate}
 
@@ -504,21 +507,21 @@ There are just two of them: `setState()` and `forceUpdate()`.
 setState(updater, [callback])
 ```
 
-`setState()` enqueues changes to the component state and tells React that this component and its children need to be re-rendered with the updated state. This is the primary method you use to update the user interface in response to event handlers and server responses.
+`setState()` はコンポーネントの state への変更をエンキューし、このコンポーネントとその子を更新された state で再レンダーする必要があることを React に伝えます。これは、イベントハンドラとサーバーの応答に応じてユーザインターフェイスを更新するために使用する主な方法です。
 
-Think of `setState()` as a *request* rather than an immediate command to update the component. For better perceived performance, React may delay it, and then update several components in a single pass. React does not guarantee that the state changes are applied immediately.
+`setState()` は、コンポーネントを更新するための即時のコマンドではなく、**要求**として考えてください。パフォーマンスをよくするために、React はそれを遅らせて、単一パスで複数のコンポーネントを更新することがあります。React は state の変更がすぐに適用されることを保証しません。
 
-`setState()` does not always immediately update the component. It may batch or defer the update until later. This makes reading `this.state` right after calling `setState()` a potential pitfall. Instead, use `componentDidUpdate` or a `setState` callback (`setState(updater, callback)`), either of which are guaranteed to fire after the update has been applied. If you need to set the state based on the previous state, read about the `updater` argument below.
+`setState()` は常にコンポーネントを直ちに更新するわけではありません。それはバッチ式に更新するか後で更新を延期するかもしれません。これは `setState()` を呼び出した直後に `this.state` を読み取ることが潜在的な危険になります。代わりに、`componentDidUpdate` または `setState` コールバック（`setState(updater, callback)`）を使用してください。どちらも更新が適用された後に起動することが保証されています。前の state に基づいて state を設定する必要がある場合は、下記の `updater` 引数についてお読みください。
 
-`setState()` will always lead to a re-render unless `shouldComponentUpdate()` returns `false`. If mutable objects are being used and conditional rendering logic cannot be implemented in `shouldComponentUpdate()`, calling `setState()` only when the new state differs from the previous state will avoid unnecessary re-renders.
+`shouldComponentUpdate()` が `false` を返さない限り、`setState()` は常に再レンダーされます。ミュータブルなオブジェクトが使用されていて、条件付きでレンダーを行うためのロジックを `shouldComponentUpdate()` に実装できない場合、新しい state が前の state と異なるときにのみ `setState()` を呼び出すと、不要な再レンダーを回避できます。
 
-The first argument is an `updater` function with the signature:
+最初の引数の `updater` 関数は次のようなシグネチャです。
 
 ```javascript
 (state, props) => stateChange
 ```
 
-`state` is a reference to the component state at the time the change is being applied. It should not be directly mutated. Instead, changes should be represented by building a new object based on the input from `state` and `props`. For instance, suppose we wanted to increment a value in state by `props.step`:
+`state` は、変更が適用されているときのコンポーネントの state への参照です。直接変更するべきではありません。代わりに、`state` と `props` からの入力に基づいて新しいオブジェクトを構築することによって変更を表現する必要があります。たとえば、`props.step` によって `state` の値を増加したいとします。
 
 ```javascript
 this.setState((state, props) => {
@@ -526,25 +529,25 @@ this.setState((state, props) => {
 });
 ```
 
-Both `state` and `props` received by the updater function are guaranteed to be up-to-date. The output of the updater is shallowly merged with `state`.
+updater 関数が受け取る `state` と `props` の両方が最新のものであることが保証されています。アップデータの出力は `state` と浅くマージされています。
 
-The second parameter to `setState()` is an optional callback function that will be executed once `setState` is completed and the component is re-rendered. Generally we recommend using `componentDidUpdate()` for such logic instead.
+`setState()` の 2 番目のパラメータは、`setState` が完了してコンポーネントが再レンダリングされると実行される省略可能なコールバック関数です。通常、そのようなロジックには代わりに `componentDidUpdate()` を使用することをおすすめします。
 
-You may optionally pass an object as the first argument to `setState()` instead of a function:
+関数の代わりに、オブジェクトを `setState()` の最初の引数として渡すこともできます。
 
 ```javascript
 setState(stateChange[, callback])
 ```
 
-This performs a shallow merge of `stateChange` into the new state, e.g., to adjust a shopping cart item quantity:
+これは、たとえば、ショッピングカートの商品数を調整するために、`stateChange` の新しい state への浅いマージを実行します。
 
 ```javascript
 this.setState({quantity: 2})
 ```
 
-This form of `setState()` is also asynchronous, and multiple calls during the same cycle may be batched together. For example, if you attempt to increment an item quantity more than once in the same cycle, that will result in the equivalent of:
+この形式の `setState()` も非同期であり、同じサイクル中の複数の呼び出しをまとめてバッチ処理することができます。たとえば、同じサイクルで品目数量を複数回増やそうとすると、次のようになります。
 
-```javaScript
+```javascript
 Object.assign(
   previousState,
   {quantity: state.quantity + 1},
@@ -553,7 +556,7 @@ Object.assign(
 )
 ```
 
-Subsequent calls will override values from previous calls in the same cycle, so the quantity will only be incremented once. If the next state depends on the current state, we recommend using the updater function form, instead:
+後続の呼び出しは、同じサイクル内の前の呼び出しの値を上書きするため、数量は 1 回だけ増分されます。次の state が現在の state に依存する場合は、代わりに updater 関数の形式を使用することをおすすめします。
 
 ```js
 this.setState((state) => {
@@ -561,11 +564,11 @@ this.setState((state) => {
 });
 ```
 
-For more detail, see:
+詳しくは以下を参照してください。
 
-* [State and Lifecycle guide](/docs/state-and-lifecycle.html)
-* [In depth: When and why are `setState()` calls batched?](https://stackoverflow.com/a/48610973/458193)
-* [In depth: Why isn't `this.state` updated immediately?](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
+* [state と ライフサイクル](/docs/state-and-lifecycle.html)
+* [詳細: `setState()` はいつ、なぜバッチ処理されるのですか？](https://stackoverflow.com/a/48610973/458193)
+* [詳細: `this.state` が直ちに更新されないのはなぜですか？](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
 
 * * *
 
@@ -575,19 +578,23 @@ For more detail, see:
 component.forceUpdate(callback)
 ```
 
-By default, when your component's state or props change, your component will re-render. If your `render()` method depends on some other data, you can tell React that the component needs re-rendering by calling `forceUpdate()`.
+デフォルトでは、コンポーネントの state や props が変わると、コンポーネントは再レンダーされます。`render()` メソッドが他のデータに依存している場合は、`forceUpdate()` を呼び出してコンポーネントの再レンダーが必要であることを React に伝えることができます。
 
-Calling `forceUpdate()` will cause `render()` to be called on the component, skipping `shouldComponentUpdate()`. This will trigger the normal lifecycle methods for child components, including the `shouldComponentUpdate()` method of each child. React will still only update the DOM if the markup changes.
+`forceUpdate()` を呼び出すと、`shouldComponentUpdate()` をスキップして、コンポーネントに対して `render()` が呼び出されます。これにより、それぞれの子の `shouldComponentUpdate()` メソッドを含む、子コンポーネントの通常のライフサイクルメソッドがトリガーされます。マークアップが変更された場合にのみ React は DOM を更新します。
 
-Normally you should try to avoid all uses of `forceUpdate()` and only read from `this.props` and `this.state` in `render()`.
+通常は全ての `forceUpdate()` の使用を避け、`render()` の `this.props` と `this.state` からのみ読み取るようにしてください。
 
 * * *
 
-## Class Properties {#class-properties-1}
+## クラスプロパティ {#class-properties-1}
 
 ### `defaultProps` {#defaultprops}
 
+<<<<<<< HEAD
 `defaultProps` can be defined as a property on the component class itself, to set the default props for the class. This is used for `undefined` props, but not for `null` props. For example:
+=======
+`defaultProps` は、コンポーネントクラス自体のプロパティとして定義して、そのクラスのデフォルトの props を設定できます。これは `undefined` のプロパティに使用されますが、`null` のプロパティには使用されません。例えば：
+>>>>>>> origin
 
 ```js
 class CustomButton extends React.Component {
@@ -599,19 +606,23 @@ CustomButton.defaultProps = {
 };
 ```
 
-If `props.color` is not provided, it will be set by default to `'blue'`:
+`props.color` が提供されていない場合は、デフォルトで `'blue'` に設定されます。
 
 ```js
   render() {
-    return <CustomButton /> ; // props.color will be set to blue
+    return <CustomButton /> ; // props.color は blue にセットされます
   }
 ```
 
+<<<<<<< HEAD
 If `props.color` is set to `null`, it will remain `null`:
+=======
+`props.color` が null に設定されている場合、それは null のままになります。
+>>>>>>> origin
 
 ```js
   render() {
-    return <CustomButton color={null} /> ; // props.color will remain null
+    return <CustomButton color={null} /> ; // props.color は null のままになります
   }
 ```
 
@@ -619,24 +630,24 @@ If `props.color` is set to `null`, it will remain `null`:
 
 ### `displayName` {#displayname}
 
-The `displayName` string is used in debugging messages. Usually, you don't need to set it explicitly because it's inferred from the name of the function or class that defines the component. You might want to set it explicitly if you want to display a different name for debugging purposes or when you create a higher-order component, see [Wrap the Display Name for Easy Debugging](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging) for details.
+`displayName` 文字列はデバッグメッセージに使用されます。通常、コンポーネントを定義する関数またはクラスの名前から推測されるため、明示的に設定する必要はありません。デバッグ目的で別の名前を表示する場合や、高階コンポーネントを作成する場合には、明示的に設定したくなるかもしれません。詳細については、[簡単なデバッグのために表示名をラップする](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging)を参照してください。
 
 * * *
 
-## Instance Properties {#instance-properties-1}
+## インスタンスプロパティ {#instance-properties-1}
 
 ### `props` {#props}
 
-`this.props` contains the props that were defined by the caller of this component. See [Components and Props](/docs/components-and-props.html) for an introduction to props.
+`this.props` には、このコンポーネントの呼び出し元によって定義された props が含まれています。props の紹介は [コンポーネントと props](/docs/components-and-props.html) を見てください。
 
-In particular, `this.props.children` is a special prop, typically defined by the child tags in the JSX expression rather than in the tag itself.
+特に、`this.props.children` は特別なプロパティで、通常はタグ自体にではなく JSX 式の子タグによって定義されます。
 
 ### `state` {#state}
 
-The state contains data specific to this component that may change over time. The state is user-defined, and it should be a plain JavaScript object.
+state には、そのコンポーネント固有のデータが含まれており、これは時間の経過とともに変化する可能性があります。state はユーザ定義のものであり、プレーンな JavaScript オブジェクトでなければなりません。
 
-If some value isn't used for rendering or data flow (for example, a timer ID), you don't have to put it in the state. Such values can be defined as fields on the component instance.
+レンダーやデータフローに値が使用されていない場合（たとえば、タイマー ID）は、値を state にする必要はありません。そのような値は、コンポーネントインスタンスのフィールドとして定義できます。
 
-See [State and Lifecycle](/docs/state-and-lifecycle.html) for more information about the state.
+state の詳細については、[state とライフサイクル](/docs/state-and-lifecycle.html)を参照してください。
 
-Never mutate `this.state` directly, as calling `setState()` afterwards may replace the mutation you made. Treat `this.state` as if it were immutable.
+後で `setState()` を呼び出すと、行った変更が置き換えられる可能性があるため、`this.state` を直接変更しないでください。`this.state` がイミュータブルであるかのように扱ってください。

@@ -6,18 +6,18 @@ sectionid: community
 permalink: community/external-resources.html
 ---
 
-There are many wonderful curated resources the React community has put together.
+React community には選定された多くの素晴らしいリソースがあります。
 
-- [Reactiflux](https://www.reactiflux.com/) - A community of 20,000+ React developers. They keep a well curated [learning section](https://www.reactiflux.com/learning/).
+- [Reactiflux](https://www.reactiflux.com/) - 20,000 人以上の React ディベロッパーが在籍するコミュニティです。彼らが良く選定された [learning section](https://www.reactiflux.com/learning/) を維持しています。
 
-- [React-Redux Links](https://github.com/markerikson/react-redux-links) - Mark Erikson's highly curated list of tutorials and resources for React/Redux/ES6 and more.
+- [React-Redux Links](https://github.com/markerikson/react-redux-links) - Mark Erikson 氏が選定したチュートリアルやリソースのリストです。React/Redux/ES6 などがあります。
 
-- [Awesome React](https://github.com/enaqx/awesome-react) - A collection of awesome things regarding React ecosystem.
+- [Awesome React](https://github.com/enaqx/awesome-react) - React ecosystem についての素晴らしいコレクションです。
 
-- [Awesome React Components](https://github.com/brillout/awesome-react-components) - A curated list of React components.
+- [Awesome React Components](https://github.com/brillout/awesome-react-components) - React components についての選定されたリストです。
 
-- [Awesome React Talks](https://github.com/tiaanduplessis/awesome-react-talks) - A curated list of React talks.
+- [Awesome React Talks](https://github.com/tiaanduplessis/awesome-react-talks) - React talks についての選定されたリストです。
 
-- [Awesome React Videos](https://www.awesomereact.com) - A website highlighting the best React videos.
+- [Awesome React Videos](https://www.awesomereact.com) - すばらしい React 関連のビデオを集めたウェブサイトです。
 
-- [Hero35 React Hub](https://hero35.com/topic/react) - A website with _all_ React conferences and talks, categorized & curated.
+- [Hero35 React Hub](https://hero35.com/topic/react) - React の*すべて*のカンファや講演がカテゴリ別に選定されて収録されているウェブサイトです。

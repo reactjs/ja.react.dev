@@ -16,6 +16,9 @@ require('./src/css/reset.css');
 require('./src/prism-styles');
 require('./src/css/algolia.css');
 
+// Import Japanese style fix CSS
+require('./src/css/ja-fix.css');
+
 // Expose React and ReactDOM as globals for console playground
 window.React = React;
 window.ReactDOM = ReactDOM;
