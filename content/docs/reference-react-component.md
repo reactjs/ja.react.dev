@@ -274,11 +274,7 @@ shouldComponentUpdate(nextProps, nextState)
 static getDerivedStateFromProps(props, state)
 ```
 
-<<<<<<< HEAD
-`getDerivedStateFromProps` is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update the state, or `null` to update nothing.
-=======
-`getDerivedStateFromProps` は、初期マウント時とその後の更新時の両方で、`render()` メソッドを呼び出す直前に呼び出されます。state を更新するためにオブジェクトを返すか、何も更新しないために `null` を返すべきです。
->>>>>>> origin
+`getDerivedStateFromProps` は、初期マウント時とその後の更新時の両方で、`render()` メソッドを呼び出す直前に呼び出されます。state を更新するためにオブジェクトを返すか、何も更新しない場合は `null` を返すべきです。
 
 このメソッドは、state が時間の経過とともに変化する props に依存するような[まれな使用例](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state)のために存在します。たとえば、以前と以降の子を比較してどちらの子をアニメーションするかを決定する `<Transition>` コンポーネントを実装するときに便利です。
 
@@ -590,11 +586,7 @@ component.forceUpdate(callback)
 
 ### `defaultProps` {#defaultprops}
 
-<<<<<<< HEAD
-`defaultProps` can be defined as a property on the component class itself, to set the default props for the class. This is used for `undefined` props, but not for `null` props. For example:
-=======
-`defaultProps` は、コンポーネントクラス自体のプロパティとして定義して、そのクラスのデフォルトの props を設定できます。これは `undefined` のプロパティに使用されますが、`null` のプロパティには使用されません。例えば：
->>>>>>> origin
+`defaultProps` は、コンポーネントクラス自体のプロパティとして定義して、そのクラスのデフォルトの props を設定できます。これは `undefined` であるプロパティに使用されますが、`null` であるプロパティには使用されません。例えば：
 
 ```js
 class CustomButton extends React.Component {
@@ -614,11 +606,7 @@ CustomButton.defaultProps = {
   }
 ```
 
-<<<<<<< HEAD
-If `props.color` is set to `null`, it will remain `null`:
-=======
-`props.color` が null に設定されている場合、それは null のままになります。
->>>>>>> origin
+`props.color` が `null` に設定されている場合、それは `null` のままになります。
 
 ```js
   render() {

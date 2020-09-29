@@ -1,13 +1,7 @@
 ---
 id: refs-and-the-dom
-<<<<<<< HEAD
-title: Refs and the DOM
-permalink: docs/refs-and-the-dom.html
-=======
 title: Ref と DOM
-prev: static-type-checking.html
-next: uncontrolled-components.html
->>>>>>> origin
+permalink: docs/refs-and-the-dom.html
 redirect_from:
   - "docs/working-with-the-browser.html"
   - "docs/more-about-refs.html"
