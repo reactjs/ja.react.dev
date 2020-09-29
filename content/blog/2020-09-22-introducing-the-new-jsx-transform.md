@@ -26,7 +26,7 @@ React 17 のリリースとともに、JSX トランスフォームにいくつ�
 
 ## 新しいトランスフォームは何が違うのか？ {#whats-different-in-the-new-transform}
 
-JSX を使うと、コンパイラはそれをブラウザが理解できる React の関数呼び出しに変換します。**以前の JSX トランスフォーム機能**では、JSX を `React.createElement(....)` 呼び出しに変換していました。
+JSX を使うと、コンパイラはそれをブラウザが理解できる React の関数呼び出しに変換します。**以前の JSX トランスフォーム機能**では、JSX を `React.createElement(...)` 呼び出しに変換していました。
 
 例えば、ソースコードが以下のようになっているとします。
 
@@ -198,7 +198,7 @@ Flow は新しい JSX トランスフォームを [v0.126.0](https://github.com/
 
 ## 未使用 React インポートの削除 {#removing-unused-react-imports}
 
-新しい JSX トランスフォームは、必要とする `react/jsx-rununtime` 関数を自動的にインポートするため、JSX を使用する際に React をスコープに入れる必要がなくなります。これにより、コードの中で React のインポートが未使用となる可能性があります。残しておいても害はありませんが、削除したい場合は ["codemod"](https://medium.com/@cpojer/effective-javascript-codemods-5a6686bb46fb) スクリプトを実行して自動的に行うことをお勧めします。
+新しい JSX トランスフォームは、必要とする `react/jsx-runtime` 関数を自動的にインポートするため、JSX を使用する際に React をスコープに入れる必要がなくなります。これにより、コードの中で React のインポートが未使用となる可能性があります。残しておいても害はありませんが、削除したい場合は ["codemod"](https://medium.com/@cpojer/effective-javascript-codemods-5a6686bb46fb) スクリプトを実行して自動的に行うことをお勧めします。
 
 ```bash
 cd your_project
