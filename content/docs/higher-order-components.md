@@ -2,8 +2,6 @@
 id: higher-order-components
 title: 高階 (Higher-Order) コンポーネント
 permalink: docs/higher-order-components.html
-prev: web-components.html
-next: render-props.html
 ---
 
 高階コンポーネント (higher-order component; HOC) はコンポーネントのロジックを再利用するための React における応用テクニックです。HOC それ自体は React の API の一部ではありません。HOC は、React のコンポジションの性質から生まれる設計パターンです。
