@@ -7,7 +7,7 @@ React 17 には[新機能はありません](/blog/2020/08/10/react-v17-rc.html)
 
 ## JSX トランスフォームとは？ {#whats-a-jsx-transform}
 
-ブラウザはそのままでは JSX を理解しないため、ほとんどの React ユーザーは、Babel や TypeScript のようなコンパイラを利用して **JSX コードを通常の JavaScript に変換 (transform)** しています。Create React App や Next.js のような多くの設定済みツールキットも、裏では JSX トランスフォーム機能を搭載しています。
+ブラウザはそのままでは JSX を理解しないため、ほとんどの React ユーザは、Babel や TypeScript のようなコンパイラを利用して **JSX コードを通常の JavaScript に変換 (transform)** しています。Create React App や Next.js のような多くの設定済みツールキットも、裏では JSX トランスフォーム機能を搭載しています。
 
 React 17 のリリースとともに、JSX トランスフォームにいくつかの改良を加えたいと思っていましたが、既存のセットアップを壊したくもありませんでした。そのため、[Babel と協力](https://babeljs.io/blog/2020/03/16/7.9.0#a-new-jsx-transform-11154httpsgithubcombabelbabelpull11154)して、アップグレードしたい人のために JSX トランスフォームの新バージョンを提供することにしました。
 
