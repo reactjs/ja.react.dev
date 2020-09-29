@@ -1,34 +1,34 @@
 ---
-title: "Introducing the New JSX Transform"
+title: 新しい JSX トランスフォーム
 author: [lunaruan]
 ---
 
-Although React 17 [doesn't contain new features](/blog/2020/08/10/react-v17-rc.html), it will provide support for a new version of the JSX transform. In this post, we will describe what it is and how to try it.
+React 17 には[新機能はありません](/blog/2020/08/10/react-v17-rc.html)が、新バージョンの JSX トランスフォーム (JSX transform) に対応します。この記事ではこれがどのようなもので、どのように試せるのかについて説明します。
 
-## What's a JSX Transform? {#whats-a-jsx-transform}
+## JSX トランスフォームとは？ {#whats-a-jsx-transform}
 
-Browsers don't understand JSX out of the box, so most React users rely on a compiler like Babel or TypeScript to **transform JSX code into regular JavaScript**. Many preconfigured toolkits like Create React App or Next.js also include a JSX transform under the hood.
+ブラウザはそのままでは JSX を理解しないため、ほとんどの React ユーザーは、Babel や TypeScript のようなコンパイラを利用して **JSX コードを通常の JavaScript に変換 (transform)** しています。Create React App や Next.js のような多くの設定済みツールキットも、裏では JSX トランスフォーム機能を搭載しています。
 
-Together with the React 17 release, we've wanted to make a few improvements to the JSX transform, but we didn't want to break existing setups. This is why we [worked with Babel](https://babeljs.io/blog/2020/03/16/7.9.0#a-new-jsx-transform-11154httpsgithubcombabelbabelpull11154) to **offer a new, rewritten version of the JSX transform** for people who would like to upgrade.
+React 17 のリリースとともに、JSX トランスフォームにいくつかの改良を加えたいと思っていましたが、既存のセットアップを壊したくもありませんでした。そのため、[Babel と協力](https://babeljs.io/blog/2020/03/16/7.9.0#a-new-jsx-transform-11154httpsgithubcombabelbabelpull11154)して、アップグレードしたい人のために JSX トランスフォームの新バージョンを提供することにしました。
 
-Upgrading to the new transform is completely optional, but it has a few benefits:
+新しいトランスフォームへのアップグレードは完全に任意ですが、いくつかの利点があります。
 
-* With the new transform, you can **use JSX without importing React**.
-* Depending on your setup, its compiled output may **slightly improve the bundle size**.
-* It will enable future improvements that **reduce the number of concepts** you need to learn React.
+* 新版のトランスフォームでは、**React をインポートせず** JSX を使用できます。
+* セットアップによっては、コンパイル後のバンドルサイズをわずかに改善できる可能性があります。
+* 将来的に、React を学ぶために**覚える必要がある概念の数を減らす**ような改善が可能になります。
 
-**This upgrade will not change the JSX syntax and is not required.** The old JSX transform will keep working as usual, and there are no plans to remove the support for it.
+**このアップグレードは JSX の構文を変更するものではなく、必須でもありません**。以前の JSX トランスフォームもこれまで通り動作し続けますし、それらのサポートを削除する予定もありません。
 
 
-[React 17 RC](/blog/2020/08/10/react-v17-rc.html) already includes support for the new transform, so go give it a try! To make it easier to adopt, after React 17 is released, we also plan to backport its support to React 16.x, React 15.x, and React 0.14.x. You can find the upgrade instructions for different tools [below](#how-to-upgrade-to-the-new-jsx-transform).
+[React 17 RC](/blog/2020/08/10/react-v17-rc.html) にはすでに新しいトランスフォームのサポートが含まれていますので、試してみてください。より簡単に導入できるよう、React 17 がリリースされた後、React 16.x、React 15.x、React 0.14.x へのバックポートも計画しています。[記事の後半](#how-to-upgrade-to-the-new-jsx-transform)で様々なツールにおけるアップグレード方法を記載しています。
 
-Now let's take a closer look at the differences between the old and the new transform.
+では、新旧のトランスフォームの違いを詳しく見ていきましょう。
 
-## What’s Different in the New Transform? {#whats-different-in-the-new-transform}
+## 新しいトランスフォームは何が違うのか？ {#whats-different-in-the-new-transform}
 
-When you use JSX, the compiler transforms it into React function calls that the browser can understand. **The old JSX transform** turned JSX into `React.createElement(...)` calls.
+JSX を使うと、コンパイラはそれをブラウザが理解できる React の関数呼び出しに変換します。**以前の JSX トランスフォーム機能**では、JSX を `React.createElement(....)` 呼び出しに変換していました。
 
-For example, let's say your source code looks like this:
+例えば、ソースコードが以下のようになっているとします。
 
 ```js
 import React from 'react';
@@ -38,7 +38,7 @@ function App() {
 }
 ```
 
-Under the hood, the old JSX transform turns it into regular JavaScript:
+裏側では、以前の JSX トランスフォームはこれを以下のような通常の JavaScript に変換します。
 
 ```js
 import React from 'react';
@@ -48,18 +48,18 @@ function App() {
 }
 ```
 
->Note
+>補足
 >
->**Your source code doesn't need to change in any way.** We're describing how the JSX transform turns your JSX source code into the JavaScript code a browser can understand.
+>**あなたのソースコードをこう変えろという話ではありません。**これは、JSX トランスフォームがあなたの JSX ソースコードをブラウザが理解できるコードへとどのように変換するのかを説明しているものです。
 
-However, this is not perfect:
+しかし、これで完璧とは言えません。
 
-* Because JSX compiled into `React.createElement`, `React` needed to be in scope if you use JSX.
-* There are some [performance improvements and simplifications](https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md#motivation) that `React.createElement` does not allow.
+* JSX が `React.createElement` へとコンパイルされるため、JSX を使用する場合は `React` をスコープに入れる必要がありました。
+* `React.createElement` では行えない[パフォーマンス向上と単純化方法](https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md#motivation)がいくつか存在します。
 
-To solve these issues, React 17 introduces two new entry points to the React package that are intended to only be used by compilers like Babel and TypeScript. Instead of transforming JSX to `React.createElement`, **the new JSX transform** automatically imports special functions from those new entry points in the React package and calls them.
+これらの問題を解決するために、React 17 では React パッケージに、Babel や TypeScript のようなコンパイラのみが使用することを意図した 2 つの新しいエントリポイントを導入しています。JSX を `React.createElement` に変換する代わりに、**新しい JSX トランスフォーム**は、React パッケージのこれらの新しいエントリポイントから特別な関数を自動的にインポートし、それらを呼び出します。
 
-Let's say that your source code looks like this:
+ソースコードが以下のようになっているとしましょう。
 
 ```js
 function App() {
@@ -67,7 +67,7 @@ function App() {
 }
 ```
 
-This is what the new JSX transform compiles it to:
+新しい JSX トランスフォームは、これをこのようなコードにコンパイルします。
 
 ```js
 // Inserted by a compiler (don't import it yourself!)
@@ -78,48 +78,48 @@ function App() {
 }
 ```
 
-Note how our original code **did not need to import React** to use JSX anymore! (But we would still need to import React in order to use Hooks or other exports that React provides.)
+JSX を使用するために **React をインポートする必要がなくなっている**ことに注意してください！（ただし、React が提供するフックやその他のエクスポートを使用するためには、引き続き React をインポートする必要があります）。
 
-**This change is fully compatible with all of the existing JSX code**, so you won't have to change your components. If you're curious, you can check out the [technical RFC](https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md#detailed-design) for more details about how the new transform works.
+**この変更は、既存のあらゆる JSX コードと完全に互換性があります**ので、あなたのコンポーネントを変更する必要はありません。興味がある方は、新しいトランスフォームがどのように動作するかの詳細について[テクニカル RFC](https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md#detailed-design) をチェックしてみてください。
 
-> Note
+> 補足
 >
-> The functions inside `react/jsx-runtime` and `react/jsx-dev-runtime` must only be used by the compiler transform. If you need to manually create elements in your code, you should keep using `React.createElement`. It will continue to work and is not going away.
+> `react/jsx-run-time` と `react/jsx-dev-run-time` 内の関数は、コンパイラによるトランスフォーム機能によってのみ使用されなければなりません。コードの中で手動で要素を作成する必要がある場合は、`React.createElement` を使い続けるべきです。これは動作し続けますし、なくなることはありません。
 
-## How to Upgrade to the New JSX Transform {#how-to-upgrade-to-the-new-jsx-transform}
+## 新しい JSX トランスフォームへのアップグレード {#how-to-upgrade-to-the-new-jsx-transform}
 
-If you aren't ready to upgrade to the new JSX transform or if you are using JSX for another library, don't worry. The old transform will not be removed and will continue to be supported.
+新しい JSX トランスフォームにアップグレードする準備ができていない場合や、別のライブラリで JSX を使用している場合でも、心配は要りません。古いトランスフォームは削除されず、引き続きサポートされます。
 
-If you want to upgrade, you will need two things:
+アップグレードしたい場合は、以下の 2 つのものが必要です。
 
-* **A version of React that supports the new transform** (currently, only [React 17 RC](/blog/2020/08/10/react-v17-rc.html) supports it, but after React 17.0 has been released, we plan to make additional compatible releases for 0.14.x, 15.x, and 16.x).
-* **A compatible compiler** (see instructions for different tools below).
+* **新しいトランスフォームをサポートする React のバージョン**（現在は [React 17 RC](/blog/2020/08/10/react-v17-rc.html) のみがサポートしていますが、React 17.0 がリリースされた後、0.14.x, 15.x, 16.x 用にも互換用のリリースを追加で作成する予定です）。
+* **互換性のあるコンパイラ**（下記のツールごとの説明を参照）。
 
-Since the new JSX transform doesn't require React to be in scope, [we've also prepared an automated script](#removing-unused-react-imports) that will remove the unnecessary imports from your codebase.
+新しい JSX 変換は React をスコープに入れる必要がないので、コードベースから不要なインポートを削除する[自動化スクリプトも用意しました](#removing-unused-react-imports)。
 
 ### Create React App {#create-react-app}
 
-Create React App support [has been added](https://github.com/facebook/create-react-app/pull/9645) and will be available in the [upcoming v4.0 release](https://gist.github.com/iansu/4fab7a9bfa5fa6ebc87a908c62f5340b) which is currently in beta testing.
+Create React App でのサポートは[すでに追加されており](https://github.com/facebook/create-react-app/pull/9645)、現在ベータテスト中の[次期 v4.0 リリース](https://gist.github.com/iansu/4fab7a9bfa5fa6ebc87a908c62f5340b)で利用可能になる予定です。
 
 ### Next.js {#nextjs}
 
-Next.js [v9.5.3](https://github.com/vercel/next.js/releases/tag/v9.5.3)+ uses the new transform for compatible React versions.
+Next.js [v9.5.3](https://github.com/vercel/next.js/releases/tag/v9.5.3) 以降、互換性のある React のバージョンに対して新しいトランスフォームを利用します。
 
 ### Gatsby {#gatsby}
 
-Gatsby [v2.24.5](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/CHANGELOG.md#22452-2020-08-28)+ uses the new transform for compatible React versions.
+Gatsby [v2.24.5](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/CHANGELOG.md#22452-2020-08-28) 以降、互換性のある React のバージョンに対して新しいトランスフォームを使用します。
 
->Note
+>補足
 >
->If you get [this Gatsby error](https://github.com/gatsbyjs/gatsby/issues/26979) after upgrading to React `17.0.0-rc.2`, run `npm update` to fix it.
+>React `17.0.0-rc.2` にアップグレードした後に[この Gatsby エラー](https://github.com/gatsbyjs/gatsby/issues/26979)が出た場合は、`npm update` を実行することで修正できます。
 
-### Manual Babel Setup {#manual-babel-setup}
+### Babel の手動セットアップ {#manual-babel-setup}
 
-Support for the new JSX transform is available in Babel [v7.9.0](https://babeljs.io/blog/2020/03/16/7.9.0) and above.
+新しい JSX トランスフォームのサポートは、Babel [v7.9.0](https://babeljs.io/blog/2020/03/16/7.9.0) 以上で利用可能です。
 
-First, you'll need to update to the latest Babel and plugin transform.
+まず、最新の Babel とトランスフォームプラグインにアップデートする必要があります。
 
-If you are using `@babel/plugin-transform-react-jsx`:
+`@babel/plugin-transform-react-jsx` を利用している場合：
 
 ```bash
 # for npm users
@@ -131,7 +131,7 @@ npm update @babel/core @babel/plugin-transform-react-jsx
 yarn upgrade @babel/core @babel/plugin-transform-react-jsx
 ```
 
-If you are using `@babel/preset-react`:
+`@babel/preset-react` を利用している場合：
 
 ```bash
 # for npm users
@@ -143,7 +143,7 @@ npm update @babel/core @babel/preset-react
 yarn upgrade @babel/core @babel/preset-react
 ```
 
-Currently, the old transform (`"runtime": "classic"`) is the default option. To enable the new transform, you can pass `{"runtime": "automatic"}` as an option to `@babel/plugin-transform-react-jsx` or `@babel/preset-react`:
+現在のところは以前のトランスフォーム (`"runtime": "classic"`) がデフォルトのオプションです。新しいトランスフォームを有効にするには、`@babel/plugin-transform-react-jsx` ないし `@babel/preset-react` のオプションとして `{"runtime": "automatic"}` を渡してください。
 
 ```js
 // If you are using @babel/preset-react
@@ -167,15 +167,15 @@ Currently, the old transform (`"runtime": "classic"`) is the default option. To 
 }
 ```
 
-Starting from Babel 8, `"automatic"` will be the default runtime for both plugins. For more information, check out the Babel documentation for [@babel/plugin-transform-react-jsx](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx) and [@babel/preset-react](https://babeljs.io/docs/en/babel-preset-react).
+Babel 8 からは、`"automatic"` が両方のプラグインでデフォルトのランタイムとなります。詳細については、Babel ドキュメントの [@babel/plugin-transform-react-jsx](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx) と [@babel/preset-react](https://babeljs.io/docs/en/babel-preset-react) を参照してください。
 
-> Note
+> 補足
 >
-> If you use JSX with a library other than React, you can use [the `importSource` option](https://babeljs.io/docs/en/babel-preset-react#importsource) to import from that library instead -- as long as it provides the necessary entry points. Alternatively, you can keep using the classic transform which will continue to be supported.
+> JSX を React 以外のライブラリで使用している場合、そのライブラリが必要なエントリポイントを提供しているのであれば、[`importSource` オプション](https://babeljs.io/docs/en/babel-preset-react#importsource) を使ってそこからインポートするよう指定することができます。あるいは、引き続きサポートされる旧版のトランスフォームを使い続けることもできます。
 
 ### ESLint {#eslint}
 
-If you are using [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react), the `react/jsx-uses-react` and `react/react-in-jsx-scope` rules are no longer necessary and can be turned off or removed.
+[eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react) を使用している場合、`react/jsx-uses-react` と `react/react-in-jsx-scope` のルールは不要になりますので、無効にするか削除することができます。
 
 ```js
 {
@@ -190,34 +190,34 @@ If you are using [eslint-plugin-react](https://github.com/yannickcr/eslint-plugi
 
 ### TypeScript {#typescript}
 
-TypeScript supports the JSX transform in [v4.1 beta](https://devblogs.microsoft.com/typescript/announcing-typescript-4-1-beta/#jsx-factories).
+TypeScript は新しい JSX トランスフォームを [v4.1 beta](https://devblogs.microsoft.com/typescript/announcing-typescript-4-1-beta/#jsx-factories) でサポートします。
 
 ### Flow {#flow}
 
-Flow supports the new JSX transform in [v0.126.0](https://github.com/facebook/flow/releases/tag/v0.126.0) and up.
+Flow は新しい JSX トランスフォームを [v0.126.0](https://github.com/facebook/flow/releases/tag/v0.126.0) およびそれ以降でサポートします。
 
-## Removing Unused React Imports {#removing-unused-react-imports}
+## 未使用 React インポートの削除 {#removing-unused-react-imports}
 
-Because the new JSX transform will automatically import the necessary `react/jsx-runtime` functions, React will no longer need to be in scope when you use JSX. This might lead to unused React imports in your code. It doesn't hurt to keep them, but if you'd like to remove them, we recommend running a [“codemod”](https://medium.com/@cpojer/effective-javascript-codemods-5a6686bb46fb) script to remove them automatically:
+新しい JSX トランスフォームは、必要とする `react/jsx-rununtime` 関数を自動的にインポートするため、JSX を使用する際に React をスコープに入れる必要がなくなります。これにより、コードの中で React のインポートが未使用となる可能性があります。残しておいても害はありませんが、削除したい場合は ["codemod"](https://medium.com/@cpojer/effective-javascript-codemods-5a6686bb46fb) スクリプトを実行して自動的に行うことをお勧めします。
 
 ```bash
 cd your_project
 npx react-codemod update-react-imports
 ```
 
->Note
+>補足
 >
->If you're getting errors when running the codemod, try specifying a different JavaScript dialect when `npx react-codemod update-react-imports` asks you to choose one. In particular, at this moment the "JavaScript with Flow" setting supports newer syntax than the "JavaScript" setting even if you don't use Flow. [File an issue](https://github.com/reactjs/react-codemod/issues) if you run into problems.
+>codemod の実行時にエラーが出る場合は、`npx react-codemod update-react-imports` で別の JavaScript の方言を指定してみてください。特に、現時点では "JavaScript with Flow" の設定は、"JavaScript" の設定よりも新しい構文をサポートしていますので、Flow を使用していない場合でも試してみてください。問題が発生した場合は [issue を報告](https://github.com/reactjs/react-codemod/issues) してください。
 >
->Keep in mind that the codemod output will not always match your project's coding style, so you might want to run [Prettier](https://prettier.io/) after the codemod finishes for consistent formatting.
+>また、codemod の出力はあなたのプロジェクトのコーディングスタイルと必ずしも一致はしませんので、一貫したフォーマットにするため codemod の終了後に [Prettier](https://prettier.io/) を実行すると良いかもしれません。
 
 
-Running this codemod will:
+この codemod を実行すると以下のことを行います：
 
-* Remove all unused React imports as a result of upgrading to the new JSX transform.
-* Change all default React imports (i.e. `import React from "react"`) to destructured named imports (ex. `import { useState } from "react"`) which is the preferred style going into the future. This codemod **will not** affect the existing namespace imports (i.e. `import * as React from "react"`) which is also a valid style. The default imports will keep working in React 17, but in the longer term we encourage moving away from them.
+* 新しい JSX トランスフォームにアップグレードした結果使用されなくなる React のインポートをすべて削除します。
+* すべての React のデフォルトインポート（すなわち、`import React from "react"`）を、将来的に望ましいスタイルである分割代入型の名前付きインポート（例えば、`import { useState } from "react"`）に変更します。名前空間インポート（つまり、`import * as React from "react"`）も有効な形式ですが、codemod はこれらは変換**しません**。デフォルトインポートは React 17 でも動作し続けますが、長期的にはそれらのインポートを利用しないようにすることを推奨します。
 
-For example,
+例えば、
 
 ```js
 import React from 'react';
@@ -227,7 +227,7 @@ function App() {
 }
 ```
 
-will be replaced with
+は、以下に置き換わります：
 
 ```js
 function App() {
@@ -235,9 +235,9 @@ function App() {
 }
 ```
 
-If you use some other import from React — for example, a Hook — then the codemod will convert it to a named import.
+他のもの（例えばフック）を React からインポートしている場合は、codemod はそれらを名前付きインポートへと変換します。
 
-For example,
+例えば、
 
 ```js
 import React from 'react';
@@ -248,7 +248,7 @@ function App() {
 }
 ```
 
-will be replaced with
+は、以下に置き換わります：
 
 ```js
 import { useState } from 'react';
@@ -259,8 +259,8 @@ function App() {
 }
 ```
 
-In addition to cleaning up unused imports, this will also help you prepare for a future major version of React (not React 17) which will support ES Modules and not have a default export.
+未使用のインポートをクリーンアップすることに加えて、これは ES Modules をサポートしデフォルトエクスポートを持たない将来のメジャーバージョンの React（React 17 のことではありません）への準備にも役立ちます。
 
-## Thanks {#thanks}
+## 謝辞 {#thanks}
 
-We'd like to thank Babel, TypeScript, Create React App, Next.js, Gatsby, ESLint, and Flow maintainers for their help implementing and integrating the new JSX transform. We also want to thank the React community for their feedback and discussion on the related [technical RFC](https://github.com/reactjs/rfcs/pull/107).
+新しい JSX トランスフォームの実装と統合を手伝っていただいた Babel、TypeScript、Create React App、Next.js、Gatsby、ESLint および Flow のメンテナの方々に感謝します。また、[テクニカル RFC](https://github.com/reactjs/rfcs/pull/107) においてフィードバックや議論をしていただいた React コミュニティにも感謝します。
