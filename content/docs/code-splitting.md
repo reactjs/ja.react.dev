@@ -85,15 +85,27 @@ import("./math").then(math => {
 });
 ```
 
+<<<<<<< HEAD
 Webpack がこの構文を見つけると、自動的にアプリのコードを分割します。
 Create React App を使用している場合はすでに設定がされているため、[すぐに使用を開始することができます。](https://facebook.github.io/create-react-app/docs/code-splitting)
 [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import) も同様です。
+=======
+When Webpack comes across this syntax, it automatically starts code-splitting
+your app. If you're using Create React App, this is already configured for you
+and you can [start using it](https://create-react-app.dev/docs/code-splitting/) immediately. It's also supported
+out of the box in [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import).
+>>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 もし Webpack を自分でセットアップしていた場合には、Webpack の[コード分割に関するガイド](https://webpack.js.org/guides/code-splitting/)を読むと良いでしょう。
 きっとあなたの Webpack の設定はだいたい[このように](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269)なると思います。
 
+<<<<<<< HEAD
 もし [Babel](https://babeljs.io/) を使用している場合は、Babel が動的インポート構文をパースできても変換してしまわないようにする必要があります。
 そのためには  [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import) を利用すると良いでしょう。
+=======
+When using [Babel](https://babeljs.io/), you'll need to make sure that Babel can
+parse the dynamic import syntax but is not transforming it. For that you will need [@babel/plugin-syntax-dynamic-import](https://classic.yarnpkg.com/en/package/@babel/plugin-syntax-dynamic-import).
+>>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 ## `React.lazy` {#reactlazy}
 
