@@ -30,7 +30,11 @@ Greeting.propTypes = {
 };
 ```
 
+<<<<<<< HEAD
 この例ではクラスコンポーネントを使っていますが、同様の機能は関数コンポーネントや [`React.memo`](https://reactjs.org/docs/react-api.html#reactmemo) および [`React.forwardRef`](https://reactjs.org/docs/react-api.html#reactforwardref) で作ったコンポーネントでも使用できます。
+=======
+In this example, we are using a class component, but the same functionality could also be applied to function components, or components created by [`React.memo`](/docs/react-api.html#reactmemo) or [`React.forwardRef`](/docs/react-api.html#reactforwardref).
+>>>>>>> bd0c9d8c5f5e78e0bd1066b46024ba98f4daac84
 
 `PropTypes` は受け取ったデータが有効かどうかを確認するために使用できる種々のバリデーターをエクスポートしています。上記の例では、`PropTypes.string` を使用しています。無効な値がプロパティに与えられた場合、JavaScript のコンソールに警告文が出力されます。パフォーマンス上の理由から、`propTypes` のチェックは開発モードでのみ行われます。
 

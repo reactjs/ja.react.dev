@@ -72,9 +72,15 @@
     "url": "git+https://github.com/reactjs/ja.reactjs.org.git"
   },
   "scripts": {
+<<<<<<< HEAD
     "build": "gatsby build",
     "check-all": "npm-run-all prettier generate-ids --parallel lint flow lint:text",
     "ci-check": "npm-run-all prettier:diff --parallel lint flow lint:text",
+=======
+    "build": "gatsby clean && gatsby build",
+    "check-all": "npm-run-all prettier generate-ids --parallel lint flow",
+    "ci-check": "npm-run-all prettier:diff --parallel lint flow",
+>>>>>>> bd0c9d8c5f5e78e0bd1066b46024ba98f4daac84
     "dev": "gatsby develop -H 0.0.0.0",
     "flow": "flow",
     "format:source": "prettier --config .prettierrc --write \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",

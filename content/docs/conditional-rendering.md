@@ -152,7 +152,24 @@ ReactDOM.render(
 
 従って、条件部分が `true` であれば、`&&` の後に書かれた要素が出力に現れます。もし `false` であれば、React はそれを無視して飛ばします。
 
+<<<<<<< HEAD
 ### 条件演算子によるインライン If-Else {#inline-if-else-with-conditional-operator}
+=======
+Note that returning a falsy expression will still cause the element after `&&` to be skipped but will return the falsy expression. In the example below, `<div>0</div>` will be returned by the render method.
+
+```javascript{2,5}
+render() {
+  const count = 0;
+  return (
+    <div>
+      { count && <h1>Messages: {count}</h1>}
+    </div>
+  );
+}
+```
+
+### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
+>>>>>>> bd0c9d8c5f5e78e0bd1066b46024ba98f4daac84
 
 条件的に要素をレンダリングするもうひとつの方法は JavaScript の [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) 条件演算子を利用することです。
 

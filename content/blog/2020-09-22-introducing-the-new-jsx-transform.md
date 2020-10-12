@@ -54,8 +54,13 @@ function App() {
 
 しかし、これで完璧とは言えません。
 
+<<<<<<< HEAD
 * JSX が `React.createElement` へとコンパイルされるため、JSX を使用する場合は `React` をスコープに入れる必要がありました。
 * `React.createElement` では行えない[パフォーマンス向上と単純化方法](https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md#motivation)がいくつか存在します。
+=======
+* Because JSX was compiled into `React.createElement`, `React` needed to be in scope if you used JSX.
+* There are some [performance improvements and simplifications](https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md#motivation) that `React.createElement` does not allow.
+>>>>>>> bd0c9d8c5f5e78e0bd1066b46024ba98f4daac84
 
 これらの問題を解決するために、React 17 では React パッケージに、Babel や TypeScript のようなコンパイラのみが使用することを意図した 2 つの新しいエントリポイントを導入しています。JSX を `React.createElement` に変換する代わりに、**新しい JSX トランスフォーム**は、React パッケージのこれらの新しいエントリポイントから特別な関数を自動的にインポートし、それらを呼び出します。
 
