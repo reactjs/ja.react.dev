@@ -6,10 +6,14 @@ permalink: docs/code-splitting.html
 
 ## バンドル {#bundling}
 
+<<<<<<< HEAD
 多くの React アプリケーションは、[Webpack](https://webpack.js.org/)、[Rollup](https://rollupjs.org/) や [Browserify](http://browserify.org/) などの
 ツールを使ってファイルを「バンドル」しています。
 バンドルはインポートされたファイルをたどって、それらを 1 つのファイルにまとめるプロセスです。
 このバンドルされたファイルを Web ページ内に置くことによって、アプリ全体を一度に読み込むことができます。
+=======
+Most React apps will have their files "bundled" using tools like [Webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/) or [Browserify](http://browserify.org/). Bundling is the process of following imported files and merging them into a single file: a "bundle". This bundle can then be included on a webpage to load an entire app at once.
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 #### 例 {#example}
 
@@ -43,15 +47,22 @@ console.log(add(16, 26)); // 42
 >
 > 実際のバンドルはこれとは大幅に異なった見た目になります。
 
+<<<<<<< HEAD
 もし [Create React App](https://create-react-app.dev/)、[Next.js](https://nextjs.org/)、[Gatsby](https://www.gatsbyjs.org/) やこれらに類するツールを使用している場合、アプリケーションをバンドルするための Webpack のセットアップが最初から含まれています。
 
 そうでない場合は、自分でバンドルを設定する必要があります。
 設定方法に関しては、Webpack のドキュメントにある [Installation](https://webpack.js.org/guides/installation/) や
  [Getting Started](https://webpack.js.org/guides/getting-started/) などを
  参照してみてください。
+=======
+If you're using [Create React App](https://create-react-app.dev/), [Next.js](https://nextjs.org/), [Gatsby](https://www.gatsbyjs.org/), or a similar tool, you will have a Webpack setup out of the box to bundle your app.
+
+If you aren't, you'll need to setup bundling yourself. For example, see the [Installation](https://webpack.js.org/guides/installation/) and [Getting Started](https://webpack.js.org/guides/getting-started/) guides on the Webpack docs.
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 ## コード分割 {#code-splitting}
 
+<<<<<<< HEAD
 バンドルは確かに素晴らしいですが、アプリが大きくなるにつれて、バンドルのサイズも大きくなります。
 特にサイズの大きなサードパーティ製のライブラリを含む場合は顕著にサイズが増大します。
 不用意に大きなバンドルを作成してしまいアプリの読み込みに多くの時間がかかってしまうという事態にならないためにも、
@@ -68,6 +79,18 @@ Code-Splitting は、[Webpack](https://webpack.js.org/guides/code-splitting/)、
 ## `import()` {#import}
 
 コード分割をアプリに導入する最も良い手段は動的な `import()` 構文を使用することです。
+=======
+Bundling is great, but as your app grows, your bundle will grow too. Especially if you are including large third-party libraries. You need to keep an eye on the code you are including in your bundle so that you don't accidentally make it so large that your app takes a long time to load.
+
+To avoid winding up with a large bundle, it's good to get ahead of the problem and start "splitting" your bundle. Code-Splitting is a feature
+supported by bundlers like [Webpack](https://webpack.js.org/guides/code-splitting/), [Rollup](https://rollupjs.org/guide/en/#code-splitting) and Browserify (via [factor-bundle](https://github.com/browserify/factor-bundle)) which can create multiple bundles that can be dynamically loaded at runtime.
+
+Code-splitting your app can help you "lazy-load" just the things that are currently needed by the user, which can dramatically improve the performance of your app. While you haven't reduced the overall amount of code in your app, you've avoided loading code that the user may never need, and reduced the amount of code needed during the initial load.
+
+## `import()` {#import}
+
+The best way to introduce code-splitting into your app is through the dynamic `import()` syntax.
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 **Before:**
 
@@ -85,6 +108,7 @@ import("./math").then(math => {
 });
 ```
 
+<<<<<<< HEAD
 Webpack がこの構文を見つけると、自動的にアプリのコードを分割します。
 Create React App を使用している場合はすでに設定がされているため、[すぐに使用を開始することができます。](https://facebook.github.io/create-react-app/docs/code-splitting)
 [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import) も同様です。
@@ -94,6 +118,13 @@ Create React App を使用している場合はすでに設定がされている
 
 もし [Babel](https://babeljs.io/) を使用している場合は、Babel が動的インポート構文をパースできても変換してしまわないようにする必要があります。
 そのためには  [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import) を利用すると良いでしょう。
+=======
+When Webpack comes across this syntax, it automatically starts code-splitting your app. If you're using Create React App, this is already configured for you and you can [start using it](https://create-react-app.dev/docs/code-splitting/) immediately. It's also supported out of the box in [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import).
+
+If you're setting up Webpack yourself, you'll probably want to read Webpack's [guide on code splitting](https://webpack.js.org/guides/code-splitting/). Your Webpack config should look vaguely [like this](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
+
+When using [Babel](https://babeljs.io/), you'll need to make sure that Babel can parse the dynamic import syntax but is not transforming it. For that you will need [@babel/plugin-syntax-dynamic-import](https://classic.yarnpkg.com/en/package/@babel/plugin-syntax-dynamic-import).
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 ## `React.lazy` {#reactlazy}
 
@@ -186,6 +217,7 @@ const MyComponent = () => (
 
 ## ルーティング単位でのコード分割 {#route-based-code-splitting}
 
+<<<<<<< HEAD
 アプリ内のどこにコード分割を導入するかを決めるのは少し面倒です。
 バンドルを均等に分割する場所を確実に選択したいところですが、ユーザ体験を妨げてはなりません。
 
@@ -195,6 +227,13 @@ Web を使用するほとんどの人は、多少のロード時間がかかる�
 
 これは [React Router](https://reacttraining.com/react-router/) のようなライブラリを使ったアプリに `React.lazy` を使用することで
 ルーティングベースのコード分割を導入する方法の例です。
+=======
+Deciding where in your app to introduce code splitting can be a bit tricky. You want to make sure you choose places that will split bundles evenly, but won't disrupt the user experience.
+
+A good place to start is with routes. Most people on the web are used to page transitions taking some amount of time to load. You also tend to be re-rendering the entire page at once so your users are unlikely to be interacting with other elements on the page at the same time.
+
+Here's an example of how to setup route-based code splitting into your app using libraries like [React Router](https://reacttraining.com/react-router/) with `React.lazy`.
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 ```js
 import React, { Suspense, lazy } from 'react';

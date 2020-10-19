@@ -39,7 +39,11 @@ class Welcome extends React.Component {
 
 ### コンポーネントライフサイクル {#the-component-lifecycle}
 
+<<<<<<< HEAD
 各コンポーネントには、処理の過程の特定の時点でコードを実行するためにオーバーライドできるいくつかの「ライフサイクルメソッド」があります。**この[ライフサイクル図](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)をチートシートとして使用できます。**以下のリストでは、よく使われるライフサイクルメソッドは**太字**で表示されています。それらの残りは比較的まれなユースケースのために存在します。
+=======
+Each component has several "lifecycle methods" that you can override to run code at particular times in the process. **You can use [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.** In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 #### マウント {#mounting}
 
@@ -109,7 +113,11 @@ class Welcome extends React.Component {
 
 ### よく使われるライフサイクルメソッド {#commonly-used-lifecycle-methods}
 
+<<<<<<< HEAD
 このセクションのメソッドは、React コンポーネントを作成する際に遭遇する大部分のユースケースを網羅しています。視覚的なリファレンスとして、この[ライフサイクル図](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)もチェックしてみてください。
+=======
+The methods in this section cover the vast majority of use cases you'll encounter creating React components. **For a visual reference, check out [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 ### `render()` {#render}
 
@@ -245,7 +253,11 @@ componentWillUnmount()
 
 ### まれに使われるライフサイクルメソッド {#rarely-used-lifecycle-methods}
 
+<<<<<<< HEAD
 このセクションのメソッドは、一般的でないユースケースに対応しています。これらは時々便利に使えますが、あなたのコンポーネントのほとんどはおそらくそれらのどれも必要としないでしょう。**この[ライフサイクル図](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)の上部にある「あまり一般的ではないライフサイクルを表示する」チェックボックスをクリックすると、以下のほとんどの方法が表示されます。**
+=======
+The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them. **You can see most of the methods below on [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -278,8 +290,13 @@ static getDerivedStateFromProps(props, state)
 
 このメソッドは、state が時間の経過とともに変化する props に依存するような[まれな使用例](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state)のために存在します。たとえば、以前と以降の子を比較してどちらの子をアニメーションするかを決定する `<Transition>` コンポーネントを実装するときに便利です。
 
+<<<<<<< HEAD
 state を派生させると冗長なコードにつながり、コンポーネントを考えるのが難しくなります。
 [あなたがより簡単な方法に慣れていることを確認してください。](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+=======
+Deriving state leads to verbose code and makes your components difficult to think about.
+[Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 * props の変更に応じて**副作用を実行する**必要がある場合は（データのフェッチやアニメーションなど）、代わりに [`componentDidUpdate`](#componentdidupdate) ライフサイクルを使用してください
 
@@ -323,9 +340,15 @@ error boundary は予期しない例外からの回復のためだけに使用�
 
 詳細については、[*React 16 のエラーハンドリング*](/blog/2017/07/26/error-handling-in-react-16.html)を参照してください。
 
+<<<<<<< HEAD
 > 補足
 > 
 > error boundary は、ツリー内でその**下**にあるコンポーネント内のエラーのみを捕捉します。error boundary はそれ自体の中でエラーを捉えることはできません。
+=======
+> Note
+>
+> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
@@ -353,7 +376,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
@@ -406,15 +429,22 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
 
+<<<<<<< HEAD
 > 補足
 > 
 > エラーが発生した場合は、`setState` を呼び出す `componentDidCatch()` を使用してフォールバック UI をレンダーできますが、これは将来のリリースでは推奨されなくなります。
 > 代わりにフォールバックの描画を扱うために、`static getDerivedStateFromError()` を使用してください。
+=======
+> Note
+>
+> In the event of an error, you can render a fallback UI with `componentDidCatch()` by calling `setState`, but this will be deprecated in a future release.
+> Use `static getDerivedStateFromError()` to handle fallback rendering instead.
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 * * *
 

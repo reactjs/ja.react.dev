@@ -47,8 +47,8 @@
     "normalize.css": "^8.0.0",
     "prettier": "^1.7.4",
     "prismjs": "^1.15.0",
-    "react": "^17.0.0-rc.2",
-    "react-dom": "^17.0.0-rc.2",
+    "react": "^17.0.0-rc.3",
+    "react-dom": "^17.0.0-rc.3",
     "react-helmet": "^5.2.0",
     "react-live": "1.8.0-0",
     "remarkable": "^1.7.1",
@@ -72,9 +72,15 @@
     "url": "git+https://github.com/reactjs/ja.reactjs.org.git"
   },
   "scripts": {
+<<<<<<< HEAD
     "build": "gatsby build",
     "check-all": "npm-run-all prettier generate-ids --parallel lint flow lint:text",
     "ci-check": "npm-run-all prettier:diff --parallel lint flow lint:text",
+=======
+    "build": "gatsby clean && gatsby build",
+    "check-all": "npm-run-all prettier generate-ids --parallel lint flow",
+    "ci-check": "npm-run-all prettier:diff --parallel lint flow",
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
     "dev": "gatsby develop -H 0.0.0.0",
     "flow": "flow",
     "format:source": "prettier --config .prettierrc --write \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",

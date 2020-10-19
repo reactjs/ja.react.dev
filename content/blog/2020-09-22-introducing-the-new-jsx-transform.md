@@ -20,7 +20,11 @@ React 17 のリリースとともに、JSX トランスフォームにいくつ�
 **このアップグレードは JSX の構文を変更するものではなく、必須でもありません**。以前の JSX トランスフォームもこれまで通り動作し続けますし、それらのサポートを削除する予定もありません。
 
 
+<<<<<<< HEAD
 [React 17 RC](/blog/2020/08/10/react-v17-rc.html) にはすでに新しいトランスフォームのサポートが含まれていますので、試してみてください。より簡単に導入できるよう、React 17 がリリースされた後、React 16.x、React 15.x、React 0.14.x へのバックポートも計画しています。[記事の後半](#how-to-upgrade-to-the-new-jsx-transform)で様々なツールにおけるアップグレード方法を記載しています。
+=======
+[React 17 RC](/blog/2020/08/10/react-v17-rc.html) already includes support for the new transform, so go give it a try! To make it easier to adopt, **we've also backported its support** to React 16.14.0, React 15.7.0, and React 0.14.10. You can find the upgrade instructions for different tools [below](#how-to-upgrade-to-the-new-jsx-transform).
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 では、新旧のトランスフォームの違いを詳しく見ていきましょう。
 
@@ -54,8 +58,13 @@ function App() {
 
 しかし、これで完璧とは言えません。
 
+<<<<<<< HEAD
 * JSX が `React.createElement` へとコンパイルされるため、JSX を使用する場合は `React` をスコープに入れる必要がありました。
 * `React.createElement` では行えない[パフォーマンス向上と単純化方法](https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md#motivation)がいくつか存在します。
+=======
+* Because JSX was compiled into `React.createElement`, `React` needed to be in scope if you used JSX.
+* There are some [performance improvements and simplifications](https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md#motivation) that `React.createElement` does not allow.
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 これらの問題を解決するために、React 17 では React パッケージに、Babel や TypeScript のようなコンパイラのみが使用することを意図した 2 つの新しいエントリポイントを導入しています。JSX を `React.createElement` に変換する代わりに、**新しい JSX トランスフォーム**は、React パッケージのこれらの新しいエントリポイントから特別な関数を自動的にインポートし、それらを呼び出します。
 
@@ -92,8 +101,13 @@ JSX を使用するために **React をインポートする必要がなくな�
 
 アップグレードしたい場合は、以下の 2 つのものが必要です。
 
+<<<<<<< HEAD
 * **新しいトランスフォームをサポートする React のバージョン**（現在は [React 17 RC](/blog/2020/08/10/react-v17-rc.html) のみがサポートしていますが、React 17.0 がリリースされた後、0.14.x, 15.x, 16.x 用にも互換用のリリースを追加で作成する予定です）。
 * **互換性のあるコンパイラ**（下記のツールごとの説明を参照）。
+=======
+* **A version of React that supports the new transform** ([React 17 RC](/blog/2020/08/10/react-v17-rc.html) and higher supports it, but we've also released React 16.14.0, React 15.7.0, and React 0.14.10 for people who are still on the older major versions).
+* **A compatible compiler** (see instructions for different tools below).
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 新しい JSX 変換は React をスコープに入れる必要がないので、コードベースから不要なインポートを削除する[自動化スクリプトも用意しました](#removing-unused-react-imports)。
 
@@ -111,7 +125,11 @@ Gatsby [v2.24.5](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/
 
 >補足
 >
+<<<<<<< HEAD
 >React `17.0.0-rc.2` にアップグレードした後に[この Gatsby エラー](https://github.com/gatsbyjs/gatsby/issues/26979)が出た場合は、`npm update` を実行することで修正できます。
+=======
+>If you get [this Gatsby error](https://github.com/gatsbyjs/gatsby/issues/26979) after upgrading to React 17 RC, run `npm update` to fix it.
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 ### Babel の手動セットアップ {#manual-babel-setup}
 
@@ -171,7 +189,13 @@ Babel 8 からは、`"automatic"` が両方のプラグインでデフォルト�
 
 > 補足
 >
+<<<<<<< HEAD
 > JSX を React 以外のライブラリで使用している場合、そのライブラリが必要なエントリポイントを提供しているのであれば、[`importSource` オプション](https://babeljs.io/docs/en/babel-preset-react#importsource) を使ってそこからインポートするよう指定することができます。あるいは、引き続きサポートされる旧版のトランスフォームを使い続けることもできます。
+=======
+> If you use JSX with a library other than React, you can use [the `importSource` option](https://babeljs.io/docs/en/babel-preset-react#importsource) to import from that library instead -- as long as it provides the necessary entry points. Alternatively, you can keep using the classic transform which will continue to be supported.
+>
+> If you're a library author and you are implementing the `/jsx-runtime` entry point for your library, keep in mind that [there is a case](https://github.com/facebook/react/issues/20031#issuecomment-710346866) in which even the new transform has to fall back to `createElement` for backwards compatibility. In that case, it will auto-import `createElement` directly from the *root* entry point specified by `importSource`.
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 ### ESLint {#eslint}
 
