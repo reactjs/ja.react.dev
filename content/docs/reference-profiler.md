@@ -48,13 +48,8 @@ render(
 );
 ```
 
-<<<<<<< HEAD
 同一のサブツリー内の複数のコンポーネントで計測を行うために `Profiler` コンポーネントをネストすることもできます：
-```js{2,6,8}
-=======
-`Profiler` components can also be nested to measure different components within the same subtree:
 ```js{3,5,8}
->>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 render(
   <App>
     <Profiler id="Panel" onRender={callback}>
