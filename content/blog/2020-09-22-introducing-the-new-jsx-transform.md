@@ -20,7 +20,7 @@ React 17 のリリースとともに、JSX トランスフォームにいくつ�
 **このアップグレードは JSX の構文を変更するものではなく、必須でもありません**。以前の JSX トランスフォームもこれまで通り動作し続けますし、それらのサポートを削除する予定もありません。
 
 
-[React 17 RC](/blog/2020/08/10/react-v17-rc.html) にはすでに新しいトランスフォームのサポートが含まれていますので、試してみてください。より簡単に導入できるよう、React 17 がリリースされた後、React 16.x、React 15.x、React 0.14.x へのバックポートも計画しています。[記事の後半](#how-to-upgrade-to-the-new-jsx-transform)で様々なツールにおけるアップグレード方法を記載しています。
+[React 17 RC](/blog/2020/08/10/react-v17-rc.html) にはすでに新しいトランスフォームのサポートが含まれていますので、試してみてください。より簡単に導入できるよう、React 16.14.0、React 15.7.0、React 0.14.10 への**バックポートも行っています**。[記事の後半](#how-to-upgrade-to-the-new-jsx-transform)で様々なツールにおけるアップグレード方法を記載しています。
 
 では、新旧のトランスフォームの違いを詳しく見ていきましょう。
 
@@ -92,7 +92,7 @@ JSX を使用するために **React をインポートする必要がなくな�
 
 アップグレードしたい場合は、以下の 2 つのものが必要です。
 
-* **新しいトランスフォームをサポートする React のバージョン**（現在は [React 17 RC](/blog/2020/08/10/react-v17-rc.html) のみがサポートしていますが、React 17.0 がリリースされた後、0.14.x, 15.x, 16.x 用にも互換用のリリースを追加で作成する予定です）。
+* **新しいトランスフォームをサポートする React のバージョン**（[React 17 RC](/blog/2020/08/10/react-v17-rc.html) 以降でサポートされますが、以前のメジャーバージョンに留まりたい方のために React 16.10.0、React 15.7.0、React 0.14.10 もリリースしてあります）。
 * **互換性のあるコンパイラ**（下記のツールごとの説明を参照）。
 
 新しい JSX 変換は React をスコープに入れる必要がないので、コードベースから不要なインポートを削除する[自動化スクリプトも用意しました](#removing-unused-react-imports)。
@@ -111,7 +111,7 @@ Gatsby [v2.24.5](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/
 
 >補足
 >
->React `17.0.0-rc.2` にアップグレードした後に[この Gatsby エラー](https://github.com/gatsbyjs/gatsby/issues/26979)が出た場合は、`npm update` を実行することで修正できます。
+>React 17 RC にアップグレードした後に[この Gatsby エラー](https://github.com/gatsbyjs/gatsby/issues/26979)が出た場合は、`npm update` を実行することで修正できます。
 
 ### Babel の手動セットアップ {#manual-babel-setup}
 
@@ -172,6 +172,8 @@ Babel 8 からは、`"automatic"` が両方のプラグインでデフォルト�
 > 補足
 >
 > JSX を React 以外のライブラリで使用している場合、そのライブラリが必要なエントリポイントを提供しているのであれば、[`importSource` オプション](https://babeljs.io/docs/en/babel-preset-react#importsource) を使ってそこからインポートするよう指定することができます。あるいは、引き続きサポートされる旧版のトランスフォームを使い続けることもできます。
+>
+> ライブラリ作者の方で `/jsx-runtime` エントリポイントをあなたのライブラリに実装しようとしている場合、後方互換性のため新しいトランスフォームが `createElement` にフォールバックする[ケースがある](https://github.com/facebook/react/issues/20031#issuecomment-710346866)ことに留意してください。この場合、`importSource` に指定された**ルート**エントリポイントから `createElement` を自動でインポートします。
 
 ### ESLint {#eslint}
 

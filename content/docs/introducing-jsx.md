@@ -182,4 +182,4 @@ const element = {
 
 >**ヒント:**
 >
->利用したいエディタで ["Babel" 言語定義](https://babeljs.io/docs/editors)を使用して、ES6 と JSX が適切にハイライトされるようにしておくことをお勧めします。
+>利用したいエディタで ["Babel" 言語定義](https://babeljs.io/docs/en/next/editors)を使用して、ES6 と JSX が適切にハイライトされるようにしておくことをお勧めします。

@@ -39,7 +39,7 @@ class Welcome extends React.Component {
 
 ### コンポーネントライフサイクル {#the-component-lifecycle}
 
-各コンポーネントには、処理の過程の特定の時点でコードを実行するためにオーバーライドできるいくつかの「ライフサイクルメソッド」があります。**この[ライフサイクル図](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)をチートシートとして使用できます。**以下のリストでは、よく使われるライフサイクルメソッドは**太字**で表示されています。それらの残りは比較的まれなユースケースのために存在します。
+各コンポーネントには、処理の過程の特定の時点でコードを実行するためにオーバーライドできるいくつかの「ライフサイクルメソッド」があります。**この[ライフサイクル図](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)をチートシートとして使用できます。**以下のリストでは、よく使われるライフサイクルメソッドは**太字**で表示されています。それらの残りは比較的まれなユースケースのために存在します。
 
 #### マウント {#mounting}
 
@@ -109,7 +109,7 @@ class Welcome extends React.Component {
 
 ### よく使われるライフサイクルメソッド {#commonly-used-lifecycle-methods}
 
-このセクションのメソッドは、React コンポーネントを作成する際に遭遇する大部分のユースケースを網羅しています。視覚的なリファレンスとして、この[ライフサイクル図](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)もチェックしてみてください。
+このセクションのメソッドは、React コンポーネントを作成する際に遭遇する大部分のユースケースを網羅しています。視覚的なリファレンスとして、この[ライフサイクル図](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)もチェックしてみてください。
 
 ### `render()` {#render}
 
@@ -245,7 +245,7 @@ componentWillUnmount()
 
 ### まれに使われるライフサイクルメソッド {#rarely-used-lifecycle-methods}
 
-このセクションのメソッドは、一般的でないユースケースに対応しています。これらは時々便利に使えますが、あなたのコンポーネントのほとんどはおそらくそれらのどれも必要としないでしょう。**この[ライフサイクル図](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)の上部にある「あまり一般的ではないライフサイクルを表示する」チェックボックスをクリックすると、以下のほとんどの方法が表示されます。**
+このセクションのメソッドは、一般的でないユースケースに対応しています。これらは時々便利に使えますが、あなたのコンポーネントのほとんどはおそらくそれらのどれも必要としないでしょう。**この[ライフサイクル図](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)の上部にある「あまり一般的ではないライフサイクルを表示する」チェックボックスをクリックすると、以下のほとんどの方法が表示されます。**
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -279,7 +279,7 @@ static getDerivedStateFromProps(props, state)
 このメソッドは、state が時間の経過とともに変化する props に依存するような[まれな使用例](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state)のために存在します。たとえば、以前と以降の子を比較してどちらの子をアニメーションするかを決定する `<Transition>` コンポーネントを実装するときに便利です。
 
 state を派生させると冗長なコードにつながり、コンポーネントを考えるのが難しくなります。
-[あなたがより簡単な方法に慣れていることを確認してください。](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+[より簡単な方法があるのでまずそちらに慣れるようにしてください。](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
 
 * props の変更に応じて**副作用を実行する**必要がある場合は（データのフェッチやアニメーションなど）、代わりに [`componentDidUpdate`](#componentdidupdate) ライフサイクルを使用してください
 
@@ -324,7 +324,7 @@ error boundary は予期しない例外からの回復のためだけに使用�
 詳細については、[*React 16 のエラーハンドリング*](/blog/2017/07/26/error-handling-in-react-16.html)を参照してください。
 
 > 補足
-> 
+>
 > error boundary は、ツリー内でその**下**にあるコンポーネント内のエラーのみを捕捉します。error boundary はそれ自体の中でエラーを捉えることはできません。
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
@@ -353,7 +353,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
@@ -406,13 +406,13 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
 
 > 補足
-> 
+>
 > エラーが発生した場合は、`setState` を呼び出す `componentDidCatch()` を使用してフォールバック UI をレンダーできますが、これは将来のリリースでは推奨されなくなります。
 > 代わりにフォールバックの描画を扱うために、`static getDerivedStateFromError()` を使用してください。
 

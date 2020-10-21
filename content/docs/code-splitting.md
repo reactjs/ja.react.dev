@@ -6,10 +6,7 @@ permalink: docs/code-splitting.html
 
 ## バンドル {#bundling}
 
-多くの React アプリケーションは、[Webpack](https://webpack.js.org/)、[Rollup](https://rollupjs.org/) や [Browserify](http://browserify.org/) などの
-ツールを使ってファイルを「バンドル」しています。
-バンドルはインポートされたファイルをたどって、それらを 1 つのファイルにまとめるプロセスです。
-このバンドルされたファイルを Web ページ内に置くことによって、アプリ全体を一度に読み込むことができます。
+多くの React アプリケーションは、[Webpack](https://webpack.js.org/)、[Rollup](https://rollupjs.org/) や [Browserify](http://browserify.org/) などのツールを使ってファイルを「バンドル」しています。バンドルはインポートされたファイルをたどって、それらを 1 つのファイルにまとめるプロセスです。このバンドルされたファイルを Web ページ内に置くことによって、アプリ全体を一度に読み込むことができます。
 
 #### 例 {#example}
 
@@ -45,25 +42,16 @@ console.log(add(16, 26)); // 42
 
 もし [Create React App](https://create-react-app.dev/)、[Next.js](https://nextjs.org/)、[Gatsby](https://www.gatsbyjs.org/) やこれらに類するツールを使用している場合、アプリケーションをバンドルするための Webpack のセットアップが最初から含まれています。
 
-そうでない場合は、自分でバンドルを設定する必要があります。
-設定方法に関しては、Webpack のドキュメントにある [Installation](https://webpack.js.org/guides/installation/) や
- [Getting Started](https://webpack.js.org/guides/getting-started/) などを
- 参照してみてください。
+そうでない場合は、自分でバンドルを設定する必要があります。設定方法に関しては、Webpack のドキュメントにある [Installation](https://webpack.js.org/guides/installation/) や [Getting Started](https://webpack.js.org/guides/getting-started/) などを参照してみてください。
 
 ## コード分割 {#code-splitting}
 
-バンドルは確かに素晴らしいですが、アプリが大きくなるにつれて、バンドルのサイズも大きくなります。
-特にサイズの大きなサードパーティ製のライブラリを含む場合は顕著にサイズが増大します。
-不用意に大きなバンドルを作成してしまいアプリの読み込みに多くの時間がかかってしまうという事態にならないためにも、
-常に注意を払い続けなければなりません。
+バンドルは確かに素晴らしいですが、アプリが大きくなるにつれて、バンドルのサイズも大きくなります。特にサイズの大きなサードパーティ製のライブラリを含む場合は顕著にサイズが増大します。不用意に大きなバンドルを作成してしまいアプリの読み込みに多くの時間がかかってしまうという事態にならないためにも、常に注意を払い続けなければなりません。
 
 大きなバンドルを不注意に生成してしまわないように、あらかじめコードを「分割」して問題を回避しましょう。
 Code-Splitting は、[Webpack](https://webpack.js.org/guides/code-splitting/)、[Rollup](https://rollupjs.org/guide/en/#code-splitting) や Browserify（[factor-bundle](https://github.com/browserify/factor-bundle) を使用）などのバンドラによってサポートされている機能であり、実行時に動的にロードされる複数のバンドルを生成することができます。
 
-コード分割は、ユーザが必要とするコードだけを「遅延読み込み」する手助けとなり、
-アプリのパフォーマンスを劇的に向上させることができます。
-アプリの全体的なコード量を減らすことはできませんが、ユーザが必要としないコードを読み込まなくて済むため、
-初期ロードの際に読む込むコード量を削減できます。
+コード分割は、ユーザが必要とするコードだけを「遅延読み込み」する手助けとなり、アプリのパフォーマンスを劇的に向上させることができます。アプリの全体的なコード量を減らすことはできませんが、ユーザが必要としないコードを読み込まなくて済むため、初期ロードの際に読む込むコード量を削減できます。
 
 ## `import()` {#import}
 
@@ -85,15 +73,11 @@ import("./math").then(math => {
 });
 ```
 
-Webpack がこの構文を見つけると、自動的にアプリのコードを分割します。
-Create React App を使用している場合はすでに設定がされているため、[すぐに使用を開始することができます。](https://facebook.github.io/create-react-app/docs/code-splitting)
-[Next.js](https://nextjs.org/docs/advanced-features/dynamic-import) も同様です。
+Webpack がこの構文を見つけると、自動的にアプリのコードを分割します。Create React App を使用している場合はすでに設定がされているため、[すぐに使用を開始することができます](https://facebook.github.io/create-react-app/docs/code-splitting)。[Next.js](https://nextjs.org/docs/advanced-features/dynamic-import) も同様です。
 
-もし Webpack を自分でセットアップしていた場合には、Webpack の[コード分割に関するガイド](https://webpack.js.org/guides/code-splitting/)を読むと良いでしょう。
-きっとあなたの Webpack の設定はだいたい[このように](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269)なると思います。
+もし Webpack を自分でセットアップしていた場合には、Webpack の[コード分割に関するガイド](https://webpack.js.org/guides/code-splitting/)を読むと良いでしょう。あなたの Webpack の設定はだいたい[このように](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269)なると思います。
 
-もし [Babel](https://babeljs.io/) を使用している場合は、Babel が動的インポート構文をパースできても変換してしまわないようにする必要があります。
-そのためには  [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import) を利用すると良いでしょう。
+もし [Babel](https://babeljs.io/) を使用している場合は、Babel が動的インポート構文をパースできても変換してしまわないようにする必要があります。そのためには  [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import) を利用すると良いでしょう。
 
 ## `React.lazy` {#reactlazy}
 
@@ -186,15 +170,11 @@ const MyComponent = () => (
 
 ## ルーティング単位でのコード分割 {#route-based-code-splitting}
 
-アプリ内のどこにコード分割を導入するかを決めるのは少し面倒です。
-バンドルを均等に分割する場所を確実に選択したいところですが、ユーザ体験を妨げてはなりません。
+アプリ内のどこにコード分割を導入するかを決めるのは少し面倒です。バンドルを均等に分割する場所を確実に選択したいところですが、ユーザ体験を妨げてはなりません。
 
-コード分割を導入するにあたって適している場所はルーティングです。
-Web を使用するほとんどの人は、多少のロード時間がかかるページ遷移に慣れています。
-また、ユーザがページ上の他の要素を同時に操作する可能性を減らすよう、ページ全体を一度に再レンダーすることが多いでしょう。
+コード分割を導入するにあたって適している場所はルーティングです。Web を使用するほとんどの人は、多少のロード時間がかかるページ遷移に慣れています。また、ユーザがページ上の他の要素を同時に操作する可能性を減らすよう、ページ全体を一度に再レンダーすることが多いでしょう。
 
-これは [React Router](https://reacttraining.com/react-router/) のようなライブラリを使ったアプリに `React.lazy` を使用することで
-ルーティングベースのコード分割を導入する方法の例です。
+これは [React Router](https://reacttraining.com/react-router/) のようなライブラリを使ったアプリに `React.lazy` を使用することでルーティングベースのコード分割を導入する方法の例です。
 
 ```js
 import React, { Suspense, lazy } from 'react';
