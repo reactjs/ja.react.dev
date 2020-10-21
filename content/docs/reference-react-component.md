@@ -279,7 +279,7 @@ static getDerivedStateFromProps(props, state)
 このメソッドは、state が時間の経過とともに変化する props に依存するような[まれな使用例](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state)のために存在します。たとえば、以前と以降の子を比較してどちらの子をアニメーションするかを決定する `<Transition>` コンポーネントを実装するときに便利です。
 
 state を派生させると冗長なコードにつながり、コンポーネントを考えるのが難しくなります。
-[あなたがより簡単な方法に慣れていることを確認してください。](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+[より簡単な方法があるのでまずそちらに慣れるようにしてください。](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
 
 * props の変更に応じて**副作用を実行する**必要がある場合は（データのフェッチやアニメーションなど）、代わりに [`componentDidUpdate`](#componentdidupdate) ライフサイクルを使用してください
 
