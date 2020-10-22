@@ -217,7 +217,7 @@ npx react-codemod update-react-imports
 この codemod を実行すると以下のことを行います：
 
 * 新しい JSX トランスフォームにアップグレードした結果使用されなくなる React のインポートをすべて削除します。
-* すべての React のデフォルトインポート（すなわち、`import React from "react"`）を、将来的に望ましいスタイルである分割代入型の名前付きインポート（例えば、`import { useState } from "react"`）に変更します。名前空間インポート（つまり、`import * as React from "react"`）も有効な形式ですが、codemod はこれらは変換**しません**。デフォルトインポートは React 17 でも動作し続けますが、長期的にはそれらのインポートを利用しないようにすることを推奨します。
+* すべての React のデフォルトインポート（すなわち、`import React from "react"`）を、将来的に望ましいスタイルである分割代入型の名前付きインポート（例えば、`import { useState } from "react"`）に変更します。名前空間インポート（すなわち、`import * as React from "react"`）も有効な形式であり、codemod はこれらは変換**しません**。デフォルトインポートは React 17 でも動作し続けますが、長期的にはそれらのインポートを利用しないようにすることを推奨します。
 
 例えば、
 
