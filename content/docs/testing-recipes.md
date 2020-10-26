@@ -377,7 +377,6 @@ let container = null;
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement("div");
-  // container *must* be attached to document so events work correctly.
   document.body.appendChild(container);
 });
 
@@ -416,7 +415,11 @@ it("changes value when clicked", () => {
 });
 ```
 
+<<<<<<< HEAD
 その他の DOM イベントやそれらのプロパティは [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) で解説されています。React のリスナにイベントが到達するように、作成するそれぞれのイベントに対して `{ bubbles: true }` を指定する必要があることに気を付けてください。React ではイベントは自動的に document にデリゲートする形で処理されるためです。
+=======
+Different DOM events and their properties are described in [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Note that you need to pass `{ bubbles: true }` in each event you create for it to reach the React listener because React automatically delegates events to the root.
+>>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
 
 > 補足：
 >

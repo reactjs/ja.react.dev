@@ -43,8 +43,8 @@ npm run build
 React と ReactDOM をそれぞれ単一ファイル化した本番環境用のバージョンを提供しています。
 
 ```html
-<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 ```
 
 本番用に適しているのは、React ファイル名の末尾が `.production.min.js` であるもののみであることに留意ください。
@@ -75,10 +75,10 @@ Browserify で最も効率の良い本番用ビルドを行うには、いくつ
 
 ```
 # If you use npm
-npm install --save-dev envify terser uglifyify 
+npm install --save-dev envify terser uglifyify
 
 # If you use Yarn
-yarn add --dev envify terser uglifyify 
+yarn add --dev envify terser uglifyify
 ```
 
 本番用ビルドを作成するには、以下の変換 (transform) を追加してください（**順番は重要です**）。
@@ -379,7 +379,11 @@ function updateColorMap(colormap) {
 }
 ```
 
+<<<<<<< HEAD
 この機能は ES2018 で JavaScript に追加されたものです。
+=======
+This feature was added to JavaScript in ES2018.
+>>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
 
 Create React App を使用しているなら、`Object.assign` およびオブジェクトのスプレッド構文の両方がデフォルトで利用できます。
 

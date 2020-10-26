@@ -9,18 +9,22 @@ next: release-channels.html
 React および ReactDOM は CDN を介して利用することができます。
 
 ```html
-<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 ```
 
 上記のバージョンは開発のためだけのものであり、本番環境には適していません。圧縮・最適化された本番バージョンの React は下記のリンクから利用できます。
 
 ```html
-<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 ```
 
+<<<<<<< HEAD
 特定のバージョンの `react` と `react-dom` をロードする場合は、`16` の部分をバージョン番号で置き換えてください。
+=======
+To load a specific version of `react` and `react-dom`, replace `17` with the version number.
+>>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
 
 ### なぜ `crossorigin` 属性が必要なのか？ {#why-the-crossorigin-attribute}
 
