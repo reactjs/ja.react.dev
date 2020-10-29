@@ -379,11 +379,7 @@ function updateColorMap(colormap) {
 }
 ```
 
-<<<<<<< HEAD
 この機能は ES2018 で JavaScript に追加されたものです。
-=======
-This feature was added to JavaScript in ES2018.
->>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
 
 Create React App を使用しているなら、`Object.assign` およびオブジェクトのスプレッド構文の両方がデフォルトで利用できます。
 

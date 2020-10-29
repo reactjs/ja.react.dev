@@ -84,11 +84,7 @@ const domContainer = document.querySelector('#like_button_container');
 ReactDOM.render(e(LikeButton), domContainer);
 ```
 
-<<<<<<< HEAD
 この 2 行のコードは、ステップ 1 で追加した空の `<div>` 要素を見つけてきて、その中に React コンポーネントの「いいね」ボタンを表示します。
-=======
-These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it.
->>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
 
 ### これだけです！ {#thats-it}
 
