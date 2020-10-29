@@ -54,8 +54,8 @@ React は段階的に導入することができるように最初からデザ�
 
   <!-- Load React. -->
   <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
 
   <!-- Load our React component. -->
   <script src="like_button.js"></script>
@@ -115,8 +115,8 @@ React コンポーネントを HTML ページの一箇所だけではなくい�
 自分のスクリプトの圧縮が完了していて、デプロイ後の HTML が `production.min.js` で終わる React スクリプトを読み込んでいることが検証できていれば、**あなたのウェブサイトは本番環境にリリースする準備ができています**。
 
 ```js
-<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 自分のスクリプトを圧縮することがまだできていないのであれば、[例えばこんなやり方があります](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3)。
@@ -184,7 +184,7 @@ JSX をプロジェクトに追加するためには、バンドルツールや�
 `src` というディレクトリを作成したうえで、次のコマンドをターミナルから実行してみてください。
 
 ```
-npx babel --watch src --out-dir . --presets react-app/prod 
+npx babel --watch src --out-dir . --presets react-app/prod
 ```
 
 >補足

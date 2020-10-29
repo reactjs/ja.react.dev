@@ -34,36 +34,11 @@ string type
 
 > 補足
 >
-> v0.14 以降、イベントハンドラから `false` を返してもイベントの伝播は止まりません。代わりに、`e.stopPropagation()` または `e.preventDefault()` を手動で呼び出す必要があります。
-
-### イベントのプール {#event-pooling}
-
-`SyntheticEvent` はプールされます。つまり、`SyntheticEvent` オブジェクトは再利用され、すべてのプロパティはイベントコールバックが呼び出された後に `null` で初期化されます。
-これはパフォーマンス上の理由からです。
-そのため、非同期処理の中でイベントオブジェクトにアクセスすることはできません。
-
-```javascript
-function onClick(event) {
-  console.log(event); // => null で初期化されるオブジェクト
-  console.log(event.type); // => "click"
-  const eventType = event.type; // => "click"
-
-  setTimeout(function() {
-    console.log(event.type); // => null
-    console.log(eventType); // => "click"
-  }, 0);
-
-  // これは動作しません。this.state.clickEvent は null 値のみを持つオブジェクトとなります。
-  this.setState({clickEvent: event});
-
-  // イベントプロパティをエクスポートすることは可能です。
-  this.setState({eventType: event.type});
-}
-```
+> v17 以降、`SyntheticEvent` は[プーリング](/docs/legacy-event-pooling.html)されなくなったため、`e.persist()` は何も行わなくなります。
 
 > 補足
 >
-> 非同期処理の中でイベントのプロパティにアクセスしたい場合は、`event.persist()` をイベント内で呼び出す必要があります。これにより、合成イベントがイベントプールの対象から除外され、イベントへの参照をコードで保持できるようになります。
+> v0.14 以降、イベントハンドラから `false` を返してもイベントの伝播は止まりません。代わりに、`e.stopPropagation()` または `e.preventDefault()` を手動で呼び出す必要があります。
 
 ## サポートするイベント {#supported-events}
 
@@ -167,9 +142,83 @@ onFocus onBlur
 
 プロパティ：
 
-```javascript
+```js
 DOMEventTarget relatedTarget
 ```
+
+#### onFocus
+
+`onFocus` イベントは要素（あるいはその内部の別の要素）がフォーカスを受け取った時に呼び出されます。例えば、ユーザがテキスト入力をクリックした際に呼び出されます。
+
+```javascript
+function Example() {
+  return (
+    <input
+      onFocus={(e) => {
+        console.log('Focused on input');
+      }}
+      placeholder="onFocus is triggered when you click this input."
+    />
+  )
+}
+```
+
+#### onBlur
+
+`onBlur` イベントハンドラは要素（あるいはその内部の別の要素）からフォーカスが外れた場合に呼び出されます。例えば、ユーザが既にフォーカスされているテキスト入力の外側でクリックした場合に呼び出されます。
+
+```javascript
+function Example() {
+  return (
+    <input
+      onBlur={(e) => {
+        console.log('Triggered because this input lost focus');
+      }}
+      placeholder="onBlur is triggered when you click this input and then you click outside of it."
+    />
+  )
+}
+```
+
+#### フォーカスが当たった・外れたことの検出 {#detecting-focus-entering-and-leaving}
+
+`currentTarget` と `relatedTarget` を用いることで、フォーカスが当たった・外れた際のイベントが親要素の*外側*で起こったかどうかを判定できます。以下のコピー・ペーストで使えるデモでは、子要素のどれかへのフォーカス、要素自身へのフォーカス、サブツリー全体から出入りするフォーカスを、それぞれどのように検出するかを示しています。
+
+```javascript
+function Example() {
+  return (
+    <div
+      tabIndex={1}
+      onFocus={(e) => {
+        if (e.currentTarget === e.target) {
+          console.log('focused self');
+        } else {
+          console.log('focused child', e.target);
+        }
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          // Not triggered when swapping focus between children
+          console.log('focus entered self');
+        }
+      }}
+      onBlur={(e) => {
+        if (e.currentTarget === e.target) {
+          console.log('unfocused self');
+        } else {
+          console.log('unfocused child', e.target);
+        }
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          // Not triggered when swapping focus between children
+          console.log('focus left self');
+        }
+      }}
+    >
+      <input id="1" />
+      <input id="2" />
+    </div>
+  );
+}
+```
+
 
 * * *
 
@@ -304,6 +353,10 @@ DOMTouchList touches
 ```
 onScroll
 ```
+
+>補足
+>
+>React 17 以降、`onScroll` イベントは**バブルしなく**なりました。これはブラウザの挙動と合致しており、スクロール可能な要素がネストされている場合に離れた親要素に対してイベントが発火する場合に起きる混乱を回避できます。
 
 プロパティ：
 
