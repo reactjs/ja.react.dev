@@ -139,7 +139,7 @@ const title = response.potentiallyMaliciousInput;
 const element = <h1>{title}</h1>;
 ```
 
-デフォルトでは、React DOM は JSX に埋め込まれた値をレンダリングされる前に[エスケープ](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html)します。このため、自分のアプリケーションで明示的に書かれたものではないあらゆるコードは、注入できないことが保証されます。レンダーの前に全てが文字列に変換されます。これは [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) 攻撃の防止に役立ちます。
+デフォルトでは、React DOM は JSX に埋め込まれた値をレンダー前に[エスケープ](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html)します。このため、自分のアプリケーションで明示的に書かれたものではないあらゆるコードは、注入できないことが保証されます。レンダーの前に全てが文字列に変換されます。これは [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) 攻撃の防止に役立ちます。
 
 ### JSX はオブジェクトの表現である {#jsx-represents-objects}
 

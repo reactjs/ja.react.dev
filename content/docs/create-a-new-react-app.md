@@ -47,9 +47,9 @@ cd my-app
 npm start
 ```
 
->注釈
+>補足
 >
->最初の行の `npx` は打ち間違いではありません -- これは [npm 5.2 から利用できるパッケージランナーツール](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b)です.
+>最初の行の `npx` は打ち間違いではありません -- これは [npm 5.2 から利用できるパッケージランナーツール](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b)です。
 
 Create React App はバックエンドのロジックやデータベース接続は扱いません。フロントエンドのビルドパイプラインを構築するだけであり、バックエンドに関しては好きなものを組み合わせて使って構いません。内部では [Babel](https://babeljs.io/) と [webpack](https://webpack.js.org/) を利用していますが、それらについて知る必要はありません。
 

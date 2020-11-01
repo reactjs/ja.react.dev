@@ -169,7 +169,7 @@ class TemperatureInput extends React.Component {
     // ...  
 ```
 
-しかし、2 つの入力フィールドはお互いに同期されていて欲しいです。摂氏の入力フィールドを更新したら、華氏の入力フィールドも華氏に変換された温度で反映されて欲しいですし、逆も同じです。
+しかし、2 つの入力フィールドはお互いに同期されていて欲しいのです。摂氏の入力フィールドを更新したら、華氏の入力フィールドも華氏に変換された温度で反映されて欲しいですし、逆も同じです。
 
 React での state の共有は、state を、それを必要とするコンポーネントすべての直近の共通祖先コンポーネントに移動することによって実現します。これを "state のリフトアップ (lifting state up)" と呼びます。`TemperatureInput` からローカルの state を削除して `Calculator` に移動しましょう。
 
@@ -234,7 +234,7 @@ class TemperatureInput extends React.Component {
 
 では `Calculator` コンポーネントの番です。
 
-現時点での入力の `temperature` と `scale` を、このコンポーネントのローカルな state に保存することにします。これは入力コンポーネントから "リフトアップ" したものであり、両方にとっての "信頼出来る情報源" として振る舞うことになります。これは、両方の入力コンポーネントをレンダリングするために必要となる最小のデータの形です。
+現時点での入力の `temperature` と `scale` を、このコンポーネントのローカルな state に保存することにします。これは入力コンポーネントから "リフトアップ" したものであり、両方にとっての "信頼出来る情報源" として振る舞うことになります。これは、両方の入力コンポーネントをレンダーするために必要となる最小のデータの形です。
 
 例えば、摂氏側の入力に 37 と打ち込こむと、`Calculator` コンポーネントの state は以下のようになります：
 
@@ -307,8 +307,8 @@ class Calculator extends React.Component {
 
 * React は DOM の `<input>` で `onChange` として指定された関数を呼び出します。この章の場合、`TemperatureInput` の `handleChange` メソッドが呼び出される関数になります。
 * `TemperatureInput` の `handleChange` メソッドは `this.props.onTemperatureChange()` に新しい値を与えて呼び出します。`onTemperatureChange` を含む props は親コンポーネントである `Calculator` から与えられます。
-* 前回のレンダリング時に、`Calculator` は摂氏の `TemperatureInput` の `onTemperatureChange` には自身の `handleCelsiusChange` メソッドを指定し、華氏の `TemperatureInput` の `onTemperatureChange` には自身の `handleFahrenheitChange` を指定していたのでした。そのため、どちらの入力フィールドを編集したかによって、2 つの `Calculator` メソッドのどちらが呼び出されるかが決まります。
-* これらのメソッド内では、`Calculator` コンポーネントが新しい入力値と更新した方の入力値の単位を `this.setState()` に与えて呼び出して、React に `Calculator` コンポーネント自身を再レンダリングさせます。
+* 前回のレンダー時に、`Calculator` は摂氏の `TemperatureInput` の `onTemperatureChange` には自身の `handleCelsiusChange` メソッドを指定し、華氏の `TemperatureInput` の `onTemperatureChange` には自身の `handleFahrenheitChange` を指定していたのでした。そのため、どちらの入力フィールドを編集したかによって、2 つの `Calculator` メソッドのどちらが呼び出されるかが決まります。
+* これらのメソッド内では、`Calculator` コンポーネントが新しい入力値と更新した方の入力値の単位を `this.setState()` に与えて呼び出して、React に `Calculator` コンポーネント自身を再レンダーさせます。
 * React は `Calculator` コンポーネントの `render` メソッドを呼び出して、UI がどのような見た目になるべきかを学びます。両方の入力コンポーネントの値が、現在の温度とアクティブな単位に基づいて再計算されます。温度の変換処理はここで行われます。
 * React は `Calculator` により与えられた新しい props で各 `TemperatureInput` の `render` メソッドを呼び出します。React はそれらの UI がどのような見た目になるかを学びます。
 * React は props として摂氏温度を与えて、`BoilingVerdict` コンポーネントの `render` メソッドを呼び出します。
@@ -318,11 +318,11 @@ class Calculator extends React.Component {
 
 ## この章で学んだこと {#lessons-learned}
 
-React アプリケーションで変化するどのようなデータも単一の "信頼出来る情報源" であるべきです。通常、state はレンダリング時にそれを必要とするコンポーネントに最初に追加されます。それから、他のコンポーネントもその state を必要としているなら、直近の共通祖先コンポーネントにその state をリフトアップすることができます。異なるコンポーネント間で state を同期しようとする代わりに、[トップダウン型のデータフロー](/docs/state-and-lifecycle.html#the-data-flows-down)の力を借りるべきです。
+React アプリケーションで変化するどのようなデータも単一の "信頼出来る情報源" であるべきです。通常、state はレンダー時にそれを必要とするコンポーネントに最初に追加されます。それから、他のコンポーネントもその state を必要としているなら、直近の共通祖先コンポーネントにその state をリフトアップすることができます。異なるコンポーネント間で state を同期しようとする代わりに、[トップダウン型のデータフロー](/docs/state-and-lifecycle.html#the-data-flows-down)の力を借りるべきです。
 
 state のリフトアップは双方向のバインディング (two-way binding) を行う方法より多くの "ボイラープレート" コードを生み出しますが、その効果としてバグを発見して切り出す作業が少なく済むようになります。あらゆる state はいずれかのコンポーネント内に存在し、そのコンポーネントのみがその state を変更できるので、バグが潜む範囲は大幅に削減されます。加えて、ユーザ入力を拒否したり変換したりする任意の独自ロジックを実装することもできます。
 
-props もしくは state から作りだす事のできるデータについては、おそらく state に保持すべきではないでしょう。例えば、今回は `celsiusValue` と `fahrenheitValue` の両方を保存する代わりに、最後に変更された `temperature` と、その値の `scale` のみを保存しています。もう一方の入力の値は常に `render()` メソッド内で計算することができます。これにより元のユーザ入力の精度を全く損なうことなくもう一方の入力フィールドに丸めを適用したり、もう一方の入力フィールドをクリアしたりできます。
+props もしくは state から派生的に作りだす事のできるデータについては、おそらく state に保持すべきではないでしょう。例えば、今回は `celsiusValue` と `fahrenheitValue` の両方を保存する代わりに、最後に変更された `temperature` と、その値の `scale` のみを保存しています。もう一方の入力の値は常に `render()` メソッド内で計算することができます。これにより元のユーザ入力の精度を全く損なうことなくもう一方の入力フィールドに丸めを適用したり、もう一方の入力フィールドをクリアしたりできます。
 
 UI で何かおかしな箇所があれば、[React Developer Tools](https://github.com/facebook/react/tree/master/packages/react-devtools) を使用して props を調査したり state の更新について責任を持っているコンポーネントに辿り着くまでツリーをさかのぼることができます。これによりバグをその原因まで追いかけることができます。
 

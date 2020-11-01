@@ -10,7 +10,7 @@ next: create-a-new-react-app.html
 
 まずは必要なぶんだけ使ってみましょう。
 
-React は段階的に導入することができるように最初からデザインされています。つまり**最小限の部分で React を利用することも、あるいは大規模に React を利用することも可能です**。既存のページにちょっとしたインタラクティブ性をもたせたいだけでも構いません。React コンポーネントを使えばお手の物です。
+React は当初から、段階的に導入することができるようにデザインされています。つまり**最小限の部分で React を利用することも、あるいは大規模に React を利用することも可能です**。既存のページにちょっとしたインタラクティブ性をもたせたいだけでも構いません。React コンポーネントを使えばお手の物です。
 
 多くのウェブサイトはシングルページアプリケーションではありませんし、そうする必要もありません。まずは**たった数行のコード**から、あなたのウェブサイトに React を取り入れてみましょう。**ビルドツールは必要ありません**。そこから徐々に React の使用範囲を広げていくのもいいですし、あるいは少しの動的なウィジェットだけにとどめておくのもいいでしょう。
 
@@ -25,7 +25,7 @@ React は段階的に導入することができるように最初からデザ�
 
 複雑なツール類や事前にインストールしておかなければいけないものはありません。**インターネットへの接続さえあれば、1 分間でこのセクションを終わらせることができます。**
 
-オプション：[お手本をダウンロードする (2KB ZIP 圧縮)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
+オプション：[サンプルをダウンロードする (2KB ZIP 圧縮)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
 
 ### ステップ 1：HTML に DOM コンテナを追加する {#step-1-add-a-dom-container-to-the-html}
 
@@ -149,7 +149,7 @@ return (
 
 これらふたつのスニペットはまったく同じ内容です。**JSX の使用は[完全にオプションです](/docs/react-without-jsx.html)**が、React はもちろん他のライブラリで UI を記述する際にも、JSX は多くの人に支持されています。
 
-[このコンバーター](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.3)上で JSX を使って遊んでみてください。
+[このコンバータ](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.3)上で JSX を使って遊んでみてください。
 
 ### JSX を手軽に試してみる {#quickly-try-jsx}
 
@@ -165,7 +165,7 @@ return (
 
 ### JSX をプロジェクトに追加する {#add-jsx-to-a-project}
 
-JSX をプロジェクトに追加するためには、バンドルツールや開発用サーバーといった複雑なツールは必要ありません。つまるところ、JSX を追加することは **CSS プリプロセッサを追加することにとてもよく似ています**。唯一必要となるのは、コンピューターに [Node.js](https://nodejs.org/) がインストールされていることだけです。
+JSX をプロジェクトに追加するためには、バンドルツールや開発用サーバといった複雑なツールは必要ありません。つまるところ、JSX を追加することは **CSS プリプロセッサを追加することにとてもよく似ています**。唯一必要となるのは、コンピューターに [Node.js](https://nodejs.org/) がインストールされていることだけです。
 
 ターミナルを開き、プロジェクトのディレクトリに移動した上で、次のふたつのコマンドを実行してください。
 

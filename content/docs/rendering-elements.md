@@ -34,7 +34,7 @@ HTML ファイルの中に `<div>` 要素があったとしましょう：
 
 React だけで構築されたアプリケーションは、通常ルート DOM ノードをひとつだけ持ちます。既存のアプリに React を統合しようとしている場合は、独立したルート DOM ノードを好きなだけ持つことができます。
 
-React 要素をルート DOM ノードにレンダリングするには、その 2 つを [`ReactDOM.render()`](/docs/react-dom.html#render) に渡します：
+React 要素をルート DOM ノードにレンダーするには、その 2 つを [`ReactDOM.render()`](/docs/react-dom.html#render) に渡します：
 
 `embed:rendering-elements/render-an-element.js`
 
@@ -42,7 +42,7 @@ React 要素をルート DOM ノードにレンダリングするには、その
 
 このコードはページに "Hello, world" を表示します。
 
-## レンダリングされた要素の更新 {#updating-the-rendered-element}
+## レンダーされた要素の更新 {#updating-the-rendered-element}
 
 React 要素は[イミュータブル](https://en.wikipedia.org/wiki/Immutable_object)です。一度要素を作成すると、その子要素もしくは属性を変更することはできません。要素は映画の中のひとつのフレームのようなものであり、それは特定のある時点の UI を表します。
 

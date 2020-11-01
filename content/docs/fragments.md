@@ -38,7 +38,7 @@ class Table extends React.Component {
 }
 ```
 
-レンダーされる HTML が正しいものであるためには、`<Columns />` は複数の `<td>` 要素を返す必要があります。`<Columns />` 中の `render()` 内で親の div 要素を使ってしまうと、結果として出力される HTML は不正なものとなってしまいます。
+レンダーされる HTML が正しいものであるためには、`<Columns />` は複数の `<td>` 要素を返す必要があります。`<Columns />` 中の `render()` 内で親として div 要素を使ってしまうと、結果として出力される HTML は不正なものとなってしまいます。
 
 ```jsx
 class Columns extends React.Component {
