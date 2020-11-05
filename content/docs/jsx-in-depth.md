@@ -101,7 +101,7 @@ function BlueDatePicker() {
 ```js{3,4,10,11}
 import React from 'react';
 
-// 間違った例。これはコンポーネントなので、大文字ではじめなければ行けません。
+// 間違った例。これはコンポーネントなので、大文字ではじめなければいけません。
 function hello(props) {
   // 正しい例。div は HTML タグなので、<div> と書くのは正解です。
   return <div>Hello {props.toWhat}</div>;
