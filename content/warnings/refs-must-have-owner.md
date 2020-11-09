@@ -44,7 +44,7 @@ permalink: warnings/refs-must-have-owner.html
 ReactDOM.render(<App ref="app" />, el);
 ```
 
-この ref を保持する新しいトップレベルのコンポーネントの中で当該のコンポーネントをレンダリングしてみてください。あるいは、コールバック ref を使えるかもしれません。
+この ref を保持する新しいトップレベルのコンポーネントの中で当該のコンポーネントをレンダーしてみてください。あるいは、コールバック ref を使えるかもしれません。
 
 ```js
 let app;

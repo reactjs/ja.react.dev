@@ -195,9 +195,9 @@ function CustomTextInput(props) {
 
 [子コンポーネントに ref を追加すること](#adding-a-ref-to-a-class-component)はできますが、DOM ノードではなくコンポーネントインスタンスしか取得できないため、これは理想的な解決策ではありません。また、これは関数コンポーネントでは機能しません。
 
-React 16.3 以降を使用している場合、これらの場合には [ref forwarding](/docs/forwarding-refs.html) を使用することをおすすめします。**Ref forwarding では、コンポーネントは任意の子コンポーネントの ref を自分のものとして公開することを選択できます。**[Ref forwarding のドキュメント](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)に、子の DOM ノードを親コンポーネントに公開する方法の詳細な例があります。
+React 16.3 以降を使用している場合、これらの場合には [ref のフォワーディング](/docs/forwarding-refs.html) を使用することをおすすめします。**Ref のフォワーディングを使うと、コンポーネントは任意の子コンポーネントの ref を自分自身の ref として公開できるようになります。**[ref のフォワーディングのドキュメント](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)に、子の DOM ノードを親コンポーネントに公開する方法の詳細な例があります。
 
-React 16.2 以下を使用している場合、または ref forwarding で提供される以上の柔軟性が必要な場合は、[この代替手法](https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509)を使用して ref を異なる名前の props として明示的に渡すことができます。
+React 16.2 以下を使用している場合、または ref フォワーディングで提供される以上の柔軟性が必要な場合は、[この代替手法](https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509)を使用して ref を異なる名前の props として明示的に渡すことができます。
 
 可能であれば DOM ノードを公開しないことをおすすめしますが、これは便利な避難ハッチになることもあります。留意すべき点として、この方法では子コンポーネントにコードを追加する必要があります。子コンポーネントの実装にまったく手を加えられない場合、最後の選択肢は [`findDOMNode()`](/docs/react-dom.html#finddomnode) を使用することですが、おすすめできない上に、[`StrictMode`](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage) では非推奨です。
 
@@ -277,9 +277,9 @@ class Parent extends React.Component {
 
 上記の例では、`Parent` は ref コールバックを `inputRef` プロパティとして `CustomTextInput` に渡し、`CustomTextInput` は同じ関数を特別な `ref` 属性として `<input>` に渡します。その結果、`Parent` の `this.inputElement` は、`CustomTextInput` の `<input>` 要素に対応する DOM ノードに設定されます。
 
-### レガシー API：String Ref {#legacy-api-string-refs}
+### レガシー API：文字列形式の Ref {#legacy-api-string-refs}
 
-以前に React を使用したことがある場合は、`ref` 属性が `"textInput"` のような文字列で、DOM ノードが `this.refs.textInput` としてアクセスされる古い API に慣れているかもしれません。String ref には[いくつかの問題](https://github.com/facebook/react/pull/8333#issuecomment-271648615)があり、レガシーと見なされ、**将来のリリースのいずれかで削除される可能性が高い**ため、使用することをおすすめしません。
+以前に React を使用したことがある場合は、`ref` 属性が `"textInput"` のような文字列になっており DOM ノードが `this.refs.textInput` としてアクセスされる古い API に慣れているかもしれません。文字列形式の ref には[いくつかの問題](https://github.com/facebook/react/pull/8333#issuecomment-271648615)があり、レガシーと見なされ、**将来のリリースのいずれかで削除される可能性が高い**ため、使用することをおすすめしません。
 
 > 補足
 >

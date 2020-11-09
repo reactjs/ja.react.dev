@@ -19,7 +19,7 @@ error boundary は**自身の子コンポーネントツリーで発生した Ja
 >
 > * イベントハンドラ（[詳細](#how-about-event-handlers)）
 > * 非同期コード（例：`setTimeout` や `requestAnimationFrame` のコールバック）
-> * サーバーサイドレンダリング
+> * サーバサイドレンダリング
 > * （子コンポーネントではなく）error boundary 自身がスローしたエラー
 
 クラスコンポーネントに、ライフサイクルメソッドの [`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) か [`componentDidCatch()`](/docs/react-component.html#componentdidcatch) のいずれか（または両方）を定義すると、error boundary になります。`static getDerivedStateFromError()` はエラーがスローされた後にフォールバック UI をレンダーするために使用します。`componentDidCatch()` はエラー情報をログに記録するために使用します。

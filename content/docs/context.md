@@ -104,7 +104,7 @@ function Page(props) {
 }
 ```
 
-このパターンは、そのすぐ上の親から子を切り離す必要がある多くのケースにとって十分です。レンダリングの前に子が親とやり取りする必要がある場合、さらに[レンダープロップ](/docs/render-props.html)と合わせて使うことができます。
+このパターンは、そのすぐ上の親から子を切り離す必要がある多くのケースにとって十分です。レンダーの前に子が親とやり取りする必要がある場合、さらに[レンダープロップ](/docs/render-props.html)と合わせて使うことができます。
 
 しかし、たまに同じデータがツリー内の異なるネスト階層にある多くのコンポーネントからアクセス可能であることが必要となります。コンテクストはそのようなデータとその変更を以下の全てのコンポーネントへ「ブロードキャスト」できます。コンテクストを使うことが他の手法よりシンプルである一般的な例としては、現在のロケール、テーマ、またはデータキャッシュの管理が挙げられます。
 
@@ -136,7 +136,7 @@ const MyContext = React.createContext(defaultValue);
 
 > 補足
 >
-> この方法で変更の有無を判断するため、オブジェクトを `value` として渡した場合にいくつかの問題が発生する可能性があります。詳細は[注意事項](#caveats)を参照。
+> この方法で変更の有無を判断するため、オブジェクトを `value` として渡した場合にいくつかの問題が発生する可能性があります。詳細は[注意事項](#caveats)を参照してください。
 
 ### `Class.contextType` {#classcontexttype}
 
@@ -166,7 +166,7 @@ MyClass.contextType = MyContext;
 
 > 補足:
 >
-> この API では、1 つのコンテクストだけ登録することができます。もし 2 つ以上を読み取る必要がある場合、[複数のコンテクストを使用する](#consuming-multiple-contexts) を参照してください。
+> この API では、1 つのコンテクストだけ登録することができます。もし 2 つ以上を読み取る必要がある場合、[複数のコンテクストを使用する](#consuming-multiple-contexts)を参照してください。
 >
 > 実験的な [public class fields syntax](https://babeljs.io/docs/plugins/transform-class-properties/) を使用している場合、**static** クラスフィールドを使用することで `contextType` を初期化することができます。
 
@@ -188,13 +188,13 @@ class MyClass extends React.Component {
 </MyContext.Consumer>
 ```
 
-コンテクストの変更を購読する React コンポーネントです。[関数コンポーネント](/docs/components-and-props.html#function-and-class-components) 内でコンテクストを購読することができます。
+コンテクストの変更を購読する React コンポーネントです。[関数コンポーネント](/docs/components-and-props.html#function-and-class-components)内でコンテクストを購読することができます。
 
 [function as a child](/docs/render-props.html#using-props-other-than-render) が必要です。この関数は現在のコンテクストの値を受け取り、React ノードを返します。この関数に渡される引数 `value` は、ツリー内の上位で一番近いこのコンテクスト用のプロバイダの `value` プロパティと等しくなります。このコンテクスト用のプロバイダが上位に存在しない場合、引数の `value` は `createContext()` から渡された `defaultValue` と等しくなります。
 
 > 補足
 > 
-> "function as a child" パターンについてさらに情報が必要な場合は [レンダープロップ](/docs/render-props.html) を参照してください。
+> "function as a child" パターンについてさらに情報が必要な場合は[レンダープロップ](/docs/render-props.html)を参照してください。
 
 ### `Context.displayName` {#contextdisplayname}
 

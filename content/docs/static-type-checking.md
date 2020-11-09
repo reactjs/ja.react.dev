@@ -170,7 +170,7 @@ TypeScript を使うためには以下のことを行います。
 
 ### Create React App で TypeScript を使用する{#using-typescript-with-create-react-app}
 
-Create React App は最初から TypeScript のサポートが含まれています。
+Create React App には最初から TypeScript のサポートが含まれています。
 
 TypeScript サポートが含まれている**新規プロジェクト**を作成するには、以下のコマンドを実行します。
 
@@ -288,7 +288,7 @@ npm run build
 
 ライブラリの型宣言ファイルを取得するには主に以下の 2 つの方法があります。
 
-__Bundled__ - これはライブラリ自体が型宣言ファイルを所有している場合です。この場合、ライブラリをインストールするだけでそのまま使用することができます。ライブラリが型宣言ファイルを所有しているかどうか確認するには、プロジェクトに `index.d.ts` ファイルがあるかどうかをみます。一部のライブラリは `package.json` の `typings`、または `types` の下に型宣言ファイルのパスを指定しています。
+__Bundled__ - これはライブラリ自体が型宣言ファイルを所有している場合です。この場合、ライブラリをインストールするだけでそのまま使用することができます。ライブラリが型宣言ファイルを所有しているかどうか確認するには、プロジェクトに `index.d.ts` ファイルがあるかどうかを見ます。一部のライブラリは `package.json` の `typings`、または `types` の下に型宣言ファイルのパスを指定しています。
 
 __[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)__ - DefinitelyTyped には型宣言ファイルがバンドルされていない様々なライブラリのための型定義が用意されています。これらの型定義はクラウドソースにより Microsoft とオープンソースのコントリビュータが管理しています。例えば、React には型宣言ファイルが含まれておりませんが、DefinitelyTyped から取得することができます。取得するにはターミナルに以下のコマンドを入力してください。
 
@@ -320,7 +320,7 @@ declare module 'querystring' {
 
 [Reason](https://reasonml.github.io/) は新しい言語ではありません。歴戦の言語である [OCaml](https://ocaml.org/) によって動く新しい記法及びツールチェインです。Reason は OCaml に JavaScript を書く人には見慣れた記法を提供し、既存の NPM/Yarn を使ったワークフローに寄せています。
 
-Reason は Facebook で開発されており、Messenger 等のプロダクトに既に使われてます。まだ試験的段階ですが、Facebook によって管理された [React を書くためのライブラリ](https://reasonml.github.io/reason-react/) や、[活発なコミュニティ](https://reasonml.github.io/docs/en/community.html)が存在します。
+Reason は Facebook で開発されており、Messenger 等のプロダクトに既に使われてます。まだ試験的段階ですが、Facebook によって管理された [React を書くためのライブラリ](https://reasonml.github.io/reason-react/)や、[活発なコミュニティ](https://reasonml.github.io/docs/en/community.html)が存在します。
 
 ## Kotlin {#kotlin}
 

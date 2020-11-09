@@ -4,7 +4,7 @@ title: 非制御コンポーネント
 permalink: docs/uncontrolled-components.html
 ---
 
-ほとんどの場合では、フォームの実装には[制御されたコンポーネント](/docs/forms.html#controlled-components)を使用することをお勧めしています。制御されたコンポーネントでは、フォームのデータは React コンポーネントが扱います。非制御コンポーネントはその代替となるものであり、フォームデータを DOM 自身が扱います。
+ほとんどの場合では、フォームの実装には[制御されたコンポーネント](/docs/forms.html#controlled-components) (controlled component) を使用することをお勧めしています。制御されたコンポーネントでは、フォームのデータは React コンポーネントが扱います。非制御コンポーネント (uncontrolled component) はその代替となるものであり、フォームデータを DOM 自身が扱います。
 
 非制御コンポーネントを記述するには、各 state の更新に対してイベントハンドラを書く代わりに、[ref を使用](/docs/refs-and-the-dom.html)して DOM からフォームの値を取得します。
 
@@ -39,7 +39,7 @@ class NameForm extends React.Component {
 
 [**CodePen で試す**](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
 
-非制御コンポーネントでは DOM に信頼できる情報源を保持するため、使用すれば React と非 React のコードの統合が簡単になることがあります。汚くても構わないので速く記述したいと思うなら少しだけコード量も減らせます。そうでなければ、通常の制御されたコンポーネントを使用するべきです。
+非制御コンポーネントでは DOM に信頼できる情報源 (source of truth) を保持するため、使用すれば React と非 React のコードの統合が簡単になることがあります。汚くても構わないので速く記述したいと思うなら少しだけコード量も減らせます。そうでなければ、通常の制御されたコンポーネントを使用するべきです。
 
 特定の状況に対してどちらのタイプのコンポーネントを使用すれば良いかまだはっきりしない場合は、[制御された入力 vs 非制御入力の記事](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/)が参考になるでしょう。
 

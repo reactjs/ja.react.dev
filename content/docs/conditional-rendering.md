@@ -167,9 +167,9 @@ render() {
 
 ### 条件演算子によるインライン If-Else {#inline-if-else-with-conditional-operator}
 
-条件的に要素をレンダリングするもうひとつの方法は JavaScript の [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) 条件演算子を利用することです。
+条件的に要素をレンダーするもうひとつの方法は JavaScript の [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) 条件演算子を利用することです。
 
-以下の例では条件演算子を用いて、条件に応じてテキストの小さなブロックをレンダリングします。
+以下の例では条件演算子を用いて、条件に応じてテキストの小さなブロックをレンダーします。
 
 ```javascript{5}
 render() {
@@ -204,7 +204,7 @@ render() {
 
 稀なケースですが、他のコンポーネントによってレンダーされているにも関わらず、コンポーネントが自分のことを隠したい、ということがあるかもしれません。その場合はレンダー出力の代わりに `null` を返すようにしてください。
 
-以下の例では、`<WarningBanner />` バナーは `warn` と呼ばれるプロパティの値に応じてレンダーされます。そのプロパティの値が `false` なら、コンポーネントはレンダリングされません：
+以下の例では、`<WarningBanner />` バナーは `warn` と呼ばれるプロパティの値に応じてレンダーされます。そのプロパティの値が `false` なら、コンポーネントはレンダーされません：
 
 ```javascript{2-4,29}
 function WarningBanner(props) {

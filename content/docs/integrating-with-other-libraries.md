@@ -8,7 +8,7 @@ React はどのような Web アプリケーションにも適用できます。
 
 ## DOM 操作プラグインとのインテグレーション {#integrating-with-dom-manipulation-plugins}
 
-React は、React の外で DOM に加えられた変更を認識しません。React は自身の内部表現に基づいて更新を決定します。もし同じ DOM ノードが別のライブラリによって操作された場合、React は混乱してしまい、回復する方法がありません。
+React は、React 以外のものが DOM に加えた変更を認識しません。React は自身の内部表現に基づいて更新内容を決定します。もし同じ DOM ノードが別のライブラリによって操作された場合、React は混乱してしまい、回復する方法がありません。
 
 とはいえ、React と操作プラグインを組み合わせることが不可能、あるいは必ずしも難しいと言っているのではありません。それぞれがやっていることを正しく認識する必要があるのです。
 
@@ -39,15 +39,15 @@ class SomePlugin extends React.Component {
 }
 ```
 
-`componentDidMount` と `componentWillUnmount` の両方の [ライフサイクルメソッド](/docs/react-component.html#the-component-lifecycle) を定義したことに注意してください。多くの jQuery プラグインは DOM にイベントリスナをアタッチするので、それらを `componentWillUnmount` でデタッチすることが重要です。もしプラグインがクリーンアップの方法を提供していない場合、あなた自身で提供する必要があります。メモリリークを防ぐためにプラグインが登録したイベントリスナを削除することを忘れないでください。
+`componentDidMount` と `componentWillUnmount` の両方の[ライフサイクルメソッド](/docs/react-component.html#the-component-lifecycle)を定義したことに注意してください。多くの jQuery プラグインは DOM にイベントリスナをアタッチするので、それらを `componentWillUnmount` でデタッチすることが重要です。もしプラグインがクリーンアップの方法を提供していない場合、あなた自身で提供する必要があります。メモリリークを防ぐためにプラグインが登録したイベントリスナを削除することを忘れないでください。
 
 ### jQuery Chosen プラグインとのインテグレーション {#integrating-with-jquery-chosen-plugin}
 
 このアイディアの具体的な例として、`<select>` 要素を拡張する [Chosen](https://harvesthq.github.io/chosen/) プラグインの最小のラッパーを書いてみましょう。
 
->**Note:**
+>**補足:**
 >
->それが可能だからといって、それが React アプリケーションに最適なアプローチであるという意味ではありません。可能であれば React コンポーネントを使用することをお勧めします。React コンポーネントは React アプリケーションで簡単に再利用でき、また多くの場合、それらの動作や外観をより細かくコントロールできます。
+>これが可能だからといって、これが React アプリケーションに最適なアプローチであるという意味ではありません。可能な限り React コンポーネントを使用することをお勧めします。React コンポーネントは React アプリケーションで簡単に再利用でき、また多くの場合、それらの動作や外観をより細かくコントロールできます。
 
 まず、Chosen が DOM に対してどういった操作をしているのか確認しましょう。
 
@@ -145,7 +145,7 @@ componentDidUpdate(prevProps) {
 }
 ```
 
-のようにして Chosen は、React が管理する `<select>` の子要素に変更があった場合に自分が管理する DOM 要素を変更すべき事が分かるようになります。
+このようにして Chosen は、React が管理する `<select>` の子要素に変更があった場合に自分が管理する DOM 要素を変更すべき事が分かるようになります。
 
 `Chosen` コンポーネントの完全な実装は以下のようになります：
 
@@ -194,7 +194,7 @@ React は [`ReactDOM.render()`](/docs/react-dom.html#render) の柔軟性のお�
 
 React は一般的に起動時に単一のルート React コンポーネントを DOM にロードして使用されるものですが、`ReactDOM.render()` はボタンのような小さなものからアプリケーション全体に至るまで、独立した UI のパーツに対して複数回呼び出すこともできます。
 
-実際、これはまさに React が Facebook で使用されている方法でもあります。これにより React でアプリケーションを少しずつ作成し、それらを既存のサーバー生成テンプレートやその他のクライアントサイドコードと組み合わせることができます。
+実際、これはまさに React が Facebook で使用されている方法でもあります。これにより React でアプリケーションを少しずつ作成し、それらを既存のサーバ側テンプレートやその他のクライアントサイドコードと組み合わせることができます。
 
 ### React で文字列ベースのレンダーを置き換える {#replacing-string-based-rendering-with-react}
 
@@ -227,7 +227,7 @@ ReactDOM.render(
 );
 ```
 
-ここから始めて、コンポーネントにロジック部分を更に移植していくことや、より一般的な React のプラクティスを採用していくことができます。例えば、コンポーネントでは同じコンポーネントが複数回レンダーされる可能性があるので、ID に依存しないことがベストプラクティスです。かわりに React の [React event system](/docs/handling-events.html) を使用してクリックハンドラを React の `<button>` 要素に直接登録します：
+ここから始めて、コンポーネントにロジック部分を更に移植していくことや、より一般的な React のプラクティスを採用していくことができます。例えば、コンポーネントでは同じコンポーネントが複数回レンダーされる可能性があるので、ID に依存しないことがベストプラクティスです。かわりに React の[イベントの仕組み](/docs/handling-events.html)を使用してクリックハンドラを React の `<button>` 要素に直接登録します：
 
 ```js{2,6,9}
 function Button(props) {
@@ -253,9 +253,9 @@ ReactDOM.render(
 
 ### Backbone View に React を組み込む {#embedding-react-in-a-backbone-view}
 
-[Backbone](https://backbonejs.org/) view は通常、HTML 文字列、もしくは文字列を生成するテンプレート用関数を使って、DOM 要素の中身を作成します。この処理もまた React コンポーネントのレンダリングに置き換えられます。
+[Backbone](https://backbonejs.org/) view は通常、HTML 文字列、もしくは文字列を生成するテンプレート用関数を使って、DOM 要素の中身を作成します。この処理もまた React コンポーネントのレンダーに置き換えられます。
 
-以下で、`ParagraphView` と呼ばれる Backbone view を作成します。Backbone の `render()` 関数をオーバーライドして、React の `<Paragraph>` コンポーネントを Backbone が提供する DOM 要素 (this.el) にレンダリングします。ここでも [`ReactDOM.render()`](/docs/react-dom.html#render) を使用します：
+以下で、`ParagraphView` と呼ばれる Backbone view を作成します。Backbone の `render()` 関数をオーバーライドして、React の `<Paragraph>` コンポーネントを Backbone が提供する DOM 要素 (this.el) にレンダーします。ここでも [`ReactDOM.render()`](/docs/react-dom.html#render) を使用します：
 
 ```js{1,5,8,12}
 function Paragraph(props) {
@@ -289,7 +289,7 @@ React *ツリー内*からコンポーネントが削除されるとクリーン
 
 React コンポーネントから [Backbone](https://backbonejs.org/) のモデルとコレクションを利用する最もシンプルな方法は、様々な変更イベントを監視して手動で強制的に更新することです。
 
-モデルのレンダーに責任をもつコンポーネントは `'change'` イベントを監視し、コレクションのレンダーに責任をもつコンポーネントは `'add'` および `'remove'` イベントを監視します。どちらの場合も、[`this.forceUpdate()`](/docs/react-component.html#forceupdate) を呼び出して新しいデータでコンポーネントを再レンダリングします。
+モデルのレンダーに責任を持つコンポーネントは `'change'` イベントを監視し、コレクションのレンダーに責任を持つコンポーネントは `'add'` および `'remove'` イベントを監視します。どちらの場合も、[`this.forceUpdate()`](/docs/react-component.html#forceupdate) を呼び出して新しいデータでコンポーネントを再レンダーします。
 
 以下の例では、`List` コンポーネントは Backbone のコレクションをレンダーします。個別の要素のレンダーには `Item` コンポーネントを使用します。
 

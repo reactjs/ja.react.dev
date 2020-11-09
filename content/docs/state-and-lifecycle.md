@@ -31,7 +31,7 @@ setInterval(tick, 1000);
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/gwoJZk?editors=0010)
 
-このセクションでは、この `Clock` コンポーネントを真に再利用可能かつカプセル化されたものにする方法を学びます。コンポーネントが自分でタイマーをセットアップし、自身を毎秒更新するようにします。
+このセクションでは、この `Clock` コンポーネントを真に再利用可能かつカプセル化されたものにする方法を学びます。コンポーネントが自身でタイマーをセットアップし、自身を毎秒更新するようにします。
 
 時計の見た目をカプセル化するところから始めてみましょう：
 
@@ -101,7 +101,7 @@ class Clock extends React.Component {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/zKRGpo?editors=0010)
 
-これでもう、`Clock` は関数ではなくクラスとして定義されています。
+これで、`Clock` は関数ではなくクラスとして定義されるようになりました。
 
 `render` メソッドは更新が発生した際に毎回呼ばれますが、同一の DOM ノード内で `<Clock />` をレンダーしている限り、`Clock` クラスのインスタンスは 1 つだけ使われます。このことにより、ローカル state やライフサイクルメソッドといった追加の機能が利用できるようになります。
 
@@ -197,7 +197,7 @@ ReactDOM.render(
 
 ## クラスにライフサイクルメソッドを追加する {#adding-lifecycle-methods-to-a-class}
 
-多くのコンポーネントを有するアプリケーションでは、コンポーネントが破棄された場合にそのコンポーネントが占有していたリソースを開放することがとても重要です。
+多くのコンポーネントを有するアプリケーションでは、コンポーネントが破棄された場合にそのコンポーネントが占有していたリソースを解放することがとても重要です。
 
 [タイマーを設定](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval)したいのは、最初に `Clock` が DOM として描画されるときです。このことを React では "マウント (mounting)" と呼びます。
 
@@ -312,7 +312,7 @@ ReactDOM.render(
 
 3) `Clock` の出力が DOM に挿入されると、React は `componentDidMount()` ライフサイクルメソッドを呼び出します。その中で、`Clock` コンポーネントは毎秒ごとにコンポーネントの `tick()` メソッドを呼び出すためにタイマーを設定するようブラウザに要求します。
 
-4) ブラウザは、毎秒ごとに `tick()` メソッドを呼び出します。その中で `Clock` コンポーネントは、現在時刻を含んだオブジェクトを引数として `setState()` を呼び出すことで、UI の更新をスケジュールします。`setState()` が呼び出されたおかげで、React は state が変わったということが分かるので、`render()` メソッドを再度呼び出して、画面上に何を表示すべきかを知ります。今回は、`render()` メソッド内の `this.state.date` が異なっているので、レンダリングされる出力には新しく更新された時間が含まれています。それに従って React は DOM を更新します。
+4) ブラウザは、毎秒ごとに `tick()` メソッドを呼び出します。その中で `Clock` コンポーネントは、現在時刻を含んだオブジェクトを引数として `setState()` を呼び出すことで、UI の更新をスケジュールします。`setState()` が呼び出されたおかげで、React は state が変わったということが分かるので、`render()` メソッドを再度呼び出して、画面上に何を表示すべきかを知ります。今回は、`render()` メソッド内の `this.state.date` が異なっているので、レンダーされる出力には新しく更新された時間が含まれています。それに従って React は DOM を更新します。
 
 5) この後に `Clock` コンポーネントが DOM から削除されることがあれば、React は `componentWillUnmount()` ライフサイクルメソッドを呼び出し、これによりタイマーが停止します。
 
@@ -407,7 +407,7 @@ this.setState(function(state, props) {
   }
 ```
 
-マージは浅く (shallow) 行われるので、`this.setState({comments})` は `this.state.posts` をそのまま残しますが、`this.state.comments` は完全に置き換えます。
+マージは浅く (shallow) 行われるので、`this.setState({comments})` は `this.state.posts` をそのまま残しますが、`this.state.comments` を完全に置き換えます。
 
 ## データは下方向に伝わる {#the-data-flows-down}
 
@@ -435,7 +435,7 @@ function FormattedDate(props) {
 
 コンポーネントツリーとは props が流れ落ちる滝なのだと想像すると、各コンポーネントの state とは任意の場所で合流してくる追加の水源であり、それらもまた下に流れ落ちていくものなのです。
 
-全てのコンポーネントが本当に独立していることを示すのに、3 つの `<Clock>` をレンダリングする `App` コンポーネントを作成します：
+全てのコンポーネントが本当に独立していることを示すのに、3 つの `<Clock>` をレンダーする `App` コンポーネントを作成します：
 
 ```js{4-6}
 function App() {
@@ -456,6 +456,6 @@ ReactDOM.render(
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/vXdGmd?editors=0010)
 
-各 `Clock` は独立してタイマーをセットし、独立して更新します。
+各 `Clock` は独立してタイマーをセットし、独立して更新されます。
 
 React アプリケーションでは、コンポーネントがステートフルかステートレスかは、コンポーネントにおける内部実装の詳細 (implementation detail) とみなされ、それは時間と共に変化しうるものです。ステートレスなコンポーネントをステートフルなコンポーネントの中で使うことが可能であり、その逆も同様です。

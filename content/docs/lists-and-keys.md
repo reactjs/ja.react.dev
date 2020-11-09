@@ -20,7 +20,7 @@ console.log(doubled);
 
 React では配列を[要素](/docs/rendering-elements.html)のリストに変換することが、ほぼこれと同様のものです。
 
-### 複数のコンポーネントをレンダリングする {#rendering-multiple-components}
+### 複数のコンポーネントをレンダーする {#rendering-multiple-components}
 
 要素の集合を作成し中括弧 `{}` で囲むことで [JSX に含める](/docs/introducing-jsx.html#embedding-expressions-in-jsx)ことができます。
 
@@ -48,7 +48,7 @@ ReactDOM.render(
 
 ### 基本的なリストコンポーネント {#basic-list-component}
 
-通常、リストは何らかの[コンポーネント](/docs/components-and-props.html)の内部でレンダリングしたいと思うでしょう。
+通常、リストは何らかの[コンポーネント](/docs/components-and-props.html)の内部でレンダーしたいと思うでしょう。
 
 前の例をリファクタリングして、`numbers` という配列を受け取って要素のリストを出力するコンポーネントを作ることができます。
 
@@ -119,7 +119,7 @@ const todoItems = todos.map((todo) =>
 );
 ```
 
-レンダリングされる要素に安定した ID がない場合、最終手段として項目のインデックスを使うことができます：
+レンダーされる要素に安定した ID がない場合、最終手段として項目のインデックスを使うことができます：
 
 ```js{2,3}
 const todoItems = todos.map((todo, index) =>
@@ -205,7 +205,7 @@ ReactDOM.render(
 
 ### key は兄弟要素の中で一意であればよい {#keys-must-only-be-unique-among-siblings}
 
-配列内で使われる key はその兄弟要素の中で一意である必要があります。しかし全体でユニークである必要はありません。2 つの異なる配列を作る場合は、同一の key が使われても構いません：
+配列内で使われる key はその兄弟要素の中で一意である必要があります。しかしグローバルに一意である必要はありません。2 つの異なる配列を作る場合は、同一の key が使われても構いません：
 
 ```js{2,5,11,12,19,21}
 function Blog(props) {

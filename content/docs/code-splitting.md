@@ -83,9 +83,9 @@ Webpack がこの構文を見つけると、自動的にアプリのコードを
 
 > 補足:
 >
-> `React.lazy` と Suspense はまだサーバーサイドレンダリングには使用できません。サーバーサイドでレンダリングされたアプリでコード分割をしたい場合には、[Loadable Components](https://github.com/gregberge/loadable-components) の使用をおすすめします。[サーバーサイドレンダリングでのバンドル分割のための素晴らしいガイド](https://loadable-components.com/docs/server-side-rendering/)も提供されているので、参考にしてみてください。
+> `React.lazy` と Suspense はまだサーバサイドレンダリングには使用できません。サーバサイドでレンダリングされたアプリでコード分割をしたい場合には、[Loadable Components](https://github.com/gregberge/loadable-components) の使用をおすすめします。[サーバサイドレンダリングでのバンドル分割のための素晴らしいガイド](https://loadable-components.com/docs/server-side-rendering/)も提供されているので、参考にしてみてください。
 
-`React.lazy` 関数を使用すると、動的インポートを通常のコンポーネントとしてレンダリングすることができます。
+`React.lazy` 関数を使用すると、動的インポートを通常のコンポーネントとしてレンダーすることができます。
 
 **Before:**
 
@@ -99,7 +99,7 @@ import OtherComponent from './OtherComponent';
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 ```
 
-このコンポーネントがはじめてレンダリングされる時、`OtherComponent` を含むバンドルを自動的にロードしてくれます。
+このコンポーネントがはじめてレンダーされる時、`OtherComponent` を含むバンドルを自動的にロードしてくれます。
 
 `React.lazy` は動的インポート構文 `import()` を呼び出す関数を引数として取ります。この関数は React コンポーネントを含む `default` export を持つモジュールに解決される `Promise` を返さなければなりません。
 
