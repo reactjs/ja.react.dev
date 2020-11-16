@@ -146,7 +146,7 @@ onFocus onBlur
 DOMEventTarget relatedTarget
 ```
 
-#### onFocus
+#### onFocus {#onfocus}
 
 `onFocus` イベントは要素（あるいはその内部の別の要素）がフォーカスを受け取った時に呼び出されます。例えば、ユーザがテキスト入力をクリックした際に呼び出されます。
 
@@ -163,7 +163,7 @@ function Example() {
 }
 ```
 
-#### onBlur
+#### onBlur {#onblur}
 
 `onBlur` イベントハンドラは要素（あるいはその内部の別の要素）からフォーカスが外れた場合に呼び出されます。例えば、ユーザが既にフォーカスされているテキスト入力の外側でクリックした場合に呼び出されます。
 
@@ -180,7 +180,11 @@ function Example() {
 }
 ```
 
+<<<<<<< HEAD
 #### フォーカスが当たった・外れたことの検出 {#detecting-focus-entering-and-leaving}
+=======
+#### Detecting Focus Entering and Leaving {#detecting-focus-entering-and-leaving}
+>>>>>>> 957276e1e92bb48e5bb6b1c17fd0e7a559de0748
 
 `currentTarget` と `relatedTarget` を用いることで、フォーカスが当たった・外れた際のイベントが親要素の*外側*で起こったかどうかを判定できます。以下のコピー・ペーストで使えるデモでは、子要素のどれかへのフォーカス、要素自身へのフォーカス、サブツリー全体から出入りするフォーカスを、それぞれどのように検出するかを示しています。
 
@@ -218,7 +222,6 @@ function Example() {
   );
 }
 ```
-
 
 * * *
 

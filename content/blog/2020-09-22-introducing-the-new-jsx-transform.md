@@ -99,7 +99,11 @@ JSX を使用するために **React をインポートする必要がなくな�
 
 ### Create React App {#create-react-app}
 
+<<<<<<< HEAD
 Create React App でのサポートは[すでに追加されており](https://github.com/facebook/create-react-app/pull/9645)、現在ベータテスト中の[次期 v4.0 リリース](https://gist.github.com/iansu/4fab7a9bfa5fa6ebc87a908c62f5340b)で利用可能になる予定です。
+=======
+Create React App [4.0.0](https://github.com/facebook/create-react-app/releases/tag/v4.0.0)+ uses the new transform for compatible React versions.
+>>>>>>> 957276e1e92bb48e5bb6b1c17fd0e7a559de0748
 
 ### Next.js {#nextjs}
 
@@ -143,7 +147,11 @@ npm update @babel/core @babel/preset-react
 yarn upgrade @babel/core @babel/preset-react
 ```
 
+<<<<<<< HEAD
 現在のところは以前のトランスフォーム (`"runtime": "classic"`) がデフォルトのオプションです。新しいトランスフォームを有効にするには、`@babel/plugin-transform-react-jsx` ないし `@babel/preset-react` のオプションとして `{"runtime": "automatic"}` を渡してください。
+=======
+Currently, the old transform `{"runtime": "classic"}` is the default option. To enable the new transform, you can pass `{"runtime": "automatic"}` as an option to `@babel/plugin-transform-react-jsx` or `@babel/preset-react`:
+>>>>>>> 957276e1e92bb48e5bb6b1c17fd0e7a559de0748
 
 ```js
 // If you are using @babel/preset-react
@@ -192,11 +200,19 @@ Babel 8 からは、`"automatic"` が両方のプラグインでデフォルト�
 
 ### TypeScript {#typescript}
 
+<<<<<<< HEAD
 TypeScript は新しい JSX トランスフォームを [v4.1 beta](https://devblogs.microsoft.com/typescript/announcing-typescript-4-1-beta/#jsx-factories) でサポートします。
 
 ### Flow {#flow}
 
 Flow は新しい JSX トランスフォームを [v0.126.0](https://github.com/facebook/flow/releases/tag/v0.126.0) およびそれ以降でサポートします。
+=======
+TypeScript supports the new JSX transform in [v4.1 beta](https://devblogs.microsoft.com/typescript/announcing-typescript-4-1-beta/#jsx-factories).
+
+### Flow {#flow}
+
+Flow supports the new JSX transform in [v0.126.0](https://github.com/facebook/flow/releases/tag/v0.126.0) and up, by adding `react.runtime=automatic` to your Flow configuration options. 
+>>>>>>> 957276e1e92bb48e5bb6b1c17fd0e7a559de0748
 
 ## 未使用 React インポートの削除 {#removing-unused-react-imports}
 
@@ -213,8 +229,12 @@ npx react-codemod update-react-imports
 >
 >また、codemod の出力はあなたのプロジェクトのコーディングスタイルと必ずしも一致はしませんので、一貫したフォーマットにするため codemod の終了後に [Prettier](https://prettier.io/) を実行すると良いかもしれません。
 
+<<<<<<< HEAD
 
 この codemod を実行すると以下のことを行います：
+=======
+Running this codemod will:
+>>>>>>> 957276e1e92bb48e5bb6b1c17fd0e7a559de0748
 
 * 新しい JSX トランスフォームにアップグレードした結果使用されなくなる React のインポートをすべて削除します。
 * すべての React のデフォルトインポート（すなわち、`import React from "react"`）を、将来的に望ましいスタイルである分割代入型の名前付きインポート（例えば、`import { useState } from "react"`）に変更します。名前空間インポート（すなわち、`import * as React from "react"`）も有効な形式であり、codemod はこれらは変換**しません**。デフォルトインポートは React 17 でも動作し続けますが、長期的にはそれらのインポートを利用しないようにすることを推奨します。

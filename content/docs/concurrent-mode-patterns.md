@@ -193,10 +193,17 @@ function App() {
 
 このトランジションを加えるのに必要だったコードはわずか 7 行でした。
 
+<<<<<<< HEAD
 * `useTransition` フックをインポートして、state を更新するコンポーネント内で使いました。
 * `{timeoutMs: 3000}` を渡すことで、最高 3 秒間は前の画面に留まるようにしました。
 * state の更新を `startTransition` でラップし、この更新は遅延可能であると伝えました。
 * `isPending` を使って、ユーザにトランジションの進行状況を伝えるとともに、ボタンを無効化しました。
+=======
+* We've imported the `useTransition` Hook and used it in the component that updates the state.
+* We've passed `{timeoutMs: 3000}` to stay on the previous screen for at most 3 seconds.
+* We've wrapped our state update into `startTransition` to tell React it's okay to delay it.
+* We're using `isPending` to communicate the state transition progress to the user and to disable the button.
+>>>>>>> 957276e1e92bb48e5bb6b1c17fd0e7a559de0748
 
 結果として、"Next" をクリックしても「望ましくない」ローディング中状態に直接遷移するのではなく、前の画面に留まってユーザに進行状況を伝えるようになりました。
 
