@@ -12,11 +12,7 @@ permalink: docs/legacy-event-pooling.html
 >
 >React 17 におけるこの変更についての[詳細はこちら](/blog/2020/08/10/react-v17-rc.html#no-event-pooling)。
 
-<<<<<<< HEAD
 [`SyntheticEvent`](/docs/events.html) オブジェクトはプールされます。つまり `SyntheticEvent` はイベントハンドラが呼び出された後に再利用され、すべてのプロパティが null にセットされます。例えば、以下は動作しません：
-=======
-The [`SyntheticEvent`](/docs/events.html) objects are pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event handler has been called. For example, this won't work:
->>>>>>> 957276e1e92bb48e5bb6b1c17fd0e7a559de0748
 
 ```javascript
 function handleChange(e) {
@@ -27,7 +23,7 @@ function handleChange(e) {
 }
 ```
 
-イベントハンドラーが実行された後にオブジェクトのプロパティにアクセスする必要がある場合は、`e.persist()` を呼ぶ必要があります：
+イベントハンドラが実行された後にオブジェクトのプロパティにアクセスする必要がある場合は、`e.persist()` を呼ぶ必要があります：
 
 ```javascript
 function handleChange(e) {

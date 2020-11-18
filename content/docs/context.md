@@ -128,11 +128,7 @@ const MyContext = React.createContext(defaultValue);
 
 全てのコンテクストオブジェクトにはプロバイダ (Provider) コンポーネントが付属しており、これによりコンシューマコンポーネントはコンテクストの変更を購読できます。
 
-<<<<<<< HEAD
-プロバイダは `value` プロパティを受け取り、これが子孫であるコンシューマコンポーネントに渡されます。1 つのプロバイダは多くのコンシューマと接続することが出来ます。プロバイダは値を上書きするために、ツリー内のより深い位置でネストできます。
-=======
-The Provider component accepts a `value` prop to be passed to consuming components that are descendants of this Provider. One Provider can be connected to many consumers. Providers can be nested to override values deeper within the tree.
->>>>>>> 957276e1e92bb48e5bb6b1c17fd0e7a559de0748
+プロバイダコンポーネントは `value` プロパティを受け取り、これが子孫であるコンシューマコンポーネントに渡されます。1 つのプロバイダは多くのコンシューマと接続することができます。プロバイダはネストしてツリー内のより深い位置で値を上書きすることができます。
 
 プロバイダの子孫の全てのコンシューマは、プロバイダの `value` プロパティが変更されるたびに再レンダーされます。プロバイダからその子孫コンシューマ（[`.contextType`](#classcontexttype) や [`useContext`](/docs/hooks-reference.html#usecontext) を含む）への伝播は `shouldComponentUpdate` メソッドの影響を受けないため、コンシューマは祖先のコンポーネントが更新をスキップしている場合でも更新されます。
 
