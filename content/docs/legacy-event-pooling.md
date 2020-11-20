@@ -23,7 +23,7 @@ function handleChange(e) {
 }
 ```
 
-イベントハンドラーが実行された後にオブジェクトのプロパティにアクセスする必要がある場合は、`e.persist()` を呼ぶ必要があります：
+イベントハンドラが実行された後にオブジェクトのプロパティにアクセスする必要がある場合は、`e.persist()` を呼ぶ必要があります：
 
 ```javascript
 function handleChange(e) {

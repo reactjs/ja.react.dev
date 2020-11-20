@@ -411,6 +411,12 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
+React の本番用ビルドと開発用ビルドでは、`componentDidCatch()` がエラーを処理する方法がわずかに異なります。
+
+開発用ビルドでは、エラーは `window` までバブリングするため、`componentDidCatch()` が捕捉したエラーを `window.onerror` や `window.addEventListener('error', callback)` でもインターセプトすることができます。
+
+一方で本番用ビルドではエラーはバブリングしないため、祖先要素のエラーハンドラは `componentDidCatch()` で明示的に捕捉されていないエラーのみを受け取ります。
+
 > 補足
 >
 > エラーが発生した場合は、`setState` を呼び出す `componentDidCatch()` を使用してフォールバック UI をレンダーできますが、これは将来のリリースでは推奨されなくなります。

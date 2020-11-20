@@ -45,7 +45,7 @@ class NameForm extends React.Component {
 
 ### デフォルト値 {#default-values}
 
-React のレンダーのライフサイクルでは、フォーム要素の `value` 属性は DOM の値を上書きします。非制御コンポーネントでは、React に初期値を指定させるが後続の更新処理には関与しないようにしたいことがよくあるでしょう。このケースを扱うために、`defaultValue` 属性を `value` の代わりに指定できます。
+React のレンダーのライフサイクルでは、フォーム要素の `value` 属性は DOM の値を上書きします。非制御コンポーネントでは、React に初期値を指定させるが後続の更新処理には関与しないようにしたいことがよくあるでしょう。このケースを扱うために、`value` の代わりに `defaultValue` 属性を指定できます。コンポーネントのマウント後に `defaultValue` 属性の値を変更しても DOM 内の値の更新は引き起こされません。
 
 ```javascript{7}
 render() {

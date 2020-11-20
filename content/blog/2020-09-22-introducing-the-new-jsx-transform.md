@@ -99,7 +99,7 @@ JSX を使用するために **React をインポートする必要がなくな�
 
 ### Create React App {#create-react-app}
 
-Create React App でのサポートは[すでに追加されており](https://github.com/facebook/create-react-app/pull/9645)、現在ベータテスト中の[次期 v4.0 リリース](https://gist.github.com/iansu/4fab7a9bfa5fa6ebc87a908c62f5340b)で利用可能になる予定です。
+Create React App [4.0.0](https://github.com/facebook/create-react-app/releases/tag/v4.0.0) 以降で互換性のある React のバージョンに対して新しいトランスフォームを利用します。
 
 ### Next.js {#nextjs}
 
@@ -143,7 +143,7 @@ npm update @babel/core @babel/preset-react
 yarn upgrade @babel/core @babel/preset-react
 ```
 
-現在のところは以前のトランスフォーム (`"runtime": "classic"`) がデフォルトのオプションです。新しいトランスフォームを有効にするには、`@babel/plugin-transform-react-jsx` ないし `@babel/preset-react` のオプションとして `{"runtime": "automatic"}` を渡してください。
+現在のところは以前のトランスフォーム `{"runtime": "classic"}` がデフォルトのオプションです。新しいトランスフォームを有効にするには、`@babel/plugin-transform-react-jsx` ないし `@babel/preset-react` のオプションとして `{"runtime": "automatic"}` を渡してください。
 
 ```js
 // If you are using @babel/preset-react
@@ -196,7 +196,7 @@ TypeScript は新しい JSX トランスフォームを [v4.1 beta](https://devb
 
 ### Flow {#flow}
 
-Flow は新しい JSX トランスフォームを [v0.126.0](https://github.com/facebook/flow/releases/tag/v0.126.0) およびそれ以降でサポートします。
+Flow [v0.126.0](https://github.com/facebook/flow/releases/tag/v0.126.0) 以降で、設定オプションに `react.runtime=automatic` を追加することで新しい JSX トランスフォームをサポートします。
 
 ## 未使用 React インポートの削除 {#removing-unused-react-imports}
 
@@ -212,7 +212,6 @@ npx react-codemod update-react-imports
 >codemod の実行時にエラーが出る場合は、`npx react-codemod update-react-imports` で別の JavaScript の方言を指定してみてください。特に、現時点では "JavaScript with Flow" の設定は、"JavaScript" の設定よりも新しい構文をサポートしていますので、Flow を使用していない場合でも試してみてください。問題が発生した場合は [issue を報告](https://github.com/reactjs/react-codemod/issues) してください。
 >
 >また、codemod の出力はあなたのプロジェクトのコーディングスタイルと必ずしも一致はしませんので、一貫したフォーマットにするため codemod の終了後に [Prettier](https://prettier.io/) を実行すると良いかもしれません。
-
 
 この codemod を実行すると以下のことを行います：
 

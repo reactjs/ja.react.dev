@@ -146,7 +146,7 @@ onFocus onBlur
 DOMEventTarget relatedTarget
 ```
 
-#### onFocus
+#### onFocus {#onfocus}
 
 `onFocus` イベントは要素（あるいはその内部の別の要素）がフォーカスを受け取った時に呼び出されます。例えば、ユーザがテキスト入力をクリックした際に呼び出されます。
 
@@ -163,7 +163,7 @@ function Example() {
 }
 ```
 
-#### onBlur
+#### onBlur {#onblur}
 
 `onBlur` イベントハンドラは要素（あるいはその内部の別の要素）からフォーカスが外れた場合に呼び出されます。例えば、ユーザが既にフォーカスされているテキスト入力の外側でクリックした場合に呼び出されます。
 
@@ -218,7 +218,6 @@ function Example() {
   );
 }
 ```
-
 
 * * *
 
