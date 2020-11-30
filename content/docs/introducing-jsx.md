@@ -93,7 +93,7 @@ function getGreeting(user) {
 文字列リテラルを属性として指定するために引用符を使用できます。
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <div tabIndex={0}></div>;
 ```
 
 属性に JavaScript 式を埋め込むために中括弧を使用することもできます。
