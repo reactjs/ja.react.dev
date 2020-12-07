@@ -61,7 +61,7 @@ MyComponent.propTypes = {
 
   // A React element type (ie. MyComponent).
   optionalElementType: PropTypes.elementType,
-  
+
   // You can also declare that a prop is an instance of a class. This uses
   // JS's instanceof operator.
   optionalMessage: PropTypes.instanceOf(Message),
@@ -88,7 +88,7 @@ MyComponent.propTypes = {
     color: PropTypes.string,
     fontSize: PropTypes.number
   }),
-  
+
   // An object with warnings on extra properties
   optionalObjectWithStrictShape: PropTypes.exact({
     name: PropTypes.string,
@@ -195,4 +195,52 @@ class Greeting extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 `defaultProps` を使えば、`this.props.name` が親コンポーネントから値が指定されなかった場合でも値が代入されていることを保証できます。`propTypes` による型チェックは `defaultProps` が解決した後に行われるため、`defaultProps` にも型チェックが適用されます。
+=======
+The `defaultProps` will be used to ensure that `this.props.name` will have a value if it was not specified by the parent component. The `propTypes` typechecking happens after `defaultProps` are resolved, so typechecking will also apply to the `defaultProps`.
+
+### Function Components
+
+If you are using function components in your regular development, you may want to make some small changes to allow PropTypes to be proper applied.
+
+Let's say you have a component like this:
+
+```javascript
+export default function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+```
+
+To add PropTypes, you may want to declare the component in a separate function before exporting, like this:
+
+```javascript
+function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+
+export default HelloWorldComponent
+```
+
+Then, you can add PropTypes directly to the `HelloWorldComponent`:
+
+```javascript
+import PropTypes from 'prop-types'
+
+function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+
+HelloWorldComponent.propTypes = {
+  name: PropTypes.string
+}
+
+export default HelloWorldComponent
+```
+>>>>>>> 4fc709d0576d0f0f1f8ea8b6bb341a12944b5510

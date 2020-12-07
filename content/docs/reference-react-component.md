@@ -415,7 +415,11 @@ React の本番用ビルドと開発用ビルドでは、`componentDidCatch()` �
 
 開発用ビルドでは、エラーは `window` までバブリングするため、`componentDidCatch()` が捕捉したエラーを `window.onerror` や `window.addEventListener('error', callback)` でもインターセプトすることができます。
 
+<<<<<<< HEAD
 一方で本番用ビルドではエラーはバブリングしないため、祖先要素のエラーハンドラは `componentDidCatch()` で明示的に捕捉されていないエラーのみを受け取ります。
+=======
+On production, instead, the errors will not bubble up, which means any ancestor error handler will only receive errors not explicitly caught by `componentDidCatch()`.
+>>>>>>> 4fc709d0576d0f0f1f8ea8b6bb341a12944b5510
 
 > 補足
 >
