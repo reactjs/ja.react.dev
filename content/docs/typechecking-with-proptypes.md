@@ -195,16 +195,13 @@ class Greeting extends React.Component {
 }
 ```
 
-<<<<<<< HEAD
 `defaultProps` を使えば、`this.props.name` が親コンポーネントから値が指定されなかった場合でも値が代入されていることを保証できます。`propTypes` による型チェックは `defaultProps` が解決した後に行われるため、`defaultProps` にも型チェックが適用されます。
-=======
-The `defaultProps` will be used to ensure that `this.props.name` will have a value if it was not specified by the parent component. The `propTypes` typechecking happens after `defaultProps` are resolved, so typechecking will also apply to the `defaultProps`.
 
-### Function Components
+### 関数コンポーネント {#function-components}
 
-If you are using function components in your regular development, you may want to make some small changes to allow PropTypes to be proper applied.
+普段の開発で関数コンポーネントを利用している場合、正しく PropTypes が適用されるように小さな変更を加える必要があるかもしれません。
 
-Let's say you have a component like this:
+以下のようなコンポーネントがあるとしましょう：
 
 ```javascript
 export default function HelloWorldComponent({ name }) {
@@ -214,7 +211,7 @@ export default function HelloWorldComponent({ name }) {
 }
 ```
 
-To add PropTypes, you may want to declare the component in a separate function before exporting, like this:
+PropTypes を加えるためには、エクスポートする前にコンポーネントを以下のように別の関数として宣言する必要があります：
 
 ```javascript
 function HelloWorldComponent({ name }) {
@@ -226,7 +223,7 @@ function HelloWorldComponent({ name }) {
 export default HelloWorldComponent
 ```
 
-Then, you can add PropTypes directly to the `HelloWorldComponent`:
+これで `HelloWorldComponent` に PropTypes を加えることができるようになります：
 
 ```javascript
 import PropTypes from 'prop-types'
@@ -243,4 +240,3 @@ HelloWorldComponent.propTypes = {
 
 export default HelloWorldComponent
 ```
->>>>>>> 4fc709d0576d0f0f1f8ea8b6bb341a12944b5510

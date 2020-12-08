@@ -192,11 +192,7 @@ Babel 8 からは、`"automatic"` が両方のプラグインでデフォルト�
 
 ### TypeScript {#typescript}
 
-<<<<<<< HEAD
-TypeScript は新しい JSX トランスフォームを [v4.1 beta](https://devblogs.microsoft.com/typescript/announcing-typescript-4-1-beta/#jsx-factories) でサポートします。
-=======
-TypeScript supports the new JSX transform in [v4.1](https://devblogs.microsoft.com/typescript/announcing-typescript-4-1/#jsx-factories) and up.
->>>>>>> 4fc709d0576d0f0f1f8ea8b6bb341a12944b5510
+TypeScript は新しい JSX トランスフォームを [v4.1](https://devblogs.microsoft.com/typescript/announcing-typescript-4-1/#jsx-factories) 以降でサポートします。
 
 ### Flow {#flow}
 

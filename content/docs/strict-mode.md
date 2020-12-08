@@ -116,15 +116,11 @@ strict モードでは自動的には副作用を見つけてはくれません�
 
 コンポーネントのコンストラクタなどのメソッドを意図的に 2 度呼び出すことによって、strict モードではこのようなことが起きた場合に気付きやすくしています。
 
-<<<<<<< HEAD
-### レガシーなコンテクスト API の検出 {#detecting-legacy-context-api}
-=======
-> Note:
+> 補足
 >
-> Starting with React 17, React automatically modifies the console methods like `console.log()` to silence the logs in the second call to lifecycle functions. However, it may cause undesired behavior in certain cases where [a workaround can be used](https://github.com/facebook/react/issues/20090#issuecomment-715927125).
+> React 17 以降で、React は `console.log()` のようなコンソールメソッドを自動的に変更し、ライフサイクル関数の 2 回目のコールでログが表示されないようにします。これにより特定のケースで意図しない動作を引き起こすことがありますが、[回避策も存在します](https://github.com/facebook/react/issues/20090#issuecomment-715927125)。
 
-### Detecting legacy context API {#detecting-legacy-context-api}
->>>>>>> 4fc709d0576d0f0f1f8ea8b6bb341a12944b5510
+### レガシーなコンテクスト API の検出 {#detecting-legacy-context-api}
 
 レガシーなコンテクスト API はエラーを起こしがちで、将来のメジャーバージョンで削除予定です。16.x の全てのバージョンでは依然として動きますが、strict モードでは下のような警告文が表示されます。
 
