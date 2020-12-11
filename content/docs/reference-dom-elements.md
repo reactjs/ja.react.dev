@@ -130,7 +130,7 @@ React 16 では、標準[あるいは独自の](/blog/2017/09/08/dom-attributes-
 React は DOM に対して JavaScript 中心に設計された API を常に提供してきました。React コンポーネントは、独自および DOM に関連した props を頻繁に受け取るため、React は DOM API と同様にキャメルケース (`camelCase`) の命名規則を属性の名前付けに使用します。
 
 ```js
-<div tabIndex="-1" />      // DOM API の node.tabIndex と同様に
+<div tabIndex={-1} />      // DOM API の node.tabIndex と同様に
 <div className="Button" /> // DOM API の node.className と同様に
 <input readOnly={true} />  // DOM API の node.readOnly と同様に
 ```

@@ -61,7 +61,7 @@ MyComponent.propTypes = {
 
   // A React element type (ie. MyComponent).
   optionalElementType: PropTypes.elementType,
-  
+
   // You can also declare that a prop is an instance of a class. This uses
   // JS's instanceof operator.
   optionalMessage: PropTypes.instanceOf(Message),
@@ -88,7 +88,7 @@ MyComponent.propTypes = {
     color: PropTypes.string,
     fontSize: PropTypes.number
   }),
-  
+
   // An object with warnings on extra properties
   optionalObjectWithStrictShape: PropTypes.exact({
     name: PropTypes.string,
@@ -196,3 +196,47 @@ class Greeting extends React.Component {
 ```
 
 `defaultProps` を使えば、`this.props.name` が親コンポーネントから値が指定されなかった場合でも値が代入されていることを保証できます。`propTypes` による型チェックは `defaultProps` が解決した後に行われるため、`defaultProps` にも型チェックが適用されます。
+
+### 関数コンポーネント {#function-components}
+
+普段の開発で関数コンポーネントを利用している場合、正しく PropTypes が適用されるように小さな変更を加える必要があるかもしれません。
+
+以下のようなコンポーネントがあるとしましょう：
+
+```javascript
+export default function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+```
+
+PropTypes を加えるためには、エクスポートする前にコンポーネントを以下のように別の関数として宣言する必要があります：
+
+```javascript
+function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+
+export default HelloWorldComponent
+```
+
+これで `HelloWorldComponent` に PropTypes を加えることができるようになります：
+
+```javascript
+import PropTypes from 'prop-types'
+
+function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+
+HelloWorldComponent.propTypes = {
+  name: PropTypes.string
+}
+
+export default HelloWorldComponent
+```
