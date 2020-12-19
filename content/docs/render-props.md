@@ -299,7 +299,7 @@ class MouseTracker extends React.Component {
 }
 ```
 
-この例では、`<MouseTracker>` がレンダーされるたびに `<Mouse render>` プロパティの値として新しい関数が生成されるので、`<Mouse>` が `React.PureComonent` を継承している効果がそもそもなくなってしまいます！
+この例では、`<MouseTracker>` がレンダーされるたびに `<Mouse render>` プロパティの値として新しい関数が生成されるので、`<Mouse>` が `React.PureComponent` を継承している効果がそもそもなくなってしまいます！
 
 この問題を回避するため、レンダープロップをインスタンスメソッドとして次のように定義することもできます。
 
