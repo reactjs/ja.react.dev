@@ -209,6 +209,6 @@ function App() {
 const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 ```
 
-`useTransition` はオプションで `timeoutMs` 値の入った **Suspense Config** を受け取ります。このタイムアウト（ミリ秒で指定）は、React に遅延される値がどれだけ遅れても構わないのかを伝えます。
+`useDeferredValue` はオプションで `timeoutMs` 値の入った **Suspense Config** を受け取ります。このタイムアウト（ミリ秒で指定）は、React に遅延される値がどれだけ遅れても構わないのかを伝えます。
 
 ネットワークやデバイス性能が許す範囲で、React は常にラグを短くしようとします。
