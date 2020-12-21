@@ -197,7 +197,11 @@ class Greeting extends React.Component {
 
 `defaultProps` を使えば、`this.props.name` が親コンポーネントから値が指定されなかった場合でも値が代入されていることを保証できます。`propTypes` による型チェックは `defaultProps` が解決した後に行われるため、`defaultProps` にも型チェックが適用されます。
 
+<<<<<<< HEAD
 ### 関数コンポーネント {#function-components}
+=======
+### Function Components {#function-components}
+>>>>>>> 923629258fce174a89231c88c90805d9e5b0278d
 
 普段の開発で関数コンポーネントを利用している場合、正しく PropTypes が適用されるように小さな変更を加える必要があるかもしれません。
 

@@ -126,7 +126,11 @@ React リポジトリをクローンしたあと、`yarn` コマンドで依存�
 * `yarn build` 全てのパッケージを含む `build` フォルダを作成します。
 * `yarn build react/index,react-dom/index --type=UMD` React と ReactDOM だけの UMD ビルドを作成します。
 
+<<<<<<< HEAD
 `yarn test`（またはそれに近い上記のコマンド）を実行し、あなたの行った変更によって何らかの異常を引き起こしていないか確認することをお勧めします。とはいえ実際のプロジェクトで自分の React のビルドを使ってみることも役に立つでしょう。
+=======
+We recommend running `yarn test` (or its variations above) to make sure you don't introduce any regressions as you work on your change. However, it can be handy to try your build of React in a real project.
+>>>>>>> 923629258fce174a89231c88c90805d9e5b0278d
 
 まず `yarn build` を実行します。これによってビルド済みのバンドルファイルが `build` フォルダ内に作られ、同時に `build/packages` 内に npm パッケージも用意されます。
 
