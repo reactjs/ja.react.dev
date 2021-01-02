@@ -1,24 +1,24 @@
 ---
-title: "Introducing Zero-Bundle-Size React Server Components"
+title: "ゼロバンドルサイズの React Server Components の紹介"
 author: [gaearon,laurentan,josephsavona,sebmarkbage]
 ---
 
-2020 has been a long year. As it comes to an end we wanted to share a special Holiday Update on our research into zero-bundle-size **React Server Components**.
+2020 年は長い 1 年でした。この 1 年の締めくくりに、われわれの研究における特別なホリデーアップデートとして、ゼロバンドルサイズの **React サーバコンポーネント**の紹介をしたいと思います。
 
-To introduce React Server Components, we have prepared a talk and a demo. If you want, you can check them out during the holidays, or later when work picks back up in the new year.
+サーバコンポーネントの紹介のためのトークとデモを用意しました。休暇期間中にチェックするもよし、来年また忙しくなった頃に見てみるのでもよいでしょう。
 
 <br>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TQQPAU21ZUw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-**React Server Components are still in research and development.** We are sharing this work in the spirit of transparency and to get initial feedback from the React community. There will be plenty of time for that, so **don't feel like you have to catch up right now!**
+**React サーバコンポーネントは現在も研究開発中です。**開発の透明性を高め、React コミュニティからの初期フィードバックを頂くために共有しています。そのための時間はまだまだありますので、**今すぐ追いつく必要はありません**！
 
-If you want to check them out, we recommend to go in the following order:
+もし気になったなら以下の順番で見ていくのをお勧めします。
 
-1. **Watch the talk** to learn about React Server Components and see the demo.
+1. **トークを見て** React サーバコンポーネントについて学び、デモを見る
 
-2. **[Clone the demo](http://github.com/reactjs/server-components-demo)** to play with React Server Components on your computer.
+2. **[デモをクローン](http://github.com/reactjs/server-components-demo)**して自分のコンピュータ上で React サーバコンポーネントで遊んでみる
 
-3. **[Read the RFC (with FAQ at the end)](https://github.com/reactjs/rfcs/pull/188)** for a deeper technical breakdown and to provide feedback.
+3. 技術的に深い部分について **[RFC を読み（FAQ も最後にあります）](https://github.com/reactjs/rfcs/pull/188)**、フィードバックを送る
 
-We are excited to hear from you on the RFC or in replies to the [@reactjs](https://twitter.com/reactjs) Twitter handle. Happy holidays, stay safe, and see you next year!
+RFC や Twitter の [@reactjs](https://twitter.com/reactjs) へのリプライで、皆さんの意見を聞けるのを楽しみにしています。それでは良い休暇を！ また来年お元気でお会いしましょう！
