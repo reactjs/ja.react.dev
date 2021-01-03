@@ -1,9 +1,9 @@
 ---
-title: "ゼロバンドルサイズの React Server Components の紹介"
+title: "バンドルサイズゼロの React Server Components の紹介"
 author: [gaearon,laurentan,josephsavona,sebmarkbage]
 ---
 
-2020 年は長い 1 年でした。この 1 年の締めくくりに、われわれの研究における特別なホリデーアップデートとして、ゼロバンドルサイズの **React サーバコンポーネント**の紹介をしたいと思います。
+2020 年は長い 1 年でした。本年の最後に、我々の研究における特別なホリデーアップデートとして、バンドルサイズゼロで動作する **React サーバコンポーネント**の紹介をしたいと思います。
 
 サーバコンポーネントの紹介のためのトークとデモを用意しました。休暇期間中にチェックするもよし、来年また忙しくなった頃に見てみるのでもよいでしょう。
 
@@ -11,7 +11,7 @@ author: [gaearon,laurentan,josephsavona,sebmarkbage]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TQQPAU21ZUw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-**React サーバコンポーネントは現在も研究開発中です。**開発の透明性を高め、React コミュニティからの初期フィードバックを頂くために共有しています。そのための時間はまだまだありますので、**今すぐ追いつく必要はありません**！
+**React サーバコンポーネントは現在も研究開発中です。**開発の透明性を高め、React コミュニティから初期のフィードバックを頂くために共有しています。そのための時間はまだまだありますので、**今すぐ追いつく必要はありません**！
 
 もし気になったなら以下の順番で見ていくのをお勧めします。
 
