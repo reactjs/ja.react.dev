@@ -27,7 +27,7 @@ React でそのアルゴリズムを使った場合、1000 個の要素を表示
 
 ルート要素が異なる型を持つ場合は常に、React は古いツリーを破棄して新しいツリーをゼロから構築します。`<a>` から `<img>` へ、もしくは `<Article>` から `<Comment>` へ、もしくは `<Button>` から `<div>` へ ― それらの全てがツリーをゼロから再構築させるのです。
 
-ツリーを破棄する時点で、古い DOM ノードは破棄されます。コンポーネントのインスタンスは `componentWillUnmount()` を受け取ります。新しいツリーを構築する時点で、新しい DOM ノードが DOM に挿入されます。コンポーネントのインスタンスは `componentWillMount()` とそれから `componentDidMount()` を受け取ります。古いツリーに関連付けられた全ての state は失われます。
+ツリーを破棄する時点で、古い DOM ノードは破棄されます。コンポーネントのインスタンスは `componentWillUnmount()` を受け取ります。新しいツリーを構築する時点で、新しい DOM ノードが DOM に挿入されます。コンポーネントのインスタンスは `UNSAFE_componentWillMount()` とそれから `componentDidMount()` を受け取ります。古いツリーに関連付けられた全ての state は失われます。
 
 ルート配下のコンポーネントはアンマウントされ、それらの state は破棄されます。例えば、以下のように異なる場合：
 
@@ -42,6 +42,12 @@ React でそのアルゴリズムを使った場合、1000 個の要素を表示
 ```
 
 古い `Counter` は破棄され、新しいものが再マウントされます。
+
+>捕捉：
+>
+>これらのコードはレガシーとみなされるため、新規コードでは[使用を避ける](/blog/2018/03/27/update-on-async-rendering.html)べきです：
+>
+>- `UNSAFE_componentWillMount()`
 
 ### 同じ型の DOM 要素 {#dom-elements-of-the-same-type}
 
@@ -69,9 +75,16 @@ React でそのアルゴリズムを使った場合、1000 個の要素を表示
 
 ### 同じ型のコンポーネント要素 {#component-elements-of-the-same-type}
 
-コンポーネントが更新される場合、インスタンスは同じままとなり、レンダー間で state は保持されます。React は対応するコンポーネントのインスタンスの props を新しい要素に合うように更新し、`componentWillReceiveProps()` と `componentWillUpdate()` を対応するインスタンスに対して呼び出します。
+コンポーネントが更新される場合、インスタンスは同じままとなり、レンダー間で state は保持されます。React は対応するコンポーネントのインスタンスの props を新しい要素に合うように更新し、`UNSAFE_componentWillReceiveProps()`、`UNSAFE_componentWillUpdate()` および `componentDidUpdate()` を対応するインスタンスに対して呼び出します。
 
 次に、`render()` メソッドが呼ばれ、差分アルゴリズムが再帰的に前の結果と新しい結果を処理します。
+
+>捕捉：
+>
+>これらのコードはレガシーとみなされるため、新規コードでは[使用を避ける](/blog/2018/03/27/update-on-async-rendering.html)べきです：
+>
+>- `UNSAFE_componentWillUpdate()`
+>- `UNSAFE_componentWillReceiveProps()`
 
 ### 子要素の再帰的な処理 {#recursing-on-children}
 

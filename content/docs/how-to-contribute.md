@@ -88,14 +88,14 @@ Issue を解決することにした場合、誰かがすでに修正に取り�
 
 1. [リポジトリ](https://github.com/facebook/react) をフォークして `master` から新しいブランチを作成します。
 2. `yarn` コマンドをリポジトリルートで実行します。
-3. バグを修正したり、テストが必要なコードを追加した場合は、テストを追加してください。
+3. バグを修正したり、テストが必要なコードを追加した場合は、テストを追加します。
 4. テストスイートが通ることを確認してください (`yarn test`)。ヒント： `yarn test --watch TestName` コマンドは開発時に役立ちます。
-5. `yarn test-prod` コマンドを本番環境でテストするために実行します。これは `yarn test` と同じオプションをサポートします。
+5. 本番環境でテストするために `yarn test --prod` コマンドを実行します。
 6. デバッガが必要な場合は `yarn debug-test --watch TestName` を実行し `chrome://inspect` を開き "Inspect" を押してください。
-7. [prettier](https://github.com/prettier/prettier) でコードをフォーマットしてください (`yarn prettier`)。
-8. リントを行ってください (`yarn lint`)。ヒント： `yarn linc` は変更されたファイルのみに適用できます。
-9. [Flow](https://flowtype.org/) による型チェックを行ってください (`yarn flow`)。
-10. まだの場合は、先に CLA (Contributor License Agreement) の提出を済ませてください。
+7. [prettier](https://github.com/prettier/prettier) でコードをフォーマットします (`yarn prettier`)。
+8. リントを行います (`yarn lint`)。ヒント： `yarn linc` は変更されたファイルのみに適用できます。
+9. [Flow](https://flowtype.org/) による型チェックを行います (`yarn flow`)。
+10. まだの場合は、先に CLA (Contributor License Agreement) の提出を済ませます。
 
 ### Contributor License Agreement (CLA) {#contributor-license-agreement-cla}
 
@@ -120,7 +120,7 @@ React リポジトリをクローンしたあと、`yarn` コマンドで依存�
 * `yarn test` 全てのテストスイートを実行します。
 * `yarn test --watch` 対話式のテストウォッチャーを実行します。
 * `yarn test <pattern>` 指定したパターンにマッチするファイルのみテストを実行します。
-* `yarn test-prod` 本番環境でテストを実行します。`yarn test` と同じオプションをサポートしています。
+* `yarn test --prod` 本番環境でテストを実行します。
 * `yarn debug-test` は `yarn test` に似ていますがデバッガ付きです。`chrome://inspect` を開き "Inspect" を押してください。
 * `yarn flow` [Flow](https://flowtype.org/) による型チェックを行います。
 * `yarn build` 全てのパッケージを含む `build` フォルダを作成します。
