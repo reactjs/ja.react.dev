@@ -27,11 +27,7 @@ React でそのアルゴリズムを使った場合、1000 個の要素を表示
 
 ルート要素が異なる型を持つ場合は常に、React は古いツリーを破棄して新しいツリーをゼロから構築します。`<a>` から `<img>` へ、もしくは `<Article>` から `<Comment>` へ、もしくは `<Button>` から `<div>` へ ― それらの全てがツリーをゼロから再構築させるのです。
 
-<<<<<<< HEAD
-ツリーを破棄する時点で、古い DOM ノードは破棄されます。コンポーネントのインスタンスは `componentWillUnmount()` を受け取ります。新しいツリーを構築する時点で、新しい DOM ノードが DOM に挿入されます。コンポーネントのインスタンスは `componentWillMount()` とそれから `componentDidMount()` を受け取ります。古いツリーに関連付けられた全ての state は失われます。
-=======
-When tearing down a tree, old DOM nodes are destroyed. Component instances receive `componentWillUnmount()`. When building up a new tree, new DOM nodes are inserted into the DOM. Component instances receive `UNSAFE_componentWillMount()` and then `componentDidMount()`. Any state associated with the old tree is lost.
->>>>>>> ed88a240d9c97822cc2f02074306965a1a4f4ac4
+ツリーを破棄する時点で、古い DOM ノードは破棄されます。コンポーネントのインスタンスは `componentWillUnmount()` を受け取ります。新しいツリーを構築する時点で、新しい DOM ノードが DOM に挿入されます。コンポーネントのインスタンスは `UNSAFE_componentWillMount()` とそれから `componentDidMount()` を受け取ります。古いツリーに関連付けられた全ての state は失われます。
 
 ルート配下のコンポーネントはアンマウントされ、それらの state は破棄されます。例えば、以下のように異なる場合：
 
@@ -47,17 +43,13 @@ When tearing down a tree, old DOM nodes are destroyed. Component instances recei
 
 古い `Counter` は破棄され、新しいものが再マウントされます。
 
-<<<<<<< HEAD
-### 同じ型の DOM 要素 {#dom-elements-of-the-same-type}
-=======
->Note:
+>捕捉：
 >
->These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>これらのコードはレガシーとみなされるため、新規コードでは[使用を避ける](/blog/2018/03/27/update-on-async-rendering.html)べきです：
 >
 >- `UNSAFE_componentWillMount()`
 
-### DOM Elements Of The Same Type {#dom-elements-of-the-same-type}
->>>>>>> ed88a240d9c97822cc2f02074306965a1a4f4ac4
+### 同じ型の DOM 要素 {#dom-elements-of-the-same-type}
 
 同じ型の 2 つの React DOM 要素を比較した場合、React はそれぞれの属性を調べ、対応する共通の DOM ノードを保持し、変更された属性のみを更新します。例えば：
 
@@ -83,26 +75,18 @@ When tearing down a tree, old DOM nodes are destroyed. Component instances recei
 
 ### 同じ型のコンポーネント要素 {#component-elements-of-the-same-type}
 
-<<<<<<< HEAD
-コンポーネントが更新される場合、インスタンスは同じままとなり、レンダー間で state は保持されます。React は対応するコンポーネントのインスタンスの props を新しい要素に合うように更新し、`componentWillReceiveProps()` と `componentWillUpdate()` を対応するインスタンスに対して呼び出します。
-=======
-When a component updates, the instance stays the same, so that state is maintained across renders. React updates the props of the underlying component instance to match the new element, and calls `UNSAFE_componentWillReceiveProps()`, `UNSAFE_componentWillUpdate()` and `componentDidUpdate()` on the underlying instance.
->>>>>>> ed88a240d9c97822cc2f02074306965a1a4f4ac4
+コンポーネントが更新される場合、インスタンスは同じままとなり、レンダー間で state は保持されます。React は対応するコンポーネントのインスタンスの props を新しい要素に合うように更新し、`UNSAFE_componentWillReceiveProps()`、`UNSAFE_componentWillUpdate()` および `componentDidUpdate()` を対応するインスタンスに対して呼び出します。
 
 次に、`render()` メソッドが呼ばれ、差分アルゴリズムが再帰的に前の結果と新しい結果を処理します。
 
-<<<<<<< HEAD
-### 子要素の再帰的な処理 {#recursing-on-children}
-=======
->Note:
+>捕捉：
 >
->These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>これらのコードはレガシーとみなされるため、新規コードでは[使用を避ける](/blog/2018/03/27/update-on-async-rendering.html)べきです：
 >
 >- `UNSAFE_componentWillUpdate()`
 >- `UNSAFE_componentWillReceiveProps()`
 
-### Recursing On Children {#recursing-on-children}
->>>>>>> ed88a240d9c97822cc2f02074306965a1a4f4ac4
+### 子要素の再帰的な処理 {#recursing-on-children}
 
 デフォルトでは、DOM ノードの子に対して再帰的に処理を行う場合、React は単純に、両方の子要素リストのそれぞれ最初から同時に処理を行っていって、差分を見つけたところで毎回更新を発生させます。
 

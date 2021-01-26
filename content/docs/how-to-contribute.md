@@ -84,31 +84,18 @@ Issue を解決することにした場合、誰かがすでに修正に取り�
 
 コアチームはプルリクエストを監視しています。プルリクエストをレビューしてマージするか、変更を要求するか、説明付きでクローズします。Facebook.com 内部で使用法の検討が必要な可能性のある API の変更については、対応が遅くなることがあります。プロセス全体を通して最新情報とフィードバックを提供するよう最善を尽くします。
 
-<<<<<<< HEAD
 **プルリクエストを送信する前に、**以下のプロセスが行われているか確認してください：
 
 1. [リポジトリ](https://github.com/facebook/react) をフォークして `master` から新しいブランチを作成します。
 2. `yarn` コマンドをリポジトリルートで実行します。
-3. バグを修正したり、テストが必要なコードを追加した場合は、テストを追加してください。
+3. バグを修正したり、テストが必要なコードを追加した場合は、テストを追加します。
 4. テストスイートが通ることを確認してください (`yarn test`)。ヒント： `yarn test --watch TestName` コマンドは開発時に役立ちます。
-5. `yarn test-prod` コマンドを本番環境でテストするために実行します。これは `yarn test` と同じオプションをサポートします。
+5. 本番環境でテストするために `yarn test --prod` コマンドを実行します。
 6. デバッガが必要な場合は `yarn debug-test --watch TestName` を実行し `chrome://inspect` を開き "Inspect" を押してください。
-7. [prettier](https://github.com/prettier/prettier) でコードをフォーマットしてください (`yarn prettier`)。
-8. リントを行ってください (`yarn lint`)。ヒント： `yarn linc` は変更されたファイルのみに適用できます。
-9. [Flow](https://flowtype.org/) による型チェックを行ってください (`yarn flow`)。
-10. まだの場合は、先に CLA (Contributor License Agreement) の提出を済ませてください。
-=======
-1. Fork [the repository](https://github.com/facebook/react) and create your branch from `master`.
-2. Run `yarn` in the repository root.
-3. If you've fixed a bug or added code that should be tested, add tests!
-4. Ensure the test suite passes (`yarn test`). Tip: `yarn test --watch TestName` is helpful in development.
-5. Run `yarn test --prod` to test in the production environment.
-6. If you need a debugger, run `yarn debug-test --watch TestName`, open `chrome://inspect`, and press "Inspect".
-7. Format your code with [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
-8. Make sure your code lints (`yarn lint`). Tip: `yarn linc` to only check changed files.
-9. Run the [Flow](https://flowtype.org/) typechecks (`yarn flow`).
-10. If you haven't already, complete the CLA.
->>>>>>> ed88a240d9c97822cc2f02074306965a1a4f4ac4
+7. [prettier](https://github.com/prettier/prettier) でコードをフォーマットします (`yarn prettier`)。
+8. リントを行います (`yarn lint`)。ヒント： `yarn linc` は変更されたファイルのみに適用できます。
+9. [Flow](https://flowtype.org/) による型チェックを行います (`yarn flow`)。
+10. まだの場合は、先に CLA (Contributor License Agreement) の提出を済ませます。
 
 ### Contributor License Agreement (CLA) {#contributor-license-agreement-cla}
 
@@ -128,29 +115,16 @@ Issue を解決することにした場合、誰かがすでに修正に取り�
 React リポジトリをクローンしたあと、`yarn` コマンドで依存関係のパッケージを取得してください。
 そうすれば、いくつかのコマンドが実行可能になります：
 
-<<<<<<< HEAD
 * `yarn lint` コードスタイルをチェックします。
 * `yarn linc` `yarn lint` と似ていますが、変更されたファイルのみをチェックするのでこちらの方が速いです。
 * `yarn test` 全てのテストスイートを実行します。
 * `yarn test --watch` 対話式のテストウォッチャーを実行します。
 * `yarn test <pattern>` 指定したパターンにマッチするファイルのみテストを実行します。
-* `yarn test-prod` 本番環境でテストを実行します。`yarn test` と同じオプションをサポートしています。
+* `yarn test --prod` 本番環境でテストを実行します。
 * `yarn debug-test` は `yarn test` に似ていますがデバッガ付きです。`chrome://inspect` を開き "Inspect" を押してください。
 * `yarn flow` [Flow](https://flowtype.org/) による型チェックを行います。
 * `yarn build` 全てのパッケージを含む `build` フォルダを作成します。
 * `yarn build react/index,react-dom/index --type=UMD` React と ReactDOM だけの UMD ビルドを作成します。
-=======
-* `yarn lint` checks the code style.
-* `yarn linc` is like `yarn lint` but faster because it only checks files that differ in your branch.
-* `yarn test` runs the complete test suite.
-* `yarn test --watch` runs an interactive test watcher.
-* `yarn test --prod` runs tests in the production environment.
-* `yarn test <pattern>` runs tests with matching filenames.
-* `yarn debug-test` is just like `yarn test` but with a debugger. Open `chrome://inspect` and press "Inspect".
-* `yarn flow` runs the [Flow](https://flowtype.org/) typechecks.
-* `yarn build` creates a `build` folder with all the packages.
-* `yarn build react/index,react-dom/index --type=UMD` creates UMD builds of just React and ReactDOM.
->>>>>>> ed88a240d9c97822cc2f02074306965a1a4f4ac4
 
 `yarn test`（またはそれに近い上記のコマンド）を実行し、あなたの行った変更によって何らかの異常を引き起こしていないか確認することをお勧めします。とはいえ実際のプロジェクトで自分の React のビルドを使ってみることも役に立つでしょう。
 
