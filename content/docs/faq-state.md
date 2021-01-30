@@ -22,7 +22,7 @@ category: FAQ
 
 React では、`this.props` と `this.state` のいずれも、*レンダーされた*もの、つまりスクリーン上の値を表しています。
 
-`setState` 呼び出しは非同期です。呼び出し直後から `this.state` が新しい値を反映することを期待しないでください。もし現在の state に基づいた値を計算する必要がある場合は、オブジェクトの代わりに更新関数を渡してください。（詳しくは以下を参照）
+`setState` 呼び出しは非同期です。呼び出し直後から `this.state` が新しい値を反映することを期待しないでください。もし現在の state に基づいた値を計算する必要がある場合は、オブジェクトの代わりに更新関数を渡してください（詳しくは以下を参照）。
 
 このコード例は期待した通りには*動きません*。
 
@@ -51,7 +51,7 @@ handleSomething() {
 
 ### どうやって現在の state に依存する値を更新したらいいですか？ {#how-do-i-update-state-with-values-that-depend-on-the-current-state}
 
-`setState` へオブジェクトを渡す代わりに関数を渡してください。その関数は常に最新の状態の state を使って呼ばれることが保証されています。（次項参照）
+`setState` へオブジェクトを渡す代わりに関数を渡してください。その関数は常に最新の状態の state を使って呼ばれることが保証されています（次項参照）。
 
 ### `setState` へオブジェクトを渡すのと関数を渡すのとのでは何が違いますか？ {#what-is-the-difference-between-passing-an-object-or-a-function-in-setstate}
 

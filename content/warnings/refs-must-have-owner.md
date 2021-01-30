@@ -11,7 +11,7 @@ permalink: warnings/refs-must-have-owner.html
 *React 16.0.0+*
 > 警告:
 >
-> ref 要素が文字列 (myRefName) として指定されましたが、オーナーが設定されていませんでした。React の複数のコピーがロードされている可能性があります。（詳細：https://fb.me/react-refs-must-have-owner）
+> ref 要素が文字列 (myRefName) として指定されましたが、オーナーが設定されていませんでした。React の複数のコピーがロードされている可能性があります（詳細：https://fb.me/react-refs-must-have-owner）。
 
 *より古いバージョンの React*
 > Warning:
