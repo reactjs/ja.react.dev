@@ -70,7 +70,11 @@ Facebook にはセキュリティバグの安全な開示のための[報奨金�
 
 ### 初めてのプルリクエスト {#your-first-pull-request}
 
+<<<<<<< HEAD
 はじめてのプルリクエストに取り組んでみますか？ この無料ビデオシリーズから手順を学ぶことができます：
+=======
+**[How to Contribute to an Open Source Project on GitHub](https://app.egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)**
+>>>>>>> 888d9eae7a33ec1a48c18f28e82c26d048d885be
 
 **[GitHub でオープンソースプロジェクトに貢献する方法](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)**
 
@@ -138,7 +142,7 @@ React リポジトリをクローンしたあと、`yarn` コマンドで依存�
 
 ```sh
 cd ~/path_to_your_react_clone/
-yarn build react/index,react-dom/index,scheduler --type=NODE
+yarn build react/index,react/jsx,react-dom/index,scheduler --type=NODE
 
 cd build/node_modules/react
 yarn link
