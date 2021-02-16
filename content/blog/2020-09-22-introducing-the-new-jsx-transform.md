@@ -84,7 +84,7 @@ JSX を使用するために **React をインポートする必要がなくな�
 
 > 補足
 >
-> `react/jsx-run-time` と `react/jsx-dev-run-time` 内の関数は、コンパイラによるトランスフォーム機能によってのみ使用されなければなりません。コードの中で手動で要素を作成する必要がある場合は、`React.createElement` を使い続けるべきです。これは動作し続けますし、なくなることはありません。
+> `react/jsx-runtime` と `react/jsx-dev-runtime` 内の関数は、コンパイラによるトランスフォーム機能によってのみ使用されなければなりません。コードの中で手動で要素を作成する必要がある場合は、`React.createElement` を使い続けるべきです。これは動作し続けますし、なくなることはありません。
 
 ## 新しい JSX トランスフォームへのアップグレード {#how-to-upgrade-to-the-new-jsx-transform}
 
