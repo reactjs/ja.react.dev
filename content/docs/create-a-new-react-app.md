@@ -39,11 +39,7 @@ React チームは主に以下のソリューションを推奨します：
 
 [Create React App](https://github.com/facebookincubator/create-react-app) は **React を学習する**のに快適な環境であり、React で**新しい[シングルページ](/docs/glossary.html#single-page-application)アプリケーション**を作成するのに最も良い方法です。
 
-<<<<<<< HEAD
-開発環境をセットアップして最新の JavaScript の機能を使えるようにし、快適な開発体験を提供し、そして本番環境用の最適化を行います。あなたのマシンに [Node >= 8.10 及び npm >= 5.6](https://nodejs.org/en/) の環境が必要です。プロジェクトを作成するには次を実行します：
-=======
-It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have [Node >= 10.16 and npm >= 5.6](https://nodejs.org/en/) on your machine. To create a project, run:
->>>>>>> 888d9eae7a33ec1a48c18f28e82c26d048d885be
+開発環境をセットアップして最新の JavaScript の機能を使えるようにし、快適な開発体験を提供し、そして本番環境用の最適化を行います。あなたのマシンに [Node >= 10.16 及び npm >= 5.6](https://nodejs.org/en/) の環境が必要です。プロジェクトを作成するには次を実行します：
 
 ```bash
 npx create-react-app my-app

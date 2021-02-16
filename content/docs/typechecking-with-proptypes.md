@@ -199,11 +199,7 @@ class Greeting extends React.Component {
 
 ### 関数コンポーネント {#function-components}
 
-<<<<<<< HEAD
 普段の開発で関数コンポーネントを利用している場合、正しく PropTypes が適用されるように小さな変更を加える必要があるかもしれません。
-=======
-If you are using function components in your regular development, you may want to make some small changes to allow PropTypes to be properly applied.
->>>>>>> 888d9eae7a33ec1a48c18f28e82c26d048d885be
 
 以下のようなコンポーネントがあるとしましょう：
 
