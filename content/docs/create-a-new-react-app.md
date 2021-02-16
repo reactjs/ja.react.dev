@@ -22,7 +22,7 @@ next: cdn-links.html
 
 ## ツールチェインが必要ない場合 {#you-might-not-need-a-toolchain}
 
-あなたが上記のような問題を経験していなかったり、まだ JavaScript のツールを利用するのに慣れていない場合、[HTML ページに簡単な `<script>` タグで React を追加](/docs/add-react-to-a-website.html)することを検討してください。（[JSX の利用](/docs/add-react-to-a-website.html#optional-try-react-with-jsx)も検討してみてください）
+あなたが上記のような問題を経験していなかったり、まだ JavaScript のツールを利用するのに慣れていない場合、[HTML ページに簡単な `<script>` タグで React を追加](/docs/add-react-to-a-website.html)することを検討してください（[JSX の利用](/docs/add-react-to-a-website.html#optional-try-react-with-jsx)も検討してみてください）。
 
 これは**既存のウェブサイトに React を統合する最も簡単な方法**でもあります。あなたが役立つと思えばいつでもより大きなツールチェインを追加できます。
 

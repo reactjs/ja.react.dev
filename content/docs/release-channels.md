@@ -66,7 +66,7 @@ React に対する全ての変更は、一般向けリリース前に広範囲�
 - 全てのテストがパスしたのであれば、素晴らしいです！ あなたのプロジェクトは次の React のマイナーリリースで動作することが期待できます。
 - 意図せず何かが壊れた場合は、[Issue を提出して](https://github.com/facebook/react/issues)お知らせください。
 
-このワークフローを使用しているプロジェクトとして、Next.js があります。（シャレではありません！ 真面目です！）例として彼らの [CircleCI の設定](https://github.com/zeit/next.js/blob/c0a1c0f93966fe33edd93fb53e5fafb0dcd80a9e/.circleci/config.yml)を参照できます。
+このワークフローを使用しているプロジェクトとして、Next.js があります（シャレではありません！ 真面目です！）。例として彼らの [CircleCI の設定](https://github.com/zeit/next.js/blob/c0a1c0f93966fe33edd93fb53e5fafb0dcd80a9e/.circleci/config.yml)を参照できます。
 
 ### Experimental チャンネル {#experimental-channel}
 

@@ -97,7 +97,7 @@ const [state, setState] = useState(() => {
 
 #### state 更新の回避 {#bailing-out-of-a-state-update}
 
-現在値と同じ値で更新を行った場合、React は子のレンダーや副作用の実行を回避して処理を終了します。（React は [`Object.is` による比較アルゴリズム](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description)を使用します）
+現在値と同じ値で更新を行った場合、React は子のレンダーや副作用の実行を回避して処理を終了します（React は [`Object.is` による比較アルゴリズム](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description)を使用します）。
 
 更新の回避が起きる前に React により該当のコンポーネント自体はレンダーされるかもしれない、ということに注意してください。ツリーのそれ以上「深く」にまで処理は及ばないためこれは問題ではないはずです。もしレンダー中にコストの高い計算を行っている場合は `useMemo` を使った最適化が可能です。
 
@@ -252,7 +252,7 @@ function ThemedButton() {
 const [state, dispatch] = useReducer(reducer, initialArg, init);
 ```
 
-[`useState`](#usestate) の代替品です。`(state, action) => newState` という型のリデューサ (reducer) を受け取り、現在の state を `dispatch` メソッドとペアにして返します。（もし Redux に馴染みがあれば、これがどう動作するのかはご存じでしょう）
+[`useState`](#usestate) の代替品です。`(state, action) => newState` という型のリデューサ (reducer) を受け取り、現在の state を `dispatch` メソッドとペアにして返します（もし Redux に馴染みがあれば、これがどう動作するのかはご存じでしょう）。
 
 通常、`useReducer` が `useState` より好ましいのは、複数の値にまたがる複雑な state ロジックがある場合や、前の state に基づいて次の state を決める必要がある場合です。また、`useReducer` を使えば[コールバックの代わりに `dispatch` を下位コンポーネントに渡せる](/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down)ようになるため、複数階層にまたがって更新を発生させるようなコンポーネントではパフォーマンスの最適化にもなります。
 
@@ -345,7 +345,7 @@ function Counter({initialCount}) {
 
 #### dispatch による更新の回避 {#bailing-out-of-a-dispatch}
 
-このフックから state の現在値として同じ値を返した場合、React は子のレンダーや副作用の実行を回避して処理を終了します。（React は [`Object.is` による比較アルゴリズム](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description) を使用します）
+このフックから state の現在値として同じ値を返した場合、React は子のレンダーや副作用の実行を回避して処理を終了します（React は [`Object.is` による比較アルゴリズム](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description) を使用します）。
 
 更新の回避が起きる前に React により該当のコンポーネント自体はレンダーされるかもしれない、ということに注意してください。ツリーのそれ以上「深く」にまで処理は及ばないためこれは問題ではないはずです。もしレンダー中にコストの高い計算を行っている場合は `useMemo` を使った最適化が可能です。
 

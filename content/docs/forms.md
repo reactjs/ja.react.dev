@@ -274,7 +274,7 @@ this.setState(partialState);
 [制御されたコンポーネント](/docs/forms.html#controlled-components)で value プロパティに値を指定することで、変更させたくない場合にユーザが値を変更できないようになります。もしも 
 `value` を指定したのに入力フィールドが依然変更可能であるという場合は、`value` を誤って `undefined` もしくは `null` に設定してしまったのかもしれません。
 
-以下のコードでこれを示しています。（入力フィールドは最初はロックされていますが、短い遅延の後に編集可能になります）
+以下のコードでこれを示しています（入力フィールドは最初はロックされていますが、短い遅延の後に編集可能になります）。
 
 ```javascript
 ReactDOM.render(<input value="hi" />, mountNode);
