@@ -128,7 +128,11 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 もしあるコンポーネントが同じ props を与えられたときに同じ結果をレンダーするなら、結果を記憶してパフォーマンスを向上させるためにそれを `React.memo` でラップすることができます。つまり、React はコンポーネントのレンダーをスキップし、最後のレンダー結果を再利用します。
 
+<<<<<<< HEAD
 `React.memo` は props の変更のみをチェックします。`React.memo` でラップしているあなたのコンポーネントがその実装内で [`useState`](/docs/hooks-state.html) や [`useContext`](/docs/hooks-reference.html#usecontext) フックを使っている場合、state やコンテクストの変化に応じた再レンダーは発生します。
+=======
+`React.memo` only checks for prop changes. If your function component wrapped in `React.memo` has a [`useState`](/docs/hooks-state.html), [`useReducer`](/docs/hooks-reference.html#usereducer) or [`useContext`](/docs/hooks-reference.html#usecontext) Hook in its implementation, it will still rerender when state or context change.
+>>>>>>> 54a331d7eff285b87b6865b3ad65a5fea1a86547
 
 デフォルトでは props オブジェクト内の複雑なオブジェクトは浅い比較のみが行われます。比較を制御したい場合は 2 番目の引数でカスタム比較関数を指定できます。
 
