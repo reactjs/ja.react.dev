@@ -71,7 +71,11 @@ error boundary はコンポーネントに対して JavaScript の `catch {}` �
 
 ## error boundary を配置すべき場所 {#where-to-place-error-boundaries}
 
+<<<<<<< HEAD
 error boundary の粒度はあなた次第です。サーバサイドフレームワークがクラッシュを処理する際によく見られるように、最上位のルートコンポーネントをラップしてユーザに “Something went wrong” メッセージを表示してもいいでしょう。各ウィジェットを個別にラップしてアプリケーションの残りの部分をクラッシュから守るのもいいでしょう。
+=======
+The granularity of error boundaries is up to you. You may wrap top-level route components to display a “Something went wrong” message to the user, just like how server-side frameworks often handle crashes. You may also wrap individual widgets in an error boundary to protect them from crashing the rest of the application.
+>>>>>>> c970f75a0ac3513f50e7a4989757c50cde0b7396
 
 
 ## エラーがキャッチされなかった場合の新しい動作 {#new-behavior-for-uncaught-errors}
@@ -130,7 +134,11 @@ error boundary はイベントハンドラ内で発生したエラーをキャ�
 
 イベントハンドラ内のエラーから回復するのに error boundary は不要です。レンダーメソッドやライフサイクルメソッドとは異なり、イベントハンドラはレンダー中には実行されません。そのためイベントハンドラ内でエラーが発生しても、React が画面に表示する内容は変わりません。
 
+<<<<<<< HEAD
 イベントハンドラ内のエラーをキャッチする必要がある場合は、普通の JavaScript の `try` / `catch` 文を使用してください：
+=======
+If you need to catch an error inside an event handler, use the regular JavaScript `try` / `catch` statement:
+>>>>>>> c970f75a0ac3513f50e7a4989757c50cde0b7396
 
 ```js{9-13,17-20}
 class MyComponent extends React.Component {
