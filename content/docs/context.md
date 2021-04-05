@@ -6,7 +6,11 @@ permalink: docs/context.html
 
 コンテクストは各階層で手動でプロパティを下に渡すことなく、コンポーネントツリー内でデータを渡す方法を提供します。
 
+<<<<<<< HEAD
 典型的な React アプリケーションでは、データは props を通してトップダウン（親から子）で渡されますが、アプリケーション内の多くのコンポーネントから必要とされる特定のタイプのプロパティ（例： ロケール設定、UI テーマ）にとっては面倒です。コンテクストはツリーの各階層で明示的にプロパティを渡すことなく、コンポーネント間でこれらの様な値を共有する方法を提供します。
+=======
+In a typical React application, data is passed top-down (parent to child) via props, but such usage can be cumbersome for certain types of props (e.g. locale preference, UI theme) that are required by many components within an application. Context provides a way to share values like these between components without having to explicitly pass a prop through every level of the tree.
+>>>>>>> 49fd7d5f115378e3663b049f108a2d29b31290c8
 
 - [コンテクストをいつ使用すべきか](#when-to-use-context)
 - [コンテクストを使用する前に](#before-you-use-context)
@@ -80,7 +84,11 @@ function Page(props) {
 
 この変更により、一番上の Page コンポーネントだけが、`Link` と `Avatar` コンポーネントの `user` と `avatarSize` の使い道について知る必要があります。
 
+<<<<<<< HEAD
 この*制御の反転*はアプリケーション内で取り回す必要のあるプロパティの量を減らし、ルートコンポーネントにより多くの制御を与えることにより、多くのケースでコードを綺麗にすることができます。しかし、この方法は全てのケースで正しい選択とはなりません：ツリー内の上層に複雑性が移ることは、それら高い階層のコンポーネントをより複雑にして、低い階層のコンポーネントに必要以上の柔軟性を強制します。
+=======
+This *inversion of control* can make your code cleaner in many cases by reducing the amount of props you need to pass through your application and giving more control to the root components. Such inversion, however, isn't the right choice in every case; moving more complexity higher in the tree makes those higher-level components more complicated and forces the lower-level components to be more flexible than you may want.
+>>>>>>> 49fd7d5f115378e3663b049f108a2d29b31290c8
 
 コンポーネントに対して 1 つの子までという制限はありません。複数の子を渡したり、子のために複数の別々の「スロット」を持つことさえできます。[ドキュメントはここにあります。](/docs/composition-vs-inheritance.html#containment)
 
@@ -118,7 +126,11 @@ const MyContext = React.createContext(defaultValue);
 
 コンテクストオブジェクトを作成します。React がこのコンテクストオブジェクトが登録されているコンポーネントをレンダーする場合、ツリー内の最も近い上位の一致する `Provider` から現在のコンテクストの値を読み取ります。
 
+<<<<<<< HEAD
 `defaultValue` 引数は、コンポーネントがツリー内の上位に一致するプロバイダを持っていない場合のみ使用されます。これは、ラップしない単独でのコンポーネントのテストにて役に立ちます。補足： `undefined` をプロバイダの値として渡しても、コンシューマコンポーネントが `defaultValue` を使用することはありません。
+=======
+The `defaultValue` argument is **only** used when a component does not have a matching Provider above it in the tree. This default value can be helpful for testing components in isolation without wrapping them. Note: passing `undefined` as a Provider value does not cause consuming components to use `defaultValue`.
+>>>>>>> 49fd7d5f115378e3663b049f108a2d29b31290c8
 
 ### `Context.Provider` {#contextprovider}
 
@@ -162,7 +174,11 @@ class MyClass extends React.Component {
 MyClass.contextType = MyContext;
 ```
 
+<<<<<<< HEAD
 クラスの `contextType` プロパティには [`React.createContext()`](#reactcreatecontext) により作成されたコンテクストオブジェクトを指定することができます。これにより、`this.context` を使って、そのコンテクストタイプの最も近い現在値を利用できます。レンダー関数を含むあらゆるライフサイクルメソッドで参照できます。
+=======
+The `contextType` property on a class can be assigned a Context object created by [`React.createContext()`](#reactcreatecontext). Using this property lets you consume the nearest current value of that Context type using `this.context`. You can reference this in any of the lifecycle methods including the render function.
+>>>>>>> 49fd7d5f115378e3663b049f108a2d29b31290c8
 
 > 補足:
 >
@@ -188,7 +204,11 @@ class MyClass extends React.Component {
 </MyContext.Consumer>
 ```
 
+<<<<<<< HEAD
 コンテクストの変更を購読する React コンポーネントです。[関数コンポーネント](/docs/components-and-props.html#function-and-class-components)内でコンテクストを購読することができます。
+=======
+A React component that subscribes to context changes. Using this component lets you subscribe to a context within a [function component](/docs/components-and-props.html#function-and-class-components).
+>>>>>>> 49fd7d5f115378e3663b049f108a2d29b31290c8
 
 [function as a child](/docs/render-props.html#using-props-other-than-render) が必要です。この関数は現在のコンテクストの値を受け取り、React ノードを返します。この関数に渡される引数 `value` は、ツリー内の上位で一番近いこのコンテクスト用のプロバイダの `value` プロパティと等しくなります。このコンテクスト用のプロバイダが上位に存在しない場合、引数の `value` は `createContext()` から渡された `defaultValue` と等しくなります。
 

@@ -132,7 +132,11 @@ React リポジトリをクローンしたあと、`yarn` コマンドで依存�
 
 変更を試す一番簡単な方法は `yarn build react/index,react-dom/index --type=UMD` を実行し、`fixtures/packaging/babel-standalone/dev.html` を開くことです。このファイルは `build` フォルダの `react.development.js` を既に使用しているので、変更が反映されます。
 
+<<<<<<< HEAD
 あなたの加えた変更を既存の React プロジェクトで試したい場合、`build/dist/react.development.js`、`build/dist/react-dom.development.js`、もしくは他のビルドされたファイルをあなたのアプリケーションにコピーして安定版の代わりに使用することができます。
+=======
+If you want to try your changes in your existing React project, you may copy `build/node_modules/react/umd/react.development.js`, `build/node_modules/react-dom/umd/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. 
+>>>>>>> 49fd7d5f115378e3663b049f108a2d29b31290c8
 
 もし、npm 版の React を使用している場合は `react` と `react-dom` を依存関係から削除し、`yarn link` を使用してそれらがローカルの `build` フォルダを指すようにしてください。ビルド時には **`--type=UMD` の代わりに `--type=NODE` を渡す必要があることに注意してください**。また `scheduler` パッケージもビルドする必要があります：
 

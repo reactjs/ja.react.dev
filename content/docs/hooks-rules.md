@@ -12,7 +12,11 @@ prev: hooks-effect.html
 
 ### フックを呼び出すのはトップレベルのみ {#only-call-hooks-at-the-top-level}
 
+<<<<<<< HEAD
 **フックをループや条件分岐、あるいはネストされた関数内で呼び出してはいけません。**代わりに、あなたの React の関数のトップレベルでのみ呼び出してください。これを守ることで、コンポーネントがレンダーされる際に毎回同じ順番で呼び出されるということが保証されます。これが、複数回 `useState` や `useEffect` が呼び出された場合でも React がフックの状態を正しく保持するための仕組みです（興味がある場合は[ページ下部](#explanation)で詳しく説明しています）。
+=======
+**Don't call Hooks inside loops, conditions, or nested functions.** Instead, always use Hooks at the top level of your React function, before any early returns. By following this rule, you ensure that Hooks are called in the same order each time a component renders. That's what allows React to correctly preserve the state of Hooks between multiple `useState` and `useEffect` calls. (If you're curious, we'll explain this in depth [below](#explanation).)
+>>>>>>> 49fd7d5f115378e3663b049f108a2d29b31290c8
 
 ### フックを呼び出すのは React の関数内のみ {#only-call-hooks-from-react-functions}
 
