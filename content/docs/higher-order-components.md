@@ -14,7 +14,7 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 コンポーネントが props を UI に変換するのに対して、高階コンポーネントはコンポーネントを別のコンポーネントに変換します。
 
-HOC は Redux における [`connect`](https://github.com/reactjs/react-redux/blob/master/docs/api/connect.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) や Relay における [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) のように、サードパーティ製の React ライブラリでは一般的なものです。
+HOC は Redux における [`connect`](https://github.com/reactjs/react-redux/blob/master/docs/api/connect.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) や Relay における [`createFragmentContainer`](https://relay.dev/docs/v10.1.3/fragment-container/#createfragmentcontainer) のように、サードパーティ製の React ライブラリでは一般的なものです。
 
 このドキュメントでは、なぜ高階コンポーネントが便利で、自身でどのように記述するのかを説明します。
 
