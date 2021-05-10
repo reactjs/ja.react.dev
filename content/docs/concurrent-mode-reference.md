@@ -28,8 +28,12 @@ prev: concurrent-mode-adoption.html
 
 - [並列モードの有効化](#concurrent-mode)
     - [`createRoot`](#createroot)
+<<<<<<< HEAD
     - [`createBlockingRoot`](#createblockingroot)
 - [サスペンス API](#suspense)
+=======
+- [Suspense](#suspense)
+>>>>>>> 16158f195a86fc2dbb59b3ea5a5c32ce161dccb9
     - [`Suspense`](#suspensecomponent)
     - [`SuspenseList`](#suspenselist)
     - [`useTransition`](#usetransition)
@@ -47,6 +51,7 @@ ReactDOM.createRoot(rootNode).render(<App />);
 
 並列モードについての詳細は[並列モードのドキュメント](/docs/concurrent-mode-intro.html)を参照してください。
 
+<<<<<<< HEAD
 ### `createBlockingRoot` {#createblockingroot}
 
 ```js
@@ -60,6 +65,9 @@ ReactDOM.createBlockingRoot(rootNode).render(<App />)
 ブロッキングモードには並列モードの機能の小さなサブセットのみが含まれているので、直接的な移行ができないアプリケーションのための中間的な移行ステップとなることを意図しています。
 
 ## サスペンス API {#suspense}
+=======
+## Suspense API {#suspense}
+>>>>>>> 16158f195a86fc2dbb59b3ea5a5c32ce161dccb9
 
 ### `Suspense` {#suspensecomponent}
 
