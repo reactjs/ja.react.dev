@@ -299,7 +299,11 @@ state を派生させると冗長なコードにつながり、コンポーネ�
 getSnapshotBeforeUpdate(prevProps, prevState)
 ```
 
+<<<<<<< HEAD
 `getSnapshotBeforeUpdate()` は、最後にレンダーされた出力が、たとえば DOM にコミットされる直前に呼び出されます。これはコンポーネントが変更される可能性があるときに、変更される前に DOM からある情報（たとえば、スクロール位置）を取得することを可能にします。このライフサイクルによって返された値はすべて、`componentDidUpdate()` へのパラメータとして渡されます。
+=======
+`getSnapshotBeforeUpdate()` is invoked right before the most recently rendered output is committed to e.g. the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle method will be passed as a parameter to `componentDidUpdate()`.
+>>>>>>> ec2d0adcb44d6394f4e6282d8bf52f0e25dbfec3
 
 このユースケースは一般的ではありませんが、スクロール位置を特別な方法で処理する必要があるチャットのスレッドのような UI で発生する可能性があります。
 
