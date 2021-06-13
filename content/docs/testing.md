@@ -1,40 +1,40 @@
 ---
 id: testing
-title: Testing Overview
+title: テスト概要
 permalink: docs/testing.html
 redirect_from:
   - "community/testing.html"
 next: testing-recipes.html
 ---
 
-You can test React components similar to testing other JavaScript code.
+React コンポーネントは他の JavaScript のコードと同じようにテストできます。
 
-There are a few ways to test React components. Broadly, they divide into two categories:
+React コンポーネントをテストするのにはいくつか方法がありますが、大きく 2 つのカテゴリに分けられます。
 
-* **Rendering component trees** in a simplified test environment and asserting on their output.
-* **Running a complete app** in a realistic browser environment (also known as “end-to-end” tests).
+* **コンポーネントツリーのレンダー** をシンプルなテスト環境で行い、その結果を検証する
+* **アプリケーション全体の動作** をブラウザ同等の環境で検証する（end-to-end テストとして知られる）
 
-This documentation section focuses on testing strategies for the first case. While full end-to-end tests can be very useful to prevent regressions to important workflows, such tests are not concerned with React components in particular, and are out of the scope of this section.
+このセクションでは、最初のケースにおけるテスト戦略にフォーカスします。end-to-end テストが重要な機能のリグレッションを防ぐのに有効である一方で、そのようなテストは React コンポーネントとは特に関係なく、このセクションのスコープ外です。
 
-### Tradeoffs {#tradeoffs}
+### トレードオフ {#tradeoffs}
 
 
-When choosing testing tools, it is worth considering a few tradeoffs:
+テストツールを選定する時、いくつかのトレードオフを考慮することは価値があります。
 
-* **Iteration speed vs Realistic environment:** Some tools offer a very quick feedback loop between making a change and seeing the result, but don't model the browser behavior precisely. Other tools might use a real browser environment, but reduce the iteration speed and are flakier on a continuous integration server.
-* **How much to mock:** With components, the distinction between a "unit" and "integration" test can be blurry. If you're testing a form, should its test also test the buttons inside of it? Or should a button component have its own test suite? Should refactoring a button ever break the form test?
+* **実行速度 vs 環境の現実度：** 変更を加えてから結果を見るまでのフィードバックが早いツールは、ブラウザでの動作を正確に模倣しません。一方実際のブラウザ環境を使うようなツールは、イテレーションの速度が落ちる上 CI サーバでは壊れやすいです。
+* **モックの粒度** コンポーネントのテストでは、ユニットテストとインテグレーションテストの区別は曖昧です。フォームをテストする時、そのテストはフォーム内のボタンもテストすべきでしょうか。それともボタンコンポーネント自体が自身のテストを持つべきでしょうか。ボタンのリファクタリングはフォームのテストを壊さないべきでしょうか。
 
-Different answers may work for different teams and products.
+チームやプロダクトに応じて、答えは違ってきます。
 
-### Recommended Tools {#tools}
+### 推奨ツール {#tools}
 
-**[Jest](https://facebook.github.io/jest/)** is a JavaScript test runner that lets you access the DOM via [`jsdom`](/docs/testing-environments.html#mocking-a-rendering-surface). While jsdom is only an approximation of how the browser works, it is often good enough for testing React components. Jest provides a great iteration speed combined with powerful features like mocking [modules](/docs/testing-environments.html#mocking-modules) and [timers](/docs/testing-environments.html#mocking-timers) so you can have more control over how the code executes.
+**[Jest](https://facebook.github.io/jest/)** は [`jsdom`](/docs/testing-environments.html#mocking-a-rendering-surface) を通じて DOM にアクセスできる JavaScript のテストランナーです。jsdom はブラウザの模倣環境にすぎませんが、React コンポーネントをテストするのには十分なことが多いです。Jest は [モジュール](/docs/testing-environments.html#mocking-modules) や [タイマー](/docs/testing-environments.html#mocking-timers) のモックのような機能を組み合わせて、高速にイテレーションを回すことができ、コードをどう実行するかをよりコントロールできます。
 
-**[React Testing Library](https://testing-library.com/react)** is a set of helpers that let you test React components without relying on their implementation details. This approach makes refactoring a breeze and also nudges you towards best practices for accessibility. Although it doesn't provide a way to "shallowly" render a component without its children, a test runner like Jest lets you do this by [mocking](/docs/testing-recipes.html#mocking-modules).
+**[React Testing Library](https://testing-library.com/react)** は実装の詳細に依存せずに React コンポーネントをテストすることができるツールセットです。このアプローチはリファクタリングを容易にし、さらにアクセスビリティのベスト・プラクティスへと手向けてくれます。コンポーネントを children 抜きに「浅く」レンダーする方法は提供していませんが、Jest のようなテストランナーで [モック](/docs/testing-recipes.html#mocking-modules) することで可能です。
 
-### Learn More {#learn-more}
+### より詳しく {#learn-more}
 
-This section is divided in two pages:
+このセクションは 2 つのページに分かれます：
 
-- [Recipes](/docs/testing-recipes.html): Common patterns when writing tests for React components.
-- [Environments](/docs/testing-environments.html): What to consider when setting up a testing environment for React components.
+- [レシピ集](/docs/testing-recipes.html)： React コンポーネントのテストを書く際の一般的なパターン集
+- [環境](/docs/testing-environments.html)： React コンポーネントのためのテスト環境をセットアップする際に考えること

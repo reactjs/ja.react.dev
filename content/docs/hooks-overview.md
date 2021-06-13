@@ -1,24 +1,24 @@
 ---
 id: hooks-overview
-title: Hooks at a Glance
+title: フック早わかり
 permalink: docs/hooks-overview.html
 next: hooks-state.html
 prev: hooks-intro.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*フック (hook)* は React 16.8 で追加された新機能です。state などの React の機能を、クラスを書かずに使えるようになります。
 
-Hooks are [backwards-compatible](/docs/hooks-intro.html#no-breaking-changes). This page provides an overview of Hooks for experienced React users. This is a fast-paced overview. If you get confused, look for a yellow box like this:
+フックには[後方互換性](/docs/hooks-intro.html#no-breaking-changes)があります。このページでは React 経験者向けにフックの概要を述べていきます。このページはかなり端折った概要となっています。困ったときには以下のような黄色のボックスを参照してください。
 
->Detailed Explanation
+> 詳しくは
 >
->Read the [Motivation](/docs/hooks-intro.html#motivation) to learn why we're introducing Hooks to React.
+> React にフックを導入する動機については[動機](/docs/hooks-intro.html#motivation)を参照してください。
 
-**↑↑↑ Each section ends with a yellow box like this.** They link to detailed explanations.
+**↑↑↑ それぞれの節の終わりに上のような黄色いボックスがあります。**より詳しい説明へのリンクとなっています。
 
-## 📌 State Hook {#state-hook}
+## 📌 ステートフック {#state-hook}
 
-This example renders a counter. When you click the button, it increments the value:
+この例ではカウンターを表示します。ボタンをクリックすると、カウンターの値が増えます：
 
 ```js{1,4,5}
 import React, { useState } from 'react';
@@ -38,13 +38,13 @@ function Example() {
 }
 ```
 
-Here, `useState` is a *Hook* (we'll talk about what this means in a moment). We call it inside a function component to add some local state to it. React will preserve this state between re-renders. `useState` returns a pair: the *current* state value and a function that lets you update it. You can call this function from an event handler or somewhere else. It's similar to `this.setState` in a class, except it doesn't merge the old and new state together. (We'll show an example comparing `useState` to `this.state` in [Using the State Hook](/docs/hooks-state.html).)
+この例の `useState` が *フック*（この単語の意味するところはすぐ後で説明します）です。関数コンポーネントの中でローカルな state を使うために呼び出しています。この state は以降の再レンダーの間も React によって保持されます。`useState` は*現在の* state の値と、それを更新するための関数とをペアにして返します。この関数はイベントハンドラやその他の場所から呼び出すことができます。クラスコンポーネントにおける `this.setState` と似ていますが、新しい state が古いものとマージされないという違いがあります（`useState` と `this.state` の違いについては[ステートフックの利用法](/docs/hooks-state.html)で例を挙げて説明します）。
 
-The only argument to `useState` is the initial state. In the example above, it is `0` because our counter starts from zero. Note that unlike `this.state`, the state here doesn't have to be an object -- although it can be if you want. The initial state argument is only used during the first render.
+`useState` の唯一の引数は state の初期値です。上記の例では、カウンターがゼロからスタートするので `0` を渡しています。`this.state` と違い、state はオブジェクトである必要はないことに注意してください（オブジェクトにしたい場合はそうすることも可能です）。引数として渡された state の初期値は最初のレンダー時にのみ使用されます。
 
-#### Declaring multiple state variables {#declaring-multiple-state-variables}
+#### 複数の state 変数の宣言 {#declaring-multiple-state-variables}
 
-You can use the State Hook more than once in a single component:
+1 つのコンポーネント内で 2 回以上ステートフックを使うことができます：
 
 ```js
 function ExampleWithManyStates() {
@@ -56,25 +56,25 @@ function ExampleWithManyStates() {
 }
 ```
 
-The [array destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring) syntax lets us give different names to the state variables we declared by calling `useState`. These names aren't a part of the `useState` API. Instead, React assumes that if you call `useState` many times, you do it in the same order during every render. We'll come back to why this works and when this is useful later.
+[配列の分割代入](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring)構文を使うことで、`useState` を呼び出して宣言した state 変数に、異なる名前をつけることができます。これらの名前自体は `useState` の API の一部ではありません。その代わりに、React は `useState` を何度も呼び出す場合は、それらが全てのレンダー間で同じ順番で呼び出されるものと仮定します。この後で、どうしてこれが上手く動作し、どのような場合に便利なのか改めて説明します。
 
-#### But what is a Hook? {#but-what-is-a-hook}
+#### 要するにフックとは？ {#but-what-is-a-hook}
 
-Hooks are functions that let you “hook into” React state and lifecycle features from function components. Hooks don't work inside classes -- they let you use React without classes. (We [don't recommend](/docs/hooks-intro.html#gradual-adoption-strategy) rewriting your existing components overnight but you can start using Hooks in the new ones if you'd like.)
+フックとは、関数コンポーネントに state やライフサイクルといった React の機能を "接続する (hook into)" ための関数です。フックは React をクラスなしに使うための機能ですので、クラス内では機能しません。今すぐに既存のコンポーネントを書き換えることは[お勧めしません](/docs/hooks-intro.html#gradual-adoption-strategy)が、新しく書くコンポーネントで使いたければフックを利用し始めることができます。
 
-React provides a few built-in Hooks like `useState`. You can also create your own Hooks to reuse stateful behavior between different components. We'll look at the built-in Hooks first.
+React は `useState` のような幾つかのビルトインのフックを提供します。異なるコンポーネント間でステートフルな振る舞いを共有するために自分自身のフックを作成することもできます。まずは組み込みのフックから見ていきましょう。
 
->Detailed Explanation
+> 詳しくは
 >
->You can learn more about the State Hook on a dedicated page: [Using the State Hook](/docs/hooks-state.html).
+> ステートフックについてはこちらのページを参照してください：[ステートフックの利用法](/docs/hooks-state.html).
 
-## ⚡️ Effect Hook {#effect-hook}
+## ⚡️ 副作用フック {#effect-hook}
 
-You've likely performed data fetching, subscriptions, or manually changing the DOM from React components before. We call these operations "side effects" (or "effects" for short) because they can affect other components and can't be done during rendering.
+これまでに React コンポーネントの内部から、外部データの取得や購読 (subscription)、あるいは手動での DOM 更新を行ったことがおありでしょう。これらの操作は他のコンポーネントに影響することがあり、またレンダーの最中に実行することができないので、われわれはこのような操作を "副作用 (side-effects)"、あるいは省略して "作用 (effects)" と呼んでいます。
 
-The Effect Hook, `useEffect`, adds the ability to perform side effects from a function component. It serves the same purpose as `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` in React classes, but unified into a single API. (We'll show examples comparing `useEffect` to these methods in [Using the Effect Hook](/docs/hooks-effect.html).)
+`useEffect` は副作用のためのフックであり、関数コンポーネント内で副作用を実行することを可能にします。クラスコンポーネントにおける `componentDidMount`, `componentDidUpdate` および `componentWillUnmount` と同様の目的で使うものですが、1 つの API に統合されています（これらのメソッドと `useEffect` との違いについては[副作用フックの利用法](/docs/hooks-effect.html)で例を挙げて説明します）。
 
-For example, this component sets the document title after React updates the DOM:
+例えば、このコンポーネントは React が DOM を更新した後で、HTML ドキュメントのタイトルを設定します。
 
 ```js{1,6-10}
 import React, { useState, useEffect } from 'react';
@@ -99,9 +99,9 @@ function Example() {
 }
 ```
 
-When you call `useEffect`, you're telling React to run your "effect" function after flushing changes to the DOM. Effects are declared inside the component so they have access to its props and state. By default, React runs the effects after every render -- *including* the first render. (We'll talk more about how this compares to class lifecycles in [Using the Effect Hook](/docs/hooks-effect.html).)
+`useEffect` を呼ぶことで、DOM への更新を反映した後にあなたが定義する「副作用関数」を実行するように React に指示します。副作用はコンポーネント内で宣言されるので、props や state にアクセスすることが可能です。デフォルトでは初回のレンダーも*含む*毎回のレンダー時にこの副作用関数が呼び出されます（クラスにおけるライフサイクルメソッドとの比較は[副作用フックの利用法](/docs/hooks-effect.html)で詳しく述べます）。
 
-Effects may also optionally specify how to "clean up" after them by returning a function. For example, this component uses an effect to subscribe to a friend's online status, and cleans up by unsubscribing from it:
+副作用は自分を「クリーンアップ」するためのコードを、オプションとして関数を返すことで指定できます。例えば、以下のコンポーネントでは副作用を利用して、フレンドのオンラインステータスを購読し、またクリーンアップとして購読の解除を行っています。
 
 ```js{10-16}
 import React, { useState, useEffect } from 'react';
@@ -128,9 +128,9 @@ function FriendStatus(props) {
 }
 ```
 
-In this example, React would unsubscribe from our `ChatAPI` when the component unmounts, as well as before re-running the effect due to a subsequent render. (If you want, there's a way to [tell React to skip re-subscribing](/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects) if the `props.friend.id` we passed to `ChatAPI` didn’t change.)
+この例では、コンポーネントがアンマウントされる時や再レンダーによって副作用が再実行される時に `ChatAPI` の購読解除を行っています（必要なら、`ChatAPI` に渡すための `props.friend.id` が変わっていない場合には[毎回購読しなおす処理をスキップする](/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects)方法があります）。
 
-Just like with `useState`, you can use more than a single effect in a component:
+`useState` の場合と同様、1 つのコンポーネント内で 2 つ以上の副作用を使用することが可能です。
 
 ```js{3,8}
 function FriendStatusWithCounter(props) {
@@ -153,32 +153,32 @@ function FriendStatusWithCounter(props) {
   // ...
 ```
 
-Hooks let you organize side effects in a component by what pieces are related (such as adding and removing a subscription), rather than forcing a split based on lifecycle methods.
+フックを利用することで、ライフサイクルメソッドの場合は分離して書かざるを得なかったコンポーネント内の副作用を、関連する部分（リソースの購読とその解除、など）同士で整理して記載することが可能になります。
 
->Detailed Explanation
+> 詳しくは
 >
->You can learn more about `useEffect` on a dedicated page: [Using the Effect Hook](/docs/hooks-effect.html).
+> `useEffect` についての更なる詳細は[副作用フックの利用法](/docs/hooks-effect.html)を参照してください。
 
-## ✌️ Rules of Hooks {#rules-of-hooks}
+## ✌️ フックのルール {#rules-of-hooks}
 
-Hooks are JavaScript functions, but they impose two additional rules:
+フックは JavaScript の関数ですが、2 つの追加のルールがあります。
 
-* Only call Hooks **at the top level**. Don’t call Hooks inside loops, conditions, or nested functions.
-* Only call Hooks **from React function components**. Don’t call Hooks from regular JavaScript functions. (There is just one other valid place to call Hooks -- your own custom Hooks. We'll learn about them in a moment.)
+* フックは関数の**トップレベルのみで**呼び出してください。ループや条件分岐やネストした関数の中でフックを呼び出さないでください。
+* フックは React の**関数コンポーネントの内部のみで**呼び出してください。通常の JavaScript 関数内では呼び出さないでください（ただしフックを呼び出していい場所がもう 1 カ所だけあります &mdash; 自分のカスタムフックの中です。これについてはすぐ後で学びます）。
 
-We provide a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to enforce these rules automatically. We understand these rules might seem limiting or confusing at first, but they are essential to making Hooks work well.
+これらのルールを自動的に強制するための [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) を用意しています。これらのルールは最初は混乱しやすかったり制限のように思えたりするかもしれませんが、フックがうまく動くためには重要なものです。
 
->Detailed Explanation
+> 詳しくは
 >
->You can learn more about these rules on a dedicated page: [Rules of Hooks](/docs/hooks-rules.html).
+> これらのルールについての詳細は[フックのルール](/docs/hooks-rules.html)を参照してください。
 
-## 💡 Building Your Own Hooks {#building-your-own-hooks}
+## 💡 独自フックの作成 {#building-your-own-hooks}
 
-Sometimes, we want to reuse some stateful logic between components. Traditionally, there were two popular solutions to this problem: [higher-order components](/docs/higher-order-components.html) and [render props](/docs/render-props.html). Custom Hooks let you do this, but without adding more components to your tree.
+state を用いたロジックをコンポーネント間で再利用したいことがあります。これまでは、このような問題に対して 2 種類の人気の解決方法がありました。[高階コンポーネント](/docs/higher-order-components.html)と[レンダープロップ](/docs/render-props.html)です。カスタムフックを利用することで、同様のことが、ツリー内のコンポーネントを増やすことなく行えるようになります。
 
-Earlier on this page, we introduced a `FriendStatus` component that calls the `useState` and `useEffect` Hooks to subscribe to a friend's online status. Let's say we also want to reuse this subscription logic in another component.
+このページの上側で、`useState` と `useEffect` の両方のフックを呼び出してフレンドのオンライン状態を購読する `FriendStatus` というコンポーネントを紹介しました。この購読ロジックを別のコンポーネントでも使いたくなったとしましょう。
 
-First, we'll extract this logic into a custom Hook called `useFriendStatus`:
+まず、このロジックを `useFriendStatus` というカスタムフックへと抽出します。
 
 ```js{3}
 import React, { useState, useEffect } from 'react';
@@ -201,9 +201,9 @@ function useFriendStatus(friendID) {
 }
 ```
 
-It takes `friendID` as an argument, and returns whether our friend is online.
+これは `friendID` を引数として受け取り、フレンドがオンラインかどうかを返します。
 
-Now we can use it from both components:
+これで両方のコンポーネントからこのロジックが使えます：
 
 
 ```js{2}
@@ -229,19 +229,19 @@ function FriendListItem(props) {
 }
 ```
 
-The state of each component is completely independent. Hooks are a way to reuse *stateful logic*, not state itself. In fact, each *call* to a Hook has a completely isolated state -- so you can even use the same custom Hook twice in one component.
+それぞれのコンポーネントの state は完全に独立しています。フックは *state を用いたロジック*を再利用するものであって、state そのものを再利用するものではありません。実のところ、フックのそれぞれの*呼び出し*が独立した state を持っていますので、全く同じカスタムフックを 1 つのコンポーネント内で 2 回呼び出すことも可能です。
 
-Custom Hooks are more of a convention than a feature. If a function's name starts with "`use`" and it calls other Hooks, we say it is a custom Hook. The `useSomething` naming convention is how our linter plugin is able to find bugs in the code using Hooks.
+カスタムフックは、機能というよりはむしろ慣習のようなものです。関数の名前が "`use`" から始まって、その関数が他のフックを呼び出しているなら、それをカスタムフックと言うことにする、ということです。この `useSomething` という命名規約によって、我々の linter プラグインはフックを利用しているコードのバグを見つけることができます。
 
-You can write custom Hooks that cover a wide range of use cases like form handling, animation, declarative subscriptions, timers, and probably many more we haven't considered. We are excited to see what custom Hooks the React community will come up with.
+カスタムフックは、フォーム管理や、アニメーションや、宣言的なデータソースの購読や、タイマーや、あるいはおそらく我々が考えたこともない様々なユースケースに利用可能です。React のコミュニティがどのようなカスタムフックを思いつくのか楽しみにしています。
 
->Detailed Explanation
+> 詳しくは
 >
->You can learn more about custom Hooks on a dedicated page: [Building Your Own Hooks](/docs/hooks-custom.html).
+> カスタムフックについての詳しい情報は[独自フックの作成](/docs/hooks-custom.html)を参照してください。
 
-## 🔌 Other Hooks {#other-hooks}
+## 🔌 その他のフック {#other-hooks}
 
-There are a few less commonly used built-in Hooks that you might find useful. For example, [`useContext`](/docs/hooks-reference.html#usecontext) lets you subscribe to React context without introducing nesting:
+その他にもいくつか、使用頻度は低いものの便利なフックが存在しています。例えば、[`useContext`](/docs/hooks-reference.html#usecontext) を使えば React のコンテクストをコンポーネントのネストなしに利用できるようになります：
 
 ```js{2,3}
 function Example() {
@@ -251,7 +251,7 @@ function Example() {
 }
 ```
 
-And [`useReducer`](/docs/hooks-reference.html#usereducer) lets you manage local state of complex components with a reducer:
+また [`useReducer`](/docs/hooks-reference.html#usereducer) を使えば複雑なコンポーネントのローカル state をリデューサ (reducer) を用いて管理できるようになります：
 
 ```js{2}
 function Todos() {
@@ -259,14 +259,14 @@ function Todos() {
   // ...
 ```
 
->Detailed Explanation
+> 詳しくは
 >
->You can learn more about all the built-in Hooks on a dedicated page: [Hooks API Reference](/docs/hooks-reference.html).
+> 全てのビルトインフックについての詳細は[フック API リファレンス](/docs/hooks-reference.html)を参照してください。
 
-## Next Steps {#next-steps}
+## 次のステップ {#next-steps}
 
-Phew, that was fast! If some things didn't quite make sense or you'd like to learn more in detail, you can read the next pages, starting with the [State Hook](/docs/hooks-state.html) documentation.
+かなり駆け足の説明でしたね！ まだよく分からないことがあった場合や、より詳しく学びたいと思った場合は、[ステートフック](/docs/hooks-state.html)から始まるこの先のページに進んでください。
 
-You can also check out the [Hooks API reference](/docs/hooks-reference.html) and the [Hooks FAQ](/docs/hooks-faq.html).
+[フック API リファレンス](/docs/hooks-reference.html)と[よくある質問](/docs/hooks-faq.html)も参照してください。
 
-Finally, don't miss the [introduction page](/docs/hooks-intro.html) which explains *why* we're adding Hooks and how we'll start using them side by side with classes -- without rewriting our apps.
+最後になりましたが、[フックの紹介ページ](/docs/hooks-intro.html)もお忘れなく！ そこでは*なぜ*我々がフックを導入することにしたのか、またアプリ全体を書き換えずにクラスと併用してどのようにフックを使っていくのか、について説明しています。

@@ -1,6 +1,6 @@
 ---
 id: release-channels
-title: Release Channels
+title: リリースチャンネル
 permalink: docs/release-channels.html
 layout: docs
 category: installation
@@ -8,90 +8,90 @@ prev: cdn-links.html
 next: hello-world.html
 ---
 
-React relies on a thriving open source community to file bug reports, open pull requests, and [submit RFCs](https://github.com/reactjs/rfcs). To encourage feedback we sometimes share special builds of React that include unreleased features.
+React はバグを報告し、プルリクエストをオープンし、[RFC を投稿](https://github.com/reactjs/rfcs)してくださっている活発なオープンソースコミュニティを頼りにしています。フィードバックを促すため、私たちはリリースされていない機能を含んだ React の特別なビルドを共有することがあります。
 
-> This document will be most relevant to developers who work on frameworks, libraries, or developer tooling. Developers who use React primarily to build user-facing applications should not need to worry about our prerelease channels.
+> このドキュメントは、フレームワーク、ライブラリ、開発者向けツールに取り組んでいる開発者に最も関連します。主にユーザ向けアプリケーションを構築するために React を使用している開発者は、プレリリースチャンネルについて心配する必要はありません。
 
-Each of React's release channels is designed for a distinct use case:
+React の各リリースチャンネルは、明確なユースケースのために設計されています。
 
-- [**Latest**](#latest-channel) is for stable, semver React releases. It's what you get when you install React from npm. This is the channel you're already using today. **Use this for all user-facing React applications.**
-- [**Next**](#next-channel) tracks the master branch of the React source code repository. Think of these as release candidates for the next minor semver release. Use this for integration testing between React and third party projects.
-- [**Experimental**](#experimental-channel) includes experimental APIs and features that aren't available in the stable releases. These also track the master branch, but with additional feature flags turned on. Use this to try out upcoming features before they are released.
+- [**Latest**](#latest-channel) は安定版であり、セマンティック・バージョニングに基づいた React のリリースです。それは npm から React をインストールすると得られるものです。これは、既にあなたが使用しているチャンネルです。**全てのユーザ向け React アプリケーションのためにこれを使用します。**
+- [**Next**](#next-channel) は React ソースコードのリポジトリの master ブランチを追跡します。これを、次のマイナーバージョンのリリース候補と考えてください。React とサードパーティプロジェクト間のインテグレーションテストにこれを使用します。
+- [**Experimental**](#experimental-channel) には、安定版のリリースでは使用できない実験的な API や機能が含まれます。これも master ブランチを追跡しますが、追加のフィーチャー・フラグが有効になっています。近々予定されているリリース前の機能を試すためにこれを使用してください。
 
-All releases are published to npm, but only Latest uses [semantic versioning](/docs/faq-versioning.html). Prereleases (those in the Next and Experimental channels) have versions generated from a hash of their contents, e.g. `0.0.0-1022ee0ec` for Next and `0.0.0-experimental-1022ee0ec` for Experimental.
+全てのリリースが npm に公開されていますが、Latest のみが[セマンティック・バージョニング](/docs/faq-versioning.html)を使用します。プレリリース（Next チャンネルと Experimental チャンネル）は、Next の場合は `0.0.0-1022ee0ec`、Experimental の場合は `0.0.0-experimental-1022ee0ec` のように、コンテンツのハッシュから生成されたバージョンを持ちます。
 
-**The only officially supported release channel for user-facing applications is Latest**. Next and Experimental releases are provided for testing purposes only, and we provide no guarantees that behavior won't change between releases. They do not follow the semver protocol that we use for releases from Latest.
+**Latest が、ユーザ向けアプリケーションのために公式にサポートされた唯一のリリースチャンネルです。**Next と Experimental はテスト目的のためにのみ提供されており、また、リリース間で動作が変わらないことも保証されません。これらは、Latest リリースで使用しているセマンティック・バージョニングに準拠していません。
 
-By publishing prereleases to the same registry that we use for stable releases, we are able to take advantage of the many tools that support the npm workflow, like [unpkg](https://unpkg.com) and [CodeSandbox](https://codesandbox.io).
+プレリリースを安定版のリリースと同じレジストリに公開することで、[unpkg](https://unpkg.com) や [CodeSandbox](https://codesandbox.io) のような、npm のワークフローをサポートする多くのツールを活用できます。
 
-### Latest Channel {#latest-channel}
+### Latest チャンネル {#latest-channel}
 
-Latest is the channel used for stable React releases. It corresponds to the `latest` tag on npm. It is the recommended channel for all React apps that are shipped to real users.
+Latest チャンネルは、安定版の React をリリースするために使用するチャンネルです。npm の `latest` タグに対応します。実際のユーザに提供される全ての React アプリケーションに対して、このチャンネルが推奨されます。
 
-**If you're not sure which channel you should use, it's Latest.** If you're a React developer, this is what you're already using.
+**どのチャンネルを使用すべきか分からない場合、Latest チャンネルを使用してください。**あなたが React 開発者なら、Latest チャンネルを既に利用しています。
 
-You can expect updates to Latest to be extremely stable. Versions follow the semantic versioning scheme. Learn more about our commitment to stability and incremental migration in our [versioning policy](/docs/faq-versioning.html).
+Latest のアップデートは非常に安定していると期待できます。バージョンは、セマンティック・バージョニングのスキームに従います。私たちの安定性と段階的移行への取り組みについては、[バージョニングポリシー](/docs/faq-versioning.html)をご覧ください。
 
-### Next Channel {#next-channel}
+### Next チャンネル {#next-channel}
 
-The Next channel is a prerelease channel that tracks the master branch of the React repository. We use prereleases in the Next channel as release candidates for the Latest channel. You can think of Next as a superset of Latest that is updated more frequently.
+Next チャンネルは、React リポジトリの master ブランチを追跡する、プレリリースチャンネルです。私たちは Next チャンネルのプレリリースを、Latest チャンネルのリリース候補として使用します。Next を、より頻繁に更新が行われる Latest のスーパーセットだと考えることができます。
 
-The degree of change between the most recent Next release and the most recent Latest release is approximately the same as you would find between two minor semver releases. However, **the Next channel does not conform to semantic versioning.** You should expect occasional breaking changes between successive releases in the Next channel.
+最新の Next リリースと Latest リリース間の差分の程度は、2 つのマイナーリリース間とほぼ同じです。しかし **Next チャンネルは、セマンティック・バージョニングに準拠していません。**連続したリリース間でしばしば破壊的変更が発生するということを、Next チャンネルでは予期しなければなりません。
 
-**Do not use prereleases in user-facing applications.**
+**プレリリースをユーザ向けアプリケーションに使用しないでください。**
 
-Releases in Next are published with the `next` tag on npm. Versions are generated from a hash of the build's contents, e.g. `0.0.0-1022ee0ec`.
+Next リリースは、npm の `next` タグで公開されています。`0.0.0-1022ee0ec` のように、ビルドされたコンテンツのハッシュから、バージョンが生成されます。
 
-#### Using the Next Channel for Integration Testing {#using-the-next-channel-for-integration-testing}
+#### インテグレーションテストに Next チャンネルを使用する {#using-the-next-channel-for-integration-testing}
 
-The Next channel is designed to support integration testing between React and other projects.
+Next チャンネルは、React と他のプロジェクト間のインテグレーションテストをサポートするように設計されています。
 
-All changes to React go through extensive internal testing before they are released to the public. However, there are a myriad of environments and configurations used throughout the React ecosystem, and it's not possible for us to test against every single one.
+React に対する全ての変更は、一般向けリリース前に広範囲の内部テストを受けます。しかし、React のエコシステム全体では無数の環境と構成が存在しており、その全てに対してテストを行うことは不可能です。
 
-If you're the author of a third party React framework, library, developer tool, or similar infrastructure-type project, you can help us keep React stable for your users and the entire React community by periodically running your test suite against the most recent changes. If you're interested, follow these steps:
+あなたが React サードパーティのフレームワーク、ライブラリ、開発者向けツール、あるいは同様のインフラストラクチャ寄りのプロジェクトの作者である場合、最新の React の変更に対して定期的にテストスイートを実行することで、あなたのユーザや React コミュニティ全体のために React の安定化を助けることができます。興味がある場合、次の手順に従ってください。
 
-- Set up a cron job using your preferred continuous integration platform. Cron jobs are supported by both [CircleCI](https://circleci.com/docs/2.0/triggers/#scheduled-builds) and [Travis CI](https://docs.travis-ci.com/user/cron-jobs/).
-- In the cron job, update your React packages to the most recent React release in the Next channel, using `next` tag on npm. Using the npm cli:
+- お好みの継続的インテグレーションプラットフォームを利用して、クーロンジョブをセットアップします。クーロンジョブは、[CircleCI](https://circleci.com/docs/2.0/triggers/#scheduled-builds) と [Travis CI](https://docs.travis-ci.com/user/cron-jobs/) の両方でサポートされています。
+- クーロンジョブで npm の `next` タグを使い、React パッケージを Next チャンネルの最新のリリースにアップデートします。npm cli を使って：
 
   ```
   npm update react@next react-dom@next
   ```
 
-  Or yarn:
+  もしくは yarn で：
 
   ```
   yarn upgrade react@next react-dom@next
   ```
-- Run your test suite against the updated packages.
-- If everything passes, great! You can expect that your project will work with the next minor React release.
-- If something breaks unexpectedly, please let us know by [filing an issue](https://github.com/facebook/react/issues).
+- アップデートされたパッケージに対してテストスイートを実行します。
+- 全てのテストがパスしたのであれば、素晴らしいです！ あなたのプロジェクトは次の React のマイナーリリースで動作することが期待できます。
+- 意図せず何かが壊れた場合は、[Issue を提出して](https://github.com/facebook/react/issues)お知らせください。
 
-A project that uses this workflow is Next.js. (No pun intended! Seriously!) You can refer to their [CircleCI configuration](https://github.com/zeit/next.js/blob/c0a1c0f93966fe33edd93fb53e5fafb0dcd80a9e/.circleci/config.yml) as an example.
+このワークフローを使用しているプロジェクトとして、Next.js があります（シャレではありません！ 真面目です！）。例として彼らの [CircleCI の設定](https://github.com/zeit/next.js/blob/c0a1c0f93966fe33edd93fb53e5fafb0dcd80a9e/.circleci/config.yml)を参照できます。
 
-### Experimental Channel {#experimental-channel}
+### Experimental チャンネル {#experimental-channel}
 
-Like Next, the Experimental channel is a prerelease channel that tracks the master branch of the React repository. Unlike Next, Experimental releases include additional features and APIs that are not ready for wider release.
+Next チャンネルと同じく、Experimental チャンネルは React リポジトリの master ブランチを追跡するプレリリースチャンネルです。しかし Next とは異なり、Experimental リリースには、より広範にリリースするにはまだ準備ができていない追加の機能と API が含まれます。
 
-Usually, an update to Next is accompanied by a corresponding update to Experimental. They are based on the same source revision, but are built using a different set of feature flags.
+通常、Next への更新には、対応した Experimental への更新が伴います。これらは同じリビジョンのソースをベースにしていますが、異なるフィーチャー・フラグの設定を使用してビルドしています。
 
-Experimental releases may be significantly different than releases to Next and Latest. **Do not use Experimental releases in user-facing applications.** You should expect frequent breaking changes between releases in the Experimental channel.
+Experimental リリースは、Next や Latest のリリースとは大きく異なる場合があります。**Experimental リリースを、ユーザ向けアプリケーションに使用しないでください。**リリース間で頻繁に破壊的変更が発生しうるということを、Experimental チャンネルでは予期しなければなりません。
 
-Releases in Experimental are published with the `experimental` tag on npm. Versions are generated from a hash of the build's contents, e.g. `0.0.0-experimental-1022ee0ec`.
+Experimental リリースは、npm の `experimental` タグで公開されています。`0.0.0-experimental-1022ee0ec` のように、ビルドされたコンテンツのハッシュから、バージョンが生成されます。
 
-#### What Goes Into an Experimental Release? {#what-goes-into-an-experimental-release}
+#### Experimental リリースには何が含まれていますか？ {#what-goes-into-an-experimental-release}
 
-Experimental features are ones that are not ready to be released to the wider public, and may change drastically before they are finalized. Some experiments may never be finalized -- the reason we have experiments is to test the viability of proposed changes.
+実験的機能は、一般向けに広く公開するための準備ができていないものであり、最終決定までに大幅に変化する可能性があります。いくつかの試みは、最終的に採用されない可能性があります。このような実験を行うのは、提案された変更内容の実行可能性をテストするためです。
 
-For example, if the Experimental channel had existed when we announced Hooks, we would have released Hooks to the Experimental channel weeks before they were available in Latest.
+例えば、フックを発表したときに Experimental が存在していた場合、Latest で利用可能になる数週間前に Experimental チャンネルでフックをリリースしていたでしょう。
 
-You may find it valuable to run integration tests against Experimental. This is up to you. However, be advised that Experimental is even less stable than Next. **We do not guarantee any stability between Experimental releases.**
+Experimental に対してインテグレーションテストを実行することには、価値があるかもしれません。これはあなた次第です。しかし、Experimental は Next よりもさらに不安定であるとアドバイスしておきます。**Experimental のリリース間では安定性は何も保証されません。**
 
-#### How Can I Learn More About Experimental Features? {#how-can-i-learn-more-about-experimental-features}
+#### 実験的機能の詳細をどのように知ればよいですか？ {#how-can-i-learn-more-about-experimental-features}
 
-Experimental features may or may not be documented. Usually, experiments aren't documented until they are close to shipping in Next or Latest.
+実験的機能については、ドキュメント化されることもあれば、されないこともあります。通常、Next もしくは Latest でのリリースが近づくまで、ドキュメント化されません。
 
-If a feature is not documented, they may be accompanied by an [RFC](https://github.com/reactjs/rfcs).
+ドキュメント化されていない機能については、[RFC](https://github.com/reactjs/rfcs) が付随することがあります。
 
-We will post to the [React blog](/blog) when we're ready to announce new experiments, but that doesn't mean we will publicize every experiment.
+新しい試みを発表する準備が整ったときに [React blog](/blog) にそのことを投稿しますが、全ての試みについて公開するとは限りません。
 
-You can always refer to our public GitHub repository's [history](https://github.com/facebook/react/commits/master) for a comprehensive list of changes.
+GitHub で公開されている React のリポジトリの [history](https://github.com/facebook/react/commits/master) で、変更の包括的なリストをいつでも参照できます。

@@ -1,6 +1,6 @@
 ---
 id: forms
-title: Forms
+title: フォーム
 permalink: docs/forms.html
 prev: lists-and-keys.html
 next: lifting-state-up.html
@@ -9,7 +9,11 @@ redirect_from:
   - "docs/forms-zh-CN.html"
 ---
 
+<<<<<<< HEAD
 HTML form elements work a bit differently from other DOM elements in React, because form elements naturally keep some internal state. For example, this form in plain HTML accepts a single name:
+=======
+自然な HTML のフォーム要素は内部に何らかの状態を持っていますので、フォーム要素は React において他の DOM 要素とちょっと異なる動作をします。例えば、このプレーン HTML によるフォームは 1 つの名前を受け付けます：
+>>>>>>> origin
 
 ```html
 <form>
@@ -21,15 +25,15 @@ HTML form elements work a bit differently from other DOM elements in React, beca
 </form>
 ```
 
-This form has the default HTML form behavior of browsing to a new page when the user submits the form. If you want this behavior in React, it just works. But in most cases, it's convenient to have a JavaScript function that handles the submission of the form and has access to the data that the user entered into the form. The standard way to achieve this is with a technique called "controlled components".
+このフォームは、ユーザがフォームを送信した際に新しいページに移動する、という、HTML フォームとしてのデフォルトの動作をします。React でこの振る舞いが必要なら、そのまま動きます。しかし大抵のケースでは、フォームの送信に応答してユーザがフォームに入力したデータにアクセスするような JavaScript 関数があった方が便利です。これを実現する標準的な方法は、"制御された (controlled) コンポーネント" と呼ばれるテクニックを使うことです。
 
-## Controlled Components {#controlled-components}
+## 制御されたコンポーネント {#controlled-components}
 
-In HTML, form elements such as `<input>`, `<textarea>`, and `<select>` typically maintain their own state and update it based on user input. In React, mutable state is typically kept in the state property of components, and only updated with [`setState()`](/docs/react-component.html#setstate).
+HTML では `<input>`、`<textarea>`、そして `<select>` のようなフォーム要素は通常、自身で状態を保持しており、ユーザの入力に基づいてそれを更新します。React では、変更されうる状態は通常はコンポーネントの state プロパティに保持され、[`setState()`](/docs/react-component.html#setstate) 関数でのみ更新されます。
 
-We can combine the two by making the React state be the "single source of truth". Then the React component that renders a form also controls what happens in that form on subsequent user input. An input form element whose value is controlled by React in this way is called a "controlled component".
+React の state を "信頼できる唯一の情報源 (single source of truth)" とすることで、上述の 2 つの状態を結合させることができます。そうすることで、フォームをレンダーしている React コンポーネントが、後続するユーザ入力でフォームで起きることも制御できるようになります。このような方法で React によって値が制御される入力フォーム要素は「制御されたコンポーネント」と呼ばれます。
 
-For example, if we want to make the previous example log the name when it is submitted, we can write the form as a controlled component:
+例えば、前述のフォームの例において、フォーム送信時に名前をログに残すようにしたい場合、フォームを制御されたコンポーネントとして書くことができます：
 
 ```javascript{4,10-12,21,24}
 class NameForm extends React.Component {
@@ -66,13 +70,13 @@ class NameForm extends React.Component {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/VmmPgp?editors=0010)
 
-Since the `value` attribute is set on our form element, the displayed value will always be `this.state.value`, making the React state the source of truth. Since `handleChange` runs on every keystroke to update the React state, the displayed value will update as the user types.
+フォーム要素の `value` 属性が設定されているので、表示される値は常に `this.state.value` となり、React の state が信頼できる情報源となります。`handleChange` はキーストロークごとに実行されて React の state を更新するので、表示される値はユーザがタイプするたびに更新されます。
 
-With a controlled component, the input's value is always driven by the React state. While this means you have to type a bit more code, you can now pass the value to other UI elements too, or reset it from other event handlers.
+制御されたコンポーネントを使うと、ユーザ入力の値は常に React の state によって制御されるようになります。これによりタイプするコード量は少し増えますが、その値を他の UI 要素に渡したり、他のイベントハンドラからリセットしたりできるようになります。
 
-## The textarea Tag {#the-textarea-tag}
+## textarea タグ {#the-textarea-tag}
 
-In HTML, a `<textarea>` element defines its text by its children:
+HTML では、`<textarea>` 要素はテキストを子要素として定義します。
 
 ```html
 <textarea>
@@ -80,7 +84,7 @@ In HTML, a `<textarea>` element defines its text by its children:
 </textarea>
 ```
 
-In React, a `<textarea>` uses a `value` attribute instead. This way, a form using a `<textarea>` can be written very similarly to a form that uses a single-line input:
+React では、`<textarea>` は代わりに `value` 属性を使用します。こうすることで、`<textarea>` を使用するフォームは単一行の入力フォームと非常に似た書き方ができるようになります：
 
 ```javascript{4-6,12-14,26}
 class EssayForm extends React.Component {
@@ -117,11 +121,11 @@ class EssayForm extends React.Component {
 }
 ```
 
-Notice that `this.state.value` is initialized in the constructor, so that the text area starts off with some text in it.
+`this.state.value` がコンストラクタで初期化されているので、テキストエリアには始めからテキストが入っていることに注意してください。
 
-## The select Tag {#the-select-tag}
+## select タグ {#the-select-tag}
 
-In HTML, `<select>` creates a drop-down list. For example, this HTML creates a drop-down list of flavors:
+HTML では、`<select>` はドロップダウンリストを作成します。例えばこの HTML は味についてのドロップダウンリストを作成しています：
 
 ```html
 <select>
@@ -132,7 +136,8 @@ In HTML, `<select>` creates a drop-down list. For example, this HTML creates a d
 </select>
 ```
 
-Note that the Coconut option is initially selected, because of the `selected` attribute. React, instead of using this `selected` attribute, uses a `value` attribute on the root `select` tag. This is more convenient in a controlled component because you only need to update it in one place. For example:
+`selected` 属性があるため Coconut オプションが最初に選択されていることに注意してください。この `selected` 属性の代わりに React は `value` 属性を親の `select` タグで使用します。一箇所で更新すればよいだけなので、制御されたコンポーネントを使う場合にはこちらがより便利です。
+例えば：
 
 ```javascript{4,10-12,24}
 class FlavorForm extends React.Component {
@@ -174,31 +179,31 @@ class FlavorForm extends React.Component {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/JbbEzX?editors=0010)
 
-Overall, this makes it so that `<input type="text">`, `<textarea>`, and `<select>` all work very similarly - they all accept a `value` attribute that you can use to implement a controlled component.
+全体的に見て `<input type="text">`、`<textarea>`、そして `<select>` が非常に似た動作をするようになっています。これらはすべて、制御されたコンポーネントを実装する時に使うことができる `value` 属性を受け取ります。
 
-> Note
+> 補足
 >
-> You can pass an array into the `value` attribute, allowing you to select multiple options in a `select` tag:
+> `value` 属性に配列を渡すことで、`select` タグ内の複数のオプションを選択することができます：
 >
 >```js
 ><select multiple={true} value={['B', 'C']}>
 >```
 
-## The file input Tag {#the-file-input-tag}
+##file input タグ {#the-file-input-tag}
 
-In HTML, an `<input type="file">` lets the user choose one or more files from their device storage to be uploaded to a server or manipulated by JavaScript via the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications).
+HTML では、`<input type="file">` によってユーザにデバイス内の 1 つ以上のファイルを選ばせて、それをサーバにアップロードしたり [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications) を使って JavaScript で操作したりすることができます。
 
 ```html
 <input type="file" />
 ```
 
-Because its value is read-only, it is an **uncontrolled** component in React. It is discussed together with other uncontrolled components [later in the documentation](/docs/uncontrolled-components.html#the-file-input-tag).
+この値は読み取り専用ですので、これは**非制御**コンポーネントになります。[このドキュメントの後の方](/docs/uncontrolled-components.html#the-file-input-tag)で、他の非制御コンポーネントと併せて説明しています。
 
-## Handling Multiple Inputs {#handling-multiple-inputs}
+## 複数の入力の処理 {#handling-multiple-inputs}
 
-When you need to handle multiple controlled `input` elements, you can add a `name` attribute to each element and let the handler function choose what to do based on the value of `event.target.name`.
+複数の制御された `input` 要素を処理する必要がある場合、それぞれの入力要素に `name` 属性を追加すれば、ハンドラ関数に `event.target.name` に基づいて処理を選択させるようにできます。
 
-For example:
+例えば：
 
 ```javascript{15,18,28,37}
 class Reservation extends React.Component {
@@ -250,7 +255,7 @@ class Reservation extends React.Component {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/wgedvV?editors=0010)
 
-Note how we used the ES6 [computed property name](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names) syntax to update the state key corresponding to the given input name:
+渡された入力名に対応する state のキーを更新するのに用いた ES6 の [computed property name](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names) 構文の使い方に注意してください：
 
 ```js{2}
 this.setState({
@@ -258,7 +263,7 @@ this.setState({
 });
 ```
 
-It is equivalent to this ES5 code:
+これは以下の ES5 のコードと同等です：
 
 ```js{2}
 var partialState = {};
@@ -266,13 +271,14 @@ partialState[name] = value;
 this.setState(partialState);
 ```
 
-Also, since `setState()` automatically [merges a partial state into the current state](/docs/state-and-lifecycle.html#state-updates-are-merged), we only needed to call it with the changed parts.
+また、`setState()` は自動的に[部分的な state を現在の state にマージする](/docs/state-and-lifecycle.html#state-updates-are-merged)ので、変更された部分のみで呼び出せば大丈夫です。
 
-## Controlled Input Null Value {#controlled-input-null-value}
+## 制御された入力における null 値 {#controlled-input-null-value}
 
-Specifying the value prop on a [controlled component](/docs/forms.html#controlled-components) prevents the user from changing the input unless you desire so. If you've specified a `value` but the input is still editable, you may have accidentally set `value` to `undefined` or `null`.
+[制御されたコンポーネント](/docs/forms.html#controlled-components)で value プロパティに値を指定することで、変更させたくない場合にユーザが値を変更できないようになります。もしも 
+`value` を指定したのに入力フィールドが依然変更可能であるという場合は、`value` を誤って `undefined` もしくは `null` に設定してしまったのかもしれません。
 
-The following code demonstrates this. (The input is locked at first but becomes editable after a short delay.)
+以下のコードでこれを示しています（入力フィールドは最初はロックされていますが、短い遅延の後に編集可能になります）。
 
 ```javascript
 ReactDOM.render(<input value="hi" />, mountNode);
@@ -283,10 +289,10 @@ setTimeout(function() {
 
 ```
 
-## Alternatives to Controlled Components {#alternatives-to-controlled-components}
+## 制御されたコンポーネントの代替手段 {#alternatives-to-controlled-components}
 
-It can sometimes be tedious to use controlled components, because you need to write an event handler for every way your data can change and pipe all of the input state through a React component. This can become particularly annoying when you are converting a preexisting codebase to React, or integrating a React application with a non-React library. In these situations, you might want to check out [uncontrolled components](/docs/uncontrolled-components.html), an alternative technique for implementing input forms.
+制御されたコンポーネントは、あらゆる種類のデータの変更に対してイベントハンドラを書き、あらゆる入力状態を React コンポーネントに通してやる必要があるため、時としてうんざりすることがあります。このことは既存のコードベースを React に変換する場合や、React アプリケーションを非 React のライブラリと統合する場合に、特に問題化します。これらの状況においては、入力フォームを実装する代替手段である[非制御コンポーネント](/docs/uncontrolled-components.html)を検討してみてください。
 
-## Fully-Fledged Solutions {#fully-fledged-solutions}
+## 本格的なソリューション {#fully-fledged-solutions}
 
-If you're looking for a complete solution including validation, keeping track of the visited fields, and handling form submission, [Formik](https://jaredpalmer.com/formik) is one of the popular choices. However, it is built on the same principles of controlled components and managing state — so don't neglect to learn them.
+入力値のバリデーション、訪問済みフィールドの追跡やフォーム送信を含む完全なソリューションをお探しの場合は、[Formik](https://jaredpalmer.com/formik) が人気のある選択肢のひとつです。しかしながらこれは制御されたコンポーネントや state の管理と同じ原理で作成されていますので、これらについて学ぶことを無視しないようにしましょう。

@@ -1,10 +1,10 @@
 ---
 id: fragments
-title: Fragments
+title: フラグメント
 permalink: docs/fragments.html
 ---
 
-A common pattern in React is for a component to return multiple elements. Fragments let you group a list of children without adding extra nodes to the DOM.
+React でよくあるパターンの 1 つに、コンポーネントが複数の要素を返すというものがあります。フラグメント (fragment) を使うことで、DOM に余分なノードを追加することなく子要素をまとめることができるようになります。
 
 ```js
 render() {
@@ -18,11 +18,11 @@ render() {
 }
 ```
 
-There is also a new [short syntax](#short-syntax) for declaring them.
+このようなものを宣言するための[短い記法](#short-syntax)もあります。
 
-## Motivation {#motivation}
+## 動機 {#motivation}
 
-A common pattern is for a component to return a list of children. Take this example React snippet:
+コンポーネントが子要素のリストを返すというのはよくあるパターンです。この React スニペットを例にしましょう：
 
 ```jsx
 class Table extends React.Component {
@@ -38,7 +38,7 @@ class Table extends React.Component {
 }
 ```
 
-`<Columns />` would need to return multiple `<td>` elements in order for the rendered HTML to be valid. If a parent div was used inside the `render()` of `<Columns />`, then the resulting HTML will be invalid.
+レンダーされる HTML が正しいものであるためには、`<Columns />` は複数の `<td>` 要素を返す必要があります。`<Columns />` 中の `render()` 内で親として div 要素を使ってしまうと、結果として出力される HTML は不正なものとなってしまいます。
 
 ```jsx
 class Columns extends React.Component {
@@ -53,7 +53,7 @@ class Columns extends React.Component {
 }
 ```
 
-results in a `<Table />` output of:
+上記では、以下のような `<Table />` の出力となってしまいます：
 
 ```jsx
 <table>
@@ -66,9 +66,9 @@ results in a `<Table />` output of:
 </table>
 ```
 
-Fragments solve this problem.
+フラグメントはこのような問題を解決します。
 
-## Usage {#usage}
+## 使い方 {#usage}
 
 ```jsx{4,7}
 class Columns extends React.Component {
@@ -83,7 +83,7 @@ class Columns extends React.Component {
 }
 ```
 
-which results in a correct `<Table />` output of:
+上記は、以下のような正しい `<Table />` の出力となります：
 
 ```jsx
 <table>
@@ -94,9 +94,9 @@ which results in a correct `<Table />` output of:
 </table>
 ```
 
-### Short Syntax {#short-syntax}
+### 短い記法 {#short-syntax}
 
-There is a new, shorter syntax you can use for declaring fragments. It looks like empty tags:
+フラグメントを宣言するための新しい短縮記法があります。それは空のタグのようにも見えます：
 
 ```jsx{4,7}
 class Columns extends React.Component {
@@ -111,11 +111,11 @@ class Columns extends React.Component {
 }
 ```
 
-You can use `<></>` the same way you'd use any other element except that it doesn't support keys or attributes.
+この `<></>` は他の要素と同じように使うことが可能ですが、key や属性のサポートはありません。
 
-### Keyed Fragments {#keyed-fragments}
+### key 付きフラグメント {#keyed-fragments}
 
-Fragments declared with the explicit `<React.Fragment>` syntax may have keys. A use case for this is mapping a collection to an array of fragments -- for example, to create a description list:
+明示的に `<React.Fragment>` と宣言したフラグメントでは key を持つことができます。これはコレクションをフラグメントの配列に変換するときに有用です。たとえば定義リストを作成する時に利用します：
 
 ```jsx
 function Glossary(props) {
@@ -133,8 +133,8 @@ function Glossary(props) {
 }
 ```
 
-`key` is the only attribute that can be passed to `Fragment`. In the future, we may add support for additional attributes, such as event handlers.
+`key` はフラグメントに渡すことができる唯一の属性です。将来的には、イベントハンドラのような他の属性を渡すこともサポートするかもしれません。
 
-### Live Demo {#live-demo}
+### ライブデモ {#live-demo}
 
-You can try out the new JSX fragment syntax with this [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000).
+この [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000) で新しい JSX フラグメントの記法を試すことができます。

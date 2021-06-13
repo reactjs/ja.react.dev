@@ -1,6 +1,6 @@
 ---
 id: components-and-props
-title: Components and Props
+title: コンポーネントと props
 permalink: docs/components-and-props.html
 redirect_from:
   - "docs/reusable-components.html"
@@ -16,13 +16,13 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
-Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. This page provides an introduction to the idea of components. You can find a [detailed component API reference here](/docs/react-component.html).
+コンポーネントにより UI を独立した再利用できる部品に分割し、部品それぞれを分離して考えることができるようになります。このページではコンポーネントという概念の導入を行います。[詳細な API リファレンスはこちら](/docs/react-component.html)で参照できます。
 
-Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen.
+概念的には、コンポーネントは JavaScript の関数と似ています。（"props" と呼ばれる）任意の入力を受け取り、画面上に表示すべきものを記述する React 要素を返します。
 
-## Function and Class Components {#function-and-class-components}
+## 関数コンポーネントとクラスコンポーネント {#function-and-class-components}
 
-The simplest way to define a component is to write a JavaScript function:
+コンポーネントを定義する最もシンプルな方法は JavaScript の関数を書くことです：
 
 ```js
 function Welcome(props) {
@@ -30,9 +30,9 @@ function Welcome(props) {
 }
 ```
 
-This function is a valid React component because it accepts a single "props" (which stands for properties) object argument with data and returns a React element. We call such components "function components" because they are literally JavaScript functions.
+この関数は、データの入った "props"（「プロパティ」の意味）というオブジェクトを引数としてひとつ受け取り、React 要素を返すので、有効な React コンポーネントです。これは文字通り JavaScript の関数ですので、このようなコンポーネントのことを "関数コンポーネント (function component)" と呼びます。
 
-You can also use an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) to define a component:
+コンポーネントを定義するために [ES6 クラス](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)も使用できます：
 
 ```js
 class Welcome extends React.Component {
@@ -42,27 +42,27 @@ class Welcome extends React.Component {
 }
 ```
 
-The above two components are equivalent from React's point of view.
+上記 2 つのコンポーネントは React の視点からは等価です。
 
-Function and Class components both have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html).
+関数コンポーネントとクラスコンポーネントには、[次のセクション](/docs/state-and-lifecycle.html)で説明するようにそれぞれ幾つかの追加機能があります。
 
-## Rendering a Component {#rendering-a-component}
+## コンポーネントのレンダー {#rendering-a-component}
 
-Previously, we only encountered React elements that represent DOM tags:
+前節では、DOM のタグを表す React 要素のみを扱いました：
 
 ```js
 const element = <div />;
 ```
 
-However, elements can also represent user-defined components:
+しかし、要素はユーザ定義のコンポーネントを表すこともできます：
 
 ```js
 const element = <Welcome name="Sara" />;
 ```
 
-When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object "props".
+React がユーザ定義のコンポーネントを見つけた場合、JSX に書かれている属性と子要素を単一のオブジェクトとしてこのコンポーネントに渡します。このオブジェクトのことを "props" と呼びます。
 
-For example, this code renders "Hello, Sara" on the page:
+例えば以下のコードではページ上に "Hello, Sara" を表示します：
 
 ```js{1,5}
 function Welcome(props) {
@@ -78,24 +78,24 @@ ReactDOM.render(
 
 [](codepen://components-and-props/rendering-a-component)
 
-Let's recap what happens in this example:
+この例で何が起こるのかおさらいしてみましょう。
 
-1. We call `ReactDOM.render()` with the `<Welcome name="Sara" />` element.
-2. React calls the `Welcome` component with `{name: 'Sara'}` as the props.
-3. Our `Welcome` component returns a `<h1>Hello, Sara</h1>` element as the result.
-4. React DOM efficiently updates the DOM to match `<h1>Hello, Sara</h1>`.
+1. `<Welcome name="Sara" />` という要素を引数として `ReactDOM.render()` を呼び出します。
+2. React は `Welcome` コンポーネントを呼び出し、そのときに props として `{name: 'Sara'}` を渡します。
+3. `Welcome` コンポーネントは出力として `<h1>Hello, Sara</h1>` 要素を返します。
+4. React DOM は `<h1>Hello, Sara</h1>` に一致するよう、DOM を効率的に更新します。
 
->**Note:** Always start component names with a capital letter.
+>**補足:** コンポーネント名は常に大文字で始めてください。
 >
->React treats components starting with lowercase letters as DOM tags. For example, `<div />` represents an HTML div tag, but `<Welcome />` represents a component and requires `Welcome` to be in scope.
+>React は小文字で始まるコンポーネントを DOM タグとして扱います。例えば、`<div />` は HTML の div タグを表しますが、`<Welcome />` はコンポーネントを表しており、スコープ内に `Welcome` が存在する必要があります。
 >
->To learn more about the reasoning behind this convention, please read [JSX In Depth](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized).
+>この規約の背後にある理由については [JSX を深く理解する](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized)を参照してください。
 
-## Composing Components {#composing-components}
+## コンポーネントを組み合わせる {#composing-components}
 
-Components can refer to other components in their output. This lets us use the same component abstraction for any level of detail. A button, a form, a dialog, a screen: in React apps, all those are commonly expressed as components.
+コンポーネントは自身の出力の中で他のコンポーネントを参照できます。これにより、どの詳細度のレベルにおいても、コンポーネントという単一の抽象化を利用できます。ボタン、フォーム、ダイアログ、画面：React アプリでは、これらは共通してコンポーネントとして表現されます。
 
-For example, we can create an `App` component that renders `Welcome` many times:
+例えば、`Welcome` を何回もレンダーする `App` コンポーネントを作成できます：
 
 ```js{8-10}
 function Welcome(props) {
@@ -120,13 +120,13 @@ ReactDOM.render(
 
 [](codepen://components-and-props/composing-components)
 
-Typically, new React apps have a single `App` component at the very top. However, if you integrate React into an existing app, you might start bottom-up with a small component like `Button` and gradually work your way to the top of the view hierarchy.
+典型的には、新規の React アプリは階層の一番上に単一の `App` コンポーネントを持っています。しかし、既存のアプリに React を統合する場合は、`Button` のような小さなコンポーネントからボトムアップで始め、徐々にビューの階層構造の頂上に向かって進んでいってもよいでしょう。
 
-## Extracting Components {#extracting-components}
+## コンポーネントの抽出 {#extracting-components}
 
-Don't be afraid to split components into smaller components.
+コンポーネントをより小さなコンポーネントに分割することを恐れないでください。
 
-For example, consider this `Comment` component:
+例えば、この `Comment` コンポーネントについて考えましょう：
 
 ```js
 function Comment(props) {
@@ -154,11 +154,11 @@ function Comment(props) {
 
 [](codepen://components-and-props/extracting-components)
 
-It accepts `author` (an object), `text` (a string), and `date` (a date) as props, and describes a comment on a social media website.
+これは props として `author`（オブジェクト）、`text`（文字列）、および `date`（日付）を受け取り、ソーシャルメディアサイトにおける 1 つのコメントを表します。
 
-This component can be tricky to change because of all the nesting, and it is also hard to reuse individual parts of it. Let's extract a few components from it.
+これだけのネストがあるため、このコンポーネントの変更には苦労を伴い、また内部の個々の部品を再利用することも困難です。ここからいくつかのコンポーネントを抽出しましょう。
 
-First, we will extract `Avatar`:
+まず、`Avatar` を抽出します：
 
 ```js{3-6}
 function Avatar(props) {
@@ -171,11 +171,11 @@ function Avatar(props) {
 }
 ```
 
-The `Avatar` doesn't need to know that it is being rendered inside a `Comment`. This is why we have given its prop a more generic name: `user` rather than `author`.
+`Avatar` は、自身が `Comment` の内側でレンダーされているということを知っている必要はありません。なので props の名前として、`author` ではなく `user` というもっと一般的な名前を付けました。
 
-We recommend naming props from the component's own point of view rather than the context in which it is being used.
+コンポーネントが使用される文脈ではなく、コンポーネント自身からの観点で props の名前を付けることをお勧めします。
 
-We can now simplify `Comment` a tiny bit:
+これで `Comment` をほんの少しシンプルにできます：
 
 ```js{5}
 function Comment(props) {
@@ -198,7 +198,7 @@ function Comment(props) {
 }
 ```
 
-Next, we will extract a `UserInfo` component that renders an `Avatar` next to the user's name:
+次に、ユーザ名の隣の `Avatar` をレンダーするために使われる、`UserInfo` コンポーネントを抽出しましょう。
 
 ```js{3-8}
 function UserInfo(props) {
@@ -213,7 +213,7 @@ function UserInfo(props) {
 }
 ```
 
-This lets us simplify `Comment` even further:
+これにより `Comment` をさらにシンプルにできます：
 
 ```js{4}
 function Comment(props) {
@@ -233,11 +233,11 @@ function Comment(props) {
 
 [](codepen://components-and-props/extracting-components-continued)
 
-Extracting components might seem like grunt work at first, but having a palette of reusable components pays off in larger apps. A good rule of thumb is that if a part of your UI is used several times (`Button`, `Panel`, `Avatar`), or is complex enough on its own (`App`, `FeedStory`, `Comment`), it is a good candidate to be extracted to a separate component.
+コンポーネントの抽出は最初は面倒な仕事のように思えますが、再利用できるコンポーネントをパレットとして持っておくことは、アプリケーションが大きくなれば努力に見合った利益を生みます。役に立つ経験則として、UI の一部（`Button`、`Panel`、`Avatar` など）が複数回使われている場合、またはその UI 自体が複雑（`App`、`FeedStory`、`Comment` など）である場合、それらは別のコンポーネントに抽出する有力な候補であるといえます。
 
-## Props are Read-Only {#props-are-read-only}
+## Props は読み取り専用 {#props-are-read-only}
 
-Whether you declare a component [as a function or a class](#function-and-class-components), it must never modify its own props. Consider this `sum` function:
+コンポーネントを[関数で宣言するかクラスで宣言するか](#function-and-class-components)に関わらず、自分自身の props は決して変更してはいけません。この `sum` 関数を考えましょう：
 
 ```js
 function sum(a, b) {
@@ -245,9 +245,9 @@ function sum(a, b) {
 }
 ```
 
-Such functions are called ["pure"](https://en.wikipedia.org/wiki/Pure_function) because they do not attempt to change their inputs, and always return the same result for the same inputs.
+このような関数は入力されたものを変更しようとせず、同じ入力に対し同じ結果を返すので ["純粋 (pure)"](https://en.wikipedia.org/wiki/Pure_function) であると言われます。
 
-In contrast, this function is impure because it changes its own input:
+対照的に、以下の関数は自身への入力を変更するため純関数ではありません：
 
 ```js
 function withdraw(account, amount) {
@@ -255,8 +255,8 @@ function withdraw(account, amount) {
 }
 ```
 
-React is pretty flexible but it has a single strict rule:
+React は柔軟ですが、1 つだけ厳格なルールがあります：
 
-**All React components must act like pure functions with respect to their props.**
+**全ての React コンポーネントは、自己の props に対して純関数のように振る舞わねばなりません。**
 
-Of course, application UIs are dynamic and change over time. In the [next section](/docs/state-and-lifecycle.html), we will introduce a new concept of "state". State allows React components to change their output over time in response to user actions, network responses, and anything else, without violating this rule.
+もちろんアプリケーションの UI は動的で、時間に応じて変化するものです。[次の章](/docs/state-and-lifecycle.html)では、"state" という新しい概念を紹介します。state により React コンポーネントは上述のルールを壊すことなく、時間と共にユーザのアクション、ネットワークのレスポンスや他の様々な事に反応して、出力を変更することができます。

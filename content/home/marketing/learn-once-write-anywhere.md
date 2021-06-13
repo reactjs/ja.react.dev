@@ -1,8 +1,8 @@
 ---
-title: Learn Once, Write Anywhere
+title: 一度学習すれば、どこでも使える
 order: 2
 ---
 
-We don't make assumptions about the rest of your technology stack, so you can develop new features in React without rewriting existing code.
+React と組み合わせて使用する技術に制限はありません。React を使って新しい機能を追加する際に、既存のソースコードを書き換える必要はありません。
 
-React can also render on the server using Node and power mobile apps using [React Native](https://reactnative.dev/).
+React は Node を使ったサーバ上でもレンダーできますし、[React Native](https://reactnative.dev/) を使うことでモバイルアプリケーションの中でも動きます。

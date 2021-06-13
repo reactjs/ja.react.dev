@@ -1,8 +1,8 @@
 ---
-title: Component-Based
+title: コンポーネントベース
 order: 1
 ---
 
-Build encapsulated components that manage their own state, then compose them to make complex UIs.
+自分自身の状態を管理するカプセル化されたコンポーネントをまず作成し、これらを組み合わせることで複雑なユーザインターフェイスを構築します。
 
-Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep state out of the DOM.
+コンポーネントのロジックは、Template ではなく JavaScript そのもので書くことができるので、様々なデータをアプリケーション内で簡単に取り回すことができ、かつ DOM に状態を持たせないようにすることができます。

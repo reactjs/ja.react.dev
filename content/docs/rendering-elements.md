@@ -1,6 +1,6 @@
 ---
 id: rendering-elements
-title: Rendering Elements
+title: 要素のレンダー
 permalink: docs/rendering-elements.html
 redirect_from:
   - "docs/displaying-data.html"
@@ -8,68 +8,68 @@ prev: introducing-jsx.html
 next: components-and-props.html
 ---
 
-Elements are the smallest building blocks of React apps.
+要素とは React アプリケーションの最小単位の構成ブロックです。
 
-An element describes what you want to see on the screen:
+要素は画面上に表示したいものの説明書きです：
 
 ```js
 const element = <h1>Hello, world</h1>;
 ```
 
-Unlike browser DOM elements, React elements are plain objects, and are cheap to create. React DOM takes care of updating the DOM to match the React elements.
+ブラウザの DOM 要素とは異なり、React 要素はプレーンなオブジェクトであり、安価に作成できます。React DOM が React 要素に合致するように DOM を更新する作業を担当します。
 
->**Note:**
+>**補足:**
 >
->One might confuse elements with a more widely known concept of "components". We will introduce components in the [next section](/docs/components-and-props.html). Elements are what components are "made of", and we encourage you to read this section before jumping ahead.
+>要素のことを、より広く知られている概念である "コンポーネント" と混同する人もいるかもしれません。コンポーネントについては[次の章](/docs/components-and-props.html)で説明します。要素とはコンポーネントを "構成する" ものです。次に進む前にこの章を読んでいくことをお勧めします。
 
-## Rendering an Element into the DOM {#rendering-an-element-into-the-dom}
+## 要素を DOM として描画する {#rendering-an-element-into-the-dom}
 
-Let's say there is a `<div>` somewhere in your HTML file:
+HTML ファイルの中に `<div>` 要素があったとしましょう：
 
 ```html
 <div id="root"></div>
 ```
 
-We call this a "root" DOM node because everything inside it will be managed by React DOM.
+この中にあるもの全てが React DOM によって管理されることになるので、"ルート" DOM ノードと呼ぶことにしましょう。
 
-Applications built with just React usually have a single root DOM node. If you are integrating React into an existing app, you may have as many isolated root DOM nodes as you like.
+React だけで構築されたアプリケーションは、通常ルート DOM ノードをひとつだけ持ちます。既存のアプリに React を統合しようとしている場合は、独立したルート DOM ノードを好きなだけ持つことができます。
 
-To render a React element into a root DOM node, pass both to [`ReactDOM.render()`](/docs/react-dom.html#render):
+React 要素をルート DOM ノードにレンダーするには、その 2 つを [`ReactDOM.render()`](/docs/react-dom.html#render) に渡します：
 
 `embed:rendering-elements/render-an-element.js`
 
 [](codepen://rendering-elements/render-an-element)
 
-It displays "Hello, world" on the page.
+このコードはページに "Hello, world" を表示します。
 
-## Updating the Rendered Element {#updating-the-rendered-element}
+## レンダーされた要素の更新 {#updating-the-rendered-element}
 
-React elements are [immutable](https://en.wikipedia.org/wiki/Immutable_object). Once you create an element, you can't change its children or attributes. An element is like a single frame in a movie: it represents the UI at a certain point in time.
+React 要素は[イミュータブル](https://en.wikipedia.org/wiki/Immutable_object)です。一度要素を作成すると、その子要素もしくは属性を変更することはできません。要素は映画の中のひとつのフレームのようなものであり、それは特定のある時点の UI を表します。
 
-With our knowledge so far, the only way to update the UI is to create a new element, and pass it to [`ReactDOM.render()`](/docs/react-dom.html#render).
+ここまでで分かる通り、UI を更新する唯一の方法は、新しい要素を作成して [`ReactDOM.render()`](/docs/react-dom.html#render) に渡すことです。
 
-Consider this ticking clock example:
+以下の秒刻みで動く時計の例について考えます：
 
 `embed:rendering-elements/update-rendered-element.js`
 
 [](codepen://rendering-elements/update-rendered-element)
 
-It calls [`ReactDOM.render()`](/docs/react-dom.html#render) every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
+上記のコードでは [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) のコールバックから [`ReactDOM.render()`](/docs/react-dom.html#render) を毎秒呼び出しています。
 
->**Note:**
+>**補足:**
 >
->In practice, most React apps only call [`ReactDOM.render()`](/docs/react-dom.html#render) once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
+>実際には大抵の React アプリケーションは [`ReactDOM.render()`](/docs/react-dom.html#render) を一度しか呼び出しません。次の章では上記のようなコードをどのように[ステート付きコンポーネント](/docs/state-and-lifecycle.html)へとカプセル化するのかを学びます。
 >
->We recommend that you don't skip topics because they build on each other.
+>トピックはお互いを基礎として構成されているため、読み飛ばさないことをお勧めします。
 
-## React Only Updates What's Necessary {#react-only-updates-whats-necessary}
+## React は必要な箇所のみを更新する {#react-only-updates-whats-necessary}
 
-React DOM compares the element and its children to the previous one, and only applies the DOM updates necessary to bring the DOM to the desired state.
+React DOM は要素とその子要素を以前のものと比較し、DOM を望ましい状態へと変えるのに必要なだけの DOM の更新を行います。
 
-You can verify by inspecting the [last example](codepen://rendering-elements/update-rendered-element) with the browser tools:
+このことは、[最後の例](codepen://rendering-elements/update-rendered-element)をブラウザツールで調査すれば確認できます：
 
 ![DOM inspector showing granular updates](../images/docs/granular-dom-updates.gif)
 
-Even though we create an element describing the whole UI tree on every tick, only the text node whose contents have changed gets updated by React DOM.
+毎秒ごとに UI ツリー全体を表す要素を作成しているにも関わらず、内容が変更されたテキストノードのみが React DOM により更新されます。
 
-In our experience, thinking about how the UI should look at any given moment, rather than how to change it over time, eliminates a whole class of bugs.
+私達の経験上、時間の経過によりどのように UI が変更されるかを考えるよりも、任意の時点において UI がどのように見えるべきかを考えることで、あらゆる類のバグを排除することができます。

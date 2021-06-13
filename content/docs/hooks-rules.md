@@ -1,33 +1,33 @@
 ---
 id: hooks-rules
-title: Rules of Hooks
+title: フックのルール
 permalink: docs/hooks-rules.html
 next: hooks-custom.html
 prev: hooks-effect.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*フック (hook)* は React 16.8 で追加された新機能です。state などの React の機能を、クラスを書かずに使えるようになります。
 
-Hooks are JavaScript functions, but you need to follow two rules when using them. We provide a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to enforce these rules automatically:
+フックは JavaScript の関数ですが、それらを使う際には以下の 2 つのルールに従う必要があります。我々は自動的にこのルールを強制するための [linter プラグイン](https://www.npmjs.com/package/eslint-plugin-react-hooks) を提供しています。
 
-### Only Call Hooks at the Top Level {#only-call-hooks-at-the-top-level}
+### フックを呼び出すのはトップレベルのみ {#only-call-hooks-at-the-top-level}
 
-**Don't call Hooks inside loops, conditions, or nested functions.** Instead, always use Hooks at the top level of your React function, before any early returns. By following this rule, you ensure that Hooks are called in the same order each time a component renders. That's what allows React to correctly preserve the state of Hooks between multiple `useState` and `useEffect` calls. (If you're curious, we'll explain this in depth [below](#explanation).)
+**フックをループや条件分岐、あるいはネストされた関数内で呼び出してはいけません。**代わりに、あなたの React の関数のトップレベルでのみ、あらゆる早期 return 文よりも前の場所で呼び出してください。これを守ることで、コンポーネントがレンダーされる際に毎回同じ順番で呼び出されるということが保証されます。これが、複数回 `useState` や `useEffect` が呼び出された場合でも React がフックの状態を正しく保持するための仕組みです（興味がある場合は[ページ下部](#explanation)で詳しく説明しています）。
 
-### Only Call Hooks from React Functions {#only-call-hooks-from-react-functions}
+### フックを呼び出すのは React の関数内のみ {#only-call-hooks-from-react-functions}
 
-**Don't call Hooks from regular JavaScript functions.** Instead, you can:
+**フックを通常の JavaScript 関数から呼び出さないでください。**代わりに以下のようにします。
 
-* ✅ Call Hooks from React function components.
-* ✅ Call Hooks from custom Hooks (we'll learn about them [on the next page](/docs/hooks-custom.html)).
+- ✅ React の関数コンポーネント内から呼び出す。
+- ✅ カスタムフック内（[次のページで説明します](/docs/hooks-custom.html)）から呼び出す。
 
-By following this rule, you ensure that all stateful logic in a component is clearly visible from its source code.
+このルールを守ることで、コンポーネント内のすべての state を使うロジックがソースコードから間違いなく参照可能になります。
 
-## ESLint Plugin {#eslint-plugin}
+## ESLint プラグイン {#eslint-plugin}
 
-We released an ESLint plugin called [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) that enforces these two rules. You can add this plugin to your project if you'd like to try it:
+これらの 2 つのルールを強制できる [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) という ESLint のプラグインをリリースしました。試したい場合はあなたのプロジェクトに以下のようにして加えることができます。
 
-This plugin is included by default in [Create React App](/docs/create-a-new-react-app.html#create-react-app).
+このプラグインは [Create React App](/docs/create-a-new-react-app.html#create-react-app) ではデフォルトで含まれています。
 
 ```bash
 npm install eslint-plugin-react-hooks --save-dev
@@ -48,11 +48,11 @@ npm install eslint-plugin-react-hooks --save-dev
 }
 ```
 
-**You can skip to the next page explaining how to write [your own Hooks](/docs/hooks-custom.html) now.** On this page, we'll continue by explaining the reasoning behind these rules.
+**次のページまで飛ばして[独自のフック](/docs/hooks-custom.html)を書く方法について学んでも構いません。**このページの続きの部分ではこれらのルールの背後にある根拠について述べていきます。
 
-## Explanation {#explanation}
+## 解説 {#explanation}
 
-As we [learned earlier](/docs/hooks-state.html#tip-using-multiple-state-variables), we can use multiple State or Effect Hooks in a single component:
+[既に学んだ通り](/docs/hooks-state.html#tip-using-multiple-state-variables)、ひとつのコンポーネント内で複数の state や副作用を使うことができます。
 
 ```js
 function Form() {
@@ -76,7 +76,7 @@ function Form() {
 }
 ```
 
-So how does React know which state corresponds to which `useState` call? The answer is that **React relies on the order in which Hooks are called**. Our example works because the order of the Hook calls is the same on every render:
+では React は、どの `useState` の呼び出しがどの state に対応するのか、どうやって知るのでしょうか？ その答えは「**React はフックが呼ばれる順番に依存している**」です。我々の例が動作するのは、フックの呼び出しの順序が毎回のレンダーごとに同じだからです。
 
 ```js
 // ------------
@@ -98,7 +98,7 @@ useEffect(updateTitle)     // 4. Replace the effect for updating the title
 // ...
 ```
 
-As long as the order of the Hook calls is the same between renders, React can associate some local state with each of them. But what happens if we put a Hook call (for example, the `persistForm` effect) inside a condition?
+フックへの呼び出しの順番がレンダー間で変わらない限り、React はそれらのフックにローカル state を割り当てることができます。ですがフックの呼び出しを条件分岐内（例えば `persistForm` 副作用の内部で）で行ったらどうなるでしょうか？
 
 ```js
   // 🔴 We're breaking the first rule by using a Hook in a condition
@@ -109,7 +109,7 @@ As long as the order of the Hook calls is the same between renders, React can as
   }
 ```
 
-The `name !== ''` condition is `true` on the first render, so we run this Hook. However, on the next render the user might clear the form, making the condition `false`. Now that we skip this Hook during rendering, the order of the Hook calls becomes different:
+`name !== ''` という条件は初回のレンダー時には `true` なので、フックは実行されます。しかし次回のレンダー時にはユーザがフォームをクリアしているかもしれず、その場合にこの条件は `false` になります。するとレンダー途中でこのフックがスキップされるため、フックの呼ばれる順番が変わってしまいます。
 
 ```js
 useState('Mary')           // 1. Read the name state variable (argument is ignored)
@@ -118,9 +118,9 @@ useState('Poppins')        // 🔴 2 (but was 3). Fail to read the surname state
 useEffect(updateTitle)     // 🔴 3 (but was 4). Fail to replace the effect
 ```
 
-React wouldn't know what to return for the second `useState` Hook call. React expected that the second Hook call in this component corresponds to the `persistForm` effect, just like during the previous render, but it doesn't anymore. From that point, every next Hook call after the one we skipped would also shift by one, leading to bugs.
+React は 2 つ目の `useState` の呼び出しに対して何を返せばいいのか分からなくなります。React は 2 つめのフックの呼び出しは前回レンダー時と同様に `persistForm` に対応するものだと期待しているのですが、それが成り立たなくなっています。この部分より先では、スキップされたもの以降のすべてのフックがひとつずつずれているため、バグを引き起こします。
 
-**This is why Hooks must be called on the top level of our components.** If we want to run an effect conditionally, we can put that condition *inside* our Hook:
+**これがフックを呼び出すのがトップレベルのみでなければならない理由です。**条件付きで副作用を走らせたい場合は、その条件をフックの*内部*に入れることができます：
 
 ```js
   useEffect(function persistForm() {
@@ -131,8 +131,8 @@ React wouldn't know what to return for the second `useState` Hook call. React ex
   });
 ```
 
-**Note that you don't need to worry about this problem if you use the [provided lint rule](https://www.npmjs.com/package/eslint-plugin-react-hooks).** But now you also know *why* Hooks work this way, and which issues the rule is preventing.
+**[上記の lint ルール](https://www.npmjs.com/package/eslint-plugin-react-hooks)を使えばこの問題について心配する必要はない、ということに注意してください。**しかしフックが*なぜ*このように動作するのか、このルールがどんな問題を防いでいるのかについて学びました。
 
-## Next Steps {#next-steps}
+## 次のステップ {#next-steps}
 
-Finally, we're ready to learn about [writing your own Hooks](/docs/hooks-custom.html)! Custom Hooks let you combine Hooks provided by React into your own abstractions, and reuse common stateful logic between different components.
+ついに[自分独自のフックの書き方](/docs/hooks-custom.html)について学ぶ準備ができました！ カスタムフックを使えば React から提供されるフックを組み合わせて自分独自の抽象化を作り出し、複数の異なるコンポーネント間で state を使う共通のロジックを再利用することができるようになります。
