@@ -29,11 +29,7 @@ React でのイベント処理は DOM 要素のイベントの処理と非常に
 </button>
 ```
 
-<<<<<<< HEAD
-Another difference is that you cannot return `false` to prevent default behavior in React. You must call `preventDefault` explicitly. For example, with plain HTML, to prevent the default form behavior of submitting, you can write:
-=======
-別の違いとして、React では `false` を返してもデフォルトの動作を抑止することができません。明示的に `preventDefault` を呼び出す必要があります。例えば、プレーンな HTML では、「新しいページを開く」というリンクのデフォルト動作を抑止するために次のように書くことができます。
->>>>>>> origin
+別の違いとして、React では `false` を返してもデフォルトの動作を抑止することができません。明示的に `preventDefault` を呼び出す必要があります。例えば、プレーンな HTML では、「フォームをサブミットする」という form 要素のデフォルト動作を抑止するために次のように書くことができます。
 
 ```html
 <form onsubmit="console.log('You clicked submit.'); return false">

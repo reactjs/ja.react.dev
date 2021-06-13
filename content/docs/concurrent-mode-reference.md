@@ -28,12 +28,7 @@ prev: concurrent-mode-adoption.html
 
 - [並列モードの有効化](#concurrent-mode)
     - [`createRoot`](#createroot)
-<<<<<<< HEAD
-- [Suspense](#suspense)
-=======
-    - [`createBlockingRoot`](#createblockingroot)
 - [サスペンス API](#suspense)
->>>>>>> origin
     - [`Suspense`](#suspensecomponent)
     - [`SuspenseList`](#suspenselist)
     - [`useTransition`](#usetransition)
@@ -51,23 +46,7 @@ ReactDOM.createRoot(rootNode).render(<App />);
 
 並列モードについての詳細は[並列モードのドキュメント](/docs/concurrent-mode-intro.html)を参照してください。
 
-<<<<<<< HEAD
-## Suspense API {#suspense}
-=======
-### `createBlockingRoot` {#createblockingroot}
-
-```js
-ReactDOM.createBlockingRoot(rootNode).render(<App />)
-```
-
-`ReactDOM.render(<App />, rootNode)` を置き換えて[ブロッキングモード](/docs/concurrent-mode-adoption.html#migration-step-blocking-mode)を有効化します。
-
-並列モードにオプトインすることで React の動作方法について意味上の変更が加わります。これは少数のコンポーネントだけで並列モードを使うということが不可能であるということを意味します。このため、いくつかのアプリケーションでは並列モードに直接移行することができないかもしれません。
-
-ブロッキングモードには並列モードの機能の小さなサブセットのみが含まれているので、直接的な移行ができないアプリケーションのための中間的な移行ステップとなることを意図しています。
-
 ## サスペンス API {#suspense}
->>>>>>> origin
 
 ### `Suspense` {#suspensecomponent}
 
@@ -80,11 +59,7 @@ ReactDOM.createBlockingRoot(rootNode).render(<App />)
 
 `Suspense` により、レンダー可能になる前にコンポーネントが「待機」し、待機中にフォールバックを表示できるようになります。
 
-<<<<<<< HEAD
-In this example, `ProfileDetails` is waiting for an asynchronous API call to fetch some data. While we wait for `ProfileDetails` and `ProfilePhoto`, we will show the `Loading...` fallback instead. It is important to note that until all children inside `<Suspense>` have loaded, we will continue to show the fallback.
-=======
 上記の例では、`ProfileDetails` は何らかのデータを取得するために非同期 API コールを待機しています。`ProfileDetails` と `ProfilePhoto` を待機している間、`Loading...` というフォールバックを代わりに表示します。`<Suspense>` 内のすべての子要素がロードされるまでは、フォールバックが表示されつづけることに注意することが重要です。
->>>>>>> origin
 
 `Suspense` は 2 つの props を受け取ります：
 * **fallback** はローディングインジケータを受け取ります。フォールバックは `Suspense` コンポーネントのすべての子要素がレンダーを完了するまで表示されます。

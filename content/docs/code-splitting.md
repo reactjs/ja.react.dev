@@ -42,11 +42,7 @@ console.log(add(16, 26)); // 42
 
 もし [Create React App](https://create-react-app.dev/)、[Next.js](https://nextjs.org/)、[Gatsby](https://www.gatsbyjs.org/) やこれらに類するツールを使用している場合、アプリケーションをバンドルするための Webpack のセットアップが最初から含まれています。
 
-<<<<<<< HEAD
-If you aren't, you'll need to set up bundling yourself. For example, see the [Installation](https://webpack.js.org/guides/installation/) and [Getting Started](https://webpack.js.org/guides/getting-started/) guides on the Webpack docs.
-=======
 そうでない場合は、自分でバンドルを設定する必要があります。設定方法に関しては、Webpack のドキュメントにある [Installation](https://webpack.js.org/guides/installation/) や [Getting Started](https://webpack.js.org/guides/getting-started/) などを参照してみてください。
->>>>>>> origin
 
 ## コード分割 {#code-splitting}
 

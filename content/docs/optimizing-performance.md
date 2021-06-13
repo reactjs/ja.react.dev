@@ -156,37 +156,7 @@ module.exports = {
 
 これらが必要なのは本番用ビルドだけであることに留意してください。React の有用な警告文が隠されたり、ビルド速度が大幅に遅くなったりしますので、開発時には `TerserPlugin` を適用しないでください。
 
-<<<<<<< HEAD
-## Profiling Components with the DevTools Profiler {#profiling-components-with-the-devtools-profiler}
-=======
-## Chrome のパフォーマンスタブでコンポーネントをプロファイルする {#profiling-components-with-the-chrome-performance-tab}
-
-**開発**モードでは、対応するブラウザのパフォーマンス分析ツールで、コンポーネントのマウント・更新・アンマウントの様子を以下のように視覚化することができます。
-
-<center><img src="../images/blog/react-perf-chrome-timeline.png" style="max-width:100%" alt="React components in Chrome timeline" /></center>
-
-Chrome での操作は以下の通り。
-
-1. 一時的に **React DevTools を含むすべての Chrome 拡張機能を無効にする**。無効にしないと、結果が正確でなくなる可能性があります。
-
-2. アプリケーションが開発モードで動作していることを確認する。
-
-3. Chrome DevTools の[**パフォーマンス**](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)タブを開いて **Record（記録）** ボタンを押す。
-
-4. プロファイル対象のアクションを実行する。なお、20 秒以上は記録しないでください。さもないと Chrome がハングアップすることがあります。
-
-5. 記録を停止する。
-
-6. React イベントが **User Timing** ラベルの下にグループ化される。
-
-さらなる詳細については、[Ben Schwarz によるこの記事](https://calibreapp.com/blog/react-performance-profiling-optimization)を参照ください。
-
-**プロファイル結果の数値は相対的なものであり、コンポーネントは本番環境ではより速くレンダーされる**ことに注意してください。それでも、無関係な UI 部分が誤って更新されているのを見つけたり、どの程度の頻度と深さで UI の更新が発生するのかを知る手助けになるはずです。
-
-現時点では、Chrome、Edge、そして IE のみがこの機能をサポートするブラウザですが、私達は標準の [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) を採用しているので、より多くのブラウザがサポートしてくれることを期待しています。
-
-## DevToolsプロファイラを使用したコンポーネントのプロファイリング {#profiling-components-with-the-devtools-profiler}
->>>>>>> origin
+## DevTools プロファイラを使用したコンポーネントのプロファイリング {#profiling-components-with-the-devtools-profiler}
 
 `react-dom` 16.5 以降と `react-native` 0.57 以降では、開発モードにおける強化されたプロファイリング機能を React DevTools プロファイラにて提供しています。
 このプロファイラの概要はブログ記事 ["Introducing the React Profiler"](/blog/2018/09/10/introducing-the-react-profiler.html) で説明されています。
@@ -203,16 +173,12 @@ React DevTools をまだインストールしていない場合は、以下で�
 > 本番ビルド版 `react-dom` のプロファイリング可能なバンドルとして `react-dom/profiling` が利用可能です。
 > このバンドルの使い方の詳細については、[fb.me/react-profiling](https://fb.me/react-profiling) を参照してください。
 
-<<<<<<< HEAD
-> Note
+> 捕捉
 >
-> Before React 17, we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) to profile components with the chrome performance tab. 
-> For a more detailed walkthrough, check out [this article by Ben Schwarz](https://calibreapp.com/blog/react-performance-profiling-optimization).
+> React 17 以前は、標準の [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) を用いて Chrome のパフォーマンスタブでコンポーネントのプロファイリングを行います。
+> これについての概要は [Ben Schwarz によるこの記事](https://calibreapp.com/blog/react-performance-profiling-optimization)を参照してください。
 
-## Virtualize Long Lists {#virtualize-long-lists}
-=======
 ## 長いリストの仮想化 {#virtualize-long-lists}
->>>>>>> origin
 
 アプリケーションが長いデータのリスト（数百〜数千行）をレンダーする場合は、「ウィンドウイング」として知られるテクニックを使うことをおすすめします。このテクニックでは、ある瞬間ごとにはリストの小さな部分集合のみを描画することで、生成する DOM ノードの数およびコンポーネントの再描画にかかる時間を大幅に削減することができます。
 

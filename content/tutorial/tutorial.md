@@ -524,11 +524,7 @@ Square コンポーネントはもう自分で state を管理しないように
 
 ### イミュータビリティは何故重要なのか {#why-immutability-is-important}
 
-<<<<<<< HEAD
-In the previous code example, we suggested that you use the `.slice()` method to create a copy of the `squares` array to copy instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
-=======
 上記のコード例において、現在の配列を直接変更する代わりに、`.slice()` メソッドを使って `square` 配列のコピーを作成し、それを変更することをお勧めしました。ここでイミュータビリティ（immutability; 不変性）について解説し、それがなぜ重要なのかについて説明します。
->>>>>>> origin
 
 一般的に、変化するデータに対しては 2 種類のアプローチがあります。1 番目のアプローチはデータの値を直接いじってデータを*ミューテート（mutate; 書き換え）*することです。2 番目のアプローチは、望む変更を加えた新しいデータのコピーで古いデータを置き換えることです。
 

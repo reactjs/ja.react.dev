@@ -40,16 +40,7 @@ React は JavaScript ライブラリなので、JavaScript 言語の基本的な
 
 >補足
 >
-<<<<<<< HEAD
->This guide occasionally uses some newer JavaScript syntax in the examples. If you haven't worked with JavaScript in the last few years, [these three points](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) should get you most of the way.
-
-
-## Let's Get Started! {#lets-get-started}
-
-Keep scrolling down, and you'll find the link to the [next chapter of this guide](/docs/introducing-jsx.html) right before the website footer.
-=======
 >このガイドでは時折比較的新しい JavaScript の構文を例の中で使用しています。ここ数年 JavaScript を使った仕事をしていなかったという場合は、[この 3 点](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c)を理解すればだいたい理解したことになるでしょう。
->>>>>>> origin
 
 ## 始めましょう！ {#lets-get-started}
 
