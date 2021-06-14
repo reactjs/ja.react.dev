@@ -205,7 +205,11 @@ ReactDOM.render(
 
 ### key は兄弟要素の中で一意であればよい {#keys-must-only-be-unique-among-siblings}
 
+<<<<<<< HEAD
 配列内で使われる key はその兄弟要素の中で一意である必要があります。しかしグローバルに一意である必要はありません。2 つの異なる配列を作る場合は、同一の key が使われても構いません：
+=======
+Keys used within arrays should be unique among their siblings. However, they don't need to be globally unique. We can use the same keys when we produce two different arrays:
+>>>>>>> f3baa6d075c8de475b688abf035d7054bc8a9606
 
 ```js{2,5,11,12,19,21}
 function Blog(props) {

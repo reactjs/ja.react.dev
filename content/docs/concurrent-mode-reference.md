@@ -16,9 +16,18 @@ prev: concurrent-mode-adoption.html
 
 >警告:
 >
+<<<<<<< HEAD
 > このページでは**安定リリースで[まだ利用できない](/docs/concurrent-mode-adoption.html)実験的機能**を説明しています。本番のアプリケーションで React の実験的ビルドを利用しないでください。これらの機能は React の一部となる前に警告なく大幅に変更される可能性があります。
 >
 > このドキュメントは興味のある読者やアーリーアダプター向けのものです。**React が初めての方はこれらの機能を気にしないで構いません** -- 今すぐに学ぶ必要はありません。
+=======
+>This page was about experimental features that aren't yet available in a stable release. It was aimed at early adopters and people who are curious.
+>
+>Much of the information on this page is now outdated and exists only for archival purposes. **Please refer to the [React 18 Alpha announcement post](/blog/2021/06/08/the-plan-for-react-18.html
+) for the up-to-date information.**
+>
+>Before React 18 is released, we will replace this page with stable documentation.
+>>>>>>> f3baa6d075c8de475b688abf035d7054bc8a9606
 
 </div>
 
@@ -28,8 +37,12 @@ prev: concurrent-mode-adoption.html
 
 - [並列モードの有効化](#concurrent-mode)
     - [`createRoot`](#createroot)
+<<<<<<< HEAD
     - [`createBlockingRoot`](#createblockingroot)
 - [サスペンス API](#suspense)
+=======
+- [Suspense](#suspense)
+>>>>>>> f3baa6d075c8de475b688abf035d7054bc8a9606
     - [`Suspense`](#suspensecomponent)
     - [`SuspenseList`](#suspenselist)
     - [`useTransition`](#usetransition)
@@ -47,6 +60,7 @@ ReactDOM.createRoot(rootNode).render(<App />);
 
 並列モードについての詳細は[並列モードのドキュメント](/docs/concurrent-mode-intro.html)を参照してください。
 
+<<<<<<< HEAD
 ### `createBlockingRoot` {#createblockingroot}
 
 ```js
@@ -60,6 +74,9 @@ ReactDOM.createBlockingRoot(rootNode).render(<App />)
 ブロッキングモードには並列モードの機能の小さなサブセットのみが含まれているので、直接的な移行ができないアプリケーションのための中間的な移行ステップとなることを意図しています。
 
 ## サスペンス API {#suspense}
+=======
+## Suspense API {#suspense}
+>>>>>>> f3baa6d075c8de475b688abf035d7054bc8a9606
 
 ### `Suspense` {#suspensecomponent}
 
@@ -72,7 +89,11 @@ ReactDOM.createBlockingRoot(rootNode).render(<App />)
 
 `Suspense` により、レンダー可能になる前にコンポーネントが「待機」し、待機中にフォールバックを表示できるようになります。
 
+<<<<<<< HEAD
 上記の例では、`ProfileDetails` は何らかのデータを取得するために非同期 API コールを待機しています。`ProfileDetails` と `ProfilePhoto` を待機している間、`Loading...` というフォールバックを代わりに表示します。`<Suspense>` 内のすべての子要素がロードされるまでは、フォールバックが表示されつづけることに注意することが重要です。
+=======
+In this example, `ProfileDetails` is waiting for an asynchronous API call to fetch some data. While we wait for `ProfileDetails` and `ProfilePhoto`, we will show the `Loading...` fallback instead. It is important to note that until all children inside `<Suspense>` have loaded, we will continue to show the fallback.
+>>>>>>> f3baa6d075c8de475b688abf035d7054bc8a9606
 
 `Suspense` は 2 つの props を受け取ります：
 * **fallback** はローディングインジケータを受け取ります。フォールバックは `Suspense` コンポーネントのすべての子要素がレンダーを完了するまで表示されます。

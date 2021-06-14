@@ -132,6 +132,7 @@
     - id: testing-recipes
       title: テストのレシピ集
     - id: testing-environments
+<<<<<<< HEAD
       title: テスト環境
 - title: Concurrent Mode (Experimental)
   isOrdered: true
@@ -146,6 +147,9 @@
       title: 並列モードの利用開始
     - id: concurrent-mode-reference
       title: 並列モード API リファレンス
+=======
+      title: Testing Environments
+>>>>>>> f3baa6d075c8de475b688abf035d7054bc8a9606
 - title: Contributing
   items:
     - id: how-to-contribute
