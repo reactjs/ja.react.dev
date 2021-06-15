@@ -29,27 +29,27 @@ React でのイベント処理は DOM 要素のイベントの処理と非常に
 </button>
 ```
 
-別の違いとして、React では `false` を返してもデフォルトの動作を抑止することができません。明示的に `preventDefault` を呼び出す必要があります。例えば、プレーンな HTML では、「新しいページを開く」というリンクのデフォルト動作を抑止するために次のように書くことができます。
+別の違いとして、React では `false` を返してもデフォルトの動作を抑止することができません。明示的に `preventDefault` を呼び出す必要があります。例えば、プレーンな HTML では、「フォームをサブミットする」という form 要素のデフォルト動作を抑止するために次のように書くことができます。
 
 ```html
-<a href="#" onclick="console.log('The link was clicked.'); return false">
-  Click me
-</a>
+<form onsubmit="console.log('You clicked submit.'); return false">
+  <button type="submit">Submit</button>
+</form>
 ```
 
 React では、代わりに次のようになります：
 
-```js{2-5,8}
-function ActionLink() {
-  function handleClick(e) {
+```js{3}
+function Form() {
+  function handleSubmit(e) {
     e.preventDefault();
-    console.log('The link was clicked.');
+    console.log('You clicked submit.');
   }
 
   return (
-    <a href="#" onClick={handleClick}>
-      Click me
-    </a>
+    <form onSubmit={handleSubmit}>
+      <button type="submit">Submit</button>
+    </form>
   );
 }
 ```
@@ -71,8 +71,8 @@ class Toggle extends React.Component {
   }
 
   handleClick() {
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
     }));
   }
 

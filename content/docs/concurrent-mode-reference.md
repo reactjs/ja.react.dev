@@ -28,7 +28,6 @@ prev: concurrent-mode-adoption.html
 
 - [並列モードの有効化](#concurrent-mode)
     - [`createRoot`](#createroot)
-    - [`createBlockingRoot`](#createblockingroot)
 - [サスペンス API](#suspense)
     - [`Suspense`](#suspensecomponent)
     - [`SuspenseList`](#suspenselist)
@@ -46,18 +45,6 @@ ReactDOM.createRoot(rootNode).render(<App />);
 `ReactDOM.render(<App />, rootNode)` を置き換えて、並列モードを有効化します。
 
 並列モードについての詳細は[並列モードのドキュメント](/docs/concurrent-mode-intro.html)を参照してください。
-
-### `createBlockingRoot` {#createblockingroot}
-
-```js
-ReactDOM.createBlockingRoot(rootNode).render(<App />)
-```
-
-`ReactDOM.render(<App />, rootNode)` を置き換えて[ブロッキングモード](/docs/concurrent-mode-adoption.html#migration-step-blocking-mode)を有効化します。
-
-並列モードにオプトインすることで React の動作方法について意味上の変更が加わります。これは少数のコンポーネントだけで並列モードを使うということが不可能であるということを意味します。このため、いくつかのアプリケーションでは並列モードに直接移行することができないかもしれません。
-
-ブロッキングモードには並列モードの機能の小さなサブセットのみが含まれているので、直接的な移行ができないアプリケーションのための中間的な移行ステップとなることを意図しています。
 
 ## サスペンス API {#suspense}
 

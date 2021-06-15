@@ -76,6 +76,7 @@ function Counter({initialCount}) {
 > クラスコンポーネントの `setState` メソッドとは異なり、`useState` は自動的な更新オブジェクトのマージを行いません。この動作は関数型の更新形式をスプレッド構文と併用することで再現可能です：
 >
 > ```js
+> const [state, setState] = useState({});
 > setState(prevState => {
 >   // Object.assign would also work
 >   return {...prevState, ...updatedValues};
