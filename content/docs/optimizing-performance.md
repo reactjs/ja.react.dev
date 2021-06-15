@@ -175,7 +175,7 @@ React DevTools をまだインストールしていない場合は、以下で�
 
 > 捕捉
 >
-> React 17 以前は、標準の [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) を用いて Chrome のパフォーマンスタブでコンポーネントのプロファイリングを行います。
+> React 17 より前のバージョンでは、標準の [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) を用いて Chrome のパフォーマンスタブでコンポーネントのプロファイリングが行われていました。
 > これについての概要は [Ben Schwarz によるこの記事](https://calibreapp.com/blog/react-performance-profiling-optimization)を参照してください。
 
 ## 長いリストの仮想化 {#virtualize-long-lists}
