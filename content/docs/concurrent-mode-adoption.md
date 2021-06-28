@@ -17,6 +17,7 @@ next: concurrent-mode-reference.html
 
 >警告:
 >
+<<<<<<< HEAD
 > このページでは**安定リリースで[まだ利用できない](/docs/concurrent-mode-adoption.html)実験的機能**を説明しています。本番のアプリケーションで React の実験的ビルドを利用しないでください。これらの機能は React の一部となる前に警告なく大幅に変更される可能性があります。
 >
 > このドキュメントは興味のある読者やアーリーアダプター向けのものです。**React が初めての方はこれらの機能を気にしないで構いません** -- 今すぐに学ぶ必要はありません。
@@ -24,6 +25,14 @@ next: concurrent-mode-reference.html
 >警告:
 >
 > 「ブロッキングモード」および `createBlockingRoot` に関する以下の記載はすべて古くなっていますので無視するようにしてください。
+=======
+>This page was about experimental features that aren't yet available in a stable release. It was aimed at early adopters and people who are curious.
+>
+>Much of the information on this page is now outdated and exists only for archival purposes. **Please refer to the [React 18 Alpha announcement post](/blog/2021/06/08/the-plan-for-react-18.html
+) for the up-to-date information.**
+>
+>Before React 18 is released, we will replace this page with stable documentation.
+>>>>>>> 25f756d8e3800afb032cb31ce3626d6134e31e38
 
 </div>
 
