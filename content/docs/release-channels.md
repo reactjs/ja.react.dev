@@ -18,11 +18,7 @@ React の各リリースチャンネルは、明確なユースケースのた�
 - [**Next**](#next-channel) は React ソースコードのリポジトリの master ブランチを追跡します。これを、次のマイナーバージョンのリリース候補と考えてください。React とサードパーティプロジェクト間のインテグレーションテストにこれを使用します。
 - [**Experimental**](#experimental-channel) には、安定版のリリースでは使用できない実験的な API や機能が含まれます。これも master ブランチを追跡しますが、追加のフィーチャー・フラグが有効になっています。近々予定されているリリース前の機能を試すためにこれを使用してください。
 
-<<<<<<< HEAD
-全てのリリースが npm に公開されていますが、Latest のみが[セマンティック・バージョニング](/docs/faq-versioning.html)を使用します。プレリリース（Next チャンネルと Experimental チャンネル）は、Next の場合は `0.0.0-1022ee0ec`、Experimental の場合は `0.0.0-experimental-1022ee0ec` のように、コンテンツのハッシュから生成されたバージョンを持ちます。
-=======
-All releases are published to npm, but only Latest uses [semantic versioning](/docs/faq-versioning.html). Prereleases (those in the Next and Experimental channels) have versions generated from a hash of their contents and the commit date, e.g. `0.0.0-68053d940-20210623` for Next and `0.0.0-experimental-68053d940-20210623` for Experimental.
->>>>>>> 25f756d8e3800afb032cb31ce3626d6134e31e38
+全てのリリースが npm に公開されていますが、Latest のみが[セマンティック・バージョニング](/docs/faq-versioning.html)を使用します。プレリリース（Next チャンネルと Experimental チャンネル）は、Next の場合は `0.0.0-68053d940-20210623`、Experimental の場合は `0.0.0-experimental-68053d940-20210623` のように、コンテンツのハッシュとコミット日時から生成されたバージョンを持ちます。
 
 **Latest が、ユーザ向けアプリケーションのために公式にサポートされた唯一のリリースチャンネルです。**Next と Experimental はテスト目的のためにのみ提供されており、また、リリース間で動作が変わらないことも保証されません。これらは、Latest リリースで使用しているセマンティック・バージョニングに準拠していません。
 
@@ -44,11 +40,7 @@ Next チャンネルは、React リポジトリの master ブランチを追跡�
 
 **プレリリースをユーザ向けアプリケーションに使用しないでください。**
 
-<<<<<<< HEAD
-Next リリースは、npm の `next` タグで公開されています。`0.0.0-1022ee0ec` のように、ビルドされたコンテンツのハッシュから、バージョンが生成されます。
-=======
-Releases in Next are published with the `next` tag on npm. Versions are generated from a hash of the build's contents and the commit date, e.g. `0.0.0-68053d940-20210623`.
->>>>>>> 25f756d8e3800afb032cb31ce3626d6134e31e38
+Next リリースは、npm に `next` タグ付きで公開されています。`0.0.0-68053d940-20210623` のように、ビルドされたコンテンツのハッシュおよびコミット日時から、バージョンが生成されます。
 
 #### インテグレーションテストに Next チャンネルを使用する {#using-the-next-channel-for-integration-testing}
 
@@ -84,11 +76,7 @@ Next チャンネルと同じく、Experimental チャンネルは React リポ�
 
 Experimental リリースは、Next や Latest のリリースとは大きく異なる場合があります。**Experimental リリースを、ユーザ向けアプリケーションに使用しないでください。**リリース間で頻繁に破壊的変更が発生しうるということを、Experimental チャンネルでは予期しなければなりません。
 
-<<<<<<< HEAD
-Experimental リリースは、npm の `experimental` タグで公開されています。`0.0.0-experimental-1022ee0ec` のように、ビルドされたコンテンツのハッシュから、バージョンが生成されます。
-=======
-Releases in Experimental are published with the `experimental` tag on npm. Versions are generated from a hash of the build's contents and the commit date, e.g. `0.0.0-experimental-68053d940-20210623`.
->>>>>>> 25f756d8e3800afb032cb31ce3626d6134e31e38
+Experimental リリースは、npm に `experimental` タグ付きで公開されています。`0.0.0-experimental-68053d940-20210623` のように、ビルドされたコンテンツのハッシュおよびコミット日時から、バージョンが生成されます。
 
 #### Experimental リリースには何が含まれていますか？ {#what-goes-into-an-experimental-release}
 
