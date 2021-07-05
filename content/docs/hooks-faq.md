@@ -990,6 +990,7 @@ React は現在どのコンポーネントがレンダー中なのかを把握�
 
 フックは複数の異なった出典からのアイディアを総合したものです：
 
+<<<<<<< HEAD
 * [react-future](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) リポジトリにおける関数型 API の古い実験。
 * [Ryan Florence](https://github.com/ryanflorence) の [Reactions Component](https://github.com/reactions/component) を含む、React コミュニティのレンダープロップ API に関する実験。
 * [Dominic Gannaway](https://github.com/trueadm) によって提案された、レンダープロップの糖衣構文としての [`adopt` keyword](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067)。
@@ -997,5 +998,14 @@ React は現在どのコンポーネントがレンダー中なのかを把握�
 * ReasonReact の [Reducer components](https://reasonml.github.io/reason-react/docs/en/state-actions-reducer.html)。
 * Rx の [Subscriptions](http://reactivex.io/rxjs/class/es6/Subscription.js~Subscription.html)。
 * Multicore OCaml の [Algebraic effects](https://github.com/ocamllabs/ocaml-effects-tutorial#2-effectful-computations-in-a-pure-setting)。
+=======
+* Our old experiments with functional APIs in the [react-future](https://github.com/reactjs/react-future/tree/main/07%20-%20Returning%20State) repository.
+* React community's experiments with render prop APIs, including [Ryan Florence](https://github.com/ryanflorence)'s [Reactions Component](https://github.com/reactions/component).
+* [Dominic Gannaway](https://github.com/trueadm)'s [`adopt` keyword](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067) proposal as a sugar syntax for render props.
+* State variables and state cells in [DisplayScript](http://displayscript.org/introduction.html).
+* [Reducer components](https://reasonml.github.io/reason-react/docs/en/state-actions-reducer.html) in ReasonReact.
+* [Subscriptions](http://reactivex.io/rxjs/class/es6/Subscription.js~Subscription.html) in Rx.
+* [Algebraic effects](https://github.com/ocamllabs/ocaml-effects-tutorial#2-effectful-computations-in-a-pure-setting) in Multicore OCaml.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 フックは [Sebastian Markbåge](https://github.com/sebmarkbage) が最初のデザインを作り、[Andrew Clark](https://github.com/acdlite)、[Sophie Alpert](https://github.com/sophiebits)、[Dominic Gannaway](https://github.com/trueadm) およびその他の React チームのメンバーが洗練させました。

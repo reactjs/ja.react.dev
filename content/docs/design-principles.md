@@ -22,7 +22,11 @@ React の主な機能はコンポーネントのコンポジションです。�
 
 たとえば、コンポーネントを使用する側を変更せずに、コンポーネントにローカル state を導入することが可能であるべきです。同様に、必要に応じて初期化と終了処理を任意のコンポーネントに追加できるべきです。
 
+<<<<<<< HEAD
 コンポーネントで state またはライフサイクルメソッドを使用することについて「悪い」ことは何もありません。他の強力な機能と同様に適度に使用する必要がありますが、私たちはそれらを削除するつもりはありません。それどころか、それらは React を有用にするものとして不可欠な部分であると思います。将来的には[より関数型的なパターン](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State)を使用可能にするかもしれませんが、ローカルステートとライフサイクルメソッドの両方がそのモデルの一部になるでしょう。
+=======
+There is nothing "bad" about using state or lifecycle methods in components. Like any powerful feature, they should be used in moderation, but we have no intention to remove them. On the contrary, we think they are integral parts of what makes React useful. We might enable [more functional patterns](https://github.com/reactjs/react-future/tree/main/07%20-%20Returning%20State) in the future, but both local state and lifecycle methods will be a part of that model.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 コンポーネントはしばしば「単なる関数」と表現されますが、私たちの見解では、それらは有用であるために単なる関数以上である必要があります。React では、コンポーネントは組み合わせ可能な動作を記述します。そしてこれには、レンダリング、ライフサイクル、および state が含まれます。[Relay](https://facebook.github.io/relay/) のようないくつかの外部ライブラリは、データの依存関係を記述するといったような他の責任をコンポーネントに付け加えます。それらのアイデアが何らかの形で React に改めて取り込まれるということも有り得ます。
 
@@ -92,7 +96,11 @@ React は完全に「リアクティブ」であることを望んでいない�
 
 良い開発者経験を提供することは私達にとって重要です。
 
+<<<<<<< HEAD
 たとえば、Chrome と Firefox で React コンポーネントツリーを調べることができる [React DevTools](https://github.com/facebook/react/tree/master/packages/react-devtools) をメンテしています。私たちは、それが Facebook エンジニアとコミュニティの両方に大きな生産性向上をもたらしていると聞いています。
+=======
+For example, we maintain [React DevTools](https://github.com/facebook/react/tree/main/packages/react-devtools) which let you inspect the React component tree in Chrome and Firefox. We have heard that it brings a big productivity boost both to the Facebook engineers and to the community.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 私たちは開発者向けの有用な警告を提供するために、一層の努力をするようにしています。たとえば、React は開発中にブラウザが理解できない方法でタグをネストした場合、または API で一般的な入力ミスをした場合に警告します。開発者向けの警告とそれに関連するチェックが、React の開発版が製品版より遅い主な理由です。
 
