@@ -158,7 +158,7 @@ Flow の型チェックを、コメントが含まれているかにかかわら
 
 ## TypeScript {#typescript}
 
-[TypeScript](https://www.typescriptlang.org/) は Microsoft によって開発されたプログラミング言語です。型を所有した Javascript のスーパーセットで、独自のコンパイラを所持しています。TypeScript は型言語であるため、実行前のビルド時にエラーやバグを検知することができます。React と TypeScript を組み合わせて使うことに関しては、[ここ](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter)にも詳しく記載されています。
+[TypeScript](https://www.typescriptlang.org/) は Microsoft によって開発されたプログラミング言語です。型を所有した JavaScript のスーパーセットで、独自のコンパイラを所持しています。TypeScript は型言語であるため、実行前のビルド時にエラーやバグを検知することができます。React と TypeScript を組み合わせて使うことに関しては、[ここ](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter)にも詳しく記載されています。
 
 TypeScript を使うためには以下のことを行います。
 * TypeScript をプロジェクトの dependency に入れる。
@@ -310,7 +310,7 @@ declare module 'querystring' {
 }
 ```
 
-これでコードを書く準備は整いました！ Typescript についてより深く知りたい場合には以下の資料が役立つでしょう。
+これでコードを書く準備は整いました！ TypeScript についてより深く知りたい場合には以下の資料が役立つでしょう。
 
 * [TypeScript Documentation: Everyday Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html)
 * [TypeScript Documentation: Migrating from JavaScript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
