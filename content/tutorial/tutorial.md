@@ -235,7 +235,7 @@ Square コンポーネントがクリックされた場合に "X" と表示さ�
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" onClick={function() { alert('click'); }}>
+      <button className="square" onClick={function() { console.log('click'); }}>
         {this.props.value}
       </button>
     );
@@ -243,7 +243,11 @@ class Square extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 ここで Square をクリックすると、ブラウザでアラートが表示されるはずです。
+=======
+If you click on a Square now, you should see 'click' in your browser's devtools console.
+>>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
 
 >補足
 >
@@ -253,7 +257,7 @@ class Square extends React.Component {
 >class Square extends React.Component {
 >  render() {
 >    return (
->      <button className="square" onClick={() => alert('click')}>
+>      <button className="square" onClick={() => console.log('click')}>
 >        {this.props.value}
 >      </button>
 >    );
@@ -261,7 +265,11 @@ class Square extends React.Component {
 >}
 >```
 >
+<<<<<<< HEAD
 > `onClick={() => alert('click')}` と記載したときに `onClick` プロパティに渡しているのは*関数*であることに注意してください。React はクリックされるまでこの関数を実行しません。`() =>` を書くのを忘れて `onClick={alert('click')}` と書くのはよくある間違いであり、こうするとコンポーネントが再レンダーされるたびにアラートが表示されてしまいます。
+=======
+>Notice how with `onClick={() => console.log('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={console.log('click')}` is a common mistake, and would fire every time the component re-renders.
+>>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
 
 次のステップとして、Square コンポーネントに自分がクリックされたことを「覚えさせ」て、"X" マークでマスを埋めるようにさせます。コンポーネントが何かを「覚える」ためには、**state** というものを使います。
 
@@ -280,7 +288,7 @@ class Square extends React.Component {
 
   render() {
     return (
-      <button className="square" onClick={() => alert('click')}>
+      <button className="square" onClick={() => console.log('click')}>
         {this.props.value}
       </button>
     );
