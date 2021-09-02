@@ -39,9 +39,15 @@ React のすばらしい特長がいくつもありますが、あなたがど�
 
 JSON のデータモデルをユーザに向けて表示することはよくありますので、モデルを正しく構築されていれば、UI（つまりコンポーネントの構造）にもうまくマッピングされるということが分かるでしょう。これは、UI とデータモデルが同じ **情報の構造** を持つ傾向があるためです。UI を分割して、それぞれのコンポーネントがデータモデルの厳密に一部分だけを表現するよう、落とし込みましょう。
 
+<<<<<<< HEAD
 ![コンポーネント図](../images/blog/thinking-in-react-components.png)
 
 5 種類のコンポーネントがこのアプリの中にあることが見て取れます。それぞれの解説の中で、データを表すものについては**太字**にしました。
+=======
+![Diagram showing nesting of components](../images/blog/thinking-in-react-components.png)
+
+You'll see here that we have five components in our app. We've italicized the data each component represents. The numbers in the image correspond to the numbers below.
+>>>>>>> a11c2534062bd79cc1e6e34db0e149f928df35bb
 
   1. **`FilterableProductTable`（オレンジ色）：** このサンプル全体を含む
   2. **`SearchBar`（青色）：** すべての*ユーザ入力*を受け付ける
