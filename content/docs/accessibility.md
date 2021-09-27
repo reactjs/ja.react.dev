@@ -226,7 +226,11 @@ class Parent extends React.Component {
 this.inputElement.current.focus();
 ```
 
+<<<<<<< HEAD
 コンポーネントを拡張するのに高階コンポーネント (HOC) を使う場合は、React の `forwardRef` 関数を用いて、関数に囲われたコンポーネントに [ref をフォワーディング (forwarding) する](/docs/forwarding-refs.html) ことをおすすめします。もし、サードパーティの高階コンポーネントが ref フォワーディングを実装していないときでも、上記のパターンはフォールバックとして使えます。
+=======
+When using a [HOC](/docs/higher-order-components.html) to extend components, it is recommended to [forward the ref](/docs/forwarding-refs.html) to the wrapped component using the `forwardRef` function of React. If a third party HOC does not implement ref forwarding, the above pattern can still be used as a fallback.
+>>>>>>> 4fab3d31469ab7a53dbf8b50cab5d57880a0c035
 
 良いフォーカス管理の例は [react-aria-modal](https://github.com/davidtheclark/react-aria-modal) です。これは完全にアクセシブルなモーダルウィンドウの比較的珍しい例です。このライブラリは、最初のフォーカスをキャンセルボタンに設定し（これは、キーボードを使っているユーザがうっかり次のアクションに移ってしまうのを防ぎます）、モーダルの中でキーボードフォーカスが閉じているだけでなく、最初にモーダルを開いた要素にフォーカスを戻してもくれます。
 
