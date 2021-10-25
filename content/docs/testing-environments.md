@@ -55,4 +55,8 @@ Node.js では、Jest のようなテストランナーは[モジュールのモ
 
 End-to-end テストは長いワークフロー、特にあなたの業務にとってとても重要なワークフロー（例えば支払いやサインアップ）をテストするのに有用です。これらのテストをする際は、本物のブラウザがアプリケーション全体をいかに描画し、本物の API エンドポイントからいかにデータを取得し、セッションやクッキーをいかに使い、さまざまなリンク間でいかにナビゲーションするかをすべて試験したいでしょう。また、おそらく DOM の状態だけではなく、バックエンドのデータに対する検証（例えばデータベースに更新が正しく永続化されているかの確認）も行いたいかもしれません。
 
+<<<<<<< HEAD
 このようなシナリオの場合は、[Cypress](https://www.cypress.io/) のようなフレームワークや [puppeteer](https://github.com/GoogleChrome/puppeteer) のようなライブラリを使うことで、複数のルート間をナビゲートし、ブラウザのみならず、必要に応じてバックエンド側の副作用についても検証を行うことができるでしょう。
+=======
+In this scenario, you would use a framework like [Cypress](https://www.cypress.io/), [Playwright](https://playwright.dev) or a library like [Puppeteer](https://pptr.dev/) so you can navigate between multiple routes and assert on side effects not just in the browser, but potentially on the backend as well.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3

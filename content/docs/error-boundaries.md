@@ -62,7 +62,11 @@ class ErrorBoundary extends React.Component {
 
 error boundary はコンポーネントに対して JavaScript の `catch {}` ブロックのように動作します。error boundary になれるのはクラスコンポーネントだけです。実用上、一度だけ error boundary を定義してそれをアプリケーションの至るところで使用することがよくあります。
 
+<<<<<<< HEAD
 **error boundary は配下のツリー内のコンポーネントで発生したエラーのみをキャッチする**ことに注意してください。error boundary は自身で起こるエラーをキャッチできません。error boundary がエラーメッセージのレンダーに失敗した場合、そのエラーは最も近い上位の error boundary に伝搬します。この動作もまた、JavaScript の catch {} ブロックの動作と似ています。
+=======
+Note that **error boundaries only catch errors in the components below them in the tree**. An error boundary can’t catch an error within itself. If an error boundary fails trying to render the error message, the error will propagate to the closest error boundary above it. This, too, is similar to how the `catch {}` block works in JavaScript.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 ## ライブデモ {#live-demo}
 

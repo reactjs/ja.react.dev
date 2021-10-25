@@ -39,7 +39,11 @@ next: concurrent-mode-suspense.html
 
 ## ブロッキングレンダリングと中断可能レンダリング {#blocking-vs-interruptible-rendering}
 
+<<<<<<< HEAD
 **並列モードの説明のために、バージョンコントロールを使った例え話をします。**チームで働いていれば、Git のようなバージョンコントロールを使ってブランチで作業していることでしょう。ブランチの準備が完了したら、マスターブランチに作業をマージして、他の人が pull できるようにします。
+=======
+**To explain Concurrent Mode, we'll use version control as a metaphor.** If you work on a team, you probably use a version control system like Git and work on branches. When a branch is ready, you can merge your work into main so that other people can pull it.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 バージョンコントロールが存在するより前は、開発のワークフローはとても異なったものでした。ブランチという概念はありませんでした。何かのファイルを編集したいと思ったら、作業が終わるまでそのファイルに触れないよう全員に伝える必要がありました。その人と同時には作業を始めることすらできませんでした。文字通り**ブロック**されていたのです。
 
@@ -63,7 +67,11 @@ next: concurrent-mode-suspense.html
 
 ### 計画的なローディングシーケンス {#intentional-loading-sequences}
 
+<<<<<<< HEAD
 並列モードとは React が "ブランチで" 作業するようなものだと言いました。ブランチは短期的な修正のためだけではなく、長期的な機能の実装の際にも有用ですね。ある機能のために作業をしていて、master にマージするのに「十分良い」状態になるまで何週間もかかる、ということがありえます。バージョンコントロールの比喩は、この部分でもレンダーに当てはまります。
+=======
+We've said before that Concurrent Mode is like React working "on a branch". Branches are useful not only for short-term fixes, but also for long-running features. Sometimes you might work on a feature, but it could take weeks before it's in a "good enough state" to merge into main. This side of our version control metaphor applies to rendering too.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 例えばアプリケーションの 2 つの画面を遷移しているところを考えてください。時に、新しい画面ではユーザに表示するだけの「十分な」コードやデータがまだロードされていない、ということがあります。空のスクリーンや大きなスピナーに遷移することは不快なユーザ体験につながります。一方で必要なコードやデータは取得するのにそれほど長い時間はかからないことも多いです。**もし React が旧画面にもう少しだけ留まることで、新画面を表示する前の「望ましくないロード中状態」をスキップできたら良いと思いませんか？**
 

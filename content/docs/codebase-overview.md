@@ -19,9 +19,15 @@ redirect_from:
 
 [React リポジトリ](https://github.com/facebook/react)をクローンした後、プロジェクトのルートディレクトリに複数のフォルダがあることに気がつくでしょう：
 
+<<<<<<< HEAD
 * [`packages`](https://github.com/facebook/react/tree/master/packages) には React リポジトリの全てのパッケージのメタデータ（`package.json` など）や、ソースコード（`src` サブディレクトリ）が含まれています。**あなたの変更がコードに関するものなら、各パッケージの `src` サブディレクトリが作業時間のほとんどを過ごす場所となります**。
 * [`fixtures`](https://github.com/facebook/react/tree/master/fixtures) にはコントリビューター向けの React の小さなテスト用アプリケーションが含まれています。
 * `build` は React のビルド出力です。リポジトリには存在しませんが、最初に [React をビルドした](/docs/how-to-contribute.html#development-workflow)後に clone した React ディレクトリに現れます。
+=======
+* [`packages`](https://github.com/facebook/react/tree/main/packages) contains metadata (such as `package.json`) and the source code (`src` subdirectory) for all packages in the React repository. **If your change is related to the code, the `src` subdirectory of each package is where you'll spend most of your time.**
+* [`fixtures`](https://github.com/facebook/react/tree/main/fixtures) contains a few small React test applications for contributors.
+* `build` is the build output of React. It is not in the repository but it will appear in your React clone after you [build it](/docs/how-to-contribute.html#development-workflow) for the first time.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 ドキュメントは [React 本体とは異なるリポジトリ](https://github.com/reactjs/reactjs.org)にホスティングされています。
 
@@ -98,7 +104,11 @@ React は[単一リポジトリ (monorepo)](http://danluu.com/monorepo/) です�
 
 ### React コア (core) {#react-core}
 
+<<<<<<< HEAD
 React の「コア (core)」は[最上位の React API](/docs/top-level-api.html#react) を全て含んでいます。例えば：
+=======
+The "core" of React includes all the [top-level `React` APIs](/docs/react-api.html#react), for example:
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 * `React.createElement()`
 * `React.Component`
@@ -106,7 +116,11 @@ React の「コア (core)」は[最上位の React API](/docs/top-level-api.html
 
 **React core にはコンポーネントの定義に必要な API のみが含まれています。**[リコンシリエーション](/docs/reconciliation.html)のアルゴリズムやあらゆるプラットフォーム固有のコードは含まれません。コアは React DOM や React Native コンポーネントに使われています。
 
+<<<<<<< HEAD
 React core のコードはソースツリーの [`packages/react`](https://github.com/facebook/react/tree/master/packages/react) に格納されています。npm では [`react`](https://www.npmjs.com/package/react) パッケージとして利用可能です。対応するスタンドアロンなブラウザ向けのビルドは `react.js` と呼ばれ、`React` というグローバル変数をエクスポートします。
+=======
+The code for React core is located in [`packages/react`](https://github.com/facebook/react/tree/main/packages/react) in the source tree. It is available on npm as the [`react`](https://www.npmjs.com/package/react) package. The corresponding standalone browser build is called `react.js`, and it exports a global called `React`.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 ### レンダラ {#renderers}
 
@@ -114,6 +128,7 @@ React は元々 DOM のために作成されましたが、後になって [Reac
 
 **レンダラは React ツリーを、基盤となるプラットフォーム固有の呼び出しへと変換する方法を管理します。**
 
+<<<<<<< HEAD
 レンダラは [`packages/`](https://github.com/facebook/react/tree/master/packages/) にも格納されています：
 
 * [React DOM Renderer](https://github.com/facebook/react/tree/master/packages/react-dom) は React コンポーネントを DOM に変換します。[トップレベルの `ReactDOM` API](/docs/react-dom.html) を実装し、npm では [`react-dom`](https://www.npmjs.com/package/react-dom) パッケージとして利用可能です。`react-dom.js` と呼ばれるスタンドアロンなブラウザ向けバンドルとしても使用でき、`ReactDOM` というグローバル変数をエクスポートします。
@@ -121,10 +136,23 @@ React は元々 DOM のために作成されましたが、後になって [Reac
 * [React Test Renderer](https://github.com/facebook/react/tree/master/packages/react-test-renderer) は React コンポーネントを JSON ツリーに変換します。[Jest](https://facebook.github.io/jest) の[スナップショットテスト機能](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html)で使用され、npm では [react-test-renderer](https://www.npmjs.com/package/react-test-renderer) パッケージとして利用可能です。
 
 その他に公式にサポートしているレンダラは [`react-art`](https://github.com/facebook/react/tree/master/packages/react-art) だけです。個別の [GitHub リポジトリ](https://github.com/reactjs/react-art)にありましたが、現在はメインのソースツリーに移動しました。
+=======
+Renderers are also located in [`packages/`](https://github.com/facebook/react/tree/main/packages/):
+
+* [React DOM Renderer](https://github.com/facebook/react/tree/main/packages/react-dom) renders React components to the DOM. It implements [top-level `ReactDOM` APIs](/docs/react-dom.html) and is available as [`react-dom`](https://www.npmjs.com/package/react-dom) npm package. It can also be used as standalone browser bundle called `react-dom.js` that exports a `ReactDOM` global.
+* [React Native Renderer](https://github.com/facebook/react/tree/main/packages/react-native-renderer) renders React components to native views. It is used internally by React Native.
+* [React Test Renderer](https://github.com/facebook/react/tree/main/packages/react-test-renderer) renders React components to JSON trees. It is used by the [Snapshot Testing](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html) feature of [Jest](https://facebook.github.io/jest) and is available as [react-test-renderer](https://www.npmjs.com/package/react-test-renderer) npm package.
+
+The only other officially supported renderer is [`react-art`](https://github.com/facebook/react/tree/main/packages/react-art). It used to be in a separate [GitHub repository](https://github.com/reactjs/react-art) but we moved it into the main source tree for now.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 >**補足：**
 >
+<<<<<<< HEAD
 >技術的に、[`react-native-renderer`](https://github.com/facebook/react/tree/master/packages/react-native-renderer) は React に React Native の実装とやり取りの方法を教える非常に薄い層です。ネイティブのビューを管理する実際のプラットフォーム固有のコードは、コンポーネントと共に [React Native リポジトリ](https://github.com/facebook/react-native) にあります。
+=======
+>Technically the [`react-native-renderer`](https://github.com/facebook/react/tree/main/packages/react-native-renderer) is a very thin layer that teaches React to interact with React Native implementation. The real platform-specific code managing the native views lives in the [React Native repository](https://github.com/facebook/react-native) together with its components.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 ### リコンサイラ (reconciler) {#reconcilers}
 
@@ -152,11 +180,19 @@ React DOM と React Native のように大幅に異なるレンダラでも多�
 
 React Fiber のアーキテクチャに関して[ここ](https://github.com/acdlite/react-fiber-architecture)や[ここ](https://blog.ag-grid.com/inside-fiber-an-in-depth-overview-of-the-new-reconciliation-algorithm-in-react)で読むことができます。React 16 と共にリリースされていますが、非同期機能についてはデフォルトではまだ有効化されていません。
 
+<<<<<<< HEAD
 ソースコードは [`packages/react-reconciler`](https://github.com/facebook/react/tree/master/packages/react-reconciler) に格納されています。
+=======
+Its source code is located in [`packages/react-reconciler`](https://github.com/facebook/react/tree/main/packages/react-reconciler).
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 ### イベントシステム {#event-system}
 
+<<<<<<< HEAD
 React はブラウザ間でのイベント挙動の差異を吸収するため、ネイティブイベントの上にレイヤーを実装しています。ソースコードは [`packages/react-dom/src/events`](https://github.com/facebook/react/tree/master/packages/react-dom/src/events) にあります。
+=======
+React implements a layer over native events to smooth out cross-browser differences. Its source code is located in [`packages/react-dom/src/events`](https://github.com/facebook/react/tree/main/packages/react-dom/src/events).
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 ### この次は？ {#what-next}
 

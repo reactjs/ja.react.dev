@@ -123,7 +123,11 @@ React コンポーネントを HTML ページの一箇所だけではなくい�
 
 ## オプション：React で JSX を使う {#optional-try-react-with-jsx}
 
+<<<<<<< HEAD
 今までの例では、ブラウザにもともと備わっている機能のみ使ってきました。React コンポーネントを表示するために次のような JavaScript の関数を呼び出していたのはそのためです。
+=======
+In the examples above, we only relied on features that are natively supported by browsers. This is why we used a JavaScript function call to tell React what to display:
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 ```js
 const e = React.createElement;
@@ -149,7 +153,11 @@ return (
 
 これらふたつのスニペットはまったく同じ内容です。**JSX の使用は[完全にオプションです](/docs/react-without-jsx.html)**が、React はもちろん他のライブラリで UI を記述する際にも、JSX は多くの人に支持されています。
 
+<<<<<<< HEAD
 [このコンバータ](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.3)上で JSX を使って遊んでみてください。
+=======
+You can play with JSX using [this online converter](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.15.7).
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 ### JSX を手軽に試してみる {#quickly-try-jsx}
 
@@ -159,7 +167,11 @@ return (
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
 
+<<<<<<< HEAD
 この状態で、任意の `<script>` タグに `type="text/babel"` 属性を持たせることで、その `<script>` タグの中では JSX が使えるようになります。[サンプル用 HTML ファイル](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)をダウンロードして遊んでみてください。
+=======
+Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribute to it. Here is [an example HTML file with JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html) that you can download and play with.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 この方法は学習やシンプルなデモの作成にはいいですが、これをそのまま使うとウェブサイトは重くなってしまい、**本番環境には向きません**。次のレベルに進む準備ができたら、先ほど追加した `<script>` タグと `type="text/babel"` 属性は削除してしまいましょう。そして次のセクションに進み、JSX プリプロセッサを設定して `<script>` タグを自動変換するようにしましょう。
 

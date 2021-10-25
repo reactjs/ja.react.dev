@@ -175,12 +175,16 @@ JSX で書かれたコードは `React.createElement()` を用いるコードに
 ```
 React.cloneElement(
   element,
-  [props],
+  [config],
   [...children]
 )
 ```
 
+<<<<<<< HEAD
 `element` から新しい React 要素を複製して返します。結果の要素は元の要素の props と新しい props が浅くマージされたものを持ちます。新しい子要素は既存の子要素を置き換えます。`key` と `ref` は元の要素から保持されます。
+=======
+Clone and return a new React element using `element` as the starting point. `config` should contain all new props, `key`, or `ref`. The resulting element will have the original element's props with the new props merged in shallowly. New children will replace existing children. `key` and `ref` from the original element will be preserved if no `key` and `ref` present in the `config`.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 `React.cloneElement()` は以下のコードとほぼ同等です：
 
@@ -188,7 +192,11 @@ React.cloneElement(
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
+<<<<<<< HEAD
 ただし、`ref` も保持されます。つまり `ref` のある子要素を受け取っても、間違って元の React 要素から  `ref` を盗むことはありません。新しい要素にも同じ `ref` が追加されます。
+=======
+However, it also preserves `ref`s. This means that if you get a child with a `ref` on it, you won't accidentally steal it from your ancestor. You will get the same `ref` attached to your new element. The new `ref` or `key` will replace old ones if present.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 この API は非推奨の `React.addons.cloneWithProps()` の代替として導入されました。
 

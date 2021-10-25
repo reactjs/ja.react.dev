@@ -271,8 +271,12 @@ this.setState(partialState);
 
 ## 制御された入力における null 値 {#controlled-input-null-value}
 
+<<<<<<< HEAD
 [制御されたコンポーネント](/docs/forms.html#controlled-components)で value プロパティに値を指定することで、変更させたくない場合にユーザが値を変更できないようになります。もしも 
 `value` を指定したのに入力フィールドが依然変更可能であるという場合は、`value` を誤って `undefined` もしくは `null` に設定してしまったのかもしれません。
+=======
+Specifying the `value` prop on a [controlled component](/docs/forms.html#controlled-components) prevents the user from changing the input unless you desire so. If you've specified a `value` but the input is still editable, you may have accidentally set `value` to `undefined` or `null`.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 以下のコードでこれを示しています（入力フィールドは最初はロックされていますが、短い遅延の後に編集可能になります）。
 

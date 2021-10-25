@@ -48,9 +48,15 @@ React 要素がすでに `container` にレンダーされている場合は更�
 >
 > `ReactDOM.render()` はコンテナノードを変更しません（コンテナの子要素のみ変更します）。既存の子要素を上書きせずにコンポーネントを既存の DOM ノードに挿入することが可能な場合があります。
 >
+<<<<<<< HEAD
 > `ReactDOM.render()` は現時点ではルートの `ReactComponent` インスタンスへの参照を返します。
 > しかし、この戻り値を使用する方法は古く、将来のバージョンの React では一部のケースで非同期にコンポーネントをレンダーするようになる可能性があるため、使用は避けるべきです。
 > ルートの `ReactComponent` インスタンスへの参照が必要な場合は、ルート要素に[コールバックの ref](/docs/more-about-refs.html#the-ref-callback-attribute) を追加することを推奨します。
+=======
+> `ReactDOM.render()` currently returns a reference to the root `ReactComponent` instance. However, using this return value is legacy
+> and should be avoided because future versions of React may render components asynchronously in some cases. If you need a reference to the root `ReactComponent` instance, the preferred solution is to attach a
+> [callback ref](/docs/refs-and-the-dom.html#callback-refs) to the root element.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 >
 > サーバで描画されたコンテナをクライアントで再利用するために `ReactDOM.render()` を使用することは非推奨となり、React 17 では削除されます。代わりに [`hydrate()`](#hydrate) を使用してください。
 

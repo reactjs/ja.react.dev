@@ -97,7 +97,11 @@ React 開発者はプロダクト開発に注力する必要があり、リリ�
 
 また、React に新しい基本機能を付け加えるハードルが非常に高いということも理解しています。興味ある読者のために我々は[詳しい RFC](https://github.com/reactjs/rfcs/pull/68) を用意しています。そこではより詳しく動機を掘り下げており、関連する先行技術や個別の設計上の選択についての概要が述べられています。
 
+<<<<<<< HEAD
 **肝心なことですが、フックは既存のコードと併用することができるので、段階的に採用していくことが可能です。**フックへの移行を急ぐ必要はありません。特に既存の複雑なコンポーネントについては、「大幅な書き換え」は避けることを推奨します。『フックで考えられる』ようになるには若干の思考の転換が必要です。我々の経験上は、あまり重要でない新しいコンポーネントでまずフックの使い方を練習し、チームの全員が慣れるようにすることが最良です。フックを試してみたら、どうぞお気軽に[フィードバックを送って](https://github.com/facebook/react/issues/new)ください。ポジティブなものでもネガティブなものでも構いません。
+=======
+**Crucially, Hooks work side-by-side with existing code so you can adopt them gradually.** There is no rush to migrate to Hooks. We recommend avoiding any "big rewrites", especially for existing, complex class components. It takes a bit of a mind shift to start "thinking in Hooks". In our experience, it's best to practice using Hooks in new and non-critical components first, and ensure that everybody on your team feels comfortable with them. After you give Hooks a try, please feel free to [send us feedback](https://github.com/facebook/react/issues/new), positive or negative.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 クラスコンポーネントのユースケースをすべてフックがカバーできるようにする予定ではいますが、**クラスコンポーネントのサポートも予見可能な将来にわたって続けていきます。**Facebook では何万というコンポーネントがクラスとして書かれており、それらを書き換える予定は全くありません。代わりに、クラスと併用しながら新しいコードでフックを使っていく予定でいます。
 

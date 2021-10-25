@@ -179,7 +179,11 @@ ReactDOM.render(
 );
 ```
 
+<<<<<<< HEAD
 もし、[transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/) のような Babel 変換のプラグインを使用している場合、`defaultProps` をクラス内の static プロパティとして定義することができます。この記法はまだ TC39 によって確定されていないため、ブラウザ上で正しく表示させるには、Babel 等で変換する必要があります。詳細は [class fields proposal](https://github.com/tc39/proposal-class-fields) を参照してください。
+=======
+If you are using a Babel transform like [plugin-proposal-class-properties](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties/) (previously _plugin-transform-class-properties_), you can also declare `defaultProps` as static property within a React component class. This syntax has not yet been finalized though and will require a compilation step to work within a browser. For more information, see the [class fields proposal](https://github.com/tc39/proposal-class-fields).
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 ```javascript
 class Greeting extends React.Component {
