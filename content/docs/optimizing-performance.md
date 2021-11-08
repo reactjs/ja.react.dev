@@ -173,7 +173,7 @@ React DevTools をまだインストールしていない場合は、以下で�
 > 本番ビルド版 `react-dom` のプロファイリング可能なバンドルとして `react-dom/profiling` が利用可能です。
 > このバンドルの使い方の詳細については、[fb.me/react-profiling](https://fb.me/react-profiling) を参照してください。
 
-> 捕捉
+> 補足
 >
 > React 17 より前のバージョンでは、標準の [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) を用いて Chrome のパフォーマンスタブでコンポーネントのプロファイリングが行われていました。
 > これについての概要は [Ben Schwarz によるこの記事](https://calibreapp.com/blog/react-performance-profiling-optimization)を参照してください。
