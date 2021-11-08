@@ -38,11 +38,7 @@ React は当初より、既存のプロジェクトに徐々に追加してい�
 
 React をちょっと試してみたい場合、Web 上のコードエディタが使えます。[CodePen](codepen://hello-world)、[CodeSandbox](https://codesandbox.io/s/new) や [Stackblitz](https://stackblitz.com/fork/react) で Hello World のテンプレートを使って試してみましょう。
 
-<<<<<<< HEAD
-自前のテキストエディタを使いたい場合は、[この HTML ファイル](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)をダウンロード・編集して、ブラウザを使ってからローカルファイルシステムから開くことができます。ランタイムでの遅いコード変換が行われる為、簡単なデモに留めておくことをおすすめします。
-=======
-If you prefer to use your own text editor, you can also [download this HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html), edit it, and open it from the local filesystem in your browser. It does a slow runtime code transformation, so we'd only recommend using this for simple demos.
->>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
+自前のテキストエディタを使いたい場合は、[この HTML ファイル](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html)をダウンロード・編集して、ブラウザを使ってからローカルファイルシステムから開くことができます。ランタイムでの遅いコード変換が行われる為、簡単なデモに留めておくことをおすすめします。
 
 ### React を Web サイトに追加する {#add-react-to-a-website}
 
@@ -119,11 +115,7 @@ React の[基本コンセプト](/docs/hello-world.html)について慣れてき
 
 他にも [@reactjs](https://twitter.com/reactjs) のツイッターアカウントをフォローすることもできますが、公式ブログを追っていれば大事なことを見落とすことはないでしょう。
 
-<<<<<<< HEAD
-全ての React のリリースにブログ記事があるわけではありませんが、リリースごとに詳細に書かれた changelog が [React リポジトリの `CHANGELOG.md`](https://github.com/facebook/react/blob/master/CHANGELOG.md)、および [Releases ページ](https://github.com/facebook/react/releases)に記載されています。
-=======
-Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/main/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react/releases) page.
->>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
+全ての React のリリースにブログ記事があるわけではありませんが、リリースごとに詳細に書かれた changelog が [React リポジトリの `CHANGELOG.md`](https://github.com/facebook/react/blob/main/CHANGELOG.md)、および [Releases ページ](https://github.com/facebook/react/releases)に記載されています。
 
 ## バージョン管理されたドキュメント {#versioned-documentation}
 

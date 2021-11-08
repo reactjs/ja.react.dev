@@ -298,11 +298,7 @@ const EnhancedComponent = enhance(WrappedComponent)
 
 ## 規則：デバッグしやすくするため表示名をラップすること {#convention-wrap-the-display-name-for-easy-debugging}
 
-<<<<<<< HEAD
-HOC により作成されたコンテナコンポーネントは他のあらゆるコンポーネントと同様、[React Developer Tools](https://github.com/facebook/react/tree/master/packages/react-devtools) に表示されます。デバッグを容易にするため、HOC の結果だと分かるよう表示名を選んでください。
-=======
-The container components created by HOCs show up in the [React Developer Tools](https://github.com/facebook/react/tree/main/packages/react-devtools) like any other component. To ease debugging, choose a display name that communicates that it's the result of a HOC.
->>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
+HOC により作成されたコンテナコンポーネントは他のあらゆるコンポーネントと同様、[React Developer Tools](https://github.com/facebook/react/tree/main/packages/react-devtools) に表示されます。デバッグを容易にするため、HOC の結果だと分かるよう表示名を選んでください。
 
 最も一般的な手法は、ラップされるコンポーネントの表示名をラップすることです。つまり高階コンポーネントが `withSubscription` と名付けられ、ラップされるコンポーネントの表示名が `CommentList` である場合、`WithSubscription(CommentList)` という表示名を使用しましょう：
 

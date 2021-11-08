@@ -11,15 +11,9 @@ redirect_from:
 
 React は Facebook の最初のオープンソースプロジェクトの 1 つで現在も非常に活発に開発されており、[facebook.com](https://www.facebook.com) 上のあらゆる人々にコードを届けることにも使用されています。私たちはこのプロジェクトへの貢献をできるだけ簡単かつ透明性の高いものにするために努力していますが、まだ完全ではありません。このドキュメントがプロジェクトへの貢献の手順を明確にし、あなたの持つ疑問を解決できれば幸いです。
 
-<<<<<<< HEAD
-### [行動規範](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) {#code-of-conduct}
+### [行動規範](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md) {#code-of-conduct}
 
-Facebook は行動規範として [Contributor Covenant](https://www.contributor-covenant.org/) を採用しており、プロジェクト参加者が遵守することを期待しています。[全文](https://code.facebook.com/codeofconduct)を読んでください、そうすれば参加者はどのような行動を取ればよいか、またどのような行動が許容されないのか理解できるでしょう。
-=======
-### [Code of Conduct](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md) {#code-of-conduct}
-
-Facebook has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it. Please read [the full text](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
->>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
+Facebook は行動規範として [Contributor Covenant](https://www.contributor-covenant.org/) を採用しており、プロジェクト参加者が遵守することを期待しています。[全文](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md)を読んでください、そうすれば参加者はどのような行動を取ればよいか、またどのような行動が許容されないのか理解できるでしょう。
 
 ### オープンな開発 {#open-development}
 
@@ -29,37 +23,19 @@ React に関する開発作業はすべて [GitHub](https://github.com/facebook/
 
 React は[セマンティック・バージョニング](http://semver.org/)に従います。重要なバグ修正のためにパッチバージョンを、新機能や非本質的な変更のためにマイナーバージョンを、そして破壊的変更のためにメジャーバージョンをリリースします。私たちが破壊的変更を加える場合、ユーザが今後の変更について前もって知り、コードを移行できるようにするため、私たちはマイナーバージョンで非推奨警告を行います。我々の安定性および逐次的なマイグレーションに関する取り決めについては、[バージョニングポリシー](/docs/faq-versioning.html)をご覧ください。
 
-<<<<<<< HEAD
-私たちは全てのプルリクエストにラベルを付けます。ラベルは、行われる変更が[パッチ](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-patch)、[マイナー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-minor)、[メジャー](https://github.com/facebook/react/pulls?q=is:open+is:pr+label:semver-major) バージョンのどれに該当するかによって決まります。数週間ごとにパッチバージョン、数ヶ月ごとにマイナーバージョン、そして年に 1、2 回メジャーバージョンをリリースします。
-=======
-Every significant change is documented in the [changelog file](https://github.com/facebook/react/blob/main/CHANGELOG.md).
->>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
+重要な変更はすべて [changelog file](https://github.com/facebook/react/blob/main/CHANGELOG.md) に文書化されています。
 
-重要な変更はすべて [changelog file](https://github.com/facebook/react/blob/master/CHANGELOG.md) に文書化されています。
-
-<<<<<<< HEAD
 ### ブランチの構成 {#branch-organization}
 
-私たちは [`master` branch](https://github.com/facebook/react/tree/master) を全てのテストが通るベストな状態に保つために努力しています。しかし素早い開発のため、あなたのアプリケーションと互換性がないかもしれない API の変更を行うことがあります。そのため [最新安定版の React](/downloads.html) を利用することをお勧めします。
-=======
-Submit all changes directly to the [`main branch`](https://github.com/facebook/react/tree/main). We don't use separate branches for development or for upcoming releases. We do our best to keep `main` in good shape, with all tests passing.
+プルリクエストを送信する場合は、直接 [`main` ブランチ](https://github.com/facebook/react/tree/main)に対して行ってください。開発用、あるいは次期リリース用の別ブランチは使っていません。`main` をすべてのテストが通る良い状態に保つために努力しています。
 
-Code that lands in `main` must be compatible with the latest stable release. It may contain additional features, but no breaking changes. We should be able to release a new minor version from the tip of `main` at any time.
->>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
+`main` ブランチに取り込まれるコードは最新の安定リリースと互換性がなければなりません。追加の機能はあっても構いませんが、破壊的変更があってはなりません。`main` ブランチの先頭からは、新しいマイナーバージョンが常にリリースできる状態であるべきです。
 
-プルリクエストを送信する場合は、`master` ブランチに対して行ってください。私たちはメジャーバージョンの安定版ブランチを別々に管理していますが、それらへのプルリクエストは直接受け付けません。代わりに、master から最新の安定したメジャーバージョンへコードを壊さない cherry-pick を行います。
-
-<<<<<<< HEAD
 ### フィーチャー・フラグ (Feature Flags) {#feature-flags}
 
-`master` ブランチをリリース可能な状態に保つため、破壊的な変更や実験的な機能はフィーチャー・フラグの背後で動作させます。
-=======
-To keep the `main` branch in a releasable state, breaking changes and experimental features must be gated behind a feature flag.
+`main` ブランチをリリース可能な状態に保つため、破壊的な変更や実験的な機能はフィーチャー・フラグの背後で動作させます。
 
-Feature flags are defined in [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/main/packages/shared/ReactFeatureFlags.js). Some builds of React may enable different sets of feature flags; for example, the React Native build may be configured differently than React DOM. These flags are found in [`packages/shared/forks`](https://github.com/facebook/react/tree/main/packages/shared/forks). Feature flags are statically typed by Flow, so you can run `yarn flow` to confirm that you've updated all the necessary files.
->>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
-
-フィーチャー・フラグは [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/master/packages/shared/ReactFeatureFlags.js) で定義されています。React のいくつかのビルドでは別のフィーチャー・フラグを有効化していることがあります。例えば React Native のビルドは React DOM とは別に設定されているかもしれません。そのようなフラグは [`packages/shared/forks`](https://github.com/facebook/react/tree/master/packages/shared/forks) にあります。フィーチャー・フラグは Flow で静的に型付けされているため `yarn flow` を実行することで必要なフラグを更新したことを確認できます。
+フィーチャー・フラグは [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/main/packages/shared/ReactFeatureFlags.js) で定義されています。React のいくつかのビルドでは別のフィーチャー・フラグを有効化していることがあります。例えば React Native のビルドは React DOM とは別に設定されているかもしれません。そのようなフラグは [`packages/shared/forks`](https://github.com/facebook/react/tree/main/packages/shared/forks) にあります。フィーチャー・フラグは Flow で静的に型付けされているため `yarn flow` を実行することで必要なフラグを更新したことを確認できます。
 
 React のビルドシステムが、無効化されている機能を公開前に取り除きます。すべてのコミットについて継続的インテグレーションのジョブが実行され、バンドルサイズの変化を確認します。このサイズの変化の情報を使って、ある機能が正しくフラグ管理されていることを確認することが可能です。
 
@@ -106,10 +82,9 @@ Issue を解決することにした場合、誰かがすでに修正に取り�
 
 コアチームはプルリクエストを監視しています。プルリクエストをレビューしてマージするか、変更を要求するか、説明付きでクローズします。Facebook.com 内部で使用法の検討が必要な可能性のある API の変更については、対応が遅くなることがあります。プロセス全体を通して最新情報とフィードバックを提供するよう最善を尽くします。
 
-<<<<<<< HEAD
 **プルリクエストを送信する前に、**以下のプロセスが行われているか確認してください：
 
-1. [リポジトリ](https://github.com/facebook/react) をフォークして `master` から新しいブランチを作成します。
+1. [リポジトリ](https://github.com/facebook/react) をフォークして `main` から新しいブランチを作成します。
 2. `yarn` コマンドをリポジトリルートで実行します。
 3. バグを修正したり、テストが必要なコードを追加した場合は、テストを追加します。
 4. テストスイートが通ることを確認してください (`yarn test`)。ヒント： `yarn test --watch TestName` コマンドは開発時に役立ちます。
@@ -119,18 +94,6 @@ Issue を解決することにした場合、誰かがすでに修正に取り�
 8. リントを行います (`yarn lint`)。ヒント： `yarn linc` は変更されたファイルのみに適用できます。
 9. [Flow](https://flowtype.org/) による型チェックを行います (`yarn flow`)。
 10. まだの場合は、先に CLA (Contributor License Agreement) の提出を済ませます。
-=======
-1. Fork [the repository](https://github.com/facebook/react) and create your branch from `main`.
-2. Run `yarn` in the repository root.
-3. If you've fixed a bug or added code that should be tested, add tests!
-4. Ensure the test suite passes (`yarn test`). Tip: `yarn test --watch TestName` is helpful in development.
-5. Run `yarn test --prod` to test in the production environment.
-6. If you need a debugger, run `yarn debug-test --watch TestName`, open `chrome://inspect`, and press "Inspect".
-7. Format your code with [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
-8. Make sure your code lints (`yarn lint`). Tip: `yarn linc` to only check changed files.
-9. Run the [Flow](https://flowtype.org/) typechecks (`yarn flow`).
-10. If you haven't already, complete the CLA.
->>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 ### Contributor License Agreement (CLA) {#contributor-license-agreement-cla}
 

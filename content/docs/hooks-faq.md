@@ -912,13 +912,7 @@ function DeepChild(props) {
 
 > 補足
 >
-<<<<<<< HEAD
 > 我々は個別のコールバックを props として渡すのではなく、[コンテクスト経由で `dispatch` を渡す](#how-to-avoid-passing-callbacks-down)ことを推奨しています。以下のアプローチは網羅性と避難ハッチの目的で掲載しているものです。
->
-> また、[concurrent mode](/blog/2018/03/27/update-on-async-rendering.html) においてこのパターンは問題を起こす可能性があることにも注意してください。将来的にはより使いやすい代替手段を提供することを計画していますが、現時点での最も安全な解決法は、コールバックが依存している何らかの値が変わった場合はコールバックを無効化して作り直すことです。
-=======
->We recommend to [pass `dispatch` down in context](#how-to-avoid-passing-callbacks-down) rather than individual callbacks in props. The approach below is only mentioned here for completeness and as an escape hatch.
->>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 稀なケースですが、コールバックを [`useCallback`](/docs/hooks-reference.html#usecallback) でメモ化しているにも関わらず、内部関数を何度も再作成しないといけないためメモ化がうまく働かない、ということがあります。あなたがメモ化しようとしている関数がレンダー最中には使われないイベントハンドラなのであれば、[インスタンス変数としての ref](#is-there-something-like-instance-variables) を使って最後に使われた値を手動で保持しておくことができます。
 

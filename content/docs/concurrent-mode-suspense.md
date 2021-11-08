@@ -99,11 +99,7 @@ function ProfileTimeline() {
 
 このデモはチラ見せです。まだあまり意味が分からなくても心配は要りません。以下でこれがどのように動作しているのかをお話しします。サスペンスは*仕組み*であり、上記の例の `fetchProfileData()` や `resource.posts.read()` といった特定の API はあまり重要ではないということを覚えておいてください。興味があれば[デモ用サンドボックス](https://codesandbox.io/s/frosty-hermann-bztrp)に定義があります。
 
-<<<<<<< HEAD
-サスペンスはデータ取得ライブラリではありません。サスペンスとは**データ取得ライブラリのための仕組み**であり、*コンポーネントが読み出そうとしているデータがまだ準備できていない*と React に伝えられるようにします。これにより React はデータが準備できるまで待機してから UI を更新します。Facebook では、Relay と[新しい Suspense 連携機能](https://relay.dev/docs/en/experimental/step-by-step)を利用しています。Apollo のような他のライブラリも似たような連携機能が提供できることを期待しています。
-=======
-Suspense is not a data fetching library. It's a **mechanism for data fetching libraries** to communicate to React that *the data a component is reading is not ready yet*. React can then wait for it to be ready and update the UI. At Facebook, we use Relay and its [new Suspense integration](https://relay.dev/docs/getting-started/step-by-step-guide/). We expect that other libraries like Apollo can provide similar integrations.
->>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
+サスペンスはデータ取得ライブラリではありません。サスペンスとは**データ取得ライブラリのための仕組み**であり、*コンポーネントが読み出そうとしているデータがまだ準備できていない*と React に伝えられるようにします。これにより React はデータが準備できるまで待機してから UI を更新します。Facebook では、Relay と[新しい Suspense 連携機能](https://relay.dev/docs/getting-started/step-by-step-guide/)を利用しています。Apollo のような他のライブラリも似たような連携機能が提供できることを期待しています。
 
 長期的にはサスペンスが、コンポーネントで非同期的なデータ（それがどこから来るのかに関わらず）を読み込む際の主要な方法となることを意図しています。
 
@@ -113,11 +109,7 @@ Suspense is not a data fetching library. It's a **mechanism for data fetching li
 
  * **データ取得の実装ではありません。**あなたが GraphQL、REST、その他どのような具体的なデータフォーマット、ライブラリ、転送経路、プロトコルを使っているのかについて仮定を置きません。
 
-<<<<<<< HEAD
- * **すぐに使えるクライアントではありません。**`fetch` や Relay をサスペンスで「置き換える」ことはできません。しかしサスペンスと統合されたライブラリを使うことはできます（例えば [Relay の新 API](https://relay.dev/docs/en/experimental/api-reference)）。
-=======
- * **It is not a ready-to-use client.** You can't "replace" `fetch` or Relay with Suspense. But you can use a library that's integrated with Suspense (for example, [new Relay APIs](https://relay.dev/docs/api-reference/relay-environment-provider/)).
->>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
+ * **すぐに使えるクライアントではありません。**`fetch` や Relay をサスペンスで「置き換える」ことはできません。しかしサスペンスと統合されたライブラリを使うことはできます（例えば [Relay の新 API](https://relay.dev/docs/api-reference/relay-environment-provider/)）。
 
  * **データ取得をビューレイヤと密結合させません。**ロード中状態をあなたの UI でうまく表示するための補助とはなりますが、React コンポーネントをネットワーク関係のロジックと結合させることはしません。
 
@@ -133,11 +125,7 @@ Suspense is not a data fetching library. It's a **mechanism for data fetching li
 
 ## 現実環境でのサスペンスの使用 {#using-suspense-in-practice}
 
-<<<<<<< HEAD
-Facebook では今のところ、本番環境において Relay のサスペンス連携機能のみを利用しています。**今すぐ始めるための実用的なガイドが見たい場合は、[Relay のガイドをご覧ください](https://relay.dev/docs/en/experimental/step-by-step)！** 本番環境で既にうまく動作しているパターンについて述べられています。
-=======
-At Facebook, so far we have only used the Relay integration with Suspense in production. **If you're looking for a practical guide to get started today, [check out the Relay Guide](https://relay.dev/docs/getting-started/step-by-step-guide/)!** It demonstrates patterns that have already worked well for us in production.
->>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
+Facebook では今のところ、本番環境において Relay のサスペンス連携機能のみを利用しています。**今すぐ始めるための実用的なガイドが見たい場合は、[Relay のガイドをご覧ください](https://relay.dev/docs/getting-started/step-by-step-guide/)！** 本番環境で既にうまく動作しているパターンについて述べられています。
 
 **このページのコードデモでは Relay ではなくフェイクの API 実装を使っています。**このため GraphQL に馴染みがない場合でも理解しやすくなっていますが、サスペンスを使ってアプリケーションを構築するための「正しいやり方」については述べていません。このページは概念的なものであり、サスペンスが*なぜ*このように動作し、どんな問題を解決するのかについて理解できるようにすることを目的としています。
 
@@ -155,11 +143,7 @@ At Facebook, so far we have only used the Relay integration with Suspense in pro
 
 技術的には可能ですが、サスペンスはコンポーネントがレンダーされてからデータ取得を開始するための方法であることを意図して*いません*。そうではなく、*既に取得されつつある*データに対して、コンポーネントがそれを「待機」中であると宣言できるようにします。**[Building Great User Experiences with Concurrent Mode and Suspense](/blog/2019/11/06/building-great-user-experiences-with-concurrent-mode-and-suspense.html) で、なぜこのことが重要で、実際にどう実装すればよいのかについて説明しています。**
 
-<<<<<<< HEAD
-ウォーターフォール (waterfall) の問題を回避できるソリューションをお持ちなのでない限り、レンダー前にデータ取得を行うことを推奨する、あるいは強制するような API が望ましいと考えています。具体例として、[Relay Suspense API](https://relay.dev/docs/en/experimental/api-reference#usepreloadedquery) がどのようにプリロードを強制するのかについて見ることができます。ここでの我々のメッセージは、過去にはあまり一貫したものではありませんでした。サスペンスによるデータ取得はまだ実験的なものであり、我々が本番環境での使用のされ方について学び、この問題領域についてより理解するに従って、我々の推奨も変わるかもしれません。
-=======
-Unless you have a solution that helps prevent waterfalls, we suggest to prefer APIs that favor or enforce fetching before render. For a concrete example, you can look at how [Relay Suspense API](https://relay.dev/docs/api-reference/use-preloaded-query/) enforces preloading. Our messaging about this hasn't been very consistent in the past. Suspense for Data Fetching is still experimental, so you can expect our recommendations to change over time as we learn more from production usage and understand the problem space better.
->>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
+ウォーターフォール (waterfall) の問題を回避できるソリューションをお持ちなのでない限り、レンダー前にデータ取得を行うことを推奨する、あるいは強制するような API が望ましいと考えています。具体例として、[Relay Suspense API](https://relay.dev/docs/api-reference/use-preloaded-query/) がどのようにプリロードを強制するのかについて見ることができます。ここでの我々のメッセージは、過去にはあまり一貫したものではありませんでした。サスペンスによるデータ取得はまだ実験的なものであり、我々が本番環境での使用のされ方について学び、この問題領域についてより理解するに従って、我々の推奨も変わるかもしれません。
 
 ## 既存アプローチ vs サスペンス {#traditional-approaches-vs-suspense}
 
