@@ -154,7 +154,7 @@ const MarkdownPage = ({
                     </span>
                     <a
                       css={sharedStyles.articleLayout.editLink}
-                      href={`https://github.com/reactjs/ja.reactjs.org/tree/master/${markdownRemark.fields.path}`}>
+                      href={`https://github.com/reactjs/ja.reactjs.org/tree/main/${markdownRemark.fields.path}`}>
                       このページを編集する
                     </a>
                   </div>

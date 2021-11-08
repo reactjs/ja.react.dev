@@ -92,7 +92,7 @@ React は完全に「リアクティブ」であることを望んでいない�
 
 良い開発者経験を提供することは私達にとって重要です。
 
-たとえば、Chrome と Firefox で React コンポーネントツリーを調べることができる [React DevTools](https://github.com/facebook/react/tree/master/packages/react-devtools) をメンテしています。私たちは、それが Facebook エンジニアとコミュニティの両方に大きな生産性向上をもたらしていると聞いています。
+たとえば、Chrome と Firefox で React コンポーネントツリーを調べることができる [React DevTools](https://github.com/facebook/react/tree/main/packages/react-devtools) をメンテしています。私たちは、それが Facebook エンジニアとコミュニティの両方に大きな生産性向上をもたらしていると聞いています。
 
 私たちは開発者向けの有用な警告を提供するために、一層の努力をするようにしています。たとえば、React は開発中にブラウザが理解できない方法でタグをネストした場合、または API で一般的な入力ミスをした場合に警告します。開発者向けの警告とそれに関連するチェックが、React の開発版が製品版より遅い主な理由です。
 

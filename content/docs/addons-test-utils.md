@@ -141,7 +141,7 @@ mockComponent(
 
 > 補足:
 >
-> `mockComponent()` はレガシーな API です。その代わりとして [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) の使用をおすすめします。
+> `mockComponent()` はレガシーな API です。その代わりとして [`jest.mock()`](https://jestjs.io/docs/tutorial-react-native#mock-native-modules-using-jestmock) の使用をおすすめします。
 
 * * *
 

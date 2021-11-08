@@ -50,7 +50,7 @@ React 要素がすでに `container` にレンダーされている場合は更�
 >
 > `ReactDOM.render()` は現時点ではルートの `ReactComponent` インスタンスへの参照を返します。
 > しかし、この戻り値を使用する方法は古く、将来のバージョンの React では一部のケースで非同期にコンポーネントをレンダーするようになる可能性があるため、使用は避けるべきです。
-> ルートの `ReactComponent` インスタンスへの参照が必要な場合は、ルート要素に[コールバックの ref](/docs/more-about-refs.html#the-ref-callback-attribute) を追加することを推奨します。
+> ルートの `ReactComponent` インスタンスへの参照が必要な場合は、ルート要素に[コールバック形式の ref](/docs/refs-and-the-dom.html#callback-refs) を追加することを推奨します。
 >
 > サーバで描画されたコンテナをクライアントで再利用するために `ReactDOM.render()` を使用することは非推奨となり、React 17 では削除されます。代わりに [`hydrate()`](#hydrate) を使用してください。
 

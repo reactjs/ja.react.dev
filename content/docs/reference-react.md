@@ -175,12 +175,12 @@ JSX で書かれたコードは `React.createElement()` を用いるコードに
 ```
 React.cloneElement(
   element,
-  [props],
+  [config],
   [...children]
 )
 ```
 
-`element` から新しい React 要素を複製して返します。結果の要素は元の要素の props と新しい props が浅くマージされたものを持ちます。新しい子要素は既存の子要素を置き換えます。`key` と `ref` は元の要素から保持されます。
+`element` から新しい React 要素を複製して返します。`config` には新しく使う props や `key` や `ref` を指定します。結果の要素は元の要素の props に新しい props が浅くマージされたものになります。新しい子要素は既存の子要素を置き換えます。`config` 内で `key` や `ref` が指定されていない場合、元の要素の `key` や `ref` が保持されます。
 
 `React.cloneElement()` は以下のコードとほぼ同等です：
 
@@ -188,7 +188,7 @@ React.cloneElement(
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
-ただし、`ref` も保持されます。つまり `ref` のある子要素を受け取っても、間違って元の React 要素から  `ref` を盗むことはありません。新しい要素にも同じ `ref` が追加されます。
+ただし、`ref` も保持されます。つまり `ref` のある子要素を受け取っても、間違って元の React 要素から  `ref` を盗むことはありません。新しい要素にも同じ `ref` が追加されます。新しい `ref` や `key` が存在する場合古いものを置き換えます。
 
 この API は非推奨の `React.addons.cloneWithProps()` の代替として導入されました。
 

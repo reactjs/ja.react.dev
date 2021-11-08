@@ -316,11 +316,11 @@ declare module 'querystring' {
 * [TypeScript Documentation: Migrating from JavaScript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
 * [TypeScript Documentation: React and Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
 
-## Reason {#reason}
+## ReScript {#rescript}
 
-[Reason](https://reasonml.github.io/) は新しい言語ではありません。歴戦の言語である [OCaml](https://ocaml.org/) によって動く新しい記法及びツールチェインです。Reason は OCaml に JavaScript を書く人には見慣れた記法を提供し、既存の NPM/Yarn を使ったワークフローに寄せています。
+[ReScript](https://rescript-lang.org/) は JavaScript にコンパイルされる型付き言語です。コアの機能として、保証付きの 100% 型カバレッジ、高度な JSX サポート、[専用の React 対応コード](https://rescript-lang.org/docs/react/latest/introduction)が含まれており、既存の JS / TS を使った React コードベースと結合することができます。
 
-Reason は Facebook で開発されており、Messenger 等のプロダクトに既に使われてます。まだ試験的段階ですが、Facebook によって管理された [React を書くためのライブラリ](https://reasonml.github.io/reason-react/)や、[活発なコミュニティ](https://reasonml.github.io/docs/en/community.html)が存在します。
+既存の JS / React コードベースに ReScript を統合するための情報は[こちら](https://rescript-lang.org/docs/manual/latest/installation#integrate-into-an-existing-js-project)で参照可能です。
 
 ## Kotlin {#kotlin}
 

@@ -235,7 +235,7 @@ Square コンポーネントがクリックされた場合に "X" と表示さ�
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" onClick={function() { alert('click'); }}>
+      <button className="square" onClick={function() { console.log('click'); }}>
         {this.props.value}
       </button>
     );
@@ -243,7 +243,7 @@ class Square extends React.Component {
 }
 ```
 
-ここで Square をクリックすると、ブラウザでアラートが表示されるはずです。
+ここで Square をクリックすると、ブラウザの開発者コンソールに 'click' と表示されるはずです。
 
 >補足
 >
@@ -253,7 +253,7 @@ class Square extends React.Component {
 >class Square extends React.Component {
 >  render() {
 >    return (
->      <button className="square" onClick={() => alert('click')}>
+>      <button className="square" onClick={() => console.log('click')}>
 >        {this.props.value}
 >      </button>
 >    );
@@ -261,7 +261,7 @@ class Square extends React.Component {
 >}
 >```
 >
-> `onClick={() => alert('click')}` と記載したときに `onClick` プロパティに渡しているのは*関数*であることに注意してください。React はクリックされるまでこの関数を実行しません。`() =>` を書くのを忘れて `onClick={alert('click')}` と書くのはよくある間違いであり、こうするとコンポーネントが再レンダーされるたびにアラートが表示されてしまいます。
+> `onClick={() => console.log('click')}` と記載したときに `onClick` プロパティに渡しているのは*関数*であることに注意してください。React はクリックされるまでこの関数を実行しません。`() =>` を書くのを忘れて `onClick={console.log('click')}` と書いてしまうのはよくある間違いであり、こうするとコンポーネントが再レンダーされるたびにログが表示されてしまいます。
 
 次のステップとして、Square コンポーネントに自分がクリックされたことを「覚えさせ」て、"X" マークでマスを埋めるようにさせます。コンポーネントが何かを「覚える」ためには、**state** というものを使います。
 
@@ -280,7 +280,7 @@ class Square extends React.Component {
 
   render() {
     return (
-      <button className="square" onClick={() => alert('click')}>
+      <button className="square" onClick={() => console.log('click')}>
         {this.props.value}
       </button>
     );
@@ -454,7 +454,7 @@ Square がクリックされると、Board から渡された `onClick` 関数�
 1. 組み込みの DOM コンポーネントである `<button>` に `onClick` プロパティが設定されているため React がクリックに対するイベントリスナを設定します。
 2. ボタンがクリックされると、React は Square の `render()` メソッド内に定義されている `onClick` のイベントハンドラをコールします。
 3. このイベントハンドラが `this.props.onClick()` をコールします。Square の `onClick` プロパティは Board から渡されているものです。
-4. Board は Square に `onClick={() => this.handleClick(i)}` を渡していたので、Square はクリックされたときに `this.handleClick(i)` を呼び出します。
+4. Board は Square に `onClick={() => this.handleClick(i)}` を渡していたので、Square はクリックされたときに Board の `handleClick(i)` を呼び出します。
 5. まだ `handleClick()` は定義していないので、コードがクラッシュします。Square をクリックすると、"this.handleClick is not a function" といった赤いエラー画面が表示されるはずです。
 
 >補足
@@ -524,7 +524,7 @@ Square コンポーネントはもう自分で state を管理しないように
 
 ### イミュータビリティは何故重要なのか {#why-immutability-is-important}
 
-上記のコード例において、現在の配列を直接変更する代わりに、`.slice()` メソッドを使って `square` 配列のコピーを作成し、それを変更することをお勧めしました。ここでイミュータビリティ（immutability; 不変性）について解説し、それがなぜ重要なのかについて説明します。
+上記のコード例において、現在の配列を直接変更する代わりに、`.slice()` メソッドを使って `square` 配列のコピーを作成することをお勧めしました。ここでイミュータビリティ（immutability; 不変性）について解説し、それがなぜ重要なのかについて説明します。
 
 一般的に、変化するデータに対しては 2 種類のアプローチがあります。1 番目のアプローチはデータの値を直接いじってデータを*ミューテート（mutate; 書き換え）*することです。2 番目のアプローチは、望む変更を加えた新しいデータのコピーで古いデータを置き換えることです。
 
@@ -1045,6 +1045,8 @@ Game の `render` メソッド内で `history` に `map` を作用させてみ�
 
 **[この時点でのコード全体を見る](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
+`history` 配列をループ処理する部分では、`step` という変数が `history` 内の現在の要素を参照し、`move` という変数が現在の要素のインデックスを参照しています。ここでは `step` はその後何にも割り当てないので、`move` の方にのみ興味があります。
+
 ゲームの履歴内にある三目並べのそれぞれの着手に対応して、ボタン `<button>` を有するリストアイテム `<li>` を作ります。ボタンには `onClick` ハンドラがあり、それは `this.jumpTo()` というメソッドを呼び出します。まだ `jumpTo()` は実装していません。ひとまずこのコードにより、ゲーム内で行われた着手のリストが表示されるようになりましたが、同時に開発者ツールのコンソール内に以下の警告も出力されているはずです：
 
 >  Warning:
@@ -1145,6 +1147,7 @@ class Game extends React.Component {
     // this method has not changed
   }
 ```
+`jumpTo` メソッド内では state の history プロパティは更新していないことに注意してください。これは、state の更新はマージされるから、より簡単に言うと、React は `setState` で直接指定されたプロパティのみを更新しほかの state はそのまま残すからです。詳しくは**[ドキュメントを参照](/docs/state-and-lifecycle.html#state-updates-are-merged)**。
 
 では次に、マス目をクリックしたときに実行される Game の `handleClick` メソッドに、いくつかの変更を加えます。
 

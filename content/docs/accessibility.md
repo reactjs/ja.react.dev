@@ -226,7 +226,7 @@ class Parent extends React.Component {
 this.inputElement.current.focus();
 ```
 
-コンポーネントを拡張するのに高階コンポーネント (HOC) を使う場合は、React の `forwardRef` 関数を用いて、関数に囲われたコンポーネントに [ref をフォワーディング (forwarding) する](/docs/forwarding-refs.html) ことをおすすめします。もし、サードパーティの高階コンポーネントが ref フォワーディングを実装していないときでも、上記のパターンはフォールバックとして使えます。
+コンポーネントを拡張するのに[高階コンポーネント (HOC)](/docs/higher-order-components.html) を使う場合は、React の `forwardRef` 関数を用いて、関数に囲われたコンポーネントに [ref をフォワーディング (forwarding) する](/docs/forwarding-refs.html) ことをおすすめします。もし、サードパーティの高階コンポーネントが ref フォワーディングを実装していないときでも、上記のパターンはフォールバックとして使えます。
 
 良いフォーカス管理の例は [react-aria-modal](https://github.com/davidtheclark/react-aria-modal) です。これは完全にアクセシブルなモーダルウィンドウの比較的珍しい例です。このライブラリは、最初のフォーカスをキャンセルボタンに設定し（これは、キーボードを使っているユーザがうっかり次のアクションに移ってしまうのを防ぎます）、モーダルの中でキーボードフォーカスが閉じているだけでなく、最初にモーダルを開いた要素にフォーカスを戻してもくれます。
 
@@ -450,7 +450,7 @@ Deque System はアプリケーションの自動化された E2E アクセシ�
 
 [The Accessibility Engine](https://www.deque.com/products/axe/) もしくは aXe は、`aXe-core` により構築されたアクセシビリティを検査するブラウザ拡張機能です。
 
-[react-axe](https://github.com/dylanb/react-axe) モジュールを使用して、開発時やデバッグ時にこれらによるアクセシビリティの検査結果を直接コンソールへ出力させることもできます。
+[@axe-core/react](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/react) モジュールを使用して、開発時やデバッグ時にこれらによるアクセシビリティの検査結果を直接コンソールへ出力させることもできます。
 
 #### WebAIM WAVE {#webaim-wave}
 
