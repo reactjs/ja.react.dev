@@ -1045,7 +1045,11 @@ Game の `render` メソッド内で `history` に `map` を作用させてみ�
 
 **[この時点でのコード全体を見る](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
+<<<<<<< HEAD
 `history` 配列をループ処理する部分では、`step` という変数が `history` 内の現在の要素を参照し、`move` という変数が現在の要素のインデックスを参照しています。ここでは `step` はその後何にも割り当てないので、`move` の方にのみ興味があります。
+=======
+As we iterate through `history` array, `step` variable refers to the current `history` element value, and `move` refers to the current `history` element index. We are only interested in `move` here, hence `step` is not getting assigned to anything.
+>>>>>>> 17ad2cbc71f4c1fcc3f3f9ae528bfd292a9fced7
 
 ゲームの履歴内にある三目並べのそれぞれの着手に対応して、ボタン `<button>` を有するリストアイテム `<li>` を作ります。ボタンには `onClick` ハンドラがあり、それは `this.jumpTo()` というメソッドを呼び出します。まだ `jumpTo()` は実装していません。ひとまずこのコードにより、ゲーム内で行われた着手のリストが表示されるようになりましたが、同時に開発者ツールのコンソール内に以下の警告も出力されているはずです：
 
@@ -1147,7 +1151,12 @@ class Game extends React.Component {
     // this method has not changed
   }
 ```
+<<<<<<< HEAD
 `jumpTo` メソッド内では state の history プロパティは更新していないことに注意してください。これは、state の更新はマージされるから、より簡単に言うと、React は `setState` で直接指定されたプロパティのみを更新しほかの state はそのまま残すからです。詳しくは**[ドキュメントを参照](/docs/state-and-lifecycle.html#state-updates-are-merged)**。
+=======
+
+Notice in `jumpTo` method, we haven't updated `history` property of the state. That is because state updates are merged or in more simple words React will update only the properties mentioned in `setState` method leaving the remaining state as that is. For more info **[see the documentation](/docs/state-and-lifecycle.html#state-updates-are-merged)**.
+>>>>>>> 17ad2cbc71f4c1fcc3f3f9ae528bfd292a9fced7
 
 では次に、マス目をクリックしたときに実行される Game の `handleClick` メソッドに、いくつかの変更を加えます。
 
