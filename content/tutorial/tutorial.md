@@ -1147,6 +1147,7 @@ class Game extends React.Component {
     // this method has not changed
   }
 ```
+
 `jumpTo` メソッド内では state の history プロパティは更新していないことに注意してください。これは、state の更新はマージされるから、より簡単に言うと、React は `setState` で直接指定されたプロパティのみを更新しほかの state はそのまま残すからです。詳しくは**[ドキュメントを参照](/docs/state-and-lifecycle.html#state-updates-are-merged)**。
 
 では次に、マス目をクリックしたときに実行される Game の `handleClick` メソッドに、いくつかの変更を加えます。

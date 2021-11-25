@@ -3,6 +3,10 @@ title: React 18に向けてのプラン
 author: [acdlite, bvaughn, abernathyca, gaearon, rachelnabors, rickhanlonii, sebmarkbage, sethwebster]
 ---
 
+> 2021 年 11 月 15 日追記：
+>
+> React 18 はベータ版となりました。リリースに関する最新情報は [React 18 ワーキンググループの投稿で確認できます](https://github.com/reactwg/react-18/discussions/112)。
+
 React チームより幾つかのお知らせがあります！
 
 1. 次のメジャーバージョンとなる React 18 リリースに向けての作業を開始しました。
