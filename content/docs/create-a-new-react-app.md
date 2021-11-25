@@ -75,11 +75,7 @@ Gatsby の[オフィシャルガイド](https://www.gatsbyjs.org/docs/) およ�
 
 - **[Nx](https://nx.dev/react)** はフルスタックの monorepo 開発用ツールキットであり、React、Next.js、[Express](https://expressjs.com/) などのビルトインサポートを有しています。
 
-<<<<<<< HEAD
-- **[Parcel](https://parceljs.org/)** は高速な、ゼロ設定のウェブアプリケーションバンドラであり、[React と共に利用](https://parceljs.org/recipes.html#react)できます。
-=======
-- **[Parcel](https://parceljs.org/)** is a fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes/react/).
->>>>>>> 17ad2cbc71f4c1fcc3f3f9ae528bfd292a9fced7
+- **[Parcel](https://parceljs.org/)** は高速な、ゼロ設定のウェブアプリケーションバンドラであり、[React と共に利用](https://parceljs.org/recipes/react/)できます。
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** は設定不要のサーバレンダリングフレームワークでありながら、Next.js よりも柔軟性があります。
 
