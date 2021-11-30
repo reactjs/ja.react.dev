@@ -1,24 +1,24 @@
 ---
-title: Your First Component
+title: 初めてのコンポーネント
 ---
 
 <Intro>
 
-Components are one of the core concepts of React. They are the foundation upon which you build user interfaces (UI), which makes them the perfect place to start your React journey!
+コンポーネントは、React における最重要コンセプトのひとつです。皆さんがユーザインターフェース (UI) を構築するときの基盤となるものですので、React の旅路はコンポーネントから始めていくことにしましょう！
 
 </Intro>
 
 <YouWillLearn>
 
-* What a component is
-* What role components play in a React application
-* How to write your first React component
+* コンポーネントとは何か
+* React アプリでコンポーネントが果たす役割
+* 初めてのコンポーネントの書き方
 
 </YouWillLearn>
 
-## Components: UI building blocks {/*components-ui-building-blocks*/}
+## コンポーネント：UI の構成要素 {/*components-ui-building-blocks*/}
 
-On the Web, HTML lets us create rich structured documents with its built-in set of tags like `<h1>` and `<li>`:
+Web の世界では、HTML で `<h1>` や `<li>` といった組み込みタグを使い、リッチで構造化されたドキュメントを作成することができます：
 
 ```html
 <article>
@@ -31,11 +31,11 @@ On the Web, HTML lets us create rich structured documents with its built-in set 
 </article>
 ```
 
-This markup represents this article `<article>`, its heading `<h1>`, and an (abbreviated) table of contents as an ordered list `<ol>`. Markup like this, combined with CSS for style, and JavaScript for interactivity, lies behind every sidebar, avatar, modal, dropdown—every piece of UI you see on the Web.
+このマークアップは、記事自身 (`<article>`)、見出し (`<h1>`)、そして番号付きリスト (`<ol>`) による目次（一部省略しています）を表現しています。我々がウェブで目にするサイドバー、アバター、モーダル、ドロップダウンといったあらゆる UI パーツの裏側では、このようなマークアップが、スタイルのための CSS やユーザ対話のための JavaScript と組み合わさりながら働いています。
 
-React lets you combine your markup, CSS, and JavaScript into custom "components," **reusable UI elements for your app.** The table of contents code you saw above could be turned into a `<TableOfContents />` component you could render on every page. Under the hood, it still uses the same HTML tags like `<article>`, `<h1>`, etc.
+React では、あなたのマークアップと CSS と JavaScript を、カスタムの「コンポーネント」と呼ばれる、**アプリのための再利用可能な UI 要素**にまとめることができます。上記にある目次のためのコードを、`<TableOfContents />` と呼ばれるコンポーネントにすることができるのです。その裏では、やはり `<articles>` や `<h1>` といった同じ HTML タグを使っています。
 
-Just like with HTML tags, you can compose, order and nest components to design whole pages. For example, the documentation page you're reading is made out of React components:
+HTML タグを使う時と同様にして、コンポーネントを組み合わせたり、並び替えたり、ネストしたりして、ページ全体をデザインすることができます。例えばあなたが今読んでいるこのページは、以下のような React コンポーネントから作られています：
 
 ```js
 <PageLayout>
@@ -51,11 +51,11 @@ Just like with HTML tags, you can compose, order and nest components to design w
 </PageLayout>
 ```
 
-As your project grows, you will notice that many of your designs can be composed by reusing components you already wrote, speeding up your development. Our table of contents above could be added to any screen with `<TableOfContents />`! You can even jumpstart your project with the thousands of components shared by the React open source community like [Chakra UI](https://chakra-ui.com/) and [Material UI](https://material-ui.com/).
+プロジェクトが成長するとともに、設計・デザインのいろいろな部分を、既に書いたコンポーネントを再利用することで構築できるようになり、開発速度がアップすることに気付くでしょう。上記のような目次を、`<TableOfContents />` を書くことでどのページにでも加えることができるのです！ [Chakra UI](https://chakra-ui.com/) や [Material UI](https://material-ui.com/) のような、React オープンソースコミュニティーで共有されている何千ものコンポーネントを使い、プロジェクトを一気にスタートさせることも可能です。
 
-## Defining a component {/*defining-a-component*/}
+## コンポーネントの定義 {/*defining-a-component*/}
 
-Traditionally when creating web pages, web developers marked up their content and then added interaction by sprinkling on some JavaScript. This worked great when interaction was a nice-to-have on the web. Now it is expected for many sites and all apps. React puts interactivity first while still using the same technology: **a React component is a JavaScript function that you can _sprinkle with markup_**. Here's what that looks like (you can edit the example below):
+伝統的なウェブページの作成のやり方は、ウェブ開発者が先にコンテンツをマークアップしてから、ユーザとのインタラクションを加えるために JavaScript をちょっと添える、というものでした。これはウェブにとってインタラクションが「あると嬉しい」レベルのものだった時代にはうまく機能していました。しかし今や、インタラクションはほぼすべてのサイトとあらゆるアプリで必要とされるものです。React は同じテクノロジを使っていますが、インタラクティビティ・ファーストになっています。すなわち **React コンポーネントとは、マークアップを添えることができる JavaScript 関数**です。コンポーネントは以下のような見た目をしています（以下のコードは編集できます）：
 
 <Sandpack>
 
@@ -76,33 +76,33 @@ img { height: 200px; }
 
 </Sandpack>
 
-And here's how to build a component:
+コンポーネントは以下のようにして作成します：
 
-### Step 1: Export the component {/*step-1-export-the-component*/}
+### Step 1: コンポーネントをエクスポートする {/*step-1-export-the-component*/}
 
-The `export default` prefix is a [standard JavaScript syntax](https://developer.mozilla.org/docs/web/javascript/reference/statements/export) (not specific to React). It lets you mark the main function in a file so that you can later import it from other files. (More on importing in [Importing and Exporting Components](/learn/importing-and-exporting-components)!)
+頭にある `export default` は[標準的な JavaScript の構文](https://developer.mozilla.org/docs/web/javascript/reference/statements/export)です（React 特有のものではありません）。これでファイル内のメインの関数をマークし、後で他のファイルからそれをインポートできるようにします。（[コンポーネントのインポートとエクスポート](/learn/importing-and-exporting-components)に詳細があります！）
 
-### Step 2: Define the function {/*step-2-define-the-function*/}
+### Step 2: 関数を定義する {/*step-2-define-the-function*/}
 
-With `function Profile() { }` you define a JavaScript function with the name `Profile`.
+`function Profile() { }` のように書くことで、`Profile` という名前の JavaScript 関数を定義します。
 
 <Gotcha>
 
-React components are regular JavaScript functions, but **their names must start with a capital letter** or they won't work!
+React コンポーネントは普通の JavaScript 関数ですが、**名前は大文字から始める必要があります**。さもないと動作しません！
 
 </Gotcha>
 
-### Step 3: Add markup {/*step-3-add-markup*/}
+### Step 3: マークアップを加える {/*step-3-add-markup*/}
 
-The component returns an `<img />` tag with `src` and `alt` attributes. `<img />` is written like HTML, but it is actually JavaScript under the hood! This syntax is called [JSX](/learn/writing-markup-with-jsx), and it lets you embed markup inside JavaScript.
+このコンポーネントは `src` と `alt` という属性を有する `<img />` タグを返しています。`<img />` は まるで HTML のように書かれていますが、裏では実際には JavaScript です！ この構文は [JSX](/learn/writing-markup-with-jsx) と呼ばれるもので、これによりマークアップを JavaScript 内に埋め込めるようになります。
 
-Return statements can be written all on one line, as in this component:
+return 文は、以下のように 1 行にまとめて書いても構いません：
 
 ```js
 return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
 ```
 
-But if your markup isn't all on the same line as the return statement, you must wrap it in a pair of parentheses like this:
+しかし return と同じ行にマークアップ全体が収まらない場合は、括弧で囲んで以下のようにする必要があります：
 
 ```js
 return (
@@ -114,13 +114,13 @@ return (
 
 <Gotcha>
 
-Without parentheses, any code on the lines after `return` [will be ignored](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)!
+括弧がないと、`return` の後にあるコードはすべて[無視されてしまいます](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)！
 
 </Gotcha>
 
-## Using a component {/*using-a-component*/}
+## コンポーネントを使う {/*using-a-component*/}
 
-Now that you've defined your `Profile` component, you can nest it inside other components. For example, you can export a `Gallery` component that uses multiple `Profile` components:
+`Profile` コンポーネントが定義できたので、それをほかのコンポーネント内にネストさせることができます。例えば `Profile` コンポーネントを複数回使う `Gallery` というコンポーネントをエクスポートできます：
 
 <Sandpack>
 
@@ -152,14 +152,14 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-### What the browser sees {/*what-the-browser-sees*/}
+### ブラウザに見えるもの {/*what-the-browser-sees*/}
 
-Notice the difference in casing:
+大文字・小文字の違いに気をつけてください：
 
-* `<section>` is lowercase, so React knows we refer to an HTML tag.
-* `<Profile />` starts with a capital `P`, so React knows that we want to use our component called `Profile`.
+- `<section>` は小文字なので、React はこれが HTML タグを指しているのだと理解します。
+- `<Profile />` は大文字の `P` で始まっているので、React は `Profile` という名前の独自コンポーネントを使いたいのだと理解します。
 
-And `Profile` contains even more HTML: `<img />`. In the end, this is what the browser sees:
+`Profile` の中には `<img />` という HTML が更に含まれてます。最終的に、ブラウザに見えるのは以下ののようなものです。
 
 ```html
 <section>
@@ -170,34 +170,34 @@ And `Profile` contains even more HTML: `<img />`. In the end, this is what the b
 </section>
 ```
 
-### Nesting and organizing components {/*nesting-and-organizing-components*/}
+### コンポーネントのネストと整理方法 {/*nesting-and-organizing-components*/}
 
-Components are regular JavaScript functions, so you can keep multiple components in the same file. This is convenient when components are relatively small or tightly related to each other. If this file gets crowded, you can always move `Profile` to a separate file. You will learn how to do this shortly on the [page about imports](/learn/importing-and-exporting-components).
+コンポーネントは普通の JavaScript 関数ですので、同じファイルに複数のコンポーネントを書いておくこともできます。これはコンポーネントが比較的小さい場合や互いに密接に関連している場合には便利です。ファイルの中身が増えてきたら、いつでも `Profile` を別のファイルに移動できます。このやり方についてはすぐ後で、[インポートについてのページ](/learn/importing-and-exporting-components)で学びます。
 
-Because the `Profile` components are rendered inside `Gallery`—even several times!—we can say that `Gallery` is a **parent component,** rendering each `Profile` as a "child". This is part of the magic of React: you can define a component once, and then use it in as many places and as many times as you like.
+`Profile` コンポーネントは `Gallery` コンポーネントの中でレンダーされています（しかも何回も）ので、`Gallery` は**親コンポーネント**であり、`Profile` を「子」としてレンダーしている、と言うことができます。これが React の魔法です。一度コンポーネントを定義したら、それを好きなだけ、どこでも何回でも使えるということです。
 
-<DeepDive title="Components All the Way Down">
+<DeepDive title="端から端までコンポーネント">
 
-Your React application begins at a "root" component. Usually, it is created automatically when you start a new project. For example, if you use [CodeSandbox](https://codesandbox.io/) or [Create React App](https://create-react-app.dev/), the root component is defined in `src/App.js`. If you use the framework [Next.js](https://nextjs.org/), the root component is defined in `pages/index.js`. In these examples, you've been exporting root components.
+React アプリケーションは「ルート」コンポーネントから始まります。通常、これは新しいプロジェクトを開始したときに自動的に作成されます。例えば [CodeSandbox](https://codesandbox.io/) や [Create React App](https://create-react-app.dev/) を使う場合、ルートコンポーネントは `src/App.js` 内に定義されています。[Next.js](https://nextjs.org/) フレームワークを使っている場合はルートコンポーネントは `pages/index.js` に定義されています。ここまでの例でも、ルートコンポーネントをエクスポートしていたわけです。
 
-Most React apps use components all the way down. This means that you won't only use components for reusable pieces like buttons, but also for larger pieces like sidebars, lists, and ultimately, complete pages! Components are a handy way to organize UI code and markup, even if some of them are only used once.
+ほとんどの React アプリでは端から端までコンポーネントを使います。つまり、ボタンのような再利用可能なところでのみ使うのではなく、サイドバーやリスト、最終的にはページ本体といった大きなパーツのためにも使うのです。コンポーネントは、1 回しか使わないような UI コードやマークアップであっても、それらを整理するための有用な手段です。
 
-Frameworks like Next.js take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
+Next.js のようなフレームワークではこれを更に 1 歩押し進めます。空の HTML ファイルから始めて JavaScript で React にページ内容の管理を引き継がせるのではなく、あなたの書いた React コンポーネントから HTML ファイル自体も自動生成するのです。これにより、JavaScript コードがロードされる前にコンテンツの一部をアプリが表示できるようになります。
 
-Still, many websites only use React to [add "sprinkles of interactivity"](/learn/add-react-to-a-website). They have many root components instead of a single one for the entire page. You can use as much—or as little—React as you need.
+その一方で、多くのウェブサイトでは React を ["対話機能をちょっと添える"](/learn/add-react-to-a-website) ためにのみ使っています。そのようなサイトはページ全体のためのルートコンポーネントを 1 つだけ持つのではなく、たくさんのルートコンポーネントを持っています。必要しだいで、React を使う量は多くても少なくても構わないのです！
 
 </DeepDive>
 
 <Recap>
 
-You've just gotten your first taste of React! Let's recap some key points.
+これで初めての React の体験は完了です。キーポイントをいくつかおさらいしておきましょう。
 
-* React lets you create components, **reusable UI elements for your app.**
-* In a React app, every piece of UI is a component.
-* React components are regular JavaScript functions except:
+* React により**アプリのための再利用可能な部品**であるコンポーネントを作成できる。
+* React アプリでは UI のあらゆる部品はコンポーネントである。
+* React のコンポーネントとは普通の JavaScript 関数だが、以下の点が異なる：
 
-  1. Their names always begin with a capital letter.
-  2. They return JSX markup.
+  1. 名前は常に大文字で始まる必要がある。
+  2. JSX マークアップを return する。
 
 </Recap>
 
@@ -205,9 +205,9 @@ You've just gotten your first taste of React! Let's recap some key points.
 
 <Challenges>
 
-### Export the component {/*export-the-component*/}
+### コンポーネントのエクスポート {/*export-the-component*/}
 
-This sandbox doesn't work because the root component is not exported:
+このサンドボックスはルートコンポーネントがエクスポートされていないため動作しません：
 
 <Sandpack>
 
@@ -228,11 +228,11 @@ img { height: 181px; }
 
 </Sandpack>
 
-Try to fix it yourself before looking at the solution!
+答えを見る前に自分で修正してみましょう！
 
 <Solution>
 
-Add `export default` before the function definition like so:
+以下のように関数の前に `export default` を付けてください：
 
 <Sandpack>
 
@@ -253,17 +253,17 @@ img { height: 181px; }
 
 </Sandpack>
 
-You might be wondering why writing `export` alone is not enough to fix this example. You can learn the difference between `export` and `export default` in [Importing and Exporting Components](/learn/importing-and-exporting-components).
+これを修正するのに `export` とだけ書いたのではなぜ不十分なのか気になるかもしれません。`export` と `export default` の違いについては [Importing and Exporting Components](/learn/importing-and-exporting-components) で学ぶことができます。
 
 </Solution>
 
-### Fix the return statement {/*fix-the-return-statement*/}
+### return 文を直す {/*fix-the-return-statement*/}
 
-Something isn't right about this `return` statement. Can you fix it?
+この `return` 文はどうもおかしいようです。直せますか？
 
 <Hint>
 
-You may get an "Unexpected token" error while trying to fix this. In that case, check the that semicolon appears *after* the closing parenthesis. Leaving a semicolon inside `return ( )` will cause an error.
+もしかしたら修正途中で "Unexpected token" というエラーが出るかもしれません。その場合はセミコロンが閉じ括弧の*後*にあることを確認してください。`return ( )` の中にセミコロンが残っているとエラーになります。
 
 </Hint>
 
@@ -285,7 +285,7 @@ img { height: 180px; }
 
 <Solution>
 
-You can fix this component by moving the return statement to one line like so:
+このコンポーネントを修正するには、以下のように return 文を 1 行にします：
 
 <Sandpack>
 
@@ -301,7 +301,7 @@ img { height: 180px; }
 
 </Sandpack>
 
-Or by wrapping the returned JSX markup in parentheses that open right after `return`:
+または、return する JSX マークアップを `return` の直後から括弧で囲んでも構いません：
 
 <Sandpack>
 
@@ -324,9 +324,9 @@ img { height: 180px; }
 
 </Solution>
 
-### Spot the mistake {/*spot-the-mistake*/}
+### どこが間違い？ {/*spot-the-mistake*/}
 
-Something's wrong with how the `Profile` component is declared and used. Can you spot the mistake? (Try to remember how React distinguishes components from the regular HTML tags!)
+この `Profile` の宣言のしかたや使われ方は何か間違っています。間違いがどこか分かりますか？（React がどのようにしてコンポーネントと普通の HTML タグを区別するのか思い出してみましょう！）
 
 <Sandpack>
 
@@ -360,9 +360,9 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <Solution>
 
-React component names must start with a capital letter.
+React コンポーネントの名前は大文字で始めなければなりません。
 
-Change `function profile()` to `function Profile()`, and then change every `<profile />` to `<Profile />`:
+`function profile()` を `function Profile()` に、そして `<profile />` をすべて `<Profile />` に書きかえましょう：
 
 <Sandpack>
 
@@ -396,9 +396,9 @@ img { margin: 0 10px 10px 0; }
 
 </Solution>
 
-### Your own component {/*your-own-component*/}
+### 自分で書いてみる {/*your-own-component*/}
 
-Write a component from scratch. You can give it any valid name and return any markup. If you're out of ideas, you can write a `Congratulations` component thats shows `<h1>Good job!</h1>`. Don't forget to export it!
+ゼロからコンポーネントを書いてください。有効な名前ならどんな名前でも構いませんし、どんなマークアップを返しても構いません。何も思いつかないなら `<h1>Good job!</h1>` と表示する `Congratulations` というコンポーネントを書いてみましょう。エクスポートするのを忘れずに！
 
 <Sandpack>
 
