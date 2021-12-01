@@ -156,8 +156,8 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 大文字・小文字の違いに気をつけてください：
 
-- `<section>` は小文字なので、React はこれが HTML タグを指しているのだと理解します。
-- `<Profile />` は大文字の `P` で始まっているので、React は `Profile` という名前の独自コンポーネントを使いたいのだと理解します。
+* `<section>` は小文字なので、React はこれが HTML タグを指しているのだと理解します。
+* `<Profile />` は大文字の `P` で始まっているので、React は `Profile` という名前の独自コンポーネントを使いたいのだと理解します。
 
 `Profile` の中には `<img />` という HTML が更に含まれてます。最終的に、ブラウザに見えるのは以下ののようなものです。
 
@@ -196,7 +196,7 @@ Next.js のようなフレームワークではこれを更に 1 歩押し進め
 * React アプリでは UI のあらゆる部品はコンポーネントである。
 * React のコンポーネントとは普通の JavaScript 関数だが、以下の点が異なる：
 
-  1. 名前は常に大文字で始まる必要がある。
+  1. 名前は常に大文字で始まる。
   2. JSX マークアップを return する。
 
 </Recap>
@@ -253,7 +253,7 @@ img { height: 181px; }
 
 </Sandpack>
 
-これを修正するのに `export` とだけ書いたのではなぜ不十分なのか気になるかもしれません。`export` と `export default` の違いについては [Importing and Exporting Components](/learn/importing-and-exporting-components) で学ぶことができます。
+これを修正するのに `export` とだけ書いたのではなぜ不十分なのか気になるかもしれません。`export` と `export default` の違いについては[コンポーネントのインポートとエクスポート](/learn/importing-and-exporting-components)で学ぶことができます。
 
 </Solution>
 
