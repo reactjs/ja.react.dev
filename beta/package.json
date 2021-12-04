@@ -9,7 +9,7 @@
     "build": "next build && node ./scripts/generateRSS.js",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "lint:text": "textlint --rulesdir=./textlint  \"src/pages/**/*.md\" --cache",
+    "lint:text": "textlint --rulesdir=./textlint  src/pages/*.md src/pages/{blog,community,learn,reference}/*.md \"src/pages/blog/{2018,2019,20[2-9]*}/**/*.md\"",
     "format:source": "prettier --config .prettierrc --write \"{plugins,src}/**/*.{js,ts,jsx,tsx}\"",
     "nit:source": "prettier --config .prettierrc --list-different \"{plugins,src}/**/*.{js,ts,jsx,tsx}\"",
     "prettier": "yarn format:source",
@@ -68,6 +68,7 @@
     "gray-matter": "^4.0.2",
     "husky": "^7.0.4",
     "is-ci": "^3.0.1",
+    "lint-staged": "^12.1.2",
     "mdast-util-to-string": "^1.1.0",
     "npm-run-all": "^4.1.5",
     "patch-package": "^6.2.2",
@@ -99,5 +100,10 @@
     "budget": null,
     "budgetPercentIncreaseRed": 10,
     "showDetails": true
+  },
+  "lint-staged": {
+    "*.md": [
+      "textlint --rulesdir=./textlint"
+    ]
   }
 }

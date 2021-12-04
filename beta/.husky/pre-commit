@@ -6,3 +6,4 @@ yarn generate-ids
 git add -u src/pages/**/*.md
 yarn prettier
 yarn lint:fix
+yarn lint-staged
