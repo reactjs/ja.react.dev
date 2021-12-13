@@ -48,4 +48,4 @@ _注意：この機能は React の一部ではありません。サードパー
 
 ### React でアニメーションは使えますか？ {#can-i-do-animations-in-react}
 
-React を使ってアニメーションを動かすことは可能です。例として、[React Transition Group](https://reactcommunity.org/react-transition-group/) や [React Motion](https://github.com/chenglou/react-motion)、[React Spring](https://github.com/react-spring/react-spring) をご覧ください。
+React を使ってアニメーションを動かすことは可能です。例として、[React Transition Group](https://reactcommunity.org/react-transition-group/)、[React Motion](https://github.com/chenglou/react-motion)、[React Spring](https://github.com/react-spring/react-spring) や [Framer Motion](https://framer.com/motion) をご覧ください。
