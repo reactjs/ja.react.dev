@@ -1,26 +1,26 @@
 ---
-title: Passing Props to a Component
+title: コンポーネントに props を渡す
 ---
 
 <Intro>
 
-React components use **props** to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, and functions.
+React コンポーネントは互いにやりとりをする際に **props** というものを使います。親コンポーネントは子コンポーネントに props を渡すことで情報を伝えることができるのです。props は HTML の属性と似ていると思われるかもしれませんが、props ではオブジェクトや配列、関数などのあらゆる JavaScript の値を渡すことができます。
 
 </Intro>
 
 <YouWillLearn>
 
-* How to pass props to a component
-* How to read props from a component
-* How to specify default values for props
-* How to pass some JSX to a component
-* How props change over time
+* コンポーネントに props を渡す方法
+* コンポーネントから props を読み出す方法
+* props のデフォルト値を指定する方法
+* コンポーネントに JSX を渡す方法
+* props は時間とともに変化する
 
 </YouWillLearn>
 
-## Familiar props {/*familiar-props*/}
+## お馴染みの props {/*familiar-props*/}
 
-Props are the information that you pass to a JSX tag. For example, `className`, `src`, `alt`, `width`, and `height` are some of the props you can pass to an `<img>`:
+props とは JSX タグに渡す情報のことです。例えば `className`、`src`、`alt`、`width` や `height` は `<img>` に渡すことのできる props の例です：
 
 <Sandpack>
 
@@ -51,11 +51,11 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-The props you can pass to an `<img>` tag are predefined (ReactDOM conforms to [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). But you can pass any props to *your own* components, such as `<Avatar>`, to customize them. Here's how!
+`<img>` に渡すことができる props の種類は事前に決められています（ReactDOM は [HTML 標準](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)に準拠しています）。しかし `<Avatar>` のような*あなた独自の*コンポーネントの場合は、任意の props を渡してそれをカスタマイズできます。以下でやり方を説明します。
 
-## Passing props to a component {/*passing-props-to-a-component*/}
+## コンポーネントに props を渡す {/*passing-props-to-a-component*/}
 
-In this code, the `Profile` component isn't passing any props to its child component, `Avatar`:
+以下のコードでは、`Profile` コンポーネントは子コンポーネントである `<Avatar>` に何の props も渡していません：
 
 ```js
 export default function Profile() {
@@ -65,11 +65,11 @@ export default function Profile() {
 }
 ```
 
-You can give `Avatar` some props in two steps.
+以下の 2 ステップで `Avatar` に props を与えることができます。
 
-### Step 1: Pass props to the child component {/*step-1-pass-props-to-the-child-component*/}
+### Step 1: 子コンポーネントに props を渡す {/*step-1-pass-props-to-the-child-component*/}
 
-First, pass some props to `Avatar`. For example, let's pass two props: `person` (an object), and `size` (a number):
+まず、`Avatar` に何か props を渡します。例えば `person`（オブジェクト）と `size`（数値）を渡してみましょう：
 
 ```js
 export default function Profile() {
@@ -82,13 +82,13 @@ export default function Profile() {
 }
 ```
 
-> If double curly braces after `person=` confuse you, remember [they are merely an object](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx) inside the JSX curlies.
+> もし `person=` の後にある二重波括弧が分からない場合、これが JSX 波括弧の中にある[単なるオブジェクト](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx)であるということを思い出してください。
 
-Now you can read these props inside the `Avatar` component.
+これでこの props を `Avatar` コンポーネント内から読み出せるようになります。
 
-### Step 2: Read props inside the child component {/*step-2-read-props-inside-the-child-component*/}
+### Step 2: 子コンポーネントから props を読み出す {/*step-2-read-props-inside-the-child-component*/}
 
-You can read these props by listing their names `person, size` separated by the commas inside `({` and `})` directly after `function Avatar`. This lets you use them inside the `Avatar` code, like you would with a variable.
+これらの props を読み出すには、`function Avatar` の直後の `({` と `})` 内で、コンマで区切って `person, size` のように名前を指定します。これにより `Avatar` のコード内で変数と同じようにこれらの props が使えるようになります。
 
 ```js
 function Avatar({ person, size }) {
@@ -96,9 +96,9 @@ function Avatar({ person, size }) {
 }
 ```
 
-Add some logic to `Avatar` that uses the `person` and `size` props for rendering, and you're done.
+`Avatar` 内に `person` や `size` を使って何かをレンダーするロジックを書き加えれば完成です。
 
-Now you can configure `Avatar` to render in many different ways with different props. Try tweaking the values!
+これで `Avatar` に様々な props を渡すことで様々に表示を変えられるようになりました。実際に値をいじってみましょう！
 
 <Sandpack>
 
@@ -164,9 +164,9 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-Props let you think about parent and child components independently. For example, you can change the `person` or the `size` props inside `Profile` without having to think about how `Avatar` uses them. Similarly, you can change how the `Avatar` uses these props, without looking at the `Profile`.
+props のおかげで、親と子のコンポーネントを独立して考えることができるようになります。例えば、`Profile` で `person` や `size` を変更するときに `Avatar` 内でどう使われるかを気にしないでよくなります。同様に、`Avatar` がこれらの props をどのように使うのかは、`Profile` を見ずに変更できるようになります。
 
-You can think of props like "knobs" that you can adjust. They serve the same role as arguments serve for functions—in fact, props _are_ the only argument to your component! React component functions accept a single argument, a `props` object:
+props とは自分で調整できるコントローラの「ツマミ」のようなものです。関数における引数と同じ役割を果たしています。むしろ、props があなたのコンポーネントの唯一の引数です！ React コンポーネントは `props` というオブジェクトを唯一の引数として受け取っているのです。
 
 ```js
 function Avatar(props) {
@@ -176,11 +176,11 @@ function Avatar(props) {
 }
 ```
 
-Usually you don't need the whole `props` object itself, so you destructure it into individual props.
+通常は `props` オブジェクト全体を必要とすることはないため、個々の props へと分割代入します。
 
 <Gotcha>
 
-**Don't miss the pair of `{` and `}` curlies** inside of `(` and `)` when declaring props:
+props を宣言する際は `(` と `)` の中で **`{` と `}` という波括弧のペアを入れ忘れない**ようにしましょう：
 
 ```js
 function Avatar({ person, size }) {
@@ -188,7 +188,7 @@ function Avatar({ person, size }) {
 }
 ```
 
-This syntax is called ["destructuring"](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) and is equivalent to reading properties from a function parameter:
+この構文は[「分割代入 (destructuring)」](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter)と呼ばれるもので、関数の引数からプロパティを読み出す以下のようなコードと同等です：
 
 ```js
 function Avatar(props) {
@@ -200,9 +200,9 @@ function Avatar(props) {
 
 </Gotcha>
 
-## Specifying a default value for a prop {/*specifying-a-default-value-for-a-prop*/}
+## props のデフォルト値を指定する {/*specifying-a-default-value-for-a-prop*/}
 
-If you want to give a prop a default value to fall back on when no value is specified, you can do it with the destructuring by putting `=` and the default value right after the parameter:
+props に、値が渡されなかった場合にフォールバックとして使うデフォルト値を指定したい場合、分割代入の中でパラメータ名の直後に `=` とデフォルト値を書くことができます：
 
 ```js
 function Avatar({ person, size = 100 }) {
@@ -210,13 +210,13 @@ function Avatar({ person, size = 100 }) {
 }
 ```
 
-Now, if `<Avatar person={...} />` is rendered with no `size` prop, the `size` will be set to `100`.
+これで、`size` プロパティを指定せずに `<Avatar person={...} />` のようにレンダーされた場合、`size` は `100` にセットされます。
 
-The default value is only used if the `size` prop is missing or if you pass `size={undefined}`. But if you pass `size={null}` or `size={0}`, the default value will **not** be used.
+このデフォルト値は `size` がない場合や `size={undefined}` を渡した場合にのみ使用されます。`size={null}` や `size={0}` を渡した場合にはデフォルト値は**使われません**。
 
-## Forwarding props with the JSX spread syntax {/*forwarding-props-with-the-jsx-spread-syntax*/}
+## JSX スプレッド構文で props を転送する {/*forwarding-props-with-the-jsx-spread-syntax*/}
 
-Sometimes, passing props gets very repetitive:
+ときに、props の受け渡しが冗長な繰り返しになってしまうことがあります：
 
 ```js
 function Profile({ person, size, isSepia, thickBorder }) {
@@ -233,7 +233,7 @@ function Profile({ person, size, isSepia, thickBorder }) {
 }
 ```
 
-There's nothing wrong with repetitive code—it can be more legible. But at times you may value conciseness. Some components forward all of their props to their children, like how this `Profile` does with `Avatar`. Because they don't use any of their props directly, it can make sense to use a more concise "spread" syntax:
+繰り返しの多いコードが悪いわけではありませんし、その方が読みやすいこともあるでしょう。しかし簡潔であることに価値があることもあります。この `Profile` が `Avatar` に対してやっているのと同様、コンポーネントによっては props をそのまま子コンポーネントに転送します。`Profile` は props を直接的に使っているわけではありませんので、以下のような「スプレッド」構文を使って短く書く方が理にかなっているかもしれません：
 
 ```js
 function Profile(props) {
@@ -245,13 +245,13 @@ function Profile(props) {
 }
 ```
 
-This forwards all of `Profile`'s props to the `Avatar` without listing each of their names.
+これにより、`Profile` に渡された props を、個々の名前を列挙することなくすべて `Avatar` に転送できます。
 
-**Use spread syntax with restraint.** If you're using it in every other component, something is wrong. Often, it indicates that you should split your components and pass children as JSX. More on that next!
+**スプレッド構文は慎重に使ってください。**この構文をあらゆるコンポーネントで使っているなら、何かが間違っています。多くの場合は、コンポーネントを分割して JSX として children を渡すべきというサインです。今からこれについて述べていきます。
 
-## Passing JSX as children {/*passing-jsx-as-children*/}
+## children として JSX を渡す {/*passing-jsx-as-children*/}
 
-It is common to nest built-in browser tags:
+ブラウザの組み込みタグをネストすることはよくありますね。
 
 ```js
 <div>
@@ -259,7 +259,7 @@ It is common to nest built-in browser tags:
 </div>
 ```
 
-Sometimes you'll want to nest your own components the same way:
+同様にして独自コンポーネントもネストしたくなることがあります。
 
 ```js
 <Card>
@@ -267,7 +267,7 @@ Sometimes you'll want to nest your own components the same way:
 </Card>
 ```
 
-When you nest content inside a JSX tag, the parent component will receive that content in a prop called `children`. For example, the `Card` component below will receive a `children` prop set to `<Avatar />` and render it in a wrapper div:
+このように JSX タグ内でコンテンツをネストした場合、親側のコンポーネントはコンテンツを `children` という props として受け取ります。例えば以下の `Card` コンポーネントは、`<Avatar />` がセットされた `children` プロパティを受け取って、ラッパー div 要素の内部にそれをレンダーしています：
 
 <Sandpack>
 
@@ -343,17 +343,17 @@ export function getImageUrl(person, size = 's') {
 
 </Sandpack>
 
-Try replacing the `<Avatar>` inside `<Card>` with some text to see how the `Card` component can wrap any nested content. It doesn't need to "know" what's being rendered inside of it. You will see this flexible pattern in many places.
+`<Card>` 内の `<Avatar>` を何かテキストに置き換えてみて、ネストされているどんなコンテンツでも `Card` コンポーネントは囲んで表示できるということを確かめてください。中に何が表示されるかあらかじめ知っておく必要はありません。このような柔軟なパターンは、様々なところで目にすることになるでしょう。
 
-You can think of a component with a `children` prop as having a "hole" that can be "filled in" by its parent components with arbitrary JSX. You will often use the `children` prop for visual wrappers: panels, grids, and so on. You can explore this in more detail in [Extracting Layout Components](/learn/extracting-layout-components).
+`children` プロパティを有するコンポーネントには、親に任意の JSX で「埋めて」もらうための「穴」が開いている、と考えることができます。`children` は、パネルやグリッドのような視覚的に何かを囲む要素に使うことができます。これについては [Extracting Layout Components](/learn/extracting-layout-components) で詳しく解説します。
 
 <Illustration src="/images/docs/illustrations/i_children-prop.png" alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar' />
 
-## How props change over time {/*how-props-change-over-time*/}
+## props は時間とともに変化する {/*how-props-change-over-time*/}
 
-The `Clock` component below receives two props from its parent component: `color` and `time`. (The parent component's code is omitted because it uses [state](/learn/state-a-components-memory), which we won't dive into just yet.)
+以下の `Clock` コンポーネントは親コンポーネントから `color` と `time` という 2 つの props を受け取っています。（親コンポーネントのコードは、まだ解説していない [state](/learn/state-a-components-memory) を使っているため省略しています。）
 
-Try changing the color in the select box below:
+以下の選択ボックスでカラーを変えてみてください：
 
 <Sandpack>
 
@@ -403,21 +403,21 @@ export default function App() {
 
 </Sandpack>
 
-This example illustrates that **a component may receive different props over time.** Props are not always static! Here, the `time` prop changes every second, and the `color` prop changes when you select another color. Props reflect a component's data at any point in time, rather than only in the beginning.
+この例は、**コンポーネントは時間経過とともに別の props を受け取る可能性がある**ということを示しています。props は常に固定だとは限らないのです！ ここでは `time` プロパティは毎秒変化していますし、`color` プロパティもあなたが別の色を選択するたびに変化します。props とはコンポーネントの最初の時点ではなく、任意の時点でのコンポーネントのデータを反映するものなのです。
 
-However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)—a term from computer science meaning "unchangeable." When a component needs to change its props (for example, in response to a user interaction or new data), it will have to "ask" its parent component to pass it _different props_—a new object! Its old props will then be cast aside, and eventually the JavaScript engine will reclaim the memory taken by them.
+しかし、props は[イミュータブル (immutable)](https://en.wikipedia.org/wiki/Immutable_object) です。これは「不変な」という意味のコンピュータサイエンス用語です。コンポーネントの props が（例えばユーザ操作や新しいデータの到着に応じて）変わらないといけない場合、親のコンポーネントに*別の props*、つまり新しいオブジェクトを渡してもらう必要があります！ 古い props は忘れられ、使われていたメモリは JavaScript エンジンがそのうち回収します。
 
-**Don't try to "change props".** When you need to respond to the user input (like changing the selected color), you will need to "set state", which you can learn about in [State: A Component's Memory](/learn/state-a-components-memory).
+**「props の書き換え」をしようとしてはいけません。**（上記のカラー選択のように）ユーザの入力に反応する必要がある場合は、「state のセット」が必要です。これについては [State: A Component's Memory](/learn/state-a-components-memory) で学びます。
 
 <Recap>
 
-* To pass props, add them to the JSX, just like you would with HTML attributes.
-* To read props, use the `function Avatar({ person, size })` destructuring syntax.
-* You can specify a default value like `size = 100`, which is used for missing and `undefined` props.
-* You can forward all props with `<Avatar {...props} />` JSX spread syntax, but don't overuse it!
-* Nested JSX like `<Card><Avatar /></Card>` will appear as `Card` component's `children` prop.
-* Props are read-only snapshots in time: every render receives a new version of props.
-* You can't change props. When you need interactivity, you'll need to set state.
+* props を渡すには HTML で属性を書くのと同様のやり方で JSX 内に書く。
+* props を読み出すには、`function Avatar({ person, size })` のような分割代入構文を使う。
+* `size = 100` のようなデフォルト値を指定でき、これは props がない場合や `undefined` の場合に使われる。
+* `<Avatar {...props} />` のような JSX スプレッド構文ですべての props を転送できるが、多様は禁物！
+* `<Card><Avatar /></Card>` のようなネストされた JSX を書くと `Card` コンポーネントの `children` プロパティになる。
+* props とはある時点での読み取り専用のスナップショットである。レンダー毎に新しい props のバージョンを受け取る。
+* props を書き換えることはできない。インタラクティブ性が必要な場合は state を設定する必要がある。
 
 </Recap>
 
@@ -425,9 +425,9 @@ However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)�
 
 <Challenges>
 
-### Extract a component {/*extract-a-component*/}
+### コンポーネント抽出 {/*extract-a-component*/}
 
-This `Gallery` component contains some very similar markup for two profiles. Extract a `Profile` component out of it to reduce the duplication. You'll need to choose what props to pass to it.
+以下の `Gallery` コンポーネントには 2 名のプロフィール用にとても似たマークアップが含まれてしまっています。ここから `Profile` というコンポーネントを抽出してコードの重複を減らしてください。どんな props を渡すのかは自分で決める必要があるでしょう。
 
 <Sandpack>
 
@@ -520,15 +520,15 @@ li { margin: 5px; }
 
 <Hint>
 
-Start by extracting the markup for one of the scientists. Then find the pieces that don't match it in the second example, and make them configurable by props.
+片方の科学者のマークアップを取り出すところから始めましょう。もう片方の人物と合わない部分を探し出し、その部分を props で設定できるようにします。
 
 </Hint>
 
 <Solution>
 
-In this solution, the `Profile` component accepts multiple props: `imageId` (a string), `name` (a string), `profession` (a string), `awards` (an array of strings), `discovery` (a string), and `imageSize` (a number).
+以下の解法では、`Profile` コンポーネントが複数の props を受け取るようにしました。`imageId`（文字列）、`name`（文字列）、`profession`（文字列）、`awards`（文字列の配列）、`discovery`（文字列）、`imageSize`（数値）です。
 
-Note that the `imageSize` prop has a default value, which is why we don't pass it to the component.
+`imageSize` プロパティにはデフォルト値があるのでコンポーネントに渡す必要がないことに注意してください。
 
 <Sandpack>
 
@@ -626,9 +626,9 @@ li { margin: 5px; }
 
 </Sandpack>
 
-Note how you don't need a separate `awardCount` prop if `awards` is an array. Then you can use `awards.length` to count the number of awards. Remember that props can take any values, and that includes arrays too!
+`awards` を配列として渡せば `awardCount` のような props を別に使う必要がないことに注意してください。こうすることで `awards.length` を使うことで受賞数がわかります。props にはあらゆる値を渡すことができ、配列も渡せるということを思い出してください！
 
-Another solution, which is more similar to the earlier examples on this page, is to group all information about a person in a single object, and pass that object as one prop:
+別の解法として、このページの上の方の例と同様に、ある人物の情報を単一のオブジェクトにグループ化してそのオブジェクトを 1 つの prop として渡すようにすることもできます：
 
 <Sandpack>
 
@@ -723,15 +723,15 @@ li { margin: 5px; }
 
 </Sandpack>
 
-Although the syntax looks slightly different because you're describing properties of a JavaScript object rather than a collection of JSX attributes, these examples are mostly equivalent, and you can pick either approach.
+複数の JSX 属性ではなく JavaScript のプロパティを使って記述しているので構文はちょっと変わっていますが、これらの例はほぼ同等であり、どちらのアプローチを使っても構いません。
 
 </Solution>
 
-### Adjust the image size based on a prop {/*adjust-the-image-size-based-on-a-prop*/}
+### props に基づく画像サイズ変更 {/*adjust-the-image-size-based-on-a-prop*/}
 
-In this example, `Avatar` receives a numeric `size` prop which determines the `<img>` width and height. The `size` prop is set to `40` in this example. However, if you open the image in a new tab, you'll notice that the image itself is larger (`160` pixels). The real image size is determined by which thumbnail size you're requesting.
+以下の例では `Avatar` は数値型の `size` プロパティを受け取り、これが `<img>` の幅と高さを決定しています。この例では `size` は `40` に設定されています。しかしこの画像を新しいタブで開いてみると、画像自体はもっと大きい（`160` ピクセル）ことがわかります。実際の画像自体のサイズは、リクエストするサムネールのサイズによって決定されます。
 
-Change the `Avatar` component to request the closest image size based on the `size` prop. Specifically, if the `size` is less than `90`, pass `'s'` ("small") rather than `'b'` ("big") to the `getImageUrl` function. Verify that your changes work by rendering avatars with different values of the `size` prop and opening images in a new tab.
+`Avatar` コンポーネントを書き換えて、`size` プロパティに基づいて最も近い画像サイズをリクエストするようにしてください。具体的には、`size` が `90` 未満の時は `getImageUrl` 関数に `'b'` ("big") ではなく `'s'` ("small") を渡すようにします。書き換えがうまくいったことを確認するには、アバターを `size` を書き換えてレンダーし、画像を新しいタブで開くようにします。
 
 <Sandpack>
 
@@ -782,7 +782,7 @@ export function getImageUrl(person, size) {
 
 <Solution>
 
-Here is how you could go about it:
+以下が解法の一例です：
 
 <Sandpack>
 
@@ -844,7 +844,7 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-You could also show a sharper image for high DPI screens by taking [`window.devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) into account:
+[`window.devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) を考慮に入れて、高 DPI の画面でよりシャープな画像を表示するようにすることもできます：
 
 <Sandpack>
 
@@ -915,13 +915,13 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-Props let you encapsulate logic like this inside the `Avatar` component (and change it later if needed) so that everyone can use the `<Avatar>` component without thinking about how the images are requested and resized.
+props を使うことでこのようなロジックを `Avatar` 内にカプセル化（そして必要なら後で修正）し、画像がどのようにリクエストされサイズ変更されているのかを考えなくとも、誰でも `<Avatar>` が使えるようにできます。
 
 </Solution>
 
-### Passing JSX in a `children` prop {/*passing-jsx-in-a-children-prop*/}
+### `children` に JSX を渡す {/*passing-jsx-in-a-children-prop*/}
 
-Extract a `Card` component from the markup below, and use the `children` prop to pass different JSX to it:
+以下のマークアップから `Card` コンポーネントを抽出し、`children` プロパティを使って異なる JSX が渡されるようにしてください。
 
 <Sandpack>
 
@@ -979,13 +979,13 @@ h1 {
 
 <Hint>
 
-Any JSX you put inside of a component's tag will be passed as the `children` prop to that component.
+コンポーネントのタグ内に書かれたあらゆる JSX はそのコンポーネントの `children` として渡されます。
 
 </Hint>
 
 <Solution>
 
-This is how you can use the `Card` component in both places:
+以下のようにすれば両方の場所で `Card` コンポーネントを使えるようになります。
 
 <Sandpack>
 
@@ -1047,7 +1047,7 @@ h1 {
 
 </Sandpack>
 
-You can also make `title` a separate prop if you want every `Card` to always have a title:
+`Card` に常にタイトルがあるようにしたい場合、`title` を独立した props にすることもできます：
 
 <Sandpack>
 
