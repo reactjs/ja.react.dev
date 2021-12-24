@@ -51,11 +51,11 @@
               "path": "/learn/importing-and-exporting-components"
             },
             {
-              "title": "Writing Markup with JSX",
+              "title": "JSX でマークアップを記述する",
               "path": "/learn/writing-markup-with-jsx"
             },
             {
-              "title": "JavaScript in JSX with Curly Braces",
+              "title": "JSX に波括弧で JavaScript を含める",
               "path": "/learn/javascript-in-jsx-with-curly-braces"
             },
             {
