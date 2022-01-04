@@ -5,7 +5,7 @@ author: [jtannady, rickhanlonii]
 
 先週、第 6 回の React Conf を開催しました。これまでの年度において、我々は React Conf のステージ上で、[_React Native_](https://engineering.fb.com/2015/03/26/android/react-native-bringing-modern-web-techniques-to-mobile/) や [_React Hooks_](https://reactjs.org/docs/hooks-intro.html) といった業界を変えるような発表をお届けしてきました。本年度は、React 18 のリリースと並行レンダリング機能の段階的な採用から始まる我々のマルチプラットフォーム戦略についての話題を共有しました。
 
-React Conf がオンラインで開催されたのは今回が初めてですが、イベントは 8 つの言語に翻訳され、無料でストリーミング配信されました。世界中の参加者が、カンファランス Discord や、すべてのタイムゾーンの方がアクセスしやすいように行われたリプレイイベントに参加しました。登録者数は 50,000 人以上に達し、19 の演題は 60,000 回以上閲覧され、両イベントを通じて Discord には 5,000 人の参加者が集まりました。
+React Conf がオンラインで開催されたのは今回が初めてですが、イベントは 8 つの言語に翻訳され、無料でストリーミング配信されました。世界中の参加者が、カンファレンスの Discord や、すべてのタイムゾーンの方がアクセスしやすいように行われたリプレイイベントに参加しました。登録者数は 50,000 人以上に達し、19 の演題は 60,000 回以上閲覧され、両イベントを通じて Discord には 5,000 人の参加者が集まりました。
 
 すべての発表は[オンラインストリーミングで閲覧可能です](https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa)。
 
@@ -52,9 +52,9 @@ React 18 へのアップグレードのデモについては、[Shruti Kapoor](h
 
 <iframe style="margin-top:10px" width="560" height="315" src="https://www.youtube.com/embed/ytudH8je5ko" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## サスペンスを使ったストリーミング付きサーバレンダリング {#streaming-server-rendering-with-suspense}
+## サスペンスを使ったストリーミングサーバレンダリング {#streaming-server-rendering-with-suspense}
 
-React 18 にはサスペンスを使ったサーバサイドレンダリングの機能の改善が含まれています。
+React 18 にはサスペンスを使ったサーバサイドレンダリングのパフォーマンス改善が含まれています。
 
 ストリーミングサーバレンダリングによって、サーバ側で React コンポーネントから HTML を作成し、それをユーザにストリームで送ることができます。React 18 では、`Suspense` を使ってアプリを小さな単位に分割し、それぞれがアプリの他の部分をブロックせずに独立してストリーミング処理できるようになります。これによりユーザはより早くコンテンツを見ることができ、素早くインタラクションができるようになる、ということです。
 
@@ -62,7 +62,7 @@ React 18 にはサスペンスを使ったサーバサイドレンダリング�
 
 <iframe style="margin-top:10px" width="560" height="315" src="https://www.youtube.com/embed/pj5N-Khihgc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## React ワーキンググループの初立ち上げ {#the-first-react-working-group}
+## React ワーキンググループの立ち上げ {#the-first-react-working-group}
 
 React 18 では、エキスパートや開発者、ライブラリメンテナ、教育者のグループと協力して作業するため、初めてワーキンググループを立ち上げました。彼らとともに、段階的な採用戦略を作成し、`useId`、`useSyncExternalStore`, `useInsertionEffect` といった API の改善を行ってきました。
 
@@ -72,7 +72,7 @@ React 18 では、エキスパートや開発者、ライブラリメンテナ�
 
 ## React の開発者向けツーリング {#react-developer-tooling}
 
-このリリースにおける新機能をサポートするため、新たに構成された React DevTools チームと、開発者が React サプリをデバッグしやすくするための新たなタイムラインプロファイラについて発表しました。
+このリリースにおける新機能をサポートするため、新たに構成された React DevTools チームと、開発者が React アプリをデバッグしやすくするための新たなタイムラインプロファイラについて発表しました。
 
 新たな DevTools の機能についての詳細およびデモについては、[Brian Vaughn](https://twitter.com/brian_d_vaughn) による発表をご覧ください：
 
@@ -86,7 +86,7 @@ React 18 では、エキスパートや開発者、ライブラリメンテナ�
 
 ## React ドキュメントキーノート {#react-docs-keynote}
 
-React の学習や React による設計についての一連の発表は [Rachel Nabors](https://twitter.com/rachelnabors) からスタートしました。その中では React の [新ドキュメント](https://beta.reactjs.org/) に関しての我々の注力に関してのキーノートがありました：
+React の学習や React による設計についての一連の発表は [Rachel Nabors](https://twitter.com/rachelnabors) からスタートしました。その中では React の [新ドキュメント](https://beta.reactjs.org/) に対する我々の注力についてのキーノートがありました：
 
 <iframe style="margin-top:10px" width="560" height="315" src="https://www.youtube.com/embed/mneDaMYOKP8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -105,7 +105,7 @@ React の学習や React による設計についての一連の発表は [Rache
 * Eric Rozell and Steven Moyes: [React Native Desktop](https://youtu.be/9L4FFrvwJwY).
 * Roman Rädle: [On-device Machine Learning for React Native](https://youtu.be/NLj73vrc2I8)
 
-**アクセシビリティ、ツーリング、サーバコンポーネントコミュニティからの発表：**
+**アクセシビリティ、ツーリング、サーバコンポーネントについてコミュニティからの発表：**
 
 * Daishi Kato: [React 18 for External Store Libraries](https://youtu.be/oPfSC5bQPR8).
 * Diego Haz: [Building Accessible Components in React 18](https://youtu.be/dcm8fjBfro8).
