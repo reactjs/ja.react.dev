@@ -34,8 +34,12 @@ function MyDiv(props) {
 }
 ```
 
+<<<<<<< HEAD
 **良い例：**スプレッド演算子は props から必要な変数だけ取り出して、残りの props を別の変数に入れるのに使用できます。
 
+=======
+**Good:** The spread syntax can be used to pull variables off props, and put the remaining props into a variable.
+>>>>>>> 5f0549c86e7a9c0774e66687d1bc0118a681eb9d
 
 ```js
 function MyDiv(props) {
