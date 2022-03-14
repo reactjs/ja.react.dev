@@ -97,9 +97,13 @@ React Native は[バージョン 0.59](https://reactnative.dev/blog/2019/03/12/r
 
 我々の目標はできるだけ早急にフックがすべてのクラスのユースケースをカバーできるようにすることです。まだ使用頻度の低い `getSnapshotBeforeUpdate`、`getDerivedStateFromError` および `componentDidCatch` についてはフックでの同等物が存在していませんが、すぐに追加する予定です。
 
+<<<<<<< HEAD
 まだフックはできたばかりですので、幾つかのサードパーティ製のライブラリは現時点でフックとの互換性がないかもしれません。
 
 ### フックはレンダープロップや高階コンポーネントを置き換えるものですか？ {#do-hooks-replace-render-props-and-higher-order-components}
+=======
+### Do Hooks replace render props and higher-order components? {#do-hooks-replace-render-props-and-higher-order-components}
+>>>>>>> 7994045415a9066f8663ee5403e874edbb4c5f83
 
 レンダープロップや高階コンポーネントは、ひとつの子だけをレンダーすることがよくあります。フックはこのようなユースケースを実現するより簡単な手段だと考えています。これらのパターンには引き続き利用すべき場面があります（例えば、バーチャルスクローラーコンポーネントは `renderItem` プロパティを持つでしょうし、コンテナコンポーネントは自分自身の DOM 構造を有しているでしょう）。とはいえ大抵の場合ではフックで十分であり、フックがツリーのネストを減らすのに役立つでしょう。
 

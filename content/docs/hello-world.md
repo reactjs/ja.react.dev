@@ -17,7 +17,7 @@ ReactDOM.render(
 
 これは "Hello, world!" という見出しをページに表示します。
 
-[](codepen://hello-world)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/rrpgNB?editors=1010)**
 
 上記のリンクをクリックしてオンラインエディタを開いてください。好きなように書き換えて、出力にどう影響するのかを確認してみてください。このガイドのほとんどのページにはこのような編集可能な例が出てきます。
 
