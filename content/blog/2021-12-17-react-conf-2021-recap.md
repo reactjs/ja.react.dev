@@ -1,5 +1,5 @@
 ---
-title: "Rect Conf 2021 振り返り"
+title: "React Conf 2021 振り返り"
 author: [jtannady, rickhanlonii]
 ---
 
