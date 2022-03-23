@@ -16,7 +16,7 @@ permalink: docs/context.html
   - [Class.contextType](#classcontexttype)
   - [Context.Consumer](#contextconsumer)
   - [Context.displayName](#contextdisplayname)
-- [例](#例)
+- [例](#examples)
   - [動的なコンテクスト](#dynamic-context)
   - [ネストしたコンポーネントからコンテクストを更新する](#updating-context-from-a-nested-component)
   - [複数のコンテクストを使用する](#consuming-multiple-contexts)
