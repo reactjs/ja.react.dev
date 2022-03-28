@@ -20,11 +20,47 @@ JSX とは JavaScript の拡張であり、JavaScript ファイル内に HTML �
 
 これまでウェブは HTML、CSS そして JavaScript を使って作られてきました。長年にわたり、ウェブ開発者はコンテンツは HTML で書き、デザインは CSS で書き、ロジックは JavaScript で書き、そして大抵の場合はそれらを別ファイルにしていました。コンテンツは HTML 内にマークアップされ、そのページのロジックは別ファイルの JavaScript に存在していました：
 
+<<<<<<< HEAD
 ![HTML と JavaScript は別ファイル](/images/docs/illustrations/i_html_js.svg)
+=======
+<DiagramGroup>
+
+<Diagram name="writing_jsx_html" height={237} width={325} alt="HTML markup with purple background and a div with two child tags: p and form. ">
+
+HTML
+
+</Diagram>
+
+<Diagram name="writing_jsx_js" height={237} width={325} alt="Three JavaScript handlers with yellow background: onSubmit, onLogin, and onClick.">
+
+JavaScript
+
+</Diagram>
+
+</DiagramGroup>
+>>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
 
 しかしウェブがよりインタラクティブなものになるにつれ、ロジックがコンテンツの中身をも決めるようになっていきました。JavaScript が HTML の領分も担当するようになったのです！ これが、**React ではロジックとマークアップを同じ場所、すなわちコンポーネントに書く**理由です。
 
+<<<<<<< HEAD
 ![マークアップを混ぜ込んだ JavaScript 関数](/images/docs/illustrations/i_jsx.svg)
+=======
+<DiagramGroup>
+
+<Diagram name="writing_jsx_sidebar" height={330} width={325} alt="React component with HTML and JavaScript from previous examples mixed. Function name is Sidebar which calls the function isLoggedIn, highlighted in yellow. Nested inside the function highlighted in purple is the p tag from before, and a Form tag referencing the component shown in the next diagram.">
+
+Sidebar.js
+
+</Diagram>
+
+<Diagram name="writing_jsx_form" height={330} width={325} alt="React component with HTML and JavaScript from previous examples mixed. Function name is Form containing two handlers onClick and onSubmit highlighted in yellow. Following the handlers is HTML highlighted in purple. The HTML contains a form element with a nested input element, each with an onClick prop.">
+
+Form.js
+
+</Diagram>
+
+</DiagramGroup>
+>>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
 
 ボタンのレンダリングロジックとマークアップを同じ場所に書くことで、それらが毎回の編集時に同期されることが保証されます。逆に、ボタンのマークアップとサイドバーのマークアップといった互いに関係のない詳細は、互いに分離されるようになるため、それぞれをより安全に独立して更新できるようになります。
 

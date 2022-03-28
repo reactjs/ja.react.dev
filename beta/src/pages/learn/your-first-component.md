@@ -102,7 +102,11 @@ return 文は、以下のように 1 行にまとめて書いても構いませ�
 return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
 ```
 
+<<<<<<< HEAD
 しかし return と同じ行にマークアップ全体が収まらない場合は、括弧で囲んで以下のようにする必要があります：
+=======
+But if your markup isn't all on the same line as the `return` keyword, you must wrap it in a pair of parentheses like this:
+>>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
 
 ```js
 return (

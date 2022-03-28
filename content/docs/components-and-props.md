@@ -76,7 +76,7 @@ ReactDOM.render(
 );
 ```
 
-[](codepen://components-and-props/rendering-a-component)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)**
 
 この例で何が起こるのかおさらいしてみましょう。
 
@@ -118,7 +118,7 @@ ReactDOM.render(
 );
 ```
 
-[](codepen://components-and-props/composing-components)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)**
 
 典型的には、新規の React アプリは階層の一番上に単一の `App` コンポーネントを持っています。しかし、既存のアプリに React を統合する場合は、`Button` のような小さなコンポーネントからボトムアップで始め、徐々にビューの階層構造の頂上に向かって進んでいってもよいでしょう。
 
@@ -152,7 +152,7 @@ function Comment(props) {
 }
 ```
 
-[](codepen://components-and-props/extracting-components)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/VKQwEo?editors=1010)**
 
 これは props として `author`（オブジェクト）、`text`（文字列）、および `date`（日付）を受け取り、ソーシャルメディアサイトにおける 1 つのコメントを表します。
 
@@ -231,7 +231,7 @@ function Comment(props) {
 }
 ```
 
-[](codepen://components-and-props/extracting-components-continued)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/rrJNJY?editors=1010)**
 
 コンポーネントの抽出は最初は面倒な仕事のように思えますが、再利用できるコンポーネントをパレットとして持っておくことは、アプリケーションが大きくなれば努力に見合った利益を生みます。役に立つ経験則として、UI の一部（`Button`、`Panel`、`Avatar` など）が複数回使われている場合、またはその UI 自体が複雑（`App`、`FeedStory`、`Comment` など）である場合、それらは別のコンポーネントに抽出する有力な候補であるといえます。
 
