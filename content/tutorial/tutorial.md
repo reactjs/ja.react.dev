@@ -1148,21 +1148,13 @@ class Game extends React.Component {
   }
 ```
 
-<<<<<<< HEAD
 `jumpTo` メソッド内では state の history プロパティは更新していないことに注意してください。これは、state の更新はマージされるから、より簡単に言うと、React は `setState` で直接指定されたプロパティのみを更新しほかの state はそのまま残すからです。詳しくは**[ドキュメントを参照](/docs/state-and-lifecycle.html#state-updates-are-merged)**。
-=======
-Notice in `jumpTo` method, we haven't updated `history` property of the state. That is because state updates are merged or in more simple words React will update only the properties mentioned in `setState` method leaving the remaining state as is. For more info **[see the documentation](/docs/state-and-lifecycle.html#state-updates-are-merged)**.
->>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
 
 では次に、マス目をクリックしたときに実行される Game の `handleClick` メソッドに、いくつかの変更を加えます。
 
 今加えた state である `stepNumber` は現在ユーザに見せている着手を反映しています。新しい着手が発生した場合は、`this.setState` の引数の一部として `stepNumber: history.length` を加えることで、`stepNumber` を更新する必要があります。
 
-<<<<<<< HEAD
 また `this.state.history` から読み取っているところを `this.state.history.slice(0, this.state.stepNumber + 1)` に書き換えます。これにより、「時間の巻き戻し」をしてからその時点で新しい着手を起こした場合に、そこから見て「将来」にある履歴（もはや正しくなくなったもの）を確実に捨て去ることができます。
-=======
-We will also replace reading `this.state.history` with `this.state.history.slice(0, this.state.stepNumber + 1)`. This ensures that if we "go back in time" and then make a new move from that point, we throw away all the "future" history that would now be incorrect.
->>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
 
 ```javascript{2,13}
   handleClick(i) {

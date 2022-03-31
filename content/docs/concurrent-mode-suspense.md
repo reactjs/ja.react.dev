@@ -220,11 +220,7 @@ function ProfileTimeline() {
 }
 ```
 
-<<<<<<< HEAD
-**[CodeSandbox で試す](https://codesandbox.io/s/fragrant-glade-8huj6)**
-=======
-**[Try it on CodeSandbox](https://codesandbox.io/s/fast-glade-rqnhtt)**
->>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
+**[CodeSandbox で試す](https://codesandbox.io/s/fast-glade-rqnhtt)**
 
 このコードを実行してコンソールのログで眺めると、実行の順番は以下のようになっています：
 
@@ -299,11 +295,7 @@ function ProfileTimeline({ posts }) {
 }
 ```
 
-<<<<<<< HEAD
-**[CodeSandbox で試す](https://codesandbox.io/s/wandering-morning-ev6r0)**
-=======
-**[Try it on CodeSandbox](https://codesandbox.io/s/hopeful-lake-loddz9)**
->>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
+**[CodeSandbox で試す](https://codesandbox.io/s/hopeful-lake-loddz9)**
 
 これで、イベントの流れは以下のようなものになります：
 
@@ -429,11 +421,7 @@ function App() {
 }
 ```
 
-<<<<<<< HEAD
-**[CodeSandbox で試す](https://codesandbox.io/s/infallible-feather-xjtbu)**
-=======
-**[Try it on CodeSandbox](https://codesandbox.io/s/sparkling-field-41z4r3)**
->>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
+**[CodeSandbox で試す](https://codesandbox.io/s/sparkling-field-41z4r3)**
 
 このアプローチにより、**コードとデータを並行して取得**できます。ページ間でナビゲートする場合、ページのデータのロードを開始するためにそのページのコードがロードされるのを待つ必要はありません。（リンクのクリック時に）コードとデータの両方の取得を開始すればよく、それでユーザ体験はずっと向上します。
 
@@ -520,11 +508,7 @@ function ProfileTimeline({ id }) {
 }
 ```
 
-<<<<<<< HEAD
-**[CodeSandbox で試す](https://codesandbox.io/s/nervous-glade-b5sel)**
-=======
-**[Try it on CodeSandbox](https://codesandbox.io/s/beautiful-mendeleev-qwyxzg)**
->>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
+**[CodeSandbox で試す](https://codesandbox.io/s/beautiful-mendeleev-qwyxzg)**
 
 `id` が変わるたびに副作用を再実行したいので、副作用の依存配列を `[]` から `[id]` に変えたことにも注意してください。これをしなければ新しいデータの再取得ができません。
 
@@ -602,11 +586,7 @@ class ProfileTimeline extends React.Component {
 }
 ```
 
-<<<<<<< HEAD
-**[CodeSandbox で試す](https://codesandbox.io/s/trusting-clarke-8twuq)**
-=======
-**[Try it on CodeSandbox](https://codesandbox.io/s/async-wind-9o4ojn)**
->>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
+**[CodeSandbox で試す](https://codesandbox.io/s/async-wind-9o4ojn)**
 
 見た目ほど難しいことをしている訳ではありません。
 
@@ -666,11 +646,7 @@ function ProfileTimeline({ resource }) {
 }
 ```
 
-<<<<<<< HEAD
-**[CodeSandbox で試す](https://codesandbox.io/s/infallible-feather-xjtbu)**
-=======
-**[Try it on CodeSandbox](https://codesandbox.io/s/sparkling-field-41z4r3)**
->>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
+**[CodeSandbox で試す](https://codesandbox.io/s/sparkling-field-41z4r3)**
 
 以前の例では `resource` は 1 つだけだったのでトップレベルの変数として保持していました。複数のリソースを使うようになったので、`<App>` のコンポーネント state に移動しました。
 
@@ -743,11 +719,7 @@ function ProfilePage() {
 }
 ```
 
-<<<<<<< HEAD
-**[CodeSandbox で試す](https://codesandbox.io/s/adoring-goodall-8wbn7)**
-=======
-**[Try it on CodeSandbox](https://codesandbox.io/s/sparkling-rgb-r5vfhs)**
->>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
+**[CodeSandbox で試す](https://codesandbox.io/s/sparkling-rgb-r5vfhs)**
 
 これはレンダー中のエラーとサスペンスによるデータ取得時のエラーの*両方*をキャッチします。好きなだけ error boundary を配置することができますが、配置は[計画的](https://aweary.dev/fault-tolerance-react/)に行いましょう。
 
@@ -757,18 +729,10 @@ function ProfilePage() {
 
 サスペンスによりいくつかの疑問が解決しましたが、新たな疑問も生じていることでしょう：
 
-<<<<<<< HEAD
 * コンポーネントが "サスペンド" するとアプリはフリーズするのか？ 回避方法は？
 * コンポーネントツリーの「上側」以外の場所でスピナーを表示したい場合は？
 * 不整合な UI を意図的に短時間表示*したい*場合に、それは可能か？
 * スピナーを表示するのではなく「グレーアウト」のような視覚効果を加えることは可能か？
-* [最後のサスペンスの例](https://codesandbox.io/s/infallible-feather-xjtbu)で "Next" ボタンをクリックしたときにログに警告が記録されているのは何故か？
-=======
-* If some component "suspends", does the app freeze? How to avoid this?
-* What if we want to show a spinner in a different place than "above" the component in a tree?
-* If we intentionally *want* to show an inconsistent UI for a small period of time, can we do that?
-* Instead of showing a spinner, can we add a visual effect like "greying out" the current screen?
-* Why does our [last Suspense example](https://codesandbox.io/s/sparkling-field-41z4r3) log a warning when clicking the "Next" button?
->>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
+* [最後のサスペンスの例](https://codesandbox.io/s/sparkling-field-41z4r3)で "Next" ボタンをクリックしたときにログに警告が記録されているのは何故か？
 
 これらの疑問に答えるために、次の記事、[並列的 UI パターン](/docs/concurrent-mode-patterns.html)に進みます。

@@ -231,11 +231,7 @@ function NumberDescriber(props) {
 
 ### 属性の展開 {#spread-attributes}
 
-<<<<<<< HEAD
-`props` オブジェクトがあらかじめ存在しており、それを JSX に渡したいような場合は `...` を「スプレッド」演算子として使用することで、props オブジェクトそのものを渡すことができます。そのため以下のふたつの JSX の式はまったく等しいものとなります。
-=======
-If you already have `props` as an object, and you want to pass it in JSX, you can use `...` as a "spread" syntax to pass the whole props object. These two components are equivalent:
->>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
+`props` オブジェクトがあらかじめ存在しており、それを JSX に渡したいような場合は「スプレッド」構文である `...` を使用することで、props オブジェクトそのものを渡すことができます。そのため以下のふたつの JSX の式はまったく等しいものとなります。
 
 ```js{7}
 function App1() {
@@ -248,11 +244,7 @@ function App2() {
 }
 ```
 
-<<<<<<< HEAD
-また、コンポーネントが利用する適当なプロパティを取り出しつつ、残りのすべてのプロパティに対してスプレッド演算子を利用することもできます。
-=======
-You can also pick specific props that your component will consume while passing all other props using the spread syntax.
->>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
+また、コンポーネントが利用する適当なプロパティを取り出しつつ、残りのすべてのプロパティに対してスプレッド構文を利用することもできます。
 
 ```js{2}
 const Button = props => {

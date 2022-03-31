@@ -72,7 +72,7 @@ const parseChallengeContents = (
 export function Challenges({
   children,
   isRecipes,
-  titleText = isRecipes ? 'Try out some examples' : 'Try out some challenges',
+  titleText = isRecipes ? '例を試す' : 'チャレンジ問題にトライ',
   titleId = isRecipes ? 'examples' : 'challenges',
 }: ChallengesProps) {
   const challenges = parseChallengeContents(children);
@@ -128,13 +128,8 @@ export function Challenges({
                 ? 'text-xl text-purple-50 dark:text-purple-30'
                 : 'text-3xl text-link'
             )}>
-<<<<<<< HEAD
-            {isRecipes ? 'レシピを試す' : 'チャレンジ問題'}
-          </H2>
-=======
             {titleText}
           </Heading>
->>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
           {challenges.length > 1 && (
             <Navigation
               currentChallenge={currentChallenge}
@@ -148,13 +143,8 @@ export function Challenges({
           <div key={activeChallenge}>
             <h3 className="text-xl text-primary dark:text-primary-dark mb-2">
               <div className="font-bold block md:inline">
-<<<<<<< HEAD
-                {isRecipes ? 'レシピ' : '問題'} {currentChallenge?.order}/
+                {isRecipes ? '例' : 'チャレンジ'} {currentChallenge.order}/
                 {challenges.length}
-=======
-                {isRecipes ? 'Example' : 'Challenge'} {currentChallenge.order}{' '}
-                of {challenges.length}
->>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
                 <span className="text-primary dark:text-primary-dark">: </span>
               </div>
               {currentChallenge.name}
@@ -200,11 +190,7 @@ export function Challenges({
                   setShowSolution(false);
                 }}
                 active>
-<<<<<<< HEAD
-                次の {isRecipes ? 'レシピ' : '問題'}
-=======
-                Next {isRecipes ? 'Example' : 'Challenge'}
->>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
+                次の{isRecipes ? '例' : '問題'}
                 <IconArrowSmall
                   displayDirection="right"
                   className="block ml-1.5"

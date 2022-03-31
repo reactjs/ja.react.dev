@@ -66,11 +66,7 @@ React 要素は[イミュータブル](https://en.wikipedia.org/wiki/Immutable_o
 
 React DOM は要素とその子要素を以前のものと比較し、DOM を望ましい状態へと変えるのに必要なだけの DOM の更新を行います。
 
-<<<<<<< HEAD
-このことは、[最後の例](codepen://rendering-elements/update-rendered-element)をブラウザツールで調査すれば確認できます：
-=======
-You can verify by inspecting the [last example](https://codepen.io/gaearon/pen/gwoJZk?editors=1010) with the browser tools:
->>>>>>> 5e9d673c6bc1530c901548c0b51af3ad3f91d594
+このことは、[最後の例](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)をブラウザツールで調査すれば確認できます：
 
 ![DOM inspector showing granular updates](../images/docs/granular-dom-updates.gif)
 
