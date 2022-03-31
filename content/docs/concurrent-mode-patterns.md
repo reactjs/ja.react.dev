@@ -51,7 +51,7 @@ next: concurrent-mode-adoption.html
 
 ## トランジション {#transitions}
 
-前のページ、[サスペンスを使ったデータ取得](/docs/concurrent-mode-suspense.html)にある[こちらのデモ](https://codesandbox.io/s/infallible-feather-xjtbu)について改めて考えましょう。
+前のページ、[サスペンスを使ったデータ取得](/docs/concurrent-mode-suspense.html)にある[こちらのデモ](https://codesandbox.io/s/sparkling-field-41z4r3)について改めて考えましょう。
 
 "Next" ボタンをクリックしてアクティブなプロフィールを切り替えた際、既存のページデータは即座に消えて、新しい画面のためのローディングインジケータを見ることになります。これは「望ましくない」ローディング中状態と呼べるでしょう。**これをスキップして、新しい画面に遷移 (transition) する前に新しいコンテンツがロードされるのを待機できれば良さそうです。**
 
@@ -119,15 +119,15 @@ function App() {
 >
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/musing-driscoll-6nkie)**
+**[CodeSandbox で試す](https://codesandbox.io/s/vigilant-feynman-kpjy8w)**
 
 何度か "Next" を押してみましょう。既に大きく違っていることが分かるでしょう。**クリック直後に空の画面を見せられる代わりに、しばらくは前のページが表示され続けます。**データがロードされたら、React が次の画面に遷移します。
 
-もし API のレスポンスを 5 秒かかるように変えると、React は 3 秒後に「諦めて」、ともかく画面の遷移を行うことが[確認できます](https://codesandbox.io/s/relaxed-greider-suewh)。これは `useTransition()` に `{timeoutMs: 3000}` を渡したからです。もし `{timeoutMs: 60000}` を代わりに渡したら、丸々 1 分間待つことになるでしょう。
+もし API のレスポンスを 5 秒かかるように変えると、React は 3 秒後に「諦めて」、ともかく画面の遷移を行うことが[確認できます](https://codesandbox.io/s/heuristic-leftpad-9hit59)。これは `useTransition()` に `{timeoutMs: 3000}` を渡したからです。もし `{timeoutMs: 60000}` を代わりに渡したら、丸々 1 分間待つことになるでしょう。
 
 ### Pending インジケータの追加 {#adding-a-pending-indicator}
 
-[前回の例](https://codesandbox.io/s/musing-driscoll-6nkie)にはまだうまく行っていないところがあります。「望ましくない」ローディング中状態は、もちろん見えない方がいいです。**ですが進行状況が一切見えないのはもっとダメに感じられます！** "Next" をクリックして何も起こらなかったなら、アプリケーションが壊れているように思うでしょう。
+[前回の例](https://codesandbox.io/s/vigilant-feynman-kpjy8w)にはまだうまく行っていないところがあります。「望ましくない」ローディング中状態は、もちろん見えない方がいいです。**ですが進行状況が一切見えないのはもっとダメに感じられます！** "Next" をクリックして何も起こらなかったなら、アプリケーションが壊れているように思うでしょう。
 
 `useTransition()` の呼び出しは、2 つの値を返します。`startTransition` と `isPending` です。
 
@@ -157,13 +157,13 @@ return (
 );
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/jovial-lalande-26yep)**
+**[CodeSandbox で試す](https://codesandbox.io/s/frosty-haslett-ds0h9h)**
 
 ずっと良く感じられるようになりました！ "Next" をクリックすると、何度も押しても意味がないのでボタンは無効化されます。そして新たに表示される "Loading..." が、ユーザにアプリケーションがフリーズしていないということを伝えています。
 
 ### 変更のおさらい {#reviewing-the-changes}
 
-[元の例](https://codesandbox.io/s/infallible-feather-xjtbu)以降に行った変更をもう一度すべて見てみましょう：
+[元の例](https://codesandbox.io/s/nice-shadow-zvosx0)以降に行った変更をもう一度すべて見てみましょう：
 
 ```js{3-5,9,11,14,19}
 function App() {
@@ -191,7 +191,7 @@ function App() {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/jovial-lalande-26yep)**
+**[CodeSandbox で試す](https://codesandbox.io/s/frosty-haslett-ds0h9h)**
 
 このトランジションを加えるのに必要だったコードはわずか 7 行でした。
 
@@ -212,7 +212,7 @@ function App() {
 
 これが並列モードの根幹にあたる部分です。これは React が state の更新を「ブランチ」で行っているようなものであると[以前述べました](/docs/concurrent-mode-intro.html#intentional-loading-sequences)。これを概念化する別の方法として、`startTransition` で state の更新をラップすることで、SF 映画のごとくレンダーが*「別の宇宙で」*始まるのだと考えることができます。その宇宙を直接「見る」ことはできません -- しかしその宇宙からは何かが起きているという信号 (`isPending`) を得ることはできます。更新の準備が完了したところで、「2 つの宇宙」がマージされ、画面に結果が表示されます！
 
-[デモ](https://codesandbox.io/s/jovial-lalande-26yep)で遊んでみて、そのようなことが起きているところを想像してみてください。
+[デモ](https://codesandbox.io/s/frosty-haslett-ds0h9h)で遊んでみて、そのようなことが起きているところを想像してみてください。
 
 もちろん、ツリーの 2 つのバージョンが*同時に*レンダーされているというのは錯覚であり、それはあなたのコンピュータ上のプログラムが全部同時に実行されていると考えることが錯覚であるのと同じです。オペレーティング・システムは複数のアプリケーションを非常に素早く切り替えているのです。同様に React は、画面上に見えているツリーのバージョンと、次に表示されるために「準備中」のバージョンとを切り替えています。
 
@@ -250,11 +250,11 @@ function ProfilePage() {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/boring-shadow-100tf)**
+**[CodeSandbox で試す](https://codesandbox.io/s/trusting-brown-6hj0m0)**
 
 この例では、ロード時**および** "Refresh" を押下する度に、データ取得が開始されます。`fetchUserAndPosts()` を呼び出した結果を state 内に入れることで、配下のコンポーネントがたった今開始したリクエストから新しいデータを読み出せるようにします。
 
-[こちら](https://codesandbox.io/s/boring-shadow-100tf)で試せるとおり、"Refresh" ボタンの押下は動作はしています。`<ProfileDetails>` と `<ProfileTimeline>` コンポーネントは新しいデータを表す `resource` を props として受け取り、レスポンスがまだ存在しないため「サスペンド」し、フォールバックが表示されます。レスポンスがロードされると、更新されたタイムライン投稿を見ることができます（フェイク API は 3 秒ごとに投稿を追加するようになっています）。
+[こちら](https://codesandbox.io/s/trusting-brown-6hj0m0)で試せるとおり、"Refresh" ボタンの押下は動作はしています。`<ProfileDetails>` と `<ProfileTimeline>` コンポーネントは新しいデータを表す `resource` を props として受け取り、レスポンスがまだ存在しないため「サスペンド」し、フォールバックが表示されます。レスポンスがロードされると、更新されたタイムライン投稿を見ることができます（フェイク API は 3 秒ごとに投稿を追加するようになっています）。
 
 しかしながらユーザ体験はとても煩わしいものとなっています。ページをブラウズしているのに、操作の真っ最中にページがローディング中状態で置き換わってしまうのです。これはユーザを混乱させます。**これまでと同様に、望ましくないローディング中状態を回避するために、state の更新をトランジションでラップできます：**
 
@@ -289,7 +289,7 @@ function ProfilePage() {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/sleepy-field-mohzb)**
+**[CodeSandbox で試す](https://codesandbox.io/s/zealous-mccarthy-fiiwu2)**
 
 ずっと良く感じられます！ "Refresh" をクリックすることで今ブラウズしていたページから引き離されることがなくなりました。何かがロード中であると「インライン」で見ることができ、データの準備が完了したらそれが表示されます。
 
@@ -329,7 +329,7 @@ function Button({ children, onClick }) {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/modest-ritchie-iufrh)**
+**[CodeSandbox で試す](https://codesandbox.io/s/heuristic-cerf-8bo4rk)**
 
 このボタンは*何の* state を更新しようとしているのか関知しないということに注意してください。これは `onClick` ハンドラ内部で起こる*あらゆる* state の更新をトランジションでラップしています。これで `<Button>` がトランジションの作成を行ってくれるようになったので、`<ProfilePage>` コンポーネントがそれを自ら作成する必要がなくなりました：
 
@@ -355,7 +355,7 @@ function ProfilePage() {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/modest-ritchie-iufrh)**
+**[CodeSandbox で試す](https://codesandbox.io/s/heuristic-cerf-8bo4rk)**
 
 ボタンがクリックされると、トランジションが開始され、内部の `props.onClick()` が呼び出されます。それが `<ProfilePage>` コンポーネント内の `handleRefreshClick` をトリガします。新しいデータの取得が開始されますが、トランジションの内部におり、かつ `useTransition` 呼び出しで指定されている 10 秒のタイムアウトがまだ経過していないため、フォールバックは呼び出されません。トランジションが進行している間、ボタンはインラインでローディングインジケータを表示します。
 
@@ -377,7 +377,7 @@ function ProfilePage() {
 
 ### デフォルト：Receded → Skeleton → Complete {#default-receded-skeleton-complete}
 
-[こちらの例](https://codesandbox.io/s/prod-grass-g1lh5)を開いて "Open Profile" をクリックしてください。複数の視覚的な状態を 1 つずつ見ることができます。
+[こちらの例](https://codesandbox.io/s/xenodochial-breeze-khk2fh)を開いて "Open Profile" をクリックしてください。複数の視覚的な状態を 1 つずつ見ることができます。
 
 * **Receded**: 1 秒間、`<h1>Loading the app...</h1>` フォールバックが表示されます。
 * **Skeleton:** `<ProfilePage>` コンポーネントが表示され、中で `<h2>Loading posts...</h2>` が表示されます。
@@ -468,14 +468,14 @@ Receded 状態と Skeleton 状態はどのように区別するのでしょう�
 
 以下の 2 つの例を比較して、違いを感じてみてください：
 
-* デフォルト：[Receded → Skeleton → Complete](https://codesandbox.io/s/prod-grass-g1lh5)
-* **推奨：[Pending → Skeleton → Complete](https://codesandbox.io/s/focused-snow-xbkvl)**
+* デフォルト：[Receded → Skeleton → Complete](https://codesandbox.io/s/xenodochial-breeze-khk2fh)
+* **推奨：[Pending → Skeleton → Complete](https://codesandbox.io/s/serene-pascal-w3no1l)**
 
 この 2 つの例の唯一の違いは、前者が標準の `<button>` を使っており、後者は `useTransition` を使ったカスタムの `<Button>` を使っている、ということです。
 
 ### 遅延可能な機能を `<Suspense>` でラップする {#wrap-lazy-features-in-suspense}
 
-[こちらの例](https://codesandbox.io/s/nameless-butterfly-fkw5q)を開いてください。ボタンを押下すると、先に進む前に Pending 状態が 1 秒間表示されます。このトランジションはスムースで良いものに感じられます。
+[こちらの例](https://codesandbox.io/s/crazy-browser-0tdg6m)を開いてください。ボタンを押下すると、先に進む前に Pending 状態が 1 秒間表示されます。このトランジションはスムースで良いものに感じられます。
 
 ここでプロフィールページに新たな機能を付け加えましょう -- その人に関する豆知識（トリビア）のリストです：
 
@@ -507,11 +507,11 @@ function ProfileTrivia({ resource }) {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/focused-mountain-uhkzg)**
+**[CodeSandbox で試す](https://codesandbox.io/s/agitated-snowflake-m3scjk)**
 
 "Open Profile" を押下すると、何かおかしいことに気付くでしょう。トランジションが完了するまで丸々 7 秒間もかかっているのです！ これは我々のトリビア API がとても遅いからです。仮に、この API はこれ以上高速化できないということにしましょう。この制限下で、ユーザ体験をどのように向上させればよいでしょうか。
 
-Pending 状態にあまり留まりたくないという場合、直感的には `useTransition` の `timeoutMs` を小さな値、例えば `3000` にすればよいと思うかもしれません。これを[こちら](https://codesandbox.io/s/practical-kowalevski-kpjg4)で試すことができます。これで遷延している Pending 状態から脱出することはできますが、意味のある内容はまだ何も表示されません！
+Pending 状態にあまり留まりたくないという場合、直感的には `useTransition` の `timeoutMs` を小さな値、例えば `3000` にすればよいと思うかもしれません。これを[こちら](https://codesandbox.io/s/nervous-galileo-ln6pbh)で試すことができます。これで遷延している Pending 状態から脱出することはできますが、意味のある内容はまだ何も表示されません！
 
 よりシンプルな解決法があります。**トランジションを短くするのではなく、遅いコンポーネントをトランジションから「切り離し」する**ために、`<Suspense>` でラップするのです。
 
@@ -531,7 +531,7 @@ function ProfilePage({ resource }) {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/condescending-shape-s6694)**
+**[CodeSandbox で試す](https://codesandbox.io/s/mutable-silence-wffd1t)**
 
 ここに重要な見識が見いだされています。React は常に可能な限り速く Skeleton 状態に移行しようとします。長いタイムアウトをあらゆる場所で使ったとしても、React は、Receded 状態を避けるために必要な時間を超えて Pending 状態に留まるということをしません。
 
@@ -541,7 +541,7 @@ function ProfilePage({ resource }) {
 
 既に次の画面にいるとして、時に複数の `<Suspense>` バウンダリを開放 (unlock) するのに必要なデータが矢継ぎ早にやってくるということがあります。例えば、2 つの異なったレスポンスがそれぞれ 1000ms 後と 1050ms 後にやってくる、ということがあるかもしれません。既に 1 秒間待っていたのなら、追加で 50ms 待ったとしても知覚できないでしょう。このため、React は `<Suspense>` バウンダリ内のコンテンツを、一定間隔でやってくる「電車」のように、定期的に開放します。これで、僅かな遅延と引き替えに、バタバタとレイアウトを行ってユーザに視覚上の変化を見せる回数を減らすことができます。
 
-このデモを[こちら](https://codesandbox.io/s/admiring-mendeleev-y54mk)で見ることができます。タイムライン投稿用と豆知識用のレスポンスは 100 ミリ秒未満の時間差で返ります。しかし React はそれらを結合してサスペンスのバウンダリをまとめて「開放」します。
+このデモを[こちら](https://codesandbox.io/s/ecstatic-sammet-zeddc4)で見ることができます。タイムライン投稿用と豆知識用のレスポンスは 100 ミリ秒未満の時間差で返ります。しかし React はそれらを結合してサスペンスのバウンダリをまとめて「開放」します。
 
 ### Pending インジケータの遅延 {#delaying-a-pending-indicator}
 
@@ -566,7 +566,7 @@ function Button({ children, onClick }) {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/floral-thunder-iy826)**
+**[CodeSandbox で試す](https://codesandbox.io/s/jolly-http-n94od0)**
 
 これにより何らかの作業が行われているとユーザに伝えます。しかし、トランジションが比較的短い場合（500ms 以内）、これにより気が散ってしまい、トランジション自体が*遅く*感じられるようになってしまいます。
 
@@ -600,9 +600,9 @@ return (
 );
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/gallant-spence-l6wbk)**
+**[CodeSandbox で試す](https://codesandbox.io/s/optimistic-night-4td1me)**
 
-この変更により、Pending 状態にいる場合でも、500 ms が経過するまでは何のインジケータも表示しないようになります。これは API のレスポンスが遅い場合には大した改善のように思えないかもしれません。しかし API 呼び出しが速い場合にどう違って感じられるか、[改善前](https://codesandbox.io/s/thirsty-liskov-1ygph)と[改善後](https://codesandbox.io/s/hardcore-http-s18xr)を比較してみてください。コードの残りの部分は変わっていないにもかかわらず、「あまりに早すぎる」ロード中状態を抑制すると、遅延に意識を向けさせないことにより体感上のパフォーマンスは向上します。
+この変更により、Pending 状態にいる場合でも、500 ms が経過するまでは何のインジケータも表示しないようになります。これは API のレスポンスが遅い場合には大した改善のように思えないかもしれません。しかし API 呼び出しが速い場合にどう違って感じられるか、[改善前](https://codesandbox.io/s/priceless-water-yw7zw4)と[改善後](https://codesandbox.io/s/mystifying-noether-tnxftn)を比較してみてください。コードの残りの部分は変わっていないにもかかわらず、「あまりに早すぎる」ロード中状態を抑制すると、遅延に意識を向けさせないことにより体感上のパフォーマンスは向上します。
 
 ### まとめ {#recap}
 
@@ -660,7 +660,7 @@ function Translation({ resource }) {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/brave-villani-ypxvf)**
+**[CodeSandbox で試す](https://codesandbox.io/s/boring-frost-t5ijqm)**
 
 入力欄にタイプすると `<Translation>` コンポーネントがサスペンドし、新しい翻訳結果が手に入るまで `<p>Loading...</p>` というフォールバックが表示されることに気付くでしょう。これは良くありません。新しい翻訳結果を取得している間、*前の*翻訳結果が表示されつづけている方が望ましいでしょう。
 
@@ -697,7 +697,7 @@ function App() {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/zen-keldysh-rifos)**
+**[CodeSandbox で試す](https://codesandbox.io/s/wizardly-swirles-476m52)**
 
 入力欄でタイピングしてみてください。何かが変です！ 入力欄の更新が非常に遅くなっています。
 
@@ -723,7 +723,7 @@ function handleChange(e) {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/lively-smoke-fdf93)**
+**[CodeSandbox で試す](https://codesandbox.io/s/elegant-kalam-dhlrkz)**
 
 これで期待通りに動作するようになりました。入力欄には即座にタイプでき、トランジションはタイプした内容にいずれ「追いつく」ようになります。
 
@@ -752,7 +752,7 @@ const deferredValue = useDeferredValue(value, {
 });
 ```
 
-この機能をデモするために[プロフィール切り替えの例](https://codesandbox.io/s/musing-ramanujan-bgw2o)を使いましょう。"Next" ボタンをクリックして、トランジションに 1 秒かかることを確かめてください。
+この機能をデモするために[プロフィール切り替えの例](https://codesandbox.io/s/quirky-carson-vs6g0i)を使いましょう。"Next" ボタンをクリックして、トランジションに 1 秒かかることを確かめてください。
 
 仮に、ユーザ詳細の取得は非常に高速で、300 ミリ秒しかかからないとしましょう。現在のところ、一貫性のあるプロフィールページを表示するにはユーザ詳細と投稿の両方が必要なので、まるまる 1 秒間待機しています。ユーザ詳細だけ早めに表示したい場合はどうしたらいいのでしょうか？
 
@@ -788,7 +788,7 @@ function ProfileTimeline({ isStale, resource }) {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/vigorous-keller-3ed2b)**
+**[CodeSandbox で試す](https://codesandbox.io/s/dazzling-fog-o6ovhr)**
 
 ここで生まれたトレードオフは、`<ProfileTimeline>` は他のコンポーネントとの整合性が保たれず、古いアイテムを表示するかもしれない、ということです。"Next" を何度かクリックすると分かるでしょう。しかしこのお陰で、トランジションにかかる時間が 1000ms から 300ms になりました。
 
@@ -819,7 +819,7 @@ function App() {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/pensive-shirley-wkp46)**
+**[CodeSandbox で試す](https://codesandbox.io/s/runtime-pine-kl2yff)**
 
 この例では、**`<MySlowList>` 内のすべての要素に人為的な遅延を作っています -- すべての要素がスレッドを数 ms ずつブロックしているのです**。現実のアプリケーションでこんなことは絶対にやりませんが、深いコンポーネントツリーがあって単一の最適化可能部位が明確には存在しない場合に起こることをシミュレートできます。
 
@@ -849,7 +849,7 @@ function App() {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/infallible-dewdney-9fkv9)**
+**[CodeSandbox で試す](https://codesandbox.io/s/charming-goldwasser-6kuh4m)**
 
 これでタイピングした際の引っかかりは大幅に軽減されました -- ただし結果の表示に遅延が生じることと引き替えに、です。
 
@@ -879,7 +879,7 @@ function ProfilePage({ resource }) {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/proud-tree-exg5t)**
+**[CodeSandbox で試す](https://codesandbox.io/s/hardcore-river-14ecuq)**
 
 この例での API のコール時間はランダム化されています。再読み込みを繰り返すと、タイムライン投稿が先に来ることもあれば「豆知識」が先に来る場合もあることに気付くでしょう。
 
@@ -894,7 +894,7 @@ function ProfilePage({ resource }) {
 </Suspense>
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/currying-violet-5jsiy)**
+**[CodeSandbox で試す](https://codesandbox.io/s/quirky-meadow-w1c61p)**
 
 この方法の問題は、*常に*両方が取得されるまで待つようになったことです。もし*投稿*の方が先に返ってきたなら、それを表示するのを遅らせる理由はありません。豆知識が後で返ってきても、それは既に投稿の下側にあるのですから、レイアウトのずれを発生させません。
 
@@ -924,11 +924,11 @@ function ProfilePage({ resource }) {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/black-wind-byilt)**
+**[CodeSandbox で試す](https://codesandbox.io/s/empty-leaf-lp7eom)**
 
 `revealOrder="forwards"` というオプションは、このリスト内部にある直近の `<Suspense>` ノードは、**データが異なった順番で到着した場合でも、ツリーに現れる順番でしか「開放」されない**ということを意味します。`<SuspenseList>` には他にも興味深いモードがあります。`"forwards"` を `"backwards"` や `"together"` に変えてみて、何が起こるか確認してください。
 
-`tail` プロパティを使って同時に表示されるローディング中状態の数を制御することができます。`tail="collapsed"` と指定すると、同時に*最大でも 1 つ*しかフォールバックが表示されないようになります。[こちら](https://codesandbox.io/s/adoring-almeida-1zzjh)で試すことができます。
+`tail` プロパティを使って同時に表示されるローディング中状態の数を制御することができます。`tail="collapsed"` と指定すると、同時に*最大でも 1 つ*しかフォールバックが表示されないようになります。[こちら](https://codesandbox.io/s/keen-leaf-gccxd8)で試すことができます。
 
 React の他のあらゆるものと同様に、`<SuspenseList>` は合成可能であることを覚えておいてください。例えば、`<SuspenseList>` の行を `<SuspenseList>` のテーブル内に入れてグリッドを作ることができます。
 

@@ -102,7 +102,7 @@ return 文は、以下のように 1 行にまとめて書いても構いませ�
 return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
 ```
 
-しかし return と同じ行にマークアップ全体が収まらない場合は、括弧で囲んで以下のようにする必要があります：
+しかし return キーワードと同じ行にマークアップ全体が収まらない場合は、括弧で囲んで以下のようにする必要があります：
 
 ```js
 return (

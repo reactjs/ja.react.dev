@@ -20,11 +20,39 @@ JSX とは JavaScript の拡張であり、JavaScript ファイル内に HTML �
 
 これまでウェブは HTML、CSS そして JavaScript を使って作られてきました。長年にわたり、ウェブ開発者はコンテンツは HTML で書き、デザインは CSS で書き、ロジックは JavaScript で書き、そして大抵の場合はそれらを別ファイルにしていました。コンテンツは HTML 内にマークアップされ、そのページのロジックは別ファイルの JavaScript に存在していました：
 
-![HTML と JavaScript は別ファイル](/images/docs/illustrations/i_html_js.svg)
+<DiagramGroup>
+
+<Diagram name="writing_jsx_html" height={237} width={325} alt="紫の背景の HTML マークアップ。p と form の 2 つの子タグを含んでいる。">
+
+HTML
+
+</Diagram>
+
+<Diagram name="writing_jsx_js" height={237} width={325} alt="黄色の背景に 3 つの JavaScript のハンドラ。onSubmit, onLogin, onClick の 3 つ。">
+
+JavaScript
+
+</Diagram>
+
+</DiagramGroup>
 
 しかしウェブがよりインタラクティブなものになるにつれ、ロジックがコンテンツの中身をも決めるようになっていきました。JavaScript が HTML の領分も担当するようになったのです！ これが、**React ではロジックとマークアップを同じ場所、すなわちコンポーネントに書く**理由です。
 
-![マークアップを混ぜ込んだ JavaScript 関数](/images/docs/illustrations/i_jsx.svg)
+<DiagramGroup>
+
+<Diagram name="writing_jsx_sidebar" height={330} width={325} alt="前述の例の HTML と JavaScript がミックスされた React コンポーネント。関数名は Sidebar であり、内部で isLoggedIn を呼び出している（黄色）。その中に、前述の例の p タグや、後で示すコンポーネントを呼び出すための Form タグがネストされている（紫）。">
+
+Sidebar.js
+
+</Diagram>
+
+<Diagram name="writing_jsx_form" height={330} width={325} alt="前述の例の HTML と JavaScript がミックスされた React コンポーネント。関数名は Form であり、onClick と onSubmit という 2 つのハンドラが含まれている（黄色）。ハンドラの後に HTML が続く（紫）。HTML 部分に、onClick プロパティの設定された input 要素がネストされている form 要素が含まれている。">
+
+Form.js
+
+</Diagram>
+
+</DiagramGroup>
 
 ボタンのレンダリングロジックとマークアップを同じ場所に書くことで、それらが毎回の編集時に同期されることが保証されます。逆に、ボタンのマークアップとサイドバーのマークアップといった互いに関係のない詳細は、互いに分離されるようになるため、それぞれをより安全に独立して更新できるようになります。
 

@@ -174,11 +174,11 @@ const MyComponent = () => (
 
 コード分割を導入するにあたって適している場所はルーティングです。Web を使用するほとんどの人は、多少のロード時間がかかるページ遷移に慣れています。また、ユーザがページ上の他の要素を同時に操作する可能性を減らすよう、ページ全体を一度に再レンダーすることが多いでしょう。
 
-これは [React Router](https://reacttraining.com/react-router/) のようなライブラリを使ったアプリに `React.lazy` を使用することでルーティングベースのコード分割を導入する方法の例です。
+これは [React Router](https://reactrouter.com/) のようなライブラリを使ったアプリに `React.lazy` を使用することでルーティングベースのコード分割を導入する方法の例です。
 
 ```js
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const Home = lazy(() => import('./routes/Home'));
 const About = lazy(() => import('./routes/About'));
@@ -186,10 +186,10 @@ const About = lazy(() => import('./routes/About'));
 const App = () => (
   <Router>
     <Suspense fallback={<div>Loading...</div>}>
-      <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route path="/about" component={About}/>
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
     </Suspense>
   </Router>
 );

@@ -220,7 +220,7 @@ function ProfileTimeline() {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/fragrant-glade-8huj6)**
+**[CodeSandbox で試す](https://codesandbox.io/s/fast-glade-rqnhtt)**
 
 このコードを実行してコンソールのログで眺めると、実行の順番は以下のようになっています：
 
@@ -295,7 +295,7 @@ function ProfileTimeline({ posts }) {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/wandering-morning-ev6r0)**
+**[CodeSandbox で試す](https://codesandbox.io/s/hopeful-lake-loddz9)**
 
 これで、イベントの流れは以下のようなものになります：
 
@@ -421,7 +421,7 @@ function App() {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/infallible-feather-xjtbu)**
+**[CodeSandbox で試す](https://codesandbox.io/s/sparkling-field-41z4r3)**
 
 このアプローチにより、**コードとデータを並行して取得**できます。ページ間でナビゲートする場合、ページのデータのロードを開始するためにそのページのコードがロードされるのを待つ必要はありません。（リンクのクリック時に）コードとデータの両方の取得を開始すればよく、それでユーザ体験はずっと向上します。
 
@@ -508,7 +508,7 @@ function ProfileTimeline({ id }) {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/nervous-glade-b5sel)**
+**[CodeSandbox で試す](https://codesandbox.io/s/beautiful-mendeleev-qwyxzg)**
 
 `id` が変わるたびに副作用を再実行したいので、副作用の依存配列を `[]` から `[id]` に変えたことにも注意してください。これをしなければ新しいデータの再取得ができません。
 
@@ -586,7 +586,7 @@ class ProfileTimeline extends React.Component {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/trusting-clarke-8twuq)**
+**[CodeSandbox で試す](https://codesandbox.io/s/async-wind-9o4ojn)**
 
 見た目ほど難しいことをしている訳ではありません。
 
@@ -646,7 +646,7 @@ function ProfileTimeline({ resource }) {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/infallible-feather-xjtbu)**
+**[CodeSandbox で試す](https://codesandbox.io/s/sparkling-field-41z4r3)**
 
 以前の例では `resource` は 1 つだけだったのでトップレベルの変数として保持していました。複数のリソースを使うようになったので、`<App>` のコンポーネント state に移動しました。
 
@@ -719,7 +719,7 @@ function ProfilePage() {
 }
 ```
 
-**[CodeSandbox で試す](https://codesandbox.io/s/adoring-goodall-8wbn7)**
+**[CodeSandbox で試す](https://codesandbox.io/s/sparkling-rgb-r5vfhs)**
 
 これはレンダー中のエラーとサスペンスによるデータ取得時のエラーの*両方*をキャッチします。好きなだけ error boundary を配置することができますが、配置は[計画的](https://aweary.dev/fault-tolerance-react/)に行いましょう。
 
@@ -733,6 +733,6 @@ function ProfilePage() {
 * コンポーネントツリーの「上側」以外の場所でスピナーを表示したい場合は？
 * 不整合な UI を意図的に短時間表示*したい*場合に、それは可能か？
 * スピナーを表示するのではなく「グレーアウト」のような視覚効果を加えることは可能か？
-* [最後のサスペンスの例](https://codesandbox.io/s/infallible-feather-xjtbu)で "Next" ボタンをクリックしたときにログに警告が記録されているのは何故か？
+* [最後のサスペンスの例](https://codesandbox.io/s/sparkling-field-41z4r3)で "Next" ボタンをクリックしたときにログに警告が記録されているのは何故か？
 
 これらの疑問に答えるために、次の記事、[並列的 UI パターン](/docs/concurrent-mode-patterns.html)に進みます。

@@ -69,7 +69,7 @@ ReactDOM.render(
 );
 ```
 
-[](codepen://introducing-jsx)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/PGEjdG?editors=1010)**
 
 読みやすさのため JSX を複数行に分けています。必須ではありませんが、複数行に分割する場合には、[自動セミコロン挿入](https://stackoverflow.com/q/2846283)の落とし穴にはまらないように括弧で囲むことをおすすめします
 
@@ -93,7 +93,7 @@ function getGreeting(user) {
 文字列リテラルを属性として指定するために引用符を使用できます。
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <a href="https://www.reactjs.org"> link </a>;
 ```
 
 属性に JavaScript 式を埋め込むために中括弧を使用することもできます。
