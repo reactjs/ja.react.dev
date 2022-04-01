@@ -70,7 +70,7 @@ Facebook にはセキュリティバグの安全な開示のための[報奨金�
 
 はじめてのプルリクエストに取り組んでみますか？ この無料ビデオシリーズから手順を学ぶことができます：
 
-**[GitHub でオープンソースプロジェクトに貢献する方法](https://app.egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)**
+**[GitHub でオープンソースプロジェクトに貢献する方法](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)**
 
 あなたが新しい試みをする上で、貢献プロセスに慣れるのを助けるために、私たちは比較的影響範囲の少ないバグを含む **[good first issues](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"good+first+issue")** のリストを持っています。これはオープンソースプロジェクトへの貢献の入門に最適です。
 
