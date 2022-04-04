@@ -39,12 +39,17 @@ JSX は JavaScript の拡張構文です。テンプレート言語に似てい�
 
 React DOM は HTML の属性名ではなく、キャメルケースの命名規則を使用します。例えば、`tabindex` は、JSX では `tabIndex` となります。`class` も `className` と記述されますが、これは `class` が JavaScript において予約語であるためです：
 
+<<<<<<< HEAD
 ```js
 const name = 'Clementine';
 ReactDOM.render(
   <h1 className="hello">My name is {name}!</h1>,
   document.getElementById('root')
 );
+=======
+```jsx
+<h1 className="hello">My name is Clementine!</h1>
+>>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 ```
 
 ## [要素](/docs/rendering-elements.html) {#elements}
