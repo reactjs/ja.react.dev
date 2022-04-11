@@ -239,7 +239,7 @@ button {
 3. DOM への**コミット**（テーブルに注文を置く）
 
 <IllustrationBlock sequential>
-  <Illustration caption="Trigger" alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen." src="/images/docs/illustrations/i_render-and-commit1.png" />
+  <Illustration caption="Trigger" alt="React をレストランのサーバーに見立てて、ユーザーからの注文を取り、それをコンポーネント厨房（Component Kitchen）に届ける。" src="/images/docs/illustrations/i_render-and-commit1.png" />
   <Illustration caption="Render" alt="The Card Chef gives React a fresh Card component." src="/images/docs/illustrations/i_render-and-commit2.png" />
   <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
