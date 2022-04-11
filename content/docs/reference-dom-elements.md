@@ -117,7 +117,11 @@ React はインラインスタイルでの特定の数値プロパティに対�
 
 サーバサイドの React レンダリングを使用している場合、サーバとクライアントが違う内容をレンダーする時に通常は警告が出力されます。しかし、まれに両者の内容が完全に一致することの保証が非常に困難あるいは不可能な場合があります。例えば、サーバとクライアントでは、タイムスタンプは異なることが予想されます。
 
+<<<<<<< HEAD
 `suppressHydrationWarning` を `true` に設定した場合、その要素の属性と内容の、サーバとクライアントでの差異について React は警告しません。この機能は単一レベルの深さでのみ動作し、避難ハッチとして使われることが想定されています。そのため、むやみに使用しないでください。この "hydration" 機能の詳細については [`ReactDOM.hydrate()` のドキュメンテーション](/docs/react-dom.html#hydrate)で読むことができます。
+=======
+If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. You can read more about hydration in the [`ReactDOM.hydrateRoot()` documentation](/docs/react-dom-client.html#hydrateroot).
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 ### value {#value}
 

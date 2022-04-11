@@ -214,10 +214,8 @@ var TickTock = createReactClass({
   }
 });
 
-ReactDOM.render(
-  <TickTock />,
-  document.getElementById('example')
-);
+const root = ReactDOM.createRoot(document.getElementById('example'));
+root.render(<TickTock />);
 ```
 
 コンポーネントが複数のミックスインを使っており、いくつかのミックスインが同じライフサイクルメソッドを定義している場合（例：コンポーネント破棄時に複数のミックスインがクリーンアップ処理をする）、全てのライフサイクルメソッドが呼ばれることが保証されています。ミックスインで定義されているメソッドはミックスインとして列挙された順に実行され、そのあとにコンポーネントのメソッドが呼ばれます。

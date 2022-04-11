@@ -605,7 +605,11 @@ it("should render a greeting", () => {
 
 ### 複数のレンダラ {#multiple-renderers}
 
+<<<<<<< HEAD
 稀なケースにおいて、複数のレンダラを使うコンポーネントに対するテストを実行することがあるかもしれません。例えば、`react-test-renderer` を使ってコンポーネントのスナップショットテストを走らせているが、その内部で子コンポーネントが何かを表示するのに `ReactDOM.render` が使われている、ということがあるかもしれません。このようなシナリオでは、それらのレンダラーに対応する複数の `act()` で更新をラップすることができます。
+=======
+In rare cases, you may be running a test on a component that uses multiple renderers. For example, you may be running snapshot tests on a component with `react-test-renderer`, that internally uses `render` from `react-dom` inside a child component to render some content. In this scenario, you can wrap updates with `act()`s corresponding to their renderers.
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 ```jsx
 import { act as domAct } from "react-dom/test-utils";

@@ -34,7 +34,11 @@ HTML ファイルの中に `<div>` 要素があったとしましょう：
 
 React だけで構築されたアプリケーションは、通常ルート DOM ノードをひとつだけ持ちます。既存のアプリに React を統合しようとしている場合は、独立したルート DOM ノードを好きなだけ持つことができます。
 
+<<<<<<< HEAD
 React 要素をルート DOM ノードにレンダーするには、その 2 つを [`ReactDOM.render()`](/docs/react-dom.html#render) に渡します：
+=======
+To render a React element, first pass the DOM element to [`ReactDOM.createRoot()`](/docs/react-dom-client.html#createroot), then pass the React element to `root.render()`:
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 `embed:rendering-elements/render-an-element.js`
 
@@ -46,7 +50,11 @@ React 要素をルート DOM ノードにレンダーするには、その 2 つ
 
 React 要素は[イミュータブル](https://en.wikipedia.org/wiki/Immutable_object)です。一度要素を作成すると、その子要素もしくは属性を変更することはできません。要素は映画の中のひとつのフレームのようなものであり、それは特定のある時点の UI を表します。
 
+<<<<<<< HEAD
 ここまでで分かる通り、UI を更新する唯一の方法は、新しい要素を作成して [`ReactDOM.render()`](/docs/react-dom.html#render) に渡すことです。
+=======
+With our knowledge so far, the only way to update the UI is to create a new element, and pass it to `root.render()`.
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 以下の秒刻みで動く時計の例について考えます：
 
@@ -54,11 +62,19 @@ React 要素は[イミュータブル](https://en.wikipedia.org/wiki/Immutable_o
 
 **[Try it on CodePen](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)**
 
+<<<<<<< HEAD
 上記のコードでは [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) のコールバックから [`ReactDOM.render()`](/docs/react-dom.html#render) を毎秒呼び出しています。
+=======
+It calls [`root.render()`](/docs/react-dom.html#render) every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 >**補足:**
 >
+<<<<<<< HEAD
 >実際には大抵の React アプリケーションは [`ReactDOM.render()`](/docs/react-dom.html#render) を一度しか呼び出しません。次の章では上記のようなコードをどのように[ステート付きコンポーネント](/docs/state-and-lifecycle.html)へとカプセル化するのかを学びます。
+=======
+>In practice, most React apps only call `root.render()` once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 >
 >トピックはお互いを基礎として構成されているため、読み飛ばさないことをお勧めします。
 

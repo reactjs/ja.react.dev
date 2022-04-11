@@ -101,6 +101,7 @@
     "textlint-rule-preset-jtf-style": "2.3.4",
     "unist-util-map": "^1.0.3"
   },
+<<<<<<< HEAD
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -111,5 +112,9 @@
       "textlint --rulesdir=./textlint",
       "git add"
     ]
+=======
+  "resolutions": {
+    "**/sharp": "^0.30.3"
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
   }
 }
