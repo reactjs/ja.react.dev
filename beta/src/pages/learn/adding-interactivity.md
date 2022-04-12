@@ -349,7 +349,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 </Sandpack>
 
-[スナップショットとしての state](/learn/state-as-a-snapshot) はなぜこのようなことが起こるのかを説明しています。state を設定すると、新しい再レンダリングが要求されますが、すでに実行されているコードでは変更されません。そのため `setScore(score + 1)` を呼び出した直後は `score` が `0` であり続けます。
+[State はスナップショットである](/learn/state-as-a-snapshot) で、なぜこのようなことが起こってしまうのかを説明しています。state を設定すると、新しい再レンダーが要求されますが、すでに実行されているコード内の state は変更されません。そのため `setScore(score + 1)` を呼び出した直後は `score` が `0` であり続けます。
 
 ```js
 console.log(score);  // 0
