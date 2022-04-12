@@ -10,7 +10,7 @@ title: インタラクティビティの追加
 
 <YouWillLearn isChapter={true}>
 
-* [ユーザー起動イベントの扱い方](/learn/responding-to-events)
+* [ユーザが発生させるイベントの扱い方](/learn/responding-to-events)
 * [state でコンポーネントに情報を 「記憶」させる方法](/learn/state-a-components-memory)
 * [React が 2 段階で UI を更新する仕組み](/learn/render-and-commit)
 * [変更後すぐに state が更新されない理由](/learn/state-as-a-snapshot)
