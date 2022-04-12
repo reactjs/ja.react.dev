@@ -792,6 +792,6 @@ function ItemList({ artworks, onToggle }) {
 
 ## 次は何? {/*whats-next*/}
 
-この章を 1 ページずつ読み始めるには [イベント対応](/learn/responding-to-events)に移動しましょう!
+この章を 1 ページずつ読み始めるには [イベントへの応答](/learn/responding-to-events)に移動しましょう!
 
 また、すでにこれらのトピックをご存知の方は [state の管理](/learn/managing-state)を読んでみてはいかがでしょうか。
