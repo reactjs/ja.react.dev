@@ -790,7 +790,7 @@ function ItemList({ artworks, onToggle }) {
 
 </LearnMore>
 
-## 次は何? {/*whats-next*/}
+## 次は何？ {/*whats-next*/}
 
 この章を 1 ページずつ読み始めるには [イベントへの応答](/learn/responding-to-events)に移動しましょう!
 
