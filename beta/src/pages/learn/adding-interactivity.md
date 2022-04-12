@@ -224,7 +224,7 @@ button {
 
 <LearnMore path="/learn/state-a-components-memory">
 
-値を記憶し、インタラクションでその値を更新するには **[State: コンポーネントのメモリ](/learn/state-a-components-memory)** を読んでみましょう。
+値を記憶し、インタラクションに応答してその値を更新するには **[State: コンポーネントのメモリ](/learn/state-a-components-memory)** を読んでみましょう。
 
 </LearnMore>
 
