@@ -315,7 +315,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 ## 一連の state の変更をキューに入れる {/*queueing-a-series-of-state-changes*/}
 
-このコンポーネントにはバグがあります：  "+3"  をクリックすると 1 回だけスコアが増えます
+このコンポーネントにはバグがあります："+3" をクリックしても 1 しかスコアが増えません。
 
 <Sandpack>
 
