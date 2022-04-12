@@ -513,7 +513,7 @@ img { width: 200px; height: 200px; }
 
 </Sandpack>
 
-コード内のオブジェクトのコピーが面倒になったら [Immer](https://github.com/immerjs/use-immer) のようなライブラリを使うと、繰り返しのコードを減らすことができます：
+コード内のオブジェクトのコピーが面倒になったら [Immer](https://github.com/immerjs/use-immer) のようなライブラリを使うと、コードの繰り返しを減らすことができます：
 
 <Sandpack>
 
