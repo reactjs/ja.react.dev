@@ -309,7 +309,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 <LearnMore path="/learn/state-as-a-snapshot">
 
-イベントハンドラ内で state が「固定」され、変化していないように見える理由を学ぶには **[スナップショットとしての state](/learn/state-as-a-snapshot)** を読んでみましょう。
+イベントハンドラ内で state が「固定」され、変化していないように見える理由を学ぶには **[State はスナップショットである](/learn/state-as-a-snapshot)** を読んでみましょう。
 
 </LearnMore>
 
