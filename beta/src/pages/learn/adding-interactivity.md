@@ -361,7 +361,7 @@ setScore(score + 1); // setScore(0 + 1);
 console.log(score);  // 0
 ```
 
-state を設定する際に *updater function* を渡すことでこれを修正することができます。`setScore(score + 1)` を  `setScore(s => s + 1)` に置き換えることで、"+3"  ボタンが修正されることに注目してください。これは、複数の state の更新をキューに入れる必要がある場合に便利です。
+state を設定する際に*更新用関数*を渡すことでこれを修正することができます。`setScore(score + 1)` を  `setScore(s => s + 1)` に置き換えることで、"+3" ボタンが修正されることに注目してください。これは、複数の state の更新をキューに入れる必要がある場合に便利です。
 
 <Sandpack>
 
