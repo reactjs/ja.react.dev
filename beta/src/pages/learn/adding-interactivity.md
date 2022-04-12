@@ -701,7 +701,7 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-コード内の配列のコピーが面倒になったら [Immer](https://github.com/immerjs/use-immer) のようなライブラリを使うと、繰り返しのコードを減らすことができます：
+コード内の配列のコピーが面倒になったら [Immer](https://github.com/immerjs/use-immer) のようなライブラリを使うと、コードの繰り返しを減らすことができます：
 
 <Sandpack>
 
