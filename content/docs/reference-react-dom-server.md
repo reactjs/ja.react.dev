@@ -20,7 +20,7 @@ var ReactDOMServer = require('react-dom/server');
 以下のメソッドは **[Node.js の Stream](https://nodejs.dev/learn/nodejs-streams) 環境でのみ動作します**：
 
 - [`renderToPipeableStream()`](#rendertopipeablestream)
-- [`renderToNodeStream()`](#rendertonodestream) (廃止予定)
+- [`renderToNodeStream()`](#rendertonodestream)（非推奨）
 - [`renderToStaticNodeStream()`](#rendertostaticnodestream)
 
 以下のメソッドは **[Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) の環境**（ブラウザ、Deno やいくつかのモダンなエッジランタイム）でのみ動作します：
@@ -147,7 +147,7 @@ try {
 
 * * *
 
-### `renderToNodeStream()`  (廃止予定) {#rendertonodestream}
+### `renderToNodeStream()`（非推奨）{#rendertonodestream}
 
 ```javascript
 ReactDOMServer.renderToNodeStream(element)

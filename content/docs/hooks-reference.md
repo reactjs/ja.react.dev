@@ -661,7 +661,7 @@ function NameFields() {
 > 
 > `useId` は `:` というトークンを含む文字列を生成します。これによりトークンが一意であることが保証しやすくなりますが、CSS セレクタや `querySelectorAll` のような API では使用できません。
 > 
-> `useId` は複数のルートがあるアプリで衝突が起きないよう、 `identifierPrefix` をサポートしています。設定する場合は [`hydrateRoot`](/docs/react-dom-client.html#hydrateroot) と [`ReactDOMServer`](/docs/react-dom-server.html) のドキュメントを参照してください。
+> `useId` は複数のルートがあるアプリで衝突が起きないよう、`identifierPrefix` をサポートしています。設定する場合は [`hydrateRoot`](/docs/react-dom-client.html#hydrateroot) と [`ReactDOMServer`](/docs/react-dom-server.html) のドキュメントを参照してください。
 
 ## ライブラリ用フック {#library-hooks}
 
