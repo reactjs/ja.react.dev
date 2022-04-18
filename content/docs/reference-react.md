@@ -65,18 +65,14 @@ UI がどのように見えるべきかを記述するために [JSX の使用](
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
 
-<<<<<<< HEAD
-### フック (hook) {#hooks}
-=======
-### Transitions {#transitions}
+### トランジション {#transitions}
 
-*Transitions* are a new concurrent feature introduced in React 18. They allow you to mark updates as transitions, which tells React that they can be interrupted and avoid going back to Suspense fallbacks for already visible content.
+*トランジション*は React 18 で導入された新しい並行レンダー機能です。これにより更新をトランジションとしてマークすることができ、既に表示されているコンテンツがサスペンスによるフォールバック状態に戻ってしまわないよう更新を中断して構わない、と React に伝えることができるようになります。
 
 - [`React.startTransition`](#starttransition)
 - [`React.useTransition`](/docs/hooks-reference.html#usetransition)
 
-### Hooks {#hooks}
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+### フック (hook) {#hooks}
 
 *フック (hook)* は React 16.8 で追加された新機能です。state などの React の機能を、クラスを書かずに使えるようになります。フックには[専用のセクション](/docs/hooks-intro.html)と別の API リファレンスがあります。
 
@@ -95,7 +91,7 @@ UI がどのように見えるべきかを記述するために [JSX の使用](
   - [`useDeferredValue`](/docs/hooks-reference.html#usedeferredvalue)
   - [`useTransition`](/docs/hooks-reference.html#usetransition)
   - [`useId`](/docs/hooks-reference.html#useid)
-- [Library Hooks](/docs/hooks-reference.html#library-hooks)
+- [ライブラリ製作者用フック](/docs/hooks-reference.html#library-hooks)
   - [`useSyncExternalStore`](/docs/hooks-reference.html#usesyncexternalstore)
   - [`useInsertionEffect`](/docs/hooks-reference.html#useinsertioneffect)
 
@@ -346,21 +342,11 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 `lazy` コンポーネントをレンダーするには `<React.Suspense>` がレンダリングツリーの上位に必要です。これはローディングインジケータを指定する方法です。
 
-<<<<<<< HEAD
-> **補足**
->
-> `React.lazy` を使って動的にインポートするには JS 環境で Promise が使用できる必要があります。これは IE11 以前の環境ではポリフィルが必要だということです。
-
 ### `React.Suspense` {#reactsuspense}
 
-`React.Suspense` を使用することで、その配下にレンダーする準備ができていないコンポーネントがあるときにローディングインジケータを指定できます。現在、遅延読み込みコンポーネントは `<React.Suspense>` のみによってサポートされています。
-=======
-### `React.Suspense` {#reactsuspense}
+`React.Suspense` を使用することで、その配下のツリーにレンダーする準備ができていないコンポーネントがあるときに表示するローディングインジケータを指定できます。将来的には `Suspense` をデータフェッチングのようなより多くのシナリオで使えるようにする予定です。詳細は[ロードマップ](/blog/2018/11/27/react-16-roadmap.html)を参照してください。
 
-`React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. In the future we plan to let `Suspense` handle more scenarios such as data fetching. You can read about this in [our roadmap](/blog/2018/11/27/react-16-roadmap.html).
-
-Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+現時点ではコンポーネントの遅延ローディングが `<React.Suspense>` がサポートする**唯一の**ユースケースです：
 
 ```js
 // This component is loaded dynamically
@@ -380,37 +366,29 @@ function MyComponent() {
 
 これは [code splitting guide](/docs/code-splitting.html#reactlazy) で文書化されています。遅延される (lazy) コンポーネントを `Suspense` ツリーの奥深くに置くことができ、それらを 1 つずつラップする必要はありません。ベストプラクティスは `<Suspense>` をローディングインジケータを表示したい場所に配置することですが、コードを分割したい場合は `lazy()` を使用してください。
 
-<<<<<<< HEAD
-これらは現在サポートされていませんが、将来的には `Suspense` にデータの取得などのより多くのシナリオを処理させる予定です。これについては[ロードマップ](/blog/2018/11/27/react-16-roadmap.html)で読めます。
-
->注意:
+>補足：
 >
->`React.lazy()` と `<React.Suspense>` は `ReactDOMServer` ではまだサポートされていません。これは既知の制限であり、今後解決されます。
-=======
-> Note
-> 
-> For content that is already shown to the user, switching back to a loading indicator can be disorienting. It is sometimes better to show the "old" UI while the new UI is being prepared. To do this, you can use the new transition APIs [`startTransition`](#starttransition) and [`useTransition`](/docs/hooks-reference.html#usetransition) to mark updates as transitions and avoid unexpected fallbacks.
+> 既にユーザに表示されているコンテンツがある場合、それがローディングインジケータに戻ってしまうのは不親切です。新しい UI を準備している間「古い」UI を表示しておくことが望ましいことがあります。これを行うため、新たなトランジション API である [`startTransition`](#starttransition) と [`useTransition`](/docs/hooks-reference.html#usetransition) を用い、更新をトランジションとしてマークすることで意図しない場面でのフォールバックを避けることができます。
 
-#### `React.Suspense` in Server Side Rendering {#reactsuspense-in-server-side-rendering}
-During server side rendering Suspense Boundaries allow you to flush your application in smaller chunks by suspending.
-When a component suspends we schedule a low priority task to render the closest Suspense boundary's fallback. If the component unsuspends before we flush the fallback then we send down the actual content and throw away the fallback.
+#### サーバサイドレンダリングでの `React.Suspense` {#reactsuspense-in-server-side-rendering}
+サーバサイドレンダリングにおいてもサスペンスバウンダリとサスペンドを用いることで、アプリを部分的に分割して表示していくことができます。
+コンポーネントがサスペンドした場合、直近のサスペンスバウンダリに指定されているフォールバックをレンダーするような低優先度のタスクがスケジュールされます。フォールバックを表示する前にコンポーネントのサスペンドが解除された場合は、フォールバックのコンテンツを捨てて実コンテンツを送信します。
 
-#### `React.Suspense` during hydration {#reactsuspense-during-hydration}
-Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before its hydrated will cause the boundary to hydrate at 
-a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
+#### ハイドレーション中の `React.Suspense` {#reactsuspense-during-hydration}
+サスペンスバウンダリがハイドレートされる前に親のバウンダリはハイドレートされていなければなりませんが、兄弟の関係にあるバウンダリとは独立してハイドレートされることができます。
+何らかのバウンダリでイベントが起こった場合、そのバウンダリは他のものより優先的にハイドレートされるようになります。[詳細](https://github.com/reactwg/react-18/discussions/130)
 
 ### `React.startTransition` {#starttransition}
 
 ```js
 React.startTransition(callback)
 ```
-`React.startTransition` lets you mark updates inside the provided callback as transitions. This method is designed to be used when [`React.useTransition`](/docs/hooks-reference.html#usetransition) is not available.
+`React.startTransition` は渡されたコールバック内で発生した更新をトランジションとしてマークします。これは [`React.useTransition`](/docs/hooks-reference.html#usetransition) が使えない場合でも使えるように設計されています。
 
-> Note:
+> 補足：
 >
-> Updates in a transition yield to more urgent updates such as clicks.
+> トランジション内での更新はクリックのようなより緊急性の高い更新があった場合に遅延されます。
 >
-> Updates in a transitions will not show a fallback for re-suspended content, allowing the user to continue interacting while rendering the update.
+> トランジション内で起こった更新は、コンテンツが再サスペンドした場合でもフォールバックを表示させないため、更新をレンダーしている最中でもユーザが操作できる状態が保たれます。
 >
-> `React.startTransition` does not provide an `isPending` flag. To track the pending status of a transition see [`React.useTransition`](/docs/hooks-reference.html#usetransition).
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+> `React.startTransition` は `isPending` フラグを返しません。トランジションのペンディング状態を知るには [`React.useTransition`](/docs/hooks-reference.html#usetransition) を参照してください。

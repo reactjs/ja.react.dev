@@ -17,37 +17,22 @@ var ReactDOMServer = require('react-dom/server');
 
 ## 概要 {#overview}
 
-<<<<<<< HEAD
-以下のメソッドはサーバとブラウザの両方の環境で使用できます：
-=======
-These methods are only available in the **environments with [Node.js Streams](https://nodejs.dev/learn/nodejs-streams):**
+以下のメソッドは **[Node.js の Stream](https://nodejs.dev/learn/nodejs-streams) 環境でのみ動作します**：
 
 - [`renderToPipeableStream()`](#rendertopipeablestream)
-- [`renderToNodeStream()`](#rendertonodestream) (Deprecated)
+- [`renderToNodeStream()`](#rendertonodestream) (廃止予定)
 - [`renderToStaticNodeStream()`](#rendertostaticnodestream)
 
-These methods are only available in the **environments with [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API)** (this includes browsers, Deno, and some modern edge runtimes):
+以下のメソッドは **[Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) の環境**（ブラウザ、Deno やいくつかのモダンなエッジランタイム）でのみ動作します：
 
 - [`renderToReadableStream()`](#rendertoreadablestream)
 
-The following methods can be used in the environments that don't support streams:
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+以下のメソッドはストリームをサポートしない環境でも動作します：
 
 - [`renderToString()`](#rendertostring)
 - [`renderToStaticMarkup()`](#rendertostaticmarkup)
 
-<<<<<<< HEAD
-以下の追加のメソッドは**サーバでのみ利用可能な**パッケージ (`stream`) に依存しているため、ブラウザでは動作しません。
-
-- [`renderToNodeStream()`](#rendertonodestream)
-- [`renderToStaticNodeStream()`](#rendertostaticnodestream)
-
-* * *
-
 ## リファレンス {#reference}
-=======
-## Reference {#reference}
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 ### `renderToPipeableStream()` {#rendertopipeablestream}
 
@@ -55,14 +40,9 @@ The following methods can be used in the environments that don't support streams
 ReactDOMServer.renderToPipeableStream(element, options)
 ```
 
-<<<<<<< HEAD
-React 要素を初期状態の HTML へと変換します。React は HTML 文字列を返します。このメソッドにより、サーバ上で HTML を生成して最初のリクエストに対してマークアップを送信してページ読み込み速度を向上させたり、また SEO 目的で検索エンジンがページを巡回することを可能にします。
+React 要素を初期状態の HTML に変換します。出力をパイプするための `pipe(res)` メソッドとリクエストを中止するための `abort()` メソッドを持ったストリームを返します。サスペンスや、HTML をストリーミングして「遅れてやってくる」コンテンツのブロックをインライン `<script>` タグで埋めるための機能を完全にサポートしています。[詳細はこちら](https://github.com/reactwg/react-18/discussions/37)。
 
-このようにしてサーバ側で変換されたマークアップをあらかじめ持つノード上で [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) を呼び出した場合、React はマークアップを保持しつつイベントハンドラのみを追加するので、非常にパフォーマンスの高い初回ページロードの体験が得られます。
-=======
-Render a React element to its initial HTML. Returns a stream with a `pipe(res)` method to pipe the output and `abort()` to abort the request. Fully supports Suspense and streaming of HTML with "delayed" content blocks "popping in" via inline `<script>` tags later. [Read more](https://github.com/reactwg/react-18/discussions/37)
-
-If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) on a node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience.
+このようにサーバでレンダーされたマークアップを有するノードに対して [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) をコールすると、React はマークアップを保持してイベントハンドラだけをアタッチしますので、非常によい初回ロード体験が実現できます。
 
 ```javascript
 let didError = false;
@@ -100,13 +80,12 @@ const stream = renderToPipeableStream(
 );
 ```
 
-See the [full list of options](https://github.com/facebook/react/blob/14c2be8dac2d5482fda8a0906a31d239df8551fc/packages/react-dom/src/server/ReactDOMFizzServerNode.js#L36-L46).
+[オプションの全リスト](https://github.com/facebook/react/blob/14c2be8dac2d5482fda8a0906a31d239df8551fc/packages/react-dom/src/server/ReactDOMFizzServerNode.js#L36-L46)を参照。
 
-> Note:
+> 補足：
 >
-> This is a Node.js-specific API. Environments with [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), like Deno and modern edge runtimes, should use [`renderToReadableStream`](#rendertoreadablestream) instead.
+> これは Node.js 専用の API です。Deno やモダンなエッジランタイムのような [Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) の環境では、代わりに [`renderToReadableStream`](#rendertoreadablestream) を使用してください。
 >
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 * * *
 
@@ -116,14 +95,10 @@ See the [full list of options](https://github.com/facebook/react/blob/14c2be8dac
 ReactDOMServer.renderToReadableStream(element, options);
 ```
 
-<<<<<<< HEAD
-React が内部的に使用する `data-reactroot` のような追加の DOM 属性を作成しないことを除いて、[`renderToString`](#rendertostring) と同様の動作をします。このメソッドは React を単純な静的サイトジェネレータとして使用したい場合に便利で、追加の属性を省略することでバイト数を削減できます。
+React 要素を初期状態の HTML にストリーミングします。[Readable Stream](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream) として resolve する Promise を返します。サスペンスと HTML ストリーミングを完全にサポートします。[詳細はこちら](https://github.com/reactwg/react-18/discussions/127)。
 
-マークアップをインタラクティブなものにするために、クライアントで React を導入しようとしている場合は、このメソッドを使用しないでください。代わりに、サーバで [`renderToString`](#rendertostring) を、そしてクライアントで [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) を使用してください。
-=======
-Streams a React element to its initial HTML. Returns a Promise that resolves to a [Readable Stream](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream). Fully supports Suspense and streaming of HTML. [Read more](https://github.com/reactwg/react-18/discussions/127)
+このようにサーバでレンダーされたマークアップを有するノードに対して [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) をコールすると、React はマークアップを保持してイベントハンドラだけをアタッチしますので、非常によい初回ロード体験が実現できます。
 
-If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) on a node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience.
 
 ```javascript
 let controller = new AbortController();
@@ -163,37 +138,30 @@ try {
 }
 ```
 
-See the [full list of options](https://github.com/facebook/react/blob/14c2be8dac2d5482fda8a0906a31d239df8551fc/packages/react-dom/src/server/ReactDOMFizzServerBrowser.js#L27-L35).
+[オプションの全リスト](https://github.com/facebook/react/blob/14c2be8dac2d5482fda8a0906a31d239df8551fc/packages/react-dom/src/server/ReactDOMFizzServerBrowser.js#L27-L35)を参照。
 
-> Note:
+> 補足：
 >
-> This API depends on [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API). For Node.js, use [`renderToPipeableStream`](#rendertopipeablestream) instead.
+> この API は [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) に依存しています。Node.js では代わりに [`renderToPipeableStream`](#rendertopipeablestream) を使用してください。
 >
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 * * *
 
-### `renderToNodeStream()`  (Deprecated) {#rendertonodestream}
+### `renderToNodeStream()`  (廃止予定) {#rendertonodestream}
 
 ```javascript
 ReactDOMServer.renderToNodeStream(element)
 ```
 
-<<<<<<< HEAD
-React 要素を初期状態の HTML へと変換します。HTML の文字列を出力する [Readable ストリーム](https://nodejs.org/api/stream.html#stream_readable_streams)を返します。このストリームによる HTML 出力は [`ReactDOMServer.renderToString`](#rendertostring) が返すものと全く同じです。このメソッドにより、サーバ上で HTML を生成して最初のリクエストに対してマークアップを送信してページ読み込み速度を向上させたり、また SEO 目的で検索エンジンがページを巡回することを可能にします。
+React 要素を初期状態の HTML にストリーミングします。HTML 文字列を出力する [Node.js の 読み取りストリーム](https://nodejs.org/api/stream.html#stream_readable_streams) を返します。このストリームからの HTML 出力は [`ReactDOMServer.renderToString`](#rendertostring) が返すものと全く同じです。このメソッドを使ってサーバで HTML を生成し、初回リクエスト時にマークアップを送信することで、ページロードを高速化し、SEO 目的でサーチエンジンがクロールできるようになります。
 
-このようにしてサーバ側で変換されたマークアップをあらかじめ持つノード上で [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) を呼び出した場合、React はマークアップを保持しつつイベントハンドラのみを追加するので、非常にパフォーマンスの高い初回ページロードの体験が得られます。
-=======
-Render a React element to its initial HTML. Returns a [Node.js Readable stream](https://nodejs.org/api/stream.html#stream_readable_streams) that outputs an HTML string. The HTML output by this stream is exactly equal to what [`ReactDOMServer.renderToString`](#rendertostring) would return. You can use this method to generate HTML on the server and send the markup down on the initial request for faster page loads and to allow search engines to crawl your pages for SEO purposes.
-
-If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) on a node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+このようにサーバでレンダーされたマークアップを有するノードに対して [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) をコールすると、React はマークアップを保持してイベントハンドラだけをアタッチしますので、非常によい初回ロード体験が実現できます。
 
 > 補足：
 >
 > この API はサーバ専用です。ブラウザでは利用できません。
 >
-> このメソッドが返すストリームは UTF-8 でエンコードされたバイトストリームを返します。別の方式でエンコードされたストリームが必要な場合、テキストのトランスコーディングのためにストリーム変換を提供している [iconv-lite](https://www.npmjs.com/package/iconv-lite) のようなプロジェクトを参照してください。
+> このメソッドが返すストリームは UTF-8 でエンコードされたバイトストリームを返します。別の方式でエンコードされたストリームが必要な場合、テキストのトランスコーディングのために変換ストリームを提供している [iconv-lite](https://www.npmjs.com/package/iconv-lite) のようなプロジェクトを参照してください。
 
 * * *
 
@@ -207,20 +175,13 @@ React が内部的に使用する `data-reactroot` のような追加の DOM 属
 
 このストリームによる HTML 出力は [`ReactDOMServer.renderToStaticMarkup`](#rendertostaticmarkup) が返すものと全く同じです。
 
-<<<<<<< HEAD
-マークアップをインタラクティブなものにするために、クライアントで React を導入しようとしている場合は、このメソッドを使用しないでください。代わりに、サーバで [`renderToNodeStream`](#rendertonodestream) を、そしてクライアントで [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) を使用してください。
-=======
-If you plan to use React on the client to make the markup interactive, do not use this method. Instead, use [`renderToNodeStream`](#rendertonodestream) on the server and [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) on the client.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+マークアップをインタラクティブなものにするために、クライアントで React を導入しようとしている場合は、このメソッドを使用しないでください。代わりに、サーバで [`renderToNodeStream`](#rendertonodestream) を、そしてクライアントで [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) を使用してください。
 
 > 補足：
 >
 > この API はサーバ専用です。ブラウザでは利用できません。
 >
-<<<<<<< HEAD
-> このメソッドが返すストリームは UTF-8 でエンコードされたバイトストリームを返します。別の方式でエンコードされたストリームが必要な場合、テキストのトランスコーディングのためにストリーム変換を提供している [iconv-lite](https://www.npmjs.com/package/iconv-lite) のようなプロジェクトを参照してください。
-=======
-> The stream returned from this method will return a byte stream encoded in utf-8. If you need a stream in another encoding, take a look at a project like [iconv-lite](https://www.npmjs.com/package/iconv-lite), which provides transform streams for transcoding text.
+> このメソッドが返すストリームは UTF-8 でエンコードされたバイトストリームを返します。別の方式でエンコードされたストリームが必要な場合、テキストのトランスコーディングのために変換ストリームを提供している [iconv-lite](https://www.npmjs.com/package/iconv-lite) のようなプロジェクトを参照してください。
 
 * * *
 
@@ -230,15 +191,15 @@ If you plan to use React on the client to make the markup interactive, do not us
 ReactDOMServer.renderToString(element)
 ```
 
-Render a React element to its initial HTML. React will return an HTML string. You can use this method to generate HTML on the server and send the markup down on the initial request for faster page loads and to allow search engines to crawl your pages for SEO purposes.
+React 要素を初期状態の HTML に変換します。React は HTML 文字列を返します。このメソッドを使ってサーバで HTML を生成し、初回リクエスト時にマークアップを送信することで、ページロードを高速化し、SEO 目的でサーチエンジンがクロールできるようになります。
 
-If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) on a node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience.
+このようにサーバでレンダーされたマークアップを有するノードに対して [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) をコールすると、React はマークアップを保持してイベントハンドラだけをアタッチしますので、非常によい初回ロード体験が実現できます。
 
-> Note
+> 補足
 >
-> This API has limited Suspense support and does not support streaming.
+> この API は Suspense を部分的にしかサポートしておらず、ストリーミングが行えません。
 >
-> On the server, it is recommended to use either [`renderToPipeableStream`](#rendertopipeablestream) (for Node.js) or [`renderToReadableStream`](#rendertoreadablestream) (for Web Streams) instead.
+> サーバサイドでは、[`renderToPipeableStream`](#rendertopipeablestream)（Node.js の場合）または [`renderToReadableStream`](#rendertoreadablestream)（Web Stream の場合）の利用をお勧めします。
 
 * * *
 
@@ -248,7 +209,6 @@ If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) 
 ReactDOMServer.renderToStaticMarkup(element)
 ```
 
-Similar to [`renderToString`](#rendertostring), except this doesn't create extra DOM attributes that React uses internally, such as `data-reactroot`. This is useful if you want to use React as a simple static page generator, as stripping away the extra attributes can save some bytes.
+React が内部的に使用する `data-reactroot` のような追加の DOM 属性を作成しないことを除いて、[`renderToString`](#rendertostring) と同様の動作をします。このメソッドは React を単純な静的サイトジェネレータとして使用したい場合に便利で、追加の属性を省略することでバイト数を削減できます。
 
-If you plan to use React on the client to make the markup interactive, do not use this method. Instead, use [`renderToString`](#rendertostring) on the server and [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) on the client.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+クライアントで React を使ってマークアップをインタラクティブにする目的では、このメソッドは使わないでください。代わりにサーバで [`renderToString`](#rendertostring)、クライアントで [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) を使うようにします。

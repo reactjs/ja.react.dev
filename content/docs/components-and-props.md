@@ -78,17 +78,10 @@ root.render(element);
 
 この例で何が起こるのかおさらいしてみましょう。
 
-<<<<<<< HEAD
-1. `<Welcome name="Sara" />` という要素を引数として `ReactDOM.render()` を呼び出します。
+1. `<Welcome name="Sara" />` という要素を引数として `root.render()` を呼び出します。
 2. React は `Welcome` コンポーネントを呼び出し、そのときに props として `{name: 'Sara'}` を渡します。
 3. `Welcome` コンポーネントは出力として `<h1>Hello, Sara</h1>` 要素を返します。
 4. React DOM は `<h1>Hello, Sara</h1>` に一致するよう、DOM を効率的に更新します。
-=======
-1. We call `root.render()` with the `<Welcome name="Sara" />` element.
-2. React calls the `Welcome` component with `{name: 'Sara'}` as the props.
-3. Our `Welcome` component returns a `<h1>Hello, Sara</h1>` element as the result.
-4. React DOM efficiently updates the DOM to match `<h1>Hello, Sara</h1>`.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 >**補足:** コンポーネント名は常に大文字で始めてください。
 >

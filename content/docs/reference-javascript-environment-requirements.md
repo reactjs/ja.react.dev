@@ -6,37 +6,13 @@ category: Reference
 permalink: docs/javascript-environment-requirements.html
 ---
 
-<<<<<<< HEAD
-React 16 はコレクション型 [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) および [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) に依存しています。これらの機能をネイティブに提供しない（IE 11 未満など）、または標準非準拠な挙動をする（IE 11 など）古いブラウザやデバイスをサポートする場合は、[core-js](https://github.com/zloirock/core-js) のようなグローバルなポリフィルをバンドルしたアプリケーションに含めることを検討してください。
+React 18 はすべてのモダンブラウザ（Edge, Firefox, Chrome, Safari など）をサポートします。
 
-古いブラウザをサポートするため、core-js を利用してポリフィルを含めた React 16 向けの環境は次のようになります。
-=======
-React 18 supports all modern browsers (Edge, Firefox, Chrome, Safari, etc).
+モダンなブラウザ機能についてネイティブ実装していないか非標準な実装をしている Internet Explorer のような古いブラウザをサポートする場合は、バンドルされたアプリにグローバルなポリフィルを含めることを検討してください。
 
-If you support older browsers and devices such as Internet Explorer which do not provide modern browser features natively or have non-compliant implementations, consider including a global polyfill in your bundled application.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
-
-Here is a list of the modern features React 18 uses:
+以下が、React 18 で使われるモダンな機能の一覧です：
 - [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 - [`Symbol`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
 - [`Object.assign`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
 
-<<<<<<< HEAD
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-ReactDOM.render(
-  <h1>Hello, world!</h1>,
-  document.getElementById('root')
-);
-```
-
-React は（テスト環境であっても）`requestAnimationFrame` に依存します。
-`requestAnimationFrame` の役割を補うため [raf](https://www.npmjs.com/package/raf) を使用します。
-
-```js
-import 'raf/polyfill';
-```
-=======
-The correct polyfill for these features depend on your environment. For many users, you can configure your [Browserlist](https://github.com/browserslist/browserslist) settings. For others, you may need to import polyfills like [`core-js`](https://github.com/zloirock/core-js) directly.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+これらの機能を正しくポリフィルする方法はあなたの環境によって異なります。多くのユーザは、[Browserlist](https://github.com/browserslist/browserslist) を設定すれば大丈夫です。人によっては [`core-js`](https://github.com/zloirock/core-js) のようなポリフィルを直接インポートする必要があるかもしれません。

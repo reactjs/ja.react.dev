@@ -103,17 +103,10 @@ Issue を解決することにした場合、誰かがすでに修正に取り�
 
 ### 貢献の前提条件 {#contribution-prerequisites}
 
-<<<<<<< HEAD
-* [Node](https://nodejs.org) v8.0.0+ と、[Yarn](https://yarnpkg.com/en/) v1.2.0+ がインストールされていること。
+* [Node](https://nodejs.org) の LTS と、[Yarn](https://yarnpkg.com/en/) v1.2.0+ がインストールされていること。
 * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) がインストールされていること。
 * `gcc` がインストールされている、または必要に応じたコンパイラをインストールすることができること。依存関係の中にはコンパイルステップが必要なものもあります。OS X では Xcode のコマンドラインツールが役立つでしょう。Ubuntu では `apt-get install build-essential` コマンドで必要なパッケージをインストールできます。他の Linux ディストリビューションでも似たようなコマンドで実現できるでしょう。Windows では追加の手順が必要になり、詳しくは  [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) を参照してください。
 * Git について精通していること。
-=======
-* You have [Node](https://nodejs.org) installed at LTS and [Yarn](https://yarnpkg.com/en/) at v1.2.0+.
-* You have [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) installed.
-* You have `gcc` installed or are comfortable installing a compiler if needed. Some of our dependencies may require a compilation step. On OS X, the Xcode Command Line Tools will cover this. On Ubuntu, `apt-get install build-essential` will install the required packages. Similar commands should work on other Linux distros. Windows will require some additional steps, see the [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) for details.
-* You are familiar with Git.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 ### 開発ワークフロー {#development-workflow}
 

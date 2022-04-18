@@ -36,11 +36,7 @@ const root = ReactDOM.createRoot(rootEl);
 root.render(<App />);
 ```
 
-<<<<<<< HEAD
-React DOM はリコンサイラに `<App />` を渡します。`<App />` が React 要素であること、つまり、**何**をレンダーするかの説明書きであることを思い出してください。これはプレーンなオブジェクトとして考えることができます：
-=======
-`root.render` will pass `<App />` along to the reconciler. Remember that `<App />` is a React element, that is, a description of *what* to render. You can think about it as a plain object:
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+`root.render` はリコンサイラに `<App />` を渡します。`<App />` が React 要素であること、つまり、**何**をレンダーするかの説明書きであることを思い出してください。これはプレーンなオブジェクトとして考えることができます：
 
 ```js
 console.log(<App />);
@@ -417,11 +413,7 @@ host 内部インスタンスは以下のものを格納する必要がありま
 
  <img src="../images/docs/implementation-notes-tree.png" width="500" style="max-width: 100%" alt="React DevTools tree" />
 
-<<<<<<< HEAD
-このリファクタリングを完了するため、コンテナノードへ完成したツリーをマウントする、`ReactDOM.render()` のような関数を導入します。この関数は `ReactDOM.render()` のように公開インスタンスを返します：
-=======
-To complete this refactoring, we will introduce a function that mounts a complete tree into a container node and a public instance:
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+このリファクタリングを完了するため、完全なツリーをコンテナノードとパブリックインスタンスにマウントする関数を導入することにします。
 
 ```js
 function mountTree(element, containerNode) {

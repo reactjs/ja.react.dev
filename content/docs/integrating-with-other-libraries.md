@@ -190,15 +190,9 @@ class Chosen extends React.Component {
 
 ## 他のビューライブラリとのインテグレーション {#integrating-with-other-view-libraries}
 
-<<<<<<< HEAD
-React は [`ReactDOM.render()`](/docs/react-dom.html#render) の柔軟性のおかげで、他のアプリケーションに組み込むことができます。
+React は [`createRoot()`](/docs/react-dom-client.html#createRoot) の柔軟性のおかげで、他のアプリケーションに組み込むことができます。
 
-React は一般的に起動時に単一のルート React コンポーネントを DOM にロードして使用されるものですが、`ReactDOM.render()` はボタンのような小さなものからアプリケーション全体に至るまで、独立した UI のパーツに対して複数回呼び出すこともできます。
-=======
-React can be embedded into other applications thanks to the flexibility of [`createRoot()`](/docs/react-dom-client.html#createRoot).
-
-Although React is commonly used at startup to load a single root React component into the DOM, `root.render()` can also be called multiple times for independent parts of the UI which can be as small as a button, or as large as an app.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+React は一般的に起動時に単一のルート React コンポーネントを DOM にロードして使用されるものですが、`root.render()` はボタンのような小さなものからアプリケーション全体に至るまで、独立した UI のパーツに対して複数回呼び出すこともできます。
 
 実際、これはまさに React が Facebook で使用されている方法でもあります。これにより React でアプリケーションを少しずつ作成し、それらを既存のサーバ側テンプレートやその他のクライアントサイドコードと組み合わせることができます。
 
@@ -244,21 +238,13 @@ function HelloButton() {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/RVKbvW?editors=1010)
 
-<<<<<<< HEAD
-このような分離されたコンポーネントを好きなだけ持つことができ、`ReactDOM.render()` を使用して異なる DOM コンテナにそれらをレンダーすることができます。アプリケーションを少しずつ React に変換していくにつれて、より大きなコンポーネントへとインテグレーションできるようになり、`ReactDOM.render()` の呼び出しを階層の上の方へ移動させていけるようになるでしょう。
-=======
-You can have as many such isolated components as you like, and use `ReactDOM.createRoot()` to render them to different DOM containers. Gradually, as you convert more of your app to React, you will be able to combine them into larger components, and move some of the `ReactDOM.createRoot()` calls up the hierarchy.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+このような分離されたコンポーネントを好きなだけ持つことができ、`ReactDOM.createRoot()` を使用して異なる DOM コンテナにそれらをレンダーすることができます。アプリケーションを少しずつ React に変換していくにつれて、より大きなコンポーネントへとインテグレーションできるようになり、`ReactDOM.createRoot()` の呼び出しを階層の上の方へ移動させていけるようになるでしょう。
 
 ### Backbone View に React を組み込む {#embedding-react-in-a-backbone-view}
 
 [Backbone](https://backbonejs.org/) view は通常、HTML 文字列、もしくは文字列を生成するテンプレート用関数を使って、DOM 要素の中身を作成します。この処理もまた React コンポーネントのレンダーに置き換えられます。
 
-<<<<<<< HEAD
-以下で、`ParagraphView` と呼ばれる Backbone view を作成します。Backbone の `render()` 関数をオーバーライドして、React の `<Paragraph>` コンポーネントを Backbone が提供する DOM 要素 (this.el) にレンダーします。ここでも [`ReactDOM.render()`](/docs/react-dom.html#render) を使用します：
-=======
-Below, we will create a Backbone view called `ParagraphView`. It will override Backbone's `render()` function to render a React `<Paragraph>` component into the DOM element provided by Backbone (`this.el`). Here, too, we are using [`ReactDOM.createRoot()`](/docs/react-dom-client.html#createroot):
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+以下で、`ParagraphView` と呼ばれる Backbone view を作成します。Backbone の `render()` 関数をオーバーライドして、React の `<Paragraph>` コンポーネントを Backbone が提供する DOM 要素 (this.el) にレンダーします。ここでも [`ReactDOM.createRoot()`](/docs/react-dom-client.html#createroot) を使用します：
 
 ```js{1,5,8-9,13}
 function Paragraph(props) {
@@ -281,11 +267,7 @@ const ParagraphView = Backbone.View.extend({
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/gWgOYL?editors=0010)
 
-<<<<<<< HEAD
-`remove` メソッドで `ReactDOM.unmountComponentAtNode()` を呼び出して、コンポーネントツリーがデタッチされた際にイベントハンドラとコンポーネントツリーに関連付けられていたその他のリソースを React が解除することも重要です。
-=======
-It is important that we also call `root.unmount()` in the `remove` method so that React unregisters event handlers and other resources associated with the component tree when it is detached.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+`remove` メソッド内で `root.unmount()` を呼び出して、コンポーネントツリーがデタッチされた際にイベントハンドラとコンポーネントツリーに関連付けられていたその他のリソースを React が解除することも重要です。
 
 React *ツリー内*からコンポーネントが削除されるとクリーンアップは自動的に実行されますが、ツリー全体を手動で削除するため、このメソッドを呼び出す必要があります。
 

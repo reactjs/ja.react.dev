@@ -10,11 +10,7 @@ next: handling-events.html
 
 このページでは React コンポーネントにおける state とライフサイクルについての導入を行います。[詳細なコンポーネントの API リファレンスはこちら](/docs/react-component.html)にあります。
 
-<<<<<<< HEAD
-[以前の章のひとつ](/docs/rendering-elements.html#updating-the-rendered-element)にあった秒刻みの時計の例を考えてみましょう。[要素のレンダー](/docs/rendering-elements.html#rendering-an-element-into-the-dom)の章にて、UI を更新するための方法をひとつだけ学びました。それはレンダーされた出力を更新するために `ReactDOM.render()` を呼び出す、というものでした。
-=======
-Consider the ticking clock example from [one of the previous sections](/docs/rendering-elements.html#updating-the-rendered-element). In [Rendering Elements](/docs/rendering-elements.html#rendering-an-element-into-the-dom), we have only learned one way to update the UI. We call `root.render()` to change the rendered output:
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+[以前の章のひとつ](/docs/rendering-elements.html#updating-the-rendered-element)にあった秒刻みの時計の例を考えてみましょう。[要素のレンダー](/docs/rendering-elements.html#rendering-an-element-into-the-dom)の章にて、UI を更新するための方法をひとつだけ学びました。それはレンダーされた出力を更新するために `root.render()` を呼び出す、というものでした。
 
 ```js{10}
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -298,11 +294,7 @@ root.render(<Clock />);
 
 何が起こったのかをメソッドが呼び出される順序にそって簡単に振り返ってみましょう：
 
-<<<<<<< HEAD
-1) `<Clock />` が `ReactDOM.render()` に渡されると、React は `Clock` コンポーネントのコンストラクタを呼び出します。`Clock` は現在時刻を表示する必要があるので、現在時刻を含んだオブジェクトで `this.state` を初期化します。あとでこの state を更新していきます。
-=======
-1) When `<Clock />` is passed to `root.render()`, React calls the constructor of the `Clock` component. Since `Clock` needs to display the current time, it initializes `this.state` with an object including the current time. We will later update this state.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+1) `<Clock />` が `root.render()` に渡されると、React は `Clock` コンポーネントのコンストラクタを呼び出します。`Clock` は現在時刻を表示する必要があるので、現在時刻を含んだオブジェクトで `this.state` を初期化します。あとでこの state を更新していきます。
 
 2) 次に React は `Clock` コンポーネントの `render()` メソッドを呼び出します。これにより React は画面に何を表示すべきか知ります。そののちに、React は DOM を `Clock` のレンダー出力と一致するように更新します。
 

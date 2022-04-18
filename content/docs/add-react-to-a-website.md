@@ -77,24 +77,15 @@ React は当初から、段階的に導入することができるようにデ�
 
 **[サンプルコード](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**の末尾に次の 2 行を追加してみましょう。
 
-<<<<<<< HEAD
-```js{3,4}
-// ... コピーアンドペーストしたサンプルコード ...
-=======
 ```js{3,4,5}
-// ... the starter code you pasted ...
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+// ... コピーアンドペーストしたサンプルコード ...
 
 const domContainer = document.querySelector('#like_button_container');
 const root = ReactDOM.createRoot(domContainer);
 root.render(e(LikeButton));
 ```
 
-<<<<<<< HEAD
-この 2 行のコードは、ステップ 1 で追加した空の `<div>` 要素を見つけてきて、その中に React コンポーネントの「いいね」ボタンを表示します。
-=======
-These three lines of code find the `<div>` we added to our HTML in the first step, create a React app with it, and then display our "Like" button React component inside of it.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+この 3 行のコードは、ステップ 1 で追加した空の `<div>` 要素を見つけてきて、そこに React アプリを作成し、その中に React コンポーネントの「いいね」ボタンを表示します。
 
 ### これだけです！ {#thats-it}
 

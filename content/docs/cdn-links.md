@@ -20,11 +20,7 @@ React および ReactDOM は CDN を介して利用することができます�
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 ```
 
-<<<<<<< HEAD
-特定のバージョンの `react` と `react-dom` をロードする場合は、`17` の部分をバージョン番号で置き換えてください。
-=======
-To load a specific version of `react` and `react-dom`, replace `18` with the version number.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+特定のバージョンの `react` と `react-dom` をロードする場合は、`18` の部分をバージョン番号で置き換えてください。
 
 ### なぜ `crossorigin` 属性が必要なのか？ {#why-the-crossorigin-attribute}
 

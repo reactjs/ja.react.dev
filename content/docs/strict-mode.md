@@ -15,22 +15,13 @@ strict モードはアプリケーションの任意の箇所で有効にでき�
 
 上のコード例において、`Header` と `Footer` に対しては strict モードの検査は*されません*。しかし `ComponentOne`、`ComponentTwo` およびそのすべての子孫要素に対しては検査が働きます。
 
-<<<<<<< HEAD
 現在、`StrictMode` は以下のことに役立ちます。
 * [安全でないライフサイクルの特定](#identifying-unsafe-lifecycles)
 * [レガシーな文字列 ref API の使用に対する警告](#warning-about-legacy-string-ref-api-usage)
 * [非推奨な findDOMNode の使用に対する警告](#warning-about-deprecated-finddomnode-usage)
 * [意図しない副作用の検出](#detecting-unexpected-side-effects)
 * [レガシーなコンテクスト API の検出](#detecting-legacy-context-api)
-=======
-`StrictMode` currently helps with:
-* [Identifying components with unsafe lifecycles](#identifying-unsafe-lifecycles)
-* [Warning about legacy string ref API usage](#warning-about-legacy-string-ref-api-usage)
-* [Warning about deprecated findDOMNode usage](#warning-about-deprecated-finddomnode-usage)
-* [Detecting unexpected side effects](#detecting-unexpected-side-effects)
-* [Detecting legacy context API](#detecting-legacy-context-api)
-* [Detecting unsafe effects](#detecting-unsafe-effects)
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+* [安全でない副作用の検出](#detecting-unsafe-effects)
 
 将来の React のリリースではこの他にも機能が追加される予定です。
 
@@ -128,13 +119,9 @@ strict モードでは自動的には副作用を見つけてはくれません�
 
 > 補足
 >
-<<<<<<< HEAD
-> React 17 以降で、React は `console.log()` のようなコンソールメソッドを自動的に変更し、ライフサイクル関数の 2 回目のコールでログが表示されないようにします。これにより特定のケースで意図しない動作を引き起こすことがありますが、[回避策も存在します](https://github.com/facebook/react/issues/20090#issuecomment-715927125)。
-=======
-> In React 17, React automatically modifies the console methods like `console.log()` to silence the logs in the second call to lifecycle functions. However, it may cause undesired behavior in certain cases where [a workaround can be used](https://github.com/facebook/react/issues/20090#issuecomment-715927125).
+> React 17 では、2 回目にコールされたライフサイクル関数からはログが表示されないようにするため、`console.log()` のようなコンソールメソッドを自動的に書き換えていました。しかしこれは特定のケースで望ましくない挙動を引き起こしており、そのための[回避策](https://github.com/facebook/react/issues/20090#issuecomment-715927125)も存在していました。
 >
-> Starting from React 18, React does not suppress any logs. However, if you have React DevTools installed, the logs from the second call will appear slightly dimmed. React DevTools also offers a setting (off by default) to suppress them completely.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+> React 18 以降では、React はログを一切抑止しなくなります。ただし React DevTools をインストールしている場合、2 回目以降のコールからのログはわずかに薄く表示されるようになります。また React DevTools にはそのようなログを完全に抑制するオプションも存在します（デフォルトでは off です）。
 
 ### レガシーなコンテクスト API の検出 {#detecting-legacy-context-api}
 
@@ -142,56 +129,52 @@ strict モードでは自動的には副作用を見つけてはくれません�
 
 ![](../images/blog/warn-legacy-context-in-strict-mode.png)
 
-<<<<<<< HEAD
-新バージョンへの移行にあたっては[新コンテクスト API のドキュメント](/docs/context.html)を参考にしてください。
-=======
 Read the [new context API documentation](/docs/context.html) to help migrate to the new version.
 
 
-### Ensuring reusable state {#ensuring-reusable-state}
+### state 再利用可能性の保証 {#ensuring-reusable-state}
 
-In the future, we’d like to add a feature that allows React to add and remove sections of the UI while preserving state. For example, when a user tabs away from a screen and back, React should be able to immediately show the previous screen. To do this, React support remounting trees using the same component state used before unmounting.
+将来的に、React が state を保ったままで UI の一部分を追加・削除できるような機能を導入したいと考えています。例えば、ユーザがタブを切り替えて画面を離れてから戻ってきた場合に、React が以前の画面をすぐに表示できるようにしたいのです。これを可能にするため、React はアンマウントする前にコンポーネントが使用していたものと同じ state を使用してツリーを再マウントする機能をサポートします。
 
-This feature will give React better performance out-of-the-box, but requires components to be resilient to effects being mounted and destroyed multiple times. Most effects will work without any changes, but some effects do not properly clean up subscriptions in the destroy callback, or implicitly assume they are only mounted or destroyed once.
+この機能により、React の標準状態でのパフォーマンスが向上しますが、コンポーネントは副作用が何度も登録されたり破棄されたりすることに対して耐性を持つことが必要になります。ほとんどの副作用は何の変更もなく動作しますが、一部の副作用は破棄用コールバックで購読を適切にクリーンアップしていなかったり、暗黙のうちに一度だけマウントまたは破棄されるものと想定していたりします。
 
-To help surface these issues, React 18 introduces a new development-only check to Strict Mode. This new check will automatically unmount and remount every component, whenever a component mounts for the first time, restoring the previous state on the second mount.
+これらの問題に気付きやすくするために、React 18 は strict モードに新しい開発時専用のチェックを導入します。この新しいチェックは、コンポーネントが初めてマウントされるたびに、すべてのコンポーネントを自動的にアンマウント・再マウントし、かつ 2 回目のマウントで以前の state を復元します。
 
-To demonstrate the development behavior you'll see in Strict Mode with this feature, consider what happens when React mounts a new component. Without this change, when a component mounts, React creates the effects:
-
-```
-* React mounts the component.
-  * Layout effects are created.
-  * Effects are created.
-```
-
-With Strict Mode starting in React 18, whenever a component mounts in development, React will simulate immediately unmounting and remounting the component:
+strict モードでこの機能を有効にした場合の開発時動作を示すために、React が新しいコンポーネントをマウントするときに起こることを考えてみましょう。この機能がない状態でコンポーネントがマウントされる際、React は以下のように副作用を作成します。
 
 ```
-* React mounts the component.
-    * Layout effects are created.
-    * Effect effects are created.
-* React simulates effects being destroyed on a mounted component.
-    * Layout effects are destroyed.
-    * Effects are destroyed.
-* React simulates effects being re-created on a mounted component.
-    * Layout effects are created
-    * Effect setup code runs
+* React がコンポーネントをマウント
+  * レイアウト副作用 (layout effect) を作成
+  * （通常の）副作用を作成
 ```
 
-On the second mount, React will restore the state from the first mount. This feature simulates user behavior such as a user tabbing away from a screen and back, ensuring that code will properly handle state restoration.
-
-When the component unmounts, effects are destroyed as normal:
+React 18 以降の strict モードでは、開発時にコンポーネントがマウントされた場合、React はコンポーネントの即時アンマウント・再マウントをシミュレーションします：
 
 ```
-* React unmounts the component.
-  * Layout effects are destroyed.
-  * Effect effects are destroyed.
+* React がコンポーネントをマウント
+    * レイアウト副作用を作成
+    * 副作用を作成
+* マウントされたコンポーネント内で副作用の破棄をシミュレート
+    * レイアウト副作用を破棄
+    * 副作用を破棄
+* マウントされたコンポーネント内で副作用の再生成をシミュレート
+    * レイアウト副作用を作成
+    * 副作用の作成用コードの実行
 ```
 
-> Note:
+2 度目のマウントにおいて React は初回マウント時の state を復元します。この機能はタブを操作して画面を離れてから戻ってくる、といったユーザの挙動をシミュレートしたものであり、コードが state の復元を正しく処理できることを保証できます。
+
+コンポーネントがアンマウントされる場合は副作用は通常通り破棄されます：
+
+```
+* React がコンポーネントをアンマウント
+  * レイアウト副作用を破棄
+  * 副作用を破棄
+```
+
+> 補足
 >
-> This only applies to development mode, _production behavior is unchanged_.
+> この挙動は開発モードの場合にのみ適用されます。*本番用の挙動は変わりません*。
 
-For help supporting common issues, see:
+よくある問題についてのサポートは以下を参照してください：
   - [How to support Reusable State in Effects](https://github.com/reactwg/react-18/discussions/18)
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b

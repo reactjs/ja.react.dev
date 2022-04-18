@@ -27,7 +27,7 @@ next: hooks-faq.html
   - [`useDeferredValue`](#usedeferredvalue)
   - [`useTransition`](#usetransition)
   - [`useId`](#useid)
-- [Library Hooks](#library-hooks)
+- [ライブラリ製作者用フック](#library-hooks)
   - [`useSyncExternalStore`](#usesyncexternalstore)
   - [`useInsertionEffect`](#useinsertioneffect)
 
@@ -108,13 +108,13 @@ const [state, setState] = useState(() => {
 
 更新の回避が起きる前に React により該当のコンポーネント自体はレンダーされるかもしれない、ということに注意してください。ツリーのそれ以上「深く」にまで処理は及ばないためこれは問題ではないはずです。もしレンダー中にコストの高い計算を行っている場合は `useMemo` を使った最適化が可能です。
 
-#### Batching of state updates {#batching-of-state-updates}
+#### state 更新のバッチ処理 {#batching-of-state-updates}
 
-React may group several state updates into a single re-render to improve performance. Normally, this improves performance and shouldn't affect your application's behavior.
+React はパフォーマンス改善のため、複数の state 更新を 1 回の再レンダーにまとめることがあります。通常、これによりパフォーマンスが改善しますが、あなたのアプリケーションの挙動には影響がないはずです。
 
-Before React 18, only updates inside React event handlers were batched. Starting with React 18, [batching is enabled for all updates by default](/blog/2022/03/08/react-18-upgrade-guide.html#automatic-batching). Note that React makes sure that updates from several *different* user-initiated events -- for example, clicking a button twice -- are always processed separately and do not get batched. This prevents logical mistakes.
+React 18 以前では、React のイベントハンドラ内部で起きた更新のみがまとめて処理されていました。React 18 からは、[バッチ処理はすべての更新でデフォルトで有効になります](/blog/2022/03/08/react-18-upgrade-guide.html#automatic-batching)。ただし React はユーザが引き起こした複数の*異なる*イベント（例えばボタンの 2 回のクリック）に伴う更新をまとめることはありません。これにより論理的な誤りを防ぐことができます。
 
-In the rare case that you need to force the DOM update to be applied synchronously, you may wrap it in [`flushSync`](/docs/react-dom.html#flushsync). However, this can hurt performance so do this only where needed.
+DOM への更新が同期的に適用されるよう強制しないといけないという稀な状況においては、[`flushSync`](/docs/react-dom.html#flushsync) で更新をラップすることができます。ただしこれはパフォーマンスに悪影響を及ぼしますので必要な場合にのみ利用するようにしてください。
 
 ### `useEffect` {#useeffect}
 
@@ -152,17 +152,13 @@ useEffect(() => {
 
 しかしすべての副作用が遅延できるわけではありません。例えばユーザに見えるような DOM の改変は、ユーザが見た目の不整合性を感じずに済むよう、次回の描画が発生する前に同期的に発生する必要があります（この違いは概念的には受動的なイベントリスナと能動的なイベントリスナの違いに似ています）。このようなタイプの副作用のため、React は [`useLayoutEffect`](#uselayouteffect) という別のフックを提供しています。これは `useEffect` と同じシグネチャを持っており、実行されるタイミングのみが異なります。
 
-<<<<<<< HEAD
-`useEffect` はブラウザが描画を終えるまで遅延されますが、次回のレンダーが起こるより前に実行されることは保証されています。React は新しい更新を始める前に常にひとつ前のレンダーの副作用をクリーンアップします。
-=======
-Additionally, starting in React 18, the function passed to `useEffect` will fire synchronously **before** layout and paint when it's the result of a discrete user input such as a click, or when it's the result of an update wrapped in [`flushSync`](/docs/react-dom.html#flushsync). This behavior allows the result of the effect to be observed by the event system, or by the caller of [`flushSync`](/docs/react-dom.html#flushsync).
+加えて、React 18 以降、`useEffect` に渡された関数は、クリックのような個々のユーザ入力の結果としてレイアウト・描画が起こる場合や、[`flushSync`](/docs/react-dom.html#flushsync) でラップされた更新の結果としてレイアウト・描画が起こる場合には、そのようなレイアウト・描画の**前に**同期的に呼び出されるようになります。この動作により、副作用の結果をイベントシステムや [`flushSync`](/docs/react-dom.html#flushsync) の呼び出し元が確認できるようになります。
 
-> Note
+> 補足
 > 
-> This only affects the timing of when the function passed to `useEffect` is called - updates scheduled inside these effects are still deferred. This is different than [`useLayoutEffect`](#uselayouteffect), which fires the function and processes the updates inside of it immediately.
+> これは `useEffect` に渡された関数が呼び出されるタイミングにのみ影響します。副作用内でスケジュールされた更新が遅延されることに変わりはありません。[`useLayoutEffect`](#uselayouteffect) はこれとは異なり、関数を呼び出したあと内部での更新を即座に処理します。
 
-Even in cases where `useEffect` is deferred until after the browser has painted, it's guaranteed to fire before any new renders. React will always flush a previous render's effects before starting a new update.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+ブラウザが描画を終えるまで `useEffect` が遅延される場合でも、次回のレンダーが起こるより前に実行されることは保証されています。React は新しい更新を始める前に常にひとつ前のレンダーの副作用をクリーンアップします。
 
 #### 条件付きで副作用を実行する {#conditionally-firing-an-effect}
 
@@ -186,8 +182,6 @@ useEffect(
 
 これで、データの購読は `props.source` が変更された場合にのみ再作成されるようになります。
 
-空の配列 `[]` を渡すと、この副作用がコンポーネント内のどの値にも依存していないということを React に伝えることになります。つまり副作用はマウント時に実行されアンマウント時にクリーンアップされますが、更新時には実行されないようになります。
-
 > 補足
 >
 > この最適化を利用する場合、**時間の経過とともに変化し副作用によって利用される、コンポーネントスコープの値（props や state など）**がすべて配列に含まれていることを確認してください。さもないとあなたのコードは以前のレンダー時の古い値を参照してしまうことになります。[関数の扱い方](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies)と[この配列の値が頻繁に変わる場合の対処法](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often)も参照してください。
@@ -195,6 +189,7 @@ useEffect(
 > もしも副作用とそのクリーンアップを 1 度だけ（マウント時とアンマウント時にのみ）実行したいという場合、空の配列 (`[]`) を第 2 引数として渡すことができます。こうすることで、あなたの副作用は props や state の値の*いずれにも*依存していないため再実行する必要が一切ない、ということを React に伝えることができます。これは特別なケースとして処理されているわけではなく、入力配列を普通に処理すればそうなるというだけの話です。
 >
 > 空の配列 (`[]`) を渡した場合、副作用内では props と state の値は常にその初期値のままになります。`[]` を渡すことはおなじみの `componentDidMount` と `componentWillUnmount` による概念と似ているように感じるでしょうが、通常は[こちら](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies)や[こちら](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often)のように、副作用を過度に再実行しないためのよりよい解決方法があります。また `useEffect` はブラウザが描画し終えた後まで遅延されますので、追加の作業をしてもそれほど問題にならないということもお忘れなく。
+>
 >
 > [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) パッケージの [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) ルールを有効にすることをお勧めします。これは依存の配列が正しく記述されていない場合に警告し、修正を提案します。
 
@@ -266,6 +261,7 @@ function ThemedButton() {
 }
 ```
 この例は[コンテクストのガイド](/docs/context.html)をフック用に変更したものです。コンテクストをいつどのように使うべきかについては同記事を参照してください。
+
 
 ## 追加のフック {#additional-hooks}
 
@@ -455,6 +451,7 @@ function TextInputWithFocusButton() {
 
 `useRef` は中身が変更になってもそのことを通知**しない**ということを覚えておいてください。`.current` プロパティを書き換えても再レンダーは発生しません。DOM ノードを ref に割り当てたり割り当てを解除したりする際に何らかのコードを走らせたいという場合は、[コールバック ref](/docs/hooks-faq.html#how-can-i-measure-a-dom-node) を代わりに使用してください。
 
+
 ### `useImperativeHandle` {#useimperativehandle}
 
 ```js
@@ -538,12 +535,12 @@ useDebugValue(date, date => date.toDateString());
 const deferredValue = useDeferredValue(value);
 ```
 
-`useDeferredValue` accepts a value and returns a new copy of the value that will defer to more urgent updates. If the current render is the result of an urgent update, like user input, React will return the previous value and then render the new value after the urgent render has completed.
+`useDeferredValue` は値を受け取りその値のコピーを返しますが、返り値はより緊急性の高い更新がある場合に遅延されうるようになっています。現在のレンダーがユーザ入力のような緊急性の高い更新である場合には、React は前回と同じ値を返し、新しい値でのレンダーは緊急性の高いレンダーが完了した後に行うようにします。
 
-This hook is similar to user-space hooks which use debouncing or throttling to defer updates. The benefits to using `useDeferredValue` is that React will work on the update as soon as other work finishes (instead of waiting for an arbitrary amount of time), and like [`startTransition`](/docs/react-api.html#starttransition), deferred values can suspend without triggering an unexpected fallback for existing content.
+このフックはデバウンス (debounce) やスロットル (throttle) を使って更新を遅延するためにユーザ側で作成されてきたフックと似ています。`useDeferredValue` を使う利点は、（常に何らかの固定の時間待つのではなく）他の作業が終わった時点ですぐに React が更新を処理できるという点と、[`startTransition`](/docs/react-api.html#starttransition) と同様に値を遅延させることで既存のコンテンツがふいにフォールバックに隠されてしまわないよう待機できるという点です。
 
-#### Memoizing deferred children {#memoizing-deferred-children}
-`useDeferredValue` only defers the value that you pass to it. If you want to prevent a child component from re-rendering during an urgent update, you must also memoize that component with [`React.memo`](/docs/react-api.html#reactmemo) or [`React.useMemo`](/docs/hooks-reference.html#usememo):
+#### 遅延可能な子コンポーネントのメモ化 {#memoizing-deferred-children}
+`useDeferredValue` が遅延させるのは渡された値のみです。緊急性の高い更新の最終に子コンポーネントが再レンダーされるのを防ぎたい場合、そのコンポーネントで [`React.memo`](/docs/react-api.html#reactmemo) か [`React.useMemo`](/docs/hooks-reference.html#usememo) を使ってメモ化を行う必要があります：
 
 ```js
 function Typeahead() {
@@ -568,7 +565,7 @@ function Typeahead() {
 }
 ```
 
-Memoizing the children tells React that it only needs to re-render them when `deferredQuery` changes and not when `query` changes. This caveat is not unique to `useDeferredValue`, and it's the same pattern you would use with similar hooks that use debouncing or throttling.
+子をメモ化することで、`query` が変わった場合ではなく `deferredQuery` が変わった場合にのみ再レンダーすると React に伝えることができます。この注意事項は `useDeferredValue` に特有のものではなく、デバウンスやスロットルを使う似たようなフックで使われるものと同じパターンです。
 
 ### `useTransition` {#usetransition}
 
@@ -576,9 +573,9 @@ Memoizing the children tells React that it only needs to re-render them when `de
 const [isPending, startTransition] = useTransition();
 ```
 
-Returns a stateful value for the pending state of the transition, and a function to start it.
+トランジションの実行中状態を表す状態値と、トランザクションを開始するための関数を返します。
 
-`startTransition` lets you mark updates in the provided callback as transitions:
+`startTransition` に渡されたコールバック内の更新はトランジションとしてマークされます：
 
 ```js
 startTransition(() => {
@@ -586,7 +583,7 @@ startTransition(() => {
 })
 ```
 
-`isPending` indicates when a transition is active to show a pending state:
+`isPending` はトランザクションがアクティブかどうかを表しており、ユーザに保留中状態を表示するのに使えます：
 
 ```js
 function App() {
@@ -608,11 +605,11 @@ function App() {
 }
 ```
 
-> Note:
+> 補足：
 >
-> Updates in a transition yield to more urgent updates such as clicks.
+> トランザクション内での更新はクリックのような緊急性の高い更新がある場合は遅延されることがあります。
 >
-> Updates in a transitions will not show a fallback for re-suspended content. This allows the user to continue interacting with the current content while rendering the update.
+> トランザクション内での更新によってコンテンツが再サスペンドした場合でもフォールバックは表示されません。これにより更新後のデータをレンダーしている最中に、ユーザが現在のコンテンツを操作しつづけられるようになります。
 
 ### `useId` {#useid}
 
@@ -620,13 +617,13 @@ function App() {
 const id = useId();
 ```
 
-`useId` is a hook for generating unique IDs that are stable across the server and client, while avoiding hydration mismatches.
+`useId` はハイドレーション時の不整合を防ぎつつサーバとクライアント間で安定な一意 ID を作成するためのフックです。
 
-> Note
+> 補足
 >
-> `useId` is **not** for generating [keys in a list](/docs/lists-and-keys.html#keys). Keys should be generated from your data.
+> `useId` は[リスト内の key](/docs/lists-and-keys.html#keys) を作成するのに使うためのものでは**ありません**。key はあなたのデータから作成されるべきです。
 
-For a basic example, pass the `id` directly to the elements that need it:
+基本的な例として、`id` をそれを必要としている要素に直接渡せます：
 
 ```js
 function Checkbox() {
@@ -640,7 +637,7 @@ function Checkbox() {
 };
 ```
 
-For multiple IDs in the same component, append a suffix using the same `id`:
+同じコンポーネントで複数の ID を使う場合は、同じ `id` に接尾辞を付けてください：
 
 ```js
 function NameFields() {
@@ -660,15 +657,15 @@ function NameFields() {
 }
 ```
 
-> Note:
+> 補足：
 > 
-> `useId` generates a string that includes the `:` token. This helps ensure that the token is unique, but is not supported in CSS selectors or APIs like `querySelectorAll`.
+> `useId` は `:` というトークンを含む文字列を生成します。これによりトークンが一意であることが保証しやすくなりますが、CSS セレクタや `querySelectorAll` のような API では使用できません。
 > 
-> `useId` supports an `identifierPrefix` to prevent collisions in multi-root apps. To configure, see the options for [`hydrateRoot`](/docs/react-dom-client.html#hydrateroot) and [`ReactDOMServer`](/docs/react-dom-server.html).
+> `useId` は複数のルートがあるアプリで衝突が起きないよう、 `identifierPrefix` をサポートしています。設定する場合は [`hydrateRoot`](/docs/react-dom-client.html#hydrateroot) と [`ReactDOMServer`](/docs/react-dom-server.html) のドキュメントを参照してください。
 
-## Library Hooks {#library-hooks}
+## ライブラリ用フック {#library-hooks}
 
-The following Hooks are provided for library authors to integrate libraries deeply into the React model, and are not typically used in application code.
+以下のフックは React モデルと深く結合するライブラリの製作者向けであり、アプリケーションコードでは通常使われません。
 
 ### `useSyncExternalStore` {#usesyncexternalstore}
 
@@ -676,20 +673,21 @@ The following Hooks are provided for library authors to integrate libraries deep
 const state = useSyncExternalStore(subscribe, getSnapshot[, getServerSnapshot]);
 ```
 
-`useSyncExternalStore` is a hook recommended for reading and subscribing from external data sources in a way that's compatible with concurrent rendering features like selective hydration and time slicing.
+`useSyncExternalStore` は、選択的ハイドレーションやタイムスライスなどの並行レンダリング機能と互換性を持ちつつ外部データソースから読み出しやデータの購読を行うために推奨されるフックです。
 
 This method returns the value of the store and accepts three arguments:
-- `subscribe`: function to register a callback that is called whenever the store changes.
-- `getSnapshot`: function that returns the current value of the store.
-- `getServerSnapshot`: function that returns the snapshot used during server rendering.
+このメソッドは 3 つの引数を受け取り、ストアの値を返します。
+- `subscribe`: ストアに変更があった場合に呼び出されるコールバックを登録するための関数。
+- `getSnapshot`: 現在のストアの値を返す関数。
+- `getServerSnapshot`: サーバレンダリング時にスナップショットを返すための関数。
 
-The most basic example simply subscribes to the entire store:
+最も基本的な例では、ストア全体を単純に購読します：
 
 ```js
 const state = useSyncExternalStore(store.subscribe, store.getSnapshot);
 ```
 
-However, you can also subscribe to a specific field:
+ただし特定のフィールドを購読するようにもできます：
 
 ```js
 const selectedField = useSyncExternalStore(
@@ -698,7 +696,7 @@ const selectedField = useSyncExternalStore(
 );
 ```
 
-When server rendering, you must serialize the store value used on the server, and provide it to `useSyncExternalStore`. React will use this snapshot during hydration to prevent server mismatches:
+サーバレンダリングでは、サーバで使われるストアの値をシリアライズして `useSyncExternalStore` に渡す必要があります。React はハイドレーション中にこのスナップショットを利用してサーバとのミスマッチを防止します：
 
 ```js
 const selectedField = useSyncExternalStore(
@@ -708,13 +706,13 @@ const selectedField = useSyncExternalStore(
 );
 ```
 
-> Note:
+> 補足：
 >
-> `getSnapshot` must return a cached value. If getSnapshot is called multiple times in a row, it must return the same exact value unless there was a store update in between.
+> `getSnapshot` はキャッシュされた値を返す必要があります。もし getSnapshot が連続して呼ばれる場合、その間にストアの更新がないのであれば、全く同一の値を返さなければなりません。
 > 
-> A shim is provided for supporting multiple React versions published as `use-sync-external-store/shim`. This shim will prefer `useSyncExternalStore` when available, and fallback to a user-space implementation when it's not.
+> 複数の React バージョンをサポートするための互換ライブラリが `use-sync-external-store/shim` として提供されています。このライブラリは `useSyncExternalStore` が存在する場合はそれを優先して利用し、ない場合はユーザスペースでの実装にフォールバックします。
 > 
-> As a convenience, we also provide a version of the API with automatic support for memoizing the result of getSnapshot published as `use-sync-external-store/with-selector`.
+> 便宜のため、getSnapshot の結果に対する自動的なメモ化をサポートしたバージョンの API を `use-sync-external-store/with-selector` として公開しています。
 
 ### `useInsertionEffect` {#useinsertioneffect}
 
@@ -722,8 +720,8 @@ const selectedField = useSyncExternalStore(
 useInsertionEffect(didUpdate);
 ```
 
-The signature is identical to `useEffect`, but it fires synchronously _before_ all DOM mutations. Use this to inject styles into the DOM before reading layout in [`useLayoutEffect`](#uselayouteffect). Since this hook is limited in scope, this hook does not have access to refs and cannot schedule updates.
+シグネチャは `useEffect` と同一ですが、すべての DOM 更新の*前に*同期的に呼び出されます。[`useLayoutEffect`](#uselayouteffect) でレイアウトを読み出す前に DOM にスタイルを注入するために利用してください。このフックの利用目的は限られているため、ref にアクセスしたり更新をスケジュールしたりすることはできません。
 
-> Note:
+> 補足：
 >
-> `useInsertionEffect` should be limited to css-in-js library authors. Prefer [`useEffect`](#useeffect) or [`useLayoutEffect`](#uselayouteffect) instead.
+> `useInsertionEffect` は css-in-js ライブラリの作者以外が使うべきではありません。[`useEffect`](#useeffect) や [`useLayoutEffect`](#uselayouteffect) を通常は使ってください。

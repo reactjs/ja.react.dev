@@ -33,11 +33,7 @@ const listItems = numbers.map((number) =>
 );
 ```
 
-<<<<<<< HEAD
-`listItems` という配列全体を `<ul>` 要素の内側に含め、[それを DOM へレンダー](/docs/rendering-elements.html#rendering-an-element-into-the-dom)します：
-=======
-Then, we can include the entire `listItems` array inside a `<ul>` element:
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+そして、`listItems` という配列全体を `<ul>` 要素の内側に含めます：
 
 ```javascript{2}
 <ul>{listItems}</ul>

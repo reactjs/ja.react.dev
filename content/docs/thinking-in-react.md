@@ -70,11 +70,7 @@ JSON のデータモデルをユーザに向けて表示することはよくあ
 
 コンポーネントはトップダウンで作っても、ボトムアップで作っても問題ありません。つまり、高い階層にあるコンポーネント（例えば `FilterableProductTable`）から作り始めても、低い階層にあるコンポーネント（`ProductRow` など）から作り始めても、どちらでもいいのです。シンプルなアプリでは通常トップダウンで作った方が楽ですが、大きなプロジェクトでは開発をしながらテストを書き、ボトムアップで進める方がより簡単です。
 
-<<<<<<< HEAD
-ここまでのステップを終えると、データモデルを描画する再利用可能なコンポーネントのライブラリが手に入ります。このアプリは静的なバージョンなので、コンポーネントは `render()` メソッドだけを持つことになります。階層構造の中で最上位のコンポーネント（`FilterableProductTable`）が、データモデルを props として受け取ることになるでしょう。元となるデータモデルを更新して再度 `ReactDOM.render()` を呼び出すと、UI が更新されることになります。このやり方なら、複雑なことをしていないので、UI がどのように更新されて、どこを変更すればよいか、理解できることでしょう。React の**単方向データフロー**（あるいは*単方向バインディング*）により、すべてがモジュール化された高速な状態で保たれます。
-=======
-At the end of this step, you'll have a library of reusable components that render your data model. The components will only have `render()` methods since this is a static version of your app. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. If you make a change to your underlying data model and call `root.render()` again, the UI will be updated. You can see how your UI is updated and where to make changes. React's **one-way data flow** (also called *one-way binding*) keeps everything modular and fast.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+ここまでのステップを終えると、データモデルを描画する再利用可能なコンポーネントの一式が手に入ります。このアプリは静的なバージョンなので、コンポーネントは `render()` メソッドだけを持つことになります。階層構造の中で最上位のコンポーネント（`FilterableProductTable`）が、データモデルを props として受け取ることになるでしょう。元となるデータモデルを更新して再度 `root.render()` を呼び出すと、UI が更新されることになります。このやり方なら、複雑なことをしていないので、UI がどのように更新されて、どこを変更すればよいか、理解できることでしょう。React の**単方向データフロー**（あるいは*単方向バインディング*）により、すべてがモジュール化された高速な状態で保たれます。
 
 このステップを実施する上で助けが必要な場合は、[React ドキュメント](/docs/getting-started.html)を参照してください。
 
