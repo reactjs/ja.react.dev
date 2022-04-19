@@ -675,8 +675,7 @@ const state = useSyncExternalStore(subscribe, getSnapshot[, getServerSnapshot]);
 
 `useSyncExternalStore` は、選択的ハイドレーションやタイムスライスなどの並行レンダリング機能と互換性を持ちつつ外部データソースから読み出しやデータの購読を行うために推奨されるフックです。
 
-This method returns the value of the store and accepts three arguments:
-このメソッドは 3 つの引数を受け取り、ストアの値を返します。
+このメソッドは 3 つの引数を受け取り、ストアの値を返します：
 - `subscribe`: ストアに変更があった場合に呼び出されるコールバックを登録するための関数。
 - `getSnapshot`: 現在のストアの値を返す関数。
 - `getServerSnapshot`: サーバレンダリング時にスナップショットを返すための関数。
