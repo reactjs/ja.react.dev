@@ -59,7 +59,7 @@ expect(result.props.children).toEqual([
 
 shallowRenderer は、テストしているコンポーネントをレンダーするための「場所」と捉えることができ、そこからコンポーネントの出力を抽出できます。
 
-`shallowRenderer.render()` は [`ReactDOM.render()`](/docs/react-dom.html#render) に似ていますが、DOM を必要とせず、1 階層だけレンダーします。つまり、テスト対象のコンポーネントが持つ子コンポーネントの実装から分離してテストを実行できます。
+`shallowRenderer.render()` は [`root.render()`](/docs/react-dom-client.html#createroot) に似ていますが、DOM を必要とせず、1 階層だけレンダーします。つまり、テスト対象のコンポーネントが持つ子コンポーネントの実装から分離してテストを実行できます。
 
 ### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 

@@ -277,10 +277,10 @@ this.setState(partialState);
 以下のコードでこれを示しています（入力フィールドは最初はロックされていますが、短い遅延の後に編集可能になります）。
 
 ```javascript
-ReactDOM.render(<input value="hi" />, mountNode);
+ReactDOM.createRoot(mountNode).render(<input value="hi" />);
 
 setTimeout(function() {
-  ReactDOM.render(<input value={null} />, mountNode);
+  ReactDOM.createRoot(mountNode).render(<input value={null} />);
 }, 1000);
 
 ```

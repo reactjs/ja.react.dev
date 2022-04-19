@@ -103,7 +103,7 @@ Issue を解決することにした場合、誰かがすでに修正に取り�
 
 ### 貢献の前提条件 {#contribution-prerequisites}
 
-* [Node](https://nodejs.org) v8.0.0+ と、[Yarn](https://yarnpkg.com/en/) v1.2.0+ がインストールされていること。
+* [Node](https://nodejs.org) の LTS と、[Yarn](https://yarnpkg.com/en/) v1.2.0+ がインストールされていること。
 * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) がインストールされていること。
 * `gcc` がインストールされている、または必要に応じたコンパイラをインストールすることができること。依存関係の中にはコンパイルステップが必要なものもあります。OS X では Xcode のコマンドラインツールが役立つでしょう。Ubuntu では `apt-get install build-essential` コマンドで必要なパッケージをインストールできます。他の Linux ディストリビューションでも似たようなコマンドで実現できるでしょう。Windows では追加の手順が必要になり、詳しくは  [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) を参照してください。
 * Git について精通していること。

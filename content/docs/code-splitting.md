@@ -81,10 +81,6 @@ Webpack がこの構文を見つけると、自動的にアプリのコードを
 
 ## `React.lazy` {#reactlazy}
 
-> 補足:
->
-> `React.lazy` と Suspense はまだサーバサイドレンダリングには使用できません。サーバサイドでレンダリングされたアプリでコード分割をしたい場合には、[Loadable Components](https://github.com/gregberge/loadable-components) の使用をおすすめします。[サーバサイドレンダリングでのバンドル分割のための素晴らしいガイド](https://loadable-components.com/docs/server-side-rendering/)も提供されているので、参考にしてみてください。
-
 `React.lazy` 関数を使用すると、動的インポートを通常のコンポーネントとしてレンダーすることができます。
 
 **Before:**
@@ -142,6 +138,52 @@ function MyComponent() {
   );
 }
 ```
+
+### フォールバックを避ける {#avoiding-fallbacks}
+既にユーザに表示されているものも含むあらゆるコンポーネントは、レンダーの結果としてサスペンドする可能性があります。画面に表示される内容の一貫性を保つため、既に表示されているコンポーネントがサスペンドした場合、React はツリーを直近の `<Suspense>` バウンダリまで非表示にする必要があります。しかしユーザの観点からはこれは不親切です。
+
+このタブ切り替えの例で考えてみましょう：
+
+```js
+import React, { Suspense } from 'react';
+import Tabs from './Tabs';
+import Glimmer from './Glimmer';
+
+const Comments = React.lazy(() => import('./Comments'));
+const Photos = React.lazy(() => import('./Photos'));
+
+function MyComponent() {
+  const [tab, setTab] = React.useState('photos');
+  
+  function handleTabSelect(tab) {
+    setTab(tab);
+  };
+
+  return (
+    <div>
+      <Tabs onTabSelect={handleTabSelect} />
+      <Suspense fallback={<Glimmer />}>
+        {tab === 'photos' ? <Photos /> : <Comments />}
+      </Suspense>
+    </div>
+  );
+}
+
+```
+
+この例では、タブが `'photos'` から `'comments'` に切り替わると `Comments` がサスペンドするため、ユーザは Glimmer（点滅）を見てしまうことになります。これは当然で、ユーザはもう `Photos` を見たいわけではないし `Comments` コンポーネントはまだ何もレンダーできないのですから、React はユーザ体験を一貫させるために `Glimmer` を表示するしかないわけです。
+
+しかしこのようなユーザ体験は望ましくないことがあります。具体的には、新しい UI の準備を行っている間は「古い」UI を表示し続けるほうが望ましい場合があります。新たに導入された [`startTransition`](/docs/react-api.html#starttransition) API を使うことで、React にこれをさせることが可能です。
+
+```js
+function handleTabSelect(tab) {
+  startTransition(() => {
+    setTab(tab);
+  });
+}
+```
+
+このコードは React に、タブを `'comments'` に切り替えるのは緊急性の高い更新ではなく、少し時間のかかる[トランジション](/docs/react-api.html#transitions)である、と伝えています。これにより React は、既存の UI をその場でインタラクティブに保ち、`<Comments />` の準備ができたところでそちらを表示するよう切り替えるようになります。詳細は[トランジション](/docs/react-api.html#transitions)を参照してください。
 
 ### Error Boundary {#error-boundaries}
 

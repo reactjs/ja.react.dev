@@ -32,10 +32,11 @@ stack リコンサイラは、React 15 およびそれ以前のバージョン�
 一番最初にコンポーネントをマウントするときのことを考えてみましょう：
 
 ```js
-ReactDOM.render(<App />, rootEl);
+const root = ReactDOM.createRoot(rootEl);
+root.render(<App />);
 ```
 
-React DOM はリコンサイラに `<App />` を渡します。`<App />` が React 要素であること、つまり、**何**をレンダーするかの説明書きであることを思い出してください。これはプレーンなオブジェクトとして考えることができます：
+`root.render` はリコンサイラに `<App />` を渡します。`<App />` が React 要素であること、つまり、**何**をレンダーするかの説明書きであることを思い出してください。これはプレーンなオブジェクトとして考えることができます：
 
 ```js
 console.log(<App />);
@@ -236,9 +237,9 @@ rootEl.appendChild(node);
 React の鍵となる機能は、あらゆるものを再描画できることであり、その際に DOM を再生成したり、state をリセットしたりしないことです：
 
 ```js
-ReactDOM.render(<App />, rootEl);
+root.render(<App />);
 // Should reuse the existing DOM:
-ReactDOM.render(<App />, rootEl);
+root.render(<App />);
 ```
 
 しかし、前節で実装したコードは最初のツリーをマウントする方法しか知りません。前節のコードは、全ての `publicInstance` や、どの DOM `node` がどのコンポーネントに対応しているかなど、必要な全情報を保有しているわけではないので、更新を実行することができません。
@@ -412,7 +413,7 @@ host 内部インスタンスは以下のものを格納する必要がありま
 
  <img src="../images/docs/implementation-notes-tree.png" width="500" style="max-width: 100%" alt="React DevTools tree" />
 
-このリファクタリングを完了するため、コンテナノードへ完成したツリーをマウントする、`ReactDOM.render()` のような関数を導入します。この関数は `ReactDOM.render()` のように公開インスタンスを返します：
+このリファクタリングを完了するため、完全なツリーをコンテナノードとパブリックインスタンスにマウントする関数を導入することにします。
 
 ```js
 function mountTree(element, containerNode) {

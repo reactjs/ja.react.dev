@@ -43,8 +43,8 @@ npm run build
 React と ReactDOM をそれぞれ単一ファイル化した本番環境用のバージョンを提供しています。
 
 ```html
-<script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 ```
 
 本番用に適しているのは、React ファイル名の末尾が `.production.min.js` であるもののみであることに留意ください。

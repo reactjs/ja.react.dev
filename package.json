@@ -111,5 +111,8 @@
       "textlint --rulesdir=./textlint",
       "git add"
     ]
+  },
+  "resolutions": {
+    "**/sharp": "^0.30.3"
   }
 }
