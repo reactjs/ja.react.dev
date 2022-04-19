@@ -6,7 +6,7 @@ category: Reference
 permalink: docs/react-dom.html
 ---
 
-`react-dom` パッケージではアプリのトップレベルで使うための DOM 特有のメソッドを提供しています。また必要に応じて React モデルから外に出るための非難ハッチ用メソッドも提供しています。
+`react-dom` パッケージではアプリのトップレベルで使うための DOM 特有のメソッドを提供しています。また必要に応じて React モデルから外に出るための避難ハッチ用メソッドも提供しています。
 
 ```js
 import * as ReactDOM from 'react-dom';
