@@ -192,7 +192,11 @@ class Chosen extends React.Component {
 
 React は [`createRoot()`](/docs/react-dom-client.html#createRoot) の柔軟性のおかげで、他のアプリケーションに組み込むことができます。
 
+<<<<<<< HEAD
 React は一般的に起動時に単一のルート React コンポーネントを DOM にロードして使用されるものですが、`root.render()` はボタンのような小さなものからアプリケーション全体に至るまで、独立した UI のパーツに対して複数回呼び出すこともできます。
+=======
+Although React is commonly used at startup to load a single root React component into the DOM, `createRoot()` can also be called multiple times for independent parts of the UI which can be as small as a button, or as large as an app.
+>>>>>>> 1d21630e126af0f4c04ff392934dcee80fc54892
 
 実際、これはまさに React が Facebook で使用されている方法でもあります。これにより React でアプリケーションを少しずつ作成し、それらを既存のサーバ側テンプレートやその他のクライアントサイドコードと組み合わせることができます。
 
