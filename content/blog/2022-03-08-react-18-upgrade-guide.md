@@ -101,11 +101,11 @@ const root = hydrateRoot(container, <App tab="home" />);
 
 > 補足
 > 
-> **アップグレード後にアプリが動かなくなった場合は、アプリを `<StrictMode>` でラップしていないか確認してください。**[strict モードは React 18 でより厳密になっており](#updates-to-strict-mode)、開発モードで新たに追加されたチェックにあなたのコンポーネントがすべて適合していないのかもしれません。もし strict モードを外したらアプリが動くようになった場合、アップグレード中は外したままにして、指摘された問題を修正してから元に戻す（トップにでもツリーの一部に対してでも）のでも構いません。
+> **アップグレード後にアプリが動かなくなった場合は、アプリを `<StrictMode>` でラップしていないか確認してください。**[strict モードは React 18 でより厳密になっている](#updates-to-strict-mode)ため、開発モードで新たに追加されたチェックにあなたのコンポーネントがすべて適合していないのかもしれません。もし strict モードを外したらアプリが動くようになった場合、アップグレード中は外したままにして、指摘された問題を修正してから元に戻す（トップにでもツリーの一部に対してでも）のでも構いません。
 
 ## サーバレンダリング API への変更 {#updates-to-server-rendering-apis}
 
-このリリースでは、`react-dom/server` を改修し、サーバ側でのサスペンスやストリーミング SSR がフルサポートされるようになりました。この変更の一環として、サーバ側での逐次的なサスペンスのストリーミング処理を行えない、これまでの Node ストリーミング API を非推奨としました。
+このリリースでは、`react-dom/server` を刷新し、サーバ側でのサスペンスやストリーミング SSR がフルサポートされるようになりました。この変更の一環として、サーバ側での逐次的なサスペンスのストリーミング処理をサポートしない既存の Node ストリーミング API を非推奨としました。
 
 以下の API を使うと警告が出るようになります：
 
@@ -121,7 +121,7 @@ const root = hydrateRoot(container, <App tab="home" />);
 * `renderToString`: **制限付き** ⚠️
 * `renderToStaticMarkup`: **制限付き** ⚠️
 
-最後に、電子メールをレンダーする目的であれば以下の API も動作し続けます：
+最後に、電子メールをレンダーする目的であれば以下の API を引き続き利用できます：
 * `renderToStaticNodeStream`
 
 サーバレンダリング用 API についての詳細は、ワーキンググループの投稿 [Upgrading to React 18 on the server](https://github.com/reactwg/react-18/discussions/22) と [deep dive on the new Suspense SSR Architecture](https://github.com/reactwg/react-18/discussions/37) を、また React Conf 2011 での [Shaundai Person](https://twitter.com/shaundai) の発表 [Streaming Server Rendering with Suspense](https://www.youtube.com/watch?v=pj5N-Khihgc) をご覧ください。
@@ -143,7 +143,7 @@ interface MyButtonProps {
 
 ## 自動バッチング {#automatic-batching}
 
-React 18 はデフォルトでより多くのバッチング (batching) を行うことで、標準状態でのパフォーマンスを改善します。バッチングとは React がパフォーマンスのために複数のステート更新をグループ化して、単一の再レンダーにまとめることを指します。React 18 以前は、React のイベントハンドラ内での更新のみバッチ処理されていました。promise や setTimeout、ネイティブのイベントハンドラやその他あらゆるイベント内で起きる更新はデフォルトではバッチ処理されていませんでした。
+React 18 はデフォルトでより多くのバッチング (batching) を行うことで、標準状態でのパフォーマンスを改善します。バッチングとは React がパフォーマンスのために複数のステート更新をグループ化して、単一の再レンダーにまとめることを指します。React 18 より前は、React のイベントハンドラ内での更新のみバッチ処理されていました。promise や setTimeout、ネイティブのイベントハンドラやその他あらゆるイベント内で起きる更新はデフォルトではバッチ処理されていませんでした。
 
 ```js
 // Before React 18 only React events were batched
