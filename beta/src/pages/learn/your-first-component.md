@@ -4,7 +4,11 @@ title: 初めてのコンポーネント
 
 <Intro>
 
+<<<<<<< HEAD
 コンポーネントは、React における最重要コンセプトのひとつです。皆さんがユーザインターフェース (UI) を構築するときの基盤となるものですので、React の旅路はコンポーネントから始めていくことにしましょう！
+=======
+*Components* are one of the core concepts of React. They are the foundation upon which you build user interfaces (UI), which makes them the perfect place to start your React journey!
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 
 </Intro>
 
