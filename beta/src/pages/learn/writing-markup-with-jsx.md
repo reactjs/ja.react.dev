@@ -4,7 +4,11 @@ title: JSX でマークアップを記述する
 
 <Intro>
 
+<<<<<<< HEAD
 JSX とは JavaScript の拡張であり、JavaScript ファイル内に HTML のようなマークアップを書けるようにするものです。コンポーネントを書く手段はほかにも存在しますが、ほとんどの React 開発者は JSX の簡潔さを好んでいるため、ほとんどのコードベースで使われています。
+=======
+*JSX* is a syntax extension for JavaScript that lets you write HTML-like markup inside a JavaScript file. Although there are other ways to write components, most React developers prefer the conciseness of JSX, and most codebases use it.
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 </Intro>
 
@@ -36,19 +40,23 @@ JavaScript
 
 </DiagramGroup>
 
+<<<<<<< HEAD
 しかしウェブがよりインタラクティブなものになるにつれ、ロジックがコンテンツの中身をも決めるようになっていきました。JavaScript が HTML の領分も担当するようになったのです！ これが、**React ではロジックとマークアップを同じ場所、すなわちコンポーネントに書く**理由です。
+=======
+But as the Web became more interactive, logic increasingly determined content. JavaScript was in charge of the HTML! This is why **in React, rendering logic and markup live together in the same place—components.**
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 <DiagramGroup>
 
 <Diagram name="writing_jsx_sidebar" height={330} width={325} alt="前述の例の HTML と JavaScript がミックスされた React コンポーネント。関数名は Sidebar であり、内部で isLoggedIn を呼び出している（黄色）。その中に、前述の例の p タグや、後で示すコンポーネントを呼び出すための Form タグがネストされている（紫）。">
 
-Sidebar.js
+`Sidebar.js` React component
 
 </Diagram>
 
 <Diagram name="writing_jsx_form" height={330} width={325} alt="前述の例の HTML と JavaScript がミックスされた React コンポーネント。関数名は Form であり、onClick と onSubmit という 2 つのハンドラが含まれている（黄色）。ハンドラの後に HTML が続く（紫）。HTML 部分に、onClick プロパティの設定された input 要素がネストされている form 要素が含まれている。">
 
-Form.js
+`Form.js` React component
 
 </Diagram>
 

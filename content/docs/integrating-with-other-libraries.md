@@ -246,20 +246,22 @@ function HelloButton() {
 
 以下で、`ParagraphView` と呼ばれる Backbone view を作成します。Backbone の `render()` 関数をオーバーライドして、React の `<Paragraph>` コンポーネントを Backbone が提供する DOM 要素 (this.el) にレンダーします。ここでも [`ReactDOM.createRoot()`](/docs/react-dom-client.html#createroot) を使用します：
 
-```js{1,5,8-9,13}
+```js{7,11,15}
 function Paragraph(props) {
   return <p>{props.text}</p>;
 }
 
 const ParagraphView = Backbone.View.extend({
+  initialize(options) {
+    this.reactRoot = ReactDOM.createRoot(this.el);
+  },
   render() {
     const text = this.model.get('text');
-    this.root = ReactDOM.createRoot(this.el);
-    this.root.render(<Paragraph text={text} />);
+    this.reactRoot.render(<Paragraph text={text} />);
     return this;
   },
   remove() {
-    this.root.unmount();
+    this.reactRoot.unmount();
     Backbone.View.prototype.remove.call(this);
   }
 });

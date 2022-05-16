@@ -25,7 +25,11 @@ React は当初から、段階的に導入することができるようにデ�
 
 複雑なツール類や事前にインストールしておかなければいけないものはありません。**インターネットへの接続さえあれば、1 分間でこのセクションを終わらせることができます。**
 
+<<<<<<< HEAD
 オプション：[サンプルをダウンロードする (2KB ZIP 圧縮)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
+=======
+Optional: [Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 ### ステップ 1：HTML に DOM コンテナを追加する {#step-1-add-a-dom-container-to-the-html}
 
@@ -75,7 +79,11 @@ React は当初から、段階的に導入することができるようにデ�
 >
 >このコードは `LikeButton` という React コンポーネントを定義しています。まだわからなくても心配しなくて大丈夫です。こういった React の構成要素については、[チュートリアル](/tutorial/tutorial.html) と [Hello World](/docs/hello-world.html) のページで後ほど見ていくことにして、まずはサンプルコードを画面に表示させてみましょう！
 
+<<<<<<< HEAD
 **[サンプルコード](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**の末尾に次の 2 行を追加してみましょう。
+=======
+After **[the starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, add three lines to the bottom of `like_button.js`:
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 ```js{3,4,5}
 // ... コピーアンドペーストしたサンプルコード ...
@@ -95,7 +103,11 @@ React の導入についてもっと知るには、次のセクションも見�
 
 **[完成したソースコードをみる](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
 
+<<<<<<< HEAD
 **[完成したソースコードをダウンロードする (2KB ZIP 圧縮)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
+=======
+**[Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)**
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 ### ヒント：コンポーネントを再利用する {#tip-reuse-a-component}
 
@@ -103,7 +115,11 @@ React コンポーネントを HTML ページの一箇所だけではなくい�
 
 [ソースコードをみる](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)
 
+<<<<<<< HEAD
 [ソースコードをダウンロードする (2KB ZIP 圧縮)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
+=======
+[Download the full example (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/279839cb9891bd41802ebebc5365e9dec08eeb9f.zip)
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 >補足
 >

@@ -4,7 +4,11 @@ title: コンポーネントに props を渡す
 
 <Intro>
 
+<<<<<<< HEAD
 React コンポーネントは互いにやりとりをする際に **props** というものを使います。親コンポーネントは子コンポーネントに props を渡すことで情報を伝えることができるのです。props は HTML の属性と似ていると思われるかもしれませんが、props ではオブジェクトや配列、関数などのあらゆる JavaScript の値を渡すことができます。
+=======
+React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, and functions.
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 </Intro>
 

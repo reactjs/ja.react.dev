@@ -366,17 +366,29 @@ function MyComponent() {
 
 これは [code splitting guide](/docs/code-splitting.html#reactlazy) で文書化されています。遅延される (lazy) コンポーネントを `Suspense` ツリーの奥深くに置くことができ、それらを 1 つずつラップする必要はありません。ベストプラクティスは `<Suspense>` をローディングインジケータを表示したい場所に配置することですが、コードを分割したい場合は `lazy()` を使用してください。
 
+<<<<<<< HEAD
 >補足：
 >
 > 既にユーザに表示されているコンテンツがある場合、それがローディングインジケータに戻ってしまうのは不親切です。新しい UI を準備している間「古い」UI を表示しておくことが望ましいことがあります。これを行うため、新たなトランジション API である [`startTransition`](#starttransition) と [`useTransition`](/docs/hooks-reference.html#usetransition) を用い、更新をトランジションとしてマークすることで意図しない場面でのフォールバックを避けることができます。
+=======
+> Note
+>
+> For content that is already shown to the user, switching back to a loading indicator can be disorienting. It is sometimes better to show the "old" UI while the new UI is being prepared. To do this, you can use the new transition APIs [`startTransition`](#starttransition) and [`useTransition`](/docs/hooks-reference.html#usetransition) to mark updates as transitions and avoid unexpected fallbacks.
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 #### サーバサイドレンダリングでの `React.Suspense` {#reactsuspense-in-server-side-rendering}
 サーバサイドレンダリングにおいてもサスペンスバウンダリとサスペンドを用いることで、アプリを部分的に分割して表示していくことができます。
 コンポーネントがサスペンドした場合、直近のサスペンスバウンダリに指定されているフォールバックをレンダーするような低優先度のタスクがスケジュールされます。フォールバックを表示する前にコンポーネントのサスペンドが解除された場合は、フォールバックのコンテンツを捨てて実コンテンツを送信します。
 
+<<<<<<< HEAD
 #### ハイドレーション中の `React.Suspense` {#reactsuspense-during-hydration}
 サスペンスバウンダリがハイドレートされる前に親のバウンダリはハイドレートされていなければなりませんが、兄弟の関係にあるバウンダリとは独立してハイドレートされることができます。
 何らかのバウンダリでイベントが起こった場合、そのバウンダリは他のものより優先的にハイドレートされるようになります。[詳細](https://github.com/reactwg/react-18/discussions/130)
+=======
+#### `React.Suspense` during hydration {#reactsuspense-during-hydration}
+Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before its hydrated will cause the boundary to hydrate at
+a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 ### `React.startTransition` {#starttransition}
 
@@ -389,6 +401,10 @@ React.startTransition(callback)
 >
 > トランジション内での更新はクリックのようなより緊急性の高い更新があった場合に遅延されます。
 >
+<<<<<<< HEAD
 > トランジション内で起こった更新は、コンテンツが再サスペンドした場合でもフォールバックを表示させないため、更新をレンダーしている最中でもユーザが操作できる状態が保たれます。
+=======
+> Updates in a transition will not show a fallback for re-suspended content, allowing the user to continue interacting while rendering the update.
+>>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 >
 > `React.startTransition` は `isPending` フラグを返しません。トランジションのペンディング状態を知るには [`React.useTransition`](/docs/hooks-reference.html#usetransition) を参照してください。

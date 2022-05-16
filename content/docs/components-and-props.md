@@ -64,13 +64,13 @@ React がユーザ定義のコンポーネントを見つけた場合、JSX に�
 
 例えば以下のコードではページ上に "Hello, Sara" を表示します：
 
-```js{1,5}
+```js{1,6}
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
 
-const element = <Welcome name="Sara" />;
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const element = <Welcome name="Sara" />;
 root.render(element);
 ```
 
