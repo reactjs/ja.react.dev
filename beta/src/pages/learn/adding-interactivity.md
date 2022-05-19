@@ -4,11 +4,7 @@ title: インタラクティビティの追加
 
 <Intro>
 
-<<<<<<< HEAD
-画面上の要素には、ユーザの入力に反応して更新されていくものがあります。例えば、イメージギャラリをクリックするとアクティブなイメージが切り替わります。React では、時間の経過とともに変化するデータのことを state と呼びます。任意のコンポーネントに state を追加することができ、必要に応じて更新することができます。この章では、インタラクションを処理し、state を更新し、時間の経過とともに異なる出力を表示するコンポーネントの作成方法について学びます。
-=======
-Some things on the screen update in response to user input. For example, clicking an image gallery switches the active image. In React, data that changes over time is called *state.* You can add state to any component, and update it as needed. In this chapter, you'll learn how to write components that handle interactions, update their state, and display different output over time.
->>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
+画面上の要素には、ユーザの入力に反応して更新されていくものがあります。例えば、イメージギャラリをクリックするとアクティブなイメージが切り替わります。React では、時間の経過とともに変化するデータのことを *state* と呼びます。任意のコンポーネントに state を追加することができ、必要に応じて更新することができます。この章では、インタラクションを処理し、state を更新し、時間の経過とともに異なる出力を表示するコンポーネントの作成方法について学びます。
 
 </Intro>
 
@@ -26,11 +22,7 @@ Some things on the screen update in response to user input. For example, clickin
 
 ## イベントへの応答 {/*responding-to-events*/}
 
-<<<<<<< HEAD
-React では、JSX にイベントハンドラを追加することができます。イベントハンドラは、クリック、ホバー、フォーム入力へのフォーカスなどのユーザインタラクションに応答して起動する独自の関数です。
-=======
-React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on.
->>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
+React では、JSX に*イベントハンドラ*を追加することができます。イベントハンドラは、クリック、ホバー、フォーム入力へのフォーカスなどのユーザインタラクションに応答して起動する独自の関数です。
 
 `<button>` のような組み込みコンポーネントは `onClick` のような組み込みのブラウザイベントのみをサポートします。しかし、独自のコンポーネントを作成し、そのイベントハンドラ props に任意のアプリケーション固有の名前を付けることもできます。
 
@@ -82,15 +74,9 @@ button { margin-right: 10px; }
 
 ## state：コンポーネントのメモリ {/*state-a-components-memory*/}
 
-<<<<<<< HEAD
-コンポーネントはインタラクションの結果として画面に表示されるものを変更する必要があることがよくあります。フォームに入力すると入力フィールドが更新され、イメージカルーセルで「次へ」をクリックすると表示されるイメージが変更され、「購入」をクリックするとショッピングカートに商品が入ります。コンポーネントは、現在の入力値、現在のイメージ、ショッピングカートを「記憶」する必要があるのです。React では、このようなコンポーネント固有の記憶を state と呼びます。
+コンポーネントはインタラクションの結果として画面に表示されるものを変更する必要があることがよくあります。フォームに入力すると入力フィールドが更新され、イメージカルーセルで「次へ」をクリックすると表示されるイメージが変更され、「購入」をクリックするとショッピングカートに商品が入ります。コンポーネントは、現在の入力値、現在のイメージ、ショッピングカートを「記憶」する必要があるのです。React では、このようなコンポーネント固有の記憶を *state* と呼びます。
 
-[`useState`](/apis/usestate) フックを使用すると、コンポーネントに state を追加することができます。フックとはコンポーネントに React の機能を使用させるための特別な関数です（state はその機能の 1 つです）。`useState` フックで state 変数を宣言できます。これは初期 state を受け取り、現在の state と、それを更新するための state セッタ関数のペアを返します。
-=======
-Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" puts a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state.*
-
-You can add state to a component with a [`useState`](/apis/usestate) Hook. *Hooks* are special functions that let your components use React features (state is one of those features). The `useState` Hook lets you declare a state variable. It takes the initial state and returns a pair of values: the current state, and a state setter function that lets you update it.
->>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
+[`useState`](/apis/usestate) フックを使用すると、コンポーネントに state を追加することができます。*フック*とはコンポーネントに React の機能を使用させるための特別な関数です（state はその機能の 1 つです）。`useState` フックで state 変数を宣言できます。これは初期 state を受け取り、現在の state と、それを更新するための state セッタ関数のペアを返します。
 
 ```js
 const [index, setIndex] = useState(0);
@@ -248,15 +234,9 @@ button {
 
 コンポーネントは厨房で材料から美味しい料理を作る料理人だと想像してください。このシナリオでは React はお客様のリクエストを受け付け、注文された料理を運ぶウェイターです。注文を受けて UI 要素を「配膳」するプロセスには、次の 3 つのステップが存在します：
 
-<<<<<<< HEAD
 1. レンダーの**トリガ**（お客様の注文を厨房に届ける）
-2. コンポーネントの**レンダー**（厨房から注文された料理を受け取る）
+2. コンポーネントの**レンダー**（厨房で注文された料理を準備する）
 3. DOM への**コミット**（テーブルに注文を置く）
-=======
-1. **Triggering** a render (delivering the diner's order to the kitchen)
-2. **Rendering** the component (preparing the order in the kitchen)
-3. **Committing** to the DOM (placing the order on the table)
->>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 <IllustrationBlock sequential>
   <Illustration caption="Trigger" alt="React をレストランのウェイターに見立てて、ユーザーからの注文を取り、それをコンポーネント厨房 (Component Kitchen) に届ける。" src="/images/docs/illustrations/i_render-and-commit1.png" />

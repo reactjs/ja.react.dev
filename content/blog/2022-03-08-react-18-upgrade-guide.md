@@ -295,13 +295,8 @@ Internet Explorer のサポートが必要な場合は、React 17 を使い続�
 
 ### React DOM Server {#react-dom-server}
 
-<<<<<<< HEAD
 * **`renderToString`**：サーバ側でサスペンドが起きた場合でもエラーにならなくなりました。代わりに、直近の `<Suspense>` にあるフォールバック HTML を出力し、クライアント側で同じコンテンツのレンダーを再試行するようになります。とはいえ、`renderToPipeableStream` や `renderToReadableStream` のようなストリーミング API に切り替えることが推奨されます。
 * **`renderToStaticMarkup`**：サーバ側でサスペンドが起きた場合でもエラーにならなくなりました。代わりに、直近の `<Suspense>` にあるフォールバック HTML を出力します。
-=======
-* **`renderToString`:** Will no longer error when suspending on the server. Instead, it will emit the fallback HTML for the closest `<Suspense>` boundary and then retry rendering the same content on the client. It is still recommended that you switch to a streaming API like `renderToPipeableStream` or `renderToReadableStream` instead.
-* **`renderToStaticMarkup`:** Will no longer error when suspending on the server. Instead, it will emit the fallback HTML for the closest `<Suspense>` boundary.
->>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
 
 ## Changelog {#changelog}
 

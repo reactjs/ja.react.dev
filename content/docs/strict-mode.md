@@ -15,23 +15,13 @@ strict モードはアプリケーションの任意の箇所で有効にでき�
 
 上のコード例において、`Header` と `Footer` に対しては strict モードの検査は*されません*。しかし `ComponentOne`、`ComponentTwo` およびそのすべての子孫要素に対しては検査が働きます。
 
-<<<<<<< HEAD
 現在、`StrictMode` は以下のことに役立ちます。
 * [安全でないライフサイクルの特定](#identifying-unsafe-lifecycles)
 * [レガシーな文字列 ref API の使用に対する警告](#warning-about-legacy-string-ref-api-usage)
 * [非推奨な findDOMNode の使用に対する警告](#warning-about-deprecated-finddomnode-usage)
 * [意図しない副作用の検出](#detecting-unexpected-side-effects)
 * [レガシーなコンテクスト API の検出](#detecting-legacy-context-api)
-* [安全でない副作用の検出](#detecting-unsafe-effects)
-=======
-`StrictMode` currently helps with:
-* [Identifying components with unsafe lifecycles](#identifying-unsafe-lifecycles)
-* [Warning about legacy string ref API usage](#warning-about-legacy-string-ref-api-usage)
-* [Warning about deprecated findDOMNode usage](#warning-about-deprecated-finddomnode-usage)
-* [Detecting unexpected side effects](#detecting-unexpected-side-effects)
-* [Detecting legacy context API](#detecting-legacy-context-api)
-* [Ensuring reusable state](#ensuring-reusable-state)
->>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
+* [state の再利用性を保証する](#ensuring-reusable-state)
 
 将来の React のリリースではこの他にも機能が追加される予定です。
 
@@ -182,10 +172,7 @@ React 18 以降の strict モードでは、開発時にコンポーネントが
   * 副作用を破棄
 ```
 
-<<<<<<< HEAD
-> 補足
-=======
-Unmounting and remounting includes:
+アンマウント・再マウントでは以下が発生します：
 
 - `componentDidMount`
 - `componentWillUnmount`
@@ -193,8 +180,7 @@ Unmounting and remounting includes:
 - `useLayoutEffect`
 - `useInsertionEffect`
 
-> Note:
->>>>>>> 951fae39f0e12dc061f1564d02b2f4707c0541c4
+> 補足
 >
 > この挙動は開発モードの場合にのみ適用されます。*本番用の挙動は変わりません*。
 
