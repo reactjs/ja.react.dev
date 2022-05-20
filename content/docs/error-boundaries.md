@@ -66,7 +66,7 @@ error boundary はコンポーネントに対して JavaScript の `catch {}` �
 
 ## ライブデモ {#live-demo}
 
-[React 16](/blog/2017/09/26/react-v16.0.html) で [error boundary を宣言して利用する例](https://codepen.io/gaearon/pen/wqvxGa?editors=0010)を確認してください。
+[error boundary を宣言して利用する例](https://codepen.io/gaearon/pen/wqvxGa?editors=0010)を確認してください。
 
 
 ## error boundary を配置すべき場所 {#where-to-place-error-boundaries}

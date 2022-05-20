@@ -21,7 +21,7 @@ strict モードはアプリケーションの任意の箇所で有効にでき�
 * [非推奨な findDOMNode の使用に対する警告](#warning-about-deprecated-finddomnode-usage)
 * [意図しない副作用の検出](#detecting-unexpected-side-effects)
 * [レガシーなコンテクスト API の検出](#detecting-legacy-context-api)
-* [安全でない副作用の検出](#detecting-unsafe-effects)
+* [state の再利用性を保証する](#ensuring-reusable-state)
 
 将来の React のリリースではこの他にも機能が追加される予定です。
 
@@ -171,6 +171,14 @@ React 18 以降の strict モードでは、開発時にコンポーネントが
   * レイアウト副作用を破棄
   * 副作用を破棄
 ```
+
+アンマウント・再マウントでは以下が発生します：
+
+- `componentDidMount`
+- `componentWillUnmount`
+- `useEffect`
+- `useLayoutEffect`
+- `useInsertionEffect`
 
 > 補足
 >

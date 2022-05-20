@@ -4,7 +4,7 @@ title: JSX でマークアップを記述する
 
 <Intro>
 
-JSX とは JavaScript の拡張であり、JavaScript ファイル内に HTML のようなマークアップを書けるようにするものです。コンポーネントを書く手段はほかにも存在しますが、ほとんどの React 開発者は JSX の簡潔さを好んでいるため、ほとんどのコードベースで使われています。
+*JSX* とは JavaScript の拡張であり、JavaScript ファイル内に HTML のようなマークアップを書けるようにするものです。コンポーネントを書く手段はほかにも存在しますが、ほとんどの React 開発者は JSX の簡潔さを好んでいるため、ほとんどのコードベースで使われています。
 
 </Intro>
 
@@ -42,13 +42,13 @@ JavaScript
 
 <Diagram name="writing_jsx_sidebar" height={330} width={325} alt="前述の例の HTML と JavaScript がミックスされた React コンポーネント。関数名は Sidebar であり、内部で isLoggedIn を呼び出している（黄色）。その中に、前述の例の p タグや、後で示すコンポーネントを呼び出すための Form タグがネストされている（紫）。">
 
-Sidebar.js
+`Sidebar.js` React component
 
 </Diagram>
 
 <Diagram name="writing_jsx_form" height={330} width={325} alt="前述の例の HTML と JavaScript がミックスされた React コンポーネント。関数名は Form であり、onClick と onSubmit という 2 つのハンドラが含まれている（黄色）。ハンドラの後に HTML が続く（紫）。HTML 部分に、onClick プロパティの設定された input 要素がネストされている form 要素が含まれている。">
 
-Form.js
+`Form.js` React component
 
 </Diagram>
 
