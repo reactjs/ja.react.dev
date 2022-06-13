@@ -53,13 +53,13 @@ React に対する全ての変更は、一般向けリリース前に広範囲�
 - お好みの継続的インテグレーションプラットフォームを利用して、クーロンジョブをセットアップします。クーロンジョブは、[CircleCI](https://circleci.com/docs/2.0/triggers/#scheduled-builds) と [Travis CI](https://docs.travis-ci.com/user/cron-jobs/) の両方でサポートされています。
 - クーロンジョブで npm の `next` タグを使い、React パッケージを Next チャンネルの最新のリリースにアップデートします。npm cli を使って：
 
-  ```
+  ```console
   npm update react@next react-dom@next
   ```
 
   もしくは yarn で：
 
-  ```
+  ```console
   yarn upgrade react@next react-dom@next
   ```
 - アップデートされたパッケージに対してテストスイートを実行します。
