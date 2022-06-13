@@ -184,7 +184,7 @@ JSX をプロジェクトに追加するためには、バンドルツールや�
 
 `src` というディレクトリを作成したうえで、次のコマンドをターミナルから実行してみてください。
 
-```
+```console
 npx babel --watch src --out-dir . --presets react-app/prod
 ```
 

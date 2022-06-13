@@ -398,7 +398,11 @@ img { margin: 0 10px 10px 0; }
 
 ### 自分で書いてみる {/*your-own-component*/}
 
+<<<<<<< HEAD
 ゼロからコンポーネントを書いてください。有効な名前ならどんな名前でも構いませんし、どんなマークアップを返しても構いません。何も思いつかないなら `<h1>Good job!</h1>` と表示する `Congratulations` というコンポーネントを書いてみましょう。エクスポートするのを忘れずに！
+=======
+Write a component from scratch. You can give it any valid name and return any markup. If you're out of ideas, you can write a `Congratulations` component that shows `<h1>Good job!</h1>`. Don't forget to export it!
+>>>>>>> 6d965422a4056bac5f93f92735364cb08bcffc6b
 
 <Sandpack>
 

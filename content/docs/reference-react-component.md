@@ -506,7 +506,7 @@ UNSAFE_componentWillUpdate(nextProps, nextState)
 ### `setState()` {#setstate}
 
 ```javascript
-setState(updater, [callback])
+setState(updater[, callback])
 ```
 
 `setState()` はコンポーネントの state への変更をエンキューし、このコンポーネントとその子を更新された state で再レンダーする必要があることを React に伝えます。これは、イベントハンドラとサーバの応答に応じてユーザインターフェイスを更新するために使用する主な方法です。
