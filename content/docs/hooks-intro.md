@@ -31,12 +31,7 @@ function Example() {
 
 > 補足
 >
-<<<<<<< HEAD
 > React 16.8.0 がフックをサポートする最初のバージョンです。アップグレードの際は、React DOM を含むすべてのパッケージの更新を忘れないようにしてください。React Native は [React Native 0.59 リリース](https://reactnative.dev/blog/2019/03/12/releasing-react-native-059)以降でフックをサポートします。
-=======
->React 16.8.0 is the first release to support Hooks. When upgrading, don't forget to update all packages, including React DOM.
->React Native has supported Hooks since [the 0.59 release of React Native](https://reactnative.dev/blog/2019/03/12/releasing-react-native-059).
->>>>>>> df2673d1b6ec0cc6657fd58690bbf30fa1e6e0e6
 
 ## ビデオによる紹介 {#video-introduction}
 
@@ -100,11 +95,7 @@ React は再利用可能な振る舞いをコンポーネントに「付加す�
 
 React 開発者はプロダクト開発に注力する必要があり、リリースされるあらゆる新しい API を確かめている時間はない、ということを、我々は理解しています。フックはとても新しい機能ですので、多くの例やチュートリアルが揃うまで、学んだり採用したりするのを待つ方がいいかもしれません。
 
-<<<<<<< HEAD
 また、React に新しい基本機能を付け加えるハードルが非常に高いということも理解しています。興味ある読者のために我々は[詳しい RFC](https://github.com/reactjs/rfcs/pull/68) を用意しています。そこではより詳しく動機を掘り下げており、関連する先行技術や個別の設計上の選択についての概要が述べられています。
-=======
-We also understand that the bar for adding a new primitive to React is extremely high. For curious readers, we have prepared a [detailed RFC](https://github.com/reactjs/rfcs/pull/68) that dives into the motivation with more details, and provides extra perspective on the specific design decisions and related prior art.
->>>>>>> df2673d1b6ec0cc6657fd58690bbf30fa1e6e0e6
 
 **肝心なことですが、フックは既存のコードと併用することができるので、段階的に採用していくことが可能です。**フックへの移行を急ぐ必要はありません。特に既存の複雑なコンポーネントについては、「大幅な書き換え」は避けることを推奨します。『フックで考えられる』ようになるには若干の思考の転換が必要です。我々の経験上は、あまり重要でない新しいコンポーネントでまずフックの使い方を練習し、チームの全員が慣れるようにすることが最良です。フックを試してみたら、どうぞお気軽に[フィードバックを送って](https://github.com/facebook/react/issues/new)ください。ポジティブなものでもネガティブなものでも構いません。
 
