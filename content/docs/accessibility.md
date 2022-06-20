@@ -401,7 +401,11 @@ React では [React Document Title Component](https://github.com/gaearon/react-d
 - [Everything About Color Contrast And Why You Should Rethink It](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
 - [A11yProject - What is Color Contrast](https://a11yproject.com/posts/what-is-color-contrast/)
 
+<<<<<<< HEAD
 適切な色の組み合わせをウェブサイト内の全てのケースについて手作業で行うのは面倒になりがちなので、代わりに[アクセシブルなカラーパレット全体を Colorable で計算する](https://jxnblk.com/colorable/)ことができます。
+=======
+It can be tedious to manually calculate the proper color combinations for all cases in your website so instead, you can [calculate an entire accessible color palette with Colorable](https://colorable.jxnblk.com/).
+>>>>>>> df2673d1b6ec0cc6657fd58690bbf30fa1e6e0e6
 
 以下に述べる aXe および WAVE ツールのどちらも同じように色のコントラストのテストを備えておりコントラストの違反を報告してくれます。
 
