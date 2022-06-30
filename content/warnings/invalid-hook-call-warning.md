@@ -18,7 +18,7 @@ permalink: warnings/invalid-hook-call-warning.html
 
 ## React と React DOM のバージョン不整合 {#mismatching-versions-of-react-and-react-dom}
 
-まだフックをサポートしてない `react-dom` (&lt; 16.8.0) や `react-native` (&lt; 0.60) を利用しているのかもしれません。アプリケーションフォルダで `npm ls react-dom` か `npm ls react-native` を実行して、どのバージョンを使っているのかを確認できます。もしも 2 つ以上出てきた場合は、それも問題になりえます（後述）。
+まだフックをサポートしていない `react-dom` (&lt; 16.8.0) や `react-native` (&lt; 0.60) を利用しているのかもしれません。アプリケーションフォルダで `npm ls react-dom` か `npm ls react-native` を実行して、どのバージョンを使っているのかを確認できます。もしも 2 つ以上出てきた場合は、それも問題になりえます（後述）。
 
 ## フックのルールへの違反 {#breaking-the-rules-of-hooks}
 

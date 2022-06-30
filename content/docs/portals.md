@@ -138,7 +138,7 @@ class Parent extends React.Component {
 
 function Child() {
   // クリックするとイベントが親に伝播します。
-  // なぜならここには `onClick` 属性が定義されてないからです。
+  // なぜならここには `onClick` 属性が定義されていないからです。
   return (
     <div className="modal">
       <button>Click</button>
