@@ -133,7 +133,7 @@ var SayHello = createReactClass({
 
 これはつまり、ES6 クラスで書くとイベントハンドラのための定型文が少し多くなってしまうということなのですが、一方では大きなアプリケーションの場合にわずかながらパフォーマンスが向上するという側面もあります。
 
-この定型文的コードがあまりに醜く感じられる場合、Babel を使って**実験的**な [Class Properties](https://babeljs.io/docs/plugins/transform-class-properties/) 構文提案を有効にするとよいかもしれません。
+この定型文的コードがあまりに醜く感じられる場合、[ES2022 のクラスプロパティ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields#public_instance_fields)構文を利用できます：
 
 ```javascript
 class SayHello extends React.Component {
@@ -141,11 +141,11 @@ class SayHello extends React.Component {
     super(props);
     this.state = {message: 'Hello!'};
   }
-  // WARNING: this syntax is experimental!
+  
   // Using an arrow here binds the method:
   handleClick = () => {
     alert(this.state.message);
-  }
+  };
 
   render() {
     return (
@@ -157,9 +157,7 @@ class SayHello extends React.Component {
 }
 ```
 
-上記の構文は**実験的**なものであり、構文が変わるかもしれないこと、あるいは言語に取り入れられないかもしれないことに留意してください。
-
-安全にやりたい場合は他の選択肢もあります。
+他の選択肢もあります。
 
 * コンストラクタでメソッドをバインドする。
 * 例えば `onClick={(e) => this.handleClick(e)}` のような形でアロー関数を利用する。

@@ -92,15 +92,14 @@ JSX のコールバックにおける `this` の意味に注意しなければ�
 
 これは React に限った動作ではなく、[JavaScript における関数の仕組み](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/)の一部です。一般的に、`onClick={this.handleClick}` のように `()` を末尾に付けずに何らかのメソッドを参照する場合、そのメソッドはバインドしておく必要があります。
 
-`bind` の呼び出しが苦痛なら、それを回避する方法が 2 つあります。実験的な[パブリッククラスフィールド構文](https://babeljs.io/docs/plugins/transform-class-properties/)を使用しているなら、コールバックを正しくバインドするのにクラスフィールドを利用できます：
+`bind` の呼び出しが苦痛なら、それを回避する方法が 2 つあります。[パブリッククラスフィールド構文](https://babeljs.io/docs/plugins/transform-class-properties/)を使えば、コールバックを正しくバインドすることができます：
 
 ```js{2-6}
 class LoggingButton extends React.Component {
   // This syntax ensures `this` is bound within handleClick.
-  // Warning: this is *experimental* syntax.
   handleClick = () => {
     console.log('this is:', this);
-  }
+  };
 
   render() {
     return (
@@ -114,7 +113,7 @@ class LoggingButton extends React.Component {
 
 この構文は、[Create React App](https://github.com/facebookincubator/create-react-app) ではデフォルトで有効です。
 
-クラスフィールド構文を使用していない場合、コールバック内で[アロー関数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)を使用することもできます：
+クラスフィールド構文を使用しない場合、コールバック内で[アロー関数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)を使用することもできます：
 
 ```js{7-9}
 class LoggingButton extends React.Component {

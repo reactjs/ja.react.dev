@@ -331,54 +331,22 @@ function useWindowPosition() {
 
 ### 前回の props や state はどうすれば取得できますか？ {#how-to-get-the-previous-props-or-state}
 
-現時点では、これは [ref を使って](#is-there-something-like-instance-variables)手動で行うことができます：
+前回の props や state が欲しくなるというケースは 2 つあります。
 
-```js{6,8}
-function Counter() {
-  const [count, setCount] = useState(0);
+ひとつは、前回の props を**副作用のクリーンアップ**に使用したいという場合です。例えば、`userId` プロパティに基づいてソケットを購読する副作用を書いている場合などです。`userId` プロパティが変化した場合、**ひとつ前**の `useId` の購読を解除して**次**のものを購読したくなるでしょう。ですがこれを実現するのに、特別なことをする必要はありません：
 
-  const prevCountRef = useRef();
-  useEffect(() => {
-    prevCountRef.current = count;
-  });
-  const prevCount = prevCountRef.current;
-
-  return <h1>Now: {count}, before: {prevCount}</h1>;
-}
+```js
+useEffect(() => {
+  ChatAPI.subscribeToSocket(props.userId);
+  return () => ChatAPI.unsubscribeFromSocket(props.userId);
+}, [props.userId]);
 ```
 
-上記はちょっと複雑かもしれませんが、これをカスタムフックに抽出することができます。
+上記の例では、`userId` が `3` から `4` に変わった場合、`ChatAPI.unsubscribeFromSocket(3)` が最初に走り、その後に `ChatAPI.subscribeToSocket(4)` が走ります。クリーンアップ関数は「前回」の `userId` をクロージャとしてキャプチャしていますので、前回の値を取得する必要はありません。
 
-```js{3,7}
-function Counter() {
-  const [count, setCount] = useState(0);
-  const prevCount = usePrevious(count);
-  return <h1>Now: {count}, before: {prevCount}</h1>;
-}
+別の場面では、**props や他の state の変更に基づいて state を調整したい**ということがあるかもしれません。これはめったに必要なものではありませんし、通常はコードに重複した冗長な state があるというサインです。しかしこれが必要な稀なパターンでは、[前の state や props を state に保存してレンダー中に更新する](#how-do-i-implement-getderivedstatefromprops)ことができます。
 
-function usePrevious(value) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
-```
-
-これは props でも state でも、その他計算されたどのような値に対しても動作します。
-
-```js{5}
-function Counter() {
-  const [count, setCount] = useState(0);
-
-  const calculation = count + 100;
-  const prevCalculation = usePrevious(calculation);
-  // ...
-```
-
-これは比較的よくあるユースケースですので、将来的に `usePrevious` というフックを React が最初から提供するようにする可能性があります。
-
-[派生 state における推奨されるパターン](#how-do-i-implement-getderivedstatefromprops)についても参照してください。
+これまで `usePrevious` というカスタムフックを使うことを提案していましたが、ほとんどのユースケースは上記の 2 つのパターンのいずれかに当てはまることがわかりました。もしもこのユースケースが当てはまらない場合は、[値を ref に保持](#is-there-something-like-instance-variables)し、必要に応じて手作業でアップデートすることができます。レンダー中に ref を読み出したり変更したりするとコンポーネントの挙動を予想・理解するのが難しくなるため、避けるようにしてください。
 
 ### 関数内で古い props や state が見えているのはなぜですか？ {#why-am-i-seeing-stale-props-or-state-inside-my-function}
 
