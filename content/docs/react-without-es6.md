@@ -131,7 +131,13 @@ var SayHello = createReactClass({
 });
 ```
 
+<<<<<<< HEAD
 これはつまり、ES6 クラスで書くとイベントハンドラのための定型文が少し多くなってしまうということなのですが、一方では大きなアプリケーションの場合にわずかながらパフォーマンスが向上するという側面もあります。
+=======
+This means writing ES6 classes comes with a little more boilerplate code for event handlers, but the upside is slightly better performance in large applications.
+
+If the boilerplate code is too unattractive to you, you may use [ES2022 Class Properties](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields#public_instance_fields) syntax:
+>>>>>>> ee7705675d2304c53c174b9fb316e2fbde1e9fb3
 
 この定型文的コードがあまりに醜く感じられる場合、Babel を使って**実験的**な [Class Properties](https://babeljs.io/docs/plugins/transform-class-properties/) 構文提案を有効にするとよいかもしれません。
 
@@ -141,11 +147,11 @@ class SayHello extends React.Component {
     super(props);
     this.state = {message: 'Hello!'};
   }
-  // WARNING: this syntax is experimental!
+  
   // Using an arrow here binds the method:
   handleClick = () => {
     alert(this.state.message);
-  }
+  };
 
   render() {
     return (
@@ -157,9 +163,13 @@ class SayHello extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 上記の構文は**実験的**なものであり、構文が変わるかもしれないこと、あるいは言語に取り入れられないかもしれないことに留意してください。
 
 安全にやりたい場合は他の選択肢もあります。
+=======
+You also have a few other options:
+>>>>>>> ee7705675d2304c53c174b9fb316e2fbde1e9fb3
 
 * コンストラクタでメソッドをバインドする。
 * 例えば `onClick={(e) => this.handleClick(e)}` のような形でアロー関数を利用する。

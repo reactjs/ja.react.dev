@@ -92,15 +92,18 @@ JSX のコールバックにおける `this` の意味に注意しなければ�
 
 これは React に限った動作ではなく、[JavaScript における関数の仕組み](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/)の一部です。一般的に、`onClick={this.handleClick}` のように `()` を末尾に付けずに何らかのメソッドを参照する場合、そのメソッドはバインドしておく必要があります。
 
+<<<<<<< HEAD
 `bind` の呼び出しが苦痛なら、それを回避する方法が 2 つあります。実験的な[パブリッククラスフィールド構文](https://babeljs.io/docs/plugins/transform-class-properties/)を使用しているなら、コールバックを正しくバインドするのにクラスフィールドを利用できます：
+=======
+If calling `bind` annoys you, there are two ways you can get around this. You can use [public class fields syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields#public_instance_fields) to correctly bind callbacks:
+>>>>>>> ee7705675d2304c53c174b9fb316e2fbde1e9fb3
 
 ```js{2-6}
 class LoggingButton extends React.Component {
   // This syntax ensures `this` is bound within handleClick.
-  // Warning: this is *experimental* syntax.
   handleClick = () => {
     console.log('this is:', this);
-  }
+  };
 
   render() {
     return (
