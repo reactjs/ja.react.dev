@@ -331,13 +331,9 @@ function useWindowPosition() {
 
 ### 前回の props や state はどうすれば取得できますか？ {#how-to-get-the-previous-props-or-state}
 
-<<<<<<< HEAD
-現時点では、これは [ref を使って](#is-there-something-like-instance-variables)手動で行うことができます：
-=======
-There are two cases in which you might want to get previous props or state.
->>>>>>> ee7705675d2304c53c174b9fb316e2fbde1e9fb3
+前回の props や state が欲しくなるというケースは 2 つあります。
 
-Sometimes, you need previous props to **clean up an effect.** For example, you might have an effect that subscribes to a socket based on the `userId` prop. If the `userId` prop changes, you want to unsubscribe from the _previous_ `userId` and subscribe to the _next_ one. You don't need to do anything special for this to work:
+ひとつは、前回の props を**副作用のクリーンアップ**に使用したいという場合です。例えば、`userId` プロパティに基づいてソケットを購読する副作用を書いている場合などです。`userId` プロパティが変化した場合、**ひとつ前**の `useId` の購読を解除して**次**のものを購読したくなるでしょう。ですがこれを実現するのに、特別なことをする必要はありません：
 
 ```js
 useEffect(() => {
@@ -346,41 +342,11 @@ useEffect(() => {
 }, [props.userId]);
 ```
 
-<<<<<<< HEAD
-上記はちょっと複雑かもしれませんが、これをカスタムフックに抽出することができます。
-=======
-In the above example, if `userId` changes from `3` to `4`, `ChatAPI.unsubscribeFromSocket(3)` will run first, and then `ChatAPI.subscribeToSocket(4)` will run. There is no need to get "previous" `userId` because the cleanup function will capture it in a closure.
->>>>>>> ee7705675d2304c53c174b9fb316e2fbde1e9fb3
+上記の例では、`userId` が `3` から `4` に変わった場合、`ChatAPI.unsubscribeFromSocket(3)` が最初に走り、その後に `ChatAPI.subscribeToSocket(4)` が走ります。クリーンアップ関数は「前回」の `userId` をクロージャとしてキャプチャしていますので、前回の値を取得する必要はありません。
 
-Other times, you might need to **adjust state based on a change in props or other state**. This is rarely needed and is usually a sign you have some duplicate or redundant state. However, in the rare case that you need this pattern, you can [store previous state or props in state and update them during rendering](#how-do-i-implement-getderivedstatefromprops).
+別の場面では、**props や他の state の変更に基づいて state を調整したい**ということがあるかもしれません。これはめったに必要なものではありませんし、通常はコードに重複した冗長な state があるというサインです。しかしこれが必要な稀なパターンでは、[前の state や props を state に保存してレンダー中に更新する](#how-do-i-implement-getderivedstatefromprops)ことができます。
 
-<<<<<<< HEAD
-function usePrevious(value) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
-```
-
-これは props でも state でも、その他計算されたどのような値に対しても動作します。
-
-```js{5}
-function Counter() {
-  const [count, setCount] = useState(0);
-
-  const calculation = count + 100;
-  const prevCalculation = usePrevious(calculation);
-  // ...
-```
-
-これは比較的よくあるユースケースですので、将来的に `usePrevious` というフックを React が最初から提供するようにする可能性があります。
-
-[派生 state における推奨されるパターン](#how-do-i-implement-getderivedstatefromprops)についても参照してください。
-=======
-We have previously suggested a custom Hook called `usePrevious` to hold the previous value. However, we've found that most use cases fall into the two patterns described above. If your use case is different, you can [hold a value in a ref](#is-there-something-like-instance-variables) and manually update it when needed. Avoid reading and updating refs during rendering because this makes your component's behavior difficult to predict and understand.
->>>>>>> ee7705675d2304c53c174b9fb316e2fbde1e9fb3
+これまで `usePrevious` というカスタムフックを使うことを提案していましたが、ほとんどのユースケースは上記の 2 つのパターンのいずれかに当てはまることがわかりました。もしもこのユースケースが当てはまらない場合は、[値を ref に保持](#is-there-something-like-instance-variables)し、必要に応じて手作業でアップデートすることができます。レンダー中に ref を読み出したり変更したりするとコンポーネントの挙動を予想・理解するのが難しくなるため、避けるようにしてください。
 
 ### 関数内で古い props や state が見えているのはなぜですか？ {#why-am-i-seeing-stale-props-or-state-inside-my-function}
 

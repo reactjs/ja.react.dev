@@ -108,11 +108,7 @@ React 要素がすでに `container` にレンダーされている場合は更�
 > しかし、この戻り値を使用する方法は古く、将来のバージョンの React では一部のケースで非同期にコンポーネントをレンダーするようになる可能性があるため、使用は避けるべきです。
 > ルートの `ReactComponent` インスタンスへの参照が必要な場合は、ルート要素に[コールバック形式の ref](/docs/refs-and-the-dom.html#callback-refs) を追加することを推奨します。
 >
-<<<<<<< HEAD
-> サーバで描画されたコンテナをクライアントで再利用するために `ReactDOM.render()` を使用することは非推奨となっています。代わりに [`hydrateRoot()`](#hydrateroot) を使用してください。
-=======
-> Using `render()` to hydrate a server-rendered container is deprecated. Use [`hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) instead.
->>>>>>> ee7705675d2304c53c174b9fb316e2fbde1e9fb3
+> サーバで描画されたコンテナをクライアントで再利用するために `ReactDOM.render()` を使用することは非推奨となっています。代わりに [`hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) を使用してください。
 
 * * *
 

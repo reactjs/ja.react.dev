@@ -79,11 +79,7 @@ React は再利用可能な振る舞いをコンポーネントに「付加す�
 
 ### クラスは人間と機械の両方を混乱させる {#classes-confuse-both-people-and-machines}
 
-<<<<<<< HEAD
-コードの再利用や整頓が難しくなるということに加えてクラスについて我々が学んだことは、クラスが React を学ぶ上で障壁となっているということです。JavaScript で `this` がどのように動作するのか理解しなければなりませんが、それは他の多くの言語での動作とは非常に異なっています。イベントハンドラを `bind` するよう覚えておく必要があります。仕様が不確定な[提案中の構文](https://babeljs.io/docs/en/babel-plugin-transform-class-properties/)を使わない限り、コードは非常に冗長になってしまいます。開発者は props や state やトップダウンのデータフローについて完璧に理解できても、クラスの部分でつまづいてしまいます。React における関数コンポーネントとクラスコンポーネントの違いや使い分けについては経験のある React 開発者の間でも意見の差異が出てきます。
-=======
-In addition to making code reuse and code organization more difficult, we've found that classes can be a large barrier to learning React. You have to understand how `this` works in JavaScript, which is very different from how it works in most languages. You have to remember to bind the event handlers. Without [ES2022 public class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields#public_instance_fields), the code is very verbose. People can understand props, state, and top-down data flow perfectly well but still struggle with classes. The distinction between function and class components in React and when to use each one leads to disagreements even between experienced React developers.
->>>>>>> ee7705675d2304c53c174b9fb316e2fbde1e9fb3
+コードの再利用や整頓が難しくなるということに加えてクラスについて我々が学んだことは、クラスが React を学ぶ上で障壁となっているということです。JavaScript で `this` がどのように動作するのか理解しなければなりませんが、それは他の多くの言語での動作とは非常に異なっています。イベントハンドラを `bind` するよう覚えておく必要があります。[ES2022 のパブリッククラスフィールド構文](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields#public_instance_fields)を使わない限り、コードは非常に冗長になってしまいます。開発者は props や state やトップダウンのデータフローについて完璧に理解できても、クラスの部分でつまづいてしまいます。React における関数コンポーネントとクラスコンポーネントの違いや使い分けについては経験のある React 開発者の間でも意見の差異が出てきます。
 
 加えて、React は登場から約 5 年が経ちましたが、これからの 5 年間も使える選択肢のままであって欲しいと考えています。[Svelte](https://svelte.dev/) や [Angular](https://angular.io/) や [Glimmer](https://glimmerjs.com/) などのライブラリが示したように、コンポーネントの[事前コンパイル](https://en.wikipedia.org/wiki/Ahead-of-time_compilation)には大きな将来性があります。特に使用法がテンプレートに限られていない場合はそうです。最近我々は [Prepack](https://prepack.io/) を使った [component folding](https://github.com/facebook/react/issues/7323) を試しており、有望な初期結果が得られています。しかし、クラスコンポーネントを使うことで、これらの最適化機能が遅い経路にフォールバックしてしまうようなパターンを助長してしまうことが分かりました。クラスは今まさに使われているツール群でも問題を引き起こします。例えば、クラスはあまりよく minify されませんし、ホットリローディングも不安定で信頼できないものになってしまいます。我々は、コードが最適化しやすい状態でいられる可能性を高くできるような API を提示したいのです。
 
