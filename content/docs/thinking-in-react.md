@@ -143,4 +143,8 @@ React ではデータフローが明示的になりプログラムの動作が�
 
 ## 終わりに {#and-thats-it}
 
+<<<<<<< HEAD
 これで React を使ってコンポーネントやアプリケーションを構築するときの考え方が身に付いたのではないでしょうか。それはもしかしたら、あなたのこれまでのやり方よりも、多くのコードを書くことになるかもしれません。しかしながら、コードは書くよりも読むことのほうが多いこと、そしてモジュール化されていて明示的であるコードはより読みやすいということを思い出してください。大規模なコンポーネントのライブラリを構築し始めると、この明示性やモジュール化しやすさのありがたみが分かり始めます。そしてコードを再利用できるようになるにつれて、あなたが書くコードの行数は減っていくのです。:)
+=======
+Hopefully, this gives you an idea of how to think about building components and applications with React. While it may be a little more typing than you're used to, remember that code is read far more often than it's written, and it's less difficult to read this modular, explicit code. As you start to build large libraries of components, you'll appreciate this explicitness and modularity, and with code reuse, your lines of code will start to shrink. :)
+>>>>>>> 42561f013aa0f6008cd1c5b811d8bacfc66a0779
