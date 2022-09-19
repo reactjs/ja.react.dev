@@ -45,7 +45,11 @@ React でそのアルゴリズムを使った場合、1000 個の要素を表示
 
 >補足：
 >
+<<<<<<< HEAD
 >これらのコードはレガシーとみなされるため、新規コードでは[使用を避ける](/blog/2018/03/27/update-on-async-rendering.html)べきです：
+=======
+>This method is considered legacy and you should [avoid it](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd
 >
 >- `UNSAFE_componentWillMount()`
 
