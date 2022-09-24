@@ -115,13 +115,8 @@ export default function TodoList() {
 
 JSX 内部で波括弧を使う方法は 2 つだけです：
 
-<<<<<<< HEAD:beta/src/pages/learn/javascript-in-jsx-with-curly-braces.md
 1. **テキストとして**、JSX タグの中で直接使う：`<h1>{name}'s To Do List</h1>` は動作しますが `<{tag}>Gregorio Y. Zara's To Do List</{tag}>` は動作しない。
-2. **属性として**、`=` 記号の直後に使う：`src={avatar}` は `avatar` という変数を読み出すが、 `src="{avatar}"` と書くと `{avatar}` という文字列そのものを渡す。
-=======
-1. **As text** directly inside a JSX tag: `<h1>{name}'s To Do List</h1>` works, but `<{tag}>Gregorio Y. Zara's To Do List</{tag}>`  will not.
-2. **As attributes** immediately following the `=` sign: `src={avatar}` will read the `avatar` variable, but `src="{avatar}"` will pass the string `"{avatar}"`.
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/javascript-in-jsx-with-curly-braces.md
+2. **属性として**、`=` 記号の直後に使う：`src={avatar}` は `avatar` という変数を読み出すが、 `src="{avatar}"` と書くと `"{avatar}"` という文字列そのものを渡す。
 
 ## 「ダブル波括弧」で JSX 内に CSS やその他のオブジェクトを含める {/*using-double-curlies-css-and-other-objects-in-jsx*/}
 
@@ -250,11 +245,7 @@ JSX ではデータやロジックを書くのに JavaScript を使うため、J
 
 <Challenges>
 
-<<<<<<< HEAD:beta/src/pages/learn/javascript-in-jsx-with-curly-braces.md
-### 間違いを修正する {/*fix-the-mistake*/}
-=======
-#### Fix the mistake {/*fix-the-mistake*/}
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/javascript-in-jsx-with-curly-braces.md
+#### 間違いを修正する {/*fix-the-mistake*/}
 
 以下のコードは `Objects are not valid as a React child` というエラーを出してクラッシュします：
 
@@ -346,11 +337,7 @@ body > div > div { padding: 20px; }
 
 </Solution>
 
-<<<<<<< HEAD:beta/src/pages/learn/javascript-in-jsx-with-curly-braces.md
-### オブジェクト内にデータを移動する {/*extract-information-into-an-object*/}
-=======
-#### Extract information into an object {/*extract-information-into-an-object*/}
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/javascript-in-jsx-with-curly-braces.md
+#### オブジェクト内にデータを移動する {/*extract-information-into-an-object*/}
 
 画像 URL を `person` オブジェクト内に移動しましょう。
 
@@ -437,15 +424,9 @@ body > div > div { padding: 20px; }
 
 </Solution>
 
-<<<<<<< HEAD:beta/src/pages/learn/javascript-in-jsx-with-curly-braces.md
-### JSX 波括弧内に式を書く {/*write-an-expression-inside-jsx-curly-braces*/}
+#### JSX 波括弧内に式を書く {/*write-an-expression-inside-jsx-curly-braces*/}
 
 以下のオブジェクトでは画像の URL が、ベース URL・`imageId`・`imageSize`・ファイル拡張子の 4 つに分割されています。
-=======
-#### Write an expression inside JSX curly braces {/*write-an-expression-inside-jsx-curly-braces*/}
-
-In the object below, the full image URL is split into four parts: base URL, `imageId`, `imageSize`, and file extension.
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/javascript-in-jsx-with-curly-braces.md
 
 画像 URL を指定するところで、ベース URL（常に `'https://i.imgur.com/'`）、`imageId` (`'7vQD0fP'`)、`imageSize` (`'s'`)、ファイル拡張子（常に `'.jpg'`）の 4 つの値を結合したいと思っています。ですが `<img>` タグが `src` を指定する部分で何かがおかしいようです。
 

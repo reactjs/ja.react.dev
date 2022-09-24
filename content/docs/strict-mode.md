@@ -134,11 +134,7 @@ Read the [new context API documentation](/docs/context.html) to help migrate to 
 
 ### state 再利用可能性の保証 {#ensuring-reusable-state}
 
-<<<<<<< HEAD
-将来的に、React が state を保ったままで UI の一部分を追加・削除できるような機能を導入したいと考えています。例えば、ユーザがタブを切り替えて画面を離れてから戻ってきた場合に、React が以前の画面をすぐに表示できるようにしたいのです。これを可能にするため、React はアンマウントする前にコンポーネントが使用していたものと同じ state を使用してツリーを再マウントする機能をサポートします。
-=======
-In the future, we’d like to add a feature that allows React to add and remove sections of the UI while preserving state. For example, when a user tabs away from a screen and back, React should be able to immediately show the previous screen. To do this, React will support remounting trees using the same component state used before unmounting.
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd
+将来的に、React が state を保ったままで UI の一部分を追加・削除できるような機能を導入したいと考えています。例えば、ユーザがタブを切り替えて画面を離れてから戻ってきた場合に、React が以前の画面をすぐに表示できるようにしたいのです。これを可能にするため、React はアンマウントする前にコンポーネントが使用していたものと同じ state を使用してツリーを再マウントする機能をサポートする予定です。
 
 この機能により、React の標準状態でのパフォーマンスが向上しますが、コンポーネントは副作用が何度も登録されたり破棄されたりすることに対して耐性を持つことが必要になります。ほとんどの副作用は何の変更もなく動作しますが、一部の副作用は破棄用コールバックで購読を適切にクリーンアップしていなかったり、暗黙のうちに一度だけマウントまたは破棄されるものと想定していたりします。
 

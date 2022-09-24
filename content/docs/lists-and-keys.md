@@ -119,11 +119,9 @@ const todoItems = todos.map((todo, index) =>
 );
 ```
 
-<<<<<<< HEAD
-要素の並び順が変更される可能性がある場合、インデックスを key として使用することはお勧めしません。パフォーマンスに悪い影響を与え、コンポーネントの状態に問題を起こす可能性があります。Robin Pokorny による、[key としてインデックスを用いる際の悪影響についての詳しい解説](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)をご覧ください。より詳しく学びたい場合は、[key が何故必要なのかについての詳しい解説](/docs/reconciliation.html#recursing-on-children)を参照してください。
-=======
-We don't recommend using indexes for keys if the order of items may change. This can negatively impact performance and may cause issues with component state. Check out Robin Pokorny's article for an [in-depth explanation on the negative impacts of using an index as a key](https://robinpokorny.com/blog/index-as-a-key-is-an-anti-pattern/). If you choose not to assign an explicit key to list items then React will default to using indexes as keys.
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd
+要素の並び順が変更される可能性がある場合、インデックスを key として使用することはお勧めしません。パフォーマンスに悪い影響を与え、コンポーネントの状態に問題を起こす可能性があります。Robin Pokorny による、[key としてインデックスを用いる際の悪影響についての詳しい解説](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)をご覧ください。
+
+より詳しく学びたい場合はこちらの [key が必要である詳細な理由](/docs/reconciliation.html#recursing-on-children)をご覧ください。
 
 ### key のあるコンポーネントの抽出 {#extracting-components-with-keys}
 

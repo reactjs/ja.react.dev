@@ -8,10 +8,6 @@ permalink: warnings/invalid-aria-prop.html
 
 1. 使用した props が標準仕様に準拠しているはずのものであるなら、綴りをよく確認してください。`aria-labelledby` や `aria-activedescendant` の綴り間違いはありがちです。
 
-<<<<<<< HEAD
-2. 指定した属性を React が標準仕様の一部として正しく認識していない場合。この振舞いは React の将来のバージョンで修正される可能性が高いです。
-=======
-2. If you wrote `aria-role`, you may have meant `role`.
+2. `aria-role` と書いていた場合、`role` の間違いではないでしょうか。
 
-3. Otherwise, if you're on the latest version of React DOM and verified that you're using a valid property name listed in the ARIA specification, please [report a bug](https://github.com/facebook/react/issues/new/choose).
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd
+3. 最新版の React DOM であり、ARIA 仕様にリストされている有効なプロパティ名を使っていると確認できた場合は、[バグとして報告](https://github.com/facebook/react/issues/new/choose)してください。

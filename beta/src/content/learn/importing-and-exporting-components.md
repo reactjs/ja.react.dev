@@ -106,21 +106,12 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 元の例がどのようにして 2 つのコンポーネントファイルに分割されたか確認しましょう：
 
-<<<<<<< HEAD:beta/src/pages/learn/importing-and-exporting-components.md
 1. `Gallery.js` は：
      - `Profile` を定義しているが同じファイルでしか使われていないのでエクスポートされていない。
      - **デフォルトエクスポート** として `Gallery` コンポーネントをエクスポートしている。
 2. `App.js` は：
      - `Gallery.js` から `Gallery` を**デフォルトインポート**している。
      - ルートの `App` コンポーネントを**デフォルトエクスポート**している。
-=======
-1. `Gallery.js`:
-     - Defines the `Profile` component which is only used within the same file and is not exported.
-     - Exports the `Gallery` component as a **default export.**
-2. `App.js`:
-     - Imports `Gallery` as a **default import** from `Gallery.js`.
-     - Exports the root `App` component as a **default export.**
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/importing-and-exporting-components.md
 
 
 <Note>
@@ -135,11 +126,7 @@ React では `'./Gallery.js'` でも `'./Gallery'` でも動作しますが、�
 
 </Note>
 
-<<<<<<< HEAD:beta/src/pages/learn/importing-and-exporting-components.md
 <DeepDive title="デフォルトエクスポート vs 名前付きエクスポート">
-=======
-<DeepDive title="Default vs named exports">
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/importing-and-exporting-components.md
 
 JavaScript には値をエクスポートする主な方法が 2 つあります。デフォルトエクスポートと名前付きエクスポートです。これまで、我々の例ではデフォルトエクスポートのみを使ってきました。しかし同じファイルで両方使うことも、あるいはどちらか片方だけを使うことも可能です。**ファイルには*デフォルト*エクスポートは 1 つまでしか置けませんが、*名前付き*エクスポートは好きなだけ置くことができます。**
 
@@ -231,7 +218,6 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 これで、デフォルトと名前付きのエクスポートが混在するようになりました：
 
-<<<<<<< HEAD:beta/src/pages/learn/importing-and-exporting-components.md
 * `Gallery.js` は：
   - `Profile` コンポーネントを **`Profile` という名前付きでエクスポートしている**.
   - `Gallery` コンポーネントを**デフォルトエクスポート**している。
@@ -239,15 +225,6 @@ img { margin: 0 10px 10px 0; height: 90px; }
   - `Profile` コンポーネントを `Gallery.js` から **`Profile` という名前付きでインポートしている**。
   - `Gallery` コンポーネントを `Gallery.js` から**デフォルトインポート**している。
   - ルートの `App` コンポーネントを**デフォルトエクスポート**している。
-=======
-* `Gallery.js`:
-  - Exports the `Profile` component as a **named export called `Profile`.**
-  - Exports the `Gallery` component as a **default export.**
-* `App.js`:
-  - Imports `Profile` as a **named import called `Profile`** from `Gallery.js`.
-  - Imports `Gallery` as a **default import** from `Gallery.js`.
-  - Exports the root `App` component as a **default export.**
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/importing-and-exporting-components.md
 
 <Recap>
 
@@ -264,11 +241,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <Challenges>
 
-<<<<<<< HEAD:beta/src/pages/learn/importing-and-exporting-components.md
-### コンポーネントファイルをさらに分割する {/*split-the-components-further*/}
-=======
-#### Split the components further {/*split-the-components-further*/}
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/importing-and-exporting-components.md
+#### コンポーネントファイルをさらに分割する {/*split-the-components-further*/}
 
 現在のところ `Gallery.js` は `Profile` と `Gallery` の両方をエクスポートしていますが、これはちょっと混乱の原因になりそうです。
 

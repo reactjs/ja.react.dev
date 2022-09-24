@@ -123,11 +123,7 @@ React コンポーネントの `render()` 関数が同じ props と state を与
 
 > 補足
 >
-<<<<<<< HEAD
-> `React.PureComponent` の `shouldComponentUpdate()` は オブジェクトの浅い比較のみを行います。これらに複雑なデータ構造が含まれていると、深い部分のみに差分があるために、本当は差分があるにも関わらず差分がないと見なされる場合があります。単純な props と state を持つ場合にのみ `PureComponent` を継承するか、深いデータ構造が変更されたとわかっているときに [`forceUpdate()`](/docs/react-component.html#forceupdate) を使用してください。あるいは、ネストされたデータ構造の高速な比較を容易にするために [イミュータブルなオブジェクト](https://facebook.github.io/immutable-js/) の使用を検討してください。
-=======
-> `React.PureComponent`'s `shouldComponentUpdate()` only shallowly compares the objects. If these contain complex data structures, it may produce false-negatives for deeper differences. Only extend `PureComponent` when you expect to have simple props and state, or use [`forceUpdate()`](/docs/react-component.html#forceupdate) when you know deep data structures have changed. Or, consider using [immutable objects](https://immutable-js.com/) to facilitate fast comparisons of nested data.
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd
+> `React.PureComponent` の `shouldComponentUpdate()` は オブジェクトの浅い比較のみを行います。これらに複雑なデータ構造が含まれていると、深い部分のみに差分があるために、本当は差分があるにも関わらず差分がないと見なされる場合があります。単純な props と state を持つ場合にのみ `PureComponent` を継承するか、深いデータ構造が変更されたとわかっているときに [`forceUpdate()`](/docs/react-component.html#forceupdate) を使用してください。あるいは、ネストされたデータ構造の高速な比較を容易にするために [イミュータブルなオブジェクト](https://immutable-js.com/) の使用を検討してください。
 >
 > さらに、`React.PureComponent` の `shouldComponentUpdate()` はサブツリー全体のコンポーネントの props の更新をスキップします。子コンポーネントの全てが「純粋な」コンポーネントであることを確認してください。
 

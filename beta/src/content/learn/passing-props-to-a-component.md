@@ -345,11 +345,7 @@ export function getImageUrl(person, size = 's') {
 
 `<Card>` 内の `<Avatar>` を何かテキストに置き換えてみて、ネストされているどんなコンテンツでも `Card` コンポーネントは囲んで表示できるということを確かめてください。中に何が表示されるかあらかじめ知っておく必要はありません。このような柔軟なパターンは、様々なところで目にすることになるでしょう。
 
-<<<<<<< HEAD:beta/src/pages/learn/passing-props-to-a-component.md
-`children` プロパティを有するコンポーネントには、親に任意の JSX で「埋めて」もらうための「穴」が開いている、と考えることができます。`children` は、パネルやグリッドのような視覚的に何かを囲む要素に使うことができます。これについては [Extracting Layout Components](/learn/extracting-layout-components) で詳しく解説します。
-=======
-You can think of a component with a `children` prop as having a "hole" that can be "filled in" by its parent components with arbitrary JSX. You will often use the `children` prop for visual wrappers: panels, grids, and so on. You can explore this in more detail in [Extracting Layout Components.](TODO:/learn/extracting-layout-components)
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/passing-props-to-a-component.md
+`children` プロパティを有するコンポーネントには、親に任意の JSX で「埋めて」もらうための「穴」が開いている、と考えることができます。`children` は、パネルやグリッドのような視覚的に何かを囲む要素に使うことができます。これについては [Extracting Layout Components](TODO:/learn/extracting-layout-components) で詳しく解説します。
 
 <Illustration src="/images/docs/illustrations/i_children-prop.png" alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar' />
 
@@ -409,15 +405,9 @@ export default function App() {
 
 この例は、**コンポーネントは時間経過とともに別の props を受け取る可能性がある**ということを示しています。props は常に固定だとは限らないのです！ ここでは `time` プロパティは毎秒変化していますし、`color` プロパティもあなたが別の色を選択するたびに変化します。props とはコンポーネントの最初の時点ではなく、任意の時点でのコンポーネントのデータを反映するものなのです。
 
-<<<<<<< HEAD:beta/src/pages/learn/passing-props-to-a-component.md
 しかし、props は[イミュータブル (immutable)](https://en.wikipedia.org/wiki/Immutable_object) です。これは「不変な」という意味のコンピュータサイエンス用語です。コンポーネントの props が（例えばユーザ操作や新しいデータの到着に応じて）変わらないといけない場合、親のコンポーネントに*別の props*、つまり新しいオブジェクトを渡してもらう必要があります！ 古い props は忘れられ、使われていたメモリは JavaScript エンジンがそのうち回収します。
 
 **「props の書き換え」をしようとしてはいけません。**（上記のカラー選択のように）ユーザの入力に反応する必要がある場合は、「state のセット」が必要です。これについては [State: A Component's Memory](/learn/state-a-components-memory) で学びます。
-=======
-However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)—a term from computer science meaning "unchangeable". When a component needs to change its props (for example, in response to a user interaction or new data), it will have to "ask" its parent component to pass it _different props_—a new object! Its old props will then be cast aside, and eventually the JavaScript engine will reclaim the memory taken by them.
-
-**Don't try to "change props".** When you need to respond to the user input (like changing the selected color), you will need to "set state", which you can learn about in [State: A Component's Memory.](/learn/state-a-components-memory)
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/passing-props-to-a-component.md
 
 <Recap>
 
@@ -435,11 +425,7 @@ However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)�
 
 <Challenges>
 
-<<<<<<< HEAD:beta/src/pages/learn/passing-props-to-a-component.md
-### コンポーネント抽出 {/*extract-a-component*/}
-=======
-#### Extract a component {/*extract-a-component*/}
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/passing-props-to-a-component.md
+#### コンポーネント抽出 {/*extract-a-component*/}
 
 以下の `Gallery` コンポーネントには 2 名のプロフィール用にとても似たマークアップが含まれてしまっています。ここから `Profile` というコンポーネントを抽出してコードの重複を減らしてください。どんな props を渡すのかは自分で決める必要があるでしょう。
 
@@ -741,11 +727,7 @@ li { margin: 5px; }
 
 </Solution>
 
-<<<<<<< HEAD:beta/src/pages/learn/passing-props-to-a-component.md
-### props に基づく画像サイズ変更 {/*adjust-the-image-size-based-on-a-prop*/}
-=======
-#### Adjust the image size based on a prop {/*adjust-the-image-size-based-on-a-prop*/}
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/passing-props-to-a-component.md
+#### props に基づく画像サイズ変更 {/*adjust-the-image-size-based-on-a-prop*/}
 
 以下の例では `Avatar` は数値型の `size` プロパティを受け取り、これが `<img>` の幅と高さを決定しています。この例では `size` は `40` に設定されています。しかしこの画像を新しいタブで開いてみると、画像自体はもっと大きい（`160` ピクセル）ことがわかります。実際の画像自体のサイズは、リクエストするサムネイルのサイズによって決定されます。
 
@@ -939,11 +921,7 @@ props を使うことでこのようなロジックを `Avatar` 内にカプセ�
 
 </Solution>
 
-<<<<<<< HEAD:beta/src/pages/learn/passing-props-to-a-component.md
-### `children` に JSX を渡す {/*passing-jsx-in-a-children-prop*/}
-=======
-#### Passing JSX in a `children` prop {/*passing-jsx-in-a-children-prop*/}
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/passing-props-to-a-component.md
+#### `children` に JSX を渡す {/*passing-jsx-in-a-children-prop*/}
 
 以下のマークアップから `Card` コンポーネントを抽出し、`children` プロパティを使って異なる JSX が渡されるようにしてください。
 

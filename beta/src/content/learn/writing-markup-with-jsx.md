@@ -60,11 +60,7 @@ JavaScript
 
 <Note>
 
-<<<<<<< HEAD:beta/src/pages/learn/writing-markup-with-jsx.md
-[JSX と React は別物](/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform)であり、互いに無関係に使用することが可能です。
-=======
-JSX and React are two separate things. They're often used together, but you *can* [use them independently](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform) of each other. JSX is a syntax extension, while React is a JavaScript library.
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/writing-markup-with-jsx.md
+JSX と React は別の物です。一緒に使われることが多いですが、[片方だけを独立して使う](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform)ことは*可能*です。JSX とは言語の拡張であり、React は JavaScript ライブラリです。
 
 </Note>
 
@@ -138,11 +134,7 @@ img { height: 90px }
 
 ### 1. 単一のルート要素を返す {/*1-return-a-single-root-element*/}
 
-<<<<<<< HEAD:beta/src/pages/learn/writing-markup-with-jsx.md
 コンポーネントから複数の要素を返すには、**それを単一の親タグで囲みます**。
-=======
-To return multiple elements from a component, **wrap them with a single parent tag.**
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/writing-markup-with-jsx.md
 
 例えば `<div>` を使うことができます：
 
@@ -177,19 +169,11 @@ To return multiple elements from a component, **wrap them with a single parent t
 </>
 ```
 
-<<<<<<< HEAD:beta/src/pages/learn/writing-markup-with-jsx.md
-この中身のないタグは *[React フラグメント](TODO)* と呼ばれるものです。フラグメントを使えば、ブラウザの HTML ツリーに痕跡を残さずに複数の要素をまとめることができます。
-=======
-This empty tag is called a *[Fragment.](/apis/react/Fragment)* Fragments let you group things without leaving any trace in the browser HTML tree.
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/writing-markup-with-jsx.md
+この中身のないタグは *[フラグメント](/apis/react/Fragment)* と呼ばれるものです。フラグメントを使えば、ブラウザの HTML ツリーに痕跡を残さずに複数の要素をまとめることができます。
 
 <DeepDive title="JSX タグが複数あるときにラップしないといけない理由">
 
-<<<<<<< HEAD:beta/src/pages/learn/writing-markup-with-jsx.md
 JSX は HTML のように見えますが、裏ではプレーンな JavaScript オブジェクトに変換されます。関数から 2 つのオブジェクトを返したい場合、配列でラップしないといけませんよね。2 つの JSX タグを返したい場合に別のタグかフラグメントでラップしないといけないのも、同じ理由です。
-=======
-JSX looks like HTML, but under the hood it is transformed into plain JavaScript objects. You can't return two objects from a function without wrapping them into an array. This explains why you also can't return two JSX tags without wrapping them into another tag or a Fragment.
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/writing-markup-with-jsx.md
 
 </DeepDive>
 
@@ -228,11 +212,7 @@ JSX は JavaScript に変換され、中に書かれた属性は JavaScript オ�
 />
 ```
 
-<<<<<<< HEAD:beta/src/pages/learn/writing-markup-with-jsx.md
 全リストは[React DOM 要素に存在する属性の一覧](TODO)にあります。何かを間違ったとしても心配は要りません。[ブラウザのコンソール](https://developer.mozilla.org/docs/Tools/Browser_Console)にメッセージと修正の提案が表示されるようになっています。
-=======
-You can [find all these attributes in the React DOM Elements.](TODO) If you get one wrong, don't worry—React will print a message with a possible correction to the [browser console.](https://developer.mozilla.org/docs/Tools/Browser_Console)
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/writing-markup-with-jsx.md
 
 <Gotcha>
 
@@ -288,11 +268,7 @@ img { height: 90px }
 
 <Challenges>
 
-<<<<<<< HEAD:beta/src/pages/learn/writing-markup-with-jsx.md
-### HTML を JSX に変換する {/*convert-some-html-to-jsx*/}
-=======
-#### Convert some HTML to JSX {/*convert-some-html-to-jsx*/}
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd:beta/src/content/learn/writing-markup-with-jsx.md
+#### HTML を JSX に変換する {/*convert-some-html-to-jsx*/}
 
 この HTML はコンポーネント内に貼り付けられたものですが、正しい JSX ではありません。修正してください：
 

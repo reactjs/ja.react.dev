@@ -120,106 +120,6 @@ export function Challenges({
             />
           )}
         </div>
-<<<<<<< HEAD
-        <div className="p-5 sm:py-8 sm:px-8">
-          <div key={activeChallenge}>
-            <h3 className="text-xl text-primary dark:text-primary-dark mb-2">
-              <div className="font-bold block md:inline">
-                {isRecipes ? '例' : 'チャレンジ'} {currentChallenge.order}/
-                {challenges.length}
-                <span className="text-primary dark:text-primary-dark">: </span>
-              </div>
-              {currentChallenge.name}
-            </h3>
-            <>{currentChallenge.content}</>
-          </div>
-          <div className="flex justify-between items-center mt-4">
-            {currentChallenge.hint ? (
-              <div>
-                <Button className="mr-2" onClick={toggleHint} active={showHint}>
-                  <IconHint className="mr-1.5" />{' '}
-                  {showHint ? 'ヒントを隠す' : 'ヒントを見る'}
-                </Button>
-                <Button
-                  className="mr-2"
-                  onClick={toggleSolution}
-                  active={showSolution}>
-                  <IconSolution className="mr-1.5" />{' '}
-                  {showSolution ? '答えを隠す' : '答えを見る'}
-                </Button>
-              </div>
-            ) : (
-              !isRecipes && (
-                <Button
-                  className="mr-2"
-                  onClick={toggleSolution}
-                  active={showSolution}>
-                  <IconSolution className="mr-1.5" />{' '}
-                  {showSolution ? '答えを隠す' : '答えを見る'}
-                </Button>
-              )
-            )}
-
-            {nextChallenge && (
-              <Button
-                className={cn(
-                  isRecipes
-                    ? 'bg-purple-50 border-purple-50 hover:bg-purple-50 focus:bg-purple-50 active:bg-purple-50'
-                    : 'bg-link dark:bg-link-dark'
-                )}
-                onClick={() => {
-                  setActiveChallenge(nextChallenge.id);
-                  setShowSolution(false);
-                }}
-                active>
-                次の{isRecipes ? '例' : '問題'}
-                <IconArrowSmall
-                  displayDirection="right"
-                  className="block ml-1.5"
-                />
-              </Button>
-            )}
-          </div>
-          {showHint && currentChallenge.hint}
-
-          {showSolution && (
-            <div className="mt-6">
-              <h3 className="text-2xl font-bold text-primary dark:text-primary-dark">
-                答え
-              </h3>
-              {currentChallenge.solution}
-              <div className="flex justify-between items-center mt-4">
-                <Button onClick={() => setShowSolution(false)}>
-                  答えを隠す
-                </Button>
-                {nextChallenge && (
-                  <Button
-                    className={cn(
-                      isRecipes ? 'bg-purple-50' : 'bg-link dark:bg-link-dark'
-                    )}
-                    onClick={() => {
-                      setActiveChallenge(nextChallenge.id);
-                      setShowSolution(false);
-                      if (scrollAnchorRef.current) {
-                        scrollAnchorRef.current.scrollIntoView({
-                          block: 'start',
-                          behavior: 'smooth',
-                        });
-                      }
-                    }}
-                    active>
-                    次の問題
-                    <IconArrowSmall
-                      displayDirection="right"
-                      className="block ml-1.5"
-                    />
-                  </Button>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-=======
         <Challenge
           key={currentChallenge.id}
           isRecipes={isRecipes}
@@ -231,7 +131,6 @@ export function Challenges({
             queuedScrollRef.current = true;
           }}
         />
->>>>>>> 841d3d1b75491ce153a53d1887ab020458090bbd
       </div>
     </div>
   );
