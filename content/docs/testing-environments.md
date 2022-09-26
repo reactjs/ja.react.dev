@@ -47,7 +47,7 @@ Node.js では、Jest のようなテストランナーは[モジュールのモ
 
 ### タイマーのモック {#mocking-timers}
 
-コンポーネントは `setTimeout`、`setInterval` や `Date.now` のような時間に依存する関数を使っているかもしれません。テスト環境では、これらの関数をモック版で置き換えて、手動で時間を「進められる」ようにすることが有用です。これはテストを高速に実行させるためにも役立ちます！ タイマーに依存しているテストは順番通りに処理されますが、より高速になるのです[<small>（例）</small>](/docs/testing-recipes.html#timers)。[Jest](https://jestjs.io/docs/en/timer-mocks)、[sinon](https://sinonjs.org/releases/v7.3.2/fake-timers/) や [lolex](https://github.com/sinonjs/lolex) を含むほとんどのフレームワークにおいて、テストでモックタイマーを利用できます。
+コンポーネントは `setTimeout`、`setInterval` や `Date.now` のような時間に依存する関数を使っているかもしれません。テスト環境では、これらの関数をモック版で置き換えて、手動で時間を「進められる」ようにすることが有用です。これはテストを高速に実行させるためにも役立ちます！ タイマーに依存しているテストは順番通りに処理されますが、より高速になるのです[<small>（例）</small>](/docs/testing-recipes.html#timers)。[Jest](https://jestjs.io/docs/en/timer-mocks)、[sinon](https://sinonjs.org/releases/latest/fake-timers) や [lolex](https://github.com/sinonjs/lolex) を含むほとんどのフレームワークにおいて、テストでモックタイマーを利用できます。
 
 時には、タイマーのモックをやりたくない場合があります。例えばアニメーションや、タイミングに依存するエンドポイント（API レートリミッタなど）をテストしているのかもしれません。タイマーのモックが利用できるライブラリでは、テストあるいはスイートごとにモックを有効化・無効化できるようになっているため、どのようにテストを実行するかを明示的に選択できます。
 

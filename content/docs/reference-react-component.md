@@ -52,7 +52,7 @@ class Welcome extends React.Component {
 
 >補足:
 >
->これらのメソッドはレガシーだと考えられているため、新しいコードでは[避ける](/blog/2018/03/27/update-on-async-rendering.html)べきです。
+>このメソッドはレガシーだと考えられているため、新しいコードでは[避ける](/blog/2018/03/27/update-on-async-rendering.html)べきです。
 >
 >- [`UNSAFE_componentWillMount()`](#unsafe_componentwillmount)
 

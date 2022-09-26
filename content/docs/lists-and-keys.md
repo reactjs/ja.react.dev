@@ -119,7 +119,9 @@ const todoItems = todos.map((todo, index) =>
 );
 ```
 
-要素の並び順が変更される可能性がある場合、インデックスを key として使用することはお勧めしません。パフォーマンスに悪い影響を与え、コンポーネントの状態に問題を起こす可能性があります。Robin Pokorny による、[key としてインデックスを用いる際の悪影響についての詳しい解説](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)をご覧ください。より詳しく学びたい場合は、[key が何故必要なのかについての詳しい解説](/docs/reconciliation.html#recursing-on-children)を参照してください。
+要素の並び順が変更される可能性がある場合、インデックスを key として使用することはお勧めしません。パフォーマンスに悪い影響を与え、コンポーネントの状態に問題を起こす可能性があります。Robin Pokorny による、[key としてインデックスを用いる際の悪影響についての詳しい解説](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)をご覧ください。もし明示的に key を指定しない場合、React はインデックスを key のデフォルト値として使います。
+
+より詳しく学びたい場合はこちらの [key が必要である詳細な理由](/docs/reconciliation.html#recursing-on-children)をご覧ください。
 
 ### key のあるコンポーネントの抽出 {#extracting-components-with-keys}
 

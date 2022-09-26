@@ -45,7 +45,7 @@ React でそのアルゴリズムを使った場合、1000 個の要素を表示
 
 >補足：
 >
->これらのコードはレガシーとみなされるため、新規コードでは[使用を避ける](/blog/2018/03/27/update-on-async-rendering.html)べきです：
+>このコードはレガシーとみなされるため、新規コードでは[使用を避ける](/blog/2018/03/27/update-on-async-rendering.html)べきです：
 >
 >- `UNSAFE_componentWillMount()`
 
