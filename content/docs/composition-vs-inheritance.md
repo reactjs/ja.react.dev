@@ -169,4 +169,8 @@ Facebook では、何千というコンポーネントで React を使用して�
 
 props とコンポジションにより、コンポーネントの見た目と振る舞いを明示的かつ安全にカスタマイズするのに十分な柔軟性が得られます。コンポーネントはどのような props でも受け付けることができ、それはプリミティブ値でも、React 要素でも、あるいは関数であってもよい、ということに留意してください。
 
+<<<<<<< HEAD
 コンポーネント間で非 UI 機能を再利用したい場合は、それを別の JavaScript モジュールに抽出することをお勧めします。コンポーネントはその関数やオブジェクト、クラスなどを継承することなくインポートすることで使用することができるでしょう。
+=======
+If you want to reuse non-UI functionality between components, we suggest extracting it into a separate JavaScript module. The components may import it and use that function, object, or class, without extending it.
+>>>>>>> e3073b03a5b9eff4ef12998841b9e56120f37e26

@@ -609,7 +609,11 @@ function App() {
 >
 > トランジション内での更新はクリックのような緊急性の高い更新がある場合は遅延されることがあります。
 >
+<<<<<<< HEAD
 > トランジション内での更新によってコンテンツが再サスペンドした場合でもフォールバックは表示されません。これにより更新後のデータをレンダーしている最中に、ユーザが現在のコンテンツを操作しつづけられるようになります。
+=======
+> Updates in a transition will not show a fallback for re-suspended content. This allows the user to continue interacting with the current content while rendering the update.
+>>>>>>> e3073b03a5b9eff4ef12998841b9e56120f37e26
 
 ### `useId` {#useid}
 
