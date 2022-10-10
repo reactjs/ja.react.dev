@@ -163,11 +163,11 @@ ul { padding: 20px 20px 20px 40px; margin: 0; }
 
 次に `{{` と `}}` を見たときには、JSX の波括弧の中に書かれたオブジェクトに過ぎないということを思い出してください！
 
-<Gotcha>
+<Pitfall>
 
 インラインの `style` 属性はキャメルケースで書きます。例えば HTML で `<ul style="background-color: black">` となっていれば、あなたのコンポーネントでは `<ul style={{ backgroundColor: 'black' }}>` になります。
 
-</Gotcha>
+</Pitfall>
 
 ## オブジェクトと波括弧でさらにいろいろやってみる {/*more-fun-with-javascript-objects-and-curly-braces*/}
 

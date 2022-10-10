@@ -214,11 +214,11 @@ JSX は JavaScript に変換され、中に書かれた属性は JavaScript オ�
 
 全リストは[React DOM 要素に存在する属性の一覧](TODO)にあります。何かを間違ったとしても心配は要りません。[ブラウザのコンソール](https://developer.mozilla.org/docs/Tools/Browser_Console)にメッセージと修正の提案が表示されるようになっています。
 
-<Gotcha>
+<Pitfall>
 
 歴史的理由により、[`aria-*`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA) と [`data-*`](https://developer.mozilla.org/docs/Learn/HTML/Howto/Use_data_attributes) 属性は HTML 属性と同じようにハイフン付きで書くことになっています。
 
-</Gotcha>
+</Pitfall>
 
 ### ヒント：JSX コンバータを使う {/*pro-tip-use-a-jsx-converter*/}
 
