@@ -178,7 +178,7 @@ function Avatar(props) {
 
 通常は `props` オブジェクト全体を必要とすることはないため、個々の props へと分割代入します。
 
-<Gotcha>
+<Pitfall>
 
 props を宣言する際は `(` と `)` の中で **`{` と `}` という波括弧のペアを入れ忘れない**ようにしましょう：
 
@@ -198,7 +198,7 @@ function Avatar(props) {
 }
 ```
 
-</Gotcha>
+</Pitfall>
 
 ## props のデフォルト値を指定する {/*specifying-a-default-value-for-a-prop*/}
 
@@ -345,7 +345,11 @@ export function getImageUrl(person, size = 's') {
 
 `<Card>` 内の `<Avatar>` を何かテキストに置き換えてみて、ネストされているどんなコンテンツでも `Card` コンポーネントは囲んで表示できるということを確かめてください。中に何が表示されるかあらかじめ知っておく必要はありません。このような柔軟なパターンは、様々なところで目にすることになるでしょう。
 
+<<<<<<< HEAD
 `children` プロパティを有するコンポーネントには、親に任意の JSX で「埋めて」もらうための「穴」が開いている、と考えることができます。`children` は、パネルやグリッドのような視覚的に何かを囲む要素に使うことができます。これについては [Extracting Layout Components](TODO:/learn/extracting-layout-components) で詳しく解説します。
+=======
+You can think of a component with a `children` prop as having a "hole" that can be "filled in" by its parent components with arbitrary JSX. You will often use the `children` prop for visual wrappers: panels, grids, and so on.
+>>>>>>> 8fe817e61e5fe50020ed9379ce9e1c5a2cf476a9
 
 <Illustration src="/images/docs/illustrations/i_children-prop.png" alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar' />
 

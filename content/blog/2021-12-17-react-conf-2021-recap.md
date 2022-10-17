@@ -21,7 +21,11 @@ React 18 には、長らく待望されてきた並行レンダラと、サス�
 
 キーノートではさらに、サスペンス、サーバコンポーネント、新たな React ワーキンググループ、そして React Native の長期的な多プラットフォーム戦略についてお話ししました。
 
+<<<<<<< HEAD
 [Andrew Clark](https://twitter.com/acdlite)、[Juan Tejada](https://twitter.com/_jstejada)、[Lauren Tan](https://twitter.com/sugarpirate_)、[Rick Hanlon](https://twitter.com/rickhanlonii) によるキーノートの全編は以下でご覧ください：
+=======
+Watch the full keynote from [Andrew Clark](https://twitter.com/acdlite), [Juan Tejada](https://twitter.com/_jstejada), [Lauren Tan](https://twitter.com/potetotes), and [Rick Hanlon](https://twitter.com/rickhanlonii) here:
+>>>>>>> 8fe817e61e5fe50020ed9379ce9e1c5a2cf476a9
 
 <iframe style="margin-top:10px" width="560" height="315" src="https://www.youtube.com/embed/FZ0cG47msEk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -117,11 +121,19 @@ React の学習や React による設計についての一連の発表は [Rache
 
 我々自身でカンファランスを計画したのは今年が初めてでした。多くの方に感謝したいと思います。
 
+<<<<<<< HEAD
 まずは発表者の方々に感謝します。[Aakansha Doshi](https://twitter.com/aakansha1216)、[Andrew Clark](https://twitter.com/acdlite)、[Brian Vaughn](https://twitter.com/brian_d_vaughn)、[Daishi Kato](https://twitter.com/dai_shi)、[Debbie O'Brien](https://twitter.com/debs_obrien)、[Delba de Oliveira](https://twitter.com/delba_oliveira)、[Diego Haz](https://twitter.com/diegohaz)、[Eric Rozell](https://twitter.com/EricRozell)、[Helen Lin](https://twitter.com/wizardlyhel)、[Juan Tejada](https://twitter.com/_jstejada)、[Lauren Tan](https://twitter.com/sugarpirate_)、[Linton Ye](https://twitter.com/lintonye)、[Lyle Troxell](https://twitter.com/lyle)、[Rachel Nabors](https://twitter.com/rachelnabors)、[Rick Hanlon](https://twitter.com/rickhanlonii)、[Robert Balicki](https://twitter.com/StatisticsFTW)、[Roman Rädle](https://twitter.com/raedle)、[Sarah Rainsberger](https://twitter.com/sarah11918)、[Shaundai Person](https://twitter.com/shaundai)、[Shruti Kapoor](https://twitter.com/shrutikapoor08)、[Steven Moyes](https://twitter.com/moyessa)、[Tafu Nakazaki](https://twitter.com/hawaiiman0)、[Xuan Huang (黄玄)](https://twitter.com/Huxpro)。
 
 発表についてのフィードバックを頂いた方々に感謝します。[Andrew Clark](https://twitter.com/acdlite)、[Dan Abramov](https://twitter.com/dan_abramov)、[Dave McCabe](https://twitter.com/mcc_abe)、[Eli White](https://twitter.com/Eli_White)、[Joe Savona](https://twitter.com/en_JS)、[Lauren Tan](https://twitter.com/sugarpirate_)、[Rachel Nabors](https://twitter.com/rachelnabors)、[Tim Yung](https://twitter.com/yungsters)。
 
 カンファランス Discord のセットアップを行い Discord 管理者になっていただいた [Lauren Tan](https://twitter.com/sugarpirate_) に感謝します。
+=======
+First, thanks to all of our speakers [Aakansha Doshi](https://twitter.com/aakansha1216), [Andrew Clark](https://twitter.com/acdlite), [Brian Vaughn](https://twitter.com/brian_d_vaughn), [Daishi Kato](https://twitter.com/dai_shi), [Debbie O'Brien](https://twitter.com/debs_obrien), [Delba de Oliveira](https://twitter.com/delba_oliveira), [Diego Haz](https://twitter.com/diegohaz), [Eric Rozell](https://twitter.com/EricRozell), [Helen Lin](https://twitter.com/wizardlyhel), [Juan Tejada](https://twitter.com/_jstejada), [Lauren Tan](https://twitter.com/potetotes), [Linton Ye](https://twitter.com/lintonye), [Lyle Troxell](https://twitter.com/lyle), [Rachel Nabors](https://twitter.com/rachelnabors), [Rick Hanlon](https://twitter.com/rickhanlonii), [Robert Balicki](https://twitter.com/StatisticsFTW), [Roman Rädle](https://twitter.com/raedle), [Sarah Rainsberger](https://twitter.com/sarah11918), [Shaundai Person](https://twitter.com/shaundai), [Shruti Kapoor](https://twitter.com/shrutikapoor08), [Steven Moyes](https://twitter.com/moyessa), [Tafu Nakazaki](https://twitter.com/hawaiiman0), and  [Xuan Huang (黄玄)](https://twitter.com/Huxpro).
+
+Thanks to everyone who helped provide feedback on talks including [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](https://twitter.com/dan_abramov), [Dave McCabe](https://twitter.com/mcc_abe), [Eli White](https://twitter.com/Eli_White), [Joe Savona](https://twitter.com/en_JS),  [Lauren Tan](https://twitter.com/potetotes), [Rachel Nabors](https://twitter.com/rachelnabors), and [Tim Yung](https://twitter.com/yungsters).
+
+Thanks to [Lauren Tan](https://twitter.com/potetotes) for setting up the conference Discord and serving as our Discord admin.
+>>>>>>> 8fe817e61e5fe50020ed9379ce9e1c5a2cf476a9
 
 全体の方向性や、多様性とその受け入れについて助言をいただいた [Seth Webster](https://twitter.com/sethwebster) に感謝します。
 

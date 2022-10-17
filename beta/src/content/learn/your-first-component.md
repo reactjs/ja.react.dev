@@ -86,11 +86,11 @@ img { height: 200px; }
 
 `function Profile() { }` のように書くことで、`Profile` という名前の JavaScript 関数を定義します。
 
-<Gotcha>
+<Pitfall>
 
 React コンポーネントは普通の JavaScript 関数ですが、**名前は大文字から始める必要があります**。さもないと動作しません！
 
-</Gotcha>
+</Pitfall>
 
 ### Step 3: マークアップを加える {/*step-3-add-markup*/}
 
@@ -112,11 +112,11 @@ return (
 );
 ```
 
-<Gotcha>
+<Pitfall>
 
 括弧がないと、`return` の後にあるコードはすべて[無視されてしまいます](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)！
 
-</Gotcha>
+</Pitfall>
 
 ## コンポーネントを使う {/*using-a-component*/}
 
@@ -176,7 +176,42 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 `Profile` コンポーネントは `Gallery` コンポーネントの中でレンダーされています（しかも何回も）ので、`Gallery` は**親コンポーネント**であり、`Profile` を「子」としてレンダーしている、と言うことができます。これが React の魔法です。一度コンポーネントを定義したら、それを好きなだけ、どこでも何回でも使えるということです。
 
+<<<<<<< HEAD
 <DeepDive title="端から端までコンポーネント">
+=======
+<Pitfall>
+
+Components can render other components, but **you must never nest their definitions:**
+
+```js {2-5}
+export default function Gallery() {
+  // 🔴 Never define a component inside another component!
+  function Profile() {
+    // ...
+  }
+  // ...
+}
+```
+
+The snippet above is [very slow and causes bugs.](/learn/preserving-and-resetting-state#different-components-at-the-same-position-reset-state) Instead, define every component at the top level:
+
+```js {5-8}
+export default function Gallery() {
+  // ...
+}
+
+// ✅ Declare components at the top level
+function Profile() {
+  // ...
+}
+```
+
+When a child component needs some data from a parent, [pass it by props](/learn/passing-props-to-a-component) instead of nesting definitions.
+
+</Pitfall>
+
+<DeepDive title="Components all the way down">
+>>>>>>> 8fe817e61e5fe50020ed9379ce9e1c5a2cf476a9
 
 React アプリケーションは「ルート」コンポーネントから始まります。通常、これは新しいプロジェクトを開始したときに自動的に作成されます。例えば [CodeSandbox](https://codesandbox.io/) や [Create React App](https://create-react-app.dev/) を使う場合、ルートコンポーネントは `src/App.js` 内に定義されています。[Next.js](https://nextjs.org/) フレームワークを使っている場合はルートコンポーネントは `pages/index.js` に定義されています。ここまでの例でも、ルートコンポーネントをエクスポートしていたわけです。
 

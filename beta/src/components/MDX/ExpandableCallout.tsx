@@ -2,12 +2,14 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+import {useRef} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import {IconNote} from '../Icon/IconNote';
-import {IconGotcha} from '../Icon/IconGotcha';
+import {IconWarning} from '../Icon/IconWarning';
+import {IconPitfall} from '../Icon/IconPitfall';
 
-type CalloutVariants = 'gotcha' | 'note' | 'wip';
+type CalloutVariants = 'deprecated' | 'pitfall' | 'note' | 'wip';
 
 interface ExpandableCalloutProps {
   children: React.ReactNode;
@@ -15,6 +17,14 @@ interface ExpandableCalloutProps {
 }
 
 const variantMap = {
+  deprecated: {
+    title: 'Deprecated',
+    Icon: IconWarning,
+    containerClasses: 'bg-red-5 dark:bg-red-60 dark:bg-opacity-20',
+    textColor: 'text-red-50 dark:text-red-40',
+    overlayGradient:
+      'linear-gradient(rgba(249, 247, 243, 0), rgba(249, 247, 243, 1)',
+  },
   note: {
     title: '補足',
     Icon: IconNote,
@@ -24,9 +34,15 @@ const variantMap = {
     overlayGradient:
       'linear-gradient(rgba(245, 249, 248, 0), rgba(245, 249, 248, 1)',
   },
+<<<<<<< HEAD
   gotcha: {
     title: '落とし穴',
     Icon: IconGotcha,
+=======
+  pitfall: {
+    title: 'Pitfall',
+    Icon: IconPitfall,
+>>>>>>> 8fe817e61e5fe50020ed9379ce9e1c5a2cf476a9
     containerClasses: 'bg-yellow-5 dark:bg-yellow-60 dark:bg-opacity-20',
     textColor: 'text-yellow-50 dark:text-yellow-40',
     overlayGradient:
@@ -43,8 +59,10 @@ const variantMap = {
 };
 
 function ExpandableCallout({children, type}: ExpandableCalloutProps) {
-  const contentRef = React.useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const variant = variantMap[type];
+
+  console.log('v,', variant);
 
   return (
     <div
