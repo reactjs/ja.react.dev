@@ -176,12 +176,9 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 `Profile` コンポーネントは `Gallery` コンポーネントの中でレンダーされています（しかも何回も）ので、`Gallery` は**親コンポーネント**であり、`Profile` を「子」としてレンダーしている、と言うことができます。これが React の魔法です。一度コンポーネントを定義したら、それを好きなだけ、どこでも何回でも使えるということです。
 
-<<<<<<< HEAD
-<DeepDive title="端から端までコンポーネント">
-=======
 <Pitfall>
 
-Components can render other components, but **you must never nest their definitions:**
+コンポーネントがほかのコンポーネントをレンダーすることはできますが、**コンポーネントの定義をネストさせてはいけません**。
 
 ```js {2-5}
 export default function Gallery() {
@@ -193,7 +190,7 @@ export default function Gallery() {
 }
 ```
 
-The snippet above is [very slow and causes bugs.](/learn/preserving-and-resetting-state#different-components-at-the-same-position-reset-state) Instead, define every component at the top level:
+上記のコードは[とても遅く、バグの原因になります](/learn/preserving-and-resetting-state#different-components-at-the-same-position-reset-state)。代わりに、すべてのコンポーネントをトップレベルで定義するようにしてください：
 
 ```js {5-8}
 export default function Gallery() {
@@ -206,12 +203,11 @@ function Profile() {
 }
 ```
 
-When a child component needs some data from a parent, [pass it by props](/learn/passing-props-to-a-component) instead of nesting definitions.
+子コンポーネントが親コンポーネントの情報を必要とする場合は、コンポーネント定義をネストさせるのではなく [props を通じて渡す](/learn/passing-props-to-a-component)ようにしてください。
 
 </Pitfall>
 
-<DeepDive title="Components all the way down">
->>>>>>> 8fe817e61e5fe50020ed9379ce9e1c5a2cf476a9
+<DeepDive title="端から端までコンポーネント">
 
 React アプリケーションは「ルート」コンポーネントから始まります。通常、これは新しいプロジェクトを開始したときに自動的に作成されます。例えば [CodeSandbox](https://codesandbox.io/) や [Create React App](https://create-react-app.dev/) を使う場合、ルートコンポーネントは `src/App.js` 内に定義されています。[Next.js](https://nextjs.org/) フレームワークを使っている場合はルートコンポーネントは `pages/index.js` に定義されています。ここまでの例でも、ルートコンポーネントをエクスポートしていたわけです。
 

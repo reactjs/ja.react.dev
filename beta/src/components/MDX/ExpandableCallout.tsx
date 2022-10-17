@@ -34,15 +34,9 @@ const variantMap = {
     overlayGradient:
       'linear-gradient(rgba(245, 249, 248, 0), rgba(245, 249, 248, 1)',
   },
-<<<<<<< HEAD
-  gotcha: {
-    title: '落とし穴',
-    Icon: IconGotcha,
-=======
   pitfall: {
-    title: 'Pitfall',
+    title: '落とし穴',
     Icon: IconPitfall,
->>>>>>> 8fe817e61e5fe50020ed9379ce9e1c5a2cf476a9
     containerClasses: 'bg-yellow-5 dark:bg-yellow-60 dark:bg-opacity-20',
     textColor: 'text-yellow-50 dark:text-yellow-40',
     overlayGradient:
