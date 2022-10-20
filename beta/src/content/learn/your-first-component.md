@@ -86,11 +86,11 @@ img { height: 200px; }
 
 `function Profile() { }` のように書くことで、`Profile` という名前の JavaScript 関数を定義します。
 
-<Gotcha>
+<Pitfall>
 
 React コンポーネントは普通の JavaScript 関数ですが、**名前は大文字から始める必要があります**。さもないと動作しません！
 
-</Gotcha>
+</Pitfall>
 
 ### Step 3: マークアップを加える {/*step-3-add-markup*/}
 
@@ -112,11 +112,11 @@ return (
 );
 ```
 
-<Gotcha>
+<Pitfall>
 
 括弧がないと、`return` の後にあるコードはすべて[無視されてしまいます](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)！
 
-</Gotcha>
+</Pitfall>
 
 ## コンポーネントを使う {/*using-a-component*/}
 
@@ -175,6 +175,37 @@ img { margin: 0 10px 10px 0; height: 90px; }
 コンポーネントは普通の JavaScript 関数ですので、同じファイルに複数のコンポーネントを書いておくこともできます。これはコンポーネントが比較的小さい場合や互いに密接に関連している場合には便利です。ファイルの中身が増えてきたら、いつでも `Profile` を別のファイルに移動できます。このやり方についてはすぐ後で、[インポートについてのページ](/learn/importing-and-exporting-components)で学びます。
 
 `Profile` コンポーネントは `Gallery` コンポーネントの中でレンダーされています（しかも何回も）ので、`Gallery` は**親コンポーネント**であり、`Profile` を「子」としてレンダーしている、と言うことができます。これが React の魔法です。一度コンポーネントを定義したら、それを好きなだけ、どこでも何回でも使えるということです。
+
+<Pitfall>
+
+コンポーネントがほかのコンポーネントをレンダーすることはできますが、**コンポーネントの定義をネストさせてはいけません**。
+
+```js {2-5}
+export default function Gallery() {
+  // 🔴 Never define a component inside another component!
+  function Profile() {
+    // ...
+  }
+  // ...
+}
+```
+
+上記のコードは[とても遅く、バグの原因になります](/learn/preserving-and-resetting-state#different-components-at-the-same-position-reset-state)。代わりに、すべてのコンポーネントをトップレベルで定義するようにしてください：
+
+```js {5-8}
+export default function Gallery() {
+  // ...
+}
+
+// ✅ Declare components at the top level
+function Profile() {
+  // ...
+}
+```
+
+子コンポーネントが親コンポーネントの情報を必要とする場合は、コンポーネント定義をネストさせるのではなく [props を通じて渡す](/learn/passing-props-to-a-component)ようにしてください。
+
+</Pitfall>
 
 <DeepDive title="端から端までコンポーネント">
 

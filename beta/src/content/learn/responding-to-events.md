@@ -87,12 +87,12 @@ Or, more concisely, using an arrow function:
 
 All of these styles are equivalent. Inline event handlers are convenient for short functions.
 
-<Gotcha>
+<Pitfall>
 
 Functions passed to event handlers must be passed, not called. For example:
 
-| passing a function (correct)           | calling a function (incorrect) |
-|----------------------------------------|--------------------------------|
+| passing a function (correct)     | calling a function (incorrect)     |
+| -------------------------------- | ---------------------------------- |
 | `<button onClick={handleClick}>` | `<button onClick={handleClick()}>` |
 
 The difference is subtle. In the first example, the `handleClick` function is passed as an `onClick` event handler. This tells React to remember it and only call your function when the user clicks the button.
@@ -101,8 +101,8 @@ In the second example, the `()` at the end of `handleClick()` fires the function
 
 When you write code inline, the same pitfall presents itself in a different way:
 
-| passing a function (correct)           | calling a function (incorrect) |
-|----------------------------------------|--------------------------------|
+| passing a function (correct)            | calling a function (incorrect)    |
+| --------------------------------------- | --------------------------------- |
 | `<button onClick={() => alert('...')}>` | `<button onClick={alert('...')}>` |
 
 
@@ -126,9 +126,9 @@ In both cases, what you want to pass is a function:
 * `<button onClick={handleClick}>` passes the `handleClick` function.
 * `<button onClick={() => alert('...')}>` passes the `() => alert('...')` function.
 
-> Check out the [JavaScript Refresher](TODO:/learn/a-javascript-refresher#arrow-functions) for more on arrow functions.
+> [Read more about arrow functions.](https://javascript.info/arrow-functions-basics)
 
-</Gotcha>
+</Pitfall>
 
 ### Reading props in event handlers {/*reading-props-in-event-handlers*/}
 
@@ -316,10 +316,6 @@ Notice how the `App` component does not need to know *what* `Toolbar` will do wi
 
 ## Event propagation {/*event-propagation*/}
 
-<!--
-// TODO illo
--->
-
 Event handlers will also catch events from any children your component might have. We say that an event "bubbles" or "propagates" up the tree: it starts with where the event happened, and then goes up the tree.
 
 This `<div>` contains two buttons. Both the `<div>` *and* each button have their own `onClick` handlers. Which handlers do you think will fire when you click a button?
@@ -355,11 +351,11 @@ button { margin: 5px; }
 
 If you click on either button, its `onClick` will run first, followed by the parent `<div>`'s `onClick`. So two messages will appear. If you click the toolbar itself, only the parent `<div>`'s `onClick` will run.
 
-<Gotcha>
+<Pitfall>
 
 All events propagate in React except `onScroll`, which only works on the JSX tag you attach it to.
 
-</Gotcha>
+</Pitfall>
 
 ### Stopping propagation {/*stopping-propagation*/}
 
@@ -419,10 +415,6 @@ When you click on a button:
 As a result of `e.stopPropagation()`, clicking on the buttons now only shows a single alert (from the `<button>`) rather than the two of them (from the `<button>` and the parent toolbar `<div>`). Clicking a button is not the same thing as clicking the surrounding toolbar, so stopping the propagation makes sense for this UI.
 
 <DeepDive title="Capture phase events">
-
-<!--
-// TODO Illo
--->
 
 In rare cases, you might need to catch all events on child elements, *even if they stopped propagation*. For example, maybe you want to log every click to analytics, regardless of the propagation logic. You can do this by adding `Capture` at the end of the event name:
 
