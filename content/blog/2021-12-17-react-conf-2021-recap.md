@@ -115,13 +115,13 @@ React の学習や React による設計についての一連の発表は [Rache
 
 # 謝辞 {#thank-you}
 
-我々自身でカンファランスを計画したのは今年が初めてでした。多くの方に感謝したいと思います。
+我々自身でカンファレンスを計画したのは今年が初めてでした。多くの方に感謝したいと思います。
 
 まずは発表者の方々に感謝します。[Aakansha Doshi](https://twitter.com/aakansha1216)、[Andrew Clark](https://twitter.com/acdlite)、[Brian Vaughn](https://twitter.com/brian_d_vaughn)、[Daishi Kato](https://twitter.com/dai_shi)、[Debbie O'Brien](https://twitter.com/debs_obrien)、[Delba de Oliveira](https://twitter.com/delba_oliveira)、[Diego Haz](https://twitter.com/diegohaz)、[Eric Rozell](https://twitter.com/EricRozell)、[Helen Lin](https://twitter.com/wizardlyhel)、[Juan Tejada](https://twitter.com/_jstejada)、[Lauren Tan](https://twitter.com/potetotes)、[Linton Ye](https://twitter.com/lintonye)、[Lyle Troxell](https://twitter.com/lyle)、[Rachel Nabors](https://twitter.com/rachelnabors)、[Rick Hanlon](https://twitter.com/rickhanlonii)、[Robert Balicki](https://twitter.com/StatisticsFTW)、[Roman Rädle](https://twitter.com/raedle)、[Sarah Rainsberger](https://twitter.com/sarah11918)、[Shaundai Person](https://twitter.com/shaundai)、[Shruti Kapoor](https://twitter.com/shrutikapoor08)、[Steven Moyes](https://twitter.com/moyessa)、[Tafu Nakazaki](https://twitter.com/hawaiiman0)、[Xuan Huang (黄玄)](https://twitter.com/Huxpro)。
 
 発表についてのフィードバックを頂いた方々に感謝します。[Andrew Clark](https://twitter.com/acdlite)、[Dan Abramov](https://twitter.com/dan_abramov)、[Dave McCabe](https://twitter.com/mcc_abe)、[Eli White](https://twitter.com/Eli_White)、[Joe Savona](https://twitter.com/en_JS)、[Lauren Tan](https://twitter.com/potetotes)、[Rachel Nabors](https://twitter.com/rachelnabors)、[Tim Yung](https://twitter.com/yungsters)。
 
-カンファランス Discord のセットアップを行い Discord 管理者になっていただいた [Lauren Tan](https://twitter.com/potetotes) に感謝します。
+カンファレンス Discord のセットアップを行い Discord 管理者になっていただいた [Lauren Tan](https://twitter.com/potetotes) に感謝します。
 
 全体の方向性や、多様性とその受け入れについて助言をいただいた [Seth Webster](https://twitter.com/sethwebster) に感謝します。
 
@@ -131,18 +131,18 @@ React の学習や React による設計についての一連の発表は [Rache
 
 リプレイイベントのモデレーションやコミュニティへの活動に協力頂いた、[React India](https://www.reactindia.io/) の [Manjula Dube](https://twitter.com/manjula_dube)、[Sahil Mhapsekar](https://twitter.com/apheri0)、Vihang Patel、および [React China](https://twitter.com/ReactChina) の [Jasmine Xie](https://twitter.com/jasmine_xby)、[QiChang Li](https://twitter.com/QCL15)、[YanLun Li](https://twitter.com/anneincoding) に感謝します。
 
-カンファランスのウェブサイトを構築するのに使った [Virtual Event Starter Kit](https://vercel.com/virtual-event-starter-kit) を公開していただいた Vercel、そして Next.js Conf での経験を共有していただいた [Lee Robinson](https://twitter.com/leeerob) と [Delba de Oliveira](https://twitter.com/delba_oliveira) に感謝します。
+カンファレンスのウェブサイトを構築するのに使った [Virtual Event Starter Kit](https://vercel.com/virtual-event-starter-kit) を公開していただいた Vercel、そして Next.js Conf での経験を共有していただいた [Lee Robinson](https://twitter.com/leeerob) と [Delba de Oliveira](https://twitter.com/delba_oliveira) に感謝します。
 
-カンファランス運営の経験や [RustConf](https://rustconf.com/) 運営からの教訓を共有していただいた [Leah Silber](https://twitter.com/wifelette) に感謝します。彼女の書籍 [Event Driven](https://leanpub.com/eventdriven/) とそこに含まれたカンファランス運営に関する助言に感謝します。
+カンファレンス運営の経験や [RustConf](https://rustconf.com/) 運営からの教訓を共有していただいた [Leah Silber](https://twitter.com/wifelette) に感謝します。彼女の書籍 [Event Driven](https://leanpub.com/eventdriven/) とそこに含まれたカンファレンス運営に関する助言に感謝します。
 
 Women of React Conf の運営経験について共有していただいた [Kevin Lewis](https://twitter.com/_phzn) と [Rachel Nabors](https://twitter.com/rachelnabors) に感謝します。
 
 企画全体にわたってアドバイスやアイディアをいただいた [Aakansha Doshi](https://twitter.com/aakansha1216)、[Laurie Barth](https://twitter.com/laurieontech)、[Michael Chan](https://twitter.com/chantastic)、[Shaundai Person](https://twitter.com/shaundai) に感謝します。
 
-カンファランスウェブサイトとチケットのデザイン・構築に協力いただいた [Dan Lebowitz](https://twitter.com/lebo) に感謝します。
+カンファレンスウェブサイトとチケットのデザイン・構築に協力いただいた [Dan Lebowitz](https://twitter.com/lebo) に感謝します。
 
 キーノートや Meta 従業員の発表の録画をしていただいた Laura Podolak Waddell、Desmond Osei-Acheampong、Mark Rossi、Josh Toberman および Facebook Video Productions の他の方々に感謝します。
 
-カンファランスの運営、ストリームされる全ビデオの編集、全発表の翻訳、そして多言語での Discord のモデレーションについて協力いただいたパートナーの HitPlay に感謝します。
+カンファレンスの運営、ストリームされる全ビデオの編集、全発表の翻訳、そして多言語での Discord のモデレーションについて協力いただいたパートナーの HitPlay に感謝します。
 
 最後に、この React Conf を素晴らしいものにしていただいたすべての参加者の皆さんに感謝します！
