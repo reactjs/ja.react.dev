@@ -313,7 +313,11 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </LearnMore>
 
+<<<<<<< HEAD
 ## 一連の state の変更をキューに入れる {/*queueing-a-series-of-state-changes*/}
+=======
+## Queueing a series of state updates {/*queueing-a-series-of-state-updates*/}
+>>>>>>> 3bba430b5959c2263c73f0d05d46e2c99c972b1c
 
 このコンポーネントにはバグがあります："+3" をクリックしても 1 しかスコアが増えません。
 
@@ -395,9 +399,13 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 </Sandpack>
 
-<LearnMore path="/learn/queueing-a-series-of-state-changes">
+<LearnMore path="/learn/queueing-a-series-of-state-updates">
 
+<<<<<<< HEAD
 次のレンダリングの前に複数の更新をキューに入れる方法を学ぶには **[一連の state の変更をキューに入れる](/learn/queueing-a-series-of-state-changes)** を読んでみましょう。
+=======
+Read **[Queueing a Series of State Updates](/learn/queueing-a-series-of-state-updates)** to learn how to queue multiple updates before the next render.
+>>>>>>> 3bba430b5959c2263c73f0d05d46e2c99c972b1c
 
 </LearnMore>
 

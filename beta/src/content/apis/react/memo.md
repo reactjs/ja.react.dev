@@ -242,7 +242,7 @@ To make your component re-render only when a _part_ of some context changes, spl
 When you use `memo`, your component re-renders whenever any prop is not *shallowly equal* to what it was previously. This means that React compares every prop in your component with the previous value of that prop using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. Note that `Object.is(3, 3)` is `true`, but `Object.is({}, {})` is `false`.
 
 
-To get the most out of `memo`, minimize the times that the props change. For example, if the prop is an object, prevent the parent component from re-creating that object every time by using [`useMemo`:](/api/react/useMemo)
+To get the most out of `memo`, minimize the times that the props change. For example, if the prop is an object, prevent the parent component from re-creating that object every time by using [`useMemo`:](/apis/react/useMemo)
 
 ```js {5-8}
 function Page() {
@@ -331,7 +331,7 @@ Avoid doing deep equality checks inside `arePropsEqual` unless you are 100% sure
 
 ### `memo(Component, arePropsEqual?)` {/*memo*/}
 
-Call `memo` outside of any components to define a memoized version of a component. This memoized component will usually not be re-rendered when its component is re-rendered as long as its props have not changed. But React may still re-render it: memoization is only a performance optimization, not a guarantee.
+Call `memo` outside of any components to define a memoized version of a component. This memoized component will usually not be re-rendered when its parent component is re-rendered as long as its props have not changed. But React may still re-render it: memoization is only a performance optimization, not a guarantee.
 
 ```js
 import { memo } from 'react';
