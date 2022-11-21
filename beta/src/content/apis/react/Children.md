@@ -49,7 +49,7 @@ function RowList({ children }) {
 }
 ```
 
-In the example above, the `RowList` wraps every child it receives into a `<div className="Row>` container. For example, let's say the parent component passes three `<p>` tags as the `children` prop to `RowList`:
+In the example above, the `RowList` wraps every child it receives into a `<div className="Row">` container. For example, let's say the parent component passes three `<p>` tags as the `children` prop to `RowList`:
 
 ```js
 <RowList>
@@ -364,6 +364,18 @@ As mentioned earlier, there is no way to get the rendered output of an inner com
 ---
 
 ## Alternatives {/*alternatives*/}
+
+<Note>
+
+This section describes alternatives to the `Children` API (with capital `C`) that's imported like this:
+
+```js
+import { Children } from 'react';
+```
+
+Don't confuse it with [using the `children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) (lowercase `c`), which is good and encouraged.
+
+</Note>
 
 ### Exposing multiple components {/*exposing-multiple-components*/}
 

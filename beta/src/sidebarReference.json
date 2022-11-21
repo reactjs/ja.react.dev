@@ -17,13 +17,11 @@
             },
             {
               "title": "cloneElement",
-              "path": "/apis/react/cloneElement",
-              "wip": true
+              "path": "/apis/react/cloneElement"
             },
             {
               "title": "Component",
-              "path": "/apis/react/Component",
-              "wip": true
+              "path": "/apis/react/Component"
             },
             {
               "title": "createContext",
@@ -39,8 +37,7 @@
             },
             {
               "title": "createRef",
-              "path": "/apis/react/createRef",
-              "wip": true
+              "path": "/apis/react/createRef"
             },
             {
               "title": "forwardRef",
@@ -64,8 +61,7 @@
             },
             {
               "title": "PureComponent",
-              "path": "/apis/react/PureComponent",
-              "wip": true
+              "path": "/apis/react/PureComponent"
             },
             {
               "title": "startTransition",
@@ -91,8 +87,7 @@
             },
             {
               "title": "useDebugValue",
-              "path": "/apis/react/useDebugValue",
-              "wip": true
+              "path": "/apis/react/useDebugValue"
             },
             {
               "title": "useDeferredValue",
