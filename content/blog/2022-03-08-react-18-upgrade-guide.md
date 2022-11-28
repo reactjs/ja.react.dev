@@ -259,7 +259,11 @@ globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 
 将来的には、テストライブラリがこれを自動で設定するようになることを期待しています。例えば [React Testing Library の次期バージョンは React 18 の組み込みサポートを有しており](https://github.com/testing-library/react-testing-library/issues/509#issuecomment-917989936)、追加の設定が不要となっています。
 
+<<<<<<< HEAD
 ワーキングループで[テスト用 `act` API および関連する変更に関しての背景](https://github.com/reactwg/react-18/discussions/102)が閲覧可能です。
+=======
+[More background on the `act` testing API and related changes](https://github.com/reactwg/react-18/discussions/102) is available in the working group.
+>>>>>>> 1a641bb88e647186f260dd2a8e56f0b083f2e46b
 
 ## Internet Explorer のサポート終了 {#dropping-support-for-internet-explorer}
 

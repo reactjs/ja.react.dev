@@ -121,11 +121,19 @@ render()
 
 呼び出されると、`this.props` と `this.state` を調べて、次のいずれかの型を返します。
 
+<<<<<<< HEAD
 - **React 要素** 通常は [JSX](/docs/introducing-jsx.html) 経由で作成されます。例えば、`<div />` や `<MyComponent />` はそれぞれ React に DOM ノードやユーザが定義した他のコンポーネントをレンダーするように指示する React 要素です
 - **配列とフラグメント** 複数の要素を `render()` から返します。詳しくは [フラグメント](/docs/fragments.html) を参照してください
 - **ポータル** 子を異なる DOM サブツリーにレンダーします。詳しくは [ポータル](/docs/portals.html) を参照してください
 - **文字列と数値** これは DOM のテキストノードとしてレンダーされます
 - **真偽値または `null`** 何もレンダーしません。(ほとんどの場合、`return test && <Child />` パターンをサポートするために存在しています。ここで、`test` は真偽値です）
+=======
+- **React elements.** Typically created via [JSX](/docs/introducing-jsx.html). For example, `<div />` and `<MyComponent />` are React elements that instruct React to render a DOM node, or another user-defined component, respectively.
+- **Arrays and fragments.** Let you return multiple elements from render. See the documentation on [fragments](/docs/fragments.html) for more details.
+- **Portals**. Let you render children into a different DOM subtree. See the documentation on [portals](/docs/portals.html) for more details.
+- **String and numbers.** These are rendered as text nodes in the DOM.
+- **Booleans or `null` or `undefined`**. Render nothing. (Mostly exists to support `return test && <Child />` pattern, where `test` is boolean).
+>>>>>>> 1a641bb88e647186f260dd2a8e56f0b083f2e46b
 
 `render()` 関数は「純粋」でなければなりません。つまり、コンポーネントの state を変更せず、呼び出されるたびに同じ結果を返し、ブラウザと直接対話しないということです。
 

@@ -374,9 +374,14 @@ function MyComponent() {
 サーバサイドレンダリングにおいてもサスペンスバウンダリとサスペンドを用いることで、アプリを部分的に分割して表示していくことができます。
 コンポーネントがサスペンドした場合、直近のサスペンスバウンダリに指定されているフォールバックをレンダーするような低優先度のタスクがスケジュールされます。フォールバックを表示する前にコンポーネントのサスペンドが解除された場合は、フォールバックのコンテンツを捨てて実コンテンツを送信します。
 
+<<<<<<< HEAD
 #### ハイドレーション中の `React.Suspense` {#reactsuspense-during-hydration}
 サスペンスバウンダリがハイドレートされる前に親のバウンダリはハイドレートされていなければなりませんが、兄弟の関係にあるバウンダリとは独立してハイドレートされることができます。
 何らかのバウンダリでイベントが起こった場合、そのバウンダリは他のものより優先的にハイドレートされるようになります。[詳細](https://github.com/reactwg/react-18/discussions/130)
+=======
+#### `React.Suspense` during hydration {#reactsuspense-during-hydration}
+Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before it is hydrated will cause the boundary to hydrate at a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
+>>>>>>> 1a641bb88e647186f260dd2a8e56f0b083f2e46b
 
 ### `React.startTransition` {#starttransition}
 
