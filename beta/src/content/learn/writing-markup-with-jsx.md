@@ -171,7 +171,13 @@ img { height: 90px }
 
 この中身のないタグは *[フラグメント](/apis/react/Fragment)* と呼ばれるものです。フラグメントを使えば、ブラウザの HTML ツリーに痕跡を残さずに複数の要素をまとめることができます。
 
+<<<<<<< HEAD
 <DeepDive title="JSX タグが複数あるときにラップしないといけない理由">
+=======
+<DeepDive>
+
+#### Why do multiple JSX tags need to be wrapped? {/*why-do-multiple-jsx-tags-need-to-be-wrapped*/}
+>>>>>>> cb9854a54984ef1288a8a2b8754897b15e75f433
 
 JSX は HTML のように見えますが、裏ではプレーンな JavaScript オブジェクトに変換されます。関数から 2 つのオブジェクトを返したい場合、配列でラップしないといけませんよね。2 つの JSX タグを返したい場合に別のタグかフラグメントでラップしないといけないのも、同じ理由です。
 
