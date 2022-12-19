@@ -1,5 +1,5 @@
 {
-  "title": "APIs",
+  "title": "API Reference",
   "heading": true,
   "path": "/apis",
   "routes": [
@@ -25,17 +25,11 @@
             },
             {
               "title": "useDeferredValue",
-              "path": "/apis/react/useDeferredValue",
-              "wip": true
+              "path": "/apis/react/useDeferredValue"
             },
             {
               "title": "useEffect",
               "path": "/apis/react/useEffect"
-            },
-            {
-              "title": "useEvent",
-              "path": "/apis/react/useEvent",
-              "wip": true
             },
             {
               "title": "useId",
@@ -47,13 +41,11 @@
             },
             {
               "title": "useInsertionEffect",
-              "path": "/apis/react/useInsertionEffect",
-              "wip": true
+              "path": "/apis/react/useInsertionEffect"
             },
             {
               "title": "useLayoutEffect",
-              "path": "/apis/react/useLayoutEffect",
-              "wip": true
+              "path": "/apis/react/useLayoutEffect"
             },
             {
               "title": "useMemo",
@@ -73,23 +65,25 @@
             },
             {
               "title": "useSyncExternalStore",
-              "path": "/apis/react/useSyncExternalStore",
-              "wip": true
+              "path": "/apis/react/useSyncExternalStore"
             },
             {
               "title": "useTransition",
-              "path": "/apis/react/useTransition",
-              "wip": true
+              "path": "/apis/react/useTransition"
             }
           ]
         },
         {
-          "title": "react: Other APIs",
-          "path": "/apis/react/other",
+          "title": "react: Components",
+          "path": "/apis/react/components",
           "routes": [
             {
               "title": "<Fragment> (<>)",
               "path": "/apis/react/Fragment"
+            },
+            {
+              "title": "<Profiler>",
+              "path": "/apis/react/Profiler"
             },
             {
               "title": "<StrictMode>",
@@ -98,7 +92,13 @@
             {
               "title": "<Suspense>",
               "path": "/apis/react/Suspense"
-            },
+            }
+          ]
+        },
+        {
+          "title": "react: APIs",
+          "path": "/apis/react/apis",
+          "routes": [
             {
               "title": "createContext",
               "path": "/apis/react/createContext"
@@ -117,8 +117,7 @@
             },
             {
               "title": "startTransition",
-              "path": "/apis/react/startTransition",
-              "wip": true
+              "path": "/apis/react/startTransition"
             }
           ]
         },
@@ -128,8 +127,7 @@
           "routes": [
             {
               "title": "createPortal",
-              "path": "/apis/react-dom/createPortal",
-              "wip": true
+              "path": "/apis/react-dom/createPortal"
             },
             {
               "title": "flushSync",
@@ -137,8 +135,7 @@
             },
             {
               "title": "findDOMNode",
-              "path": "/apis/react-dom/findDOMNode",
-              "wip": true
+              "path": "/apis/react-dom/findDOMNode"
             },
             {
               "title": "hydrate",
@@ -150,8 +147,7 @@
             },
             {
               "title": "unmountComponentAtNode",
-              "path": "/apis/react-dom/unmountComponentAtNode",
-              "wip": true
+              "path": "/apis/react-dom/unmountComponentAtNode"
             }
           ]
         },
@@ -175,33 +171,27 @@
           "routes": [
             {
               "title": "renderToNodeStream",
-              "path": "/apis/react-dom/server/renderToNodeStream",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToNodeStream"
             },
             {
               "title": "renderToPipeableStream",
-              "path": "/apis/react-dom/server/renderToPipeableStream",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToPipeableStream"
             },
             {
               "title": "renderToReadableStream",
-              "path": "/apis/react-dom/server/renderToReadableStream",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToReadableStream"
             },
             {
               "title": "renderToStaticMarkup",
-              "path": "/apis/react-dom/server/renderToStaticMarkup",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToStaticMarkup"
             },
             {
               "title": "renderToStaticNodeStream",
-              "path": "/apis/react-dom/server/renderToStaticNodeStream",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToStaticNodeStream"
             },
             {
               "title": "renderToString",
-              "path": "/apis/react-dom/server/renderToString",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToString"
             }
           ]
         },
