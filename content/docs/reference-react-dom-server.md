@@ -17,7 +17,11 @@ var ReactDOMServer = require('react-dom/server');
 
 ## 概要 {#overview}
 
+<<<<<<< HEAD
 以下のメソッドは **[Node.js の Stream](https://nodejs.dev/learn/nodejs-streams) 環境でのみ動作します**：
+=======
+These methods are only available in the **environments with [Node.js Streams](https://nodejs.org/api/stream.html):**
+>>>>>>> e77ba1e90338ff18f965c9b94c733b034b3ac18f
 
 - [`renderToPipeableStream()`](#rendertopipeablestream)
 - [`renderToNodeStream()`](#rendertonodestream)（非推奨）
