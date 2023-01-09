@@ -222,12 +222,14 @@ The tool you just used is called Babel, and you can learn more about it from [it
 
 If you're getting comfortable with build tools and want them to do more for you, [we cover some of the most popular and approachable toolchains here.](/learn/start-a-new-react-project)
 
-<DeepDive title="React without JSX">
+<DeepDive>
+
+#### React without JSX {/*react-without-jsx*/}
 
 Originally JSX was introduced to make writing components with React feel as familiar as writing HTML. Since then, the syntax has become widespread. However, there may be instances where you do not want to use or cannot use JSX. You have two options:
 
 - Use a JSX alternative like [htm](https://github.com/developit/htm) which uses JavaScript [template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) instead of a compiler.
-- Use [`React.createElement()`](/apis/react/createElement) which has a special structure explained below.
+- Use [`React.createElement()`](/reference/react/createElement) which has a special structure explained below.
 
 With JSX, you would write a component like so:
 
