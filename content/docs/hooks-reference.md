@@ -580,7 +580,7 @@ const [isPending, startTransition] = useTransition();
 ```js
 startTransition(() => {
   setCount(count + 1);
-})
+});
 ```
 
 `isPending` はトランジションがアクティブかどうかを表しており、ユーザに保留中状態を表示するのに使えます：
@@ -593,7 +593,7 @@ function App() {
   function handleClick() {
     startTransition(() => {
       setCount(c => c + 1);
-    })
+    });
   }
 
   return (

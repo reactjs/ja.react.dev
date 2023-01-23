@@ -151,6 +151,7 @@ strict モードでこの機能を有効にした場合の開発時動作を示�
 React 18 以降の strict モードでは、開発時にコンポーネントがマウントされた場合、React はコンポーネントの即時アンマウント・再マウントをシミュレーションします：
 
 ```
+<<<<<<< HEAD
 * React がコンポーネントをマウント
     * レイアウト副作用を作成
     * 副作用を作成
@@ -160,6 +161,17 @@ React 18 以降の strict モードでは、開発時にコンポーネントが
 * マウントされたコンポーネント内で副作用の再生成をシミュレート
     * レイアウト副作用を作成
     * 副作用の作成用コードの実行
+=======
+* React mounts the component.
+    * Layout effects are created.
+    * Effects are created.
+* React simulates effects being destroyed on a mounted component.
+    * Layout effects are destroyed.
+    * Effects are destroyed.
+* React simulates effects being re-created on a mounted component.
+    * Layout effects are created
+    * Effect setup code runs
+>>>>>>> 38bf76a4a7bec6072d086ce8efdeef9ebb7af227
 ```
 
 2 度目のマウントにおいて React は初回マウント時の state を復元します。この機能はタブを操作して画面を離れてから戻ってくる、といったユーザの挙動をシミュレートしたものであり、コードが state の復元を正しく処理できることを保証できます。
@@ -167,9 +179,15 @@ React 18 以降の strict モードでは、開発時にコンポーネントが
 コンポーネントがアンマウントされる場合は副作用は通常通り破棄されます：
 
 ```
+<<<<<<< HEAD
 * React がコンポーネントをアンマウント
   * レイアウト副作用を破棄
   * 副作用を破棄
+=======
+* React unmounts the component.
+  * Layout effects are destroyed.
+  * Effects are destroyed.
+>>>>>>> 38bf76a4a7bec6072d086ce8efdeef9ebb7af227
 ```
 
 アンマウント・再マウントでは以下が発生します：

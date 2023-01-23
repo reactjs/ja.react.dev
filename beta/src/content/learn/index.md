@@ -302,7 +302,7 @@ Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ 
 
 Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
 
-First, import [`useState`](/apis/react/useState) from React:
+First, import [`useState`](/reference/react/useState) from React:
 
 ```js
 import { useState } from 'react';
@@ -344,6 +344,16 @@ If you render the same component multiple times, each will get its own state. Tr
 ```js
 import { useState } from 'react';
 
+export default function MyApp() {
+  return (
+    <div>
+      <h1>Counters that update separately</h1>
+      <MyButton />
+      <MyButton />
+    </div>
+  );
+}
+
 function MyButton() {
   const [count, setCount] = useState(0);
 
@@ -355,16 +365,6 @@ function MyButton() {
     <button onClick={handleClick}>
       Clicked {count} times
     </button>
-  );
-}
-
-export default function MyApp() {
-  return (
-    <div>
-      <h1>Counters that update separately</h1>
-      <MyButton />
-      <MyButton />
-    </div>
   );
 }
 ```
@@ -382,7 +382,7 @@ Notice how each button "remembers" its own `count` state and doesn't affect othe
 
 ## Using Hooks {/*using-hooks*/}
 
-Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [React API reference.](/apis/react) You can also write your own Hooks by combining the existing ones.
+Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [React API reference.](/reference/react) You can also write your own Hooks by combining the existing ones.
 
 Hooks are more restrictive than regular functions. You can only call Hooks *at the top level* of your components (or other Hooks). If you want to use `useState` in a condition or a loop, extract a new component and put it there.
 
@@ -432,11 +432,7 @@ Now when you click either button, the `count` in `MyApp` will change, which will
 
 First, *move the state up* from `MyButton` into `MyApp`:
 
-```js {2,6-10}
-function MyButton() {
-  // ... we're moving code from here ...
-}
-
+```js {2-6,18}
 export default function MyApp() {
   const [count, setCount] = useState(0);
 
@@ -452,6 +448,11 @@ export default function MyApp() {
     </div>
   );
 }
+
+function MyButton() {
+  // ... we're moving code from here ...
+}
+
 ```
 
 Then, *pass the state down* from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
@@ -497,14 +498,6 @@ This is called "lifting state up". By moving state up, we've shared it between c
 ```js
 import { useState } from 'react';
 
-function MyButton({ count, onClick }) {
-  return (
-    <button onClick={onClick}>
-      Clicked {count} times
-    </button>
-  );
-}
-
 export default function MyApp() {
   const [count, setCount] = useState(0);
 
@@ -518,6 +511,14 @@ export default function MyApp() {
       <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
     </div>
+  );
+}
+
+function MyButton({ count, onClick }) {
+  return (
+    <button onClick={onClick}>
+      Clicked {count} times
+    </button>
   );
 }
 ```
@@ -535,4 +536,4 @@ button {
 
 By now, you know the basics of how to write React code!
 
-Head to [Thinking in React](/learn/thinking-in-react) to see how it feels to build a UI with React in practice.
+Check out the [Tutorial](/learn/tutorial-tic-tac-toe) to put them into practice and build your first mini-app with React.
