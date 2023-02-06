@@ -76,7 +76,11 @@ button { margin-right: 10px; }
 
 コンポーネントはインタラクションの結果として画面に表示されるものを変更する必要があることがよくあります。フォームに入力すると入力フィールドが更新され、イメージカルーセルで「次へ」をクリックすると表示されるイメージが変更され、「購入」をクリックするとショッピングカートに商品が入ります。コンポーネントは、現在の入力値、現在のイメージ、ショッピングカートを「記憶」する必要があるのです。React では、このようなコンポーネント固有の記憶を *state* と呼びます。
 
+<<<<<<< HEAD
 [`useState`](/apis/react/useState) フックを使用すると、コンポーネントに state を追加することができます。*フック*とはコンポーネントに React の機能を使用させるための特別な関数です（state はその機能の 1 つです）。`useState` フックで state 変数を宣言できます。これは初期 state を受け取り、現在の state と、それを更新するための state セッタ関数のペアを返します。
+=======
+You can add state to a component with a [`useState`](/reference/react/useState) Hook. *Hooks* are special functions that let your components use React features (state is one of those features). The `useState` Hook lets you declare a state variable. It takes the initial state and returns a pair of values: the current state, and a state setter function that lets you update it.
+>>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 
 ```js
 const [index, setIndex] = useState(0);

@@ -373,7 +373,7 @@ class BlurExample extends React.Component {
 
 それぞれの種類のウィジェットはそれぞれ特定のデザインパターンを持っており、ユーザやユーザエージェントはそれらが特定の方法で機能することを期待します：
 
-- [WAI-ARIA Authoring Practices - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
+- [ARIA Authoring Practices Guide (APG) - Design Patterns and Examples](https://www.w3.org/WAI/ARIA/apg/patterns/)
 - [Heydon Pickering - ARIA Examples](https://heydonworks.com/article/practical-aria-examples/)
 - [Inclusive Components](https://inclusive-components.design/)
 
