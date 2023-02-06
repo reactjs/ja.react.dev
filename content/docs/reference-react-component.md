@@ -15,6 +15,10 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
+> 新しい React ドキュメントをお試しください：[`Component`](https://beta.reactjs.org/reference/react/Component)
+> 
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
 このページには React コンポーネントクラス定義の詳細な API リファレンスがあります。また、あなたが [コンポーネントや props](/docs/components-and-props.html) などの基本的な React の概念、および [state やライフサイクル](/docs/state-and-lifecycle.html)に精通していることを前提としています。そうでない場合は、まずそれらを読んでください。
 
 ## 概要 {#overview}

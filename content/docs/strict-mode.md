@@ -4,6 +4,15 @@ title: strict モード
 permalink: docs/strict-mode.html
 ---
 
+> 新しい React ドキュメントをお試しください。
+> 
+> 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
+>
+> - [`StrictMode`](https://beta.reactjs.org/reference/react/StrictMode)
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+
 `StrictMode` はアプリケーションの潜在的な問題点を洗い出すためのツールです。`Fragment` と同様に、`StrictMode` は目に見える UI を描画しません。`StrictMode` の子孫要素に対しては、付加的な検査および警告が動くようになります。
 
 > 補足：

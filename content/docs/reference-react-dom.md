@@ -50,6 +50,10 @@ React はすべてのモダンブラウザをサポートしていますが、�
 
 ### `createPortal()` {#createportal}
 
+> 新しい React ドキュメントの記事もお試しください：[`createPortal`](https://beta.reactjs.org/reference/react-dom/createPortal).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 createPortal(child, container)
 ```
@@ -57,6 +61,10 @@ createPortal(child, container)
 ポータルを作成します。ポータルは [DOM コンポーネントの階層の外側に存在している DOM ノードに対して子要素をレンダーする](/docs/portals.html)方法を提供します。
 
 ### `flushSync()` {#flushsync}
+
+> 新しい React ドキュメントの記事もお試しください：[`flushSync`](https://beta.reactjs.org/reference/react-dom/flushSync).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```javascript
 flushSync(callback)
@@ -84,6 +92,11 @@ flushSync(() => {
 
 ## レガシーメソッドのリファレンス {#legacy-reference}
 ### `render()` {#render}
+
+> 新しい React ドキュメントの記事もお試しください：[`render`](https://beta.reactjs.org/reference/react-dom/render).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 render(element, container[, callback])
 ```
@@ -114,6 +127,10 @@ React 要素がすでに `container` にレンダーされている場合は更�
 
 ### `hydrate()` {#hydrate}
 
+> 新しい React ドキュメントの記事もお試しください：[`hydrate`](https://beta.reactjs.org/reference/react-dom/hydrate).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 hydrate(element, container[, callback])
 ```
@@ -136,6 +153,10 @@ React はレンダーされる内容が、サーバ・クライアント間で�
 
 ### `unmountComponentAtNode()` {#unmountcomponentatnode}
 
+> 新しい React ドキュメントの記事もお試しください：[`unmountComponentAtNode`](https://beta.reactjs.org/reference/react-dom/unmountComponentAtNode).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 unmountComponentAtNode(container)
 ```
@@ -149,6 +170,10 @@ DOM からマウントされた React コンポーネントを削除し、イベ
 * * *
 
 ### `findDOMNode()` {#finddomnode}
+
+> 新しい React ドキュメントの記事もお試しください：[`findDOMNode`](https://beta.reactjs.org/reference/react-dom/findDOMNode).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 > 補足:
 >

@@ -35,6 +35,10 @@ next: hooks-faq.html
 
 ### `useState` {#usestate}
 
+> 新しい React ドキュメントの記事もお試しください：[`useState`](https://beta.reactjs.org/reference/react/useState).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```js
 const [state, setState] = useState(initialState);
 ```
@@ -118,6 +122,10 @@ DOM への更新が同期的に適用されるよう強制しないといけな�
 
 ### `useEffect` {#useeffect}
 
+> 新しい React ドキュメントの記事もお試しください：[`useEffect`](https://beta.reactjs.org/reference/react/useEffect).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```js
 useEffect(didUpdate);
 ```
@@ -197,6 +205,11 @@ useEffect(
 
 ### `useContext` {#usecontext}
 
+> 新しい React ドキュメントの記事もお試しください：[`useContext`](https://beta.reactjs.org/reference/react/useContext).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+
 ```js
 const value = useContext(MyContext);
 ```
@@ -268,6 +281,11 @@ function ThemedButton() {
 以下のフックは前節で説明した基本のフックの変種であったり、特定の稀なケースでのみ必要となったりするものです。最初から無理に学ぼうとしなくて構いません。
 
 ### `useReducer` {#usereducer}
+
+> 新しい React ドキュメントの記事もお試しください：[`useReducer`](https://beta.reactjs.org/reference/react/useReducer).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
 
 ```js
 const [state, dispatch] = useReducer(reducer, initialArg, init);
@@ -372,6 +390,10 @@ function Counter({initialCount}) {
 
 ### `useCallback` {#usecallback}
 
+> 新しい React ドキュメントの記事もお試しください：[`useCallback`](https://beta.reactjs.org/reference/react/useCallback).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```js
 const memoizedCallback = useCallback(
   () => {
@@ -395,6 +417,11 @@ const memoizedCallback = useCallback(
 
 ### `useMemo` {#usememo}
 
+> 新しい React ドキュメントの記事もお試しください：[`useMemo`](https://beta.reactjs.org/reference/react/useMemo).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+
 ```js
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
@@ -416,6 +443,11 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 > [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) パッケージの [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) ルールを有効にすることをお勧めします。これは依存の配列が正しく記述されていない場合に警告し、修正を提案します。
 
 ### `useRef` {#useref}
+
+> 新しい React ドキュメントの記事もお試しください：[`useRef`](https://beta.reactjs.org/reference/react/useRef).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
 
 ```js
 const refContainer = useRef(initialValue);
@@ -454,6 +486,11 @@ function TextInputWithFocusButton() {
 
 ### `useImperativeHandle` {#useimperativehandle}
 
+> 新しい React ドキュメントの記事もお試しください：[`useImperativeHandle`](https://beta.reactjs.org/reference/react/useImperativeHandle).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+
 ```js
 useImperativeHandle(ref, createHandle, [deps])
 ```
@@ -477,6 +514,11 @@ FancyInput = forwardRef(FancyInput);
 
 ### `useLayoutEffect` {#uselayouteffect}
 
+> 新しい React ドキュメントの記事もお試しください：[`useLayoutEffect`](https://beta.reactjs.org/reference/react/useLayoutEffect).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+
 この関数のシグネチャは `useEffect` と同一ですが、DOM の変更があった後で同期的に副作用が呼び出されます。これは DOM からレイアウトを読み出して同期的に再描画を行う場合に使ってください。`useLayoutEffect` の内部でスケジュールされた更新はブラウザによって描画される前のタイミングで同期的に処理されます。
 
 可能な場合は画面の更新がブロックするのを避けるため、標準の `useEffect` を優先して使ってください。
@@ -490,6 +532,11 @@ FancyInput = forwardRef(FancyInput);
 > サーバでレンダーされる HTML からレイアウト副作用を必要とするコンポーネントを除外したい場合は、それを `showChild && <Child />` のようにして条件付きでレンダーするようにして、表示を `useEffect(() => { setShowChild(true); }, [])` のようにして遅延させてください。これにより、JavaScript コードが注入される前に壊れた見た目の UI が表示されないようになります。
 
 ### `useDebugValue` {#usedebugvalue}
+
+> 新しい React ドキュメントの記事もお試しください：[`useDebugValue`](https://beta.reactjs.org/reference/react/useDebugValue).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
 
 ```js
 useDebugValue(value)
@@ -531,6 +578,11 @@ useDebugValue(date, date => date.toDateString());
 
 ### `useDeferredValue` {#usedeferredvalue}
 
+> 新しい React ドキュメントの記事もお試しください：[`useDeferredValue`](https://beta.reactjs.org/reference/react/useDeferredValue).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+
 ```js
 const deferredValue = useDeferredValue(value);
 ```
@@ -569,6 +621,11 @@ function Typeahead() {
 
 ### `useTransition` {#usetransition}
 
+> 新しい React ドキュメントの記事もお試しください：[`useTransition`](https://beta.reactjs.org/reference/react/useTransition).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+
 ```js
 const [isPending, startTransition] = useTransition();
 ```
@@ -580,7 +637,7 @@ const [isPending, startTransition] = useTransition();
 ```js
 startTransition(() => {
   setCount(count + 1);
-})
+});
 ```
 
 `isPending` はトランジションがアクティブかどうかを表しており、ユーザに保留中状態を表示するのに使えます：
@@ -593,7 +650,7 @@ function App() {
   function handleClick() {
     startTransition(() => {
       setCount(c => c + 1);
-    })
+    });
   }
 
   return (
@@ -612,6 +669,11 @@ function App() {
 > トランジション内での更新によってコンテンツが再サスペンドした場合でもフォールバックは表示されません。これにより更新後のデータをレンダーしている最中に、ユーザが現在のコンテンツを操作しつづけられるようになります。
 
 ### `useId` {#useid}
+
+> 新しい React ドキュメントの記事もお試しください：[`useId`](https://beta.reactjs.org/reference/react/useId).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
 
 ```js
 const id = useId();
@@ -669,6 +731,11 @@ function NameFields() {
 
 ### `useSyncExternalStore` {#usesyncexternalstore}
 
+> 新しい React ドキュメントの記事もお試しください：[`useSyncExternalStore`](https://beta.reactjs.org/reference/react/useSyncExternalStore).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+
 ```js
 const state = useSyncExternalStore(subscribe, getSnapshot[, getServerSnapshot]);
 ```
@@ -714,6 +781,10 @@ const selectedField = useSyncExternalStore(
 > 便宜のため、getSnapshot の結果に対する自動的なメモ化をサポートしたバージョンの API を `use-sync-external-store/with-selector` として公開しています。
 
 ### `useInsertionEffect` {#useinsertioneffect}
+
+> 新しい React ドキュメントの記事もお試しください：[`useInsertionEffect`](https://beta.reactjs.org/reference/react/useInsertionEffect).
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```js
 useInsertionEffect(didUpdate);

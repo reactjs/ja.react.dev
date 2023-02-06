@@ -169,9 +169,11 @@ img { height: 90px }
 </>
 ```
 
-この中身のないタグは *[フラグメント](/apis/react/Fragment)* と呼ばれるものです。フラグメントを使えば、ブラウザの HTML ツリーに痕跡を残さずに複数の要素をまとめることができます。
+この中身のないタグは *[フラグメント](/reference/react/Fragment)* と呼ばれるものです。フラグメントを使えば、ブラウザの HTML ツリーに痕跡を残さずに複数の要素をまとめることができます。
 
-<DeepDive title="JSX タグが複数あるときにラップしないといけない理由">
+<DeepDive>
+
+#### JSX タグが複数あるときにラップしないといけない理由 {/*why-do-multiple-jsx-tags-need-to-be-wrapped*/}
 
 JSX は HTML のように見えますが、裏ではプレーンな JavaScript オブジェクトに変換されます。関数から 2 つのオブジェクトを返したい場合、配列でラップしないといけませんよね。2 つの JSX タグを返したい場合に別のタグかフラグメントでラップしないといけないのも、同じ理由です。
 
@@ -212,7 +214,7 @@ JSX は JavaScript に変換され、中に書かれた属性は JavaScript オ�
 />
 ```
 
-全リストは[React DOM 要素に存在する属性の一覧](TODO)にあります。何かを間違ったとしても心配は要りません。[ブラウザのコンソール](https://developer.mozilla.org/docs/Tools/Browser_Console)にメッセージと修正の提案が表示されるようになっています。
+全リストは[React DOM コンポーネントに存在する属性の一覧](/reference/react-dom/components/common)にあります。何かを間違ったとしても心配は要りません。[ブラウザのコンソール](https://developer.mozilla.org/docs/Tools/Browser_Console)にメッセージと修正の提案が表示されるようになっています。
 
 <Pitfall>
 

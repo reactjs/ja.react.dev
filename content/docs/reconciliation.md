@@ -4,6 +4,14 @@ title: 差分検出処理
 permalink: docs/reconciliation.html
 ---
 
+> 新しい React ドキュメントをお試しください。
+> 
+> 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
+>
+> - [Preserving and Resetting State](https://beta.reactjs.org/learn/preserving-and-resetting-state)
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
 React は、各更新で実際に何が変更されるべきかを人間が心配する必要がないように、宣言型の API を提供しています。これによりアプリケーションの作成が大幅に容易になるわけですが、React の中でこの処理がどのように実装されているのかはよく分からないかもしれません。この章では React の "差分" アルゴリズムについて、コンポーネントの更新を予測可能なものとしながら、ハイパフォーマンスなアプリケーションの要求を満たす速度を得られるように、私たちが行った選択について説明します。
 
 ## 何が問題なのか {#motivation}

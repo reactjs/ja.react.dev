@@ -8,6 +8,15 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
+> 新しい React ドキュメントをお試しください。
+> 
+> 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
+>
+> - [Responding to Events](https://beta.reactjs.org/learn/responding-to-events)
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+
 React でのイベント処理は DOM 要素のイベントの処理と非常に似ています。いくつかの文法的な違いがあります：
 
 * React のイベントは小文字ではなく camelCase で名付けられています。

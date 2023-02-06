@@ -12,6 +12,12 @@ redirect_from:
   - "docs/tutorial-zh-CN.html"
 ---
 
+> 新しい React ドキュメントをお試しください。
+> 
+> [チュートリアル](https://beta.reactjs.org/learn/tutorial-tic-tac-toe) の更新版では最新の React の使い方がライブサンプル付きで学べます。
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
 このチュートリアルは React の事前知識ゼロでも読み進められます。
 
 ## チュートリアルを始める前に {#before-we-start-the-tutorial}

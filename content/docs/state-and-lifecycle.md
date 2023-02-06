@@ -8,6 +8,15 @@ prev: components-and-props.html
 next: handling-events.html
 ---
 
+> 新しい React ドキュメントをお試しください。
+> 
+> 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
+>
+> - [State: A Component's Memory](https://beta.reactjs.org/learn/state-a-components-memory)
+> - [Synchronizing with Effects](https://beta.reactjs.org/learn/synchronizing-with-effects)
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
 このページでは React コンポーネントにおける state とライフサイクルについての導入を行います。[詳細なコンポーネントの API リファレンスはこちら](/docs/react-component.html)にあります。
 
 [以前の章のひとつ](/docs/rendering-elements.html#updating-the-rendered-element)にあった秒刻みの時計の例を考えてみましょう。[要素のレンダー](/docs/rendering-elements.html#rendering-an-element-into-the-dom)の章にて、UI を更新するための方法をひとつだけ学びました。それはレンダーされた出力を更新するために `root.render()` を呼び出す、というものでした。

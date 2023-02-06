@@ -4,6 +4,14 @@ title: ポータル
 permalink: docs/portals.html
 ---
 
+> 新しい React ドキュメントをお試しください。
+> 
+> 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
+>
+> - [`createPortal`](https://beta.reactjs.org/reference/react-dom/createPortal)
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ポータル (portal) は、親コンポーネントの DOM 階層外にある DOM ノードに対して子コンポーネントをレンダーするための公式の仕組みを提供します。
 
 ```js
@@ -46,7 +54,7 @@ render() {
 >
 > ポータルを利用する際は、[キーボードのフォーカスの管理](/docs/accessibility.html#programmatically-managing-focus)を行うことが重要になるので、忘れずに行ってください。
 >
-> モーダルダイアログについては [WAI-ARIA モーダルの推奨実装方法](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal)に従い、誰もが利用できるという状態を確保してください。
+> モーダルダイアログについては [WAI-ARIA モーダルの推奨実装方法](https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/)に従い、誰もが利用できるという状態を確保してください。
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/yzMaBd)
 

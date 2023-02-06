@@ -6,6 +6,15 @@ prev: conditional-rendering.html
 next: forms.html
 ---
 
+> 新しい React ドキュメントをお試しください。
+> 
+> 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
+>
+> - [Rendering Lists](https://beta.reactjs.org/learn/rendering-lists)
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+
 まず、JavaScript でリストを変換する方法についておさらいしましょう。
 
 以下のコードでは、[`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 関数を用い、`numbers` という配列を受け取って中身の値を 2 倍しています。`map()` 関数が返す新しい配列を変数 `doubled` に格納し、ログに出力します：

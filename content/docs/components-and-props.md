@@ -16,6 +16,15 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
+> 新しい React ドキュメントをお試しください。
+> 
+> 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
+>
+> - [Your First Component](https://beta.reactjs.org/learn/your-first-component)
+> - [Passing Props to a Component](https://beta.reactjs.org/learn/passing-props-to-a-component)
+>
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
 コンポーネントにより UI を独立した再利用できる部品に分割し、部品それぞれを分離して考えることができるようになります。このページではコンポーネントという概念の導入を行います。[詳細な API リファレンスはこちら](/docs/react-component.html)で参照できます。
 
 概念的には、コンポーネントは JavaScript の関数と似ています。（"props" と呼ばれる）任意の入力を受け取り、画面上に表示すべきものを記述する React 要素を返します。
