@@ -36,9 +36,9 @@ var ReactDOMServer = require('react-dom/server');
 
 ### `renderToPipeableStream()` {#rendertopipeablestream}
 
-> Try the new React documentation for [`renderToPipeableStream`](https://beta.reactjs.org/reference/react-dom/server/renderToPipeableStream).
+> 新しい React ドキュメントの記事もお試しください：[`renderToPipeableStream`](https://beta.reactjs.org/reference/react-dom/server/renderToPipeableStream).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```javascript
 ReactDOMServer.renderToPipeableStream(element, options)
@@ -95,9 +95,9 @@ const stream = renderToPipeableStream(
 
 ### `renderToReadableStream()` {#rendertoreadablestream}
 
-> Try the new React documentation for [`renderToReadableStream`](https://beta.reactjs.org/reference/react-dom/server/renderToReadableStream).
+> 新しい React ドキュメントの記事もお試しください：[`renderToReadableStream`](https://beta.reactjs.org/reference/react-dom/server/renderToReadableStream).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```javascript
 ReactDOMServer.renderToReadableStream(element, options);
@@ -157,9 +157,9 @@ try {
 
 ### `renderToNodeStream()`（非推奨）{#rendertonodestream}
 
-> Try the new React documentation for [`renderToNodeStream`](https://beta.reactjs.org/reference/react-dom/server/renderToNodeStream).
+> 新しい React ドキュメントの記事もお試しください：[`renderToNodeStream`](https://beta.reactjs.org/reference/react-dom/server/renderToNodeStream).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```javascript
 ReactDOMServer.renderToNodeStream(element)
@@ -179,9 +179,9 @@ React 要素を初期状態の HTML にストリーミングします。HTML 文
 
 ### `renderToStaticNodeStream()` {#rendertostaticnodestream}
 
-> Try the new React documentation for [`renderToStaticNodeStream`](https://beta.reactjs.org/reference/react-dom/server/renderToStaticNodeStream).
+> 新しい React ドキュメントの記事もお試しください：[`renderToStaticNodeStream`](https://beta.reactjs.org/reference/react-dom/server/renderToStaticNodeStream).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```javascript
 ReactDOMServer.renderToStaticNodeStream(element)
@@ -203,9 +203,9 @@ React が内部的に使用する `data-reactroot` のような追加の DOM 属
 
 ### `renderToString()` {#rendertostring}
 
-> Try the new React documentation for [`renderToString`](https://beta.reactjs.org/reference/react-dom/server/renderToString).
+> 新しい React ドキュメントの記事もお試しください：[`renderToString`](https://beta.reactjs.org/reference/react-dom/server/renderToString).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```javascript
 ReactDOMServer.renderToString(element)
@@ -225,9 +225,9 @@ React 要素を初期状態の HTML に変換します。React は HTML 文字�
 
 ### `renderToStaticMarkup()` {#rendertostaticmarkup}
 
-> Try the new React documentation for [`renderToStaticMarkup`](https://beta.reactjs.org/reference/react-dom/server/renderToStaticMarkup).
+> 新しい React ドキュメントの記事もお試しください：[`renderToStaticMarkup`](https://beta.reactjs.org/reference/react-dom/server/renderToStaticMarkup).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```javascript
 ReactDOMServer.renderToStaticMarkup(element)

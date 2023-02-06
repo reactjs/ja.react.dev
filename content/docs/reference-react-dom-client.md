@@ -37,9 +37,9 @@ React はすべてのモダンブラウザをサポートしていますが、�
 
 ### `createRoot()` {#createroot}
 
-> Try the new React documentation for [`createRoot`](https://beta.reactjs.org/reference/react-dom/client/createRoot).
+> 新しい React ドキュメントの記事もお試しください：[`createRoot`](https://beta.reactjs.org/reference/react-dom/client/createRoot).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```javascript
 createRoot(container[, options]);
@@ -74,9 +74,9 @@ root.unmount();
 
 ### `hydrateRoot()` {#hydrateroot}
 
-> Try the new React documentation for [`hydrateRoot`](https://beta.reactjs.org/reference/react-dom/client/hydrateRoot).
+> 新しい React ドキュメントの記事もお試しください：[`hydrateRoot`](https://beta.reactjs.org/reference/react-dom/client/hydrateRoot).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
 ```javascript
