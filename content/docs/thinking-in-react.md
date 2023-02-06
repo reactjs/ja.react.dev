@@ -8,17 +8,13 @@ redirect_from:
 prev: composition-vs-inheritance.html
 ---
 
-<<<<<<< HEAD
-巨大で軽快な Web アプリを開発する場合に、React は最高の手段であると、私たちは考えています。Facebook や Instagram といった私たちのサービスにおいても、とてもよくスケールしています。
-=======
-> Try the new React documentation.
+> 新しい React ドキュメントをお試しください。
 > 
-> The updated [Thinking in React](https://beta.reactjs.org/learn/thinking-in-react) guide teaches modern React and includes live examples.
+> [Thinking in React](https://beta.reactjs.org/learn/thinking-in-react) の更新版では最新の React の使い方がライブサンプル付きで学べます。
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
-React is, in our opinion, the premier way to build big, fast Web apps with JavaScript. It has scaled very well for us at Facebook and Instagram.
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+巨大で軽快な Web アプリを開発する場合に、React は最高の手段であると、私たちは考えています。Facebook や Instagram といった私たちのサービスにおいても、とてもよくスケールしています。
 
 React のすばらしい特長がいくつもありますが、あなたがどんなアプリを作ろうかと考えたことが、そのままアプリの作り方になる、というのはそのひとつです。本ドキュメントでは、検索可能な商品データ表を React で作っていく様子をお見せしましょう。
 

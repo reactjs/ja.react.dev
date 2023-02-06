@@ -6,20 +6,16 @@ prev: hello-world.html
 next: rendering-elements.html
 ---
 
-<<<<<<< HEAD
-以下の変数宣言を考えてみましょう：
-=======
-> Try the new React documentation.
+> 新しい React ドキュメントをお試しください。
 > 
-> These new documentation pages teach modern React and include live examples:
+> 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
 >
 > - [Writing Markup with JSX](https://beta.reactjs.org/learn/writing-markup-with-jsx)
 > - [JavaScript in JSX with Curly Braces](https://beta.reactjs.org/learn/javascript-in-jsx-with-curly-braces)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
-Consider this variable declaration:
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+以下の変数宣言を考えてみましょう：
 
 ```js
 const element = <h1>Hello, world!</h1>;

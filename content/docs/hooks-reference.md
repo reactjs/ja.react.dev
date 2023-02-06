@@ -35,9 +35,9 @@ next: hooks-faq.html
 
 ### `useState` {#usestate}
 
-> Try the new React documentation for [`useState`](https://beta.reactjs.org/reference/react/useState).
+> 新しい React ドキュメントの記事もお試しください：[`useState`](https://beta.reactjs.org/reference/react/useState).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```js
 const [state, setState] = useState(initialState);
@@ -122,9 +122,9 @@ DOM への更新が同期的に適用されるよう強制しないといけな�
 
 ### `useEffect` {#useeffect}
 
-> Try the new React documentation for [`useEffect`](https://beta.reactjs.org/reference/react/useEffect).
+> 新しい React ドキュメントの記事もお試しください：[`useEffect`](https://beta.reactjs.org/reference/react/useEffect).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```js
 useEffect(didUpdate);
@@ -205,9 +205,9 @@ useEffect(
 
 ### `useContext` {#usecontext}
 
-> Try the new React documentation for [`useContext`](https://beta.reactjs.org/reference/react/useContext).
+> 新しい React ドキュメントの記事もお試しください：[`useContext`](https://beta.reactjs.org/reference/react/useContext).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
 ```js
@@ -282,9 +282,9 @@ function ThemedButton() {
 
 ### `useReducer` {#usereducer}
 
-> Try the new React documentation for [`useReducer`](https://beta.reactjs.org/reference/react/useReducer).
+> 新しい React ドキュメントの記事もお試しください：[`useReducer`](https://beta.reactjs.org/reference/react/useReducer).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
 ```js
@@ -390,9 +390,9 @@ function Counter({initialCount}) {
 
 ### `useCallback` {#usecallback}
 
-> Try the new React documentation for [`useCallback`](https://beta.reactjs.org/reference/react/useCallback).
+> 新しい React ドキュメントの記事もお試しください：[`useCallback`](https://beta.reactjs.org/reference/react/useCallback).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```js
 const memoizedCallback = useCallback(
@@ -417,9 +417,9 @@ const memoizedCallback = useCallback(
 
 ### `useMemo` {#usememo}
 
-> Try the new React documentation for [`useMemo`](https://beta.reactjs.org/reference/react/useMemo).
+> 新しい React ドキュメントの記事もお試しください：[`useMemo`](https://beta.reactjs.org/reference/react/useMemo).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
 ```js
@@ -444,9 +444,9 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
 ### `useRef` {#useref}
 
-> Try the new React documentation for [`useRef`](https://beta.reactjs.org/reference/react/useRef).
+> 新しい React ドキュメントの記事もお試しください：[`useRef`](https://beta.reactjs.org/reference/react/useRef).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
 ```js
@@ -486,9 +486,9 @@ function TextInputWithFocusButton() {
 
 ### `useImperativeHandle` {#useimperativehandle}
 
-> Try the new React documentation for [`useImperativeHandle`](https://beta.reactjs.org/reference/react/useImperativeHandle).
+> 新しい React ドキュメントの記事もお試しください：[`useImperativeHandle`](https://beta.reactjs.org/reference/react/useImperativeHandle).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
 ```js
@@ -514,16 +514,12 @@ FancyInput = forwardRef(FancyInput);
 
 ### `useLayoutEffect` {#uselayouteffect}
 
-<<<<<<< HEAD
-この関数のシグネチャは `useEffect` と同一ですが、DOM の変更があった後で同期的に副作用が呼び出されます。これは DOM からレイアウトを読み出して同期的に再描画を行う場合に使ってください。`useLayoutEffect` の内部でスケジュールされた更新はブラウザによって描画される前のタイミングで同期的に処理されます。
-=======
-> Try the new React documentation for [`useLayoutEffect`](https://beta.reactjs.org/reference/react/useLayoutEffect).
+> 新しい React ドキュメントの記事もお試しください：[`useLayoutEffect`](https://beta.reactjs.org/reference/react/useLayoutEffect).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
-The signature is identical to `useEffect`, but it fires synchronously after all DOM mutations. Use this to read layout from the DOM and synchronously re-render. Updates scheduled inside `useLayoutEffect` will be flushed synchronously, before the browser has a chance to paint.
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+この関数のシグネチャは `useEffect` と同一ですが、DOM の変更があった後で同期的に副作用が呼び出されます。これは DOM からレイアウトを読み出して同期的に再描画を行う場合に使ってください。`useLayoutEffect` の内部でスケジュールされた更新はブラウザによって描画される前のタイミングで同期的に処理されます。
 
 可能な場合は画面の更新がブロックするのを避けるため、標準の `useEffect` を優先して使ってください。
 
@@ -537,9 +533,9 @@ The signature is identical to `useEffect`, but it fires synchronously after all 
 
 ### `useDebugValue` {#usedebugvalue}
 
-> Try the new React documentation for [`useDebugValue`](https://beta.reactjs.org/reference/react/useDebugValue).
+> 新しい React ドキュメントの記事もお試しください：[`useDebugValue`](https://beta.reactjs.org/reference/react/useDebugValue).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
 ```js
@@ -582,9 +578,9 @@ useDebugValue(date, date => date.toDateString());
 
 ### `useDeferredValue` {#usedeferredvalue}
 
-> Try the new React documentation for [`useDeferredValue`](https://beta.reactjs.org/reference/react/useDeferredValue).
+> 新しい React ドキュメントの記事もお試しください：[`useDeferredValue`](https://beta.reactjs.org/reference/react/useDeferredValue).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
 ```js
@@ -625,9 +621,9 @@ function Typeahead() {
 
 ### `useTransition` {#usetransition}
 
-> Try the new React documentation for [`useTransition`](https://beta.reactjs.org/reference/react/useTransition).
+> 新しい React ドキュメントの記事もお試しください：[`useTransition`](https://beta.reactjs.org/reference/react/useTransition).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
 ```js
@@ -674,9 +670,9 @@ function App() {
 
 ### `useId` {#useid}
 
-> Try the new React documentation for [`useId`](https://beta.reactjs.org/reference/react/useId).
+> 新しい React ドキュメントの記事もお試しください：[`useId`](https://beta.reactjs.org/reference/react/useId).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
 ```js
@@ -735,9 +731,9 @@ function NameFields() {
 
 ### `useSyncExternalStore` {#usesyncexternalstore}
 
-> Try the new React documentation for [`useSyncExternalStore`](https://beta.reactjs.org/reference/react/useSyncExternalStore).
+> 新しい React ドキュメントの記事もお試しください：[`useSyncExternalStore`](https://beta.reactjs.org/reference/react/useSyncExternalStore).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
 ```js
@@ -786,9 +782,9 @@ const selectedField = useSyncExternalStore(
 
 ### `useInsertionEffect` {#useinsertioneffect}
 
-> Try the new React documentation for [`useInsertionEffect`](https://beta.reactjs.org/reference/react/useInsertionEffect).
+> 新しい React ドキュメントの記事もお試しください：[`useInsertionEffect`](https://beta.reactjs.org/reference/react/useInsertionEffect).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```js
 useInsertionEffect(didUpdate);

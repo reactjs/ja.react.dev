@@ -6,19 +6,15 @@ layout: docs
 category: Reference
 ---
 
-<<<<<<< HEAD
-このリファレンスガイドでは、React のイベントシステムの一部を構成する `SyntheticEvent`（合成イベント）ラッパについて説明します。詳細については、[イベント処理](/docs/handling-events.html)ガイドを参照してください。
-=======
-> Try the new React documentation.
+> 新しい React ドキュメントをお試しください。
 > 
-> These new documentation pages teach modern React and include live examples:
+> 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
 >
 > - [Common components (e.g. `<div>`)](https://beta.reactjs.org/reference/react-dom/components/common)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
-This reference guide documents the `SyntheticEvent` wrapper that forms part of React's Event System. See the [Handling Events](/docs/handling-events.html) guide to learn more.
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+このリファレンスガイドでは、React のイベントシステムの一部を構成する `SyntheticEvent`（合成イベント）ラッパについて説明します。詳細については、[イベント処理](/docs/handling-events.html)ガイドを参照してください。
 
 ## 概要 {#overview}
 

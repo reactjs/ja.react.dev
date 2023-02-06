@@ -11,22 +11,16 @@ redirect_from:
   - "tips/children-undefined.html"
 ---
 
-<<<<<<< HEAD
-Ref は render メソッドで作成された DOM ノードもしくは React の要素にアクセスする方法を提供します。
-=======
-> Try the new React documentation.
+> 新しい React ドキュメントをお試しください。
 > 
-> These new documentation pages teach modern React and include live examples:
->
 > - [Referencing Values with Refs](https://beta.reactjs.org/learn/referencing-values-with-refs)
 > - [Manipulating the DOM with Refs](https://beta.reactjs.org/learn/manipulating-the-dom-with-refs)
 > - [`useRef`](https://beta.reactjs.org/reference/react/useRef)
 > - [`forwardRef`](https://beta.reactjs.org/reference/react/forwardRef)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
-Refs provide a way to access DOM nodes or React elements created in the render method.
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+Ref は render メソッドで作成された DOM ノードもしくは React の要素にアクセスする方法を提供します。
 
 一般的な React のデータフローでは、[props](/docs/components-and-props.html) が、親コンポーネントがその子要素とやりとりする唯一の方法です。子要素を変更するには、新しい props でそれを再レンダーします。ただし、この一般的なデータフロー以外で、子要素を命令型のコードを使って変更する必要がある場合もあります。変更したい子要素が React コンポーネントのインスタンスのことも、DOM 要素のこともあるでしょう。どちらの場合でも、React は避難ハッチを提供します。
 

@@ -6,21 +6,17 @@ next: hooks-rules.html
 prev: hooks-state.html
 ---
 
-<<<<<<< HEAD
-*フック (hook)* は React 16.8 で追加された新機能です。state などの React の機能を、クラスを書かずに使えるようになります。
-=======
-> Try the new React documentation.
+> 新しい React ドキュメントをお試しください。
 > 
-> These new documentation pages teach modern React and include live examples:
+> 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
 >
 > - [Synchronizing with Effects](https://beta.reactjs.org/learn/synchronizing-with-effects)
 > - [You Might Not Need an Effect](https://beta.reactjs.org/learn/you-might-not-need-an-effect)
 > - [`useEffect`](https://beta.reactjs.org/reference/react/useEffect)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+*フック (hook)* は React 16.8 で追加された新機能です。state などの React の機能を、クラスを書かずに使えるようになります。
 
 *副作用 (effect) フック* により、関数コンポーネント内で副作用を実行することができるようになります：
 

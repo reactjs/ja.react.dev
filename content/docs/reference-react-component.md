@@ -15,15 +15,11 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
-<<<<<<< HEAD
-このページには React コンポーネントクラス定義の詳細な API リファレンスがあります。また、あなたが [コンポーネントや props](/docs/components-and-props.html) などの基本的な React の概念、および [state やライフサイクル](/docs/state-and-lifecycle.html)に精通していることを前提としています。そうでない場合は、まずそれらを読んでください。
-=======
-> Try the new React documentation for [`Component`](https://beta.reactjs.org/reference/react/Component).
->
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> 新しい React ドキュメントをお試しください：[`Component`](https://beta.reactjs.org/reference/react/Component)
+> 
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
-This page contains a detailed API reference for the React component class definition. It assumes you're familiar with fundamental React concepts, such as [Components and Props](/docs/components-and-props.html), as well as [State and Lifecycle](/docs/state-and-lifecycle.html). If you're not, read them first.
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+このページには React コンポーネントクラス定義の詳細な API リファレンスがあります。また、あなたが [コンポーネントや props](/docs/components-and-props.html) などの基本的な React の概念、および [state やライフサイクル](/docs/state-and-lifecycle.html)に精通していることを前提としています。そうでない場合は、まずそれらを読んでください。
 
 ## 概要 {#overview}
 

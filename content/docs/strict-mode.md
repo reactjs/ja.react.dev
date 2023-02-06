@@ -4,20 +4,16 @@ title: strict モード
 permalink: docs/strict-mode.html
 ---
 
-<<<<<<< HEAD
-`StrictMode` はアプリケーションの潜在的な問題点を洗い出すためのツールです。`Fragment` と同様に、`StrictMode` は目に見える UI を描画しません。`StrictMode` の子孫要素に対しては、付加的な検査および警告が動くようになります。
-=======
-> Try the new React documentation.
+> 新しい React ドキュメントをお試しください。
 > 
-> These new documentation pages teach modern React and include live examples:
+> 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
 >
 > - [`StrictMode`](https://beta.reactjs.org/reference/react/StrictMode)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
-`StrictMode` is a tool for highlighting potential problems in an application. Like `Fragment`, `StrictMode` does not render any visible UI. It activates additional checks and warnings for its descendants.
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+`StrictMode` はアプリケーションの潜在的な問題点を洗い出すためのツールです。`Fragment` と同様に、`StrictMode` は目に見える UI を描画しません。`StrictMode` の子孫要素に対しては、付加的な検査および警告が動くようになります。
 
 > 補足：
 >
@@ -164,7 +160,6 @@ strict モードでこの機能を有効にした場合の開発時動作を示�
 React 18 以降の strict モードでは、開発時にコンポーネントがマウントされた場合、React はコンポーネントの即時アンマウント・再マウントをシミュレーションします：
 
 ```
-<<<<<<< HEAD
 * React がコンポーネントをマウント
     * レイアウト副作用を作成
     * 副作用を作成
@@ -174,17 +169,6 @@ React 18 以降の strict モードでは、開発時にコンポーネントが
 * マウントされたコンポーネント内で副作用の再生成をシミュレート
     * レイアウト副作用を作成
     * 副作用の作成用コードの実行
-=======
-* React mounts the component.
-    * Layout effects are created.
-    * Effects are created.
-* React simulates effects being destroyed on a mounted component.
-    * Layout effects are destroyed.
-    * Effects are destroyed.
-* React simulates effects being re-created on a mounted component.
-    * Layout effects are created
-    * Effect setup code runs
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 ```
 
 2 度目のマウントにおいて React は初回マウント時の state を復元します。この機能はタブを操作して画面を離れてから戻ってくる、といったユーザの挙動をシミュレートしたものであり、コードが state の復元を正しく処理できることを保証できます。
@@ -192,15 +176,9 @@ React 18 以降の strict モードでは、開発時にコンポーネントが
 コンポーネントがアンマウントされる場合は副作用は通常通り破棄されます：
 
 ```
-<<<<<<< HEAD
 * React がコンポーネントをアンマウント
   * レイアウト副作用を破棄
   * 副作用を破棄
-=======
-* React unmounts the component.
-  * Layout effects are destroyed.
-  * Effects are destroyed.
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 ```
 
 アンマウント・再マウントでは以下が発生します：

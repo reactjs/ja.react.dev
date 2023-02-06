@@ -4,19 +4,15 @@ title: 差分検出処理
 permalink: docs/reconciliation.html
 ---
 
-<<<<<<< HEAD
-React は、各更新で実際に何が変更されるべきかを人間が心配する必要がないように、宣言型の API を提供しています。これによりアプリケーションの作成が大幅に容易になるわけですが、React の中でこの処理がどのように実装されているのかはよく分からないかもしれません。この章では React の "差分" アルゴリズムについて、コンポーネントの更新を予測可能なものとしながら、ハイパフォーマンスなアプリケーションの要求を満たす速度を得られるように、私たちが行った選択について説明します。
-=======
-> Try the new React documentation.
+> 新しい React ドキュメントをお試しください。
 > 
-> These new documentation pages teach modern React and include live examples:
+> 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
 >
 > - [Preserving and Resetting State](https://beta.reactjs.org/learn/preserving-and-resetting-state)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
-React provides a declarative API so that you don't have to worry about exactly what changes on every update. This makes writing applications a lot easier, but it might not be obvious how this is implemented within React. This article explains the choices we made in React's "diffing" algorithm so that component updates are predictable while being fast enough for high-performance apps.
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+React は、各更新で実際に何が変更されるべきかを人間が心配する必要がないように、宣言型の API を提供しています。これによりアプリケーションの作成が大幅に容易になるわけですが、React の中でこの処理がどのように実装されているのかはよく分からないかもしれません。この章では React の "差分" アルゴリズムについて、コンポーネントの更新を予測可能なものとしながら、ハイパフォーマンスなアプリケーションの要求を満たす速度を得られるように、私たちが行った選択について説明します。
 
 ## 何が問題なのか {#motivation}
 

@@ -8,20 +8,16 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
-<<<<<<< HEAD
-React でのイベント処理は DOM 要素のイベントの処理と非常に似ています。いくつかの文法的な違いがあります：
-=======
-> Try the new React documentation.
+> 新しい React ドキュメントをお試しください。
 > 
-> These new documentation pages teach modern React and include live examples:
+> 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
 >
 > - [Responding to Events](https://beta.reactjs.org/learn/responding-to-events)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
-Handling events with React elements is very similar to handling events on DOM elements. There are some syntax differences:
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+React でのイベント処理は DOM 要素のイベントの処理と非常に似ています。いくつかの文法的な違いがあります：
 
 * React のイベントは小文字ではなく camelCase で名付けられています。
 * JSX ではイベントハンドラとして文字列ではなく関数を渡します。

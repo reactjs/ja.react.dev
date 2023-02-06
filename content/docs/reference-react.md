@@ -101,15 +101,11 @@ UI がどのように見えるべきかを記述するために [JSX の使用](
 
 ### `React.Component` {#reactcomponent}
 
-<<<<<<< HEAD
-React コンポーネントが [ES6 クラス](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) を用いて定義されている場合、`React.Component` はそれらの基底クラスになります。
-=======
 > Try the new React documentation for [`Component`](https://beta.reactjs.org/reference/react/Component).
 >
 > The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
-`React.Component` is the base class for React components when they are defined using [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes):
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+React コンポーネントが [ES6 クラス](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) を用いて定義されている場合、`React.Component` はそれらの基底クラスになります。
 
 ```javascript
 class Greeting extends React.Component {
@@ -125,15 +121,11 @@ class Greeting extends React.Component {
 
 ### `React.PureComponent` {#reactpurecomponent}
 
-<<<<<<< HEAD
-`React.PureComponent` は [`React.Component`](#reactcomponent) と似ています。両者の違いは [`React.Component`](#reactcomponent) が [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) を実装していないことに対し、`React.PureComponent` は props と state を浅く (shallow) 比較することでそれを実装していることです。
-=======
 > Try the new React documentation for [`PureComponent`](https://beta.reactjs.org/reference/react/PureComponent).
 >
 > The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
-`React.PureComponent` is similar to [`React.Component`](#reactcomponent). The difference between them is that [`React.Component`](#reactcomponent) doesn't implement [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), but `React.PureComponent` implements it with a shallow prop and state comparison.
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+`React.PureComponent` は [`React.Component`](#reactcomponent) と似ています。両者の違いは [`React.Component`](#reactcomponent) が [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) を実装していないことに対し、`React.PureComponent` は props と state を浅く (shallow) 比較することでそれを実装していることです。
 
 React コンポーネントの `render()` 関数が同じ props と state を与えられたときに同じ結果をレンダーするときは、パフォーマンスを向上させるために `React.PureComponent` を使用できます。
 
@@ -269,15 +261,11 @@ React.isValidElement(object)
 
 ### `React.Children` {#reactchildren}
 
-<<<<<<< HEAD
-`React.Children` はデータ構造が非公開の `this.props.children` を扱うためのユーティリティを提供します。
-=======
 > Try the new React documentation for [`Children`](https://beta.reactjs.org/reference/react/Children).
 >
 > The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
-`React.Children` provides utilities for dealing with the `this.props.children` opaque data structure.
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+`React.Children` はデータ構造が非公開の `this.props.children` を扱うためのユーティリティを提供します。
 
 #### `React.Children.map` {#reactchildrenmap}
 
@@ -335,15 +323,11 @@ React.Children.toArray(children)
 
 ### `React.Fragment` {#reactfragment}
 
-<<<<<<< HEAD
-`React.Fragment` コンポーネントを使用すると追加の DOM 要素を作成することなく `render()` メソッドで複数の要素を返すことができます。
-=======
 > Try the new React documentation for [`Fragment`](https://beta.reactjs.org/reference/react/Fragment).
 >
 > The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
-The `React.Fragment` component lets you return multiple elements in a `render()` method without creating an additional DOM element:
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+`React.Fragment` コンポーネントを使用すると追加の DOM 要素を作成することなく `render()` メソッドで複数の要素を返すことができます。
 
 ```javascript
 render() {
@@ -361,28 +345,20 @@ render() {
 
 ### `React.createRef` {#reactcreateref}
 
-<<<<<<< HEAD
-`React.createRef` は [ref](/docs/refs-and-the-dom.html) を作成します。ref は `ref` 属性を介して React 要素に取り付けることができます。
-=======
 > Try the new React documentation for [`createRef`](https://beta.reactjs.org/reference/react/createRef).
 >
 > The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
-`React.createRef` creates a [ref](/docs/refs-and-the-dom.html) that can be attached to React elements via the ref attribute.
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+`React.createRef` は [ref](/docs/refs-and-the-dom.html) を作成します。ref は `ref` 属性を介して React 要素に取り付けることができます。
 `embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef` {#reactforwardref}
 
-<<<<<<< HEAD
-`React.forwardRef` は [ref](/docs/refs-and-the-dom.html) を配下のツリーの別のコンポーネントに受け渡す React コンポーネントを作成します。この手法はあまり一般的ではありませんが、2 つのシナリオで特に役立ちます：
-=======
 > Try the new React documentation for [`forwardRef`](https://beta.reactjs.org/reference/react/forwardRef).
 >
 > The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
-`React.forwardRef` creates a React component that forwards the [ref](/docs/refs-and-the-dom.html) attribute it receives to another component below in the tree. This technique is not very common but is particularly useful in two scenarios:
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+`React.forwardRef` は [ref](/docs/refs-and-the-dom.html) を配下のツリーの別のコンポーネントに受け渡す React コンポーネントを作成します。この手法はあまり一般的ではありませんが、2 つのシナリオで特に役立ちます：
 
 * [Forwarding refs to DOM components](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)
 * [Forwarding refs in higher-order-components](/docs/forwarding-refs.html#forwarding-refs-in-higher-order-components)
@@ -399,15 +375,11 @@ render() {
 
 ### `React.lazy` {#reactlazy}
 
-<<<<<<< HEAD
-`React.lazy()` を使用すると、動的に読み込まれるコンポーネントを定義できます。これにより、バンドルサイズを削減して、最初のレンダー時に使用されないコンポーネントの読み込みを遅らせることができます。
-=======
 > Try the new React documentation for [`lazy`](https://beta.reactjs.org/reference/react/lazy).
 >
 > The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
-`React.lazy()` lets you define a component that is loaded dynamically. This helps reduce the bundle size to delay loading components that aren't used during the initial render.
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+`React.lazy()` を使用すると、動的に読み込まれるコンポーネントを定義できます。これにより、バンドルサイズを削減して、最初のレンダー時に使用されないコンポーネントの読み込みを遅らせることができます。
 
 [code splitting のドキュメント](/docs/code-splitting.html#reactlazy)から使用方法を学ぶことができます。また、使い方をより詳しく説明した[こちらの記事](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d)もチェックしてみてください。
 
@@ -420,15 +392,11 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 ### `React.Suspense` {#reactsuspense}
 
-<<<<<<< HEAD
-`React.Suspense` を使用することで、その配下のツリーにレンダーする準備ができていないコンポーネントがあるときに表示するローディングインジケータを指定できます。将来的には `Suspense` をデータフェッチングのようなより多くのシナリオで使えるようにする予定です。詳細は[ロードマップ](/blog/2018/11/27/react-16-roadmap.html)を参照してください。
-=======
 > Try the new React documentation for [`Suspense`](https://beta.reactjs.org/reference/react/Suspense).
 >
 > The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
-`React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. In the future we plan to let `Suspense` handle more scenarios such as data fetching. You can read about this in [our roadmap](/blog/2018/11/27/react-16-roadmap.html).
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+`React.Suspense` を使用することで、その配下のツリーにレンダーする準備ができていないコンポーネントがあるときに表示するローディングインジケータを指定できます。将来的には `Suspense` をデータフェッチングのようなより多くのシナリオで使えるようにする予定です。詳細は[ロードマップ](/blog/2018/11/27/react-16-roadmap.html)を参照してください。
 
 現時点ではコンポーネントの遅延ローディングが `<React.Suspense>` がサポートする**唯一の**ユースケースです：
 

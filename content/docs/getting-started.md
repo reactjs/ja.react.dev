@@ -18,17 +18,13 @@ redirect_from:
   - "docs/environments.html"
 ---
 
-<<<<<<< HEAD
-このページは React のドキュメント、および関連する資料の概要となります。
-=======
-> Try the new React documentation.
+> 新しい React ドキュメントをお試しください。
 > 
-> The new [Quick Start](https://beta.reactjs.org/learn) teaches modern React and includes live examples.
+> 新しい[クイックスタートガイド](https://beta.reactjs.org/learn)では最新の React がライブサンプル付きで学べます。
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
-This page is an overview of the React documentation and related resources.
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+このページは React のドキュメント、および関連する資料の概要となります。
 
 **React** はユーザインターフェースを作成する為の JavaScript のライブラリです。[ここのホームページ](/)、または[このチュートリアル](/tutorial/tutorial.html)から React がどういうものかを学びましょう。
 

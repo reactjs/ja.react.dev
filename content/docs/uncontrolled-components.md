@@ -4,21 +4,17 @@ title: 非制御コンポーネント
 permalink: docs/uncontrolled-components.html
 ---
 
-<<<<<<< HEAD
-ほとんどの場合では、フォームの実装には[制御されたコンポーネント](/docs/forms.html#controlled-components) (controlled component) を使用することをお勧めしています。制御されたコンポーネントでは、フォームのデータは React コンポーネントが扱います。非制御コンポーネント (uncontrolled component) はその代替となるものであり、フォームデータを DOM 自身が扱います。
-=======
-> Try the new React documentation.
+> 新しい React ドキュメントをお試しください。
 > 
-> These new documentation pages teach modern React and include live examples:
+> 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
 >
 > - [`<input>`](https://beta.reactjs.org/reference/react-dom/components/input)
 > - [`<select>`](https://beta.reactjs.org/reference/react-dom/components/select)
 > - [`<textarea>`](https://beta.reactjs.org/reference/react-dom/components/textarea)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
 
-In most cases, we recommend using [controlled components](/docs/forms.html#controlled-components) to implement forms. In a controlled component, form data is handled by a React component. The alternative is uncontrolled components, where form data is handled by the DOM itself.
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+ほとんどの場合では、フォームの実装には[制御されたコンポーネント](/docs/forms.html#controlled-components) (controlled component) を使用することをお勧めしています。制御されたコンポーネントでは、フォームのデータは React コンポーネントが扱います。非制御コンポーネント (uncontrolled component) はその代替となるものであり、フォームデータを DOM 自身が扱います。
 
 非制御コンポーネントを記述するには、各 state の更新に対してイベントハンドラを書く代わりに、[ref を使用](/docs/refs-and-the-dom.html)して DOM からフォームの値を取得します。
 

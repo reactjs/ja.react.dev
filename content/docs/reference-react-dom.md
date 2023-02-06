@@ -171,15 +171,11 @@ DOM からマウントされた React コンポーネントを削除し、イベ
 
 ### `findDOMNode()` {#finddomnode}
 
-<<<<<<< HEAD
-> 補足:
-=======
 > Try the new React documentation for [`findDOMNode`](https://beta.reactjs.org/reference/react-dom/findDOMNode).
 >
 > The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
-> Note:
->>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
+> 補足:
 >
 > `findDOMNode` は内在する DOM ノードにアクセスするために使用される避難ハッチです。ほとんどのケースにおいて、この避難ハッチの使用はコンポーネントの抽象化に穴を開けてしまうためおすすめしません。[`StrictMode` では非推奨になっています。](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
 
