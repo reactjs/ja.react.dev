@@ -84,6 +84,7 @@ Issue を解決することにした場合、誰かがすでに修正に取り�
 
 **プルリクエストを送信する前に、**以下のプロセスが行われているか確認してください：
 
+<<<<<<< HEAD
 1. [リポジトリ](https://github.com/facebook/react) をフォークして `main` から新しいブランチを作成します。
 2. `yarn` コマンドをリポジトリルートで実行します。
 3. バグを修正したり、テストが必要なコードを追加した場合は、テストを追加します。
@@ -94,6 +95,18 @@ Issue を解決することにした場合、誰かがすでに修正に取り�
 8. リントを行います (`yarn lint`)。ヒント： `yarn linc` は変更されたファイルのみに適用できます。
 9. [Flow](https://flowtype.org/) による型チェックを行います (`yarn flow`)。
 10. まだの場合は、先に CLA (Contributor License Agreement) の提出を済ませます。
+=======
+1. Fork [the repository](https://github.com/facebook/react) and create your branch from `main`.
+2. Run `yarn` in the repository root.
+3. If you've fixed a bug or added code that should be tested, add tests!
+4. Ensure the test suite passes (`yarn test`). Tip: `yarn test --watch TestName` is helpful in development.
+5. Run `yarn test --prod` to test in the production environment.
+6. If you need a debugger, run `yarn test --debug --watch TestName`, open `chrome://inspect`, and press "Inspect".
+7. Format your code with [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
+8. Make sure your code lints (`yarn lint`). Tip: `yarn linc` to only check changed files.
+9. Run the [Flow](https://flowtype.org/) typechecks (`yarn flow`).
+10. If you haven't already, complete the CLA.
+>>>>>>> 19aa5b4852c3905757edb16dd62f7e7506231210
 
 ### Contributor License Agreement (CLA) {#contributor-license-agreement-cla}
 
