@@ -1,25 +1,25 @@
 ---
-title: Installation
+title: インストール
 ---
 
 <Intro>
 
-React has been designed from the start for gradual adoption. You can use as little or as much React as you need. Whether you want to get a taste of React, add some interactivity to an HTML page, or start a complex React-powered app, this section will help you get started.
+React は開発当初から、段階的に導入できることを目的として設計されています。必要に応じて、少しだけ React を使うというのでも、たくさん React を使うというのでも構いません。あなたが React を少し味見してみたいだけの場合でも、HTML ページにちょっとインタラクティブさを加えたい場合でも、あるいは React を使った複雑なアプリケーションを開始したいという場合でも、このセクションであなたのスタートアップのお手伝いをします。
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to add React to an HTML page](/learn/add-react-to-a-website)
-* [How to start a standalone React project](/learn/start-a-new-react-project)
-* [How to set up your editor](/learn/editor-setup)
-* [How to install React Developer Tools](/learn/react-developer-tools)
+* [HTML ページに React を追加する方法](/learn/add-react-to-a-website)
+* [スタンドアロンの React プロジェクトを始める方法](/learn/start-a-new-react-project)
+* [エディタのセットアップ](/learn/editor-setup)
+* [React Developer Tools をインストールする方法](/learn/react-developer-tools)
 
 </YouWillLearn>
 
-## Try React {/*try-react*/}
+## React を試してみる {/*try-react*/}
 
-You don't need to install anything to play with React. Try editing this sandbox!
+React を試してみるだけなら何もインストールする必要はありません。このサンドボックスを編集してみましょう！
 
 <Sandpack>
 
@@ -35,23 +35,22 @@ export default function App() {
 
 </Sandpack>
 
-You can edit it directly or open it in a new tab by pressing the "Fork" button in the upper right corner.
+サンドボックスを直接編集しても構いませんし、右上隅の「Fork」ボタンを押すことで新しいタブで開くこともできます。
 
-Most pages in the React documentation contain sandboxes like this. Outside of the React documentation, there are many online sandboxes that support React: for example, [CodeSandbox](https://codesandbox.io/s/new), [StackBlitz](https://stackblitz.com/fork/react), or [CodePen.](https://codepen.io/pen?&editors=0010&layout=left&prefill_data_id=3f4569d1-1b11-4bce-bd46-89090eed5ddb)
+React ドキュメントのほとんどのページにはこのようなサンドボックスが含まれています。React ドキュメント以外にも、[CodeSandbox](https://codesandbox.io/s/new)、[StackBlitz](https://stackblitz.com/fork/react)、[CodePen](https://codepen.io/pen?&editors=0010&layout=left&prefill_data_id=3f4569d1-1b11-4bce-bd46-89090eed5ddb) など、React をサポートするオンラインサンドボックスがたくさんあります。
 
-### Try React locally {/*try-react-locally*/}
+### ローカルで React を試す {/*try-react-locally*/}
 
-To try React locally on your computer, [download this HTML page.](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html) Open it in your editor and in your browser!
+React を自分のコンピューター上で試すには、[この HTML ページをダウンロードしてください](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html)。エディターとブラウザで開いてみましょう！
 
-## Add React to a page {/*add-react-to-a-page*/}
+## ページに React を追加する {/*add-react-to-a-page*/}
 
-If you're working with an existing site and need to add a little bit of React, you can [add React with a script tag.](/learn/add-react-to-a-website)
+既存のサイトがあって少し React を追加する必要がある、という場合は、[script タグで React を追加することができます](/learn/add-react-to-a-website)。
 
-## Start a React project {/*start-a-react-project*/}
+## React プロジェクトを作成する {/*start-a-react-project*/}
 
-If you're ready to [start a standalone project](/learn/start-a-new-react-project) with React, you can set up a minimal toolchain for a pleasant developer experience. You can also start with a framework that makes a lot of decisions for you out of the box.
+もし React を使って[スタンドアロンのプロジェクトを始めたい](/learn/start-a-new-react-project)という場合は、開発者が快適に作業できるための最低限のツールチェーンをセットアップすることができます。または、デフォルトでいろいろと設定されたフレームワークを使って始めることも可能です。
 
-## Next steps {/*next-steps*/}
+## 次のステップ {/*next-steps*/}
 
-Head to the [Quick Start](/learn) guide for a tour of the most important React concepts you will encounter every day.
-
+日々遭遇するような React の重要な概念について、[クイックスタート](/learn)ガイドで学びましょう。
