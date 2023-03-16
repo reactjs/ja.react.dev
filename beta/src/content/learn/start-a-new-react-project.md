@@ -4,14 +4,14 @@ title: 新しい React プロジェクトを始める
 
 <Intro>
 
-新しいプロジェクトを始める場合、ツールチェーンやフレームワークを使うことをお勧めします。これらのツールは開発環境を快適にしてくれますが、ローカルに Node.js をインストールする必要があります。
+新しいプロジェクトを始める場合、ツールチェーンやフレームワークを使うことをお勧めします。これらのツールによって開発環境が快適になりますが、ローカル環境に Node.js をインストールする必要があります。
 
 </Intro>
 
 <YouWillLearn>
 
 * ツールチェーンとフレームワークの違い
-* 最低限のツールチェーンでプロジェクトを始める方法
+* 最小限のツールチェーンでプロジェクトを始める方法
 * 充実した機能を持つフレームワークでプロジェクトを始める方法
 * 人気のあるツールチェーンやフレームワークに含まれているもの
 
@@ -50,7 +50,7 @@ npm start
 
 > Create React App はバックエンドの処理やデータベースを取り扱いません。任意のバックエンドと組み合わせて使用できます。プロジェクトをビルドすると、静的な HTML、CSS、JS を含むフォルダが生成されます。しかし Create React App はサーバ機能を活用できないため、ベストなパフォーマンスを提供するわけではありません。もし読み込みを高速化したい場合や、ルーティング、サーバサイドロジックなどの組み込み機能が必要な場合は、代わりにフレームワークを使用することをお勧めします。
 
-### 代表的な代替ツールキット {/*toolkit-popular-alternatives*/}
+### その他の代表的なツールキット {/*toolkit-popular-alternatives*/}
 
 * [Vite](https://vitejs.dev/guide/)
 * [Parcel](https://parceljs.org/getting-started/webapp/)
@@ -61,7 +61,7 @@ npm start
 
 [Next.js Foundations](https://nextjs.org/learn/foundations/about-nextjs) のチュートリアルは、React と Next.js でアプリを構築する場合の最適な入門書です。
 
-### 代表的な代替フレームワーク {/*framework-popular-alternatives*/}
+### その他の代表的なフレームワーク {/*framework-popular-alternatives*/}
 
 * [Gatsby](https://www.gatsbyjs.org/)
 * [Remix](https://remix.run/)
