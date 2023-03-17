@@ -296,11 +296,7 @@ img { height: 181px; }
 
 <Hint>
 
-<<<<<<< HEAD
 もしかしたら修正途中で "Unexpected token" というエラーが出るかもしれません。その場合はセミコロンが閉じ括弧の*後*にあることを確認してください。`return ( )` の中にセミコロンが残っているとエラーになります。
-=======
-You may get an "Unexpected token" error while trying to fix this. In that case, check that the semicolon appears *after* the closing parenthesis. Leaving a semicolon inside `return ( )` will cause an error.
->>>>>>> 19aa5b4852c3905757edb16dd62f7e7506231210
 
 </Hint>
 
