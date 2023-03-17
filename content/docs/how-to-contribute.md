@@ -89,7 +89,7 @@ Issue を解決することにした場合、誰かがすでに修正に取り�
 3. バグを修正したり、テストが必要なコードを追加した場合は、テストを追加します。
 4. テストスイートが通ることを確認してください (`yarn test`)。ヒント： `yarn test --watch TestName` コマンドは開発時に役立ちます。
 5. 本番環境でテストするために `yarn test --prod` コマンドを実行します。
-6. デバッガが必要な場合は `yarn debug-test --watch TestName` を実行し `chrome://inspect` を開き "Inspect" を押してください。
+6. デバッガが必要な場合は `yarn test --debug --watch TestName` を実行し `chrome://inspect` を開き "Inspect" を押してください。
 7. [prettier](https://github.com/prettier/prettier) でコードをフォーマットします (`yarn prettier`)。
 8. リントを行います (`yarn lint`)。ヒント： `yarn linc` は変更されたファイルのみに適用できます。
 9. [Flow](https://flowtype.org/) による型チェックを行います (`yarn flow`)。
