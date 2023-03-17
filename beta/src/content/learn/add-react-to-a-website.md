@@ -34,7 +34,7 @@ React は開発当初から、段階的に導入できることを目的とし�
 <!-- ... existing HTML ... -->
 ```
 
-これは React ツリーを開始する場所なので、「ルート」と呼ばれます。`<body>` タグ内の任意の場所にこのようなルート HTML タグを配置できます。React が中身をあなたの React コンポーネントに置き換えますので、空にしておいてください。 
+これは React ツリーが開始される場所なので、「ルート (root)」と呼ばれます。`<body>` タグ内の任意の場所にこのようなルート HTML タグを配置できます。React が中身をあなたが作る React コンポーネントに置き換えますので、空にしておいてください。
 
 ページ内には必要なだけルート HTML タグを配置できます。
 
@@ -43,7 +43,7 @@ React は開発当初から、段階的に導入できることを目的とし�
 HTML ページの `</body>` クローズタグの直前に、以下の 3 つの `<script>` タグを追加しましょう。
 
 - [`react.development.js`](https://unpkg.com/react@18/umd/react.development.js) は React コンポーネントを定義するために必要なファイルです。
-- [`react-dom.development.js`](https://unpkg.com/react-dom@18/umd/react-dom.development.js) は、React によって生成された HTML 要素を [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model) にレンダーするためのファイルです。
+- [`react-dom.development.js`](https://unpkg.com/react-dom@18/umd/react-dom.development.js) は、React によって生成された HTML 要素を [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model) に変換するためのファイルです。
 - **`like-button.js`** が、次のステップであなたが記述するコンポーネントのためのファイルです！
 
 HTML の最後が以下のようになっていることを確認してください。
@@ -104,7 +104,7 @@ root.render(React.createElement(LikeButton));
 
 #### コンポーネントは再利用可能！ {/*you-can-reuse-components*/}
 
-同じ HTML ページの複数の場所に React コンポーネントを表示したい場合があります。React を使いたい部分がページ内で分かれているような場合は、これができると便利です。これを実現するには、HTML に複数のルートタグを作り、`ReactDOM.createRoot()` でそれぞれのタグの内部に React コンポーネントをレンダーします。例えば：
+同じ HTML ページの複数の場所に React コンポーネントを表示したい場合があります。React を使いたい部分がページ内で複数に分かれているような場合は、これができると便利です。これを実現するには、HTML に複数のルートタグを作り、`ReactDOM.createRoot()` でそれぞれのタグの内部に React コンポーネントをレンダーします。例えば：
 
 1. **`index.html`** にもうひとつコンテナ要素 `<div id="another-root"></div>` を追加します。
 2. **`like-button.js`** に以下の 3 行を追加します。
@@ -119,9 +119,9 @@ anotherRoot.render(React.createElement(LikeButton));
 
 ### ステップ 5: 本番環境用に JavaScript を圧縮する {/*step-5-minify-javascript-for-production*/}
 
-非圧縮の JavaScript はユーザのページ読み込みを大幅に遅延させる可能性があります。ウェブサイトを本番環境にデプロイする前には、スクリプトを圧縮 (minify) することをお勧めします。
+未圧縮の JavaScript はユーザのページ読み込みを大幅に遅延させる可能性があります。ウェブサイトを本番環境にデプロイする前には、スクリプトを圧縮 (minify) することをお勧めします。
 
-- **圧縮手段がまだセットアップできていない場合**は、[例えばこの方法を試してみてください](https://gist.github.com/gaearon/ee0201910608f15df3f8cd66aa83f98e)。
+- **圧縮ステップがまだセットアップできていない場合**は、[例えばこの方法を試してみてください](https://gist.github.com/gaearon/ee0201910608f15df3f8cd66aa83f98e)。
 - **すでに自分のスクリプトが圧縮済み**の場合、HTML が `production.min.js` で終わるバージョンの React を読み込むようにしてデプロイすれば、サイトは本番環境で使用できるようになります：
 
 ```html
@@ -226,7 +226,7 @@ JSX を含むファイルを保存するたびに変換が再実行され、JSX 
 
 #### JSX なしで React を使う {/*react-without-jsx*/}
 
-元々 JSX は、React でコンポーネントを書くことが HTML を書くのと同じくらい馴染みのある感覚になるように、ということで導入されました。そしてその後、この文法は広く普及しました。それでも、JSX を使いたくない場合や使えない場合というのもあるかもしれません。そのような場合、2 つのオプションがあります。
+元々 JSX は、React でコンポーネントを書くことが HTML を書くのと同じくらい馴染みのある感覚になるように、ということで導入されました。そしてその後、この文法は広く普及しました。それでも、JSX を使いたくない場合や、使えない場合というのもあるかもしれません。そのような場合のオプションが 2 つあります。
 
 - コンパイラの代わりに JavaScript の[テンプレート文字列](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)を利用する [htm](https://github.com/developit/htm) のような JSX 代替ライブラリを使用する。
 - 以下で説明するような特別な仕組みを持った [`React.createElement()`](/reference/react/createElement) を使用する。

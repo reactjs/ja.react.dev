@@ -4,7 +4,7 @@ title: 新しい React プロジェクトを始める
 
 <Intro>
 
-新しいプロジェクトを始める場合、ツールチェーンやフレームワークを使うことをお勧めします。これらのツールによって開発環境が快適になりますが、ローカル環境に Node.js をインストールする必要があります。
+新しいプロジェクトを始める際はツールチェーンやフレームワークを使うことをお勧めします。これらのツールによって開発環境が快適になりますが、ローカル環境に Node.js をインストールする必要があります。
 
 </Intro>
 
@@ -17,7 +17,7 @@ title: 新しい React プロジェクトを始める
 
 </YouWillLearn>
 
-## 「冒険」の出発地点を選ぶ {/*choose-your-own-adventure*/}
+## あなたの冒険の出発地点を選ぶ {/*choose-your-own-adventure*/}
 
 React は UI をコンポーネントと呼ばれるパーツに分割することで UI コードを作り上げていけるライブラリです。React はルーティングやデータ管理を自前では行いません。そのため、新しい React プロジェクトを始める方法はいくつかあります：
 
@@ -25,7 +25,7 @@ React は UI をコンポーネントと呼ばれるパーツに分割するこ�
 * **最小限のツールチェーン** から始め、必要に応じてより多くの機能を追加していく（学習に最適！）。
 * データのフェッチ、ルーティングなどの一般的な機能がすでに組み込まれている **opinionated なフレームワーク** で始める。
 
-## 最小限のツールチェーンでスタート {/*getting-started-with-a-minimal-toolchain*/}
+## 最小限のツールチェーンでスタートする {/*getting-started-with-a-minimal-toolchain*/}
 
 **React の学習**をするなら、[Create React App](https://create-react-app.dev/) をお勧めします。これは React を試したい場合や新しいシングルページ・クライアントサイドアプリケーションを構築したい場合に最も一般的な方法です。React 自体のためのツールであり、ルーティングやデータフェッチについては何もしません。
 
@@ -73,10 +73,10 @@ npm start
 
 * **パッケージマネージャ**：サードパーティーパッケージをインストール、更新、管理するためのツールです。人気のあるパッケージマネージャには、[npm](https://www.npmjs.com/)（Node.js に組み込み）、[Yarn](https://yarnpkg.com/)、[pnpm](https://pnpm.io/) があります。
 * **コンパイラ**：モダンな言語機能や、JSX や型注釈などの追加構文をブラウザで扱えるように変換するためのツールです。人気のあるコンパイラには、[Babel](https://babeljs.io/)、[TypeScript](https://www.typescriptlang.org/)、[swc](https://swc.rs/) があります。
-* **バンドラ**：モジュラーなコードを書けるようにし、それらを小さなパッケージにまとめることで読み込み時間を最適化するためのツールです。人気のあるバンドラには、[webpack](https://webpack.js.org/)、[Parcel](https://parceljs.org/)、[esbuild](https://esbuild.github.io/)、[swc](https://swc.rs/) があります。
+* **バンドラ**：モジュールに分割されたコードを書いてそれらを小さなパッケージにまとめることで、読み込み時間を最適化できるツールです。人気のあるバンドラには、[webpack](https://webpack.js.org/)、[Parcel](https://parceljs.org/)、[esbuild](https://esbuild.github.io/)、[swc](https://swc.rs/) があります。
 * **ミニファイア**：コードをよりコンパクトにすることで読み込み速度を改善するためのツールです。人気のあるミニファイアには、[Terser](https://terser.org/)、[swc](https://swc.rs/) があります。
-* **サーバ**：サーバーリクエストを処理し、コンポーネントを HTML にレンダリングするためのツールです。人気のあるサーバーには、[Express](https://expressjs.com/) があります。
+* **サーバ**：サーバーリクエストを処理し、コンポーネントを HTML に変換するためのツールです。人気のあるサーバーには、[Express](https://expressjs.com/) があります。
 * **リンタ**：コードによくあるミスをチェックするためのツールです。人気のあるリンタには [ESLint](https://eslint.org/) があります。
-* **テストランナ**: コードに対してテストを実行するためのツールです。人気のあるテストランナには、[Jest](https://jestjs.io/) があります。
+* **テストランナ**：コードに対してテストを実行するためのツールです。人気のあるテストランナには、[Jest](https://jestjs.io/) があります。
 
 JavaScript のツールチェーンをゼロからセットアップする場合は、Create React App の機能の一部を再現する[このガイド](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658)が参考になります。フレームワークには通常、ルーティングやデータの取得などのソリューションが用意されています。大規模なプロジェクトでは、[Nx](https://nx.dev/react) や [Turborepo](https://turborepo.org/) のようなツールを使って、複数のパッケージを単一のリポジトリで管理したくなるかもしれません。

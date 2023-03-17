@@ -4,20 +4,20 @@ title: エディタのセットアップ
 
 <Intro>
 
-エディタを適切に設定することでコードが読みやすくなり、書く速度も上がります。また書いている最中にバグを発見するのにも役立ちます！ 初めてエディタを設定する場合や、現在のエディタの調整を行う場合、いくつかのおすすめがあります。
+エディタを適切に設定することでコードが読みやすくなり、書く速度も上がります。また書いている最中にバグを発見するのにも役立ちます！ 初めてエディタを設定する場合や、現在のエディタのチューンナップを行う場合、いくつかのおすすめがあります。
 
 </Intro>
 
 <YouWillLearn>
 
-* 最も人気のあるエディタは何か
+* 人気のエディタは何か
 * コードを自動的にフォーマットする方法
 
 </YouWillLearn>
 
-## エディタを選ぶ {/*your-editor*/}
+## 自分のエディタを選ぶ {/*your-editor*/}
 
-[VS Code](https://code.visualstudio.com/) は現在最も人気の高いエディタのひとつです。大規模な拡張機能のマーケットプレイスを有しており、GitHub のような人気のあるサービスともよく統合されています。以下にリストされているほとんどの機能は、VS Code に拡張機能として追加することができ、とても設定しやすいエディタとなっています。
+[VS Code](https://code.visualstudio.com/) は現在最も人気があるエディタのひとつです。拡張機能の大規模なマーケットプレイスがあり、GitHub のような人気のあるサービスともよく統合されています。以下にリストされているほとんどの機能は、VS Code に拡張機能として追加することができ、とても設定しやすいエディタとなっています。
 
 他に React コミュニティで使用されている人気のテキストエディタとしては、以下があります。
 
@@ -31,12 +31,12 @@ title: エディタのセットアップ
 
 ### リント {/*linting*/}
 
-コードのリンタによって、コードを書いている途中で問題を検知し早期に修正することができます。[ESLint](https://eslint.org/) は人気がある JavaScript 用のオープンソースのリンタです。
+コードのリンタによって、コードを書いている途中で問題を検知し早期に修正することができます。[ESLint](https://eslint.org/) は人気の JavaScript 用オープンソースリンタです。
 
 * [React 用の推奨設定で ESLint をインストールする](https://www.npmjs.com/package/eslint-config-react-app)（[Node をインストールしておく必要があります](https://nodejs.org/en/download/current/)）。
 * [公式エクステンションで VSCode に ESLint を組み込む](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-**あなたのプロジェクトで [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) のルールをすべて有効するようにしましょう。** これらは非常に重要なものであり、深刻なバグを早期に検知するために役立ちます。推奨の [`eslint-config-react-app`](https://www.npmjs.com/package/eslint-config-react-app) プリセットには、これらがすでに含まれています。
+**あなたのプロジェクトで [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) のルールをすべて有効化しましょう。**これらは非常に重要なものであり、深刻なバグを早期に検知するために役立ちます。推奨の [`eslint-config-react-app`](https://www.npmjs.com/package/eslint-config-react-app) プリセットには、これらがすでに含まれています。
 
 ### フォーマット {/*formatting*/}
 
@@ -51,7 +51,7 @@ title: エディタのセットアップ
 
 #### 保存時にフォーマット {/*formatting-on-save*/}
 
-理想的には、毎回ファイルの保存時にコードを整形するべきです。VS Code にはそのような設定があります！
+理想的には、毎回のファイル保存時にコードを整形するべきです。VS Code にはそのような設定があります！
 
 1. VSCode で `CTRL/CMD + SHIFT + P` を押す。
 2. "settings" とタイプする。
@@ -59,4 +59,4 @@ title: エディタのセットアップ
 4. 検索バーで "format on save" とタイプする。
 5. "format on save" のオプションにチェックが入っていることを確認する。
 
-> もし ESLint プリセットにフォーマットのルールがある場合、それらは Prettier と競合する可能性があります。[`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) を使って ESLint のフォーマットルールをすべて無効し、ESLint は論理的なミスをキャッチするため*のみ*に使用されるようにすることをお勧めします。プルリクエストをマージする前にファイルがフォーマットされていることを強制したい場合は、継続的インテグレーション (CI) で [`prettier --check`](https://prettier.io/docs/en/cli.html#--check) を使用してください。
+> もし ESLint プリセットにフォーマットのルールがある場合、それらは Prettier と競合する可能性があります。[`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) を使って ESLint のフォーマットルールをすべて無効にし、ESLint は論理的なミスをキャッチするため*のみ*に使用することをお勧めします。プルリクエストをマージする前にファイルがフォーマットされていることを強制したい場合は、継続的インテグレーション (CI) で [`prettier --check`](https://prettier.io/docs/en/cli.html#--check) を使用してください。
