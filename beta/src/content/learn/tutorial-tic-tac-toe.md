@@ -1,31 +1,31 @@
 ---
-title: 'Tutorial: Tic-Tac-Toe'
+title: 'チュートリアル: 三目並べ'
 ---
 
 <Intro>
 
-You will build a small tic-tac-toe game during this tutorial. This tutorial does not assume any existing React knowledge. The techniques you'll learn in the tutorial are fundamental to building any React app, and fully understanding it will give you a deep understanding of React.
+このチュートリアルでは、小さな三目並べゲーム (tic-tac-toe) を作ります。React の知識を前提としません。このチュートリアルで学ぶ技術は、どんな React アプリを構築するときにも基本的なものです。理解を深めることで、React の深い理解が得られます。
 
 </Intro>
 
 <Note>
 
-This tutorial is designed for people who prefer to **learn by doing** and want to quickly try making something tangible. If you prefer learning each concept step by step, start with [Describing the UI.](/learn/describing-the-ui)
+このチュートリアルは、実際に何かを作って学びたい人に向けて設計されています。各概念をステップバイステップで学ぶことをお好みの場合、最初に[UI の記述](/learn/describing-the-ui)から始めてください。
 
 </Note>
 
-The tutorial is divided into several sections:
+このチュートリアルは、以下のセクションに分かれています:
 
-- [Setup for the tutorial](#setup-for-the-tutorial) will give you **a starting point** to follow the tutorial.
-- [Overview](#overview) will teach you **the fundamentals** of React: components, props, and state.
-- [Completing the game](#completing-the-game) will teach you **the most common techniques** in React development.
-- [Adding time travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
+- [チュートリアルのセットアップ](#setup-for-the-tutorial) は、チュートリアルのための**出発点**を提供します。
+- [概要](#overview) では、React の**基本**であるコンポーネント、props、stateを学びます。
+- [ゲームの完成](#completing-the-game) では、React 開発における**最も一般的な技術**を学びます。
+- [タイムトラベルの追加](#adding-time-travel) では、React の特徴的な強みをより深く理解することができます。
 
-### What are you building? {/*what-are-you-building*/}
+### 何を作るか？ {/*what-are-you-building*/}
 
-In this tutorial, you'll build an interactive tic-tac-toe game with React.
+このチュートリアルでは、React を使って対話型の三目並べゲームを作ります。
 
-You can see what it will look like when you're finished here:
+完成したものは以下のようになります：
 
 <Sandpack>
 
@@ -194,15 +194,15 @@ body {
 
 </Sandpack>
 
-If the code doesn't make sense to you yet, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
+もしコードがまだ意味をなさない、あるいはコードの構文に不慣れであれば、心配しないでください。このチュートリアルの目的は、React とその構文を理解するのに役立つことです。
 
-We recommend that you check out the tic-tac-toe game above before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and it is updated as the game progresses.
+チュートリアルを続ける前に、上記の〇✕ゲームを見てお勧めします。ゲームボードの右側に数字付きのリストがあることに気づくでしょう。このリストにはゲーム中に行われたすべての動きの履歴が表示され、ゲームが進むにつれて更新されます。
 
-Once you've played around with the finished tic-tac-toe game, keep scrolling. You'll start with a simpler template in this tutorial. Our next step is to set you up so that you can start building the game.
+完成した〇✕ゲームを試したら、スクロールして続けましょう。これからはより簡単なテンプレートを使用してゲームを構築する準備をします。
 
-## Setup for the tutorial {/*setup-for-the-tutorial*/}
+## チュートリアルのセットアップ {/*setup-for-the-tutorial*/}
 
-In the live code editor below, click **Fork** in the top-right corner to open the editor in a new tab using the website CodeSandbox. CodeSandbox allows you to write code in your browser and immediately view how your users will see the app you've created. The new tab should display an empty square and the starter code for this tutorial.
+以下のライブコードエディターにある、このチュートリアルのスターターコードとともに、右上にある **Fork** ボタンをクリックすると、ウェブサイトの CodeSandbox が新しいタブで開きます。CodeSandbox では、ブラウザでコードを書いて、すぐに作ったアプリをどのようにユーザーが見るかを確認することができます。新しいタブには、空の四角形とスターターコードが表示されるはずです。
 
 <Sandpack>
 
@@ -261,33 +261,33 @@ body {
 
 <Note>
 
-You can also follow this tutorial using your local development environment. To do this, you need to:
+もしローカル環境でこのチュートリアルを進めたい場合、以下の手順が必要になります:
 
-1. Install [Node.js](https://nodejs.org/en/)
-1. In the CodeSandbox tab you opened earlier, press the top-left corner button to open the menu, and then choose **File > Export to ZIP** in that menu to download an archive of the files locally
-1. Unzip the archive, then open a terminal and `cd` to the directory you unzipped
-1. Install the dependencies with `npm install`
-1. Run `npm start` to start a local server and follow the prompts to view the code running in a browser
+1. [Node.js](https://nodejs.org/en/)をインストールする
+1. 前述の CodeSandbox タブで、左上のボタンをクリックしてメニューを開き、メニューから「File > Export to ZIP」を選択して、ファイルのアーカイブをダウンロードする
+1. ダウンロードしたアーカイブを解凍し、ターミナルを開いて解凍したディレクトリに移動する
+1. `npm install` コマンドで依存関係をインストールする
+1. `npm start` コマンドを実行してローカルサーバーを起動し、ブラウザで実行状況を表示する
 
-If you get stuck, don't let this stop you! Follow along online instead and try a local setup again later.
+もし何か問題があった場合、あきらめずにオンラインでチュートリアルを進めてから、後でまたローカルセットアップに挑戦しましょう。
 
 </Note>
 
-## Overview {/*overview*/}
+## 概要 {/*overview*/}
 
-Now that you're set up, let's get an overview of React!
+セットアップが完了したら、React の概要を把握しましょう！
 
-### Inspecting the starter code {/*inspecting-the-starter-code*/}
+### スターターコードを調べる {/*inspecting-the-starter-code*/}
 
-In CodeSandbox you'll see three main sections:
+CodeSandbox には 3 つの主要なセクションがあります。
 
 ![CodeSandbox with starter code](../images/tutorial/react-starter-code-codesandbox.png)
 
-1. The _Files_ section with a list of files like `App.js`, `index.js`, `styles.css` and a folder called `public`
-1. The _code editor_ where you'll see the source code of your selected file
-1. The _browser_ section where you'll see how the code you've written will be displayed
+1. ファイルセクションには、`App.js`、`index.js`、`styles.css`というファイルのリストと、`public`という名前のフォルダが含まれます。
+1. _コードエディタ_ では、選択したファイルのソースコードが表示されます。
+1. _ブラウザ_ セクションでは、書いたコードがどのように表示されるかが表示されます。
 
-The `App.js` file should be selected in the _Files_ section. The contents of that file in the _code editor_ should be:
+_ファイルセクション_ で `App.js` ファイルを選択する必要があります。_コードエディタ_ のそのファイル内にある内容は次のとおりです。
 
 ```jsx
 export default function Square() {
@@ -295,15 +295,15 @@ export default function Square() {
 }
 ```
 
-The _browser_ section should be displaying a square with a X in it like this:
+_ブラウザ_ セクションでは、次のように、Xで埋められた正方形が表示されている必要があります。
 
 ![x-filled square](../images/tutorial/x-filled-square.png)
 
-Now let's have a look at the files in the starter code.
+さて、スターターコードのファイルを見てみましょう。
 
 #### `App.js` {/*appjs*/}
 
-The code in `App.js` creates a _component_. In React, a component is a piece of reusable code that represents a part of a user interface. Components are used to render, manage, and update the UI elements in your application. Let's look at the component line by line to see what's going on:
+`App.js` のコードは、 _コンポーネント_ を作成します。Reactにおいて、コンポーネントは、ユーザーインターフェースの部分を表す再利用可能なコードです。コンポーネントは、アプリケーションのUI要素をレンダリング、管理、更新するために使用されます。コンポーネントを行ごとに見て、何が起こっているかを見ていきましょう。
 
 ```js {1}
 export default function Square() {
@@ -311,7 +311,7 @@ export default function Square() {
 }
 ```
 
-The first line defines a function called `Square`. The `export` JavaScript keyword makes this function accessible outside of this file. The `default` keyword tells other files using your code that it's the main function in your file.
+最初の行は `Square` という名前の関数を定義しています。`export` のキーワードは、この関数がこのファイルの外からアクセス可能であることを示しています。`default` キーワードは、他のファイルがこのコードを使用する際に、それがこのファイルの主要な関数であることを示します。
 
 ```js {2}
 export default function Square() {
@@ -319,15 +319,15 @@ export default function Square() {
 }
 ```
 
-The second line returns a button. The `return` JavaScript keyword means whatever comes after is returned as a value to the caller of the function. `<button>` is a *JSX element*. A JSX element is a combination of JavaScript code and HTML tags that describes what you'd like to display. `className="square"` is a button property or *prop* that tells CSS how to style the button. `X` is the text displayed inside of the button and `</button>` closes the JSX element to indicate that any following content shouldn't be placed inside the button.
+2行目は、ボタンを返します。`return` JavaScriptのキーワードは、その後に続くものを関数の呼び出し元に値として返します。`<button>`は*JSX要素*です。JSX要素は、JavaScriptのコードとHTMLのタグの組み合わせで、表示したいものを記述するものです。`className="square"`は、CSSがボタンをどのようにスタイルするかを示すボタンのプロパティまたは*prop*です。`X`はボタン内に表示されるテキストであり、`</button>`は、以下に続くコンテンツがボタンの内側に配置されないようにJSX要素を閉じることを示します。
 
 #### `styles.css` {/*stylescss*/}
 
-Click on the file labeled `styles.css` in the _Files_ section of CodeSandbox. This file defines the styles for your React app. The first two _CSS selectors_ (`*` and `body`) define the style of large parts of your app while the `.square` selector defines the style of any component where the `className` property is set to `square`. In your code, that would match the button from your Square component in the `App.js` file.
+CodeSandboxの「Files」セクションにある `styles.css` というファイルをクリックすると、Reactアプリのスタイルが定義されています。最初の2つの_CSSセレクタ_（`*` と `body`）はアプリの大部分のスタイルを定義し、`.square`セレクタは、`className`プロパティが`square`に設定された任意のコンポーネントのスタイルを定義しています。あなたのコードでは、`App.js`ファイル内のSquareコンポーネントのボタンに一致します。
 
 #### `index.js` {/*indexjs*/}
 
-Click on the file labeled `index.js` in the _Files_ section of CodeSandbox. You won't be editing this file during the tutorial but it is the bridge between the component you created in the `App.js` file and the web browser.
+CodeSandboxの「Files」セクションにある `index.js` というファイルをクリックすると、チュートリアル中にこのファイルを編集することはありませんが、これは `App.js` ファイルで作成したコンポーネントとWebブラウザの橋渡しをします。
 
 ```jsx
 import {StrictMode} from 'react';
@@ -337,20 +337,20 @@ import './styles.css';
 import App from './App';
 ```
 
-Lines 1-5 brings all the necessary pieces together: 
+1行目から5行目では、すべての必要な部品をまとめています。
 
 * React
-* React's library to talk to web browsers (React DOM)
-* the styles for your components
-* the component you created in `App.js`.
+* React DOM（Webブラウザとの通信におけるReact固有の機能を提供するReactのライブラリ）
+* コンポーネントのスタイル
+* `App.js` で作成したコンポーネント
 
-The remainder of the file brings all the pieces together and injects the final product into `index.html` in the `public` folder.
+残りの部分は、すべての部品をまとめ、最終的なプロダクトを `public` フォルダにある `index.html` に注入する働きを持っています。
 
-### Building the board {/*building-the-board*/}
+### ボードの作成 {/*building-the-board*/}
 
-Let's get back to `App.js`. This is where you'll spend the rest of the tutorial.
+`App.js` に戻って作業を再開しましょう。
 
-Currently the board is only a single square, but you need nine! If you just try and copy paste your square to make two squares like this:
+現在のボードはただの 1 つのマスしかないため、9 つ必要です。次のように 2 つのマスを追加しようとしても、コピーして貼り付けるだけでは同じスクエアのエラーが出ます。
 
 ```js {2}
 export default function Square() {
@@ -358,7 +358,7 @@ export default function Square() {
 }
 ```
 
-You'll get this error:
+以下のようなエラーが出ます。
 
 <ConsoleBlock level="error">
 
@@ -366,7 +366,7 @@ You'll get this error:
 
 </ConsoleBlock>
 
-React components need to return a single JSX element and not multiple adjacent JSX elements like two buttons. To fix this you can use *fragments* (`<>` and `</>`) to wrap multiple adjacent JSX elements like this:
+React コンポーネントは、 2 つのボタンのように隣接する JSX 要素を含めることはできず、1 つの JSX 要素を返す必要があります。2 つのボタンのような隣接する JSX 要素をラップするために *フラグメント*（`<>` と `</>`）を使用する必要があります。 以下のように書けばOKです。
 
 ```js {3-6}
 export default function Square() {
@@ -379,17 +379,17 @@ export default function Square() {
 }
 ```
 
-Now you should see:
+これで以下が表示されます。
 
-![two x-filled squares](../images/tutorial/two-x-filled-squares.png)
+![2 つの X が入ったスクエア](../images/tutorial/two-x-filled-squares.png)
 
-Great! Now you just need to copy-paste a few times to add nine squares and...
+よし、もう少しコピー＆ペーストして 9 つのスクエアを置いて……
 
-![nine x-filled squares in a line](../images/tutorial/nine-x-filled-squares.png)
+![1 行に 9 つの X が入ったスクエア](../images/tutorial/nine-x-filled-squares.png)
 
-Oh no! The squares are all in a single line, not in a grid like you need for our board. To fix this you'll need to group your squares into rows with `div`s and add some CSS classes. While you're at it, you'll give each square a number to make sure you know where each square is displayed.
+あらま！スクエアがすべて 1 行に並んでしまっています。ボードに必要なグリッドに配置する必要があります。複数のスクエアをグループ化して、行にまとめ、CSS クラスを追加する必要があります。また、各スクエアに番号を付けて、それぞれのスクエアの位置を特定する必要があります。
 
-In the `App.js` file, update the `Square` component to look like this:
+`App.js` ファイルで、以下のように `Square` コンポーネントを更新してください。
 
 ```js {3-19}
 export default function Square() {
@@ -415,11 +415,11 @@ export default function Square() {
 }
 ```
 
-The CSS defined in `styles.css` styles the divs with the `className` of `board-row`. Now that you've grouped your components into rows with the styled `div`s you have your tic-tac-toe board:
+`styles.css` で定義された CSS で、 `className` が `board-row` の div にスタイルを適用します。スタイルを付けた `div` にコンポーネントをグループ化したので、tic-tac-toe ボードを作成できます。
 
-![tic-tac-toe board filled with numbers 1 through 9](../images/tutorial/number-filled-board.png)
+![1 から 9 までの数値で埋められた tic-tac-toe ボード](../images/tutorial/number-filled-board.png)
 
-But you now have a problem. Your component named `Square`, really isn't a square anymore. Let's fix that by changing the name to `Board`:
+しかし、ここで問題が発生します。「Square」と呼ばれるコンポーネントがもうスクエアではなくなってしまいました。そこで、「Board」に名前を変更して、コンポーネントを修正しましょう。
 
 ```js {1}
 export default function Board() {
@@ -427,7 +427,7 @@ export default function Board() {
 }
 ```
 
-At this point your code should look something like this:
+現時点でのコードは以下のようになっているはずです。
 
 <Sandpack>
 
@@ -504,15 +504,15 @@ body {
 
 <Note>
 
-Psssst... That's a lot to type! It's okay to copy and paste code from this page. However, if you're up for a little challenge, we recommend to only copy the code that you've manually typed at least once yourself.
+おし！かなり打ち込めたことだろう！ページからコードをコピーして貼り付けることもできます。しかし、ちょっと挑戦してみたい場合は、自分自身で手入力したコードのみをコピーすることをおすすめします。
 
 </Note>
 
-### Passing data through props {/*passing-data-through-props*/}
+### props を通してデータを渡す {/*passing-data-through-props*/}
 
-Next, you'll want to change the value of a square from empty to "X" when the user clicks on the square. With how you've built the board so far you would need to copy-paste the code that updates the square nine times (once for each square you have)! Instead of copy-pasting, React's component architecture allows you to create a reusable component to avoid messy, duplicated code.
+次に、ユーザーがマスをクリックした際に空きマスの代わりに「X」が表示されるように、マスの値を変更したいと思うでしょう。現在のボードの作り方だと、9つのマスそれぞれでマスの値を更新するためのコードをコピー＆ペーストする必要があります。これを避けるために、Reactのコンポーネントアーキテクチャを使えば、過剰な重複コードを回避しつつ再利用可能なコンポーネントを作成できます。
 
-First, you are going to copy the line defining your first square (`<button className="square">1</button>`) from your `Board` component into a new `Square` component:
+まず、最初のマスを定義している行（`<button className="square">1</button>`）を `Board` コンポーネントから新しい `Square` コンポーネントにコピーします。
 
 ```js {1-3}
 function Square() {
@@ -524,7 +524,7 @@ export default function Board() {
 }
 ```
 
-Then you'll update the Board component to render that `Square` component using JSX syntax:
+そして、JSX構文を使って `Board` コンポーネントが `Square` コンポーネントをレンダリングするように更新します。
 
 ```js {5-19}
 // ...
@@ -551,15 +551,15 @@ export default function Board() {
 }
 ```
 
-Notice how unlike the browser `div`s, your own components `Board` and `Square` must start with a capital letter. 
+ブラウザの div と異なり、自分で作成したコンポーネント Board や Square は大文字で始める必要があります。
 
-Let's take a look:
+次を見てみましょう。
 
 ![one-filled board](../images/tutorial/board-filled-with-ones.png)
 
-Oh no! You lost the numbered squares you had before. Now each square says "1". To fix this, you will use *props* to pass the value each square should have from the parent component (`Board`) to the child component (`Square`).
+おっと！以前数字があったマスがなくなってしまいました。これを修正するために、親コンポーネントである Board から子コンポーネントである Square に、各マスが持つ値を渡す *props* を使うことにします。
 
-Update the `Square` component to read the `value` prop that you'll pass from the `Board`:
+Square コンポーネントが Board コンポーネントから渡された `value` props を読み込むように更新します。
 
 ```js {1}
 function Square({ value }) {
@@ -567,9 +567,9 @@ function Square({ value }) {
 }
 ```
 
-`function Square({ value })` indicates the Square component can be passed a prop called `value`.
+`function Square({ value })` は、Square コンポーネントが `value` という名前の props を受け取れることを示しています。
 
-Now you want to display that `value` instead of `1` inside every square. Try doing it like this:
+賢明な道は、各マスの中身を表示するため、数字の代わりに `value` props の値を表示することです。
 
 ```js {2}
 function Square({ value }) {
@@ -577,11 +577,11 @@ function Square({ value }) {
 }
 ```
 
-Oops, this is not what you wanted:
+あら、「value」という文字列が表示されてしまいました。
 
 ![value-filled board](../images/tutorial/board-filled-with-value.png)
 
-You wanted to render the JavaScript variable called `value` from your component, not the word "value". To "escape into JavaScript" from JSX, you need curly braces. Add curly braces around `value` in JSX like so:
+文字列の代わりに、コンポーネント内の JavaScript 変数 `value` を表示したいのですが、これは JSX 内で波括弧で囲むことで「JavaScriptに入る」ことができます。そこで、JSX 内の value の周りに波括弧を追加し、以下のように修正します。
 
 ```js {2}
 function Square({ value }) {
@@ -589,11 +589,11 @@ function Square({ value }) {
 }
 ```
 
-For now, you should see an empty board:
+まだ、空のボードが表示されていると思います。
 
 ![empty board](../images/tutorial/empty-board.png)
 
-This is because the `Board` component hasn't passed the `value` prop to each `Square` component it renders yet. To fix it you'll add the `value` prop to each `Square` component rendered by the `Board` component:
+これは、Board コンポーネントがレンダーした各 Square コンポーネントに `value` props を渡していないためです。以下のように、Board コンポーネントがレンダーする各 Square コンポーネントに `value` props を追加しましょう。
 
 ```js {5-7,10-12,15-17}
 export default function Board() {
@@ -619,11 +619,11 @@ export default function Board() {
 }
 ```
 
-Now you should see a grid of numbers again:
+新しい結果は以下のようになります：
 
 ![tic-tac-toe board filled with numbers 1 through 9](../images/tutorial/number-filled-board.png)
 
-Your updated code should look like this:
+更新されたコードは以下のようになります：
 
 <Sandpack>
 
@@ -702,9 +702,9 @@ body {
 
 </Sandpack>
 
-### Making an interactive component {/*making-an-interactive-component*/}
+### インタラクティブなコンポーネントの作成 {/*making-an-interactive-component*/}
 
-Let's fill the `Square` component with an `X` when you click it. Declare a function called `handleClick` inside of the `Square`. Then, add `onClick` to the props of the button JSX element returned from the `Square` component:
+`Square` コンポーネントをクリックすると `X` が入った状態にしましょう。`Square` 内に `handleClick` という関数を宣言し、`Square` コンポーネントから返された `button` の JSX 要素のプロップスに `onClick` を追加しましょう。
 
 ```js {2-4,9}
 function Square({ value }) {
@@ -723,19 +723,19 @@ function Square({ value }) {
 }
 ```
 
-If you click on a square now, you should see a log saying `"clicked!"` in the _Console_ tab at the bottom of the _Browser_ section in CodeSandbox. Clicking the square more than once will log `"clicked!"` again. Repeated console logs with the same message will not create more lines in the console. Instead, you will see an incrementing counter next to your first `"clicked!"` log.
+もし正しく動いていれば、CodeSandbox の _Browser_ 部分の下部にある _Console_ タブで `"クリックされました！"` というログが表示されます。同じメッセージの反復されたコンソールログは、新しい行を作成するのではなく、数値が増加していくカウンターがつくことになります。
 
 <Note>
 
-If you are following this tutorial using your local development environment, you need to open your browser's Console. For example, if you use the Chrome browser, you can view the Console with the keyboard shortcut **Shift + Ctrl + J** (on Windows/Linux) or **Option + ⌘ + J** (on macOS).
+もしローカルの環境でこのチュートリアルに従っている場合、ブラウザのコンソールを開く必要があります。例えば、Chrome ブラウザを使用している場合は、**Shift + Ctrl + J** (Windows/Linux)または **Option + ⌘ + J** (macOS) のキーボードショートカットでコンソールを表示できます。
 
 </Note>
 
-As a next step, you want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use *state*.
+次に、`Square` コンポーネントがクリックされたことを "覚えていて"、それを "X" マークで埋めるようにします。"覚える" ためにコンポーネントは *state* を使用します。
 
-React provides a special function called `useState` that you can call from your component to let it "remember" things. Let's store the current value of the `Square` in state, and change it when the `Square` is clicked.
+React は、コンポーネント内から呼び出せる特別な `useState` 関数を提供しています。`Square` コンポーネントに対してその値を "覚えさせる" ために、現在の `Square` の値を state に格納し、 `Square` がクリックされた場合にそれを変更します。
 
-Import `useState` at the top of the file. Remove the `value` prop from the Square component. Instead, add a new line at the start of the `Square` component that calls `useState`. Have it return a state variable called `value`:
+まず、ファイルの先頭に `useState` をインポートしましょう。次に、`Square` コンポーネントから `value` props を削除します。その代わりに `Square` コンポーネントの先頭に、`useState` を呼び出して `value` という名前の state 変数を返すようにします。
 
 ```js {1,3,4}
 import { useState } from 'react';
@@ -747,9 +747,9 @@ function Square() {
     //...
 ```
 
-`value` stores the value and `setValue` is a function that can be used to change the value. The `null` passed to `useState` is used as the initial value for this state variable, so `value` here starts off equal to `null`.
+ここでは `value` が値を保持し、`setValue` がその値を変更するために使用できる関数です。`useState` に渡される null は、state の初期値として使用されます。したがって、ここでは `value` が最初は `null` と等しくなります。
 
-Since the `Square` component no longer accepts props anymore, you'll remove the `value` prop from all nine of the Square components created by the Board component:
+`Square` コンポーネントはもはや props を受け付けないので、Board コンポーネントによって作成された 9 つすべての Square コンポーネントから `value` props を削除する必要があります。
 
 ```js {6-8,11-13,16-18}
 // ...
@@ -776,7 +776,7 @@ export default function Board() {
 }
 ```
 
-Now you'll change `Square` to display an "X" when clicked. Replace the `console.log("clicked!");` event handler with `setValue('X');`. Now your `Square` component looks like this:
+次は `Square` をクリックしたら「X」が表示されるように変更します。`console.log("clicked!");` イベントハンドラを `setValue('X');` で置き換えます。すると、`Square` コンポーネントは以下のようになります。
 
 ```js {5}
 function Square() {
@@ -797,15 +797,15 @@ function Square() {
 }
 ```
 
-By calling this `set` function from an `onClick` handler, you're telling React to re-render that `Square` whenever its `<button>` is clicked. After the update, the `Square`'s `value` will be `'X'`, so you'll see the "X" on the game board.
+`onClick` ハンドラからこの `set` 関数を呼び出すことで、`<button>` がクリックされたときに React に対して `Square` を再レンダリングするよう指示しています。アップデート後、`Square` の `value` は「X」になるので、ゲームボードに「X」が表示されます。
 
-If you click on any Square, an "X" should show up:
+どのマスをクリックしても、「X」が表示されるはずです：
 
 ![adding xes to board](../images/tutorial/tictac-adding-x-s.gif)
 
-Note that each Square has its own state: the `value` stored in each Square is completely independent of the others. When you call a `set` function in a component, React automatically updates the child components inside of it too.
+各 Square は個別の `value` ステートを持っています。つまり、各 Square の `value` は他の Square と完全に独立しています。Component 内の `set` 関数を呼び出すと、React は自動的にその子 Component（の中の子）も更新します。
 
-After you've made the above changes, your code will look like this:
+上記変更を加えた後、あなたのコードは以下のようになります：
 
 <Sandpack>
 
@@ -901,35 +901,35 @@ body {
 
 ### React Developer Tools {/*react-developer-tools*/}
 
-React DevTools let you check the props and the state of your React components. You can find the React DevTools tab at the bottom of the _browser_ section in CodeSandbox:
+React DevToolsは、Reactコンポーネントのpropsやstateを確認することができます。CodeSandboxのブラウザセクションの一番下にあるReact DevToolsタブで確認できます。
 
-![React DevTools in CodeSandbox](../images/tutorial/codesandbox-devtools.png)
+![CodeSandbox内でのReact DevTools](../images/tutorial/codesandbox-devtools.png)
 
-To inspect a particular component on the screen, use the button in the top left corner of React DevTools:
+画面上の特定のコンポーネントを調べるには、React DevToolsの左上にあるボタンを使用します。
 
-![Selecting components on the page with React DevTools](../images/tutorial/devtools-select.gif)
+![React DevToolsを使ってページ上のコンポーネントを選択する](../images/tutorial/devtools-select.gif)
 
 <Note>
 
-For local development, React DevTools is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), and [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browser extension. After installing it, the *Components* tab will appear in your browser Developer Tools for sites using React.
+ローカル開発の場合、React DevToolsは[Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)、[Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)、[Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil)のブラウザ拡張機能として利用可能です。これらをインストールすると、*Components*タブがReactを使用しているサイトのブラウザ開発ツールに現れます。
 
 </Note>
 
-## Completing the game {/*completing-the-game*/}
+## ゲームの完成 {/*completing-the-game*/}
 
-By this point, you have all the basic building blocks for your tic-tac-toe game. To have a complete game, you now need to alternate placing "X"s and "O"s on the board, and you need a way to determine a winner.
+これまでのところ、三目並べゲームの基本的な構成要素は全て備わっています。完全なゲームとして、交互に "X" と "O" を盤上に配置する必要があり、勝利者を決定する方法が必要になります。
 
-### Lifting state up {/*lifting-state-up*/}
+### ステートをリフトアップする {/*lifting-state-up*/}
 
-Currently, each `Square` component maintains a part of the game's state. To check for a winner in a tic-tac-toe game, the `Board` would need to somehow know the state of each of the 9 `Square` components.
+現在、「Square」コンポーネントはゲームの状態の一部を保持しています。つまり、「Tic Tac Toe」ゲームで勝者を決定するために、「Board」コンポーネントは、9つの「Square」コンポーネントそれぞれの状態をどうやって知ることができるでしょうか。
 
-How would you approach that? At first, you might guess that the `Board` needs to "ask" each `Square` for that `Square`'s state. Although this approach is technically possible in React, we discourage it because the code becomes difficult to understand, susceptible to bugs, and hard to refactor. Instead, the best approach is to store the game's state in the parent `Board` component instead of in each `Square`. The `Board` component can tell each `Square` what to display by passing a prop, like you did when you passed a number to each Square.
+最初に思いつくアイデアは、「Board」コンポーネントが、各「Square」からその「Square」の状態を「取得」する必要があるというものです。これはReactでは技術的に可能ではありますが、理解が難しく、バグの影響も受けやすく、リファクタリングも難しいため、このアプローチは推奨されません。代わりに最も良い方法は、各「Square」コンポーネントではなく、親の「Board」コンポーネントにゲームの状態を保存することです。親の「Board」コンポーネントは、各「Square」に数値を渡したように、プロップを使って各「Square」にどう表示するかを指示することができます。
 
-**To collect data from multiple children, or to have two child components communicate with each other, declare the shared state in their parent component instead. The parent component can pass that state back down to the children via props. This keeps the child components in sync with each other and with the parent component.**
+**複数の子からデータを収集する場合や、2つの子コンポーネントがお互いに通信する必要がある場合には、親コンポーネントに共有する状態を宣言します。親コンポーネントは、その状態をプロップを介して子コンポーネントに戻すことができます。これにより、子コンポーネントはお互いと親コンポーネントと同期されます。**
 
-Lifting state into a parent component is common when React components are refactored.
+Reactコンポーネントをリファクタリングする場合、ステートを親コンポーネントにリフトアップすることはよくあります。
 
-Let's take this opportunity to try it out. Edit the `Board` component so that it declares a state variable named `squares` that defaults to an array of 9 nulls corresponding to the 9 squares:
+この機会にやってみましょう。まず、「Board」コンポーネントを編集して、9つのnullに対応する9つの要素の配列である「squares」という名前のステート変数を宣言します。
 
 ```js {3}
 // ...
@@ -941,13 +941,13 @@ export default function Board() {
 }
 ```
 
-`Array(9).fill(null)` creates an array with nine elements and sets each of them to `null`. The `useState()` call around it declares a `squares` state variable that's initially set to that array. Each entry in the array corresponds to the value of a square. When you fill the board in later, the `squares` array will look something like this:
+ここで、`Array(9).fill(null)` を使って9つの要素を持ち、それぞれをnullに設定した配列を作成しています。それを初期値として持つ`squares`ステート変数を宣言しています。配列内の各要素は1つのマスの値に相当します。後でボードに値を埋めた場合、`squares`配列は以下のようになります。
 
 ```jsx
 ['O', null, 'X', 'X', 'X', 'O', 'O', null, null]
 ```
 
-Now your `Board` component needs to pass the `value` prop down to each of the `Square` components it renders:
+そして、`Board`コンポーネントは各`Square`コンポーネントに`value`プロップを渡す必要があります。
 
 ```js {6-8,11-13,16-18}
 export default function Board() {
@@ -974,7 +974,7 @@ export default function Board() {
 }
 ```
 
-Next, you'll edit the `Square` component to receive the `value` prop from the Board component. This will require removing the Square component's own stateful tracking of `value` and the button's `onClick` prop:
+次に、`Square` コンポーネントを編集して、`Board` コンポーネントから `value` props を受け取るようにします。このため、`Square` コンポーネント内で `value` を追跡する状態とボタンの `onClick` props を削除する必要があります。
 
 ```js {1,2}
 function Square({value}) {
@@ -982,11 +982,11 @@ function Square({value}) {
 }
 ```
 
-At this point you should see an empty tic-tac-toe board:
+ここまでくると、空の三目並べのボードが表示されるはずです：
 
 ![empty board](../images/tutorial/empty-board.png)
 
-And your code should look like this:
+そして、コードは以下のようになります：
 
 <Sandpack>
 
@@ -1068,11 +1068,11 @@ body {
 
 </Sandpack>
 
-Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
+各`Square`コンポーネントには、`value`プロパティが渡されます。これは、空きの場合は`null`、 `'X'`または`'O'`が入るものとします。
 
-Next, you need to change what happens when a `Square` is clicked. The `Board` component now maintains which squares are filled. You'll need to create a way for the `Square` to update the `Board`'s state. Since state is private to a component that defines it, you cannot update the `Board`'s state directly from `Square`.
+さて、`Square`コンポーネントをクリックしたときの動作を変更する必要があります。`Board`コンポーネントがいまや、どのスクエアが埋まっているかを管理しているので、`Square`コンポーネントが`Board`状態を更新するようにする必要があります。Reactコンポーネントの状態はプライベートなので、 `Square`から直接`Board`の状態を更新することはできません。
 
-Instead, you'll pass down a function from the `Board` component to the `Square` component, and you'll have `Square` call that function when a square is clicked. You'll start with the function that the `Square` component will call when it is clicked. You'll call that function `onSquareClick`:
+その代わりに、 `Board`コンポーネントから `Square`コンポーネントに関数を渡し、 `Square`がスクエアをクリックしたときにその関数を呼び出すようにします。まず、 `Square`がクリックされたときに呼び出される関数を定義します。この関数を `onSquareClick` と呼びましょう。
 
 ```js {3}
 function Square({ value }) {
@@ -1084,7 +1084,7 @@ function Square({ value }) {
 }
 ```
 
-Next, you'll add the `onSquareClick` function to the `Square` component's props:
+次に、 `Square`コンポーネントのpropsに `onSquareClick` 関数を追加します。
 
 ```js {1}
 function Square({ value, onSquareClick }) {
@@ -1096,7 +1096,7 @@ function Square({ value, onSquareClick }) {
 }
 ```
 
-Now you'll connect the `onSquareClick` prop to a function in the `Board` component that you'll name `handleClick`. To connect `onSquareClick` to `handleClick` you'll pass a function to the `onSquareClick` prop of the first `Square` component: 
+最後に、`onSquareClick` を`Board`コンポーネントに存在する `handleClick` 関数に接続します。最初の`Square`コンポーネントの `onSquareClick`プロパティに関数を渡すことで、 `onSquareClick`を `handleClick`に接続できます。
 
 ```js {7}
 export default function Board() {
@@ -1111,7 +1111,7 @@ export default function Board() {
 }
 ```
 
-Lastly, you will define the `handleClick` function inside the Board component to update the `squares` array holding your board's state:
+最後に、`Board`コンポーネントの中に `handleClick` 関数を定義し、ボードの状態を保持する`squares`配列を更新します。
 
 ```js {4-8}
 export default function Board() {
@@ -1193,9 +1193,9 @@ export default function Board() {
 }
 ```
 
-Notice the new `() =>` syntax. Here, `() => handleClick(0)` is an *arrow function,* which is a shorter way to define functions. When the square is clicked, the code after the `=>` "arrow" will run, calling `handleClick(0)`.
+`() => handleClick(0)` という新しい書き方に注目してください。この `() =>` という構文は*アロー関数*と呼ばれ、関数を定義する際の短縮記法です。ここでは、マスがクリックされたときに、`=>` の後のコードである `handleClick(0)` が実行されます。
 
-Now you need to update the other eight squares to call `handleClick` from the arrow functions you pass. Make sure that the argument for each call of the `handleClick` corresponds to the index of the correct square:
+次に、残りの 8 つのマスから `handleClick` を呼び出すようにアロー関数を渡すようにアップデートしてください。その際、各 `handleClick` へ渡す引数が正しいマスのインデックスに対応していることを確認してください。
 
 ```js {6-8,11-13,16-18}
 export default function Board() {
@@ -1222,13 +1222,13 @@ export default function Board() {
 };
 ```
 
-Now you can again add X's to any square on the board by clicking on them:
+これで、マスをクリックすると X を配置することができます。
 
 ![filling the board with X](../images/tutorial/tictac-adding-x-s.gif)
 
-But this time all the state management is handled by the `Board` component!
+しかも、すべての状態管理が `Board` コンポーネントで完結しています！
 
-This is what your code should look like:
+以下が最終的なコードです。
 
 <Sandpack>
 
@@ -1272,7 +1272,7 @@ export default function Board() {
     </>
   );
 }
-```
+``` 
 
 ```css styles.css
 * {
@@ -1321,27 +1321,27 @@ body {
 
 </Sandpack>
 
-Now that your state handling is in the `Board` component, the parent `Board` component passes props to the child `Square` components so that they can be displayed correctly. When clicking on a `Square`, the child `Square` component now asks the parent `Board` component to update the state of the board. When the `Board`'s state changes, both the `Board` component and every child `Square` component re-renders automatically. Keeping the state of all squares in the `Board` component will allow it to determine the winner in the future.
+`Board` コンポーネントに state 処理が組み込まれ、`Square` コンポーネントには親コンポーネントから props として渡されているため、正しく表示することができます。`Square` をクリックすると、子コンポーネントである `Square` コンポーネントが親である `Board` コンポーネントに対して盤面の状態を更新するように要求します。`Board` の状態が変更されると、`Board` コンポーネントと全ての `Square` コンポーネントが自動的に再描画されます。すべてのマスの状態を `Board` コンポーネントの state に保持することで、将来的に勝者を決定できるようになります。
 
-Let's recap what happens when a user clicks the top left square on your board to add an `X` to it:
+一旦、ユーザーが盤面の右上のマス目をクリックして `X` を追加する場合の流れを振り返ってみましょう。
 
-1. Clicking on the upper left square runs the function that the `button` received as its `onClick` prop from the `Square`. The `Square` component received that function as its `onSquareClick` prop from the `Board`. The `Board` component defined that function directly in the JSX. It calls `handleClick` with an argument of `0`.
-1. `handleClick` uses the argument (`0`) to update the first element of the `squares` array from `null` to `X`.
-1. The `squares` state of the `Board` component was updated, so the `Board` and all of its children re-render. This causes the `value` prop of the `Square` component with index `0` to change from `null` to `X`.
+1. 右上のマスクリック時、「button」が受け取った「onClick」props である関数が実行されます。この関数は、`Square` が `Board` から `onSquareClick` props を受け取り、`Board` から JSX の中で直接この関数を定義し、 `handleClick` 関数を引数`0` で呼び出します。
+1. `handleClick` は引数（`0`）を使用して、 `squares` 配列の 1 番目の要素を `null` から `X` に更新します。
+1. `Board` の `squares` state が更新されたので、 `Board` とその全ての子コンポーネントが再描画されます。これにより、インデックス `0` の `Square`コンポーネントの `value` props が `null` から `X` に変更されることになります。
 
-In the end the user sees that the upper left square has changed from empty to having a `X` after clicking it.
+最終的に、ユーザーはマスをクリックした後、右上のマス目に「X」が表示されていることに気づくでしょう。
 
 <Note>
 
-The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. You could give any name to the `Square`'s `onSquareClick` prop or `Board`'s `handleClick` function, and the code would work the same. In React, it's conventional to use `on[Event]` names for props which represent events and `handle[Event]` for the function definitions which handle the events.
+DOM の `<button>` タグには `onClick` 属性があり、React 上ではビルトインコンポーネントとして特別な意味を持ちます。 `Square` のようなカスタムコンポーネントにおいては、このような命名はご自由に決めてください。 `Square` の `onSquareClick` props や `Board` の `handleClick` 関数に任意の名前を付けることができ、コードの動作には影響がありません。React の慣習的な命名方法では、イベントを表す props には `on[Event]` という名前を、イベントを処理する関数には `handle[Event]` という名前を使用することが一般的です。
 
 </Note>
 
-### Why immutability is important {/*why-immutability-is-important*/}
+### なぜイミュータビリティーが重要か {/*why-immutability-is-important*/}
 
-Note how in `handleClick`, you call `.slice()` to create a copy of the `squares` array instead of modifying the existing array. To explain why, we need to discuss immutability and why immutability is important to learn.
+`handleClick` の実装では、配列 `squares` を変更する代わりに、コピーを作成する `.slice()` を呼び出しています。なぜこのように実装する必要があるかについて説明します。これには、イミュータビリティーが何か、またその重要性について理解する必要があります。
 
-There are generally two approaches to changing data. The first approach is to _mutate_ the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes. Here is what it would look like if you mutated the `squares` array:
+データを変更する方法には、大きく分けて２つのアプローチがあります。１つ目が、データ自体の値を直接変更して、データを変更する方法です。２つ目は、欲しい変更が入った新しいコピーを作成して、元のデータを置き換える方法です。以下は `squares` 配列を変更する場合にそれぞれのアプローチを用いた場合の実装例です。
 
 ```jsx
 const squares = [null, null, null, null, null, null, null, null, null];
@@ -1357,17 +1357,17 @@ const nextSquares = ['X', null, null, null, null, null, null, null, null];
 // Now `squares` is unchanged, but `nextSquares` first element is 'X' rather than `null`
 ```
 
-The end result is the same but by not mutating (changing the underlying data) directly, you gain several benefits.
+最終的な結果は同じですが、元のデータを変更するのではなく、データを直接変更せずにコピーを作成することで、多くの利点が得られます。
 
-Immutability makes complex features much easier to implement. Later in this tutorial, you will implement a "time travel" feature that lets you review the game's history and "jump back" to past moves. This functionality isn't specific to games--an ability to undo and redo certain actions is a common requirement for apps. Avoiding direct data mutation lets you keep previous versions of the data intact, and reuse them (or reset to them) later.
+イミュータビリティーは、複雑なアプリケーションの開発を大幅に容易にします。このチュートリアルでは後で、「タイムトラベル」と呼ばれるゲームの進行状況を確認し、過去の手番に「戻る」という機能を実装します。この機能は、ゲームに限らず、アプリの中で一部のアクションを「やり直す」/「取り消す」という機能は一般的な要求です。データを直接変更せずに、以前のデータを保持でき、必要に応じて再利用したり後から参照したりすることができます。
 
-There is also another benefit of immutability. By default, all child components re-render automatically when the state of a parent component changes. This includes even the child components that weren't affected by the change. Although re-rendering is not by itself noticeable to the user (you shouldn't actively try to avoid it!), you might want to skip re-rendering a part of the tree that clearly wasn't affected by it for performance reasons. Immutability makes it very cheap for components to compare whether their data has changed or not. You can learn more about how React chooses when to re-render a component in [the `memo` API reference](/reference/react/memo) documentation.
+イミュータビリティーにはもう一つの利点があります。親コンポーネントの状態を変更すると、自動的にすべての子コンポーネントが再描画されます。たとえ変更されていない子のコンポーネントであっても再描画されます。再描画自体がユーザにとっては見えないことが多いので (積極的に避けるべきではありません！)、明らかに影響を受けない部分の描画をスキップできるようにすることがパフォーマンスの観点から必要になる場合があります。イミュータビリティーを採用することで、コンポーネントがデータの変更を比較するのが非常に容易になります。React がコンポーネントを再描画するタイミングについては、こちらの [`memo`API リファレンス](/reference/react/memo) のドキュメントで学ぶことができます。
 
-### Taking turns {/*taking-turns*/}
+### ターンを交代する {/*taking-turns*/}
 
-It's now time to fix a major defect in this tic-tac-toe game: the "O"s cannot be marked on the board.
+この〇×ゲームにある大きな不具合を修正する時間がやってきました: 「O」がボードにマークできません。
 
-You'll set the first move to be "X" by default. Let's keep track of this by adding another piece of state to the Board component:
+最初の手番はデフォルトで「X」とします。Boardコンポーネントにもう一つのstate（状態）を追加して、これを追跡しましょう。
 
 ```js {2}
 function Board() {
@@ -1378,7 +1378,7 @@ function Board() {
 }
 ```
 
-Each time a player moves, `xIsNext` (a boolean) will be flipped to determine which player goes next and the game's state will be saved. You'll update the `Board`'s `handleClick` function to flip the value of `xIsNext`:
+各プレイヤーが動くたびに、`xIsNext`（ブール値）が反転して、次に誰がプレイするかが決まり、ゲームの状態が保存されます。`Board`の`handleClick`関数を更新して、`xIsNext`の値を反転させるようにします。
 
 ```js {7,8,9,10,11,13}
 export default function Board() {
@@ -1402,15 +1402,15 @@ export default function Board() {
 }
 ```
 
-Now, as you click on different squares, they will alternate between `X` and `O`, as they should!
+これで、異なるマスをクリックする度に、左右交互に「X」と「O」が表示されるようになりました。
 
-But wait, there's a problem. Try clicking on the same square multiple times:
+しかし、問題があります。同じマスを複数回クリックしてみてください。
 
-![O overwriting an X](../images/tutorial/o-replaces-x.gif)
+![OがXを上書きしている様子](../images/tutorial/o-replaces-x.gif)
 
-The `X` is overwritten by an `O`! While this would add a very interesting twist to the game, we're going to stick to the original rules for now.
+「X」が「O」に上書きされてしまいます！これはゲームに非常に興味深いウィットを加えるかもしれませんが、今のところは元のルールに従うことにします。
 
-When you mark a square with a `X` or a `O` you aren't first checking to see if the square already has a `X` or `O` value. You can fix this by *returning early*. You'll check to see if the square already has a `X` or and `O`. If the square is already filled, you will `return` in the `handleClick` function early--before it tries to update the board state.
+「X」または「O」をマスにマークする前に、そのマスにすでに「X」または「O」の値がないかを確認していないため、問題が発生しています。これを修正するには、*早めにリターンする*必要があります。まず、クリックされているマスに「X」または「O」があるかどうかを確認します。マスが既に埋まっている場合は、`handleClick`関数がボードの状態を更新する前に早期に`return`します。
 
 ```js {2,3,4}
 function handleClick(i) {
@@ -1422,7 +1422,7 @@ function handleClick(i) {
 }
 ```
 
-Now you can only add `X`'s or `O`'s to empty squares! Here is what your code should look like at this point:
+これで空のマスにだけ「X」または「O」を追加できるようになりました！ここまでのコードは以下のようになっています:
 
 <Sandpack>
 
@@ -1526,7 +1526,7 @@ body {
 
 ### Declaring a winner {/*declaring-a-winner*/}
 
-Now that you show which player's turn is next, you should also show when the game is won and there are no more turns to make. To do this you'll add a helper function called `calculateWinner` that takes an array of 9 squares, checks for a winner and returns `'X'`, `'O'`, or `null` as appropriate. Don't worry too much about the `calculateWinner` function; it's not specific to React:
+次に、誰のターンかを表示するようになったので、ゲームが勝利されてもう手が残っていない場合にも勝利したプレイヤーを表示しましょう。これを行うには、`calculateWinner` というヘルパー関数を追加します。この関数は、9つのマス目の配列を受け取り、勝者がいる場合は `'X'`、`'O'`、または `null` を返します。`calculateWinner` 関数自体は React に特化したものではないので、この関数を実装することについてはあまり心配する必要はありません。
 
 ```js App.js
 export default function Board() {
@@ -1556,11 +1556,11 @@ function calculateWinner(squares) {
 
 <Note>
 
-It does not matter whether you define `calculateWinner` before or after the `Board`. Let's put it at the end so that you don't have to scroll past it every time you edit your components.
+`calculateWinner` 関数の定義が `Board` コンポーネントの定義の前に来ていても構いません。今回は、定義がなるべくファイルの最後に来るようにしましょう。そうすれば、コンポーネントを編集するたびに関数を通り過ぎる必要がなくなります。
 
 </Note>
 
-You will call `calculateWinner(squares)` in the `Board` component's `handleClick` function to check if a player has won. You can perform this check at the same time you check if a user has clicked a square that already has a `X` or and `O`. We'd like to return early in both cases:
+ゲームの勝者をチェックするために、`Board` コンポーネントの `handleClick` 関数で `calculateWinner(squares)` を呼び出します。そして、すでに `X` または `O` が入力されたマスをクリックした場合と同時にこのチェックを行います。どちらの場合も、それ以上の処理を行わずに関数から早く抜け出します。
 
 ```js {2}
 function handleClick(i) {
@@ -1572,7 +1572,7 @@ function handleClick(i) {
 }
 ```
 
-To let the players know when the game is over, you can display text such as "Winner: X" or "Winner: O". To do that you'll add a `status` section to the `Board` component. The status will display the winner if the game is over and if the game is ongoing you'll display which player's turn is next:
+プレイヤーが勝利した場合は、「Winner: X」とか「Winner: O」といったテキストを表示することができます。そこで、`Board` コンポーネントに `status` セクションを追加します。`status` は、勝者がいる場合はそのプレイヤーを表示し、ゲームが続いている場合は次に手を打つプレイヤーを表示します。
 
 ```js {3-9,13}
 export default function Board() {
@@ -1594,7 +1594,7 @@ export default function Board() {
 }
 ```
 
-Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So _you_ are the real winner here. Here is what the code should look like:
+おめでとうございます！これで完動する三目並べゲームができました。同時に React の基礎も学びました。あなたは本当の勝者です。ここにコードが載っています：
 
 <Sandpack>
 
@@ -1725,17 +1725,17 @@ body {
 
 </Sandpack>
 
-## Adding time travel {/*adding-time-travel*/}
+## タイムトラベルを追加する {/*adding-time-travel*/}
 
-As a final exercise, let's make it possible to "go back in time" to the previous moves in the game.
+最終課題として、ゲーム内で前の動きに「戻る」ことができるようにしましょう。
 
-### Storing a history of moves {/*storing-a-history-of-moves*/}
+### 手番の履歴を保存する {/*storing-a-history-of-moves*/}
 
-If you mutated the `squares` array, implementing time travel would be very difficult.
+もし`squares`配列を変更していたら、タイムトラベルを実装するのは非常に困難でしょう。
 
-However, you used `slice()` to create a new copy of the `squares` array after every move, and treated it as immutable. This will allow you to store every past version of the `squares` array, and navigate between the turns that have already happened.
+しかし、毎回の手番ごとに `slice()` を使って新しい `squares` 配列のコピーを作成して、不変に扱うことで、過去の全ての `squares` 配列のバージョンを保存し、すでに行われた手番に移動することができます。
 
-You'll store the past `squares` arrays in another array called `history`, which you'll store as a new state variable. The `history` array represents all board states, from the first to the last move, and has a shape like this:
+過去の`squares` 配列を保持するために、新しい状態変数として `history` という別の配列に保存します。`history` 配列は、最初の手番から最後の手番までの全ての盤面状態を表しており、以下のような形式を持っています。
 
 ```jsx
 [
@@ -1749,13 +1749,13 @@ You'll store the past `squares` arrays in another array called `history`, which 
 ]
 ```
 
-### Lifting state up, again {/*lifting-state-up-again*/}
+### 再びステートのリフトアップ {/*lifting-state-up-again*/}
 
-You will now write a new top-level component called `Game` to display a list of past moves. That's where you will place the `history` state that contains the entire game history.
+過去の手番を一覧表示する新しいトップレベルのコンポーネントである `Game` を作成することで、`history` ステートを全ての手番の履歴を保持するようにします。
 
-Placing the `history` state into the `Game` component will let you remove the `squares` state from its child `Board` component. Just like you "lifted state up" from the `Square` component into the `Board` component, you will now lift it up from the `Board` into the top-level `Game` component. This gives the `Game` component full control over the `Board`'s data and lets it instruct the `Board` to render previous turns from the `history`.
+`history` ステートを `Game` コンポーネントにまとめることで、`Board` コンポーネントから `squares` ステートを取り除くことができます。`Square` コンポーネントから `Board` コンポーネントへステートをリフトアップしたのと同じように、今度は `Board` コンポーネントからトップレベルの `Game` コンポーネントへステートをリフトアップすることになります。これにより、`Game` コンポーネントが `Board` のデータを完全に制御し、`history` から以前の手番を描画するよう `Board` に指示することができます。
 
-First, add a `Game` component with `export default`. Have it render the `Board` component inside some markup:
+まず、`export default` で `Game` コンポーネントを追加し、その中でマークアップ内に `Board` コンポーネントをレンダリングするようにします。
 
 ```js {1,5-16}
 function Board() {
@@ -1776,9 +1776,9 @@ export default function Game() {
 }
 ```
 
-Note that you are removing the `export default` keywords before the `function Board() {` declaration and adding them before the `function Game() {` declaration. This tells your `index.js` file to use the `Game` component as the top-level component instead of your `Board` component. The additional `div`s returned by the `Game` component are making room for the game information you'll add to the board later.
+ここで、`function Board() {` 宣言の前にあった `export default` キーワードを削除し、`function Game() {` 宣言の前に追加するようにします。これにより、`index.js` で `Game` コンポーネントをトップレベルとして使用するように設定されます。`Game` コンポーネント内の `div` 要素は、後で追加するゲーム情報のために必要なスペースを作っています。
 
-Add some state to the `Game` component to track which player is next and the history of moves:
+次に、プレーヤーが次に打つ番の情報と、過去の手番の情報を追跡するために、`Game` コンポーネントにいくつかのステートを追加しましょう。
 
 ```js {2-3}
 export default function Game() {
@@ -1787,9 +1787,9 @@ export default function Game() {
   // ...
 ```
 
-Notice how `[Array(9).fill(null)]` is an array with a single item, which itself is an array of 9 `null`s.
+`[Array(9).fill(null)]` は 1 個の要素を持つ配列であることに注意してください。この 1 個の要素は 9 個の `null` で構成される別の配列です。
 
-To render the squares for the current move, you'll want to read the last squares array from the `history`. You don't need `useState` for this--you already have enough information to calculate it during rendering:
+現在の手番のマス目を描画するために、`history` から最後の `squares` 配列を読み込む必要があります。これには、`useState` は必要ありません - レンダリング中に計算するために必要な情報がすでに十分に用意されています。
 
 ```js {4}
 export default function Game() {
@@ -1799,7 +1799,7 @@ export default function Game() {
   // ...
 ```
 
-Next, create a `handlePlay` function inside the `Game` component that will be called by the `Board` component to update the game. Pass `xIsNext`, `currentSquares` and `handlePlay` as props to the `Board` component:
+次に、`Board` コンポーネントからゲームを更新するために呼び出される `handlePlay` 関数を、`Game` コンポーネント内に作成します。`Board` コンポーネントに `xIsNext`、`currentSquares` および `handlePlay` をプロップスとして渡します。
 
 ```js {6-8,13}
 export default function Game() {
@@ -1820,7 +1820,7 @@ export default function Game() {
 }
 ```
 
-Let's make the `Board` component fully controlled by the props it receives. Change the `Board` component to take three props: `xIsNext`, `squares`, and a new `onPlay` function that `Board` can call with the updated squares array whenever a player makes a move. Next, remove the first two lines of the `Board` function that call `useState`:
+`Board` コンポーネントを完全に props によって制御されるようにしましょう。そのためには、 `Board` コンポーネントに `xIsNext`、 `squares`、そしてゲームのプレイヤーが場所をクリックした際に更新される `squares` 配列を受け取るための新しい `onPlay` 関数の３つのプロパティを追加します。次に、`Board` 関数の最初の2行を削除して、`useState` を呼び出さなくてもよくなります。以下のようになります。
 
 ```js {1}
 function Board({ xIsNext, squares, onPlay }) {
@@ -1831,7 +1831,7 @@ function Board({ xIsNext, squares, onPlay }) {
 }
 ```
 
-Now you'll replace the `setSquares` and `setXIsNext` calls in `handleClick` in the `Board` component with a single call to your new `onPlay` function so the `Game` component can update the `Board` when the user clicks a square:
+そして `Board` コンポーネントの `handleClick` 内の `setSquares` と `setXIsNext` の呼び出しを、 `Game` コンポーネントがエラーなく更新できるように、引数として渡されている `onPlay` 関数を呼び出すように変更します。
 
 ```js {12}
 function Board({ xIsNext, squares, onPlay }) {
@@ -1851,11 +1851,11 @@ function Board({ xIsNext, squares, onPlay }) {
 }
 ```
 
-The `Board` component is fully controlled by the props passed to it by the `Game` component. You need to implement the `handlePlay` function in the `Game` component to get the game working again.
+`Board`コンポーネントは、`Game`コンポーネントから渡されるpropsによって完全に制御されています。ゲームをもう一度動作させるために`Game`コンポーネント内に`handlePlay``関数を実装する必要があります。
 
-What should `handlePlay` do when called? Remember that Board used to call `setSquares` with an updated array; now it passes the updated `squares` array to `onPlay`.
+`handlePlay`が呼び出されたときにどのような処理を実行する必要がありますか？`Board`は以前、更新された配列を示す`setSquares`を呼び出していました。しかし、今では更新された`squares`配列を`onPlay`に渡しているため、新しい処理が必要です。
 
-The `handlePlay` function needs to update `Game`'s state to trigger a re-render, but you don't have a `setSquares` function that you can call any more--you're now using the `history` state variable to store this information. You'll want to update `history` by appending the updated `squares` array as a new history entry. You also want to toggle `xIsNext`, just as Board used to do:
+呼び出された場合は、`handlePlay`関数は`Game`の状態を更新して再描画をトリガーする必要がありますが、もう`setSquares`関数を呼び出すことはできません。代わりに、この情報を保存するために`history`ステート変数を使用しています。`history`を更新して、更新された`squares`配列を新しい履歴エントリとして追加する必要があります。また、Boardが行っていたように、`xIsNext`を切り替えたいと思うでしょう。
 
 ```js {4-5}
 export default function Game() {
@@ -1868,11 +1868,11 @@ export default function Game() {
 }
 ```
 
-Here, `[...history, nextSquares]` creates a new array that contains all the items in `history`, followed by `nextSquares`. (You can read the `...history` [*spread syntax*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) as "enumerate all the items in `history`".)
+ここでは、`[...history, nextSquares]`は'history'の全アイテムに続いて 'nextSquares'を含む、新しい配列を作成します（spread syntaxとして知られているものを` ...` `で表現しています）。
 
-For example, if `history` is `[[null,null,null], ["X",null,null]]` and `nextSquares` is `["X",null,"O"]`, then the new `[...history, nextSquares]` array will be `[[null,null,null], ["X",null,null], ["X",null,"O"]]`.
+たとえば、 `history`が `[[null, null, null], ["X", null, null]] `で、 `nextSquares`が `["X", null, "O"] `である場合、新しい `[...history, nextSquares]`配列は `[[null, null, null], ["X", null, null], ["X", null, "O"]] `になります。
 
-At this point, you've moved the state to live in the `Game` component, and the UI should be fully working, just as it was before the refactor. Here is what the code should look like at this point:
+この時点で、ステートを`Game`コンポーネントに移動し、UIが再構築されるようにすることができました。ここでは、コードはリファクタリング前と同じように動作するはずです。この時点で、コードは以下のようになります。
 
 <Sandpack>
 
@@ -2021,19 +2021,19 @@ body {
 
 </Sandpack>
 
-### Showing the past moves {/*showing-the-past-moves*/}
+### 過去の手番の表示 {/*showing-the-past-moves*/}
 
-Since you are recording the tic-tac-toe game's history, you can now display it to the player as a list of past moves.
+今、三目並べのゲームの履歴を記録することができたので、それを過去の手番のリストとしてプレイヤーに表示することができます。
 
-React elements like `<button>` are regular JavaScript objects; you can pass them around in your application. To render multiple items in React, you can use an array of React elements.
+`<button>` のような React 要素は通常の JavaScript のオブジェクトであり、アプリケーション中で取り回すことができます。React には複数の要素を表示するために、React 要素の配列が使われます。
 
-You already have an array of `history` moves in state, so now you need to transform it to an array of React elements. In JavaScript, to transform one array into another, you can use the [array `map` method:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+すでに `history` の配列をステートとして持っているため、それを React 要素の配列に変換する必要があります。JavaScript において、一つの配列を別の配列に変換するには、[配列の `map` メソッド](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/map)を使用することができます。
 
 ```jsx
 [1, 2, 3].map((x) => x * 2) // [2, 4, 6]
 ```
 
-You'll use `map` to transform your `history` of moves into React elements representing buttons on the screen, and you'll display a list of buttons to "jump" to past moves. Let's `map` over the `history` in the Game component:
+`map` を使って、`history` の各手番を画面上のボタンを表す React 要素の配列に変換し、過去の手番に「ジャンプ」できるボタンのリストを表示することができます。Game コンポーネントで `history` を `map` しましょう。
 
 ```js {11-13,15-27,35}
 export default function Game() {
@@ -2077,7 +2077,7 @@ export default function Game() {
 }
 ```
 
-You can see what your code should look like below. Note that you should see an error in the developer tools console that says: ``Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of `Game`.`` You'll fix this error in the next section.
+上記が正しいコードになります。ただし、開発者ツールのコンソールには、「`Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of `Game`.」というエラーが表示されます。このエラーについては、次のセクションで修正します。 
 
 <Sandpack>
 
@@ -2245,26 +2245,26 @@ body {
 
 </Sandpack>
 
-As you iterate through `history` array inside the function you passed to `map`, the `squares` argument goes through each element of `history`, and the `move` argument goes through each array index: `0`, `1`, `2`, …. (In most cases, you'd need the actual array elements, but in this case you don't use `squares` to render a list of moves.)
+`map()` メソッドに渡した関数内で、`history` 配列を反復処理しています。そして、配列要素が毎回 `squares` の値に設定されており、`move` 引数は `0`、`1`、`2`... と、それぞれの配列のインデックスを表しています。通常、配列要素自体を使用する必要がありますが、今回の場合は、動いた場所の情報が必要ないため、 `squares` は使用しません。
 
-For each move in the tic-tac-toe game's history, you create a list item `<li>` which contains a button `<button>`. The button has an `onClick` handler which calls a function called `jumpTo` (that you haven't implemented yet).
+ゲームの履歴に含まれるそれぞれの着手に対して、`<li>`要素と、その中に含まれる`<button>`要素を作成します。その`<button>`には、アンクリックイベントが設定されており、未実装の `jumpTo` 関数が呼び出されます。
 
-For now, you should see a list of the moves that occurred in the game and an error in the developer tools console.
+今は、ゲームの中で発生した着手のリストと、開発者向けツールのコンソールにエラーが表示されるはずです。
 
-Let's discuss what the "key" error means.
+では、この「key」に関連したエラーが何を意味するのかについて、説明します。
 
-### Picking a key {/*picking-a-key*/}
+### キーの選び方 {/*picking-a-key*/}
 
-When you render a list, React stores some information about each rendered list item. When you update a list, React needs to determine what has changed. You could have added, removed, re-arranged, or updated the list's items.
+リストをレンダーすると、React は各レンダーされたリスト アイテムに関する情報を保持します。リストを更新する場合、React は何が変更されたかを判断する必要があります。リストのアイテムを追加、削除、並べ替え、更新していたかもしれません。
 
-Imagine transitioning from
+以下のようにある 2 つのアイテムから、
 
 ```html
 <li>Alexa: 7 tasks left</li>
 <li>Ben: 5 tasks left</li>
 ```
 
-to
+以下のアイテムに移行した場合、
 
 ```html
 <li>Ben: 9 tasks left</li>
@@ -2272,7 +2272,7 @@ to
 <li>Alexa: 5 tasks left</li>
 ```
 
-In addition to the updated counts, a human reading this would probably say that you swapped Alexa and Ben's ordering and inserted Claudia between Alexa and Ben. However, React is a computer program and can't know what you intended, so you need to specify a _key_ property for each list item to differentiate each list item from its siblings. If you were displaying data from a database, Alexa, Ben, and Claudia's database IDs could be used as keys.
+更新されたカウント数に加えて、人間がこれを読むと、Alexa と Ben の順序が入れ替わり、Alexa と Ben の間に Claudia が挿入されたと思うかもしれません。しかし、React はコンピュータのプログラムであり、意図を知ることができないため、各リスト アイテムを兄弟要素と区別するために、_キー_ プロパティを指定する必要があります。データベースからデータを取得している場合、Alexa、Ben、Claudia のデータベース ID をキーとして使用できます。
 
 ```js {1}
 <li key={user.id}>
@@ -2280,23 +2280,23 @@ In addition to the updated counts, a human reading this would probably say that 
 </li>
 ```
 
-When a list is re-rendered, React takes each list item's key and searches the previous list's items for a matching key. If the current list has a key that didn't exist before, React creates a component. If the current list is missing a key that existed in the previous list, React destroys the previous component. If two keys match, the corresponding component is moved.
+リストを再レンダリングする場合、React は各リスト項目のキーを調べ、前回のリスト項目とマッチするものを探します。現在のリストに前回存在しなかったキーがある場合、React はコンポーネントを作成します。現在のリストに前回存在していたキーがない場合、React は前回のコンポーネントを削除します。2 つのキーが一致する場合、対応するコンポーネントは移動します。
 
-Keys tell React about the identity of each component, which allows React to maintain state between re-renders. If a component's key changes, the component will be destroyed and re-created with a new state.
+キーを使用することで、各コンポーネントの ID を React に伝えることができ、React は再レンダリングの間、コンポーネントの状態を保持することができます。コンポーネントのキーが変更された場合、コンポーネントは削除され、新しい状態で再作成されます。
 
-`key` is a special and reserved property in React. When an element is created, React extracts the `key` property and stores the key directly on the returned element. Even though `key` may look like it is passed as props, React automatically uses `key` to decide which components to update. There's no way for a component to ask what `key` its parent specified.
+`key` は React で特別な予約語であり、コンポーネントの生成時に React が `key` のプロパティを抽出して、返された要素に直接キーを格納します。`key` はプロパティに見えますが、React は自動的に `key` を使用して、コンポーネントを更新するかどうかを判断します。コンポーネントが親が指定した `key` に対してどのような `key` を要求することはできません。
 
-**It's strongly recommended that you assign proper keys whenever you build dynamic lists.** If you don't have an appropriate key, you may want to consider restructuring your data so that you do.
+**動的なリストを作成する場合には、適切な `key` を割り当てることを強くお勧めします。** 適切なキーがない場合は、データ構造を再構築してください。
 
-If no key is specified, React will report an error and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the error but has the same problems as array indices and is not recommended in most cases.
+キーが指定されていない場合、React はエラーを報告し、デフォルトで配列のインデックスを使用します。配列のインデックスをキーとして使用すると、リスト項目の並べ替えや挿入/削除時に問題が発生する可能性があります。`key={i}` を明示的に渡すとエラーが消えますが、配列のインデックスと同じ問題があります。ほとんどの場合、これはお勧めできません。
 
-Keys do not need to be globally unique; they only need to be unique between components and their siblings.
+キーは、グローバルに一意である必要はありません。ただし、兄弟要素との間で一意である必要があります。
 
-### Implementing time travel {/*implementing-time-travel*/}
+### タイムトラベルを実装する {/*implementing-time-travel*/}
 
-In the tic-tac-toe game's history, each past move has a unique ID associated with it: it's the sequential number of the move. Moves will never be re-ordered, deleted, or inserted in the middle, so it's safe to use the move index as a key.
+三目並べゲームの履歴では、各過去の手番にはそれぞれユニークな ID が割り当てられます。それは手番の順序数です。手番は再順序化、削除、途中での挿入は一切行われないので、手番インデックスをキーとして利用することができます。
 
-In the `Game` function, you can add the key as `<li key={move}>`, and if you reload the rendered game, React's "key" error should disappear:
+`Game` 関数内で、キーを `<li key={move}>` として追加し、レンダリングされたゲームを再読み込みすると、React の「キーがない」エラーが消えるようになります。
 
 ```js {4}
 const moves = history.map((squares, move) => {
@@ -2476,7 +2476,7 @@ body {
 
 </Sandpack>
 
-Before you can implement `jumpTo`, you need the `Game` component to keep track of which step the user is currently viewing. To do this, define a new state variable called `currentMove`, defaulting to `0`:
+現在ユーザーがどの手番を見ているかを追跡するために、`Game` コンポーネントに新しいステート変数 `currentMove` を定義して初期値を `0` に設定します。
 
 ```js {4}
 export default function Game() {
@@ -2488,7 +2488,7 @@ export default function Game() {
 }
 ```
 
-Next, update the `jumpTo` function inside `Game` to update that `currentMove`. You'll also set `xIsNext` to `true` if the number that you're changing `currentMove` to is even.
+次に、`Game` 内の `jumpTo` 関数を更新して `currentMove` を更新します。また、`currentMove` に変更する数値が偶数である場合は `xIsNext` を `true` に設定します。
 
 ```js {4-5}
 export default function Game() {
@@ -2515,7 +2515,7 @@ function handlePlay(nextSquares) {
 }
 ```
 
-Finally, you will modify the `Game` component to render the currently selected move, instead of always rendering the final move:
+最後に、Game コンポーネントを変更して、常に最後の手だけでなく、現在選択されている手をレンダリングするようにします。:
 
 ```js {5}
 export default function Game() {
@@ -2528,7 +2528,7 @@ export default function Game() {
 }
 ```
 
-If you click on any step in the game's history, the tic-tac-toe board should immediately update to show what the board looked like after that step occurred.
+履歴のどのステップをクリックしても、ゲームのマス目がそのステップが起こった後のボードをすぐに表示するようになります。
 
 <Sandpack>
 
@@ -2701,9 +2701,9 @@ body {
 
 ### Final cleanup {/*final-cleanup*/}
 
-If you look at the code very closely, you may notice that `xIsNext === true` when `currentMove` is even and `xIsNext === false` when `currentMove` is odd. In other words, if you know the value of `currentMove`, then you can always figure out what `xIsNext` should be.
+コードをよく見ると、`currentMove` が偶数のときに `xIsNext === true` であり、`currentMove` が奇数のときに `xIsNext === false` であることがわかります。つまり、`currentMove` の値を知っていれば、常に `xIsNext` の値がわかります。
 
-There's no reason for you to store both of these in state. In fact, always try to avoid redundant state. Simplifying what you store in state helps reduce bugs and make your code easier to understand. Change `Game` so that it no longer stores `xIsNext` as a separate state variable and instead figures it out based on the `currentMove`:
+このために[state](#state)に両方を格納する必要はありません。実際、重複したステートを避けるように常に心がけてください。ステートで格納するものを単純化すると、バグを減らし、コードを理解しやすくすることができます。`Game`を変更して、`xIsNext`を単一のステート変数として保存するのではなく、`currentMove`に基づいて計算するようにしてください：
 
 ```js {4,11,15}
 export default function Game() {
@@ -2725,20 +2725,20 @@ export default function Game() {
 }
 ```
 
-You no longer need the `xIsNext` state declaration or the calls to `setXIsNext`. Now, there's no chance for `xIsNext` to get out of sync with `currentMove`, even if you make a mistake while coding the components.
+これにより、`xIsNext`ステート宣言と `setXIsNext`の呼び出しは不要になりました。コンポーネントのコーディング中に誤りがあった場合でも、`xIsNext`が`currentMove`と同期しなくなることはありません。
 
-### Wrapping up {/*wrapping-up*/}
+### まとめ {/*wrapping-up*/}
 
-Congratulations! You've created a tic-tac-toe game that:
+おめでとうございます！tic-tac-toe ゲームを作成しました。これにより、
 
-- Lets you play tic-tac-toe,
-- Indicates when a player has won the game,
-- Stores a game's history as a game progresses,
-- Allows players to review a game's history and see previous versions of a game's board.
+- tic-tac-toe をプレイすることができます。
+- プレイヤーが勝利したときに勝利を示します。
+- ゲームが進むにつれてゲームの履歴を保存します。
+- プレイヤーがゲームの履歴を見直し、以前のボードのバージョンを見ることができます。
 
-Nice work! We hope you now feel like you have a decent grasp of how React works.
+素晴らしい仕事でした！React の動きについて一定程度の理解ができたのではないでしょうか。
 
-Check out the final result here:
+最終的な結果はこちらで確認できます：
 
 <Sandpack>
 
@@ -2907,12 +2907,12 @@ body {
 
 </Sandpack>
 
-If you have extra time or want to practice your new React skills, here are some ideas for improvements that you could make to the tic-tac-toe game, listed in order of increasing difficulty:
+余裕がある場合や新しい React のスキルを練習するために、次のような tic-tac-toe ゲームの改善アイデアがあります：
 
-1. For the current move only, show "You are at move #..." instead of a button
-1. Rewrite `Board` to use two loops to make the squares instead of hardcoding them.
-1. Add a toggle button that lets you sort the moves in either ascending or descending order.
-1. When someone wins, highlight the three squares that caused the win (and when no one wins, display a message about the result being a draw).
-1. Display the location for each move in the format (col, row) in the move history list.
+1. 現在の手番に応じて、ボタンではなく「現在の手番は#です」と表示する。
+2. `Board` を書き換えて、四角形をハードコーディングではなく 2 つのループを使って生成するようにする。
+3. 昇順と降順を切り替えるトグルボタンを追加する。
+4. どちらかが勝利した場合、勝利につながった 3 つのマスをハイライト表示する（引き分けの場合、引き分けの結果を表示する）。
+5. 毎手の位置を (column, row) 形式で履歴リストに表示する。
 
-Throughout this tutorial, you've touched on React concepts including elements, components, props, and state. Now that you've seen how these concepts work when building a game, check out [Thinking in React](/learn/thinking-in-react) to see how the same React concepts work when build an app's UI.
+このチュートリアルでは、要素・コンポーネント・プロップス・ステートなどの React の概念に触れてきました。これらの概念がどのようにアプリケーションの UI を構築するときに動作するかを確認できました。次は [React の考え方](/learn/thinking-in-react) を見て、同じ React の概念がどのようにアプリの UI を作成するときに操作するかを確認しましょう。
