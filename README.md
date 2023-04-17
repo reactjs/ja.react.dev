@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 # ja.reactjs.org
 
 This repo contains the source code and documentation powering [ja.reactjs.org](https://ja.reactjs.org/).
 
 > 以下はオリジナル（英語版）リポジトリの README です。日本語版 React ドキュメントへの貢献（翻訳・修正など）に興味がある方は [TRANSLATION.md](TRANSLATION.md) を参照してください。
+=======
+# react.dev
+
+This repo contains the source code and documentation powering [react.dev](https://react.dev/).
+>>>>>>> 543c7a0dcaf11e0400a9deb2465190467e272171
 
 ## Getting started
 
@@ -10,29 +16,42 @@ This repo contains the source code and documentation powering [ja.reactjs.org](h
 
 1. Git
 1. Node: any 12.x version starting with v12.0.0 or greater
-1. Yarn v1: See [Yarn website for installation instructions](https://yarnpkg.com/lang/en/docs/install/)
+1. Yarn: See [Yarn website for installation instructions](https://yarnpkg.com/lang/en/docs/install/)
 1. A fork of the repo (for any contributions)
+<<<<<<< HEAD
 1. A clone of the [ja.reactjs.org repo](https://github.com/reactjs/ja.reactjs.org) on your local machine
 
 ### Installation
 
 1. `cd ja.reactjs.org` to go into the project root
 1. `yarn` to install the website's npm dependencies
+=======
+1. A clone of the [react.dev repo](https://github.com/reactjs/react.dev) on your local machine
+
+### Installation
+
+1. `cd react.dev` to go into the project root
+3. `yarn` to install the website's npm dependencies
+>>>>>>> 543c7a0dcaf11e0400a9deb2465190467e272171
 
 ### Running locally
 
-1. `yarn dev` to start the hot-reloading development server (powered by [Gatsby](https://www.gatsbyjs.org))
-1. `open http://localhost:8000` to open the site in your favorite browser
+1. `yarn dev` to start the development server (powered by [Next.js](https://nextjs.org/))
+1. `open http://localhost:3000` to open the site in your favorite browser
 
 ## Contributing
 
 ### Guidelines
 
+<<<<<<< HEAD
 The documentation is divided into several sections with a different tone and purpose. If you plan to write more than a few sentences, you might find it helpful to get familiar with the [contributing guidelines](https://github.com/reactjs/ja.reactjs.org/blob/main/CONTRIBUTING.md#guidelines-for-text) for the appropriate sections.
+=======
+The documentation is divided into several sections with a different tone and purpose. If you plan to write more than a few sentences, you might find it helpful to get familiar with the [contributing guidelines](https://github.com/reactjs/react.dev/blob/main/CONTRIBUTING.md#guidelines-for-text) for the appropriate sections.
+>>>>>>> 543c7a0dcaf11e0400a9deb2465190467e272171
 
 ### Create a branch
 
-1. `git checkout main` from any folder in your local `reactjs.org` repository
+1. `git checkout main` from any folder in your local `react.dev` repository
 1. `git pull origin main` to ensure you have the latest main code
 1. `git checkout -b the-name-of-my-branch` (replacing `the-name-of-my-branch` with a suitable name) to create a branch
 
@@ -47,26 +66,23 @@ The documentation is divided into several sections with a different tone and pur
 ### Test the change
 
 1. If possible, test any visual changes in all latest versions of common browsers, on both desktop and mobile.
-1. Run `yarn check-all` from the project root. (This will run Prettier, ESLint, and Flow.)
+2. Run `yarn check-all`. (This will run Prettier, ESLint and validate types.)
 
 ### Push it
 
 1. `git add -A && git commit -m "My message"` (replacing `My message` with a commit message, such as `Fix header logo on Android`) to stage and commit your changes
 1. `git push my-fork-name the-name-of-my-branch`
+<<<<<<< HEAD
 1. Go to the [ja.reactjs.org repo](https://github.com/reactjs/ja.reactjs.org) and you should see recently pushed branches.
+=======
+1. Go to the [react.dev repo](https://github.com/reactjs/react.dev) and you should see recently pushed branches.
+>>>>>>> 543c7a0dcaf11e0400a9deb2465190467e272171
 1. Follow GitHub's instructions.
 1. If possible, include screenshots of visual changes. A preview build is triggered after your changes are pushed to GitHub.
 
 ## Translation
 
-If you are interested in translating `reactjs.org`, please see the current translation efforts at [translations.reactjs.org](https://translations.reactjs.org/).
-
-
-If your language does not have a translation and you would like to create one, please follow the instructions at [reactjs.org Translations](https://github.com/reactjs/reactjs.org-translation#translating-reactjsorg).
-
-## Troubleshooting
-
-- `yarn reset` to clear the local cache
+If you are interested in translating `react.dev`, please see the current translation efforts [here](https://github.com/reactjs/react.dev/issues/4135).
 
 ## License
-Content submitted to [reactjs.org](https://reactjs.org/) is CC-BY-4.0 licensed, as found in the [LICENSE-DOCS.md](LICENSE-DOCS.md) file.
+Content submitted to [react.dev](https://react.dev/) is CC-BY-4.0 licensed, as found in the [LICENSE-DOCS.md](https://github.com/reactjs/react.dev/blob/main/LICENSE-DOCS.md) file.
