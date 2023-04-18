@@ -4,6 +4,12 @@ title: ES6 なしで React を使う
 permalink: docs/react-without-es6.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
+
 通常、React コンポーネントはプレーンな JavaScript クラスとして定義されます。
 
 ```javascript

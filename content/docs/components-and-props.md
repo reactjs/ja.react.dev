@@ -16,6 +16,8 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
+<div class="scary">
+
 > 新しい React ドキュメントをお試しください。
 > 
 > 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
@@ -24,6 +26,8 @@ next: state-and-lifecycle.html
 > - [Passing Props to a Component](https://beta.reactjs.org/learn/passing-props-to-a-component)
 >
 > まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+</div>
 
 コンポーネントにより UI を独立した再利用できる部品に分割し、部品それぞれを分離して考えることができるようになります。このページではコンポーネントという概念の導入を行います。[詳細な API リファレンスはこちら](/docs/react-component.html)で参照できます。
 

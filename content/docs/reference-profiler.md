@@ -6,6 +6,16 @@ category: Reference
 permalink: docs/profiler.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React:
+>
+> - [`<Profiler>`](https://react.dev/reference/react/Profiler)
+
+</div>
+
 `Profiler` を使って、React アプリケーションのレンダーの頻度やレンダーの「コスト」を計測することができます。
 本機能の目的は、アプリケーション中の、低速で[メモ化などの最適化](/docs/hooks-faq.html#how-to-memoize-calculations)が有効な可能性のある部位を特定する手助けをすることです。
 

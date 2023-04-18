@@ -3,6 +3,12 @@ title: 新しい JSX トランスフォーム
 author: [lunaruan]
 ---
 
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
+
 React 17 には[新機能はありません](/blog/2020/08/10/react-v17-rc.html)が、新バージョンの JSX トランスフォーム (JSX transform) に対応します。この記事ではこれがどのようなもので、どのように試せるのかについて説明します。
 
 ## JSX トランスフォームとは？ {#whats-a-jsx-transform}

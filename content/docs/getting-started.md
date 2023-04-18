@@ -18,11 +18,15 @@ redirect_from:
   - "docs/environments.html"
 ---
 
+<div class="scary">
+
 > 新しい React ドキュメントをお試しください。
 > 
 > 新しい[クイックスタートガイド](https://beta.reactjs.org/learn)では最新の React がライブサンプル付きで学べます。
 >
 > まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+</div>
 
 このページは React のドキュメント、および関連する資料の概要となります。
 

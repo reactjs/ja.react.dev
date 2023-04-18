@@ -6,6 +6,12 @@ sectionid: community
 permalink: community/external-resources.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
+
 React community には選定された多くの素晴らしいリソースがあります。
 
 - [Reactiflux](https://www.reactiflux.com/) - 20,000 人以上の React ディベロッパーが在籍するコミュニティです。彼らが良く選定された [learning section](https://www.reactiflux.com/learning/) を維持しています。

@@ -11,6 +11,8 @@ redirect_from:
   - "tips/children-undefined.html"
 ---
 
+<div class="scary">
+
 > 新しい React ドキュメントをお試しください。
 > 
 > - [Referencing Values with Refs](https://beta.reactjs.org/learn/referencing-values-with-refs)
@@ -19,6 +21,8 @@ redirect_from:
 > - [`forwardRef`](https://beta.reactjs.org/reference/react/forwardRef)
 >
 > まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+</div>
 
 Ref は render メソッドで作成された DOM ノードもしくは React の要素にアクセスする方法を提供します。
 

@@ -4,6 +4,12 @@ title: JSX なしで React を使う
 permalink: docs/react-without-jsx.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
+
 JSX は React を使うための必須事項ではありません。JSX なしで React を使うことは、あなたのビルド環境で JSX のコンパイルの設定をしたくない時には便利です。
 
 各 JSX 要素は、`React.createElement(component, props, ...children)` を呼び出すための単なるシンタックスシュガーです。つまり、JSX を使ってできることは、普通の JavaScript を使ってもできます。

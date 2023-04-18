@@ -4,6 +4,14 @@ title: 静的型チェック
 permalink: docs/static-type-checking.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> Check out [React TypeScript cheatsheet](https://react-typescript-cheatsheet.netlify.app/) for how to use React with TypeScript.
+
+</div>
+
 [Flow](https://flow.org/) や [TypeScript](https://www.typescriptlang.org/) のような静的型チェッカーを使用することでコードを実行する前の早期段階に型不整合等の問題を検知することができます。他にも型解析言語を使用することで補完などの機能が追加され、開発体験を上げることができます。これらの理由から、大きいコードベースでは `PropTypes` の代わりに Flow や TypeScript を使うことをおすすめします。
 
 ## Flow {#flow}

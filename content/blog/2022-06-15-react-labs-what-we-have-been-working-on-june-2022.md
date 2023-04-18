@@ -3,6 +3,12 @@ title: "React Labs: 私達のこれまでの取り組み - 2022年6月版"
 author: [acdlite,gaearon,kassens,josephsavona,joshcstory,laurentan,lunaruan,mengdichen,rickhanlonii,robertzhang,gsathya,sebmarkbage,huxpro]
 ---
 
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
+
 [React 18](https://reactjs.org/blog/2022/03/29/react-v18.html) の完成は数年がかりの仕事であり、React チームはそこから貴重な教訓を得ることになりました。このリリースは何年も研究を行い、様々なアプローチを試した結果として生まれたものです。いくつかのアプローチはうまく行った一方で、多くは行き詰まって新たな知見のみをもたらすことになりました。ここから我々が学んだことは、我々がどんなことを試しているのかをコミュニティに知らせることなくただお待たせするというのは、フラストレーションの元だ、ということです。
 
 我々は、かなり実験的なものから明確に定義されているものまで、ほぼ常に様々なプロジェクトを同時に進めています。今後は、これらのプロジェクトに関する我々の取り組みについて、より多くのことを定期的にコミュニティと共有していくようにしたいと思います。
@@ -32,7 +38,7 @@ Static Site Generation (SSG) と Incremental Static Regeneration (ISR) はキャ
 
 React Conf 2021 において、React Forget についての[アーリープレビュー](https://www.youtube.com/watch?v=lGEMwh32soc)をお届けしました。これは、React のプログラミングモデルを保ちつつ、`useMemo` や `useCallback` の同等物を自動で作成して再レンダーのコストを最小化するためのコンパイラです。
 
-最近になって、このコンパイラの安定性と機能を向上するための書き直しが完了しました。新しいアーキテクチャは、[ローカルでの変数書き換え](https://beta.reactjs.org/learn/keeping-components-pure#local-mutation-your-components-little-secret)のような、より複雑なパターンも解析してメモ化を適用することが可能であり、単にメモ化用フックと同じ事ができるという以上に、様々なコンパイル時最適化の可能性を開くことができます。
+最近になって、このコンパイラの安定性と機能を向上するための書き直しが完了しました。新しいアーキテクチャは、[ローカルでの変数書き換え](https://react.dev/learn/keeping-components-pure#local-mutation-your-components-little-secret)のような、より複雑なパターンも解析してメモ化を適用することが可能であり、単にメモ化用フックと同じ事ができるという以上に、様々なコンパイル時最適化の可能性を開くことができます。
 
 また、このコンパイラの様々な機能について試すためのプレイグラウンドを作成しています。プレイグラウンドの主目的はコンパイラ自体の開発をやりやすくすることですが、コンパイラを試して何をやっているのか直観で理解できるようにすることにも役立つと考えています。これにより裏で何をやっているのか洞察できるようになりますし、タイプして即座にコンパイル出力を見ることもできるようになります。こちらはコンパイラのリリースの際に同時にリリースされる予定です。
 
@@ -63,8 +69,8 @@ React Conf 2021 において、React Forget についての[アーリープレ�
 
 ## 新たな React ドキュメント {#new-react-docs}
 
-昨年、新たな React のドキュメントサイトの[ベータ版](https://beta.reactjs.org/)を発表しました。この新たな教材ではフックを優先的に学ぶことができ、新たな図やイラスト、インタラクティブに試せる例やチャレンジ問題が存在します。React 18 のリリースに集中するために作業をしばらくお休みしていましたが、React 18 のリリースも終わりましたので、新ドキュメントの仕上げとリリースに活発に取り組んでいます。
+昨年、新たな React のドキュメントサイトの[ベータ版](https://react.dev/)を発表しました。この新たな教材ではフックを優先的に学ぶことができ、新たな図やイラスト、インタラクティブに試せる例やチャレンジ問題が存在します。React 18 のリリースに集中するために作業をしばらくお休みしていましたが、React 18 のリリースも終わりましたので、新ドキュメントの仕上げとリリースに活発に取り組んでいます。
 
-副作用 (effect) は新規ユーザにとっても経験のあるユーザにとっても難しいトピックのひとつだと聞いていますので、現在我々は副作用についての詳細な説明を準備中です。[Synchronizing with Effects](https://beta.reactjs.org/learn/synchronizing-with-effects) が一連の記事のうちで最初に公開されているものですが、これからの数週間でより多くが公開される予定です。また副作用についての詳細な記事を書き始めたことで、副作用に関するよくあるパターンの多くは、React に基本機能を加えることでシンプルにできる、ということに気付きました。初期アイディアの一部は [useEvent RFC](https://github.com/reactjs/rfcs/pull/220) で共有されています。これはまだ初期の研究段階でありアイディアについて見直しをしているところです。RFC にコメントを寄せてくださったコミュニティの方々や、ドキュメントの書き直しに関して[フィードバック](https://github.com/reactjs/reactjs.org/issues/3308)や貢献をしてくださった方に感謝します。特に新サイトの実装に関して多くのレビューや改善を寄せてくださった [Harish Kumar](https://github.com/harish-sethuraman) に感謝します。
+副作用 (effect) は新規ユーザにとっても経験のあるユーザにとっても難しいトピックのひとつだと聞いていますので、現在我々は副作用についての詳細な説明を準備中です。[Synchronizing with Effects](https://react.dev/learn/synchronizing-with-effects) が一連の記事のうちで最初に公開されているものですが、これからの数週間でより多くが公開される予定です。また副作用についての詳細な記事を書き始めたことで、副作用に関するよくあるパターンの多くは、React に基本機能を加えることでシンプルにできる、ということに気付きました。初期アイディアの一部は [useEvent RFC](https://github.com/reactjs/rfcs/pull/220) で共有されています。これはまだ初期の研究段階でありアイディアについて見直しをしているところです。RFC にコメントを寄せてくださったコミュニティの方々や、ドキュメントの書き直しに関して[フィードバック](https://github.com/reactjs/reactjs.org/issues/3308)や貢献をしてくださった方に感謝します。特に新サイトの実装に関して多くのレビューや改善を寄せてくださった [Harish Kumar](https://github.com/harish-sethuraman) に感謝します。
 
 *このブログ記事のレビューをしてくださった [Sophie Alpert](https://twitter.com/sophiebits) に感謝します。*
