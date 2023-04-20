@@ -10,7 +10,7 @@ This repo contains the source code and documentation powering [ja.reactjs.org](h
 
 1. Git
 1. Node: any 12.x version starting with v12.0.0 or greater
-1. Yarn v1: See [Yarn website for installation instructions](https://yarnpkg.com/lang/en/docs/install/)
+1. Yarn: See [Yarn website for installation instructions](https://yarnpkg.com/lang/en/docs/install/)
 1. A fork of the repo (for any contributions)
 1. A clone of the [ja.reactjs.org repo](https://github.com/reactjs/ja.reactjs.org) on your local machine
 
@@ -21,8 +21,8 @@ This repo contains the source code and documentation powering [ja.reactjs.org](h
 
 ### Running locally
 
-1. `yarn dev` to start the hot-reloading development server (powered by [Gatsby](https://www.gatsbyjs.org))
-1. `open http://localhost:8000` to open the site in your favorite browser
+1. `yarn dev` to start the development server (powered by [Next.js](https://nextjs.org/))
+1. `open http://localhost:3000` to open the site in your favorite browser
 
 ## Contributing
 
@@ -32,7 +32,7 @@ The documentation is divided into several sections with a different tone and pur
 
 ### Create a branch
 
-1. `git checkout main` from any folder in your local `reactjs.org` repository
+1. `git checkout main` from any folder in your local `react.dev` repository
 1. `git pull origin main` to ensure you have the latest main code
 1. `git checkout -b the-name-of-my-branch` (replacing `the-name-of-my-branch` with a suitable name) to create a branch
 
@@ -47,7 +47,7 @@ The documentation is divided into several sections with a different tone and pur
 ### Test the change
 
 1. If possible, test any visual changes in all latest versions of common browsers, on both desktop and mobile.
-1. Run `yarn check-all` from the project root. (This will run Prettier, ESLint, and Flow.)
+2. Run `yarn check-all`. (This will run Prettier, ESLint and validate types.)
 
 ### Push it
 
@@ -59,14 +59,7 @@ The documentation is divided into several sections with a different tone and pur
 
 ## Translation
 
-If you are interested in translating `reactjs.org`, please see the current translation efforts at [translations.reactjs.org](https://translations.reactjs.org/).
-
-
-If your language does not have a translation and you would like to create one, please follow the instructions at [reactjs.org Translations](https://github.com/reactjs/reactjs.org-translation#translating-reactjsorg).
-
-## Troubleshooting
-
-- `yarn reset` to clear the local cache
+If you are interested in translating `react.dev`, please see the current translation efforts [here](https://github.com/reactjs/react.dev/issues/4135).
 
 ## License
-Content submitted to [reactjs.org](https://reactjs.org/) is CC-BY-4.0 licensed, as found in the [LICENSE-DOCS.md](LICENSE-DOCS.md) file.
+Content submitted to [react.dev](https://react.dev/) is CC-BY-4.0 licensed, as found in the [LICENSE-DOCS.md](https://github.com/reactjs/react.dev/blob/main/LICENSE-DOCS.md) file.
