@@ -6,6 +6,16 @@ prev: hooks-custom.html
 next: hooks-faq.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`react`: Hooks](https://react.dev/reference/react)
+
+</div>
+
 *フック (hook)* は React 16.8 で追加された新機能です。state などの React の機能を、クラスを書かずに使えるようになります。
 
 このページでは React 組み込みのフックについて説明します。
@@ -35,9 +45,13 @@ next: hooks-faq.html
 
 ### `useState` {#usestate}
 
-> 新しい React ドキュメントの記事もお試しください：[`useState`](https://beta.reactjs.org/reference/react/useState).
->
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+<div class="scary">
+
+> This content is out of date.
+> Read the new React documentation for [`useState`](https://react.dev/reference/react/useState).
+
+</div>
 
 ```js
 const [state, setState] = useState(initialState);
@@ -122,9 +136,13 @@ DOM への更新が同期的に適用されるよう強制しないといけな�
 
 ### `useEffect` {#useeffect}
 
-> 新しい React ドキュメントの記事もお試しください：[`useEffect`](https://beta.reactjs.org/reference/react/useEffect).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`useEffect`](https://react.dev/reference/react/useEffect).
+
+</div>
 
 ```js
 useEffect(didUpdate);
@@ -205,9 +223,13 @@ useEffect(
 
 ### `useContext` {#usecontext}
 
-> 新しい React ドキュメントの記事もお試しください：[`useContext`](https://beta.reactjs.org/reference/react/useContext).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`useContext`](https://react.dev/reference/react/useContext).
+
+</div>
 
 
 ```js
@@ -282,9 +304,13 @@ function ThemedButton() {
 
 ### `useReducer` {#usereducer}
 
-> 新しい React ドキュメントの記事もお試しください：[`useReducer`](https://beta.reactjs.org/reference/react/useReducer).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`useReducer`](https://react.dev/reference/react/useReducer).
+
+</div>
 
 
 ```js
@@ -390,9 +416,13 @@ function Counter({initialCount}) {
 
 ### `useCallback` {#usecallback}
 
-> 新しい React ドキュメントの記事もお試しください：[`useCallback`](https://beta.reactjs.org/reference/react/useCallback).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`useCallback`](https://react.dev/reference/react/useCallback).
+
+</div>
 
 ```js
 const memoizedCallback = useCallback(
@@ -417,9 +447,13 @@ const memoizedCallback = useCallback(
 
 ### `useMemo` {#usememo}
 
-> 新しい React ドキュメントの記事もお試しください：[`useMemo`](https://beta.reactjs.org/reference/react/useMemo).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`useMemo`](https://react.dev/reference/react/useMemo).
+
+</div>
 
 
 ```js
@@ -444,9 +478,13 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
 ### `useRef` {#useref}
 
-> 新しい React ドキュメントの記事もお試しください：[`useRef`](https://beta.reactjs.org/reference/react/useRef).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`useRef`](https://react.dev/reference/react/useRef).
+
+</div>
 
 
 ```js
@@ -486,9 +524,13 @@ function TextInputWithFocusButton() {
 
 ### `useImperativeHandle` {#useimperativehandle}
 
-> 新しい React ドキュメントの記事もお試しください：[`useImperativeHandle`](https://beta.reactjs.org/reference/react/useImperativeHandle).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`useImperativeHandle`](https://react.dev/reference/react/useImperativeHandle).
+
+</div>
 
 
 ```js
@@ -514,9 +556,13 @@ FancyInput = forwardRef(FancyInput);
 
 ### `useLayoutEffect` {#uselayouteffect}
 
-> 新しい React ドキュメントの記事もお試しください：[`useLayoutEffect`](https://beta.reactjs.org/reference/react/useLayoutEffect).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`useLayoutEffect`](https://react.dev/reference/react/useLayoutEffect).
+
+</div>
 
 
 この関数のシグネチャは `useEffect` と同一ですが、DOM の変更があった後で同期的に副作用が呼び出されます。これは DOM からレイアウトを読み出して同期的に再描画を行う場合に使ってください。`useLayoutEffect` の内部でスケジュールされた更新はブラウザによって描画される前のタイミングで同期的に処理されます。
@@ -533,9 +579,13 @@ FancyInput = forwardRef(FancyInput);
 
 ### `useDebugValue` {#usedebugvalue}
 
-> 新しい React ドキュメントの記事もお試しください：[`useDebugValue`](https://beta.reactjs.org/reference/react/useDebugValue).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`useDebugValue`](https://react.dev/reference/react/useDebugValue).
+
+</div>
 
 
 ```js
@@ -578,9 +628,13 @@ useDebugValue(date, date => date.toDateString());
 
 ### `useDeferredValue` {#usedeferredvalue}
 
-> 新しい React ドキュメントの記事もお試しください：[`useDeferredValue`](https://beta.reactjs.org/reference/react/useDeferredValue).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`useDeferredValue`](https://react.dev/reference/react/useDeferredValue).
+
+</div>
 
 
 ```js
@@ -621,9 +675,13 @@ function Typeahead() {
 
 ### `useTransition` {#usetransition}
 
-> 新しい React ドキュメントの記事もお試しください：[`useTransition`](https://beta.reactjs.org/reference/react/useTransition).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`useTransition`](https://react.dev/reference/react/useTransition).
+
+</div>
 
 
 ```js
@@ -670,9 +728,13 @@ function App() {
 
 ### `useId` {#useid}
 
-> 新しい React ドキュメントの記事もお試しください：[`useId`](https://beta.reactjs.org/reference/react/useId).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`useId`](https://react.dev/reference/react/useId).
+
+</div>
 
 
 ```js
@@ -731,9 +793,13 @@ function NameFields() {
 
 ### `useSyncExternalStore` {#usesyncexternalstore}
 
-> 新しい React ドキュメントの記事もお試しください：[`useSyncExternalStore`](https://beta.reactjs.org/reference/react/useSyncExternalStore).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`useSyncExternalStore`](https://react.dev/reference/react/useSyncExternalStore).
+
+</div>
 
 
 ```js
@@ -782,9 +848,13 @@ const selectedField = useSyncExternalStore(
 
 ### `useInsertionEffect` {#useinsertioneffect}
 
-> 新しい React ドキュメントの記事もお試しください：[`useInsertionEffect`](https://beta.reactjs.org/reference/react/useInsertionEffect).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`useInsertionEffect`](https://react.dev/reference/react/useInsertionEffect).
+
+</div>
 
 ```js
 useInsertionEffect(didUpdate);

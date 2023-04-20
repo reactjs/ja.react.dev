@@ -6,6 +6,14 @@ redirect_from:
   - "docs/webcomponents.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> See [Custom HTML elements](https://react.dev/reference/react-dom/components#custom-html-elements) in the new docs.
+>
+</div>
+
 React と [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) は異なる課題を解決する為に構築されました。Web Components はコンポーネントをパッケージ化して、高い再利用性を与えます。一方で React は DOM とデータを同期させる為の宣言型のライブラリを提供しています。この 2 つの目標は互いを補完しあっています。あなたは開発者として、Web Components 内で React を使用することも、React 内で Web Components を使用することも、あるいはその両方を行うこともできます。
 
 React を使用するほとんどの人は Web Components を使用しませんが、Web Components を用いたサードパーティ製の UI コンポーネントを使用したい時などには活用できるかもしれません。

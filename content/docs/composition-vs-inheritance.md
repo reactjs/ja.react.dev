@@ -8,6 +8,12 @@ prev: lifting-state-up.html
 next: thinking-in-react.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
+
 React は強力なコンポジションモデルを備えており、コンポーネント間のコードの再利用には継承よりもコンポジションをお勧めしています。
 
 この章では、React を始めて間もない開発者が継承に手を出した時に陥りがちないくつかの問題と、コンポジションによりその問題がどのように解決できるのかについて考えてみます。

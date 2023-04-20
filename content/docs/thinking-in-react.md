@@ -8,11 +8,15 @@ redirect_from:
 prev: composition-vs-inheritance.html
 ---
 
+<div class="scary">
+
 > 新しい React ドキュメントをお試しください。
 > 
 > [Thinking in React](https://beta.reactjs.org/learn/thinking-in-react) の更新版では最新の React の使い方がライブサンプル付きで学べます。
 >
 > まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+</div>
 
 巨大で軽快な Web アプリを開発する場合に、React は最高の手段であると、私たちは考えています。Facebook や Instagram といった私たちのサービスにおいても、とてもよくスケールしています。
 

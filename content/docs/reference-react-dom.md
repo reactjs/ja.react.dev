@@ -6,6 +6,19 @@ category: Reference
 permalink: docs/react-dom.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`react-dom`: Components](https://react.dev/reference/react-dom/components)
+> - [`react-dom`: APIs](https://react.dev/reference/react-dom)
+> - [`react-dom`: Client APIs](https://react.dev/reference/react-dom/client)
+> - [`react-dom`: Server APIs](https://react.dev/reference/react-dom/server)
+
+</div>
+
 `react-dom` パッケージではアプリのトップレベルで使うための DOM 特有のメソッドを提供しています。また必要に応じて React モデルから外に出るための避難ハッチ用メソッドも提供しています。
 
 ```js
@@ -50,9 +63,13 @@ React はすべてのモダンブラウザをサポートしていますが、�
 
 ### `createPortal()` {#createportal}
 
-> 新しい React ドキュメントの記事もお試しください：[`createPortal`](https://beta.reactjs.org/reference/react-dom/createPortal).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`createPortal`](https://react.dev/reference/react-dom/createPortal).
+
+</div>
 
 ```javascript
 createPortal(child, container)
@@ -62,9 +79,13 @@ createPortal(child, container)
 
 ### `flushSync()` {#flushsync}
 
-> 新しい React ドキュメントの記事もお試しください：[`flushSync`](https://beta.reactjs.org/reference/react-dom/flushSync).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`flushSync`](https://react.dev/reference/react-dom/flushSync).
+
+</div>
 
 ```javascript
 flushSync(callback)
@@ -93,9 +114,13 @@ flushSync(() => {
 ## レガシーメソッドのリファレンス {#legacy-reference}
 ### `render()` {#render}
 
-> 新しい React ドキュメントの記事もお試しください：[`render`](https://beta.reactjs.org/reference/react-dom/render).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`render`](https://react.dev/reference/react-dom/render).
+
+</div>
 
 ```javascript
 render(element, container[, callback])
@@ -127,9 +152,13 @@ React 要素がすでに `container` にレンダーされている場合は更�
 
 ### `hydrate()` {#hydrate}
 
-> 新しい React ドキュメントの記事もお試しください：[`hydrate`](https://beta.reactjs.org/reference/react-dom/hydrate).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`hydrate`](https://react.dev/reference/react-dom/hydrate).
+
+</div>
 
 ```javascript
 hydrate(element, container[, callback])
@@ -153,9 +182,13 @@ React はレンダーされる内容が、サーバ・クライアント間で�
 
 ### `unmountComponentAtNode()` {#unmountcomponentatnode}
 
-> 新しい React ドキュメントの記事もお試しください：[`unmountComponentAtNode`](https://beta.reactjs.org/reference/react-dom/unmountComponentAtNode).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`unmountComponentAtNode`](https://react.dev/reference/react-dom/unmountComponentAtNode).
+
+</div>
 
 ```javascript
 unmountComponentAtNode(container)
@@ -171,9 +204,13 @@ DOM からマウントされた React コンポーネントを削除し、イベ
 
 ### `findDOMNode()` {#finddomnode}
 
-> 新しい React ドキュメントの記事もお試しください：[`findDOMNode`](https://beta.reactjs.org/reference/react-dom/findDOMNode).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`findDOMNode`](https://react.dev/reference/react-dom/findDOMNode).
+
+</div>
 
 > 補足:
 >

@@ -8,6 +8,15 @@ prev: getting-started.html
 next: create-a-new-react-app.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> See [Add React to an Existing Project](https://react.dev/learn/add-react-to-an-existing-project) for the recommended ways to add React.
+
+</div>
+
 まずは必要なぶんだけ使ってみましょう。
 
 React は当初から、段階的に導入することができるようにデザインされています。つまり**最小限の部分で React を利用することも、あるいは大規模に React を利用することも可能です**。既存のページにちょっとしたインタラクティブ性をもたせたいだけでも構いません。React コンポーネントを使えばお手の物です。

@@ -14,6 +14,8 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
+<div class="scary">
+
 > 新しい React ドキュメントをお試しください。
 > 
 > 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
@@ -26,6 +28,8 @@ redirect_from:
 > - [`<textarea>`](https://beta.reactjs.org/reference/react-dom/components/textarea)
 >
 > まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+</div>
 
 React はパフォーマンスとブラウザ間での互換性のために、ブラウザから独立した DOM システムを実装しています。このことを機に、ブラウザの DOM 実装にあるいくつかの粗削りな部分が取り払われました。
 

@@ -4,6 +4,8 @@ title: ref のフォワーディング
 permalink: docs/forwarding-refs.html
 ---
 
+<div class="scary">
+
 > 新しい React ドキュメントをお試しください。
 > 
 > 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
@@ -12,6 +14,8 @@ permalink: docs/forwarding-refs.html
 > - [`forwardRef`](https://beta.reactjs.org/reference/react/forwardRef)
 >
 > まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+</div>
 
 ref のフォワーディングはあるコンポーネントを通じてその子コンポーネントのひとつに [ref](/docs/refs-and-the-dom.html) を自動的に渡すテクニックです。これは基本的にはアプリケーション内のほとんどのコンポーネントで必要ありません。しかし、コンポーネントの種類によっては、特に再利用可能なコンポーネントライブラリにおいては、便利なものとなるかもしれません。一般的なシナリオについて以下で述べます。
 

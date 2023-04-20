@@ -4,6 +4,15 @@ title: レンダープロップ
 permalink: docs/render-props.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> Render props are used in modern React, but aren't very common.  
+> For many cases, they have been replaced by [custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks).
+
+</div>
+
 ["レンダープロップ (render prop)"](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)という用語は、値が関数である props を使って、コンポーネント間でコードを共有するためのテクニックを指します。
 
 レンダープロップを持つコンポーネントは、自身のレンダーロジックを実装する代わりに、React 要素を返す関数を受け取ってそれを呼び出します。

@@ -3,6 +3,12 @@ title: "React Conf 2021 振り返り"
 author: [jtannady, rickhanlonii]
 ---
 
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
+
 先週、第 6 回の React Conf を開催しました。これまでの年度において、我々は React Conf のステージ上で、[_React Native_](https://engineering.fb.com/2015/03/26/android/react-native-bringing-modern-web-techniques-to-mobile/) や [_React Hooks_](https://reactjs.org/docs/hooks-intro.html) といった業界を変えるような発表をお届けしてきました。本年度は、React 18 のリリースと並行レンダリング機能の段階的な採用から始まる我々のマルチプラットフォーム戦略についての話題を共有しました。
 
 React Conf がオンラインで開催されたのは今回が初めてですが、イベントは 8 つの言語に翻訳され、無料でストリーミング配信されました。世界中の参加者が、カンファレンスの Discord や、すべてのタイムゾーンの方がアクセスしやすいように行われたリプレイイベントに参加しました。登録者数は 50,000 人以上に達し、19 の演題は 60,000 回以上閲覧され、両イベントを通じて Discord には 5,000 人の参加者が集まりました。
@@ -86,7 +92,7 @@ React 18 では、エキスパートや開発者、ライブラリメンテナ�
 
 ## React ドキュメントキーノート {#react-docs-keynote}
 
-React の学習や React による設計についての一連の発表は [Rachel Nabors](https://twitter.com/rachelnabors) からスタートしました。その中では React の [新ドキュメント](https://beta.reactjs.org/) に対する我々の注力についてのキーノートがありました：
+React の学習や React による設計についての一連の発表は [Rachel Nabors](https://twitter.com/rachelnabors) からスタートしました。その中では React の [新ドキュメント](https://react.dev/) に対する我々の注力についてのキーノートがありました：
 
 <iframe style="margin-top:10px" width="560" height="315" src="https://www.youtube.com/embed/mneDaMYOKP8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

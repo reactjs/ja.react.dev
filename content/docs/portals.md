@@ -4,6 +4,8 @@ title: ポータル
 permalink: docs/portals.html
 ---
 
+<div class="scary">
+
 > 新しい React ドキュメントをお試しください。
 > 
 > 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
@@ -11,6 +13,8 @@ permalink: docs/portals.html
 > - [`createPortal`](https://beta.reactjs.org/reference/react-dom/createPortal)
 >
 > まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+</div>
 
 ポータル (portal) は、親コンポーネントの DOM 階層外にある DOM ノードに対して子コンポーネントをレンダーするための公式の仕組みを提供します。
 

@@ -13,6 +13,12 @@ redirect_from:
   - "docs/jsx-in-depth-ko-KR.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
+
 JSX とは、つまるところ `React.createElement(component, props, ...children)` の糖衣構文にすぎません。例として、次の JSX コードを見てみましょう。
 
 ```js

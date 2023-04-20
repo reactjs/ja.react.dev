@@ -3,6 +3,12 @@ title: "バンドルサイズゼロの React Server Components の紹介"
 author: [gaearon,laurentan,josephsavona,sebmarkbage]
 ---
 
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
+
 2020 年は長い 1 年でした。本年の最後に、我々の研究における特別なホリデーアップデートとして、バンドルサイズゼロで動作する **React サーバコンポーネント**の紹介をしたいと思います。
 
 サーバコンポーネントの紹介のためのトークとデモを用意しました。休暇期間中にチェックするもよし、来年仕事に戻ってきた時に見てみるのでもよいでしょう。

@@ -3,6 +3,12 @@ title: "React 18 アップグレードガイド"
 author: [rickhanlonii]
 ---
 
+<div class="scary">
+
+> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+
+</div>
+
 [リリース告知の記事](/blog/2022/03/29/react-v18.html)でお伝えしたとおり、React 18 には新たな並行レンダラを用いた機能が加わっており、既存のアプリケーションが段階的に採用できる方法も提供しています。この投稿では、React 18 にアップグレードするためのステップについてご案内します。
 
 React 18 にアップグレードする際に遭遇した[問題は報告](https://github.com/facebook/react/issues/new/choose)をお願いします。

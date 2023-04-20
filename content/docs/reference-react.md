@@ -13,6 +13,19 @@ redirect_from:
   - "docs/top-level-api-zh-CN.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`react`: Components](https://react.dev/reference/react/components)
+> - [`react`: Hooks](https://react.dev/reference/react/)
+> - [`react`: APIs](https://react.dev/reference/react/apis)
+> - [`react`: Legacy APIs](https://react.dev/reference/react/legacy)
+
+</div>
+
 `React` は React ライブラリのエントリポイントです。`<script>` タグから React を読み込む場合、これらの最上位 API をグローバルの `React` から利用できます。npm と ES6 を使う場合、`import React from 'react'` と書けます。npm と ES5 を使う場合、`var React = require('react')` と書けます。
 
 ## 概要 {#overview}
@@ -101,9 +114,13 @@ UI がどのように見えるべきかを記述するために [JSX の使用](
 
 ### `React.Component` {#reactcomponent}
 
-> 新しい React ドキュメントの記事もお試しください：[`Component`](https://beta.reactjs.org/reference/react/Component).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`Component`](https://react.dev/reference/react/Component).
+
+</div>
 
 React コンポーネントが [ES6 クラス](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) を用いて定義されている場合、`React.Component` はそれらの基底クラスになります。
 
@@ -121,9 +138,13 @@ class Greeting extends React.Component {
 
 ### `React.PureComponent` {#reactpurecomponent}
 
-> 新しい React ドキュメントの記事もお試しください：[`PureComponent`](https://beta.reactjs.org/reference/react/PureComponent).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`PureComponent`](https://react.dev/reference/react/PureComponent).
+
+</div>
 
 `React.PureComponent` は [`React.Component`](#reactcomponent) と似ています。両者の違いは [`React.Component`](#reactcomponent) が [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) を実装していないことに対し、`React.PureComponent` は props と state を浅く (shallow) 比較することでそれを実装していることです。
 
@@ -139,9 +160,13 @@ React コンポーネントの `render()` 関数が同じ props と state を与
 
 ### `React.memo` {#reactmemo}
 
-> 新しい React ドキュメントの記事もお試しください：[`memo`](https://beta.reactjs.org/reference/react/memo).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`memo`](https://react.dev/reference/react/memo).
+
+</div>
 
 ```javascript
 const MyComponent = React.memo(function MyComponent(props) {
@@ -181,9 +206,13 @@ export default React.memo(MyComponent, areEqual);
 
 ### `createElement()` {#createelement}
 
-> 新しい React ドキュメントの記事もお試しください：[`createElement`](https://beta.reactjs.org/reference/react/createElement).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`createElement`](https://react.dev/reference/react/createElement).
+
+</div>
 
 ```javascript
 React.createElement(
@@ -201,9 +230,13 @@ JSX で書かれたコードは `React.createElement()` を用いるコードに
 
 ### `cloneElement()` {#cloneelement}
 
-> 新しい React ドキュメントの記事もお試しください：[`cloneElement`](https://beta.reactjs.org/reference/react/cloneElement).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`cloneElement`](https://react.dev/reference/react/cloneElement).
+
+</div>
 
 ```
 React.cloneElement(
@@ -229,9 +262,13 @@ React.cloneElement(
 
 ### `createFactory()` {#createfactory}
 
-> 新しい React ドキュメントの記事もお試しください：[`createFactory`](https://beta.reactjs.org/reference/react/createFactory).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`createFactory`](https://react.dev/reference/react/createFactory).
+
+</div>
 
 ```javascript
 React.createFactory(type)
@@ -247,9 +284,13 @@ JSX を使っていれば通常  `React.createFactory()` を直接呼び出す�
 
 ### `isValidElement()` {#isvalidelement}
 
-> 新しい React ドキュメントの記事もお試しください：[`isValidElement`](https://beta.reactjs.org/reference/react/isValidElement).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`isValidElement`](https://react.dev/reference/react/isValidElement).
+
+</div>
 
 ```javascript
 React.isValidElement(object)
@@ -261,9 +302,13 @@ React.isValidElement(object)
 
 ### `React.Children` {#reactchildren}
 
-> 新しい React ドキュメントの記事もお試しください：[`Children`](https://beta.reactjs.org/reference/react/Children).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`Children`](https://react.dev/reference/react/Children).
+
+</div>
 
 `React.Children` はデータ構造が非公開の `this.props.children` を扱うためのユーティリティを提供します。
 
@@ -323,9 +368,13 @@ React.Children.toArray(children)
 
 ### `React.Fragment` {#reactfragment}
 
-> 新しい React ドキュメントの記事もお試しください：[`Fragment`](https://beta.reactjs.org/reference/react/Fragment).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`Fragment`](https://react.dev/reference/react/Fragment).
+
+</div>
 
 `React.Fragment` コンポーネントを使用すると追加の DOM 要素を作成することなく `render()` メソッドで複数の要素を返すことができます。
 
@@ -345,18 +394,26 @@ render() {
 
 ### `React.createRef` {#reactcreateref}
 
-> 新しい React ドキュメントの記事もお試しください：[`createRef`](https://beta.reactjs.org/reference/react/createRef).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`createRef`](https://react.dev/reference/react/createRef).
+
+</div>
 
 `React.createRef` は [ref](/docs/refs-and-the-dom.html) を作成します。ref は `ref` 属性を介して React 要素に取り付けることができます。
 `embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef` {#reactforwardref}
 
-> 新しい React ドキュメントの記事もお試しください：[`forwardRef`](https://beta.reactjs.org/reference/react/forwardRef).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`forwardRef`](https://react.dev/reference/react/forwardRef).
+
+</div>
 
 `React.forwardRef` は [ref](/docs/refs-and-the-dom.html) を配下のツリーの別のコンポーネントに受け渡す React コンポーネントを作成します。この手法はあまり一般的ではありませんが、2 つのシナリオで特に役立ちます：
 
@@ -375,9 +432,13 @@ render() {
 
 ### `React.lazy` {#reactlazy}
 
-> 新しい React ドキュメントの記事もお試しください：[`lazy`](https://beta.reactjs.org/reference/react/lazy).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`lazy`](https://react.dev/reference/react/lazy).
+
+</div>
 
 `React.lazy()` を使用すると、動的に読み込まれるコンポーネントを定義できます。これにより、バンドルサイズを削減して、最初のレンダー時に使用されないコンポーネントの読み込みを遅らせることができます。
 
@@ -392,9 +453,13 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 ### `React.Suspense` {#reactsuspense}
 
-> 新しい React ドキュメントの記事もお試しください：[`Suspense`](https://beta.reactjs.org/reference/react/Suspense).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`Suspense`](https://react.dev/reference/react/Suspense).
+
+</div>
 
 `React.Suspense` を使用することで、その配下のツリーにレンダーする準備ができていないコンポーネントがあるときに表示するローディングインジケータを指定できます。将来的には `Suspense` をデータフェッチングのようなより多くのシナリオで使えるようにする予定です。詳細は[ロードマップ](/blog/2018/11/27/react-16-roadmap.html)を参照してください。
 
@@ -431,9 +496,13 @@ function MyComponent() {
 
 ### `React.startTransition` {#starttransition}
 
-> 新しい React ドキュメントの記事もお試しください：[`startTransition`](https://beta.reactjs.org/reference/react/startTransition).
+<div class="scary">
+
+> This content is out of date.
 >
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`startTransition`](https://react.dev/reference/react/startTransition).
+
+</div>
 
 ```js
 React.startTransition(callback)

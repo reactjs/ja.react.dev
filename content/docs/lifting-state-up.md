@@ -9,6 +9,8 @@ redirect_from:
   - "docs/flux-todo-list.html"
 ---
 
+<div class="scary">
+
 > 新しい React ドキュメントをお試しください。
 > 
 > 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
@@ -16,6 +18,8 @@ redirect_from:
 > - [Sharing State Between Components](https://beta.reactjs.org/learn/sharing-state-between-components)
 >
 > まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+
+</div>
 
 しばしば、いくつかのコンポーネントが同一の変化するデータを反映する必要がある場合があります。そんなときは最も近い共通の祖先コンポーネントへ共有されている state をリフトアップすることを推奨します。これを、実際にはどのように行うかを見てみましょう。
 
