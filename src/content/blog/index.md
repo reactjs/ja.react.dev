@@ -4,9 +4,13 @@ title: React Blog
 
 <Intro>
 
-This blog is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted here first. You can also follow the [@reactjs](https://twitter.com/reactjs) account on Twitter, but you won’t miss anything essential if you only read this blog.
+React チームからの公式な更新のお知らせはこのブログに掲載されます。リリースノートや非推奨化のお知らせなどの重要なことはすべて、まずこちらに掲載されます。Twitter の [@reactjs](https://twitter.com/reactjs) フォローすることもできますが、このブログさえ読んでいれば、重要なことを見逃す心配はありません。
 
 </Intro>
+
+<Note>
+日本語版サイト (ja.react.dev) のブログセクションへの記事掲載には英語版サイトと比べてタイムラグがあります。 最新のブログ記事は英語版でご確認ください。
+</Note>
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
@@ -25,46 +29,46 @@ Today we are thrilled to launch react.dev, the new home for React and its docume
 </BlogCard>
 
 
-<BlogCard title="React Labs: What We've Been Working On – June 2022" date="June 15, 2022" url="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022">
-React 18 was years in the making, and with it brought valuable lessons for the React team. Its release was the result of many years of research and exploring many paths. Some of those paths were successful; many more were dead-ends that led to new insights. One lesson we’ve learned is that it’s frustrating for the community to wait for new features without having insight into these paths that we’re exploring...
+<BlogCard title="React Labs: 私達のこれまでの取り組み - 2022年6月版" date="June 15, 2022" url="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022">
+React 18 の完成は数年がかりの仕事であり、React チームはそこから貴重な教訓を得ることになりました。このリリースは何年も研究を行い、様々なアプローチを試した結果として生まれたものです。いくつかのアプローチはうまく行った一方で、多くは行き詰まって新たな知見のみをもたらすことになりました。ここから我々が学んだことは、我々がどんなことを試しているのかをコミュニティに知らせることなくただお待たせするというのは...
 </BlogCard>
 
 <BlogCard title="React v18.0" date="March 29, 2022" url="/blog/2022/03/29/react-v18">
-React 18 is now available on npm! In our last post, we shared step-by-step instructions for upgrading your app to React 18. In this post, we’ll give an overview of what’s new in React 18, and what it means for the future...
+React 18 が npm で利用可能になりました！ 前回の投稿にて、アプリを React 18 にアップグレードするためのステップバイステップガイドを共有しました。この投稿では、React 18 の新機能や、将来に向けての展望をお伝えします。
 </BlogCard>
 
-<BlogCard title="How to Upgrade to React 18" date="March 8, 2022" url="/blog/2022/03/08/react-18-upgrade-guide">
-As we shared in the release post, React 18 introduces features powered by our new concurrent renderer, with a gradual adoption strategy for existing applications. In this post, we will guide you through the steps for upgrading to React 18...
+<BlogCard title="React 18 アップグレードガイド" date="March 8, 2022" url="/blog/2022/03/08/react-18-upgrade-guide">
+リリース告知の記事でお伝えしたとおり、React 18 には新たな並行レンダラを用いた機能が加わっており、既存のアプリケーションが段階的に採用できる方法も提供しています。この投稿では、React 18 にアップグレードするためのステップについてご案内します。
 </BlogCard>
 
-<BlogCard title="React Conf 2021 Recap" date="December 17, 2021" url="/blog/2021/12/17/react-conf-2021-recap">
-Last week we hosted our 6th React Conf.  In previous years, we’ve used the React Conf stage to deliver industry changing announcements such as React Native and React Hooks. This year, we shared our multi-platform vision for React, starting with the release of React 18 and gradual adoption of concurrent features...
+<BlogCard title="React Conf 2021 振り返り" date="December 17, 2021" url="/blog/2021/12/17/react-conf-2021-recap">
+先週、第 6 回の React Conf を開催しました。これまでの年度において、我々は React Conf のステージ上で、React Native や React Hooks といった業界を変えるような発表をお届けしてきました。本年度は、React 18 のリリースと並行レンダリング機能の段階的な採用から始まる我々のマルチプラットフォーム戦略についての話題を共有しました。
 </BlogCard>
 
-<BlogCard title="The Plan for React 18" date="June 8, 2021" url="/blog/2021/06/08/the-plan-for-react-18">
-The React team is excited to share a few updates:
+<BlogCard title="React 18に向けてのプラン" date="June 8, 2021" url="/blog/2021/06/08/the-plan-for-react-18">
+React チームより幾つかのお知らせがあります！
 
-- We’ve started work on the React 18 release, which will be our next major version.
-- We’ve created a Working Group to prepare the community for gradual adoption of new features in React 18.
-- We’ve published a React 18 Alpha so that library authors can try it and provide feedback...
+- 次のメジャーバージョンとなる React 18 リリースに向けての作業を開始しました。
+- コミュニティが React 18 の新機能を段階的に導入できるようにするため、ワーキンググループを作成しました。
+- ライブラリの作者が試用してフィードバックを送れるようにするため、React 18 のアルファ版を公開しました。
 </BlogCard>
 
-<BlogCard title="Introducing Zero-Bundle-Size React Server Components" date="December 21, 2020" url="/blog/2020/12/21/data-fetching-with-react-server-components">
-2020 has been a long year. As it comes to an end we wanted to share a special Holiday Update on our research into zero-bundle-size React Server Components. To introduce React Server Components, we have prepared a talk and a demo. If you want, you can check them out during the holidays, or later when work picks back up in the new year...
+<BlogCard title="バンドルサイズゼロの React Server Components の紹介" date="December 21, 2020" url="/blog/2020/12/21/data-fetching-with-react-server-components">
+2020 年は長い 1 年でした。本年の最後に、我々の研究における特別なホリデーアップデートとして、バンドルサイズゼロで動作する React サーバコンポーネントの紹介をしたいと思います。サーバコンポーネントの紹介のためのトークとデモを用意しました。休暇期間中にチェックするもよし、来年仕事に戻ってきた時に見てみるのでもよいでしょう。
 </BlogCard>
 
 </div>
 
 ---
 
-### All release notes {/*all-release-notes*/}
+### すべてのリリースノート {/*all-release-notes*/}
 
-Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md`](https://github.com/facebook/react/blob/main/CHANGELOG.md) file in the React repository, as well as on the [Releases](https://github.com/facebook/react/releases) page.
+React のすべてのリリースが個別のブログ記事になるわけではありませんが、React リポジトリの [`CHANGELOG.md`](https://github.com/facebook/react/blob/main/CHANGELOG.md) ファイルや [Releases](https://github.com/facebook/react/releases) ページで、すべてのリリースの詳細な変更履歴を見ることができます。
 
 ---
 
-### Older posts {/*older-posts*/}
+### 以前の投稿 {/*older-posts*/}
 
-See the [older posts.](https://reactjs.org/blog/all.html)
+より以前の投稿は[こちら](https://reactjs.org/blog/all.html)。
 
 <div className="h-12"></div>

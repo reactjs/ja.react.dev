@@ -1,5 +1,5 @@
 ---
-title: "The Plan for React 18"
+title: "React 18に向けてのプラン"
 ---
 
 June 8, 2021 by [Andrew Clark](https://twitter.com/acdlite), [Brian Vaughn](https://github.com/bvaughn), [Christine Abernathy](https://twitter.com/abernathyca), [Dan Abramov](https://twitter.com/dan_abramov), [Rachel Nabors](https://twitter.com/rachelnabors), [Rick Hanlon](https://twitter.com/rickhanlonii), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Seth Webster](https://twitter.com/sethwebster)
@@ -8,61 +8,61 @@ June 8, 2021 by [Andrew Clark](https://twitter.com/acdlite), [Brian Vaughn](http
 
 <Intro>
 
-The React team is excited to share a few updates:
+React チームより幾つかのお知らせがあります！
 
-1. We’ve started work on the React 18 release, which will be our next major version.
-2. We’ve created a Working Group to prepare the community for gradual adoption of new features in React 18.
-3. We’ve published a React 18 Alpha so that library authors can try it and provide feedback.
+1. 次のメジャーバージョンとなる React 18 リリースに向けての作業を開始しました。
+2. コミュニティが React 18 の新機能を段階的に導入できるようにするため、ワーキンググループを作成しました。
+3. ライブラリの作者が試用してフィードバックを送れるようにするため、React 18 のアルファ版を公開しました。
 
-These updates are primarily aimed at maintainers of third-party libraries. If you’re learning, teaching, or using React to build user-facing applications, you can safely ignore this post. But you are welcome to follow the discussions in the React 18 Working Group if you're curious!
+これらのお知らせは、主にサードパーティのライブラリメンテナ向けです。ユーザ向けのアプリケーションを作成するために React を学んでいる、教えている、あるいは利用している方は、この投稿を無視していただいて問題ありません。もちろん興味があれば React 18 ワーキンググループでの議論をフォローすることは歓迎です！
 
 ---
 
 </Intro>
 
-## What’s coming in React 18 {/*whats-coming-in-react-18*/}
+## React 18 の新機能 {/*whats-coming-in-react-18*/}
 
-When it’s released, React 18 will include out-of-the-box improvements (like [automatic batching](https://github.com/reactwg/react-18/discussions/21)), new APIs (like [`startTransition`](https://github.com/reactwg/react-18/discussions/41)), and a [new streaming server renderer](https://github.com/reactwg/react-18/discussions/37) with built-in support for `React.lazy`.
+React 18 のリリース時点で、自動で有効になるパフォーマンス改善（例：[自動バッチング](https://github.com/reactwg/react-18/discussions/21)）、新たな API（例：[`startTransition`](https://github.com/reactwg/react-18/discussions/41)）、そして `React.lazy` の組み込みサポートを有する[新しいストリーミングサーバレンダラ](https://github.com/reactwg/react-18/discussions/37)が含まれています。
 
-These features are possible thanks to a new opt-in mechanism we’re adding in React 18. It’s called “concurrent rendering” and it lets React prepare multiple versions of the UI at the same time. This change is mostly behind-the-scenes, but it unlocks new possibilities to improve both real and perceived performance of your app.
+これらは、React 18 で我々が追加しようとしている新たなオプトインのメカニズムのおかげで実現可能になるものです。そのメカニズムとは「並行レンダリング」であり、これにより React は、UI の複数のバージョンを同時に用意しておくことができるようになります。これはほとんどの場面では裏で勝手に行われますが、あなたのアプリの実パフォーマンスおよび体感上のパフォーマンスを向上させる可能性を秘めています。
 
-If you've been following our research into the future of React (we don't expect you to!), you might have heard of something called “concurrent mode” or that it might break your app. In response to this feedback from the community, we’ve redesigned the upgrade strategy for gradual adoption. Instead of an all-or-nothing “mode”, concurrent rendering will only be enabled for updates triggered by one of the new features. In practice, this means **you will be able to adopt React 18 without rewrites and try the new features at your own pace.**
+我々が React の未来に向けて行ってきた様々なリサーチをフォローしてきた方であれば（そうすべきと言っている訳ではないですよ）、"Concurrent Mode" なる言葉を聞いたこと、あるいはそれのせいであなたのアプリが動かなくなるかもしれないということを聞いたことがあるかもしれません。これに関してのコミュニティのフィードバックを受けて、我々は段階的な導入に向けてのアップグレード戦略を再設計しました。イチかゼロかの「モード」の代わりに、並行レンダリングは新機能のどれかを利用するような更新がある場合にのみ有効化されるようになりました。実用上、これはつまり**書き換えをせずに React 18 を導入し、自分のペースで React 18 の新機能を試していけるようになる**ということです。
 
-## A gradual adoption strategy {/*a-gradual-adoption-strategy*/}
+## 段階的な導入戦略 {/*a-gradual-adoption-strategy*/}
 
-Since concurrency in React 18 is opt-in, there are no significant out-of-the-box breaking changes to component behavior. **You can upgrade to React 18 with minimal or no changes to your application code, with a level of effort comparable to a typical major React release**. Based on our experience converting several apps to React 18, we expect that many users will be able to upgrade within a single afternoon.
+React 18 における並行レンダリングはオプトインになるため、コンポーネントの振る舞いにおいてデフォルトで大きな破壊的変更があるということはなくなります。**いつものメジャーリリースの時に要する労力と大差ないレベルの最小限の書き換えで、あるいは書き換えゼロで、React 18 にアップグレードすることができます**。我々がいくつかのアプリを React 18 に移植した経験から、多くのユーザは半日以内にアップグレード作業を完了できるだろうと考えています。
 
-We successfully shipped concurrent features to tens of thousands of components at Facebook, and in our experience, we've found that most React components “just work” without additional changes. We're committed to making sure this is a smooth upgrade for the entire community, so today we're announcing the React 18 Working Group.
+Facebook 内では既に数万のコンポーネントを並行レンダリングの機能を用いてリリースすることができました。我々の経験ではほとんどの React コンポーネントは追加の開発なしで「ごく普通に」動作することが分かっています。しかしコミュニティ全体で今回のアップグレードが確実にスムースに行くようにしたいと考えており、そのために本日、React 18 ワーキンググループを発表します。
 
-## Working with the community {/*working-with-the-community*/}
+## コミュニティとの共同作業 {/*working-with-the-community*/}
 
-We’re trying something new for this release: We've invited a panel of experts, developers, library authors, and educators from across the React community to participate in our [React 18 Working Group](https://github.com/reactwg/react-18) to provide feedback, ask questions, and collaborate on the release. We couldn't invite everyone we wanted to this initial, small group, but if this experiment works out, we hope there will be more in the future!
+このリリースで、私たちは新たな試みをしようとしています。React コミュニティ全体から、少数のエキスパート、開発者、ライブラリ作者、教育関係者を [React 18 ワーキンググループ](https://github.com/reactwg/react-18)に招待して、フィードバックをもらったり、質問をもらったり、リリースに向けての共同作業を行ってもらったりしているのです。初期は小さなグループであり、メンバーとして我々が望む全員を招待することはできませんでしたが、この試みがうまくいけば、将来的により多くの人を招待できると考えています！
 
-**The goal of the React 18 Working Group is to prepare the ecosystem for a smooth, gradual adoption of React 18 by existing applications and libraries.** The Working Group is hosted on [GitHub Discussions](https://github.com/reactwg/react-18/discussions) and is available for the public to read. Members of the working group can leave feedback, ask questions, and share ideas. The core team will also use the discussions repo to share our research findings. As the stable release gets closer, any important information will also be posted on this blog.
+React 18 ワーキンググループの目的は、既存のアプリケーションやライブラリが React 18 をスムースかつ段階的に採用できるように、エコシステムを整えることです。ワーキングループは [GitHub Discussions](https://github.com/reactwg/react-18/discussions) でホストされており、誰でも読めるようになっています。ワーキンググループのメンバーのみがフィードバックを送ったり、質問したり、アイディアを共有したりできるようになっています。このディスカッション用のリポジトリは、コアチームのメンバーも研究の成果を共有するために使用します。安定リリースが近づけば、あらゆる重要な情報はこのブログにも投稿されます。
 
-For more information on upgrading to React 18, or additional resources about the release, see the [React 18 announcement post](https://github.com/reactwg/react-18/discussions/4).
+React 18 へのアップグレードに関する詳細やリリースに関するその他の情報については、[React 18 アナウンス](https://github.com/reactwg/react-18/discussions/4)をご覧ください。
 
-## Accessing the React 18 Working Group {/*accessing-the-react-18-working-group*/}
+## ワーキンググループへのアクセス方法 {/*accessing-the-react-18-working-group*/}
 
-Everyone can read the discussions in the [React 18 Working Group repo](https://github.com/reactwg/react-18).
+[React 18 ワーキンググループのリポジトリ](https://github.com/reactwg/react-18)でのディスカッションは、誰でも閲覧可能です。
 
-Because we expect an initial surge of interest in the Working Group, only invited members will be allowed to create or comment on threads. However, the threads are fully visible to the public, so everyone has access to the same information. We believe this is a good compromise between creating a productive environment for working group members, while maintaining transparency with the wider community.
+当初はワーキンググループ内部で一気に興味が高まることが予想されますので、招待されたメンバーのみがスレッドを作成したりコメントしたりできるようになっています。しかしスレッドは誰でも見えるようになっていますので、全員が同じ情報にアクセスできます。ワーキンググループのメンバーにとって生産的な環境を整えつつ、より広いコミュニティへの透明性も確保するという意味で、これが良い落とし所だと考えています。
 
-As always, you can submit bug reports, questions, and general feedback to our [issue tracker](https://github.com/facebook/react/issues).
+もちろんこれまで通り、バグレポートや質問や一般的なフィードバックについては誰でも[イシュートラッカ](https://github.com/facebook/react/issues)に投稿することができます。
 
-## How to try React 18 Alpha today {/*how-to-try-react-18-alpha-today*/}
+## React 18 アルファ版を今すぐ試す {/*how-to-try-react-18-alpha-today*/}
 
-New alphas are [regularly published to npm using the `@alpha` tag](https://github.com/reactwg/react-18/discussions/9). These releases are built using the most recent commit to our main repo. When a feature or bugfix is merged, it will appear in an alpha the following weekday.
+新しいアルファ版は [npm に `@alpha` タグ付きで定期的に公開](https://github.com/reactwg/react-18/discussions/9)されます。これらのリリースは我々のメインリポジトリにある最新のコミットを使ってビルドされます。新しい機能やバグ修正がマージされた場合、次の平日にはアルファ版で利用可能になります。
 
-There may be significant behavioral or API changes between alpha releases. Please remember that **alpha releases are not recommended for user-facing, production applications**.
+アルファ版同士の間では動作や API について大きな変更が加わる可能性があります。**ユーザが利用する本番用アプリケーションではアルファ版は推奨されない**ということを銘記してください。
 
-## Projected React 18 release timeline {/*projected-react-18-release-timeline*/}
+## React 18 リリースタイミングの見通し {/*projected-react-18-release-timeline*/}
 
-We don't have a specific release date scheduled, but we expect it will take several months of feedback and iteration before React 18 is ready for most production applications.
+具体的に予定されたリリース日時はまだありませんが、React 18 が本番アプリケーションで使えるようになるまでに、フィードバックを受けて改善を繰り返す期間が数か月ほど必要だろうと考えています。
 
-* Library Alpha: Available today
-* Public Beta: At least several months
-* Release Candidate (RC): At least several weeks after Beta
-* General Availability: At least several weeks after RC
+* ライブラリ作者向けのアルファ：本日より利用可能
+* 公開ベータ：少なくとも数か月後
+* リリース候補 (RC)：ベータから少なくとも数週間後
+* 一般向けリリース：RC から少なくとも数週間後
 
-More details about our projected release timeline are [available in the Working Group](https://github.com/reactwg/react-18/discussions/9). We'll post updates on this blog when we're closer to a public release.
+リリースタイミングの見通しについての更なる詳細は[ワーキンググループ内の投稿](https://github.com/reactwg/react-18/discussions/9)で見ることができます。公開リリースが近づいたらこのブログでも情報をお伝えします。
