@@ -8,7 +8,7 @@ March 08, 2022 by [Rick Hanlon](https://twitter.com/rickhanlonii)
 
 <Intro>
 
-[リリース告知の記事](/blog/2022/03/29/react-v18.html)でお伝えしたとおり、React 18 には新たな並行レンダラを用いた機能が加わっており、既存のアプリケーションが段階的に採用できる方法も提供しています。この投稿では、React 18 にアップグレードするためのステップについてご案内します。
+[リリース告知の記事](/blog/2022/03/29/react-v18)でお伝えしたとおり、React 18 には新たな並行レンダラを用いた機能が加わっており、既存のアプリケーションが段階的に採用できる方法も提供しています。この投稿では、React 18 にアップグレードするためのステップについてご案内します。
 
 React 18 にアップグレードする際に遭遇した[問題は報告](https://github.com/facebook/react/issues/new/choose)をお願いします。
 
@@ -265,7 +265,11 @@ React 18 の strict モードでは、開発時にコンポーネントがマウ
 
 まずテストで `createRoot` を使うようにアップデートした場合、テストコンソールに以下の警告が表示されます：
 
-> The current testing environment is not configured to support act(...)
+<ConsoleBlock level="error">
+
+The current testing environment is not configured to support act(...)
+
+</ConsoleBlock>
 
 これを修正するには、テスト実行前に `globalThis.IS_REACT_ACT_ENVIRONMENT` を `true` に設定します：
 

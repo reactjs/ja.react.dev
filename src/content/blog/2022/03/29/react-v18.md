@@ -8,7 +8,7 @@ March 29, 2022 by [The React Team](/community/team)
 
 <Intro>
 
-React 18 が npm で利用可能になりました！ 前回の投稿にて、[アプリを React 18 にアップグレードする](/blog/2022/03/08/react-18-upgrade-guide.html)ためのステップバイステップガイドを共有しました。この投稿では、React 18 の新機能や、将来に向けての展望をお伝えします。
+React 18 が npm で利用可能になりました！ 前回の投稿にて、[アプリを React 18 にアップグレードする](/blog/2022/03/08/react-18-upgrade-guide)ためのステップバイステップガイドを共有しました。この投稿では、React 18 の新機能や、将来に向けての展望をお伝えします。
 
 </Intro>
 
@@ -18,7 +18,7 @@ React 18 が npm で利用可能になりました！ 前回の投稿にて、[�
 
 React 18 の機能の多くが基盤としているのは新たに加わった並行レンダラ (concurrent renderer) であり、これが強力な新機能群を実現するために裏で働くようになっています。React の並行処理機能はオプトインであり、並行処理機能を使う場合にのみ有効になるものですが、これは皆さんのアプリ作成方法に大きな影響を与えるものであると思っています。
 
-我々は React で並行処理をサポートするために何年ものあいだ研究開発を重ねてきており、特に既存ユーザが段階的に採用できる方法を提供することに関しては注意を払ってきました。昨年の夏に [React 18 ワーキンググループ](https://reactjs.org/blog/2021/06/08/the-plan-for-react-18.html)を作成し、エキスパートやコミュニティからフィードバックを集め、React のエコシステム全体がスムースにアップグレードできるようにしてきました。
+我々は React で並行処理をサポートするために何年ものあいだ研究開発を重ねてきており、特に既存ユーザが段階的に採用できる方法を提供することに関しては注意を払ってきました。昨年の夏に [React 18 ワーキンググループ](/blog/2021/06/08/the-plan-for-react-18)を作成し、エキスパートやコミュニティからフィードバックを集め、React のエコシステム全体がスムースにアップグレードできるようにしてきました。
 
 また、React Conf 2021 でも多くのことを共有してきました。
 
@@ -66,7 +66,7 @@ React 18 にアップグレード後、並行処理機能をすぐに使い始�
 
 ライブラリがアップグレードされて並行処理機能対応になるまでには、多少時間がかかるかもしれません。並行処理機能をライブラリが活用しやすくするために新しい API を提供しています。当面は、React エコシステムが徐々に移行していくまで、ライブラリメンテナが作業するのをお待ちください。
 
-詳細は、前回の投稿をご覧ください：[React 18 アップグレードガイド](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html).
+詳細は、前回の投稿をご覧ください：[React 18 アップグレードガイド](/blog/2022/03/08/react-18-upgrade-guide).
 
 ## データフレームワークにおけるサスペンス {/*suspense-in-data-frameworks*/}
 
@@ -179,7 +179,7 @@ React 18 におけるサスペンスはトランジション API と併用した
 
 `createRoot` と `hydrateRoot` のいずれも、`onRecoverableError` という新たなオプションを受け取るようになっており、レンダーあるいはハイドレーション中に起きたエラーから React が復帰した場合に通知を受けてログを残したい場合に利用できます。デフォルトでは React は [`reportError`](https://developer.mozilla.org/en-US/docs/Web/API/reportError) か、古いブラウザの場合は `console.error` を利用します。
 
-[React DOM Client のドキュメントはこちら](/docs/react-dom-client.html)。
+[React DOM Client のドキュメントはこちら](/reference/react-dom/client)。
 
 #### React DOM Server {/*react-dom-server*/}
 
@@ -190,7 +190,7 @@ React 18 におけるサスペンスはトランジション API と併用した
 
 既存の `renderToString` メソッドは今後も動作しますが、推奨されません。
 
-[React DOM Server のドキュメントはこちら](/docs/react-dom-server.html)。
+[React DOM Server のドキュメントはこちら](/reference/react-dom/server)。
 
 ### Strict モードの新たな挙動 {/*new-strict-mode-behaviors*/}
 
@@ -223,7 +223,7 @@ React 18 の strict モードでは、開発時にコンポーネントがマウ
     * 副作用の作成用コードの実行
 ```
 
-[state 再利用可能性の保証についてのドキュメントはこちら](/docs/strict-mode.html#ensuring-reusable-state)。
+[state 再利用可能性の保証についてのドキュメントはこちら](/reference/react/StrictMode#fixing-bugs-found-by-re-running-effects-in-development)。
 
 ### 新たなフック {/*new-hooks*/}
 
@@ -233,19 +233,19 @@ React 18 の strict モードでは、開発時にコンポーネントがマウ
 
 > 補足
 >
-> `useId` は[リスト内の key](/docs/lists-and-keys.html#keys) を作成するのに使うためのものでは**ありません**。key はあなたのデータから作成されるべきです。
+> `useId` は[リスト内の key](/learn/rendering-lists#where-to-get-your-key) を作成するのに使うためのものでは**ありません**。key はあなたのデータから作成されるべきです。
 
 #### useTransition {/*usetransition*/}
 
-`useTransition` と `startTransition` により、一部の更新は緊急性が低いということをマークできるようになります。その他の更新はデフォルトで緊急性が高いものとして扱われます。React は緊急性の高い更新（例えばテキスト入力の更新）が、緊急性の低い更新（例えば検索結果のリストのレンダー）を中断できるようになります。[こちらのドキュメントを参照](/docs/hooks-reference.html#usetransition)。
+`useTransition` と `startTransition` により、一部の更新は緊急性が低いということをマークできるようになります。その他の更新はデフォルトで緊急性が高いものとして扱われます。React は緊急性の高い更新（例えばテキスト入力の更新）が、緊急性の低い更新（例えば検索結果のリストのレンダー）を中断できるようになります。[こちらのドキュメントを参照](/reference/react/useTransition)。
 
 #### useDeferredValue {/*usedeferredvalue*/}
 
-`useDeferredValue` により、ツリー内の緊急性の低い更新の再レンダーを遅延させることができます。デバウンス (debounce) に似ていますが、それと比べていくつかの利点があります。遅延時間が固定でないため、最初のレンダーが画面に反映された時点ですぐに遅延されていた方のレンダーを始められるのです。また遅延されたレンダーは中断可能であり、ユーザインプットをブロックしません。[こちらのドキュメントを参照](/docs/hooks-reference.html#usedeferredvalue)。
+`useDeferredValue` により、ツリー内の緊急性の低い更新の再レンダーを遅延させることができます。デバウンス (debounce) に似ていますが、それと比べていくつかの利点があります。遅延時間が固定でないため、最初のレンダーが画面に反映された時点ですぐに遅延されていた方のレンダーを始められるのです。また遅延されたレンダーは中断可能であり、ユーザインプットをブロックしません。[こちらのドキュメントを参照](/reference/react/useDeferredValue)。
 
 #### useSyncExternalStore {/*usesyncexternalstore*/}
 
-`useSyncExternalStore` は、外部ストアへの更新を強制的に同期的に行うことで、外部ストアが並行読み取りを行えるようにします。これにより外部のデータソースに購読する際に `useEffect` を使う必要性がなくなるので、React 外部の状態を扱うあらゆるライブラリにとって推奨されるものです。[こちらのドキュメントを参照](/docs/hooks-reference.html#usesyncexternalstore)。
+`useSyncExternalStore` は、外部ストアへの更新を強制的に同期的に行うことで、外部ストアが並行読み取りを行えるようにします。これにより外部のデータソースに購読する際に `useEffect` を使う必要性がなくなるので、React 外部の状態を扱うあらゆるライブラリにとって推奨されるものです。[こちらのドキュメントを参照](/reference/react/useSyncExternalStore)。
 
 > 補足
 >
@@ -253,7 +253,7 @@ React 18 の strict モードでは、開発時にコンポーネントがマウ
 
 #### useInsertionEffect {/*useinsertioneffect*/}
 
-`useInsertionEffect` は、CSS-in-JS ライブラリがレンダー時にスタイルを注入する際のパフォーマンス上の問題に対処できるようにするための新しいフックです。すでに CSS-in-JS ライブラリを構築しているのでなければ、これを使うことはまずないでしょう。このフックは、DOM が書き換えられた後、レイアウト副作用 (layout effect) が新しいレイアウトを読み込む前に実行されます。これにより React 17 およびそれ以前から既に存在した問題が解決されますが、React 18 では並行レンダー中にブラウザに処理が渡り、そこでレイアウトが再計算される可能性があるため、より重要です。[こちらのドキュメントを参照](/docs/hooks-reference.html#useinsertioneffect)。
+`useInsertionEffect` は、CSS-in-JS ライブラリがレンダー時にスタイルを注入する際のパフォーマンス上の問題に対処できるようにするための新しいフックです。すでに CSS-in-JS ライブラリを構築しているのでなければ、これを使うことはまずないでしょう。このフックは、DOM が書き換えられた後、レイアウト副作用 (layout effect) が新しいレイアウトを読み込む前に実行されます。これにより React 17 およびそれ以前から既に存在した問題が解決されますが、React 18 では並行レンダー中にブラウザに処理が渡り、そこでレイアウトが再計算される可能性があるため、より重要です。[こちらのドキュメントを参照](/reference/react/useInsertionEffect)。
 
 > 補足
 >
@@ -261,7 +261,7 @@ React 18 の strict モードでは、開発時にコンポーネントがマウ
 
 ## アップグレード方法 {/*how-to-upgrade*/}
 
-ステップバイステップのガイド、および破壊的変更・注目すべき変更の全リストについては [React 18 アップグレードガイド](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html)を参照してください。
+ステップバイステップのガイド、および破壊的変更・注目すべき変更の全リストについては [React 18 アップグレードガイド](/blog/2022/03/08/react-18-upgrade-guide)を参照してください。
 
 ## Changelog {/*changelog*/}
 
