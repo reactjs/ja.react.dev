@@ -21,19 +21,19 @@
       ]
     },
     {
-      "title": "Installation",
+      "title": "インストール",
       "path": "/learn/installation",
       "routes": [
         {
-          "title": "Start a New React Project",
+          "title": "React プロジェクトを始める",
           "path": "/learn/start-a-new-react-project"
         },
         {
-          "title": "Add React to an Existing Project",
+          "title": "既存プロジェクトに React を追加する",
           "path": "/learn/add-react-to-an-existing-project"
         },
         {
-          "title": "Editor Setup",
+          "title": "エディタのセットアップ",
           "path": "/learn/editor-setup"
         },
         {
