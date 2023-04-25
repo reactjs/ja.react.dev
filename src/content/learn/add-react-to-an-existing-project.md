@@ -10,7 +10,7 @@ title: 既存プロジェクトに React を追加する
 
 <Note>
 
-**ローカル環境で開発するには [Node.js](https://nodejs.org/ja/) をインストールする必要があります。** React を[オンライン](/learn/installation#try-react)や単純な HTML ページで試すことも可能ですが、現実的には開発時に利用する大抵の JavaScript ツールには Node.js が必要です。
+**ローカル環境で開発するには [Node.js](https://nodejs.org/en/) をインストールする必要があります。** React を[オンライン](/learn/installation#try-react)や単純な HTML ページで試すことも可能ですが、現実的には開発時に利用する大抵の JavaScript ツールには Node.js が必要です。
 
 </Note>
 
@@ -20,8 +20,8 @@ title: 既存プロジェクトに React を追加する
 
 以下の手順に従って設定することをお勧めします。
 
-1. [React ベースのフレームワーク](/learn/start-a-new-react-project)の一つを使って **React の部分をビルド** します。
-2. フレームワークの設定で `/some-app` を ***base path*に指定** します（方法：[Next.js](https://nextjs.org/docs/api-reference/next.config.js/basepath)、[Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)）。
+1. [React ベースのフレームワーク](/learn/start-a-new-react-project)のうちひとつを使い、アプリの **React 部分をビルド**します。
+2. フレームワークの設定で `/some-app` を ***base path* に指定**します（方法：[Next.js](https://nextjs.org/docs/api-reference/next.config.js/basepath)、[Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)）。
 3. **サーバーまたはプロキシを設定**して、`/some-app/` 以下のすべてのリクエストを React アプリで処理するようにします。
 
 こうすることで、アプリの React 部分がこれらのフレームワークに組み込まれた[ベストプラクティスを最大限に取り入れる](/learn/start-a-new-react-project#can-i-use-react-without-a-framework)ことができます。
@@ -34,12 +34,12 @@ title: 既存プロジェクトに React を追加する
 
 これを行うには、2 つのステップが必要です。
 
-1. **JavaScript 環境を設定**して、[JSX 構文](/learn/writing-markup-with-jsx)の使用、[`import`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import) / [`export`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export) 構文を使ったコードのモジュール分割、[npm](https://www.npmjs.com/) パッケージレジストリからのパッケージ（React など）の使用ができるようにする。
+1. **JavaScript 開発環境を設定**して、[JSX 構文](/learn/writing-markup-with-jsx)の使用、[`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) / [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) 構文を使ったコードのモジュール分割、[npm](https://www.npmjs.com/) パッケージレジストリからのパッケージ（例えば React）の使用ができるようにする。
 2. ページ上の表示させたい場所に **React コンポーネントをレンダー**する。
 
 具体的なアプローチはあなたの既存ページのセットアップによって異なりますが、一部の詳細について見ていきましょう。
 
-### ステップ1: モジュラーな JavaScript 環境を設定する {/*step-1-set-up-a-modular-javascript-environment*/}
+### ステップ 1: モジュラーな JavaScript 環境を設定する {/*step-1-set-up-a-modular-javascript-environment*/}
 
 モジュラーな JavaScript 環境を使用すると、すべてのコードを単一のファイルに書くのではなく、React コンポーネントを別々のファイルに記述できるようになります。また、他の開発者によって [npm](https://www.npmjs.com/) パッケージレジストリに公開されている、素晴らしいパッケージ群（React 自身も含む）を使えるようにもなります。具体的なやり方はあなたの既存のセットアップ方法によって異なります：
 
@@ -88,7 +88,7 @@ root.render(<h1>Hello, world</h1>);
 
 </Note>
 
-### ステップ2: ページに React コンポーネントをレンダーする {/*step-2-render-react-components-anywhere-on-the-page*/}
+### ステップ 2: ページに React コンポーネントをレンダーする {/*step-2-render-react-components-anywhere-on-the-page*/}
 
 前のステップでは、以下のコードをメインファイルのトップに置きました：
 
@@ -107,7 +107,7 @@ root.render(<h1>Hello, world</h1>);
 
 なので上記のコードは削除してください。
 
-代わりに、あなたの HTML 内の特定の場所に React コンポーネントをレンダーしたいはずです。HTML ページ（またはそれを生成するサーバーテンプレート）を開き、次のようにして、任意のタグにユニークな [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) 属性を追加します：
+代わりに、あなたの HTML 内の特定の場所に React コンポーネントをレンダーしたいはずです。HTML ページ（またはそれを生成しているサーバテンプレート）を開き、次のようにして、任意のタグに一意の [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) 属性を追加します：
 
 ```html
 <!-- ... somewhere in your html ... -->
@@ -148,7 +148,7 @@ root.render(<NavigationBar />);
 
 `index.html` にあるオリジナルの HTML コンテンツはそのままに、自分の `NavigationBar` という React コンポーネントが、HTML の `<nav id="navigation">` 内に表示されるようになりました。React コンポーネントを既存の HTML ページの内部にレンダーする方法の詳細については、[`createRoot` 使用方法のドキュメント](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) を参照してください。
 
-既存のプロジェクトで React を使用する場合、まずはボタンのような小さなインタラクティブなコンポーネントから始め、その後、徐々に「上向きに」進んで、最終的にはページ全体が React で構築されるようにすることが一般的です。もしもそのような段階に到達した場合は、React の効果が最大限に得られるように、[React フレームワーク](/learn/start-a-new-react-project)に移行することをお勧めします。
+既存のプロジェクトで React を使用する場合、まずはボタンのような小さなインタラクティブなコンポーネントから始め、その後、徐々に「上向きに」進んでいき、最終的にはページ全体が React で構築されるようにすることが一般的です。もしもそのような段階に到達した場合は、React の効果が最大限に得られるように、[React フレームワーク](/learn/start-a-new-react-project)に移行することをお勧めします。
 
 ## 既存のネイティブモバイルアプリ内で React Native を使用する {/*using-react-native-in-an-existing-native-mobile-app*/}
 
