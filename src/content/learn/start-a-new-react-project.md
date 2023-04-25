@@ -120,7 +120,7 @@ async function Talks({ confId }) {
 }
 ```
 
-Next.js の App Router は、[Suspense を使用したデータのフェッチ](/blog/2022/03/29/react-v18#suspense-in-data-frameworks)を統合しています。これにより、React ツリー内で直接、UI の様々な場所に表示されるロード中状態（スケルトンプレースホルダなど）を指定できるようになります：
+Next.js の App Router は、[サスペンス (suspense) を使用したデータフェッチ](/blog/2022/03/29/react-v18#suspense-in-data-frameworks)を統合しています。これにより、React ツリー内で直接、UI の様々な場所に表示されるロード中状態（スケルトンプレースホルダなど）を指定できるようになります：
 
 ```js
 <Suspense fallback={<TalksLoading />}>
@@ -128,6 +128,6 @@ Next.js の App Router は、[Suspense を使用したデータのフェッチ](
 </Suspense>
 ```
 
-Server Components と Suspense は、Next.js の機能ではなく React の機能です。しかしフレームワークレベルでこれらを採用するには、合意形成とかなりの実装の手間が必要です。現時点では、Next.js の App Router が最も完全な実装です。React チームはバンドラの開発者と協力して、次世代のフレームワークでこれらの機能を実装しやすくすることを目指しています。
+サーバコンポーネントとサスペンスは、Next.js の機能ではなく React の機能です。しかしフレームワークレベルでこれらを採用するには、合意形成とかなりの実装の手間が必要です。現時点では、Next.js の App Router が最も完全な実装です。React チームはバンドラの開発者と協力して、次世代のフレームワークでこれらの機能を実装しやすくすることを目指しています。
 
 </DeepDive>
