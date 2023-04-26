@@ -47,7 +47,7 @@
       "sectionHeader": "LEARN REACT"
     },
     {
-      "title": "Describing the UI",
+      "title": "UI の記述",
       "tags": [],
       "path": "/learn/describing-the-ui",
       "routes": [
@@ -72,15 +72,15 @@
           "path": "/learn/passing-props-to-a-component"
         },
         {
-          "title": "Conditional Rendering",
+          "title": "条件付きレンダー",
           "path": "/learn/conditional-rendering"
         },
         {
-          "title": "Rendering Lists",
+          "title": "リストのレンダー",
           "path": "/learn/rendering-lists"
         },
         {
-          "title": "Keeping Components Pure",
+          "title": "コンポーネントを純粋に保つ",
           "path": "/learn/keeping-components-pure"
         }
       ]
