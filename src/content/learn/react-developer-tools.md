@@ -4,30 +4,30 @@ title: React Developer Tools
 
 <Intro>
 
-Use React Developer Tools to inspect React [components](/learn/your-first-component), edit [props](/learn/passing-props-to-a-component) and [state](/learn/state-a-components-memory), and identify performance problems.
+React Developer Tools を使うことで、React の[コンポーネント](/learn/your-first-component)を調査し、[props](/learn/passing-props-to-a-component) や [state](/learn/state-a-components-memory) を編集し、パフォーマンスの問題を特定できます。
 
 </Intro>
 
 <YouWillLearn>
 
-* How to install React Developer Tools
+* React Developer Tools をインストールする方法
 
 </YouWillLearn>
 
-## Browser extension {/*browser-extension*/}
+## ブラウザ拡張機能 {/*browser-extension*/}
 
-The easiest way to debug websites built with React is to install the React Developer Tools browser extension. It is available for several popular browsers:
+React を使ったウェブサイトをデバッグする最も簡単な方法は、React Developer Tools というブラウザ拡張機能をインストールすることです。これは複数の人気のブラウザで利用可能です：
 
-* [Install for **Chrome**](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
-* [Install for **Firefox**](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
-* [Install for **Edge**](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil)
+* [**Chrome** 用にインストール](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+* [**Firefox** 用にインストール](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
+* [**Edge** 用にインストール](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil)
 
-Now, if you visit a website **built with React,** you will see the _Components_ and _Profiler_ panels.
+これで、**React で構築されたウェブサイト**を訪れると、_Components_ と _Profiler_ パネルが表示されるようになります。
 
-![React Developer Tools extension](/images/docs/react-devtools-extension.png)
+![React Developer Tools エクステンション](/images/docs/react-devtools-extension.png)
 
-### Safari and other browsers {/*safari-and-other-browsers*/}
-For other browsers (for example, Safari), install the [`react-devtools`](https://www.npmjs.com/package/react-devtools) npm package:
+### Safari および他のブラウザ {/*safari-and-other-browsers*/}
+他のブラウザ（例えば、Safari）の場合、 [`react-devtools`](https://www.npmjs.com/package/react-devtools) の npm パッケージをインストールします：
 ```bash
 # Yarn
 yarn global add react-devtools
@@ -36,26 +36,26 @@ yarn global add react-devtools
 npm install -g react-devtools
 ```
 
-Next open the developer tools from the terminal:
+次に、ターミナルから開発者ツールを開きます：
 ```bash
 react-devtools
 ```
 
-Then connect your website by adding the following `<script>` tag to the beginning of your website's `<head>`:
+そして、ウェブサイトの `<head>` の先頭に以下の `<script>` タグを追加して、ウェブサイトを接続します：
 ```html {3}
 <html>
   <head>
     <script src="http://localhost:8097"></script>
 ```
 
-Reload your website in the browser now to view it in developer tools.
+ここでブラウザでウェブサイトをリロードし、開発者ツールで表示できるようにしてください。
 
-![React Developer Tools standalone](/images/docs/react-devtools-standalone.png)
+![スタンドアロン版 React Developer Tools](/images/docs/react-devtools-standalone.png)
 
-## Mobile (React Native) {/*mobile-react-native*/}
-React Developer Tools can be used to inspect apps built with [React Native](https://reactnative.dev/) as well.
+## モバイル (React Native) {/*mobile-react-native*/}
+React Developer Tools は [React Native](https://reactnative.dev/) を使って構築されたアプリの調査にも利用できます。
 
-The easiest way to use React Developer Tools is to install it globally:
+React Developer Tools を最も簡単に使う方法は、グローバルにインストールすることです。
 ```bash
 # Yarn
 yarn global add react-devtools
@@ -64,13 +64,13 @@ yarn global add react-devtools
 npm install -g react-devtools
 ```
 
-Next open the developer tools from the terminal.
+次に、ターミナルから開発者ツールを開きます。
 ```bash
 react-devtools
 ```
 
-It should connect to any local React Native app that's running.
+これで、実行中のローカルな React Native アプリに接続されるはずです。
 
-> Try reloading the app if developer tools doesn't connect after a few seconds.
+> 数秒待っても開発者ツールが接続されない場合は、アプリをリロードしてみてください。
 
-[Learn more about debugging React Native.](https://reactnative.dev/docs/debugging)
+[React Native のデバッグについてもっと学ぶ](https://reactnative.dev/docs/debugging)
