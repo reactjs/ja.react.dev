@@ -11,7 +11,7 @@
       "path": "/learn",
       "routes": [
         {
-          "title": "Tutorial: Tic-Tac-Toe",
+          "title": "チュートリアル：三目並べ",
           "path": "/learn/tutorial-tic-tac-toe"
         },
         {
