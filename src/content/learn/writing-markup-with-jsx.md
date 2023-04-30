@@ -214,7 +214,7 @@ JSX は JavaScript に変換され、中に書かれた属性は JavaScript オ�
 />
 ```
 
-全リストは[React DOM コンポーネントに存在する属性の一覧](/reference/react-dom/components/common)にあります。何かを間違ったとしても心配は要りません。[ブラウザのコンソール](https://developer.mozilla.org/docs/Tools/Browser_Console)にメッセージと修正の提案が表示されるようになっています。
+全リストは [React DOM コンポーネントに存在する属性の一覧](/reference/react-dom/components/common)にあります。何かを間違ったとしても心配は要りません。[ブラウザのコンソール](https://developer.mozilla.org/docs/Tools/Browser_Console)にメッセージと修正の提案が表示されるようになっています。
 
 <Pitfall>
 
