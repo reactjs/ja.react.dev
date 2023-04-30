@@ -1,29 +1,29 @@
 ---
-title: Quick Start
+title: クイックスタート
 ---
 
 <Intro>
 
-Welcome to the React documentation! This page will give you an introduction to the 80% of React concepts that you will use on a daily basis.
+React ドキュメントへようこそ！ このページでは、日々の開発で使用する React のコンセプトのうち 80％ の部分を紹介します。
 
 </Intro>
 
 <YouWillLearn>
 
-- How to create and nest components
-- How to add markup and styles
-- How to display data
-- How to render conditions and lists
-- How to respond to events and update the screen
-- How to share data between components
+- コンポーネントの作成とネスト
+- マークアップとスタイルの追加
+- データの表示
+- 条件分岐とリストのレンダー
+- イベントへの応答と画面の更新
+- コンポーネント間でのデータの共有
 
 </YouWillLearn>
 
-## Creating and nesting components {/*components*/}
+## コンポーネントの作成とネスト {/*components*/}
 
-React apps are made out of *components*. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
+React アプリは*コンポーネント*で構成されています。コンポーネントとは、独自のロジックと外見を持つ UI（ユーザインターフェース）の部品のことです。コンポーネントは、ボタンのような小さなものである場合も、ページ全体を表す大きなものである場合もあります。
 
-React components are JavaScript functions that return markup:
+React におけるコンポーネントとは、マークアップを返す JavaScript 関数です。
 
 ```js
 function MyButton() {
@@ -33,7 +33,7 @@ function MyButton() {
 }
 ```
 
-Now that you've declared `MyButton`, you can nest it into another component:
+`MyButton` を宣言したら、別のコンポーネントにネストできます。
 
 ```js {5}
 export default function MyApp() {
@@ -46,9 +46,9 @@ export default function MyApp() {
 }
 ```
 
-Notice that `<MyButton />` starts with a capital letter. That's how you know it's a React component. React component names must always start with a capital letter, while HTML tags must be lowercase.
+`<MyButton />` が大文字で始まっていることに注意してください。こうすることで、React のコンポーネントであるということを示しています。React のコンポーネント名は常に大文字で始める必要があり、HTML タグは小文字でなければなりません。
 
-Have a look at the result:
+結果を見てみましょう。
 
 <Sandpack>
 
@@ -73,13 +73,13 @@ export default function MyApp() {
 
 </Sandpack>
 
-The `export default` keywords specify the main component in the file. If you're not familiar with some piece of JavaScript syntax, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) and [javascript.info](https://javascript.info/import-export) have great references.
+`export default` キーワードは、ファイル内のメインコンポーネントを指定しています。このような JavaScript の構文に関して分からない部分があれば、[MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) や [javascript.info](https://javascript.info/import-export) に素晴らしいリファレンスがあります。
 
-## Writing markup with JSX {/*writing-markup-with-jsx*/}
+## JSX でマークアップを書く {/*writing-markup-with-jsx*/}
 
-The markup syntax you've seen above is called *JSX*. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
+上で見たマークアップ構文は、*JSX* と呼ばれるものです。使用は任意ですが、その便利さゆえにほとんどの React プロジェクトでは JSX が使用されています。[ローカル開発におすすめのツール](/learn/installation)は、すべて JSX に対応しています。
 
-JSX is stricter than HTML. You have to close tags like `<br />`. Your component also can't return multiple JSX tags. You have to wrap them into a shared parent, like a `<div>...</div>` or an empty `<>...</>` wrapper:
+JSX は HTML より構文が厳格です。`<br />` のようにタグは閉じる必要があります。また、コンポーネントは複数の JSX タグを return することはできません。`<div>...</div>` や空の `<>...</>` ラッパのような共通の親要素で囲む必要があります。
 
 ```js {3,6}
 function AboutPage() {
@@ -92,17 +92,17 @@ function AboutPage() {
 }
 ```
 
-If you have a lot of HTML to port to JSX, you can use an [online converter.](https://transform.tools/html-to-jsx)
+JSX に変換しないといけない HTML がたくさんある場合は、[オンラインコンバータ](https://transform.tools/html-to-jsx)を使うことができます。
 
-## Adding styles {/*adding-styles*/}
+## スタイルの追加 {/*adding-styles*/}
 
-In React, you specify a CSS class with `className`. It works the same way as the HTML [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) attribute:
+React では、CSS クラスを `className` で指定します。HTML の [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) 属性と同じ方法で動作します。
 
 ```js
 <img className="avatar" />
 ```
 
-Then you write the CSS rules for it in a separate CSS file:
+そして、別の CSS ファイルに対応する CSS ルールを記述します：
 
 ```css
 /* In your CSS */
@@ -111,11 +111,11 @@ Then you write the CSS rules for it in a separate CSS file:
 }
 ```
 
-React does not prescribe how you add CSS files. In the simplest case, you'll add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag to your HTML. If you use a build tool or a framework, consult its documentation to learn how to add a CSS file to your project.
+React には CSS ファイルの追加方法に関する規則はありません。最も単純なケースでは、HTML に [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) タグを追加します。ビルドツールやフレームワークを使っている場合は、そちらのドキュメントを参照して、プロジェクトに CSS ファイルを追加する方法を確認してください。
 
-## Displaying data {/*displaying-data*/}
+## データの表示 {/*displaying-data*/}
 
-JSX lets you put markup into JavaScript. Curly braces let you "escape back" into JavaScript so that you can embed some variable from your code and display it to the user. For example, this will display `user.name`:
+JSX を使うことで、JavaScript 内にマークアップを入れることができます。波括弧を使うことで、逆に JSX の中から JavaScript に「戻る」ことができ、コード内の変数を埋め込んでユーザに表示することができます。たとえば、以下は `user.name` を表示します：
 
 ```js {3}
 return (
@@ -125,7 +125,7 @@ return (
 );
 ```
 
-You can also "escape into JavaScript" from JSX attributes, but you have to use curly braces *instead of* quotes. For example, `className="avatar"` passes the `"avatar"` string as the CSS class, but `src={user.imageUrl}` reads the JavaScript `user.imageUrl` variable value, and then passes that value as the `src` attribute:
+JSX の属性 (attribute) の部分から JavaScript に「戻る」こともでき、その場合引用符の*代わりに*波括弧を使う必要があります。例えば、`className="avatar"` は CSS クラスとして `"avatar"` 文字列を渡すものですが、`src={user.imageUrl}` は JavaScript の `user.imageUrl` 変数の値を読み込み、その値を `src` 属性として渡します：
 
 ```js {3,4}
 return (
@@ -136,7 +136,7 @@ return (
 );
 ```
 
-You can put more complex expressions inside the JSX curly braces too, for example, [string concatenation](https://javascript.info/operators#string-concatenation-with-binary):
+JSX の波括弧の中にもっと複雑な式を入れることもできます。例えば、[文字列の連結](https://javascript.info/operators#string-concatenation-with-binary)ができます：
 
 <Sandpack>
 
@@ -177,11 +177,11 @@ export default function Profile() {
 
 </Sandpack>
 
-In the above example, `style={{}}` is not a special syntax, but a regular `{}` object inside the `style={ }` JSX curly braces. You can use the `style` attribute when your styles depend on JavaScript variables.
+上記の例では、`style={{}}` は特別な構文ではなく、`style={ }` という JSX の波括弧内にある通常の `{}` オブジェクトです。スタイルが JavaScript 変数に依存する場合は、`style` 属性を使うことができます。
 
-## Conditional rendering {/*conditional-rendering*/}
+## 条件付きレンダー {/*conditional-rendering*/}
 
-In React, there is no special syntax for writing conditions. Instead, you'll use the same techniques as you use when writing regular JavaScript code. For example, you can use an [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statement to conditionally include JSX:
+React には、条件分岐を書くための特別な構文は存在しません。代わりに、通常の JavaScript コードを書くときに使うのと同じ手法を使います。例えば、[`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) ステートメントを使って条件付きで JSX を含めることができます：
 
 ```js
 let content;
@@ -197,7 +197,7 @@ return (
 );
 ```
 
-If you prefer more compact code, you can use the [conditional `?` operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) Unlike `if`, it works inside JSX:
+コンパクトなコードをお望みの場合は、[条件 `?` 演算子](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)を使用できます。`if` とは異なり、JSX の中で動作します。
 
 ```js
 <div>
@@ -209,7 +209,7 @@ If you prefer more compact code, you can use the [conditional `?` operator.](htt
 </div>
 ```
 
-When you don't need the `else` branch, you can also use a shorter [logical `&&` syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
+`else` 側の分岐が不要な場合は、短い[論理 `&&` 構文](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation)を使用することもできます。
 
 ```js
 <div>
@@ -217,13 +217,13 @@ When you don't need the `else` branch, you can also use a shorter [logical `&&` 
 </div>
 ```
 
-All of these approaches also work for conditionally specifying attributes. If you're unfamiliar with some of this JavaScript syntax, you can start by always using `if...else`.
+これらのアプローチはすべて、属性を条件付きで指定する場合にも機能します。このような JavaScript 構文の一部に慣れていないという場合、最初は常に `if...else` を使用することにしても構いません。
 
-## Rendering lists {/*rendering-lists*/}
+## リストのレンダー {/*rendering-lists*/}
 
-You will rely on JavaScript features like [`for` loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) and the [array `map()` function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to render lists of components.
+コンポーネントのリストをレンダーする場合は、[`for` ループ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) や [配列の `map()` 関数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) といった JavaScript の機能を使って行います。
 
-For example, let's say you have an array of products:
+例えばこのような商品の配列があるとします：
 
 ```js
 const products = [
@@ -233,7 +233,7 @@ const products = [
 ];
 ```
 
-Inside your component, use the `map()` function to transform an array of products into an array of `<li>` items:
+コンポーネント内で、`map()` 関数を使って商品の配列を `<li>` 要素の配列に変換します：
 
 ```js
 const listItems = products.map(product =>
@@ -247,7 +247,7 @@ return (
 );
 ```
 
-Notice how `<li>` has a `key` attribute. For each item in a list, you should pass a string or a number that uniquely identifies that item among its siblings. Usually, a key should be coming from your data, such as a database ID. React uses your keys to know what happened if you later insert, delete, or reorder the items.
+`<li>` に `key` 属性があることに注意してください。リスト内の各項目には、兄弟の中でそれを一意に識別するための文字列または数値を渡す必要があります。通常、key はデータから来るはずで、データベース上の ID などが該当します。React は、後でアイテムを挿入、削除、並べ替えることがあった際に、何が起こったかを key を使って把握します。
 
 <Sandpack>
 
@@ -278,9 +278,9 @@ export default function ShoppingList() {
 
 </Sandpack>
 
-## Responding to events {/*responding-to-events*/}
+## イベントに応答する {/*responding-to-events*/}
 
-You can respond to events by declaring *event handler* functions inside your components:
+コンポーネントの中で*イベントハンドラ*関数を宣言することで、イベントに応答できます：
 
 ```js {2-4,7}
 function MyButton() {
@@ -296,19 +296,19 @@ function MyButton() {
 }
 ```
 
-Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ the event handler function: you only need to *pass it down*. React will call your event handler when the user clicks the button.
+`onClick={handleClick}` の末尾に括弧がないことに注意してください！ そこでイベントハンドラ関数を*呼び出す*わけではありません。*渡すだけ*です。ユーザがボタンをクリックしたときに、React がイベントハンドラを呼び出します。
 
-## Updating the screen {/*updating-the-screen*/}
+## 画面の更新 {/*updating-the-screen*/}
 
-Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
+しばしば、コンポーネントに情報を「記憶」させて表示したいことがあります。例えば、ボタンがクリックされた回数を数えて覚えておきたい場合です。これを行うには、コンポーネントに *state* を追加します。
 
-First, import [`useState`](/reference/react/useState) from React:
+まず、React から [`useState`](/reference/react/useState) をインポートします。
 
 ```js
 import { useState } from 'react';
 ```
 
-Now you can declare a *state variable* inside your component:
+これで、コンポーネント内に *state 変数*を宣言できます：
 
 ```js
 function MyButton() {
@@ -316,9 +316,9 @@ function MyButton() {
   // ...
 ```
 
-You’ll get two things from `useState`: the current state (`count`), and the function that lets you update it (`setCount`). You can give them any names, but the convention is to write `[something, setSomething]`.
+`useState` からは 2 つのものが得られます。現在の state (`count`) と、それを更新するための関数 (`setCount`) です。名前は何でも構いませんが、慣習的には `[何か, set何か]` のように記述します。
 
-The first time the button is displayed, `count` will be `0` because you passed `0` to `useState()`. When you want to change state, call `setCount()` and pass the new value to it. Clicking this button will increment the counter:
+ボタンが初めて表示されるとき、`count` は `0` になります。これは `useState()` に `0` を渡したからです。state を変更したいときは、`setCount()` を呼び出し、新しい値を渡します。このボタンをクリックすると、カウンタが増加します：
 
 ```js {5}
 function MyButton() {
@@ -336,9 +336,9 @@ function MyButton() {
 }
 ```
 
-React will call your component function again. This time, `count` will be `1`. Then it will be `2`. And so on.
+React は、再度コンポーネントの関数を呼び出します。今度は `count` が `1` になっています。次の呼び出しでは `2` になっています。次々と増えていきます。
 
-If you render the same component multiple times, each will get its own state. Click each button separately:
+同じコンポーネントを複数の場所でレンダーした場合、それぞれが独自の state を持ちます。それぞれのボタンを個別にクリックしてみてください：
 
 <Sandpack>
 
@@ -379,59 +379,59 @@ button {
 
 </Sandpack>
 
-Notice how each button "remembers" its own `count` state and doesn't affect other buttons.
+各ボタンがそれぞれ `count` という state を「記憶」し、他のボタンに影響を与えないことに注意してください。
 
-## Using Hooks {/*using-hooks*/}
+## フックの使用 {/*using-hooks*/}
 
-Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [API reference.](/reference/react) You can also write your own Hooks by combining the existing ones.
+`use` で始まる関数は、*フック* (Hook) と呼ばれます。`useState` は React が提供する組み込みのフックです。[API リファレンス](/reference/react)で他の組み込みフックを見ることができます。また、既存のフックを組み合わせて独自のフックを作成することもできます。
 
-Hooks are more restrictive than other functions. You can only call Hooks *at the top* of your components (or other Hooks). If you want to use `useState` in a condition or a loop, extract a new component and put it there.
+フックには通常の関数より多くの制限があります。フックはコンポーネントの*トップレベル*（または他のフック内）でのみ呼び出すことができます。条件分岐やループの中で `useState` を使いたい場合は、新しいコンポーネントを抽出してそこに配置します。
 
-## Sharing data between components {/*sharing-data-between-components*/}
+## コンポーネント間でデータを共有する {/*sharing-data-between-components*/}
 
-In the previous example, each `MyButton` had its own independent `count`, and when each button was clicked, only the `count` for the button clicked changed:
+前述の例では、それぞれの `MyButton` が独立した `count` を持っており、ボタンがクリックされるたびにクリックされたボタンの `count` だけが変更されました。
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_child" height={367} width={407} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton components contain a count with value zero.">
+<Diagram name="sharing_data_child" height={367} width={407} alt="MyApp という名前の親コンポーネントと MyButton という名前の 2 つの子コンポーネントを持つツリーを示す図。どちらの MyButton コンポーネントも、カウントの値は 0。">
 
-Initially, each `MyButton`'s `count` state is `0`
+最初、それぞれの `MyButton` の `count` は `0`
 
 </Diagram>
 
-<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="The same diagram as the previous, with the count of the first child MyButton component highlighted indicating a click with the count value incremented to one. The second MyButton component still contains value zero." >
+<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="前の図と同じだが、1 番目の MyButton コンポーネントのカウントがクリックされ、カウント値が 1 に増えている。2 番目の MyButton コンポーネントの値は 0 のまま。">
 
-The first `MyButton` updates its `count` to `1`
+1 番目の `MyButton` が `count` を `1` に更新
 
 </Diagram>
 
 </DiagramGroup>
 
-However, often you'll need components to *share data and always update together*.
+ただし、コンポーネント間で*データを共有し、常に一緒に更新したい*ということもよくあります。
 
-To make both `MyButton` components display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest component containing all of them.
+両方の `MyButton` コンポーネントが同じ `count` を表示し、一緒に更新されるようにするには、状態を個々のボタンから「上に」移動して、それらすべてを含む最も近いコンポーネントに入れます。
 
-In this example, it is `MyApp`:
+この例では、`MyApp` がそれです：
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_parent" height={385} width={410} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. MyApp contains a count value of zero which is passed down to both of the MyButton components, which also show value zero." >
+<Diagram name="sharing_data_parent" height={385} width={410} alt="MyApp という名前の親コンポーネントと、MyButton という名前の 2 つの子コンポーネントを持つツリーを示す図。MyApp には値が 0 のカウントが含まれ、それが両方の MyButton コンポーネントに渡される。値は 0。">
 
-Initially, `MyApp`'s `count` state is `0` and is passed down to both children
+最初、`MyApp` の `count` は `0` で、どちらの子もそれを受け取っている。
 
 </Diagram>
 
-<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="The same diagram as the previous, with the count of the parent MyApp component highlighted indicating a click with the value incremented to one. The flow to both of the children MyButton components is also highlighted, and the count value in each child is set to one indicating the value was passed down." >
+<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="前の図と同じだが、親 MyApp コンポーネントのカウントがクリックによりハイライトされ、値が 1 になっている。子 MyButton コンポーネントも両方ハイライトされ、それぞれの子のカウント値が 1 になっている。値が下に渡されたことを示している。">
 
-On click, `MyApp` updates its `count` state to `1` and passes it down to both children
+クリック時に `MyApp` が `count` を `1` に更新し、それが両方の子に渡される
 
 </Diagram>
 
 </DiagramGroup>
 
-Now when you click either button, the `count` in `MyApp` will change, which will change both of the counts in `MyButton`. Here's how you can express this in code.
+こうすれば、どちらのボタンをクリックしても、`MyApp` の `count` が更新され、連動して `MyButton` の両方のカウントが更新されるでしょう。以下は、コードでこれを表現する方法です。
 
-First, *move the state up* from `MyButton` into `MyApp`:
+まず、`MyButton` から `MyApp` に、*state の移動*を行います。
 
 ```js {2-6,18}
 export default function MyApp() {
@@ -456,7 +456,7 @@ function MyButton() {
 
 ```
 
-Then, *pass the state down* from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
+次に、`MyApp` から各 `MyButton` に *state を渡し*、共有のクリックハンドラも一緒に渡します。以前に `<img>` のような組み込みタグで行ったときと同様、JSX の波括弧を使うことで `MyButton` に情報を渡すことができます。
 
 ```js {11-12}
 export default function MyApp() {
@@ -476,9 +476,9 @@ export default function MyApp() {
 }
 ```
 
-The information you pass down like this is called _props_. Now the `MyApp` component contains the `count` state and the `handleClick` event handler, and *passes both of them down as props* to each of the buttons.
+このように渡される情報は *props* と呼ばれます。`MyApp` コンポーネントは `count` 状態と `handleClick` イベントハンドラを保持しており、それらを*どちらも props として*各ボタンに渡します。
 
-Finally, change `MyButton` to *read* the props you have passed from its parent component:
+最後に、`MyButton` を変更して、親コンポーネントから渡された props を*読み込む*ようにします。
 
 ```js {1,3}
 function MyButton({ count, onClick }) {
@@ -490,7 +490,7 @@ function MyButton({ count, onClick }) {
 }
 ```
 
-When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` state variable. The new `count` value is passed as a prop to each button, so they all show the new value. This is called "lifting state up". By moving state up, you've shared it between components.
+ボタンをクリックすると、`onClick` ハンドラが発火します。各ボタンの `onClick` プロパティは `MyApp` 内の `handleClick` 関数となっているので、その中のコードが実行されます。そのコードは `setCount(count + 1)` を呼び出し、`count` という state 変数をインクリメントします。新しい `count` の値が各ボタンに props として渡されるため、すべてのボタンに新しい値が表示されます。この手法は「state のリフトアップ（持ち上げ）」と呼ばれています。リフトアップすることで、state をコンポーネント間で共有できました。
 
 <Sandpack>
 
@@ -531,8 +531,8 @@ button {
 
 </Sandpack>
 
-## Next Steps {/*next-steps*/}
+## 次のステップ {/*next-steps*/}
 
-By now, you know the basics of how to write React code!
+これで、React のコードを書く基本が分かったことになります！
 
-Check out the [Tutorial](/learn/tutorial-tic-tac-toe) to put them into practice and build your first mini-app with React.
+[チュートリアル](/learn/tutorial-tic-tac-toe)をチェックして、これらの概念を実践し、React を使った最初のミニアプリを作成しましょう。
