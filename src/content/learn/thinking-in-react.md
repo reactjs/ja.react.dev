@@ -484,7 +484,7 @@ function FilterableProductTable({ products }) {
 
 `SearchBar` の中で `onChange` イベントハンドラを追加し、それらから親 state を設定します。
 
- ```js {5}
+```js {5}
 <input 
   type="text" 
   value={filterText} 
