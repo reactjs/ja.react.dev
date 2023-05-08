@@ -50,7 +50,7 @@ export function Challenge({
           className="text-xl text-primary dark:text-primary-dark mb-2 mt-0 font-medium"
           id={currentChallenge.id}>
           <div className="font-bold block md:inline">
-            {isRecipes ? '例' : 'チャレンジ'} {currentChallenge.order} of{' '}
+            {isRecipes ? '例' : 'チャレンジ'} {currentChallenge.order}/
             {totalChallenges}
             <span className="text-primary dark:text-primary-dark">: </span>
           </div>
