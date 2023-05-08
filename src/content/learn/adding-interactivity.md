@@ -68,7 +68,7 @@ button { margin-right: 10px; }
 
 <LearnMore path="/learn/responding-to-events">
 
-イベントハンドラの追加方法を学ぶには **[イベント対応](/learn/responding-to-events)** を読んでみましょう。
+イベントハンドラの追加方法を学ぶには **[イベントへの応答](/learn/responding-to-events)** を読んでみましょう。
 
 </LearnMore>
 

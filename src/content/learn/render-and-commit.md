@@ -1,44 +1,44 @@
 ---
-title: Render and Commit
+title: レンダーとコミット
 ---
 
 <Intro>
 
-Before your components are displayed on screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
+コンポーネントは画面上に表示される前に、React によってレンダーされる必要があります。このプロセスを段階ごとに理解すると、コードがどのように実行されるのか考える際や、コードの振る舞いを説明する際に役立ちます。
 
 </Intro>
 
 <YouWillLearn>
 
-* What rendering means in React
-* When and why React renders a component
-* The steps involved in displaying a component on screen
-* Why rendering does not always produce a DOM update
+* React での「レンダー」の意味
+* いつ、なぜ React はコンポーネントをレンダーするのか
+* 画面上にコンポーネントが表示されるステップ
+* なぜレンダーしても必ずしも DOM 更新が起きないのか
 
 </YouWillLearn>
 
-Imagine that your components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
+コンポーネントは厨房で材料から美味しい料理を作る料理人だと想像してください。このシナリオでは React はお客様のリクエストを受け付け、注文された料理を運ぶウェイターです。注文を受けて UI 要素を「配膳」するプロセスには、次の 3 つのステップが存在します：
 
-1. **Triggering** a render (delivering the guest's order to the kitchen)
-2. **Rendering** the component (preparing the order in the kitchen)
-3. **Committing** to the DOM (placing the order on the table)
+1. レンダーの**トリガ**（キッチンに注文を送る）
+2. コンポーネントの**レンダー**（キッチンで注文を準備する）
+3. DOM への**コミット**（テーブルに注文を置く）
 
 <IllustrationBlock sequential>
-  <Illustration caption="Trigger" alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen." src="/images/docs/illustrations/i_render-and-commit1.png" />
-  <Illustration caption="Render" alt="The Card Chef gives React a fresh Card component." src="/images/docs/illustrations/i_render-and-commit2.png" />
-  <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="/images/docs/illustrations/i_render-and-commit3.png" />
+  <Illustration caption="トリガ" alt="レストランのウェイターとしての React が、ユーザからの注文を取って、Component Kitchen に運んでいる。" src="/images/docs/illustrations/i_render-and-commit1.png" />
+  <Illustration caption="レンダー" alt="Card Chef が React に新鮮な Card コンポーネントを渡している。" src="/images/docs/illustrations/i_render-and-commit2.png" />
+  <Illustration caption="コミット" alt="React がテーブルのユーザに Card を配っている。" src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
 
-## Step 1: Trigger a render {/*step-1-trigger-a-render*/}
+## ステップ 1：レンダーのトリガ {/*step-1-trigger-a-render*/}
 
-There are two reasons for a component to render:
+コンポーネントがレンダーされる理由には 2 つあります。
 
-1. It's the component's **initial render.**
-2. The component's (or one of its ancestors') **state has been updated.**
+1. コンポーネントの**初回レンダー**。
+2. コンポーネント（またはその祖先のいずれか）の **state の更新**。
 
-### Initial render {/*initial-render*/}
+### 初回レンダー {/*initial-render*/}
 
-When your app starts, you need to trigger the initial render. Frameworks and sandboxes sometimes hide this code, but it's done by calling [`createRoot`](/reference/react-dom/client/createRoot) with the target DOM node, and then calling its `render` method with your component:
+アプリが開始するときには、初回のレンダーをトリガする必要があります。フレームワークやサンドボックスでは、このコードが隠されたりすることがありますが、これはターゲットとなる DOM ノードで [`createRoot`](/reference/react-dom/client/createRoot) を呼び出し、コンポーネントでその `render` メソッドを呼び出すことによって行われます。
 
 <Sandpack>
 
@@ -63,28 +63,28 @@ export default function Image() {
 
 </Sandpack>
 
-Try commenting out the `root.render()` call and see the component disappear!
+`root.render()` の呼び出しをコメントアウトして、コンポーネントが消えるのを確認してみてください！
 
-### Re-renders when state updates {/*re-renders-when-state-updates*/}
+### state 更新後の再レンダー {/*re-renders-when-state-updates*/}
 
-Once the component has been initially rendered, you can trigger further renders by updating its state with the [`set` function.](/reference/react/useState#setstate) Updating your component's state automatically queues a render. (You can imagine these as a restaurant guest ordering tea, dessert, and all sorts of things after putting in their first order, depending on the state of their thirst or hunger.)
+コンポーネントが最初にレンダーされた後、[`set` 関数](/reference/react/useState#setstate)を使って state を更新することで、さらなるレンダーをトリガすることができます。コンポーネントの state を更新すると、自動的にレンダーがキューイングされます。（これは、レストランの客が最初の注文の後に、喉の渇きや空腹の状態に応じてお茶やデザートなどいろいろなものを注文するようなものだと考えることができます。）
 
 <IllustrationBlock sequential>
-  <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. They patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
-  <Illustration caption="...triggers..." alt="React returns to the Component Kitchen and tells the Card Chef they need a pink Card." src="/images/docs/illustrations/i_rerender2.png" />
-  <Illustration caption="...render!" alt="The Card Chef gives React the pink Card." src="/images/docs/illustrations/i_rerender3.png" />
+  <Illustration caption="state の更新..." alt="レストランのウェイターとしての React が Card UI を提供したところ。矢印頭の顧客は、黒ではなく、ピンクのカードが欲しいのだと注文している。" src="/images/docs/illustrations/i_rerender1.png" />
+  <Illustration caption="... トリガ ..." alt="React は Component Kitchenに戻り、ピンクの Card が必要だとシェフに伝える。" src="/images/docs/illustrations/i_rerender2.png" />
+  <Illustration caption="... レンダー！" alt="Card シェフはピンクのカードを React に渡している。" src="/images/docs/illustrations/i_rerender3.png" />
 </IllustrationBlock>
 
-## Step 2: React renders your components {/*step-2-react-renders-your-components*/}
+## ステップ 2：React がコンポーネントをレンダー {/*step-2-react-renders-your-components*/}
 
-After you trigger a render, React calls your components to figure out what to display on screen. **"Rendering" is React calling your components.**
+あなたがレンダーをトリガした後、React はコンポーネントを呼び出して画面に表示する内容を把握します。**「レンダー」とは、React がコンポーネントを呼び出すことです。**
 
-* **On initial render,** React will call the root component.
-* **For subsequent renders,** React will call the function component whose state update triggered the render.
+* **初回レンダー時**、React はルート (root) コンポーネントを呼び出します。
+* **次回以降のレンダー**では、state の更新によってレンダーのトリガが起きた関数コンポーネントを、React がコールします。
 
-This process is recursive: if the updated component returns some other component, React will render _that_ component next, and if that component also returns something, it will render _that_ component next, and so on. The process will continue until there are no more nested components and React knows exactly what should be displayed on screen.
+このプロセスは再帰的に発生します。更新されたコンポーネントが他のコンポーネントを返す場合、次に*その*コンポーネントを React がレンダーし、そのコンポーネントも何かコンポーネントを返す場合、*その*コンポーネントも次にレンダーし、といった具合に続きます。このプロセスは、ネストされたコンポーネントがなくなり、React が画面に表示されるべき内容を正確に把握するまで続きます。
 
-In the following example, React will call `Gallery()` and  `Image()` several times:
+次の例では、React は `Gallery()` を呼び出した後、`Image()` を何度も呼び出します。
 
 <Sandpack>
 
@@ -124,36 +124,36 @@ img { margin: 0 10px 10px 0; }
 
 </Sandpack>
 
-* **During the initial render,** React will [create the DOM nodes](https://developer.mozilla.org/docs/Web/API/Document/createElement) for `<section>`, `<h1>`, and three `<img>` tags. 
-* **During a re-render,** React will calculate which of their properties, if any, have changed since the previous render. It won't do anything with that information until the next step, the commit phase.
+* **初回レンダー時には**、React は `<section>`、`<h1>`、および 3 つの `<img>` タグの [DOM ノードを作成](https://developer.mozilla.org/docs/Web/API/Document/createElement)します。
+* **再レンダー時には**、React は前回のレンダーからどの部分が変わったのか、あるいは変わらなかったのかを計算します。次のステップであるコミットフェーズまでこの情報は使われません。
 
 <Pitfall>
 
-Rendering must always be a [pure calculation](/learn/keeping-components-pure):
+レンダーは常に[純粋な計算](/learn/keeping-components-pure)であるべきです。
 
-* **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. (When someone orders a salad with tomatoes, they should not receive a salad with onions!)
-* **It minds its own business.** It should not change any objects or variables that existed before rendering. (One order should not change anyone else's order.)
+* **同じ入力には同じ出力**。同じ入力が与えられた場合、コンポーネントは常に同じ JSX を返す必要がある。（トマトサラダを注文した人がオニオンサラダを受け取ってはいけない！）
+* **自分の仕事に専念する**。レンダー前に存在したオブジェクトや変数を変更しない。（ある注文が他の誰かの注文を変更してはいけない。）
 
-Otherwise, you can encounter confusing bugs and unpredictable behavior as your codebase grows in complexity. When developing in "Strict Mode", React calls each component's function twice, which can help surface mistakes caused by impure functions.
+さもないと、コードベースが複雑になるにつれて、混乱するバグや予測不能な挙動に遭遇することになります。"Strict Mode" で開発している場合、React は各コンポーネントの関数を 2 回呼び出し、純粋でない関数による誤りに気づきやすいようにしてくれます。
 
 </Pitfall>
 
 <DeepDive>
 
-#### Optimizing performance {/*optimizing-performance*/}
+#### パフォーマンスの最適化 {/*optimizing-performance*/}
 
-The default behavior of rendering all components nested within the updated component is not optimal for performance if the updated component is very high in the tree. If you run into a performance issue, there are several opt-in ways to solve it described in the [Performance](https://reactjs.org/docs/optimizing-performance.html) section. **Don't optimize prematurely!**
+更新されたコンポーネントがツリー内で非常に高い位置にある場合、その内部にネストされたすべてのコンポーネントを再レンダーするというデフォルトの挙動は、パフォーマンスにとって理想的ではありません。パフォーマンスの問題に遭遇した場合、[パフォーマンス](https://reactjs.org/docs/optimizing-performance.html)セクションで述べられているいくつかのオプトインによる解決方法があります。**最適化は急いでやってはいけません！**
 
 </DeepDive>
 
-## Step 3: React commits changes to the DOM {/*step-3-react-commits-changes-to-the-dom*/}
+## ステップ 3：React が DOM への変更をコミットする {/*step-3-react-commits-changes-to-the-dom*/}
 
-After rendering (calling) your components, React will modify the DOM. 
+あなたのコンポーネントをレンダー（関数として呼び出し）した後、React は DOM を変更します。
 
-* **For the initial render,** React will use the [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API to put all the DOM nodes it has created on screen. 
-* **For re-renders,** React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
+* **初回レンダー時には**、React は [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API を使用して、作成したすべての DOM ノードを画面に表示します。
+* **再レンダー時には**、React は最新のレンダー出力に合わせて DOM を変更するため、必要な最小限の操作（レンダー中に計算されたもの！）を適用します。
 
-**React only changes the DOM nodes if there's a difference between renders.** For example, here is a component that re-renders with different props passed from its parent every second. Notice how you can add some text into the `<input>`, updating its `value`, but the text doesn't disappear when the component re-renders:
+**React はレンダー間で違いがあった場合にのみ DOM ノードを変更します**。例えば、以下のコンポーネントは親から渡された異なる props で毎秒再レンダーされます。`<input>` にテキストを追加して `value` に変化があった場合でも、コンポーネントが再レンダーされたときにテキストが消えないことに注意してください：
 
 <Sandpack>
 
@@ -193,21 +193,21 @@ export default function App() {
 
 </Sandpack>
 
-This works because during this last step, React only updates the content of `<h1>` with the new `time`. It sees that the `<input>` appears in the JSX in the same place as last time, so React doesn't touch the `<input>`—or its `value`!
-## Epilogue: Browser paint {/*epilogue-browser-paint*/}
+これが動作するのは、最終ステップの部分で React は、新しい `time` を使って `<h1>` の中身だけを更新するからです。`<input>` は JSX 内で前回と同じ場所にあるので、React は `<input>` やその `value` に触れません！
+## エピローグ：ブラウザのペイント {/*epilogue-browser-paint*/}
 
-After rendering is done and React updated the DOM, the browser will repaint the screen. Although this process is known as "browser rendering", we'll refer to it as "painting" to avoid confusion throughout the docs.
+レンダーが完了し、React が DOM を更新した後、ブラウザは画面を再描画します。このプロセスは「ブラウザレンダリング」として知られていますが、ドキュメント全体での混乱を避けるために、我々は「ペイント」と呼ぶことにします。
 
-<Illustration alt="A browser painting 'still life with card element'." src="/images/docs/illustrations/i_browser-paint.png" />
+<Illustration alt="ブラウザが「カード要素と静物画」をペイントしている" src="/images/docs/illustrations/i_browser-paint.png" />
 
 <Recap>
 
-* Any screen update in a React app happens in three steps:
-  1. Trigger
-  2. Render
-  3. Commit
-* You can use Strict Mode to find mistakes in your components
-* React does not touch the DOM if the rendering result is the same as last time
+* React アプリでの画面更新は、以下の 3 つのステップで行われる：
+  1. トリガ
+  2. レンダー
+  3. コミット
+* Strict Mode を使って、コンポーネントの間違いを発見できる。
+* レンダー結果が前回と同一である場合、React は DOM を触らない。
 
 </Recap>
 
