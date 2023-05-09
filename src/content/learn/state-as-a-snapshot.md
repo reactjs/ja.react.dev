@@ -327,7 +327,6 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 #### 信号機を実装 {/*implement-a-traffic-light*/}
 
-
 以下は、ボタンが押されると切り替わる歩行者用信号機のコンポーネントです。
 
 <Sandpack>
