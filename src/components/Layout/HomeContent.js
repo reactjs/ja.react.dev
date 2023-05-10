@@ -131,7 +131,7 @@ export function HomeContent() {
             React
           </h1>
           <p className="text-4xl font-display max-w-lg md:max-w-full py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
-            Webとネイティブユーザインターフェースのためのライブラリ
+            Web とネイティブユーザインターフェースのためのライブラリ
           </p>
           <div className="mt-5 self-center flex gap-2 w-full sm:w-auto flex-col sm:flex-row">
             <ButtonLink
@@ -158,15 +158,15 @@ export function HomeContent() {
             <Header>
               コンポーネントから
               <br className="hidden lg:inline" />
-              ユーザインターフェースを作る
+              ユーザインターフェースを作成
             </Header>
             <Para>
               React ではユーザインターフェースを、{}
               コンポーネントと呼ばれる部品を使って構築できます。
               <Code>Thumbnail</Code>、<Code>LikeButton</Code>、
               <Code>Video</Code>
-              といった React コンポーネントを書いていきましょう。{}
-              そしてそれらを組み合わせて画面やページやアプリの全体を組み立てましょう。
+              といった React コンポーネントを書き、{}
+              それらを組み合わせて画面やページやアプリの全体を組み立てましょう。
             </Para>
           </Center>
           <FullBleed>
@@ -174,8 +174,7 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              たとえ独りで開発していても、無数の開発者と共同開発をしている時でも、
-              {}
+              独りで開発していても、数千の開発者と共同開発していても、{}
               React の開発体験は同じです。個人、チーム、大規模な組織によって{}
               書かれさまざまなコンポーネントを、シームレスに組み合わせながら{}
               開発できる。それが React の設計理念です。
@@ -188,14 +187,14 @@ export function HomeContent() {
             <Header>
               マークアップとコードから
               <br className="hidden lg:inline" />
-              コンポーネントを作る
+              コンポーネントを作成
             </Header>
             <Para>
-              React のコンポーネントは単なる JavaScript の関数です。{}
+              React コンポーネントは単なる JavaScript の関数です。{}
               条件によってコンテンツの表示を変えたければ <Code>if</Code>{' '}
-              文を使いましょう！{}
-              リストを表示したいなら配列の <Code>map()</Code> を使いましょう！{}
-              React を学ぶということは、プログラミングを学ぶということなのです。
+              文を使いましょう！ リストを表示したいなら配列の <Code>map()</Code>{' '}
+              を使いましょう！ React
+              を学ぶということは、プログラミングを学ぶということなのです。
             </Para>
           </Center>
           <FullBleed>
@@ -206,8 +205,7 @@ export function HomeContent() {
               このマークアップ構文は JSX と呼ばれます。React が普及させた
               JavaScript の構文拡張です。JSX マークアップは関連する{}
               レンダリングロジックのすぐそばに配置できるので、React
-              コンポーネントの{}
-              作成、保守、削除は簡単です。
+              コンポーネントは簡単に作成、保守、削除ができます。
             </Para>
           </Center>
         </Section>
@@ -221,12 +219,10 @@ export function HomeContent() {
             </Header>
             <Para>
               React
-              コンポーネントはデータを受け取って、画面に表示するものを返します。
-              {}
-              入力フィールドへのタイピングなどのユーザ操作によって新しいデータができたら、
-              {}
-              コンポーネントにそれを渡します。React が新しいデータに基づいて{}
-              画面を更新します。
+              コンポーネントはデータを受け取り、画面に表示するものを返します。{}
+              入力フィールドへのタイピングなどのユーザ操作によって{}
+              新しいデータができたら、コンポーネントにそれを渡します。{}
+              React が新しいデータに基づいて画面を更新します。
             </Para>
           </Center>
           <FullBleed>
@@ -235,10 +231,8 @@ export function HomeContent() {
           <Center>
             <Para>
               ページ全体を React で構築する必要はありません。既存の HTML
-              ページに{}
-              React を追加すれば、好きな場所にインタラクティブな React
-              コンポーネントを{}
-              表示できます。
+              ページに React を追加すれば、どんな場所にでもインタラクティブな
+              React コンポーネントを表示できます。
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
               <CTA
@@ -259,9 +253,8 @@ export function HomeContent() {
               フルスタックな開発を
             </Header>
             <Para>
-              React
-              とはライブラリです。コンポーネントを組み合わせることはできますが、
-              {}
+              React はライブラリです。{}
+              コンポーネントを組み合わせることはできますが、{}
               ルーティングやデータフェッチの方法までは指定しません。{}
               React でアプリ全体を構築する場合は、{}
               <Link href="https://nextjs.org">Next.js</Link> や{' '}
@@ -274,11 +267,10 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              React とはアーキテクチャでもあります。
-              フレームワークでは、サーバやビルド時に動作する非同期コンポーネントを使って
-              {}
-              データの取得が可能です。ファイルやデータベースからデータを読み込んで、
-              {}
+              React とはアーキテクチャでもあります。{}
+              フレームワークでは、サーバやビルド時に動作する{}
+              非同期コンポーネントを使ってデータの取得が可能です。{}
+              ファイルやデータベースからデータを読み込んで、{}
               インタラクティブなコンポーネントに渡しましょう。
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
@@ -300,11 +292,11 @@ export function HomeContent() {
                 能力を最大限に活用
               </Header>
               <Para>
-                人々はウェブを愛し、そしてネイティブアプリを愛しています。その理由は様々です。
-                {}
+                人々はウェブを愛し、そしてネイティブアプリを愛しています。{}
+                その理由は様々です。{}
                 React
-                を使えば、同じスキルを使ってウェブアプリとネイティブアプリの両方を構築できます。
-                {}
+                を使えば、同じスキルを使ってウェブアプリとネイティブアプリの{}
+                両方を構築できます。{}
                 各プラットフォームが持つ独自の強みを活かし、{}
                 どんなプラットフォームにおいても自然なインターフェースを実現します。
               </Para>
@@ -323,16 +315,14 @@ export function HomeContent() {
                         ウェブの本質に忠実に
                       </h4>
                       <p className="lg:text-xl leading-normal text-secondary">
-                        人々はウェブアプリが速く読み込まれることを期待しています。
+                        人々はウェブアプリが素早く読み込まれることを期待します。
                         {}
-                        React を使用すれば、サーバ上でデータが取得中でも HTML の
-                        {}
-                        ストリーミングを開始でき、JavaScript
+                        React を使用すれば、サーバ上でデータが取得中でも HTML
+                        のストリーミングを開始でき、JavaScript
                         コードが読み込まれる前に{}
                         コンテンツを段階的にロードすることができます。{}
-                        クライアント側では、React は標準的な Web API を使用し、
-                        {}
-                        レンダーの最中でも UI の応答性を保ちます。
+                        クライアント側では、React は標準的な Web API
+                        を使用して、レンダーの最中でも UI の応答性を保ちます。
                       </p>
                     </div>
                   </div>
@@ -415,7 +405,7 @@ export function HomeContent() {
                         <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
                           人々はネイティブアプリがそのプラットフォームに見合った
                           {}
-                          ルック＆フィールを持つことを期待しています。{' '}
+                          ルック＆フィールを持つことを期待します。
                           <Link href="https://reactnative.dev">
                             React Native
                           </Link>{' '}
@@ -423,10 +413,9 @@ export function HomeContent() {
                           <Link href="https://github.com/expo/expo">Expo</Link>{' '}
                           を使えば、React で Android、iOS
                           などのアプリを構築できます。{}
-                          ネイティブアプリのように感じるのは、ウェブビューではなく
-                          {}
-                          本当にネイティブな UI だからです。 React
-                          コンポーネントは、プラットフォーム固有の、{}
+                          ネイティブアプリのように感じるのは、{}
+                          ウェブビューではなく真のネイティブ UI だからです。{}
+                          React コンポーネントは、プラットフォーム固有の、{}
                           本物の Android や iOS のビューを表示できます。
                         </p>
                       </div>
@@ -437,14 +426,12 @@ export function HomeContent() {
             </div>
             <div className="px-5 lg:px-0 max-w-4xl mx-auto lg:text-center text-secondary dark:text-secondary-dark">
               <Para>
-                React
-                を使えば、ウェブ開発者にもネイティブアプリ開発者にもなれるのです。
-                {}
-                ユーザー体験を犠牲にすることなく、多くのプラットフォームでリリースを行えます。
-                {}
-                ひとつのプラットフォームに縛られることなく、すべての機能をエンドツーエンドで
-                {}
-                担当するチームを作れます。
+                React を使えば、{}
+                ウェブ開発者にもネイティブアプリ開発者にもなれるのです。{}
+                ユーザー体験を犠牲にすることなく、{}
+                多くのプラットフォームでリリースを行えます。{}
+                ひとつのプラットフォームに縛られることなく、{}
+                すべての機能をエンドツーエンドで担当するチームを作れます。
               </Para>
               <div className="flex justify-start w-full lg:justify-center">
                 <CTA color="gray" icon="native" href="https://reactnative.dev/">
@@ -459,13 +446,15 @@ export function HomeContent() {
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
             <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5">
               <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:pl-5 lg:pr-10">
-                <Header>完成した機能だけがリリースされる</Header>
+                <Header>
+                  完成した機能だけが
+                  <br className="hidden lg:inline" />
+                  リリースされる
+                </Header>
                 <Para>
-                  React
-                  は開発アプローチの変更に慎重に取り組みます。すべてのコミットは{' '}
-                  10
-                  億人以上のユーザによるビジネスクリティカルな環境においてテストされます。
-                  {}
+                  React は開発アプローチの変更に慎重に取り組みます。{}
+                  すべてのコミットは 10 億人以上のユーザによる{}
+                  ビジネスクリティカルな環境においてテストされます。{}
                   Meta にある 10 万以上の React コンポーネントが、{}
                   すべての移行戦略の検証を支援します。
                 </Para>
@@ -473,11 +462,8 @@ export function HomeContent() {
                   <Para>
                     React チームは、常に React
                     を改善する方法を模索していますが、{}
-                    研究によっては、成果が出るまでに何年もかかることもあります。
-                    {}
-                    React
-                    には、研究のアイデアをリリースするまでの高いハードルがあります。
-                    {}
+                    研究によっては成果が出るまでに何年もかかることもあります。{}
+                    研究のアイデアをリリースするまでの高いハードルを越えた、{}
                     実証済みのアプローチだけが React の一部となるのです。
                   </Para>
                   <div className="hidden lg:flex justify-start w-full">
@@ -526,7 +512,7 @@ export function HomeContent() {
                   コミュニティに参加しよう
                 </Header>
                 <Para>
-                  あなたは 1 人ではありません。世界中から毎月 200 万人の開発者が{' '}
+                  あなたは 1 人ではありません。世界中から毎月 200 万人の開発者が
                   React ドキュメントに訪れています。{}
                   人々とチームが共感できる技術、それが React なのです。
                 </Para>
@@ -536,14 +522,12 @@ export function HomeContent() {
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>
                 <Para>
-                  React は単なるライブラリやアーキテクチャ、あるいはエコシステム
-                  {}
-                  という以上の存在です。React とはコミュニティです。{}
-                  ヘルプを求め、チャンスを見つけ、新しい友人と出会える場所です。
-                  {}
-                  開発者やデザイナと、初心者やエキスパートと、研究者やアーティストと、
-                  {}
-                  教師や学生と、出会える場所です。{}
+                  React は単なるライブラリやアーキテクチャ、{}
+                  あるいはエコシステムという以上の存在です。{}
+                  React とはコミュニティです。{}
+                  ヘルプを求め、チャンスを見つけ、新しい友人に会える場所です。{}
+                  開発者やデザイナ、初心者やエキスパート、{}
+                  研究者やアーティスト、教師や学生と出会える場所です。{}
                   私たちのバックグラウンドはさまざまですが、React を通じて皆で{}
                   ユーザーインターフェースの創造に取り組んでいるのです。
                 </Para>
@@ -555,7 +539,7 @@ export function HomeContent() {
             <Logo className="text-link dark:text-link-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start" />
             <Header>
               React コミュニティに
-              <br className="" />
+              <br className="hidden lg:inline" />
               ようこそ！
             </Header>
             <ButtonLink
