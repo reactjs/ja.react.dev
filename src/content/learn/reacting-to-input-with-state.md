@@ -348,7 +348,7 @@ Form states
 
 </DiagramGroup>
 
-### Step 3:  `useState`を使用してメモリ上に状態を**表現**する {/*step-3-represent-the-state-in-memory-with-usestate*/}
+### Step 3:  `useState`を使用してメモリ上に状態を表現する {/*step-3-represent-the-state-in-memory-with-usestate*/}
 
 次に、[`useState`.](/reference/react/useState) を使用してコンポーネントの視覚状態をメモリ内で表現する必要があります。シンプルさが鍵です。各状態は「動くパーツ」であり、**可能な限り「動くパーツ」を少なくすることが望ましいです**。複雑さが増すとバグも増えます！
 
