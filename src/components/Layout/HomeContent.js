@@ -131,7 +131,7 @@ export function HomeContent() {
             React
           </h1>
           <p className="text-4xl font-display max-w-lg md:max-w-full py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
-            The library for web and native user interfaces
+            Web とネイティブユーザインターフェースのためのライブラリ
           </p>
           <div className="mt-5 self-center flex gap-2 w-full sm:w-auto flex-col sm:flex-row">
             <ButtonLink
@@ -139,29 +139,34 @@ export function HomeContent() {
               type="primary"
               size="lg"
               className="w-full sm:w-auto justify-center"
-              label="Learn React">
-              Learn React
+              label="React を学ぶ">
+              React を学ぶ
             </ButtonLink>
             <ButtonLink
               href={'/reference/react'}
               type="secondary"
               size="lg"
               className="w-full sm:w-auto justify-center"
-              label="API Reference">
-              API Reference
+              label="API リファレンス">
+              API リファレンス
             </ButtonLink>
           </div>
         </div>
 
         <Section background="left-card">
           <Center>
-            <Header>Create user interfaces from components</Header>
+            <Header>
+              コンポーネントから
+              <br className="hidden lg:inline" />
+              ユーザインターフェースを作成
+            </Header>
             <Para>
-              React lets you build user interfaces out of individual pieces
-              called components. Create your own React components like{' '}
-              <Code>Thumbnail</Code>, <Code>LikeButton</Code>, and{' '}
-              <Code>Video</Code>. Then combine them into entire screens, pages,
-              and apps.
+              React ではユーザインターフェースを、{}
+              コンポーネントと呼ばれる部品を使って構築できます。
+              <Code>Thumbnail</Code>、<Code>LikeButton</Code>、
+              <Code>Video</Code>
+              といった React コンポーネントを書き、{}
+              それらを組み合わせて画面やページやアプリの全体を組み立てましょう。
             </Para>
           </Center>
           <FullBleed>
@@ -169,22 +174,27 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              Whether you work on your own or with thousands of other
-              developers, using React feels the same. It is designed to let you
-              seamlessly combine components written by independent people,
-              teams, and organizations.
+              独りで開発していても、数千の開発者と共同開発していても、{}
+              React の開発体験は同じです。個人、チーム、大規模な組織によって{}
+              書かれさまざまなコンポーネントを、シームレスに組み合わせながら{}
+              開発できる。それが React の設計理念です。
             </Para>
           </Center>
         </Section>
 
         <Section background="right-card">
           <Center>
-            <Header>Write components with code and markup</Header>
+            <Header>
+              マークアップとコードから
+              <br className="hidden lg:inline" />
+              コンポーネントを作成
+            </Header>
             <Para>
-              React components are JavaScript functions. Want to show some
-              content conditionally? Use an <Code>if</Code> statement.
-              Displaying a list? Try array <Code>map()</Code>. Learning React is
-              learning programming.
+              React コンポーネントは単なる JavaScript の関数です。{}
+              条件によってコンテンツの表示を変えたければ <Code>if</Code>{' '}
+              文を使いましょう！ リストを表示したいなら配列の <Code>map()</Code>{' '}
+              を使いましょう！ React
+              を学ぶということは、プログラミングを学ぶということなのです。
             </Para>
           </Center>
           <FullBleed>
@@ -192,22 +202,27 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              This markup syntax is called JSX. It is a JavaScript syntax
-              extension popularized by React. Putting JSX markup close to
-              related rendering logic makes React components easy to create,
-              maintain, and delete.
+              このマークアップ構文は JSX と呼ばれます。React が普及させた
+              JavaScript の構文拡張です。JSX マークアップは関連する{}
+              レンダリングロジックのすぐそばに配置できるので、React
+              コンポーネントは簡単に作成、保守、削除ができます。
             </Para>
           </Center>
         </Section>
 
         <Section background="left-card">
           <Center>
-            <Header>Add interactivity wherever you need it</Header>
+            <Header>
+              インタラクティブ機能を
+              <br className="hidden lg:inline" />
+              どこでも必要な場所に
+            </Header>
             <Para>
-              React components receive data and return what should appear on the
-              screen. You can pass them new data in response to an interaction,
-              like when the user types into an input. React will then update the
-              screen to match the new data.
+              React
+              コンポーネントはデータを受け取り、画面に表示するものを返します。{}
+              入力フィールドへのタイピングなどのユーザ操作によって{}
+              新しいデータができたら、コンポーネントにそれを渡します。{}
+              React が新しいデータに基づいて画面を更新します。
             </Para>
           </Center>
           <FullBleed>
@@ -215,16 +230,16 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              You don’t have to build your whole page in React. Add React to
-              your existing HTML page, and render interactive React components
-              anywhere on it.
+              ページ全体を React で構築する必要はありません。既存の HTML
+              ページに React を追加すれば、どんな場所にでもインタラクティブな
+              React コンポーネントを表示できます。
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
               <CTA
                 color="gray"
                 icon="code"
                 href="/learn/add-react-to-an-existing-project">
-                Add React to your page
+                既存のページに React を追加する
               </CTA>
             </div>
           </Center>
@@ -233,15 +248,18 @@ export function HomeContent() {
         <Section background="right-card">
           <Center>
             <Header>
-              Go full-stack <br className="hidden lg:inline" />
-              with a framework
+              フレームワークで
+              <br className="hidden lg:inline" />
+              フルスタックな開発を
             </Header>
             <Para>
-              React is a library. It lets you put components together, but it
-              doesn’t prescribe how to do routing and data fetching. To build an
-              entire app with React, we recommend a full-stack React framework
-              like <Link href="https://nextjs.org">Next.js</Link> or{' '}
-              <Link href="https://remix.run">Remix</Link>.
+              React はライブラリです。{}
+              コンポーネントを組み合わせることはできますが、{}
+              ルーティングやデータフェッチの方法までは指定しません。{}
+              React でアプリ全体を構築する場合は、{}
+              <Link href="https://nextjs.org">Next.js</Link> や{' '}
+              <Link href="https://remix.run">Remix</Link>{' '}
+              のようなフルスタックのフレームワークをお勧めします。
             </Para>
           </Center>
           <FullBleed>
@@ -249,17 +267,18 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              React is also an architecture. Frameworks that implement it let
-              you fetch data in asynchronous components that run on the server
-              or even during the build. Read data from a file or a database, and
-              pass it down to your interactive components.
+              React とはアーキテクチャでもあります。{}
+              フレームワークでは、サーバやビルド時に動作する{}
+              非同期コンポーネントを使ってデータの取得が可能です。{}
+              ファイルやデータベースからデータを読み込んで、{}
+              インタラクティブなコンポーネントに渡しましょう。
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
               <CTA
                 color="gray"
                 icon="framework"
                 href="/learn/start-a-new-react-project">
-                Get started with a framework
+                フレームワークで始める
               </CTA>
             </div>
           </Center>
@@ -267,12 +286,19 @@ export function HomeContent() {
         <Section background="left-card">
           <div className="mx-auto flex flex-col w-full">
             <div className="mx-auto max-w-4xl lg:text-center items-center px-5 flex flex-col">
-              <Header>Use the best from every platform</Header>
+              <Header>
+                あらゆるプラットフォームの
+                <br />
+                能力を最大限に活用
+              </Header>
               <Para>
-                People love web and native apps for different reasons. React
-                lets you build both web apps and native apps using the same
-                skills. It leans upon each platform’s unique strengths to let
-                your interfaces feel just right on every platform.
+                人々はウェブを愛し、そしてネイティブアプリを愛しています。{}
+                その理由は様々です。{}
+                React
+                を使えば、同じスキルを使ってウェブアプリとネイティブアプリの{}
+                両方を構築できます。{}
+                各プラットフォームが持つ独自の強みを活かし、{}
+                どんなプラットフォームにおいても自然なインターフェースを実現します。
               </Para>
             </div>
             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row mt-16 mb-20 lg:mb-28 px-5 gap-20 lg:gap-5">
@@ -286,15 +312,17 @@ export function HomeContent() {
                     <div className="bg-wash relative h-14 w-full" />
                     <div className="relative flex items-start justify-center flex-col flex-1 pb-16 pt-5 gap-3 px-5 lg:px-10 lg:pt-8">
                       <h4 className="leading-tight text-primary font-semibold text-3xl lg:text-4xl">
-                        Stay true to the web
+                        ウェブの本質に忠実に
                       </h4>
                       <p className="lg:text-xl leading-normal text-secondary">
-                        People expect web app pages to load fast. On the server,
-                        React lets you start streaming HTML while you’re still
-                        fetching data, progressively filling in the remaining
-                        content before any JavaScript code loads. On the client,
-                        React can use standard web APIs to keep your UI
-                        responsive even in the middle of rendering.
+                        人々はウェブアプリが素早く読み込まれることを期待します。
+                        {}
+                        React を使用すれば、サーバ上でデータが取得中でも HTML
+                        のストリーミングを開始でき、JavaScript
+                        コードが読み込まれる前に{}
+                        コンテンツを段階的にロードすることができます。{}
+                        クライアント側では、React は標準的な Web API
+                        を使用して、レンダーの最中でも UI の応答性を保ちます。
                       </p>
                     </div>
                   </div>
@@ -372,21 +400,23 @@ export function HomeContent() {
                       </div>
                       <div className="flex flex-col items-start justify-center pt-0 gap-3 px-2.5 lg:pt-8 lg:px-8">
                         <h4 className="leading-tight text-primary dark:text-primary-dark font-semibold text-3xl lg:text-4xl">
-                          Go truly native
+                          真にネイティブな体験を実現
                         </h4>
                         <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
-                          People expect native apps to look and feel like their
-                          platform.{' '}
+                          人々はネイティブアプリがそのプラットフォームに見合った
+                          {}
+                          ルック＆フィールを持つことを期待します。
                           <Link href="https://reactnative.dev">
                             React Native
                           </Link>{' '}
-                          and{' '}
+                          や{' '}
                           <Link href="https://github.com/expo/expo">Expo</Link>{' '}
-                          let you build apps in React for Android, iOS, and
-                          more. They look and feel native because their UIs{' '}
-                          <i>are</i> truly native. It’s not a web view—your
-                          React components render real Android and iOS views
-                          provided by the platform.
+                          を使えば、React で Android、iOS
+                          などのアプリを構築できます。{}
+                          ネイティブアプリのように感じるのは、{}
+                          ウェブビューではなく真のネイティブ UI だからです。{}
+                          React コンポーネントは、プラットフォーム固有の、{}
+                          本物の Android や iOS のビューを表示できます。
                         </p>
                       </div>
                     </div>
@@ -396,14 +426,16 @@ export function HomeContent() {
             </div>
             <div className="px-5 lg:px-0 max-w-4xl mx-auto lg:text-center text-secondary dark:text-secondary-dark">
               <Para>
-                With React, you can be a web <i>and</i> a native developer. Your
-                team can ship to many platforms without sacrificing the user
-                experience. Your organization can bridge the platform silos, and
-                form teams that own entire features end-to-end.
+                React を使えば、{}
+                ウェブ開発者にもネイティブアプリ開発者にもなれるのです。{}
+                ユーザー体験を犠牲にすることなく、{}
+                多くのプラットフォームでリリースを行えます。{}
+                ひとつのプラットフォームに縛られることなく、{}
+                すべての機能をエンドツーエンドで担当するチームを作れます。
               </Para>
               <div className="flex justify-start w-full lg:justify-center">
                 <CTA color="gray" icon="native" href="https://reactnative.dev/">
-                  Build for native platforms
+                  ネイティブプラットフォーム向けに開発する
                 </CTA>
               </div>
             </div>
@@ -414,23 +446,29 @@ export function HomeContent() {
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
             <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5">
               <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:pl-5 lg:pr-10">
-                <Header>Upgrade when the future is ready</Header>
+                <Header>
+                  完成した機能だけが
+                  <br className="hidden lg:inline" />
+                  リリースされる
+                </Header>
                 <Para>
-                  React approaches changes with care. Every React commit is
-                  tested on business-critical surfaces with over a billion
-                  users. Over 100,000 React components at Meta help validate
-                  every migration strategy.
+                  React は開発アプローチの変更に慎重に取り組みます。{}
+                  すべてのコミットは 10 億人以上のユーザによる{}
+                  ビジネスクリティカルな環境においてテストされます。{}
+                  Meta にある 10 万以上の React コンポーネントが、{}
+                  すべての移行戦略の検証を支援します。
                 </Para>
                 <div className="order-last pt-5">
                   <Para>
-                    The React team is always researching how to improve React.
-                    Some research takes years to pay off. React has a high bar
-                    for taking a research idea into production. Only proven
-                    approaches become a part of React.
+                    React チームは、常に React
+                    を改善する方法を模索していますが、{}
+                    研究によっては成果が出るまでに何年もかかることもあります。{}
+                    研究のアイデアをリリースするまでの高いハードルを越えた、{}
+                    実証済みのアプローチだけが React の一部となるのです。
                   </Para>
                   <div className="hidden lg:flex justify-start w-full">
                     <CTA color="gray" icon="news" href="/blog">
-                      Read more React news
+                      React のニュースを読む
                     </CTA>
                   </div>
                 </div>
@@ -438,7 +476,7 @@ export function HomeContent() {
               <div className="w-full lg:w-6/12">
                 <p className="uppercase tracking-wide font-bold text-sm text-tertiary dark:text-tertiary-dark flex flex-row gap-2 items-center mt-5 lg:-mt-2 w-full">
                   <IconChevron />
-                  Latest React News
+                  最新の React ニュース
                 </p>
                 <div className="flex-col sm:flex-row flex-wrap flex gap-5 text-left my-5">
                   <div className="flex-1 min-w-[40%]">
@@ -469,13 +507,14 @@ export function HomeContent() {
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>
                 <Header>
-                  Join a community <br className="hidden lg:inline" />
-                  of millions
+                  数百万人の
+                  <br className="hidden lg:inline" />
+                  コミュニティに参加しよう
                 </Header>
                 <Para>
-                  You’re not alone. Two million developers from all over the
-                  world visit the React docs every month. React is something
-                  that people and teams can agree on.
+                  あなたは 1 人ではありません。世界中から毎月 200 万人の開発者が
+                  React ドキュメントに訪れています。{}
+                  人々とチームが共感できる技術、それが React なのです。
                 </Para>
               </Center>
             </div>
@@ -483,13 +522,14 @@ export function HomeContent() {
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>
                 <Para>
-                  This is why React is more than a library, an architecture, or
-                  even an ecosystem. React is a community. It’s a place where
-                  you can ask for help, find opportunities, and meet new
-                  friends. You will meet both developers and designers,
-                  beginners and experts, researchers and artists, teachers and
-                  students. Our backgrounds may be very different, but React
-                  lets us all create user interfaces together.
+                  React は単なるライブラリやアーキテクチャ、{}
+                  あるいはエコシステムという以上の存在です。{}
+                  React とはコミュニティです。{}
+                  ヘルプを求め、チャンスを見つけ、新しい友人に会える場所です。{}
+                  開発者やデザイナ、初心者やエキスパート、{}
+                  研究者やアーティスト、教師や学生と出会える場所です。{}
+                  私たちのバックグラウンドはさまざまですが、React を通じて皆で{}
+                  ユーザーインターフェースの創造に取り組んでいるのです。
                 </Para>
               </Center>
             </div>
@@ -498,15 +538,16 @@ export function HomeContent() {
           <div className="mt-20 px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
             <Logo className="text-link dark:text-link-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start" />
             <Header>
-              Welcome to the <br className="" />
-              React community
+              React コミュニティに
+              <br className="hidden lg:inline" />
+              ようこそ！
             </Header>
             <ButtonLink
               href={'/learn'}
               type="primary"
               size="lg"
               label="Take the Tutorial">
-              Get Started
+              はじめる
             </ButtonLink>
           </div>
         </Section>
