@@ -86,20 +86,20 @@
       ]
     },
     {
-      "title": "Adding Interactivity",
+      "title": "インタラクティビティの追加",
       "path": "/learn/adding-interactivity",
       "tags": [],
       "routes": [
         {
-          "title": "Responding to Events",
+          "title": "イベントへの応答",
           "path": "/learn/responding-to-events"
         },
         {
-          "title": "State: A Component's Memory",
+          "title": "state：コンポーネントのメモリ",
           "path": "/learn/state-a-components-memory"
         },
         {
-          "title": "Render and Commit",
+          "title": "レンダーとコミット",
           "path": "/learn/render-and-commit"
         },
         {
