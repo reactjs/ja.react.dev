@@ -37,7 +37,7 @@ function useOnlineStatus() {
 #### 引数 {/*parameters*/}
 
 * `value`: React DevTools に表示したい値。任意の型が使えます。
-* **省略可能** `format`: フォーマッタ関数。コンポーネントが検証されると、React DevTools は `value` を引数としてフォーマッタ関数を呼び出し、返されたフォーマット済みの値（任意の型が使えます）を表示します。フォーマッタ関数を指定しない場合、元の `value` 自体が表示されます。
+* **省略可能** `format`: フォーマッタ関数。コンポーネントがインスペクト (inspect, 調査) されると、React DevTools は `value` を引数としてフォーマッタ関数を呼び出し、返されたフォーマット済みの値（任意の型が使えます）を表示します。フォーマッタ関数を指定しない場合、元の `value` 自体が表示されます。
 
 #### 返り値 {/*returns*/}
 
@@ -59,7 +59,7 @@ function useOnlineStatus() {
 }
 ```
 
-これにより、`useOnlineStatus` を呼び出すコンポーネントを検証すると `OnlineStatus: "Online"` のようなラベルが付きます。
+これにより、`useOnlineStatus` を呼び出すコンポーネントをインスペクトすると `OnlineStatus: "Online"` のようなラベルが付きます。
 
 ![React DevTools がデバッグ値を表示するスクリーンショット](/images/docs/react-devtools-usedebugvalue.png)
 
