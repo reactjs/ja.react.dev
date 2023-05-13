@@ -319,8 +319,8 @@ body { margin: 0; }
 * **Computer inputs（コンピュータからの入力）**、例えばネットワークからのレスポンスが到着する、タイムアウトが完了する、画像が読み込まれるなど。
 
 <IllustrationBlock>
-  <Illustration caption="Human inputs" alt="A finger." src="/images/docs/illustrations/i_inputs1.png" />
-  <Illustration caption="Computer inputs" alt="Ones and zeroes." src="/images/docs/illustrations/i_inputs2.png" />
+  <Illustration caption="人間からの入力" alt="A finger." src="/images/docs/illustrations/i_inputs1.png" />
+  <Illustration caption="コンピュータからの入力" alt="Ones and zeroes." src="/images/docs/illustrations/i_inputs2.png" />
 </IllustrationBlock>
 
 いずれの場合も、**UI を更新するためには[ state 変数](/learn/state-a-components-memory#anatomy-of-usestate)を設定する必要があります。** 今回開発するフォームでは、いくつかの異なる入力に反応して状態を変更する必要があります。
@@ -348,11 +348,11 @@ Form states
 
 </DiagramGroup>
 
-### Step 3:  `useState`を使用してメモリ上に state を表現する {/*step-3-represent-the-state-in-memory-with-usestate*/}
+### Step 3: `useState` を使用してメモリ上に state を表現する {/*step-3-represent-the-state-in-memory-with-usestate*/}
 
 次に、[`useState`.](/reference/react/useState) を使用してコンポーネントの視覚状態をメモリ内で表現する必要があります。シンプルさが鍵です。各 state は「動くパーツ」であり、**可能な限り「動くパーツ」を少なくすることが望ましいです**。複雑さが増すとバグも増えます！
 
-まず*絶対に必要な* state から始めます。例えば、入力の`答え`を保存する必要があり、最後のエラーを保存するために（存在すれば）`エラー`を保存する必要があります。
+まず*絶対に必要な* state から始めます。例えば、入力中の回答である `answer` を保存する必要があり、最後に起きたエラー（あれば）を保存するために `error` が必要です。
 
 ```js
 const [answer, setAnswer] = useState('');
@@ -375,12 +375,12 @@ const [isError, setIsError] = useState(false);
 
 ### Step 4: 必要不可欠でない state 変数をすべて削除する {/*step-4-remove-any-non-essential-state-variables*/}
 
-state の内容に重複がないようにし、本当に必要なものだけを追跡するようにしたいです。state の構造をリファクタリングすることに少し時間をかけることで、コンポーネントが理解しやすくなり、重複が減り、意図しない意味を持つことがなくなります。目標は、**メモリ上の state がユーザに見せたい有効な UI を表現していないケースを防ぐことです**。（例えば、エラーメッセージを表示すると同時に入力を無効化するようなことはありません。そうすると、ユーザはエラーを修正することができなくなります！）
+state の内容に重複がないようにし、本当に必要なものだけを管理するようにしたいです。state の構造をリファクタリングすることに少し時間をかけることで、コンポーネントが理解しやすくなり、重複が減り、想定外の意味を持つことがなくなります。目標は、**メモリ上の state がユーザに見せたい有効な UI を表現しないという状況を防ぐことです**。（例えば、エラーメッセージを表示すると同時に入力を無効化するようなことはあってはいけません。ユーザがエラーを修正できなくなってしまいます！）
 
 以下に、state 変数に関する質問をご紹介します。
 
 * **この state だと矛盾は生じるのでしょうか？** 例えば、 `isTyping` と `isSubmitting` の両方が `true`であることはありません。矛盾がある state とは通常、state の制約が十分でないことを意味します。2 つのプール値の組み合わせは 4 通りありますが、有効な state に対応するのは 3 つだけです。「不可能な」 state を削除するためには、これらを組み合わせて、`typing`、`submitting`、または `success` の 3 つの値のうちの 1 つでなければならない `status` にすればよいです。
-* **同じ情報はすでに別の state 変数で利用可能ですか？** もうひとつの矛盾： `isEmpty` と `isTyping` は同時に `true` であることはありません。これらを別々の state 変数にすることで、同期がとれなくなり、バグが発生する危険性があります。幸い、 `isEmpty` を削除して、変わりに `answer.length === 0` をチェックすることができます。
+* **同じ情報が別の state 変数から入手できないか？** もうひとつの矛盾の原因は、`isEmpty` と `isTyping` が同時に `true` にならないことです。これらを別々の state 変数にすることで、同期がとれなくなり、バグが発生する危険性があります。幸い、`isEmpty` を削除して、代わりに `answer.length === 0` をチェックすることができます。
 * **別の state 変数の逆数から同じ情報を得ることはできますか？** `isError` は不要です、なぜなら代わりに `error !== null` をチェックできるからです。
 
 この削減後、3 つ（7 つから減りました！）の*必須* state 変数が残ります。
@@ -563,7 +563,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 画像がアクティブかどうかを記憶するためには、単一のブール型の state 変数があれば十分です。本来の作業は CSS クラスを削除または追加することでした。しかし、React では UI 要素を*操作*するのではなく、何を見たいのかを*記述*する必要があります。そのため、現在の state に基づいて両方の CSS クラスを計算する必要があります。また、画像をクリックしても背景のクリックとして登録されないように、[伝播を停止](/learn/responding-to-events#stopping-propagation)する必要があります。
 
-画像のクリックとその外側のクリックにより、このバージョンが動作することを確認してください。
+画像をクリックしたりその外側をクリックしたりして、このバージョンが動作することを確認してください。
 
 <Sandpack>
 
@@ -701,7 +701,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Solution>
 
-#### プロフィール編集 {/*profile-editor*/}
+#### プロフィールエディタ {/*profile-editor*/}
 
 ここでは、プレーンな JavaScript と DOM で実装した小さなフォームを紹介します。このフォームで遊んでみて、その動作を理解してください。
 
@@ -802,7 +802,7 @@ label { display: block; margin-bottom: 20px; }
 
 このフォームは、編集モードでは入力内容を、閲覧モードでは結果のみを見るという 2 つのモードを切り替えて表示します。ボタンのラベルは、モードによって「編集」と「保存」が切り替わります。入力内容を変更すると、下部のウェルカムメッセージがリアルタイムで更新されます。
 
-あなたのタスクは、以下のサンドボックス内で React で再実装することです。便宜上、マークアップはすでに JSX に変換されていますが、オリジナルのように入力の表示と非表示を行う必要があります。
+あなたのタスクは、これを以下のサンドボックス内で React で再実装することです。作業しやすいようにマークアップはすでに JSX に変換されていますが、元のコードと同様に入力フィールドの表示と非表示を行う必要があります。
 
 また、下部のテキストも更新されることを確認してください！
 
@@ -841,7 +841,7 @@ label { display: block; margin-bottom: 20px; }
 
 入力値を保持するために `firstName` と `lastName` の 2 つの state 変数が必要になります。また、入力を表示するかどうかを管理する `isEditing` state 変数も必要になります。`fullName` 変数は必要*ありません*。なぜなら、フルネームは常に `firstName` と `lastName` から計算できるからです。
 
-最後に、[条件付きレンダリング](/learn/conditional-rendering)を使用して、`isEditing` に応じて入力フィールドを表示したり非表示にしたりする必要があります。
+最後に、[条件付きレンダー](/learn/conditional-rendering)を使用して、`isEditing` に応じて入力フィールドを表示したり非表示にしたりする必要があります。
 
 <Sandpack>
 
@@ -905,7 +905,7 @@ label { display: block; margin-bottom: 20px; }
 
 #### Reactを使わない命令型の解決策のリファクタリング {/*refactor-the-imperative-solution-without-react*/}
 
-こちらは前回のチャレンジで、React を使わずに命令的に記述されたオリジナルのサンドボックスです。
+こちらはひとつ前のチャレンジで、React を使わずに命令的に記述されたオリジナルのサンドボックスです。
 
 <Sandpack>
 
