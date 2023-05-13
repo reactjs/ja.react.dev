@@ -14,9 +14,9 @@ React チームからの公式な更新のお知らせはこのブログに掲�
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
-<BlogCard title="React Canaries: Incremental Feature Rollout Outside Meta" date="May 3, 2023" url="/blog/2023/05/03/react-canaries">
+<BlogCard title="React Canary: Meta 外での段階的な新機能導入" date="May 3, 2023" url="/blog/2023/05/03/react-canaries">
 
-Traditionally, new React features used to only be available at Meta first, and land in the open source releases later. We'd like to offer the React community an option to adopt individual new features as soon as their design is close to final--similar to how Meta uses React internally. We are introducing a new officially supported Canary release channel. It lets curated setups like frameworks decouple adoption of individual React features from the React release schedule.
+従来、React の新機能は Meta 社内で先に利用可能になり、オープンソースでのリリースは後になっていました。 私たちは、Meta 社内での React 使用法と同様に、安定版がリリースされる前に個々の新機能の設計がほぼ確定した段階でそれらを採用できるという選択肢を、React コミュニティに提供したいと考えています。私たちは、新たに公式サポート対象となる Canary リリースチャンネルを導入します。これにより、フレームワークのような統合済セットアップが、個々の React 機能の採用を React のリリーススケジュールから切り離して行えるようになります。
 
 </BlogCard>
 
