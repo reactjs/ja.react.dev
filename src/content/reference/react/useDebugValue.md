@@ -32,9 +32,9 @@ function useOnlineStatus() {
 }
 ```
 
-[以下にさらに例を示します。](#usage)
+[さらに例を見る](#usage)
 
-#### パラメータ {/*parameters*/}
+#### 引数 {/*parameters*/}
 
 * `value`: React DevTools に表示したい値。任意の型が使えます。
 * **省略可能** `format`: フォーマッタ関数。コンポーネントが検証されると、React DevTools は `value` を引数としてフォーマッタ関数を呼び出し、返されたフォーマット済みの値（任意の型が使えます）を表示します。フォーマッタ関数を指定しない場合、元の `value` 自体が表示されます。
@@ -63,7 +63,7 @@ function useOnlineStatus() {
 
 ![React DevTools がデバッグ値を表示するスクリーンショット](/images/docs/react-devtools-usedebugvalue.png)
 
-`useDebugValue` の呼び出しがない場合、基本となるデータ（この例では `true`）のみが表示されます。
+`useDebugValue` の呼び出しがない場合、元のデータ（この例では `true`）のみが表示されます。
 
 <Sandpack>
 
@@ -103,7 +103,7 @@ function subscribe(callback) {
 
 <Note>
 
-すべてのカスタムフックにデバッグ値を追加しないでください。デバッグ値が最も有用なのは、共有ライブラリの一部であり、内部のデータ構造が複雑で検証が難しいカスタムフックです。
+すべてのカスタムフックにデバッグ値を追加しないでください。デバッグ値が最も有用なのは、共有ライブラリの一部であり、内部のデータ構造が複雑で調査が難しいカスタムフックです。
 
 </Note>
 
@@ -111,12 +111,12 @@ function subscribe(callback) {
 
 ### デバッグ値のフォーマットを遅延させる {/*deferring-formatting-of-a-debug-value*/}
 
-`useDebugValue` の第 2 引数としてフォーマッタ関数も渡すことができます:
+`useDebugValue` の第 2 引数としてフォーマッタ関数も渡すことができます：
 
 ```js [[1, 1, "date", 18], [2, 1, "date.toDateString()"]]
 useDebugValue(date, date => date.toDateString());
 ```
 
-あなたのフォーマッタ関数は、<CodeStep step={1}>デバッグ値</CodeStep>をパラメータとして受け取り、<CodeStep step={2}>フォーマットされた表示値</CodeStep>を返す必要があります。コンポーネントが検証されると、React DevTools はこの関数を呼び出し、その結果を表示します。
+あなたのフォーマッタ関数は、<CodeStep step={1}>デバッグ値</CodeStep>をパラメータとして受け取り、<CodeStep step={2}>フォーマットされた表示値</CodeStep>を返す必要があります。コンポーネントがインスペクトされると、React DevTools はこの関数を呼び出し、その結果を表示します。
 
-これにより、コンポーネントが実際に検証されない限り、コストがかかる可能性があるフォーマットロジックを実行することは回避できます。例えば、`date` が Date 値の場合、レンダーの度に `toDateString()` を呼び出すことを回避できます。
+これにより、コンポーネントが実際にインスペクトされない限り、コストがかかる可能性があるフォーマットロジックを実行することを回避できます。例えば、`date` が Date 値の場合、レンダーの度に `toDateString()` を呼び出すことを回避できます。
