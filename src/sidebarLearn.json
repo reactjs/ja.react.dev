@@ -103,11 +103,11 @@
           "path": "/learn/render-and-commit"
         },
         {
-          "title": "State as a Snapshot",
+          "title": "state はスナップショットである",
           "path": "/learn/state-as-a-snapshot"
         },
         {
-          "title": "Queueing a Series of State Updates",
+          "title": "一連の state の更新をキューに入れる",
           "path": "/learn/queueing-a-series-of-state-updates"
         },
         {
