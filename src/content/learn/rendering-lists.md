@@ -378,7 +378,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 各アイテムが 1 つの DOM ノードではなく、複数の DOM ノードをレンダーする必要がある場合はどうするのでしょうか？
 
-短い [`<>...</>` フラグメント](/reference/react/Fragment)構文では `key` を渡せないため、これらを 1 つの `<div>` にグループ化するか、やや長くて[より明示的な `<Fragment>` シンタックス](/reference/react/Fragment#rendering-a-list-of-fragments)を使用する必要があります:
+短い [`<>...</>` フラグメント](/reference/react/Fragment)構文では `key` を渡せないため、これらを 1 つの `<div>` にグループ化するか、やや長くて[より明示的な `<Fragment>` シンタックス](/reference/react/Fragment#rendering-a-list-of-fragments)を使用する必要があります：
 
 ```js
 import { Fragment } from 'react';
@@ -406,8 +406,8 @@ const listItems = people.map(person =>
 
 ### `key` のルール {/*rules-of-keys*/}
 
-* **キーは兄弟間で一意でなければなりません。** ただし、*異なる*配列に対応する JSX ノードには同じキーを使用することができます。
-* **キーは変更してはいけません。** さもないと `key` の目的が台無しになります。レンダーの最中に key を生成してはいけません。
+* **キーは兄弟間で一意でなければなりません**。ただし、*異なる*配列に対応する JSX ノードには同じキーを使用することができます。
+* **キーは変更してはいけません**。さもないと `key` の目的が台無しになります。レンダーの最中に key を生成してはいけません。
 
 ### なぜ React は `key` を必要とするのか {/*why-does-react-need-keys*/}
 
@@ -1078,9 +1078,9 @@ export const recipes = [{
 
 </Sandpack>
 
-ここで `<Recipe {...recipe} key={recipe.id} />` というのは「 `recipe` オブジェクトのすべてのプロパティを `Recipe` コンポーネントの props として渡せ」という意味のショートカット構文です。個々の props を明示的に書いても構いません：`<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`
+ここで `<Recipe {...recipe} key={recipe.id} />` というのは「`recipe` オブジェクトのすべてのプロパティを `Recipe` コンポーネントの props として渡せ」という意味のショートカット構文です。個々の props を明示的に書いても構いません：`<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`
 
-**`key` は `<Recipe>` から返される `<div>` 内ではなく、`<Recipe>` 自体に指定する必要があることに注意してください。** これは、`key` を直接必要としているのはそれを囲んでいる配列という文脈だからです。これまでは `<div>` の配列があったので個々の div に `key` が必要でしたが、今存在するのは `<Recipe>` の配列です。別の言い方をすると、コンポーネントを抽出する場合は、コピーペーストする JSX の外に `key` を残すことを忘れないようにしましょう。
+**`key` は `<Recipe>` から返される `<div>` 内ではなく、`<Recipe>` 自体に指定する必要があることに注意してください**。これは、`key` を直接必要としているのはそれを囲んでいる配列という文脈だからです。これまでは `<div>` の配列があったので個々の div に `key` が必要でしたが、今存在するのは `<Recipe>` の配列です。別の言い方をすると、コンポーネントを抽出する場合は、コピーペーストする JSX の外に `key` を残すことを忘れないようにしましょう。
 
 </Solution>
 

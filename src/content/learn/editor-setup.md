@@ -36,7 +36,7 @@ title: エディタのセットアップ
 * [React に適した構成の ESLint をインストールする](https://www.npmjs.com/package/eslint-config-react-app)（[Node をインストール](https://nodejs.org/en/download/current/)していることを確認してください！）
 * [公式拡張機能を使用して VS Code に ESLint を統合する](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-**プロジェクトで [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) のルールをすべて有効化していることを確認してください。** これは非常に重要であり、とても深刻なバグを早期に検出してくれます。[`eslint-config-react-app`](https://www.npmjs.com/package/eslint-config-react-app) 推奨プリセットは、これらをすでに含んでいます。
+**プロジェクトで [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) のルールをすべて有効化していることを確認してください**。これは非常に重要であり、とても深刻なバグを早期に検出してくれます。[`eslint-config-react-app`](https://www.npmjs.com/package/eslint-config-react-app) 推奨プリセットは、これらをすでに含んでいます。
 
 ### コードフォーマット {/*formatting*/}
 

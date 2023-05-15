@@ -27,7 +27,7 @@ React を使ったウェブサイトをデバッグする最も簡単な方法�
 ![React Developer Tools エクステンション](/images/docs/react-devtools-extension.png)
 
 ### Safari および他のブラウザ {/*safari-and-other-browsers*/}
-他のブラウザ（例えば、Safari）の場合、 [`react-devtools`](https://www.npmjs.com/package/react-devtools) の npm パッケージをインストールします：
+他のブラウザ（例えば Safari）の場合、[`react-devtools`](https://www.npmjs.com/package/react-devtools) の npm パッケージをインストールします：
 ```bash
 # Yarn
 yarn global add react-devtools

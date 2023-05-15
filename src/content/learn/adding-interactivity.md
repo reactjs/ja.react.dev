@@ -83,7 +83,7 @@ const [index, setIndex] = useState(0);
 const [showMore, setShowMore] = useState(false);
 ```
 
-以下は、イメージギャラリがクリックされた時に state を更新する方法です：
+以下は、イメージギャラリがクリックされたときに state を更新する方法です：
 
 <Sandpack>
 

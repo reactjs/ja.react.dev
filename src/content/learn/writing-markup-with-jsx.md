@@ -204,7 +204,7 @@ Hedy Lamarr の画像とリスト項目は、閉じタグを書いた状態で�
 
 JSX は JavaScript に変換され、中に書かれた属性は JavaScript オブジェクトのキーになります。コンポーネント内では、これらの属性を変数に読み出したくなることがよくあります。しかし JavaScript の変数名には一定の制約があります。例えば、名前にハイフンを含めたり `class` のような予約語を使ったりすることはできません。
 
-このため、React では多くの HTML および SVG の属性はキャメルケースで書かれます。例えば `stroke-width` の代わりに `strokeWidth` を使います。`class` は予約語なので、React では `className` を使います（[対応するDOMプロパティ](https://developer.mozilla.org/en-US/docs/Web/API/Element/className)が由来となっています）。
+このため、React では多くの HTML および SVG の属性はキャメルケースで書かれます。例えば `stroke-width` の代わりに `strokeWidth` を使います。`class` は予約語なので、React では `className` を使います（[対応する DOM プロパティ](https://developer.mozilla.org/en-US/docs/Web/API/Element/className)が由来となっています）。
 
 ```js {4}
 <img 
