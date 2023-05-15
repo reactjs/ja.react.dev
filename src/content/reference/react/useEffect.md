@@ -500,7 +500,7 @@ export default function Box() {
 
 ---
 
-### カスタムフックに効果をラップする {/*wrapping-effects-in-custom-hooks*/}
+### カスタムフックに副作用をラップする {/*wrapping-effects-in-custom-hooks*/}
 
 副作用は[「避難ハッチ」](/learn/escape-hatches)です。React の外に出る必要があり、かつ特定のユースケースに対してより良い組み込みのソリューションがない場合に使用します。副作用を手で何度も書く必要があることに気付いたら、通常それは、あなたのコンポーネントが依存する共通の振る舞いのための[カスタムフック](/learn/reusing-logic-with-custom-hooks)を抽出する必要があるというサインです。
 
