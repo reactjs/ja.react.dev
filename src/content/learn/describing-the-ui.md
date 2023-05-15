@@ -229,7 +229,7 @@ body > div > div { padding: 20px; }
 
 <LearnMore path="/learn/javascript-in-jsx-with-curly-braces">
 
-**[JSX に波括弧で JavaScript を含める](/learn/javascript-in-jsx-with-curly-braces)** を読んで、JSX 内 から JavaScript のデータにアクセスする方法を学びましょう。
+**[JSX に波括弧で JavaScript を含める](/learn/javascript-in-jsx-with-curly-braces)**を読んで、JSX 内から JavaScript のデータにアクセスする方法を学びましょう。
 
 </LearnMore>
 
@@ -466,8 +466,8 @@ h2 { font-size: 20px; }
 
 いくつかの JavaScript の関数は*純関数*です。純関数には以下の特徴があります。
 
-* **自分の仕事に集中する。** 呼び出される前に存在していたオブジェクトや変数を変更しない。
-* **同じ入力には同じ出力。** 同じ入力を与えると、純関数は常に同じ結果を返す。
+* **自分の仕事に集中する**。呼び出される前に存在していたオブジェクトや変数を変更しない。
+* **同じ入力には同じ出力**。同じ入力を与えると、純関数は常に同じ結果を返す。
 
 コンポーネントを常に厳密に純関数として書くことで、コードベースが成長するにつれて起きがちな、あらゆる種類の不可解なバグ、予測不可能な挙動を回避することができます。以下は純粋ではないコンポーネントの例です。
 

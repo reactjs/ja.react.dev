@@ -310,7 +310,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-[JavaScript の && 式](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) は、左側（条件）が `true` である場合、右側（今回の場合はチェックマーク）の値を返します。しかし、条件が `false` である場合、式全体が `false` になります。Reactは、`false` を JSX ツリーの「穴」と見なし、`null` や `undefined` と同様に、何もレンダーしません。
+[JavaScript の && 式](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) は、左側（条件）が `true` である場合、右側（今回の場合はチェックマーク）の値を返します。しかし、条件が `false` である場合、式全体が `false` になります。React は、`false` を JSX ツリーの「穴」と見なし、`null` や `undefined` と同様に、何もレンダーしません。
 
 
 <Pitfall>
@@ -441,10 +441,10 @@ JavaScript に慣れていない場合、これだけ多様なスタイルがあ
 
 <Recap>
 
-* Reactでは、JavaScriptを使用して分岐ロジックを制御する。
+* React では、JavaScript を使用して分岐ロジックを制御する。
 * `if` 文を使用して、条件に応じて JSX 式を返すことができる。
 * JSX 内で中身を条件付きで変数に保存し、波括弧を使用して他の JSX 内に含めることができる。
-* JSX 内の `{cond ? <A /> : <B />}` は、「`cond`であれば`<A />`をレンダーし、そうでなければ `<B />` をレンダーする」という意味である。
+* JSX 内の `{cond ? <A /> : <B />}` は、「`cond` であれば `<A />` をレンダーし、そうでなければ `<B />` をレンダーする」という意味である。
 * JSX 内の `{cond && <A />}` は、「`cond` であれば `<A />` をレンダーし、そうでなければ何もレンダーしない」という意味である。
 * これらのショートカットは一般的だが、プレーンな `if` が好きなら必ずしも使わなくて良い。
 
@@ -626,7 +626,7 @@ export default function PackingList() {
 
 `importance` が `0` の場合に `0` が結果として表示されてしまわないよう、`importance && ...` ではなく `importance > 0 && ...` と書く必要があることに注意してください。
 
-この答えでは、名前と重要度ラベルの間にスペースを挿入するために、2 つの条件が使用されています。代わりに、先頭にスペースを入れたフラグメントを使用することができます: `importance > 0 && <> <i>...</i></>` あるいは、`<i>` の直接内側にスペースを追加することもできます: `importance > 0 && <i> ...</i>`。
+この答えでは、名前と重要度ラベルの間にスペースを挿入するために、2 つの条件が使用されています。代わりに、先頭にスペースを入れたフラグメントを使用することができます：`importance > 0 && <> <i>...</i></>` あるいは、`<i>` の直接内側にスペースを追加することもできます：`importance > 0 && <i> ...</i>`。
 
 </Solution>
 
@@ -669,7 +669,7 @@ export default function DrinkList() {
 
 <Solution>
 
-複数のアプローチがありますが、ここでは1つの出発点として以下を示します：
+複数のアプローチがありますが、ここでは 1 つの出発点として以下を示します：
 
 <Sandpack>
 

@@ -10,7 +10,7 @@ title: 既存プロジェクトに React を追加する
 
 <Note>
 
-**ローカル環境で開発するには [Node.js](https://nodejs.org/en/) をインストールする必要があります。** React を[オンライン](/learn/installation#try-react)や単純な HTML ページで試すことも可能ですが、現実的には開発時に利用する大抵の JavaScript ツールには Node.js が必要です。
+**ローカル環境で開発するには [Node.js](https://nodejs.org/en/) をインストールする必要があります**。React を[オンライン](/learn/installation#try-react)や単純な HTML ページで試すことも可能ですが、現実的には開発時に利用する大抵の JavaScript ツールには Node.js が必要です。
 
 </Note>
 

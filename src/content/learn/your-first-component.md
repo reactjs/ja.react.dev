@@ -94,7 +94,7 @@ React コンポーネントは普通の JavaScript 関数ですが、**名前は
 
 ### Step 3: マークアップを加える {/*step-3-add-markup*/}
 
-このコンポーネントは `src` と `alt` という属性を有する `<img />` タグを返しています。`<img />` は まるで HTML のように書かれていますが、裏では実際には JavaScript です！ この構文は [JSX](/learn/writing-markup-with-jsx) と呼ばれるもので、これによりマークアップを JavaScript 内に埋め込めるようになります。
+このコンポーネントは `src` と `alt` という属性を有する `<img />` タグを返しています。`<img />` はまるで HTML のように書かれていますが、裏では実際には JavaScript です！ この構文は [JSX](/learn/writing-markup-with-jsx) と呼ばれるもので、これによりマークアップを JavaScript 内に埋め込めるようになります。
 
 return 文は、以下のように 1 行にまとめて書いても構いません：
 

@@ -266,7 +266,7 @@ props と state は異なるものですが、それらは協調して働きま�
 それではこの戦術をサンプルアプリにも適用してみましょう：
 
 1. **state を使用するコンポーネントの特定：**
-   * `ProductTable` は、これらの state （検索テキストとチェックボックスの値）に基づいて製品リストをフィルタリングする必要があります。
+   * `ProductTable` は、これらの state（検索テキストとチェックボックスの値）に基づいて製品リストをフィルタリングする必要があります。
    * `SearchBar` は、これらの state（検索テキストとチェックボックスの値）を表示する必要があります。
 1. **共通の親を見つける：** 両方のコンポーネントに共通の最初の親コンポーネントは `FilterableProductTable` です。
 2. **state がどこにあるべきかを決定する：** フィルタ文字列とチェック状態の値を `FilterableProductTable` に保持することにします。
@@ -464,7 +464,7 @@ function SearchBar({ filterText, inStockOnly }) {
 
 現在のところこのアプリでは、props と state が階層構造の下方向に向かって流れ、適切に表示が行われています。ただし、ユーザの入力に従って state を変更するには、逆方向へのデータの流れをサポートする必要があります。つまり、階層の深いところにあるフォームコンポーネントが、`FilterableProductTable` に存在する state を更新できる必要があるわけです。
 
-双方向データバインディングより多少タイプ量は増えますが、React ではこのデータフローを明示的に記述します。上記の例で何かタイプするか、チェックボックスをオンにしようとしても、React が入力を無視するのがわかるでしょう。これは意図的なものです。`<input value={filterText} />` と記述することで、 `input` の props である `value` を、`FilterableProductTable` から渡された state である `filterText` と常に等しくせよ、という意味になります。 `filterText` の state はまだ一切セットされていないため、入力値が変わることもありません。
+双方向データバインディングより多少タイプ量は増えますが、React ではこのデータフローを明示的に記述します。上記の例で何かタイプするか、チェックボックスをオンにしようとしても、React が入力を無視するのがわかるでしょう。これは意図的なものです。`<input value={filterText} />` と記述することで、`input` の props である `value` を、`FilterableProductTable` から渡された state である `filterText` と常に等しくせよ、という意味になります。`filterText` の state はまだ一切セットされていないため、入力値が変わることもありません。
 
 ユーザがフォームの内容を変更するたびに、state がそれらの変更を反映して更新されるようにしたいと思います。state は `FilterableProductTable` によって所有されているため、このコンポーネントのみが `setFilterText` と `setInStockOnly` を呼び出すことができます。`SearchBar` が `FilterableProductTable` の state を更新できるようにするには、これらの関数を `SearchBar` に渡す必要があります。
 

@@ -116,7 +116,7 @@ export default function TodoList() {
 JSX 内部で波括弧を使う方法は 2 つだけです：
 
 1. **テキストとして**、JSX タグの中で直接使う：`<h1>{name}'s To Do List</h1>` は動作しますが `<{tag}>Gregorio Y. Zara's To Do List</{tag}>` は動作しない。
-2. **属性として**、`=` 記号の直後に使う：`src={avatar}` は `avatar` という変数を読み出すが、 `src="{avatar}"` と書くと `"{avatar}"` という文字列そのものを渡す。
+2. **属性として**、`=` 記号の直後に使う：`src={avatar}` は `avatar` という変数を読み出すが、`src="{avatar}"` と書くと `"{avatar}"` という文字列そのものを渡す。
 
 ## 「ダブル波括弧」で JSX 内に CSS やその他のオブジェクトを含める {/*using-double-curlies-css-and-other-objects-in-jsx*/}
 
