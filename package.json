@@ -19,7 +19,8 @@
     "tsc": "tsc --noEmit",
     "start": "next start",
     "postinstall": "patch-package && (is-ci || husky install .husky)",
-    "check-all": "npm-run-all prettier lint:fix tsc"
+    "check-all": "npm-run-all prettier lint:fix tsc",
+    "textlint": "cd textlint && yarn --frozen-lockfile && yarn textlint --"
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "1.15.5",
@@ -107,6 +108,6 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,css}": "yarn prettier",
-    "src/**/*.md": "yarn fix-headings"
+    "src/**/*.md": ["yarn fix-headings", "yarn textlint --"]
   }
 }
