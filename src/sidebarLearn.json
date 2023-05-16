@@ -134,7 +134,7 @@
           "path": "/learn/choosing-the-state-structure"
         },
         {
-          "title": "Sharing State Between Components",
+          "title": "コンポーネント間で state を共有する",
           "path": "/learn/sharing-state-between-components"
         },
         {
