@@ -428,7 +428,7 @@ export default function PackingList() {
 
 `importance` が `0` の場合に `0` が結果として表示されてしまわないよう、`importance && ...` ではなく `importance > 0 && ...` と書く必要があることに注意してください。
 
-この答えでは、名前と重要度ラベルの間にスペースを挿入するために、2 つの条件が使用されています。代わりに、先頭にスペースを入れたフラグメントを使用することができます: `importance > 0 && <> <i>...</i></>` あるいは、`<i>` の直接内側にスペースを追加することもできます: `importance > 0 && <i> ...</i>`。
+この答えでは、名前と重要度ラベルの間にスペースを挿入するために、2 つの条件が使用されています。代わりに、先頭にスペースを入れたフラグメントを使用することができます：`importance > 0 && <> <i>...</i></>` あるいは、`<i>` の直接内側にスペースを追加することもできます：`importance > 0 && <i> ...</i>`。
 
 </Solution>
 
@@ -638,7 +638,7 @@ React チームでは、[Rachel Nabors](https://twitter.com/rachelnabors/) が�
 
 サイトデザインに感謝します：[Dan Lebowitz](https://twitter.com/lebo)。サンドボックスデザインに感謝します：[Razvan Gradinar](https://dribbble.com/GradinarRazvan)。
 
-開発面では、プロトタイプ開発に感謝します：[Jared Palmer](https://twitter.com/jaredpalmer)。UI 開発のサポートに感謝します：[Dane Grant](https://twitter.com/danecando)、[Dustin Goodman](https://twitter.com/dustinsgoodman) ([ThisDotLabs](https://www.thisdot.co/))。サンドボックス統合に感謝します：[Ives van Hoorne](https://twitter.com/CompuIves)、[Alex Moldovan](https://twitter.com/alexnmoldovan)、[Jasper De Moor](https://twitter.com/JasperDeMoor)、[Danilo Woznica](https://twitter.com/danilowoz) ([CodeSandbox](https://codesandbox.io/))。開発やデザインの手直し、色づけや細かい部分の調整に感謝します：[Rick Hanlon](https://twitter.com/rickhanlonii)。サイトに新機能を追加し、メンテナンスしてくれる [Harish Kumar](https://www.strek.in/)と [Luna Ruan](https://twitter.com/lunaruan) に感謝します。
+開発面では、プロトタイプ開発に感謝します：[Jared Palmer](https://twitter.com/jaredpalmer)。UI 開発のサポートに感謝します：[Dane Grant](https://twitter.com/danecando)、[Dustin Goodman](https://twitter.com/dustinsgoodman) ([ThisDotLabs](https://www.thisdot.co/))。サンドボックス統合に感謝します：[Ives van Hoorne](https://twitter.com/CompuIves)、[Alex Moldovan](https://twitter.com/alexnmoldovan)、[Jasper De Moor](https://twitter.com/JasperDeMoor)、[Danilo Woznica](https://twitter.com/danilowoz) ([CodeSandbox](https://codesandbox.io/))。開発やデザインの手直し、色づけや細かい部分の調整に感謝します：[Rick Hanlon](https://twitter.com/rickhanlonii)。サイトに新機能を追加し、メンテナンスしてくれる [Harish Kumar](https://www.strek.in/) と [Luna Ruan](https://twitter.com/lunaruan) に感謝します。
 
 アルファテスト及びベータテストプログラムに参加してくださった皆さんに心から感謝します。皆さんの情熱と貴重なフィードバックによって、このドキュメントを形作ることができました。そして React Conf 2021 で自身の経験をもとに React ドキュメントについて語っていただいた、ベータテスタの [Debbie O'Brien](https://twitter.com/debs_obrien) に特別な感謝を送ります。
 
