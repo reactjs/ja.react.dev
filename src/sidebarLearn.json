@@ -126,7 +126,7 @@
       "tags": ["intermediate"],
       "routes": [
         {
-          "title": "Reacting to Input with State",
+          "title": "state を使って入力に反応する",
           "path": "/learn/reacting-to-input-with-state"
         },
         {
