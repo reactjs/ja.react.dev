@@ -146,7 +146,7 @@
           "path": "/learn/extracting-state-logic-into-a-reducer"
         },
         {
-          "title": "Passing Data Deeply with Context",
+          "title": "コンテクストで深くデータを受け渡す",
           "path": "/learn/passing-data-deeply-with-context"
         },
         {
