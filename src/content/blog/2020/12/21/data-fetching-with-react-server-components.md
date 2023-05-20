@@ -14,7 +14,7 @@ December 21, 2020 by [Dan Abramov](https://twitter.com/dan_abramov), [Lauren Tan
 
 ---
 
-サーバコンポーネントの紹介のためのトークとデモを用意しました。休暇期間中にチェックするもよし、来年仕事に戻ってきた時に見てみるのでもよいでしょう。
+サーバコンポーネントの紹介のためのトークとデモを用意しました。休暇期間中にチェックするもよし、来年仕事に戻ってきたときに見てみるのでもよいでしょう。
 
 <YouTubeIframe src="https://www.youtube.com/embed/TQQPAU21ZUw" />
 

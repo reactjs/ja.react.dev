@@ -258,7 +258,7 @@ setLastName(ln => ln.reverse());
 setFriendCount(fc => fc * 2);
 ```
 
-もっと長いコードが好きな場合、別の一般的な慣習としては、`setEnabled(enabled => !enabled)` のように完全な state 変数名を繰り返すか、`setEnabled(prevEnabled => !prevEnabled)` のようなプレフィクスを使用することがあります。
+もっと長いコードが好きな場合、別の一般的な慣習としては、`setEnabled(enabled => !enabled)` のように完全な state 変数名を繰り返すか、`setEnabled(prevEnabled => !prevEnabled)` のようなプレフィックスを使用することがあります。
 
 <Recap>
 

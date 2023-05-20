@@ -95,7 +95,7 @@ React 18 では、エキスパートや開発者、ライブラリメンテナ�
 
 ## React ドキュメントキーノート {/*react-docs-keynote*/}
 
-React の学習や React による設計についての一連の発表は [Rachel Nabors](https://twitter.com/rachelnabors) からスタートしました。その中では React の 新ドキュメントに対する我々の注力についてのキーノートがありました（[react.dev としてリリース済み](/blog/2023/03/16/introducing-react-dev)）：
+React の学習や React による設計についての一連の発表は [Rachel Nabors](https://twitter.com/rachelnabors) からスタートしました。その中では React の新ドキュメントに対する我々の注力についてのキーノートがありました（[react.dev としてリリース済み](/blog/2023/03/16/introducing-react-dev)）：
 
 <YouTubeIframe src="https://www.youtube.com/embed/mneDaMYOKP8" />
 
