@@ -165,7 +165,7 @@
           "path": "/learn/referencing-values-with-refs"
         },
         {
-          "title": "Manipulating the DOM with Refs",
+          "title": "ref で DOM を操作する",
           "path": "/learn/manipulating-the-dom-with-refs"
         },
         {
