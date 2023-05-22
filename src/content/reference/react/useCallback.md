@@ -51,7 +51,7 @@ export default function ProductPage({ productId, referrer, theme }) {
 #### 注意事項 {/*caveats*/}
 
 * `useCallback` はフックですので、**コンポーネントのトップレベル**または独自のフックでのみ呼び出すことができます。ループや条件の中で呼び出すことはできません。それが必要な場合は、新しいコンポーネントを抽出し、その中にその状態を移動させてください。
-* React は、**特定の理由がない限り、キャッシュされた関数を破棄しません。** たとえば、開発中には、コンポーネントのファイルを編集すると React はキャッシュを破棄します。開発環境と本番環境の両方で、初回マウント時にコンポーネントが一時停止すると、React はキャッシュを破棄します。将来的に、React はキャッシュを破棄することを活用したさらなる機能を追加するかもしれません。例えば、将来的に React が仮想化リストに対する組み込みサポートを追加する場合、仮想化されたテーブルのビューポートからスクロールアウトした項目のキャッシュを破棄することが理にかなっています。これは、`useCallback` をパフォーマンスの最適化として利用する場合に期待に沿った動作となります。そうでない場合は、[state 変数](/reference/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) や [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents) の方が適切かもしれません。
+* React は、**特定の理由がない限り、キャッシュされた関数を破棄しません**。たとえば、開発中には、コンポーネントのファイルを編集すると React はキャッシュを破棄します。開発環境と本番環境の両方で、初回マウント時にコンポーネントが一時停止すると、React はキャッシュを破棄します。将来的に、React はキャッシュを破棄することを活用したさらなる機能を追加するかもしれません。例えば、将来的に React が仮想化リストに対する組み込みサポートを追加する場合、仮想化されたテーブルのビューポートからスクロールアウトした項目のキャッシュを破棄することが理にかなっています。これは、`useCallback` をパフォーマンスの最適化として利用する場合に期待に沿った動作となります。そうでない場合は、[state 変数](/reference/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) や [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents) の方が適切かもしれません。
 
 ---
 
@@ -103,7 +103,7 @@ function ProductPage({ productId, referrer, theme }) {
 
 `theme` プロパティを切り替えるとアプリが一瞬フリーズすることに気付きましたが、JSX から `<ShippingForm />` を取り除くと、高速に感じられます。これは `ShippingForm` コンポーネントを最適化する価値があることを示しています。
 
-**デフォルトでは、コンポーネントが再レンダーされると、React はその子要素全てを再帰的に再レンダーします。** これが、`ProductPage` が異なる `theme` で再レンダーされると、`ShippingForm` コンポーネント*も*再レンダーされる理由です。再レンダーに多くの計算を必要としないコンポーネントにとっては問題ありません。しかし、再レンダーが遅いことを確認した場合、 [`memo`](/reference/react/memo) でラップすることで、props が前回のレンダー時と同じである場合に `ShippingForm` に再レンダーをスキップするように指示することができます。
+**デフォルトでは、コンポーネントが再レンダーされると、React はその子要素全てを再帰的に再レンダーします**。これが、`ProductPage` が異なる `theme` で再レンダーされると、`ShippingForm` コンポーネント*も*再レンダーされる理由です。再レンダーに多くの計算を必要としないコンポーネントにとっては問題ありません。しかし、再レンダーが遅いことを確認した場合、 [`memo`](/reference/react/memo) でラップすることで、props が前回のレンダー時と同じである場合に `ShippingForm` に再レンダーをスキップするように指示することができます。
 
 ```js {3,5}
 import { memo } from 'react';
@@ -113,7 +113,7 @@ const ShippingForm = memo(function ShippingForm({ onSubmit }) {
 });
 ```
 
-**この変更により、すべての props が前回のレンダー時と*同じ*場合、`ShippingForm` は再レンダーをスキップします。** これが関数のキャッシュが重要になる瞬間です！ `handleSubmit` を `useCallback` なしで定義したとしましょう。
+**この変更により、すべての props が前回のレンダー時と*同じ*場合、`ShippingForm` は再レンダーをスキップします**。これが関数のキャッシュが重要になる瞬間です！ `handleSubmit` を `useCallback` なしで定義したとしましょう。
 
 ```js {2,3,8,12-13}
 function ProductPage({ productId, referrer, theme }) {
@@ -134,7 +134,7 @@ function ProductPage({ productId, referrer, theme }) {
 }
 ```
 
-**JavaScriptでは、`function () {}` または `() => {}` は常に*異なる*関数を作成します。** これは `{}` のオブジェクトリテラルが常に新しいオブジェクトを作成するのと似ています。通常、これは問題になりませんが、それは `ShippingForm` の props が決して同じにならないということを意味し、あなたの [`memo`](/reference/react/memo) による最適化は機能しないでしょう。これが `useCallback` が便利な場面です。
+**JavaScriptでは、`function () {}` または `() => {}` は常に*異なる*関数を作成します**。これは `{}` のオブジェクトリテラルが常に新しいオブジェクトを作成するのと似ています。通常、これは問題になりませんが、それは `ShippingForm` の props が決して同じにならないということを意味し、あなたの [`memo`](/reference/react/memo) による最適化は機能しないでしょう。これが `useCallback` が便利な場面です。
 
 ```js {2,3,8,12-13}
 function ProductPage({ productId, referrer, theme }) {
@@ -159,7 +159,7 @@ function ProductPage({ productId, referrer, theme }) {
 
 <Note>
 
-**`useCallback` はパフォーマンスの最適化としてのみ頼るべきです。** もしコードがそれなしでは動作しない場合は、基本的な問題を見つけてまずそれを修正してください。その後、`useCallback` を再度追加することができます。
+**`useCallback` はパフォーマンスの最適化としてのみ頼るべきです**。もしコードがそれなしでは動作しない場合は、基本的な問題を見つけてまずそれを修正してください。その後、`useCallback` を再度追加することができます。
 
 </Note>
 
@@ -196,9 +196,9 @@ function ProductPage({ productId, referrer }) {
 
 その違いはキャッシュできる*内容*です。
 
-* **[`useMemo`](/reference/react/useMemo) はあなたの関数の呼び出し*結果*をキャッシュします。** この例では、`product` が変更されない限り、`computeRequirements(product)` の呼び出し結果をキャッシュします。これにより、`ShippingForm` を不必要に再レンダーすることなく、`requirements` オブジェクトを下位に渡すことができます。必要に応じて、React はレンダー中にあなたが渡した関数を呼び出して結果を計算します。
+* **[`useMemo`](/reference/react/useMemo) はあなたの関数の呼び出し*結果*をキャッシュします**。この例では、`product` が変更されない限り、`computeRequirements(product)` の呼び出し結果をキャッシュします。これにより、`ShippingForm` を不必要に再レンダーすることなく、`requirements` オブジェクトを下位に渡すことができます。必要に応じて、React はレンダー中にあなたが渡した関数を呼び出して結果を計算します。
 
-* **`useCallback` は*関数自体*をキャッシュします。** `useMemo`とは異なり、あなたが提供する関数を呼び出しません。代わりに、あなたが提供した関数をキャッシュして、`productId` または `referrer` が変更されない限り、`handleSubmit` *自体*が変更されないようにします。これにより、`ShippingForm` を不必要に再レンダーすることなく、`handleSubmit` 関数を下位に渡すことができます。ユーザーがフォームを送信するまであなたのコードは実行されません。
+* **`useCallback` は*関数自体*をキャッシュします**。`useMemo`とは異なり、あなたが提供する関数を呼び出しません。代わりに、あなたが提供した関数をキャッシュして、`productId` または `referrer` が変更されない限り、`handleSubmit` *自体*が変更されないようにします。これにより、`ShippingForm` を不必要に再レンダーすることなく、`handleSubmit` 関数を下位に渡すことができます。ユーザーがフォームを送信するまであなたのコードは実行されません。
 
 すでに [`useMemo`](/reference/react/useMemo) に詳しい場合、`useCallback` を次のように考えると役立つかもしれません。
 
@@ -228,7 +228,7 @@ function useCallback(fn, dependencies) {
 
 `useCallback` は関数の*作成*を防ぐわけではないことに注意してください。あなたは常に関数を作成しています（それは問題ありません！）。しかし、何も変わらない場合、Reactはそれを無視し、キャッシュされた関数を返します。
 
-**実際には、以下のいくつかの原則に従うことで、多くのメモ化を不要にすることができます。**
+**実際には、以下のいくつかの原則に従うことで、多くのメモ化を不要にすることができます**。
 
 1. コンポーネントが他のコンポーネントを視覚的にラップするときは、それが[子として JSX を受け入れるようにします。](/learn/passing-props-to-a-component#passing-jsx-as-children) すると、ラッパーコンポーネントが自身の状態を更新すると、React はその子が再レンダーする必要がないことを認識します。
 1. ローカル状態を優先し、必要以上に [state を引き上げないで](/learn/sharing-state-between-components)ください。フォームや、アイテムがホバーされているかどうかのような一時的な状態をツリーのトップやグローバル状態ライブラリに保持しないでください。
@@ -248,7 +248,7 @@ function useCallback(fn, dependencies) {
 
 カウンターの増加は遅く感じられるでしょう。なぜなら、それは遅延させられた `ShippingForm` の再レンダーを強制するからです。これは、カウンターが変更され、ユーザーの新しい選択を画面上に反映する必要があるため、予想される動作です。
 
-次に、テーマの切り替えを試してみてください。**人為的な遅延にも関わらず、`useCallback` と [`memo`](/reference/react/memo) を組み合わせることで、これは速いです！** `ShippingForm` は、`handleSubmit` 関数が変更されていないため、再レンダーをスキップしました。`handleSubmit` 関数は変更されていません。なぜなら、`productId` と `referrer`（あなたの `useCallback` の依存関係）の両方が最後のレンダー以降に変更されていないからです。
+次に、テーマの切り替えを試してみてください。**人為的な遅延にも関わらず、`useCallback` と [`memo`](/reference/react/memo) を組み合わせることで、これは速いです**！`ShippingForm` は、`handleSubmit` 関数が変更されていないため、再レンダーをスキップしました。`handleSubmit` 関数は変更されていません。なぜなら、`productId` と `referrer`（あなたの `useCallback` の依存関係）の両方が最後のレンダー以降に変更されていないからです。
 
 <Sandpack>
 
@@ -751,7 +751,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-これにより、`roomId` が同じ場合に再レンダー間で `createOptions` 関数が同じであることが保証されます。**しかし、関数の依存性を必要としないようにすることがさらに良いです。** 関数をエフェクトの*内部*に移動します。
+これにより、`roomId` が同じ場合に再レンダー間で `createOptions` 関数が同じであることが保証されます。**しかし、関数の依存性を必要としないようにすることがさらに良いです**。関数をエフェクトの*内部*に移動します。
 
 ```js {5-10,16}
 function ChatRoom({ roomId }) {
