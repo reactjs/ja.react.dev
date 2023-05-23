@@ -40,13 +40,13 @@ export default function ProductPage({ productId, referrer, theme }) {
 
 * `fn`: キャッシュしたい関数の値。任意の引数を取り、任意の値を返すことができます。React は初回のレンダー時に、関数を返します（呼び出しません！）。次のレンダー時に、前回のレンダー時から `dependencies` が変更されていない場合、React は再び同じ関数を提供します。それ以外の場合は、現在のレンダー時に渡された関数を提供し、後で再利用できる場合に備えて保存します。React は関数を呼び出しません。いつ、どのように呼び出すかをあなたが決定できるように、その関数が返されます。
 
-* `dependencies`: `fn` コード内で参照されるすべてのリアクティブ値のリスト。リアクティブ値には、props、state、およびコンポーネント本体内に直接宣言されたすべての変数と関数が含まれます。リンターが [React 用に設定されている場合](/learn/editor-setup#linting)、すべてのリアクティブ値が正しく依存関係として指定されていることを確認します。依存関係のリストには、一定数の項目が含まれ、`[dep1, dep2, dep3]` のようにインラインで記述される必要があります。React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) 比較アルゴリズムを使用して、各依存関係を前回の値と比較します。
+* `dependencies`: `fn` コード内で参照されるすべてのリアクティブ値のリスト。リアクティブ値には、props、state、およびコンポーネント本体内に直接宣言されたすべての変数と関数が含まれます。リンターが [React 用に設定されている場合](/learn/editor-setup#linting)、すべてのリアクティブ値が正しく依存値として指定されていることを確認します。依存値のリストには、一定数の項目が含まれ、`[dep1, dep2, dep3]` のようにインラインで記述される必要があります。React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) 比較アルゴリズムを使用して、各依存値を前回の値と比較します。
 
 #### 返り値 {/*returns*/}
 
 初回のレンダー時、`useCallback` は渡された `fn` 関数を返します。
 
-その後のレンダー時には、前回のレンダーからすでに保存されている `fn` 関数を返すか（依存関係が変更されていない場合）、このレンダー時に渡された `fn` 関数を返します。
+その後のレンダー時には、前回のレンダーからすでに保存されている `fn` 関数を返すか（依存配列が変更されていない場合）、このレンダー時に渡された `fn` 関数を返します。
 
 #### 注意事項 {/*caveats*/}
 
@@ -79,13 +79,13 @@ function ProductPage({ productId, referrer, theme }) {
 `useCallback` には 2 つの要素を渡す必要があります。
 
 1. 再レンダー間でキャッシュしたい関数定義。
-2. 関数内で使用される、コンポーネント内のすべての値を含む<CodeStep step={2}>依存関係のリスト</CodeStep>。
+2. 関数内で使用される、コンポーネント内のすべての値を含む<CodeStep step={2}>依存値のリスト</CodeStep>。
 
 初回のレンダー時に、`useCallback` から取得する<CodeStep step={3}>返される関数</CodeStep>は、あなたが渡した関数になります。
 
-次のレンダーでは、React は前回のレンダー時に渡した<CodeStep step={2}>依存関係</CodeStep>と比較します。依存関係が変更されていない場合（[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) で比較）、`useCallback` は前回と同じ関数を返します。それ以外の場合、`useCallback` は*この*レンダーで渡された関数を返します。
+次のレンダーでは、React は依存配列を前回のレンダー時に渡した<CodeStep step={2}>依存配列</CodeStep>と比較します。依存配列が変更されていない場合（[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) で比較）、`useCallback` は前回と同じ関数を返します。それ以外の場合、`useCallback` は*この*レンダーで渡された関数を返します。
 
-言い換えると、`useCallback` は依存関係が変更されるまでの再レンダー間で関数をキャッシュします。
+言い換えると、`useCallback` は依存配列が変更されるまでの再レンダー間で関数をキャッシュします。
 
 **これが有用な場合を例を通じて見ていきましょう。**
 
@@ -155,7 +155,7 @@ function ProductPage({ productId, referrer, theme }) {
 }
 ```
 
-**`handleSubmit` を `useCallback` でラップすることで、再レンダー間でそれが*同じ*関数であることを保証します**（依存関係が変更されるまで）。それをする特定の理由がない限り、関数を `useCallback` でラップする*必要はありません*。この例では、その理由はそれを [`memo`でラップされた](/reference/react/memo)コンポーネントに渡すことで、再レンダーをスキップできるということです。このページの後半で説明されているように、`useCallback` が必要な他の理由もあります。
+**`handleSubmit` を `useCallback` でラップすることで、再レンダー間でそれが*同じ*関数であることを保証します**（依存配列が変更されるまで）。それをする特定の理由がない限り、関数を `useCallback` でラップする*必要はありません*。この例では、その理由はそれを [`memo`でラップされた](/reference/react/memo)コンポーネントに渡すことで、再レンダーをスキップできるということです。このページの後半で説明されているように、`useCallback` が必要な他の理由もあります。
 
 <Note>
 
@@ -221,8 +221,8 @@ function useCallback(fn, dependencies) {
 
 `useCallback` で関数をキャッシュすることは、いくつかのケースで有用です。
 
-- それを [`memo`](/reference/react/memo) でラップされたコンポーネントにプロパティとして渡すケース。値が変わらなければ、再レンダーをスキップしたいと考えます。メモ化により、依存関係が変更された場合にのみ、コンポーネントが再レンダーされます。
-- あなたが渡している関数が、後で何らかのフックの依存関係として使用されるケース。たとえば、他の `useCallback` でラップされた関数がそれに依存している、または [`useEffect`](/reference/react/useEffect) からこの関数に依存しているケースです。
+- それを [`memo`](/reference/react/memo) でラップされたコンポーネントにプロパティとして渡すケース。値が変わらなければ、再レンダーをスキップしたいと考えます。メモ化により、依存配列が変更された場合にのみ、コンポーネントが再レンダーされます。
+- あなたが渡している関数が、後で何らかのフックの依存値として使用されるケース。たとえば、他の `useCallback` でラップされた関数がそれに依存している、または [`useEffect`](/reference/react/useEffect) からこの関数に依存しているケースです。
 
 その他のケースで関数を `useCallback` でラップする利点はありません。それを行っても重大な害はないため、一部のチームは個々のケースについて考えず、可能な限り多くをメモ化することを選択します。欠点は、コードが読みにくくなることです。また、すべてのメモ化が効果的なわけではありません。コンポーネント全体のメモ化を破壊するには「常に新しい」単一の値だけで十分です。
 
@@ -234,7 +234,7 @@ function useCallback(fn, dependencies) {
 1. ローカル状態を優先し、必要以上に [state を引き上げないで](/learn/sharing-state-between-components)ください。フォームや、アイテムがホバーされているかどうかのような一時的な状態をツリーのトップやグローバル状態ライブラリに保持しないでください。
 1. [レンダーロジックを純粋に](/learn/keeping-components-pure)保ちます。コンポーネントの再レンダーが問題を引き起こしたり、何らかの目に見える視覚的な結果を生じたりする場合、それはあなたのコンポーネントのバグです！メモ化を追加するのではなく、バグを修正します。
 1. [状態を更新する不要な副作用を避けてください。](/learn/you-might-not-need-an-effect) React アプリケーションのパフォーマンス問題の大部分は、コンポーネントのレンダーを何度も繰り返させる副作用を起源とする、更新の連鎖によって引き起こされます。
-1. [不要な依存関係を副作用から削除してみてください。](/learn/removing-effect-dependencies) 例えば、メモ化の代わりに、あるオブジェクトや関数を副作用内部やコンポーネント外部に移動させる方が簡単です。
+1. [不要な依存値を副作用から削除してみてください。](/learn/removing-effect-dependencies) 例えば、メモ化の代わりに、あるオブジェクトや関数を副作用内部やコンポーネント外部に移動させる方が簡単です。
 
 特定のインタラクションの遅延をまだ感じる場合は、[React Developer Tools のプロファイラを使用して](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html)どのコンポーネントが最もメモ化から利益を得るかを確認し、必要な場所にメモ化を追加してください。これらの原則はコンポーネントのデバッグと理解を容易にするため、どの場合でもこれらに従うことは良いです。長期的には、[自動的にメモ化を行う](https://www.youtube.com/watch?v=lGEMwh32soc)ことを研究していて、これによってこの問題を一度にすべて解決することを目指しています。
 
@@ -248,7 +248,7 @@ function useCallback(fn, dependencies) {
 
 カウンターの増加は遅く感じられるでしょう。なぜなら、それは遅延させられた `ShippingForm` の再レンダーを強制するからです。これは、カウンターが変更され、ユーザーの新しい選択を画面上に反映する必要があるため、予想される動作です。
 
-次に、テーマの切り替えを試してみてください。**人為的な遅延にも関わらず、`useCallback` と [`memo`](/reference/react/memo) を組み合わせることで、これは速いです**！`ShippingForm` は、`handleSubmit` 関数が変更されていないため、再レンダーをスキップしました。`handleSubmit` 関数は変更されていません。なぜなら、`productId` と `referrer`（あなたの `useCallback` の依存関係）の両方が最後のレンダー以降に変更されていないからです。
+次に、テーマの切り替えを試してみてください。**人為的な遅延にも関わらず、`useCallback` と [`memo`](/reference/react/memo) を組み合わせることで、これは速いです**！`ShippingForm` は、`handleSubmit` 関数が変更されていないため、再レンダーをスキップしました。`handleSubmit` 関数は変更されていません。なぜなら、`productId` と `referrer`（あなたの `useCallback` の依存値）の両方が最後のレンダー以降に変更されていないからです。
 
 <Sandpack>
 
@@ -665,7 +665,7 @@ button[type="button"] {
 
 場合によっては、メモ化されたコールバックから前の状態に基づいて状態を更新する必要があるかもしれません。
 
-この `handleAddTodo` 関数は、次の todos を計算するために `todos` を依存性として指定します。
+この `handleAddTodo` 関数は、次の todos を計算するために `todos` を依存値として指定します。
 
 ```js {6,7}
 function TodoList() {
@@ -678,7 +678,7 @@ function TodoList() {
   // ...
 ```
 
-通常、メモ化された関数は可能な限り依存性を少なくしたいと思うでしょう。次の状態を計算するためだけにいくつかの状態を読み込む場合、代わりに[更新関数](/reference/react/useState#updating-state-based-on-the-previous-state)を渡すことでその依存関係を削除できます。
+通常、メモ化された関数からは可能な限り依存値を少なくしたいと思うでしょう。次の状態を計算するためだけにいくつかの状態を読み込む場合、代わりに[更新関数](/reference/react/useState#updating-state-based-on-the-previous-state)を渡すことでその依存値を削除できます。
 
 ```js {6,7}
 function TodoList() {
@@ -691,7 +691,7 @@ function TodoList() {
   // ...
 ```
 
-ここでは、`todos`を依存関係として内部で読み込む代わりに、*どのように*状態を更新するかについての指示（`todos => [...todos, newTodo]`）を React に渡します。[更新関数についての詳細はこちら。](/reference/react/useState#updating-state-based-on-the-previous-state)
+ここでは、`todos` を依存値として内部で読み込む代わりに、*どのように*状態を更新するかについての指示（`todos => [...todos, newTodo]`）を React に渡します。[更新関数についての詳細はこちら。](/reference/react/useState#updating-state-based-on-the-previous-state)
 
 ---
 
@@ -717,7 +717,7 @@ function ChatRoom({ roomId }) {
     // ...
 ```
 
-これには問題があります。[全てのリアクティブな値は副作用の依存関係として宣言されなければなりません。](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) しかし、`createOptions` を依存関係として宣言すると、あなたの副作用がチャットルームに常に再接続することになります。
+これには問題があります。[全てのリアクティブな値は副作用の依存値として宣言されなければなりません。](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) しかし、`createOptions` を依存関係として宣言すると、あなたの副作用がチャットルームに常に再接続することになります。
 
 ```js {6}
   useEffect(() => {
@@ -751,7 +751,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-これにより、`roomId` が同じ場合に再レンダー間で `createOptions` 関数が同じであることが保証されます。**しかし、関数の依存性を必要としないようにすることがさらに良いです**。関数をエフェクトの*内部*に移動します。
+これにより、`roomId` が同じ場合に再レンダー間で `createOptions` 関数が同じであることが保証されます。**しかし、関数の依存値を必要としないようにすることがさらに良いです**。関数をエフェクトの*内部*に移動します。
 
 ```js {5-10,16}
 function ChatRoom({ roomId }) {
@@ -773,7 +773,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-これであなたのコードはよりシンプルになり、`useCallback` が不要になりました。[副作用の依存関係の削除についてさらに学びましょう。](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+これであなたのコードはよりシンプルになり、`useCallback` が不要になりました。[副作用の依存値の削除についてさらに学びましょう。](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 
 ---
 
@@ -808,9 +808,9 @@ function useRouter() {
 
 ### コンポーネントがレンダーするたびに `useCallback` が異なる関数を返す {/*every-time-my-component-renders-usecallback-returns-a-different-function*/}
 
-第 2 引数として依存関係の配列を指定したかを確認してください！
+第 2 引数として依存配列を指定したかを確認してください！
 
-依存関係の配列を忘れると、 `useCallback` は毎回新しい関数を返します。
+依存配列を忘れると、 `useCallback` は毎回新しい関数を返します。
 
 ```js {7}
 function ProductPage({ productId, referrer }) {
@@ -823,7 +823,7 @@ function ProductPage({ productId, referrer }) {
   // ...
 ```
 
-以下は、第 2 引数として依存関係の配列を渡す修正版です。
+以下は、第 2 引数として依存配列を渡す修正版です。
 
 ```js {7}
 function ProductPage({ productId, referrer }) {
@@ -836,7 +836,7 @@ function ProductPage({ productId, referrer }) {
   // ...
 ```
 
-これが役に立たない場合、問題は、少なくとも 1 つの依存関係が前回のレンダーと異なることです。依存関係を手動でコンソールにログ出力することで、この問題をデバッグできます。
+これが役に立たない場合、問題は、少なくとも 1 つの依存値が前回のレンダーと異なることです。依存値を手動でコンソールにログ出力することで、この問題をデバッグできます。
 
 ```js {5}
   const handleSubmit = useCallback((orderDetails) => {
@@ -846,15 +846,15 @@ function ProductPage({ productId, referrer }) {
   console.log([productId, referrer]);
 ```
 
-その後、コンソール内の異なる再レンダーからの配列を右クリックし、それぞれに対して「グローバル変数として保存」を選択できます。最初のものが `temp1` として、2 つ目が `temp2` として保存されたと仮定すると、ブラウザのコンソールを使用して、両方の配列内の各依存関係が同一であるかどうかを確認できます。
+その後、コンソール内の異なる再レンダーからの配列を右クリックし、それぞれに対して「グローバル変数として保存」を選択できます。最初のものが `temp1` として、2 つ目が `temp2` として保存されたと仮定すると、ブラウザのコンソールを使用して、両方の配列内の各依存値が同一であるかどうかを確認できます。
 
 ```js
-Object.is(temp1[0], temp2[0]); // 配列間で最初の依存関係は同じですか？
-Object.is(temp1[1], temp2[1]); // 2 番目の依存関係は同じですか？
-Object.is(temp1[2], temp2[2]); // 依存関係があるすべてのものについて続けます...
+Object.is(temp1[0], temp2[0]); // 配列間で最初の依存値は同じですか？
+Object.is(temp1[1], temp2[1]); // 2 番目の依存値は同じですか？
+Object.is(temp1[2], temp2[2]); // 各依存値があるすべてのものについて続けます...
 ```
 
-メモ化を壊している依存関係を見つけたら、それを取り除く方法を見つけるか、または[それもメモ化します。](/reference/react/useMemo#memoizing-a-dependency-of-another-hook)
+メモ化を壊している依存値を見つけたら、それを取り除く方法を見つけるか、または[それもメモ化します。](/reference/react/useMemo#memoizing-a-dependency-of-another-hook)
 
 ---
 
