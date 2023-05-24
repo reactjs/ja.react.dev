@@ -269,7 +269,7 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-例えば、以下の行は過去のレンダーからの state を書き換えていまっています。
+例えば、以下の行は過去のレンダーからの state を書き換えてしまっています。
 
 ```js
 person.firstName = e.target.value;
