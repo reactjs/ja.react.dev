@@ -111,11 +111,11 @@
           "path": "/learn/queueing-a-series-of-state-updates"
         },
         {
-          "title": "Updating Objects in State",
+          "title": "state 内のオブジェクトの更新",
           "path": "/learn/updating-objects-in-state"
         },
         {
-          "title": "Updating Arrays in State",
+          "title": "state 内の配列の更新",
           "path": "/learn/updating-arrays-in-state"
         }
       ]

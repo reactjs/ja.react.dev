@@ -1,57 +1,57 @@
 ---
-title: Updating Objects in State
+title: state 内のオブジェクトの更新
 ---
 
 <Intro>
 
-State can hold any kind of JavaScript value, including objects. But you shouldn't change objects that you hold in the React state directly. Instead, when you want to update an object, you need to create a new one (or make a copy of an existing one), and then set the state to use that copy.
+state にはどのような JavaScript の値でも保持することができます。これにはオブジェクトも含まれます。しかし、React の state に保持されたオブジェクトを直接書き換えるべきではありません。オブジェクトを更新したい場合、代わりに新しいオブジェクトを作成（または既存のもののコピーを作成）し、それを使って state をセットする必要があります。
 
 </Intro>
 
 <YouWillLearn>
 
-- How to correctly update an object in React state
-- How to update a nested object without mutating it
-- What immutability is, and how not to break it
-- How to make object copying less repetitive with Immer
+- React の state 内のオブジェクトを正しく更新する方法
+- ミューテートせずにネストされたオブジェクトを更新する方法
+- イミュータビリティとは何で、どのようにして遵守するのか
+- Immer を使ってオブジェクトコピーのためのコードの冗長さを緩和する方法
 
 </YouWillLearn>
 
-## What's a mutation? {/*whats-a-mutation*/}
+## ミューテーションとは？ {/*whats-a-mutation*/}
 
-You can store any kind of JavaScript value in state.
+state には、どのような JavaScript の値でも格納することができます。
 
 ```js
 const [x, setX] = useState(0);
 ```
 
-So far you've been working with numbers, strings, and booleans. These kinds of JavaScript values are "immutable", meaning unchangeable or "read-only". You can trigger a re-render to _replace_ a value:
+これまでに扱ってきたのは、数値、文字列、および真偽値です。これらの種類の JavaScript 値は "イミュータブル"（不変, immutable）、つまり値が変わることがなく「読み取り専用」なものです。再レンダーをトリガするには値を*置き換え*ます。
 
 ```js
 setX(5);
 ```
 
-The `x` state changed from `0` to `5`, but the _number `0` itself_ did not change. It's not possible to make any changes to the built-in primitive values like numbers, strings, and booleans in JavaScript.
+`x` という state の値は `0` から `5` に置き換わりましたが、*`0` という数字そのもの*が変化したわけではありません。JavaScript の数値、文字列、真偽値のような組み込みプリミティブの値そのものを変化させることは不可能です。
 
-Now consider an object in state:
+さて、state にオブジェクトが入っている場合を考えてみましょう。
 
 ```js
 const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
-Technically, it is possible to change the contents of _the object itself_. **This is called a mutation:**
+技術的には、*オブジェクト自体*の内容を書き換えることが可能です。**これをミューテーション (mutation) と呼びます**。
 
 ```js
 position.x = 5;
 ```
 
-However, although objects in React state are technically mutable, you should treat them **as if** they were immutable--like numbers, booleans, and strings. Instead of mutating them, you should always replace them.
+ただし、React の state 内にあるオブジェクトは技術的にはミュータブル（mutable, 書き換え可能）であるとしても、数値、真偽値、文字列と同様に、イミュータブルなものであるかのように扱うべきです。書き換えをする代わりに、常に値の置き換えをするべきです。
 
-## Treat state as read-only {/*treat-state-as-read-only*/}
+## state を読み取り専用として扱う {/*treat-state-as-read-only*/}
 
-In other words, you should **treat any JavaScript object that you put into state as read-only.**
+言い換えると、**state として格納するすべての JavaScript オブジェクトは読み取り専用**として扱う必要があります。
 
-This example holds an object in state to represent the current pointer position. The red dot is supposed to move when you touch or move the cursor over the preview area. But the dot stays in the initial position:
+以下の例では、現在のポインタ位置を表すオブジェクトを state に保持しています。プレビュー領域でタッチしたりマウスカーソルを動かしたりすると、赤い点が動いて欲しいと思っています。しかし、点が初期位置から動きません：
 
 <Sandpack>
 
@@ -94,7 +94,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-The problem is with this bit of code.
+問題は、このコードにあります。
 
 ```js
 onPointerMove={e => {
@@ -103,9 +103,9 @@ onPointerMove={e => {
 }}
 ```
 
-This code modifies the object assigned to `position` from [the previous render.](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) But without using the state setting function, React has no idea that object has changed. So React does not do anything in response. It's like trying to change the order after you've already eaten the meal. While mutating state can work in some cases, we don't recommend it. You should treat the state value you have access to in a render as read-only.
+このコードは、[直近のレンダー](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time)で `position` に割り当てられたオブジェクトを書き換え、つまりミューテートしています。しかし、state セット関数が使用されないと、React はそのオブジェクトが変更されたことを認識できません。そのため、React は何の反応もしません。これは料理をすでに食べた後で注文を変更しようとするようなものです。state のミューテートは一部のケースでは機能することがありますが、おすすめしません。レンダー内でアクセスできる state 値は、読み取り専用として扱うべきです。
 
-To actually [trigger a re-render](/learn/state-as-a-snapshot#setting-state-triggers-renders) in this case, **create a *new* object and pass it to the state setting function:**
+この場合、実際に[再レンダーをトリガする](/learn/state-as-a-snapshot#setting-state-triggers-renders)ためには、***新しい*オブジェクトを作成し、それを state セット関数に渡す必要があります。**
 
 ```js
 onPointerMove={e => {
@@ -116,12 +116,12 @@ onPointerMove={e => {
 }}
 ```
 
-With `setPosition`, you're telling React:
+`setPosition` を使うことで、React に次のことを伝えます。
 
-* Replace `position` with this new object
-* And render this component again
+* `position` をこの新しいオブジェクトに置き換えよ
+* そしてもう一度このコンポーネントをレンダーせよ
 
-Notice how the red dot now follows your pointer when you touch or hover over the preview area:
+プレビューエリアでタッチするかマウスホバーすることで、赤い点がポインタに追随するようになりましたね。
 
 <Sandpack>
 
@@ -168,16 +168,16 @@ body { margin: 0; padding: 0; height: 250px; }
 
 <DeepDive>
 
-#### Local mutation is fine {/*local-mutation-is-fine*/}
+#### ローカルミューテーションは問題なし {/*local-mutation-is-fine*/}
 
-Code like this is a problem because it modifies an *existing* object in state:
+以下のようなコードは、state の*既存の*オブジェクトを変更しているため、問題があります。
 
 ```js
 position.x = e.clientX;
 position.y = e.clientY;
 ```
 
-But code like this is **absolutely fine** because you're mutating a fresh object you have *just created*:
+しかし、以下のようなコードは**全く問題ありません**。なぜなら、*作成したばかりの*新しいオブジェクトを書き換えているからです。
 
 ```js
 const nextPosition = {};
@@ -186,7 +186,7 @@ nextPosition.y = e.clientY;
 setPosition(nextPosition);
 ```
 
-In fact, it is completely equivalent to writing this:
+実際、これは以下のように書くことと全く同等です。
 
 ```js
 setPosition({
@@ -195,15 +195,15 @@ setPosition({
 });
 ```
 
-Mutation is only a problem when you change *existing* objects that are already in state. Mutating an object you've just created is okay because *no other code references it yet.* Changing it isn't going to accidentally impact something that depends on it. This is called a "local mutation". You can even do local mutation [while rendering.](/learn/keeping-components-pure#local-mutation-your-components-little-secret) Very convenient and completely okay!
+state として存在する*既存の*オブジェクトを変更する場合にのみ、ミューテーションは問題になります。作成したばかりのオブジェクトであれば*他のコードはまだそれを参照していない*ので、書き換えても問題ありません。それを書き換えてもそれに依存する何かに誤って影響を与えることはありません。これを "ローカルミューテーション (local mutation)" と呼びます。[レンダー中にも](/learn/keeping-components-pure#local-mutation-your-components-little-secret)ローカルミューテーションを行うことができます。とても便利で、全く問題ありません！
 
-</DeepDive>  
+</DeepDive>
 
-## Copying objects with the spread syntax {/*copying-objects-with-the-spread-syntax*/}
+## スプレッド構文を使ったオブジェクトのコピー {/*copying-objects-with-the-spread-syntax*/}
 
-In the previous example, the `position` object is always created fresh from the current cursor position. But often, you will want to include *existing* data as a part of the new object you're creating. For example, you may want to update *only one* field in a form, but keep the previous values for all other fields.
+前の例では、`position` オブジェクトは現在のカーソル位置から常に新規作成されます。しかし、多くの場合、新しく作成するオブジェクトに*既存の*データも含めたいことがあります。例えば、フォームの *1 つの*フィールドだけを更新し、他のすべてのフィールドについては以前の値を保持したい、ということがあります。
 
-These input fields don't work because the `onChange` handlers mutate the state:
+以下の入力フィールドは、`onChange` ハンドラが state を書き換えているため、動作しません。
 
 <Sandpack>
 
@@ -269,13 +269,13 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-For example, this line mutates the state from a past render:
+例えば、以下の行は過去のレンダーからの state を書き換えてしまっています。
 
 ```js
 person.firstName = e.target.value;
 ```
 
-The reliable way to get the behavior you're looking for is to create a new object and pass it to `setPerson`. But here, you want to also **copy the existing data into it** because only one of the fields has changed:
+望んだ動作を得る確実な方法は、新しいオブジェクトを作成し、`setPerson` に渡すことです。しかし、ここではフィールドのうちの 1 つだけが変更されているため、**既存のデータもコピーしたい**でしょう。
 
 ```js
 setPerson({
@@ -285,7 +285,7 @@ setPerson({
 });
 ```
 
-You can use the `...` [object spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals) syntax so that you don't need to copy every property separately.
+`...` という[オブジェクトスプレッド](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals)構文を使用することで、すべてのプロパティを個別にコピーする必要がなくなります。
 
 ```js
 setPerson({
@@ -294,9 +294,9 @@ setPerson({
 });
 ```
 
-Now the form works! 
+これでフォームが機能します！
 
-Notice how you didn't declare a separate state variable for each input field. For large forms, keeping all data grouped in an object is very convenient--as long as you update it correctly!
+各入力フィールドに対して state 変数を別々に宣言していないことに注目してください。大きなフォームでは、すべてのデータをオブジェクトにまとめて保持することが非常に便利です。正しく更新さえしていれば！
 
 <Sandpack>
 
@@ -371,13 +371,13 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-Note that the `...` spread syntax is "shallow"--it only copies things one level deep. This makes it fast, but it also means that if you want to update a nested property, you'll have to use it more than once. 
+`...` スプレッド構文は「浅い (shallow)」ことに注意してください。これは 1 レベルの深さでのみコピーを行います。これは高速ですが、ネストされたプロパティを更新したい場合は、スプレッド構文を複数回使用する必要があるということでもあります。
 
 <DeepDive>
 
-#### Using a single event handler for multiple fields {/*using-a-single-event-handler-for-multiple-fields*/}
+#### 複数のフィールドに単一のイベントハンドラを使う {/*using-a-single-event-handler-for-multiple-fields*/}
 
-You can also use the `[` and `]` braces inside your object definition to specify a property with dynamic name. Here is the same example, but with a single event handler instead of three different ones:
+オブジェクト定義内で `[` と `]` 括弧を使って、動的な名前のプロパティを指定することもできます。以下は上記と例ですが、3 つの異なるイベントハンドラの代わりに 1 つのイベントハンドラを使用しています。
 
 <Sandpack>
 
@@ -441,13 +441,13 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-Here, `e.target.name` refers to the `name` property given to the `<input>` DOM element.
+ここでは、`e.target.name` は、`<input>` DOM 要素に与えられた `name` プロパティを指しています。
 
 </DeepDive>
 
-## Updating a nested object {/*updating-a-nested-object*/}
+## ネストされたオブジェクトの更新 {/*updating-a-nested-object*/}
 
-Consider a nested object structure like this:
+以下のようなネストされたオブジェクト構造を考えてみましょう。
 
 ```js
 const [person, setPerson] = useState({
@@ -460,13 +460,13 @@ const [person, setPerson] = useState({
 });
 ```
 
-If you wanted to update `person.artwork.city`, it's clear how to do it with mutation:
+`person.artwork.city` を更新したい場合、ミューテーションで変更する方法は明らかです。
 
 ```js
 person.artwork.city = 'New Delhi';
 ```
 
-But in React, you treat state as immutable! In order to change `city`, you would first need to produce the new `artwork` object (pre-populated with data from the previous one), and then produce the new `person` object which points at the new `artwork`:
+しかし、React では state をイミュータブルなものとして扱います！ `city` を更新するためには、まず（既存のデータも含まれた）新しい `artwork` オブジェクトを生成する必要があります。そして、新しい `artwork` を含む新しい `person` オブジェクトを生成します。
 
 ```js
 const nextArtwork = { ...person.artwork, city: 'New Delhi' };
@@ -474,7 +474,7 @@ const nextPerson = { ...person, artwork: nextArtwork };
 setPerson(nextPerson);
 ```
 
-Or, written as a single function call:
+あるいは、単一の関数呼び出しとして記述する場合は以下のようになります。
 
 ```js
 setPerson({
@@ -486,7 +486,7 @@ setPerson({
 });
 ```
 
-This gets a bit wordy, but it works fine for many cases:
+これは少し冗長ですが、多くのケースでうまく機能します。
 
 <Sandpack>
 
@@ -596,9 +596,9 @@ img { width: 200px; height: 200px; }
 
 <DeepDive>
 
-#### Objects are not really nested {/*objects-are-not-really-nested*/}
+#### オブジェクトは実際にはネストされない {/*objects-are-not-really-nested*/}
 
-An object like this appears "nested" in code:
+このようなオブジェクトはコード内で「ネストされている」ように見えるでしょう：
 
 ```js
 let obj = {
@@ -611,7 +611,7 @@ let obj = {
 };
 ```
 
-However, "nesting" is an inaccurate way to think about how objects behave. When the code executes, there is no such thing as a "nested" object. You are really looking at two different objects:
+しかし、オブジェクトの振る舞いを考える場合、「ネスト」という考え方は正確ではありません。コードが実行されてしまえば「ネストされた」オブジェクトというものは存在しません。実際には、2 つの異なるオブジェクトを見ているだけです:
 
 ```js
 let obj1 = {
@@ -626,7 +626,7 @@ let obj2 = {
 };
 ```
 
-The `obj1` object is not "inside" `obj2`. For example, `obj3` could "point" at `obj1` too:
+`obj1` オブジェクトは `obj2` の「内部」にあるのではありません。例えば、`obj3` も `obj1` を「参照する」ことができます:
 
 ```js
 let obj1 = {
@@ -646,13 +646,13 @@ let obj3 = {
 };
 ```
 
-If you were to mutate `obj3.artwork.city`, it would affect both `obj2.artwork.city` and `obj1.city`. This is because `obj3.artwork`, `obj2.artwork`, and `obj1` are the same object. This is difficult to see when you think of objects as "nested". Instead, they are separate objects "pointing" at each other with properties.
+`obj3.artwork.city` を変更すると、`obj2.artwork.city` と `obj1.city` の両方に影響を与えます。これは、`obj3.artwork`、`obj2.artwork`、および `obj1` が同一のオブジェクトであるためです。これは、オブジェクトが「ネストされている」と考えると理解しにくくなります。そうではなく、これらはあくまで別々のオブジェクトであり、プロパティで互いを「参照している」のです。
 
-</DeepDive>  
+</DeepDive>
 
-### Write concise update logic with Immer {/*write-concise-update-logic-with-immer*/}
+### Immer で簡潔な更新ロジックを書く {/*write-concise-update-logic-with-immer*/}
 
-If your state is deeply nested, you might want to consider [flattening it.](/learn/choosing-the-state-structure#avoid-deeply-nested-state) But, if you don't want to change your state structure, you might prefer a shortcut to nested spreads. [Immer](https://github.com/immerjs/use-immer) is a popular library that lets you write using the convenient but mutating syntax and takes care of producing the copies for you. With Immer, the code you write looks like you are "breaking the rules" and mutating an object:
+もし state が深くネストされている場合、[フラットにすることを検討する](/learn/choosing-the-state-structure#avoid-deeply-nested-state)べきかもしれません。しかし、state の構造を変更したくない場合は、スプレッド構文をネストして使うより短いやり方が欲しくなるかもしれません。人気ライブラリである [Immer](https://github.com/immerjs/use-immer) は、使いやすいミューテート型の構文を使って書きつつ、コピーを自動的に作成してくれるというものです。Immer を使うと、あなたのコードは一見オブジェクトをミューテートして「ルール違反」をしているかのように見えます。
 
 ```js
 updatePerson(draft => {
@@ -660,22 +660,22 @@ updatePerson(draft => {
 });
 ```
 
-But unlike a regular mutation, it doesn't overwrite the past state!
+しかし、通常のミューテーションとは異なり、過去の state は上書きされません！
 
 <DeepDive>
 
-#### How does Immer work? {/*how-does-immer-work*/}
+#### Immer はどのように動作するのか？ {/*how-does-immer-work*/}
 
-The `draft` provided by Immer is a special type of object, called a [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), that "records" what you do with it. This is why you can mutate it freely as much as you like! Under the hood, Immer figures out which parts of the `draft` have been changed, and produces a completely new object that contains your edits.
+Immer から渡される `draft` は、[プロキシ (Proxy)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)と呼ばれる特殊なタイプのオブジェクトで、それに対して何を行ったのかを「記録」します。これが好きなだけミューテートができる理由です！ 内部では、Immer は `draft` のどの部分が変更されたかを把握し、あなたの編集内容を反映した完全に新しいオブジェクトを生成します。
 
 </DeepDive>
 
-To try Immer:
+Immer を試すには:
 
-1. Run `npm install use-immer` to add Immer as a dependency
-2. Then replace `import { useState } from 'react'` with `import { useImmer } from 'use-immer'`
+1. `npm install use-immer` を実行し、Immer を依存ライブラリとして追加する
+2. 次に `import { useState } from 'react'` を `import { useImmer } from 'use-immer'` に置き換える
 
-Here is the above example converted to Immer:
+以下は、Immer に変換された上記の例です:
 
 <Sandpack>
 
@@ -788,33 +788,33 @@ img { width: 200px; height: 200px; }
 
 </Sandpack>
 
-Notice how much more concise the event handlers have become. You can mix and match `useState` and `useImmer` in a single component as much as you like. Immer is a great way to keep the update handlers concise, especially if there's nesting in your state, and copying objects leads to repetitive code.
+イベントハンドラがどれほど簡潔になったか注目してください。`useState` と `useImmer` は 1 つのコンポーネント内で自由に組み合わせることができます。Immer は、state がネストしておりオブジェクトのコピーのためのコードが冗長になりそうな場合でも、更新を行うハンドラを簡潔に保つことができる素晴らしい方法です。
 
 <DeepDive>
 
-#### Why is mutating state not recommended in React? {/*why-is-mutating-state-not-recommended-in-react*/}
+#### React ではなぜ state の変更が非推奨なのか？ {/*why-is-mutating-state-not-recommended-in-react*/}
 
-There are a few reasons:
+いくつかの理由があります。
 
-* **Debugging:** If you use `console.log` and don't mutate state, your past logs won't get clobbered by the more recent state changes. So you can clearly see how state has changed between renders.
-* **Optimizations:** Common React [optimization strategies](/reference/react/memo) rely on skipping work if previous props or state are the same as the next ones. If you never mutate state, it is very fast to check whether there were any changes. If `prevObj === obj`, you can be sure that nothing could have changed inside of it.
-* **New Features:** The new React features we're building rely on state being [treated like a snapshot.](/learn/state-as-a-snapshot) If you're mutating past versions of state, that may prevent you from using the new features.
-* **Requirement Changes:** Some application features, like implementing Undo/Redo, showing a history of changes, or letting the user reset a form to earlier values, are easier to do when nothing is mutated. This is because you can keep past copies of state in memory, and reuse them when appropriate. If you start with a mutative approach, features like this can be difficult to add later on.
-* **Simpler Implementation:** Because React does not rely on mutation, it does not need to do anything special with your objects. It does not need to hijack their properties, always wrap them into Proxies, or do other work at initialization as many "reactive" solutions do. This is also why React lets you put any object into state--no matter how large--without additional performance or correctness pitfalls.
+* **デバッグ**：`console.log` を使用しているなら、state を書き換えないことにより、古いログの内容が後に起きた state 変更によって上書きされる心配をしなくて済むようになります。つまり、レンダー間で state がどのように変化したかはっきり見ることができるようになります。
+* **最適化**：React の一般的な[最適化戦略](/reference/react/memo)は、前の props や state が次のものと同一である場合作業をスキップする、ということに依存しています。state を書き換えないことで、変更があったかどうかを非常に素早くチェックすることができます。`prevObj === obj` であれば、内部で何も変更されていないと自信を持って言えるようになります。
+* **新機能**：開発中の新しい React の機能は、state が[スナップショットのように扱われること](/learn/state-as-a-snapshot)を前提としています。過去の state の書き換えを行うと、新しい機能を使用できなくなる可能性があります。
+* **仕様変更のしやすさ**：一部のアプリケーション機能（取り消し/やり直し、履歴の表示、フォームを以前の値にリセットするなど）は、ミューテーションが起きないのであれば実装が容易です。これはメモリ内に過去の state のコピーを保持しておけば、必要に応じて再利用できるからです。ミューテーションを行うアプローチで始めてしまうと、このような機能を後で追加するのが困難になることがあります。
+* **実装のシンプルさ**：React はミューテーションの仕組みに依存しないため、オブジェクトに特別なことを一切しなくてすみます。他の多くの「リアクティブ」系ソリューションは、オブジェクトのプロパティを乗っ取ったり、プロキシにラップしたり、初期化時にその他もろもろの作業を行ったりしていますが、React ではその必要がありません。これが、React がどんな大きさのオブジェクトでも、パフォーマンスや正確性の問題を心配せずに state に入れることができる理由でもあります。
 
-In practice, you can often "get away" with mutating state in React, but we strongly advise you not to do that so that you can use new React features developed with this approach in mind. Future contributors and perhaps even your future self will thank you!
+実際には、React の state をミューテートしても何となく動くこともしばしばあるのですが、上記のようなアプローチを念頭に開発された新しい React 機能を使用できるようにするために、ミューテートを避けることを強くお勧めします。将来のコントリビュータや、将来のあなた自身が、あなたに感謝することでしょう！
 
 </DeepDive>
 
 <Recap>
 
-* Treat all state in React as immutable.
-* When you store objects in state, mutating them will not trigger renders and will change the state in previous render "snapshots".
-* Instead of mutating an object, create a *new* version of it, and trigger a re-render by setting state to it.
-* You can use the `{...obj, something: 'newValue'}` object spread syntax to create copies of objects.
-* Spread syntax is shallow: it only copies one level deep.
-* To update a nested object, you need to create copies all the way up from the place you're updating.
-* To reduce repetitive copying code, use Immer.
+* React のすべての state はイミュータブルとして扱う。
+* state にオブジェクトを格納する場合、それらをミューテートしてもレンダーがトリガされない。それは過去のレンダー内の state の「スナップショット」を書き換えているだけである。
+* オブジェクトを書き換える代わりに、新たなバージョンのオブジェクトを作成し、その新しいバージョンに state をセットし、再レンダーをトリガする。
+* `{...obj, something: 'newValue'}` というオブジェクトスプレッド構文を使ってオブジェクトのコピーを作成できる。
+* スプレッド構文は「浅い」、つまり 1 レベルのみのコピーを行う。
+* ネストされたオブジェクトを更新するには、更新している場所から一番上までの全オブジェクトのコピーを作成する必要がある。
+* コピーのためのコードが冗長になったら Immer を使う。
 
 </Recap>
 
@@ -822,11 +822,11 @@ In practice, you can often "get away" with mutating state in React, but we stron
 
 <Challenges>
 
-#### Fix incorrect state updates {/*fix-incorrect-state-updates*/}
+#### 間違った state 更新を修正 {/*fix-incorrect-state-updates*/}
 
-This form has a few bugs. Click the button that increases the score a few times. Notice that it does not increase. Then edit the first name, and notice that the score has suddenly "caught up" with your changes. Finally, edit the last name, and notice that the score has disappeared completely.
+このフォームにはいくつかのバグがあります。スコアを増やすボタンを何度かクリックしてみてください。スコアが増えないことに気付くと思います。次に、ファーストネーム欄に入力をしようとすると、思い出したかのようにスコアが最新の値に更新されることを確認してください。最後に、ラストネームを入力してみてください。今度はスコアが完全に消えてしまいます。
 
-Your task is to fix all of these bugs. As you fix them, explain why each of them happens.
+あなたの仕事はこれらのバグをすべて修正することです。修正しながら、それぞれのバグがなぜ発生するのかを説明してください。
 
 <Sandpack>
 
@@ -894,7 +894,7 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 <Solution>
 
-Here is a version with both bugs fixed:
+こちらが両方のバグを修正したバージョンです:
 
 <Sandpack>
 
@@ -964,23 +964,23 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-The problem with `handlePlusClick` was that it mutated the `player` object. As a result, React did not know that there's a reason to re-render, and did not update the score on the screen. This is why, when you edited the first name, the state got updated, triggering a re-render which _also_ updated the score on the screen.
+`handlePlusClick` の問題は、`player` オブジェクトを書き換えてしまっていたことです。その結果、React は再レンダーの必要性を認識せず、画面上のスコアは更新されませんでした。ですがファーストネームを編集すると、対応する state が更新されてレンダーがトリガされるので、その際に画面上の*スコアも併せて*最新の値になった、というわけです。
 
-The problem with `handleLastNameChange` was that it did not copy the existing `...player` fields into the new object. This is why the score got lost after you edited the last name.
+`handleLastNameChange` の問題は、新しいオブジェクトに既存の `...player` フィールドをコピーしなかったことです。これが、ラストネームを編集した後にスコアが消えてしまった理由です。
 
 </Solution>
 
-#### Find and fix the mutation {/*find-and-fix-the-mutation*/}
+#### ミューテーションを探して修正 {/*find-and-fix-the-mutation*/}
 
-There is a draggable box on a static background. You can change the box's color using the select input.
+固定された背景の上にドラッグ可能なボックスが配置されています。ボックスの色は選択ボックスを使って変更できます。
 
-But there is a bug. If you move the box first, and then change its color, the background (which isn't supposed to move!) will "jump" to the box position. But this should not happen: the `Background`'s `position` prop is set to `initialPosition`, which is `{ x: 0, y: 0 }`. Why is the background moving after the color change?
+しかし、バグがあります。まずボックスを移動し、次にその色を変更しようとすると、（動かないはずの）背景が、ボックスの位置まで「ジャンプ」してしまいます。`Background` の `position` プロパティは `initialPosition` に設定されており、それは `{ x: 0, y: 0 }` となっているのですから、こんなことは起きないはずではないでしょうか。どうして色を変更すると背景が動いてしまうのでしょうか。
 
-Find the bug and fix it.
+バグを見つけて修正してください。
 
 <Hint>
 
-If something unexpected changes, there is a mutation. Find the mutation in `App.js` and fix it.
+予期しない変化が起きたということは、ミューテーションがあるということです。`App.js` のミューテーションを見つけて修正してください。
 
 </Hint>
 
@@ -1130,9 +1130,9 @@ select { margin-bottom: 10px; }
 
 <Solution>
 
-The problem was in the mutation inside `handleMove`. It mutated `shape.position`, but that's the same object that `initialPosition` points at. This is why both the shape and the background move. (It's a mutation, so the change doesn't reflect on the screen until an unrelated update--the color change--triggers a re-render.)
+問題は `handleMove` 内のミューテーションにあります。`shape.position` を書き換えていますが、それは `initialPosition` が指しているのと同一のオブジェクトです。これが、ボックスと背景が両方動いてしまった原因です。（ミューテーションをしていたためすぐには画面に反映されず、色の変更という無関係な更新により再レンダーがトリガされて初めて、位置の変化が画面に反映されたのです。）
 
-The fix is to remove the mutation from `handleMove`, and use the spread syntax to copy the shape. Note that `+=` is a mutation, so you need to rewrite it to use a regular `+` operation.
+修正方法は、`handleMove` からミューテーションを除去し、スプレッド構文を使って shape をコピーすることです。`+=` はミューテーションですので、通常の `+` 操作を使って書き直す必要があります。
 
 <Sandpack>
 
@@ -1285,9 +1285,9 @@ select { margin-bottom: 10px; }
 
 </Solution>
 
-#### Update an object with Immer {/*update-an-object-with-immer*/}
+#### Immer を使ってオブジェクトを更新 {/*update-an-object-with-immer*/}
 
-This is the same buggy example as in the previous challenge. This time, fix the mutation by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `shape` state variable to use it.
+これはひとつ前のチャレンジと同じ、バグのある例です。今回は、Immer を使ってミューテーションを修正してください。`useImmer` はすでにインポートされているので、`shape` という state 変数の部分を変更して `useImmer` を使うようにしてください。
 
 <Sandpack>
 
@@ -1454,7 +1454,7 @@ select { margin-bottom: 10px; }
 
 <Solution>
 
-This is the solution rewritten with Immer. Notice how the event handlers are written in a mutating fashion, but the bug does not occur. This is because under the hood, Immer never mutates the existing objects.
+以下が Immer で書き直した解法です。イベントハンドラがミューテーション形式の書き方になっていますが、バグは発生しないことに注目しましょう。これは、Immer は実際には裏側で、既存のオブジェクトが決して書き換わらないようにしているためです。
 
 <Sandpack>
 
