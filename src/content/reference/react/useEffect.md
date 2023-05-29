@@ -1089,7 +1089,11 @@ function ChatRoom({ roomId }) {
 }
 ```
 
+<<<<<<< HEAD
 **依存配列から何かを削除するには、[リンタに対し、それが依存値である*理由がない*ことを「証明」する必要があります](/learn/removing-effect-dependencies#removing-unnecessary-dependencies)**。例えば、`serverUrl` をコンポーネントの外に移動すれば、それがリアクティブな値ではなく、再レンダー時に変更されないものであることを証明できます。
+=======
+**To remove a dependency, you need to ["prove" to the linter that it *doesn't need* to be a dependency.](/learn/removing-effect-dependencies#removing-unnecessary-dependencies)** For example, you can move `serverUrl` out of your component to prove that it's not reactive and won't change on re-renders:
+>>>>>>> 3364c93feb358a7d1ac2e8d8b0468c3e32214062
 
 ```js {1,8}
 const serverUrl = 'https://localhost:1234'; // Not a reactive value anymore
