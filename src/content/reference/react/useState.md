@@ -39,7 +39,7 @@ state 変数は慣習として、[分割代入](https://javascript.info/destruct
 #### 引数 {/*parameters*/}
 
 * `initialState`: state の初期値です。どんな型の値でも渡すことができますが、関数を渡した場合は特別な振る舞いをします。この引数は初回レンダー後は無視されます。
-  * `initialState` に関数を渡した場合、その関数は*初期化関数*として扱われます。初期化関数は、純粋で、引数を取らず、何らかの型の値を返す必要があります。React はコンポーネントを初期化するときに初期化関数を呼び出し、その返り値を初期 state として保存します。[例を見る](#avoiding-recreating-the-initial-state)
+  * `initialState` に関数を渡した場合、その関数は*初期化関数 (initializer function)* として扱われます。初期化関数は、純粋で、引数を取らず、何らかの型の値を返す必要があります。React はコンポーネントを初期化するときに初期化関数を呼び出し、その返り値を初期 state として保存します。[例を見る](#avoiding-recreating-the-initial-state)
 
 #### 返り値 {/*returns*/}
 
@@ -71,7 +71,7 @@ function handleClick() {
 #### 引数 {/*setstate-parameters*/}
 
 * `nextState`: 次に state にセットしたい値です。どんな型の値でも渡すことができますが、関数を渡した場合は特別な振る舞いをします。
-  * `nextState` に関数を渡した場合、その関数は*更新用関数*として扱われます。更新用関数は、純粋で、処理中の state の値を唯一の引数として受け取り、次の state を返す必要があります。React は更新用関数をキューに入れ、コンポーネントを再レンダーします。次のレンダーで、React はキューに入れられたすべての更新用関数を前の state に対して適用し、次の state を導出します。[例を見る](#updating-state-based-on-the-previous-state)
+  * `nextState` に関数を渡した場合、その関数は*更新用関数 (updater function)* として扱われます。更新用関数は、純粋で、処理中の state の値を唯一の引数として受け取り、次の state を返す必要があります。React は更新用関数をキューに入れ、コンポーネントを再レンダーします。次のレンダーで、React はキューに入れられたすべての更新用関数を前の state に対して適用し、次の state を導出します。[例を見る](#updating-state-based-on-the-previous-state)
 
 #### 返り値 {/*setstate-returns*/}
 
@@ -236,7 +236,7 @@ export default function MyCheckbox() {
 
 <Solution />
 
-#### フォーム (2 つの変数) {/*form-two-variables*/}
+#### フォーム（2 つの変数） {/*form-two-variables*/}
 
 同じコンポーネントで、複数の state 変数を宣言することができます。それぞれの state 変数は、完全に独立しています。
 
@@ -320,7 +320,7 @@ React は更新用関数を[キュー](/learn/queueing-a-series-of-state-updates
 
 新しくセットする値が直前の state から導出される場合、常に `setAge(a => a + 1)` という書き方をすべきだという意見があります。悪いことではありませんが、必ずしも必要なわけではありません。
 
-ほとんどのケースでは、どちらのアプローチでも違いはありません。React は、クリックなどのユーザの意図的なアクションに対して、`age` state 変数の更新が次のクリックの前に発生することを保証しています。すなわち、イベントハンドラの開始時に、クリックハンドラが "古い (stale)" `age` を参照してしまうことはありません。
+ほとんどのケースでは、どちらのアプローチでも違いはありません。React は、クリックなどのユーザの意図的なアクションに対して、`age` state 変数の更新が次のクリックの前に発生することを保証しています。すなわち、イベントハンドラの開始時に、クリックハンドラが「古い」`age` を参照してしまうことはありません。
 
 一方で、同じイベント内で複数回の更新を行う場合、更新用関数が役に立ちます。また、state 変数自身を参照することが難しいケースにも有用です（再レンダーの発生を最適化する際に、このケースに遭遇することがあります）。
 
@@ -418,7 +418,7 @@ h1 { display: block; margin: 10px; }
 
 ### オブジェクトや配列の state を更新する {/*updating-objects-and-arrays-in-state*/}
 
-state にオブジェクトや配列をセットすることができます。ただし React では、state は読み取り専用 (read-only) として扱う必要があります。そのため、state を更新する場合は、**既存のオブジェクトを直接*書き換える (mutate)* のではなく、*置き換える (replace)* 必要があります**。例えば、state として `form` オブジェクトを保持している場合、以下のように書き換えを行ってはいけません。
+state にオブジェクトや配列をセットすることができます。ただし React では、state は読み取り専用として扱う必要があります。そのため、state を更新する場合は、**既存のオブジェクトを直接*書き換える (mutate)* のではなく、*置き換える (replace)* 必要があります**。例えば、state として `form` オブジェクトを保持している場合、以下のように書き換えを行ってはいけません。
 
 ```js
 // 🚩 Don't mutate an object in state like this:
@@ -435,7 +435,7 @@ setForm({
 });
 ```
 
-詳しくは、[オブジェクトの state を更新する](/learn/updating-objects-in-state)や、[配列の state を更新する](/learn/updating-arrays-in-state)を参照してください。
+詳しくは、[state 内のオブジェクトの更新](/learn/updating-objects-in-state)や、[state 内の配列の更新](/learn/updating-arrays-in-state)を参照してください。
 
 <Recipes titleText="オブジェクトや配列を state にする例" titleId="examples-objects">
 
