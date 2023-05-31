@@ -197,7 +197,6 @@ function ProductPage({ productId, referrer }) {
 その違いはキャッシュできる*内容*です。
 
 * **[`useMemo`](/reference/react/useMemo) はあなたの関数の呼び出し*結果*をキャッシュします**。この例では、`product` が変更されない限り、`computeRequirements(product)` の呼び出し結果をキャッシュします。これにより、`ShippingForm` を不必要に再レンダーすることなく、`requirements` オブジェクトを下位に渡すことができます。必要に応じて、React はレンダー中にあなたが渡した関数を呼び出して結果を計算します。
-
 * **`useCallback` は*関数自体*をキャッシュします**。`useMemo`とは異なり、あなたが提供する関数を呼び出しません。代わりに、あなたが提供した関数をキャッシュして、`productId` または `referrer` が変更されない限り、`handleSubmit` *自体*が変更されないようにします。これにより、`ShippingForm` を不必要に再レンダーすることなく、`handleSubmit` 関数を下位に渡すことができます。ユーザーがフォームを送信するまであなたのコードは実行されません。
 
 すでに [`useMemo`](/reference/react/useMemo) に詳しい場合、`useCallback` を次のように考えると役立つかもしれません。
