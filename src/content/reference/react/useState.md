@@ -20,7 +20,7 @@ const [state, setState] = useState(initialState);
 
 ### `useState(initialState)` {/*usestate*/}
 
-コンポーネントのトップレベルで `useState` を呼び出して、[state 変数](/learn/state-a-components-memory) を宣言します。
+コンポーネントのトップレベルで `useState` を呼び出して、[state 変数](/learn/state-a-components-memory)を宣言します。
 
 ```js
 import { useState } from 'react';
@@ -71,7 +71,7 @@ function handleClick() {
 #### 引数 {/*setstate-parameters*/}
 
 * `nextState`: 次に state にセットしたい値です。どんな型の値でも渡すことができますが、関数を渡した場合は特別な振る舞いをします。
-  * `nextState` に関数を渡した場合、その関数は*更新関数*として扱われます。更新関数は、純粋で、未確定の state (pending state) を唯一の引数として受け取り、次の state を返す必要があります。React は更新関数をキューに入れ、コンポーネントを再レンダーします。次のレンダーで、React はキューに入れられたすべての更新関数を前の state に対して適用し、次の state を導出します。[例を見る](#updating-state-based-on-the-previous-state)
+  * `nextState` に関数を渡した場合、その関数は*更新用関数*として扱われます。更新用関数は、純粋で、処理中の state の値を唯一の引数として受け取り、次の state を返す必要があります。React は更新用関数をキューに入れ、コンポーネントを再レンダーします。次のレンダーで、React はキューに入れられたすべての更新用関数を前の state に対して適用し、次の state を導出します。[例を見る](#updating-state-based-on-the-previous-state)
 
 #### 返り値 {/*setstate-returns*/}
 
@@ -85,9 +85,9 @@ function handleClick() {
 
 * React は [state の更新をまとめて行います（バッチ処理）](/learn/queueing-a-series-of-state-updates)。**すべてのイベントハンドラを実行し終え**、`set` 関数が呼び出された後に、画面を更新します。これにより、1 つのイベント中に複数回の再レンダーが発生することはありません。まれに、早期に画面を更新する必要がある場合（例えば DOM にアクセスする場合など）がありますが、その場合は [`flushSync`](/reference/react-dom/flushSync) を利用できます。
 
-* レンダリング中に `set` 関数を呼び出すことは、*現在レンダリング中の*コンポーネント内からのみ許されています。その場合、React はその出力を破棄し、新しい state で再レンダーを試みます。このパターンが必要になることはほとんどありませんが、**前回のレンダーからの情報を保存**するために使用できます。[例を見る](#storing-information-from-previous-renders)
+* レンダー中に `set` 関数を呼び出すことは、*現在レンダー中の*コンポーネント内からのみ許されています。その場合、React はその出力を破棄し、新しい state で再レンダーを試みます。このパターンが必要になることはほとんどありませんが、**前回のレンダーからの情報を保存**するために使用できます。[例を見る](#storing-information-from-previous-renders)
 
-* Strict Mode では、[純粋でない関数を見つけやすくするために](#my-initializer-or-updater-function-runs-twice)**更新関数が 2 回呼び出されます**。これは開発時のみの振る舞いであり、本番には影響しません。更新関数が純粋であれば（そうであるべきです）、2 回呼び出されてもコードに影響はありません。2 回の呼び出しのうち 1 回の呼び出し結果は無視されます。
+* Strict Mode では、[純粋でない関数を見つけやすくするために](#my-initializer-or-updater-function-runs-twice)**更新用関数が 2 回呼び出されます**。これは開発時のみの振る舞いであり、本番には影響しません。更新用関数が純粋であれば（そうであるべきです）、2 回呼び出されてもコードに影響はありません。2 回の呼び出しのうち 1 回の呼び出し結果は無視されます。
 
 ---
 
@@ -111,7 +111,7 @@ state 変数は慣習として、[分割代入](https://javascript.info/destruct
 `useState` は、以下の 2 つの値を持つ配列を返します。
 
 1. この state 変数の<CodeStep step={1}>現在の値</CodeStep>。最初は、<CodeStep step={3}>初期 state</CodeStep> に設定されます。
-1. インタラクションに応じて、state を他の値に変更するための<CodeStep step={2}>`set` 関数</CodeStep>。
+2. インタラクションに応じて、state を他の値に変更するための<CodeStep step={2}>`set` 関数</CodeStep>。
 
 スクリーン上の表示を更新するには、次の state を引数として `set` 関数を呼び出します。
 
@@ -125,7 +125,7 @@ React は次の state を保存したあと、新しい値でコンポーネン�
 
 <Pitfall>
 
-`set` 関数の呼び出しは、[既に実行されているコードの現在の state を変更するわけでは**ありません**](#ive-updated-the-state-but-logging-gives-me-the-old-value)。
+`set` 関数の呼び出しは、[既に実行中のコードの現在の state を変更するわけでは**ありません**](#ive-updated-the-state-but-logging-gives-me-the-old-value)。
 
 ```js {3}
 function handleClick() {
@@ -138,7 +138,7 @@ function handleClick() {
 
 </Pitfall>
 
-<Recipes titleText="Basic useState examples" titleId="examples-basic">
+<Recipes titleText="useState の基本的な使用例" titleId="examples-basic">
 
 #### カウンタ (number) {/*counter-number*/}
 
@@ -290,7 +290,7 @@ function handleClick() {
 
 しかし、1 回クリックしたあと、`age` は `45` ではなく `43` になります！ これは、`set` 関数を呼び出しても、既に実行されているコードの `age` state 変数を[更新するわけではない](/learn/state-as-a-snapshot)ためです。そのため、`setAge(age + 1)` の呼び出しは全て `setAge(43)` になります。
 
-この問題を解消するため、次の state の代わりに、***更新関数*を `setAge` に渡す**ことができます。
+この問題を解消するため、次の state の代わりに、***更新用関数*を `setAge` に渡す**ことができます。
 
 ```js [[1, 2, "a", 0], [2, 2, "a + 1"], [1, 3, "a", 0], [2, 3, "a + 1"], [1, 4, "a", 0], [2, 4, "a + 1"]]
 function handleClick() {
@@ -300,39 +300,39 @@ function handleClick() {
 }
 ```
 
-ここで、`a => a + 1` は更新関数です。更新関数は、<CodeStep step={1}>未確定の state (pending state)</CodeStep> を受け取り、そこから<CodeStep step={2}>次の state</CodeStep> を導出します。
+ここで、`a => a + 1` は更新用関数です。更新用関数は、<CodeStep step={1}>処理中の state の値</CodeStep>を受け取り、そこから<CodeStep step={2}>次の state</CodeStep> を導出します。
 
-React は更新関数を[キュー](/learn/queueing-a-series-of-state-updates)に入れます。そして、次のレンダー中に、同じ順番で更新関数を呼び出します。
+React は更新用関数を[キュー](/learn/queueing-a-series-of-state-updates)に入れます。そして、次のレンダー中に、同じ順番で更新用関数を呼び出します。
 
-1. `a => a + 1` は未確定の state として `42` を受け取り、次の state として `43` を返します。
-1. `a => a + 1` は未確定の state として `43` を受け取り、次の state として `44` を返します。
-1. `a => a + 1` は未確定の state として `44` を受け取り、次の state として `45` を返します。
+1. `a => a + 1` は処理中の state の値として `42` を受け取り、次の state として `43` を返します。
+1. `a => a + 1` は処理中の state の値として `43` を受け取り、次の state として `44` を返します。
+1. `a => a + 1` は処理中の state の値として `44` を受け取り、次の state として `45` を返します。
 
-キューにはこれ以上の更新関数はないので、React は最終的に `45` を現在の state として保存します。
+キューにはこれ以上の更新用関数はないので、React は最終的に `45` を現在の state として保存します。
 
-慣習として、未確定の state の引数名には、state 変数名の頭文字 1 文字を利用することが一般的です（例えば、`age` という state 変数に対して、`a` という引数名）。しかし、`prevAge` など、他の分かりやすい名前を使うこともできます。
+慣習として、処理中の state の引数名には、state 変数名の頭文字 1 文字を利用することが一般的です（例えば、`age` という state 変数に対して、`a` という引数名）。しかし、`prevAge` など、他の分かりやすい名前を使うこともできます。
 
-開発時に[更新関数が 2 回呼び出される](#my-initializer-or-updater-function-runs-twice)ことがあります。これは、更新関数が[純粋](/learn/keeping-components-pure)であることを確認するためです。
+開発時に[更新用関数が 2 回呼び出される](#my-initializer-or-updater-function-runs-twice)ことがあります。これは、更新用関数が[純粋](/learn/keeping-components-pure)であることを確認するためです。
 
 <DeepDive>
 
-#### 常に更新関数を利用すべきか {/*is-using-an-updater-always-preferred*/}
+#### 常に更新用関数を利用すべきか {/*is-using-an-updater-always-preferred*/}
 
 新しくセットする値が直前の state から導出される場合、常に `setAge(a => a + 1)` という書き方をすべきだという意見があります。悪いことではありませんが、必ずしも必要なわけではありません。
 
-ほとんどのケースでは、どちらのアプローチでも違いはありません。React は、クリックなどのユーザの意図的なアクションに対して、`age` state 変数の更新が次のクリックの前に発生することを保証しています。すなわち、イベントハンドラの開始時に、クリックハンドラが"古い (stale)" `age` を参照してしまうことはありません。
+ほとんどのケースでは、どちらのアプローチでも違いはありません。React は、クリックなどのユーザの意図的なアクションに対して、`age` state 変数の更新が次のクリックの前に発生することを保証しています。すなわち、イベントハンドラの開始時に、クリックハンドラが "古い (stale)" `age` を参照してしまうことはありません。
 
-一方で、同じイベント内で複数回の更新を行う場合、更新関数が役に立ちます。また、state 変数自身を参照することが難しいケースにも有用です（再レンダーの発生を最適化する際に、このケースに遭遇することがあります）。
+一方で、同じイベント内で複数回の更新を行う場合、更新用関数が役に立ちます。また、state 変数自身を参照することが難しいケースにも有用です（再レンダーの発生を最適化する際に、このケースに遭遇することがあります）。
 
-わずかな文法の冗長性よりも一貫性を優先するのであれば、state が直前の state から導出される場合には、常に更新関数を書くようにすることは合理的です。もし、state が、他の state 変数の直前の値から導出される場合は、それらを 1 つのオブジェクトにまとめて [reducer を利用する](/learn/extracting-state-logic-into-a-reducer)ことを検討してください。
+わずかな文法の冗長性よりも一貫性を優先するのであれば、state が直前の state から導出される場合には、常に更新関数を書くようにすることは合理的です。もし、state が、他の state 変数の直前の値から導出される場合は、それらを 1 つのオブジェクトにまとめて[リデューサ (reducer) を利用する](/learn/extracting-state-logic-into-a-reducer)ことを検討してください。
 
 </DeepDive>
 
-<Recipes titleText="更新関数を渡す場合と次の state を直接渡す場合の違い" titleId="examples-updater">
+<Recipes titleText="更新用関数を渡す場合と次の state を直接渡す場合の違い" titleId="examples-updater">
 
-#### 更新関数を渡す {/*passing-the-updater-function*/}
+#### 更新用関数を渡す {/*passing-the-updater-function*/}
 
-この例では更新関数を渡しているため、"+3"ボタンは想定通りに動きます。
+この例では更新関数を渡しているため、"+3" ボタンは想定通りに動きます。
 
 <Sandpack>
 
@@ -373,7 +373,7 @@ h1 { display: block; margin: 10px; }
 
 #### 次の state を直接渡す {/*passing-the-next-state-directly*/}
 
-この例では更新関数を渡して**いません**。そのため"+3"ボタンは**意図した通りには動きません**。
+この例では更新関数を渡して**いません**。そのため "+3" ボタンは**意図した通りには動きません**。
 
 <Sandpack>
 
@@ -418,7 +418,7 @@ h1 { display: block; margin: 10px; }
 
 ### オブジェクトや配列の state を更新する {/*updating-objects-and-arrays-in-state*/}
 
-state にオブジェクトや配列をセットすることができます。ただし React では、state は読み取り専用 (read-only) として扱う必要があります。そのため、state を更新する場合は、**既存のオブジェクトを直接*変更する (mutate)* のではなく、*置き換える (replace)* 必要があります**。例えば、state として `form` オブジェクトを保持している場合、以下のように書き換えを行ってはいけません。
+state にオブジェクトや配列をセットすることができます。ただし React では、state は読み取り専用 (read-only) として扱う必要があります。そのため、state を更新する場合は、**既存のオブジェクトを直接*書き換える (mutate)* のではなく、*置き換える (replace)* 必要があります**。例えば、state として `form` オブジェクトを保持している場合、以下のように書き換えを行ってはいけません。
 
 ```js
 // 🚩 Don't mutate an object in state like this:
@@ -439,9 +439,9 @@ setForm({
 
 <Recipes titleText="オブジェクトや配列を state にする例" titleId="examples-objects">
 
-#### フォーム (オブジェクト) {/*form-object*/}
+#### フォーム（オブジェクト） {/*form-object*/}
 
-この例では、`form` state 変数はオブジェクトを保持しています。それぞれの input 要素は change ハンドラを持っており、新しい `form` オブジェクトを引数として `setForm` を呼び出します。`{...form}` のようにスプレッド構文を用いることで、state オブジェクトを（書き換えではなく）確実に置換することができます。
+この例では、`form` state 変数はオブジェクトを保持しています。それぞれの input 要素は change ハンドラを持っており、新しい `form` オブジェクトを引数として `setForm` を呼び出します。`{ ...form }` のようにスプレッド構文を用いることで、state オブジェクトを（書き換えではなく）確実に置き換えることができます。
 
 <Sandpack>
 
@@ -512,7 +512,7 @@ input { margin-left: 5px; }
 
 <Solution />
 
-#### フォーム (ネストされたオブジェクト) {/*form-nested-object*/}
+#### フォーム（ネストされたオブジェクト） {/*form-nested-object*/}
 
 この例では、state がネストされたオブジェクトになっています。ネストされたオブジェクトの state を更新する場合、更新するオブジェクトのコピーを作成する必要があります。さらに、そのオブジェクトを内包する上位のオブジェクトも同様に、コピーを作成する必要があります。詳しくは、[ネストされたオブジェクトの更新](/learn/updating-objects-in-state#updating-a-nested-object)を参照してください。
 
@@ -624,9 +624,9 @@ img { width: 200px; height: 200px; }
 
 <Solution />
 
-#### リスト (配列) {/*list-array*/}
+#### リスト（配列） {/*list-array*/}
 
-この例では、`todos` state 変数が配列を保持しています。各ボタンのハンドラは、新しい `todos` state の配列を引数として `setTodos` を呼び出します。スプレッド構文（`[...todos]`）や、`todos.map()`、`todos.filter()` などを利用すると、state の配列を（書き換えではなく）確実に置換することができます。
+この例では、`todos` state 変数が配列を保持しています。各ボタンのハンドラは、`todos` 配列の新しい値を引数として `setTodos` を呼び出します。スプレッド構文 (`[...todos]`) や、`todos.map()`、`todos.filter()` などを利用すると、state の配列を（書き換えではなく）確実に置き換えることができます。
 
 <Sandpack>
 
@@ -793,7 +793,7 @@ ul, li { margin: 0; padding: 0; }
 
 #### Immer で簡潔な更新ロジックを書く {/*writing-concise-update-logic-with-immer*/}
 
-配列やオブジェクトの state の更新を、書き換えではなく置換で行うことが煩雑に感じる場合、[Immer](https://github.com/immerjs/use-immer) のようなライブラリを用いて繰り返しのコードを減らすことができます。Immer を利用することで、オブジェクトを直接書き換えるようなコードを書くことができます。しかし内部では、イミュータブル（不変, immutable）な更新、すなわち配列やオブジェクトの置換として実行されます。
+配列やオブジェクトの書き換えを行わずに state を更新することが煩雑に感じる場合、[Immer](https://github.com/immerjs/use-immer) のようなライブラリを用いて繰り返しのコードを減らすことができます。Immer を利用することで、オブジェクトを書き換えているかのような簡潔なコードを書くことができます。しかし内部では、イミュータブル（不変, immutable）な更新が実行されます。
 
 <Sandpack>
 
@@ -910,7 +910,7 @@ function TodoList() {
 
 #### 初期化関数を渡す {/*passing-the-initializer-function*/}
 
-この例では、初期化関数を利用しています。そのため、`createInitialTodos` 関数は初期化時のみ実行されます。input に文字を入力した場合などの、コンポーネントの再レンダー時には実行されません。
+この例では、初期化関数を利用しています。そのため、`createInitialTodos` 関数は初期化時のみ実行されます。入力フィールドに文字を入力した場合などの、コンポーネントの再レンダー時には実行されません。
 
 <Sandpack>
 
@@ -963,7 +963,7 @@ export default function TodoList() {
 
 #### 初期 state を直接渡す {/*passing-the-initial-state-directly*/}
 
-この例では、初期化関数を利用して**いません**。そのため、`createInitialTodos` 関数は、input に文字を入力したときなどの全てのレンダーで実行されます。挙動に目に見える違いはありませんが、少し効率が悪くなります。
+この例では、初期化関数を利用して**いません**。そのため、`createInitialTodos` 関数は、入力フィールドに文字を入力したときなどの全てのレンダーで実行されます。挙動に目に見える違いはありませんが、少し効率が悪くなります。
 
 <Sandpack>
 
@@ -1024,7 +1024,7 @@ export default function TodoList() {
 
 **コンポーネントに異なる `key` を渡すことで、コンポーネントの state をリセットすることができます**。この例では、`version` state 変数を `Form` に `key` として渡しています。"Reset" ボタンをクリックすると、`version` state 変数が変化します。`key` が変化したとき、React は `Form` コンポーネント（と、その全ての子コンポーネント）を一から再生成するため、`Form` の state がリセットされます。
 
-詳しくは、[state の保存とリセット](/learn/preserving-and-resetting-state)を参照してください。
+詳しくは、[state の保持とリセット](/learn/preserving-and-resetting-state)を参照してください。
 
 <Sandpack>
 
@@ -1075,7 +1075,7 @@ button { display: block; margin-bottom: 20px; }
 
 以下に示すように、ほとんどのケースでは不要です。
 
-* **もし必要な値が現在の props と他の state のみから導出される場合、[冗長な state を削除してください](/learn/choosing-the-state-structure#avoid-redundant-state)**。もし再計算されることが気になる場合は、[`useMemo` フック](/reference/react/useMemo)が役に立ちます。
+* **もし必要な値が現在の props と他の state のみから導出される場合、[冗長な state を削除してください](/learn/choosing-the-state-structure#avoid-redundant-state)**。もし何度も再計算されることが気になる場合は、[`useMemo` フック](/reference/react/useMemo)が役に立ちます。
 * もしコンポーネントツリーの state 全体をリセットしたい場合、[コンポーネントに異なる `key` を渡してください](#resetting-state-with-a-key)。
 * 可能であれば、関連するすべての state をイベントハンドラの中で更新してください。
 
@@ -1140,7 +1140,7 @@ button { margin-bottom: 10px; }
 
 レンダー中に `set` 関数を呼び出す場合は、`prevCount !== count` のような条件節の中で、`setPrevCount(count)` のような呼び出しが必要なことに注意してください。さもないと、再レンダーのループに陥り、コンポーネントがクラッシュします。また、例のように、*現在レンダーしている*コンポーネントの state のみ更新することができます。レンダー中に*別の*コンポーネントの `set` 関数を呼び出すとエラーになります。最後に、`set` 関数の呼び出しは、[書き換えなしで state を更新](#updating-objects-and-arrays-in-state)する必要があります。これは、[純関数](/learn/keeping-components-pure)の他のルールを破ることができないことを意味します。
 
-このパターンは理解するのが難しいため、通常は避けられます。しかし、エフェクト内で state を更新するよりは良い方法です。レンダー中に `set` 関数を呼び出すと、コンポーネントが `return` 文で終了した直後に再レンダーが行われます。これは、子コンポーネントをレンダーする前に行われ、子コンポーネントが 2 回レンダーされることはありません。コンポーネント関数の残りの部分は引き続き実行されます（その結果は破棄されます）。もし、`set` 関数の呼び出しを含む条件節が、全てのフックの呼び出しより下にある場合、早期に `return;` を追加して、再レンダーを早めることができます。
+このパターンは理解するのが難しいため、通常は避けるべきです。しかし、エフェクト内で state を更新するよりは良い方法です。レンダー中に `set` 関数を呼び出すと、コンポーネントが `return` 文で終了した直後、子コンポーネントをレンダーする前に再レンダーが行われます。このため、子コンポーネントが 2 回レンダーされずに済みます。コンポーネント関数の残りの部分は引き続き実行されます（結果は破棄されますが）。もし、`set` 関数の呼び出しを含む条件分岐が、全てのフックの呼び出しより下にある場合、早期 `return;` を追加して、再レンダーを早めることができます。
 
 ---
 
@@ -1179,7 +1179,7 @@ console.log(nextCount); // 1
 
 ### state を更新したのに画面が更新されない {/*ive-updated-the-state-but-the-screen-doesnt-update*/}
 
-React では、**更新の前後で state の値が変化しない場合、その変更は無視されます**。state の値の変化は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) によって判断されます。これは、state のオブジェクトや配列を直接書き換えた場合によく起こります。
+React では、**更新の前後で state の値が変化しない場合、その変更は無視されます**。state の値の変化は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) によって判断されます。この現象は、state のオブジェクトや配列を直接書き換えた場合によく起こります。
 
 ```js
 obj.x = 10;  // 🚩 Wrong: mutating existing object
@@ -1200,7 +1200,7 @@ setObj({
 
 ### "Too many re-renders" というエラーが出る {/*im-getting-an-error-too-many-re-renders*/}
 
-`Too many re-renders. React limits the number of renders to prevent an infinite loop.` というエラーが出ることがあります。これは通常、*レンダー中に*無条件に `set` 関数を呼び出しているため、コンポーネントがループに入っていることを意味します。レンダー、`set` 関数の呼び出し（レンダーを引き起こす）、レンダー、`set` 関数の呼び出し（レンダーを引き起こす）、というように続きます。これは、イベントハンドラの指定に間違いがあることが多いです。
+`Too many re-renders. React limits the number of renders to prevent an infinite loop.` というエラーが出ることがあります。これは通常、*レンダー中に*無条件に `set` 関数を呼び出しているため、コンポーネントがループに入っていることを意味します。レンダー、`set` 関数の呼び出し（レンダーを引き起こす）、レンダー、`set` 関数の呼び出し（レンダーを引き起こす）、というように続きます。大抵の場合、これはイベントハンドラの指定を間違ったことによるものです。
 
 ```js {1-2}
 // 🚩 Wrong: calls the handler during render
@@ -1217,7 +1217,7 @@ return <button onClick={(e) => handleClick(e)}>Click me</button>
 
 ---
 
-### 初期化関数や更新関数が2度呼ばれる {/*my-initializer-or-updater-function-runs-twice*/}
+### 初期化関数や更新関数が 2 度呼ばれる {/*my-initializer-or-updater-function-runs-twice*/}
 
 [Strict Mode](/reference/react/StrictMode) では、いくつかの関数が、本来 1 回のところを 2 回呼び出されることがあります。
 
@@ -1241,9 +1241,9 @@ function TodoList() {
 
 これは予想される動作であり、あなたのコードを壊すものではありません。
 
-これは**開発時のみ**の挙動で、[コンポーネントを純粋に保つ](/learn/keeping-components-pure)ために役立ちます。React は、呼び出し結果の 1 つを利用し、もう 1 つを無視します。コンポーネント、初期化関数、更新関数が純粋であれば、この挙動があなたのロジックに影響を与えることはありません。ただし、誤って純粋でない関数を指定した場合は、これにより間違いに気付くことができるでしょう。
+これは**開発時のみ**の挙動で、[コンポーネントを純粋に保つ](/learn/keeping-components-pure)ために役立ちます。React は、呼び出し結果の 1 つを利用し、もう 1 つを無視します。コンポーネント、初期化関数、更新用関数が純粋であれば、この挙動があなたのロジックに影響を与えることはありません。ただし、誤って純粋でない関数を指定した場合は、これにより間違いに気付くことができるでしょう。
 
-例えば以下の更新関数は、state の配列を書き換えるため純粋ではありません。
+例えば以下の更新用関数は、state の配列を書き換えるため純粋ではありません。
 
 ```js {2,3}
 setTodos(prevTodos => {
@@ -1252,7 +1252,7 @@ setTodos(prevTodos => {
 });
 ```
 
-React は更新関数を 2 回呼び出すため、todo が 2 つ追加されてしまい、間違いに気付くことができます。この例では、配列を[書き換えるのではなく、置き換える](#updating-objects-and-arrays-in-state)ことで間違いを修正できます。
+React は更新用関数を 2 回呼び出すため、todo が 2 つ追加されてしまい、間違いに気付くことができます。この例では、配列を[書き換えるのではなく、置き換える](#updating-objects-and-arrays-in-state)ことで間違いを修正できます。
 
 ```js {2,3}
 setTodos(prevTodos => {
@@ -1261,7 +1261,7 @@ setTodos(prevTodos => {
 });
 ```
 
-更新関数が純粋になったため、複数回呼び出されても動作に影響しません。これが、2 回呼び出されることで間違いに気付くことができる理由です。**コンポーネント、初期化関数、更新関数のみが純粋である必要があります**。イベントハンドラは、純粋である必要がないため、2 回呼び出されることはありません。
+更新用関数が純粋になったため、複数回呼び出されても動作に影響しません。これが、2 回呼び出されることで間違いに気付くことができる理由です。**コンポーネント、初期化関数、更新用関数のみが純粋である必要があります**。イベントハンドラは、純粋である必要がないため、2 回呼び出されることはありません。
 
 詳しくは、[コンポーネントを純粋に保つ](/learn/keeping-components-pure)を参照してください。
 
@@ -1279,7 +1279,7 @@ function handleClick() {
 }
 ```
 
-関数を渡すと、React は `someFunction` を [初期化関数](#avoiding-recreating-the-initial-state) 、`someOtherFunction` を [更新関数](#updating-state-based-on-the-previous-state) として扱います。そのため、それらを呼び出し、その結果を保存しようとします。関数自体を*保存*するには、どちらの場合も `() =>` を前に付ける必要があります。こうすると、React は関数自体を保存します。
+関数を渡すと、React は `someFunction` を[初期化関数](#avoiding-recreating-the-initial-state)、`someOtherFunction` を[更新関数](#updating-state-based-on-the-previous-state)として扱います。そのため、それらを呼び出し、その結果を保存しようとします。関数を実行するのではなく*保存*するには、どちらの場合も `() =>` を前に付ける必要があります。こうすると、React は関数自体を保存します。
 
 ```js {1,4}
 const [fn, setFn] = useState(() => someFunction);
