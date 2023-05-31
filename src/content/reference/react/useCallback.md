@@ -849,9 +849,9 @@ function ProductPage({ productId, referrer }) {
 その後、コンソール内の異なる再レンダーからの配列を右クリックすると、それぞれに対して「グローバル変数として保存」が選択できます。最初のものが `temp1` として、2 つ目が `temp2` として保存されたと仮定すると、ブラウザのコンソールを使用して、両方の配列内の各依存値が同一であるかどうかを以下のように確認できます。
 
 ```js
-Object.is(temp1[0], temp2[0]); // 配列間で最初の依存値は同じですか？
-Object.is(temp1[1], temp2[1]); // 2 番目の依存値は同じですか？
-Object.is(temp1[2], temp2[2]); // 各依存値があるすべてのものについて続けます...
+Object.is(temp1[0], temp2[0]); // Is the first dependency the same between the arrays?
+Object.is(temp1[1], temp2[1]); // Is the second dependency the same between the arrays?
+Object.is(temp1[2], temp2[2]); // ... and so on for every dependency ...
 ```
 
 メモ化を壊している依存値を見つけたら、それを取り除く方法を見つけるか、または[それもメモ化します。](/reference/react/useMemo#memoizing-a-dependency-of-another-hook)
