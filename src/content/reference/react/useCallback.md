@@ -718,6 +718,7 @@ function ChatRoom({ roomId }) {
 
 これには問題があります。[全てのリアクティブな値はエフェクトの依存値として宣言されなければなりません](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency)。しかし、`createOptions` を依存値として宣言すると、あなたのエフェクトがチャットルームに常に再接続することになります。
 
+
 ```js {6}
   useEffect(() => {
     const options = createOptions();
