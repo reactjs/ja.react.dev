@@ -324,7 +324,7 @@ React は更新用関数を[キュー](/learn/queueing-a-series-of-state-updates
 
 一方で、同じイベント内で複数回の更新を行う場合、更新用関数が役に立ちます。また、state 変数自身を参照することが難しいケースにも有用です（再レンダーの発生を最適化する際に、このケースに遭遇することがあります）。
 
-わずかな文法の冗長性よりも一貫性を優先するのであれば、state が直前の state から導出される場合には、常に更新関数を書くようにすることは合理的です。もし、state が、他の state 変数の直前の値から導出される場合は、それらを 1 つのオブジェクトにまとめて[リデューサ (reducer) を利用する](/learn/extracting-state-logic-into-a-reducer)ことを検討してください。
+わずかな文法の冗長性よりも一貫性を優先するのであれば、state が直前の state から導出される場合には、常に更新用関数を書くようにすることは合理的です。もし、state が、他の state 変数の直前の値から導出される場合は、それらを 1 つのオブジェクトにまとめて[リデューサ (reducer) を利用する](/learn/extracting-state-logic-into-a-reducer)ことを検討してください。
 
 </DeepDive>
 
@@ -332,7 +332,7 @@ React は更新用関数を[キュー](/learn/queueing-a-series-of-state-updates
 
 #### 更新用関数を渡す {/*passing-the-updater-function*/}
 
-この例では更新関数を渡しているため、"+3" ボタンは想定通りに動きます。
+この例では更新用関数を渡しているため、"+3" ボタンは想定通りに動きます。
 
 <Sandpack>
 
@@ -373,7 +373,7 @@ h1 { display: block; margin: 10px; }
 
 #### 次の state を直接渡す {/*passing-the-next-state-directly*/}
 
-この例では更新関数を渡して**いません**。そのため "+3" ボタンは**意図した通りには動きません**。
+この例では更新用関数を渡して**いません**。そのため "+3" ボタンは**意図した通りには動きません**。
 
 <Sandpack>
 
@@ -1079,7 +1079,7 @@ button { display: block; margin-bottom: 20px; }
 * もしコンポーネントツリーの state 全体をリセットしたい場合、[コンポーネントに異なる `key` を渡してください](#resetting-state-with-a-key)。
 * 可能であれば、関連するすべての state をイベントハンドラの中で更新してください。
 
-これらがどれも適用できない稀なケースで、コンポーネントのレンダー中に `set` 関数を呼び出し、それまでにレンダーされた値に基づいて state を更新するパターンが利用できます。
+これらがどれも適用できない稀なケースでは、コンポーネントのレンダー中に `set` 関数を呼び出し、それまでにレンダーされた値に基づいて state を更新するパターンが利用できます。
 
 以下の例では、`CountLabel` コンポーネントは、渡された `count` プロパティを表示しています。
 
@@ -1217,7 +1217,7 @@ return <button onClick={(e) => handleClick(e)}>Click me</button>
 
 ---
 
-### 初期化関数や更新関数が 2 度呼ばれる {/*my-initializer-or-updater-function-runs-twice*/}
+### 初期化関数や更新用関数が 2 度呼ばれる {/*my-initializer-or-updater-function-runs-twice*/}
 
 [Strict Mode](/reference/react/StrictMode) では、いくつかの関数が、本来 1 回のところを 2 回呼び出されることがあります。
 
@@ -1279,7 +1279,7 @@ function handleClick() {
 }
 ```
 
-関数を渡すと、React は `someFunction` を[初期化関数](#avoiding-recreating-the-initial-state)、`someOtherFunction` を[更新関数](#updating-state-based-on-the-previous-state)として扱います。そのため、それらを呼び出し、その結果を保存しようとします。関数を実行するのではなく*保存*するには、どちらの場合も `() =>` を前に付ける必要があります。こうすると、React は関数自体を保存します。
+関数を渡すと、React は `someFunction` を[初期化関数](#avoiding-recreating-the-initial-state)、`someOtherFunction` を[更新用関数](#updating-state-based-on-the-previous-state)として扱います。そのため、それらを呼び出し、その結果を保存しようとします。関数を実行するのではなく*保存*するには、どちらの場合も `() =>` を前に付ける必要があります。こうすると、React は関数自体を保存します。
 
 ```js {1,4}
 const [fn, setFn] = useState(() => someFunction);
