@@ -142,7 +142,7 @@
           "path": "/learn/preserving-and-resetting-state"
         },
         {
-          "title": "Extracting State Logic into a Reducer",
+          "title": "state ロジックをリデューサに抽出する",
           "path": "/learn/extracting-state-logic-into-a-reducer"
         },
         {
