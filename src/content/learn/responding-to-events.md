@@ -313,6 +313,12 @@ button { margin-right: 10px; }
 </Sandpack>
 
 `App` コンポーネントは、`Toolbar` が `onPlayMovie` や `onUploadImage` に対して*何*を行うかを知る必要がないことに注意してください。それは `Toolbar` の実装の詳細です。ここでは、`Toolbar` はそれらを `Button` の `onClick` ハンドラとして渡していますが、後でキーボードショートカットでもそれらをトリガするようにすることができます。`onPlayMovie` のようなアプリ固有のインタラクションに基づいて props を名付けることで、後でどのように使用されるかを変更できるという柔軟性が得られます。
+  
+<Note>
+
+イベントハンドラは適切な HTML タグに設定するようにしてください。例えば、クリックを処理するためには、`<div onClick={handleClick}>` ではなく [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) を使用します。本物のブラウザの `<button>` を使用することで、キーボードナビゲーションのようなブラウザ組み込みの振る舞いが有効になります。ブラウザデフォルトのボタンのスタイルが気に入らず、リンクや他の UI 要素のような見た目にしたい場合、CSS を使うことで実現できます。[アクセシブルなマークアップについて学ぶ](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)。
+  
+</Note>
 
 ## イベント伝播 {/*event-propagation*/}
 

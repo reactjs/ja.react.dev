@@ -1,25 +1,25 @@
 ---
-title: Extracting State Logic into a Reducer
+title: state ロジックをリデューサに抽出する
 ---
 
 <Intro>
 
-Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called a _reducer._
+多くのイベントハンドラにまたがって state の更新コードが含まれるコンポーネントは、理解が大変になりがちです。このような場合、コンポーネントの外部に、*リデューサ (reducer)* と呼ばれる単一の関数を作成し、すべての state 更新ロジックを集約することができます。
 
 </Intro>
 
 <YouWillLearn>
 
-- What a reducer function is
-- How to refactor `useState` to `useReducer`
-- When to use a reducer
-- How to write one well
+- リデューサ関数とは何か
+- `useState` から `useReducer` にリファクタリングする方法
+- リデューサを使用するタイミング
+- リデューサを適切に記述する方法
 
 </YouWillLearn>
 
-## Consolidate state logic with a reducer {/*consolidate-state-logic-with-a-reducer*/}
+## リデューサで state ロジックを集約する {/*consolidate-state-logic-with-a-reducer*/}
 
-As your components grow in complexity, it can get harder to see at a glance all the different ways in which a component's state gets updated. For example, the `TaskApp` component below holds an array of `tasks` in state and uses three different event handlers to add, remove, and edit tasks:
+コンポーネントの複雑さが増すにつれ、コンポーネントの state がどのように更新されるかを一目で確認することが難しくなります。例えば、以下の `TaskApp` コンポーネントは state として `tasks` という配列を保持しており、タスクの追加・削除・編集を行うために 3 つの異なるイベントハンドラが使用されています。
 
 <Sandpack>
 
@@ -179,17 +179,17 @@ li {
 
 </Sandpack>
 
-Each of its event handlers calls `setTasks` in order to update the state. As this component grows, so does the amount of state logic sprinkled throughout it. To reduce this complexity and keep all your logic in one easy-to-access place, you can move that state logic into a single function outside your component, **called a "reducer".**
+それぞれのイベントハンドラは `setTasks` を呼び出して state を更新しています。このコンポーネントが大きくなるにつれ、そこにバラバラに書かれる state ロジックの量も増えていきます。複雑さを減らし、すべてのロジックを 1 つの簡単にアクセスできる場所にまとめるために、コンポーネントの外部にある 1 つの関数、すなわち**リデューサ関数**とよばれるものに、state ロジックを移動させることができます。
 
-Reducers are a different way to handle state. You can migrate from `useState` to `useReducer` in three steps:
+リデューサは、state を扱うもう 1 つの方法です。`useState` から `useReducer` への移行は、次の 3 つのステップで行うことができます。
 
-1. **Move** from setting state to dispatching actions.
-2. **Write** a reducer function.
-3. **Use** the reducer from your component.
+1. state セットをアクションのディスパッチに**置き換える**。
+2. リデューサ関数を**作成**する。
+3. コンポーネントからリデューサを**使用**する。
 
-### Step 1: Move from setting state to dispatching actions {/*step-1-move-from-setting-state-to-dispatching-actions*/}
+### ステップ 1：state セットをアクションのディスパッチに置き換える {/*step-1-move-from-setting-state-to-dispatching-actions*/}
 
-Your event handlers currently specify _what to do_ by setting state:
+現在のイベントハンドラは、state をセットすることで*何をするのか*を指定しています。
 
 ```js
 function handleAddTask(text) {
@@ -220,13 +220,13 @@ function handleDeleteTask(taskId) {
 }
 ```
 
-Remove all the state setting logic. What you are left with are three event handlers:
+state をセットするロジックをすべて削除します。残るのは以下の 3 つのイベントハンドラです。
 
-- `handleAddTask(text)` is called when the user presses "Add".
-- `handleChangeTask(task)` is called when the user toggles a task or presses "Save".
-- `handleDeleteTask(taskId)` is called when the user presses "Delete".
+- `handleAddTask(text)` は、ユーザが "Add" を押したときに呼び出される。
+- `handleChangeTask(task)` は、ユーザがタスクのチェック状態を切り替えたときや "Save" を押したときに呼び出される。
+- `handleDeleteTask(taskId)` は、ユーザが "Delete" を押したときに呼び出される。
 
-Managing state with reducers is slightly different from directly setting state. Instead of telling React "what to do" by setting state, you specify "what the user just did" by dispatching "actions" from your event handlers. (The state update logic will live elsewhere!) So instead of "setting `tasks`" via an event handler, you're dispatching an "added/changed/deleted a task" action. This is more descriptive of the user's intent.
+リデューサを使った state 管理は state を直接セットするのとは少し異なります。React に対して state をセットして「何をするか」を指示するのではなく、イベントハンドラから「アクション」をディスパッチすることで「ユーザが何をしたか」を指定します。（state の更新ロジックは別の場所に書きます！）つまりイベントハンドラで「`tasks` をセットする」のではなく、「タスクを追加/変更/削除した」というアクションのディスパッチを行います。これはユーザの意図をより具体的に表現するものです。
 
 ```js
 function handleAddTask(text) {
@@ -252,7 +252,7 @@ function handleDeleteTask(taskId) {
 }
 ```
 
-The object you pass to `dispatch` is called an "action":
+`dispatch` に渡すオブジェクトは "アクション (action)" と呼ばれます。
 
 ```js {3-7}
 function handleDeleteTask(taskId) {
@@ -266,13 +266,13 @@ function handleDeleteTask(taskId) {
 }
 ```
 
-It is a regular JavaScript object. You decide what to put in it, but generally it should contain the minimal information about _what happened_. (You will add the `dispatch` function itself in a later step.)
+アクションは通常の JavaScript オブジェクトです。何を入れるかはあなたが決めることですが、一般的には「*何が起こったか*」に関する最小限の情報が含まれているべきです。（`dispatch` 関数自体は後のステップで追加します。）
 
 <Note>
 
-An action object can have any shape.
+アクションオブジェクトはどのような形状でも構いません。
 
-By convention, it is common to give it a string `type` that describes what happened, and pass any additional information in other fields. The `type` is specific to a component, so in this example either `'added'` or `'added_task'` would be fine. Choose a name that says what happened!
+一般的な慣習としては、何が起こったかを説明する文字列の `type` を与え、他のフィールドを使って追加情報を渡します。`type` はコンポーネント固有のもので、この例では `'added'` や `'added_task'` といったものがよいでしょう。何が起こったかを説明する名前を選んでください！
 
 ```js
 dispatch({
@@ -284,9 +284,9 @@ dispatch({
 
 </Note>
 
-### Step 2: Write a reducer function {/*step-2-write-a-reducer-function*/}
+### ステップ 2：リデューサ関数を作成する {/*step-2-write-a-reducer-function*/}
 
-A reducer function is where you will put your state logic. It takes two arguments, the current state and the action object, and it returns the next state:
+リデューサ関数が、state のロジックを記述する場所です。現在の state とアクションオブジェクトの 2 つを引数に取り、次の state を返すようにします。
 
 ```js
 function yourReducer(state, action) {
@@ -294,15 +294,15 @@ function yourReducer(state, action) {
 }
 ```
 
-React will set the state to what you return from the reducer.
+React が state をリデューサからの返り値にセットします。
 
-To move your state setting logic from your event handlers to a reducer function in this example, you will:
+この例では、イベントハンドラからリデューサ関数に state の設定ロジックを移動するために、以下の手順を実施します。
 
-1. Declare the current state (`tasks`) as the first argument.
-2. Declare the `action` object as the second argument.
-3. Return the _next_ state from the reducer (which React will set the state to).
+1. 現在の state (`tasks`) を最初の引数として宣言する。
+2. `action` オブジェクトを 2 番目の引数として宣言する。
+3. リデューサから*次の* state を返す（React が state をその値にセットする）。
 
-Here is all the state setting logic migrated to a reducer function:
+以下がリデューサ関数に移行した state 設定ロジックの全体像です :
 
 ```js
 function tasksReducer(tasks, action) {
@@ -331,13 +331,13 @@ function tasksReducer(tasks, action) {
 }
 ```
 
-Because the reducer function takes state (`tasks`) as an argument, you can **declare it outside of your component.** This decreases the indentation level and can make your code easier to read.
+リデューサ関数は state (`tasks`) を引数として取るため、**コンポーネントの外部で宣言することができます**。これにより、インデントレベルが減り、コードが読みやすくなります。
 
 <Note>
 
-The code above uses if/else statements, but it's a convention to use [switch statements](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/switch) inside reducers. The result is the same, but it can be easier to read switch statements at a glance.
+上記のコードでは if/else 文が使用されていますが、リデューサの中では [switch 文](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/switch)を使うことが一般的です。結果は同じですが、switch 文の方が一目でわかりやすくなります。
 
-We'll be using them throughout the rest of this documentation like so:
+これ以降のドキュメントでは、switch 文を以下のように使用します。
 
 ```js
 function tasksReducer(tasks, action) {
@@ -371,19 +371,19 @@ function tasksReducer(tasks, action) {
 }
 ```
 
-We recommend wrapping each `case` block into the `{` and `}` curly braces so that variables declared inside of different `case`s don't clash with each other. Also, a `case` should usually end with a `return`. If you forget to `return`, the code will "fall through" to the next `case`, which can lead to mistakes!
+各 `case` ブロックを `{` と `}` の波括弧で囲むことをお勧めします。これにより、異なる `case` の中で宣言された変数が互いに衝突するのを防ぐことができます。また、`case` は通常 `return` で終わるべきです。`return` を忘れると、コードが次の `case` に「流れて」してしまい、誤りが発生することがあります！
 
-If you're not yet comfortable with switch statements, using if/else is completely fine.
+もしまだ switch 文に慣れていないのであれば、if/else を使用しても全く問題ありません。
 
 </Note>
 
 <DeepDive>
 
-#### Why are reducers called this way? {/*why-are-reducers-called-this-way*/}
+#### なぜリデューサと呼ばれるのか？ {/*why-are-reducers-called-this-way*/}
 
-Although reducers can "reduce" the amount of code inside your component, they are actually named after the [`reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) operation that you can perform on arrays.
+リデューサによりコンポーネント内のコード量を「削減 (reduce)」することもできますが、実際にはリデューサは配列で行うことができる [`reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) という操作にちなんで名付けられています。
 
-The `reduce()` operation lets you take an array and "accumulate" a single value out of many:
+`reduce()` 操作とは、配列を受け取り、多くの値を 1 つの値に「まとめる」ことができるものです。
 
 ```
 const arr = [1, 2, 3, 4, 5];
@@ -392,9 +392,9 @@ const sum = arr.reduce(
 ); // 1 + 2 + 3 + 4 + 5
 ```
 
-The function you pass to `reduce` is known as a "reducer". It takes the _result so far_ and the _current item,_ then it returns the _next result._ React reducers are an example of the same idea: they take the _state so far_ and the _action_, and return the _next state._ In this way, they accumulate actions over time into state.
+ここで `reduce` に渡している関数が "リデューサ" と呼ばれるものです。これは「ここまでの結果」と「現在の要素」を受け取り、「次の結果」を返す関数です。React のリデューサも同じアイディアを用いています。「ここまでの state」と「アクション」を受け取り、「次の state」を返します。このようにして、経時的に発生する複数のアクションを 1 つの state に「まとめて」いるわけです。
 
-You could even use the `reduce()` method with an `initialState` and an array of `actions` to calculate the final state by passing your reducer function to it:
+`reduce()` メソッドにリデューサを渡して使用することで、初期 state とアクションの配列から最終 state を計算することもできます。
 
 <Sandpack>
 
@@ -453,43 +453,43 @@ export default function tasksReducer(tasks, action) {
 
 </Sandpack>
 
-You probably won't need to do this yourself, but this is similar to what React does!
+自前でこれを行う必要はないでしょうが、React が行っていることもこれと似ています！
 
 </DeepDive>
 
-### Step 3: Use the reducer from your component {/*step-3-use-the-reducer-from-your-component*/}
+### ステップ 3：コンポーネントからリデューサを使用する {/*step-3-use-the-reducer-from-your-component*/}
 
-Finally, you need to hook up the `tasksReducer` to your component. Import the `useReducer` Hook from React:
+最後に、`tasksReducer` をコンポーネントに接続する必要があります。React から `useReducer` フックをインポートしてください。
 
 ```js
 import { useReducer } from 'react';
 ```
 
-Then you can replace `useState`:
+そして、以下の `useState` 呼び出しを：
 
 ```js
 const [tasks, setTasks] = useState(initialTasks);
 ```
 
-with `useReducer` like so:
+このように `useReducer` で置き換えます：
 
 ```js
 const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 ```
 
-The `useReducer` Hook is similar to `useState`—you must pass it an initial state and it returns a stateful value and a way to set state (in this case, the dispatch function). But it's a little different.
+`useReducer` フックは、初期 state を受け取り、state 値とそれを更新するための手段（この場合は dispatch 関数）を返す、という点では `useState` に似ています。ただし少し違いもあります。
 
-The `useReducer` Hook takes two arguments:
+`useReducer` フックは 2 つの引数を取ります。
 
-1. A reducer function
-2. An initial state
+1. リデューサ関数
+2. 初期 state
 
-And it returns:
+そして次のものを返します。
 
-1. A stateful value
-2. A dispatch function (to "dispatch" user actions to the reducer)
+1. state 値
+2. ディスパッチ関数（ユーザアクションをリデューサに「ディスパッチ」する）
 
-Now it's fully wired up! Here, the reducer is declared at the bottom of the component file:
+さあ、これですべてが繋がりました！ ここでは、リデューサがコンポーネントファイルの最後に宣言されています。
 
 <Sandpack>
 
@@ -674,7 +674,7 @@ li {
 
 </Sandpack>
 
-If you want, you can even move the reducer to a different file:
+必要であれば、リデューサを別のファイルに移動させることもできます。
 
 <Sandpack>
 
@@ -862,30 +862,30 @@ li {
 
 </Sandpack>
 
-Component logic can be easier to read when you separate concerns like this. Now the event handlers only specify _what happened_ by dispatching actions, and the reducer function determines _how the state updates_ in response to them.
+このように関心を分離することで、コンポーネントのロジックが読みやすくなります。イベントハンドラはアクションをディスパッチすることで「何が起こったか」を指定し、リデューサ関数がそれらに対する「state の更新方法」を決定します。
 
-## Comparing `useState` and `useReducer` {/*comparing-usestate-and-usereducer*/}
+## `useState` と `useReducer` の比較 {/*comparing-usestate-and-usereducer*/}
 
-Reducers are not without downsides! Here's a few ways you can compare them:
+リデューサにもデメリットがないわけではありません。以下のような様々な点で両者には違いがあります。
 
-- **Code size:** Generally, with `useState` you have to write less code upfront. With `useReducer`, you have to write both a reducer function _and_ dispatch actions. However, `useReducer` can help cut down on the code if many event handlers modify state in a similar way.
-- **Readability:** `useState` is very easy to read when the state updates are simple. When they get more complex, they can bloat your component's code and make it difficult to scan. In this case, `useReducer` lets you cleanly separate the _how_ of update logic from the _what happened_ of event handlers.
-- **Debugging:** When you have a bug with `useState`, it can be difficult to tell _where_ the state was set incorrectly, and _why_. With `useReducer`, you can add a console log into your reducer to see every state update, and _why_ it happened (due to which `action`). If each `action` is correct, you'll know that the mistake is in the reducer logic itself. However, you have to step through more code than with `useState`.
-- **Testing:** A reducer is a pure function that doesn't depend on your component. This means that you can export and test it separately in isolation. While generally it's best to test components in a more realistic environment, for complex state update logic it can be useful to assert that your reducer returns a particular state for a particular initial state and action.
-- **Personal preference:** Some people like reducers, others don't. That's okay. It's a matter of preference. You can always convert between `useState` and `useReducer` back and forth: they are equivalent!
+- **コードサイズ**：一般に、`useState` を使った方が最初に書くコードは少なくなります。`useReducer` の場合、リデューサ関数とアクションをディスパッチするコードを*両方*書く必要があります。ただし、多くのイベントハンドラが同様の方法で state を変更している場合、`useReducer` によりコードを削減できます。
+- **可読性**：シンプルな state 更新の場合は `useState` を読むのは非常に簡単です。しかし、より複雑になると、コンポーネントのコードが肥大化し、見通すことが難しくなります。このような場合、`useReducer` を使うことで、更新ロジックによって書かれる「どう更新するのか」と、イベントハンドラに書かれる「何が起きたのか」とを、きれいに分離することができます。
+- **デバッグ**：`useState` を使っていてバグがある場合、state が*どこで*誤ってセットされたのか、*なぜ*そうなったかを特定するのが難しくなることがあります。`useReducer` を使えば、リデューサにコンソールログを追加することで、すべての state 更新と、それがなぜ起こったか（どの `action` のせいか）を確認できます。それぞれの `action` が正しい場合、リデューサのロジック自体に問題があることが分かります。ただし、`useState` と比べてより多くのコードを調べる必要があります。
+- **テスト**：リデューサはコンポーネントに依存しない純関数です。これは、リデューサをエクスポートし、他のものとは別に単体でテストできることを意味します。一般的には、より現実的な環境でコンポーネントをテストするのがベストですが、複雑な state 更新ロジックがある場合は、特定の初期 state とアクションに対してリデューサが特定の state を返すことをテストすることが役立ちます。
+- **個人の好み**：人によってリデューサが好きだったり、好きではなかったりします。それで構いません。好みの問題です。`useState` と `useReducer` の間を行ったり来たりすることはいつでも可能です。どちらも同等のものです！
 
-We recommend using a reducer if you often encounter bugs due to incorrect state updates in some component, and want to introduce more structure to its code. You don't have to use reducers for everything: feel free to mix and match! You can even `useState` and `useReducer` in the same component.
+バグが頻繁に発生しておりコンポーネントのコードに構造を導入したい場合に、リデューサを利用することをお勧めします。あらゆるコンポーネントにリデューサを使用する必要はありません。自由に組み合わせてください！ 同じコンポーネントで `useState` と `useReducer` を両方使うことも可能です。
 
-## Writing reducers well {/*writing-reducers-well*/}
+## 良いリデューサの書き方 {/*writing-reducers-well*/}
 
-Keep these two tips in mind when writing reducers:
+リデューサを書く際には、以下の 2 つのポイントを心に留めておきましょう。
 
-- **Reducers must be pure.** Similar to [state updater functions](/learn/queueing-a-series-of-state-updates), reducers run during rendering! (Actions are queued until the next render.) This means that reducers [must be pure](/learn/keeping-components-pure)—same inputs always result in the same output. They should not send requests, schedule timeouts, or perform any side effects (operations that impact things outside the component). They should update [objects](/learn/updating-objects-in-state) and [arrays](/learn/updating-arrays-in-state) without mutations.
-- **Each action describes a single user interaction, even if that leads to multiple changes in the data.** For example, if a user presses "Reset" on a form with five fields managed by a reducer, it makes more sense to dispatch one `reset_form` action rather than five separate `set_field` actions. If you log every action in a reducer, that log should be clear enough for you to reconstruct what interactions or responses happened in what order. This helps with debugging!
+- **リデューサは純粋である必要があります**。[state の更新用関数](/learn/queueing-a-series-of-state-updates)と同様に、リデューサはレンダー中に実行されます！（アクションは次のレンダーまでキューに入れられます。）つまりリデューサは[純粋でなければならない](/learn/keeping-components-pure)ということです。同じ入力に対して常に同じ出力になります。リクエストを送信したり、タイムアウトを設定したり、副作用（コンポーネントの外部に影響を与える操作）を実行したりすべきではありません。リデューサは、[オブジェクト](/learn/updating-objects-in-state)や[配列](/learn/updating-arrays-in-state)をミューテーション（書き換え）せずに更新する必要があります。
+- **各アクションは、複数データの更新を伴う場合であっても単一のユーザ操作を記述するようにします**。たとえば、リデューサで管理されるフォームに "Reset" ボタンがあり、そのフォームには 5 つのフィールドがある場合、5 つの別々の `set_field` アクションをディスパッチするよりも、1 つの `reset_form` アクションをディスパッチする方が理にかなっています。リデューサの各アクションを記録している場合、そのログは、どんなユーザ操作やレスポンスがどんな順序で発生したかを再構築できるほど明確でなければなりません。これはデバッグに役立ちます！
 
-## Writing concise reducers with Immer {/*writing-concise-reducers-with-immer*/}
+## Immer を使用した簡潔なリデューサの記述 {/*writing-concise-reducers-with-immer*/}
 
-Just like with [updating objects](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) and [arrays](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer) in regular state, you can use the Immer library to make reducers more concise. Here, [`useImmerReducer`](https://github.com/immerjs/use-immer#useimmerreducer) lets you mutate the state with `push` or `arr[i] =` assignment:
+通常の state における[オブジェクトの更新](/learn/updating-objects-in-state#write-concise-update-logic-with-immer)や[配列の更新](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer)と同様に、Immer ライブラリを使用してリデューサをより簡潔に記述できます。以下の例では、[`useImmerReducer`](https://github.com/immerjs/use-immer#useimmerreducer) を使って、`push` または `arr[i] =` という代入を使って state の書き換えを行っています。
 
 <Sandpack>
 
@@ -1082,34 +1082,34 @@ li {
 
 </Sandpack>
 
-Reducers must be pure, so they shouldn't mutate state. But Immer provides you with a special `draft` object which is safe to mutate. Under the hood, Immer will create a copy of your state with the changes you made to the `draft`. This is why reducers managed by `useImmerReducer` can mutate their first argument and don't need to return state.
+リデューサは純関数である必要があるため、state を書き換えてはいけません。しかし、Immer は特別な `draft` オブジェクトを提供しており、これを書き換えることは安全です。Immer は内部で、`draft` に加えたミューテーションが適用された state のコピーを作成します。これが、`useImmerReducer` で管理されるリデューサが、最初の引数に書き換えを行えばよく、state を返す必要がない理由です。
 
 <Recap>
 
-- To convert from `useState` to `useReducer`:
-  1. Dispatch actions from event handlers.
-  2. Write a reducer function that returns the next state for a given state and action.
-  3. Replace `useState` with `useReducer`.
-- Reducers require you to write a bit more code, but they help with debugging and testing.
-- Reducers must be pure.
-- Each action describes a single user interaction.
-- Use Immer if you want to write reducers in a mutating style.
+- `useState` から `useReducer` に変換するには：
+  1. イベントハンドラからアクションをディスパッチする。
+  2. state とアクションから次の state を返すリデューサ関数を書く。
+  3. `useState` を `useReducer` に置き換える。
+- リデューサにより書くコードの量は少し増えるが、デバッグやテストに有用である。
+- リデューサは純粋である必要がある。
+- 各アクションは、ユーザの操作を 1 つだけ記述する。
+- Immer を使えば、ミューテーション型のスタイルでリデューサを書ける。
 
 </Recap>
 
 <Challenges>
 
-#### Dispatch actions from event handlers {/*dispatch-actions-from-event-handlers*/}
+#### イベントハンドラからアクションをディスパッチ {/*dispatch-actions-from-event-handlers*/}
 
-Currently, the event handlers in `ContactList.js` and `Chat.js` have `// TODO` comments. This is why typing into the input doesn't work, and clicking on the buttons doesn't change the selected recipient.
+現在、`ContactList.js` と `Chat.js` のイベントハンドラは `// TODO` というコメントになっています。このため入力フィールドに入力しても動作せず、ボタンをクリックしても選択された送信先が変更されません。
 
-Replace these two `// TODO`s with the code to `dispatch` the corresponding actions. To see the expected shape and the type of the actions, check the reducer in `messengerReducer.js`. The reducer is already written so you won't need to change it. You only need to dispatch the actions in `ContactList.js` and `Chat.js`.
+これら 2 つの `// TODO` を、適切なアクションを `dispatch` するコードに置き換えてください。アクションの構造やタイプを確認するには、`messengerReducer.js` 内のリデューサをチェックしてください。リデューサ自体はすでに書かれているので、変更する必要はありません。`ContactList.js` と `Chat.js` でアクションをディスパッチするだけで構いません。
 
 <Hint>
 
-The `dispatch` function is already available in both of these components because it was passed as a prop. So you need to call `dispatch` with the corresponding action object.
+これらのコンポーネントでは、`dispatch` 関数はすでに props として渡されており利用可能です。対応するアクションオブジェクトでその `dispatch` を呼び出すようにしてください。
 
-To check the action object shape, you can look at the reducer and see which `action` fields it expects to see. For example, the `changed_selection` case in the reducer looks like this:
+アクションオブジェクトの構造を確認するには、リデューサを見て、`action` にどんなフィールドが必要かを確認します。例えば、リデューサの `changed_selection` に対応する case は次のようになっています。
 
 ```js
 case 'changed_selection': {
@@ -1120,7 +1120,7 @@ case 'changed_selection': {
 }
 ```
 
-This means that your action object should have a `type: 'changed_selection'`. You also see the `action.contactId` being used, so you need to include a `contactId` property into your action.
+つまりアクションオブジェクトに `type: 'changed_selection'` を持たせる必要があるということです。また、`action.contactId` が使われているので、アクションに `contactId` プロパティを含める必要があるでしょう。
 
 </Hint>
 
@@ -1256,7 +1256,7 @@ textarea {
 
 <Solution>
 
-From the reducer code, you can infer that actions need to look like this:
+リデューサのコードから、アクションは次のような見た目になることが推測できます。
 
 ```js
 // When the user presses "Alice"
@@ -1272,7 +1272,7 @@ dispatch({
 });
 ```
 
-Here is the example updated to dispatch the corresponding messages:
+対応するメッセージをディスパッチするように更新した例はこちらです。
 
 <Sandpack>
 
@@ -1411,12 +1411,12 @@ textarea {
 
 </Solution>
 
-#### Clear the input on sending a message {/*clear-the-input-on-sending-a-message*/}
+#### メッセージ送信時に入力をクリア {/*clear-the-input-on-sending-a-message*/}
 
-Currently, pressing "Send" doesn't do anything. Add an event handler to the "Send" button that will:
+現在、"Send" ボタンを押しても何も起こりません。"Send" ボタンにイベントハンドラを追加して、以下のことを行ってください。
 
-1. Show an `alert` with the recipient's email and the message.
-2. Clear the message input.
+1. 送信先のメールアドレスとメッセージを含む `alert` を表示する。
+2. メッセージ入力欄をクリアする。
 
 <Sandpack>
 
@@ -1555,7 +1555,7 @@ textarea {
 
 <Solution>
 
-There are a couple of ways you could do it in the "Send" button event handler. One approach is to show an alert and then dispatch an `edited_message` action with an empty `message`:
+"Send" ボタンのイベントハンドラでこれを行う方法は複数あります。1 つのアプローチは、アラートを表示してから、空の `message` で `edited_message` アクションをディスパッチすることです。
 
 <Sandpack>
 
@@ -1701,9 +1701,9 @@ textarea {
 
 </Sandpack>
 
-This works and clears the input when you hit "Send".
+これは動作し、"Send" を押すと入力がクリアされます。
 
-However, _from the user's perspective_, sending a message is a different action than editing the field. To reflect that, you could instead create a _new_ action called `sent_message`, and handle it separately in the reducer:
+ただし、*ユーザーの視点からすると*、メッセージを送るということはフィールドを編集することとは別の操作です。これを反映させるために、代わりに `sent_message` という*新しい*アクションを作成し、リデューサ内で別に処理を行うことができます。
 
 <Sandpack>
 
@@ -1854,15 +1854,15 @@ textarea {
 
 </Sandpack>
 
-The resulting behavior is the same. But keep in mind that action types should ideally describe "what the user did" rather than "how you want the state to change". This makes it easier to later add more features.
+結果としての振る舞いは同じですが、アクションタイプは理想的には「ユーザが何をしたか」を記述するものであり「state をどのように変更したいか」というものではない、ということに注意してください。これにより、後でより多くの機能を追加することが容易になります。
 
-With either solution, it's important that you **don't** place the `alert` inside a reducer. The reducer should be a pure function--it should only calculate the next state. It should not "do" anything, including displaying messages to the user. That should happen in the event handler. (To help catch mistakes like this, React will call your reducers multiple times in Strict Mode. This is why, if you put an alert in a reducer, it fires twice.)
+いずれの解法であっても、リデューサ内に `alert` を**置かない**ことが重要です。リデューサは純関数、つまり、次の state を計算するだけのものであるべきです。メッセージをユーザに表示するといった「何かの実行」を行ってはいけません。メッセージの表示はイベントハンドラで行うべきです。（このような誤りを見つけるために、React は Strict Mode でリデューサを複数回呼び出します。これにより、もしアラートをリデューサに配置してしまった場合、アラートが 2 回表示されます。）
 
 </Solution>
 
-#### Restore input values when switching between tabs {/*restore-input-values-when-switching-between-tabs*/}
+#### タブ切り替え時に入力値を復元 {/*restore-input-values-when-switching-between-tabs*/}
 
-In this example, switching between different recipients always clears the text input:
+この例では、異なる送信先間で切り替えるとテキスト入力が常にクリアされます。
 
 ```js
 case 'changed_selection': {
@@ -1873,13 +1873,13 @@ case 'changed_selection': {
   };
 ```
 
-This is because you don't want to share a single message draft between several recipients. But it would be better if your app "remembered" a draft for each contact separately, restoring them when you switch contacts.
+これは、複数の送信先間でメッセージの下書きを共有したくないからです。しかし、アプリがそれぞれの連絡先ごとに書きかけのメッセージを「記憶」しておき、連絡先を切り替えたときにそれらを復元する方がより望ましいでしょう。
 
-Your task is to change the way the state is structured so that you remember a separate message draft _per contact_. You would need to make a few changes to the reducer, the initial state, and the components.
+あなたの仕事は、state の構造を変更して、*連絡先ごとに*別々のメッセージ下書きを記憶するようにすることです。リデューサ、初期 state、およびコンポーネントにいくつか変更を加える必要があります。
 
 <Hint>
 
-You can structure your state like this:
+state の構造は次のようにできます。
 
 ```js
 export const initialState = {
@@ -1891,7 +1891,7 @@ export const initialState = {
 };
 ```
 
-The `[key]: value` [computed property](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#computed_property_names) syntax can help you update the `messages` object:
+`[key]: value` 形式の[計算プロパティ名 (computed property)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names) 構文は、`messages` オブジェクトを更新するのに有用です。
 
 ```js
 {
@@ -2053,7 +2053,7 @@ textarea {
 
 <Solution>
 
-You'll need to update the reducer to store and update a separate message draft per contact:
+連絡先ごとに別々のメッセージ下書きを保存・更新するようにリデューサを書き換える必要があります。
 
 ```js
 // When the input is edited
@@ -2071,13 +2071,13 @@ case 'edited_message': {
 }
 ```
 
-You would also update the `Messenger` component to read the message for the currently selected contact:
+また、`Messenger` コンポーネントを変更して、現在選択されている連絡先のメッセージを読み取るようにします。
 
 ```js
 const message = state.messages[state.selectedId];
 ```
 
-Here is the complete solution:
+答えの全体像は以下のとおりです。
 
 <Sandpack>
 
@@ -2237,19 +2237,19 @@ textarea {
 
 </Sandpack>
 
-Notably, you didn't need to change any of the event handlers to implement this different behavior. Without a reducer, you would have to change every event handler that updates the state.
+特筆すべきは、この異なる動作を実装するために、イベントハンドラを変更する必要がなかったということです。リデューサがない場合、state を更新するすべてのイベントハンドラを変更する必要があります。
 
 </Solution>
 
-#### Implement `useReducer` from scratch {/*implement-usereducer-from-scratch*/}
+#### `useReducer` をゼロから実装 {/*implement-usereducer-from-scratch*/}
 
-In the earlier examples, you imported the `useReducer` Hook from React. This time, you will implement _the `useReducer` Hook itself!_ Here is a stub to get you started. It shouldn't take more than 10 lines of code.
+これまでの例では、React から `useReducer` フックをインポートしていました。今回は、*`useReducer` フック自体を実装*してください！ 以下に開始地点となるコードが書かれています。コードは 10 行以内で完結するはずです。
 
-To test your changes, try typing into the input or select a contact.
+変更を確認するために、入力欄に入力してみるか、連絡先を選択してみてください。
 
 <Hint>
 
-Here is a more detailed sketch of the implementation:
+以下が実装の概略をもう少しだけ詳細にしたものです。
 
 ```js
 export function useReducer(reducer, initialState) {
@@ -2263,7 +2263,7 @@ export function useReducer(reducer, initialState) {
 }
 ```
 
-Recall that a reducer function takes two arguments--the current state and the action object--and it returns the next state. What should your `dispatch` implementation do with it?
+リデューサ関数は、現在の state とアクションオブジェクトという 2 つの引数を受け取り、次の state を返すものであることを思い出してください。`dispatch` の実装は何をすべきでしょうか？
 
 </Hint>
 
@@ -2439,7 +2439,7 @@ textarea {
 
 <Solution>
 
-Dispatching an action calls a reducer with the current state and the action, and stores the result as the next state. This is what it looks like in code:
+アクションがディスパッチされると、現在の state とアクションがリデューサに渡され、結果が次の state として保存されます。コードでは以下のようになります：
 
 <Sandpack>
 
@@ -2614,7 +2614,7 @@ textarea {
 
 </Sandpack>
 
-Though it doesn't matter in most cases, a slightly more accurate implementation looks like this:
+これでほとんどの場合問題ありませんが、より正確な実装は以下のようになります。
 
 ```js
 function dispatch(action) {
@@ -2622,7 +2622,7 @@ function dispatch(action) {
 }
 ```
 
-This is because the dispatched actions are queued until the next render, [similar to the updater functions.](/learn/queueing-a-series-of-state-updates)
+これは、ディスパッチされたアクションは次のレンダーまで[更新用関数と同様に](/learn/queueing-a-series-of-state-updates)キューに入れられるためです。
 
 </Solution>
 

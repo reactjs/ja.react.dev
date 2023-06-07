@@ -111,11 +111,11 @@
           "path": "/learn/queueing-a-series-of-state-updates"
         },
         {
-          "title": "Updating Objects in State",
+          "title": "state 内のオブジェクトの更新",
           "path": "/learn/updating-objects-in-state"
         },
         {
-          "title": "Updating Arrays in State",
+          "title": "state 内の配列の更新",
           "path": "/learn/updating-arrays-in-state"
         }
       ]
@@ -134,23 +134,23 @@
           "path": "/learn/choosing-the-state-structure"
         },
         {
-          "title": "Sharing State Between Components",
+          "title": "コンポーネント間で state を共有する",
           "path": "/learn/sharing-state-between-components"
         },
         {
-          "title": "Preserving and Resetting State",
+          "title": "state の保持とリセット",
           "path": "/learn/preserving-and-resetting-state"
         },
         {
-          "title": "Extracting State Logic into a Reducer",
+          "title": "state ロジックをリデューサに抽出する",
           "path": "/learn/extracting-state-logic-into-a-reducer"
         },
         {
-          "title": "Passing Data Deeply with Context",
+          "title": "コンテクストで深くデータを受け渡す",
           "path": "/learn/passing-data-deeply-with-context"
         },
         {
-          "title": "Scaling Up with Reducer and Context",
+          "title": "リデューサとコンテクストでスケールアップ",
           "path": "/learn/scaling-up-with-reducer-and-context"
         }
       ]

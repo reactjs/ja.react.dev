@@ -31,7 +31,7 @@ import { useRef } from 'react';
 const myRef = useRef(null);
 ```
 
-最後に、それを `ref` 属性として渡します。
+最後に、参照を得たい DOM ノートに対応する JSX タグの `ref` 属性にこの ref を渡します。
 
 ```js
 <div ref={myRef}>

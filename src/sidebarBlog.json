@@ -12,15 +12,15 @@
       "skipBreadcrumb": true,
       "routes": [
         {
-          "title": "React Canaries: Enabling Incremental Feature Rollout Outside Meta",
-          "titleForHomepage": "React Canaries: Incremental Feature Rollout",
+          "title": "React Canary: Meta 外での段階的な新機能導入",
+          "titleForHomepage": "React Canaries: 段階的な新機能導入",
           "icon": "blog",
           "date": "May 3, 2023",
           "path": "/blog/2023/05/03/react-canaries"
         },
         {
-          "title": "React Labs: What We've Been Working On – March 2023",
-          "titleForHomepage": "React Labs: March 2023",
+          "title": "React Labs: 私達のこれまでの取り組み - 2023年3月版",
+          "titleForHomepage": "React Labs: 2023年3月",
           "icon": "labs",
           "date": "March 22, 2023",
           "path": "/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023"
