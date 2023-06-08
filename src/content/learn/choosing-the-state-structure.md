@@ -1,53 +1,53 @@
 ---
-title: Choosing the State Structure
+title: state 構造の選択
 ---
 
 <Intro>
 
-Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. Here are some tips you should consider when structuring state.
+快適に変更やデバッグが行えるコンポーネントと、常にバグの種になるコンポーネントの違いは、state をうまく構造化できているかどうかです。ここでは、state 構造を考慮する際に役立つ、いくつかのヒントをご紹介します。
 
 </Intro>
 
 <YouWillLearn>
 
-* When to use a single vs multiple state variables
-* What to avoid when organizing state
-* How to fix common issues with the state structure
+* 単一の state 変数と複数の state 変数の使い分け
+* state の構成において避けるべきこと
+* state 構造の一般的な問題を修正する方法
 
 </YouWillLearn>
 
-## Principles for structuring state {/*principles-for-structuring-state*/}
+## state 構造の原則 {/*principles-for-structuring-state*/}
 
-When you write a component that holds some state, you'll have to make choices about how many state variables to use and what the shape of their data should be. While it's possible to write correct programs even with a suboptimal state structure, there are a few principles that can guide you to make better choices:
+state を格納するコンポーネントを作成する際に、いくつ state 変数を使うのか、データ構造をどのようにするのかについて選択を行う必要があります。最適とはいえない state 構造でも正しいプログラムを作成することは可能ではありますが、より良い選択をするために役立つ原則がいくつか存在します。
 
-1. **Group related state.** If you always update two or more state variables at the same time, consider merging them into a single state variable.
-2. **Avoid contradictions in state.** When the state is structured in a way that several pieces of state may contradict and "disagree" with each other, you leave room for mistakes. Try to avoid this.
-3. **Avoid redundant state.** If you can calculate some information from the component's props or its existing state variables during rendering, you should not put that information into that component's state.
-4. **Avoid duplication in state.** When the same data is duplicated between multiple state variables, or within nested objects, it is difficult to keep them in sync. Reduce duplication when you can.
-5. **Avoid deeply nested state.** Deeply hierarchical state is not very convenient to update. When possible, prefer to structure state in a flat way.
+1. **関連する state をグループ化する**。2 つ以上の state 変数を常に同時に更新する場合、それらを単一の state 変数にまとめることを検討してください。
+2. **state の矛盾を避ける**。state の複数部分が矛盾して互いに「衝突する」構造になっている場合、ミスが発生する余地があるということです。これを避けてください。
+3. **冗長な state を避ける**。コンポーネントの props や既存の state 変数からレンダー時に何らかの情報を計算できる場合、その情報をコンポーネントの state に入れるべきではありません。
+4. **state 内の重複を避ける**。同じデータが複数の state 変数間、またはネストしたオブジェクト間で重複している場合、それらを同期させることは困難です。できる限り重複を減らしてください。
+5. **深くネストされた state を避ける**。深い階層構造となっている state はあまり更新しやすくありません。できる限り、state をフラットに構造化する方法を選ぶようにしてください。
 
-The goal behind these principles is to *make state easy to update without introducing mistakes*. Removing redundant and duplicate data from state helps ensure that all its pieces stay in sync. This is similar to how a database engineer might want to ["normalize" the database structure](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) to reduce the chance of bugs. To paraphrase Albert Einstein, **"Make your state as simple as it can be--but no simpler."**
+これらの原則の背後にある目標は、*ミスを入りこませずに state を容易に更新できるようにすること*です。state から冗長で重複するデータを取り除くことで、すべての state が同期した状態を保てるようになります。これは、データベースエンジニアがバグを減らすために[データベース構造を "正規化 (normalize)"](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) しようとする考え方と似ています。アルバート・アインシュタインのもじりですが、「**state はできる限りシンプルにすべきだ、だがシンプルすぎてもいけない**」ということです。
 
-Now let's see how these principles apply in action.
+これらの原則が実際にどのように適用されるか見てみましょう。
 
-## Group related state {/*group-related-state*/}
+## 関連する state をグループ化する {/*group-related-state*/}
 
-You might sometimes be unsure between using a single or multiple state variables.
+ときに、単一の state 変数を使用するか、複数の state 変数を使用するかで迷うことがあるかもしれません。
 
-Should you do this?
+こうすべきでしょうか？
 
 ```js
 const [x, setX] = useState(0);
 const [y, setY] = useState(0);
 ```
 
-Or this?
+それともこうでしょうか？
 
 ```js
 const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
-Technically, you can use either of these approaches. But **if some two state variables always change together, it might be a good idea to unify them into a single state variable.** Then you won't forget to always keep them in sync, like in this example where moving the cursor updates both coordinates of the red dot:
+技術的には、どちらのアプローチを採用することも可能です。しかし **2 つの state 変数が常に一緒に変更される場合は、それらを単一の state 変数にまとめると良いでしょう**。そうすれば、常に両者を同期することを忘れる心配がありません。例えば以下に、カーソルを動かすと赤い点の両方の軸の座標が更新されるという例を示します。
 
 <Sandpack>
 
@@ -93,17 +93,17 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Another case where you'll group data into an object or an array is when you don't know how many pieces of state you'll need. For example, it's helpful when you have a form where the user can add custom fields.
+state をオブジェクトや配列にグループ化する別のケースとして、state の数が事前にわからない場合があります。たとえば、ユーザがカスタムフィールドを追加できるフォームがある場合に、これが有用です。
 
 <Pitfall>
 
-If your state variable is an object, remember that [you can't update only one field in it](/learn/updating-objects-in-state) without explicitly copying the other fields. For example, you can't do `setPosition({ x: 100 })` in the above example because it would not have the `y` property at all! Instead, if you wanted to set `x` alone, you would either do `setPosition({ ...position, x: 100 })`, or split them into two state variables and do `setX(100)`.
+state 変数がオブジェクトの場合、[1 つのフィールドだけを更新することはできず](/learn/updating-objects-in-state)、他のフィールドも明示的にコピーする必要があることを思い出してください。たとえば、上記の例で `setPosition({ x: 100 })` とはできません。`y` プロパティが全くないからです！ `x` だけを設定したい場合、`setPosition({ ...position, x: 100 })` とするか、2 つの state 変数に分割して `setX(100)` とするかのどちらかになります。
 
 </Pitfall>
 
-## Avoid contradictions in state {/*avoid-contradictions-in-state*/}
+## state の矛盾を避ける {/*avoid-contradictions-in-state*/}
 
-Here is a hotel feedback form with `isSending` and `isSent` state variables:
+以下は、`isSending` と `isSent` という state 変数があるホテルのフィードバックフォームです。
 
 <Sandpack>
 
@@ -157,9 +157,9 @@ function sendMessage(text) {
 
 </Sandpack>
 
-While this code works, it leaves the door open for "impossible" states. For example, if you forget to call `setIsSent` and `setIsSending` together, you may end up in a situation where both `isSending` and `isSent` are `true` at the same time. The more complex your component is, the harder it is to understand what happened.
+このコードは機能しますが、「ありえない」state になってしまう余地を残しています。たとえば、`setIsSent` と `setIsSending` を一緒に呼び出すのを忘れた場合、`isSending` と `isSent` が同時に `true` になってしまう状況に陥るかもしれません。コンポーネントが複雑になればなるほど、何が起こったのか理解しにくくなります。
 
-**Since `isSending` and `isSent` should never be `true` at the same time, it is better to replace them with one `status` state variable that may take one of *three* valid states:** `'typing'` (initial), `'sending'`, and `'sent'`:
+**`isSending` と `isSent` は同時に `true` になることはないため、それらを 1 つの `status` という state 変数に置き換えて、`typing`（初期状態）、`sending`、`sent` という *3 つの*有効な状態のうちの 1 つになるようにする方が良いでしょう**。
 
 <Sandpack>
 
@@ -214,20 +214,20 @@ function sendMessage(text) {
 
 </Sandpack>
 
-You can still declare some constants for readability:
+読みやすくしたければ定数を宣言することはいつでも可能です。
 
 ```js
 const isSending = status === 'sending';
 const isSent = status === 'sent';
 ```
 
-But they're not state variables, so you don't need to worry about them getting out of sync with each other.
+これらは state 変数ではなくなったので、互いに同期がとれなくなる心配をする必要はありません。
 
-## Avoid redundant state {/*avoid-redundant-state*/}
+## 冗長な state を避ける {/*avoid-redundant-state*/}
 
-If you can calculate some information from the component's props or its existing state variables during rendering, you **should not** put that information into that component's state.
+レンダー中にコンポーネントの props や既存の state 変数から情報を計算できる場合、その情報をコンポーネントの state に入れる**べきではありません**。
 
-For example, take this form. It works, but can you find any redundant state in it?
+例として、このフォームを見てみましょう。動作はしていますが、冗長な state がないか探してみてください。
 
 <Sandpack>
 
@@ -280,9 +280,9 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-This form has three state variables: `firstName`, `lastName`, and `fullName`. However, `fullName` is redundant. **You can always calculate `fullName` from `firstName` and `lastName` during render, so remove it from state.**
+このフォームには 3 つの state 変数があります。`firstName`、`lastName`、そして `fullName`です。しかし、`fullName` は冗長です。**レンダー中に `fullName` は常に `firstName` と `lastName` から計算できるので、state から削除しましょう**。
 
-This is how you can do it:
+以下のようにします。
 
 <Sandpack>
 
@@ -334,37 +334,37 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Here, `fullName` is *not* a state variable. Instead, it's calculated during render:
+これで `fullName` は *state 変数ではなくなっています*。代わりに、レンダー中に計算されます：
 
 ```js
 const fullName = firstName + ' ' + lastName;
 ```
 
-As a result, the change handlers don't need to do anything special to update it. When you call `setFirstName` or `setLastName`, you trigger a re-render, and then the next `fullName` will be calculated from the fresh data.
+結果的に、これを更新するために change ハンドラは何も特別なことをする必要がなくなりました。`setFirstName` や `setLastName` を呼び出すと、再レンダーがトリガされ、次の `fullName` は新しいデータから計算し直されます。
 
 <DeepDive>
 
-#### Don't mirror props in state {/*don-t-mirror-props-in-state*/}
+#### props を state にコピーしない {/*don-t-mirror-props-in-state*/}
 
-A common example of redundant state is code like this:
+冗長な state の一般的な例として、このようなコードがあります：
 
 ```js
 function Message({ messageColor }) {
   const [color, setColor] = useState(messageColor);
 ```
 
-Here, a `color` state variable is initialized to the `messageColor` prop. The problem is that **if the parent component passes a different value of `messageColor` later (for example, `'red'` instead of `'blue'`), the `color` *state variable* would not be updated!** The state is only initialized during the first render.
+ここでは、`color` という state 変数が props である `messageColor` の値で初期化されています。問題は、**親コンポーネントが後で異なる `messageColor` 値（例えば `'blue'` から `'red'`）を渡してきた場合、*state 変数である* `color` の方は更新されない**ということです！ state は最初のレンダー時にのみ初期化されます。
 
-This is why "mirroring" some prop in a state variable can lead to confusion. Instead, use the `messageColor` prop directly in your code. If you want to give it a shorter name, use a constant:
+これが、props を state 変数に「コピー」することが混乱を招く理由です。代わりに、`messageColor` をコードで直接使用してください。短い名前にしたい場合は、定数を使用してください：
 
 ```js
 function Message({ messageColor }) {
   const color = messageColor;
 ```
 
-This way it won't get out of sync with the prop passed from the parent component.
+これにより、親コンポーネントから渡された props と同期されなくなってしまうことを防げます。
 
-"Mirroring" props into state only makes sense when you *want* to ignore all updates for a specific prop. By convention, start the prop name with `initial` or `default` to clarify that its new values are ignored:
+props を state に「コピー」することが意味を持つのは、特定の props のすべての更新を*意図的に*無視したい場合だけです。慣習として、新しい値が来ても無視されるということを明確にしたい場合は、props の名前を `initial` または `default` で始めるようにします。
 
 ```js
 function Message({ initialColor }) {
@@ -375,9 +375,9 @@ function Message({ initialColor }) {
 
 </DeepDive>
 
-## Avoid duplication in state {/*avoid-duplication-in-state*/}
+## state 内の重複を避ける {/*avoid-duplication-in-state*/}
 
-This menu list component lets you choose a single travel snack out of several:
+このメニューリストコンポーネントでは、旅行に持っていくお菓子を複数の選択肢から 1 つだけ選ぶことができます。
 
 <Sandpack>
 
@@ -422,9 +422,9 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Currently, it stores the selected item as an object in the `selectedItem` state variable. However, this is not great: **the contents of the `selectedItem` is the same object as one of the items inside the `items` list.** This means that the information about the item itself is duplicated in two places.
+現在、選択した項目を `selectedItem` という state 変数にオブジェクトとして格納しています。しかしこれは良くありません。なぜなら、**`selectedItem` の内容は、`items` リスト内の要素のうちの 1 つと同一のオブジェクトになっている**ためです。これは、その項目に関する情報が 2 つの場所で重複していることを意味します。
 
-Why is this a problem? Let's make each item editable:
+なぜこれが問題なのでしょうか? それぞれの項目を編集可能にしてみましょう。
 
 <Sandpack>
 
@@ -487,9 +487,9 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Notice how if you first click "Choose" on an item and *then* edit it, **the input updates but the label at the bottom does not reflect the edits.** This is because you have duplicated state, and you forgot to update `selectedItem`.
+いずれかの項目の "Choose" を*クリックしてから*編集すると、**入力欄は更新されますが、下部のラベルは編集内容を反映していません**。これは、state に重複があり、`selectedItem` 側の更新を忘れたためです。
 
-Although you could update `selectedItem` too, an easier fix is to remove duplication. In this example, instead of a `selectedItem` object (which creates a duplication with objects inside `items`), you hold the `selectedId` in state, and *then* get the `selectedItem` by searching the `items` array for an item with that ID:
+`selectedItem` 側も更新するようにしても良いのですが、簡単な解決策は重複を解消することです。この例では、`items` 内のオブジェクトと `selectedItem` オブジェクトを重複させる代わりに、state では `selectedId` を保持するようにし、その ID を持つアイテムを `items` 配列から検索することで `selectedItem` を取得するようにします。
 
 <Sandpack>
 
@@ -554,25 +554,25 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-(Alternatively, you may hold the selected index in state.)
+（または、選択されたインデックスを state に保持することもできます。）
 
-The state used to be duplicated like this:
+以前は state がこのように重複していました。
 
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedItem = {id: 0, title: 'pretzels'}`
 
-But after the change it's like this:
+しかし、変更後は以下のようになります。
 
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedId = 0`
 
-The duplication is gone, and you only keep the essential state!
+重複がなくなり、必要な state だけが残っています！
 
-Now if you edit the *selected* item, the message below will update immediately. This is because `setItems` triggers a re-render, and `items.find(...)` would find the item with the updated title. You didn't need to hold *the selected item* in state, because only the *selected ID* is essential. The rest could be calculated during render.
+これで、*選択された*項目を編集すると、下のメッセージもすぐに更新されるようになります。これは、`setItems` が再レンダーをトリガし、`items.find(...)` がタイトル更新後の項目を見つけてくるためです。*選択された項目*のデータ全体を state に格納する必要はありませんでした。なぜなら*選択された項目 ID* だけが本質的なものであるからです。残りはレンダー時に計算することができます。
 
-## Avoid deeply nested state {/*avoid-deeply-nested-state*/}
+## 深くネストされた state を避ける {/*avoid-deeply-nested-state*/}
 
-Imagine a travel plan consisting of planets, continents, and countries. You might be tempted to structure its state using nested objects and arrays, like in this example:
+惑星、大陸、国々で構成される旅行計画を想像してみてください。以下のようにして、state をネストしたオブジェクトと配列を駆使して構造化することが魅力的に思えるかもしれません。
 
 <Sandpack>
 
@@ -818,11 +818,11 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-Now let's say you want to add a button to delete a place you've already visited. How would you go about it? [Updating nested state](/learn/updating-objects-in-state#updating-a-nested-object) involves making copies of objects all the way up from the part that changed. Deleting a deeply nested place would involve copying its entire parent place chain. Such code can be very verbose.
+ここで、既に訪れた場所を削除するボタンを追加したくなったとしましょう。どのようにすればよいでしょうか？ [ネストされた state を更新する](/learn/updating-objects-in-state#updating-a-nested-object)と、変更された部分より上のすべてのオブジェクトのコピーを作成する必要が出てきます。深くネストされたところにある場所情報を削除するためには、親として繋がっている場所データをすべてコピーする必要があります。そのようなコードを書くのはとても大変です。
 
-**If the state is too nested to update easily, consider making it "flat".** Here is one way you can restructure this data. Instead of a tree-like structure where each `place` has an array of *its child places*, you can have each place hold an array of *its child place IDs*. Then store a mapping from each place ID to the corresponding place.
+**state が簡単に更新できないほどネストしている場合は、「フラット」にすることを検討してください**。ここでは、データを再構築する方法の 1 つを示します。`place` のそれぞれに*子となる場所情報*そのものの配列を持たせるのではなく、それぞれの場所が*子となる場所情報の ID* の配列を持つようにします。次に、それぞれの場所 ID と対応する場所情報のマッピングを格納します。
 
-This data restructuring might remind you of seeing a database table:
+このようなデータ再構成を見ると、データベーステーブルを思い出すかもしれませんね。
 
 <Sandpack>
 
@@ -1129,14 +1129,14 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-**Now that the state is "flat" (also known as "normalized"), updating nested items becomes easier.**
+**state が「フラット」な（別名「正規化された (normalized)」）状態になったので、ネストされた項目の更新が簡単になります。**
 
-In order to remove a place now, you only need to update two levels of state:
+場所を削除したい場合、state を 2 レベルにわたって更新するだけで済みます。
 
-- The updated version of its *parent* place should exclude the removed ID from its `childIds` array.
-- The updated version of the root "table" object should include the updated version of the parent place.
+- *親*の場所情報を更新して、`childIds` 配列から、削除された場所の ID を除外する。
+- ルートの「テーブル」オブジェクトを更新して、上記の更新された親の場所情報を含むようにする。
 
-Here is an example of how you could go about it:
+以下がやり方の一例です。
 
 <Sandpack>
 
@@ -1474,13 +1474,13 @@ button { margin: 10px; }
 
 </Sandpack>
 
-You can nest state as much as you like, but making it "flat" can solve numerous problems. It makes state easier to update, and it helps ensure you don't have duplication in different parts of a nested object.
+state は好きなだけネストさせることができますが、「フラット」にすることで多くの問題を解決できます。state の更新が容易になるだけでなく、ネストされたオブジェクトのさまざまな部分で重複がないことを保証するのにも役立ちます。
 
 <DeepDive>
 
-#### Improving memory usage {/*improving-memory-usage*/}
+#### メモリ使用量の改善 {/*improving-memory-usage*/}
 
-Ideally, you would also remove the deleted items (and their children!) from the "table" object to improve memory usage. This version does that. It also [uses Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) to make the update logic more concise.
+理想的には、削除された場所アイテム（およびその子アイテム！）自体も「テーブル」オブジェクトから削除して、メモリ使用量を改善するとよいでしょう。以下のバージョンはそれを行うものです。また、アップデートロジックをより簡潔にするために [Immer を使用](/learn/updating-objects-in-state#write-concise-update-logic-with-immer)しています。
 
 <Sandpack>
 
@@ -1838,25 +1838,25 @@ button { margin: 10px; }
 
 </DeepDive>
 
-Sometimes, you can also reduce state nesting by moving some of the nested state into the child components. This works well for ephemeral UI state that doesn't need to be stored, like whether an item is hovered.
+ネストされている state の一部を子コンポーネントに移動することで、state のネストを減らすことが可能な場合もあります。これは「アイテムがホバーされているか」といった、保存する必要のない一時的な UI 関連の state で適しています。
 
 <Recap>
 
-* If two state variables always update together, consider merging them into one. 
-* Choose your state variables carefully to avoid creating "impossible" states.
-* Structure your state in a way that reduces the chances that you'll make a mistake updating it.
-* Avoid redundant and duplicate state so that you don't need to keep it in sync.
-* Don't put props *into* state unless you specifically want to prevent updates.
-* For UI patterns like selection, keep ID or index in state instead of the object itself.
-* If updating deeply nested state is complicated, try flattening it.
+* 2つの state 変数が常に一緒に更新される場合は、それらを 1 つにまとめることを検討する。
+* 「ありえない」state を作成しないよう、state 変数を注意深く選択する。
+* state は、更新時に間違いが発生しづらいやり方で構成する。
+* 冗長で重複した state を避け、同期する必要がないようにする。
+* 意図的に更新されないようにしたい場合を除き、props を state にコピーしない。
+* 項目選択のような UI パターンにおいては、state にオブジェクト自体ではなく ID またはインデックスを保持する。
+* 深くネストされた state の更新が複雑な場合は、フラット化を試す。
 
 </Recap>
 
 <Challenges>
 
-#### Fix a component that's not updating {/*fix-a-component-thats-not-updating*/}
+#### 更新されないコンポーネントの修正 {/*fix-a-component-thats-not-updating*/}
 
-This `Clock` component receives two props: `color` and `time`. When you select a different color in the select box, the `Clock` component receives a different `color` prop from its parent component. However, for some reason, the displayed color doesn't update. Why? Fix the problem.
+この `Clock` コンポーネントは、`color` と `time` の 2 つの props を受け取ります。セレクトボックスで別の色を選択すると、`Clock` コンポーネントは親コンポーネントから props として異なる `color` を受け取るようになっています。しかし、何らかの理由で表示される色が更新されません。なぜでしょうか？ 問題を修正してください。
 
 <Sandpack>
 
@@ -1911,7 +1911,7 @@ export default function App() {
 
 <Solution>
 
-The issue is that this component has `color` state initialized with the initial value of the `color` prop. But when the `color` prop changes, this does not affect the state variable! So they get out of sync. To fix this issue, remove the state variable altogether, and use the `color` prop directly.
+この問題は、このコンポーネントが `color` という state を `color` という props の初期値を使って初期化していることが原因です。しかし、props としての `color` が変更されても state 変数の方は影響されません！ それらが同期されなくなってしまっているわけです。この問題を解決するには state 変数自体を削除し、props としての `color` を直接使用します。
 
 <Sandpack>
 
@@ -1963,7 +1963,7 @@ export default function App() {
 
 </Sandpack>
 
-Or, using the destructuring syntax:
+または分割代入構文を使用して以下のようにします。
 
 <Sandpack>
 
@@ -2017,13 +2017,13 @@ export default function App() {
 
 </Solution>
 
-#### Fix a broken packing list {/*fix-a-broken-packing-list*/}
+#### 壊れた荷物リストの修正 {/*fix-a-broken-packing-list*/}
 
-This packing list has a footer that shows how many items are packed, and how many items there are overall. It seems to work at first, but it is buggy. For example, if you mark an item as packed and then delete it, the counter will not be updated correctly. Fix the counter so that it's always correct.
+この荷物 (packing) リストには、梱包済みアイテム数と全体のアイテム数を表示するフッタがあります。最初はうまく機能するように見えますが、バグがあります。例えば、アイテムに梱包済みとマークしてから削除しても、カウンタが正しく更新されません。カウンタが常に正確になるように修正してください。
 
 <Hint>
 
-Is any state in this example redundant?
+この例の state のどれかは冗長ではないでしょうか？
 
 </Hint>
 
@@ -2164,7 +2164,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-Although you could carefully change each event handler to update the `total` and `packed` counters correctly, the root problem is that these state variables exist at all. They are redundant because you can always calculate the number of items (packed or total) from the `items` array itself. Remove the redundant state to fix the bug:
+それぞれのイベントハンドラを注意深く書き換えて `total` と `packed` カウンタが正しく更新されるようにすることも可能ですが、根本的な問題は、そもそもこれらの state 変数が存在しているということです。`items` 配列自体からアイテム数（梱包済み・合計のいずれも）は常に計算できるので、そもそもこれらは不要です。冗長な state を削除してバグを修正しましょう。
 
 <Sandpack>
 
@@ -2297,15 +2297,15 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-Notice how the event handlers are only concerned with calling `setItems` after this change. The item counts are now calculated during the next render from `items`, so they are always up-to-date.
+この変更により、それぞれのイベントハンドラは `setItems` を呼び出すことだけを考えればよくなったことに注目しましょう。アイテム数は次のレンダー時に `items` から計算されるため、常に最新情報が表示されます。
 
 </Solution>
 
-#### Fix the disappearing selection {/*fix-the-disappearing-selection*/}
+#### 選択項目が消える問題を修正 {/*fix-the-disappearing-selection*/}
 
-There is a list of `letters` in state. When you hover or focus a particular letter, it gets highlighted. The currently highlighted letter is stored in the `highlightedLetter` state variable. You can "star" and "unstar" individual letters, which updates the `letters` array in state.
+手紙のリストである `letters` が state に保持されています。手紙のどれかにホバーまたはフォーカスすると、その手紙がハイライトされるようになっています。現在ハイライト中の手紙は、`highlightedLetter` という state 変数に格納されています。個々の手紙に対して "Star" や "Unstar"（スター解除）ができ、それにより state である `letters` 配列が更新されます。
 
-This code works, but there is a minor UI glitch. When you press "Star" or "Unstar", the highlighting disappears for a moment. However, it reappears as soon as you move your pointer or switch to another letter with keyboard. Why is this happening? Fix it so that the highlighting doesn't disappear after the button click.
+機能はしていますが、このコードには小さな UI の不具合があります。"Star" や "Unstar" を押すと、一瞬だけハイライトが消えてしまうのです。ただしポインタを動かすか、キーボードで別の手紙に切り替えるとすぐにハイライトは再表示されます。なぜこれが起こるのでしょうか？ ボタンクリック後にハイライトが消えないように修正してください。
 
 <Sandpack>
 
@@ -2412,9 +2412,9 @@ li { border-radius: 5px; }
 
 <Solution>
 
-The problem is that you're holding the letter object in `highlightedLetter`. But you're also holding the same information in the `letters` array. So your state has duplication! When you update the `letters` array after the button click, you create a new letter object which is different from `highlightedLetter`. This is why `highlightedLetter === letter` check becomes `false`, and the highlight disappears. It reappears the next time you call `setHighlightedLetter` when the pointer moves.
+問題は、`highlightedLetter` に手紙オブジェクトを保持していることです。しかし同じ情報を `letters` 配列にも保持しています。つまり state に重複があるのです！ ボタンクリックに応じて `letters` 配列を更新する際に、`highlightedLetter` とは異なる新しい手紙データオブジェクトが作成されます。これが、`highlightedLetter === letter` チェックが `false` になってハイライトが消えてしまう理由です。次にポインタが移動して `setHighlightedLetter` が呼び出されるとハイライトは再表示されます。
 
-To fix the issue, remove the duplication from state. Instead of storing *the letter itself* in two places, store the `highlightedId` instead. Then you can check `isHighlighted` for each letter with `letter.id === highlightedId`, which will work even if the `letter` object has changed since the last render.
+この問題を解決するには、state から重複を削除します。2 つの場所で*その手紙データ自体*を格納する代わりに、`highlightedId` を格納するようにします。これにより、`letter.id === highlightedId` とすることで、前回のレンダーから `letter` オブジェクトが変更された場合でも、各手紙の `isHighlighted` をチェックできます。
 
 <Sandpack>
 
@@ -2521,15 +2521,15 @@ li { border-radius: 5px; }
 
 </Solution>
 
-#### Implement multiple selection {/*implement-multiple-selection*/}
+#### 複数選択を実装 {/*implement-multiple-selection*/}
 
-In this example, each `Letter` has an `isSelected` prop and an `onToggle` handler that marks it as selected. This works, but the state is stored as a `selectedId` (either `null` or an ID), so only one letter can get selected at any given time.
+この例では、各 `Letter`（手紙）に props として、それが選択中かという情報である `isSelected` と `onToggle` ハンドラが渡されています。機能していますが、state が `selectedId`（`null` または ID のどちらか）という形で格納されているため、一度に 1 つの手紙しか選択できません。
 
-Change the state structure to support multiple selection. (How would you structure it? Think about this before writing the code.) Each checkbox should become independent from the others. Clicking a selected letter should uncheck it. Finally, the footer should show the correct number of the selected items.
+state 構造を変更し、複数選択に対応させてください。（どのように構造化しますか？ コードを書く前に考えてみてください。）各チェックボックスは他のチェックボックスとは独立して動作するようにしてください。選択中の手紙をクリックすると、チェックが外れるようにしてください。最後に、フッタに選択された項目数が正しく表示されるようにしてください。
 
 <Hint>
 
-Instead of a single selected ID, you might want to hold an array or a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) of selected IDs in state.
+単一の選択中 ID の代わりに、選択された ID の*配列*または [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) を state に保持することができます。
 
 </Hint>
 
@@ -2630,7 +2630,7 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 <Solution>
 
-Instead of a single `selectedId`, keep a `selectedIds` *array* in state. For example, if you select the first and the last letter, it would contain `[0, 2]`. When nothing is selected, it would be an empty `[]` array:
+1 つの `selectedId` の代わりに、state で `selectedIds` という*配列*を保持するようにします。例えば、最初と最後の手紙を選択したときに `[0, 2]` となるようにします。何も選択されていない場合は、空の `[]` という配列になります。
 
 <Sandpack>
 
@@ -2736,9 +2736,9 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 </Sandpack>
 
-One minor downside of using an array is that for each item, you're calling `selectedIds.includes(letter.id)` to check whether it's selected. If the array is very large, this can become a performance problem because array search with [`includes()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) takes linear time, and you're doing this search for each individual item.
+配列を使うことの小さな欠点の 1 つは、項目ごとに `selectedIds.includes(letter.id)` を呼び出して選択中かどうかを確認していることです。配列が非常に大きい場合 [`includes()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) での配列検索にはリニアに時間がかかり、またこの検索は個々の項目ごとに行われているため、パフォーマンスの問題になることがあります。
 
-To fix this, you can hold a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) in state instead, which provides a fast [`has()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) operation:
+これを解決するためには、代わりに state で [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) を保持するようにできます。Set には高速な [`has()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) 操作があります。
 
 <Sandpack>
 
@@ -2841,9 +2841,9 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 </Sandpack>
 
-Now each item does a `selectedIds.has(letter.id)` check, which is very fast.
+これで、各アイテムは `selectedIds.has(letter.id)` というチェックを行うため、非常に高速になります。
 
-Keep in mind that you [should not mutate objects in state](/learn/updating-objects-in-state), and that includes Sets, too. This is why the `handleToggle` function creates a *copy* of the Set first, and then updates that copy.
+state 内のオブジェクトは[ミューテーションしない](/learn/updating-objects-in-state)ように注意してください。これには Set も含まれます。そのため、`handleToggle` 関数ではまず Set の*コピー*を作成し、そのコピーを書き換えています。
 
 </Solution>
 
