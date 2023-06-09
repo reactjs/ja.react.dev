@@ -4,7 +4,7 @@ title: useId
 
 <Intro>
 
-`useId` is a React Hook for generating unique IDs that can be passed to accessibility attributes.
+`useId` は、アクセシビリティ属性に渡すことができる一意の ID を生成するための  React フックです。
 
 ```js
 const id = useId()
@@ -16,11 +16,11 @@ const id = useId()
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `useId()` {/*useid*/}
 
-Call `useId` at the top level of your component to generate a unique ID:
+コンポーネントのトップレベルで `useId` を呼び出して、一意の ID を生成します。
 
 ```js
 import { useId } from 'react';
@@ -30,35 +30,35 @@ function PasswordField() {
   // ...
 ```
 
-[See more examples below.](#usage)
+[その他の例は下をご覧ください。](#usage)
 
-#### Parameters {/*parameters*/}
+#### パラメータ {/*parameters*/}
 
-`useId` does not take any parameters.
+`useId` はパラメータを受け取りません。
 
-#### Returns {/*returns*/}
+#### 返す {/*returns*/}
 
-`useId` returns a unique ID string associated with this particular `useId` call in this particular component.
+`useId` は、特定のコンポーネント内で、この `useId` の呼び出しに関連付けられた一意の ID 文字列を返します。
 
-#### Caveats {/*caveats*/}
+#### 注意事項 {/*caveats*/}
 
-* `useId` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+* `useId` はフックであるため、**コンポーネントのトップレベル** または独自のフック内でのみ呼び出すことができます。ループまたは条件分岐内で呼び出すことはできません。もし必要な場合は、新しいコンポーネントを作成し、状態を移動させる必要があります。
 
-* `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+* `useId` を、**リスト内のキーの生成には使用しないでください**。[キーはデータから生成される必要があります。](/learn/rendering-lists#where-to-get-your-key)
 
 ---
 
-## Usage {/*usage*/}
+## 使用方法 {/*usage*/}
 
 <Pitfall>
 
-**Do not call `useId` to generate keys in a list.** [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+**リスト内のキーを生成するために `useId` を呼び出さないでください。**[キーはデータから生成される必要があります。](/learn/rendering-lists#where-to-get-your-key)
 
 </Pitfall>
 
-### Generating unique IDs for accessibility attributes {/*generating-unique-ids-for-accessibility-attributes*/}
+### アクセシビリティ属性の一意の ID の生成 {/*generating-unique-ids-for-accessibility-attributes*/}
 
-Call `useId` at the top level of your component to generate a unique ID:
+コンポーネントのトップレベルで `useId` を呼び出して、一意の ID を生成します。
 
 ```js [[1, 4, "passwordHintId"]]
 import { useId } from 'react';
@@ -68,7 +68,7 @@ function PasswordField() {
   // ...
 ```
 
-You can then pass the <CodeStep step={1}>generated ID</CodeStep> to different attributes:
+その後、<CodeStep step={1}> 生成された ID </CodeStep>をさまざまな属性に渡すことができます。
 
 ```js [[1, 2, "passwordHintId"], [1, 3, "passwordHintId"]]
 <>
@@ -77,11 +77,11 @@ You can then pass the <CodeStep step={1}>generated ID</CodeStep> to different at
 </>
 ```
 
-**Let's walk through an example to see when this is useful.**
+**これがどのような場合に役立つかを、例を通してみてみましょう。** 
 
-[HTML accessibility attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) like [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) let you specify that two tags are related to each other. For example, you can specify that an element (like an input) is described by another element (like a paragraph).
+[`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) のような [HTML アクセシビリティ属性](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)を使用すると、2 つのタグが相互に関連していることを指定することができます。例えば、入力フィールドのような要素が、段落などの別の要素で説明されていることを指定することができます。
 
-In regular HTML, you would write it like this:
+通常の HTML では、次のように記述します。
 
 ```html {5,8}
 <label>
@@ -96,7 +96,7 @@ In regular HTML, you would write it like this:
 </p>
 ```
 
-However, hardcoding IDs like this is not a good practice in React. A component may be rendered more than once on the page--but IDs have to be unique! Instead of hardcoding an ID, generate a unique ID with `useId`:
+ただし、このように ID をハードコードすることは、React ではおすすめできません。コンポーネントはページ上で複数回レンダー可能ですが、ID は一意である必要があります！ ID をハードコードするのではなく、`useId` を使用して一意の ID を生成します。
 
 ```js {4,11,14}
 import { useId } from 'react';
@@ -120,7 +120,7 @@ function PasswordField() {
 }
 ```
 
-Now, even if `PasswordField` appears multiple times on the screen, the generated IDs won't clash.
+これで、画面上に `PasswordField` が複数回表示される場合でも、生成される ID が同じになることはありません。
 
 <Sandpack>
 
@@ -163,11 +163,11 @@ input { margin: 5px; }
 
 </Sandpack>
 
-[Watch this video](https://www.youtube.com/watch?v=0dNzNcuEuOo) to see the difference in the user experience with assistive technologies.
+[このビデオを見て](https://www.youtube.com/watch?v=0dNzNcuEuOo)支援技術による、ユーザ体験の違いを確認してみてください。
 
 <Pitfall>
 
-With [server rendering](/reference/react-dom/server), **`useId` requires an identical component tree on the server and the client**. If the trees you render on the server and the client don't match exactly, the generated IDs won't match.
+[サーバーレンダリング](/reference/react-dom/server)では、**`useId` にはサーバとクライアント上で同一のコンポーネントツリーが必要です**。サーバ上とクライアント上でレンダーされるツリーが正確に一致しない場合、生成される ID は一致しません。
 
 </Pitfall>
 
