@@ -189,7 +189,7 @@
           "path": "/learn/removing-effect-dependencies"              
         },
         {
-          "title": "Reusing Logic with Custom Hooks",
+          "title": "カスタムフックでロジックを再利用する",
           "path": "/learn/reusing-logic-with-custom-hooks"
         }
       ]
