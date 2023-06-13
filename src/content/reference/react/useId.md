@@ -181,7 +181,7 @@ input { margin: 5px; }
 
 クライアントコンポーネントがハイドレートされる順序は、サーバー HTML が出力された順序と一致しない可能性があるため、これをインクリメントカウンタで保証することは非常に困難です。`useId` を呼び出すことで、ハイドレーションが機能し、サーバーとクライアントの間で出力が一致することが保証されます。
 
-Inside React, `useId` is generated from the "parent path" of the calling component. This is why, if the client and the server tree are the same, the "parent path" will match up regardless of rendering order.
+React 内部では、呼び出し元コンポーネントの「親パス」から `useId` が生成されます。そのため、クライアントとサーバーのツリーが同じであれば、レンダリング順序に関係なく「親パス」が一致することになります。
 
 </DeepDive>
 
