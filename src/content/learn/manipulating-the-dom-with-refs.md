@@ -1,52 +1,52 @@
 ---
-title: 'Manipulating the DOM with Refs'
+title: 'ref で DOM を操作する'
 ---
 
 <Intro>
 
-React automatically updates the [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) to match your render output, so your components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React--for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a *ref* to the DOM node.
+React はレンダー結果に合致するよう自動的に [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) を更新するため、コンポーネントで DOM を操作する必要は通常ほとんどありません。ただし、ノードにフォーカスを当てたり、スクロールさせたり、サイズや位置を測定したりするなどの場合に、React が管理する DOM 要素へのアクセスが必要なことがあります。React にはこれらを行う組み込みの方法が存在しないため、DOM ノードを参照する *ref* が必要になります。
 
 </Intro>
 
 <YouWillLearn>
 
-- How to access a DOM node managed by React with the `ref` attribute
-- How the `ref` JSX attribute relates to the `useRef` Hook
-- How to access another component's DOM node
-- In which cases it's safe to modify the DOM managed by React
+- React が管理する DOM ノードに `ref` 属性を使ってアクセスする方法
+- `ref` JSX 属性が `useRef` フックとどのように関連しているか
+- 別コンポーネントの DOM ノードにアクセスする方法
+- React が管理する DOM を安全に変更できるのはどのような場合か
 
 </YouWillLearn>
 
-## Getting a ref to the node {/*getting-a-ref-to-the-node*/}
+## ノードへの ref の取得 {/*getting-a-ref-to-the-node*/}
 
-To access a DOM node managed by React, first, import the `useRef` Hook:
+React が管理する DOM ノードにアクセスするには、まず `useRef` フックをインポートします。
 
 ```js
 import { useRef } from 'react';
 ```
 
-Then, use it to declare a ref inside your component:
+次に、それを使ってコンポーネント内で ref を宣言します。
 
 ```js
 const myRef = useRef(null);
 ```
 
-Finally, pass your ref as the `ref` attribute to the JSX tag for which you want to get the DOM node:
+最後に、参照を得たい DOM ノートに対応する JSX タグの `ref` 属性にこの ref を渡します。
 
 ```js
 <div ref={myRef}>
 ```
 
-The `useRef` Hook returns an object with a single property called `current`. Initially, `myRef.current` will be `null`. When React creates a DOM node for this `<div>`, React will put a reference to this node into `myRef.current`. You can then access this DOM node from your [event handlers](/learn/responding-to-events) and use the built-in [browser APIs](https://developer.mozilla.org/docs/Web/API/Element) defined on it.
+`useRef` フックは、`current` という単一のプロパティを持つオブジェクトを返します。最初は `myRef.current` は `null` になっています。React がこの `<div>` に対応する DOM ノードを作成すると、React はこのノードへの参照を `myRef.current` に入れます。その後、[イベントハンドラ](/learn/responding-to-events)からこの DOM ノードにアクセスし、ノードに定義されている組み込みの[ブラウザ API](https://developer.mozilla.org/docs/Web/API/Element) を使用できるようになります。
 
 ```js
 // You can use any browser APIs, for example:
 myRef.current.scrollIntoView();
 ```
 
-### Example: Focusing a text input {/*example-focusing-a-text-input*/}
+### 例：テキスト入力フィールドにフォーカスを当てる {/*example-focusing-a-text-input*/}
 
-In this example, clicking the button will focus the input:
+この例では、ボタンをクリックすると入力フィールドにフォーカスが当たります。
 
 <Sandpack>
 
@@ -73,18 +73,18 @@ export default function Form() {
 
 </Sandpack>
 
-To implement this:
+これを実装するには以下のようにします。
 
-1. Declare `inputRef` with the `useRef` Hook.
-2. Pass it as `<input ref={inputRef}>`. This tells React to **put this `<input>`'s DOM node into `inputRef.current`.**
-3. In the `handleClick` function, read the input DOM node from `inputRef.current` and call [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) on it with `inputRef.current.focus()`.
-4. Pass the `handleClick` event handler to `<button>` with `onClick`.
+1. `useRef` フックを使って `inputRef` を宣言する。
+2. それを `<input ref={inputRef}>` として渡す。これにより、React に**この `<input>` の DOM ノードを `inputRef.current` に入れる**よう指示している。
+3. `handleClick` 関数内で、`inputRef.current` から入力フィールドの DOM ノードを読み取り、`inputRef.current.focus()` のようにして [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) を呼び出す。
+4. `<button>` の `onClick` に `handleClick` イベントハンドラを渡す。
 
-While DOM manipulation is the most common use case for refs, the `useRef` Hook can be used for storing other things outside React, like timer IDs. Similarly to state, refs remain between renders. Refs are like state variables that don't trigger re-renders when you set them. Read about refs in [Referencing Values with Refs.](/learn/referencing-values-with-refs)
+DOM 操作は ref の最も一般的な使用例ですが、`useRef` フックはほかに、タイマー ID などの React 外部にあるものを格納するためにも使用できます。state と同様に、ref はレンダー間で維持されます。ref は、セットしても再レンダーがトリガされない state 変数のようなものです。ref については、[ref で値を参照する](/learn/referencing-values-with-refs)で読むことができます。
 
-### Example: Scrolling to an element {/*example-scrolling-to-an-element*/}
+### 例：要素へのスクロール {/*example-scrolling-to-an-element*/}
 
-You can have more than a single ref in a component. In this example, there is a carousel of three images. Each button centers an image by calling the browser [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) method on the corresponding DOM node:
+コンポーネントは複数の ref を持つことができます。この例は、3 つの画像でできたカルーセルです。各ボタンは、対応する DOM ノードに定義されているブラウザの [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) メソッドを呼び出すことで、画像を中央に表示します。
 
 <Sandpack>
 
@@ -193,9 +193,9 @@ li {
 
 <DeepDive>
 
-#### How to manage a list of refs using a ref callback {/*how-to-manage-a-list-of-refs-using-a-ref-callback*/}
+#### ref コールバックを使って ref のリストを管理する {/*how-to-manage-a-list-of-refs-using-a-ref-callback*/}
 
-In the above examples, there is a predefined number of refs. However, sometimes you might need a ref to each item in the list, and you don't know how many you will have. Something like this **wouldn't work**:
+上記の例では、ref の数は事前に決まっていました。しかし、リスト内の各アイテムに ref が必要で、かつ、いくつ必要かわからない場合もあります。以下のようなコードは**機能しません**。
 
 ```js
 <ul>
@@ -207,13 +207,13 @@ In the above examples, there is a predefined number of refs. However, sometimes 
 </ul>
 ```
 
-This is because **Hooks must only be called at the top-level of your component.** You can't call `useRef` in a loop, in a condition, or inside a `map()` call.
+これは、**フックはコンポーネントのトップレベルでのみ呼び出される必要がある**ためです。ループ、条件分岐、または `map()` 呼び出しの中で `useRef` を呼び出すことはできません。
 
-One possible way around this is to get a single ref to their parent element, and then use DOM manipulation methods like [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) to "find" the individual child nodes from it. However, this is brittle and can break if your DOM structure changes.
+これを回避する方法のひとつは、親要素への単一の ref を取得し、[`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) のような DOM 操作メソッドを使って、個々の子ノードを「見つける」ことです。ただし、これは壊れやすく、DOM 構造が変更されると機能しなくなる可能性があります。
 
-Another solution is to **pass a function to the `ref` attribute.** This is called a [`ref` callback.](/reference/react-dom/components/common#ref-callback) React will call your ref callback with the DOM node when it's time to set the ref, and with `null` when it's time to clear it. This lets you maintain your own array or a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), and access any ref by its index or some kind of ID.
+別の解決策は、**`ref` 属性に関数を渡す**ことです。これは、[`ref` コールバック](/reference/react-dom/components/common#ref-callback) と呼ばれます。React は、ref を設定するタイミングで DOM ノードを引数にして ref コールバックを呼び出し、クリアするタイミングでは `null` を引数にして呼び出します。これにより、独自の配列や [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) を保持し、インデックスや ID のようなもので任意の ref にアクセスできるようになります。
 
-This example shows how you can use this approach to scroll to an arbitrary node in a long list:
+この例では、このアプローチを用いて、長いリストの任意のノードにスクロールする方法を示しています。
 
 <Sandpack>
 
@@ -318,7 +318,7 @@ li {
 
 </Sandpack>
 
-In this example, `itemsRef` doesn't hold a single DOM node. Instead, it holds a [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) from item ID to a DOM node. ([Refs can hold any values!](/learn/referencing-values-with-refs)) The [`ref` callback](/reference/react-dom/components/common#ref-callback) on every list item takes care to update the Map:
+この例では、`itemsRef` は単一の DOM ノードを保持していません。代わりに、アイテム ID から DOM ノードへの [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) を保持しています。（[ref はどんな値でも保持できます！](/learn/referencing-values-with-refs)）すべてのリストアイテムの [`ref` コールバック](/reference/react-dom/components/common#ref-callback) が、Map を更新します。
 
 ```js
 <li
@@ -336,15 +336,15 @@ In this example, `itemsRef` doesn't hold a single DOM node. Instead, it holds a 
 >
 ```
 
-This lets you read individual DOM nodes from the Map later.
+これにより、後で Map から個々の DOM ノードを読み取ることができます。
 
 </DeepDive>
 
-## Accessing another component's DOM nodes {/*accessing-another-components-dom-nodes*/}
+## 別のコンポーネントの DOM ノードにアクセスする {/*accessing-another-components-dom-nodes*/}
 
-When you put a ref on a built-in component that outputs a browser element like `<input />`, React will set that ref's `current` property to the corresponding DOM node (such as the actual `<input />` in the browser).
+`<input />` のようなブラウザ要素を出力する組み込みコンポーネントに ref を置いた場合、React はその ref の `current` プロパティを、対応する DOM ノード（ブラウザの実際の `<input />` など）にセットします。
 
-However, if you try to put a ref on **your own** component, like `<MyInput />`, by default you will get `null`. Here is an example demonstrating it. Notice how clicking the button **does not** focus the input:
+ただし、**独自の**コンポーネント、例えば `<MyInput />` に ref を置こうとすると、デフォルトでは `null` が返されます。以下はそれを示す例です。ボタンをクリックしても入力フィールドにフォーカスが当たらないことに注意してください。
 
 <Sandpack>
 
@@ -375,7 +375,7 @@ export default function MyForm() {
 
 </Sandpack>
 
-To help you notice the issue, React also prints an error to the console:
+問題に気付きやすくするため、React はコンソールにもエラーを出力します。
 
 <ConsoleBlock level="error">
 
@@ -383,9 +383,9 @@ Warning: Function components cannot be given refs. Attempts to access this ref w
 
 </ConsoleBlock>
 
-This happens because by default React does not let a component access the DOM nodes of other components. Not even for its own children! This is intentional. Refs are an escape hatch that should be used sparingly. Manually manipulating _another_ component's DOM nodes makes your code even more fragile.
+これは、デフォルトでは React は、コンポーネントが他のコンポーネントの DOM ノードにアクセスできないようにしているためです。自分自身の子でさえもです！ これは意図的なものです。ただでさえ ref は控えめに使うべき避難ハッチ (escape hatch) です。*別の*コンポーネントの DOM ノードまで手動で操作できてしまうと、コードがさらに壊れやすくなってしまいます。
 
-Instead, components that _want_ to expose their DOM nodes have to **opt in** to that behavior. A component can specify that it "forwards" its ref to one of its children. Here's how `MyInput` can use the `forwardRef` API:
+代わりに、内部の DOM ノードを*意図的に*公開したいコンポーネントは、そのことを**明示的に許可**する必要があります。コンポーネントは、自身が受け取った ref を子のいずれかに「転送 (forward)」するよう指定できます。`MyInput` が `forwardRef` API を使ってこれをどのように行うのか見てみましょう。
 
 ```js
 const MyInput = forwardRef((props, ref) => {
@@ -393,13 +393,13 @@ const MyInput = forwardRef((props, ref) => {
 });
 ```
 
-This is how it works:
+以下が動作の仕組みです。
 
-1. `<MyInput ref={inputRef} />` tells React to put the corresponding DOM node into `inputRef.current`. However, it's up to the `MyInput` component to opt into that--by default, it doesn't.
-2. The `MyInput` component is declared using `forwardRef`. **This opts it into receiving the `inputRef` from above as the second `ref` argument** which is declared after `props`.
-3. `MyInput` itself passes the `ref` it received to the `<input>` inside of it.
+1. `<MyInput ref={inputRef} />` は、対応する DOM ノードを `inputRef.current` に入れるように React に指示する。ただしそれを許可するかどうかは `MyInput` 次第であり、デフォルトでは許可しない。
+2. `MyInput` コンポーネントは `forwardRef` を使って宣言されている。**これにより、上記の `inputRef` を `props` の後に宣言された 2 番目の `ref` 引数として受け取るよう、明示的に許可している**。
+3. `MyInput` 自体は、受け取った `ref` を内部の `<input>` に渡す。
 
-Now clicking the button to focus the input works:
+これで、ボタンをクリックして入力にフォーカスを当てることができます。
 
 <Sandpack>
 
@@ -430,13 +430,13 @@ export default function Form() {
 
 </Sandpack>
 
-In design systems, it is a common pattern for low-level components like buttons, inputs, and so on, to forward their refs to their DOM nodes. On the other hand, high-level components like forms, lists, or page sections usually won't expose their DOM nodes to avoid accidental dependencies on the DOM structure.
+デザインシステムにおいて、ボタン、入力フィールドなどの低レベルなコンポーネントが、内部の DOM ノードに ref を転送することは一般的なパターンです。一方、フォーム、リスト、ページセクションなどの高レベルなコンポーネントは、DOM 構造への偶発的な依存関係を避けるため、通常は DOM ノードを公開しません。
 
 <DeepDive>
 
-#### Exposing a subset of the API with an imperative handle {/*exposing-a-subset-of-the-api-with-an-imperative-handle*/}
+#### 命令型ハンドルで API の一部を公開する {/*exposing-a-subset-of-the-api-with-an-imperative-handle*/}
 
-In the above example, `MyInput` exposes the original DOM input element. This lets the parent component call `focus()` on it. However, this also lets the parent component do something else--for example, change its CSS styles. In uncommon cases, you may want to restrict the exposed functionality. You can do that with `useImperativeHandle`:
+上記の例では、`MyInput` は元の DOM の input 要素を公開しています。これにより親コンポーネント側からその要素の `focus()` を呼び出すことができます。しかしこれにより、親コンポーネントが他のこと、例えば、CSS スタイルを変更することもできてしまいます。一般的なことではありませんが、公開される機能を制限したいということがあります。それには `useImperativeHandle` を使います。
 
 <Sandpack>
 
@@ -478,28 +478,28 @@ export default function Form() {
 
 </Sandpack>
 
-Here, `realInputRef` inside `MyInput` holds the actual input DOM node. However, `useImperativeHandle` instructs React to provide your own special object as the value of a ref to the parent component. So `inputRef.current` inside the `Form` component will only have the `focus` method. In this case, the ref "handle" is not the DOM node, but the custom object you create inside `useImperativeHandle` call.
+ここでは、`MyInput` 内の `realInputRef` が本物の DOM の input ノードを保持しています。ただし、`useImperativeHandle` は、親コンポーネントに対して渡す ref の値として、独自の特別なオブジェクトを使うよう、React に指示します。そのため、`Form` コンポーネント内の `inputRef.current` には `focus` メソッドのみが含まれます。この例での、ref "handle" とは DOM ノードではなく、`useImperativeHandle` の呼び出し内で作成するカスタムオブジェクトです。
 
 </DeepDive>
 
-## When React attaches the refs {/*when-react-attaches-the-refs*/}
+## React が ref をアタッチするタイミング {/*when-react-attaches-the-refs*/}
 
-In React, every update is split in [two phases](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom):
+React では、すべての更新は [2 つのフェーズ](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom)に分けて行われます。
 
-* During **render,** React calls your components to figure out what should be on the screen.
-* During **commit,** React applies changes to the DOM.
+* **レンダー**中に、React はコンポーネントを呼び出して画面に表示される内容を決定する。
+* **コミット**中に、React は DOM に変更を適用する。
 
-In general, you [don't want](/learn/referencing-values-with-refs#best-practices-for-refs) to access refs during rendering. That goes for refs holding DOM nodes as well. During the first render, the DOM nodes have not yet been created, so `ref.current` will be `null`. And during the rendering of updates, the DOM nodes haven't been updated yet. So it's too early to read them.
+一般的に、レンダー中に ref にアクセスすることは[望ましくありません](/learn/referencing-values-with-refs#best-practices-for-refs)。これは、DOM ノードを保持するタイプの ref に対しても当てはまります。最初のレンダー中には、DOM ノードがまだ作成されていないため、`ref.current` は `null` になります。また、更新のレンダー中には、DOM ノードがまだ更新されていないため、それらを読むのは早すぎます。
 
-React sets `ref.current` during the commit. Before updating the DOM, React sets the affected `ref.current` values to `null`. After updating the DOM, React immediately sets them to the corresponding DOM nodes.
+React が `ref.current` をセットするのはコミット中です。DOM を更新する前に、React は影響を受ける `ref.current` の値を `null` に設定します。DOM を更新した後すぐに、React はそれらを対応する DOM ノードにセットします。
 
-**Usually, you will access refs from event handlers.** If you want to do something with a ref, but there is no particular event to do it in, you might need an Effect. We will discuss effects on the next pages.
+**通常、ref にアクセスするのはイベントハンドラからです**。ref を使って何かをしたいが、それをするための特定のイベントがないという場合は、エフェクト (Effect) が必要になるかもしれません。これ以降の数ページでは、エフェクトについて説明します。
 
 <DeepDive>
 
-#### Flushing state updates synchronously with flushSync {/*flushing-state-updates-synchronously-with-flush-sync*/}
+#### flushSync で state 更新を同期的にフラッシュする {/*flushing-state-updates-synchronously-with-flush-sync*/}
 
-Consider code like this, which adds a new todo and scrolls the screen down to the last child of the list. Notice how, for some reason, it always scrolls to the todo that was *just before* the last added one:
+新しい todo を追加したら画面をリストの最後の子までスクロールする、以下のようなコードを考えてみましょう。どういうわけか常に、最後に追加されたものの *1 つ前*の todo 項目にスクロールされてしまいます。
 
 <Sandpack>
 
@@ -553,16 +553,16 @@ for (let i = 0; i < 20; i++) {
 
 </Sandpack>
 
-The issue is with these two lines:
+問題は、以下の 2 行にあります。
 
 ```js
 setTodos([ ...todos, newTodo]);
 listRef.current.lastChild.scrollIntoView();
 ```
 
-In React, [state updates are queued.](/learn/queueing-a-series-of-state-updates) Usually, this is what you want. However, here it causes a problem because `setTodos` does not immediately update the DOM. So the time you scroll the list to its last element, the todo has not yet been added. This is why scrolling always "lags behind" by one item.
+React では、[state 更新はキューに入ります](/learn/queueing-a-series-of-state-updates)。通常、これは望ましい動作です。しかし、ここでは `setTodos` が DOM をすぐに更新しないため、問題が発生します。リストの最後の要素にスクロールするときに、todo がまだ追加されていないためです。これが、スクロールが常に 1 つのアイテム分「遅れて」いる理由です。
 
-To fix this issue, you can force React to update ("flush") the DOM synchronously. To do this, import `flushSync` from `react-dom` and **wrap the state update** into a `flushSync` call:
+この問題を解決するために、React に DOM を同期的に更新、あるいは「フラッシュ (flush)」するよう強制することができます。これを行うには、`react-dom` から `flushSync` をインポートし、`flushSync` の呼び出しで **state 更新をラップ**します。
 
 ```js
 flushSync(() => {
@@ -571,7 +571,7 @@ flushSync(() => {
 listRef.current.lastChild.scrollIntoView();
 ```
 
-This will instruct React to update the DOM synchronously right after the code wrapped in `flushSync` executes. As a result, the last todo will already be in the DOM by the time you try to scroll to it:
+これにより React に、`flushSync` でラップされたコードが実行された直後に、DOM を同期的に更新するよう指示します。結果として、スクロールしようとするときには最後の todo 項目がすでに DOM に存在することになります。
 
 <Sandpack>
 
@@ -630,15 +630,15 @@ for (let i = 0; i < 20; i++) {
 
 </DeepDive>
 
-## Best practices for DOM manipulation with refs {/*best-practices-for-dom-manipulation-with-refs*/}
+## ref を使った DOM 操作のベストプラクティス {/*best-practices-for-dom-manipulation-with-refs*/}
 
-Refs are an escape hatch. You should only use them when you have to "step outside React". Common examples of this include managing focus, scroll position, or calling browser APIs that React does not expose.
+ref は避難ハッチです。「React の外に踏み出す」必要がある場合にのみ使用してください。よくある例としては、フォーカスの管理、スクロール位置の管理、または React が公開していないブラウザ API の呼び出しなどが含まれます。
 
-If you stick to non-destructive actions like focusing and scrolling, you shouldn't encounter any problems. However, if you try to **modify** the DOM manually, you can risk conflicting with the changes React is making.
+フォーカスやスクロールのような非破壊的なアクションに留めておけば、問題は発生しないはずです。ただし、DOM を手動で**書き換え**ようとすると、React が行おうとする変更と競合するリスクがあります。
 
-To illustrate this problem, this example includes a welcome message and two buttons. The first button toggles its presence using [conditional rendering](/learn/conditional-rendering) and [state](/learn/state-a-components-memory), as you would usually do in React. The second button uses the [`remove()` DOM API](https://developer.mozilla.org/en-US/docs/Web/API/Element/remove) to forcefully remove it from the DOM outside of React's control.
+以下はこの問題を説明するための例です。ウェルカムメッセージと 2 つのボタンが含まれています。最初のボタンは、React で通常行うように、[条件付きレンダー](/learn/conditional-rendering)と [state](/learn/state-a-components-memory) を使用してメッセージの有無を切り替えます。2 番目のボタンは、[`remove()` DOM API](https://developer.mozilla.org/en-US/docs/Web/API/Element/remove) を使用して、React の制御外で DOM から強制的にメッセージを削除します。
 
-Try pressing "Toggle with setState" a few times. The message should disappear and appear again. Then press "Remove from the DOM". This will forcefully remove it. Finally, press "Toggle with setState":
+"Toggle with setState" を数回押してみてください。メッセージが消えたり現れたりします。次に、"Remove from the DOM" を押してください。これによりメッセージが強制的に削除されます。最後に、"Toggle with setState" を押してください。
 
 <Sandpack>
 
@@ -679,20 +679,20 @@ button {
 
 </Sandpack>
 
-After you've manually removed the DOM element, trying to use `setState` to show it again will lead to a crash. This is because you've changed the DOM, and React doesn't know how to continue managing it correctly.
+DOM 要素を手動で削除した後、`setState` を使用して再度表示しようとすると、クラッシュが発生します。これは、あなたが DOM を書き換えてしまったので、React はそれを正しく管理し続ける方法がわからなくなってしまったからです。
 
-**Avoid changing DOM nodes managed by React.** Modifying, adding children to, or removing children from elements that are managed by React can lead to inconsistent visual results or crashes like above.
+**React が管理する DOM ノードの変更は避けてください**。React が管理する要素を変更しようとしたり、子要素を追加あるいは削除しようとすると、見た目の一貫性が失われたり、上記のようなクラッシュが発生することがあります。
 
-However, this doesn't mean that you can't do it at all. It requires caution. **You can safely modify parts of the DOM that React has _no reason_ to update.** For example, if some `<div>` is always empty in the JSX, React won't have a reason to touch its children list. Therefore, it is safe to manually add or remove elements there.
+ただし、これがまったくできないというわけでもありません。注意が必要だということです。**React が更新する*理由*がない部分であれば、DOM を安全に変更できます**。例えば、ある `<div>` が JSX では常に空である場合、React はその子要素リストに触れる理由がありません。したがって、そこに要素を手動で追加または削除することは安全です。
 
 <Recap>
 
-- Refs are a generic concept, but most often you'll use them to hold DOM elements.
-- You instruct React to put a DOM node into `myRef.current` by passing `<div ref={myRef}>`.
-- Usually, you will use refs for non-destructive actions like focusing, scrolling, or measuring DOM elements.
-- A component doesn't expose its DOM nodes by default. You can opt into exposing a DOM node by using `forwardRef` and passing the second `ref` argument down to a specific node.
-- Avoid changing DOM nodes managed by React.
-- If you do modify DOM nodes managed by React, modify parts that React has no reason to update.
+- ref は一般的な概念だが、ほとんどの場合、DOM 要素を保持するために使用する。
+- `<div ref={myRef}>` のように渡すことで、React に DOM ノードを `myRef.current` に入れるよう指示する。
+- 通常、フォーカス、スクロール、または DOM 要素の測定などの非破壊的なアクションに ref を使用する。
+- コンポーネントはデフォルトでは内部の DOM ノードを公開しない。`forwardRef` を使用して特定のノードに 2 番目の `ref` 引数を渡すことで、DOM ノードの公開を明示的に許可する。
+- React によって管理される DOM ノードの変更を避ける。
+- React によって管理される DOM ノードをどうしても変更する場合は、React が更新する理由のない部分のみ変更する。
 
 </Recap>
 
@@ -700,9 +700,9 @@ However, this doesn't mean that you can't do it at all. It requires caution. **Y
 
 <Challenges>
 
-#### Play and pause the video {/*play-and-pause-the-video*/}
+#### ビデオの再生と一時停止 {/*play-and-pause-the-video*/}
 
-In this example, the button toggles a state variable to switch between a playing and a paused state. However, in order to actually play or pause the video, toggling state is not enough. You also need to call [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) on the DOM element for the `<video>`. Add a ref to it, and make the button work.
+この例では、ボタンが state 変数をトグルして、再生中状態と一時停止状態の間を切り替えます。ただし、ビデオを実際に再生または一時停止するためには、state をトグルするだけでは十分ではありません。`<video>` DOM 要素に対して [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) および [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) を呼び出す必要もあります。この要素に ref を追加し、ボタンを機能させてください。
 
 <Sandpack>
 
@@ -739,11 +739,11 @@ button { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-For an extra challenge, keep the "Play" button in sync with whether the video is playing even if the user right-clicks the video and plays it using the built-in browser media controls. You might want to listen to `onPlay` and `onPause` on the video to do that.
+さらなるチャレンジとして、ユーザがビデオを右クリックしてブラウザ組み込みのメディアコントロールを使用して再生を行う場合でも、"Play" ボタンをビデオの再生状態と同期させるようにしてください。このためにはビデオの `onPlay` と `onPause` をリッスンする必要があるでしょう。
 
 <Solution>
 
-Declare a ref and put it on the `<video>` element. Then call `ref.current.play()` and `ref.current.pause()` in the event handler depending on the next state.
+ref を宣言し、`<video>` 要素に配置します。次の state に応じて、イベントハンドラ内で `ref.current.play()` または `ref.current.pause()` を呼び出します。
 
 <Sandpack>
 
@@ -792,13 +792,13 @@ button { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-In order to handle the built-in browser controls, you can add `onPlay` and `onPause` handlers to the `<video>` element and call `setIsPlaying` from them. This way, if the user plays the video using the browser controls, the state will adjust accordingly.
+組み込みのブラウザコントロールを扱うためには、`<video>` 要素に `onPlay` および `onPause` ハンドラを追加し、それらから `setIsPlaying` を呼び出します。この方法で、ユーザがブラウザコントロールを使用してビデオを再生する場合でも、state がそれに応じて変更されます。
 
 </Solution>
 
-#### Focus the search field {/*focus-the-search-field*/}
+#### 検索フィールドにフォーカス {/*focus-the-search-field*/}
 
-Make it so that clicking the "Search" button puts focus into the field.
+"Search" ボタンをクリックすると、フォーカスがフィールドに移動するようにしてください。
 
 <Sandpack>
 
@@ -825,7 +825,7 @@ button { display: block; margin-bottom: 10px; }
 
 <Solution>
 
-Add a ref to the input, and call `focus()` on the DOM node to focus it:
+入力フィールドに ref を追加し、DOM ノードに対して `focus()` を呼び出してフォーカスを当てます。
 
 <Sandpack>
 
@@ -860,9 +860,9 @@ button { display: block; margin-bottom: 10px; }
 
 </Solution>
 
-#### Scrolling an image carousel {/*scrolling-an-image-carousel*/}
+#### 画像カルーセルをスクロールする {/*scrolling-an-image-carousel*/}
 
-This image carousel has a "Next" button that switches the active image. Make the gallery scroll horizontally to the active image on click. You will want to call [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) on the DOM node of the active image:
+この画像カルーセルには、アクティブな画像を切り替える "Next" ボタンがあります。クリックしたときにギャラリを水平方向にスクロールし、アクティブな画像に移動するようにしてください。アクティブな画像に対応する DOM ノードに対して [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) を呼び出しましょう。
 
 ```js
 node.scrollIntoView({
@@ -874,7 +874,7 @@ node.scrollIntoView({
 
 <Hint>
 
-You don't need to have a ref to every image for this exercise. It should be enough to have a ref to the currently active image, or to the list itself. Use `flushSync` to ensure the DOM is updated *before* you scroll.
+この問題では、すべての画像に対する ref を持つ必要はありません。現在アクティブな画像、またはリスト自体に ref があれば十分です。スクロールする*前に* DOM が更新されるよう、`flushSync` を使用してください。
 
 </Hint>
 
@@ -969,15 +969,15 @@ img {
 
 <Solution>
 
-You can declare a `selectedRef`, and then pass it conditionally only to the current image:
+`selectedRef` を宣言し、現在の画像にのみ条件付きで渡すことができます。
 
 ```js
 <li ref={index === i ? selectedRef : null}>
 ```
 
-When `index === i`, meaning that the image is the selected one, the `<li>` will receive the `selectedRef`. React will make sure that `selectedRef.current` always points at the correct DOM node.
+`index === i` の場合、つまり当該画像が選択中の場合、`<li>` は `selectedRef` を受け取ります。React は、`selectedRef.current` が常に正しい DOM ノードを指すようにします。
 
-Note that the `flushSync` call is necessary to force React to update the DOM before the scroll. Otherwise, `selectedRef.current` would always point at the previously selected item.
+`flushSync` の呼び出しが必要なのは、スクロールの前に React が強制的に DOM を更新するようにするためです。そうしないと、`selectedRef.current` は常に 1 つ前に選択されていたアイテムを指すことになります。
 
 <Sandpack>
 
@@ -1086,13 +1086,13 @@ img {
 
 </Solution>
 
-#### Focus the search field with separate components {/*focus-the-search-field-with-separate-components*/}
+#### 別々のコンポーネントで検索フィールドにフォーカス {/*focus-the-search-field-with-separate-components*/}
 
-Make it so that clicking the "Search" button puts focus into the field. Note that each component is defined in a separate file and shouldn't be moved out of it. How do you connect them together?
+"Search" ボタンをクリックすると、フォーカスがフィールドに移動するようにしてください。しかしそれぞれのコンポーネントは別々のファイルで定義されており、そこから移動させてはいけません。どのようにしてそれらをつなぎ合わればよいでしょう？
 
 <Hint>
 
-You'll need `forwardRef` to opt into exposing a DOM node from your own component like `SearchInput`.
+`SearchInput` のような独自コンポーネントから DOM ノードを公開するためには、`forwardRef` が必要です。
 
 </Hint>
 
@@ -1142,7 +1142,7 @@ button { display: block; margin-bottom: 10px; }
 
 <Solution>
 
-You'll need to add an `onClick` prop to the `SearchButton`, and make the `SearchButton` pass it down to the browser `<button>`. You'll also pass a ref down to `<SearchInput>`, which will forward it to the real `<input>` and populate it. Finally, in the click handler, you'll call `focus` on the DOM node stored inside that ref.
+`SearchButton` の props に `onClick` を追加し、`SearchButton` がそれをブラウザの `<button>` に渡すようにします。また、`<SearchInput>` に ref を渡し、コンポーネントが ref を実際の `<input>` に転送し、セットされるようにします。最後に、クリックハンドラ内で、その ref の中に格納されている DOM ノードに対して `focus` を呼び出します。
 
 <Sandpack>
 
