@@ -167,17 +167,17 @@ input { margin: 5px; }
 
 <Pitfall>
 
-[サーバーレンダリング](/reference/react-dom/server)では、**`useId` にはサーバとクライアント上で同一のコンポーネントツリーが必要です**。サーバ上とクライアント上でレンダーされるツリーが正確に一致しない場合、生成される ID は一致しません。
+[サーバーレンダリング](/reference/react-dom/server)では、**`useId` にはサーバーとクライアント上で同一のコンポーネントツリーが必要です**。サーバー上とクライアント上でレンダーされるツリーが正確に一致しない場合、生成される ID は一致しません。
 
 </Pitfall>
 
 <DeepDive>
 
-#### Why is useId better than an incrementing counter? {/*why-is-useid-better-than-an-incrementing-counter*/}
+#### useId が増分カウンタよりも良い理由 {/*why-is-useid-better-than-an-incrementing-counter*/}
 
 なぜ `useId` が `nextId++` のようなグローバル変数をインクリメントするよりも優れているのか疑問に思われるかもしれません。
 
-The primary benefit of `useId` is that React ensures that it works with [server rendering.](/reference/react-dom/server) During server rendering, your components generate HTML output. Later, on the client, [hydration](/reference/react-dom/client/hydrateRoot) attaches your event handlers to the generated HTML. For hydration to work, the client output must match the server HTML.
+`useId` の主な利点は、React が、[サーバーレンダリング](/reference/react-dom/server) で、確実に機能することを保証しているためです。サーバーのレンダー中に、コンポーネントは HTML の出力を生成します。その後クライアント上で、生成された HTML に、[ハイドレーション](/reference/react-dom/client/hydrateRoot) によって、イベント ハンドラがアタッチされます。ハイドレーションが機能するには、クライアントの出力がサーバーの HTML と一致する必要があります。
 
 This is very difficult to guarantee with an incrementing counter because the order in which the client components are hydrated may not match the order in which the server HTML was emitted. By calling `useId`, you ensure that hydration will work, and the output will match between the server and the client.
 
