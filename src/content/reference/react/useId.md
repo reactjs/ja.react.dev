@@ -175,7 +175,7 @@ input { margin: 5px; }
 
 #### Why is useId better than an incrementing counter? {/*why-is-useid-better-than-an-incrementing-counter*/}
 
-You might be wondering why `useId` is better than incrementing a global variable like `nextId++`.
+なぜ `useId` が `nextId++` のようなグローバル変数をインクリメントするよりも優れているのか疑問に思われるかもしれません。
 
 The primary benefit of `useId` is that React ensures that it works with [server rendering.](/reference/react-dom/server) During server rendering, your components generate HTML output. Later, on the client, [hydration](/reference/react-dom/client/hydrateRoot) attaches your event handlers to the generated HTML. For hydration to work, the client output must match the server HTML.
 
