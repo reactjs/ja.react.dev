@@ -175,11 +175,11 @@ input { margin: 5px; }
 
 #### useId が増分カウンタよりも良い理由 {/*why-is-useid-better-than-an-incrementing-counter*/}
 
-なぜ `useId` が `nextId++` のようなグローバル変数をインクリメントするよりも優れているのか疑問に思われるかもしれません。
+なぜ `useId` が `nextId++` のようなグローバル変数を増分するよりもなぜ良いのか、疑問に思われるかもしれません。
 
 `useId` の主な利点は、React が、[サーバーレンダリング](/reference/react-dom/server) で、確実に機能することを保証しているためです。サーバーのレンダー中に、コンポーネントは HTML の出力を生成します。その後クライアント上で、生成された HTML に、[ハイドレーション](/reference/react-dom/client/hydrateRoot) によって、イベント ハンドラがアタッチされます。ハイドレーションが機能するには、クライアントの出力がサーバーの HTML と一致する必要があります。
 
-This is very difficult to guarantee with an incrementing counter because the order in which the client components are hydrated may not match the order in which the server HTML was emitted. By calling `useId`, you ensure that hydration will work, and the output will match between the server and the client.
+クライアントコンポーネントがハイドレートされる順序は、サーバー HTML が出力された順序と一致しない可能性があるため、これをインクリメントカウンタで保証することは非常に困難です。`useId` を呼び出すことで、ハイドレーションが機能し、サーバーとクライアントの間で出力が一致することが保証されます。
 
 Inside React, `useId` is generated from the "parent path" of the calling component. This is why, if the client and the server tree are the same, the "parent path" will match up regardless of rendering order.
 
