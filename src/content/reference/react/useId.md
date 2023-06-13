@@ -187,9 +187,9 @@ React 内部では、呼び出し元コンポーネントの「親パス」か�
 
 ---
 
-### Generating IDs for several related elements {/*generating-ids-for-several-related-elements*/}
+### 複数の関連要素に対してIDを生成する方法 {/*generating-ids-for-several-related-elements*/}
 
-If you need to give IDs to multiple related elements, you can call `useId` to generate a shared prefix for them: 
+複数の関連要素に ID を与える必要がある場合は、`useId` を呼び出してそれらの共有プレフィックスを生成できます。 
 
 <Sandpack>
 
@@ -216,7 +216,7 @@ input { margin: 5px; }
 
 </Sandpack>
 
-This lets you avoid calling `useId` for every single element that needs a unique ID.
+これにより、一意の ID を必要とするすべての要素に対して `useId` を呼び出す必要がなくなります。
 
 ---
 
