@@ -4,7 +4,7 @@ title: useId
 
 <Intro>
 
-`useId` は、アクセシビリティ属性に渡すことができる一意の ID を生成するための  React フックです。
+`useId` は、アクセシビリティ属性に渡すことができる一意の ID を生成するための React フックです。
 
 ```js
 const id = useId()
@@ -30,33 +30,33 @@ function PasswordField() {
   // ...
 ```
 
-[その他の例は下をご覧ください。](#usage)
+[さらに例を見る](#usage)
 
-#### パラメータ {/*parameters*/}
+#### 引数 {/*parameters*/}
 
 `useId` はパラメータを受け取りません。
 
-#### 返す {/*returns*/}
+#### 返り値 {/*returns*/}
 
-`useId` は、特定のコンポーネント内で、この `useId` の呼び出しに関連付けられた一意の ID 文字列を返します。
+`useId` は、特定のコンポーネント内でこの特定の `useId` の呼び出しに関連付けられた、一意の ID 文字列を返します。
 
 #### 注意事項 {/*caveats*/}
 
-* `useId` はフックであるため、**コンポーネントのトップレベル** または独自のフック内でのみ呼び出すことができます。ループまたは条件分岐内で呼び出すことはできません。もし必要な場合は、新しいコンポーネントを作成し、状態を移動させる必要があります。
+* `useId` はフックであるため、**コンポーネントのトップレベル**または独自のフック内でのみ呼び出すことができます。ループまたは条件分岐内で呼び出すことはできません。もし必要な場合は、新しいコンポーネントを作成し、状態を移動させる必要があります。
 
-* `useId` を、**リスト内のキーの生成には使用しないでください**。[キーはデータから生成される必要があります。](/learn/rendering-lists#where-to-get-your-key)
+* `useId` を、**リスト内の key の生成には使用しないでください**。[key はデータから生成される必要があります。](/learn/rendering-lists#where-to-get-your-key)
 
 ---
 
-## 使用方法 {/*usage*/}
+## 使用方 {/*usage*/}
 
 <Pitfall>
 
-**リスト内のキーを生成するために `useId` を呼び出さないでください。**[キーはデータから生成される必要があります。](/learn/rendering-lists#where-to-get-your-key)
+**リスト内の key を生成するために `useId` を呼び出さないでください。**[key はデータから生成される必要があります。](/learn/rendering-lists#where-to-get-your-key)
 
 </Pitfall>
 
-### アクセシビリティ属性の一意の ID の生成 {/*generating-unique-ids-for-accessibility-attributes*/}
+### アクセシビリティ属性のための一意の ID の生成 {/*generating-unique-ids-for-accessibility-attributes*/}
 
 コンポーネントのトップレベルで `useId` を呼び出して、一意の ID を生成します。
 
@@ -68,7 +68,7 @@ function PasswordField() {
   // ...
 ```
 
-その後、<CodeStep step={1}> 生成された ID </CodeStep>をさまざまな属性に渡すことができます。
+その後、<CodeStep step={1}>生成された ID</CodeStep> をさまざまな属性に渡すことができます。
 
 ```js [[1, 2, "passwordHintId"], [1, 3, "passwordHintId"]]
 <>
@@ -167,7 +167,7 @@ input { margin: 5px; }
 
 <Pitfall>
 
-[サーバーレンダリング](/reference/react-dom/server)では、**`useId` にはサーバーとクライアント上で同一のコンポーネントツリーが必要です**。サーバー上とクライアント上でレンダーされるツリーが正確に一致しない場合、生成される ID は一致しません。
+[サーバレンダリング](/reference/react-dom/server)では、**`useId` にはサーバとクライアント上で同一のコンポーネントツリーが必要です**。サーバ上とクライアント上でレンダーされるツリーが正確に一致しない場合、生成される ID は一致しません。
 
 </Pitfall>
 
@@ -175,21 +175,21 @@ input { margin: 5px; }
 
 #### useId が増分カウンタよりも良い理由 {/*why-is-useid-better-than-an-incrementing-counter*/}
 
-なぜ `useId` が `nextId++` のようなグローバル変数を増分するよりもなぜ良いのか、疑問に思われるかもしれません。
+`useId` が `nextId++` のようなグローバル変数を増分するよりもなぜ良いのか、疑問に思われるかもしれません。
 
-`useId` の主な利点は、React が、[サーバーレンダリング](/reference/react-dom/server) で、確実に機能することを保証しているためです。サーバーのレンダー中に、コンポーネントは HTML の出力を生成します。その後クライアント上で、生成された HTML に、[ハイドレーション](/reference/react-dom/client/hydrateRoot) によって、イベント ハンドラがアタッチされます。ハイドレーションが機能するには、クライアントの出力がサーバーの HTML と一致する必要があります。
+`useId` の主な利点は、React が、[サーバレンダリング](/reference/react-dom/server)で確実に機能することを保証していることです。サーバでのレンダー中に、コンポーネントは HTML 形式の出力を生成します。その後クライアント上で、生成された HTML に、[ハイドレーション](/reference/react-dom/client/hydrateRoot)によって、イベントハンドラがアタッチされます。ハイドレーションが機能するには、クライアントの出力がサーバの HTML と一致する必要があります。
 
-クライアントコンポーネントがハイドレートされる順序は、サーバー HTML が出力された順序と一致しない可能性があるため、これをインクリメントカウンタで保証することは非常に困難です。`useId` を呼び出すことで、ハイドレーションが機能し、サーバーとクライアントの間で出力が一致することが保証されます。
+クライアントコンポーネントがハイドレートされる順序は、サーバ HTML が出力された順序と一致しない可能性があるため、これをインクリメントカウンタで保証することは非常に困難です。`useId` を呼び出すことで、ハイドレーションが機能し、サーバとクライアントの間で出力が一致することが保証されます。
 
-React 内部では、呼び出し元コンポーネントの「親パス」から `useId` が生成されます。そのため、クライアントとサーバーのツリーが同じであれば、レンダリング順序に関係なく「親パス」が一致することになります。
+React 内部では、呼び出し元コンポーネントの "親のパス (parent path)" から `useId` が生成されます。そのため、クライアントとサーバのツリーが同じであれば、レンダー順序に関係なく "親のパス" が一致することになります。
 
 </DeepDive>
 
 ---
 
-### 複数の関連要素に対してIDを生成する {/*generating-ids-for-several-related-elements*/}
+### 複数の関連要素に対して ID を生成する {/*generating-ids-for-several-related-elements*/}
 
-複数の関連要素に ID を与える必要がある場合は、`useId` を呼び出してそれらの共有プレフィックスを生成できます。 
+複数の関連要素に ID を与える必要がある場合は、`useId` で生成した値を共有のプレフィックスとして使用できます。
 
 <Sandpack>
 
@@ -220,7 +220,7 @@ input { margin: 5px; }
 
 ---
 
-### 生成されたすべての ID に共有プレフィックスを指定する {/*specifying-a-shared-prefix-for-all-generated-ids*/}
+### 生成されるすべての ID に共有プレフィックスを指定する {/*specifying-a-shared-prefix-for-all-generated-ids*/}
 
 複数の独立した React アプリケーションを 1 つのページにレンダーする場合は、オプションとして `identifierPrefix` を [`createRoot`](/reference/react-dom/client/createRoot#parameters) または [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) に渡します。これにより、`useId` で生成されたすべての識別子が指定した個別のプレフィックスで始まるため、2 つの異なるアプリによって生成された ID が衝突することがなくなります。
 
