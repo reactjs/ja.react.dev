@@ -1,37 +1,37 @@
 ---
-title: 'Separating Events from Effects'
+title: 'イベントとエフェクトを切り離す'
 ---
 
 <Intro>
 
-Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if some value they read, like a prop or a state variable, is different from what it was during the last render. Sometimes, you also want a mix of both behaviors: an Effect that re-runs in response to some values but not others. This page will teach you how to do that.
+イベントハンドラは同じインタラクションを再度実行した場合のみ再実行されます。イベントハンドラとは異なり、エフェクトは、プロパティや state 変数のような読み取った値が、前回のレンダー時の値と異なる場合に再同期を行います。また、ある値には反応して再実行するが、他の値には反応しないエフェクトなど、両方の動作をミックスさせたい場合もあります。このページでは、その方法を説明します。
 
 </Intro>
 
 <YouWillLearn>
 
-- How to choose between an event handler and an Effect
-- Why Effects are reactive, and event handlers are not
-- What to do when you want a part of your Effect's code to not be reactive
-- What Effect Events are, and how to extract them from your Effects
-- How to read the latest props and state from Effects using Effect Events
+- イベントハンドラとエフェクトの選択方法
+- エフェクトがリアクティブで、イベントハンドラがリアクティブでない理由
+- エフェクトのコードの一部をリアクティブにしない場合の対処法
+- エフェクトイベントとは何か、そしてエフェクトイベントからエフェクトを抽出する方法
+- エフェクトイベントを使用してエフェクトから最新の props と state を読み取る方法
 
 </YouWillLearn>
 
-## Choosing between event handlers and Effects {/*choosing-between-event-handlers-and-effects*/}
+## イベントハンドラとエフェクトのどちらを選ぶか {/*choosing-between-event-handlers-and-effects*/}
 
-First, let's recap the difference between event handlers and Effects.
+まず、イベントハンドラとエフェクトの違いについておさらいしましょう。
 
-Imagine you're implementing a chat room component. Your requirements look like this:
+チャットルームのコンポーネントを実装している場合を想像してください。要件は次のようなものです：
 
-1. Your component should automatically connect to the selected chat room.
-1. When you click the "Send" button, it should send a message to the chat.
+1. コンポーネントは選択されたチャットルームに自動的に接続する
+2. 「Send」ボタンをクリックすると、チャットにメッセージが送信される
 
-Let's say you've already implemented the code for them, but you're not sure where to put it. Should you use event handlers or Effects? Every time you need to answer this question, consider [*why* the code needs to run.](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events)
+あなたはそのためのコードはすでに実装されているが、それをどこに置くか迷っているとしましょう。イベントハンドラを使うべきか、エフェクトを使うべきか。この質問に答える必要があるたびに、[なぜそのコードが実行される必要があるのかを考えてみてください。](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events)
 
-### Event handlers run in response to specific interactions {/*event-handlers-run-in-response-to-specific-interactions*/}
+### 特定のインタラクションに反応して実行されるイベントハンドラ {/*event-handlers-run-in-response-to-specific-interactions*/}
 
-From the user's perspective, sending a message should happen *because* the particular "Send" button was clicked. The user will get rather upset if you send their message at any other time or for any other reason. This is why sending a message should be an event handler. Event handlers let you handle specific interactions:
+ユーザの立場からすると、メッセージの送信は、特定の「送信」ボタンがクリックされたから起こるはずです。それ以外の時間や理由でメッセージを送信すると、ユーザはむしろ怒るでしょう。そのため、メッセージの送信はイベントハンドラで行う必要があります。イベントハンドラを使えば、特定のインタラクションを処理することができます：
 
 ```js {4-6}
 function ChatRoom({ roomId }) {
@@ -50,13 +50,13 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-With an event handler, you can be sure that `sendMessage(message)` will *only* run if the user presses the button.
+イベントハンドラを使えば、ユーザがボタンを押したときだけ `sendMessage(message)` が実行されるようにすることができます。
 
-### Effects run whenever synchronization is needed {/*effects-run-whenever-synchronization-is-needed*/}
+### 同期が必要なときに実行されるエフェクト {/*effects-run-whenever-synchronization-is-needed*/}
 
-Recall that you also need to keep the component connected to the chat room. Where does that code go?
+また、コンポーネントをチャットルームに接続しておく必要があることを思い出してください。そのコードはどこに記述されるのでしょうか？
 
-The *reason* to run this code is not some particular interaction. It doesn't matter why or how the user navigated to the chat room screen. Now that they're looking at it and could interact with it, the component needs to stay connected to the selected chat server. Even if the chat room component was the initial screen of your app, and the user has not performed any interactions at all, you would *still* need to connect. This is why it's an Effect:
+このコードを実行する理由は、何か特定のインタラクションではありません。ユーザがなぜ、どのようにチャットルームの画面に移動したかは問題ではありません。ユーザがチャットルームの画面を見て、対話できるようになった今、このコンポーネントは、選択されたチャットサーバに接続されたままである必要があります。チャットルーム・コンポーネントがアプリの初期画面であり、ユーザが何のインタラクションも行っていない場合でも、接続する必要があります。これがエフェクトである理由です：
 
 ```js {3-9}
 function ChatRoom({ roomId }) {
@@ -72,7 +72,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-With this code, you can be sure that there is always an active connection to the currently selected chat server, *regardless* of the specific interactions performed by the user. Whether the user has only opened your app, selected a different room, or navigated to another screen and back, your Effect ensures that the component will *remain synchronized* with the currently selected room, and will [re-connect whenever it's necessary.](/learn/lifecycle-of-reactive-effects#why-synchronization-may-need-to-happen-more-than-once)
+このコードを使用すると、ユーザが行った特定のインタラクションに関係なく、現在選択されているチャットサーバへの接続が常にアクティブであることを確認することができます。ユーザがアプリを開いただけであろうと、別の部屋を選んだだけであろうと、別の画面に移動して戻ってきただけであろうと、このエフェクトはコンポーネントが現在選択されている部屋と同期していることを保証し、[必要なときはいつでも再接続するようにします。](/learn/lifecycle-of-reactive-effects#why-synchronization-may-need-to-happen-more-than-once)
 
 <Sandpack>
 
@@ -154,13 +154,13 @@ input, select { margin-right: 20px; }
 
 </Sandpack>
 
-## Reactive values and reactive logic {/*reactive-values-and-reactive-logic*/}
+## リアクティブな値とリアクティブなロジック {/*reactive-values-and-reactive-logic*/}
 
-Intuitively, you could say that event handlers are always triggered "manually", for example by clicking a button. Effects, on the other hand, are "automatic": they run and re-run as often as it's needed to stay synchronized.
+直感的に言うと、イベントハンドラは、例えばボタンをクリックするなど、常に「手動」でトリガされます。一方、エフェクトは「自動」であり、同期を保つために必要な回数だけ実行され、再実行されます。
 
-There is a more precise way to think about this.
+もっと正確な考え方があります。
 
-Props, state, and variables declared inside your component's body are called <CodeStep step={2}>reactive values</CodeStep>. In this example, `serverUrl` is not a reactive value, but `roomId` and `message` are. They participate in the rendering data flow:
+コンポーネントの body 内で宣言された props 、state 、変数を<CodeStep step={2}>リアクティブ値</CodeStep>と呼びます。この例では、`serverUrl` はリアクティブ値ではありませんが、`roomId` と `message` はリアクティブ値です。これらは、レンダーのデータフローに参加しています：
 
 ```js [[2, 3, "roomId"], [2, 4, "message"]]
 const serverUrl = 'https://localhost:1234';
@@ -171,17 +171,16 @@ function ChatRoom({ roomId }) {
   // ...
 }
 ```
+これらのようなリアクティブな値は、再レンダーによって変更される可能性があります。例えば、ユーザが `message` を編集したり、ドロップダウンで別の `roomId` を選択することがあります。イベントハンドラとエフェクトは、それぞれ異なる方法で変化に対応します：
 
-Reactive values like these can change due to a re-render. For example, the user may edit the `message` or choose a different `roomId` in a dropdown. Event handlers and Effects respond to changes differently:
+- **イベントハンドラ内のロジックはリアクティブではない。**ユーザが同じ操作（クリックなど）を再度行わない限り、再度実行されることはありません。イベントハンドラは、その変更に「反応」することなく、リアクティブ値を読み取ることができます。
+- **エフェクト内のロジックはリアクティブである。**エフェクトがリアクティブ値を読み取る場合、[依存関係としてそれを指定する必要があります。](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values)そして、再レンダーによってその値が変更された場合、React は新しい値でエフェクトのロジックを再実行します。 
 
-- **Logic inside event handlers is *not reactive.*** It will not run again unless the user performs the same interaction (e.g. a click) again. Event handlers can read reactive values without "reacting" to their changes.
-- **Logic inside Effects is *reactive.*** If your Effect reads a reactive value, [you have to specify it as a dependency.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Then, if a re-render causes that value to change, React will re-run your Effect's logic with the new value.
+この違いを説明するために、先ほどの例をもう一度見てみましょう。
 
-Let's revisit the previous example to illustrate this difference.
+### イベントハンドラ内のロジックはリアクティブではない {/*logic-inside-event-handlers-is-not-reactive*/}
 
-### Logic inside event handlers is not reactive {/*logic-inside-event-handlers-is-not-reactive*/}
-
-Take a look at this line of code. Should this logic be reactive or not?
+このコードの行を見てみてください。このロジックはリアクティブであるべきでしょうか、そうではないでしょうか？
 
 ```js [[2, 2, "message"]]
     // ...
@@ -189,7 +188,7 @@ Take a look at this line of code. Should this logic be reactive or not?
     // ...
 ```
 
-From the user's perspective, **a change to the `message` does _not_ mean that they want to send a message.** It only means that the user is typing. In other words, the logic that sends a message should not be reactive. It should not run again only because the <CodeStep step={2}>reactive value</CodeStep> has changed. That's why it belongs in the event handler:
+ユーザから見れば、**`message` の変更は、メッセージを送りたいということではありません。**あくまでも、ユーザが入力していることを意味します。つまり、メッセージを送るロジックはリアクティブであってはならないのです。<CodeStep step={2}>リアクティブ値</CodeStep>が変わったからと言って、再び実行されるべきではないのです。だから、イベントハンドラの中にあるのです：
 
 ```js {2}
   function handleSendClick() {
@@ -197,11 +196,11 @@ From the user's perspective, **a change to the `message` does _not_ mean that th
   }
 ```
 
-Event handlers aren't reactive, so `sendMessage(message)` will only run when the user clicks the Send button.
+イベントハンドラはリアクティブではないので、`sendMessage(message)`はユーザが送信ボタンをクリックしたときのみ実行されます。
 
-### Logic inside Effects is reactive {/*logic-inside-effects-is-reactive*/}
+### エフェクト内のロジックはリアクティブである {/*logic-inside-effects-is-reactive*/}
 
-Now let's return to these lines:
+では、この行に戻りましょう：
 
 ```js [[2, 2, "roomId"]]
     // ...
@@ -210,7 +209,7 @@ Now let's return to these lines:
     // ...
 ```
 
-From the user's perspective, **a change to the `roomId` *does* mean that they want to connect to a different room.** In other words, the logic for connecting to the room should be reactive. You *want* these lines of code to "keep up" with the <CodeStep step={2}>reactive value</CodeStep>, and to run again if that value is different. That's why it belongs in an Effect:
+ユーザからすると、**`roomId` の変更は、別の部屋に接続したいことを意味します。**つまり、ルームに接続するためのロジックはリアクティブであるべきなのです。これらのコードは、<CodeStep step={2}>リアクティブ値</CodeStep>に「ついていける」ようにし、その値が異なる場合は再度実行するようにします。だから、エフェクトの中にあるのです：
 
 ```js {2-3}
   useEffect(() => {
@@ -222,7 +221,7 @@ From the user's perspective, **a change to the `roomId` *does* mean that they wa
   }, [roomId]);
 ```
 
-Effects are reactive, so `createConnection(serverUrl, roomId)` and `connection.connect()` will run for every distinct value of `roomId`. Your Effect keeps the chat connection synchronized to the currently selected room.
+エフェクトはリアクティブなので、`createConnection(serverUrl, roomId)` と `connection.connect()` は、`roomId` の異なる値ごとに実行されます。エフェクトは、現在選択されているルームに同期したチャット接続を維持します。
 
 ## Extracting non-reactive logic out of Effects {/*extracting-non-reactive-logic-out-of-effects*/}
 
