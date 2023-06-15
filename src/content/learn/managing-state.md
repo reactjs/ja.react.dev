@@ -1,30 +1,30 @@
 ---
-title: Managing State
+title: state の管理
 ---
 
 <Intro>
 
-As your application grows, it helps to be more intentional about how your state is organized and how the data flows between your components. Redundant or duplicate state is a common source of bugs. In this chapter, you'll learn how to structure your state well, how to keep your state update logic maintainable, and how to share state between distant components.
+アプリケーションが成長するにつれて、state の構成方法やコンポーネント間のデータの流れについて計画的に考えることが重要になります。バグの一般的な原因は、冗長な、あるいは重複した state です。この章では、state を適切に構造化する方法、state 更新ロジックをメンテナンスしやすい状態に保つ方法、そして離れたコンポーネント間で state を共有する方法について学びます。
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to think about UI changes as state changes](/learn/reacting-to-input-with-state)
-* [How to structure state well](/learn/choosing-the-state-structure)
-* [How to "lift state up" to share it between components](/learn/sharing-state-between-components)
-* [How to control whether the state gets preserved or reset](/learn/preserving-and-resetting-state)
-* [How to consolidate complex state logic in a function](/learn/extracting-state-logic-into-a-reducer)
-* [How to pass information without "prop drilling"](/learn/passing-data-deeply-with-context)
-* [How to scale state management as your app grows](/learn/scaling-up-with-reducer-and-context)
+* [UI の変化を state の変化として捉える方法](/learn/reacting-to-input-with-state)
+* [state を適切に構造化する方法](/learn/choosing-the-state-structure)
+* [コンポーネント間で state を共有するために状態を "リフトアップ" する方法](/learn/sharing-state-between-components)
+* [state が保持されるかリセットされるかを制御する方法](/learn/preserving-and-resetting-state)
+* [複雑な state ロジックを関数にまとめる方法](/learn/extracting-state-logic-into-a-reducer)
+* ["props の穴掘り作業" なしで情報を渡す方法](/learn/passing-data-deeply-with-context)
+* [アプリの成長に合わせて state 管理をスケーリングする方法](/learn/scaling-up-with-reducer-and-context)
 
 </YouWillLearn>
 
-## Reacting to input with state {/*reacting-to-input-with-state*/}
+## state を使って入力に反応する {/*reacting-to-input-with-state*/}
 
-With React, you won't modify the UI from code directly. For example, you won't write commands like "disable the button", "enable the button", "show the success message", etc. Instead, you will describe the UI you want to see for the different visual states of your component ("initial state", "typing state", "success state"), and then trigger the state changes in response to user input. This is similar to how designers think about UI.
+React を使う場合、コードから直接 UI を変更することはありません。例えば、「ボタンを無効にする」、「ボタンを有効にする」、「成功メッセージを表示する」といったコマンドを書くことはありません。代わりに、コンポーネントのさまざまな視覚状態（例えば「初期状態」、「入力中状態」、「成功状態」）に対して表示したい UI を記述し、ユーザ入力に応じて状態の変更をトリガします。これは、デザイナーが UI を考える方法に似ています。
 
-Here is a quiz form built using React. Note how it uses the `status` state variable to determine whether to enable or disable the submit button, and whether to show the success message instead.
+以下は、React を使って構築されたクイズフォームです。`status` という state 変数を使って、送信ボタンを有効にするか無効にするか、成功メッセージを表示するかどうかを決定していることに注目してください。
 
 <Sandpack>
 
@@ -108,15 +108,15 @@ function submitForm(answer) {
 
 <LearnMore path="/learn/reacting-to-input-with-state">
 
-Read **[Reacting to Input with State](/learn/reacting-to-input-with-state)** to learn how to approach interactions with a state-driven mindset.
+[**state を使って入力に反応する**](/learn/reacting-to-input-with-state)を読んで、state ベースの考え方ででユーザ操作を扱う方法を学びましょう。
 
 </LearnMore>
 
-## Choosing the state structure {/*choosing-the-state-structure*/}
+## state 構造の選択 {/*choosing-the-state-structure*/}
 
-Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. The most important principle is that state shouldn't contain redundant or duplicated information. If there's unnecessary state, it's easy to forget to update it, and introduce bugs!
+快適に変更やデバッグが行えるコンポーネントと、常にバグの種になるコンポーネントの違いは、state をうまく構造化できているかどうかです。最も重要な原則は、state に冗長な情報や重複した情報を持たせないことです。不要な state があると、それを更新するのを忘れてすぐにバグが発生してしまいます！
 
-For example, this form has a **redundant** `fullName` state variable:
+例えば、このフォームには**冗長な** `fullName` という state 変数があります。
 
 <Sandpack>
 
@@ -169,7 +169,7 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-You can remove it and simplify the code by calculating `fullName` while the component is rendering:
+コンポーネントがレンダーされる際に `fullName` を計算することで、この冗長な state を削除し、コードを簡素化することができます。
 
 <Sandpack>
 
@@ -221,19 +221,19 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-This might seem like a small change, but many bugs in React apps are fixed this way.
+これは小さな変更に見えるかもしれませんが、React アプリの多くのバグはこのようにして修正されます。
 
 <LearnMore path="/learn/choosing-the-state-structure">
 
-Read **[Choosing the State Structure](/learn/choosing-the-state-structure)** to learn how to design the state shape to avoid bugs.
+[**state 構造の選択**](/learn/choosing-the-state-structure)を読んで、バグを避けるために state の構造をどのように設計するか学びましょう。
 
 </LearnMore>
 
-## Sharing state between components {/*sharing-state-between-components*/}
+## コンポーネント間で state を共有する {/*sharing-state-between-components*/}
 
-Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as "lifting state up", and it's one of the most common things you will do writing React code.
+2 つのコンポーネントの state を常に同時に変更したいという場合があります。これを行うには、両方のコンポーネントから state を削除して最も近い共通の親へ移動し、そこから state を props 経由でコンポーネントへ渡します。これは *state のリフトアップ (lifting state up)* として知られているものであり、React コードを書く際に行う最も一般的な作業のひとつです。
 
-In this example, only one panel should be active at a time. To achieve this, instead of keeping the active state inside each individual panel, the parent component holds the state and specifies the props for its children.
+この例では、一度にアクティブになるべきパネルは 1 つだけです。これを実現するには、各パネルの内部にアクティブかどうかの state を保持する代わりに、親コンポーネントが state を保持し、子コンポーネントの props を指定するようにします。
 
 <Sandpack>
 
@@ -296,15 +296,15 @@ h3, p { margin: 5px 0px; }
 
 <LearnMore path="/learn/sharing-state-between-components">
 
-Read **[Sharing State Between Components](/learn/sharing-state-between-components)** to learn how to lift state up and keep components in sync.
+[**コンポーネント間で state を共有する**](/learn/sharing-state-between-components)を読んで、state をリフトアップしてコンポーネントを同期させる方法を学びましょう。
 
 </LearnMore>
 
-## Preserving and resetting state {/*preserving-and-resetting-state*/}
+## state の保持とリセット {/*preserving-and-resetting-state*/}
 
-When you re-render a component, React needs to decide which parts of the tree to keep (and update), and which parts to discard or re-create from scratch. In most cases, React's automatic behavior works well enough. By default, React preserves the parts of the tree that "match up" with the previously rendered component tree.
+コンポーネントを再レンダーする際、React はツリーのどの部分を保持（および更新）し、どの部分を破棄または最初から再作成するかを決定する必要があります。大抵は React の自動的な挙動でうまくいきます。デフォルトでは、React は以前にレンダーされたコンポーネントツリーと「一致する」部分のツリーを保持します。
 
-However, sometimes this is not what you want. In this chat app, typing a message and then switching the recipient does not reset the input. This can make the user accidentally send a message to the wrong person:
+ただし、場合によってはこれが望ましくないことがあります。このチャットアプリでは、メッセージを入力した後に送信先を切り替えても、入力フィールドがリセットされません。これにより、ユーザが誤って間違った相手にメッセージを送信してしまうかもしれません。
 
 <Sandpack>
 
@@ -399,7 +399,7 @@ textarea {
 
 </Sandpack>
 
-React lets you override the default behavior, and *force* a component to reset its state by passing it a different `key`, like `<Chat key={email} />`. This tells React that if the recipient is different, it should be considered a *different* `Chat` component that needs to be re-created from scratch with the new data (and UI like inputs). Now switching between the recipients resets the input field--even though you render the same component.
+例えば `<Chat key={email} />` のように異なる `key` を渡すことでデフォルトの動作を上書きし、コンポーネントの state を*強制的に*リセットすることができます。これにより、送信先が異なる場合は*異なる* `Chat` コンポーネントであり、新しいデータ（および入力フィールドなど）で最初から再作成する必要があると React に伝えることができます。これにより、全く同じコンポーネントをレンダーしても、送信先を切り替えると入力フィールドがリセットされるようになります。
 
 <Sandpack>
 
@@ -496,13 +496,13 @@ textarea {
 
 <LearnMore path="/learn/preserving-and-resetting-state">
 
-Read **[Preserving and Resetting State](/learn/preserving-and-resetting-state)** to learn the lifetime of state and how to control it.
+[**state の保持とリセット**](/learn/preserving-and-resetting-state)を読んで、state の寿命や制御方法について学びましょう。
 
 </LearnMore>
 
-## Extracting state logic into a reducer {/*extracting-state-logic-into-a-reducer*/}
+## state ロジックをリデューサに抽出する {/*extracting-state-logic-into-a-reducer*/}
 
-Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called "reducer". Your event handlers become concise because they only specify the user "actions". At the bottom of the file, the reducer function specifies how the state should update in response to each action!
+多くのイベントハンドラにまたがって state の更新コードが含まれるコンポーネントは、理解が大変になりがちです。このような場合、コンポーネントの外部に、*リデューサ (reducer)* と呼ばれる単一の関数を作成し、すべての state 更新ロジックを集約することができます。イベントハンドラは、ユーザの「アクション」を指定するだけでよくなるため、簡潔になります。以下ではファイルの最後にあるリデューサ関数が、各アクションに対する state の更新方法を指定しています！
 
 <Sandpack>
 
@@ -693,15 +693,15 @@ ul, li { margin: 0; padding: 0; }
 
 <LearnMore path="/learn/extracting-state-logic-into-a-reducer">
 
-Read **[Extracting State Logic into a Reducer](/learn/extracting-state-logic-into-a-reducer)** to learn how to consolidate logic in the reducer function.
+[**state ロジックをリデューサに抽出する**](/learn/extracting-state-logic-into-a-reducer)を読んで、リデューサ関数内にロジックを集約する方法を学びましょう。
 
 </LearnMore>
 
-## Passing data deeply with context {/*passing-data-deeply-with-context*/}
+## コンテクストで深くデータを受け渡す {/*passing-data-deeply-with-context*/}
 
-Usually, you will pass information from a parent component to a child component via props. But passing props can become inconvenient if you need to pass some prop through many components, or if many components need the same information. Context lets the parent component make some information available to any component in the tree below it—no matter how deep it is—without passing it explicitly through props.
+通常、親コンポーネントから子コンポーネントには props を使って情報を渡します。しかし、props を多数の中間コンポーネントを経由して渡さないといけない場合や、アプリ内の多くのコンポーネントが同じ情報を必要とする場合、props の受け渡しは冗長で不便なものとなり得ます。*コンテクスト (Context)* を使用することで、親コンポーネントから props を明示的に渡さずとも、それ以下のツリー内の任意のコンポーネント（深さに関わらず）が情報を受け取れるようにできます。
 
-Here, the `Heading` component determines its heading level by "asking" the closest `Section` for its level. Each `Section` tracks its own level by asking the parent `Section` and adding one to it. Every `Section` provides information to all components below it without passing props--it does that through context.
+ここでは、`Heading` コンポーネントは、最も近い `Section` に自身のネストレベルを「尋ねる」ことで、見出しレベルを決定しています。各 `Section` は、親の `Section` にレベルを尋ねてそれに 1 を加えることで、自分自身のレベルを把握します。すべての `Section` は、props を渡すことなしに、それ以下のすべてのコンポーネントにコンテクストを通じて情報を提供しています。
 
 <Sandpack>
 
@@ -795,15 +795,15 @@ export const LevelContext = createContext(0);
 
 <LearnMore path="/learn/passing-data-deeply-with-context">
 
-Read **[Passing Data Deeply with Context](/learn/passing-data-deeply-with-context)** to learn about using context as an alternative to passing props.
+[**コンテクストで深くデータを受け渡す**](/learn/passing-data-deeply-with-context)を読んで、props を渡す代わりにコンテクストを使う方法を学びましょう。
 
 </LearnMore>
 
-## Scaling up with reducer and context {/*scaling-up-with-reducer-and-context*/}
+## リデューサとコンテクストでスケールアップ {/*scaling-up-with-reducer-and-context*/}
 
-Reducers let you consolidate a component’s state update logic. Context lets you pass information deep down to other components. You can combine reducers and context together to manage state of a complex screen.
+リデューサを使えば、コンポーネントの state 更新ロジックを集約することができます。コンテクストを使えば、他のコンポーネントに深く情報を渡すことができます。そしてリデューサとコンテクストを組み合わせることで、複雑な画面の state 管理ができるようになります。
 
-With this approach, a parent component with complex state manages it with a reducer. Other components anywhere deep in the tree can read its state via context. They can also dispatch actions to update that state.
+このアプローチでは、複雑な state を持つ親コンポーネントが、リデューサを使って state を管理します。ツリー内の任意の深さにある他のコンポーネントは、コンテクストを介してその state を読み取ることができます。また、その state を更新するためのアクションをディスパッチすることもできます。
 
 <Sandpack>
 
@@ -1006,12 +1006,12 @@ ul, li { margin: 0; padding: 0; }
 
 <LearnMore path="/learn/scaling-up-with-reducer-and-context">
 
-Read **[Scaling Up with Reducer and Context](/learn/scaling-up-with-reducer-and-context)** to learn how state management scales in a growing app.
+[**リデューサとコンテクストでスケールアップ**](/learn/scaling-up-with-reducer-and-context)を読んで、アプリが成長するに従って state 管理がどのようにスケールしていくか学びましょう。
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## 次のステップ {/*whats-next*/}
 
-Head over to [Reacting to Input with State](/learn/reacting-to-input-with-state) to start reading this chapter page by page!
+[state を使って入力に反応する](/learn/reacting-to-input-with-state)に進んで、この章をページごとに読み進めましょう！
 
-Or, if you're already familiar with these topics, why not read about [Escape Hatches](/learn/escape-hatches)?
+もしくは、すでにこれらのトピックに詳しい場合、[避難ハッチ](/learn/escape-hatches)について読んでみましょう。
