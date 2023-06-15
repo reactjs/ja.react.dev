@@ -174,7 +174,7 @@ function ChatRoom({ roomId }) {
 これらのようなリアクティブな値は、再レンダーによって変更される可能性があります。例えば、ユーザが `message` を編集したり、ドロップダウンで別の `roomId` を選択することがあります。イベントハンドラとエフェクトは、それぞれ異なる方法で変化に対応します：
 
 - **イベントハンドラ内のロジックはリアクティブではない。**ユーザが同じ操作（クリックなど）を再度行わない限り、再度実行されることはありません。イベントハンドラは、その変更に「反応」することなく、リアクティブ値を読み取ることができます。
-- **エフェクト内のロジックはリアクティブである。**エフェクトがリアクティブ値を読み取る場合、[依存関係としてそれを指定する必要があります。](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values)そして、再レンダーによってその値が変更された場合、React は新しい値でエフェクトのロジックを再実行します。 
+- **エフェクト内のロジックはリアクティブである。**エフェクトがリアクティブ値を読み取る場合、[依存配列としてそれを指定する必要があります。](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values)そして、再レンダーによってその値が変更された場合、React は新しい値でエフェクトのロジックを再実行します。 
 
 この違いを説明するために、先ほどの例をもう一度見てみましょう。
 
@@ -223,11 +223,11 @@ function ChatRoom({ roomId }) {
 
 エフェクトはリアクティブなので、`createConnection(serverUrl, roomId)` と `connection.connect()` は、`roomId` の異なる値ごとに実行されます。エフェクトは、現在選択されているルームに同期したチャット接続を維持します。
 
-## Extracting non-reactive logic out of Effects {/*extracting-non-reactive-logic-out-of-effects*/}
+## エフェクトから非リアクティブなロジックを抽出する {/*extracting-non-reactive-logic-out-of-effects*/}
 
-Things get more tricky when you want to mix reactive logic with non-reactive logic.
+リアクティブなロジックと非リアクティブなロジックを混在させる場合は、さらに厄介なことになります。
 
-For example, imagine that you want to show a notification when the user connects to the chat. You read the current theme (dark or light) from the props so that you can show the notification in the correct color:
+例えば、ユーザがチャットに接続したときに通知を表示したいとします。props から現在のテーマ（ダークまたはライト）を読み取り、正しい色で通知を表示することができます：
 
 ```js {1,4-6}
 function ChatRoom({ roomId, theme }) {
@@ -240,7 +240,7 @@ function ChatRoom({ roomId, theme }) {
     // ...
 ```
 
-However, `theme` is a reactive value (it can change as a result of re-rendering), and [every reactive value read by an Effect must be declared as its dependency.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Now you have to specify `theme` as a dependency of your Effect:
+しかし、`theme` はリアクティブな値であり（再レンダーの結果として変化する可能性がある）、[エフェクトが読み取るすべてのリアクティブ値は、その依存配列として宣言する必要があります。](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency)そこで、エフェクトの依存配列として `theme` を指定する必要があります：
 
 ```js {5,11}
 function ChatRoom({ roomId, theme }) {
@@ -257,7 +257,7 @@ function ChatRoom({ roomId, theme }) {
   // ...
 ```
 
-Play with this example and see if you can spot the problem with this user experience:
+この例で遊んでみて、このユーザエクスペリエンスの問題点を見つけることができるかどうか確認してください：
 
 <Sandpack>
 
@@ -385,9 +385,9 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-When the `roomId` changes, the chat re-connects as you would expect. But since `theme` is also a dependency, the chat *also* re-connects every time you switch between the dark and the light theme. That's not great!
+`roomId` が変わると、期待通りチャットが再接続されます。しかし、`theme` も依存関係にあるため、ダークとライトを切り替えるたびに、チャットも再接続されます。これはあまり良くないですね！
 
-In other words, you *don't* want this line to be reactive, even though it is inside an Effect (which is reactive):
+つまり、この行は（リアクティブである）エフェクトの中にあるにもかかわらず、リアクティブであってほしくないということです：
 
 ```js
       // ...
@@ -395,17 +395,17 @@ In other words, you *don't* want this line to be reactive, even though it is ins
       // ...
 ```
 
-You need a way to separate this non-reactive logic from the reactive Effect around it.
+この非リアクティブなロジックと、その周りのリアクティブエフェクトを切り離す方法が必要です。
 
-### Declaring an Effect Event {/*declaring-an-effect-event*/}
+### エフェクトイベントの宣言 {/*declaring-an-effect-event*/}
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+このセクションでは、まだ安定版の React で**リリースされていない実験的な API** について説明しています。
 
 </Wip>
 
-Use a special Hook called [`useEffectEvent`](/reference/react/experimental_useEffectEvent) to extract this non-reactive logic out of your Effect:
+[`useEffectEvent`](/reference/react/experimental_useEffectEvent) という特別な Hook を使って、エフェクトからこの非リアクティブなロジックを抽出します：
 
 ```js {1,4-6}
 import { useEffect, useEffectEvent } from 'react';
@@ -417,9 +417,9 @@ function ChatRoom({ roomId, theme }) {
   // ...
 ```
 
-Here, `onConnected` is called an *Effect Event.* It's a part of your Effect logic, but it behaves a lot more like an event handler. The logic inside it is not reactive, and it always "sees" the latest values of your props and state.
+ここでは、`onConnected` は*エフェクトイベント*と呼ばれています。これはエフェクトロジックの一部ですが、イベントハンドラにより近い動作をします。この中のロジックはリアクティブではなく、常に props と state の最新の値を「見る」ことができます。
 
-Now you can call the `onConnected` Effect Event from inside your Effect:
+これでエフェクトの内部から `onConnected` エフェクトイベントを呼び出せるようになりました：
 
 ```js {2-4,9,13}
 function ChatRoom({ roomId, theme }) {
@@ -438,9 +438,9 @@ function ChatRoom({ roomId, theme }) {
   // ...
 ```
 
-This solves the problem. Note that you had to *remove* `onConnected` from the list of your Effect's dependencies. **Effect Events are not reactive and must be omitted from dependencies.**
+これで問題は解決しました。なお、エフェクトの依存配列のリストから `onConnected` を削除する必要がありました。**エフェクトイベントはリアクティブではないので、依存配列から除外する必要があります。**
 
-Verify that the new behavior works as you would expect:
+新しい動作が期待通りに振舞うことを確認します：
 
 <Sandpack>
 
@@ -573,7 +573,7 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-You can think of Effect Events as being very similar to event handlers. The main difference is that event handlers run in response to a user interactions, whereas Effect Events are triggered by you from Effects. Effect Events let you "break the chain" between the reactivity of Effects and code that should not be reactive.
+エフェクトイベントは、イベントハンドラと非常に似ていると考えることができます。主な違いは、イベントハンドラがユーザの操作に反応して実行されるのに対し、エフェクトイベントはエフェクトからトリガされることです。エフェクトイベントは、エフェクトのリアクティブ性と反応しないはずのコードとの間の「連鎖を断ち切る」ことができます。
 
 ### Reading latest props and state with Effect Events {/*reading-latest-props-and-state-with-effect-events*/}
 
