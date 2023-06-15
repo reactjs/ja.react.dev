@@ -161,7 +161,7 @@
       "tags": ["advanced"],
       "routes": [
         {
-          "title": "Referencing Values with Refs",
+          "title": "ref で値を参照する",
           "path": "/learn/referencing-values-with-refs"
         },
         {
