@@ -1,65 +1,65 @@
 ---
-title: 'Synchronizing with Effects'
+title: 'エフェクトを使って同期を行う'
 ---
 
 <Intro>
 
-Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. *Effects* let you run some code after rendering so that you can synchronize your component with some system outside of React.
+一部のコンポーネントは外部システムと同期を行う必要があります。例えば、React の state に基づいて非 React 製コンポーネントを制御したり、サーバとの接続を確立したり、コンポーネントが画面に表示されたときに分析用のログを送信したりしたいかもしれません。*エフェクト (Effect)* を使うことで、レンダー後にコードを実行して、React 外のシステムとコンポーネントを同期させることができます。
 
 </Intro>
 
 <YouWillLearn>
 
-- What Effects are
-- How Effects are different from events
-- How to declare an Effect in your component
-- How to skip re-running an Effect unnecessarily
-- Why Effects run twice in development and how to fix them
+- エフェクトとは何か
+- エフェクトとイベントの違い
+- コンポーネントでエフェクトを宣言する方法
+- 不要なエフェクト再実行をスキップする方法
+- 開発中にエフェクトが 2 回実行される理由と対処法
 
 </YouWillLearn>
 
-## What are Effects and how are they different from events? {/*what-are-effects-and-how-are-they-different-from-events*/}
+## エフェクトとは何であり、イベントとどう異なるのか {/*what-are-effects-and-how-are-they-different-from-events*/}
 
-Before getting to Effects, you need to be familiar with two types of logic inside React components:
+エフェクトについて説明する前に、React コンポーネント内の 2 種類のロジックについて理解しておく必要があります。
 
-- **Rendering code** (introduced in [Describing the UI](/learn/describing-the-ui)) lives at the top level of your component. This is where you take the props and state, transform them, and return the JSX you want to see on the screen. [Rendering code must be pure.](/learn/keeping-components-pure) Like a math formula, it should only _calculate_ the result, but not do anything else.
+- **レンダーコード**（[UI の記述](/learn/describing-the-ui)で説明）とは、コンポーネントのトップレベルにあるものです。ここは、props や state を受け取り、それらを変換し、画面に表示したい JSX を返す場所です。[レンダーコードは純粋でなければなりません](/learn/keeping-components-pure)。数学の式のように結果を*計算*するだけで、他のことは行わないようにする必要があります。
 
-- **Event handlers** (introduced in [Adding Interactivity](/learn/adding-interactivity)) are nested functions inside your components that *do* things rather than just calculate them. An event handler might update an input field, submit an HTTP POST request to buy a product, or navigate the user to another screen. Event handlers contain ["side effects"](https://en.wikipedia.org/wiki/Side_effect_(computer_science)) (they change the program's state) caused by a specific user action (for example, a button click or typing).
+- **イベントハンドラ**（[インタラクティビティの追加](/learn/adding-interactivity)で説明）とは、コンポーネント内にネストされた関数であり、計算だけでなく何かを*実行*するものです。イベントハンドラは、入力フィールドを更新したり、商品を購入するための HTTP POST リクエストを送信したり、ユーザを別の画面に遷移させたりすることができます。イベントハンドラには、特定のユーザアクション（例えば、ボタンクリックや入力）によって引き起こされてプログラムの状態を変更する、["副作用 (side effect)"](https://en.wikipedia.org/wiki/Side_effect_(computer_science)) が含まれています。
 
-Sometimes this isn't enough. Consider a `ChatRoom` component that must connect to the chat server whenever it's visible on the screen. Connecting to a server is not a pure calculation (it's a side effect) so it can't happen during rendering. However, there is no single particular event like a click that causes `ChatRoom` to be displayed.
+しかし、これらだけでは十分でない場合があります。画面に表示されている間、常にチャットサーバに接続していなければならない `ChatRoom` コンポーネントを考えてみてください。サーバへの接続は純粋な計算ではない（副作用がある）ため、レンダー中には行うことができません。しかし、`ChatRoom` が表示される原因となる、クリックのような特定のイベントは存在しません。
 
-***Effects* let you specify side effects that are caused by rendering itself, rather than by a particular event.** Sending a message in the chat is an *event* because it is directly caused by the user clicking a specific button. However, setting up a server connection is an *Effect* because it should happen no matter which interaction caused the component to appear. Effects run at the end of a [commit](/learn/render-and-commit) after the screen updates. This is a good time to synchronize the React components with some external system (like network or a third-party library).
+***エフェクト*は、特定のイベントによってではなく、レンダー自体によって引き起こされる副作用を指定するためのものです**。チャットでのメッセージ送信は、ユーザが特定のボタンをクリックすることによって直接引き起こされるため、*イベント*です。しかし、サーバ接続のセットアップは、コンポーネントが表示される原因となるインタラクションに関係なく行われるべきであるため、*エフェクト*です。エフェクトは、[コミット](/learn/render-and-commit)の最後に、画面が更新された後に実行されます。ここが、React コンポーネントを外部システム（ネットワークやサードパーティのライブラリなど）と同期させるのに適したタイミングです。
 
 <Note>
 
-Here and later in this text, capitalized "Effect" refers to the React-specific definition above, i.e. a side effect caused by rendering. To refer to the broader programming concept, we'll say "side effect".
+このドキュメントの残りの部分では、"エフェクト"（大文字で始まる "Effect"）とは、上記の React 固有の定義、つまりレンダーによって引き起こされる副作用のことを指します。より広いプログラミング概念を指す場合は "副作用 (side effect)" と呼ぶことにします。
 
 </Note>
 
 
-## You might not need an Effect {/*you-might-not-need-an-effect*/}
+## エフェクトはおそらく不要なもの {/*you-might-not-need-an-effect*/}
 
-**Don't rush to add Effects to your components.** Keep in mind that Effects are typically used to "step out" of your React code and synchronize with some *external* system. This includes browser APIs, third-party widgets, network, and so on. If your Effect only adjusts some state based on other state, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
+**慌ててエフェクトをコンポーネントに追加しないようにしましょう**。エフェクトは通常、React のコードから「踏み出して」、何らかの*外部*システムと同期するために使用されるものだということを肝に銘じてください。これには、ブラウザ API、サードパーティのウィジェット、ネットワークなどが含まれます。エフェクトが他の state に基づいて state を調整しているだけの場合、[おそらくそのエフェクトは必要ありません](/learn/you-might-not-need-an-effect)。
 
-## How to write an Effect {/*how-to-write-an-effect*/}
+## エフェクトの書き方 {/*how-to-write-an-effect*/}
 
-To write an Effect, follow these three steps:
+エフェクトを書くには、以下の 3 つのステップに従ってください。
 
-1. **Declare an Effect.** By default, your Effect will run after every render.
-2. **Specify the Effect dependencies.** Most Effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
-3. **Add cleanup if needed.** Some Effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect", "subscribe" needs "unsubscribe", and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
+1. **エフェクトを宣言する**。デフォルトでは、エフェクトはすべてのレンダー後に実行されます。
+2. **エフェクトの依存値 (dependency) の配列を指定する**。ほとんどのエフェクトは、レンダー後に毎回ではなく、*必要に応じて*再実行されるべきものです。例えば、フェードインアニメーションの開始は、コンポーネントが表示されるときにのみ行われるべきです。チャットルームへの接続と切断は、コンポーネントが表示されたり消えたりするときや、チャットルームが変更されたときにのみ行われるべきです。*依存配列*を指定してこれをコントロールする方法について、後で説明します。
+3. **必要に応じてクリーンアップを追加する**。一部のエフェクトは、行っていたことを停止、元に戻す、またはクリーンアップする方法を指定する必要があります。例えば、「接続」には「切断」が必要で、「登録」には「解除」が必要で、「取得」には「キャンセル」または「無視」が必要です。*クリーンアップ関数*を返すことで、これを行う方法を学びます。
 
-Let's look at each of these steps in detail.
+それぞれのステップを詳しく見ていきましょう。
 
-### Step 1: Declare an Effect {/*step-1-declare-an-effect*/}
+### ステップ 1：エフェクトを宣言する {/*step-1-declare-an-effect*/}
 
-To declare an Effect in your component, import the [`useEffect` Hook](/reference/react/useEffect) from React:
+コンポーネントでエフェクトを宣言するには、React から [`useEffect` フック](/reference/react/useEffect)をインポートします。
 
 ```js
 import { useEffect } from 'react';
 ```
 
-Then, call it at the top level of your component and put some code inside your Effect:
+次に、コンポーネントのトップレベルでそれを呼び出し、エフェクト内にコードを記述します。
 
 ```js {2-4}
 function MyComponent() {
@@ -70,15 +70,15 @@ function MyComponent() {
 }
 ```
 
-Every time your component renders, React will update the screen *and then* run the code inside `useEffect`. In other words, **`useEffect` "delays" a piece of code from running until that render is reflected on the screen.**
+コンポーネントがレンダーされるたびに、React は画面を更新し、*その後で* `useEffect` 内のコードを実行します。言い換えると、**`useEffect` はレンダー結果が画面に反映され終わるまで、コードの実行を「遅らせ」ます**。
 
-Let's see how you can use an Effect to synchronize with an external system. Consider a `<VideoPlayer>` React component. It would be nice to control whether it's playing or paused by passing an `isPlaying` prop to it:
+エフェクトを使って外部システムと同期する方法を見てみましょう。`<VideoPlayer>` という React コンポーネントを考えてみてください。props として `isPlaying` を渡すことで、再生中か一時停止中かを制御できると便利です。
 
 ```js
 <VideoPlayer isPlaying={isPlaying} />;
 ```
 
-Your custom `VideoPlayer` component renders the built-in browser [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) tag:
+カスタム `VideoPlayer` コンポーネントは、ブラウザ組み込みの [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) タグをレンダーします。
 
 ```js
 function VideoPlayer({ src, isPlaying }) {
@@ -87,11 +87,11 @@ function VideoPlayer({ src, isPlaying }) {
 }
 ```
 
-However, the browser `<video>` tag does not have an `isPlaying` prop. The only way to control it is to manually call the [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) methods on the DOM element. **You need to synchronize the value of `isPlaying` prop, which tells whether the video _should_ currently be playing, with calls like `play()` and `pause()`.**
+しかしブラウザの `<video>` タグに `isPlaying` プロパティはありません。ビデオを制御する唯一の方法は、DOM 要素上で [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) および [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) メソッドを手動で呼び出すことです。**ビデオが現在再生中であるべきかどうかを示す props である `isPlaying` の値を、`play()` や `pause()` などの呼び出しと同期させる必要があるわけです**。
 
-We'll need to first [get a ref](/learn/manipulating-the-dom-with-refs) to the `<video>` DOM node.
+まず、`<video>` DOM ノードへの [ref を取得](/learn/manipulating-the-dom-with-refs)する必要があります。
 
-You might be tempted to try to call `play()` or `pause()` during rendering, but that isn't correct:
+レンダー中に `play()` や `pause()` を呼び出したくなるかもしれませんが、それは正しくありません。
 
 <Sandpack>
 
@@ -133,11 +133,11 @@ video { width: 250px; }
 
 </Sandpack>
 
-The reason this code isn't correct is that it tries to do something with the DOM node during rendering. In React, [rendering should be a pure calculation](/learn/keeping-components-pure) of JSX and should not contain side effects like modifying the DOM.
+このコードが正しくない理由は、レンダー中に DOM ノードで何かをしようとしているからです。React では、[レンダーは JSX の純粋な計算](/learn/keeping-components-pure)であるべきであり、DOM の変更のような副作用を含んではいけません。
 
-Moreover, when `VideoPlayer` is called for the first time, its DOM does not exist yet! There isn't a DOM node yet to call `play()` or `pause()` on, because React doesn't know what DOM to create until you return the JSX.
+それに、`VideoPlayer` が初めて呼び出されるとき、その DOM はそもそも存在していません！ React は JSX が返されるまでどんな DOM を作成したいのか分からないのですから、`play()` や `pause()` を呼び出すための DOM ノードはまだ存在していません。
 
-The solution here is to **wrap the side effect with `useEffect` to move it out of the rendering calculation:**
+ここでの解決策は、**副作用を `useEffect` でラップして、レンダーの計算処理の外に出すことです**。
 
 ```js {6,12}
 import { useEffect, useRef } from 'react';
@@ -157,11 +157,11 @@ function VideoPlayer({ src, isPlaying }) {
 }
 ```
 
-By wrapping the DOM update in an Effect, you let React update the screen first. Then your Effect runs.
+DOM の更新をエフェクトでラップすることで、React が先にまず画面を更新できるようになります。その後、エフェクトが実行されます。
 
-When your `VideoPlayer` component renders (either the first time or if it re-renders), a few things will happen. First, React will update the screen, ensuring the `<video>` tag is in the DOM with the right props. Then React will run your Effect. Finally, your Effect will call `play()` or `pause()` depending on the value of `isPlaying`.
+`VideoPlayer` コンポーネントがレンダーされるとき（初回または再レンダーのいずれでも）、いくつかのことが起こります。まず、React は画面を更新し、正しいプロパティを持つ `<video>` タグが DOM に存在するようにします。次に、React はエフェクトを実行します。最後に、エフェクトは `isPlaying` の値に応じて `play()` または `pause()` を呼び出します。
 
-Press Play/Pause multiple times and see how the video player stays synchronized to the `isPlaying` value:
+再生/一時停止を何度か押して、ビデオプレーヤが `isPlaying` の値に同期していることを確認してください。
 
 <Sandpack>
 
@@ -205,13 +205,13 @@ video { width: 250px; }
 
 </Sandpack>
 
-In this example, the "external system" you synchronized to React state was the browser media API. You can use a similar approach to wrap legacy non-React code (like jQuery plugins) into declarative React components.
+この例では、React の state に同期させる「外部システム」とはブラウザのメディア API でした。同様のアプローチを使用して、古い非 React コード（jQuery プラグインなど）を宣言的な React コンポーネントにラップできます。
 
-Note that controlling a video player is much more complex in practice. Calling `play()` may fail, the user might play or pause using the built-in browser controls, and so on. This example is very simplified and incomplete.
+なおビデオプレーヤの制御は実際にはもっと複雑です。`play()` の呼び出しは失敗することがありますし、ユーザはブラウザ組み込みのコントロールを使って再生や一時停止を行うかもしれません。この例は非常に単純化された不完全なものです。
 
 <Pitfall>
 
-By default, Effects run after *every* render. This is why code like this will **produce an infinite loop:**
+デフォルトでは、エフェクトは*毎回の*レンダーの後に実行されます。このため、次のようなコードは**無限ループを引き起こします**。
 
 ```js
 const [count, setCount] = useState(0);
@@ -220,20 +220,20 @@ useEffect(() => {
 });
 ```
 
-Effects run as a *result* of rendering. Setting state *triggers* rendering. Setting state immediately in an Effect is like plugging a power outlet into itself. The Effect runs, it sets the state, which causes a re-render, which causes the Effect to run, it sets the state again, this causes another re-render, and so on.
+エフェクトはレンダーの*結果*として実行されます。state の設定はレンダーを*トリガ*します。エフェクトで直ちに state を設定するというのは、電源コンセントを自分自身に接続するようなものです。エフェクトが実行され、state がセットされ、これによって再レンダーが発生し、エフェクトが実行され、再び state がセットされ、これによってまた再レンダーが発生し、という具合に続きます。
 
-Effects should usually synchronize your components with an *external* system. If there's no external system and you only want to adjust some state based on other state, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
+エフェクトは通常、コンポーネントを*外部*システムと同期させるのに使います。外部システムがなく、他の state に基づいて state を調整したいだけの場合、[エフェクトは必要ありません](/learn/you-might-not-need-an-effect)。
 
 </Pitfall>
 
-### Step 2: Specify the Effect dependencies {/*step-2-specify-the-effect-dependencies*/}
+### ステップ 2：エフェクトの依存配列を指定する {/*step-2-specify-the-effect-dependencies*/}
 
-By default, Effects run after *every* render. Often, this is **not what you want:**
+デフォルトでは、エフェクトは*すべての*レンダー後に実行されます。しかし、これが**望ましくない場合があります**。
 
-- Sometimes, it's slow. Synchronizing with an external system is not always instant, so you might want to skip doing it unless it's necessary. For example, you don't want to reconnect to the chat server on every keystroke.
-- Sometimes, it's wrong. For example, you don't want to trigger a component fade-in animation on every keystroke. The animation should only play once when the component appears for the first time.
+- 時にはそれが遅いことがあります。外部システムとの同期は常に瞬時に起こるものではないため、必要でない限り行わない方が良いかもしれません。例えば、キーストロークごとにチャットサーバに再接続することは望ましくありません。
+- 時にはそれが間違っていることがあります。例えば、キーストロークごとにコンポーネントのフェードインアニメーションを開始したくはありません。アニメーションは、コンポーネントが初めて表示されるときに 1 回だけ再生されるべきです。
 
-To demonstrate the issue, here is the previous example with a few `console.log` calls and a text input that updates the parent component's state. Notice how typing causes the Effect to re-run:
+問題を示すために、前掲の例に、いくつかの `console.log` 呼び出しと、親コンポーネントの state を更新するテキスト入力フィールドを加えたものを示します。タイピングによってエフェクトが再実行されていることを確認してください。
 
 <Sandpack>
 
@@ -281,7 +281,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-You can tell React to **skip unnecessarily re-running the Effect** by specifying an array of *dependencies* as the second argument to the `useEffect` call. Start by adding an empty `[]` array to the above example on line 14:
+`useEffect` の呼び出しの第 2 引数として*依存値*の配列を指定することで、React に**エフェクトの不必要な再実行をスキップ**するように指示できます。まず、上記の例の 14 行目に空の `[]` 配列を追加してください。
 
 ```js {3}
   useEffect(() => {
@@ -289,7 +289,7 @@ You can tell React to **skip unnecessarily re-running the Effect** by specifying
   }, []);
 ```
 
-You should see an error saying `React Hook useEffect has a missing dependency: 'isPlaying'`:
+`React Hook useEffect has a missing dependency: 'isPlaying'` というエラーが表示されるはずです。
 
 <Sandpack>
 
@@ -337,7 +337,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-The problem is that the code inside of your Effect *depends on* the `isPlaying` prop to decide what to do, but this dependency was not explicitly declared. To fix this issue, add `isPlaying` to the dependency array:
+問題は、エフェクト内のコードが `isPlaying` プロパティに*依存して*何をすべきかを決定しているにもかかわらず、その依存関係が明示的に宣言されていないことです。この問題を解決するために、依存配列に `isPlaying` を追加してください。
 
 ```js {2,7}
   useEffect(() => {
@@ -349,7 +349,7 @@ The problem is that the code inside of your Effect *depends on* the `isPlaying` 
   }, [isPlaying]); // ...so it must be declared here!
 ```
 
-Now all dependencies are declared, so there is no error. Specifying `[isPlaying]` as the dependency array tells React that it should skip re-running your Effect if `isPlaying` is the same as it was during the previous render. With this change, typing into the input doesn't cause the Effect to re-run, but pressing Play/Pause does:
+依存値がすべて宣言されているので、エラーはなくなりました。依存配列として `[isPlaying]` を指定することで、React に `isPlaying` が前回のレンダー時と同じである場合は、エフェクトの再実行をスキップするように指示しています。この変更により、入力欄に入力してもエフェクトは再実行されず、再生/一時停止ボタンを押した場合は再実行されるようになります。
 
 <Sandpack>
 
@@ -397,37 +397,37 @@ video { width: 250px; }
 
 </Sandpack>
 
-The dependency array can contain multiple dependencies. React will only skip re-running the Effect if *all* of the dependencies you specify have exactly the same values as they had during the previous render. React compares the dependency values using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. See the [`useEffect` reference](/reference/react/useEffect#reference) for details.
+依存配列には複数の依存値を含めることができます。React は、指定したすべての依存値が前回のレンダー時とまったく同じ値である場合に限り、エフェクトの再実行をスキップします。React は、個々の依存値を [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を用いて比較します。詳細については [`useEffect` リファレンス](/reference/react/useEffect#reference)を参照してください。
 
-**Notice that you can't "choose" your dependencies.** You will get a lint error if the dependencies you specified don't match what React expects based on the code inside your Effect. This helps catch many bugs in your code. If you don't want some code to re-run, [*edit the Effect code itself* to not "need" that dependency.](/learn/lifecycle-of-reactive-effects#what-to-do-when-you-dont-want-to-re-synchronize)
+**依存値は自分で「選ぶ」ようなものではありません**。エフェクト内のコードに基づいて React が期待する配列と、指定した依存配列が合致しない場合、リントエラーが発生します。これにより、コード内の多くのバグを検出することができます。一部のコードを再実行しない場合は、[*エフェクトのコード自体を編集して*、その依存値が「必要」とならないようにします](/learn/lifecycle-of-reactive-effects#what-to-do-when-you-dont-want-to-re-synchronize)。
 
 <Pitfall>
 
-The behaviors without the dependency array and with an *empty* `[]` dependency array are different:
+依存配列がない場合と、*空の* `[]` という依存配列がある場合の挙動は異なります。
 
 ```js {3,7,11}
 useEffect(() => {
-  // This runs after every render
+  // 毎回のレンダー後に実行される
 });
 
 useEffect(() => {
-  // This runs only on mount (when the component appears)
+  // マウント時（コンポーネント出現時）のみ実行される
 }, []);
 
 useEffect(() => {
-  // This runs on mount *and also* if either a or b have changed since the last render
+  // マウント時と、a か b の値が前回のレンダーより変わった場合に実行される
 }, [a, b]);
 ```
 
-We'll take a close look at what "mount" means in the next step.
+次のステップで、「マウント」とは何かを詳しく見ていきます。
 
 </Pitfall>
 
 <DeepDive>
 
-#### Why was the ref omitted from the dependency array? {/*why-was-the-ref-omitted-from-the-dependency-array*/}
+#### なぜ ref は依存配列にないのか？ {/*why-was-the-ref-omitted-from-the-dependency-array*/}
 
-This Effect uses _both_ `ref` and `isPlaying`, but only `isPlaying` is declared as a dependency:
+このエフェクトでは、`ref` と `isPlaying` の両方が使用されていますが、依存値として宣言されているのは `isPlaying` のみです。
 
 ```js {9}
 function VideoPlayer({ src, isPlaying }) {
@@ -441,7 +441,7 @@ function VideoPlayer({ src, isPlaying }) {
   }, [isPlaying]);
 ```
 
-This is because the `ref` object has a *stable identity:* React guarantees [you'll always get the same object](/reference/react/useRef#returns) from the same `useRef` call on every render. It never changes, so it will never by itself cause the Effect to re-run. Therefore, it does not matter whether you include it or not. Including it is fine too:
+これは、`ref` オブジェクトが*毎回同一のもの*だからです。React は、同じ `useRef` コールから[常に同じオブジェクトが返される](/reference/react/useRef#returns)ことを保証しています。これが変更されることはないため、それ自体がエフェクトの再実行を引き起こすことも決してありません。したがって、それを含めるかどうかは問題となりません。ただし含めても問題ありません：
 
 ```js {9}
 function VideoPlayer({ src, isPlaying }) {
@@ -455,17 +455,17 @@ function VideoPlayer({ src, isPlaying }) {
   }, [isPlaying, ref]);
 ```
 
-The [`set` functions](/reference/react/useState#setstate) returned by `useState` also have stable identity, so you will often see them omitted from the dependencies too. If the linter lets you omit a dependency without errors, it is safe to do.
+`useState` によって返される [`set` 関数](/reference/react/useState#setstate)も毎回全く同一のものであるため、依存配列から省略されることがよくあります。ある依存値を省略してもリンタのエラーが出ない場合は、それを行っても安全です。
 
-Omitting always-stable dependencies only works when the linter can "see" that the object is stable. For example, if `ref` was passed from a parent component, you would have to specify it in the dependency array. However, this is good because you can't know whether the parent component always passes the same ref, or passes one of several refs conditionally. So your Effect _would_ depend on which ref is passed.
+毎回同一である値を依存配列から省略できるのは、リンタがそのオブジェクトが毎回同一であると「判断できる」場合のみです。例えば、`ref` が親コンポーネントから渡される場合は、依存配列にそれを指定する必要があります。親コンポーネントが常に同じ ref を渡すのか、それとも条件付きで違う ref から 1 つ選んで渡すのか、知ることはできないのですから、これは良いことです。あなたのエフェクトは、どの ref が渡されるかに確かに*依存している*ことになります。
 
 </DeepDive>
 
-### Step 3: Add cleanup if needed {/*step-3-add-cleanup-if-needed*/}
+### ステップ 3：必要に応じてクリーンアップを追加する {/*step-3-add-cleanup-if-needed*/}
 
-Consider a different example. You're writing a `ChatRoom` component that needs to connect to the chat server when it appears. You are given a `createConnection()` API that returns an object with `connect()` and `disconnect()` methods. How do you keep the component connected while it is displayed to the user?
+別の例を考えてみましょう。表示されたときにチャットサーバに接続する必要がある `ChatRoom` コンポーネントを作成しているとします。`connect()` および `disconnect()` というメソッドを持つオブジェクトを返す `createConnection()` という API があります。コンポーネントがユーザに表示されている間、接続を維持するにはどうすればよいでしょうか？
 
-Start by writing the Effect logic:
+まず、エフェクトのロジックを書いてみましょう。
 
 ```js
 useEffect(() => {
@@ -474,7 +474,7 @@ useEffect(() => {
 });
 ```
 
-It would be slow to connect to the chat after every re-render, so you add the dependency array:
+再レンダー後に毎回チャットに接続するのは遅いため、依存配列を追加します。
 
 ```js {4}
 useEffect(() => {
@@ -483,9 +483,9 @@ useEffect(() => {
 }, []);
 ```
 
-**The code inside the Effect does not use any props or state, so your dependency array is `[]` (empty). This tells React to only run this code when the component "mounts", i.e. appears on the screen for the first time.**
+**エフェクト内のコードは props や state を使用していないため、依存配列は `[]`（空）です。こうすると React に、コンポーネントが「マウント」される、つまり画面に初めて表示されるときにのみこのコードを実行するよう指示することになります**。
 
-Let's try running this code:
+このコードを実行してみましょう。
 
 <Sandpack>
 
@@ -522,15 +522,15 @@ input { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-This Effect only runs on mount, so you might expect `"✅ Connecting..."` to be printed once in the console. **However, if you check the console, `"✅ Connecting..."` gets printed twice. Why does it happen?**
+このエフェクトはマウント時にのみ実行されるため、コンソールに `"✅ Connecting..."` が 1 回だけ表示されると思うかもしれません。**しかし、コンソールを確認すると、`"✅ Connecting..."` が 2 回表示されているはずです。なぜこれが起こるのでしょうか？**
 
-Imagine the `ChatRoom` component is a part of a larger app with many different screens. The user starts their journey on the `ChatRoom` page. The component mounts and calls `connection.connect()`. Then imagine the user navigates to another screen--for example, to the Settings page. The `ChatRoom` component unmounts. Finally, the user clicks Back and `ChatRoom` mounts again. This would set up a second connection--but the first connection was never destroyed! As the user navigates across the app, the connections would keep piling up.
+`ChatRoom` コンポーネントが、さまざまな画面がある大規模なアプリの一部であると想像してみてください。ユーザは `ChatRoom` ページからナビゲーションを始めます。コンポーネントがマウントされ、`connection.connect()` が呼び出されます。次に、ユーザが別の画面、例えば設定ページに移動します。`ChatRoom` コンポーネントがアンマウントされます。最後に、ユーザが戻るボタンをクリックし、`ChatRoom` が再びマウントされます。これにより 2 つ目の接続が設定されます…が、最初の接続は破棄されていません！ ユーザがアプリ内で移動するたびに、接続がどんどん積み重なっていくことになります。
 
-Bugs like this are easy to miss without extensive manual testing. To help you spot them quickly, in development React remounts every component once immediately after its initial mount.
+このようなバグは、手動での徹底的なテストがないと見逃しやすいものです。これらをすばやく見つけるために、開発環境では React は、初回マウント直後にすべてのコンポーネントを一度だけ再マウントします。
 
-Seeing the `"✅ Connecting..."` log twice helps you notice the real issue: your code doesn't close the connection when the component unmounts.
+`"✅ Connecting..."` のログが 2 回表示されることで、実際の問題に気付くことができます。つまり、コンポーネントがアンマウントされたときに接続を閉じるコードがないということです。
 
-To fix the issue, return a *cleanup function* from your Effect:
+この問題を解決するには、エフェクトから*クリーンアップ関数*を返すようにします。
 
 ```js {4-6}
   useEffect(() => {
@@ -542,7 +542,7 @@ To fix the issue, return a *cleanup function* from your Effect:
   }, []);
 ```
 
-React will call your cleanup function each time before the Effect runs again, and one final time when the component unmounts (gets removed). Let's see what happens when the cleanup function is implemented:
+React は、エフェクトが再度実行される前に毎回クリーンアップ関数を呼び出し、コンポーネントがアンマウントされる（削除される）ときにも最後の 1 回の呼び出しを行います。クリーンアップ関数が実装された場合、どのような動作になるか見てみましょう。
 
 <Sandpack>
 
@@ -580,27 +580,27 @@ input { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-Now you get three console logs in development:
+これで、開発中に 3 つのコンソールログが表示されるようになります。
 
 1. `"✅ Connecting..."`
 2. `"❌ Disconnected."`
 3. `"✅ Connecting..."`
 
-**This is the correct behavior in development.** By remounting your component, React verifies that navigating away and back would not break your code. Disconnecting and then connecting again is exactly what should happen! When you implement the cleanup well, there should be no user-visible difference between running the Effect once vs running it, cleaning it up, and running it again. There's an extra connect/disconnect call pair because React is probing your code for bugs in development. This is normal--don't try to make it go away!
+**これが開発環境での正しい動作です**。コンポーネントを再マウントすることで、React はページを離れて戻ってきてもコードが壊れないことを確認します。切断してからの再接続は、まさに起こるべきことなのです！ クリーンアップがうまく実装されていれば、エフェクトを 1 回だけ実行することと、クリーンアップしてから再度実行することとの間に、ユーザにとって目に見える違いはないはずです。開発中にコードのバグを探るために、接続/切断の呼び出しペアが 1 つ余分にあるだけです。これは正常ですので、消そうとしないでください！
 
-**In production, you would only see `"✅ Connecting..."` printed once.** Remounting components only happens in development to help you find Effects that need cleanup. You can turn off [Strict Mode](/reference/react/StrictMode) to opt out of the development behavior, but we recommend keeping it on. This lets you find many bugs like the one above.
+**本番環境では、`"✅ Connecting..."` が 1 回だけ表示されます**。コンポーネントの再マウントは、クリーンアップが必要なエフェクトを見つけるために開発中にのみ行われます。[Strict Mode](/reference/react/StrictMode) を外すことで、開発時専用のこの挙動をオフにすることができますが、オンにしておくことをお勧めします。これにより、上記のような多くのバグを見つけることができます。
 
-## How to handle the Effect firing twice in development? {/*how-to-handle-the-effect-firing-twice-in-development*/}
+## 開発環境で 2 回発生するエフェクトへの正しい対応 {/*how-to-handle-the-effect-firing-twice-in-development*/}
 
-React intentionally remounts your components in development to find bugs like in the last example. **The right question isn't "how to run an Effect once", but "how to fix my Effect so that it works after remounting".**
+React は、開発中に意図的にコンポーネントを再マウントして、前述の例のようなバグを見つけます。**ここでの正しい質問は「エフェクトを 1 回だけ実行する方法」ではなく「再マウントされても正しく動作するようエフェクトを修正する方法」です**。
 
-Usually, the answer is to implement the cleanup function.  The cleanup function should stop or undo whatever the Effect was doing. The rule of thumb is that the user shouldn't be able to distinguish between the Effect running once (as in production) and a _setup → cleanup → setup_ sequence (as you'd see in development).
+通常、答えはクリーンアップ関数を実装することです。クリーンアップ関数は、エフェクトが行っていたことを停止または元に戻すべきです。大事なルールとして、ユーザは（本番環境でのように）エフェクトが一度だけ実行される場合と、（開発環境でのように）*セットアップ → クリーンアップ → セットアップ*と続く場合との違いを、見分けることができないようにするべきです。
 
-Most of the Effects you'll write will fit into one of the common patterns below.
+ほとんどのエフェクトは、以下の一般的なパターンのいずれかに合致します。
 
-### Controlling non-React widgets {/*controlling-non-react-widgets*/}
+### React 以外のウィジェットを制御する {/*controlling-non-react-widgets*/}
 
-Sometimes you need to add UI widgets that aren't written to React. For example, let's say you're adding a map component to your page. It has a `setZoomLevel()` method, and you'd like to keep the zoom level in sync with a `zoomLevel` state variable in your React code. Your Effect would look similar to this:
+時に、React で書かれていない UI ウィジェットを追加したい場合があります。例えば、ページに地図コンポーネントを追加しようとしているとします。`setZoomLevel()` メソッドがあり、React のコード内の `zoomLevel` という state 変数と同期させたいとします。エフェクトは次のようになります。
 
 ```js
 useEffect(() => {
@@ -609,9 +609,9 @@ useEffect(() => {
 }, [zoomLevel]);
 ```
 
-Note that there is no cleanup needed in this case. In development, React will call the Effect twice, but this is not a problem because calling `setZoomLevel` twice with the same value does not do anything. It may be slightly slower, but this doesn't matter because it won't remount needlessly in production.
+この場合、クリーンアップは必要ありません。開発環境では React はこのエフェクトを 2 回呼び出しますが、同じ値で `setZoomLevel` を 2 回呼び出しても何も起きません。わずかに遅くはなるかもしれませんが、本番環境では無用に再マウントされることはないので、問題はありません。
 
-Some APIs may not allow you to call them twice in a row. For example, the [`showModal`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) method of the built-in [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement) element throws if you call it twice. Implement the cleanup function and make it close the dialog:
+API によっては、連続して 2 回呼び出すことができない場合があります。例えば、組み込みの [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement) 要素の [`showModal`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) メソッドは、2 回呼び出すと例外が発生します。クリーンアップ関数を実装し、ダイアログを閉じるようにしてください。
 
 ```js {4}
 useEffect(() => {
@@ -621,11 +621,11 @@ useEffect(() => {
 }, []);
 ```
 
-In development, your Effect will call `showModal()`, then immediately `close()`, and then `showModal()` again. This has the same user-visible behavior as calling `showModal()` once, as you would see in production.
+開発中、エフェクトは `showModal()` を呼び出し、すぐに `close()` を呼び出し、再び `showModal()` を呼び出します。ユーザに見える動作としては、本番環境で `showModal()` を 1 回だけ呼び出すのと同じになります。
 
-### Subscribing to events {/*subscribing-to-events*/}
+### イベントのリッスン {/*subscribing-to-events*/}
 
-If your Effect subscribes to something, the cleanup function should unsubscribe:
+エフェクトが何かをリッスンしている場合、クリーンアップ関数はそれを解除する必要があります。
 
 ```js {6}
 useEffect(() => {
@@ -637,11 +637,11 @@ useEffect(() => {
 }, []);
 ```
 
-In development, your Effect will call `addEventListener()`, then immediately `removeEventListener()`, and then `addEventListener()` again with the same handler. So there would be only one active subscription at a time. This has the same user-visible behavior as calling `addEventListener()` once, as in production.
+開発環境では、エフェクトは `addEventListener()` を呼び出し、すぐに `removeEventListener()` を呼び出し、同じハンドラで再び `addEventListener()` を呼び出します。そのため、一度にアクティブなリスナは 1 つだけです。ユーザに見える動作としては、本番環境で `addEventListener()` を 1 回だけ呼び出すのと同じになります。
 
-### Triggering animations {/*triggering-animations*/}
+### アニメーションのトリガ {/*triggering-animations*/}
 
-If your Effect animates something in, the cleanup function should reset the animation to the initial values:
+エフェクトが何かをアニメーションで表示する場合、クリーンアップ関数はアニメーションを初期値にリセットする必要があります。
 
 ```js {4-6}
 useEffect(() => {
@@ -653,11 +653,11 @@ useEffect(() => {
 }, []);
 ```
 
-In development, opacity will be set to `1`, then to `0`, and then to `1` again. This should have the same user-visible behavior as setting it to `1` directly, which is what would happen in production. If you use a third-party animation library with support for tweening, your cleanup function should reset the timeline to its initial state.
+開発中は、opacity が `1` にセットされ、次に `0` にセットされ、再び `1` にセットされます。ユーザに見える動作としては、本番環境で直接 `1` に設定される場合と同じになるべきです。トゥイーンに対応したサードパーティのアニメーションライブラリを使用している場合、クリーンアップ関数はタイムラインを初期状態にリセットする必要があります。
 
-### Fetching data {/*fetching-data*/}
+### データのフェッチ {/*fetching-data*/}
 
-If your Effect fetches something, the cleanup function should either [abort the fetch](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) or ignore its result:
+エフェクトが何かをフェッチ（fetch, 取得）する場合、クリーンアップ関数は、フェッチを[中止する](https://developer.mozilla.org/en-US/docs/Web/API/AbortController)か、その結果を無視する必要があります。
 
 ```js {2,6,13-15}
 useEffect(() => {
@@ -678,11 +678,11 @@ useEffect(() => {
 }, [userId]);
 ```
 
-You can't "undo" a network request that already happened, but your cleanup function should ensure that the fetch that's _not relevant anymore_ does not keep affecting your application. If the `userId` changes from `'Alice'` to `'Bob'`, cleanup ensures that the `'Alice'` response is ignored even if it arrives after `'Bob'`.
+すでに発生したネットワークリクエストをなかったことにはできませんが、クリーンアップ関数は、*もはや重要ではなくなった*フェッチがアプリケーションに影響を与え続けないようにする必要があります。`userId` が `'Alice'` から `'Bob'` に変わった場合、クリーンアップは、`'Alice'` のレスポンスが `'Bob'` の後に到着した場合に無視されるようにします。
 
-**In development, you will see two fetches in the Network tab.** There is nothing wrong with that. With the approach above, the first Effect will immediately get cleaned up so its copy of the `ignore` variable will be set to `true`. So even though there is an extra request, it won't affect the state thanks to the `if (!ignore)` check.
+**開発環境では、ネットワークタブに 2 つのフェッチが表示されます**。これには何の問題もありません。上記のアプローチでは、最初のエフェクトがすぐにクリーンアップされるため、`ignore` 変数のコピーが `true` に設定されます。そのため、余分なリクエストがあっても、`if (!ignore)` チェックのおかげで state に影響を与えません。
 
-**In production, there will only be one request.** If the second request in development is bothering you, the best approach is to use a solution that deduplicates requests and caches their responses between components:
+**本番環境では、リクエストは 1 回だけになります**。開発環境の 2 つ目のリクエストが気になる場合は、リクエストの重複を排除し、コンポーネント間でレスポンスをキャッシュするソリューションを使用することが最善の方法です。
 
 ```js
 function TodoList() {
@@ -690,31 +690,31 @@ function TodoList() {
   // ...
 ```
 
-This will not only improve the development experience, but also make your application feel faster. For example, the user pressing the Back button won't have to wait for some data to load again because it will be cached. You can either build such a cache yourself or use one of the many alternatives to manual fetching in Effects.
+これにより、開発体験が向上するだけでなく、アプリケーションの動作も高速化されます。例えば、ユーザが戻るボタンを押しても、キャッシュされたデータがあるため、再びデータをロードするのを待つ必要がありません。このようなキャッシュを自分で構築することもできますし、エフェクトでの手動フェッチを行う多数のライブラリの選択肢からいずれかを使用することもできます。
 
 <DeepDive>
 
-#### What are good alternatives to data fetching in Effects? {/*what-are-good-alternatives-to-data-fetching-in-effects*/}
+#### エフェクトでのデータ取得に代わる良い方法は？ {/*what-are-good-alternatives-to-data-fetching-in-effects*/}
 
-Writing `fetch` calls inside Effects is a [popular way to fetch data](https://www.robinwieruch.de/react-hooks-fetch-data/), especially in fully client-side apps. This is, however, a very manual approach and it has significant downsides:
+特に完全にクライアントサイドのアプリにおいては、エフェクトの中で `fetch` コールを書くことは[データフェッチの一般的な方法](https://www.robinwieruch.de/react-hooks-fetch-data/)です。しかし、これは非常に手作業頼りのアプローチであり、大きな欠点があります。
 
-- **Effects don't run on the server.** This means that the initial server-rendered HTML will only include a loading state with no data. The client computer will have to download all JavaScript and render your app only to discover that now it needs to load the data. This is not very efficient.
-- **Fetching directly in Effects makes it easy to create "network waterfalls".** You render the parent component, it fetches some data, renders the child components, and then they start fetching their data. If the network is not very fast, this is significantly slower than fetching all data in parallel.
-- **Fetching directly in Effects usually means you don't preload or cache data.** For example, if the component unmounts and then mounts again, it would have to fetch the data again.
-- **It's not very ergonomic.** There's quite a bit of boilerplate code involved when writing `fetch` calls in a way that doesn't suffer from bugs like [race conditions.](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect)
+- **エフェクトはサーバ上では動作しません**。これは、サーバレンダリングされた初期 HTML にはデータのないローディング中という表示のみが含まれてしまうことを意味します。クライアントのコンピュータは、すべての JavaScript をダウンロードし、アプリをレンダーした後になってやっと、今度はデータを読み込む必要もあるということに気付くことになります。これはあまり効率的ではありません。
+- **エフェクトで直接データフェッチを行うと、「ネットワークのウォーターフォール（滝）」を作成しやすくなります**。親コンポーネントをレンダーし、それが何かデータをフェッチし、それによって子コンポーネントをレンダーし、今度はそれが何かデータのフェッチを開始する、といった具合です。ネットワークがあまり速くない場合、これはすべてのデータを並行で取得するよりもかなり遅くなります。
+- **エフェクト内で直接データフェッチするということはおそらくデータをプリロードもキャッシュもしていないということです**。例えば、コンポーネントがアンマウントされた後に再びマウントされる場合、データを再度取得する必要があります。
+- **人にとって書きやすいコードになりません**。[競合状態](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect)のようなバグを起こさないように `fetch` コールを書こうとすると、かなりのボイラープレートコードが必要です。
 
-This list of downsides is not specific to React. It applies to fetching data on mount with any library. Like with routing, data fetching is not trivial to do well, so we recommend the following approaches:
+上記の欠点は、マウント時にデータをフェッチするのであれば、React に限らずどのライブラリを使う場合でも当てはまる内容です。ルーティングと同様、データフェッチの実装も上手にやろうとすると一筋縄ではいきません。私たちは以下のアプローチをお勧めします。
 
-- **If you use a [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
-- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [React Query](https://tanstack.com/query/latest), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) You can build your own solution too, in which case you would use Effects under the hood, but add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
+- **[フレームワーク](/learn/start-a-new-react-project#production-grade-react-frameworks)を使用している場合、組み込みのデータフェッチ機構を使用してください**。モダンな React フレームワークには、効率的で上記の欠点がないデータフェッチ機構が統合されています。
+- **それ以外の場合は、クライアントサイドキャッシュの使用や構築を検討してください**。一般的なオープンソースのソリューションには、[React Query](https://react-query.tanstack.com/)、[useSWR](https://swr.vercel.app/)、および [React Router 6.4+](https://beta.reactrouter.com/en/main/start/overview) が含まれます。自分でソリューションを構築することもできます。その場合、エフェクトを内部で使用しつつ、リクエストの重複排除、レスポンスのキャッシュ、ネットワークのウォーターフォールを回避するためのロジック（データのプリロードやルーティング部へのデータ要求の巻き上げ）を追加することになります。
 
-You can continue fetching data directly in Effects if neither of these approaches suit you.
+これらのアプローチがどちらも適合しない場合は、引き続きエフェクト内で直接データをフェッチすることができます。
 
 </DeepDive>
 
-### Sending analytics {/*sending-analytics*/}
+### アナリティクスログの送信 {/*sending-analytics*/}
 
-Consider this code that sends an analytics event on the page visit:
+ページ訪問時にアナリティクスイベントを送信する次のコードを考えてみましょう：
 
 ```js
 useEffect(() => {
@@ -722,15 +722,15 @@ useEffect(() => {
 }, [url]);
 ```
 
-In development, `logVisit` will be called twice for every URL, so you might be tempted to try to fix that. **We recommend keeping this code as is.** Like with earlier examples, there is no *user-visible* behavior difference between running it once and running it twice. From a practical point of view, `logVisit` should not do anything in development because you don't want the logs from the development machines to skew the production metrics. Your component remounts every time you save its file, so it logs extra visits in development anyway.
+開発中には、`logVisit` が各 URL ごとに 2 回呼び出されるため、それを修正しようと試みるかもしれません。**このコードはそのままにしておくことをお勧めします**。先の例と同様に、1 度実行することと 2 度実行することとの間に*ユーザに見える*挙動の違いはありません。実用的な観点からは、開発マシンからのログのせいで本番の計測結果がおかしくなることは望まないため、`logVisit` 関数は開発環境では何も行わないはずです。あなたがファイルを保存するたびにコンポーネントは再マウントされるのですから、開発環境において余分な訪問が記録されることはいずれにせよ避けられません。
 
-**In production, there will be no duplicate visit logs.**
+**本番環境では訪問ログの重複は起こりません**。
 
-To debug the analytics events you're sending, you can deploy your app to a staging environment (which runs in production mode) or temporarily opt out of [Strict Mode](/reference/react/StrictMode) and its development-only remounting checks. You may also send analytics from the route change event handlers instead of Effects. For more precise analytics, [intersection observers](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) can help track which components are in the viewport and how long they remain visible.
+送信しているアナリティクスイベントをデバッグするには、アプリを（本番モードで実行される）ステージング環境にデプロイするか、一時的に [Strict Mode](/reference/react/StrictMode) を外して開発環境専用の再マウントチェックを止めることができます。また、エフェクトの代わりにルート変更のイベントハンドラからアナリティクスログを送信することもできます。より正確な分析のために[交差オブザーバ](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)を用いれば、どのコンポーネントがビューポートにありどれだけの時間表示されているかを追跡するのに役立ちます。
 
-### Not an Effect: Initializing the application {/*not-an-effect-initializing-the-application*/}
+### アプリケーション初期化はエフェクトではない {/*not-an-effect-initializing-the-application*/}
 
-Some logic should only run once when the application starts. You can put it outside your components:
+アプリケーションの起動時に一度だけ実行されるべきロジックがあります。そのようなものはコンポーネントの外に置くことができます：
 
 ```js {2-3}
 if (typeof window !== 'undefined') { // Check if we're running in the browser.
@@ -743,11 +743,11 @@ function App() {
 }
 ```
 
-This guarantees that such logic only runs once after the browser loads the page.
+これにより、そのようなロジックはブラウザがページを読み込んだ後に一度だけ実行されることが保証されます。
 
-### Not an Effect: Buying a product {/*not-an-effect-buying-a-product*/}
+### 商品購入はエフェクトではない {/*not-an-effect-buying-a-product*/}
 
-Sometimes, even if you write a cleanup function, there's no way to prevent user-visible consequences of running the Effect twice. For example, maybe your Effect sends a POST request like buying a product:
+クリーンアップ関数を書いても、エフェクトを 2 回実行することによるユーザに見える影響を防ぐ方法がないことがあります。例えば、エフェクトが商品の購入のような POST リクエストを送信する場合です：
 
 ```js {2-3}
 useEffect(() => {
@@ -756,9 +756,9 @@ useEffect(() => {
 }, []);
 ```
 
-You wouldn't want to buy the product twice. However, this is also why you shouldn't put this logic in an Effect. What if the user goes to another page and then presses Back? Your Effect would run again. You don't want to buy the product when the user *visits* a page; you want to buy it when the user *clicks* the Buy button.
+同じ商品を 2 度買いたいわけではありません。しかしまさにそれが、そもそもエフェクトにこのロジックを入れてはいけない理由でもあるのです。ユーザが別のページに行ってから戻るボタンを押した場合、どうなるでしょう？ あなたのエフェクトは再び実行されてしまいます。ユーザはページを*訪れる*たびに製品を買いたいわけではなく、*クリック*して購入ボタンを押したときに買いたいのです。
 
-Buying is not caused by rendering; it's caused by a specific interaction. It should run only when the user presses the button. **Delete the Effect and move your `/api/buy` request into the Buy button event handler:**
+購入はレンダーによって引き起こされるのではなく、特定のユーザ操作によって引き起こされるものです。ユーザがボタンを押したときにのみ実行する必要があります。**エフェクトを削除し、`/api/buy` リクエストを購入ボタンのイベントハンドラに移動してください**。
 
 ```js {2-3}
   function handleClick() {
@@ -767,13 +767,13 @@ Buying is not caused by rendering; it's caused by a specific interaction. It sho
   }
 ```
 
-**This illustrates that if remounting breaks the logic of your application, this usually uncovers existing bugs.** From the user's perspective, visiting a page shouldn't be different from visiting it, clicking a link, and pressing Back. React verifies that your components abide by this principle by remounting them once in development.
+**これで分かるのは、再マウントでアプリケーションのロジックが壊れるなら、通常それは既存のバグが明らかになったのだということです**。ユーザの視点から見ると、ページを訪れることと、ページを訪れてリンクをクリックして別のページに行ってから戻るボタンを押すこととの間に、違いがあってはいけません。React は、開発環境でコンポーネントを 1 度再マウントすることで、この原則に従っていることを確認します。
 
-## Putting it all together {/*putting-it-all-together*/}
+## ここまでのまとめ {/*putting-it-all-together*/}
 
-This playground can help you "get a feel" for how Effects work in practice.
+以下のプレイグラウンドは、エフェクトの動作について「感覚を掴む」のに役立ちます。
 
-This example uses [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) to schedule a console log with the input text to appear three seconds after the Effect runs. The cleanup function cancels the pending timeout. Start by pressing "Mount the component":
+この例では、[`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) を使用して、エフェクトが実行されてから 3 秒後に入力テキストを含むコンソールログが表示されるようにスケジュールしています。クリーンアップ関数は、保留中のタイムアウトをキャンセルします。まず、「コンポーネントをマウント」ボタンを押してください。
 
 <Sandpack>
 
@@ -827,21 +827,21 @@ export default function App() {
 
 </Sandpack>
 
-You will see three logs at first: `Schedule "a" log`, `Cancel "a" log`, and `Schedule "a" log` again. Three second later there will also be a log saying `a`. As you learned earlier, the extra schedule/cancel pair is because React remounts the component once in development to verify that you've implemented cleanup well.
+最初に 3 つのログが表示されます。`Schedule "a" log`、`Cancel "a" log`、そして再び `Schedule "a" log` です。3 秒後には、`a` というログも表示されます。前述のように、スケジュール・キャンセルのペアが 1 回余分に出てくるのは、React が開発中にコンポーネントを一度再マウントして、クリーンアップがうまく実装されていることを確認するためです。
 
-Now edit the input to say `abc`. If you do it fast enough, you'll see `Schedule "ab" log` immediately followed by `Cancel "ab" log` and `Schedule "abc" log`. **React always cleans up the previous render's Effect before the next render's Effect.** This is why even if you type into the input fast, there is at most one timeout scheduled at a time. Edit the input a few times and watch the console to get a feel for how Effects get cleaned up.
+次に、入力欄に `abc` と入力します。十分に早く行えば、`Schedule "ab" log`、`Cancel "ab" log`、`Schedule "abc" log` の順でログが表示されます。**React は常に、次のレンダーのエフェクトの前に、前のレンダーのエフェクトをクリーンアップします**。したがって入力欄に素早く入力しても、同時にスケジュールされるタイムアウトは最大でも 1 つです。入力欄を何度か編集して、コンソールを見て、エフェクトがどのようにクリーンアップされるか、感覚を掴んでください。
 
-Type something into the input and then immediately press "Unmount the component". Notice how unmounting cleans up the last render's Effect. Here, it clears the last timeout before it has a chance to fire.
+入力欄に何か入力してからすぐに "Unmount the component" ボタンを押してみてください。アンマウントによって、最後のレンダーのエフェクトがクリーンアップされることに気付くでしょう。この場合は、最後のタイムアウトが、発火する前にクリアされます。
 
-Finally, edit the component above and comment out the cleanup function so that the timeouts don't get cancelled. Try typing `abcde` fast. What do you expect to happen in three seconds? Will `console.log(text)` inside the timeout print the *latest* `text` and produce five `abcde` logs? Give it a try to check your intuition!
+最後に、上のコンポーネントを編集して、クリーンアップ関数をコメントアウトしてタイムアウトがキャンセルされないようにしてみてください。`abcde` を素早く入力してみてください。3 秒後に何が起こると思いますか？ タイムアウト内の `console.log(text)` は、*最新の* `text`、つまり `abcde` というログを 5 回生成するのでしょうか？ あなたの直観を確かめるため実際に試してみましょう！
 
-Three seconds later, you should see a sequence of logs (`a`, `ab`, `abc`, `abcd`, and `abcde`) rather than five `abcde` logs. **Each Effect "captures" the `text` value from its corresponding render.**  It doesn't matter that the `text` state changed: an Effect from the render with `text = 'ab'` will always see `'ab'`. In other words, Effects from each render are isolated from each other. If you're curious how this works, you can read about [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures).
+3 秒後に、`abcde` ログが 5 回表示されるのではなく、ログが順番に表示される（`a`、`ab`、`abc`、`abcd`、`abcde`）はずです。**各エフェクトは、対応するレンダーからの `text` 値を「キャプチャ」します**。`text` の state が変更されたとしても、`text = 'ab'` だったレンダーからのエフェクトには常に `'ab'` という値が見えることになります。言い換えると、各レンダーからのエフェクトは互いに隔離されています。これがどのように動作するか興味がある場合は、[クロージャ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)について学びましょう。
 
 <DeepDive>
 
-#### Each render has its own Effects {/*each-render-has-its-own-effects*/}
+#### 個々のレンダーに別のエフェクトがある {/*each-render-has-its-own-effects*/}
 
-You can think of `useEffect` as "attaching" a piece of behavior to the render output. Consider this Effect:
+`useEffect` を、レンダー出力に何らかの振る舞いを「付随」させるものであると考えることができます。以下のエフェクトを考えてみましょう。
 
 ```js
 export default function ChatRoom({ roomId }) {
@@ -855,18 +855,18 @@ export default function ChatRoom({ roomId }) {
 }
 ```
 
-Let's see what exactly happens as the user navigates around the app.
+ユーザがアプリを操作する際に、具体的に何が起こるか見てみましょう。
 
-#### Initial render {/*initial-render*/}
+#### 初期レンダー {/*initial-render*/}
 
-The user visits `<ChatRoom roomId="general" />`. Let's [mentally substitute](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `roomId` with `'general'`:
+ユーザは `<ChatRoom roomId="general" />` を訪れます。`roomId` を `'general'` であると[頭の中で置き換えて](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time)みましょう。
 
 ```js
   // JSX for the first render (roomId = "general")
   return <h1>Welcome to general!</h1>;
 ```
 
-**The Effect is *also* a part of the rendering output.** The first render's Effect becomes:
+**エフェクトもまた、レンダー出力の一部です**。最初のレンダーのエフェクトは次のようになります。
 
 ```js
   // Effect for the first render (roomId = "general")
@@ -879,20 +879,20 @@ The user visits `<ChatRoom roomId="general" />`. Let's [mentally substitute](/le
   ['general']
 ```
 
-React runs this Effect, which connects to the `'general'` chat room.
+React はこのエフェクトを実行し、`'general'` チャットルームに接続します。
 
-#### Re-render with same dependencies {/*re-render-with-same-dependencies*/}
+#### 同じ依存値での再レンダー {/*re-render-with-same-dependencies*/}
 
-Let's say `<ChatRoom roomId="general" />` re-renders. The JSX output is the same:
+`<ChatRoom roomId="general" />` が再レンダーされるとしましょう。JSX の出力は同じです。
 
 ```js
   // JSX for the second render (roomId = "general")
   return <h1>Welcome to general!</h1>;
 ```
 
-React sees that the rendering output has not changed, so it doesn't update the DOM.
+React はレンダー出力が変更されていないことを認識するため、DOM を更新しません。
 
-The Effect from the second render looks like this:
+2 回目のレンダーからのエフェクトは以下のようになります。
 
 ```js
   // Effect for the second render (roomId = "general")
@@ -905,20 +905,20 @@ The Effect from the second render looks like this:
   ['general']
 ```
 
-React compares `['general']` from the second render with `['general']` from the first render. **Because all dependencies are the same, React *ignores* the Effect from the second render.** It never gets called.
+React は 2 回目のレンダーからの `['general']` と、1 回目のレンダーからの `['general']` を比較します。**すべての依存値が同じであるため、React は 2 回目のレンダーからのエフェクトを*無視*します**。エフェクトは呼び出されません。
 
-#### Re-render with different dependencies {/*re-render-with-different-dependencies*/}
+#### 異なる依存値での再レンダー {/*re-render-with-different-dependencies*/}
 
-Then, the user visits `<ChatRoom roomId="travel" />`. This time, the component returns different JSX:
+次に、ユーザが `<ChatRoom roomId="travel" />` を訪れます。このとき、コンポーネントは異なる JSX を返します。
 
 ```js
   // JSX for the third render (roomId = "travel")
   return <h1>Welcome to travel!</h1>;
 ```
 
-React updates the DOM to change `"Welcome to general"` into `"Welcome to travel"`.
+React は DOM を更新して、`"Welcome to general"` を `"Welcome to travel"` に変更します。
 
-The Effect from the third render looks like this:
+3 回目のレンダーからのエフェクトは以下のようになります。
 
 ```js
   // Effect for the third render (roomId = "travel")
@@ -931,43 +931,43 @@ The Effect from the third render looks like this:
   ['travel']
 ```
 
-React compares `['travel']` from the third render with `['general']` from the second render. One dependency is different: `Object.is('travel', 'general')` is `false`. The Effect can't be skipped.
+React は 3 回目のレンダーからの `['travel']` と、2 回目のレンダーからの `['general']` を比較します。1 つの依存値が異なります。`Object.is('travel', 'general')` は `false` です。このエフェクトはスキップできません。
 
-**Before React can apply the Effect from the third render, it needs to clean up the last Effect that _did_ run.** The second render's Effect was skipped, so React needs to clean up the first render's Effect. If you scroll up to the first render, you'll see that its cleanup calls `disconnect()` on the connection that was created with `createConnection('general')`. This disconnects the app from the `'general'` chat room.
+**React が 3 回目のレンダーからのエフェクトを適用する前に、最後に実行されたエフェクトをクリーンアップする必要があります**。2 回目のレンダーのエフェクトはスキップされたため、React は 1 回目のレンダーのエフェクトをクリーンアップする必要があります。上にスクロールして 1 回目のレンダーを見返すと、そのクリーンアップコードは `createConnection('general')` で作成された接続に対して `disconnect()` を呼び出すことがわかります。これにより、アプリは `'general'` チャットルームから切断されます。
 
-After that, React runs the third render's Effect. It connects to the `'travel'` chat room.
+その後、React は 3 回目のレンダーのエフェクトを実行します。これにより、`'travel'` チャットルームに接続されます。
 
-#### Unmount {/*unmount*/}
+#### アンマウント {/*unmount*/}
 
-Finally, let's say the user navigates away, and the `ChatRoom` component unmounts. React runs the last Effect's cleanup function. The last Effect was from the third render. The third render's cleanup destroys the `createConnection('travel')` connection. So the app disconnects from the `'travel'` room.
+最後に、ユーザがページから出て、`ChatRoom` コンポーネントがアンマウントされるとしましょう。React は最後のエフェクトのクリーンアップ関数を実行します。最後のエフェクトは 3 回目のレンダーからのものでした。3 回目のレンダーのクリーンアップは、`createConnection('travel')` の接続を破棄します。そのため、アプリは `'travel'` ルームから切断されます。
 
-#### Development-only behaviors {/*development-only-behaviors*/}
+#### 開発環境専用の挙動 {/*development-only-behaviors*/}
 
-When [Strict Mode](/reference/react/StrictMode) is on, React remounts every component once after mount (state and DOM are preserved). This [helps you find Effects that need cleanup](#step-3-add-cleanup-if-needed) and exposes bugs like race conditions early. Additionally, React will remount the Effects whenever you save a file in development. Both of these behaviors are development-only.
+[Strict Mode](/reference/react/StrictMode) がオンの場合、React はマウント後にすべてのコンポーネントを一度再マウントします（state と DOM は保持されます）。これは、[クリーンアップが必要なエフェクトを見つけるのに役立ちます](#step-3-add-cleanup-if-needed)し、競合状態 (race condition) のようなバグが早期に見つかるようにもします。さらに、React は開発中にあなたがファイルを保存するたびにエフェクトを再マウントします。これらの挙動は開発環境でのみ起こります。
 
 </DeepDive>
 
 <Recap>
 
-- Unlike events, Effects are caused by rendering itself rather than a particular interaction.
-- Effects let you synchronize a component with some external system (third-party API, network, etc).
-- By default, Effects run after every render (including the initial one).
-- React will skip the Effect if all of its dependencies have the same values as during the last render.
-- You can't "choose" your dependencies. They are determined by the code inside the Effect.
-- Empty dependency array (`[]`) corresponds to the component "mounting", i.e. being added to the screen.
-- In Strict Mode, React mounts components twice (in development only!) to stress-test your Effects.
-- If your Effect breaks because of remounting, you need to implement a cleanup function.
-- React will call your cleanup function before the Effect runs next time, and during the unmount.
+- イベントとは異なり、エフェクトは特定のユーザ操作ではなく、レンダー自体によって引き起こされる。
+- エフェクトを使い、コンポーネントを外部システム（サードパーティ API、ネットワークなど）と同期させることができる。
+- デフォルトでは、エフェクトは毎回のレンダー（初回も含む）の後に実行される。
+- すべての依存値が前回のレンダー時と同じ値である場合、React はエフェクトをスキップする。
+- 依存値は「選ぶ」類のものではない。それはエフェクト内のコードによって決定される。
+- 空の依存配列 (`[]`) は、コンポーネントが「マウント」される、つまり画面に追加されることに対応する。
+- Strict Mode では、React はコンポーネントを 2 回マウント（開発環境のみ！）して、エフェクトのストレステストを行う。
+- エフェクトが再マウントにより壊れる場合、クリーンアップ関数を実装する必要がある。
+- React は、次のエフェクトが実行される前とアンマウント中に、クリーンアップ関数を呼び出す。
 
 </Recap>
 
 <Challenges>
 
-#### Focus a field on mount {/*focus-a-field-on-mount*/}
+#### マウント時にフィールドにフォーカス {/*focus-a-field-on-mount*/}
 
-In this example, the form renders a `<MyInput />` component.
+この例では、フォームが `<MyInput />` コンポーネントをレンダーします。
 
-Use the input's [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) method to make `MyInput` automatically focus when it appears on the screen. There is already a commented out implementation, but it doesn't quite work. Figure out why it doesn't work, and fix it. (If you're familiar with the `autoFocus` attribute, pretend that it does not exist: we are reimplementing the same functionality from scratch.)
+入力フィールドの [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) メソッドを使って、`MyInput` が画面に表示されたときに自動的にフォーカスが当たるようにしてください。すでにコメントアウトされた実装がありますが、これはうまく動作しません。なぜ動作しないのかを理解し、修正してください。（`autoFocus` 属性をご存じの場合でも、今はこれが存在しないことにしてください。同じ機能をゼロから再実装しましょう。）
 
 <Sandpack>
 
@@ -1043,15 +1043,15 @@ body {
 </Sandpack>
 
 
-To verify that your solution works, press "Show form" and verify that the input receives focus (becomes highlighted and the cursor is placed inside). Press "Hide form" and "Show form" again. Verify the input is highlighted again.
+あなたの答えが動作することを確認するには、"Show form" を押して、入力がフォーカスされる（ハイライトされ、カーソルが内部に配置される）ことを確認してください。"Hide form" を押してから再度 "Show form" を押すと、再び入力欄がハイライトされることを確認してください。
 
-`MyInput` should only focus _on mount_ rather than after every render. To verify that the behavior is right, press "Show form" and then repeatedly press the "Make it uppercase" checkbox. Clicking the checkbox should _not_ focus the input above it.
+`MyInput` は、毎レンダーごとではなくマウント時にのみフォーカスされる必要があります。この動作が正しいことを確認するには、"Show form" を押してから、"Make it uppercase" チェックボックスを何度か押してみてください。チェックボックスをクリックしても、その上にある入力フィールドにフォーカスが移動しないようにしてください。
 
 <Solution>
 
-Calling `ref.current.focus()` during render is wrong because it is a *side effect*. Side effects should either be placed inside an event handler or be declared with `useEffect`. In this case, the side effect is _caused_ by the component appearing rather than by any specific interaction, so it makes sense to put it in an Effect.
+レンダー中に `ref.current.focus()` を呼び出すことは、*副作用*になってしまうため間違いです。副作用は、イベントハンドラ内に配置するか、`useEffect` で宣言する必要があります。この場合、副作用は特定のユーザ操作によるものではなく、コンポーネントが表示されることによって*引き起こされる*ため、エフェクトに入れるのが適切です。
 
-To fix the mistake, wrap the `ref.current.focus()` call into an Effect declaration. Then, to ensure that this Effect runs only on mount rather than after every render, add the empty `[]` dependencies to it.
+このミスを修正するために、`ref.current.focus()` の呼び出しをエフェクト宣言にラップします。次に、このエフェクトがマウント時にのみ実行されるよう、空の `[]` という依存配列を追加します。
 
 <Sandpack>
 
@@ -1129,13 +1129,13 @@ body {
 
 </Solution>
 
-#### Focus a field conditionally {/*focus-a-field-conditionally*/}
+#### 条件付きでフィールドにフォーカス {/*focus-a-field-conditionally*/}
 
-This form renders two `<MyInput />` components.
+このフォームは `<MyInput />` コンポーネントを 2 つレンダーします。
 
-Press "Show form" and notice that the second field automatically gets focused. This is because both of the `<MyInput />` components try to focus the field inside. When you call `focus()` for two input fields in a row, the last one always "wins".
+"Show form" を押すと、2 番目のフィールドが自動的にフォーカスされることに注意してください。これは、両方の `<MyInput />` コンポーネントが内部のフィールドにフォーカスしようとするためです。2 つの入力フィールドに連続して `focus()` を呼び出すと、最後に呼んだ方が常に「勝ち」になります。
 
-Let's say you want to focus the first field. The first `MyInput` component now receives a boolean `shouldFocus` prop set to `true`. Change the logic so that `focus()` is only called if the `shouldFocus` prop received by `MyInput` is `true`.
+最初のフィールドにフォーカスしたいとしましょう。最初の `MyInput` コンポーネントは、`shouldFocus` という真偽値の props を `true` で受け取ります。`MyInput` が受け取った `shouldFocus` が `true` の場合にのみ `focus()` が呼び出されるよう、ロジックを変更してください。
 
 <Sandpack>
 
@@ -1215,17 +1215,17 @@ body {
 
 </Sandpack>
 
-To verify your solution, press "Show form" and "Hide form" repeatedly. When the form appears, only the *first* input should get focused. This is because the parent component renders the first input with `shouldFocus={true}` and the second input with `shouldFocus={false}`. Also check that both inputs still work and you can type into both of them.
+あなたの答えをテストするには、"Show form" と "Hide form" を何度か押してみます。フォームが表示されると、*最初の*入力欄がフォーカスされるようにしてください。これは、親コンポーネントが 1 番目の入力欄を `shouldFocus={true}` で、2 番目を `shouldFocus={false}` でレンダーしているためです。また、両方の入力フィールドが動作し、入力が行えることも確認してください。
 
 <Hint>
 
-You can't declare an Effect conditionally, but your Effect can include conditional logic.
+条件付きでエフェクトを宣言することはできませんが、エフェクトに条件付きのロジックを含めることは可能です。
 
 </Hint>
 
 <Solution>
 
-Put the conditional logic inside the Effect. You will need to specify `shouldFocus` as a dependency because you are using it inside the Effect. (This means that if some input's `shouldFocus` changes from `false` to `true`, it will focus after mount.)
+条件付きのロジックはエフェクトの中に入れます。エフェクトの中で `shouldFocus` を使用しているため、依存関係として `shouldFocus` を指定する必要があります。（これは、ある入力欄の `shouldFocus` が `false` から `true` に変わった場合、フォーカスが当たるということでもあります。）
 
 <Sandpack>
 
@@ -1308,15 +1308,15 @@ body {
 
 </Solution>
 
-#### Fix an interval that fires twice {/*fix-an-interval-that-fires-twice*/}
+#### 2 回実行されるインターバルを修正 {/*fix-an-interval-that-fires-twice*/}
 
-This `Counter` component displays a counter that should increment every second. On mount, it calls [`setInterval`.](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) This causes `onTick` to run every second. The `onTick` function increments the counter.
+この `Counter` コンポーネントは、1 秒ごとにインクリメントするカウンタを表示します。コンポーネントはマウント時に、[`setInterval`](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) を呼び出します。これにより、`onTick` が毎秒実行されます。`onTick` 関数はカウンタをインクリメントします。
 
-However, instead of incrementing once per second, it increments twice. Why is that? Find the cause of the bug and fix it.
+しかし、1 秒ごとに 1 回ではなく、2 回インクリメントが発生しています。なぜでしょうか？ バグの原因を見つけて修正してください。
 
 <Hint>
 
-Keep in mind that `setInterval` returns an interval ID, which you can pass to [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval) to stop the interval.
+`setInterval` はインターバル ID を返し、これを [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval) に渡すことでインターバルを停止できることを思い出しましょう。
 
 </Hint>
 
@@ -1373,11 +1373,11 @@ body {
 
 <Solution>
 
-When [Strict Mode](/reference/react/StrictMode) is on (like in the sandboxes on this site), React remounts each component once in development. This causes the interval to be set up twice, and this is why each second the counter increments twice.
+[Strict Mode](/reference/react/StrictMode) がオンになっている場合（このサイトのサンドボックスもそうです）、React は開発中に各コンポーネントを一度再マウントします。これにより、インターバルが 2 回設定されるため、カウンタが 1 秒ごとに 2 回インクリメントされます。
 
-However, React's behavior is not the *cause* of the bug: the bug already exists in the code. React's behavior makes the bug more noticeable. The real cause is that this Effect starts a process but doesn't provide a way to clean it up.
+ただし、React のこの挙動がバグの*原因*なのではありません。バグはコードにすでに存在しているのです。React の挙動はバグに気づきやすくするために存在しているだけです。真の原因は、エフェクトが何かを始めるがそれをクリーンアップする方法を返していないことです。
 
-To fix this code, save the interval ID returned by `setInterval`, and implement a cleanup function with [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval):
+このコードを修正するには、`setInterval` によって返されるインターバル ID を保存し、[`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval) を使うクリーンアップ関数を実装します。
 
 <Sandpack>
 
@@ -1431,13 +1431,13 @@ body {
 
 </Sandpack>
 
-In development, React will still remount your component once to verify that you've implemented cleanup well. So there will be a `setInterval` call, immediately followed by `clearInterval`, and `setInterval` again. In production, there will be only one `setInterval` call. The user-visible behavior in both cases is the same: the counter increments once per second.
+開発環境では、React はクリーンアップがうまく実装されていることを確認するために、コンポーネントを 1 度再マウントします。そのため、`setInterval` の呼び出しの直後に `clearInterval` が呼ばれ、再び `setInterval` が呼ばれます。プロダクションでは、`setInterval` は 1 回だけ呼ばれます。どちらの場合もユーザに見える動作は同じで、カウンタは 1 秒ごとに 1 回インクリメントされます。
 
 </Solution>
 
-#### Fix fetching inside an Effect {/*fix-fetching-inside-an-effect*/}
+#### エフェクト内のフェッチを修正 {/*fix-fetching-inside-an-effect*/}
 
-This component shows the biography for the selected person. It loads the biography by calling an asynchronous function `fetchBio(person)` on mount and whenever `person` changes. That asynchronous function returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which eventually resolves to a string. When fetching is done, it calls `setBio` to display that string under the select box.
+このコンポーネントは、選択された人物の伝記 (bio) を表示します。伝記を読み込むために、マウント時と `person` が変更されたときに非同期関数 `fetchBio(person)` を呼び出します。その非同期関数は、いずれ文字列に解決 (resolve) される [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) を返します。フェッチが完了すると、その文字列を選択ボックスの下に表示するために `setBio` を呼び出します。
 
 <Sandpack>
 
@@ -1487,30 +1487,30 @@ export async function fetchBio(person) {
 </Sandpack>
 
 
-There is a bug in this code. Start by selecting "Alice". Then select "Bob" and then immediately after that select "Taylor". If you do this fast enough, you will notice that bug: Taylor is selected, but the paragraph below says "This is Bob's bio."
+このコードにはバグがあります。まず "Alice" を選択してください。次に "Bob" を選択し、すぐに "Taylor" を選択します。これを十分に素早く行うと、バグが発生します。Taylor が選択されているのに、下の段落には "This is Bob's bio." と表示されてしまうのです。
 
-Why does this happen? Fix the bug inside this Effect.
+なぜこれが起こるのでしょう？ このエフェクト内にあるバグを修正してください。
 
 <Hint>
 
-If an Effect fetches something asynchronously, it usually needs cleanup.
+エフェクトが非同期に何かをフェッチする場合、通常はクリーンアップが必要です。
 
 </Hint>
 
 <Solution>
 
-To trigger the bug, things need to happen in this order:
+このバグが起きるのは、次の順序でイベントが発生した場合です。
 
-- Selecting `'Bob'` triggers `fetchBio('Bob')`
-- Selecting `'Taylor'` triggers `fetchBio('Taylor')`
-- **Fetching `'Taylor'` completes *before* fetching `'Bob'`**
-- The Effect from the `'Taylor'` render calls `setBio('This is Taylor’s bio')`
-- Fetching `'Bob'` completes
-- The Effect from the `'Bob'` render calls `setBio('This is Bob’s bio')`
+- `'Bob'` を選択し `fetchBio('Bob')` がトリガされる
+- `'Taylor'` を選択し `fetchBio('Taylor')` がトリガされる
+- **`'Taylor'` のフェッチが `'Bob'` のフェッチより先に完了する**
+- `'Taylor'` のレンダーからのエフェクトが `setBio('This is Taylor’s bio')` を呼び出す
+- `'Bob'` のフェッチが完了する
+- `'Bob'` のレンダーからのエフェクトが `setBio('This is Bob’s bio')` を呼び出す
 
-This is why you see Bob's bio even though Taylor is selected. Bugs like this are called [race conditions](https://en.wikipedia.org/wiki/Race_condition) because two asynchronous operations are "racing" with each other, and they might arrive in an unexpected order.
+これが、Taylor が選択されているのに Bob の伝記が表示されてしまう理由です。このようなバグは、2 つの非同期操作が互いに「競争」しており、予期しない順序で到着することにより起こるので、[競合状態 (race condition)](https://ja.wikipedia.org/wiki/%E7%AB%B6%E5%90%88%E7%8A%B6%E6%85%8B) と呼ばれます。
 
-To fix this race condition, add a cleanup function:
+この競合状態を修正するために、クリーンアップ関数を追加します。
 
 <Sandpack>
 
@@ -1564,16 +1564,16 @@ export async function fetchBio(person) {
 
 </Sandpack>
 
-Each render's Effect has its own `ignore` variable. Initially, the `ignore` variable is set to `false`. However, if an Effect gets cleaned up (such as when you select a different person), its `ignore` variable becomes `true`. So now it doesn't matter in which order the requests complete. Only the last person's Effect will have `ignore` set to `false`, so it will call `setBio(result)`. Past Effects have been cleaned up, so the `if (!ignore)` check will prevent them from calling `setBio`:
+各レンダーのエフェクトは個々に `ignore` 変数を持っています。最初 `ignore` 変数は `false` に設定されています。エフェクトがクリーンアップされる場合（別の人物を選択するなど）、その `ignore` 変数は `true` になります。したがってリクエストがどの順序で完了しても問題なくなります。最後の人物のエフェクトにある `ignore` だけが `false` になっているので、`setBio(result)` が呼び出されます。古いエフェクトはクリーンアップされているので、`if (!ignore)` のチェックが `setBio` の呼び出しを防ぎます。
 
-- Selecting `'Bob'` triggers `fetchBio('Bob')`
-- Selecting `'Taylor'` triggers `fetchBio('Taylor')` **and cleans up the previous (Bob's) Effect**
-- Fetching `'Taylor'` completes *before* fetching `'Bob'`
-- The Effect from the `'Taylor'` render calls `setBio('This is Taylor’s bio')`
-- Fetching `'Bob'` completes
-- The Effect from the `'Bob'` render **does not do anything because its `ignore` flag was set to `true`**
+- `'Bob'` を選択すると `fetchBio('Bob')` がトリガされる
+- `'Taylor'` を選択すると `fetchBio('Taylor')` がトリガされ、**以前の（Bob の）エフェクトがクリーンアップされる**
+- `'Taylor'` の取得が `'Bob'` の取得よりも*先に*完了する
+- `'Taylor'` のレンダーからのエフェクトが `setBio('This is Taylor’s bio')` を呼び出す
+- `'Bob'` の取得が完了する
+- `'Bob'` のレンダーからのエフェクトは、`ignore` フラグが `true` に設定されているため、**何も行わない**
 
-In addition to ignoring the result of an outdated API call, you can also use [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) to cancel the requests that are no longer needed. However, by itself this is not enough to protect against race conditions. More asynchronous steps could be chained after the fetch, so using an explicit flag like `ignore` is the most reliable way to fix this type of problems.
+古い API コールの結果を無視するだけでなく、[`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) を使用して、不要になったリクエストをキャンセルすることもできます。ただし、これだけでは競合状態を防ぐのに十分ではありません。フェッチの後にさらに非同期ステップが連続する可能性があるため、`ignore` のような明示的なフラグを使用することが、このタイプの問題を解決する最も確実な方法です。
 
 </Solution>
 
