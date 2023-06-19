@@ -575,17 +575,17 @@ label { display: block; margin-top: 10px; }
 
 エフェクトイベントは、イベントハンドラと非常に似ていると考えることができます。主な違いは、イベントハンドラがユーザの操作に反応して実行されるのに対し、エフェクトイベントはエフェクトからトリガされることです。エフェクトイベントは、エフェクトのリアクティブ性と反応しないはずのコードとの間の「連鎖を断ち切る」ことができます。
 
-### Reading latest props and state with Effect Events {/*reading-latest-props-and-state-with-effect-events*/}
+### エフェクトイベントで最新の props や state を取得する {/*reading-latest-props-and-state-with-effect-events*/}
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+このセクションでは、まだ安定版の React で**リリースされていない実験的な API** について説明しています。
 
 </Wip>
 
-Effect Events let you fix many patterns where you might be tempted to suppress the dependency linter.
+エフェクトイベントによって、依存性リンタを抑制したくなるような多くのパターンを修正することができます。
 
-For example, say you have an Effect to log the page visits:
+例えば、ページの訪問を記録するエフェクトがあるとします：
 
 ```js
 function Page() {
@@ -596,7 +596,7 @@ function Page() {
 }
 ```
 
-Later, you add multiple routes to your site. Now your `Page` component receives a `url` prop with the current path. You want to pass the `url` as a part of your `logVisit` call, but the dependency linter complains:
+その後、サイトに複数のルートを追加します。ここで、`Page` コンポーネントは現在のパスを持つ `url` プロパティを受け取ります。この `url` を `logVisit` 呼び出しの一部として渡したいのですが、依存性リンタが文句を言ってきます：
 
 ```js {1,3}
 function Page({ url }) {
@@ -607,18 +607,18 @@ function Page({ url }) {
 }
 ```
 
-Think about what you want the code to do. You *want* to log a separate visit for different URLs since each URL represents a different page. In other words, this `logVisit` call *should* be reactive with respect to the `url`. This is why, in this case, it makes sense to follow the dependency linter, and add `url` as a dependency:
+コードに何をさせたいか考えてみてください。各 URL は異なるページを表しているので、異なる URL に対して別々の訪問を記録*したいのです*。言い換えれば、この `logVisit` 呼び出しは、`url` に関して反応的で*なければなりません*。このため、この場合は、依存関係リンタに従って、`url` を依存配列に追加することが理にかなっています：
 
 ```js {4}
 function Page({ url }) {
   useEffect(() => {
     logVisit(url);
-  }, [url]); // ✅ All dependencies declared
+  }, [url]); // ✅ 全ての依存値が宣言されています
   // ...
 }
 ```
 
-Now let's say you want to include the number of items in the shopping cart together with every page visit:
+ここで、ページ訪問ごとにショッピングカートの商品数を一緒に表示させたいとします：
 
 ```js {2-3,6}
 function Page({ url }) {
@@ -627,14 +627,14 @@ function Page({ url }) {
 
   useEffect(() => {
     logVisit(url, numberOfItems);
-  }, [url]); // 🔴 React Hook useEffect has a missing dependency: 'numberOfItems'
+  }, [url]); // 🔴 React HookのuseEffectに依存値'numberOfItems'がありません
   // ...
 }
 ```
 
-You used `numberOfItems` inside the Effect, so the linter asks you to add it as a dependency. However, you *don't* want the `logVisit` call to be reactive with respect to `numberOfItems`. If the user puts something into the shopping cart, and the `numberOfItems` changes, this *does not mean* that the user visited the page again. In other words, *visiting the page* is, in some sense, an "event". It happens at a precise moment in time.
+あなたはエフェクトの中で `numberOfItems` を使用したので、リンタは依存値としてそれを追加するように求めます。しかし、`logVisit` の呼び出しが `numberOfItems` に対してリアクティブであることを望んでいません。ユーザがショッピングカートに何かを入れて、`numberOfItems` が変化しても、それはユーザが再びページを訪れたことを*意味しない*。つまり、*ページを訪れた*ということは、ある意味で"イベント"なのです。ある瞬間に起こるのです。
 
-Split the code in two parts:
+コードを 2 つに分割してみましょう：
 
 ```js {5-7,10}
 function Page({ url }) {
@@ -647,20 +647,20 @@ function Page({ url }) {
 
   useEffect(() => {
     onVisit(url);
-  }, [url]); // ✅ All dependencies declared
+  }, [url]); // ✅ 全ての依存値が宣言されています
   // ...
 }
 ```
 
-Here, `onVisit` is an Effect Event. The code inside it isn't reactive. This is why you can use `numberOfItems` (or any other reactive value!) without worrying that it will cause the surrounding code to re-execute on changes.
+ここで、`onVisit` はエフェクトイベントです。この中のコードはリアクティブではありません。このため、`numberOfItems`（または他のリアクティブな値！）を使用しても、変更時に周囲のコードが再実行される心配はありません。
 
-On the other hand, the Effect itself remains reactive. Code inside the Effect uses the `url` prop, so the Effect will re-run after every re-render with a different `url`. This, in turn, will call the `onVisit` Effect Event.
+一方、エフェクトそのものはリアクティブなままです。エフェクトの中のコードは `url` プロパティを使用するので、異なる `url` で再レンダーするたびにエフェクトが再実行されます。その結果、`onVisit` エフェクトイベントが呼び出されます。
 
-As a result, you will call `logVisit` for every change to the `url`, and always read the latest `numberOfItems`. However, if `numberOfItems` changes on its own, this will not cause any of the code to re-run.
+その結果、`url` の変更ごとに `logVisit` が呼び出され、常に最新の `numberOfItems` を読み取ることになります。ただし、`numberOfItems` が独自に変化しても、コードの再実行には至りません。
 
 <Note>
 
-You might be wondering if you could call `onVisit()` with no arguments, and read the `url` inside it:
+引数なしで `onVisit()` を呼び出し、その中の `url` を読み取ることができるかどうか疑問に思うかもしれません：
 
 ```js {2,6}
   const onVisit = useEffectEvent(() => {
@@ -672,7 +672,7 @@ You might be wondering if you could call `onVisit()` with no arguments, and read
   }, [url]);
 ```
 
-This would work, but it's better to pass this `url` to the Effect Event explicitly. **By passing `url` as an argument to your Effect Event, you are saying that visiting a page with a different `url` constitutes a separate "event" from the user's perspective.** The `visitedUrl` is a *part* of the "event" that happened:
+これでもいいのですが、この `url` を明示的にエフェクトイベントに渡す方がいいでしょう。**エフェクトイベントの引数として `url` を渡すことで、異なる `url` を持つページを訪問することが、ユーザの視点から見ると別の"イベント"を構成していると伝えることになります。**`visitedUrl` は、起こった"イベント"の*一部*なのです：
 
 ```js {1-2,6}
   const onVisit = useEffectEvent(visitedUrl => {
@@ -684,9 +684,9 @@ This would work, but it's better to pass this `url` to the Effect Event explicit
   }, [url]);
 ```
 
-Since your Effect Event explicitly "asks" for the `visitedUrl`, now you can't accidentally remove `url` from the Effect's dependencies. If you remove the `url` dependency (causing distinct page visits to be counted as one), the linter will warn you about it. You want `onVisit` to be reactive with regards to the `url`, so instead of reading the `url` inside (where it wouldn't be reactive), you pass it *from* your Effect.
+エフェクトイベントで `visitedUrl` を明示的に"要求"するので、エフェクトの依存配列から誤って `url` を削除することができなくなりました。もし、`url` の依存値を削除してしまうと（別々のページへの訪問が 1 つとしてカウントされてしまう）、リンタはそれについて警告を発します。`onVisit` が `url` に関して反応的であることを期待するので、`url` を内部で読み込む代わりに（反応的でない）、エフェクト*から*それを渡します。
 
-This becomes especially important if there is some asynchronous logic inside the Effect:
+これは、エフェクトの中に非同期のロジックがある場合に特に重要になります：
 
 ```js {6,8}
   const onVisit = useEffectEvent(visitedUrl => {
@@ -696,19 +696,19 @@ This becomes especially important if there is some asynchronous logic inside the
   useEffect(() => {
     setTimeout(() => {
       onVisit(url);
-    }, 5000); // Delay logging visits
+    }, 5000); // 訪問ログの遅延
   }, [url]);
 ```
 
-Here, `url` inside `onVisit` corresponds to the *latest* `url` (which could have already changed), but `visitedUrl` corresponds to the `url` that originally caused this Effect (and this `onVisit` call) to run.
+ここで、`onVisit` 内の `url` は*最新*の `url`（既に変更されている可能性がある）に対応し、`visitedUrl` はこのエフェクト（およびこの `onVisit` コール）を最初に実行させた `url` に対応しています。
 
 </Note>
 
 <DeepDive>
 
-#### Is it okay to suppress the dependency linter instead? {/*is-it-okay-to-suppress-the-dependency-linter-instead*/}
+#### 代わりに依存性リンタを抑制してもいいのでしょうか？ {/*is-it-okay-to-suppress-the-dependency-linter-instead*/}
 
-In the existing codebases, you may sometimes see the lint rule suppressed like this:
+既存のコードベースでは、このように lint ルールが抑制されているのを見かけることがあります：
 
 ```js {7-9}
 function Page({ url }) {
@@ -717,20 +717,20 @@ function Page({ url }) {
 
   useEffect(() => {
     logVisit(url, numberOfItems);
-    // 🔴 Avoid suppressing the linter like this:
+    // 🔴 このようにリンタを抑制することは避けてください：
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
   // ...
 }
 ```
 
-After `useEffectEvent` becomes a stable part of React, we recommend **never suppressing the linter**.
+`useEffectEvent` が React の安定した一部となった後、**決してリンタを抑制しない**ことをお勧めします。
 
-The first downside of suppressing the rule is that React will no longer warn you when your Effect needs to "react" to a new reactive dependency you've introduced to your code. In the earlier example, you added `url` to the dependencies *because* React reminded you to do it. You will no longer get such reminders for any future edits to that Effect if you disable the linter. This leads to bugs.
+ルールを抑制することの最初の欠点は、コードに導入した新しいリアクティブな依存配列にエフェクトが"反応する"必要があるときに、React が警告を発しなくなることです。先ほどの例では、依存配列に `url` を追加したのは、React がそれをするよう思い出させてくれたからです。リンタを無効にすると、今後そのエフェクトを編集する際に、そのようなリマインダを受け取ることができなくなります。これはバグにつながります。
 
-Here is an example of a confusing bug caused by suppressing the linter. In this example, the `handleMove` function is supposed to read the current `canMove` state variable value in order to decide whether the dot should follow the cursor. However, `canMove` is always `true` inside `handleMove`.
+以下は、リンタを抑制することで発生する紛らわしいバグの一例です。この例では、`handleMove` 関数は、ドットがカーソルに従うべきかどうかを決定するために、現在の `canMove` state 変数の値を読むことになっています。しかし、`handleMove` の内部では `canMove` は常に `true` です。
 
-Can you see why?
+なぜかわかりますか？
 
 <Sandpack>
 
@@ -788,14 +788,13 @@ body {
 
 </Sandpack>
 
+このコードの問題は、依存性リンタを抑制することにあります。抑制を解除すると、このエフェクトは `handleMove` 関数に依存する必要があることがわかります。これは理にかなっています。なぜならば、`handleMove` はコンポーネント本体の内部で宣言されるため、リアクティブな値であることがわかります。すべてのリアクティブ値は、依存値として指定されなければなりませんが、そうでなければ時間の経過とともに陳腐化する可能性があります！
 
-The problem with this code is in suppressing the dependency linter. If you remove the suppression, you'll see that this Effect should depend on the `handleMove` function. This makes sense: `handleMove` is declared inside the component body, which makes it a reactive value. Every reactive value must be specified as a dependency, or it can potentially get stale over time!
+元のコードの作者は、React に対して「エフェクトはどのリアクティブ値にも依存しない（`[]`）」と "嘘"をついています。そのため、React は `canMove` が変更された後にエフェクトを再同期させなかったのです（`handleMove` に関しても）。React はエフェクトを再同期しなかったため、リスナとしてアタッチされる `handleMove` は、初期レンダー時に作成された `handleMove` 関数となります。初期レンダー時には `canMove` は `true` であったため、初期レンダー時の `handleMove` は永遠にその値を見ることになります。
 
-The author of the original code has "lied" to React by saying that the Effect does not depend (`[]`) on any reactive values. This is why React did not re-synchronize the Effect after `canMove` has changed (and `handleMove` with it). Because React did not re-synchronize the Effect, the `handleMove` attached as a listener is the `handleMove` function created during the initial render. During the initial render, `canMove` was `true`, which is why `handleMove` from the initial render will forever see that value.
+**リンタを抑制することがなければ、陳腐化した値で問題が発生することはありません。**
 
-**If you never suppress the linter, you will never see problems with stale values.**
-
-With `useEffectEvent`, there is no need to "lie" to the linter, and the code works as you would expect:
+`useEffectEvent` を使えば、リンタに"嘘"をつく必要はなく、期待通りにコードが動きます：
 
 <Sandpack>
 
@@ -869,26 +868,26 @@ body {
 
 </Sandpack>
 
-This doesn't mean that `useEffectEvent` is *always* the correct solution. You should only apply it to the lines of code that you don't want to be reactive. In the above sandbox, you didn't want the Effect's code to be reactive with regards to `canMove`. That's why it made sense to extract an Effect Event.
+これは、`useEffectEvent` が*常に*正しい解決策であることを意味するものではありません。リアクティブにしたくないコード行にのみ適用する必要があります。上記のサンドボックスでは、エフェクトのコードが `canMove` に関して反応的であることを望んでいませんでした。そのため、エフェクトイベントを抽出することが理にかなっています。
 
-Read [Removing Effect Dependencies](/learn/removing-effect-dependencies) for other correct alternatives to suppressing the linter.
+リンタを抑制する他の正しい方法については、[エフェクトの依存関係を削除する](/learn/removing-effect-dependencies)を参照してください。
 
 </DeepDive>
 
-### Limitations of Effect Events {/*limitations-of-effect-events*/}
+### エフェクトイベントの制限について {/*limitations-of-effect-events*/}
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+このセクションでは、まだ安定版の React で**リリースされていない実験的な API** について説明しています。
 
 </Wip>
 
-Effect Events are very limited in how you can use them:
+エフェクトイベントは、使い方が非常に限定されています：
 
-* **Only call them from inside Effects.**
-* **Never pass them to other components or Hooks.**
+* **エフェクトの内部からしか呼び出すことができません。**
+* **他のコンポーネントやフックに渡してはいけません。**
 
-For example, don't declare and pass an Effect Event like this:
+例えば、次のようにエフェクトイベントを宣言して渡さないでください：
 
 ```js {4-6,8}
 function Timer() {
@@ -898,7 +897,7 @@ function Timer() {
     setCount(count + 1);
   });
 
-  useTimer(onTick, 1000); // 🔴 Avoid: Passing Effect Events
+  useTimer(onTick, 1000); // 🔴 エフェクトイベントを渡すことを避けてください
 
   return <h1>{count}</h1>
 }
@@ -911,11 +910,11 @@ function useTimer(callback, delay) {
     return () => {
       clearInterval(id);
     };
-  }, [delay, callback]); // Need to specify "callback" in dependencies
+  }, [delay, callback]); // 依存配列で "callback" を指定する必要あり
 }
 ```
 
-Instead, always declare Effect Events directly next to the Effects that use them:
+その代わりに、常にエフェクトイベントを使用するエフェクトのすぐ隣で宣言してください：
 
 ```js {10-12,16,21}
 function Timer() {
@@ -933,40 +932,40 @@ function useTimer(callback, delay) {
 
   useEffect(() => {
     const id = setInterval(() => {
-      onTick(); // ✅ Good: Only called locally inside an Effect
+      onTick(); // ✅ Good: エフェクトの内部でのみ呼び出される
     }, delay);
     return () => {
       clearInterval(id);
     };
-  }, [delay]); // No need to specify "onTick" (an Effect Event) as a dependency
+  }, [delay]); // 依存配列に "onTick" （エフェクトイベント）を指定する必要がない
 }
 ```
 
-Effect Events are non-reactive "pieces" of your Effect code. They should be next to the Effect using them.
+エフェクトイベントは、エフェクトのコードの中で反応しない"ピース"です。それらを使用するエフェクトの隣に置く必要があります。
 
 <Recap>
 
-- Event handlers run in response to specific interactions.
-- Effects run whenever synchronization is needed.
-- Logic inside event handlers is not reactive.
-- Logic inside Effects is reactive.
-- You can move non-reactive logic from Effects into Effect Events.
-- Only call Effect Events from inside Effects.
-- Don't pass Effect Events to other components or Hooks.
+- イベントハンドラは、特定のインタラクションに応答して実行されます。
+- 同期が必要なときはいつでもエフェクトが実行されます。
+- イベントハンドラ内のロジックは、リアクティブではありません。
+- エフェクト内のロジックは、リアクティブです。
+- エフェクトの非リアクティブなロジックをエフェクトイベントに移動することができます。
+- エフェクトイベントを呼び出せるのはエフェクトの内部だけです。
+- エフェクトイベントを他のコンポーネントや Hooks に渡さないでください。
 
 </Recap>
 
 <Challenges>
 
-#### Fix a variable that doesn't update {/*fix-a-variable-that-doesnt-update*/}
+#### 更新されない変数を修正する {/*fix-a-variable-that-doesnt-update*/}
 
-This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable. You can control the `increment` variable with the plus and minus buttons.
+この `Timer` コンポーネントは、1 秒ごとに増加する `count` state 変数を保持します。増加する値は、`increment` state 変数に格納されます。プラスボタンとマイナスボタンで `increment` 変数を制御できます。
 
-However, no matter how many times you click the plus button, the counter is still incremented by one every second. What's wrong with this code? Why is `increment` always equal to `1` inside the Effect's code? Find the mistake and fix it.
+しかし、プラスボタンを何度クリックしても、カウンタは 1 秒ごとに 1 つずつ増えていきます。このコードの何が問題なのでしょうか？ なぜエフェクトのコード内部では `increment` が常に 1 に等しいのでしょうか？ 間違いを見つけて修正しましょう。
 
 <Hint>
 
-To fix this code, it's enough to follow the rules.
+このコードを直すには、ルールを守ればいいのです。
 
 </Hint>
 
@@ -1019,9 +1018,9 @@ button { margin: 10px; }
 
 <Solution>
 
-As usual, when you're looking for bugs in Effects, start by searching for linter suppressions.
+例によって、エフェクトのバグを探すときは、リンタ抑制の検索から始めてください。
 
-If you remove the suppression comment, React will tell you that this Effect's code depends on `increment`, but you "lied" to React by claiming that this Effect does not depend on any reactive values (`[]`). Add `increment` to the dependency array:
+抑制コメントを削除すると、React はこのエフェクトのコードが `increment` に依存していることを教えてくれますが、このエフェクトはリアクティブ値（`[]`）に依存していないと主張することで React に"嘘をついた"のです。依存配列に `increment` を追加します：
 
 <Sandpack>
 
