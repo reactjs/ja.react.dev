@@ -613,7 +613,7 @@ function Page({ url }) {
 function Page({ url }) {
   useEffect(() => {
     logVisit(url);
-  }, [url]); // ✅ 全ての依存値が宣言されています
+  }, [url]); // ✅ All dependencies declared
   // ...
 }
 ```
@@ -627,7 +627,7 @@ function Page({ url }) {
 
   useEffect(() => {
     logVisit(url, numberOfItems);
-  }, [url]); // 🔴 React HookのuseEffectに依存値'numberOfItems'がありません
+  }, [url]); // 🔴 React Hook useEffect has a missing dependency: 'numberOfItems'
   // ...
 }
 ```
@@ -647,7 +647,7 @@ function Page({ url }) {
 
   useEffect(() => {
     onVisit(url);
-  }, [url]); // ✅ 全ての依存値が宣言されています
+  }, [url]); // ✅ All dependencies declared
   // ...
 }
 ```
@@ -696,7 +696,7 @@ function Page({ url }) {
   useEffect(() => {
     setTimeout(() => {
       onVisit(url);
-    }, 5000); // 訪問ログの遅延
+    }, 5000); // Delay logging visits
   }, [url]);
 ```
 
@@ -717,7 +717,7 @@ function Page({ url }) {
 
   useEffect(() => {
     logVisit(url, numberOfItems);
-    // 🔴 このようにリンタを抑制することは避けてください：
+    // 🔴 Avoid suppressing the linter like this:
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
   // ...
@@ -897,7 +897,7 @@ function Timer() {
     setCount(count + 1);
   });
 
-  useTimer(onTick, 1000); // 🔴 エフェクトイベントを渡すことを避けてください
+  useTimer(onTick, 1000); // 🔴 Avoid: Passing Effect Events
 
   return <h1>{count}</h1>
 }
@@ -910,7 +910,7 @@ function useTimer(callback, delay) {
     return () => {
       clearInterval(id);
     };
-  }, [delay, callback]); // 依存配列で "callback" を指定する必要あり
+  }, [delay, callback]); // Need to specify "callback" in dependencies
 }
 ```
 
@@ -932,12 +932,12 @@ function useTimer(callback, delay) {
 
   useEffect(() => {
     const id = setInterval(() => {
-      onTick(); // ✅ Good: エフェクトの内部でのみ呼び出される
+      onTick(); // ✅ Good: Only called locally inside an Effect
     }, delay);
     return () => {
       clearInterval(id);
     };
-  }, [delay]); // 依存配列に "onTick" （エフェクトイベント）を指定する必要がない
+  }, [delay]); // No need to specify "onTick" (an Effect Event) as a dependency
 }
 ```
 
@@ -1018,7 +1018,7 @@ button { margin: 10px; }
 
 <Solution>
 
-例によって、エフェクトのバグを探すときは、リンタ抑制の検索から始めてください。
+例によって、エフェクトのバグを探すときは、リンタで抑制している箇所を探すことから始めてください。
 
 抑制コメントを削除すると、React はこのエフェクトのコードが `increment` に依存していることを教えてくれますが、このエフェクトはリアクティブ値（`[]`）に依存していないと主張することで React に"嘘をついた"のです。依存配列に `increment` を追加します：
 
@@ -1068,19 +1068,19 @@ button { margin: 10px; }
 
 </Sandpack>
 
-Now, when `increment` changes, React will re-synchronize your Effect, which will restart the interval.
+これで `increment` が変わると、React はエフェクトを再同期し、インターバルを再開します。
 
 </Solution>
 
-#### Fix a freezing counter {/*fix-a-freezing-counter*/}
+#### カウンタのフリーズを修正する {/*fix-a-freezing-counter*/}
 
-This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable, which you can control it with the plus and minus buttons. For example, try pressing the plus button nine times, and notice that the `count` now increases each second by ten rather than by one.
+この `Timer` コンポーネントは、1 秒ごとに増加するカウントの `state` 変数を保持します。増加する値は、`increment` state 変数に格納され、プラスとマイナスのボタンでコントロールすることができます。例えば、プラスボタンを 9 回押してみると、1 秒ごとにカウントが 1 ずつではなく、10 ずつ増えていくことがわかります。
 
-There is a small issue with this user interface. You might notice that if you keep pressing the plus or minus buttons faster than once per second, the timer itself seems to pause. It only resumes after a second passes since the last time you've pressed either button. Find why this is happening, and fix the issue so that the timer ticks on *every* second without interruptions.
+このユーザインターフェースには少し問題があります。プラス・マイナスボタンを 1 秒間に 1 回以上押し続けると、タイマーが一時停止してしまうのです。最後にどちらかのボタンを押してから 1 秒が経過すると、タイマーが再開します。この原因を突き止め、タイマーを *1* 秒単位で中断させないように修正しましょう。
 
 <Hint>
 
-It seems like the Effect which sets up the timer "reacts" to the `increment` value. Does the line that uses the current `increment` value in order to call `setCount` really need to be reactive?
+タイマーを設定するエフェクトが `increment` 値に"反応"しているような気がするのですが。`setCount` を呼び出すために現在の `increment` 値を使用する行は、本当にリアクティブである必要があるのでしょうか？
 
 </Hint>
 
@@ -1149,9 +1149,9 @@ button { margin: 10px; }
 
 <Solution>
 
-The issue is that the code inside the Effect uses the `increment` state variable. Since it's a dependency of your Effect, every change to `increment` causes the Effect to re-synchronize, which causes the interval to clear. If you keep clearing the interval every time before it has a chance to fire, it will appear as if the timer has stalled.
+問題はエフェクト内のコードが `increment` state 変数を使用していることです。この変数はエフェクトの依存値なので、`increment` を変更するたびにエフェクトが再同期し、インターバルがクリアされることになります。発火する前に毎回インターバルをクリアし続けると、タイマーが停止したように見えてしまいます。
 
-To solve the issue, extract an `onTick` Effect Event from the Effect:
+この問題を解決するには、エフェクトから `onTick` エフェクトイベントを抽出します：
 
 <Sandpack>
 
@@ -1221,17 +1221,17 @@ button { margin: 10px; }
 
 </Sandpack>
 
-Since `onTick` is an Effect Event, the code inside it isn't reactive. The change to `increment` does not trigger any Effects.
+`onTick` はエフェクトイベントなので、その中のコードはリアクティブではありません。`increment` を変更しても、エフェクトはトリガしません。
 
 </Solution>
 
-#### Fix a non-adjustable delay {/*fix-a-non-adjustable-delay*/}
+#### 調整不可能な遅延を修正する {/*fix-a-non-adjustable-delay*/}
 
-In this example, you can customize the interval delay. It's stored in a `delay` state variable which is updated by two buttons. However, even if you press the "plus 100 ms" button until the `delay` is 1000 milliseconds (that is, a second), you'll notice that the timer still increments very fast (every 100 ms). It's as if your changes to the `delay` are ignored. Find and fix the bug.
+この例では、インターバルの遅延をカスタマイズすることができます。これは、2 つのボタンによって更新される `delay` state 変数に格納されています。しかし、`delay` が 1000 ミリ秒（つまり 1 秒）になるまで"プラス 100 ミリ秒"ボタンを押しても、タイマーは非常に速く（100 ミリ秒ごとに）増えることに気づくでしょう。まるで、`delay` の変更が無視されているようです。このバグを発見し、修正してください。
 
 <Hint>
 
-Code inside Effect Events is not reactive. Are there cases in which you would _want_ the `setInterval` call to re-run?
+エフェクトイベントの中のコードはリアクティブではありません。`setInterval` の呼び出しを再実行させたいケースはあるのでしょうか？
 
 </Hint>
 
@@ -1320,7 +1320,7 @@ button { margin: 10px; }
 
 <Solution>
 
-The problem with the above example is that it extracted an Effect Event called `onMount` without considering what the code should actually be doing. You should only extract Effect Events for a specific reason: when you want to make a part of your code non-reactive. However, the `setInterval` call *should* be reactive with respect to the `delay` state variable. If the `delay` changes, you want to set up the interval from scratch! To fix this code, pull all the reactive code back inside the Effect:
+上記の例の問題点は、コードが実際に何をすべきかを考えずに `onMount` というエフェクトイベントを抽出してしまったことです。エフェクトイベントを抽出するのは、コードの一部を非リアクティブにしたいときという特別な理由だけにしてください。しかし、`setInterval` の呼び出しは `delay` state 変数に対してリアクティブであるべきです。`delay` が変更された場合、インターバルを一から設定する必要があります！ このコードを修正するには、すべてのリアクティブなコードをエフェクトの内部に引き戻します：
 
 <Sandpack>
 
@@ -1400,21 +1400,21 @@ button { margin: 10px; }
 
 </Sandpack>
 
-In general, you should be suspicious of functions like `onMount` that focus on the *timing* rather than the *purpose* of a piece of code. It may feel "more descriptive" at first but it obscures your intent. As a rule of thumb, Effect Events should correspond to something that happens from the *user's* perspective. For example, `onMessage`, `onTick`, `onVisit`, or `onConnected` are good Effect Event names. Code inside them would likely not need to be reactive. On the other hand, `onMount`, `onUpdate`, `onUnmount`, or `onAfterRender` are so generic that it's easy to accidentally put code that *should* be reactive into them. This is why you should name your Effect Events after *what the user thinks has happened,* not when some code happened to run.
+一般的に、`onMount` のようなコードの一部分の目的ではなく、タイミングに焦点を当てた関数は疑ってかかるべきでしょう。最初は"分かりやすい"と感じるかもしれませんが、あなたの意図は分からなくなります。経験則から言うと、エフェクトイベントは*ユーザ*の視点から起こる何かに対応する必要があります。例えば、`onMessage`、`onTick`、`onVisit`、`onConnected` は、良いエフェクトイベント名です。これらのイベントの中のコードは、おそらくリアクティブである必要はないでしょう。一方、`onMount`、`onUpdate`、`onUnmount`、`onAfterRender` は汎用性が高いのでリアクティブにすべきコードを誤って入れてしまうことがあります。このため、エフェクトイベントの名前は、あるコードが実行されたときではなく、*ユーザが考えたことが起こった*ときに付けるようにします。
 
 </Solution>
 
-#### Fix a delayed notification {/*fix-a-delayed-notification*/}
+#### 通知の遅延を修正する {/*fix-a-delayed-notification*/}
 
-When you join a chat room, this component shows a notification. However, it doesn't show the notification immediately. Instead, the notification is artificially delayed by two seconds so that the user has a chance to look around the UI.
+チャットルームに参加すると、このコンポーネントは通知を表示します。しかし、このコンポーネントはすぐに通知を表示するわけではありません。その代わり、ユーザが UI を見回す機会があるように、通知を 2 秒遅らせて人工的に表示します。
 
-This almost works, but there is a bug. Try changing the dropdown from "general" to "travel" and then to "music" very quickly. If you do it fast enough, you will see two notifications (as expected!) but they will *both* say "Welcome to music".
+これはほとんど機能しますが、バグがあります。ドロップダウンを "general" から "travel"、そして "music" へと素早く変えてみてください。十分な速さで行うと、2 つの通知が表示されますが（予想通り！）、どちらも "Welcome to music" と表示されます。
 
-Fix it so that when you switch from "general" to "travel" and then to "music" very quickly, you see two notifications, the first one being "Welcome to travel" and the second one being "Welcome to music". (For an additional challenge, assuming you've *already* made the notifications show the correct rooms, change the code so that only the latter notification is displayed.)
+"general" から "travel"、そして "music" に素早く切り替えると、2 つの通知が表示され、1 つ目は "Welcome to travel"、2 つ目は "Welcome to music" と表示されるように修正してください。(追加の課題として、*すでに*通知が正しい部屋を表示するようになっていると仮定して、後者の通知のみが表示されるようにコードを変更してみてください。)
 
 <Hint>
 
-Your Effect knows which room it connected to. Is there any information that you might want to pass to your Effect Event?
+エフェクトはどのルームに接続したかを知っています。エフェクトイベントに渡したい情報はありますか？
 
 </Hint>
 
@@ -1553,11 +1553,11 @@ label { display: block; margin-top: 10px; }
 
 <Solution>
 
-Inside your Effect Event, `roomId` is the value *at the time Effect Event was called.*
+エフェクトイベントの内部では、`roomId` は*エフェクトイベントが呼び出された時点*の値です。
 
-Your Effect Event is called with a two second delay. If you're quickly switching from the travel to the music room, by the time the travel room's notification shows, `roomId` is already `"music"`. This is why both notifications say "Welcome to music".
+エフェクトイベントは、2 秒間の遅延を伴って呼び出されます。travel room から music room に素早く切り替える場合、travel room の通知が表示される頃には、`roomId` は既に `"music"` になっています。そのため、両方の通知で "Welcome to music" と表示されます。
 
-To fix the issue, instead of reading the *latest* `roomId` inside the Effect Event, make it a parameter of your Effect Event, like `connectedRoomId` below. Then pass `roomId` from your Effect by calling `onConnected(roomId)`:
+この問題を解決するには、エフェクトイベントの中で*最新の* `roomId` を読み込むのではなく、以下の `connectedRoomId` のように、エフェクトイベントのパラメータとして `roomId` を指定します。そして、`onConnected(roomId)` を呼び出すことで、エフェクトから `roomId` を渡します：
 
 <Sandpack>
 
@@ -1692,9 +1692,9 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-The Effect that had `roomId` set to `"travel"` (so it connected to the `"travel"` room) will show the notification for `"travel"`. The Effect that had `roomId` set to `"music"` (so it connected to the `"music"` room) will show the notification for `"music"`. In other words, `connectedRoomId` comes from your Effect (which is reactive), while `theme` always uses the latest value.
+`roomId` が `"travel"` に設定されていたエフェクト（`"travel"` ルームに接続していた）には、`"travel"` の通知が表示されます。`roomId` が `"music"` に設定された（つまり `"music"` ルームに接続した）エフェクトは、`"music"` に対する通知を表示します。つまり、`connectedRoomId` はエフェクト（リアクティブなもの）に由来し、`theme` は常に最新の値を使用します。
 
-To solve the additional challenge, save the notification timeout ID and clear it in the cleanup function of your Effect:
+この追加の課題を解決するには、通知のタイムアウト ID を保存し、エフェクトのクリーンアップ関数でクリアしてください：
 
 <Sandpack>
 
@@ -1835,7 +1835,7 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-This ensures that already scheduled (but not yet displayed) notifications get cancelled when you change rooms.
+これにより、部屋を変更したときに、すでに予定されている（まだ表示されていない）通知がキャンセルされるようになります。
 
 </Solution>
 
