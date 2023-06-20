@@ -169,7 +169,7 @@
           "path": "/learn/manipulating-the-dom-with-refs"
         },
         {
-          "title": "Synchronizing with Effects",
+          "title": "エフェクトを使って同期を行う",
           "path": "/learn/synchronizing-with-effects"
         },
         {
