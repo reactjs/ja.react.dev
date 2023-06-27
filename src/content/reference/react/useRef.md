@@ -228,7 +228,7 @@ function MyComponent() {
 
 もし、レンダー中に何かを読み出したり[書き込んだり]((/reference/react/useState#storing-information-from-previous-renders))*しなければならない*場合は、代わりに [useState](/reference/react/useState) を使用してください。
 
-これらのルールを破っていても、コンポーネントは正常に動作し続けるかもしれません。しかし、近いうちに React に追加される新機能の多くは、これらのルールが守られることを前提としています。詳しくは[コンポーネントを純粋に保つ](/learn/keeping-components-pure#where-you-can-cause-side-effects)を参照してください。
+これらのルールを破っていても、コンポーネントは正常に動作し続けるかもしれません。しかし、近いうちに React に追加される新機能の多くは、これらのルールが守られることを前提としています。詳しくは[コンポーネントを純粋に保つ](/learn/keeping-components-pure#where-you-_can_-cause-side-effects)を参照してください。
 
 </Pitfall>
 
