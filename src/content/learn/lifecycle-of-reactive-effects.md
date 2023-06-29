@@ -1,37 +1,37 @@
 ---
-title: 'Lifecycle of Reactive Effects'
+title: 'リアクティブなエフェクトのライフサイクル'
 ---
 
 <Intro>
 
-Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time. React provides a linter rule to check that you've specified your Effect's dependencies correctly. This keeps your Effect synchronized to the latest props and state.
+エフェクトはコンポーネントとは異なるライフサイクルを持ちます。コンポーネントは、マウント、更新、アンマウントを行うことができます。エフェクトは 2 つのことしかできません。同期の開始と、同期の停止です。エフェクトが props や state に依存し、これらが時間と共に変化する場合、このサイクルは繰り返し発生します。React では、エフェクトの依存配列が適切に指定されているかをチェックするリンタルールが提供されています。これにより、エフェクトが最新の props や state と同期された状態を維持することができます。
 
 </Intro>
 
 <YouWillLearn>
 
-- How an Effect's lifecycle is different from a component's lifecycle
-- How to think about each individual Effect in isolation
-- When your Effect needs to re-synchronize, and why
-- How your Effect's dependencies are determined
-- What it means for a value to be reactive
-- What an empty dependency array means
-- How React verifies your dependencies are correct with a linter
-- What to do when you disagree with the linter
+- エフェクトのライフサイクルとコンポーネントのライフサイクルの違い
+- 個々のエフェクトを独立して考える方法
+- いつ、そしてなぜエフェクトを再同期する必要があるのか
+- エフェクトの依存配列を決める方法
+- 値がリアクティブであるとはどのような意味か
+- 空の依存配列の意味
+- React のリンタは、どのようにして依存配列が正しいと判断するのか
+- リンタに同意できない時にどうすれば良いか
 
 </YouWillLearn>
 
-## The lifecycle of an Effect {/*the-lifecycle-of-an-effect*/}
+## エフェクトのライフサイクル {/*the-lifecycle-of-an-effect*/}
 
-Every React component goes through the same lifecycle:
+全ての React コンポーネントは同じライフサイクルを持ちます。
 
-- A component _mounts_ when it's added to the screen.
-- A component _updates_ when it receives new props or state, usually in response to an interaction.
-- A component _unmounts_ when it's removed from the screen.
+- 画面に追加されたとき、コンポーネントは*マウント*されます。
+- （大抵はインタラクションに応じて）新しい props や state を受け取ったとき、コンポーネントは*更新*されます。
+- 画面から削除されたとき、コンポーネントは*アンマウント*されます。
 
-**It's a good way to think about components, but _not_ about Effects.** Instead, try to think about each Effect independently from your component's lifecycle. An Effect describes how to [synchronize an external system](/learn/synchronizing-with-effects) to the current props and state. As your code changes, synchronization will need to happen more or less often.
+**これは、コンポーネントの考え方としては良いですが、エフェクトの考え方としては*良くありません***。それぞれのエフェクトは、コンポーネントのライフサイクルから独立させて考えましょう。エフェクトは、現在の props や state に[外部システムをどのように同期させるのか](/learn/synchronizing-with-effects)を記述します。コードが変更されれば、同期の頻度も増減するでしょう。
 
-To illustrate this point, consider this Effect connecting your component to a chat server:
+この点を説明するために、コンポーネントをチャットサーバに接続するエフェクトを考えてみましょう。
 
 ```js
 const serverUrl = 'https://localhost:1234';
@@ -48,7 +48,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Your Effect's body specifies how to **start synchronizing:**
+エフェクトの本体には、**どのように同期を開始するのか**を記述しています。
 
 ```js {2-3}
     // ...
@@ -60,7 +60,7 @@ Your Effect's body specifies how to **start synchronizing:**
     // ...
 ```
 
-The cleanup function returned by your Effect specifies how to **stop synchronizing:**
+エフェクトの返り値として表されるクリーンアップ関数には、**どのように同期を停止するのか**を記述しています。
 
 ```js {5}
     // ...
@@ -72,19 +72,19 @@ The cleanup function returned by your Effect specifies how to **stop synchronizi
     // ...
 ```
 
-Intuitively, you might think that React would **start synchronizing** when your component mounts and **stop synchronizing** when your component unmounts. However, this is not the end of the story! Sometimes, it may also be necessary to **start and stop synchronizing multiple times** while the component remains mounted.
+これだけを見ると、React はコンポーネントのマウント時に**同期を開始し**、アンマウント時に**同期を停止する**だけのように見えます。しかし、これで終わりではありません！ コンポーネントがマウントされている間、**同期の開始と停止を繰り返し行わなければならない**場合があるからです。
 
-Let's look at _why_ this is necessary, _when_ it happens, and _how_ you can control this behavior.
+この挙動が*いつ*発生し、*どのように*制御することができ、そしてそれが*なぜ*必要なのかを見ていきましょう。
 
 <Note>
 
-Some Effects don't return a cleanup function at all. [More often than not,](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) you'll want to return one--but if you don't, React will behave as if you returned an empty cleanup function.
+エフェクトは、クリーンアップ関数を返さないことがあります。[多くの場合は返すべき](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)ですが、もし返さなかった場合は、空のクリーンアップ関数が返されたとして扱われます。
 
 </Note>
 
-### Why synchronization may need to happen more than once {/*why-synchronization-may-need-to-happen-more-than-once*/}
+### なぜ複数回の同期が必要なのか {/*why-synchronization-may-need-to-happen-more-than-once*/}
 
-Imagine this `ChatRoom` component receives a `roomId` prop that the user picks in a dropdown. Let's say that initially the user picks the `"general"` room as the `roomId`. Your app displays the `"general"` chat room:
+`ChatRoom` コンポーネントが、ユーザがドロップダウンで選択した `roomId` プロパティを受け取ることを考えましょう。ユーザが最初に、`roomId` として `"general"` ルームを選択したとします。あなたのアプリは `"general"` ルームを表示します。
 
 ```js {3}
 const serverUrl = 'https://localhost:1234';
@@ -95,7 +95,7 @@ function ChatRoom({ roomId /* "general" */ }) {
 }
 ```
 
-After the UI is displayed, React will run your Effect to **start synchronizing.** It connects to the `"general"` room:
+この UI が表示されたあと、React は**同期を開始するために**エフェクトを実行します。これにより、`"general"` ルームに通信が接続されます。
 
 ```js {3,4}
 function ChatRoom({ roomId /* "general" */ }) {
@@ -109,9 +109,9 @@ function ChatRoom({ roomId /* "general" */ }) {
   // ...
 ```
 
-So far, so good.
+ここまでは順調です。
 
-Later, the user picks a different room in the dropdown (for example, `"travel"`). First, React will update the UI:
+この後、ユーザがドロップダウンで違うルーム（例えば `"travel"` ルーム）を選択したとします。まず、React は UI を更新します。
 
 ```js {1}
 function ChatRoom({ roomId /* "travel" */ }) {
@@ -120,20 +120,20 @@ function ChatRoom({ roomId /* "travel" */ }) {
 }
 ```
 
-Think about what should happen next. The user sees that `"travel"` is the selected chat room in the UI. However, the Effect that ran the last time is still connected to the `"general"` room. **The `roomId` prop has changed, so what your Effect did back then (connecting to the `"general"` room) no longer matches the UI.**
+次に何が起こるか考えてみましょう。ユーザには、UI 上では `"travel"` ルームが選択されているように見えています。しかし、直近に実行されたエフェクトは、未だ `"general"` ルームに接続しています。**`roomId` プロパティが変化してしまったため、エフェクトが行なっていたこと（`"general"` ルームへの接続）が UI と一致しなくなってしまいました。**
 
-At this point, you want React to do two things:
+この時点で、あなたは React に以下の 2 つの処理を実行してほしいはずです。
 
-1. Stop synchronizing with the old `roomId` (disconnect from the `"general"` room)
-2. Start synchronizing with the new `roomId` (connect to the `"travel"` room)
+1. 古い `roomId` での同期を停止する（`"general"` ルームとの接続を切断する）
+2. 新しい `roomId` での同期を開始する（`"travel"` ルームとの接続を開始する）
 
-**Luckily, you've already taught React how to do both of these things!** Your Effect's body specifies how to start synchronizing, and your cleanup function specifies how to stop synchronizing. All that React needs to do now is to call them in the correct order and with the correct props and state. Let's see how exactly that happens.
+**ラッキーなことに、これらの処理を行う方法は既に学んでいます！** エフェクトの本体には「どのように同期を開始するのか」を、クリーンアップ関数には「どのように同期を停止するのか」を記述するのでした。React はエフェクトを、正しい順序、かつ正しい props と state で呼び出します。では、具体的にどうなるのか見てみましょう。
 
-### How React re-synchronizes your Effect {/*how-react-re-synchronizes-your-effect*/}
+### どのようにしてエフェクトの再同期が行われるのか {/*how-react-re-synchronizes-your-effect*/}
 
-Recall that your `ChatRoom` component has received a new value for its `roomId` prop. It used to be `"general"`, and now it is `"travel"`. React needs to re-synchronize your Effect to re-connect you to a different room.
+`ChatRoom` コンポーネントが、`roomId` プロパティとして新しい値を受け取ったところを思い出してください。プロパティの値が、`"general"` から `"travel"` に変化しました。React は、別のルームに再接続するため、エフェクトを再同期する必要があります。
 
-To **stop synchronizing,** React will call the cleanup function that your Effect returned after connecting to the `"general"` room. Since `roomId` was `"general"`, the cleanup function disconnects from the `"general"` room:
+まず React は、**同期を停止する**ために `"general"` ルームに接続したあとにエフェクトが返したクリーンアップ関数を呼び出します。`roomId` は `"general"` であったので、クリーンアップ関数は `"general"` ルームの通信を切断します。
 
 ```js {6}
 function ChatRoom({ roomId /* "general" */ }) {
@@ -146,7 +146,7 @@ function ChatRoom({ roomId /* "general" */ }) {
     // ...
 ```
 
-Then React will run the Effect that you've provided during this render. This time, `roomId` is `"travel"` so it will **start synchronizing** to the `"travel"` chat room (until its cleanup function is eventually called too):
+次に React は、レンダー中に提供されたエフェクトを実行します。このとき、`roomId` は `"travel"` なので、`"travel"` ルームへの**同期が開始されます**。（最終的に、そのエフェクトのクリーンアップ関数が呼び出されるまで、同期が続きます。）
 
 ```js {3,4}
 function ChatRoom({ roomId /* "travel" */ }) {
@@ -156,57 +156,57 @@ function ChatRoom({ roomId /* "travel" */ }) {
     // ...
 ```
 
-Thanks to this, you're now connected to the same room that the user chose in the UI. Disaster averted!
+これで、ユーザが UI で選択したルームに正しく接続することができました。一件落着！
 
-Every time after your component re-renders with a different `roomId`, your Effect will re-synchronize. For example, let's say the user changes `roomId` from `"travel"` to `"music"`. React will again **stop synchronizing** your Effect by calling its cleanup function (disconnecting you from the `"travel"` room). Then it will **start synchronizing** again by running its body with the new `roomId` prop (connecting you to the `"music"` room).
+`roomId` が変化しコンポーネントが再レンダーされるたびに、エフェクトは再同期を行います。例として、ユーザが `roomId` を `"travel"` から `"music"` に変更したとしましょう。React は、クリーンアップ関数を呼び出すことで、再度エフェクトの**同期を停止**（`"travel"` ルームを切断）します。次に、新しい `roomId` プロパティの値でエフェクトの本体を実行し、**同期を開始**（`"music"` ルームに接続）します。
 
-Finally, when the user goes to a different screen, `ChatRoom` unmounts. Now there is no need to stay connected at all. React will **stop synchronizing** your Effect one last time and disconnect you from the `"music"` chat room.
+最後に、ユーザが別の画面に遷移すれば、`ChatRoom` コンポーネントはアンマウントされます。これ以上接続を維持する必要はないので、React は最後にもう一度**同期を停止し**、`"music"` ルームとの通信を切断します。
 
-### Thinking from the Effect's perspective {/*thinking-from-the-effects-perspective*/}
+### エフェクトの視点で考える {/*thinking-from-the-effects-perspective*/}
 
-Let's recap everything that's happened from the `ChatRoom` component's perspective:
+`ChatRoom` コンポーネントの視点で、起こったことを振り返りましょう。
 
-1. `ChatRoom` mounted with `roomId` set to `"general"`
-1. `ChatRoom` updated with `roomId` set to `"travel"`
-1. `ChatRoom` updated with `roomId` set to `"music"`
-1. `ChatRoom` unmounted
+1. `roomId` が `"general"` にセットされた状態で `ChatRoom` がマウントされる
+1. `roomId` が `"travel"` にセットされた状態で `ChatRoom` が更新される
+1. `roomId` が `"music"` にセットされた状態で `ChatRoom` が更新される
+1. `ChatRoom` がアンマウントされる
 
-During each of these points in the component's lifecycle, your Effect did different things:
+この、コンポーネントのライフサイクルの各ポイントで、エフェクトは以下の処理を行いました。
 
-1. Your Effect connected to the `"general"` room
-1. Your Effect disconnected from the `"general"` room and connected to the `"travel"` room
-1. Your Effect disconnected from the `"travel"` room and connected to the `"music"` room
-1. Your Effect disconnected from the `"music"` room
+1. エフェクトが `"general"` ルームに接続する
+2. エフェクトが `"general"` ルームを切断し、`"travel"` ルームに接続する
+3. エフェクトが `"travel"` ルームを切断し、`"music"` ルームに接続する
+4. エフェクトが `"music"` ルームを切断する
 
-Now let's think about what happened from the perspective of the Effect itself:
+では、エフェクトの視点でどのようなことが発生したのか考えましょう。
 
 ```js
   useEffect(() => {
-    // Your Effect connected to the room specified with roomId...
+    // エフェクトが、roomId で指定されたルームに接続する
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => {
-      // ...until it disconnected
+      // ...切断されるまで
       connection.disconnect();
     };
   }, [roomId]);
 ```
 
-This code's structure might inspire you to see what happened as a sequence of non-overlapping time periods:
+このコードの構造から、何が発生したのかを、複数に区切られた時間の連続として理解できるかもしれません。
 
-1. Your Effect connected to the `"general"` room (until it disconnected)
-1. Your Effect connected to the `"travel"` room (until it disconnected)
-1. Your Effect connected to the `"music"` room (until it disconnected)
+1. エフェクトが、`"general"` に接続する（切断されるまで）
+1. エフェクトが、`"travel"` に接続する（切断されるまで）
+1. エフェクトが、`"music"` に接続する（切断されるまで）
 
-Previously, you were thinking from the component's perspective. When you looked from the component's perspective, it was tempting to think of Effects as "callbacks" or "lifecycle events" that fire at a specific time like "after a render" or "before unmount". This way of thinking gets complicated very fast, so it's best to avoid.
+先ほどはコンポーネントの視点で考えていました。コンポーネントの視点から見ると、エフェクトは、"レンダー直後" や "アンマウント直前" のように特定のタイミングで発生する "コールバック関数" や "ライフサイクル中のイベント" であると考えたくなります。しかし、このような考え方はすぐにややこしくなるため、避けた方が無難です。
 
-**Instead, always focus on a single start/stop cycle at a time. It shouldn't matter whether a component is mounting, updating, or unmounting. All you need to do is to describe how to start synchronization and how to stop it. If you do it well, your Effect will be resilient to being started and stopped as many times as it's needed.**
+**その代わりに、エフェクトの開始/終了という 1 サイクルのみにフォーカスしてください。コンポーネントがマウント中なのか、更新中なのか、はたまたアンマウント中なのかは問題ではありません。どのように同期を開始し、どのように同期を終了するのか、これを記述すれば良いのです。このことを意識するだけで、開始・終了が何度も繰り返されても、柔軟に対応できるエフェクトとなります。**
 
-This might remind you how you don't think whether a component is mounting or updating when you write the rendering logic that creates JSX. You describe what should be on the screen, and React [figures out the rest.](/learn/reacting-to-input-with-state)
+もしかすると、JSX を作成するレンダーロジックを書くときのことを思い出したかもしれません。このときも、コンポーネントがマウント中なのか、更新中なのかは意識しませんでした。あなたは画面に表示されるものを記述し、[残りは React がやってくれるのです](/learn/reacting-to-input-with-state)。
 
-### How React verifies that your Effect can re-synchronize {/*how-react-verifies-that-your-effect-can-re-synchronize*/}
+### エフェクトが再同期できることを React はどのように確認するのか {/*how-react-verifies-that-your-effect-can-re-synchronize*/}
 
-Here is a live example that you can play with. Press "Open chat" to mount the `ChatRoom` component:
+こちらは、実際に動かして試すことができるサンプルです。"Open chat" を押して `ChatRoom` コンポーネントをマウントしてみましょう。
 
 <Sandpack>
 
@@ -272,49 +272,49 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice that when the component mounts for the first time, you see three logs:
+コンポーネントが初めてマウントされたときに、3 つのログが表示されることに注目してください。
 
 1. `✅ Connecting to "general" room at https://localhost:1234...` *(development-only)*
 1. `❌ Disconnected from "general" room at https://localhost:1234.` *(development-only)*
 1. `✅ Connecting to "general" room at https://localhost:1234...`
 
-The first two logs are development-only. In development, React always remounts each component once.
+最初の 2 つのログは開発時のみ表示されます。開発時には、React は常に各コンポーネントを 1 度再マウントします。
 
-**React verifies that your Effect can re-synchronize by forcing it to do that immediately in development.** This might remind you of opening a door and closing it an extra time to check if the door lock works. React starts and stops your Effect one extra time in development to check [you've implemented its cleanup well.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+**開発時には、React はエフェクトを即座に再同期させて、エフェクトの再同期が正しく行われることを確認します**。この動作は、ドアの鍵が正しくかかるか確認するために、ドアを 1 度余分に開け閉めしてみることに似ています。React は、[クリーンアップ関数が正しく実装されているか](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)を確認するために、開発時にエフェクトを 1 回余分に開始・停止します。
 
-The main reason your Effect will re-synchronize in practice is if some data it uses has changed. In the sandbox above, change the selected chat room. Notice how, when the `roomId` changes, your Effect re-synchronizes.
+実環境でエフェクトの再同期が発生する主な理由は、エフェクトが利用するデータが変更されることです。上記のサンドボックスで、チャットルームの選択を変更してみてください。`roomId` が変更されると、エフェクトが再同期されることがわかります。
 
-However, there are also more unusual cases in which re-synchronization is necessary. For example, try editing the `serverUrl` in the sandbox above while the chat is open. Notice how the Effect re-synchronizes in response to your edits to the code. In the future, React may add more features that rely on re-synchronization.
+しかし、再同期が必要となるより珍しいケースもあります。例えば、チャットが開いている間に、サンドボックス上の `serverUrl` を編集してみてください。コードの編集に応じて、エフェクトが再同期されることがわかります。将来的には、React は再同期に依存する機能を追加するかもしれません。
 
-### How React knows that it needs to re-synchronize the Effect {/*how-react-knows-that-it-needs-to-re-synchronize-the-effect*/}
+### React がエフェクトの再同期が必要であることを知る方法 {/*how-react-knows-that-it-needs-to-re-synchronize-the-effect*/}
 
-You might be wondering how React knew that your Effect needed to re-synchronize after `roomId` changes. It's because *you told React* that its code depends on `roomId` by including it in the [list of dependencies:](/learn/synchronizing-with-effects#step-2-specify-the-effect-dependencies)
+`roomId` が変更された後に、React はなぜエフェクトを再同期する必要があることを知ったのでしょうか。それは、`roomId` を[依存配列](/learn/synchronizing-with-effects#step-2-specify-the-effect-dependencies)に含めることで、React にそのコードが `roomId` に依存していることを伝えたからです。
 
 ```js {1,3,8}
-function ChatRoom({ roomId }) { // The roomId prop may change over time
+function ChatRoom({ roomId }) { // roomId は時間の経過とともに変化する可能性がある
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // This Effect reads roomId 
+    const connection = createConnection(serverUrl, roomId); // このエフェクトは `roomId` を利用している
     connection.connect();
     return () => {
       connection.disconnect();
     };
-  }, [roomId]); // So you tell React that this Effect "depends on" roomId
+  }, [roomId]); // つまり、このエフェクトは roomId に "依存" している
   // ...
 ```
 
-Here's how this works:
+仕組みは以下のようになっています。
 
-1. You knew `roomId` is a prop, which means it can change over time.
-2. You knew that your Effect reads `roomId` (so its logic depends on a value that may change later).
-3. This is why you specified it as your Effect's dependency (so that it re-synchronizes when `roomId` changes).
+1. `roomId` はプロパティである。これは、`roomId` が時間の経過とともに変化する可能性があるということです。
+2. エフェクトが `roomId` を利用する。(これは、エフェクトのロジックが、後で変更される可能性のある値に依存していることを意味しています。)
+3. そのため、エフェクトの依存配列に `roomId` を指定する。（こうすることで、`roomId` が変更されたときに再同期することができます。） 
 
-Every time after your component re-renders, React will look at the array of dependencies that you have passed. If any of the values in the array is different from the value at the same spot that you passed during the previous render, React will re-synchronize your Effect.
+コンポーネントが再レンダーされるたびに、React は渡された依存配列を確認します。配列内の値のいずれかが、前回のレンダー時に渡された配列の同じ場所の値と異なる場合、React はエフェクトを再同期します。
 
-For example, if you passed `["general"]` during the initial render, and later you passed `["travel"]` during the next render, React will compare `"general"` and `"travel"`. These are different values (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), so React will re-synchronize your Effect. On the other hand, if your component re-renders but `roomId` has not changed, your Effect will remain connected to the same room.
+例えば、初回のレンダー時に `["general"]` を渡し、次のレンダー時に `["travel"]` を渡したとします。React は `"general"` と `"travel"` を比較します（[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) で比較されます）。異なる値が存在するため、React はエフェクトを再同期します。一方、コンポーネントが再レンダーされたが `roomId` が変更されていない場合、エフェクトは同じルームに接続されたままになります。
 
-### Each Effect represents a separate synchronization process {/*each-effect-represents-a-separate-synchronization-process*/}
+### 1 つのエフェクトは独立した 1 つの同期の処理を表す {/*each-effect-represents-a-separate-synchronization-process*/}
 
-Resist adding unrelated logic to your Effect only because this logic needs to run at the same time as an Effect you already wrote. For example, let's say you want to send an analytics event when the user visits the room. You already have an Effect that depends on `roomId`, so you might feel tempted to add the analytics call there:
+実装済みのエフェクトと同時に実行するというだけの理由で、関係のないロジックを同じエフェクトに追加しないでください。例えば、ユーザがルームを訪れたときにアナリティクスイベントを送信したいとします。既に `roomId` に依存するエフェクトがあるため、そこにアナリティクスの呼び出しを追加したくなるかもしれません。
 
 ```js {3}
 function ChatRoom({ roomId }) {
@@ -330,7 +330,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-But imagine you later add another dependency to this Effect that needs to re-establish the connection. If this Effect re-synchronizes, it will also call `logVisit(roomId)` for the same room, which you did not intend. Logging the visit **is a separate process** from connecting. Write them as two separate Effects:
+しかし後になってこのエフェクトに、接続の再確立を必要とするような何か別の依存値を追加する必要が出てきたとします。このエフェクトが再同期されると、ルームが変わっていないのに `logVisit(roomId)` が再度呼び出されてしまいます。これは意図したものではありません。訪問の記録は、接続とは**別の処理**です。別のエフェクトとして記述してください。
 
 ```js {2-4}
 function ChatRoom({ roomId }) {
@@ -346,13 +346,13 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-**Each Effect in your code should represent a separate and independent synchronization process.**
+**コード内の 1 つのエフェクトは、1 つの独立した同期の処理を表すべきです。**
 
-In the above example, deleting one Effect wouldn’t break the other Effect's logic. This is a good indication that they synchronize different things, and so it made sense to split them up. On the other hand, if you split up a cohesive piece of logic into separate Effects, the code may look "cleaner" but will be [more difficult to maintain.](/learn/you-might-not-need-an-effect#chains-of-computations) This is why you should think whether the processes are same or separate, not whether the code looks cleaner.
+上記の例では、1 つのエフェクトを削除しても、他のエフェクトのロジックは壊れません。これは、それらが異なるものを同期していることを示しており、分割するのが理にかなっているということです。逆に、1 つのロジックを別々のエフェクトに分割してしまうと、コードは一見「きれい」に見えるかもしれませんが、[メンテナンスは困難になるでしょう](/learn/you-might-not-need-an-effect#chains-of-computations)。そのため、コードがきれいに見えるかどうかではなく、処理が独立しているか同じかを考える必要があります。
 
-## Effects "react" to reactive values {/*effects-react-to-reactive-values*/}
+## エフェクトはリアクティブ (reactive) な値に "反応" する {/*effects-react-to-reactive-values*/}
 
-Your Effect reads two variables (`serverUrl` and `roomId`), but you only specified `roomId` as a dependency:
+以下の例では、エフェクトが 2 つの変数 (`serverUrl` と `roomId`) を利用していますが、依存配列には `roomId` のみが指定されています。
 
 ```js {5,10}
 const serverUrl = 'https://localhost:1234';
@@ -369,32 +369,32 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Why doesn't `serverUrl` need to be a dependency?
+なぜ `serverUrl` は依存配列に追加しなくて良いのでしょうか？
 
-This is because the `serverUrl` never changes due to a re-render. It's always the same no matter how many times the component re-renders and why. Since `serverUrl` never changes, it wouldn't make sense to specify it as a dependency. After all, dependencies only do something when they change over time!
+これは、再レンダーが起こっても、決して `serverUrl` が変化することはないからです。どのような理由で何度再レンダーが起こっても、いつも同じ値です。したがって、依存配列に追加しても意味がありません。結局のところ、指定する依存値は、時間によって変化して初めて意味があるのです！
 
-On the other hand, `roomId` may be different on a re-render. **Props, state, and other values declared inside the component are _reactive_ because they're calculated during rendering and participate in the React data flow.**
+一方、`roomId` は再レンダー時に異なる値になる可能性があります。**コンポーネント内で宣言された props、state、その他の値は、レンダー時に計算され、React のデータフローに含まれるため、*リアクティブ*です。**
 
-If `serverUrl` was a state variable, it would be reactive. Reactive values must be included in dependencies:
+もし `serverUrl` が state 変数だった場合、リアクティブとなります。リアクティブな値は、依存配列に含める必要があります。
 
 ```js {2,5,10}
-function ChatRoom({ roomId }) { // Props change over time
-  const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // State may change over time
+function ChatRoom({ roomId }) { // props は時間経過とともに変化し得る
+  const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // state は時間経過とともに変化し得る
 
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Your Effect reads props and state
+    const connection = createConnection(serverUrl, roomId); // エフェクトは props と state を利用している
     connection.connect();
     return () => {
       connection.disconnect();
     };
-  }, [roomId, serverUrl]); // So you tell React that this Effect "depends on" on props and state
+  }, [roomId, serverUrl]); // つまり、エフェクトは props と state に "依存" している
   // ...
 }
 ```
 
-By including `serverUrl` as a dependency, you ensure that the Effect re-synchronizes after it changes.
+`serverUrl` を依存配列に含めることで、`serverUrl` が変更された後に再同期されることを保証します。
 
-Try changing the selected chat room or edit the server URL in this sandbox:
+チャットルームの選択を変更したり、サーバの URL を編集してみてください。
 
 <Sandpack>
 
@@ -468,11 +468,11 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Whenever you change a reactive value like `roomId` or `serverUrl`, the Effect re-connects to the chat server.
+`roomId` や `serverUrl` のようなリアクティブな値を変更するたびに、エフェクトはチャットサーバに再接続します。
 
-### What an Effect with empty dependencies means {/*what-an-effect-with-empty-dependencies-means*/}
+### 依存配列が空のエフェクトは何を意味するのか {/*what-an-effect-with-empty-dependencies-means*/}
 
-What happens if you move both `serverUrl` and `roomId` outside the component?
+もし `serverUrl` や `roomId` をコンポーネント外に移動した場合、どうなるでしょうか？
 
 ```js {1,2}
 const serverUrl = 'https://localhost:1234';
@@ -490,9 +490,9 @@ function ChatRoom() {
 }
 ```
 
-Now your Effect's code does not use *any* reactive values, so its dependencies can be empty (`[]`).
+現在のエフェクトのコードは、リアクティブな値を利用していません。そのため、依存配列は空 (`[]`) になります。
 
-Thinking from the component's perspective, the empty `[]` dependency array means this Effect connects to the chat room only when the component mounts, and disconnects only when the component unmounts. (Keep in mind that React would still [re-synchronize it an extra time](#how-react-verifies-that-your-effect-can-re-synchronize) in development to stress-test your logic.)
+空の依存配列 (`[]`) をコンポーネントの視点から考えると、このエフェクトは、コンポーネントのマウント時にチャットルームに接続し、アンマウント時に切断することを意味しています。（開発時は、ロジックのストレステストのために、[余計に一度再同期される](#how-react-verifies-that-your-effect-can-re-synchronize)ことをお忘れなく）
 
 
 <Sandpack>
@@ -548,52 +548,52 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-However, if you [think from the Effect's perspective,](#thinking-from-the-effects-perspective) you don't need to think about mounting and unmounting at all. What's important is you've specified what your Effect does to start and stop synchronizing. Today, it has no reactive dependencies. But if you ever want the user to change `roomId` or `serverUrl` over time (and they would become reactive), your Effect's code won't change. You will only need to add them to the dependencies.
+しかし、[エフェクトの視点から考えると](#thinking-from-the-effects-perspective)、マウントとアンマウントについて考える必要は全くありません。重要なのは、エフェクトが同期の開始と停止のときに何を行うかを指定したことです。今回は、リアクティブな依存値はありません。しかし、将来的にユーザに `roomId` や `serverUrl` を変更してもらいたくなった場合（これらの値がリアクティブになるでしょう）でも、エフェクトのコードを変更する必要はありません。依存配列にこれらの値を追加するだけです。
 
-### All variables declared in the component body are reactive {/*all-variables-declared-in-the-component-body-are-reactive*/}
+### コンポーネント本体で宣言された変数はすべてリアクティブである {/*all-variables-declared-in-the-component-body-are-reactive*/}
 
-Props and state aren't the only reactive values. Values that you calculate from them are also reactive. If the props or state change, your component will re-render, and the values calculated from them will also change. This is why all variables from the component body used by the Effect should be in the Effect dependency list.
+リアクティブな値は、props や state だけではありません。これらの値から導出される値もまた、リアクティブな値となります。props や state が変更されるとコンポーネントは再レンダーされ、導出される値も変化します。これが、コンポーネント本体で宣言された変数で、エフェクトが利用するものは、全てそのエフェクトの依存配列に含まなければならない理由です。
 
-Let's say that the user can pick a chat server in the dropdown, but they can also configure a default server in settings. Suppose you've already put the settings state in a [context](/learn/scaling-up-with-reducer-and-context) so you read the `settings` from that context. Now you calculate the `serverUrl` based on the selected server from props and the default server:
+ユーザがドロップダウンでチャットサーバを選択できますが、設定でデフォルトサーバを指定することもできるとしましょう。設定の状態を表す state をすでに[コンテクスト](/learn/scaling-up-with-reducer-and-context)に入れていると仮定し、そのコンテクストから `settings` を読み取ります。そして、props から得られる選択されたサーバと、デフォルトサーバに基づいて `serverUrl` を計算します。
 
 ```js {3,5,10}
-function ChatRoom({ roomId, selectedServerUrl }) { // roomId is reactive
-  const settings = useContext(SettingsContext); // settings is reactive
-  const serverUrl = selectedServerUrl ?? settings.defaultServerUrl; // serverUrl is reactive
+function ChatRoom({ roomId, selectedServerUrl }) { // roomId はリアクティブ
+  const settings = useContext(SettingsContext); // settings はリアクティブ
+  const serverUrl = selectedServerUrl ?? settings.defaultServerUrl; // serverUrl はリアクティブ
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Your Effect reads roomId and serverUrl
+    const connection = createConnection(serverUrl, roomId); // エフェクトは roomId と serverUrl を利用している
     connection.connect();
     return () => {
       connection.disconnect();
     };
-  }, [roomId, serverUrl]); // So it needs to re-synchronize when either of them changes!
+  }, [roomId, serverUrl]); // そのため、どちらかが変更された場合は再同期が必要！
   // ...
 }
 ```
 
-In this example, `serverUrl` is not a prop or a state variable. It's a regular variable that you calculate during rendering. But it's calculated during rendering, so it can change due to a re-render. This is why it's reactive.
+この例では、`serverUrl` は props でも state でもありません。レンダー時に計算される通常の変数です。しかし、レンダー時に計算されるがゆえに、再レンダーによって変化する可能性があります。これが、リアクティブな値となる理由です。
 
-**All values inside the component (including props, state, and variables in your component's body) are reactive. Any reactive value can change on a re-render, so you need to include reactive values as Effect's dependencies.**
+**コンポーネント内のすべての値（props、state、コンポーネント本体の変数を含む）はリアクティブです。リアクティブな値は再レンダー時に変更される可能性があるため、エフェクトの依存配列に含める必要があります。**
 
-In other words, Effects "react" to all values from the component body.
+つまり、エフェクトはコンポーネント本体のすべての値に "反応 (react)" するのです。
 
 <DeepDive>
 
-#### Can global or mutable values be dependencies? {/*can-global-or-mutable-values-be-dependencies*/}
+#### グローバルな値やミュータブルな値は依存配列に含めるべき？ {/*can-global-or-mutable-values-be-dependencies*/}
 
-Mutable values (including global variables) aren't reactive.
+グローバル変数を含むミュータブル（書き換え可能）な値は、リアクティブではありません。
 
-**A mutable value like [`location.pathname`](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname) can't be a dependency.** It's mutable, so it can change at any time completely outside of the React rendering data flow. Changing it wouldn't trigger a re-render of your component. Therefore, even if you specified it in the dependencies, React *wouldn't know* to re-synchronize the Effect when it changes. This also breaks the rules of React because reading mutable data during rendering (which is when you calculate the dependencies) breaks [purity of rendering.](/learn/keeping-components-pure) Instead, you should read and subscribe to an external mutable value with [`useSyncExternalStore`.](/learn/you-might-not-need-an-effect#subscribing-to-an-external-store)
+**[`location.pathname`](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname) のようなミュータブルな値を依存配列に含めることはできません**。なにしろミュータブルなので、React のレンダーデータフローの外部で、いつでも書き換わってしまう可能性があります。外部で変更されても、コンポーネントの再レンダーはトリガされません。したがって、依存配列に含めたとしても、その値が変更されたときにエフェクトの再同期が必要だと React には*伝わりません*。また、レンダー中（依存関係を計算するとき）にミュータブルなデータを読み取ることは、[レンダーの純粋性](/learn/keeping-components-pure)のルールを破っています。代替策として、外部のミュータブルな値の読み取りやリッスンをするには [`useSyncExternalStore`](/learn/you-might-not-need-an-effect#subscribing-to-an-external-store) を利用しましょう。
 
-**A mutable value like [`ref.current`](/reference/react/useRef#reference) or things you read from it also can't be a dependency.** The ref object returned by `useRef` itself can be a dependency, but its `current` property is intentionally mutable. It lets you [keep track of something without triggering a re-render.](/learn/referencing-values-with-refs) But since changing it doesn't trigger a re-render, it's not a reactive value, and React won't know to re-run your Effect when it changes.
+**[`ref.current`](/reference/react/useRef#reference) のようなミュータブルな値や、この値から導出される値も依存配列に含めることはできません。**`useRef` によって返される ref オブジェクト自体は依存配列に含めることができますが、その `current` プロパティは意図的にミュータブルとなっています。これにより、[再レンダーをトリガせずに値を追跡し続けることができます](/learn/referencing-values-with-refs)。しかし、`current` を変更しても再レンダーはトリガされないため、リアクティブな値とはいえず、その値が変更されたときにエフェクトを再実行することは React には伝わりません。
 
-As you'll learn below on this page, a linter will check for these issues automatically.
+このページの後半で学びますが、リンタがこれらの問題を自動でチェックしてくれます。
 
 </DeepDive>
 
-### React verifies that you specified every reactive value as a dependency {/*react-verifies-that-you-specified-every-reactive-value-as-a-dependency*/}
+### React はすべてのリアクティブな値が依存配列に含まれることをチェックする {/*react-verifies-that-you-specified-every-reactive-value-as-a-dependency*/}
 
-If your linter is [configured for React,](/learn/editor-setup#linting) it will check that every reactive value used by your Effect's code is declared as its dependency. For example, this is a lint error because both `roomId` and `serverUrl` are reactive:
+リンタが [React 向けに設定されている](/learn/editor-setup#linting)場合、エフェクトで利用されているすべてのリアクティブな値が、その依存値として宣言されているかどうかをチェックします。例えば、以下のコードはリンタエラーとなります。なぜなら、`roomId` と `serverUrl` はどちらもリアクティブだからです。
 
 <Sandpack>
 
@@ -667,9 +667,9 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-This may look like a React error, but really React is pointing out a bug in your code. Both `roomId` and `serverUrl` may change over time, but you're forgetting to re-synchronize your Effect when they change. You will remain connected to the initial `roomId` and `serverUrl` even after the user picks different values in the UI.
+このエラーは React のエラーのように見えますが、実際にはあなたのコードのバグを指摘してくれています。`roomId` と `serverUrl` は時間経過とともに変化する可能性がありますが、それらが変更されたときにエフェクトを再同期するのを忘れています。ユーザが UI で異なる値を選択しても、最初の `roomId` と `serverUrl` に接続し続けてしまいます。
 
-To fix the bug, follow the linter's suggestion to specify `roomId` and `serverUrl` as dependencies of your Effect:
+バグを修正するには、リンタの提案に従って、エフェクトの依存配列に `roomId` と `serverUrl` を追加します。
 
 ```js {9}
 function ChatRoom({ roomId }) { // roomId is reactive
@@ -685,19 +685,19 @@ function ChatRoom({ roomId }) { // roomId is reactive
 }
 ```
 
-Try this fix in the sandbox above. Verify that the linter error is gone, and the chat re-connects when needed.
+上記のサンドボックスでこの修正を試してみてください。リンタエラーがなくなり、チャットが適切に再接続されることを確認してください。
 
 <Note>
 
-In some cases, React *knows* that a value never changes even though it's declared inside the component. For example, the [`set` function](/reference/react/useState#setstate) returned from `useState` and the ref object returned by [`useRef`](/reference/react/useRef) are *stable*--they are guaranteed to not change on a re-render. Stable values aren't reactive, so you may omit them from the list. Including them is allowed: they won't change, so it doesn't matter.
+コンポーネント内で宣言された変数でも、その値が決して変更されないことを React が*知っている*ケースがあります。例えば、`useState` から返される [`set` 関数](/reference/react/useState#setstate) や、[`useRef`](/reference/react/useRef) から返される ref オブジェクトは、*安定*、すなわち、再レンダー時に変更されないことが保証されています。安定な値はリアクティブではないため、依存配列から省略することができます。なお、これらの値は変更されないため、配列に加えてしまっても問題はありません。
 
 </Note>
 
-### What to do when you don't want to re-synchronize {/*what-to-do-when-you-dont-want-to-re-synchronize*/}
+### 再同期を避けたい場合の方法 {/*what-to-do-when-you-dont-want-to-re-synchronize*/}
 
-In the previous example, you've fixed the lint error by listing `roomId` and `serverUrl` as dependencies.
+前の例では、`roomId` と `serverUrl` を依存配列に追加することで、リンタエラーを修正しました。
 
-**However, you could instead "prove" to the linter that these values aren't reactive values,** i.e. that they *can't* change as a result of a re-render. For example, if `serverUrl` and `roomId` don't depend on rendering and always have the same values, you can move them outside the component. Now they don't need to be dependencies:
+**しかし、その代わりに、これらの値がリアクティブではない、つまり再レンダーされても*変更し得ない*ことを、リンタに「証明」することもできます**。例えば、`serverUrl` と `roomId` がレンダーに依存せず、常に同じ値を持つ場合、コンポーネントの外に移動することができます。これで、依存配列に含める必要はなくなりました。
 
 ```js {1,2,11}
 const serverUrl = 'https://localhost:1234'; // serverUrl is not reactive
@@ -715,7 +715,7 @@ function ChatRoom() {
 }
 ```
 
-You can also move them *inside the Effect.* They aren't calculated during rendering, so they're not reactive:
+また、これらの値を*エフェクトの内部*に移動することもできます。レンダー時の計算から外れるため、リアクティブな値とはなりません。
 
 ```js {3,4,10}
 function ChatRoom() {
@@ -732,21 +732,21 @@ function ChatRoom() {
 }
 ```
 
-**Effects are reactive blocks of code.** They re-synchronize when the values you read inside of them change. Unlike event handlers, which only run once per interaction, Effects run whenever synchronization is necessary.
+**エフェクトはリアクティブなコードブロックです**。エフェクトは、その中で読み取っている値が変更されたときに再同期します。イベントハンドラは 1 回のインタラクションにつき 1 回しか実行されませんが、エフェクトは同期が必要なときにいつでも実行されます。
 
-**You can't "choose" your dependencies.** Your dependencies must include every [reactive value](#all-variables-declared-in-the-component-body-are-reactive) you read in the Effect. The linter enforces this. Sometimes this may lead to problems like infinite loops and to your Effect re-synchronizing too often. Don't fix these problems by suppressing the linter! Here's what to try instead:
+**依存配列を「選ぶ」ことはできません**。依存配列には、エフェクトで読み取るすべての[リアクティブな値](#all-variables-declared-in-the-component-body-are-reactive)を含める必要があります。リンタがこれを強制します。これにより、無限ループや、エフェクトの再同期が頻発してしまうことがありますが、リンタを抑制してこれらの問題を解決としないでください！ 代わりに、以下のことを試してみてください。
 
-* **Check that your Effect represents an independent synchronization process.** If your Effect doesn't synchronize anything, [it might be unnecessary.](/learn/you-might-not-need-an-effect) If it synchronizes several independent things, [split it up.](#each-effect-represents-a-separate-synchronization-process)
+* **エフェクトが 1 つの独立した同期の処理を表していることを確認してください**。もし、エフェクトが何も同期していない場合、[エフェクトは不要かもしれません](/learn/you-might-not-need-an-effect)。複数の独立したものを同期している場合は、[分割してください](#each-effect-represents-a-separate-synchronization-process)。
 
-* **If you want to read the latest value of props or state without "reacting" to it and re-synchronizing the Effect,** you can split your Effect into a reactive part (which you'll keep in the Effect) and a non-reactive part (which you'll extract into something called an _Effect Event_). [Read about separating Events from Effects.](/learn/separating-events-from-effects)
+* **props や state に反応せずに、最新の値を読み取り、エフェクトを再同期したい場合**、エフェクトをリアクティブな部分（エフェクト内に残す）と、非リアクティブな部分（いわゆる*エフェクトイベント*に抽出する）に分割することができます。詳しくは、[エフェクトからイベントを分離する](/learn/separating-events-from-effects)を参照してください。
 
-* **Avoid relying on objects and functions as dependencies.** If you create objects and functions during rendering and then read them from an Effect, they will be different on every render. This will cause your Effect to re-synchronize every time. [Read more about removing unnecessary dependencies from Effects.](/learn/removing-effect-dependencies)
+* **オブジェクトや関数を依存配列に含めないようにしてください**。レンダー中に作成したオブジェクトや関数をエフェクトから読み取ると、これらの値は毎回異なるものになります。これにより、エフェクトが毎回再同期されてしまいます。詳しくは、[エフェクトから不要な依存関係を削除する](/learn/removing-effect-dependencies)を参照してください。
 
 <Pitfall>
 
-The linter is your friend, but its powers are limited. The linter only knows when the dependencies are *wrong*. It doesn't know *the best* way to solve each case. If the linter suggests a dependency, but adding it causes a loop, it doesn't mean the linter should be ignored. You need to change the code inside (or outside) the Effect so that that value isn't reactive and doesn't *need* to be a dependency.
+リンタはあなたの助けになりますが、その力には限界があります。リンタは、依存配列が*間違っている*場合しか検出できず、それぞれのケースを解決する*最善の方法*を提案することはできません。例えば、リンタの提案に従って依存値を追加すると、ループが発生してしまったとしましょう。このような場合でも、リンタを無視すべきではありません。エフェクトの内部（または外部）のコードを変更し、追加した値がリアクティブにならないようにして、依存値になる*必要がない*ようにすべきです。
 
-If you have an existing codebase, you might have some Effects that suppress the linter like this:
+既存のコードベースがある場合、次のようにリンタを抑制するエフェクトがいくつかあるかもしれません。
 
 ```js {3-4}
 useEffect(() => {
@@ -756,34 +756,34 @@ useEffect(() => {
 }, []);
 ```
 
-On the [next](/learn/separating-events-from-effects) [pages](/learn/removing-effect-dependencies), you'll learn how to fix this code without breaking the rules. It's always worth fixing!
+以降のページ（[こちら](/learn/separating-events-from-effects)と[こちら](/learn/removing-effect-dependencies)）では、ルールを破らずにこれらのコードを修正する方法を学びます。必ず修正する価値があります！
 
 </Pitfall>
 
 <Recap>
 
-- Components can mount, update, and unmount.
-- Each Effect has a separate lifecycle from the surrounding component.
-- Each Effect describes a separate synchronization process that can *start* and *stop*.
-- When you write and read Effects, think from each individual Effect's perspective (how to start and stop synchronization) rather than from the component's perspective (how it mounts, updates, or unmounts).
-- Values declared inside the component body are "reactive".
-- Reactive values should re-synchronize the Effect because they can change over time.
-- The linter verifies that all reactive values used inside the Effect are specified as dependencies.
-- All errors flagged by the linter are legitimate. There's always a way to fix the code to not break the rules.
+- コンポーネントはマウント、更新、アンマウントを行うことができる。
+- それぞれのエフェクトは、周囲のコンポーネントとは別のライフサイクルを持つ。
+- それぞれのエフェクトは、*開始*と*停止*が可能な独立した同期プロセスを表す。
+- エフェクトを読み書きするときは、コンポーネントの視点（どのようにマウント、更新、アンマウントが行われるか）ではなく、それぞれのエフェクトの視点（どのように同期が開始および停止されるか）で考える。
+- コンポーネント本体で宣言された値は "リアクティブ" である。
+- リアクティブな値は時間とともに変化する可能性があるため、エフェクトを再同期する必要がある。
+- リンタは、エフェクト内で使用されているすべてのリアクティブな値が依存配列に含まれることを確認する。
+- リンタが検出するエラーは、すべて妥当なものである。ルールを破らずにコードを修正する方法が必ず存在する。
 
 </Recap>
 
 <Challenges>
 
-#### Fix reconnecting on every keystroke {/*fix-reconnecting-on-every-keystroke*/}
+#### キー入力による再接続を防ぐ {/*fix-reconnecting-on-every-keystroke*/}
 
-In this example, the `ChatRoom` component connects to the chat room when the component mounts, disconnects when it unmounts, and reconnects when you select a different chat room. This behavior is correct, so you need to keep it working.
+この例では、`ChatRoom` コンポーネントは、マウントされたときにチャットルームに接続し、アンマウントされたときにルームから切断し、別のチャットルームが選択されたときに再接続します。これは正しいので、この動作を維持する必要があります。
 
-However, there is a problem. Whenever you type into the message box input at the bottom, `ChatRoom` *also* reconnects to the chat. (You can notice this by clearing the console and typing into the input.) Fix the issue so that this doesn't happen.
+しかし、問題があります。下部のメッセージボックスに入力するたびに、`ChatRoom` はチャットに*再接続*してしまいます（コンソールを 1 度クリアしてから入力すると分かりやすいです）。問題を修正し、これを防ぎましょう。
 
 <Hint>
 
-You might need to add a dependency array for this Effect. What dependencies should be there?
+このエフェクトに依存配列を追加する必要があるかもしれません。どのような依存配列を指定すればよいでしょうか？
 
 </Hint>
 
@@ -860,7 +860,7 @@ button { margin-left: 10px; }
 
 <Solution>
 
-This Effect didn't have a dependency array at all, so it re-synchronized after every re-render. First, add a dependency array. Then, make sure that every reactive value used by the Effect is specified in the array. For example, `roomId` is reactive (because it's a prop), so it should be included in the array. This ensures that when the user selects a different room, the chat reconnects. On the other hand, `serverUrl` is defined outside the component. This is why it doesn't need to be in the array.
+このエフェクトには依存配列がありませんでした。そのため、再レンダーのたびに再同期されてしまいます。まず依存配列を追加しましょう。次に、エフェクトで利用されているリアクティブな値を、すべて依存配列に追加します。例えば、`roomId` は（props なので）リアクティブです。したがって、配列に含める必要があります。これにより、ユーザが別のルームを選択したときに、チャットが再接続されることが保証されます。一方、`serverUrl` はコンポーネントの外で定義されているので、依存配列に含める必要はありません。
 
 <Sandpack>
 
@@ -935,15 +935,15 @@ button { margin-left: 10px; }
 
 </Solution>
 
-#### Switch synchronization on and off {/*switch-synchronization-on-and-off*/}
+#### 同期の有無を切り替える {/*switch-synchronization-on-and-off*/}
 
-In this example, an Effect subscribes to the window [`pointermove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event) event to move a pink dot on the screen. Try hovering over the preview area (or touching the screen if you're on a mobile device), and see how the pink dot follows your movement.
+この例では、エフェクトで window の [`pointermove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event) イベントをリッスンし、画面上のピンクのドットを移動させています。プレビューエリアにカーソルを合わせてみてください（モバイルデバイスの場合は画面をタッチしてください）。ピンクのドットが動きに合わせて移動することがわかります。
 
-There is also a checkbox. Ticking the checkbox toggles the `canMove` state variable, but this state variable is not used anywhere in the code. Your task is to change the code so that when `canMove` is `false` (the checkbox is ticked off), the dot should stop moving. After you toggle the checkbox back on (and set `canMove` to `true`), the box should follow the movement again. In other words, whether the dot can move or not should stay synchronized to whether the checkbox is checked.
+チェックボックスもあります。チェックボックスをオンにすると、`canMove` state 変数が切り替わります。しかし、この state 変数はまだコード内で利用されていません。`canMove` が `false` のとき（つまり、チェックボックスがオフのとき）ドットが動かないようにコードを変更してみましょう。また、チェックボックスをオンに戻すと（`canMove` が `true` になり）ドットが再び動き始めるようにしましょう。言い換えると、ドットが動けるかどうかは、チェックボックスがチェックされているかどうかに同期します。
 
 <Hint>
 
-You can't declare an Effect conditionally. However, the code inside the Effect can use conditions!
+エフェクトは条件分岐の中では利用できません。しかし、エフェクトの中で条件分岐を利用することはできます！
 
 </Hint>
 
@@ -1001,7 +1001,7 @@ body {
 
 <Solution>
 
-One solution is to wrap the `setPosition` call into an `if (canMove) { ... }` condition:
+1 つ目の答えは、`setPosition` を `if (canMove) { ... }` の条件分岐でラップすることです。
 
 <Sandpack>
 
@@ -1057,7 +1057,7 @@ body {
 
 </Sandpack>
 
-Alternatively, you could wrap the *event subscription* logic into an `if (canMove) { ... }` condition:
+2 つ目の答えは、*イベントをリッスンする*ロジック自体を `if (canMove) { ... }` の条件分岐でラップすることです。
 
 <Sandpack>
 
@@ -1113,19 +1113,19 @@ body {
 
 </Sandpack>
 
-In both of these cases, `canMove` is a reactive variable that you read inside the Effect. This is why it must be specified in the list of Effect dependencies. This ensures that the Effect re-synchronizes after every change to its value.
+どちらの場合でも、`canMove` はエフェクト内で読み取るリアクティブな変数です。そのため、エフェクトの依存配列に `canMove` を指定する必要があります。これにより、エフェクトは、値が変更されるたびに再同期されます。
 
 </Solution>
 
-#### Investigate a stale value bug {/*investigate-a-stale-value-bug*/}
+#### 更新前の値が残るバグを調査 {/*investigate-a-stale-value-bug*/}
 
-In this example, the pink dot should move when the checkbox is on, and should stop moving when the checkbox is off. The logic for this has already been implemented: the `handleMove` event handler checks the `canMove` state variable.
+この例では、チェックボックスがオンのときにピンクのドットが動き、オフのときには停止している必要があります。このロジックはすでに実装されています。`handleMove` イベントハンドラは `canMove` state 変数をチェックします。
 
-However, for some reason, the `canMove` state variable inside `handleMove` appears to be "stale": it's always `true`, even after you tick off the checkbox. How is this possible? Find the mistake in the code and fix it.
+しかしどういうわけか、`handleMove` 内の `canMove` state 変数は "古い" ようです。チェックボックスをオフにしても、常に `true` となっています。なぜこうなるのでしょうか？ コードの間違いを見つけて修正しましょう。
 
 <Hint>
 
-If you see a linter rule being suppressed, remove the suppression! That's where the mistakes usually are.
+リンタルールが抑制されているのを見つけたら、抑制を解除してください！ これが誤りの多い場所です。
 
 </Hint>
 
@@ -1187,13 +1187,13 @@ body {
 
 <Solution>
 
-The problem with the original code was suppressing the dependency linter. If you remove the suppression, you'll see that this Effect depends on the `handleMove` function. This makes sense: `handleMove` is declared inside the component body, which makes it a reactive value. Every reactive value must be specified as a dependency, or it can potentially get stale over time!
+元のコードの問題点は、依存配列のリンタを抑制していることです。抑制を解除すると、このエフェクトが `handleMove` 関数に依存していることがわかります。これは確かに妥当な指摘です。なぜなら、`handleMove` はコンポーネント本体で宣言されているため、リアクティブな値となるからです。リアクティブな値はすべて依存関係として指定する必要があります。そうしないと、時間の経過とともに値が古くなる可能性があります！
 
-The author of the original code has "lied" to React by saying that the Effect does not depend (`[]`) on any reactive values. This is why React did not re-synchronize the Effect after `canMove` has changed (and `handleMove` with it). Because React did not re-synchronize the Effect, the `handleMove` attached as a listener is the `handleMove` function created during the initial render. During the initial render, `canMove` was `true`, which is why `handleMove` from the initial render will forever see that value.
+元のコードの作者は、このエフェクトがリアクティブな値に依存していない (`[]`) と言って React に「嘘をついた」のです。そのため、React は `canMove` が変更された後（`handleMove` も変更された後）にエフェクトを再同期しませんでした。React がエフェクトを再同期しなかったため、リスナとしてアタッチされた `handleMove` は、初回レンダー時に作成された `handleMove` 関数のままです。初回レンダー時には `canMove` が `true` であったため、この `handleMove` は常にその値を参照することになります。
 
-**If you never suppress the linter, you will never see problems with stale values.** There are a few different ways to solve this bug, but you should always start by removing the linter suppression. Then change the code to fix the lint error.
+**リンタを抑制しないようにすれば、古い値が残る問題は発生しません**。このバグを修正する方法はいくつかありますが、まずはリンタの抑制を解除してください。その後、リントエラーを修正するためにコードを変更しましょう。
 
-You can change the Effect dependencies to `[handleMove]`, but since it's going to be a newly defined function for every render, you might as well remove dependencies array altogether. Then the Effect *will* re-synchronize after every re-render:
+エフェクトの依存配列を `[handleMove]` のように変更しても構いませんが、`handleMove` はどうせ毎レンダーで新しく定義される関数なので、依存配列自体をまるごと削除しても良いでしょう。これでエフェクトは再レンダーのたびに再同期の処理を行うようになります。
 
 <Sandpack>
 
@@ -1250,9 +1250,9 @@ body {
 
 </Sandpack>
 
-This solution works, but it's not ideal. If you put `console.log('Resubscribing')` inside the Effect, you'll notice that it resubscribes after every re-render. Resubscribing is fast, but it would still be nice to avoid doing it so often.
+このソリューションは問題なく機能しますが、理想的ではありません。エフェクト内に `console.log('Resubscribing')` を入れてみると、再レンダーのたびにリスナの再登録が発生していることがわかります。再登録は高速に動作するものの、それほど頻繁に行わないようにした方が望ましいでしょう。
 
-A better fix would be to move the `handleMove` function *inside* the Effect. Then `handleMove` won't be a reactive value, and so your Effect won't depend on a function. Instead, it will need to depend on `canMove` which your code now reads from inside the Effect. This matches the behavior you wanted, since your Effect will now stay synchronized with the value of `canMove`:
+より良い修正方法は、`handleMove` 関数をエフェクトの*内部*に移動することです。そうすると、`handleMove` はリアクティブな値ではなくなり、エフェクトは `handleMove` 関数に依存しなくなります。代わりに、エフェクトの内部で利用する `canMove` に依存することになります。これは、あなたが望んでいた動作に一致しています。なぜなら、エフェクトが `canMove` の値と同期するようになるからです。
 
 <Sandpack>
 
@@ -1309,21 +1309,21 @@ body {
 
 </Sandpack>
 
-Try adding `console.log('Resubscribing')` inside the Effect body and notice that now it only resubscribes when you toggle the checkbox (`canMove` changes) or edit the code. This makes it better than the previous approach that always resubscribed.
+エフェクト本体に `console.log('Resubscribing')` を追加してみてください。チェックボックスを切り替えたとき（つまり `canMove` が変更されたとき）またはコードを編集したときに、リスナの再登録が発生することが分かります。これは、毎レンダーごとに再登録をしていた前のアプローチよりも優れています。
 
-You'll learn a more general approach to this type of problem in [Separating Events from Effects.](/learn/separating-events-from-effects)
+この種の問題に対するより一般的なアプローチについては、[エフェクトからイベントを分離する](/learn/separating-events-from-effects)を参照してください。
 
 </Solution>
 
-#### Fix a connection switch {/*fix-a-connection-switch*/}
+#### 接続の切り替えを修正 {/*fix-a-connection-switch*/}
 
-In this example, the chat service in `chat.js` exposes two different APIs: `createEncryptedConnection` and `createUnencryptedConnection`. The root `App` component lets the user choose whether to use encryption or not, and then passes down the corresponding API method to the child `ChatRoom` component as the `createConnection` prop.
+以下の例では、`chat.js` にあるチャットサービスは 2 つの異なる API を公開しています。`createEncryptedConnection` と `createUnencryptedConnection` です。ルートの `App` コンポーネントでは、暗号化を適用するかどうかをユーザが選択できるようにしています。そして、ユーザが選んだ選択肢に対応する API メソッドを、子の `ChatRoom` コンポーネントに `createConnection` プロパティとして渡しています。
 
-Notice that initially, the console logs say the connection is not encrypted. Try toggling the checkbox on: nothing will happen. However, if you change the selected room after that, then the chat will reconnect *and* enable encryption (as you'll see from the console messages). This is a bug. Fix the bug so that toggling the checkbox *also* causes the chat to reconnect.
+最初は、コンソールログには接続が暗号化されていない旨が表示されています。チェックボックスをオンにしてみてください。何も起こりません。しかし、その後に違うルームを選択すると、チャットが再接続され、*このタイミングで*暗号化も有効になります（コンソールメッセージから確認できます）。これはバグです。*チェックボックスをオンにしたタイミングでも*、チャットが再接続されるように修正してください。
 
 <Hint>
 
-Suppressing the linter is always suspicious. Could this be a bug?
+リンタを抑制している部分は常に疑いましょう。バグかもしれません。
 
 </Hint>
 
@@ -1423,7 +1423,7 @@ label { display: block; margin-bottom: 10px; }
 
 <Solution>
 
-If you remove the linter suppression, you will see a lint error. The problem is that `createConnection` is a prop, so it's a reactive value. It can change over time! (And indeed, it should--when the user ticks the checkbox, the parent component passes a different value of the `createConnection` prop.) This is why it should be a dependency. Include it in the list to fix the bug:
+リンタの抑制を解除すると、リントエラーが表示されます。問題は、`createConnection` が props であるため、リアクティブであることです。時間の経過とともに変化する可能性があります！（実際、変化します。親コンポーネントは、ユーザがチェックボックスをオンにしたときに `createConnection` プロパティに渡す関数を切り替えています。）これが依存配列に含めなければならない理由です。依存配列に追加してバグを修正しましょう。
 
 <Sandpack>
 
@@ -1518,7 +1518,7 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-It is correct that `createConnection` is a dependency. However, this code is a bit fragile because someone could edit the `App` component to pass an inline function as the value of this prop. In that case, its value would be different every time the `App` component re-renders, so the Effect might re-synchronize too often. To avoid this, you can pass `isEncrypted` down instead:
+`createConnection` が依存値であることは正しいです。しかし、このコードは少し壊れやすくなっています。なぜなら、誰かが `App` コンポーネントを編集し、プロパティの値としてインライン関数を渡す可能性があるからです。その場合、`App` コンポーネントが再レンダーされるたびに異なる値が渡され、エフェクトが頻繁に再同期されてしまう可能性があります。これを避けるために、代わりに `isEncrypted` を渡してみましょう。
 
 <Sandpack>
 
@@ -1613,21 +1613,21 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-In this version, the `App` component passes a boolean prop instead of a function. Inside the Effect, you decide which function to use. Since both `createEncryptedConnection` and `createUnencryptedConnection` are declared outside the component, they aren't reactive, and don't need to be dependencies. You'll learn more about this in [Removing Effect Dependencies.](/learn/removing-effect-dependencies)
+このコードでは、`App` コンポーネントは関数ではなくブール値のプロパティを渡しています。そして、エフェクト内で、どちらの関数を利用するかを決定しています。`createEncryptedConnection` と `createUnencryptedConnection` はどちらもコンポーネント外で宣言されているため、リアクティブではありません。そのため、依存配列に指定する必要はありません。詳しくは、[エフェクトの依存関係を削除する](/learn/removing-effect-dependencies)を参照してください。
 
 </Solution>
 
-#### Populate a chain of select boxes {/*populate-a-chain-of-select-boxes*/}
+#### 連動する選択ボックスの作成 {/*populate-a-chain-of-select-boxes*/}
 
-In this example, there are two select boxes. One select box lets the user pick a planet. Another select box lets the user pick a place *on that planet.* The second box doesn't work yet. Your task is to make it show the places on the chosen planet.
+この例では、2 つの選択ボックスがあります。1 つ目の選択ボックスでは惑星を選択できます。2 つ目の選択ボックスでは*その惑星上の場所*を選択できますが、まだ機能していません。選択された惑星上の場所の名前を表示するようにしてください。
 
-Look at how the first select box works. It populates the `planetList` state with the result from the `"/planets"` API call. The currently selected planet's ID is kept in the `planetId` state variable. You need to find where to add some additional code so that the `placeList` state variable is populated with the result of the `"/planets/" + planetId + "/places"` API call.
+1 つ目の選択ボックスがどのように動作するか見てみましょう。これは `"/planets"` API の呼び出し結果を格納している `planetList` state 変数から作られています。現在選択されている惑星の ID は `planetId` state 変数で保持されています。`placeList` という state 変数に、`"/planets/" + planetId + "/places"` API の呼び出し結果を格納するには、どこにコードを追加すればよいでしょうか。
 
-If you implement this right, selecting a planet should populate the place list. Changing a planet should change the place list.
+正しく実装すると、惑星を選択すると場所のリストが表示されます。惑星を変更すると、場所のリストも入れ替わります。
 
 <Hint>
 
-If you have two independent synchronization processes, you need to write two separate Effects.
+もし 2 つの独立した同期の処理がある場合は、2 つの別々のエフェクトに分割しましょう。
 
 </Hint>
 
@@ -1773,12 +1773,12 @@ label { display: block; margin-bottom: 10px; }
 
 <Solution>
 
-There are two independent synchronization processes:
+このケースでは、2 つの独立した同期の処理があります。
 
-- The first select box is synchronized to the remote list of planets.
-- The second select box is synchronized to the remote list of places for the current `planetId`.
+- 最初の選択ボックスは、リモートの惑星リストと同期しています。
+- 2 つ目の選択ボックスは、現在の `planetId` に対応するリモートの場所リストと同期しています。
 
-This is why it makes sense to describe them as two separate Effects. Here's an example of how you could do this:
+そのため、それぞれを別々のエフェクトとして記述することが合理的でしょう。以下は、その例です。
 
 <Sandpack>
 
@@ -1939,9 +1939,9 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-This code is a bit repetitive. However, that's not a good reason to combine it into a single Effect! If you did this, you'd have to combine both Effect's dependencies into one list, and then changing the planet would refetch the list of all planets. Effects are not a tool for code reuse.
+このコードは少し冗長です。しかし、だからといって 1 つのエフェクトにまとめるのは良い方法ではありません！ もしまとめてしまうと、両方のエフェクトの依存配列を 1 つにまとめる必要があります。そうすると、惑星を変更しただけで、惑星リストが再取得されてしまいます。エフェクトはコードを再利用するためのツールではありません。
 
-Instead, to reduce repetition, you can extract some logic into a custom Hook like `useSelectOptions` below:
+代わりに、以下の `useSelectOptions` のように、カスタムフックにロジックを抽出することで、繰り返しを減らすことができます。
 
 <Sandpack>
 
@@ -2102,7 +2102,7 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-Check the `useSelectOptions.js` tab in the sandbox to see how it works. Ideally, most Effects in your application should eventually be replaced by custom Hooks, whether written by you or by the community. Custom Hooks hide the synchronization logic, so the calling component doesn't know about the Effect. As you keep working on your app, you'll develop a palette of Hooks to choose from, and eventually you won't need to write Effects in your components very often.
+動作を確認するには、サンドボックスの `useSelectOptions.js` タブを確認してください。理想的には、アプリケーションに存在するエフェクトのほとんどは、コミュニティから提供されるカスタムフックか、自分で実装したカスタムフックに置き換えられるべきです。カスタムフックは同期ロジックを隠してくれるため、呼び出し元のコンポーネントがエフェクトのことを気にすることがなくなります。アプリケーションを開発していくうちに利用できるフックの選択肢が広がり、最終的にはコンポーネント内でエフェクトを書く必要はほとんどなくなるでしょう。
 
 </Solution>
 

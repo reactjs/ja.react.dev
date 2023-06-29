@@ -161,15 +161,15 @@
       "tags": ["advanced"],
       "routes": [
         {
-          "title": "Referencing Values with Refs",
+          "title": "ref で値を参照する",
           "path": "/learn/referencing-values-with-refs"
         },
         {
-          "title": "Manipulating the DOM with Refs",
+          "title": "ref で DOM を操作する",
           "path": "/learn/manipulating-the-dom-with-refs"
         },
         {
-          "title": "Synchronizing with Effects",
+          "title": "エフェクトを使って同期を行う",
           "path": "/learn/synchronizing-with-effects"
         },
         {
@@ -177,7 +177,7 @@
           "path": "/learn/you-might-not-need-an-effect"
         },
         {
-          "title": "Lifecycle of Reactive Effects",
+          "title": "リアクティブなエフェクトのライフサイクル",
           "path": "/learn/lifecycle-of-reactive-effects"
         },
         {
