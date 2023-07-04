@@ -31,7 +31,7 @@ function MyComponent() {
   // ...
 ```
 
-[使用法をもっと見る](#usage)
+[さらに例を見る](#usage)
 
 #### 引数 {/*parameters*/}
 
@@ -47,7 +47,7 @@ function MyComponent() {
 
 #### 注意点 {/*caveats*/}
 
-* state と違い、`ref.current` プロパティは変更することができます（ミュータブル）。ただし、レンダーに利用されるオブジェクト（state の一部など）を保持している場合は、変更すべきではありません。
+* `ref.current` プロパティは書き換えが可能です。つまり state と違いミュータブル (mutable) です。ただし、レンダーに利用されるオブジェクト（state の一部など）を保持している場合は、変更すべきではありません。
 * `ref.current` プロパティを変更しても、React はコンポーネントを再レンダーしません。ref はただの JavaScript オブジェクトですので、変更されたとしても、それを React が知ることはできないのです。
 * [初期化](#avoiding-recreating-the-ref-contents)時を除いて、レンダー中に `ref.current` の値を*読み取ったり*書き込んだりしないでください。コンポーネントの振る舞いが予測不能になります。
 * Strict Mode では、[純粋でない関数を見つけやすくするために](#my-initializer-or-updater-function-runs-twice)、コンポーネント関数が **2 回呼び出されます**。これは開発時のみの振る舞いであり、本番には影響しません。各 ref オブジェクトは 2 回生成されますが、そのうちの 1 つは破棄されます。コンポーネント関数が純粋であれば（そうであるべきです）、この振る舞いはロジックに影響しません。
@@ -68,11 +68,11 @@ function Stopwatch() {
   // ...
 ```
 
-`useRef` は、<CodeStep step={2}>`current` プロパティ</CodeStep>に、最初に指定した<CodeStep step={3}>初期値</CodeStep>が設定された状態の <CodeStep step={1}>ref オブジェクト</CodeStep>を返します。
+`useRef` は、唯一のプロパティである<CodeStep step={2}>`current`</CodeStep>に、指定された<CodeStep step={3}>初期値</CodeStep>が設定された状態の <CodeStep step={1}>ref オブジェクト</CodeStep>を返します。
 
-次回以降のレンダーでも、`useRef` は同じオブジェクトを返します。これを利用して、データを保存するために `current` プロパティの値を変更し、あとからその値を読み出すことができます。これは [state](/reference/react/useState) と似ていますが、大きく違う点があります。
+次回以降のレンダーでも、`useRef` は同じオブジェクトを返します。このオブジェクトの `current` プロパティを書き換えることで情報を保存しておき、あとからその値を読み出すことができます。これは [state](/reference/react/useState) と似ていますが、大きく違う点があります。
 
-それは、**ref を変更しても、再レンダーはトリガされない**ことです。このことから、ref は、コンポーネントの UI に影響しないデータを保存するのに適しています。例えば、[interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) を保持しておき、あとから利用したい場合、ref に保存することができます。ref 内の値を更新するには、<CodeStep step={2}>`current` プロパティ</CodeStep>を手動で変更します。
+それは、**ref を変更しても、再レンダーはトリガされない**ということです。このことから、ref は、出力されるコンポーネントの外見に影響しないデータを保存するのに適しています。例えば、[インターバルの ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) を保持しておき、あとから利用したい場合、ref に保存することができます。ref 内の値を更新するには、<CodeStep step={2}>`current` プロパティ</CodeStep>を手動で変更します。
 
 ```js [[2, 5, "intervalRef.current"]]
 function handleStartClick() {
@@ -83,7 +83,7 @@ function handleStartClick() {
 }
 ```
 
-そして、あとから、ref に保存されている interval ID を読み出すことができます。これで [clearInterval](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval) を呼び出し、インターバルを削除できます。
+そして、あとから、ref に保存されているインターバル ID を読み出すことができます。これで[インターバルをクリアする関数](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval)を呼び出し、インターバルを削除できます。
 
 ```js [[2, 2, "intervalRef.current"]]
 function handleStopClick() {
@@ -104,7 +104,7 @@ ref を変更しても再レンダーはトリガされないため、ref は画
 
 #### クリックカウンタ {/*click-counter*/}
 
-このコンポーネントは、ボタンがクリックされた回数を保存するために ref を使用しています。この例では、クリック回数の読み書きは、全てイベントハンドラ内でのみ行われています。そのため、state の代わりに ref を使用できるのです。
+このコンポーネントは、ボタンがクリックされた回数を保存するために ref を使用しています。この例では、クリック回数の読み書きはイベントハンドラ内でのみ行われているため、state の代わりに ref を使用して構いません。
 
 <Sandpack>
 
@@ -135,7 +135,7 @@ JSX 内で `{ref.current}` を表示すると、クリックしても回数の�
 
 #### ストップウォッチ {/*a-stopwatch*/}
 
-この例では、state と ref を組み合わせて使用しています。`startTime` と `now` はレンダーに利用されるため、state 変数となっています。また、ボタンを押したときにインターバルを停止するために、[interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) を保持しておく必要があります。インターバル ID はレンダー時には利用されないため、ref に保存し、手動で更新するのが適切です。
+この例では、state と ref を組み合わせて使用しています。`startTime` と `now` はレンダーに利用されるため、state 変数となっています。また、ボタンを押したときにインターバルを停止するために、[インターバル ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) を保持しておく必要があります。インターバル ID はレンダー時には利用されないため、ref に保存し、手動で更新するのが適切です。
 
 <Sandpack>
 
@@ -195,7 +195,7 @@ React は、コンポーネント本体の関数が[純関数のように振る�
 - 入力値（[props](/learn/passing-props-to-a-component)、[state](/learn/state-a-components-memory)、[context](/learn/passing-data-deeply-with-context)）が同じなら、常に同じ JSX を返さなければなりません。
 - 呼び出し順が変わったり、引数を変えて呼び出されたりしても、他の呼び出し結果に影響を与えてはいけません。
 
-レンダー中に ref を**読み書き**すると、これらに違反してしまいます。
+**レンダー中に** ref を読み書きすると、これらに違反してしまいます。
 
 ```js {3-4,6-7}
 function MyComponent() {
@@ -226,7 +226,7 @@ function MyComponent() {
 }
 ```
 
-もし、レンダー中に何かを読み出したり[書き込んだり]((/reference/react/useState#storing-information-from-previous-renders))*しなければならない*場合は、代わりに [useState](/reference/react/useState) を使用してください。
+もし、レンダー中に何かを読み出したり[書き込んだり](/reference/react/useState#storing-information-from-previous-renders)*しなければならない*場合は、代わりに [useState](/reference/react/useState) を使用してください。
 
 これらのルールを破っていても、コンポーネントは正常に動作し続けるかもしれません。しかし、近いうちに React に追加される新機能の多くは、これらのルールが守られることを前提としています。詳しくは[コンポーネントを純粋に保つ](/learn/keeping-components-pure#where-you-_can_-cause-side-effects)を参照してください。
 
@@ -302,7 +302,7 @@ export default function Form() {
 
 #### スクロールして画像を表示 {/*scrolling-an-image-into-view*/}
 
-この例では、ボタンがクリックされると、その画像が画面に表示されるようにスクロールします。ref を使用してリストの DOM ノードを取得し、DOM の [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) API を呼び出して、スクロールしたい画像を探しています。
+この例では、ボタンがクリックされると、その画像が画面に表示されるようにスクロールします。ref を使用してリストの DOM ノードを取得し、DOM の [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) API を呼び出して、スクロール先の画像を探しています。
 
 <Sandpack>
 
@@ -446,7 +446,7 @@ button { display: block; margin-bottom: 20px; }
 
 <Solution />
 
-#### 独自コンポーネントへの参照 (ref) を公開 {/*exposing-a-ref-to-your-own-component*/}
+#### 独自コンポーネントの ref を公開 {/*exposing-a-ref-to-your-own-component*/}
 
 親コンポーネントから、独自コンポーネント内の DOM を操作したい場合があります。たとえば、`MyInput` コンポーネントを作成しているとして、親コンポーネントが input にフォーカスを当てたい場合などです（親コンポーネントは、input にはアクセスできません）。この場合は、`useRef` と [`forwardRef`](/reference/react/forwardRef) を組み合わせて利用します。`useRef` で input を保持し、`forwardRef` で input への参照を親コンポーネントに公開します。詳しくは、[別のコンポーネントの DOM ノードにアクセスする](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)を参照してください。
 
@@ -514,7 +514,7 @@ function Video() {
 
 #### useRef を遅延して初期化する場合に null チェックを回避する {/*how-to-avoid-null-checks-when-initializing-use-ref-later*/}
 
-型チェッカを使用していると、`null` チェックを何度も行うのが煩わしい場合があります。そのような場合は、次のようなパターンを試してみてください。
+型チェッカを使用しており `null` チェックを何度も行うのが煩わしい場合は、次のようなパターンを試してみてください。
 
 ```js
 function Video() {
@@ -532,7 +532,7 @@ function Video() {
   // ...
 ```
 
-この例では、`playerRef` 自体は null 許容です。しかし、型チェッカに、`getPlayer()` が `null` を返す場合はないと判断させることができているはずです。イベントハンドラなどで `getPlayer()` を使用できます。
+この例では、`playerRef` 自体は null 許容です。しかし型チェッカに、`getPlayer()` は `null` を返す場合がないと判断させられるはずです。そこでイベントハンドラなどで `getPlayer()` を使用できます。
 
 </DeepDive>
 
@@ -540,7 +540,7 @@ function Video() {
 
 ## トラブルシューティング {/*troubleshooting*/}
 
-### 独自コンポーネントへの参照 (ref) を取得できない {/*i-cant-get-a-ref-to-a-custom-component*/}
+### 独自コンポーネントへの ref を取得できない {/*i-cant-get-a-ref-to-a-custom-component*/}
 
 以下のようにして、独自コンポーネントに `ref` を渡そうとしている場合、
 
@@ -558,9 +558,9 @@ Warning: Function components cannot be given refs. Attempts to access this ref w
 
 </ConsoleBlock>
 
-デフォルトでは、独自コンポーネントは、内部の DOM ノードへの参照を公開していません。
+デフォルトでは、独自コンポーネントは、内部の DOM ノードへの ref を公開していません。
 
-これを修正するには、まず、参照を取得したいコンポーネントを探します。
+これを修正するには、まず、ref を取得したいコンポーネントを探します。
 
 ```js
 export default function MyInput({ value, onChange }) {
@@ -591,6 +591,6 @@ const MyInput = forwardRef(({ value, onChange }, ref) => {
 export default MyInput;
 ```
 
-これで、親コンポーネントから参照を取得できるようになります。
+これで、親コンポーネントから ref を取得できるようになります。
 
 詳しくは、[別のコンポーネントの DOM ノードにアクセスする](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)を参照してください。
