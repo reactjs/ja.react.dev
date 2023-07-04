@@ -1,30 +1,30 @@
 ---
-title: 'Reusing Logic with Custom Hooks'
+title: 'カスタムフックでロジックを再利用する'
 ---
 
 <Intro>
 
-React comes with several built-in Hooks like `useState`, `useContext`, and `useEffect`. Sometimes, you'll wish that there was a Hook for some more specific purpose: for example, to fetch data, to keep track of whether the user is online, or to connect to a chat room. You might not find these Hooks in React, but you can create your own Hooks for your application's needs.
+React には `useState`、`useContext`、`useEffect` など複数の組み込みフックが存在します。しかし、データの取得やユーザのオンライン状態の監視、チャットルームへの接続など、より特化した目的のためのフックが欲しいこともあります。React にこれらのフックはありませんが、アプリケーションの要求に合わせて独自のフックを作成することが可能です。
 
 </Intro>
 
 <YouWillLearn>
 
-- What custom Hooks are, and how to write your own
-- How to reuse logic between components
-- How to name and structure your custom Hooks
-- When and why to extract custom Hooks
+- カスタムフックとは何で、どのように自分で作成するのか
+- コンポーネント間でロジックを再利用する方法
+- カスタムフックの命名や構成の方法
+- カスタムフックを抽出するタイミングと理由
 
 </YouWillLearn>
 
-## Custom Hooks: Sharing logic between components {/*custom-hooks-sharing-logic-between-components*/}
+## カスタムフック：コンポーネント間でのロジック共有 {/*custom-hooks-sharing-logic-between-components*/}
 
-Imagine you're developing an app that heavily relies on the network (as most apps do). You want to warn the user if their network connection has accidentally gone off while they were using your app. How would you go about it? It seems like you'll need two things in your component:
+ネットワークに大きく依存するアプリを開発していると想像してください（ほとんどのアプリがそうですが）。アプリの使用中にユーザのネットワーク接続が急に切断された場合に、ユーザに警告を表示したいとします。どのようにすればよいでしょうか？ コンポーネントには以下の 2 つが必要になるようです。
 
-1. A piece of state that tracks whether the network is online.
-2. An Effect that subscribes to the global [`online`](https://developer.mozilla.org/en-US/docs/Web/API/Window/online_event) and [`offline`](https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event) events, and updates that state.
+1. ネットワークがオンラインかどうかを保持する state。
+2. グローバルの [`online`](https://developer.mozilla.org/en-US/docs/Web/API/Window/online_event) および [`offline`](https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event) イベントにリスナを登録し、上記の state を更新するエフェクト。
 
-This will keep your component [synchronized](/learn/synchronizing-with-effects) with the network status. You might start with something like this:
+これにより、コンポーネントはネットワークの状態と[同期](/learn/synchronizing-with-effects)するようになります。まずは以下のようなコードができるでしょう。
 
 <Sandpack>
 
@@ -54,11 +54,11 @@ export default function StatusBar() {
 
 </Sandpack>
 
-Try turning your network on and off, and notice how this `StatusBar` updates in response to your actions.
+ネットワークをオン・オフしてみて、この `StatusBar` が操作に反応してどのように更新されるか観察してみてください。
 
-Now imagine you *also* want to use the same logic in a different component. You want to implement a Save button that will become disabled and show "Reconnecting..." instead of "Save" while the network is off.
+さて、別のコンポーネント*でも*同じロジックを使用したくなったところを想像してください。ネットワークがオフの間は "Save" の代わりに "Reconnecting..." と表示されて無効になるような保存ボタンを実装したいとします。
 
-To start, you can copy and paste the `isOnline` state and the Effect into `SaveButton`:
+まず、`isOnline` state とエフェクトを、`SaveButton` にコピー・ペーストしてみましょう。
 
 <Sandpack>
 
@@ -96,13 +96,13 @@ export default function SaveButton() {
 
 </Sandpack>
 
-Verify that, if you turn off the network, the button will change its appearance.
+ネットワークをオフにするとボタンの外観が変わることを確認してください。
 
-These two components work fine, but the duplication in logic between them is unfortunate. It seems like even though they have different *visual appearance,* you want to reuse the logic between them.
+これらの 2 つのコンポーネントはうまく動作していますが、それらの間でロジックが重複しているのは残念な感じがします。*視覚的な外観*は異なるにせよ、ロジックはそれらの間で再利用したいと思うことでしょう。
 
-### Extracting your own custom Hook from a component {/*extracting-your-own-custom-hook-from-a-component*/}
+### コンポーネントから独自のカスタムフックを抽出する {/*extracting-your-own-custom-hook-from-a-component*/}
 
-Imagine for a moment that, similar to [`useState`](/reference/react/useState) and [`useEffect`](/reference/react/useEffect), there was a built-in `useOnlineStatus` Hook. Then both of these components could be simplified and you could remove the duplication between them:
+[`useState`](/reference/react/useState) や [`useEffect`](/reference/react/useEffect) と同様に、組み込みの `useOnlineStatus` というフックがあるところを、ちょっと想像してみてください。それがあれば、これらのコンポーネントを簡略化し、両者で重複しているコードを取り除けるでしょう。
 
 ```js {2,7}
 function StatusBar() {
@@ -125,7 +125,7 @@ function SaveButton() {
 }
 ```
 
-Although there is no such built-in Hook, you can write it yourself. Declare a function called `useOnlineStatus` and move all the duplicated code into it from the components you wrote earlier:
+このような組み込みのフックは存在しませんが、自分で書くことは可能です。`useOnlineStatus` という関数を宣言して、先ほど作成したコンポーネントから、重複しているコードをすべて移動しましょう。
 
 ```js {2-16}
 function useOnlineStatus() {
@@ -148,7 +148,7 @@ function useOnlineStatus() {
 }
 ```
 
-At the end of the function, return `isOnline`. This lets your components read that value:
+関数の最後で `isOnline` を返します。これにより、コンポーネント側でその値を読み取ることができるようになります。
 
 <Sandpack>
 
@@ -209,36 +209,36 @@ export function useOnlineStatus() {
 
 </Sandpack>
 
-Verify that switching the network on and off updates both components.
+ネットワークのオン・オフを切り替えることで、両方のコンポーネントが更新されることを確認してください。
 
-Now your components don't have as much repetitive logic. **More importantly, the code inside them describes *what they want to do* (use the online status!) rather than *how to do it* (by subscribing to the browser events).**
+これで、コンポーネント間のロジックの重複が減りました。**さらに重要なのは、コンポーネント内のコードが、「オンラインステータスを使用 (use) する」という、*何をしたいのか*の記述になっているということです。*どのようにして実現するのか*（ブラウザのイベントに登録する）ではありません**。
 
-When you extract logic into custom Hooks, you can hide the gnarly details of how you deal with some external system or a browser API. The code of your components expresses your intent, not the implementation.
+ロジックをカスタムフックに抽出することで、外部システムやブラウザ API とのやり取りに関する面倒な詳細を隠蔽することができます。あなたのコンポーネントのコードは、実装方法ではなく意図を表現するようになるのです。
 
-### Hook names always start with `use` {/*hook-names-always-start-with-use*/}
+### フックの名前は常に `use` で始める {/*hook-names-always-start-with-use*/}
 
-React applications are built from components. Components are built from Hooks, whether built-in or custom. You'll likely often use custom Hooks created by others, but occasionally you might write one yourself!
+React アプリケーションはコンポーネントから構築されます。コンポーネントは、組み込みのものやカスタムのものなど、フックから構築されます。他の人が作成したカスタムフックをよく使うことになりますが、時には自分で書くこともあるでしょう！
 
-You must follow these naming conventions:
+以下の命名規則に従う必要があります。
 
-1. **React component names must start with a capital letter,** like `StatusBar` and `SaveButton`. React components also need to return something that React knows how to display, like a piece of JSX.
-2. **Hook names must start with `use` followed by a capital letter,** like [`useState`](/reference/react/useState) (built-in) or `useOnlineStatus` (custom, like earlier on the page). Hooks may return arbitrary values.
+1. **React コンポーネントの名前は大文字で始まる必要があります**。例えば、`StatusBar` や `SaveButton` などです。React コンポーネントは、JSX のような、React が表示方法を知っているものを返す必要もあります。
+2. **フックの名前は `use` で始めて大文字を続ける必要があります**。例えば、[`useState`](/reference/react/useState)（組み込みのもの）や `useOnlineStatus`（上述のようなカスタムのもの）などです。フックは任意の値を返すことができます。
 
-This convention guarantees that you can always look at a component and know where its state, Effects, and other React features might "hide". For example, if you see a `getColor()` function call inside your component, you can be sure that it can't possibly contain React state inside because its name doesn't start with `use`. However, a function call like `useOnlineStatus()` will most likely contain calls to other Hooks inside!
+この慣習により、コンポーネントを見るだけで、その中の state、エフェクト、その他の React 機能がどこに「隠れている」可能性があるか、常に把握できることが保証されます。例えば、コンポーネント内で `getColor()` 関数の呼び出しを見た場合、名前が `use` で始まっていないので React の state が内部に含まれている可能性はありません。しかし `useOnlineStatus()` のような関数呼び出しは、内部で他のフックを呼び出している可能性が高いです！
 
 <Note>
 
-If your linter is [configured for React,](/learn/editor-setup#linting) it will enforce this naming convention. Scroll up to the sandbox above and rename `useOnlineStatus` to `getOnlineStatus`. Notice that the linter won't allow you to call `useState` or `useEffect` inside of it anymore. Only Hooks and components can call other Hooks!
+リンタが [React 用に設定されている場合](/learn/editor-setup#linting)、この命名規約が強制されます。上のサンドボックスにスクロールして、`useOnlineStatus` を `getOnlineStatus` に変更してみてください。リンタは `useState` や `useEffect` をその中で呼び出すことを許さなくなります。フックやコンポーネントだけが他のフックを呼び出すことができます！
 
 </Note>
 
 <DeepDive>
 
-#### Should all functions called during rendering start with the use prefix? {/*should-all-functions-called-during-rendering-start-with-the-use-prefix*/}
+#### レンダー中に呼び出されるすべての関数を use プレフィックスで始めるべきか？ {/*should-all-functions-called-during-rendering-start-with-the-use-prefix*/}
 
-No. Functions that don't *call* Hooks don't need to *be* Hooks.
+いいえ。フックを*呼び出さない*関数は、フックである必要はありません。
 
-If your function doesn't call any Hooks, avoid the `use` prefix. Instead, write it as a regular function *without* the `use` prefix. For example, `useSorted` below doesn't call Hooks, so call it `getSorted` instead:
+関数がフックを呼び出さない場合は、`use` プレフィックスを避けてください。代わりに、`use` プレフィックス*なし*の通常の関数として記述してください。例えば、以下の `useSorted` はフックを呼び出さないので、代わりに `getSorted` という名前にしましょう。
 
 ```js
 // 🔴 Avoid: A Hook that doesn't use Hooks
@@ -252,7 +252,7 @@ function getSorted(items) {
 }
 ```
 
-This ensures that your code can call this regular function anywhere, including conditions:
+これにより、コードはこの通常の関数を、条件分岐内を含むどんな場所からでも呼び出すことができます。
 
 ```js
 function List({ items, shouldSort }) {
@@ -265,7 +265,7 @@ function List({ items, shouldSort }) {
 }
 ```
 
-You should give `use` prefix to a function (and thus make it a Hook) if it uses at least one Hook inside of it:
+関数の内部で 1 つ以上のフックを使用している場合は、`use` プレフィックスを付ける（つまりフックにする）必要があります。
 
 ```js
 // ✅ Good: A Hook that uses other Hooks
@@ -274,7 +274,7 @@ function useAuth() {
 }
 ```
 
-Technically, this isn't enforced by React. In principle, you could make a Hook that doesn't call other Hooks. This is often confusing and limiting so it's best to avoid that pattern. However, there may be rare cases where it is helpful. For example, maybe your function doesn't use any Hooks right now, but you plan to add some Hook calls to it in the future. Then it makes sense to name it with the `use` prefix:
+厳密には、これは React によって強制されているわけではありません。原理上は、他のフックを呼び出さないフックを作成することは可能です。混乱を招き余計な制限が加わるため、このようなパターンは避けるのが賢明です。ただし、まれにこれが役立つ場合もあります。例えば、関数が現在はフックを使用していない場合でも、将来的にフック呼び出しを追加する予定があるかもしれません。その場合、`use` プレフィックスを使って名前を付けておくことは理にかなっているでしょう。
 
 ```js {3-4}
 // ✅ Good: A Hook that will likely use some other Hooks later
@@ -285,13 +285,13 @@ function useAuth() {
 }
 ```
 
-Then components won't be able to call it conditionally. This will become important when you actually add Hook calls inside. If you don't plan to use Hooks inside it (now or later), don't make it a Hook.
+こうすれば、コンポーネントはこのコードを条件分岐内で呼び出すことができなくなります。中でフック呼び出しを実際に追加したときに、このことが重要になります。現在も将来も内部でフックを使用する予定がない場合は、フックにしないでください。
 
 </DeepDive>
 
-### Custom Hooks let you share stateful logic, not state itself {/*custom-hooks-let-you-share-stateful-logic-not-state-itself*/}
+### カスタムフックは state 自体ではなく、state を使うロジックを共有する {/*custom-hooks-let-you-share-stateful-logic-not-state-itself*/}
 
-In the earlier example, when you turned the network on and off, both components updated together. However, it's wrong to think that a single `isOnline` state variable is shared between them. Look at this code:
+前の例では、ネットワークをオンまたはオフに切り替えると、両方のコンポーネントが同時に更新されました。しかし、`isOnline` という単一の state 変数がそれらの間で共有されていると考えるのは間違いです。こちらのコードを見てください。
 
 ```js {2,7}
 function StatusBar() {
@@ -305,7 +305,7 @@ function SaveButton() {
 }
 ```
 
-It works the same way as before you extracted the duplication:
+これは、重複を抽出する前と同じ方法で動作します。
 
 ```js {2-5,10-13}
 function StatusBar() {
@@ -325,9 +325,9 @@ function SaveButton() {
 }
 ```
 
-These are two completely independent state variables and Effects! They happened to have the same value at the same time because you synchronized them with the same external value (whether the network is on).
+これらは、完全に独立した state 変数とエフェクトです！ 同時に同じ値になっているのは、たまたま（ネットワークがオンかどうかという）同一の外部の値と同期させたからです。
 
-To better illustrate this, we'll need a different example. Consider this `Form` component:
+より分かりやすく説明するために、別の例を考えてみましょう。この `Form` コンポーネントを考えてみてください。
 
 <Sandpack>
 
@@ -369,13 +369,13 @@ input { margin-left: 10px; }
 
 </Sandpack>
 
-There's some repetitive logic for each form field:
+各フォームフィールドに対応して、繰り返しのロジックがあります。
 
-1. There's a piece of state (`firstName` and `lastName`).
-1. There's a change handler (`handleFirstNameChange` and `handleLastNameChange`).
-1. There's a piece of JSX that specifies the `value` and `onChange` attributes for that input.
+1. state 変数（`firstName` と `lastName`）。
+1. change ハンドラ（`handleFirstNameChange` と `handleLastNameChange`）。
+1. 対応する入力フィールドに `value` と `onChange` 属性を指定するための JSX。
 
-You can extract the repetitive logic into this `useFormInput` custom Hook:
+この繰り返しのロジックを `useFormInput` というカスタムフックに抽出することができます。
 
 <Sandpack>
 
@@ -428,9 +428,9 @@ input { margin-left: 10px; }
 
 </Sandpack>
 
-Notice that it only declares *one* state variable called `value`.
+コード内で宣言されているのは `value` という *1 つの* state 変数だけであることに注目してください。
 
-However, the `Form` component calls `useFormInput` *two times:*
+しかし `Form` コンポーネントは `useFormInput` を *2 回* 呼び出しています。
 
 ```js
 function Form() {
@@ -439,17 +439,17 @@ function Form() {
   // ...
 ```
 
-This is why it works like declaring two separate state variables!
+これが、2 つの別々の state 変数を宣言するのと同じように動作する理由です！
 
-**Custom Hooks let you share *stateful logic* but not *state itself.* Each call to a Hook is completely independent from every other call to the same Hook.** This is why the two sandboxes above are completely equivalent. If you'd like, scroll back up and compare them. The behavior before and after extracting a custom Hook is identical.
+**カスタムフックは、*state 自体*ではなく、*state を扱うロジック*を共有できるようにするためのものです。フックの呼び出しは、同じフックの他の場所からの呼び出しとは完全に独立しています**。これが、上記の 2 つのサンドボックスが完全に同等である理由です。よろしければ、スクロールして上に戻って見比べてみてください。カスタムフックを抽出する前と後で、挙動は全く同一です。
 
-When you need to share the state itself between multiple components, [lift it up and pass it down](/learn/sharing-state-between-components) instead.
+複数のコンポーネント間で state 自体を共有する必要がある場合は、[リフトアップして下に渡す](/learn/sharing-state-between-components)ようにしてください。
 
-## Passing reactive values between Hooks {/*passing-reactive-values-between-hooks*/}
+## フック間でリアクティブな値を渡す {/*passing-reactive-values-between-hooks*/}
 
-The code inside your custom Hooks will re-run during every re-render of your component. This is why, like components, custom Hooks [need to be pure.](/learn/keeping-components-pure) Think of custom Hooks' code as part of your component's body!
+カスタムフック内のコードは、コンポーネントの再レンダーごとに実行されます。そのため、コンポーネントと同様に、カスタムフックは[純粋である必要があります](/learn/keeping-components-pure)。カスタムフックのコードは、コンポーネントの本体の一部だと考えてください！
 
-Because custom Hooks re-render together with your component, they always receive the latest props and state. To see what this means, consider this chat room example. Change the server URL or the chat room:
+カスタムフックはコンポーネントと一緒に再レンダーされるため、常に最新の props と state を受け取ります。どういうことか理解するために、以下のチャットルームの例を考えてみましょう。サーバの URL やチャットルームを変更してみてください。
 
 <Sandpack>
 
@@ -599,9 +599,9 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-When you change `serverUrl` or `roomId`, the Effect ["reacts" to your changes](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) and re-synchronizes. You can tell by the console messages that the chat re-connects every time that you change your Effect's dependencies.
+`serverUrl` や `roomId` を変更すると、エフェクトは[変更に「反応」して](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values)再同期されます。コンソールのメッセージを見ると、エフェクトの依存配列に変更があるたびにチャットが再接続されていることがわかります。
 
-Now move the Effect's code into a custom Hook:
+次に、エフェクトのコードをカスタムフックに移動します。
 
 ```js {2-13}
 export function useChatRoom({ serverUrl, roomId }) {
@@ -620,7 +620,7 @@ export function useChatRoom({ serverUrl, roomId }) {
 }
 ```
 
-This lets your `ChatRoom` component call your custom Hook without worrying about how it works inside:
+これにより、`ChatRoom` コンポーネントは単にカスタムフックを呼び出せばよく、内部でどのように動作するかを気にしなくてもよくなります。
 
 ```js {4-7}
 export default function ChatRoom({ roomId }) {
@@ -643,9 +643,9 @@ export default function ChatRoom({ roomId }) {
 }
 ```
 
-This looks much simpler! (But it does the same thing.)
+これはずっとシンプルに見えます！（しかしやっていることは同じです。）
 
-Notice that the logic *still responds* to prop and state changes. Try editing the server URL or the selected room:
+依然として props や state の変更に対しロジックが*反応している*ことに注意してください。サーバ URL やルームを編集してみてください。
 
 <Sandpack>
 
@@ -807,7 +807,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice how you're taking the return value of one Hook:
+ここでは、あるフックの返り値を取得して…
 
 ```js {2}
 export default function ChatRoom({ roomId }) {
@@ -820,7 +820,7 @@ export default function ChatRoom({ roomId }) {
   // ...
 ```
 
-and pass it as an input to another Hook:
+…それを別のフックに入力として渡しています。
 
 ```js {6}
 export default function ChatRoom({ roomId }) {
@@ -833,17 +833,17 @@ export default function ChatRoom({ roomId }) {
   // ...
 ```
 
-Every time your `ChatRoom` component re-renders, it passes the latest `roomId` and `serverUrl` to your Hook. This is why your Effect re-connects to the chat whenever their values are different after a re-render. (If you ever worked with audio or video processing software, chaining Hooks like this might remind you of chaining visual or audio effects. It's as if the output of `useState` "feeds into" the input of the `useChatRoom`.)
+`ChatRoom` コンポーネントが再レンダーされるたびに、あなたのフックには最新の `roomId` と `serverUrl` が渡されます。したがって、再レンダー後にこれらの値が異なる場合にはエフェクトがチャットの再接続を行います。（オーディオやビデオ処理ソフトウェアを使ったことがある場合、このようなフックのチェーンは、視覚エフェクトやオーディオエフェクトのチェーンに似ていると感じるかもしれません。`useState` の出力が `useChatRoom` の入力に "フィードイン" しています。）
 
-### Passing event handlers to custom Hooks {/*passing-event-handlers-to-custom-hooks*/}
+### カスタムフックにイベントハンドラを渡す {/*passing-event-handlers-to-custom-hooks*/}
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+このセクションでは、まだ安定版の React で**リリースされていない実験的な API** について説明しています。
 
 </Wip>
 
-As you start using `useChatRoom` in more components, you might want to let components customize its behavior. For example, currently, the logic for what to do when a message arrives is hardcoded inside the Hook:
+`useChatRoom` がより多くのコンポーネントで使用されるようになると、コンポーネント側でその動作をカスタマイズしたくなってくるでしょう。例えば現在のところ、メッセージが届いたときの処理ロジックはフック内にハードコードされています。
 
 ```js {9-11}
 export function useChatRoom({ serverUrl, roomId }) {
@@ -862,7 +862,7 @@ export function useChatRoom({ serverUrl, roomId }) {
 }
 ```
 
-Let's say you want to move this logic back to your component:
+このロジックをコンポーネント側に戻したいとしましょう。
 
 ```js {7-9}
 export default function ChatRoom({ roomId }) {
@@ -878,7 +878,7 @@ export default function ChatRoom({ roomId }) {
   // ...
 ```
 
-To make this work, change your custom Hook to take `onReceiveMessage` as one of its named options:
+これを実現するために、カスタムフックを変更して、`onReceiveMessage` を名前付きオプションの 1 つとして受け取るようにします。
 
 ```js {1,10,13}
 export function useChatRoom({ serverUrl, roomId, onReceiveMessage }) {
@@ -897,9 +897,9 @@ export function useChatRoom({ serverUrl, roomId, onReceiveMessage }) {
 }
 ```
 
-This will work, but there's one more improvement you can do when your custom Hook accepts event handlers.
+これで動作しますが、カスタムフックがイベントハンドラを受け取る場合、改善できることがもう 1 つあります。
 
-Adding a dependency on `onReceiveMessage` is not ideal because it will cause the chat to re-connect every time the component re-renders. [Wrap this event handler into an Effect Event to remove it from the dependencies:](/learn/removing-effect-dependencies#wrapping-an-event-handler-from-the-props)
+`onReceiveMessage` を依存値として追加すると、コンポーネントが再レンダーされるたびにチャットが再接続されてしまうため、あまり望ましくありません。[このイベントハンドラをエフェクトイベント (Effect Event) にラップして、依存配列から取り除きます](/learn/removing-effect-dependencies#wrapping-an-event-handler-from-the-props)。
 
 ```js {1,4,5,15,18}
 import { useEffect, useEffectEvent } from 'react';
@@ -923,7 +923,7 @@ export function useChatRoom({ serverUrl, roomId, onReceiveMessage }) {
 }
 ```
 
-Now the chat won't re-connect every time that the `ChatRoom` component re-renders. Here is a fully working demo of passing an event handler to a custom Hook that you can play with:
+これで、`ChatRoom` コンポーネントが再レンダーされるたびにチャットが再接続されることはなくなります。以下が、イベントハンドラをカスタムフックに渡す完全なデモです。試してみてください。
 
 <Sandpack>
 
@@ -1091,15 +1091,15 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice how you no longer need to know *how* `useChatRoom` works in order to use it. You could add it to any other component, pass any other options, and it would work the same way. That's the power of custom Hooks.
+`useChatRoom` を使うために*内部の動作*を知らなくても良くなったことに着目してください。他のコンポーネントに追加したり、他のオプションを渡したりしても、同じように動作します。これがカスタムフックの威力です。
 
-## When to use custom Hooks {/*when-to-use-custom-hooks*/}
+## カスタムフックを使うタイミング {/*when-to-use-custom-hooks*/}
 
-You don't need to extract a custom Hook for every little duplicated bit of code. Some duplication is fine. For example, extracting a `useFormInput` Hook to wrap a single `useState` call like earlier is probably unnecessary.
+あらゆる小さなコードの重複に対してカスタムフックを抽出する必要はありません。多少の重複は問題ありません。例えば、先ほどのように 1 回の `useState` 呼び出しをラップするだけの `useFormInput` フックを抽出することは、おそらく不要でしょう。
 
-However, whenever you write an Effect, consider whether it would be clearer to also wrap it in a custom Hook. [You shouldn't need Effects very often,](/learn/you-might-not-need-an-effect) so if you're writing one, it means that you need to "step outside React" to synchronize with some external system or to do something that React doesn't have a built-in API for. Wrapping it into a custom Hook lets you precisely communicate your intent and how the data flows through it.
+ただし、エフェクトを書くときは常に、更にそのエフェクトをカスタムフックにラップすることでより分かりやすくならないか、検討するようにしてください。[エフェクトは頻繁には必要とされないものです](/learn/you-might-not-need-an-effect)。エフェクトを書くということは、外部システムと同期するために「React の外に踏み出す」必要がある、もしくは React に組み込みの API がない何かを行う必要があるということです。カスタムフックにラップすることで、あなたの意図とデータの流れを正確に表現することができます。
 
-For example, consider a `ShippingForm` component that displays two dropdowns: one shows the list of cities, and another shows the list of areas in the selected city. You might start with some code that looks like this:
+例えば、都市のリストを表示するドロップダウンと、そこで選択中の都市内にある地区のリストを表示する別のドロップダウンがある、`ShippingForm` というコンポーネントを考えてみましょう。まずは次のようなコードを書くことになるでしょう。
 
 ```js {3-16,20-35}
 function ShippingForm({ country }) {
@@ -1141,7 +1141,7 @@ function ShippingForm({ country }) {
   // ...
 ```
 
-Although this code is quite repetitive, [it's correct to keep these Effects separate from each other.](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things) They synchronize two different things, so you shouldn't merge them into one Effect. Instead, you can simplify the `ShippingForm` component above by extracting the common logic between them into your own `useData` Hook:
+このコードはかなりの繰り返しになっていますが、[これらのエフェクトを互いに独立させておくことは正当です](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things)。これらは 2 つの異なるものを同期しているので、1 つのエフェクトに統合すべきではありません。代わりに、これらに共通のロジックを独自の `useData` フックとして抽出することで、上記の `ShippingForm` コンポーネントを簡略化することができます。
 
 ```js {2-18}
 function useData(url) {
@@ -1165,7 +1165,7 @@ function useData(url) {
 }
 ```
 
-Now you can replace both Effects in the `ShippingForm` components with calls to `useData`:
+これで、`ShippingForm` コンポーネントの両方のエフェクトを `useData` の呼び出しに置き換えることができます。
 
 ```js {2,4}
 function ShippingForm({ country }) {
@@ -1175,33 +1175,33 @@ function ShippingForm({ country }) {
   // ...
 ```
 
-Extracting a custom Hook makes the data flow explicit. You feed the `url` in and you get the `data` out. By "hiding" your Effect inside `useData`, you also prevent someone working on the `ShippingForm` component from adding [unnecessary dependencies](/learn/removing-effect-dependencies) to it. With time, most of your app's Effects will be in custom Hooks.
+カスタムフックに抽出することで、データの流れが明示的になります。`url` を入力し `data` を出力しているということです。`useData` の中にエフェクトを「隠す」ことで、`ShippingForm` コンポーネントで作業中の誰かが[不要な依存値](/learn/removing-effect-dependencies)を追加してしまうことを防げます。時間が経つにつれて、アプリのほとんどのエフェクトはカスタムフックに書かれるようになるでしょう。
 
 <DeepDive>
 
-#### Keep your custom Hooks focused on concrete high-level use cases {/*keep-your-custom-hooks-focused-on-concrete-high-level-use-cases*/}
+#### カスタムフックは具体的かつ高レベルなユースケースに対して使う {/*keep-your-custom-hooks-focused-on-concrete-high-level-use-cases*/}
 
-Start by choosing your custom Hook's name. If you struggle to pick a clear name, it might mean that your Effect is too coupled to the rest of your component's logic, and is not yet ready to be extracted.
+まず、カスタムフックの名前を選ぶところから始めましょう。明確な名前を選ぶことが難しいと感じる場合、エフェクトがコンポーネントの他のロジックとあまりにも密接に関連しており、まだ抽出する準備ができていないということかもしれません。
 
-Ideally, your custom Hook's name should be clear enough that even a person who doesn't write code often could have a good guess about what your custom Hook does, what it takes, and what it returns:
+理想的には、カスタムフックの名前は、コードをあまり書かない人でも、何をするのか、何を受け取るのか、何を返すのかを推測できるほどに明確であるべきです。
 
 * ✅ `useData(url)`
 * ✅ `useImpressionLog(eventName, extraData)`
 * ✅ `useChatRoom(options)`
 
-When you synchronize with an external system, your custom Hook name may be more technical and use jargon specific to that system. It's good as long as it would be clear to a person familiar with that system:
+外部システムと同期する場合、カスタムフックの名前は、そのシステム固有の専門用語を使用したより技術的なものになるかもしれません。そのシステムに精通している人にとって明確である限り、問題はありません。
 
 * ✅ `useMediaQuery(query)`
 * ✅ `useSocket(url)`
 * ✅ `useIntersectionObserver(ref, options)`
 
-**Keep custom Hooks focused on concrete high-level use cases.** Avoid creating and using custom "lifecycle" Hooks that act as alternatives and convenience wrappers for the `useEffect` API itself:
+**カスタムフックは具体的かつ高レベルのユースケースに対して使うようにしてください**。`useEffect` API 自体の代替物ないし便利なラッパとして機能させるための、カスタム「ライフサイクル」フックを作ったり使ったりしないようにしてください。
 
 * 🔴 `useMount(fn)`
 * 🔴 `useEffectOnce(fn)`
 * 🔴 `useUpdateEffect(fn)`
 
-For example, this `useMount` Hook tries to ensure some code only runs "on mount":
+例えば、この `useMount` フックは、あるコードが「マウント時」にのみ実行されるようにしようとしています。
 
 ```js {4-5,14-15}
 function ChatRoom({ roomId }) {
@@ -1225,9 +1225,9 @@ function useMount(fn) {
 }
 ```
 
-**Custom "lifecycle" Hooks like `useMount` don't fit well into the React paradigm.** For example, this code example has a mistake (it doesn't "react" to `roomId` or `serverUrl` changes), but the linter won't warn you about it because the linter only checks direct `useEffect` calls. It won't know about your Hook.
+**`useMount` のようなカスタム「ライフサイクル」フックは、React のパラダイムと適合しません**。例えば、このコードサンプルには間違いがあります（`roomId` や `serverUrl` の変更に「反応」しません）が、リンタは `useEffect` の直接的な呼び出しのみをチェックするため、これに対して警告を出してくれません。あなたのフックのことは知らないからです。
 
-If you're writing an Effect, start by using the React API directly:
+エフェクトを書く場合は、まず React の API を直接使ってください。
 
 ```js
 function ChatRoom({ roomId }) {
@@ -1249,7 +1249,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Then, you can (but don't have to) extract custom Hooks for different high-level use cases:
+その後、様々な高レベルのユースケースに対してカスタムフックを抽出するようにします（必須ではありません）。
 
 ```js
 function ChatRoom({ roomId }) {
@@ -1262,15 +1262,15 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-**A good custom Hook makes the calling code more declarative by constraining what it does.** For example, `useChatRoom(options)` can only connect to the chat room, while `useImpressionLog(eventName, extraData)` can only send an impression log to the analytics. If your custom Hook API doesn't constrain the use cases and is very abstract, in the long run it's likely to introduce more problems than it solves.
+**良いカスタムフックとは、動作を制約することで呼び出し側のコードをより宣言的にするものです**。例えば、`useChatRoom(options)` はチャットルームへの接続のみを行い、`useImpressionLog(eventName, extraData)` はアナリティクスに表示ログを送信することのみを行います。あなたのカスタムフックの API がユースケースを制約しない非常に抽象的なものである場合、長期的には解決される問題よりも多くの問題を引き起こす可能性が高いでしょう。
 
 </DeepDive>
 
-### Custom Hooks help you migrate to better patterns {/*custom-hooks-help-you-migrate-to-better-patterns*/}
+### カスタムフックはより良いパターンへの移行を支援する {/*custom-hooks-help-you-migrate-to-better-patterns*/}
 
-Effects are an ["escape hatch"](/learn/escape-hatches): you use them when you need to "step outside React" and when there is no better built-in solution for your use case. With time, the React team's goal is to reduce the number of the Effects in your app to the minimum by providing more specific solutions to more specific problems. Wrapping your Effects in custom Hooks makes it easier to upgrade your code when these solutions become available.
+エフェクトは ["避難ハッチ"](/learn/escape-hatches) です。「React の外に踏み出す」必要があり、当該ユースケースに対してより良い組み込みのソリューションがない場合に使用するものです。長期的な React チームの目標は、より具体的な問題に対してより具体的なソリューションを提供することで、アプリ内のエフェクトの数を最小限に減らすことです。エフェクトをカスタムフックにラップしておくことで、これらのソリューションが利用可能になったときにコードのアップグレードが容易になります。
 
-Let's return to this example:
+こちらの例に戻りましょう。
 
 <Sandpack>
 
@@ -1331,9 +1331,9 @@ export function useOnlineStatus() {
 
 </Sandpack>
 
-In the above example, `useOnlineStatus` is implemented with a pair of [`useState`](/reference/react/useState) and [`useEffect`.](/reference/react/useEffect) However, this isn't the best possible solution. There is a number of edge cases it doesn't consider. For example, it assumes that when the component mounts, `isOnline` is already `true`, but this may be wrong if the network already went offline. You can use the browser [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine) API to check for that, but using it directly would not work on the server for generating the initial HTML. In short, this code could be improved.
+上記の例では、`useOnlineStatus` は [`useState`](/reference/react/useState) と [`useEffect`](/reference/react/useEffect) のペアで実装されています。しかし、これは最善のソリューションではありません。考慮されていないエッジケースがいくつかあります。例えば、コンポーネントがマウントされたとき `isOnline` は `true` であると仮定していますが、ネットワークがすでにオフラインになっていた場合、これは誤りです。ブラウザの [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine) API を使ってそれをチェックすることはできますが、それを直接使うと、サーバで初期 HTML を生成する際には動作しません。要するに、このコードには改善の余地があるということです。
 
-Luckily, React 18 includes a dedicated API called [`useSyncExternalStore`](/reference/react/useSyncExternalStore) which takes care of all of these problems for you. Here is how your `useOnlineStatus` Hook, rewritten to take advantage of this new API:
+幸いなことに React 18 には、これらの問題をすべて解決してくれる専用の API である [`useSyncExternalStore`](/reference/react/useSyncExternalStore) が含まれています。以下は、この新しい API を活用して書き直された `useOnlineStatus` フックです。
 
 <Sandpack>
 
@@ -1393,7 +1393,7 @@ export function useOnlineStatus() {
 
 </Sandpack>
 
-Notice how **you didn't need to change any of the components** to make this migration:
+**どのコンポーネントも変更することなしに**この移行ができたことに注目してください。
 
 ```js {2,7}
 function StatusBar() {
@@ -1407,19 +1407,19 @@ function SaveButton() {
 }
 ```
 
-This is another reason for why wrapping Effects in custom Hooks is often beneficial:
+これが、カスタムフックにエフェクトをラップすることが有益であるもうひとつの理由です。
 
-1. You make the data flow to and from your Effects very explicit.
-2. You let your components focus on the intent rather than on the exact implementation of your Effects.
-3. When React adds new features, you can remove those Effects without changing any of your components.
+1. エフェクトに出入りするデータの流れが非常に明確になる。
+2. コンポーネントがエフェクトの実装そのものではなく、意図にフォーカスできるようになる。
+3. React が新しい機能を追加したときに、コンポーネントを変更せずにエフェクトを削除できるようになる。
 
-Similar to a [design system,](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969) you might find it helpful to start extracting common idioms from your app's components into custom Hooks. This will keep your components' code focused on the intent, and let you avoid writing raw Effects very often. Many excellent custom Hooks are maintained by the React community.
+[デザインシステム](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969)と同様に、アプリのコンポーネントから共通の定型コードをカスタムフックに抽出することは役立つでしょう。これにより、コンポーネントのコードは意図を表現するようになり、生のエフェクトを頻繁に書くことを避けることができるようになります。React コミュニティでは多くの優れたカスタムフックがメンテナンスされています。
 
 <DeepDive>
 
-#### Will React provide any built-in solution for data fetching? {/*will-react-provide-any-built-in-solution-for-data-fetching*/}
+#### 将来 React はデータフェッチのための組み込みソリューションを提供するか？ {/*will-react-provide-any-built-in-solution-for-data-fetching*/}
 
-We're still working out the details, but we expect that in the future, you'll write data fetching like this:
+まだ詳細は検討中ですが、将来的にはデータフェッチを以下のように書くことになるでしょう。
 
 ```js {1,4,6}
 import { use } from 'react'; // Not available yet!
@@ -1431,13 +1431,13 @@ function ShippingForm({ country }) {
   // ...
 ```
 
-If you use custom Hooks like `useData` above in your app, it will require fewer changes to migrate to the eventually recommended approach than if you write raw Effects in every component manually. However, the old approach will still work fine, so if you feel happy writing raw Effects, you can continue to do that.
+アプリで上記のような `useData` のようなカスタムフックを使用しておくことで、最終的に推奨されるアプローチに移行する際に、コンポーネントごとに手動で生のエフェクトを書く場合よりも変更が少なくて済みます。ただし、古いアプローチでも問題なく動作するので、生のエフェクトを書くことに満足している場合は、それを続けることもできます。
 
 </DeepDive>
 
-### There is more than one way to do it {/*there-is-more-than-one-way-to-do-it*/}
+### やり方は 1 つではない {/*there-is-more-than-one-way-to-do-it*/}
 
-Let's say you want to implement a fade-in animation *from scratch* using the browser [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) API. You might start with an Effect that sets up an animation loop. During each frame of the animation, you could change the opacity of the DOM node you [hold in a ref](/learn/manipulating-the-dom-with-refs) until it reaches `1`. Your code might start like this:
+ブラウザの [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) API を使って、*ゼロから*フェードインアニメーションを実装したいとしましょう。アニメーション用のループを設定するエフェクトから始めることになるでしょう。アニメーションの各フレームでは、[ref で保持している](/learn/manipulating-the-dom-with-refs) DOM ノードの不透明度を `1` になるまで更新していきます。最初のコードは次のようになるでしょう。
 
 <Sandpack>
 
@@ -1520,7 +1520,7 @@ html, body { min-height: 300px; }
 
 </Sandpack>
 
-To make the component more readable, you might extract the logic into a `useFadeIn` custom Hook:
+このコンポーネントをより読みやすくするために、`useFadeIn` カスタムフックにロジックを抽出することができます。
 
 <Sandpack>
 
@@ -1611,7 +1611,7 @@ html, body { min-height: 300px; }
 
 </Sandpack>
 
-You could keep the `useFadeIn` code as is, but you could also refactor it more. For example, you could extract the logic for setting up the animation loop out of `useFadeIn` into a custom `useAnimationLoop` Hook:
+この `useFadeIn` はこのままでも構いませんが、さらにリファクタリングすることも可能です。例えば、アニメーションループの設定ロジックを `useFadeIn` の外のカスタム `useAnimationLoop` フックへと抽出することができます。
 
 <Sandpack>
 
@@ -1715,7 +1715,7 @@ html, body { min-height: 300px; }
 
 </Sandpack>
 
-However, you didn't *have to* do that. As with regular functions, ultimately you decide where to draw the boundaries between different parts of your code. You could also take a very different approach. Instead of keeping the logic in the Effect, you could move most of the imperative logic inside a JavaScript [class:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+ただし、これは*必須*ではありませんでした。通常の関数と同様、コードのどこに分割線を引いていくのかは、最終的にあなたが決めることです。また、まったく異なるアプローチを取ることもできます。エフェクト内にロジックを保持する代わりに、命令型のロジックのほとんどを JavaScript の[クラス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)内に移動することもできるでしょう。
 
 <Sandpack>
 
@@ -1813,9 +1813,9 @@ html, body { min-height: 300px; }
 
 </Sandpack>
 
-Effects let you connect React to external systems. The more coordination between Effects is needed (for example, to chain multiple animations), the more it makes sense to extract that logic out of Effects and Hooks *completely* like in the sandbox above. Then, the code you extracted *becomes* the "external system". This lets your Effects stay simple because they only need to send messages to the system you've moved outside React.
+エフェクトとは React を外部システムに接続することができるものです。エフェクト間で多くの調整が必要になればなるほど（例えば、複数のアニメーションを連動させるなど）、上記のサンドボックスのようにエフェクトやフックからロジックを*完全に*抽出してしまうことがより意味を持つようになります。そうすればその抽出したコード*こそが*「外部システム」となります。これにより、その React 外に移動したシステムにメッセージを送るだけでよくなるため、エフェクトはシンプルに保たれるでしょう。
 
-The examples above assume that the fade-in logic needs to be written in JavaScript. However, this particular fade-in animation is both simpler and much more efficient to implement with a plain [CSS Animation:](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)
+なお上記の例では、フェードインのロジックを JavaScript で記述する必要があると仮定していました。ただしこの特定のケースに関して言えば、このフェードインアニメーションは単純な [CSS アニメーション](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)で実装する方がずっと簡単で効率的です。
 
 <Sandpack>
 
@@ -1870,27 +1870,27 @@ html, body { min-height: 300px; }
 
 </Sandpack>
 
-Sometimes, you don't even need a Hook!
+ときには、そもそもフック自体が不要ということです！
 
 <Recap>
 
-- Custom Hooks let you share logic between components.
-- Custom Hooks must be named starting with `use` followed by a capital letter.
-- Custom Hooks only share stateful logic, not state itself.
-- You can pass reactive values from one Hook to another, and they stay up-to-date.
-- All Hooks re-run every time your component re-renders.
-- The code of your custom Hooks should be pure, like your component's code.
-- Wrap event handlers received by custom Hooks into Effect Events.
-- Don't create custom Hooks like `useMount`. Keep their purpose specific.
-- It's up to you how and where to choose the boundaries of your code.
+- カスタムフックを使ってコンポーネント間でロジックを共有できる。
+- カスタムフックの名前は `use` で始めて大文字を続ける必要がある。
+- カスタムフックは state 自体ではなく、state を使うロジックを共有する。
+- あるフックから別のフックにリアクティブな値を渡すことができ、それらは最新の状態に保たれる。
+- すべてのフックはコンポーネントが再レンダーされるたびに再実行される。
+- カスタムフックのコードは、コンポーネントコードと同様に純粋である必要がある。
+- カスタムフックが受け取るイベントハンドラはエフェクトイベントにラップする。
+- `useMount` のようなカスタムフックを作成してはいけない。常に目的は具体的なものにする。
+- コードの境界をどこにどのように置くかはあなたが決定する。
 
 </Recap>
 
 <Challenges>
 
-#### Extract a `useCounter` Hook {/*extract-a-usecounter-hook*/}
+#### `useCounter` フックを抽出 {/*extract-a-usecounter-hook*/}
 
-This component uses a state variable and an Effect to display a number that increments every second. Extract this logic into a custom Hook called `useCounter`. Your goal is to make the `Counter` component implementation look exactly like this:
+このコンポーネントは、state 変数とエフェクトを使い、1 秒ごとに増加する数値を表示しています。このロジックを `useCounter` というカスタムフックに抽出してください。目標は、`Counter` コンポーネントの実装が以下のようになることです。
 
 ```js
 export default function Counter() {
@@ -1899,7 +1899,7 @@ export default function Counter() {
 }
 ```
 
-You'll need to write your custom Hook in `useCounter.js` and import it into the `Counter.js` file.
+カスタムフックを `useCounter.js` に記述して、`Counter.js` ファイルにインポートする必要があります。
 
 <Sandpack>
 
@@ -1926,7 +1926,7 @@ export default function Counter() {
 
 <Solution>
 
-Your code should look like this:
+以下のようなコードになるでしょう。
 
 <Sandpack>
 
@@ -1956,13 +1956,13 @@ export function useCounter() {
 
 </Sandpack>
 
-Notice that `App.js` doesn't need to import `useState` or `useEffect` anymore.
+`App.js` は `useState` や `useEffect` をインポートする必要がなくなったことに注意してください。
 
 </Solution>
 
-#### Make the counter delay configurable {/*make-the-counter-delay-configurable*/}
+#### カウンタの遅延を設定可能に {/*make-the-counter-delay-configurable*/}
 
-In this example, there is a `delay` state variable controlled by a slider, but its value is not used. Pass the `delay` value to your custom `useCounter` Hook, and change the `useCounter` Hook to use the passed `delay` instead of hardcoding `1000` ms.
+この例にはスライダで制御されている `delay` という state 変数がありますが、その値は使用されていません。`delay` の値をカスタム `useCounter` フックに渡すとともに、`useCounter` フックの中身を変更して、ハードコードされた `1000` ms の代わりに渡された `delay` を使用するようにしてください。
 
 <Sandpack>
 
@@ -2012,7 +2012,7 @@ export function useCounter() {
 
 <Solution>
 
-Pass the `delay` to your Hook with `useCounter(delay)`. Then, inside the Hook, use `delay` instead of the hardcoded `1000` value. You'll need to add `delay` to your Effect's dependencies. This ensures that a change in `delay` will reset the interval.
+`useCounter(delay)` のようにして `delay` をフックに渡します。次にフック内で、ハードコードされた `1000` の値の代わりに `delay` を使用します。`delay` をエフェクトの依存配列に追加する必要があります。これにより、`delay` を変更することでインターバルが確実にリセットされるようになります。
 
 <Sandpack>
 
@@ -2062,9 +2062,9 @@ export function useCounter(delay) {
 
 </Solution>
 
-#### Extract `useInterval` out of `useCounter` {/*extract-useinterval-out-of-usecounter*/}
+#### `useCounter` から `useInterval` を抽出 {/*extract-useinterval-out-of-usecounter*/}
 
-Currently, your `useCounter` Hook does two things. It sets up an interval, and it also increments a state variable on every interval tick. Split out the logic that sets up the interval into a separate Hook called `useInterval`. It should take two arguments: the `onTick` callback, and the `delay`. After this change, your `useCounter` implementation should look like this:
+現在あなたの `useCounter` フックは 2 つのことを行っています。インターバルの設定と、各インターバルごとに state 変数をインクリメントすることです。インターバルを設定するロジックを、`useInterval` という別のフックに分割してください。フックは `onTick` コールバックと `delay` の 2 つの引数を受け取る必要があります。この変更後、`useCounter` の実装は次のようになります。
 
 ```js
 export function useCounter(delay) {
@@ -2076,7 +2076,7 @@ export function useCounter(delay) {
 }
 ```
 
-Write `useInterval` in the `useInterval.js` file and import it into the `useCounter.js` file.
+`useInterval.js` ファイルに `useInterval` を記述し、`useCounter.js` ファイルにインポートするようにします。
 
 <Sandpack>
 
@@ -2113,7 +2113,7 @@ export function useCounter(delay) {
 
 <Solution>
 
-The logic inside `useInterval` should set up and clear the interval. It doesn't need to do anything else.
+`useInterval` 内のロジックは、インターバルの設定とクリアを行う必要があります。それ以外のことは何もする必要はありません。
 
 <Sandpack>
 
@@ -2152,17 +2152,17 @@ export function useInterval(onTick, delay) {
 
 </Sandpack>
 
-Note that there is a bit of a problem with this solution, which you'll solve in the next challenge.
+実はこの答えにはまだちょっとした問題がありますが、それは次のチャレンジ問題で修正します。
 
 </Solution>
 
-#### Fix a resetting interval {/*fix-a-resetting-interval*/}
+#### インターバルがリセットされる問題を修正 {/*fix-a-resetting-interval*/}
 
-In this example, there are *two* separate intervals.
+以下の例には *2 つの*別々のインターバルがあります。
 
-The `App` component calls `useCounter`, which calls `useInterval` to update the counter every second. But the `App` component *also* calls `useInterval` to randomly update the page background color every two seconds.
+`App` コンポーネントは `useCounter` を呼び出しており、それは内部でカウンタを毎秒更新するために `useInterval` を呼び出しています。さらにこの `App` コンポーネントは、ページの背景色を 2 秒ごとにランダムに更新するために別の `useInterval` を呼び出しています。
 
-For some reason, the callback that updates the page background never runs. Add some logs inside `useInterval`:
+しかし何らかの理由で、ページの背景を更新するコールバックが実行されません。`useInterval` 内に以下のようにログを追加してみてください：
 
 ```js {2,5}
   useEffect(() => {
@@ -2175,13 +2175,13 @@ For some reason, the callback that updates the page background never runs. Add s
   }, [onTick, delay]);
 ```
 
-Do the logs match what you expect to happen? If some of your Effects seem to re-synchronize unnecessarily, can you guess which dependency is causing that to happen? Is there some way to [remove that dependency](/learn/removing-effect-dependencies) from your Effect?
+表示されるログは期待通りのものですか？ エフェクトが不必要に再同期されるように見えるとして、どの依存値が原因で起こっているか分かるでしょうか？ エフェクトからその依存値を[削除する](/learn/removing-effect-dependencies)方法はありますか？
 
-After you fix the issue, you should expect the page background to update every two seconds.
+問題を修正すると、ページの背景が 2 秒ごとに更新されるようになるはずです。
 
 <Hint>
 
-It looks like your `useInterval` Hook accepts an event listener as an argument. Can you think of some way to wrap that event listener so that it doesn't need to be a dependency of your Effect?
+`useInterval` フックは引数としてイベントリスナを受け取っているようです。このイベントリスナをエフェクトの依存値にせずとも済むよう、これをラップする方法はなかったでしょうか？
 
 </Hint>
 
@@ -2250,11 +2250,11 @@ export function useInterval(onTick, delay) {
 
 <Solution>
 
-Inside `useInterval`, wrap the tick callback into an Effect Event, as you did [earlier on this page.](/learn/reusing-logic-with-custom-hooks#passing-event-handlers-to-custom-hooks)
+[上記で行ったように](/learn/reusing-logic-with-custom-hooks#passing-event-handlers-to-custom-hooks)、`useInterval` の中で、tick コールバックをエフェクトイベント内にラップします。
 
-This will allow you to omit `onTick` from dependencies of your Effect. The Effect won't re-synchronize on every re-render of the component, so the page background color change interval won't get reset every second before it has a chance to fire.
+これにより、エフェクトの依存配列から `onTick` をなくすことができます。エフェクトがコンポーネントの再レンダーごとに再同期されることはなくなり、ページ背景色変更のためのインターバルが発火する前に毎秒リセットされてしまうこともなくなります。
 
-With this change, both intervals work as expected and don't interfere with each other:
+この変更により、両方のインターバルが期待通りに動作し、互いに干渉しないようになります。
 
 <Sandpack>
 
@@ -2321,21 +2321,21 @@ export function useInterval(callback, delay) {
 
 </Solution>
 
-#### Implement a staggering movement {/*implement-a-staggering-movement*/}
+#### タイムシフト効果の実装 {/*implement-a-staggering-movement*/}
 
-In this example, the `usePointerPosition()` Hook tracks the current pointer position. Try moving your cursor or your finger over the preview area and see the red dot follow your movement. Its position is saved in the `pos1` variable.
+この例では、`usePointerPosition()` フックが現在のポインタ位置を追跡しています。プレビューエリア上でカーソルや指を動かしてみて、赤い点が動きに追従するのを確認してください。その座標は `pos1` 変数に保存されています。
 
-In fact, there are five (!) different red dots being rendered. You don't see them because currently they all appear at the same position. This is what you need to fix. What you want to implement instead is a "staggered" movement: each dot should "follow" the previous dot's path. For example, if you quickly move your cursor, the first dot should follow it immediately, the second dot should follow the first dot with a small delay, the third dot should follow the second dot, and so on.
+実は、5 つ (!) の赤い点が別々にレンダーされています。すべて同じ位置に表示されているので全部を見ることはできません。あなたのタスクはこれを修正することです。代わりに実装したいのは「時間をずらした」動きです。各ドットが前のドットの経路を「追いかける」必要があります。たとえば、カーソルを素早く移動すると、最初のドットはすぐにそれに追従し、2 つ目のドットは最初のドットに少し遅れて追従し、3 つ目のドットは 2 つ目のドットに追従する、といった具合です。
 
-You need to implement the `useDelayedValue` custom Hook. Its current implementation returns the `value` provided to it. Instead, you want to return the value back from `delay` milliseconds ago. You might need some state and an Effect to do this.
+`useDelayedValue` カスタムフックを実装してください。現在の実装は渡された `value` をそのまま返しています。代わりに、`delay` ミリ秒前の値を返すようにしたいです。これを実現するためには state とエフェクトが必要になるかもしれません。
 
-After you implement `useDelayedValue`, you should see the dots move following one another.
+`useDelayedValue` を実装した後、点が別の点を追いかけるように動くのが見えるはずです。
 
 <Hint>
 
-You'll need to store the `delayedValue` as a state variable inside your custom Hook. When the `value` changes, you'll want to run an Effect. This Effect should update `delayedValue` after the `delay`. You might find it helpful to call `setTimeout`.
+カスタムフック内で `delayedValue` を state 変数として保持する必要があります。`value` が変更されたときに、エフェクトを実行したいです。このエフェクトは、`delay` が経過した後に `delayedValue` を更新する必要があります。`setTimeout` を呼び出すといいかもしれません。
 
-Does this Effect need cleanup? Why or why not?
+このエフェクトにクリーンアップは必要ですか？ それはなぜですか？
 
 </Hint>
 
@@ -2408,7 +2408,7 @@ body { min-height: 300px; }
 
 <Solution>
 
-Here is a working version. You keep the `delayedValue` as a state variable. When `value` updates, your Effect schedules a timeout to update the `delayedValue`. This is why the `delayedValue` always "lags behind" the actual `value`.
+以下が動作するバージョンです。state 変数として `delayedValue` を保持するようにします。`value` が更新されると、エフェクトが `delayedValue` を更新するタイムアウトをセットします。これにより、`delayedValue` は常に実際の `value` の後に「遅れて」更新されるようになります。
 
 <Sandpack>
 
@@ -2485,7 +2485,7 @@ body { min-height: 300px; }
 
 </Sandpack>
 
-Note that this Effect *does not* need cleanup. If you called `clearTimeout` in the cleanup function, then each time the `value` changes, it would reset the already scheduled timeout. To keep the movement continuous, you want all the timeouts to fire.
+このエフェクトには*クリーンアップが必要ない*ことに注意してください。クリーンアップ関数で `clearTimeout` を呼び出すと、`value` が変更されるたびにすでにスケジュールされているタイムアウトがリセットされてしまいます。連続的な動きを保つためには、すべてのタイムアウトが発火する必要があります。
 
 </Solution>
 
