@@ -57,7 +57,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <LearnMore path="/learn/your-first-component">
 
-**[初めてのコンポーネント](/learn/your-first-component)** を読んで、React コンポーネントの宣言方法、使用方法について学びましょう。
+[**初めてのコンポーネント**](/learn/your-first-component)を読んで、React コンポーネントの宣言方法、使用方法について学びましょう。
 
 </LearnMore>
 
@@ -112,7 +112,7 @@ img { margin: 0 10px 10px 0; }
 
 <LearnMore path="/learn/importing-and-exporting-components">
 
-**[コンポーネントのインポートとエクスポート](/learn/importing-and-exporting-components)** を読んで、コンポーネントを個々の専用ファイルに分割する方法を学びましょう。
+[**コンポーネントのインポートとエクスポート**](/learn/importing-and-exporting-components)を読んで、コンポーネントを個々の専用ファイルに分割する方法を学びましょう。
 
 </LearnMore>
 
@@ -181,7 +181,7 @@ img { height: 90px; }
 
 <LearnMore path="/learn/writing-markup-with-jsx">
 
-**[JSX でマークアップを記述する](/learn/writing-markup-with-jsx)** を読んで、正しい JSX の書き方を学びましょう。
+[**JSX でマークアップを記述する**](/learn/writing-markup-with-jsx)を読んで、正しい JSX の書き方を学びましょう。
 
 </LearnMore>
 
@@ -229,7 +229,7 @@ body > div > div { padding: 20px; }
 
 <LearnMore path="/learn/javascript-in-jsx-with-curly-braces">
 
-**[JSX に波括弧で JavaScript を含める](/learn/javascript-in-jsx-with-curly-braces)**を読んで、JSX 内から JavaScript のデータにアクセスする方法を学びましょう。
+[**JSX に波括弧で JavaScript を含める**](/learn/javascript-in-jsx-with-curly-braces)を読んで、JSX 内から JavaScript のデータにアクセスする方法を学びましょう。
 
 </LearnMore>
 
@@ -310,7 +310,7 @@ export function getImageUrl(person, size = 's') {
 
 <LearnMore path="/learn/passing-props-to-a-component">
 
-**[コンポーネントに props を渡す](/learn/passing-props-to-a-component)** を読んで、props の渡し方と読み取り方を学びましょう。
+[**コンポーネントに props を渡す**](/learn/passing-props-to-a-component)を読んで、props の渡し方と読み取り方を学びましょう。
 
 </LearnMore>
 
@@ -358,7 +358,7 @@ export default function PackingList() {
 
 <LearnMore path="/learn/conditional-rendering">
 
-**[条件付きレンダー](/learn/conditional-rendering)** を読んで、コンテンツを条件付きでレンダーするためのさまざまな方法を学びましょう。
+[**条件付きレンダー**](/learn/conditional-rendering)を読んで、コンテンツを条件付きでレンダーするためのさまざまな方法を学びましょう。
 
 </LearnMore>
 
@@ -458,7 +458,7 @@ h2 { font-size: 20px; }
 
 <LearnMore path="/learn/rendering-lists">
 
-**[リストのレンダー](/learn/rendering-lists)** を読んで、コンポーネントのリストをレンダーする方法と、key の選択方法を学びましょう。
+[**リストのレンダー**](/learn/rendering-lists)を読んで、コンポーネントのリストをレンダーする方法と、key の選択方法を学びましょう。
 
 </LearnMore>
 
@@ -519,12 +519,12 @@ export default function TeaSet() {
 
 <LearnMore path="/learn/keeping-components-pure">
 
-**[コンポーネントを純粋に保つ](/learn/keeping-components-pure)** を読んで、予測可能な純関数としてコンポーネントを作成する方法を学びましょう。
+[**コンポーネントを純粋に保つ**](/learn/keeping-components-pure)を読んで、予測可能な純関数としてコンポーネントを作成する方法を学びましょう。
 
 </LearnMore>
 
 ## 次のステップ {/*whats-next*/}
 
-[初めてのコンポーネント](/learn/your-first-component) に進んで、この章をページごとに読み進めましょう！
+[初めてのコンポーネント](/learn/your-first-component)に進んで、この章をページごとに読み進めましょう！
 
-もしくは、すでにこれらのトピックに詳しい場合、[インタラクティビティの追加](/learn/adding-interactivity) について読んでみましょう。
+もしくは、すでにこれらのトピックに詳しい場合、[インタラクティビティの追加](/learn/adding-interactivity)について読んでみましょう。

@@ -121,7 +121,7 @@
       ]
     },
     {
-      "title": "Managing State",
+      "title": "state の管理",
       "path": "/learn/managing-state",
       "tags": ["intermediate"],
       "routes": [

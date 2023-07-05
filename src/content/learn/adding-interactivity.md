@@ -68,7 +68,7 @@ button { margin-right: 10px; }
 
 <LearnMore path="/learn/responding-to-events">
 
-イベントハンドラの追加方法を学ぶには **[イベントへの応答](/learn/responding-to-events)** を読んでみましょう。
+[**イベントへの応答**](/learn/responding-to-events)を読んで、イベントハンドラの追加方法を学びましょう。
 
 </LearnMore>
 
@@ -229,7 +229,7 @@ button {
 
 <LearnMore path="/learn/state-a-components-memory">
 
-値を記憶し、インタラクションに応答してその値を更新するには **[state: コンポーネントのメモリ](/learn/state-a-components-memory)** を読んでみましょう。
+[**state: コンポーネントのメモリ**](/learn/state-a-components-memory)を読んで、値を記憶し、インタラクションに応答してその値を更新する方法について学びましょう。
 
 </LearnMore>
 
@@ -251,7 +251,7 @@ button {
 
 <LearnMore path="/learn/render-and-commit">
 
-UI 更新のライフサイクルを学ぶには **[レンダーとコミット](/learn/render-and-commit)** を読んでみましょう。
+[**レンダーとコミット**](/learn/render-and-commit)を読んで、UI 更新のライフサイクルを学びましょう。
 
 </LearnMore>
 
@@ -314,7 +314,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 <LearnMore path="/learn/state-as-a-snapshot">
 
-イベントハンドラ内で state が「固定」され、変化していないように見える理由を学ぶには **[state はスナップショットである](/learn/state-as-a-snapshot)** を読んでみましょう。
+[**state はスナップショットである**](/learn/state-as-a-snapshot)を読んで、イベントハンドラ内で state が「固定」され、変化していないように見える理由を学びましょう。
 
 </LearnMore>
 
@@ -354,7 +354,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 </Sandpack>
 
-[state はスナップショットである](/learn/state-as-a-snapshot) で、なぜこのようなことが起こってしまうのかを説明しています。state を設定すると、新しい再レンダーが要求されますが、すでに実行されているコード内の state は変更されません。そのため `setScore(score + 1)` を呼び出した直後は `score` が `0` であり続けます。
+[state はスナップショットである](/learn/state-as-a-snapshot)で、なぜこのようなことが起こってしまうのかを説明しています。state を設定すると、新しい再レンダーが要求されますが、すでに実行されているコード内の state は変更されません。そのため `setScore(score + 1)` を呼び出した直後は `score` が `0` であり続けます。
 
 ```js
 console.log(score);  // 0
@@ -402,13 +402,13 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 <LearnMore path="/learn/queueing-a-series-of-state-updates">
 
-次のレンダリングの前に複数の更新をキューに入れる方法を学ぶには **[一連の state の変更をキューに入れる](/learn/queueing-a-series-of-state-updates)** を読んでみましょう。
+[**一連の state の更新をキューに入れる**](/learn/queueing-a-series-of-state-updates)を読んで、次回のレンダーの前に複数の更新をキューに入れる方法を学びましょう。
 
 </LearnMore>
 
-## state 内のオブジェクトを更新する方法 {/*updating-objects-in-state*/}
+## state 内のオブジェクトの更新 {/*updating-objects-in-state*/}
 
-State はオブジェクトを含むあらゆる種類の JavaScript の値を保持することができます。しかし、React の state 内で保持するオブジェクトや配列を直接変更してはいけません。その代わり、オブジェクトや配列を更新したい場合、既存のもののコピーを作るなどして新しい値を作成し、その新しい値を使って state を変更する必要があります。
+state にはオブジェクトを含むあらゆる種類の JavaScript の値を保持することができます。しかし、React の state 内で保持するオブジェクトや配列を直接変更してはいけません。その代わり、オブジェクトや配列を更新したい場合、既存のもののコピーを作るなどして新しい値を作成し、その新しい値を使って state を変更する必要があります。
 
 通常、変更したいオブジェクトや配列をコピーするには `...` というスプレッド構文を使用します。例えば、ネストされたオブジェクトを更新する場合、次のようになります：
 
@@ -633,13 +633,13 @@ img { width: 200px; height: 200px; }
 
 <LearnMore path="/learn/updating-objects-in-state">
 
-オブジェクトを正しく更新する方法を学ぶために **[state 内のオブジェクトを更新する方法](/learn/updating-objects-in-state)** を読んでみましょう。
+[**state 内のオブジェクトの更新**](/learn/updating-objects-in-state)を読んで、オブジェクトを正しく更新する方法を学びましょう。
 
 </LearnMore>
 
-## state 内の配列を更新する方法 {/*updating-arrays-in-state*/}
+## state 内の配列の更新 {/*updating-arrays-in-state*/}
 
-配列もまた、state 内で保持できるミュータブル（mutable; 書き換え可能）な JavaScript オブジェクトの一種ですが、読み取り専用として扱うべきものです。オブジェクトと同様に state に保存された配列を更新したい場合、新しいものを作成し（または既存のもののコピーを作成し）state が新しい配列を使用するように設定する必要があります：
+配列もまた、state 内で保持できるミュータブル（mutable; 書き換え可能）な JavaScript オブジェクトの一種ですが、読み取り専用として扱うべきものです。オブジェクトと同様に state に保存された配列を更新したい場合、新しいものを作成し（または既存のもののコピーを作成し）、state が新しい配列を使用するようにセットする必要があります：
 
 <Sandpack>
 
@@ -791,12 +791,12 @@ function ItemList({ artworks, onToggle }) {
 
 <LearnMore path="/learn/updating-arrays-in-state">
 
-配列を正しく更新する方法を学ぶには **[state 内の配列を更新する方法](/learn/updating-arrays-in-state)** を読んでみましょう。
+[**state 内の配列の更新**](/learn/updating-arrays-in-state)を読んで、配列を正しく更新する方法を学びましょう。
 
 </LearnMore>
 
-## 次は何？ {/*whats-next*/}
+## 次のステップ {/*whats-next*/}
 
-この章を 1 ページずつ読み始めるには[イベントへの応答](/learn/responding-to-events)に移動しましょう!
+[イベントへの応答](/learn/responding-to-events)に進んで、この章をページごとに読み進めましょう！
 
-また、すでにこれらのトピックをご存知の方は [state の管理](/learn/managing-state)を読んでみてはいかがでしょうか。
+もしくは、すでにこれらのトピックに詳しい場合、[state の管理](/learn/managing-state)について読んでみましょう。
