@@ -185,7 +185,7 @@
           "path": "/learn/separating-events-from-effects"
         },
         {
-          "title": "Removing Effect Dependencies",
+          "title": "エフェクトから依存値を取り除く",
           "path": "/learn/removing-effect-dependencies"              
         },
         {
