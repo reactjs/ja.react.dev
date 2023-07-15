@@ -112,11 +112,11 @@ export default function TodosApp() {
 ```
 
 ```js todoStore.js
-// これはサードパーティのストアの例です。
-// React と統合する必要があるかもしれません。
+// This is an example of a third-party store
+// that you might need to integrate with React.
 
-// アプリが完全に React でビルドされている場合は、 
-// 代わりに React state を使用することをお勧めします。
+// If your app is fully built with React,
+// we recommend using React state instead.
 
 let nextId = 0;
 let todos = [{ id: nextId++, text: 'Todo #1' }];
