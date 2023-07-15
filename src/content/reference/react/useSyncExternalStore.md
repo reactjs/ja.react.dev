@@ -41,9 +41,9 @@ function TodosApp() {
 
 #### 引数 {/*parameters*/}
 
-* `subscribe`: ストアにサブスクライブを開始し、また callback 引数を受け取る関数。ストアが変更された際に渡された callback を呼び出す必要があります。これにより、コンポーネントが再レンダーされます。subscribe 関数は、サブスクリプションをクリーンアップする関数を返す必要があります。
+* `subscribe`: ストアにサブスクライブを開始し、また callback 引数を受け取る関数。ストアが変更された際に渡された callback を呼び出す必要があります。これにより、コンポーネントが再レンダーされます。`subscribe` 関数は、サブスクリプションをクリーンアップする関数を返す必要があります。
 
-* `getSnapshot`: コンポーネントが必要とするストアにあるデータのスナップショットを返す関数。ストアが変更されていない場合、getSnapshot への再呼び出しは同じ値を返す必要があります。ストアが変更されて返された値が（[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) で比較して）異なる場合、React はコンポーネントを再レンダーします。
+* `getSnapshot`: コンポーネントが必要とするストアにあるデータのスナップショットを返す関数。ストアが変更されていない場合、`getSnapshot` への再呼び出しは同じ値を返す必要があります。ストアが変更されて返された値が（[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) で比較して）異なる場合、React はコンポーネントを再レンダーします。
 
 * **省略可能** `getServerSnapshot`: ストアのデータの初期スナップショットを返す関数。これはサーバレンダリング中、およびクライアント上でのサーバレンダリングされたコンテンツのハイドレーション中にのみ使用されます。サーバスナップショットはクライアントとサーバ間で同一でなければならず、通常はサーバからクライアントに渡されるシリアライズされたものです。この引数を省略すると、サーバ上でのコンポーネントのレンダリングはエラーを発生させます。
 
@@ -157,7 +157,7 @@ function emitChange() {
 
 ### ブラウザ API へのサブスクライブ {/*subscribing-to-a-browser-api*/}
 
-`useSyncExternalStore` を追加するもう 1 つの理由は、時間とともに変化するブラウザが公開する値にサブスクライブしたい場合です。たとえば、コンポーネントがネットワーク接続がアクティブかどうかを表示したいとします。ブラウザは、この情報を [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine) というプロパティを介して公開します。
+`useSyncExternalStore` を追加するもう 1 つの理由は、時間とともに変化する、ブラウザが公開する値にサブスクライブしたい場合です。たとえば、コンポーネントがネットワーク接続がアクティブかどうかを表示したいとします。ブラウザは、この情報を [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine) というプロパティを介して公開します。
 
 この値は React の知らないところで変更される可能性があるので、`useSyncExternalStore` でそれを読み取るべきです。
 
