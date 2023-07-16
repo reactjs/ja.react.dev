@@ -4,13 +4,13 @@ title: useInsertionEffect
 
 <Pitfall>
 
-`useInsertionEffect` is for CSS-in-JS library authors. Unless you are working on a CSS-in-JS library and need a place to inject the styles, you probably want [`useEffect`](/reference/react/useEffect) or [`useLayoutEffect`](/reference/react/useLayoutEffect) instead.
+`useInsertionEffect` は CSS-in-JS ライブラリの作者向けです。CSS-in-JS ライブラリの開発をしておりスタイルを挿入する場所を必要としているのでない限り、おそらく [`useEffect`](/reference/react/useEffect) または [`useLayoutEffect`](/reference/react/useLayoutEffect) の方が適切です。
 
 </Pitfall>
 
 <Intro>
 
-`useInsertionEffect` is a version of [`useEffect`](/reference/react/useEffect) that fires before any DOM mutations.
+`useInsertionEffect` は [`useEffect`](/reference/react/useEffect) の一種ですが、DOM の書き換えを行う前に実行されます。
 
 ```js
 useInsertionEffect(setup, dependencies?)
@@ -22,11 +22,11 @@ useInsertionEffect(setup, dependencies?)
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `useInsertionEffect(setup, dependencies?)` {/*useinsertioneffect*/}
 
-Call `useInsertionEffect` to insert the styles before any DOM mutations:
+DOM の変更前にスタイルを挿入するために `useInsertionEffect` を呼び出します。
 
 ```js
 import { useInsertionEffect } from 'react';
@@ -40,31 +40,31 @@ function useCSS(rule) {
 }
 ```
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. Before your component is added to the DOM, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. Before your component is removed from the DOM, React will run your cleanup function.
+* `setup`: エフェクトのロジックが記述された関数です。このセットアップ関数は、オプションで*クリーンアップ*関数を返すことができます。コンポーネントが初めて DOM に追加されると、React はセットアップ関数を実行します。依存配列 (dependencies) が変更された再レンダー時には、React はまず古い値を使ってクリーンアップ関数（あれば）を実行し、次に新しい値を使ってセットアップ関数を実行します。コンポーネントが DOM から削除された後、React はクリーンアップ関数を最後にもう一度実行します。
  
-* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison algorithm. If you don't specify the dependencies at all, your Effect will re-run after every re-render of the component.
+* **省略可能** `dependencies`: `setup` コード内で参照されるすべてのリアクティブな値のリストです。リアクティブな値には、props、state、コンポーネント本体に直接宣言されたすべての変数および関数が含まれます。リンタが [React 用に設定されている場合](/learn/editor-setup#linting)、すべてのリアクティブな値が依存値として正しく指定されているか確認できます。依存値のリストは要素数が一定である必要があり、`[dep1, dep2, dep3]` のようにインラインで記述する必要があります。React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を使った比較で、それぞれの依存値を以前の値と比較します。この引数を省略すると、エフェクトはコンポーネントの毎回のレンダー後に再実行されます。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-`useInsertionEffect` returns `undefined`.
+`useInsertionEffect` は `undefined` を返します。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-* Effects only run on the client. They don't run during server rendering.
-* You can't update state from inside `useInsertionEffect`.
-* By the time `useInsertionEffect` runs, refs are not attached yet, and DOM is not yet updated.
+* エフェクトはクライアント上でのみ実行されます。サーバレンダリング中には実行されません。
+* `useInsertionEffect` の内部から state を更新することはできません。
+* `useInsertionEffect` が実行される時点では、まだ ref はアタッチされておらず、DOM も更新されていません。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Injecting dynamic styles from CSS-in-JS libraries {/*injecting-dynamic-styles-from-css-in-js-libraries*/}
+### CSS-in-JS ライブラリからの動的スタイル注入 {/*injecting-dynamic-styles-from-css-in-js-libraries*/}
 
-Traditionally, you would style React components using plain CSS.
+従来、React コンポーネントのスタイル付けはプレーンな CSS を使用して行われていました。
 
 ```js
 // In your JS file:
@@ -74,20 +74,20 @@ Traditionally, you would style React components using plain CSS.
 .success { color: green; }
 ```
 
-Some teams prefer to author styles directly in JavaScript code instead of writing CSS files. This usually requires using a CSS-in-JS library or a tool. There are three common approaches to CSS-in-JS:
+チームによっては、CSS ファイルを書く代わりに JavaScript コード内で直接スタイルを記述することを好む場合があります。これには通常、CSS-in-JS ライブラリやツールが必要です。CSS-in-JS には以下の 3 つの一般的なアプローチがあります。
 
-1. Static extraction to CSS files with a compiler
-2. Inline styles, e.g. `<div style={{ opacity: 1 }}>`
-3. Runtime injection of `<style>` tags
+1. コンパイラを使用した CSS ファイルへの静的な抽出
+2. インラインスタイル、例えば `<div style={{ opacity: 1 }}>`
+3. `<style>` タグのランタイム時の注入
 
-If you use CSS-in-JS, we recommend a combination of the first two approaches (CSS files for static styles, inline styles for dynamic styles). **We don't recommend runtime `<style>` tag injection for two reasons:**
+CSS-in-JS を使用する場合、最初の 2 つのアプローチの組み合わせ（静的スタイルには CSS ファイル、動的スタイルにはインラインスタイル）を推奨します。**ランタイム時の `<style>` タグの注入は、以下の 2 つの理由から推奨しません：**
 
-1. Runtime injection forces the browser to recalculate the styles a lot more often.
-2. Runtime injection can be very slow if it happens at the wrong time in the React lifecycle.
+1. ランタイム時の注入は、ブラウザにスタイルの再計算を頻繁に強制します。
+2. ランタイム時の注入は、React ライフサイクル中の間違ったタイミングで行われると非常に遅くなることがあります。
 
-The first problem is not solvable, but `useInsertionEffect` helps you solve the second problem.
+このうち最初の問題は解決不可能ですが、`useInsertionEffect` は 2 つ目の問題を解決するのに役立ちます。
 
-Call `useInsertionEffect` to insert the styles before any DOM mutations:
+DOM の変更前にスタイルを挿入するために `useInsertionEffect` を呼び出します。
 
 ```js {4-11}
 // Inside your CSS-in-JS library
@@ -110,7 +110,7 @@ function Button() {
 }
 ```
 
-Similarly to `useEffect`, `useInsertionEffect` does not run on the server. If you need to collect which CSS rules have been used on the server, you can do it during rendering:
+`useEffect` と同様に、`useInsertionEffect` はサーバ上では実行されません。サーバ上でどの CSS ルールが使用されたかを収集する必要がある場合、レンダー中に行うことができます。
 
 ```js {1,4-6}
 let collectedRulesSet = new Set();
@@ -126,14 +126,14 @@ function useCSS(rule) {
 }
 ```
 
-[Read more about upgrading CSS-in-JS libraries with runtime injection to `useInsertionEffect`.](https://github.com/reactwg/react-18/discussions/110)
+[`useInsertionEffect` でランタイム時にスタイルを注入するよう CSS-in-JS ライブラリをアップグレードする場合の詳細](https://github.com/reactwg/react-18/discussions/110)
 
 <DeepDive>
 
-#### How is this better than injecting styles during rendering or useLayoutEffect? {/*how-is-this-better-than-injecting-styles-during-rendering-or-uselayouteffect*/}
+#### この手法がレンダー中や useLayoutEffect でスタイルを注入するより優れている理由 {/*how-is-this-better-than-injecting-styles-during-rendering-or-uselayouteffect*/}
 
-If you insert styles during rendering and React is processing a [non-blocking update,](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) the browser will recalculate the styles every single frame while rendering a component tree, which can be **extremely slow.**
+レンダー中、React が[非ブロッキング更新](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition)を処理している最中にスタイルを挿入すると、ブラウザはコンポーネントツリーのレンダー中に毎フレームスタイルを再計算することになり、これは**非常に遅くなる**ことがあります。
 
-`useInsertionEffect` is better than inserting styles during [`useLayoutEffect`](/reference/react/useLayoutEffect) or [`useEffect`](/reference/react/useEffect) because it ensures that by the time other Effects run in your components, the `<style>` tags have already been inserted. Otherwise, layout calculations in regular Effects would be wrong due to outdated styles.
+`useInsertionEffect` は、[`useLayoutEffect`](/reference/react/useLayoutEffect) や [`useEffect`](/reference/react/useEffect) でスタイルを挿入するよりも優れています。なぜなら、他のエフェクトがあなたのコンポーネントで実行される時点で `<style>` タグがすでに挿入されていることが保証されるからです。さもないと、古くなったスタイルにより、通常のエフェクトでのレイアウト計算が正しくなくなってしまいます。
 
 </DeepDive>
