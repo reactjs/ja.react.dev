@@ -38,11 +38,11 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 #### 引数 {/*parameters*/}
 
-* `ref`: [`forwardRef` render 関数](/reference/react/forwardRef#render-function)から 2 番目の引数として受け取った `ref` です。
+* `ref`: [`forwardRef` レンダー関数](/reference/react/forwardRef#render-function)から 2 番目の引数として受け取った `ref` です。
 
 * `createHandle`: 引数を受け取らず、公開したい ref ハンドルを返す関数です。ref ハンドルは任意の型が使えます。通常、公開したいメソッドを持つオブジェクトを返します。
 
-* **オプション** `dependencies`: `createHandle` のコード内でリファレンスされるすべてのリアクティブな値のリストです。リアクティブな値には、props、state、およびコンポーネント内で直接宣言された変数と関数が含まれます。もし linter が [React 向けに設定](/learn/editor-setup#linting)されている場合、linter がすべてのリアクティブな値が依存関係として正しく指定されているかを確認します。依存関係のリストは、一定数の項目があり、[dep1, dep2, dep3]のようにインラインで記述される必要があります。React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) の比較メソッドを使用して、各依存関係を以前の値と比較します。もし再レンダーが依存関係のいずれかに変更をもたらした場合、またはその引数を省略した場合、`createHandle` 関数が再実行され、新しく作成されたハンドルが ref に割り当てられます。
+* **省略可能** `dependencies`: `createHandle` コード内で参照されるすべてのリアクティブな値のリストです。リアクティブな値には、props、state、コンポーネント本体に直接宣言されたすべての変数および関数が含まれます。リンタが [React 用に設定されている場合](/learn/editor-setup#linting)、すべてのリアクティブな値が依存値として正しく指定されているか確認できます。依存値のリストは要素数が一定である必要があり、`[dep1, dep2, dep3]` のようにインラインで記述する必要があります。React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を使った比較で、それぞれの依存値を以前の値と比較します。再レンダーにより依存値のいずれかが変更された場合、または引数自体を省略した場合、`createHandle` 関数は再実行され、新しく作成されたハンドルが ref に割り当てられます。
 
 #### 返り値 {/*returns*/}
 
@@ -50,11 +50,11 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 ---
 
-## 使用方 {/*usage*/}
+## 使用法 {/*usage*/}
 
 ### 親コンポーネントにカスタム ref ハンドルを公開する {/*exposing-a-custom-ref-handle-to-the-parent-component*/}
 
-デフォルトでは、コンポーネントはその DOM ノードを親コンポーネントに公開しません。例えば、`MyInput` の親コンポーネントが `<input>` DOM ノードに[アクセスできるように](/learn/manipulation-the-dom-with-refs)したい場合は、[`forwardRef`](/reference/react/forwardRef) にオプトインする必要があります。 
+デフォルトでは、コンポーネントはその DOM ノードを親コンポーネントに公開しません。例えば、`MyInput` の親コンポーネントが `<input>` DOM ノードに[アクセスできるように](/learn/manipulation-the-dom-with-refs)したい場合は、[`forwardRef`](/reference/react/forwardRef) を使って明示的に許可する必要があります。 
 
 ```js {4}
 import { forwardRef } from 'react';
@@ -72,7 +72,7 @@ import { forwardRef, useImperativeHandle } from 'react';
 const MyInput = forwardRef(function MyInput(props, ref) {
   useImperativeHandle(ref, () => {
     return {
-      // ... あなたのメソッド ...
+      // ... your methods ...
     };
   }, []);
 
@@ -82,7 +82,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 上記のコードでは、`ref` が `<input>` に受け渡しされなくなっていることに注意してください。
 
-例えば、`<input>` DOM ノード全体を公開するのではなく、その 2 つのメソッド、`focus` と `scrollIntoView` を公開したいとします。これを行うには、実際のブラウザの DOM を別の ref に保持します。そして、`useImperativeHandle` を使用して、親コンポーネントに呼び出したいメソッドのみを含むハンドルを公開します。
+例えば、`<input>` DOM ノード全体を公開したくはないが、その 2 つのメソッド、`focus` と `scrollIntoView` は公開したいとします。これを行うには、実際のブラウザの DOM を別の ref に保持しておきます。そして、`useImperativeHandle` を使用して、親コンポーネントに呼び出してほしいメソッドのみを含むハンドルを公開します。
 
 ```js {7-14}
 import { forwardRef, useRef, useImperativeHandle } from 'react';
@@ -105,7 +105,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-これで、親コンポーネントが `MyInput` への ref を取得し、そのコンポーネントで `focus` メソッドと `scrollIntoView` メソッドを呼び出すことができるようになります。ただし、親コンポーネントは基礎となる `<input>` DOM ノードへの完全なアクセス権は持ちません。
+これで、親コンポーネントが `MyInput` への ref を取得し、そのコンポーネントで `focus` メソッドと `scrollIntoView` メソッドを呼び出すことができるようになります。ただし、親コンポーネントは背後にある `<input>` DOM ノードへの完全なアクセス権は持ちません。
 
 <Sandpack>
 
@@ -118,7 +118,7 @@ export default function Form() {
 
   function handleClick() {
     ref.current.focus();
-    // DOM ノードが公開されていないため、これでは機能しません。
+    // This won't work because the DOM node isn't exposed:
     // ref.current.style.opacity = 0.5;
   }
 
@@ -281,8 +281,8 @@ export default AddComment;
 
 <Pitfall>
 
-**ref の過度な使用に注意してください。**ref は、prop として表現できない、*命令形式*の動作にのみ使用するべきです。例えば、ノードへのスクロール、ノードへのフォーカス、アニメーションのトリガ、テキストの選択などです。
+**ref の過度な使用に注意してください。**ref は、props として表現できない、*命令型*の動作にのみ使用するべきです。例えば、ノードへのスクロール、ノードへのフォーカス、アニメーションのトリガ、テキストの選択などです。
 
-**何かを prop として表現できる場合は、ref を使用すべきではありません。**例えば、`Modal` コンポーネントから `{ open, close }` のような命令形式のハンドルを公開するのではなく、`<Modal isOpen={isOpen} />`のように、`isOpen` を prop として受け取る方が良いでしょう。[エフェクト](/learn/synchronizing-with-effects)を使用することで、命令形式の動作をプロップとして公開することができます。
+**何かを props として表現できる場合は、ref を使用すべきではありません。**例えば、`Modal` コンポーネントから `{ open, close }` のような命令型のハンドルを公開するのではなく、`<Modal isOpen={isOpen} />` のように、`isOpen` を props として受け取る方が良いでしょう。命令型の動作を props として公開する際には[エフェクト](/learn/synchronizing-with-effects)が役立ちます。
 
 </Pitfall>
