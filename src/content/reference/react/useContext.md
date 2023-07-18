@@ -4,7 +4,7 @@ title: useContext
 
 <Intro>
 
-`useContext` はコンポーネントから [コンテクスト](/learn/passing-data-deeply-with-context) を読み取り、サブスクライブするための React のフックです。
+`useContext` はコンポーネントで[コンテクスト (Context)](/learn/passing-data-deeply-with-context) の読み取りとサブスクライブ（subscribe, 変更の受け取り）を行うための React フックです。
 
 ```js
 const value = useContext(SomeContext)
@@ -20,7 +20,7 @@ const value = useContext(SomeContext)
 
 ### `useContext(SomeContext)` {/*usecontext*/}
 
-コンポーネントのトップレベルで `useContext` を呼び出して、[コンテクスト](/learn/passing-data-deeply-with-context) を読み取り、サブスクライブします。
+コンポーネントのトップレベルで `useContext` を呼び出して、[コンテクスト](/learn/passing-data-deeply-with-context)を読み取り、サブスクライブします。
 
 ```js
 import { useContext } from 'react';
@@ -34,17 +34,17 @@ function MyComponent() {
 
 #### 引数 {/*parameters*/}
 
-* `SomeContext`: 事前に [`createContext`](/reference/react/createContext) で作成したコンテクストになります。コンテクスト自体が情報を保持しているわけではなく、コンポーネントから提供したり、読み取ったりできるような情報を表しています。
+* `SomeContext`: 事前に [`createContext`](/reference/react/createContext) で作成したコンテクストです。コンテクストとはそれ自体が情報を保持しているわけではなく、コンポーネントで提供 (provide) したり読み取ったりできる「情報の種別」を表すものです。
 
 #### 返り値 {/*returns*/}
 
-`useContext` は、呼び出したコンポーネントのコンテクスト値を返します。コンポーネントがツリー内で呼び出されるとき、その上位に位置する最も近い `SomeContext.Provider` に渡された `value` として決定されます。そのようなプロバイダが存在しない場合は、返り値はそのコンテクストの [`createContext`](/reference/react/createContext) に渡した `defaultValue` になります。その返り値は常に最新になります。React は、コンテクストを読み取ったコンポーネントが変更されると、自動的に再レンダーします。
+`useContext` は、呼び出したコンポーネントに対応するコンテクストの値を返します。値は、ツリー内で `useContext` を呼び出したコンポーネントの上位かつ最も近い `SomeContext.Provider` に渡された `value` として決定されます。そのようなプロバイダが存在しない場合は、返り値はそのコンテクストの [`createContext`](/reference/react/createContext) に渡した `defaultValue` になります。返り値は常にコンテクストの最新の値です。React は、コンテクストに変更があると、それを読み取っているコンポーネントを自動的に再レンダーします。
 
 #### 注意点 {/*caveats*/}
 
-* コンポーネントの `useContext()` 呼び出しは、*同じ*コンポーネントから返されるプロバイダの影響を受けません。該当する `<Context.Provider>` は、`useContext()`を呼び出したコンポーネントの**上にある必要**があります。
-* 特定のコンテクストを使用する全ての子コンポーネントは、異なる `value` を受け取るプロバイダから始まり、React によって自動的に再レンダーします。前の値と次の値は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) で比較されます。[`memo`](/reference/react/memo) で再レンダーをスキップしても、子のプロバイダは新しいコンテクスト値を受け取ることはありません。
-* ビルドシステムから生成されたアウトプットの中にモジュールの重複があったら、（シンボリックリンクで起こり得る場合がある）コンテクストを壊す可能性があります。コンテクストを介して何かを渡すことは、コンテクストを提供するために使用する `SomeContext` と、読み込むために使用する `SomeContext` が、`===` 比較によって決定されるので、***厳密*に同じオブジェクト**なら動作します。
+* コンポーネントの `useContext()` 呼び出しは、*同じ*コンポーネントから返されるプロバイダの影響を受けません。対応する `<Context.Provider>` は、`useContext()` を呼び出すコンポーネントの***上*にある**必要があります。
+* あるコンテクストのプロバイダが異なる `value` を受け取ると、当該プロバイダより下にありそのコンテクストを使用しているすべての子コンポーネントは、React によって**自動的に再レンダーされます**。前の値と次の値は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) で比較されます。[`memo`](/reference/react/memo) を使って再レンダーをスキップする場合でも、子コンポーネントがコンテクストから新しい値を受け取ることによる再レンダーは妨げられません。
+* ビルドシステムが生成する出力の中にモジュールの重複がある場合（シンボリックリンクで起こり得る場合がある）、コンテクストが壊れる可能性があります。コンテクストを介した値の受け渡しが動作するのは、コンテクストを提供するために使用する `SomeContext` と、読み込むために使用する `SomeContext` が、`===` による比較で***厳密*に同じオブジェクト**である場合のみです。
 
 ---
 
@@ -53,7 +53,7 @@ function MyComponent() {
 
 ### ツリーの深くにデータを渡す {/*passing-data-deeply-into-the-tree*/}
 
-コンポーネントのトップレベルで `useContext` を呼び出して [コンテクスト](/learn/passing-data-deeply-with-context) を読み取り、サブスクライブします。
+コンポーネントのトップレベルで `useContext` を呼び出して[コンテクスト](/learn/passing-data-deeply-with-context)を読み取り、サブスクライブします。
 
 ```js [[2, 4, "theme"], [1, 4, "ThemeContext"]]
 import { useContext } from 'react';
@@ -63,9 +63,9 @@ function Button() {
   // ... 
 ```
 
-`useContext` は <CodeStep step={2}>コンテクストの値</CodeStep> を <CodeStep step={1}>渡したコンテクスト</CodeStep> のために返します。コンテクストの値を決定するために、React はコンポーネントツリーを探索し、特定のコンテクストに対して**最も近い上位のコンテクストプロバイダ**を見つけます。
+`useContext` は<CodeStep step={1}>渡したコンテクスト</CodeStep>に対応する<CodeStep step={2}>コンテクストの値</CodeStep>を返します。コンテクストの値を決定するために、React はコンポーネントツリーを探索し、そのコンテクストに対して**最も近い上位のコンテクストプロバイダ**を見つけます。
 
-コンテクストを `Button` に渡すために、該当のコンテクストプロバイダでラップします :
+コンテクストを上記の `Button` に渡すには、該当のボタンあるいはその親コンポーネントのいずれかを、対応するコンテクストプロバイダでラップします。
 
 ```js [[1, 3, "ThemeContext"], [2, 3, "\\"dark\\""], [1, 5, "ThemeContext"]]
 function MyPage() {
@@ -81,11 +81,11 @@ function Form() {
 }
 ```
 
-プロバイダと `Button` の間にどれだけ多くのコンポーネントの層があっても関係ありません。`Form` の内部の*どこか*で `Button` が `useContext(ThemeContext)` を呼び出すとき、値として`"dark"`を受け取ります。
+プロバイダと `Button` の間にどれだけ多くのコンポーネントが挟まっていても関係ありません。`Form` の内部の*どこか*で `Button` が `useContext(ThemeContext)` を呼び出すとき、値として `"dark"` を受け取ります。
 
 <Pitfall>
 
-`useContext()` は、呼び出すコンポーネントより最も近い上位にあるプロバイダを常に探します。上方向に探索し、`useContext()` を呼び出したコンポーネントにあるプロバイダは**考慮しません**。
+`useContext()` は常に、呼び出すコンポーネントより最も近い、*上位*にあるプロバイダを探します。上方向に探索を行うので、`useContext()` を呼び出すコンポーネント自体にあるプロバイダは**考慮しません**。
 
 </Pitfall>
 
@@ -175,9 +175,9 @@ function Button({ children }) {
 
 ---
 
-### コンテクストを介したデータの更新 {/*updating-data-passed-via-context*/}
+### コンテクスト経由で渡されたデータの更新 {/*updating-data-passed-via-context*/}
 
-多くの場合、時間とともにコンテクストを変化させたいと思うでしょう。コンテクストを更新するために、それを [state.](/reference/react/useState) と組み合わせてください。親コンポーネントで state 変数を宣言します。親コンポーネントで state 変数を宣言して、現在の state を <CodeStep step={2}>コンテクストの値</CodeStep> としてプロバイダに渡します。
+多くの場合、時間とともにコンテクストを変化させたいと思うでしょう。コンテクストを更新するには、それを [state](/reference/react/useState) と組み合わせます。親コンポーネントで state 変数を宣言し、現在の state を<CodeStep step={2}>コンテクストの値</CodeStep>としてプロバイダに渡します。
 
 ```js {2} [[1, 4, "ThemeContext"], [2, 4, "theme"], [1, 11, "ThemeContext"]]
 function MyPage() {
@@ -195,13 +195,13 @@ function MyPage() {
 }
 ```
 
-これにより、プロバイダの内部にある、どの `Button` も現在の `theme` 値を受け取るようになります。もし setTheme を呼び出してプロバイダに渡す theme 値を更新すると、すべての `Button` コンポーネントは新たな `'light'` 値で再レンダーされます。
+これにより、プロバイダの内部にある、どの `Button` も現在の `theme` の値を受け取るようになります。`setTheme` を呼び出してプロバイダに渡す `theme` 値を更新すると、すべての `Button` コンポーネントは新たな値である `'light'` を使って再レンダーされます。
 
 <Recipes titleText="Examples of updating context" titleId="examples-basic">
 
-#### コンテクストを介して値を更新する {/*updating-a-value-via-context*/}
+#### コンテクスト経由で渡された値の更新 {/*updating-a-value-via-context*/}
 
-この例では、`MyApp` コンポーネントが state 変数を保持し、それが `ThemeContext` プロバイダに渡されます。「ダークモード」のチェックボックスを選択すると、ステートが更新されます。提供された値を変更すると、そのコンテクストを使用しているすべてのコンポーネントが再レンダーされます。
+この例では、`MyApp` コンポーネントが state 変数を保持し、それが `ThemeContext` プロバイダに渡されます。"Dark mode" のチェックボックスを選択すると、state が更新されます。プロバイダに渡す値を更新すると、そのコンテクストを使用しているすべてのコンポーネントが再レンダーされます。
 
 <Sandpack>
 
@@ -299,13 +299,13 @@ function Button({ children }) {
 
 </Sandpack>
 
-`value="dark"` は `"dark"` という文字列を渡しますが、`value={theme}` は JavaScript の `theme` 変数の値を [JSX の中括弧](/learn/javascript-in-jsx-with-curly-braces) で渡しすことに注意してください。中括弧を使うことで、文字列以外のコンテクスト値も渡すことができます。
+`value="dark"` は `"dark"` という文字列を渡しますが、`value={theme}` は JavaScript の `theme` 変数の値を [JSX の波括弧](/learn/javascript-in-jsx-with-curly-braces)で渡していることに注意してください。波括弧を使うことで、文字列以外のコンテクスト値も渡すことができます。
 
 <Solution />
 
 #### コンテクストを介してオブジェクトを更新する {/*updating-an-object-via-context*/}
 
-この例では、オブジェクトを保持する `currentUser` の state 変数があります。`{ currentUser, setCurrentUser }` を 1 つのオブジェクトにまとめ、`value={}` の中でコンテクストを介して渡します。これにより、`LoginButton` のような下位のコンポーネントは `currentUser` と `setCurrentUser` の両方を読み取り、必要に応じて `setCurrentUser` を呼び出すことができます。
+この例では、オブジェクトを保持する `currentUser` という state 変数があります。`{ currentUser, setCurrentUser }` という形で 1 つのオブジェクトにまとめ、`value={}` の中でコンテクストを介して渡しています。これにより、`LoginButton` のような下位のコンポーネントは `currentUser` と `setCurrentUser` の両方を読み取り、必要に応じて `setCurrentUser` を呼び出すことができます。
 
 <Sandpack>
 
@@ -397,7 +397,7 @@ label {
 
 #### 複数のコンテクスト {/*multiple-contexts*/}
 
-この例では、2 つの独立したコンテクストがあります。`CurrentUserContext` は現在のユーザを表すオブジェクトを保持している間、`ThemeContext` を文字列として現在のテーマを提供します
+この例には 2 つの独立したコンテクストがあります。`ThemeContext` は現在のテーマを文字列として提供し、一方で `CurrentUserContext` は現在のユーザを表すオブジェクトを保持しています。
 
 <Sandpack>
 
@@ -564,7 +564,7 @@ label {
 
 #### プロバイダをコンポーネントに抽出する {/*extracting-providers-to-a-component*/}
 
-アプリが大きくなると、アプリのルートに近くにコンテクストの「ピラミッド」ができるかもしれません。何も問題はないです。ですが、入れ子になった見た目が気に入らないなら、プロバイダを単一のコンポーネントに抽出することができます。この例では、`MyProviders` は「配管」を隠蔽し、渡された子のプロバイダーを必要なプロバイダーの中にレンダーします。`theme` と `setTheme` の state は `MyApp` 自身の中で必要なので、`MyApp` はまだその state の一部を所有していることに注意してください。
+アプリが大きくなるにつれ、アプリのルート近くにコンテクストの「ピラミッド」ができることでしょう。これには何の問題もありません。ですが、入れ子になった見た目が気に入らない場合、プロバイダを単一のコンポーネントに抽出することができます。この例では、`MyProviders` が「配管」を隠蔽し、アプリが必要とするプロバイダの内部に、渡された子をレンダーしています。`theme` state と `setTheme` は `MyApp` 自身の中で必要ですので、この state は依然 `MyApp` が所有していることに注意してください。
 
 <Sandpack>
 
@@ -737,11 +737,11 @@ label {
 
 <Solution />
 
-#### レデューサ (reducer) とコンテクストを組み合わせてスケーリングアップする {/*scaling-up-with-context-and-a-reducer*/}
+#### コンテクストとリデューサでスケールアップ {/*scaling-up-with-context-and-a-reducer*/}
 
-大規模なアプリでは、コンテクストと [reducer](/reference/react/useReducer) を組み合わせて、コンポーネントから状態に関連するロジックを抽出するのが一般的です。この例では、すべての「配線」は `TasksContext.js` に隠蔽されており、リデューサと 2 つの分離したコンテクストが含まれています。
+大規模なアプリでは、コンテクストと[リデューサ (reducer)](/reference/react/useReducer) を組み合わせて、コンポーネントからある state に関連するロジックを抽出することが一般的に行われます。以下の例では、すべての「繋ぎ込み」コードが、リデューサと 2 つの独立したコンテクストが含まれる `TasksContext.js` 内に隠蔽されています。
 
-この例の[詳細なウォークスルー](/learn/scaling-up-with-reducer-and-context)を読んでください。
+この例の[詳細なウォークスルーはこちら](/learn/scaling-up-with-reducer-and-context)。
 
 <Sandpack>
 
@@ -947,25 +947,25 @@ ul, li { margin: 0; padding: 0; }
 
 ---
 
-### フォールバックの初期値の指定 {/*specifying-a-fallback-default-value*/}
+### フォールバックとなるデフォルト値の指定 {/*specifying-a-fallback-default-value*/}
 
-React が特定の<CodeStep step={1}>コンテクスト</CodeStep>のプロバイダを親ツリーで見つけれたら、`useContext()` が返すコンテクストの値は、[コンテキストを作成](/reference/react/createContext)したときに指定した<CodeStep step={3}>初期値</CodeStep>と等しくなります：
+React がある<CodeStep step={1}>コンテクスト</CodeStep>に対応するプロバイダを親ツリーで見つけられない場合、`useContext()` が返すコンテクストの値は、[コンテクストを作成](/reference/react/createContext)したときに指定した<CodeStep step={3}>デフォルト値</CodeStep>と等しくなります：
 
 ```js [[1, 1, "ThemeContext"], [3, 1, "null"]]
 const ThemeContext = createContext(null);
 ```
 
-初期値は**絶対に変更されません**。コンテクストを更新したいなら、[上記で説明したように](#updating-data-passed-via-context)、state と一緒に使用します。
+デフォルト値は**絶対に変更されません**。コンテクストを更新したい場合、[上記で説明したように](#updating-data-passed-via-context)、state と組み合わせて使用します。
 
-多くの場合、`null` の代わりに初期値として意味のある値を使います。例えば :
+多くの場合、`null` の代わりにデフォルト値として使える、意味のある値があるはずです。例えば：
 
 ```js [[1, 1, "ThemeContext"], [3, 1, "light"]]
 const ThemeContext = createContext('light');
 ```
 
-こうすることで、該当のプロバイダーがないコンポーネントを間違ってレンダーしてしまっても、壊れることはありません。テスト環境で多くのプロバイダを設定しなくても、コンポーネントがうまく動作するようになります。
+こうすれば、対応するプロバイダなしにコンポーネントを間違ってレンダーしてしまっても、壊れることはありません。テスト環境でも、テストコードにプロバイダをたくさん設定せずともコンポーネントがうまく動作するようになります。
 
-下記の例では、「テーマの切り替え」ボタンは常に light な色調になります。それは**どのテーマコンテクストプロバイダの外部にあるため**であり、初期値としてのコンテクストテーマ値は `'light'` だからです。テーマの初期値を `'dark'` に変更してみてください。
+下記の例では、"Toggle theme" ボタンは**あらゆるテーマコンテクストプロバイダの外部にあり**、かつテーマコンテクストのデフォルト値が `'light'` であるため、常に light の色調で表示されます。テーマの初期値を `'dark'` に変更してみてください。
 
 <Sandpack>
 
@@ -1062,9 +1062,9 @@ function Button({ children, onClick }) {
 
 ---
 
-### ツリーにある一部のコンテクストを上書きする {/*overriding-context-for-a-part-of-the-tree*/}
+### ツリーの一部でコンテクストの値を上書きする {/*overriding-context-for-a-part-of-the-tree*/}
 
-ツリーにある異なる値を持つプロバイダでラップすることにより、一部のコンテクストを上書きできます。
+異なる値を持つプロバイダでツリーの一部をラップすることにより、その部分のコンテクストを上書きできます。
 
 ```js {3,5}
 <ThemeContext.Provider value="dark">
@@ -1076,7 +1076,7 @@ function Button({ children, onClick }) {
 </ThemeContext.Provider>
 ```
 
-必要な回数だけ、プロバイダをネストして上書きすることができます。
+プロバイダのネストと上書きは必要なだけ行うことができます。
 
 <Recipes title="Examples of overriding context">
 
@@ -1186,11 +1186,11 @@ footer {
 
 <Solution />
 
-#### 自動的にネストされた見出し {/*automatically-nested-headings*/}
+#### 自動的な見出しのネスト {/*automatically-nested-headings*/}
 
-コンテクストプロバイダをネストすることで、情報を「累積」することができます。ここの例では、`Section` コンポーネントはセクションのネストの深さを指定する `LevelContext` を追跡しています。親セクションから `LevelContext` を読み取り、その数値に 1 を加えた `LevelContext` を子に提供します。その結果、`Heading` コンポーネントは自動的に、どの `<h1>`、`<h2>`、`<h3>`、... のタグを使用するかを、自身がどれだけの `Section` コンポーネントの内部にネストされているかに伴って決まっていきます。
+コンテクストプロバイダをネストすることで、情報の「累積計算」ができます。この例では、`Section` コンポーネントはセクションのネストの深さを指定する `LevelContext` を管理しています。親セクションから `LevelContext` を読み取り、その数値に 1 を加えた `LevelContext` の値を子に提供します。その結果、`Heading` コンポーネントは、`<h1>`、`<h2>`、`<h3>`、... のうちどのタグを使用するかを、自身の外側にネストされている `Section` コンポーネントの数に従って、自動的に決定できます。
 
-この例の[詳細なウォークスルー](/learn/passing-data-deeply-with-context)を読んでください。
+この例の[詳細なウォークスルーはこちら](/learn/passing-data-deeply-with-context)。
 
 <Sandpack>
 
@@ -1309,9 +1309,9 @@ function MyApp() {
 }
 ```
 
-ここでは、<CodeStep step={2}>context value</CodeStep> は、2 つのプロパティを持つ JavaScript のオブジェクトで、そのうちの 1 つは関数になります。`MyApp` が再レンダーされる度に（例えば、ルート更新など）、これは*異なる*オブジェクトを指し、*異なる*関数を指すため、React はツリーにある `useContext(AuthContext)` を呼び出す、すべてのコンポーネントを再レンダーしなければなりません。
+ここでは、<CodeStep step={2}>コンテクストの値</CodeStep>は、2 つのプロパティを持つ JavaScript オブジェクトであり、そのうちの 1 つは関数になります。`MyApp` が再レンダーされるたびに（例えば、ページ遷移など）、これは*異なる*関数の入った*異なる*オブジェクトを指すため、React はツリーにある `useContext(AuthContext)` を呼び出しているすべてのコンポーネントを再レンダーしなければなりません。
 
-小規模なアプリでは、問題になりません。ですが、`currentUser` のような基礎となるデータが変更されていないなら、再レンダーする必要はありません。React がその事実を最大限に活用できるように、`login` 関数を [`useCallback`](/reference/react/useCallback) でラップし、オブジェクトの生成を [`useMemo`](/reference/react/useMemo) にラップすることができます。これはパフォーマンスの最適化です：
+小規模なアプリでは、問題になりません。ですが、`currentUser` のような内部のデータが変更されていないなら、再レンダーする必要はありません。データが変わっていないという事実を React が最大限に活用できるように、`login` 関数を [`useCallback`](/reference/react/useCallback) でラップし、オブジェクトの生成を [`useMemo`](/reference/react/useMemo) でラップすることができます。これはパフォーマンスの最適化です：
 
 ```js {6,9,11,14,17}
 import { useCallback, useMemo } from 'react';
@@ -1337,25 +1337,25 @@ function MyApp() {
 }
 ```
 
-この変更の結果、`MyApp` が再レンダーする必要があっても、`currentUser` が変更されていない限り、`useContext(AuthContext)` を呼び出すコンポーネントを再レンダーする必要はありません。
+この変更の結果、`MyApp` が再レンダーする必要があっても、`currentUser` が変更されていない限り、`useContext(AuthContext)` を呼び出しているコンポーネントを再レンダーする必要はなくなります。
 
-詳しくは [`useMemo`](/reference/react/useMemo#skipping-re-rendering-of-components) と [`useCallback`](/reference/react/useCallback#skipping-re-rendering-of-components) について、読んでください。
+詳しくは [`useMemo`](/reference/react/useMemo#skipping-re-rendering-of-components) と [`useCallback`](/reference/react/useCallback#skipping-re-rendering-of-components) を参照してください。
 
 ---
 
 ## トラブルシューティング {/*troubleshooting*/}
 
-### MyComponent はプロバイダからの値を見れません {/*my-component-doesnt-see-the-value-from-my-provider*/}
+### プロバイダに渡した値が自分のコンポーネントから見えない {/*my-component-doesnt-see-the-value-from-my-provider*/}
 
-これが起こる一般的な方法はいくつかあります：
+これが起こる一般的な理由はいくつかあります：
 
-1. `useContext()` を呼び出すコンポーネントと同じ箇所（または、下位の箇所）で `<SomeContext.Provider>` をレンダーします。`<SomeContext.Provider>` を `useContext()` を呼び出すコンポーネントの*上位*や*外部*に移動してください。
-2. コンポーネントを `<SomeContext.Provider>` でラップし忘れているかもしれませんし、思っていたよりもツリー内の違うの箇所に配置してしまったかもしれません。[React DevTools.](/learn/react-developer-tools) を使って階層が正しいか確認してみてください。
-3. プロバイダーコンポーネントから見た `SomeContext` と、利用側のコンポーネントから見た `SomeContext` が、ビルドツールの問題により 2 つの異なるオブジェクトになっているかもしれません。例えば、シンボリックリンクを使用している場合などに発生します。これを確認するために、それらを `window.SomeContext1` や `window.SomeContext2` のようなグローバル変数に割り当て、コンソールで `window.SomeContext1 === window.SomeContext2` が成り立つか確認してみてください。もし同一でないなら、ビルドツールレベルで、その問題を修正する必要があります。
+1. `useContext()` を呼び出しているコンポーネントと同じ（または下位の）コンポーネントで `<SomeContext.Provider>` をレンダーしている。`<SomeContext.Provider>` を `useContext()` を呼び出すコンポーネントの*外側かつ上位*に移動してください。
+2. コンポーネントを `<SomeContext.Provider>` でラップし忘れているか、ツリー内の思っているのとは違う場所に配置してしまっている。[React DevTools](/learn/react-developer-tools) を使ってツリー階層が正しいか確認してみてください。
+3. プロバイダコンポーネントから見た `SomeContext` と、利用側のコンポーネントから見た `SomeContext` が、ビルドツールの問題により 2 つの異なるオブジェクトになっている。これは例えば、シンボリックリンクを使用している場合などに発生します。これを確認するために、それらを `window.SomeContext1` や `window.SomeContext2` のようなグローバル変数に割り当て、コンソールで `window.SomeContext1 === window.SomeContext2` が成り立つか確認してみてください。もし同一でないなら、ビルドツールのレベルで、その問題を修正する必要があります。
 
-### 初期値は違うのに、コンテクストからは常に `undefined` が返ってくる {/*i-am-always-getting-undefined-from-my-context-although-the-default-value-is-different*/}
+### 違うデフォルト値を指定しているのにコンテクストから常に `undefined` が返ってくる {/*i-am-always-getting-undefined-from-my-context-although-the-default-value-is-different*/}
 
-ツリーの中に `value` なしのプロバイダがあるかもしれません：
+ツリーの中に `value` のないプロバイダがあるのかもしれません：
 
 ```js {1,2}
 // 🚩 Doesn't work: no value prop
@@ -1364,9 +1364,9 @@ function MyApp() {
 </ThemeContext.Provider>
 ```
 
-`value` を指定し忘れたら、`value={undefined}`を渡すようなことと同じです。
+`value` を指定し忘れた場合、それは `value={undefined}` を渡すのと同じです。
 
-また、誤って違うプロップ名を使っているのかもしれません：
+また、誤って props として違う名前を使っているのかもしれません：
 
 ```js {1,2}
 // 🚩 Doesn't work: prop should be called "value"
@@ -1375,7 +1375,7 @@ function MyApp() {
 </ThemeContext.Provider>
 ```
 
-どちらの場合も、React からの警告がコンソールに表示されるはずです。これらを修正するには、プロップ `value` を呼び出します：
+どちらの場合も、React からの警告がコンソールに表示されるはずです。修正するには、props として `value` を使います：
 
 ```js {1,2}
 // ✅ Passing the value prop
@@ -1384,4 +1384,4 @@ function MyApp() {
 </ThemeContext.Provider>
 ```
 
-[createContext(defaultValue) から呼び出された初期値](#specifying-a-fallback-default-value) は、**一致するプロバイダが存在しない場合**にのみ使用されることに、注意してください。親のツリーのどこかに `<SomeContext.Provider value={undefined}>` コンポーネントがあれば、`useContext(SomeContext)` を呼び出すコンポーネントのコンテクスト値として `undefined` を*必ず*受け取るでしょう。
+[createContext(defaultValue) で指定するデフォルト値](#specifying-a-fallback-default-value)は、ツリーの上側に**一致するプロバイダが一切存在しない場合**にのみ使用されることに注意してください。親のツリーのどこかに `<SomeContext.Provider value={undefined}>` のようなコンポーネントがあれば、`useContext(SomeContext)` を呼び出すコンポーネントはコンテクスト値として*その* `undefined` を受け取ります。
