@@ -10,9 +10,9 @@ title: "組み込みのReactフック"
 
 ---
 
-## State フック {/*state-hooks*/}
+## state フック {/*state-hooks*/}
 
-*State* は、ユーザの入力などの情報を[コンポーネントに記憶]((/learn/state-a-components-memory))させることができます。例えば、フォームコンポーネントは入力された文字を保存し、画像ギャラリーのコンポーネントは選択された画像を保持できます。
+*state* は、ユーザの入力などの情報を[コンポーネントに記憶](/learn/state-a-components-memory)させることができます。例えば、フォームコンポーネントは入力された文字を保存し、画像ギャラリーのコンポーネントは選択された画像を保持できます。
 
 コンポーネントに state を追加するには、次のフックのいずれかを使います： 
 
@@ -27,7 +27,7 @@ function ImageGallery() {
 
 ---
 
-## Context フック {/*context-hooks*/}
+## context フック {/*context-hooks*/}
 
 *Context* を用いると、コンポーネントは props を渡すことなく、[離れた親要素から情報を取得できるようになります。](/learn/passing-props-to-a-component)例えば、アプリの最上位のコンポーネントは、現在の UI テーマをコンポーネントの階層に関係なく全てのコンポーネントに渡すことができます。
 
@@ -41,12 +41,12 @@ function Button() {
 
 ---
 
-## Ref フック {/*ref-hooks*/}
+## ref フック {/*ref-hooks*/}
 
-*Refs* を用いると、コンポーネントは[レンダリングに用いない情報](/learn/referencing-values-with-refs)を保持することができます。例えば DOM node やタイムアウト ID などが当てはまるでしょう。State と違い、Ref の値の更新はコンポーネントを再レンダーしません。Ref は、React パラダイムからの「脱出ハッチ」です。これらは組み込みのブラウザ API のような React ではないシステムを操作するときに役立ちます。
+*ref* を用いると、コンポーネントは[レンダリングに用いない情報](/learn/referencing-values-with-refs)を保持することができます。例えば DOM node やタイムアウト ID などが当てはまるでしょう。state と違い、ref の値の更新はコンポーネントを再レンダーしません。ref は、React パラダイムからの「脱出ハッチ」です。これらは組み込みのブラウザ API のような React ではないシステムを操作するときに役立ちます。
 
 * [`useRef`](/reference/react/useRef) は ref を宣言します。useRef にはどんな値でも格納できますが、多くの場合、DOM ノードを格納するために使われます。
-* [`useImperativeHandle`](/reference/react/useImperativeHandle) を用いると、コンポーネントが公開する Ref をカスタマイズできます。これは殆ど用いられることはありません。
+* [`useImperativeHandle`](/reference/react/useImperativeHandle) を用いると、コンポーネントが公開する ref をカスタマイズできます。これは殆ど用いられることはありません。
 
 ```js
 function Form() {
@@ -56,9 +56,9 @@ function Form() {
 
 ---
 
-## Effect フック {/*effect-hooks*/}
+## エフェクト フック {/*effect-hooks*/}
 
-*Effect* は、[コンポーネントを外部システムに接続し、同期させる](/learn/synchronizing-with-effects)ことができます。これには、ネットワーク、ブラウザの DOM、アニメーション、別の UI ライブラリを使って書かれたウィジェット、その他の React 以外のコードの処理が含まれています。
+*エフェクト*は、[コンポーネントを外部システムに接続し、同期させる](/learn/synchronizing-with-effects)ことができます。これには、ネットワーク、ブラウザの DOM、アニメーション、別の UI ライブラリを使って書かれたウィジェット、その他の React 以外のコードの処理が含まれています。
 
 * [`useEffect`](/reference/react/useEffect) は外部のシステムとコンポーネントを接続します。
 
@@ -72,18 +72,16 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Effect は、React パラダイムからの「脱出ハッチ」のようなものです。Effect をアプリケーションのデータフローを調整するために使ってはいけません。外部のシステムとやりとりを行わないならば、[effects は必要ないかもしれません。](/learn/you-might-not-need-an-effect)
+エフェクトは、React パラダイムからの「脱出ハッチ」のようなものです。エフェクトをアプリケーションのデータフローを調整するために使ってはいけません。外部のシステムとやりとりを行わないならば、[エフェクトは必要ないかもしれません。](/learn/you-might-not-need-an-effect)
 
 `useEfefct` には、タイミングの違いによってまれに使われることのある 2 つのバリエーションがあります： 
-
-useLayoutEffect は、ブラウザが画面を再描画する前に発火します。ここでレイアウトを測定できます。
 
 * [`useLayoutEffect`](/reference/react/useLayoutEffect) はブラウザが画面を再描画する前に発火します。このフックでレイアウトを測定できます。
 * [`useInsertionEffect`](/reference/react/useInsertionEffect) は React が DOM に変更を加える前に発火します。ライブラリはダイナミック CSS をこのフックで挿入できます。
 
 ---
 
-## Performance フック {/*performance-hooks*/}
+## performance フック {/*performance-hooks*/}
 
 再レンダーのパフォーマンスを最適化する通常の方法は、不要な処理を減らすことです。例えばキャッシュを再利用したり、データの変更がない場合の再レンダーをスキップしたりするよう、React に伝えることができます。
 
@@ -99,9 +97,7 @@ function TodoList({ todos, tab, theme }) {
 }
 ```
 
-画面を更新するために再レンダーをスキップできない場合もあるでしょう。
-
-その場合、同期が必要なブロック更新 (ユーザの文字入力など）を、ユーザ インターフェイスをブロックする必要のない非ブロック更新 (図の更新など）から分離することで、パフォーマンスを向上することができます。
+画面を更新するために再レンダーをスキップできない場合もあるでしょう。その場合、同期が必要なブロック更新（ユーザの文字入力など）を、ユーザ インターフェイスをブロックする必要のない非ブロック更新（図の更新など）から分離することで、パフォーマンスを向上することができます。
 
 レンダリングを優先するには、これらのフックを用いることができます： 
 
