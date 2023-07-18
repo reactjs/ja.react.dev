@@ -54,7 +54,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 ### 親コンポーネントにカスタム ref ハンドルを公開する {/*exposing-a-custom-ref-handle-to-the-parent-component*/}
 
-デフォルトでは、コンポーネントはその DOM ノードを親コンポーネントに公開しません。例えば、`MyInput` の親コンポーネントが `<input>` DOM ノードに[アクセスできるように](/learn/manipulation-the-dom-with-refs)したい場合は、[`forwardRef`](/reference/react/forwardRef) を使って明示的に許可する必要があります。 
+デフォルトでは、コンポーネントはその DOM ノードを親コンポーネントに公開しません。例えば、`MyInput` の親コンポーネントが `<input>` DOM ノードに[アクセスできるように](/learn/manipulating-the-dom-with-refs)したい場合は、[`forwardRef`](/reference/react/forwardRef) を使って明示的に許可する必要があります。 
 
 ```js {4}
 import { forwardRef } from 'react';
