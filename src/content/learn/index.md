@@ -316,7 +316,7 @@ function MyButton() {
   // ...
 ```
 
-`useState` からは 2 つのものが得られます。現在の state (`count`) と、それを更新するための関数 (`setCount`) です。名前は何でも構いませんが、慣習的には `[something], setSomething]` のように記述します。
+`useState` からは 2 つのものが得られます。現在の state (`count`) と、それを更新するための関数 (`setCount`) です。名前は何でも構いませんが、慣習的には `[something, setSomething]` のように記述します。
 
 ボタンが初めて表示されるとき、`count` は `0` になります。これは `useState()` に `0` を渡したからです。state を変更したいときは、`setCount()` を呼び出し、新しい値を渡します。このボタンをクリックすると、カウンタが増加します：
 
