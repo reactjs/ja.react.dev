@@ -1,10 +1,10 @@
 ---
-title: "組み込みのReactフック"
+title: "組み込みの React フック"
 ---
 
 <Intro>
 
-*フック* を用いると、コンポーネントから様々な React の機能を使えるようになります。組み込まれたフックを使うこともできますし、組み合わせて自分だけのものを作ることもできます。このページでは、React に組み込まれた全てのフックを説明します。
+*フック*を用いると、コンポーネントから様々な React の機能を使えるようになります。組み込みのフックを使うこともできますし、組み合わせて自分だけのものを作ることもできます。このページでは、React に組み込まれた全てのフックを説明します。
 
 </Intro>
 
@@ -12,12 +12,12 @@ title: "組み込みのReactフック"
 
 ## state フック {/*state-hooks*/}
 
-*state* は、ユーザの入力などの情報を[コンポーネントに記憶](/learn/state-a-components-memory)させることができます。例えば、フォームコンポーネントは入力された文字を保存し、画像ギャラリーのコンポーネントは選択された画像を保持できます。
+*state* を使うと、ユーザの入力などの情報を[コンポーネントに「記憶」](/learn/state-a-components-memory)させることができます。例えば、フォームコンポーネントは入力された文字を保持し、画像ギャラリのコンポーネントは選択された画像を保持できます。
 
-コンポーネントに state を追加するには、次のフックのいずれかを使います： 
+コンポーネントに state を追加するには、次のフックのいずれかを使います：
 
-* [`useState`](/reference/react/useState) は直接アップデート可能な state 変数を定義します
-* [`useReducer`](/reference/react/useReducer) は、[reducer function](/learn/extracting-state-logic-into-a-reducer) 内でアップデートロジックを用いた state 変数を定義します。
+* [`useState`](/reference/react/useState) は直接的に更新できる state 変数を定義します。
+* [`useReducer`](/reference/react/useReducer) は、[リデューサ関数](/learn/extracting-state-logic-into-a-reducer)内に書いたロジックを用いて更新を行う state 変数を定義します。
 
 ```js
 function ImageGallery() {
@@ -27,11 +27,11 @@ function ImageGallery() {
 
 ---
 
-## context フック {/*context-hooks*/}
+## コンテクストフック {/*context-hooks*/}
 
-*Context* を用いると、コンポーネントは props を渡すことなく、[離れた親要素から情報を取得できるようになります。](/learn/passing-props-to-a-component)例えば、アプリの最上位のコンポーネントは、現在の UI テーマをコンポーネントの階層に関係なく全てのコンポーネントに渡すことができます。
+*コンテクスト*を用いると、コンポーネントは props を渡すことなく、[離れた親要素から情報を取得できるようになります](/learn/passing-props-to-a-component)。例えば、アプリの最上位のコンポーネントが、現在の UI テーマをコンポーネントの階層に関係なく全てのコンポーネントに渡すことができます。
 
-* [`useContext`](/reference/react/useContext) を用いて値を使用できるようにします。
+* [`useContext`](/reference/react/useContext) は、コンテクストの値を読み取り、変更を受け取れるようにします。
 
 ```js
 function Button() {
@@ -43,10 +43,10 @@ function Button() {
 
 ## ref フック {/*ref-hooks*/}
 
-*ref* を用いると、コンポーネントは[レンダリングに用いない情報](/learn/referencing-values-with-refs)を保持することができます。例えば DOM node やタイムアウト ID などが当てはまるでしょう。state と違い、ref の値の更新はコンポーネントを再レンダーしません。ref は、React パラダイムからの「脱出ハッチ」です。これらは組み込みのブラウザ API のような React ではないシステムを操作するときに役立ちます。
+*ref* を用いると、コンポーネントは DOM ノードやタイムアウト ID などの、[レンダーに用いない情報を保持](/learn/referencing-values-with-refs)することができます。state と違い、ref の値を更新してもコンポーネントは再レンダーされません。ref は、React パラダイムからの「避難ハッチ」です。これらは組み込みのブラウザ API などの、React 外のシステムを取り扱うときに役立ちます。
 
 * [`useRef`](/reference/react/useRef) は ref を宣言します。useRef にはどんな値でも格納できますが、多くの場合、DOM ノードを格納するために使われます。
-* [`useImperativeHandle`](/reference/react/useImperativeHandle) を用いると、コンポーネントが公開する ref をカスタマイズできます。これは殆ど用いられることはありません。
+* [`useImperativeHandle`](/reference/react/useImperativeHandle) を用いると、コンポーネントが公開する ref をカスタマイズできます。これはほとんど用いられることはありません。
 
 ```js
 function Form() {
@@ -56,9 +56,9 @@ function Form() {
 
 ---
 
-## エフェクト フック {/*effect-hooks*/}
+## エフェクトフック {/*effect-hooks*/}
 
-*エフェクト*は、[コンポーネントを外部システムに接続し、同期させる](/learn/synchronizing-with-effects)ことができます。これには、ネットワーク、ブラウザの DOM、アニメーション、別の UI ライブラリを使って書かれたウィジェット、その他の React 以外のコードの処理が含まれています。
+*エフェクト*を使うことで、[コンポーネントを外部システムに接続し、同期させる](/learn/synchronizing-with-effects)ことができます。これには、ネットワーク、ブラウザの DOM、アニメーション、別の UI ライブラリを使って書かれたウィジェット、その他の非 React コードの処理が含まれます。
 
 * [`useEffect`](/reference/react/useEffect) は外部のシステムとコンポーネントを接続します。
 
@@ -72,23 +72,23 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-エフェクトは、React パラダイムからの「脱出ハッチ」のようなものです。エフェクトをアプリケーションのデータフローを調整するために使ってはいけません。外部のシステムとやりとりを行わないならば、[エフェクトは必要ないかもしれません。](/learn/you-might-not-need-an-effect)
+エフェクトは、React パラダイムからの「脱出ハッチ」です。エフェクトをアプリケーションのデータフローを調整するために使ってはいけません。外部のシステムとやりとりを行わないならば、[エフェクトは必要ないかもしれません](/learn/you-might-not-need-an-effect)。
 
-`useEfefct` には、タイミングの違いによってまれに使われることのある 2 つのバリエーションがあります： 
+`useEffect` には、実行タイミングが異なり、まれに使われることのある 2 つのバリエーションがあります： 
 
 * [`useLayoutEffect`](/reference/react/useLayoutEffect) はブラウザが画面を再描画する前に発火します。このフックでレイアウトを測定できます。
-* [`useInsertionEffect`](/reference/react/useInsertionEffect) は React が DOM に変更を加える前に発火します。ライブラリはダイナミック CSS をこのフックで挿入できます。
+* [`useInsertionEffect`](/reference/react/useInsertionEffect) は React が DOM に変更を加える前に発火します。ライブラリは動的な CSS をこのフックで挿入できます。
 
 ---
 
-## performance フック {/*performance-hooks*/}
+## パフォーマンス関連フック {/*performance-hooks*/}
 
-再レンダーのパフォーマンスを最適化する通常の方法は、不要な処理を減らすことです。例えばキャッシュを再利用したり、データの変更がない場合の再レンダーをスキップしたりするよう、React に伝えることができます。
+再レンダーのパフォーマンスを最適化するためのよくある方法は、不要な処理を減らすことです。例えばキャッシュ済みの計算結果を再利用したり、データの変更がない場合の再レンダーをスキップしたりするよう、React に伝えることができます。
 
-不要な処理やレンダリングを減らすためには、これらのフックを用いることができます： 
+不要な計算やレンダーをスキップするためには、以下のフックを用いることができます： 
 
 - [`useMemo`](/reference/react/useMemo) を用いると高負荷な計算の結果をキャッシュできます。
-- [`useCallback`](/reference/react/useCallback) を用いると最適化されたコンポーネントに渡す前の段階で、関数定義をキャッシュできます。
+- [`useCallback`](/reference/react/useCallback) を用いると、最適化済みのコンポーネントに渡すために関数定義をキャッシュしておくことができます。
 
 ```js
 function TodoList({ todos, tab, theme }) {
@@ -97,25 +97,25 @@ function TodoList({ todos, tab, theme }) {
 }
 ```
 
-画面を更新するために再レンダーをスキップできない場合もあるでしょう。その場合、同期が必要なブロック更新（ユーザの文字入力など）を、ユーザ インターフェイスをブロックする必要のない非ブロック更新（図の更新など）から分離することで、パフォーマンスを向上することができます。
+画面の更新が実際にあるため、再レンダーをスキップできない場合もあるでしょう。その場合、同期的に行う必要があるユーザインターフェイスをブロックする更新（ユーザの文字入力など）を、ユーザインターフェイスをブロックする必要のないノンブロッキングな更新（図の更新など）から分離することで、パフォーマンスを向上することができます。
 
-レンダリングを優先するには、これらのフックを用いることができます： 
+レンダーの優先度付けを行うために、以下のフックを用いることができます： 
 
-- [`useTransition`](/reference/react/useTransition) を用いると、状態の遷移を非ブロックとしてマークし、他のアップデートによる割り込みを許可します。
-- [`useDeferredValue`](/reference/react/useDeferredValue) を用いると、UI の重要でない部分の更新を延期して他の部分を先に更新させることができます。
+- [`useTransition`](/reference/react/useTransition) を用いることで、state の遷移をノンブロッキングなものとしてマークし、他の更新による割り込みを許可します。
+- [`useDeferredValue`](/reference/react/useDeferredValue) を用いると、UI の重要でない部分の更新を遅延させて、他の部分を先に更新させることができます。
 
 ---
 
 ## その他のフック {/*other-hooks*/}
 
-これらのフックはライブラリの開発者には便利かもしれません。しかし、アプリケーションのコードでは通常は用いられることはありません。
+これらのフックはライブラリの開発者には有用ですが、アプリケーションコードでは通常は用いられることはありません。
 
 - [`useDebugValue`](/reference/react/useDebugValue) を用いると、React DevTools が表示するカスタムフックのラベルをカスタマイズできます。
-- [`useId`](/reference/react/useId) を用いると、コンポーネントがユニークな ID をコンポーネントそのものに関連付けることができます。通常はアクセシビリティ API とともに使用されます。 
+- [`useId`](/reference/react/useId) を用いると、コンポーネントにユニークな ID を関連付けることができます。通常はアクセシビリティ API とともに使用されます。 
 - [`useSyncExternalStore`](/reference/react/useSyncExternalStore) を用いると、コンポーネントは外部のストアを参照できるようになります。
 
 ---
 
 ## 独自のフック {/*your-own-hooks*/}
 
-独自のカスタムフックを[ JavaScript の関数として定義](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component)することもできます。
+JavaScript の関数として[独自のカスタムフックを定義](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component)することもできます。
