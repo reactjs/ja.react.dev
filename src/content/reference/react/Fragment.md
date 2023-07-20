@@ -33,7 +33,7 @@ title: <Fragment> (<>...</>)
 
 - `key` をフラグメントに渡したい場合は、`<>...</>` 構文を使用することはできません。`'react'` から `Fragment` を明示的にインポートし、`<Fragment key={yourKey}>...</Fragment>` をレンダーしなければなりません。
 
-- React は、`<><Child /></>` のレンダーから `[<Child />]` に変更されるときか戻るとき、または `<><Child /></>` のレンダーから `<Child />` に変更されるときや戻るときは [state はリセット](/learn/preserving-and-resetting-state)されません。これは 1 つの階層のときのみ動作します：例えば、`<><><Child /></></>` から `<Child />` への変更は state がリセットされます。詳細なセマンティクス（semantics, 意味論）は[こちら](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)を参照してください。
+- React は、`<><Child /></>` のレンダーから `[<Child />]` に変更されるときか戻るとき、または `<><Child /></>` のレンダーから `<Child />` に変更されるときや戻るときは [state はリセット](/learn/preserving-and-resetting-state)されません。これは単一レベルの深さのときのみ動作します：例えば、`<><><Child /></></>` から `<Child />` への変更は state がリセットされます。詳細なセマンティクス（semantics, 意味論）は[こちら](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)を参照してください。
 
 ---
 
@@ -112,6 +112,7 @@ function Post() {
 ```
 
 通常なら [`Fragment` に `key` を渡す](#rendering-a-list-of-fragments) 場合以外では必要ありません。
+
 </DeepDive>
 
 ---
