@@ -96,7 +96,7 @@ function Button() {
 
 #### Props {/*consumer-props*/}
 
-* `children`: 関数です。React は、`useContext()` と同じアルゴリズムによって定まる現在のコンテクスト値で関数を呼び出し、その関数から返される結果をレンダーします。親コンポーネントからのコンテクストが変更されると、React はこの関数を再実行し、UI を更新します。
+* `children`: 関数です。React は、[`useContext()`](/reference/react/useContext) と同じアルゴリズムによって定まる現在のコンテクスト値で関数を呼び出し、その関数から返される結果をレンダーします。親コンポーネントからのコンテクストが変更されると、React はこの関数を再実行し、UI を更新します。
 
 ---
 
