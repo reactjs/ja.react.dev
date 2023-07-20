@@ -96,7 +96,7 @@ title: "<div> などの一般的なコンポーネント"
 * `onDragStartCapture`: `onDragStart` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
 * [`onDrop`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drop_event): [`DragEvent` ハンドラ](#dragevent-handler)関数。何かが有効なドロップターゲットにドロップされたときに発火します。
 * `onDropCapture`: `onDrop` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
-* `onFocus`: [`FocusEvent` ハンドラ](#focusevent-handler)関数。要素がフォーカスを失ったときに発火します。ブラウザの組み込み [`focus`](https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event) イベントとは異なり、React の `onFocus` イベントはバブルします。
+* `onFocus`: [`FocusEvent` ハンドラ](#focusevent-handler)関数。要素がフォーカスを受け取ったときに発火します。ブラウザの組み込み [`focus`](https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event) イベントとは異なり、React の `onFocus` イベントはバブルします。
 * `onFocusCapture`: `onFocus` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
 * [`onGotPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/gotpointercapture_event): [`PointerEvent` ハンドラ](#pointerevent-handler)関数。要素がプログラム的にポインタをキャプチャしたときに発火します。
 * `onGotPointerCaptureCapture`: `onGotPointerCapture` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
