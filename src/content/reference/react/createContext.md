@@ -38,7 +38,7 @@ const ThemeContext = createContext('light');
 
 `createContext` はコンテクストオブジェクトを返します。
 
-**コンテクストオブジェクト自体は情報を持っていません**。他のコンポーネントがどのコンテクストを読み取るか、または提供するかを表します。通常、上位のコンポーネントで `SomeContext.Provider` を使用してコンテクストの値を指定し、下位のコンポーネントで `useContext(SomeContext)` を呼び出してコンテクストを読み取ります。コンテクストオブジェクトにはいくつかのプロパティがあります：
+**コンテクストオブジェクト自体は情報を持っていません**。他のコンポーネントが*どの*コンテクストを読み取るか、または提供するかを表します。通常、上位のコンポーネントで [`SomeContext.Provider`](#provider) を使用してコンテクストの値を指定し、下位のコンポーネントで [`useContext(SomeContext)`](/reference/react/useContext) を呼び出してコンテクストを読み取ります。コンテクストオブジェクトにはいくつかのプロパティがあります：
 
 * `SomeContext.Provider` では、コンポーネントにコンテクストの値を提供できます。
 * `SomeContext.Consumer` は、コンテクストの値を読み取るための方法ですが、あまり使用されません。
@@ -63,7 +63,7 @@ function App() {
 
 #### Props {/*provider-props*/}
 
-* `value`: このプロバイダの内側（深さに関わらず）にあるコンポーネントがコンテクストを読み取る際に、渡したい値です。コンテクストの値は任意の型にすることができます。プロバイダ内で `useContext(SomeContext)` を呼び出しているコンポーネントは、それより上位かつ最も内側にある対応するコンテクストプロバイダの `value` を受け取ります。
+* `value`: このプロバイダの内側（深さに関わらず）にあるコンポーネントがコンテクストを読み取る際に、渡したい値です。コンテクストの値は任意の型にすることができます。プロバイダ内で [`useContext(SomeContext)`](/reference/react/useContext) を呼び出しているコンポーネントは、それより上位かつ最も内側にある対応するコンテクストプロバイダの `value` を受け取ります。
 
 ---
 
@@ -84,7 +84,7 @@ function Button() {
 }
 ```
 
-この古い方法はまだ動作しますが、**新しく書かれたコードは `useContext()` を使ってコンテクストを読み取るべきです：**
+この古い方法はまだ動作しますが、**新しく書かれたコードは [`useContext()`](/reference/react/useContext) を使ってコンテクストを読み取るべきです：**
 
 ```js
 function Button() {
@@ -104,7 +104,7 @@ function Button() {
 
 ### コンテクストの作成 {/*creating-context*/}
 
-コンテクストを利用することで、明示的に props を渡さずに、コンポーネントに深くまで[情報を渡す](/learn/passing-data-deeply-with-context)ことができます。
+コンテクストを利用することで、明示的に props を渡さずに、コンポーネントに[深くまで情報を渡す](/learn/passing-data-deeply-with-context)ことができます。
 
 コンポーネントの外部で `createContext` を呼び出して、コンテクストを 1 つまたは複数個作成します。
 
@@ -115,7 +115,7 @@ const ThemeContext = createContext('light');
 const AuthContext = createContext(null);
 ```
 
-`createContext` は<CodeStep step={1}>コンテクストオブジェクト</CodeStep>を返します。それを `useContext()` に渡すことで、コンポーネントからコンテクストを読み取ることができます：
+`createContext` は<CodeStep step={1}>コンテクストオブジェクト</CodeStep>を返します。それを [`useContext()`](/reference/react/useContext) に渡すことで、コンポーネントからコンテクストを読み取ることができます：
 
 ```js [[1, 2, "ThemeContext"], [1, 7, "AuthContext"]]
 function Button() {
