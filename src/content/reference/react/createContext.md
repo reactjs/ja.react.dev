@@ -61,7 +61,7 @@ function App() {
 }
 ```
 
-#### Props {/*provider-props*/}
+#### props {/*provider-props*/}
 
 * `value`: このプロバイダの内側（深さに関わらず）にあるコンポーネントがコンテクストを読み取る際に、渡したい値です。コンテクストの値は任意の型にすることができます。プロバイダ内で [`useContext(SomeContext)`](/reference/react/useContext) を呼び出しているコンポーネントは、それより上位かつ最も内側にある対応するコンテクストプロバイダの `value` を受け取ります。
 
@@ -94,7 +94,7 @@ function Button() {
 }
 ```
 
-#### Props {/*consumer-props*/}
+#### props {/*consumer-props*/}
 
 * `children`: 関数です。React は、[`useContext()`](/reference/react/useContext) と同じアルゴリズムによって定まる現在のコンテクスト値で関数を呼び出し、その関数から返される結果をレンダーします。親コンポーネントからのコンテクストが変更されると、React はこの関数を再実行し、UI を更新します。
 
