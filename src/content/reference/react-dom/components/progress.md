@@ -35,7 +35,7 @@ title: "<progress>"
 さらに、`<progress>` は以下の props もサポートしています：
 
 * [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-max)： 数値。`value` の最大値を指定します。デフォルトは `1` です。
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-value)： `0` から `max` までの数値、または `null`（進行状況が不確定なことを表す）。完了した量を指定します。
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-value)： `0` から `max` までの数値、または進行状況が不定 (indeterminate) であることを表す `null`。完了した量を指定します。
 
 ---
 
@@ -45,7 +45,7 @@ title: "<progress>"
 
 進行状況のインジケータを表示するためには、`<progress>` コンポーネントをレンダーします。`0` から `max` 値までの数値を `value` として渡すことができます。`max` 値を渡さない場合、デフォルトで `1` とみなされます。
 
-進行中でない場合、進行状況のインジケータを不確定な状態にするために `value={null}` を渡します。
+進行状況のインジケータを不定状態にするには `value={null}` を渡します。
 
 <Sandpack>
 
