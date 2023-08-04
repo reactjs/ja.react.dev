@@ -4,7 +4,7 @@ title: useSyncExternalStore
 
 <Intro>
 
-`useSyncExternalStore` is a React Hook that lets you subscribe to an external store.
+`useSyncExternalStore` は、外部ストアへのサブスクライブを可能にする React のフックです。
 
 ```js
 const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)
@@ -16,11 +16,11 @@ const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)` {/*usesyncexternalstore*/}
 
-Call `useSyncExternalStore` at the top level of your component to read a value from an external data store.
+外部データストアから値を読み取るために、コンポーネントのトップレベルで useSyncExternalStore を呼び出します。
 
 ```js
 import { useSyncExternalStore } from 'react';
@@ -32,43 +32,43 @@ function TodosApp() {
 }
 ```
 
-It returns the snapshot of the data in the store. You need to pass two functions as arguments:
+これは、ストアにあるデータのスナップショットを返します。引数として 2 つの関数を渡す必要があります：
 
-1. The `subscribe` function should subscribe to the store and return a function that unsubscribes.
-2. The `getSnapshot` function should read a snapshot of the data from the store.
+1. `subscribe` 関数はストアへのサブスクライブを開始します。サブスクライブを解除する関数を返す必要があります。 
+2. `getSnapshot` 関数は、ストアからデータのスナップショットを読み取る必要があります。
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-* `subscribe`: A function that takes a single `callback` argument and subscribes it to the store. When the store changes, it should invoke the provided `callback`. This will cause the component to re-render. The `subscribe` function should return a function that cleans up the subscription.
+* `subscribe`: ストアにサブスクライブを開始し、また callback 引数を受け取る関数。ストアが変更された際に渡された callback を呼び出す必要があります。これにより、コンポーネントが再レンダーされます。`subscribe` 関数は、サブスクリプションをクリーンアップする関数を返す必要があります。
 
-* `getSnapshot`: A function that returns a snapshot of the data in the store that's needed by the component. While the store has not changed, repeated calls to `getSnapshot` must return the same value. If the store changes and the returned value is different (as compared by [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), React re-renders the component.
+* `getSnapshot`: コンポーネントが必要とするストアにあるデータのスナップショットを返す関数。ストアが変更されていない場合、`getSnapshot` への再呼び出しは同じ値を返す必要があります。ストアが変更されて返された値が（[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) で比較して）異なる場合、React はコンポーネントを再レンダーします。
 
-* **optional** `getServerSnapshot`: A function that returns the initial snapshot of the data in the store. It will be used only during server rendering and during hydration of server-rendered content on the client. The server snapshot must be the same between the client and the server, and is usually serialized and passed from the server to the client. If you omit this argument, rendering the component on the server will throw an error.
+* **省略可能** `getServerSnapshot`: ストアのデータの初期スナップショットを返す関数。これはサーバレンダリング中、およびクライアント上でのサーバレンダリングされたコンテンツのハイドレーション中にのみ使用されます。サーバスナップショットはクライアントとサーバ間で同一でなければならず、通常はサーバからクライアントに渡されるシリアライズされたものです。この引数を省略すると、サーバ上でのコンポーネントのレンダリングはエラーを発生させます。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-The current snapshot of the store which you can use in your rendering logic.
+レンダリングロジックで使用できるストアの現在のスナップショット。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-* The store snapshot returned by `getSnapshot` must be immutable. If the underlying store has mutable data, return a new immutable snapshot if the data has changed. Otherwise, return a cached last snapshot.
+* `getSnapshot` によって返されるストアのスナップショットはイミュータブル（immutable; 書き換え不能）でなければなりません。背後で使っているストアがミュータブルなデータを持っている場合、データが変更された場合は新しいイミュータブルなスナップショットを返し、それ以外の場合はキャッシュされた最後のスナップショットを返すようにします。
 
-* If a different `subscribe` function is passed during a re-render, React will re-subscribe to the store using the newly passed `subscribe` function. You can prevent this by declaring `subscribe` outside the component.
+* 再レンダー中に異なる `subscribe` 関数が渡された場合、React は新しく渡された `subscribe` 関数を使ってストアに再サブスクライブします。これを防ぐには、`subscribe` をコンポーネントの外で宣言します。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Subscribing to an external store {/*subscribing-to-an-external-store*/}
+### 外部ストアへのサブスクライブ {/*subscribing-to-an-external-store*/}
 
-Most of your React components will only read data from their [props,](/learn/passing-props-to-a-component) [state,](/reference/react/useState) and [context.](/reference/react/useContext) However, sometimes a component needs to read some data from some store outside of React that changes over time. This includes:
+React コンポーネントのほとんどは、[props](/learn/passing-props-to-a-component)、[state](/reference/react/useState) および[コンテクスト](/reference/react/useContext)からのみデータを読み取ります。しかし、コンポーネントは時間と共に変化する React 外のストアからデータを読み取る必要がある場合があります。これには以下のようなものが含まれます：
 
-* Third-party state management libraries that hold state outside of React.
-* Browser APIs that expose a mutable value and events to subscribe to its changes.
+* React の外部で状態を保持するサードパーティの状態管理ライブラリ。
+* 可変の値を、その変更にサブスクライブするためのイベントともに公開するブラウザ API。
 
-Call `useSyncExternalStore` at the top level of your component to read a value from an external data store.
+外部データストアから値を読み取るために、コンポーネントの最上位で `useSyncExternalStore` を呼び出します。
 
 ```js [[1, 5, "todosStore.subscribe"], [2, 5, "todosStore.getSnapshot"], [3, 5, "todos", 0]]
 import { useSyncExternalStore } from 'react';
@@ -80,14 +80,14 @@ function TodosApp() {
 }
 ```
 
-It returns the <CodeStep step={3}>snapshot</CodeStep> of the data in the store. You need to pass two functions as arguments:
+これはストア内のデータの<CodeStep step={3}>スナップショット</CodeStep>を返します。引数として 2 つの関数を渡す必要があります：
 
-1. The <CodeStep step={1}>`subscribe` function</CodeStep> should subscribe to the store and return a function that unsubscribes.
-2. The <CodeStep step={2}>`getSnapshot` function</CodeStep> should read a snapshot of the data from the store.
+1. <CodeStep step={1}>`subscribe` 関数</CodeStep>は、ストアへのサブスクライブを行い、またサブスクライブを解除する関数を返します。
+2. <CodeStep step={2}>`getSnapshot` 関数</CodeStep>は、ストアからデータのスナップショットを読み取ります。
 
-React will use these functions to keep your component subscribed to the store and re-render it on changes.
+React はこれらの関数を使ってコンポーネントをストアにサブスクライブされた状態に保ち、変更があるたびに再レンダーします。
 
-For example, in the sandbox below, `todosStore` is implemented as an external store that stores data outside of React. The `TodosApp` component connects to that external store with the `useSyncExternalStore` Hook. 
+例えば、以下のサンドボックスでは、`todosStore` は React の外部にデータを保存する外部ストアとして実装されています。`TodosApp` コンポーネントは、`useSyncExternalStore` フックを使ってその外部ストアに接続します。 
 
 <Sandpack>
 
@@ -149,17 +149,17 @@ function emitChange() {
 
 <Note>
 
-When possible, we recommend using built-in React state with [`useState`](/reference/react/useState) and [`useReducer`](/reference/react/useReducer) instead. The `useSyncExternalStore` API is mostly useful if you need to integrate with existing non-React code.
+可能であれば、React 組み込みの state 管理機能である [`useState`](/reference/react/useState) および [`useReducer`](/reference/react/useReducer) を代わりに使用することをお勧めします。`useSyncExternalStore` API は、既存の非 React コードと統合する必要がある場合に主に役立ちます。
 
 </Note>
 
 ---
 
-### Subscribing to a browser API {/*subscribing-to-a-browser-api*/}
+### ブラウザ API へのサブスクライブ {/*subscribing-to-a-browser-api*/}
 
-Another reason to add `useSyncExternalStore` is when you want to subscribe to some value exposed by the browser that changes over time. For example, suppose that you want your component to display whether the network connection is active. The browser exposes this information via a property called [`navigator.onLine`.](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine)
+`useSyncExternalStore` を追加するもう 1 つの理由は、時間とともに変化する、ブラウザが公開する値にサブスクライブしたい場合です。たとえば、コンポーネントがネットワーク接続がアクティブかどうかを表示したいとします。ブラウザは、この情報を [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine) というプロパティを介して公開します。
 
-This value can change without React's knowledge, so you should read it with `useSyncExternalStore`.
+この値は React の知らないところで変更される可能性があるので、`useSyncExternalStore` でそれを読み取るべきです。
 
 ```js
 import { useSyncExternalStore } from 'react';
@@ -170,7 +170,7 @@ function ChatIndicator() {
 }
 ```
 
-To implement the `getSnapshot` function, read the current value from the browser API:
+`getSnapshot` 関数を実装するためには、ブラウザ API から現在の値を読み取ることが必要です：
 
 ```js
 function getSnapshot() {
@@ -178,7 +178,7 @@ function getSnapshot() {
 }
 ```
 
-Next, you need to implement the `subscribe` function. For example, when `navigator.onLine` changes, the browser fires the [`online`](https://developer.mozilla.org/en-US/docs/Web/API/Window/online_event) and [`offline`](https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event) events on the `window` object. You need to subscribe the `callback` argument to the corresponding events, and then return a function that cleans up the subscriptions:
+次に、`subscribe` 関数を実装する必要があります。例えば、`navigator.onLine` が変化すると、ブラウザは `window` オブジェクト上で [`online`](https://developer.mozilla.org/en-US/docs/Web/API/Window/online_event) および [`offline`](https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event) というイベントを発火します。これら対応するイベントに `callback` 引数を登録し、それを解除する関数を返す必要があります：
 
 ```js
 function subscribe(callback) {
@@ -191,7 +191,7 @@ function subscribe(callback) {
 }
 ```
 
-Now React knows how to read the value from the external `navigator.onLine` API and how to subscribe to its changes. Disconnect your device from the network and notice that the component re-renders in response:
+これで React は、外部の `navigator.onLine` API から値を読み取る方法と、その変更にサブスクライブする方法を知ることができます。ネットワークからデバイスを切断すると、コンポーネントが反応して再レンダーされることに注目してください：
 
 <Sandpack>
 
@@ -221,11 +221,11 @@ function subscribe(callback) {
 
 ---
 
-### Extracting the logic to a custom Hook {/*extracting-the-logic-to-a-custom-hook*/}
+### ロジックをカスタムフックに抽出する {/*extracting-the-logic-to-a-custom-hook*/}
 
-Usually you won't write `useSyncExternalStore` directly in your components. Instead, you'll typically call it from your own custom Hook. This lets you use the same external store from different components.
+通常、`useSyncExternalStore` を直接コンポーネント内に記述することはありません。代わりに、自分自身のカスタムフックから呼び出すことが一般的です。これにより、異なるコンポーネントから同じ外部ストアを使用できます。
 
-For example, this custom `useOnlineStatus` Hook tracks whether the network is online:
+例えば、このカスタム `useOnlineStatus` フックはネットワークがオンラインであるかどうかを追跡します：
 
 ```js {3,6}
 import { useSyncExternalStore } from 'react';
@@ -244,7 +244,7 @@ function subscribe(callback) {
 }
 ```
 
-Now different components can call `useOnlineStatus` without repeating the underlying implementation:
+これで、異なるコンポーネントが、基本的な実装を繰り返すことなく `useOnlineStatus` を呼び出せるようになりました：
 
 <Sandpack>
 
@@ -306,14 +306,14 @@ function subscribe(callback) {
 
 ---
 
-### Adding support for server rendering {/*adding-support-for-server-rendering*/}
+### サーバーレンダリングのサポートを追加する {/*adding-support-for-server-rendering*/}
 
-If your React app uses [server rendering,](/reference/react-dom/server) your React components will also run outside the browser environment to generate the initial HTML. This creates a few challenges when connecting to an external store:
+React アプリが[サーバレンダリング](/reference/react-dom/server)を使用している場合、React コンポーネントは初期 HTML を生成するためにブラウザ環境外でも実行されます。これにより、外部ストアへの接続に関するいくつかの課題が生じます。
 
-- If you're connecting to a browser-only API, it won't work because it does not exist on the server.
-- If you're connecting to a third-party data store, you'll need its data to match between the server and client.
+- ブラウザ専用の API に接続している場合、それはサーバ上では存在しないため動作しません。
+- サードパーティのデータストアに接続している場合、サーバとクライアント間でそのデータを一致させる必要があります。
 
-To solve these issues, pass a `getServerSnapshot` function as the third argument to `useSyncExternalStore`:
+これらの問題を解決するために、`useSyncExternalStore` に `getServerSnapshot` 関数を第 3 引数として渡します：
 
 ```js {4,12-14}
 import { useSyncExternalStore } from 'react';
@@ -336,26 +336,26 @@ function subscribe(callback) {
 }
 ```
 
-The `getServerSnapshot` function is similar to `getSnapshot`, but it runs only in two situations:
+`getServerSnapshot` 関数は `getSnapshot` と似ていますが、以下の 2 つの状況でのみ実行されます：
 
-- It runs on the server when generating the HTML.
-- It runs on the client during [hydration](/reference/react-dom/client/hydrateRoot), i.e. when React takes the server HTML and makes it interactive.
+- サーバ上で、HTML を生成する際に実行される。
+- クライアント上で、React がサーバ HTML をインタラクティブにするとき、つまり[ハイドレーション](/reference/react-dom/client/hydrateRoot)中に実行される。
 
-This lets you provide the initial snapshot value which will be used before the app becomes interactive. If there is no meaningful initial value for the server rendering, omit this argument to [force rendering on the client.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content)
+これにより、アプリがインタラクティブになる前に使用される初期のスナップショット値を指定できます。サーバレンダリング中に意味のある初期値が存在しない場合は、この引数を省略して、[強制的にクライアントでレンダーする](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content)ようにします。
 
 <Note>
 
-Make sure that `getServerSnapshot` returns the same exact data on the initial client render as it returned on the server. For example, if `getServerSnapshot` returned some prepopulated store content on the server, you need to transfer this content to the client. One way to do this is to emit a `<script>` tag during server rendering that sets a global like `window.MY_STORE_DATA`, and read from that global on the client in `getServerSnapshot`. Your external store should provide instructions on how to do that.
+初回のクライアントレンダリングでは、`getServerSnapshot` はサーバで返したものと必ず正確に同一のデータを返すようにしてください。例えば、`getServerSnapshot` がサーバ上で事前に準備されたストアコンテンツを返した場合、このコンテンツをクライアントに転送する必要があります。これを行う 1 つの方法は、サーバレンダリング中に `window.MY_STORE_DATA` のようなグローバル変数を設定する `<script>` タグを発行しておき、クライアントの `getServerSnapshot` でそのグローバル変数から読み込むことです。あなたが使う外部ストアにその方法が記載されているはずです。
 
 </Note>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### I'm getting an error: "The result of `getSnapshot` should be cached" {/*im-getting-an-error-the-result-of-getsnapshot-should-be-cached*/}
+### "The result of `getSnapshot` should be cached" というエラーが出る {/*im-getting-an-error-the-result-of-getsnapshot-should-be-cached*/}
 
-This error means your `getSnapshot` function returns a new object every time it's called, for example:
+このエラーは、`getSnapshot` 関数が呼ばれるたびに新しいオブジェクトを返していることを意味します。例えば：
 
 ```js {2-5}
 function getSnapshot() {
@@ -366,9 +366,9 @@ function getSnapshot() {
 }
 ```
 
-React will re-render the component if `getSnapshot` return value is different from the last time. This is why, if you always return a different value, you will enter an infinite loop and get this error.
+`getSnapshot` の返り値が前回と異なる場合、React はコンポーネントを再レンダーします。このため、常に異なる値を返すと無限ループに入り、このエラーが発生します。
 
-Your `getSnapshot` object should only return a different object if something has actually changed. If your store contains immutable data, you can return that data directly:
+`getSnapshot` オブジェクトは、実際に何かが変更された場合にのみ、別のオブジェクトを返す必要があります。ストアにイミュータブルなデータが含まれている場合は、そのデータを直接返すことができます：
 
 ```js {2-3}
 function getSnapshot() {
@@ -377,13 +377,13 @@ function getSnapshot() {
 }
 ```
 
-If your store data is mutable, your `getSnapshot` function should return an immutable snapshot of it. This means it *does* need to create new objects, but it shouldn't do this for every single call. Instead, it should store the last calculated snapshot, and return the same snapshot as the last time if the data in the store has not changed. How you determine whether mutable data has changed depends on your mutable store.
+ストアデータがミュータブルな場合、`getSnapshot` 関数はそのイミュータブルなスナップショットを返す必要があります。つまり、新しいオブジェクトを作成する必要は**あります**が、毎回作成してはいけないということです。その代わりに、最後に計算されたスナップショットを保存しておき、ストア内のデータが変更されていない場合は前回と同じスナップショットを返すようにします。ミュータブルなデータが変更されたかどうかを判断する方法は、ミュータブルなストアによって異なります。
 
 ---
 
-### My `subscribe` function gets called after every re-render {/*my-subscribe-function-gets-called-after-every-re-render*/}
+### `subscribe` が毎レンダーごとに呼び出される {/*my-subscribe-function-gets-called-after-every-re-render*/}
 
-This `subscribe` function is defined *inside* a component so it is different on every re-render:
+この `subscribe` 関数はコンポーネントの**内部**で定義されているため、再レンダーするたびに異なった値になります：
 
 ```js {4-7}
 function ChatIndicator() {
@@ -397,8 +397,8 @@ function ChatIndicator() {
   // ...
 }
 ```
-  
-React will resubscribe to your store if you pass a different `subscribe` function between re-renders. If this causes performance issues and you'd like to avoid resubscribing, move the `subscribe` function outside:
+
+React は、再レンダー間で異なる `subscribe` 関数を渡すと、ストアに再サブスクライブします。これがパフォーマンスの問題を引き起こし、再サブスクライブを避けたい場合は、`subscribe` 関数を外部に移動してください：
 
 ```js {6-9}
 function ChatIndicator() {
@@ -412,7 +412,7 @@ function subscribe() {
 }
 ```
 
-Alternatively, wrap `subscribe` into [`useCallback`](/reference/react/useCallback) to only resubscribe when some argument changes:
+あるいは、`subscribe` を [`useCallback`](/reference/react/useCallback) でラップすることで、引数が変更されたときのみ再サブスクライブすることができます：
 
 ```js {4-8}
 function ChatIndicator({ userId }) {

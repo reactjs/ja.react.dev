@@ -20,7 +20,7 @@ June 15, 2022 by [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](http
 
 ## サーバコンポーネント {/*server-components*/}
 
-2020 年 12 月に、[React サーバコンポーネント (RSC) に関する実験的なデモ](https://reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components)を発表しました。それ以降、必要となる準備作業を React 18 で済ませ、実験のフィードバックから得られた改善に取り組んできました。
+2020 年 12 月に、[React サーバコンポーネント (RSC) に関する実験的なデモ](https://legacy.reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html)を発表しました。それ以降、必要となる準備作業を React 18 で済ませ、実験のフィードバックから得られた改善に取り組んできました。
 
 特に、I/O ライブラリをフォークして例えば react-fetch のようなものを作成していく、というアイディアは捨て去ることにし、代わりに互換性のために async/await モデルを採用することにします。データフェッチングにはルータを使うこともできるのでこれにより RSC のリリースが遅れるということはありません。もうひとつの変更は、ファイルの拡張子でサーバコンポーネントかどうかを区別するというアプローチをやめ、[区別を注釈で行う](https://github.com/reactjs/rfcs/pull/189#issuecomment-1116482278)ことにする、というものです。
 
