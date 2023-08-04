@@ -69,11 +69,17 @@ module.exports = {
         display: [
           'Optimistic Display',
           '-apple-system',
+          // In Windows, font which is suitable for long text should be selected
+          // for Japanese characters instead of Yu Gothic UI (system-ui)
+          '"BIZ UDGothic"',
+          'Meiryo',
           ...defaultTheme.fontFamily.sans,
         ],
         text: [
           'Optimistic Text',
           '-apple-system',
+          '"BIZ UDGothic"',
+          'Meiryo',
           ...defaultTheme.fontFamily.sans,
         ],
         mono: ['"Source Code Pro"', ...defaultTheme.fontFamily.mono],

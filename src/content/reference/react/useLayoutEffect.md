@@ -4,13 +4,13 @@ title: useLayoutEffect
 
 <Pitfall>
 
-`useLayoutEffect` can hurt performance. Prefer [`useEffect`](/reference/react/useEffect) when possible.
+`useLayoutEffect` はパフォーマンスを低下させる可能性があります。可能な限り [`useEffect`](/reference/react/useEffect) を使用することを推奨します。
 
 </Pitfall>
 
 <Intro>
 
-`useLayoutEffect` is a version of [`useEffect`](/reference/react/useEffect) that fires before the browser repaints the screen.
+`useLayoutEffect` は [`useEffect`](/reference/react/useEffect) の一種ですが、ブラウザが画面を再描画する前に実行されます。
 
 ```js
 useLayoutEffect(setup, dependencies?)
@@ -22,11 +22,11 @@ useLayoutEffect(setup, dependencies?)
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `useLayoutEffect(setup, dependencies?)` {/*useinsertioneffect*/}
 
-Call `useLayoutEffect` to perform the layout measurements before the browser repaints the screen:
+ブラウザが画面を再描画する前にレイアウトの計測を行うために `useLayoutEffect` を呼び出します。
 
 ```js
 import { useState, useRef, useLayoutEffect } from 'react';
@@ -43,47 +43,47 @@ function Tooltip() {
 ```
 
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. Before your component is added to the DOM, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. Before your component is removed from the DOM, React will run your cleanup function.
+* `setup`: エフェクトのロジックが記述された関数です。このセットアップ関数は、オプションで*クリーンアップ*関数を返すことができます。コンポーネントが初めて DOM に追加されると、React はセットアップ関数を実行します。依存配列 (dependencies) が変更された再レンダー時には、React はまず古い値を使ってクリーンアップ関数（あれば）を実行し、次に新しい値を使ってセットアップ関数を実行します。コンポーネントが DOM から削除された後、React はクリーンアップ関数を最後にもう一度実行します。
  
-* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If you omit this argument, your Effect will re-run after every re-render of the component.
+* **省略可能** `dependencies`: `setup` コード内で参照されるすべてのリアクティブな値のリストです。リアクティブな値には、props、state、コンポーネント本体に直接宣言されたすべての変数および関数が含まれます。リンタが [React 用に設定されている場合](/learn/editor-setup#linting)、すべてのリアクティブな値が依存値として正しく指定されているか確認できます。依存値のリストは要素数が一定である必要があり、`[dep1, dep2, dep3]` のようにインラインで記述する必要があります。React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を使った比較で、それぞれの依存値を以前の値と比較します。この引数を省略すると、エフェクトはコンポーネントの毎回のレンダー後に再実行されます。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-`useLayoutEffect` returns `undefined`.
+`useLayoutEffect` は `undefined` を返します。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-* `useLayoutEffect` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a component and move the Effect there.
+* `useLayoutEffect` はフックであるため、**コンポーネントのトップレベル**やカスタムフック内でのみ呼び出すことができます。ループや条件文の中で呼び出すことはできません。これが必要な場合は、新しいコンポーネントを抽出し、その中にエフェクトを移動させてください。
 
-* When Strict Mode is on, React will **run one extra development-only setup+cleanup cycle** before the first real setup. This is a stress-test that ensures that your cleanup logic "mirrors" your setup logic and that it stops or undoes whatever the setup is doing. If this causes a problem, [implement the cleanup function.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+* Strict Mode が有効な場合、React は本物のセットアップの前に、**開発時専用のセットアップ+クリーンアップサイクルを 1 回追加で実行**します。これは、クリーンアップロジックがセットアップロジックと鏡のように対応しており、セットアップで行われたことを停止または元に戻していることを保証するためのストレステストです。問題が発生した場合は、[クリーンアップ関数を実装します](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)。
 
-* If some of your dependencies are objects or functions defined inside the component, there is a risk that they will **cause the Effect to re-run more often than needed.** To fix this, remove unnecessary [object](/reference/react/useEffect#removing-unnecessary-object-dependencies) and [function](/reference/react/useEffect#removing-unnecessary-function-dependencies) dependencies. You can also [extract state updates](/reference/react/useEffect#updating-state-based-on-previous-state-from-an-effect) and [non-reactive logic](/reference/react/useEffect#reading-the-latest-props-and-state-from-an-effect) outside of your Effect.
+* 依存配列の一部にコンポーネント内で定義されたオブジェクトや関数がある場合、**エフェクトが必要以上に再実行される**可能性があります。これを修正するには、[オブジェクト型](/reference/react/useEffect#removing-unnecessary-object-dependencies)および[関数型](/reference/react/useEffect#removing-unnecessary-function-dependencies)の不要な依存値を削除します。また、エフェクトの外部に [state の更新](/reference/react/useEffect#updating-state-based-on-previous-state-from-an-effect)や[非リアクティブなロジック](/reference/react/useEffect#reading-the-latest-props-and-state-from-an-effect)を抽出することもできます。
 
-* Effects **only run on the client.** They don't run during server rendering.
+* エフェクトは**クライアント上でのみ実行されます**。サーバレンダリング中には実行されません。
 
-* The code inside `useLayoutEffect` and all state updates scheduled from it **block the browser from repainting the screen.** When used excessively, this makes your app slow. When possible, prefer [`useEffect`.](/reference/react/useEffect)
+* `useLayoutEffect` 内のコードと、そこでスケジュールされたすべての state 更新は、**ブラウザによる画面の再描画をブロックします**。過度に使用すると、アプリが遅くなります。可能な限り [`useEffect` を使用してください](/reference/react/useEffect)。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Measuring layout before the browser repaints the screen {/*measuring-layout-before-the-browser-repaints-the-screen*/}
+### ブラウザが画面を再描画する前にレイアウトを測定する {/*measuring-layout-before-the-browser-repaints-the-screen*/}
 
-Most components don't need to know their position and size on the screen to decide what to render. They only return some JSX. Then the browser calculates their *layout* (position and size) and repaints the screen.
+ほとんどのコンポーネントは、何をレンダーするかを決定するために、画面上での位置やサイズを知る必要はありません。単に JSX を返します。その後、ブラウザがその*レイアウト*（位置とサイズ）を計算し、画面を再描画します。
 
-Sometimes, that's not enough. Imagine a tooltip that appears next to some element on hover. If there's enough space, the tooltip should appear above the element, but if it doesn't fit, it should appear below. In order to render the tooltip at the right final position, you need to know its height (i.e. whether it fits at the top).
+しかし、それだけでは不十分な場合もあります。例えば、ある要素をホバーしたときに近くに表示されるツールチップを想像してみてください。十分なスペースがある場合、ツールチップは要素の上に表示されるべきですが、収まらない場合は下に表示されるとします。ツールチップを正しい最終位置にレンダーするためには、その高さ（つまり、上部に収まるかどうか）を知る必要があります。
 
-To do this, you need to render in two passes:
+これを行うには、2 パスでレンダーを行う必要があります：
 
-1. Render the tooltip anywhere (even with a wrong position).
-2. Measure its height and decide where to place the tooltip.
-3. Render the tooltip *again* in the correct place.
+1. ツールチップを（位置が間違っていても良いので）どこかにレンダーします。
+2. ツールチップの高さを測定し、ツールチップを配置する場所を決定します。
+3. ツールチップを正しい場所で*再度*レンダーします。
 
-**All of this needs to happen before the browser repaints the screen.** You don't want the user to see the tooltip moving. Call `useLayoutEffect` to perform the layout measurements before the browser repaints the screen:
+**これらすべては、ブラウザが画面を再描画する前に行わなければなりません**。ユーザにツールチップが移動するのを見せたくないのです。ブラウザが画面を再描画する前にレイアウトの測定を行うために `useLayoutEffect` を呼び出します。
 
 ```js {5-8}
 function Tooltip() {
@@ -99,15 +99,15 @@ function Tooltip() {
 }
 ```
 
-Here's how this works step by step:
+動作をステップごとに説明します。
 
-1. `Tooltip` renders with the initial `tooltipHeight = 0`  (so the tooltip may be wrongly positioned).
-2. React places it in the DOM and runs the code in `useLayoutEffect`.
-3. Your `useLayoutEffect` [measures the height](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) of the tooltip content and triggers an immediate re-render.
-4. `Tooltip` renders again with the real `tooltipHeight` (so the tooltip is correctly positioned).
-5. React updates it in the DOM, and the browser finally displays the tooltip.
+1. `Tooltip` は初回は `tooltipHeight = 0` でレンダーされます（そのため、ツールチップは間違った位置に配置される可能性があります）。
+2. React はそれを DOM に配置し、`useLayoutEffect` のコードを実行します。
+3. `useLayoutEffect` はツールチップの内容の[高さを測定](https://developer.mozilla.org/ja/docs/Web/API/Element/getBoundingClientRect)し、即時の再レンダーをトリガします。
+4. `Tooltip` は実際の `tooltipHeight` で再度レンダーされます（ツールチップが正しく配置されます）。
+5. React が DOM 上で更新を行い、最終的にブラウザがツールチップを表示します。
 
-Hover over the buttons below and see how the tooltip adjusts its position depending on whether it fits:
+以下のボタンにホバーしてみて、ツールチップが収まるかどうかに応じて位置を調整する様子を観察してください。
 
 <Sandpack>
 
@@ -251,13 +251,13 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 </Sandpack>
 
-Notice that even though the `Tooltip` component has to render in two passes (first, with `tooltipHeight` initialized to `0` and then with the real measured height), you only see the final result. This is why you need `useLayoutEffect` instead of [`useEffect`](/reference/react/useEffect) for this example. Let's look at the difference in detail below.
+`Tooltip` コンポーネントを 2 パスで（初回は `tooltipHeight` が `0` で、2 回目は実際に測定した高さで）レンダーする必要があるにもかかわらず、最終結果だけが表示されることに注目してください。これが、この例で [`useEffect`](/reference/react/useEffect) の代わりに `useLayoutEffect` が必要な理由です。詳細な違いは以下の通りです。
 
 <Recipes titleText="useLayoutEffect vs useEffect" titleId="examples">
 
-#### `useLayoutEffect` blocks the browser from repainting {/*uselayouteffect-blocks-the-browser-from-repainting*/}
+#### `useLayoutEffect` はブラウザの再描画をブロックする {/*uselayouteffect-blocks-the-browser-from-repainting*/}
 
-React guarantees that the code inside `useLayoutEffect` and any state updates scheduled inside it will be processed **before the browser repaints the screen.** This lets you render the tooltip, measure it, and re-render the tooltip again without the user noticing the first extra render. In other words, `useLayoutEffect` blocks the browser from painting.
+React は、`useLayoutEffect` 内のコードとその中でスケジュールされたすべての state 更新が、**ブラウザが画面を再描画する前に**処理されることを保証します。これにより、ツールチップをレンダーし、測定し、再度レンダーするという処理を、ユーザが最初の余分なレンダーに気付かないように行うことができます。言い換えると、`useLayoutEffect` はブラウザの描画をブロックします。
 
 <Sandpack>
 
@@ -402,9 +402,9 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 <Solution />
 
-#### `useEffect` does not block the browser {/*useeffect-does-not-block-the-browser*/}
+#### `useEffect` はブラウザをブロックしない {/*useeffect-does-not-block-the-browser*/}
 
-Here is the same example, but with [`useEffect`](/reference/react/useEffect) instead of `useLayoutEffect`. If you're on a slower device, you might notice that sometimes the tooltip "flickers" and you briefly see its initial position before the corrected position.
+これは同じ例ですが、`useLayoutEffect` の代わりに [`useEffect`](/reference/react/useEffect) を使用しています。遅いデバイスを使用している場合、ツールチップが修正前の初期位置に一瞬「ちらついて」見えることがあります。
 
 <Sandpack>
 
@@ -547,7 +547,7 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 </Sandpack>
 
-To make the bug easier to reproduce, this version adds an artificial delay during rendering. React will let the browser paint the screen before it processes the state update inside `useEffect`. As a result, the tooltip flickers:
+バグを再現しやすくするため、このバージョンではレンダー中に人為的な遅延を追加しています。React は、`useEffect` 内の state 更新を処理する前に、ブラウザに画面を描画させます。その結果、ツールチップがちらつきます：
 
 <Sandpack>
 
@@ -696,7 +696,7 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 </Sandpack>
 
-Edit this example to `useLayoutEffect` and observe that it blocks the paint even if rendering is slowed down.
+この例を `useLayoutEffect` に置き換えて、レンダーが遅くなっても描画をブロックすることを確認してください。
 
 <Solution />
 
@@ -704,36 +704,36 @@ Edit this example to `useLayoutEffect` and observe that it blocks the paint even
 
 <Note>
 
-Rendering in two passes and blocking the browser hurts performance. Try to avoid this when you can.
+2 パスでレンダーしてブラウザをブロックすることはパフォーマンスを低下させます。できる限り避けてください。
 
 </Note>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### I'm getting an error: "`useLayoutEffect` does nothing on the server" {/*im-getting-an-error-uselayouteffect-does-nothing-on-the-server*/}
+### "`useLayoutEffect` does nothing on the server" というエラーが出る {/*im-getting-an-error-uselayouteffect-does-nothing-on-the-server*/}
 
-The purpose of `useLayoutEffect` is to let your component [use layout information for rendering:](#measuring-layout-before-the-browser-repaints-the-screen)
+`useLayoutEffect` の目的は、コンポーネントがレンダーのために[レイアウト情報を使用できるようにする](#measuring-layout-before-the-browser-repaints-the-screen)ことです。
 
-1. Render the initial content.
-2. Measure the layout *before the browser repaints the screen.*
-3. Render the final content using the layout information you've read.
+1. 初期コンテンツをレンダーする。
+2. ブラウザが画面を再描画する*前に*レイアウトを測定する。
+3. 読み取ったレイアウト情報を使用して最終コンテンツをレンダーする。
 
-When you or your framework uses [server rendering](/reference/react-dom/server), your React app renders to HTML on the server for the initial render. This lets you show the initial HTML before the JavaScript code loads.
+あなた、またはあなたのフレームワークが[サーバレンダリング](/reference/react-dom/server)を使用している場合、React アプリは初期表示のためにサーバ上で HTML にレンダーされます。これにより、JavaScript コードがロードされる前に初期 HTML を表示できます。
 
-The problem is that on the server, there is no layout information.
+問題は、サーバ上にはレイアウト情報がないことです。
 
-In the [earlier example](#measuring-layout-before-the-browser-repaints-the-screen), the `useLayoutEffect` call in the `Tooltip` component lets it position itself correctly (either above or below content) depending on the content height. If you tried to render `Tooltip` as a part of the initial server HTML, this would be impossible to determine. On the server, there is no layout yet! So, even if you rendered it on the server, its position would "jump" on the client after the JavaScript loads and runs.
+[先ほどの例](#measuring-layout-before-the-browser-repaints-the-screen)では、`Tooltip` コンポーネント内での `useLayoutEffect` の呼び出しにより、高さに応じて自身を正しくコンテンツの上または下に配置することができていました。初期のサーバ HTML の一部として `Tooltip` をレンダーしようとすると、これは不可能になります。サーバ上ではまだレイアウトが存在しないからです！ したがって、サーバ上でレンダーしても、JavaScript がロードされ実行された際に、クライアント上で位置の「ジャンプ」が起こってしまいます。
 
-Usually, components that rely on layout information don't need to render on the server anyway. For example, it probably doesn't make sense to show a `Tooltip` during the initial render. It is triggered by a client interaction.
+通常、レイアウト情報に依存するようなコンポーネントは、サーバ上でレンダーする必要はありません。例えば、初期レンダー中に `Tooltip` を表示することはおそらく無意味です。これはクライアントでのユーザ操作に応じてトリガされるものだからです。
 
-However, if you're running into this problem, you have a few different options:
+しかし、この問題に直面している場合、いくつかの選択肢があります。
 
-- Replace `useLayoutEffect` with [`useEffect`.](/reference/react/useEffect) This tells React that it's okay to display the initial render result without blocking the paint (because the original HTML will become visible before your Effect runs).
+- `useLayoutEffect` を [`useEffect`](/reference/react/useEffect) に置き換えます。これにより React に対して、初期レンダー結果の表示を描画をブロックせずに行ってよいことを伝えます（元の HTML はエフェクトが実行される前に表示されるからです）。
 
-- Alternatively, [mark your component as client-only.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content) This tells React to replace its content up to the closest [`<Suspense>`](/reference/react/Suspense) boundary with a loading fallback (for example, a spinner or a glimmer) during server rendering.
+- あるいは、[コンポーネントをクライアント専用としてマークします](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content)。これにより React に対して、サーバレンダリング中に最も近い [`<Suspense>`](/reference/react/Suspense) バウンダリまで、コンテンツをロード中というフォールバック（例えば、スピナやグリマー）に置き換えるように指示します。
 
-- Alternatively, you can render a component with `useLayoutEffect` only after hydration. Keep a boolean `isMounted` state that's initialized to `false`, and set it to `true` inside a `useEffect` call. Your rendering logic can then be like `return isMounted ? <RealContent /> : <FallbackContent />`. On the server and during the hydration, the user will see `FallbackContent` which should not call `useLayoutEffect`. Then React will replace it with `RealContent` which runs on the client only and can include `useLayoutEffect` calls.
+- あるいは、`useLayoutEffect` を持つコンポーネントをハイドレーションの後にのみレンダーします。`false` に初期化されたブーリアン型の `isMounted` という state を保持しておき、`useEffect` の呼び出し内で `true` に設定します。そしてレンダーロジックは `return isMounted ? <RealContent /> : <FallbackContent />` のようにします。サーバ上およびハイドレーション中は、ユーザは `useLayoutEffect` を呼び出さない `FallbackContent` を見ることになります。その後、React はそれをクライアント専用の `RealContent` に置き換えますが、そこには `useLayoutEffect` の呼び出しを含むことができます。
 
-- If you synchronize your component with an external data store and rely on `useLayoutEffect` for different reasons than measuring layout, consider [`useSyncExternalStore`](/reference/react/useSyncExternalStore) instead which [supports server rendering.](/reference/react/useSyncExternalStore#adding-support-for-server-rendering)
+- コンポーネントを外部データストアと同期させており、レイアウト測定とは異なる理由で `useLayoutEffect` を使っている場合、代わりに [`useSyncExternalStore`](/reference/react/useSyncExternalStore) を検討してみてください。これは[サーバレンダリングをサポートしています](/reference/react/useSyncExternalStore#adding-support-for-server-rendering)。
