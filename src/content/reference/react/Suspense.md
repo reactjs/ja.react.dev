@@ -2513,7 +2513,7 @@ main {
 
 ---
 
-### サーバエラーとサーバ専用コンテンツのフォールバックを指定する {/*providing-a-fallback-for-server-errors-and-server-only-content*/}
+### サーバエラー用およびクライアント専用コンテンツ用のフォールバックを指定する {/*providing-a-fallback-for-server-errors-and-client-only-content*/}
 
 [ストリーミングサーバレンダリング API](/reference/react-dom/server) のいずれか（またはそれらに依存するフレームワーク）を使用する場合も、React は `<Suspense>` バウンダリを使用してサーバ上のエラーを処理します。コンポーネントがサーバ上でエラーをスローしても、React はサーバレンダリングを中止しません。代わりに、上位の最も近い `<Suspense>` コンポーネントを見つけ、そのフォールバック（スピナなど）を、生成されたサーバ HTML に含めます。ユーザには最初にスピナが見えることになります。
 
