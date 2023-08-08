@@ -48,7 +48,7 @@ title: "<select>"
 
 * `defaultValue`: 文字列（または [`multiple={true}`](#enabling-multiple-selection) の場合は文字列の配列）。[デフォルトのオプションを指定](#providing-an-initially-selected-option) します。
 
-以下の `<select>` のプロパティは、非制御セレクトボックスと制御されたセレクトボックスの両方で用いられます。
+以下の `<select>` の props は、非制御セレクトボックスと制御されたセレクトボックスの両方で用いられます。
 
 * [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-autocomplete): 文字列。可能な[オートコンプリート動作](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)の 1 つを指定します。
 * [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-autofocus): ブーリアン。`true` の場合、React は要素をマウント時にフォーカスします。
