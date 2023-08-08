@@ -34,7 +34,7 @@ title: "<select>"
 
 [さらに例を見る](#usage)
 
-#### Props {/*props*/}
+#### props {/*props*/}
 
 `<select>` は[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
 
