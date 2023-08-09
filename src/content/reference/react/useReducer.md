@@ -4,7 +4,7 @@ title: useReducer
 
 <Intro>
 
-`useReducer` は、[リデューサ](/learn/extracting-state-logic-into-a-reducer) をコンポーネントに追加するための React フックです。
+`useReducer` は、[リデューサ (reducer)](/learn/extracting-state-logic-into-a-reducer) をコンポーネントに追加するための React フックです。
 
 ```js
 const [state, dispatch] = useReducer(reducer, initialArg, init?)
@@ -40,7 +40,7 @@ function MyComponent() {
 
 * `reducer`: state をどのように更新するかを指定するリデューサ関数です。純粋でなければならず、引数として state とアクションを取り、次の state を返します。state とアクションはどのような型でも大丈夫です。
 * `initialArg`: 初期 state が計算される元になる値です。任意の型の値を指定できます。どのように初期 state を計算するかは、次の `init` 引数に依存します。
-* **オプション** `init`: 初期 state を返す初期化関数です。指定されていない場合、初期 state は `initialArg` に設定されます。そうでない場合、初期 state は `init(initialArg)` の結果が設定されます。
+* **省略可能** `init`: 初期 state を返す初期化関数です。指定されていない場合、初期 state は `initialArg` そのものになります。指定されている場合、初期 state は `init(initialArg)` の結果になります。
 
 #### 返り値 {/*returns*/}
 
@@ -52,13 +52,13 @@ function MyComponent() {
 #### 注意点 {/*caveats*/}
 
 * `useReducer` はフックなので、**コンポーネントのトップレベル**または独自のカスタムフック内でのみ呼び出すことができます。ループや条件の中で呼び出すことはできません。必要な場合は、新しいコンポーネントとして抜き出し、その中に state を移動させてください。
-* Strict Mode では、React は[偶発的な不純物を見つけるのを助けるために、リデューサと初期化関数を 2 回呼び出します。](#my-reducer-or-initializer-function-runs-twice)これは開発時の動作であり、本番には影響しません。リデューサと初期化関数が純粋であれば（そうあるべきです）、これはロジックに影響しません。片方の呼び出しの結果は無視されます。
+* Strict Mode では、React は[純粋でない関数を見つけやすくするために](#my-reducer-or-initializer-function-runs-twice)、リデューサと初期化関数を 2 回呼び出します。これは開発時の動作であり、本番には影響しません。リデューサと初期化関数が純粋であれば（そうあるべきです）、これはロジックに影響しません。片方の呼び出しの結果は無視されます。
 
 ---
 
 ### `dispatch` 関数 {/*dispatch*/}
 
-`useReducer` によって返される `dispatch` 関数は、state を別の値に更新し、再レンダーをトリガすることができます。`dispatch` 関数には、アクションを唯一の引数として渡す必要があります。
+`useReducer` によって返される `dispatch` 関数を使うことで、state を別の値に更新して再レンダーをトリガすることができます。`dispatch` 関数には、唯一の引数としてアクションを渡す必要があります。
 
 ```js
 const [state, dispatch] = useReducer(reducer, { age: 42 });
@@ -68,11 +68,11 @@ function handleClick() {
   // ...
 ```
 
-React は、現在の `state` と `dispatch` に渡されたアクションを使用して、次の state を `reducer` 関数を呼び出した結果に設定します。
+React がセットする次の state は、引数として `state` の現在値および `dispatch` に渡されたアクションを用いて `reducer` 関数を呼び出した結果になります。
 
 #### 引数 {/*dispatch-parameters*/}
 
-* `action`：ユーザによって実行されたアクションです。任意の型の値を指定できます。慣例として、アクションは通常オブジェクトで、`type` プロパティで識別され、オプションで追加情報を他のプロパティで持ちます。
+* `action`: ユーザによって実行されたアクションです。任意の型の値を指定できます。慣例として、アクションは通常オブジェクトであり、`type` プロパティで識別され、他のプロパティでオプションの追加情報を保持します。
 
 #### 返り値 {/*dispatch-returns*/}
 
@@ -80,11 +80,11 @@ React は、現在の `state` と `dispatch` に渡されたアクションを�
 
 #### 注意点 {/*setstate-caveats*/}
 
-* `dispatch` 関数は、**次のレンダーのための state 変数のみを更新**します。`dispatch` 関数を呼び出した後に state 変数を読み取ると、呼び出し前の古い値が返されます。([古い state の値が表示される](#ive-dispatched-an-action-but-logging-gives-me-the-old-state-value))
+* `dispatch` 関数は、**次のレンダーのための state 変数のみを更新**します。`dispatch` 関数を呼び出した後に state 変数を読み取ると、既に画面上に表示されている、`dispatch` 呼び出し前の[古い値を読み取ります](#ive-dispatched-an-action-but-logging-gives-me-the-old-state-value)。
 
-* 与えられた新しい値が、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) の比較により、現在の `state` と同じと判断された場合、React は**コンポーネントとその子要素の再レンダーをスキップ**します。これは最適化です。React は結果を無視する前にコンポーネントを呼び出す必要があるかもしれませんが、コードには影響しないはずです。
+* 与えられた新しい値が、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) の比較により、現在の `state` と同じと判断された場合、React は**コンポーネントとその子要素の再レンダーをスキップ**します。これは最適化です。React は結果を無視できる場合でも必要があってコンポーネントを呼び出すかもしれませんが、これがコードに影響してはいけません。
 
-* React は [state の更新をバッチ処理](/learn/queueing-a-series-of-state-updates) します。これにより、すべてのイベントハンドラが実行され、それらの `set` 関数が呼び出された後に画面が更新されます。これにより、1 つのイベント中に複数回の再レンダーが発生するのを防ぐことができます。レアケースとして、DOM にアクセスするために画面を早期に更新する必要があるなど、React に画面の更新を強制する必要がある場合は、[`flushSync`](/reference/react-dom/flushSync) を使用できます。
+* React は [state の更新のバッチ処理（batching, 束ね処理）](/learn/queueing-a-series-of-state-updates) を行います。これにより、**すべてのイベントハンドラが実行され**、それらの `set` 関数が呼び出された後に画面が更新されます。これにより、1 つのイベント中に複数回の再レンダーが発生するのを防ぐことができます。稀なケースとして、DOM にアクセスするなどの理由で React に画面を早期に強制的に更新させる必要がある場合は、[`flushSync`](/reference/react-dom/flushSync) を使用できます。
 
 ---
 
@@ -108,10 +108,10 @@ function MyComponent() {
 
 `useReducer` は、2 つの値を持つ配列を返します：
 
-1. この state 変数の<CodeStep step={1}>現在の state</CodeStep>には、与えられた<CodeStep step={3}>初期 state</CodeStep>が初期値として設定されます。
-2. インタラクションに応じて state を変更するための<CodeStep step={2}>`dispatch` 関数</CodeStep>です。
+1. この state 変数の<CodeStep step={1}>現在の state</CodeStep>。与えられた<CodeStep step={3}>初期 state</CodeStep> が初期値として設定されます。
+2. ユーザ操作に応じて state を変更するための<CodeStep step={2}>`dispatch` 関数</CodeStep>。
 
-画面上の内容を更新するには、*アクション*と呼ばれるユーザが行ったことを表すオブジェクトを引数として<CodeStep step={2}>`dispatch`</CodeStep>を呼び出します。
+画面上の内容を更新するには、*アクション*と呼ばれる、ユーザが行ったことを表すオブジェクトを引数として <CodeStep step={2}>`dispatch`</CodeStep> を呼び出します。
 
 ```js [[2, 2, "dispatch"]]
 function handleClick() {
@@ -171,7 +171,7 @@ function reducer(state, action) {
 }
 ```
 
-次に、次の state を計算して返すコードを埋める必要があります。慣例として、[`switch` 文](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)として書くことが一般的です。`switch` の各 `case` ごとに、次の state を計算して返します。
+その後、次の state を計算して返すコードを中に書いていきます。慣例として、[`switch` 文](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)として書くことが一般的です。`switch` の各 `case` ごとに、次の state を計算して返します。
 
 ```js {4-7,10-13}
 function reducer(state, action) {
@@ -193,7 +193,7 @@ function reducer(state, action) {
 }
 ```
 
-アクションは任意の形を持つことができます。慣例として、アクションを識別する `type` プロパティを持つオブジェクトを渡すことが一般的です。アクションにはリデューサが次の state を計算するために必要な最小限の情報を含めるべきです。
+アクションの形はどのようなものでも構いません。慣例として、アクションを識別するための `type` プロパティを持ったオブジェクトを渡すことが一般的です。アクションにはリデューサが次の state を計算するために必要な最小限の情報を含めるべきです。
 
 ```js {5,9-12}
 function Form() {
@@ -212,7 +212,7 @@ function Form() {
   // ...
 ```
 
-アクションのタイプ名はコンポーネントの中で固有です。[各アクションは、データの複数の変更につながる場合でも、単一のインタラクションを表します。](/learn/extracting-state-logic-into-a-reducer#writing-reducers-well)state の形は任意ですが、通常はオブジェクトまたは配列になります。
+アクションのタイプ名はコンポーネント内にローカルなものです。[各アクションは、複数のデータの変更につながるものであっても、単一のユーザ操作を表すようにしてください](/learn/extracting-state-logic-into-a-reducer#writing-reducers-well)。state の形は任意ですが、通常はオブジェクトまたは配列になります。
 
 詳しくは、[リデューサへの state ロジックの抽出](/learn/extracting-state-logic-into-a-reducer)を参照ください。
 
@@ -244,7 +244,7 @@ function reducer(state, action) {
     }
 ```
 
-詳しくは、[オブジェクトの更新](/learn/updating-objects-in-state)と[配列の更新](/learn/updating-arrays-in-state)を参照ください。
+詳しくは、[state 内のオブジェクトの更新](/learn/updating-objects-in-state)と[state 内の配列の更新](/learn/updating-arrays-in-state)を参照ください。
 
 </Pitfall>
 
@@ -511,7 +511,7 @@ ul, li { margin: 0; padding: 0; }
 
 #### Immer を使って簡潔な更新ロジックを書く {/*writing-concise-update-logic-with-immer*/}
 
-配列やオブジェクトを書き換えずに更新するのが面倒な場合、[Immer](https://github.com/immerjs/use-immer#useimmerreducer) のようなライブラリを使用して、繰り返しコードを減らすことができます。Immer を使用すると、オブジェクトを書き換えているかのように簡潔なコードを書くことができますが、内部ではイミュータブルな更新が行われます。
+配列やオブジェクトを書き換えずに更新するのが面倒な場合、[Immer](https://github.com/immerjs/use-immer#useimmerreducer) のようなライブラリを使用して冗長なコードを減らすことができます。Immer を使用すると、オブジェクトを書き換えているかのような簡潔なコードを書くことができますが、内部ではイミュータブルな更新が行われます。
 
 <Sandpack>
 
@@ -725,7 +725,7 @@ ul, li { margin: 0; padding: 0; }
 
 ### 初期 state の再作成を避ける {/*avoiding-recreating-the-initial-state*/}
 
-React は初期 state を一度保存し、次のレンダーでは無視します。
+React は初期 state を一度保存したのち、次回以降のレンダーでは無視します。
 
 ```js
 function createInitialState(username) {
@@ -737,7 +737,7 @@ function TodoList({ username }) {
   // ...
 ```
 
-`createInitialState(username)`の結果は初期レンダーでのみ使用されますが、レンダーの度に毎回この関数を呼び出しています。これは、大きな配列を作成したり、高コストな計算を行っている場合に無駄になる可能性があります。
+`createInitialState(username)` の結果は初期レンダーでのみ使用されますが、レンダーの度に毎回この関数を呼び出しています。これは、大きな配列を作成したり、高コストな計算を行ったりしている場合に無駄になる可能性があります。
 
 これを解決するために、`useReducer` の 3 番目の引数として**初期化関数を渡す**ことができます：
 
@@ -751,7 +751,7 @@ function TodoList({ username }) {
   // ...
 ```
 
-`createInitialState` を渡していることに注意してください。これは*関数そのもの*であり、`createInitialState()` ではありません。これにより、初期 state は初期化後に再作成されません。
+`createInitialState` を渡していることに注意してください。これは*関数そのもの*であり、`createInitialState()` ではありません。これにより、初期 state は初期化後に再作成されなくなります。
 
 上記の例では、`createInitialState` は `username` 引数を受け取ります。初期化関数が初期 state を計算するために情報を必要としない場合は、`useReducer` に対して 2 番目の引数として `null` を渡すことができます。
 
@@ -759,7 +759,7 @@ function TodoList({ username }) {
 
 #### 初期化関数を渡す {/*passing-the-initializer-function*/}
 
-この例では、初期化関数を渡しているため、`createInitialState` 関数は初期化時にのみ実行されます。初期化関数は入力フィールドに文字を入力するなど、コンポーネントが再レンダーされたとしても実行されません。
+この例では、初期化関数を渡しているため、`createInitialState` 関数は初期化時にのみ実行されます。初期化関数は入力フィールドに文字を入力するなどでコンポーネントが再レンダーされたとしても実行されません。
 
 <Sandpack>
 
@@ -847,7 +847,7 @@ export default function TodoList({ username }) {
 
 #### 初期 state を直接渡す {/*passing-the-initial-state-directly*/}
 
-この例では、初期化関数を渡して**いない**ため、`createInitialState` 関数は入力フィールドに文字を入力するなど、レンダーの度に毎回実行されます。動作には目に見える違いはありませんが、このコードは効率的ではありません。
+この例では、初期化関数を渡して**いない**ため、`createInitialState` 関数は入力フィールドに文字を入力するなど、レンダーの度に毎回実行されます。動作には目に見える違いはありませんが、効率が下がります。
 
 <Sandpack>
 
@@ -938,7 +938,7 @@ export default function TodoList({ username }) {
 
 ## トラブルシューティング {/*troubleshooting*/}
 
-### アクションをディスパッチしたが、ログには古い state の値が表示されます {/*ive-dispatched-an-action-but-logging-gives-me-the-old-state-value*/}
+### アクションをディスパッチしたがログには古い state の値が表示される {/*ive-dispatched-an-action-but-logging-gives-me-the-old-state-value*/}
 
 `dispatch` 関数を呼び出しても、**実行中のコード内の state は変更されません**：
 
@@ -955,7 +955,7 @@ function handleClick() {
 }
 ```
 
-これは [state がスナップショットのように振る舞う](/learn/state-as-a-snapshot) ためです。state を更新すると、新しい state の値で再レンダーが要求されますが、既に実行中のイベントハンドラ内の `state` JavaScript 変数には影響を与えません。
+これは [state がスナップショットのように振る舞う](/learn/state-as-a-snapshot)ためです。state を更新すると、新しい state の値で再レンダーが要求されますが、既に実行中のイベントハンドラ内の `state` JavaScript 変数には影響を与えません。
 
 次の state の値を推測する必要がある場合は、リデューサを自分で呼び出すことで手動で計算することができます：
 
@@ -970,9 +970,9 @@ console.log(nextState); // { age: 43 }
 
 ---
 
-### アクションをディスパッチしたが、画面が更新されません {/*ive-dispatched-an-action-but-the-screen-doesnt-update*/}
+### アクションをディスパッチしたが画面が更新されない {/*ive-dispatched-an-action-but-the-screen-doesnt-update*/}
 
-React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) の比較により、**次の state が前の state と等しいと判断される場合、更新を無視します**。これは、state 内のオブジェクトや配列を直接変更した場合に通常発生します：
+React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) の比較により、**次の state が前の state と等しいと判断される場合、更新を無視します**。これは通常、state 内のオブジェクトや配列を直接書き換えた場合に発生します：
 
 ```js {4-5,9-10}
 function reducer(state, action) {
@@ -992,7 +992,7 @@ function reducer(state, action) {
 }
 ```
 
-既存の `state` オブジェクトを変更して返しているため、React は更新を無視します。これを修正するには、常に [state 内のオブジェクトを更新する](/learn/updating-objects-in-state)ことと、[state 内の配列を更新する](/learn/updating-arrays-in-state)ことを確実にする必要があります：
+既存の `state` オブジェクトを書き換えて返しているため、React は更新を無視します。これを修正するには、常に [state 内のオブジェクトの更新](/learn/updating-objects-in-state)や [state 内の配列の更新](/learn/updating-arrays-in-state)を正しく行い、これらの書き換えを避ける必要があります。
 
 ```js {4-8,11-15}
 function reducer(state, action) {
@@ -1018,9 +1018,9 @@ function reducer(state, action) {
 
 ---
 
-### ディスパッチ後に私のリデューサステートの一部が未定義になります {/*a-part-of-my-reducer-state-becomes-undefined-after-dispatching*/}
+### ディスパッチ後にリデューサからの state の一部が undefined になる {/*a-part-of-my-reducer-state-becomes-undefined-after-dispatching*/}
 
-新しいステートを返す際に、すべての `case` が**すべての既存のフィールドをコピーする**ようになっているか確認してください：
+新しい state を返す際に、すべての `case` の分岐において**すべての既存のフィールドをコピーする**ようになっているか確認してください：
 
 ```js {5}
 function reducer(state, action) {
@@ -1034,13 +1034,13 @@ function reducer(state, action) {
     // ...
 ```
 
-上記の `...state` を省略すると、返される次のステートには `age` フィールドのみが含まれ、他のフィールドは何も含まれません。
+上記の `...state` を省略すると、返される次の state には `age` フィールドのみが含まれ、他のフィールドは何も含まれなくなってしまいます。
 
 ---
 
-### ディスパッチ後に私のリデューサステート全体が未定義になります {/*my-entire-reducer-state-becomes-undefined-after-dispatching*/}
+### ディスパッチ後にリデューサからの state 全体が undefined になる {/*my-entire-reducer-state-becomes-undefined-after-dispatching*/}
 
-ステートが予期せず `undefined` になる場合、おそらくいずれかの `case` で state を `return` し忘れているか、アクションのタイプがいずれの `case` とも一致していない可能性があります。原因を見つけるために、`switch` の外でエラーをスローしてください。
+state が予期せず `undefined` になる場合、おそらくいずれかの `case` で state を `return` し忘れているか、アクションのタイプがいずれの `case` とも一致していないからです。原因を見つけるために、`switch` の外でエラーをスローしてみましょう。
 
 ```js {10}
 function reducer(state, action) {
@@ -1056,13 +1056,13 @@ function reducer(state, action) {
 }
 ```
 
-また、このようなミスをキャッチするために、TypeScript のような静的型チェッカーを使用することもできます。
+また、このようなミスをキャッチするために、TypeScript のような静的型チェッカを使用することもできます。
 
 ---
 
-### エラーが発生しています："Too many re-renders" {/*im-getting-an-error-too-many-re-renders*/}
+### "Too many re-renders" というエラーが発生する {/*im-getting-an-error-too-many-re-renders*/}
 
-`Too many re-renders. React limits the number of renders to prevent an infinite loop.` というエラーが表示されることがあります。通常、これはレンダー中にアクションを無条件でディスパッチしているため、コンポーネントがループに入っていることを意味します：レンダー、ディスパッチ（これにより再度レンダーが発生）、レンダー、ディスパッチ（これにより再度レンダーが発生）、などの繰り返しです。非常にしばしば、これはイベントハンドラの指定におけるミスによって引き起こされます。
+`Too many re-renders. React limits the number of renders to prevent an infinite loop.` というエラーが表示されることがあります。通常、これはレンダー中にアクションを無条件でディスパッチしているため、コンポーネントがループに入っていることを意味します：レンダー、ディスパッチ（これにより再度レンダーが発生）、レンダー、ディスパッチ（これにより再度レンダーが発生）、といった繰り返しです。非常に多くの場合、これはイベントハンドラの指定方法のミスによって引き起こされます。
 
 ```js {1-2}
 // 🚩 Wrong: calls the handler during render
@@ -1079,13 +1079,13 @@ return <button onClick={(e) => handleClick(e)}>Click me</button>
 
 ---
 
-### リデューサまたは初期化関数が 2 回実行されます {/*my-reducer-or-initializer-function-runs-twice*/}
+### リデューサまたは初期化関数が 2 回実行される {/*my-reducer-or-initializer-function-runs-twice*/}
 
-[Strict Mode](/reference/react/StrictMode) では、React はリデューサと初期化関数を 2 回呼び出します。これはコードを壊すことはありません。
+[Strict Mode](/reference/react/StrictMode) では、React はリデューサと初期化関数を 2 回呼び出します。これによってコードが壊れることがあってはなりません。
 
 この**開発専用**の振る舞いは、[コンポーネントを純粋に保つ](/learn/keeping-components-pure)ために役立ちます。React は 2 回の呼び出しのうちの 1 つの結果を使用し、もう 1 つの結果は無視します。コンポーネント、イニシャライザ、およびリデューサ関数が純粋である限り、これはロジックに影響を与えません。ただし、これらの関数が誤っていて不純である場合、これによりミスに気付くことができます。
 
-例えば、次の不純なリデューサ関数はステート内の配列を変更しています：
+例えば、以下の純粋でないリデューサ関数はステート内の配列を書き換えています：
 
 ```js {4-6}
 function reducer(state, action) {
@@ -1100,7 +1100,7 @@ function reducer(state, action) {
 }
 ```
 
-React がリデューサ関数を 2 回呼び出すため、todo が 2 回追加されたことがわかり、ミスがあることがわかります。この例では、[配列を変更する代わりに配列を置き換える](/learn/updating-arrays-in-state#adding-to-an-array)ことでミスを修正できます：
+React がリデューサ関数を 2 回呼び出すため、todo が 2 回追加されたことがわかり、ミスがあることがわかります。この例では、[配列の書き換えではなく置き換えを行う](/learn/updating-arrays-in-state#adding-to-an-array)ことでミスを修正できます：
 
 ```js {4-11}
 function reducer(state, action) {
@@ -1120,6 +1120,6 @@ function reducer(state, action) {
 }
 ```
 
-このリデューサ関数が純粋であるため、1 回余分に呼び出されても動作に影響はありません。これが React が 2 回呼び出すことでミスを発見できる理由です。**コンポーネント、イニシャライザ、およびリデューサ関数のみが純粋である必要があります。**イベントハンドラは純粋である必要はないため、React はイベントハンドラを 2 回呼び出すことはありません。
+これでリデューサ関数は純粋になったため、1 回余分に呼び出されても動作に影響はありません。これが React が 2 回呼び出すことでミスを発見できる理由です。**コンポーネント、初期化関数、およびリデューサ関数のみが純粋である必要があります**。イベントハンドラは純粋である必要はないため、React はイベントハンドラを 2 回呼び出すことはありません。
 
 詳細は、[コンポーネントを純粋に保つ](/learn/keeping-components-pure)を参照してください。
