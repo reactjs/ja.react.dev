@@ -4,7 +4,7 @@ title: forwardRef
 
 <Intro>
 
-`forwardRef` lets your component expose a DOM node to parent component with a [ref.](/learn/manipulating-the-dom-with-refs)
+`forwardRef` は、親コンポーネントに対して DOM ノードを [ref](/learn/manipulating-the-dom-with-refs) として公開できるようにします。
 
 ```js
 const SomeComponent = forwardRef(render)
@@ -16,11 +16,11 @@ const SomeComponent = forwardRef(render)
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `forwardRef(render)` {/*forwardref*/}
 
-Call `forwardRef()` to let your component receive a ref and forward it to a child component:
+`forwardRef()` を呼び出すことで、コンポーネントが ref を受け取ってそれを子コンポーネントに転送 (forward) できるようになります。
 
 ```js
 import { forwardRef } from 'react';
@@ -30,26 +30,26 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-* `render`: The render function for your component. React calls this function with the props and `ref` that your component received from its parent. The JSX you return will be the output of your component.
+* `render`: コンポーネントのレンダー関数です。React はこの関数を親から受け取った props および `ref` とともに呼び出します。返す JSX がコンポーネントの出力となります。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-`forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, a component returned by `forwardRef` is also able to receive a `ref` prop.
+`forwardRef` は JSX でレンダーできる React コンポーネントを返します。プレーンな関数として定義された React コンポーネントとは異なり、`forwardRef` によって返されるコンポーネントは `ref` 属性を受け取ることもできます。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-* In Strict Mode, React will **call your render function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your render function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
+* Strict Mode では、React は[レンダー関数が誤って純関数でなくなってしまう問題を見つけやすくする](#my-initializer-or-updater-function-runs-twice)ため、**レンダー関数を 2 回呼び出します**。これは開発環境専用の挙動であり、本番環境には影響しません。レンダー関数が純粋である場合（そうであるべきです）、これはコンポーネントのロジックに影響を与えません。呼び出しのうちの一方からの結果は無視されます。
 
 
 ---
 
-### `render` function {/*render-function*/}
+### `render` 関数 {/*render-function*/}
 
-`forwardRef` accepts a render function as an argument. React calls this function with `props` and `ref`:
+`forwardRef` は引数としてレンダー関数を受け取ります。React はこの関数を `props` および `ref` とともに呼び出します。
 
 ```js
 const MyInput = forwardRef(function MyInput(props, ref) {
@@ -62,23 +62,23 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-#### Parameters {/*render-parameters*/}
+#### 引数 {/*render-parameters*/}
 
-* `props`: The props passed by the parent component.
+* `props`: 親コンポーネントから渡された props です。
 
-* `ref`:  The `ref` attribute passed by the parent component. The `ref` can be an object or a function. If the parent component has not passed a ref, it will be `null`. You should either pass the `ref` you receive to another component, or pass it to [`useImperativeHandle`.](/reference/react/useImperativeHandle)
+* `ref`: 親コンポーネントから渡された `ref` 属性です。`ref` はオブジェクトの場合と関数の場合があります。親コンポーネントが ref を渡していない場合は `null` になります。受け取った `ref` は、別のコンポーネントに渡すか、[`useImperativeHandle`](/reference/react/useImperativeHandle) に渡します。
 
-#### Returns {/*render-returns*/}
+#### 返り値 {/*render-returns*/}
 
-`forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, the component returned by `forwardRef` is able to take a `ref` prop.
+`forwardRef` は JSX でレンダーできる React コンポーネントを返します。プレーンな関数として定義された React コンポーネントとは異なり、`forwardRef` によって返されるコンポーネントは `ref` 属性を受け取ることができます。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Exposing a DOM node to the parent component {/*exposing-a-dom-node-to-the-parent-component*/}
+### 親コンポーネントに DOM ノードを公開する {/*exposing-a-dom-node-to-the-parent-component*/}
 
-By default, each component's DOM nodes are private. However, sometimes it's useful to expose a DOM node to the parent--for example, to allow focusing it. To opt in, wrap your component definition into `forwardRef()`:
+デフォルトでは、各コンポーネント内の DOM ノードはプライベートです。しかし、時には親に DOM ノードを公開することが有用な場合があります。例えば、ノードにフォーカスを当てることを許可したい場合です。これを明示的に許可するために、コンポーネント定義を `forwardRef()` でラップします。
 
 ```js {3,11}
 import { forwardRef } from 'react';
@@ -94,7 +94,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-You will receive a <CodeStep step={1}>ref</CodeStep> as the second argument after props. Pass it to the DOM node that you want to expose:
+props の後の第 2 引数として <CodeStep step={1}>ref</CodeStep> が渡されます。公開したい DOM ノードにそれを渡してください。
 
 ```js {8} [[1, 3, "ref"], [1, 8, "ref", 30]]
 import { forwardRef } from 'react';
@@ -110,7 +110,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-This lets the parent `Form` component access the <CodeStep step={2}>`<input>` DOM node</CodeStep> exposed by `MyInput`:
+これで、親の `Form` コンポーネントが、`MyInput` によって公開された <CodeStep step={2}>`<input>` DOM ノード</CodeStep>にアクセスできるようになります。
 
 ```js [[1, 2, "ref"], [1, 10, "ref", 41], [2, 5, "ref.current"]]
 function Form() {
@@ -131,15 +131,15 @@ function Form() {
 }
 ```
 
-This `Form` component [passes a ref](/reference/react/useRef#manipulating-the-dom-with-a-ref) to `MyInput`. The `MyInput` component *forwards* that ref to the `<input>` browser tag. As a result, the `Form` component can access that `<input>` DOM node and call [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) on it.
+この `Form` コンポーネントは `MyInput` に [ref を渡しています](/reference/react/useRef#manipulating-the-dom-with-a-ref)。`MyInput` コンポーネントはその ref をブラウザの `<input>` タグに*転送*しています。その結果、`Form` コンポーネントはこの `<input>` DOM ノードにアクセスし、[`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) を呼び出すことができるようになります。
 
-Keep in mind that exposing a ref to the DOM node inside your component makes it harder to change your component's internals later. You will typically expose DOM nodes from reusable low-level components like buttons or text inputs, but you won't do it for application-level components like an avatar or a comment.
+コンポーネント内の DOM ノードへの ref を公開することで、後でコンポーネントの内部を変更するのが難しくなることに注意してください。通常は、ボタンやテキスト入力フィールドなどの再利用可能な低レベルコンポーネントからは DOM ノードの公開を行いますが、アバターやコメントのようなアプリケーションレベルのコンポーネントでは行いません。
 
-<Recipes title="Examples of forwarding a ref">
+<Recipes title="ref の転送の例">
 
-#### Focusing a text input {/*focusing-a-text-input*/}
+#### テキスト入力フィールドにフォーカス {/*focusing-a-text-input*/}
 
-Clicking the button will focus the input. The `Form` component defines a ref and passes it to the `MyInput` component. The `MyInput` component forwards that ref to the browser `<input>`. This lets the `Form` component focus the `<input>`.
+ボタンをクリックすると、入力フィールドにフォーカスが当てられます。`Form` コンポーネントは ref を定義し、それを `MyInput` コンポーネントに渡します。`MyInput` コンポーネントはその ref をブラウザの `<input>` に転送します。これにより、`Form` コンポーネントは `<input>` にフォーカスを当てられるようになります。
 
 <Sandpack>
 
@@ -191,9 +191,9 @@ input {
 
 <Solution />
 
-#### Playing and pausing a video {/*playing-and-pausing-a-video*/}
+#### ビデオの再生と一時停止 {/*playing-and-pausing-a-video*/}
 
-Clicking the button will call [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) on a `<video>` DOM node. The `App` component defines a ref and passes it to the `MyVideoPlayer` component. The `MyVideoPlayer` component forwards that ref to the browser `<video>` node. This lets the `App` component play and pause the `<video>`.
+ボタンをクリックすると、`<video>` DOM ノードの [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) と [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) が呼び出されます。`App` コンポーネントは ref を定義し、それを `MyVideoPlayer` コンポーネントに渡しています。`MyVideoPlayer` コンポーネントはその ref をブラウザの `<video>` ノードに転送しています。これにより、`App` コンポーネントは `<video>` の再生と一時停止を行うことができるようになります。
 
 <Sandpack>
 
@@ -252,9 +252,9 @@ button { margin-bottom: 10px; margin-right: 10px; }
 
 ---
 
-### Forwarding a ref through multiple components {/*forwarding-a-ref-through-multiple-components*/}
+### 複数コンポーネントを経由した ref の転送 {/*forwarding-a-ref-through-multiple-components*/}
 
-Instead of forwarding a `ref` to a DOM node, you can forward it to your own component like `MyInput`:
+`ref` を DOM ノードに転送する代わりに、独自コンポーネントである `MyInput` に転送することもできます。
 
 ```js {1,5}
 const FormField = forwardRef(function FormField(props, ref) {
@@ -268,7 +268,7 @@ const FormField = forwardRef(function FormField(props, ref) {
 });
 ```
 
-If that `MyInput` component forwards a ref to its `<input>`, a ref to `FormField` will give you that `<input>`:
+さらにその `MyInput` コンポーネントが自身の `<input>` に ref を転送すれば、`FormField` への ref はその `<input>` への参照を受け取ることになります。
 
 ```js {2,5,10}
 function Form() {
@@ -289,7 +289,7 @@ function Form() {
 }
 ```
 
-The `Form` component defines a ref and passes it to `FormField`. The `FormField` component forwards that ref to `MyInput`, which forwards it to a browser `<input>` DOM node. This is how `Form` accesses that DOM node.
+`Form` コンポーネントは ref を定義し、それを `FormField` に渡しています。`FormField` コンポーネントはその ref を `MyInput` に転送し、`MyInput` はそれをブラウザの `<input>` DOM ノードに転送しています。これで `Form` が DOM ノードにアクセスできるようになります。
 
 
 <Sandpack>
@@ -367,9 +367,9 @@ input, button {
 
 ---
 
-### Exposing an imperative handle instead of a DOM node {/*exposing-an-imperative-handle-instead-of-a-dom-node*/}
+### DOM ノードの代わりに命令型ハンドルを公開する {/*exposing-an-imperative-handle-instead-of-a-dom-node*/}
 
-Instead of exposing an entire DOM node, you can expose a custom object, called an *imperative handle,* with a more constrained set of methods. To do this, you'd need to define a separate ref to hold the DOM node:
+DOM ノードをまるごと公開する代わりに、使用できるメソッドを制限したカスタムオブジェクトである、*命令型ハンドル (imperative handle)* を公開することができます。これを行うには、DOM ノードを保持するための別の ref を定義します。
 
 ```js {2,6}
 const MyInput = forwardRef(function MyInput(props, ref) {
@@ -381,7 +381,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-Pass the `ref` you received to [`useImperativeHandle`](/reference/react/useImperativeHandle) and specify the value you want to expose to the `ref`:
+そして受け取った `ref` を [`useImperativeHandle`](/reference/react/useImperativeHandle) に渡し、`ref` で公開したい値を指定します。
 
 ```js {6-15}
 import { forwardRef, useRef, useImperativeHandle } from 'react';
@@ -404,7 +404,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-If some component gets a ref to `MyInput`, it will only receive your `{ focus, scrollIntoView }` object instead of the DOM node. This lets you limit the information you expose about your DOM node to the minimum.
+何らかのコンポーネントが `MyInput` への ref を取得すると、DOM ノードの代わりにあなたが書いた `{ focus, scrollIntoView }` というオブジェクトを受け取ります。これにより、DOM ノードについて公開する情報を最小限に制限することができます。
 
 <Sandpack>
 
@@ -463,25 +463,25 @@ input {
 
 </Sandpack>
 
-[Read more about using imperative handles.](/reference/react/useImperativeHandle)
+[命令型ハンドルの使用について詳しく読む](/reference/react/useImperativeHandle)
 
 <Pitfall>
 
-**Do not overuse refs.** You should only use refs for *imperative* behaviors that you can't express as props: for example, scrolling to a node, focusing a node, triggering an animation, selecting text, and so on.
+**ref の過度な使用に注意してください**。ref は、props として表現できない、*命令型*の動作にのみ使用するべきです。例えば、ノードへのスクロール、ノードへのフォーカス、アニメーションのトリガ、テキストの選択などです。
 
-**If you can express something as a prop, you should not use a ref.** For example, instead of exposing an imperative handle like `{ open, close }` from a `Modal` component, it is better to take `isOpen` as a prop like `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) can help you expose imperative behaviors via props.
+**何かを props として表現できる場合は、ref を使用すべきではありません**。例えば、`Modal` コンポーネントから `{ open, close }` のような命令型のハンドルを公開するのではなく、`<Modal isOpen={isOpen} />` のように、`isOpen` を props として受け取る方が良いでしょう。命令型の動作を props として公開する際には[エフェクト](/learn/synchronizing-with-effects)が役立ちます。
 
 </Pitfall>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### My component is wrapped in `forwardRef`, but the `ref` to it is always `null` {/*my-component-is-wrapped-in-forwardref-but-the-ref-to-it-is-always-null*/}
+### コンポーネントを `forwardRef` でラップしているのに、`ref` が常に `null` になる {/*my-component-is-wrapped-in-forwardref-but-the-ref-to-it-is-always-null*/}
 
-This usually means that you forgot to actually use the `ref` that you received.
+これは通常、受け取った `ref` を実際に使用するのを忘れていることを意味します。
 
-For example, this component doesn't do anything with its `ref`:
+例えば、このコンポーネントは `ref` を全く使用していません：
 
 ```js {1}
 const MyInput = forwardRef(function MyInput({ label }, ref) {
@@ -494,7 +494,7 @@ const MyInput = forwardRef(function MyInput({ label }, ref) {
 });
 ```
 
-To fix it, pass the `ref` down to a DOM node or another component that can accept a ref:
+修正するにはこの `ref` を、DOM ノードか、ref を受け入れることができる別のコンポーネントに渡します。
 
 ```js {1,5}
 const MyInput = forwardRef(function MyInput({ label }, ref) {
@@ -507,7 +507,7 @@ const MyInput = forwardRef(function MyInput({ label }, ref) {
 });
 ```
 
-The `ref` to `MyInput` could also be `null` if some of the logic is conditional:
+一部のロジックが条件付きである場合にも、`MyInput` への `ref` が `null` になることがあります。
 
 ```js {1,5}
 const MyInput = forwardRef(function MyInput({ label, showInput }, ref) {
@@ -520,7 +520,7 @@ const MyInput = forwardRef(function MyInput({ label, showInput }, ref) {
 });
 ```
 
-If `showInput` is `false`, then the ref won't be forwarded to any node, and a ref to `MyInput` will remain empty. This is particularly easy to miss if the condition is hidden inside another component, like `Panel` in this example:
+`showInput` が `false` の場合、ref はどのノードにも転送されないため、`MyInput` への ref は空のままになります。特に、以下の例のように条件が別のコンポーネント、例えば `Panel` の中に隠されている場合、これを見落としがちです。
 
 ```js {5,7}
 const MyInput = forwardRef(function MyInput({ label, showInput }, ref) {
