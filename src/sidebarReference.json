@@ -7,7 +7,7 @@
       "sectionHeader": "react@18.2.0"
     },
     {
-      "title": "Hooks",
+      "title": "フック",
       "path": "/reference/react",
       "routes": [
         {
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "title": "Components",
+      "title": "コンポーネント",
       "path": "/reference/react/components",
       "routes": [
         {
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "title": "APIs",
+      "title": "API",
       "path": "/reference/react/apis",
       "routes": [
         {
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "title": "Directives",
+      "title": "ディレクティブ",
       "path": "/reference/react/directives",
       "canary": true,
       "routes": [
@@ -142,7 +142,7 @@
       "sectionHeader": "react-dom@18.2.0"
     },
     {
-      "title": "Components",
+      "title": "コンポーネント",
       "path": "/reference/react-dom/components",
       "routes": [
         {
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "title": "APIs",
+      "title": "API",
       "path": "/reference/react-dom",
       "routes": [
         {
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "title": "Client APIs",
+      "title": "クライアント API",
       "path": "/reference/react-dom/client",
       "routes": [
         {
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "title": "Server APIs",
+      "title": "サーバ API",
       "path": "/reference/react-dom/server",
       "routes": [
         {
@@ -247,10 +247,10 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Legacy APIs"
+      "sectionHeader": "レガシー API"
     },
     {
-      "title": "Legacy React APIs",
+      "title": "レガシー React API",
       "path": "/reference/react/legacy",
       "routes": [
         {
