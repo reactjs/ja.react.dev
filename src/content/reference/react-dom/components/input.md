@@ -4,7 +4,7 @@ title: "<input>"
 
 <Intro>
 
-[組み込みのブラウザ `<input>` コンポーネント](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) は、さまざまな種類のフォーム入力をレンダーすることができます。
+[ブラウザ組み込みの `<input>` コンポーネント](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)を利用することで、さまざまな種類のフォーム入力をレンダーすることができます。
 
 ```js
 <input />
@@ -20,7 +20,7 @@ title: "<input>"
 
 ### `<input>` {/*input*/}
 
-入力を表示するには、[組み込みのブラウザ `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) コンポーネントをレンダーします。
+入力欄を表示するには、[組み込みのブラウザ `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) コンポーネントをレンダーします。
 
 ```js
 <input name="myInput" />
@@ -28,80 +28,80 @@ title: "<input>"
 
 [さらに例を見る](#usage)
 
-#### Props {/*props*/}
+#### props {/*props*/}
 
-`<input>` は全ての[共通要素である props](/reference/react-dom/components/common#props) をサポートしています。
+`<input>` は[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
 
-以下の props を渡すことで、[入力を制御することができます。](#controlling-an-input-with-a-state-variable)
+以下の props を渡すことで、[入力欄を制御されたコンポーネント (controlled component)](#controlling-an-input-with-a-state-variable) にできます。
 
-* [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): ブール値。チェックボックス入力またはラジオボタンの場合、選択されているかどうかを制御します。
+* [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): ブーリアン。チェックボックスまたはラジオボタンの場合、選択されているかどうかを制御します。
 * [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): 文字列。テキスト入力の場合、そのテキストを制御します。（ラジオボタンの場合は、フォームデータを指定します。）
 
-これらのいずれかを渡す場合、渡された値を更新する `onChange` ハンドラも渡す必要があります。
+これらのいずれかを渡す場合は、渡された値を更新する `onChange` ハンドラも渡す必要があります。
 
-以下の `<input>` の props は、制御されていない入力にのみ関連しています。
+これらの `<input>` の props は、非制御 (uncontrolled) の入力欄にのみ使用されます。
 
-* [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): ブール値。`type="checkbox"` および `type="radio"` の入力の[初期値](#providing-an-initial-value-for-an-input)を指定します。 
-* [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): 文字列。テキスト入力の[初期値](#providing-an-initial-value-for-an-input)を指定します。
+* [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): ブーリアン。`type="checkbox"` および `type="radio"` の入力欄の場合に、[初期値](#providing-an-initial-value-for-an-input)を指定します。 
+* [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): 文字列。テキスト入力の場合に、[初期値](#providing-an-initial-value-for-an-input)を指定します。
 
-以下の `<input>` props は、制御されていない入力と制御された入力の両方に関連します。
+これらの `<input>` の props は、非制御の入力欄と制御された入力欄の両方で用いられます。
 
-* [`accept`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#accept): 文字列。`type="file"` の入力によって受け取るファイルの種類を指定します。
-* [`alt`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#alt): 文字列。`type="image"` の入力によって代替画像テキストを指定します。
-* [`capture`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#capture): 文字列。`type="file"` 入力によってキャプチャされたメディア（マイク、ビデオ、またはカメラ）を指定します。
+* [`accept`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#accept): 文字列。`type="file"` である入力欄が受け付けるファイルの種類を指定します。
+* [`alt`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#alt): 文字列。`type="image"` である入力欄の場合に、代替画像テキストを指定します。
+* [`capture`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#capture): 文字列。`type="file"` である入力欄がキャプチャするメディア（マイク、ビデオ、またはカメラ）を指定します。
 * [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#autocomplete): 文字列。可能な[オートコンプリート動作](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)の 1 つを指定します。
-* [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#autofocus): ブール値。`true` の場合、React はマウント時にその要素をフォーカスします。
-* [`dirname`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#dirname): 文字列。要素の文字方向性に対するフォームフィールド名を指定します。
-* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#disabled): ブール値。`true` の場合、入力はインタラクティブでなく、淡色表示されます。
+* [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#autofocus): ブーリアン。`true` の場合、React はマウント時にその要素をフォーカスします。
+* [`dirname`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#dirname): 文字列。要素の文字方向に対するフォームフィールド名を指定します。
+* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#disabled): ブール値。`true` の場合、入力ははインタラクティブではなくなり、薄暗く表示されます。
 * `children`: `<input>` は子要素を受け取りません。
 * [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#form): 文字列。この入力が属する `<form>` の `id` を指定します。省略された場合、最も近い親フォームが対象となります。
-* [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): 文字列。`type="submit"` および `type="image"` の親要素である `<form action>` を上書きします。
-* [`formEnctype`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formenctype): 文字列。`type="submit"` および `type="image"` の親要素である `<form enctype>` を上書きします。
-* [`formMethod`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formmethod): 文字列。`type="submit"` および `type="image"` の親要素である `<form method>` を上書きします。
-* [`formNoValidate`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formnovalidate): 文字列。`type="submit"` および `type="image"` の親要素である `<form noValidate>` を上書きします。
-* [`formTarget`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formtarget): 文字列。`type="submit"` および `type="image"` の親要素である `<form target>` を上書きします。
-* [`height`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#height): 文字列。`type="image"` の画像の高さを指定します。
-* [`list`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#list): 文字列。オートコンプリートオプションを持つ `<datalist>` の `id` を指定します。
-* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#max): 数値。数値および日時入力の最大値を指定します。
-* [`maxLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#maxlength): 数値。テキストおよびその他の入力の最大文字数を指定します。
-* [`min`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#min): 数値。数値および日時入力の最小値を指定します。
-* [`minLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#minlength): 数値。テキストおよびその他の入力の最小文字数を指定します。
-* [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#multiple): ブール値。`<type="file"` および `type="email"` に複数の値を許可するかどうかを指定します。
-* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): 文字列。[フォームで送信された](#reading-the-input-values-when-submitting-a-form)入力の名前を指定します。
-* `onChange`: [`イベント`ハンドラ](/reference/react-dom/components/common#event-handler)関数。[制御された入力](#controlling-an-input-with-a-state-variable)に必要です。ユーザが入力の値を変更するとすぐに起動します（例えば、キーストロークごとに起動します）。ブラウザの [`入力`のイベント](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)と同じように作動します。
-* `onChangeCapture`: [キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で起動する `onChange` のバージョン。
-* [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): [`イベント`ハンドラ](/reference/react-dom/components/common#event-handler)関数。ユーザが値を変更するとすぐに起動します。歴史的な理由から、React では同様に動作する `onChange` を代わりに使用するのが慣用的です。
-* `onInputCapture`: [キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で起動する `onInput` のバージョン。
-* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): [`イベント`ハンドラ](/reference/react-dom/components/common#event-handler) 関数。フォーム送信時の入力の検証に失敗した場合に起動します。組み込みの `invalid` イベントとは異なり、React の `onInvalid` イベントはバブリングします。
-* `onInvalidCapture`: [キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で起動する `onInvalid` のバージョン。
-* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event): [`イベント`ハンドラ](/reference/react-dom/components/common#event-handler) 関数。`<input>` 内の選択が変更された後に起動します。React は `onSelect` イベントを拡張して、空の選択および編集時（選択に影響する可能性がある場合）にも起動します。
-* `onSelectCapture`: [キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で起動する `onSelect` のバージョン。
-* [`pattern`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#pattern): 文字列。`value` が一致する必要があるパターンを指定します。
-* [`placeholder`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#placeholder): 文字列。入力値が空の場合は淡色で表示されます。
-* [`readOnly`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#readonly): ブール値。`true` の場合、ユーザは入力を編集できません。
-* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#required): ブール値。`true` の場合、フォームを送信するには値を指定する必要があります。
-* [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#size): 数値。幅を設定と似ていますが、単位はコントロールによって異なります。
-* [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#src): 文字列。`type="image"` 入力の、画像ファイルを指定します。
-* [`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#step): 正数または`'任意の'`文字列。有効な値間の距離を指定します。
+* [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): 文字列。`type="submit"` および `type="image"` の場合、親要素の `<form action>` を上書きします。
+* [`formEnctype`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formenctype): 文字列。`type="submit"` および `type="image"` の場合、親要素の `<form enctype>` を上書きします。
+* [`formMethod`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formmethod): 文字列。`type="submit"` および `type="image"` の場合、親要素の `<form method>` を上書きします。
+* [`formNoValidate`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formnovalidate): 文字列。`type="submit"` および `type="image"` の場合、親要素の `<form noValidate>` を上書きします。
+* [`formTarget`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formtarget): 文字列。`type="submit"` および `type="image"` の場合、`<form target>` を上書きします。
+* [`height`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#height): 文字列。`type="image"` の場合、画像の高さを指定します。
+* [`list`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#list): 文字列。オートコンプリートの選択肢を指定する `<datalist>` の `id` を指定します。
+* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#max): 数値。数値および日時タイプの入力欄において最大値を指定します。
+* [`maxLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#maxlength): 数値。テキストなどのタイプの入力欄において最大文字数を指定します。
+* [`min`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#min): 数値。数値および日時タイプの入力欄において最小値を指定します。
+* [`minLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#minlength): 数値。テキストなどのタイプの入力欄において最小文字数を指定します。
+* [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#multiple): ブール値。`type="file"` および `type="email"` の場合、複数の値を許可するかどうかを指定します。
+* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): 文字列。[フォームで送信される](#reading-the-input-values-when-submitting-a-form)際に使われるこの入力欄の名前を指定します。
+* `onChange`: [`Event` ハンドラ](/reference/react-dom/components/common#event-handler)関数。[制御された入力](#controlling-an-input-with-a-state-variable)の場合は必須。ユーザが入力の値を変更するとすぐに発火します（例えば、キーストロークごとに発火します）。ブラウザの [`input` イベント](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)と同じように動作します。
+* `onChangeCapture`: `onChange` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): [`Event` ハンドラ](/reference/react-dom/components/common#event-handler)関数。ユーザが値を変更するとすぐに発火します。歴史的な理由から、React では代わりに同様の動作をする `onChange` を使用するのが慣習となっています。
+* `onInputCapture`: `onInput` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): [`Event` ハンドラ](/reference/react-dom/components/common#event-handler)関数。フォームの送信時に入力の検証に失敗した場合に発火します。組み込みの `invalid` イベントとは異なり、React の `onInvalid` イベントはバブルします。
+* `onInvalidCapture`: `onInvalid` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event): [`Event` ハンドラ](/reference/react-dom/components/common#event-handler)関数。`<input>` 内で選択テキストが変更された後に発火します。React は `onSelect` イベントを拡張しており、空の選択やテキストの編集（選択に影響を与える可能性がある）でも発火します。
+* `onSelectCapture`: `onSelect` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`pattern`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#pattern): 文字列。`value` がマッチする必要のあるパターンを指定します。
+* [`placeholder`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#placeholder): 文字列。入力値が空の場合、これが薄い色で表示されます。
+* [`readOnly`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#readonly): ブーリアン。`true` の場合、入力欄はユーザによって編集できなくなります。
+* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#required): ブーリアン。`true` の場合、フォームを送信するためには値が必須となります。
+* [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#size): 数値。width の設定と似ていますが、入力欄によって異なる単位で指定します。
+* [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#src): 文字列。`type="image"` の入力の場合、画像ファイルを指定します。
+* [`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#step): 正の数値、または文字列の `'any'`。有効な値の間隔を指定します。
 * [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#type): 文字列。[入力タイプ](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)の 1 つ。
-* [`width`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#width): 文字列。`type="image"` 入力の画像の幅を指定します。
+* [`width`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#width): 文字列。`type="image"` の場合、画像の幅を指定します。
 
-#### 注意事項 {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-- チェックボックスには `value` (または `defaultValue`) ではなく、`checked` (または `defaultChecked`) が必要です。
-- テキスト入力が文字列 `value` プロパティを受け取った場合、それは [制御されているものとして扱われます。](#controlling-an-input-with-a-state-variable)
-- チェックボックスまたはラジオボタンがブール値の `checked` プロパティを受け取った場合、それは [制御されているものとして扱われます。](#controlling-an-input-with-a-state-variable)
-- 入力を、同時に制御、非制御コンポーネントの両方にすることはできません。
-- 入力を、その存続期間内に、制御、非制御で切り替えることはできません。
-- すべての制御された入力には、その前の値を同期的に更新する `onChange` イベントハンドラが必要です。
+- チェックボックスの場合 `value`（や `defaultValue`）ではなく、`checked`（や `defaultChecked`）が必要です。
+- テキスト入力欄が props として文字列型の `value` プロパティを受け取ると、[制御されたものとして扱われます](#controlling-an-input-with-a-state-variable)。
+- チェックボックスまたはラジオボタンが props としてブーリアン型の `checked` を受け取ると、[制御されたものとして扱われます](#controlling-an-input-with-a-state-variable)。
+- 入力欄は制御されたコンポーネントと非制御コンポーネントに同時になることはできません。。
+- 入力欄は、ライフタイム中に制御されたコンポーネントから非制御コンポーネント、またはその逆に切り替えることはできません。
+- すべての制御された入力欄には、制御に使っている state を同期的に更新するための `onChange` イベントハンドラが必要です。
 
 ---
 
 ## 使用法 {/*usage*/}
 
-### 様々なタイプの入力を表示する {/*displaying-inputs-of-different-types*/}
+### 各種の入力欄を表示する {/*displaying-inputs-of-different-types*/}
 
-入力を表示するには、`<input>` コンポーネントをレンダーします。デフォルトではテキスト入力になります。チェックボックスの場合は `type="checkbox"`、ラジオボタンの場合は `type="radio"`、[または他の入力タイプのいずれか](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)を渡すことができます。
+入力欄を表示するには、`<input>` コンポーネントをレンダーします。デフォルトではテキスト入力になります。チェックボックスの場合は `type="checkbox"` を、ラジオボタンの場合は `type="radio"` を、[または他の入力タイプのいずれか](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)を渡すことができます。
 
 <Sandpack>
 
@@ -146,11 +146,11 @@ input { margin: 5px; }
 
 ---
 
-### 入力にラベルを付ける {/*providing-a-label-for-an-input*/}
+### 入力欄にラベルを付ける {/*providing-a-label-for-an-input*/}
 
-通常、すべての `<input>` を [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) タグ内に配置します。これにより、ブラウザに対してこのラベルがその入力に関連付けられていることを伝えます。ユーザがラベルをクリックすると、ブラウザは自動的に入力にフォーカスを当てます。これはアクセシビリティにも重要です。スクリーンリーダーは、ユーザが関連付けられた入力にフォーカスしたとき、ラベルのキャプションを読み上げます。
+通常、すべての `<input>` は [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) タグ内に配置します。これにより、ブラウザに対してこのラベルがその入力欄に関連付けられていることが伝わります。ユーザがラベルをクリックすると、ブラウザは自動的に入力欄にフォーカスします。これはアクセシビリティの観点からも重要です。ユーザが入力欄にフォーカスすると、スクリーンリーダがラベルのキャプションを読み上げます。
 
-`<input>` を `<label>` にネストできない場合は、同じ ID を `<input id>` と [`<label htmlFor>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) に渡すことで関連付けます。また、同じコンポーネントの複数のインスタンス間の競合を避けるために、[`useId`.](/reference/react/useId) を使用してそのような ID を生成します。
+もし `<label>` 内に `<input>` をネストできない場合は、同じ ID を `<input id>` と [`<label htmlFor>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) に渡すことで関連付けることができます。同一コンポーネントの複数のインスタンス間での競合を避けるために、[`useId`](/reference/react/useId) を使用してそのような ID を生成してください。
 
 <Sandpack>
 
@@ -181,9 +181,9 @@ input { margin: 5px; }
 
 ---
 
-### 入力の初期値を指定する {/*providing-an-initial-value-for-an-input*/}
+### 入力欄に初期値を指定する {/*providing-an-initial-value-for-an-input*/}
 
-オプションで、入力の初期値を指定することができます。テキスト入力の場合は、`defaultValue` として文字列を渡します。チェックボックスとラジオボタンの場合は、代わりに `defaultChecked` ブール値を使用して初期値を指定します。
+オプションで、入力値の初期値を指定することができます。テキスト入力の場合は、`defaultValue` として文字列を渡してください。チェックボックスとラジオボタンの場合は、代わりにブーリアンの `defaultChecked` を使用して初期値を指定してください。
 
 <Sandpack>
 
@@ -233,9 +233,9 @@ input { margin: 5px; }
 
 ---
 
-### フォーム送信時に入力値を読み取る {/*reading-the-input-values-when-submitting-a-form*/}
+### フォーム送信時に入力欄から値を読み取る {/*reading-the-input-values-when-submitting-a-form*/}
 
-入力の周囲に、[`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) を追加し、内部に [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) を配置します。これにより、`<form onSubmit>` のイベントハンドラが呼び出されます。デフォルトでは、ブラウザはフォームデータを現在の URL に送信し、ページを更新します。`e.preventDefault()` を呼び出すことで、その動作を防ぐことができます。[`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) を使用してフォームデータを読み込みます。
+入力欄を [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) で囲み、その中に [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) を配置します。これにより、`<form onSubmit>` イベントハンドラが呼び出されます。デフォルトでは、ブラウザはフォームデータを現在の URL に送信し、ページを更新します。`e.preventDefault()` を呼び出すことで、その振る舞いをオーバーライドできます。[`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) を使用してフォームデータを読み込みます。
 <Sandpack>
 
 ```js
@@ -289,23 +289,23 @@ input { margin: 5px; }
 
 <Note>
 
-すべての `<input>` に `name` を指定してください。例えば、`<input name="firstName" defaultValue="Taylor" />` のようにします。`{ firstName: "Taylor" }` のように、指定した `name` は、フォームデータのキーとして使用されます。
+すべての `<input>` に `name` を指定してください。例えば、`<input name="firstName" defaultValue="Taylor" />` のように指定します。指定した `name` は、フォームデータ内のキーとして使用されます。例えば、`{ firstName: "Taylor" }` のようになります。
 
 </Note>
 
 <Pitfall>
 
-デフォルトでは、`<form>` 内の *任意の* `<button>` で送信されます。これは予期せぬ事態になることがあります。独自のカスタム `Button` React コンポーネントがある場合は、`<button>` の代わりに [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) を返すことを検討してみてください。そして、フォームを送信するためのボタンには、明示的に `<button type="submit">` を使用してください。
+デフォルトでは、`<form>` 内の*あらゆる* `<button>` はフォームの送信を行います。これは予想外の挙動かもしれません！ 独自のカスタム `Button` React コンポーネントを利用している場合は、`<button>` の代わりに [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) を返すようにすることを考慮してください。そしてフォームを送信することが*意図されている*ボタンには明示的に `<button type="submit">` を使用してください。
 
 </Pitfall>
 
 ---
 
-### 状態変数を使用して入力要素を制御する {/*controlling-an-input-with-a-state-variable*/}
+### state 変数を使用して入力要素を制御する {/*controlling-an-input-with-a-state-variable*/}
 
-`<input />` のような入力は*制御されません*。`<input defaultValue="Initial text" />` のように[初期値を渡す](#providing-an-initial-value-for-an-input)場合でも、JSX は初期値を指定するだけで、現在の値を制御するものではありません。
+`<input />` のような入力欄は*非制御*です。`<input defaultValue="Initial text" />` のように[デフォルト値を指定](#providing-an-initial-value-for-an-input)している場合でも、この JSX で指定しているのはあくまで初期値であって現在の値ではありません。
 
-**_controlled_ 入力をレンダーするには、それに `value` プロパティを渡します。（チェックボックスやラジオの場合は、`checked`）** React は、常に指定した `value` を入力が持つように強制します。通常、[状態変数](/reference/react/useState)を宣言することによってこれを行います。
+***制御された*入力欄をレンダーするには、`value` プロパティ（チェックボックスやラジオボタンの場合は `checked`）を渡してください**。React は入力欄が常に渡した `value` を反映するようにします。通常、[state 変数](/reference/react/useState)を宣言することで入力欄を制御します。
 
 ```js {2,6,7}
 function Form() {
@@ -320,7 +320,7 @@ function Form() {
 }
 ```
 
-制御された入力要素は、状態が必要な場合に意味があります。例えば、編集のたびに UI を再レンダーする必要がある場合などです。
+例えば編集のたびに UI を再レンダーする必要があるなどの理由でいずれにせよ state が必要な場合、制御された入力欄は特に有用です。
 
 ```js {2,9}
 function Form() {
@@ -335,7 +335,7 @@ function Form() {
       ...
 ```
 
-また、制御された入力は、入力状態を調整するための複数の方法（例えば、ボタンをクリックすることによってなど）を提供したい場合にも役立ちます。
+また、制御された入力欄は、入力 state を変更する方法（例えばボタンクリックなど）を複数提供したい場合にも役立ちます。
 
 ```js {3-4,10-11,14}
 function Form() {
@@ -356,7 +356,7 @@ function Form() {
         </button>
 ```
 
-制御されたコンポーネントに渡す `value` は、`undefined` や `null` であってはなりません。初期値を空にしたい場合（例えば、以下の `firstName` フィールドのような場合）、状態変数を空の文字列（`''`）で初期化してください。
+制御されたコンポーネントに渡す `value` は、`undefined` や `null` であってはなりません。初期値を空にしたい場合（例えば、以下の `firstName` フィールドのような場合）、state 変数を空の文字列 (`''`) で初期化してください。
 
 <Sandpack>
 
@@ -408,7 +408,7 @@ p { font-weight: bold; }
 
 <Pitfall>
 
-**`onChange` を指定せずに `value` を渡すと、入力欄に入力することができなくなります**。入力を `value` で制御すると、常に渡した値を*強制的に*持たせることになります。したがって、状態変数を `value` として渡したが、`onChange` イベントハンドラ内でその状態変数を同期的に更新し忘れると、React は入力をキーストロークごとに指定した `value` に戻してしまいます。
+**`onChange` を指定せずに `value` を渡すと、入力欄に入力することができなくなります**。入力欄に `value` を渡して制御を行うと、渡した値で入力欄を*強制的に固定*することになります。したがって、state 変数を `value` として渡しても、`onChange` イベントハンドラ内でその state 変数を同期的に更新するのを忘れた場合、React は入力欄を、キーストローク毎に指定した `value` に戻してしまいます。
 
 </Pitfall>
 
@@ -416,9 +416,9 @@ p { font-weight: bold; }
 
 ### キーストロークごとの再レンダーを最適化する {/*optimizing-re-rendering-on-every-keystroke*/}
 
-制御された入力を使用する場合、キーストロークごとに状態が更新されます。状態を含むコンポーネントが大きなツリーを再レンダーすると、速度が遅くなる可能性があります。再レンダーのパフォーマンスを最適化する方法はいくつかあります。
+制御された入力欄を使用する場合、キーストロークごとに state のセットが行われます。state を含んだコンポーネントが大きなツリーを再レンダーする場合、速度が遅くなる可能性があります。再レンダー時のパフォーマンスを最適化する方法がいくつかあります。
 
-例えば、キーストロークごとにすべてのページコンテンツを再レンダーするフォームがあるとします。
+例えば、キーストロークごとにページ内コンテンツをすべて再レンダーするフォームがあるとしましょう。
 
 ```js {5-8}
 function App() {
@@ -434,7 +434,7 @@ function App() {
 }
 ```
 
-`<PageContent />` は入力の状態に依存しないため、入力の状態を独自のコンポーネントに移動できます。
+`<PageContent />` は入力値の state に依存していないため、入力値 state を独立したコンポーネントに移動できます。
 
 ```js {4,10-17}
 function App() {
@@ -458,15 +458,15 @@ function SignupForm() {
 
 これにより、キーストロークごとに `SignupForm` のみが再レンダーされるため、パフォーマンスが大幅に向上します。
 
-再レンダーを回避する方法がない場合（例えば、`PageContent` が検索入力の値に依存する場合）、[`useDeferredValue`](/reference/react/useDeferredValue#deferring-re-rendering-for-a-part-of-the-ui) を使用することで、大規模な再レンダーの途中でも、制御された入力の応答性を維持できます。
+再レンダーを回避する方法がない場合（例えば、`PageContent` が検索ボックスの入力値に依存する場合）、[`useDeferredValue`](/reference/react/useDeferredValue#deferring-re-rendering-for-a-part-of-the-ui) を使用することで、巨大な再レンダーの途中でも、制御された入力欄の応答性を維持できます。
 
 ---
 
 ## トラブルシューティング {/*troubleshooting*/}
 
-### テキストを入力しても更新されない {/*my-text-input-doesnt-update-when-i-type-into-it*/}
+### テキスト入力欄にタイプしても内容が更新されない {/*my-text-input-doesnt-update-when-i-type-into-it*/}
 
-`value` を指定して入力をレンダーし、`onChange` を指定しないと、コンソールにエラーが表示されます。
+`value` があるが `onChange` のない入力欄をレンダーすると、コンソールにエラーが表示されます。
 
 ```js
 // 🔴 Bug: controlled text input with no onChange handler
@@ -479,21 +479,21 @@ You provided a `value` prop to a form field without an `onChange` handler. This 
 
 </ConsoleBlock>
 
-エラーメッセージが示すように、[*初期*値を指定](#providing-an-initial-value-for-an-input)したいだけの場合は、代わりに `defaultValue` を渡してください。
+エラーメッセージが示すように、[*初期値*を指定したいだけの場合](#providing-an-initial-value-for-a-text-area)は、代わりに `defaultValue` を渡すようにしてください。
 
 ```js
 // ✅ Good: uncontrolled input with an initial value
 <input defaultValue={something} />
 ```
 
-[状態変数を使用してこの入力を制御](#controlling-an-input-with-a-state-variable)したい場合は、`onChange` ハンドラを指定します。
+[state 変数でこの入力欄を制御したい場合](#controlling-an-input-with-a-state-variable)は、`onChange` ハンドラを指定してください。
 
 ```js
 // ✅ Good: controlled input with onChange
 <input value={something} onChange={e => setSomething(e.target.value)} />
 ```
 
-値を意図的に読み取り専用にする場合は、エラーを抑制するために `readOnly` プロパティを追加します。
+値を意図的に読み取り専用にしたい場合は、エラーを抑制するために props として `readOnly` を追加してください。
 
 ```js
 // ✅ Good: readonly controlled input without on change
@@ -504,7 +504,7 @@ You provided a `value` prop to a form field without an `onChange` handler. This 
 
 ### チェックボックスをクリックしても更新されない {/*my-checkbox-doesnt-update-when-i-click-on-it*/}
 
-チェックボックスを `checked` だけでレンダーし、`onChange` が指定されていない場合、コンソールにエラーが表示されます。
+`checked` があるが `onChange` のないチェックボックスをレンダーすると、コンソールにエラーが表示されます。
 
 ```js
 // 🔴 Bug: controlled checkbox with no onChange handler
@@ -517,14 +517,14 @@ You provided a `checked` prop to a form field without an `onChange` handler. Thi
 
 </ConsoleBlock>
 
-エラーメッセージが示すように、もし単に[*初期*値を指定](#providing-an-initial-value-for-an-input) したかった場合は、代わりに `defaultChecked` を渡します。
+エラーメッセージが示すように、[*初期値*を指定したいだけの場合](#providing-an-initial-value-for-an-input)は、代わりに `defaultChecked` を渡すようにしてください。
 
 ```js
 // ✅ Good: uncontrolled checkbox with an initial value
 <input type="checkbox" defaultChecked={something} />
 ```
 
-[状態変数を使用してこのチェックボックスを制御](#controlling-an-input-with-a-state-variable)したい場合は、`onChange` ハンドラを指定します。
+[state 変数でこのチェックボックスを制御したい場合](#controlling-an-input-with-a-state-variable)は、`onChange` ハンドラを指定してください。
 
 ```js
 // ✅ Good: controlled checkbox with onChange
@@ -537,7 +537,7 @@ You provided a `checked` prop to a form field without an `onChange` handler. Thi
 
 </Pitfall>
 
-チェックボックスが意図的に読み取り専用である場合は、エラーを抑制するために `readOnly` プロパティを追加します。
+チェックボックスを意図的に読み取り専用にしたい場合は、エラーを抑制するために props として `readOnly` を追加してください。
 
 ```js
 // ✅ Good: readonly controlled input without on change
@@ -546,11 +546,11 @@ You provided a `checked` prop to a form field without an `onChange` handler. Thi
 
 ---
 
-### 入力カーソルがキーストロークごとに先頭にジャンプしてしまう {/*my-input-caret-jumps-to-the-beginning-on-every-keystroke*/}
+### キーストロークごとに入力欄のカーソルが先頭に戻る {/*my-input-caret-jumps-to-the-beginning-on-every-keystroke*/}
 
-[入力を制御する](#controlling-an-input-with-a-state-variable)場合は、`onChange` を使用して、DOM からの状態変数を入力の値に更新する必要があります。
+入力欄を[制御する](#controlling-a-text-area-with-a-state-variable)場合、`onChange` 中でその state 変数を DOM からやってくる入力欄の値に更新する必要があります。
 
-`e.target.value` (チェックボックスの場合は `e.target.checked`) 以外のものに更新することはできません。
+state を `e.target.value`（チェックボックスの場合は `e.target.checked`）以外のものに更新することはできません。
 
 ```js
 function handleChange(e) {
@@ -559,7 +559,7 @@ function handleChange(e) {
 }
 ```
 
-非同期的に更新することもできません。
+また、非同期に更新することもできません。
 
 ```js
 function handleChange(e) {
@@ -570,7 +570,7 @@ function handleChange(e) {
 }
 ```
 
-コードを修正するには、それを `e.target.value` に同期的に更新します。
+コードを修正するには、state を `e.target.value` の値に同期的に更新します。
 
 ```js
 function handleChange(e) {
@@ -579,17 +579,17 @@ function handleChange(e) {
 }
 ```
 
-これで問題が解決しない場合は、キーストロークごとに入力が DOM から削除され、再追加されている可能性があります。これは、再レンダーするたびに誤って[状態をリセット](/learn/preserving-and-resetting-state)してしまっている場合に発生することがあります。例えば、入力またはその親の 1 つが常に異なる `key` 属性を受け取っている場合や、またはコンポーネント関数の定義をネストしている場合（この場合はサポートされておらず、「内部」コンポーネントが常に別のツリーとみなされます）などが挙げられます。
+これで問題が解決しない場合、入力欄がキーストロークごとに DOM から削除・再追加されている可能性があります。これは、再レンダーごとに state を誤って[リセット](/learn/preserving-and-resetting-state)している場合に起こります。例えば、入力欄またはその親が常に異なる `key` 属性を受け取っている可能性や、コンポーネント定義をネストしている（これは React では許されておらず、「内側」のコンポーネントがレンダー時に再マウントさえることになります）可能性があります。
 
 ---
 
-### "A component is changing an uncontrolled input to be controlled" というエラーが表示される {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
+### "A component is changing an uncontrolled input to be controlled" というエラーが発生する {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
 
 
-コンポーネントに `value` を指定した場合、その `value` は存続期間を通じて常に文字列である必要があります。
+コンポーネントに `value` を渡す場合、そのライフサイクル全体を通じて文字列型でなければなりません。
 
-React はコンポーネントを非制御にするか制御するかを認識できないため、最初に `value={unknown}` を渡し、後で `value="some string"` を渡すことはできません。制御されるコンポーネントは、`null` または `unknown` ではなく、常に文字列 `value` を受け取る必要があります。
+最初に `value={undefined}` を渡しておき、後で `value="some string"` を渡すようなことはできません。なぜなら、React はあなたがコンポーネントを非制御コンポーネントと制御されたコンポーネントのどちらにしたいのか分からなくなるからです。制御されたコンポーネントは常に文字列の `value` を受け取るべきであり、`null` や `undefined` であってはいけません。
 
-もし `value` が API や状態変数から取得される場合、初期値が `null` や `undefined` になる可能性があります。その場合は、初期値として空の文字列（`''`）を設定するか、`value={someValue ?? ''}` のようにして、`value` が文字列であることを確実にしてください。
+あなたの `value` が API や state 変数から来ている場合、それが `null` や `undefined` に初期化されているかもしれません。その場合、まず空の文字列（`''`）にセットするか、`value` が文字列であることを保証するために `value={someValue ?? ''}` を渡すようにしてください。
 
-同様に、チェックボックスに `checked` を渡す場合は、それが常にブール値であることを確認してください。
+同様に、チェックボックスに `checked` を渡す場合は、常にブーリアン型であることを確認してください。
