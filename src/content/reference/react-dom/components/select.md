@@ -111,7 +111,7 @@ select { margin: 5px; }
 
 通常、すべての `<select>` は [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) タグ内に配置します。これにより、ブラウザに対してこのラベルがそのセレクトボックスに関連付けられていることが伝わります。ユーザがラベルをクリックすると、ブラウザは自動的にセレクトボックスにフォーカスします。これはアクセシビリティの観点からも重要です。ユーザがセレクトボックスにフォーカスすると、スクリーンリーダがラベルのキャプションを読み上げます。
 
-もし `<label>` 内に `<select>` をネストできない場合は、同じ ID を `<select id>` と [`<label htmlFor>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) に渡すことで関連付けることができます。同一コンポーネントの複数のインスタンス間での競合を避けるために、[`useId`](/reference/react/useId) を使用してそのような ID を生成することが推奨されます。
+もし `<label>` 内に `<select>` をネストできない場合は、同じ ID を `<select id>` と [`<label htmlFor>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) に渡すことで関連付けることができます。同一コンポーネントの複数のインスタンス間での競合を避けるために、[`useId`](/reference/react/useId) を使用してそのような ID を生成してください。
 
 <Sandpack>
 
