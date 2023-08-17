@@ -404,20 +404,12 @@ export function HomeContent() {
                           </Link>{' '}
                           や{' '}
                           <Link href="https://github.com/expo/expo">Expo</Link>{' '}
-<<<<<<< HEAD
                           を使えば、React で Android、iOS
                           などのアプリを構築できます。{}
                           ネイティブアプリのように感じるのは、{}
                           ウェブビューではなく真のネイティブ UI だからです。{}
                           React コンポーネントは、プラットフォーム固有の、{}
                           本物の Android や iOS のビューを表示できます。
-=======
-                          let you build apps in React for Android, iOS, and
-                          more. They look and feel native because their UIs{' '}
-                          <i>are</i> truly native. It’s not a web view—your
-                          React components render real Android and iOS views
-                          provided by the platform.
->>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
                         </p>
                       </div>
                     </div>
@@ -446,17 +438,12 @@ export function HomeContent() {
         <Section background="right-card">
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
             <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5">
-<<<<<<< HEAD
-              <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:pl-5 lg:pr-10">
+              <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:ps-5 lg:pe-10">
                 <Header>
                   完成した機能だけが
                   <br className="hidden lg:inline" />
                   リリースされる
                 </Header>
-=======
-              <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:ps-5 lg:pe-10">
-                <Header>Upgrade when the future is ready</Header>
->>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
                 <Para>
                   React は開発アプローチの変更に慎重に取り組みます。{}
                   すべてのコミットは 10 億人以上のユーザによる{}
@@ -544,14 +531,9 @@ export function HomeContent() {
           <div className="mt-20 px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
             <Logo className="text-link dark:text-link-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start" />
             <Header>
-<<<<<<< HEAD
               React コミュニティに
               <br className="hidden lg:inline" />
               ようこそ！
-=======
-              Welcome to the <br className="hidden lg:inline" />
-              React community
->>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
             </Header>
             <ButtonLink
               href={'/learn'}

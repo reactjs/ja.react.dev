@@ -52,11 +52,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-<<<<<<< HEAD
-これらのコンポーネントは今のところ、**ルート (root) コンポーネントファイル**（この例では `App.js` という名前）に置かれています。[Create React App](https://create-react-app.dev/) を使うとアプリは `src/App.js` に置かれます。セットアップによっては、ルートコンポーネントは別のファイルに存在するかもしれません。Next.js のようなファイルベースのルーティングがあるフレームワークを使っている場合、ルートコンポーネントはページごとに異なるものになります。
-=======
-These currently live in a **root component file,** named `App.js` in this example. Depending on your setup, your root component could be in another file, though. If you use a framework with file-based routing, such as Next.js, your root component will be different for every page.
->>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
+これらのコンポーネントは今のところ、**ルート (root) コンポーネントファイル**（この例では `App.js` という名前）に置かれています。セットアップによっては、ルートコンポーネントは別のファイルに存在するかもしれません。Next.js のようなファイルベースのルーティングがあるフレームワークを使っている場合、ルートコンポーネントはページごとに異なるものになります。
 
 ## コンポーネントのエクスポートとインポート {/*exporting-and-importing-a-component*/}
 

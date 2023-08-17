@@ -1173,11 +1173,7 @@ Too many re-renders. React limits the number of renders to prevent an infinite l
 
 `onSquareClick={handleClick}` のようにしていたときは、props として `handleClick` 関数を渡していました。呼び出してはいませんでした！ しかし、今はその関数をその場で*呼び出して*しまっているのです。`handleClick(0)` の括弧の部分に注目してください。だからすぐに実行されてしまうのです。ユーザがクリックするまで、`handleClick` を*呼び出したくない*わけです。
 
-<<<<<<< HEAD
 これを解決する方法として、`handleClick(0)` を呼び出す `handleFirstSquareClick` のような関数を作成し、次に `handleClick(1)` を呼び出す `handleSecondSquareClick` のような関数を作成し…のようにしていくことも可能です。これらの関数を `onSquareClick={handleFirstSquareClick}` のようにして、（呼び出すのではなく）props として渡すことができます。これにより無限ループは解決されるでしょう。
-=======
-You could fix this by creating a function like `handleFirstSquareClick` that calls `handleClick(0)`, a function like `handleSecondSquareClick` that calls `handleClick(1)`, and so on. You would pass (rather than call) these functions down as props like `onSquareClick={handleFirstSquareClick}`. This would solve the infinite loop.
->>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
 
 しかし、9 つの異なる関数を定義し、それぞれに名前を付けるのは冗長です。代わりに、次のようにしましょう：
 

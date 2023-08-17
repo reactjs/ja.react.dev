@@ -211,11 +211,7 @@ function Profile() {
 
 #### 隅から隅までコンポーネント {/*components-all-the-way-down*/}
 
-<<<<<<< HEAD
-React アプリケーションは「ルート (root)」コンポーネントから始まります。通常、これは新しいプロジェクトを開始したときに自動的に作成されます。例えば [CodeSandbox](https://codesandbox.io/) や [Create React App](https://create-react-app.dev/) を使う場合、ルートコンポーネントは `src/App.js` 内に定義されています。[Next.js](https://nextjs.org/) フレームワークを使っている場合はルートコンポーネントは `pages/index.js` に定義されています。ここまでの例でも、ルートコンポーネントをエクスポートしていたわけです。
-=======
-Your React application begins at a "root" component. Usually, it is created automatically when you start a new project. For example, if you use [CodeSandbox](https://codesandbox.io/) or if you use the framework [Next.js](https://nextjs.org/), the root component is defined in `pages/index.js`. In these examples, you've been exporting root components.
->>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
+React アプリケーションは "ルート (root)" コンポーネントから始まります。通常、これは新しいプロジェクトを開始したときに自動的に作成されます。例えば [CodeSandbox](https://codesandbox.io/) を使う場合や、[Next.js](https://nextjs.org/) のようなフレームワークを使う場合、ルートコンポーネントは `pages/index.js` に定義されています。ここまでの例でも、ルートコンポーネントをエクスポートしていたわけです。
 
 ほとんどの React アプリでは隅から隅までコンポーネントが使われます。つまり、ボタンのような再利用可能なところでのみ使うのではなく、サイドバーやリスト、最終的にはページ本体といった大きなパーツのためにも使うのです。コンポーネントは、1 回しか使わないような UI コードやマークアップであっても、それらを整理するための有用な手段です。
 
