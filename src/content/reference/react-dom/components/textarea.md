@@ -353,7 +353,7 @@ You provided a `value` prop to a form field without an `onChange` handler. This 
 
 </ConsoleBlock>
 
-エラーメッセージが示すように、[初期値を*指定*したいだけの場合](#providing-an-initial-value-for-a-text-area)は、代わりに `defaultValue` を渡すようにしてください。
+エラーメッセージが示すように、[*初期値*を指定したいだけの場合](#providing-an-initial-value-for-a-text-area)は、代わりに `defaultValue` を渡すようにしてください。
 
 ```js
 // ✅ Good: uncontrolled text area with an initial value
