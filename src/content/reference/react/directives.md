@@ -1,10 +1,17 @@
 ---
 title: "ディレクティブ"
+canary: true
 ---
+
+<Canary>
+
+これらのディレクティブは、[React Server Components を使用している](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)場合や、それらと互換性のあるライブラリを構築している場合にのみ必要です。
+
+</Canary>
 
 <Intro>
 
-React は、[React Server Components 互換バンドラ](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)に指示を与えるために、以下の 2 つのディレクティブを使用します。
+ディレクティブによって、[React Server Components 互換バンドラ](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)に指示を与えます。
 
 </Intro>
 

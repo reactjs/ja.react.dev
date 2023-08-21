@@ -1,14 +1,13 @@
 ---
 title: "'use server'"
+canary: true
 ---
 
-<Wip>
+<Canary>
 
-このセクションは未完成です。
+`'use server'` は、[React Server Components を使用している](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)場合や、それらと互換性のあるライブラリを構築している場合にのみ必要です。
 
-これらのディレクティブは、[React Server Components を使用している](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)場合や、それらと互換性のあるライブラリを作成している場合にのみ必要です。
-
-</Wip>
+</Canary>
 
 
 <Intro>
@@ -46,3 +45,11 @@ async function addToCart(data) {
 * クライアント側とサーバ側のコードを同じファイルに混在させることによる混乱を避けるため、`'use server'` はサーバ側のファイルでのみ使用できます。結果として得られる関数は、props を通じてクライアントコンポーネントに渡すことができます。
 * 内部で用いられるネットワーク呼び出しは常に非同期であるため、`'use server'` は非同期関数でのみ使用できます。
 * `'use server'` のようなディレクティブは、関数やファイルの冒頭部分で、他のコード（インポートを含む）より上になければなりません（ただしコメントはディレクティブの上に記載できます）。シングルクォートまたはダブルクォートで書く必要があり、バックティックは使えません。（`'use xyz'` というディレクティブの形式は `useXyz()` というフックの命名規則に多少似ていますが、これは偶然です。）
+
+## 使用法 {/*usage*/}
+
+<Wip>
+
+このセクションは未完成です。[Next.js の Server Components についてのドキュメント](https://beta.nextjs.org/docs/rendering/server-and-client-components)も参照してください。
+
+</Wip>

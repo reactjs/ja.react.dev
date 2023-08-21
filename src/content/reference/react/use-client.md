@@ -1,12 +1,13 @@
 ---
 title: "'use client'"
+canary: true
 ---
 
-<Note>
+<Canary>
 
-これらのディレクティブは、[React Server Components を使用している](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)か、それらと互換性のあるライブラリを構築している場合にのみ必要です。
+`'use client'` は、[React Server Components を使用している](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)場合や、それらと互換性のあるライブラリを構築している場合にのみ必要です。
 
-</Note>
+</Canary>
 
 
 <Intro>
