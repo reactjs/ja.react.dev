@@ -1,16 +1,16 @@
 ---
-title: "Directives"
+title: "ディレクティブ"
 ---
 
 <Intro>
 
-React uses two directives to provide instructions to [bundlers compatible with React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+React は、[React Server Components 互換バンドラ](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)に指示を与えるために、以下の 2 つのディレクティブを使用します。
 
 </Intro>
 
 ---
 
-## Source code directives {/*source-code-directives*/}
+## ソースコードディレクティブ {/*source-code-directives*/}
 
-* [`'use client'`](/reference/react/use-client) marks source files whose components execute on the client.
-* [`'use server'`](/reference/react/use-server) marks server-side functions that can be called from client-side code.
+* [`'use client'`](/reference/react/use-client) は、クライアント上で実行されるコンポーネントが書かれたソースファイルをマークします。
+* [`'use server'`](/reference/react/use-server) は、クライアント側のコードから呼び出すことができるサーバサイド関数をマークします。
