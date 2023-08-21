@@ -4,13 +4,13 @@ title: findDOMNode
 
 <Deprecated>
 
-This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
+この API は、今後のメジャーバージョンの React で削除される予定です。[代替案を見る](#alternatives)
 
 </Deprecated>
 
 <Intro>
 
-`findDOMNode` finds the browser DOM node for a React [class component](/reference/react/Component) instance.
+`findDOMNode` は、React [class component](/reference/react/Component) インスタンスのブラウザ DOM ノードを見つけます。
 
 ```js
 const domNode = findDOMNode(componentInstance)
@@ -22,11 +22,11 @@ const domNode = findDOMNode(componentInstance)
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `findDOMNode(componentInstance)` {/*finddomnode*/}
 
-Call `findDOMNode` to find the browser DOM node for a given React [class component](/reference/react/Component) instance.
+`findDOMNode` を呼び出して、指定された React [class component](/reference/react/Component) インスタンスのブラウザ DOM ノードを見つけます。
 
 ```js
 import { findDOMNode } from 'react-dom';
@@ -34,34 +34,34 @@ import { findDOMNode } from 'react-dom';
 const domNode = findDOMNode(componentInstance);
 ```
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-* `componentInstance`: An instance of the [`Component`](/reference/react/Component) subclass. For example, `this` inside a class component.
+* `componentInstance`: [Component](/reference/react/Component) サブクラスのインスタンス。例えば、クラスコンポーネントにある this。
 
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-`findDOMNode` returns the first closest browser DOM node within the given `componentInstance`. When a component renders to `null`, or renders `false`, `findDOMNode` returns `null`. When a component renders to a string, `findDOMNode` returns a text DOM node containing that value.
+`findDOMNode` は、指定された `componentInstance` に最も近いブラウザ DOM ノードを返します。コンポーネントが `null` をレンダーする場合や `false` をレンダーする場合、`findDOMNode` は `null` を返します。コンポーネントが文字列をレンダーする場合は `findDOMNode` は値を含むテキスト DOM ノードを返します。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-* A component may return an array or a [Fragment](/reference/react/Fragment) with multiple children. In that case `findDOMNode`, will return the DOM node corresponding to the first non-empty child.
+* コンポーネントは、配列や複数の子要素を持つ [Fragment](/reference/react/Fragment) を返す場合もあります。その場合、`findDOMNode` は、最初の空ではない子に対応する DOM ノードを返します。
 
-* `findDOMNode` only works on mounted components (that is, components that have been placed in the DOM). If you try to call this on a component that has not been mounted yet (like calling `findDOMNode()` in `render()` on a component that has yet to be created), an exception will be thrown.
+* `findDOMNode` はマウントされたコンポーネント（つまり、DOM に配置されたコンポーネント）でのみ動作します。まだマウントされていないコンポーネント内から `findDOMNode` を呼び出そうとすると（まだ作成されていないコンポーネントの `render()` 内から `findDOMNode()` を呼び出そうとするのと同様に）、例外がスローされます。
 
-* `findDOMNode` only returns the result at the time of your call. If a child component renders a different node later, there is no way for you to be notified of this change.
+* `findDOMNode` は、呼び出したときの結果のみを返します。子コンポーネントが後で異なるノードをレンダーする場合、この変更を通知されません。
 
-* `findDOMNode` accepts a class component instance, so it can't be used with function components.
+* `findDOMNode` はクラスコンポーネントインスタンスを受け取るため、関数コンポーネントで使用することはできません。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Finding the root DOM node of a class component {/*finding-the-root-dom-node-of-a-class-component*/}
+### クラスコンポーネントのルート DOM ノードを見つける {/*finding-the-root-dom-node-of-a-class-component*/}
 
-Call `findDOMNode` with a [class component](/reference/react/Component) instance (usually, `this`) to find the DOM node it has rendered.
+[class component](reference/react/Component) インスタンス（通常は、`this`）を使用して `findDOMNode` を呼び出し、レンダーされた DOM ノードを見つけます。
 
 ```js {3}
 class AutoselectingInput extends Component {
@@ -76,7 +76,7 @@ class AutoselectingInput extends Component {
 }
 ```
 
-Here, the `input` variable will be set to the `<input>` DOM element. This lets you do something with it. For example, when clicking "Show example" below mounts the input, [`input.select()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select) selects all text in the input:
+ここで、`input` 変数は `<input>` DOM 要素にセットされます。これにより、それを使用して何かを行うことができます。例えば、以下の "Show example" をクリックすると input はマウントされ、[`input.select()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select) は input にあるすべてのテキストを選択します。
 
 <Sandpack>
 
@@ -120,11 +120,11 @@ export default AutoselectingInput;
 
 ---
 
-## Alternatives {/*alternatives*/}
+## 代替手段 {/*alternatives*/}
 
-### Reading component's own DOM node from a ref {/*reading-components-own-dom-node-from-a-ref*/}
+### ref からコンポーネントの独自の DOM ノードを読み取る {/*reading-components-own-dom-node-from-a-ref*/}
 
-Code using `findDOMNode` is fragile because the connection between the JSX node and the code manipulating the corresponding DOM node is not explicit. For example, try wrapping this `<input />` into a `<div>`:
+`findDOMNode` を使用するコードは壊れやすいです。なぜなら JSX ノードと対応する DOM ノードを操作するコードとの間の接続が明示的でないためです。例えば、この `<input />` を `<div>` でラップしてみてください。
 
 <Sandpack>
 
@@ -165,9 +165,9 @@ export default AutoselectingInput;
 
 </Sandpack>
 
-This will break the code because now, `findDOMNode(this)` finds the `<div>` DOM node, but the code expects an `<input>` DOM node. To avoid these kinds of problems, use [`createRef`](/reference/react/createRef) to manage a specific DOM node.
+このコードは壊れます。なぜなら、`findDOMNode(this)` が `<div>` DOM ノードを見つけるようになったからですが、コードは `<input>` DOM ノードを期待しています。このような問題を避けるために、特定の DOM ノードを管理するために [`createRef`](/reference/react/createRef) を使用してください。
 
-In this example, `findDOMNode` is no longer used. Instead, `inputRef = createRef(null)` is defined as an instance field on the class. To read the DOM node from it, you can use `this.inputRef.current`. To attach it to the JSX, you render `<input ref={this.inputRef} />`. This connects the code using the DOM node to its JSX:
+この例では、`findDOMNode` は使用されていません。代わりに、`inputRef = createRef(null)` がクラスのインスタンスフィールドとして定義されています。DOM ノードを読み取るには、`this.inputRef.current` を使用できます。それを JSX にアタッチするには、`<input ref={this.inputRef} />` をレンダーします。これにより、DOM ノードを使用するコードがその JSX に接続されます。
 
 <Sandpack>
 
@@ -212,7 +212,7 @@ export default AutoselectingInput;
 
 </Sandpack>
 
-In modern React without class components, the equivalent code would call [`useRef`](/reference/react/useRef) instead:
+クラスコンポーネントがないモダンな React では、代わりに [`useRef`](/reference/react/useRef) を呼び出すコードになります。
 
 <Sandpack>
 
@@ -251,13 +251,13 @@ export default function AutoselectingInput() {
 
 </Sandpack>
 
-[Read more about manipulating the DOM with refs.](/learn/manipulating-the-dom-with-refs)
+[refs を使用して DOM を操作する方法についての詳細はこちら](/learn/manipulating-the-dom-with-refs)
 
 ---
 
-### Reading a child component's DOM node from a forwarded ref {/*reading-a-child-components-dom-node-from-a-forwarded-ref*/}
+### forwarded ref から子コンポーネントの DOM ノードを読み取る {/*reading-a-child-components-dom-node-from-a-forwarded-ref*/}
 
-In this example, `findDOMNode(this)` finds a DOM node that belongs to another component. The `AutoselectingInput` renders `MyInput`, which is your own component that renders a browser `<input>`.
+この例では、`findDOMNode(this)` は別のコンポーネントに属する DOM ノードを見つけます。`AutoselectingInput` は、ブラウザの `<input>` をレンダーする独自のコンポーネントである `MyInput` をレンダーします。
 
 <Sandpack>
 
@@ -305,14 +305,14 @@ export default function MyInput() {
 
 </Sandpack>
 
-Notice that calling `findDOMNode(this)` inside `AutoselectingInput` still gives you the DOM `<input>`--even though the JSX for this `<input>` is hidden inside the `MyInput` component. This seems convenient for the above example, but it leads to fragile code. Imagine that you wanted to edit `MyInput` later and add a wrapper `<div>` around it. This would break the code of `AutoselectingInput` (which expects to find an `<input>`).
+`AutoselectingInput` 内にある `findDOMNode(this)` を呼び出すと、DOM の `<input>` を取得します。しかし、この `<input>` の JSX は `MyInput` コンポーネントの中に隠れています。この上の例では便利に思えますが、壊れやすいコードになりやすいです。後で MyInput を編集して、それをラップする `<div>` を追加するとどうなるでしょうか。`AutoselectingInput` のコードが壊れます（`<input>` が見つかることを期待している）。
 
-To replace `findDOMNode` in this example, the two components need to coordinate:
+この例の `findDOMNode` を置き換えるには、2 つのコンポーネントが連携する必要があります：
 
-1. `AutoSelectingInput` should declare a ref, like [in the earlier example](#reading-components-own-dom-node-from-a-ref), and pass it to `<MyInput>`.
-2. `MyInput` should be declared with [`forwardRef`](/reference/react/forwardRef) to take that ref and forward it down to the `<input>` node.
+- 1.`AutoSelectingInput` は `ref` を宣言し、[前述の例](#reading-components-own-dom-node-from-a-ref)のように `<MyInput>` に渡す必要があります。
+- 2.`MyInput` は `forwardRef` で宣言され、その `ref` を取り、それを `<input>` ノードに転送する必要があります。
 
-This version does that, so it no longer needs `findDOMNode`:
+このバージョンはそれを行うので、もはや `findDOMNode` は必要ありません。
 
 <Sandpack>
 
@@ -368,7 +368,7 @@ export default MyInput;
 
 </Sandpack>
 
-Here is how this code would look like with function components instead of classes:
+以下は、クラスコンポーネントの代わりに関数コンポーネントを使用した場合のコードの見た目です：
 
 <Sandpack>
 
@@ -420,11 +420,11 @@ export default MyInput;
 
 ---
 
-### Adding a wrapper `<div>` element {/*adding-a-wrapper-div-element*/}
+### `<div>` 要素のラッパーを追加する {/*adding-a-wrapper-div-element*/}
 
-Sometimes a component needs to know the position and size of its children. This makes it tempting to find the children with `findDOMNode(this)`, and then use DOM methods like [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) for measurements.
+コンポーネントは時々、子要素の位置やサイズを知る必要があります。`findDOMNode(this)` で子要素を見つけ、`getBoundingClientRect` のような測定するために DOM メソッドを使用できるのは魅力になります。
 
-There is currently no direct equivalent for this use case, which is why `findDOMNode` is deprecated but is not yet removed completely from React. In the meantime, you can try rendering a wrapper `<div>` node around the content as a workaround, and getting a ref to that node. However, extra wrappers can break styling.
+現在、このユースケースに直接対応できるものは存在しないため、`findDOMNode` が非推奨となっていますが、まだ完全に React から削除されていません。その間、コンテンツの周りにラッパーとして `<div>` ノードをレンダーし、そのノードへの ref を取得するという回避策を試すことができます。ただし、余分なラッパーはスタイリングを壊す可能性があります。
 
 ```js
 <div ref={someRef}>
@@ -432,4 +432,4 @@ There is currently no direct equivalent for this use case, which is why `findDOM
 </div>
 ```
 
-This also applies to focusing and scrolling to arbitrary children.
+これは、任意の子要素にフォーカスしたり、スクロールしたりする場合にも適用されます。
