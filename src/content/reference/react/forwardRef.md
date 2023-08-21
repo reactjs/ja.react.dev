@@ -135,7 +135,11 @@ function Form() {
 
 コンポーネント内の DOM ノードへの ref を公開することで、後でコンポーネントの内部を変更するのが難しくなることに注意してください。通常は、ボタンやテキスト入力フィールドなどの再利用可能な低レベルコンポーネントからは DOM ノードの公開を行いますが、アバターやコメントのようなアプリケーションレベルのコンポーネントでは行いません。
 
+<<<<<<< HEAD
 <Recipes title="ref の転送の例">
+=======
+<Recipes titleText="Examples of forwarding a ref">
+>>>>>>> 842c24c9aefaa60b7ae9b46b002bd1b3cf4d31f3
 
 #### テキスト入力フィールドにフォーカス {/*focusing-a-text-input*/}
 
