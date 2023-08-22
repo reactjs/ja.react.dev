@@ -333,7 +333,7 @@ React イベントオブジェクトは、標準の [`Event`](https://developer.
 * `e`: 以下の追加の [`AnimationEvent`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent) プロパティを持つ [React イベントオブジェクト](#react-event-object)。
   * [`animationName`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/animationName)
   * [`elapsedTime`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/elapsedTime)
-  * [`pseudoElement`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent)
+  * [`pseudoElement`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/pseudoElement)
 
 ---
 
