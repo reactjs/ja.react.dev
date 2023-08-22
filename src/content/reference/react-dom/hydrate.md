@@ -36,13 +36,13 @@ import { hydrate } from 'react-dom';
 hydrate(reactNode, domNode);
 ```
 
-React は、`domNode` 内に存在する HTML にアタッチし、その内部の DOM を管理します。React で完全に構築されたアプリには、ルートコンポーネントを引数にした `hydrate` 呼び出しが通常 1 つのみ存在します。
+React は、`domNode` 内に存在する HTML にアタッチし、その内部の DOM の管理を引き継ぎます。React で完全に構築されたアプリには、ルートコンポーネントを引数にした `hydrate` 呼び出しが通常 1 つのみ存在します。
 
-[さらに例を読む](#usage)
+[さらに例を見る](#usage)
 
 #### 引数 {/*parameters*/}
 
-* `reactNode`: 既存の HTML をレンダーするのに使用される「React ノード」。これは通常、React 17 における `ReactDOM Server` のメソッド（例：`renderToString(<App />)`）でレンダーされた JSX のである`<App />`のようなものです。
+* `reactNode`: 既存の HTML をレンダーするのに使用される "React ノード"。これは通常、`ReactDOM Server` のメソッド（例：React 17 の `renderToString(<App />)`）でレンダーされた JSX である`<App />`のようなものです。
 
 * `domNode`: サーバ上でルート要素としてレンダーされた [DOM 要素](https://developer.mozilla.org/en-US/docs/Web/API/Element)。
 
