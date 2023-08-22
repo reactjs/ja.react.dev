@@ -426,7 +426,7 @@ body {
 
 #### 要素の可視性の追跡 {/*tracking-element-visibility*/}
 
-この例では、外部システムは再びブラウザの DOM です。`App` コンポーネントは長いリストを表示し、その後に `Box` コンポーネントを表示し、もう一度長いリストを表示します。リストを下にスクロールしてみてください。`Box` コンポーネントがビューポートに表示されると、背景色が黒に変わることに気付くでしょう。これを実装するために、`Box` コンポーネントはエフェクトを使用して [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) を管理しています。このブラウザ API は、DOM 要素がビューポートに表示されているときに通知してくれるものです。
+この例では、外部システムは再びブラウザの DOM です。`App` コンポーネントは長いリストを表示し、その後に `Box` コンポーネントを表示し、もう一度長いリストを表示します。リストを下にスクロールしてみてください。`Box` コンポーネントの全体が完全にビューポート内に表示されると、背景色が黒に変わることに気付くでしょう。これを実装するために、`Box` コンポーネントはエフェクトを使用して [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) を管理しています。このブラウザ API は、DOM 要素がビューポートに表示されているときに通知してくれるものです。
 
 <Sandpack>
 
@@ -471,10 +471,10 @@ export default function Box() {
         document.body.style.backgroundColor = 'white';
         document.body.style.color = 'black';
       }
+    }, {
+       threshold: 1.0
     });
-    observer.observe(div, {
-      threshold: 1.0
-    });
+    observer.observe(div);
     return () => {
       observer.disconnect();
     }
@@ -763,10 +763,10 @@ export function useIntersectionObserver(ref) {
     const observer = new IntersectionObserver(entries => {
       const entry = entries[0];
       setIsIntersecting(entry.isIntersecting);
+    }, {
+       threshold: 1.0
     });
-    observer.observe(div, {
-      threshold: 1.0
-    });
+    observer.observe(div);
     return () => {
       observer.disconnect();
     }

@@ -44,14 +44,14 @@ title: "<textarea>"
 
 これらの `<textarea>` の props は、非制御のテキストエリアと制御されたテキストエリアの両方で用いられます。
 
-* [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-autocomplete): `'on'` または `'off'`。オートコンプリートの挙動を指定します。
-* [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-autofocus): ブーリアン。`true` の場合、React はマウント時にこの要素にフォーカスします。
+* [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#autocomplete): `'on'` または `'off'`。オートコンプリートの挙動を指定します。
+* [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#autofocus): ブーリアン。`true` の場合、React はマウント時にこの要素にフォーカスします。
 * `children`: `<textarea>` には子要素を指定できません。初期値を設定するには `defaultValue` を使用します。
-* [`cols`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-cols): 数値。デフォルトの幅を平均文字幅で指定します。デフォルトは `20` です。
-* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-disabled): ブーリアン。`true` の場合、入力エリアは操作不可能になり、表示が暗くなります。
-* [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-form): 文字列。この入力が属する `<form>` の `id` を指定します。省略された場合、最も近い親のフォームとなります。
-* [`maxLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-maxlength): 数値。テキストの最大長を指定します。
-* [`minLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-minlength): 数値。テキストの最小長を指定します。
+* [`cols`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#cols): 数値。デフォルトの幅を平均文字幅で指定します。デフォルトは `20` です。
+* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#disabled): ブーリアン。`true` の場合、入力エリアは操作不可能になり、表示が暗くなります。
+* [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#form): 文字列。この入力が属する `<form>` の `id` を指定します。省略された場合、最も近い親のフォームとなります。
+* [`maxLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#maxlength): 数値。テキストの最大長を指定します。
+* [`minLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#minlength): 数値。テキストの最小長を指定します。
 * [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): 文字列。[フォームで送信される](#reading-the-textarea-value-when-submitting-a-form)この入力エリアの名前を指定します。
 * `onChange`: [`Event` ハンドラ](/reference/react-dom/components/common#event-handler) 関数。[制御されたテキストエリア](#controlling-a-text-area-with-a-state-variable)では必須。ユーザによって入力値が変更されるとすぐに発火します（例えば、各キーストロークで発火します）。ブラウザの [`input` イベント](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) と同様に動作します。
 * `onChangeCapture`: `onChange` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
@@ -61,11 +61,11 @@ title: "<textarea>"
 * `onInvalidCapture`: `onInvalid` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
 * [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event): [`Event` ハンドラ](/reference/react-dom/components/common#event-handler)関数。`<textarea>` 内で選択テキストが変更された後に発火します。React は `onSelect` イベントを拡張しており、空の選択やテキストの編集（選択に影響を与える可能性がある）でも発火します。
 * `onSelectCapture`: `onSelect` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
-* [`placeholder`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-placeholder): 文字列。テキストエリアの値が空の場合、これが薄い色で表示されます。
-* [`readOnly`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-readonly): ブーリアン。`true` の場合、テキストエリアはユーザによって編集できなくなります。
-* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-required): ブーリアン。`true` の場合、フォームを送信するためには値が必須となります。
-* [`rows`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-rows): 数値。デフォルトの高さを平均文字高での指定します。デフォルトは `2` です。
-* [`wrap`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-wrap): `'hard'`、`'soft'`、または `'off'`。フォームを送信するときにテキストがどのように折り返されるかを指定します。
+* [`placeholder`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#placeholder): 文字列。テキストエリアの値が空の場合、これが薄い色で表示されます。
+* [`readOnly`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#readonly): ブーリアン。`true` の場合、テキストエリアはユーザによって編集できなくなります。
+* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#required): ブーリアン。`true` の場合、フォームを送信するためには値が必須となります。
+* [`rows`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#rows): 数値。デフォルトの高さを平均文字高での指定します。デフォルトは `2` です。
+* [`wrap`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#wrap): `'hard'`、`'soft'`、または `'off'`。フォームを送信するときにテキストがどのように折り返されるかを指定します。
 
 #### 注意点 {/*caveats*/}
 

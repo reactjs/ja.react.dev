@@ -1078,7 +1078,7 @@ function Button({ children, onClick }) {
 
 プロバイダのネストと上書きは必要なだけ行うことができます。
 
-<Recipes title="Examples of overriding context">
+<Recipes titleText="Examples of overriding context">
 
 #### テーマの上書き {/*overriding-a-theme*/}
 
