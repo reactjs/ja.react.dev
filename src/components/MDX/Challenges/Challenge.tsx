@@ -61,25 +61,25 @@ export function Challenge({
       <div className="flex justify-between items-center mt-4">
         {currentChallenge.hint ? (
           <div>
-            <Button className="mr-2" onClick={toggleHint} active={showHint}>
-              <IconHint className="mr-1.5" />{' '}
+            <Button className="me-2" onClick={toggleHint} active={showHint}>
+              <IconHint className="me-1.5" />{' '}
               {showHint ? 'ヒントを隠す' : 'ヒントを見る'}
             </Button>
             <Button
-              className="mr-2"
+              className="me-2"
               onClick={toggleSolution}
               active={showSolution}>
-              <IconSolution className="mr-1.5" />{' '}
+              <IconSolution className="me-1.5" />{' '}
               {showSolution ? '答えを隠す' : '答えを見る'}
             </Button>
           </div>
         ) : (
           !isRecipes && (
             <Button
-              className="mr-2"
+              className="me-2"
               onClick={toggleSolution}
               active={showSolution}>
-              <IconSolution className="mr-1.5" />{' '}
+              <IconSolution className="me-1.5" />{' '}
               {showSolution ? '答えを隠す' : '答えを見る'}
             </Button>
           )
@@ -94,8 +94,8 @@ export function Challenge({
             )}
             onClick={handleClickNextChallenge}
             active>
-            次の{isRecipes ? '例' : 'チャレンジ'}
-            <IconArrowSmall displayDirection="right" className="block ml-1.5" />
+            Next {isRecipes ? '例' : 'チャレンジ'}
+            <IconArrowSmall displayDirection="end" className="block ms-1.5" />
           </Button>
         )}
       </div>
@@ -118,8 +118,8 @@ export function Challenge({
                 active>
                 次の問題
                 <IconArrowSmall
-                  displayDirection="right"
-                  className="block ml-1.5"
+                  displayDirection="end"
+                  className="block ms-1.5"
                 />
               </Button>
             )}

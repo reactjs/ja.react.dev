@@ -34,8 +34,8 @@ title: "<progress>"
 
 さらに、`<progress>` は以下の props もサポートしています：
 
-* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-max)： 数値。`value` の最大値を指定します。デフォルトは `1` です。
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-value)： `0` から `max` までの数値、または進行状況が不定 (indeterminate) であることを表す `null`。完了した量を指定します。
+* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#max)： 数値。`value` の最大値を指定します。デフォルトは `1` です。
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#value)： `0` から `max` までの数値、または進行状況が不定 (indeterminate) であることを表す `null`。完了した量を指定します。
 
 ---
 
