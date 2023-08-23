@@ -107,7 +107,7 @@ export default function App() {
 
 ### 複数のルートのレンダー {/*rendering-multiple-roots*/}
 
-あなたのページが[完全には React で構築されていない](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page)場合、React が管理する UI の各トップレベルに対して `render` を呼び出します。
+ページが[完全には React で構築されていない](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page)場合、React に管理させたいトップレベルの UI パーツに対してそれぞれ `render` を呼び出すことができます。
 
 <Sandpack>
 
