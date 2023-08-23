@@ -4,7 +4,7 @@
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET STARTED"
+      "sectionHeader": "スタートガイド"
     },
     {
       "title": "クイックスタート",
@@ -48,7 +48,7 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "LEARN REACT"
+      "sectionHeader": "REACT を学ぶ"
     },
     {
       "title": "UI の記述",
