@@ -54,7 +54,7 @@ React で完全に構築されたアプリには、ルートコンポーネン�
 
 #### 注意点 {/*caveats*/}
 * アプリがサーバレンダリングを使用している場合、`createRoot()` の使用はサポートされていません。代わりに [`hydrateRoot()`](/reference/react-dom/client/hydrateRoot) を使用してください。
-* アプリ内で `createRoot` を呼び出すのは通常 1 回だけです。フレームワークを使用している場合、この呼び出しはフレームワークが代わりに行うかもしれません。
+* アプリ内で `createRoot` を呼び出すのは通常 1 回だけです。フレームワークを使用している場合、この呼び出しはフレームワークが代わりに行う可能性があります。
 * DOM ツリー内の、コンポーネントの子ではない別の部分に JSX をレンダーしたい場合（例えばモーダルやツールチップ）、`createRoot` の代わりに [`createPortal`](/reference/react-dom/createPortal) を使用してください。
 
 ---
@@ -192,7 +192,7 @@ function Counter() {
 
 <Note>
 
-HTML が空の場合、アプリの JavaScript コードが読み込まれて実行されるまで、ユーザは空白のページを見続けることになります。
+HTML が空の場合、アプリの JavaScript コードが読み込まれて実行されるまで、ユーザには空白のページが見え続けることになります。
 
 ```html
 <div id="root"></div>
@@ -212,7 +212,7 @@ HTML が空の場合、アプリの JavaScript コードが読み込まれて実
 
 ### React で部分的に構築されたページのレンダー {/*rendering-a-page-partially-built-with-react*/}
 
-ページが[完全には React で構築されていない](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page)場合、`createRoot` を複数回呼び出して、React が管理する UI の各トップレベルに対してルートを作成することができます。各ルートで [`root.render`](#root-render) を呼び出して、それぞれに異なるコンテンツを表示することができます。
+ページが[完全には React で構築されていない](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page)場合、`createRoot` を複数回呼び出して、React に管理させたいトップレベルの各 UI パーツに対してルートを作成することができます。各ルートで [`root.render`](#root-render) を呼び出して、それぞれに異なるコンテンツを表示することができます。
 
 以下では、`index.html` ファイルに定義されている 2 つの異なる DOM ノードに 2 つの異なる React コンポーネントがレンダーされています。
 
@@ -377,7 +377,7 @@ root.render(<App />);
 例えば、`domNode` が `null` の場合、[`getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) が `null` を返したことを意味します。これは、呼び出し時点でドキュメント内に指定した ID のノードが存在しない場合に発生します。こうなる理由はいくつか考えられます。
 
 1. 探している ID が HTML ファイルで使用した ID と異なっている。タイプミスをチェックしてください！
-2. DOM ノードがバンドルの `<script>` タグより*後ろ*にあるためスクリプトから「見え」ない。
+2. DOM ノードがバンドルの `<script>` タグより*後ろ*にあるため、スクリプトから「見え」ない。
 
 このエラーが発生するもうひとつの一般的な理由は、`createRoot(domNode)` ではなく `createRoot(<App />)` と書いてしまっていることです。
 
