@@ -11,7 +11,7 @@ TypeScript は JavaScript コードベースに型定義を追加するための
 
 <YouWillLearn>
 
-* [TypeScript と React コンポーネント](/learn/typescript#typescript-with-react-components)
+* [TypeScript で React コンポーネントを書く方法](/learn/typescript#typescript-with-react-components)
 * [フックの型付けの例](/learn/typescript#example-hooks)
 * [`@types/react` にある一般的な型](/learn/typescript/#useful-types)
 * [さらに学習するためのリソース](/learn/typescript/#further-learning)
@@ -41,7 +41,7 @@ npm install @types/react @types/react-dom
 1. [`jsx`](https://www.typescriptlang.org/tsconfig/#jsx) を有効なオプションのいずれかに設定する必要があります。ほとんどのアプリケーションでは `preserve` で上手くいきます。
   ライブラリを公開する場合は、選択すべき値について [`jsx` のドキュメンテーション](https://www.typescriptlang.org/tsconfig/#jsx)を参照してください。
 
-## TypeScript と React コンポーネント {/*typescript-with-react-components*/}
+## TypeScript で React コンポーネントを書く方法 {/*typescript-with-react-components*/}
 
 <Note>
 
