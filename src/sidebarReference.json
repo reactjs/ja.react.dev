@@ -146,7 +146,7 @@
       "path": "/reference/react-dom/components",
       "routes": [
         {
-          "title": "Common (e.g. <div>)",
+          "title": "<div> などの一般的なコンポーネント",
           "path": "/reference/react-dom/components/common"
         },
         {
