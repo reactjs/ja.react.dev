@@ -235,18 +235,18 @@ button {
 
 ## レンダーとコミット {/*render-and-commit*/}
 
-コンポーネントは、画面で表示される前に React によってレンダーされる必要があります。このプロセスのステップを理解することで、コードの実行方法について考え、その動作を説明することができるようになります。
+コンポーネントは、画面上に表示される前に React によってレンダーされる必要があります。このプロセスが踏む段階を理解すると、コードがどのように実行されるのか考える際や、コードの振る舞いを説明する際に役立ちます。
 
-コンポーネントは厨房で材料から美味しい料理を作る料理人だと想像してください。このシナリオでは React はお客様のリクエストを受け付け、注文された料理を運ぶウェイターです。注文を受けて UI 要素を「配膳」するプロセスには、次の 3 つのステップが存在します：
+コンポーネントが料理人として厨房に立ち、食材を調理して美味しい料理を作っている様子をイメージしてみてください。このシナリオにおいて React はウェイターです。お客様の注文を伝えて、できた料理をお客様に渡します。この UI の「注文」と「提供」のプロセスは、次の 3 つのステップからなります：
 
-1. レンダーの**トリガ**（お客様の注文を厨房に届ける）
-2. コンポーネントの**レンダー**（厨房で注文された料理を準備する）
-3. DOM への**コミット**（テーブルに注文を置く）
+1. レンダーの**トリガ**（お客様の注文を厨房に伝える）
+2. コンポーネントの**レンダー**（厨房で注文の品を準備する）
+3. DOM への**コミット**（テーブルに注文の品を置く）
 
 <IllustrationBlock sequential>
-  <Illustration caption="Trigger" alt="React をレストランのウェイターに見立てて、ユーザーからの注文を取り、それをコンポーネント厨房 (Component Kitchen) に届ける。" src="/images/docs/illustrations/i_render-and-commit1.png" />
-  <Illustration caption="Render" alt="The Card Chef gives React a fresh Card component." src="/images/docs/illustrations/i_render-and-commit2.png" />
-  <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="/images/docs/illustrations/i_render-and-commit3.png" />
+  <Illustration caption="Trigger" alt="レストランのウェイター役の React が、ユーザから注文を聞き取って、コンポーネントの厨房に渡している。" src="/images/docs/illustrations/i_render-and-commit1.png" />
+  <Illustration caption="Render" alt="Card 料理人が React に出来立ての Card コンポーネントを渡している。" src="/images/docs/illustrations/i_render-and-commit2.png" />
+  <Illustration caption="Commit" alt="React がユーザの座っているテーブルに Card を提供している。" src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
 
 <LearnMore path="/learn/render-and-commit">
