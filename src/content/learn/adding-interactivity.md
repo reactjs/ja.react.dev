@@ -240,12 +240,12 @@ button {
 コンポーネントが料理人として厨房に立ち、食材を調理して美味しい料理を作っている様子をイメージしてみてください。このシナリオにおいて React はウェイターです。お客様の注文を伝えて、できた料理をお客様に渡します。この UI の「注文」と「提供」のプロセスは、次の 3 つのステップからなります：
 
 1. レンダーの**トリガ**（お客様の注文を厨房に伝える）
-2. コンポーネントの**レンダー**（厨房で注文の品を準備する）
-3. DOM への**コミット**（テーブルに注文の品を置く）
+2. コンポーネントの**レンダー**（厨房で注文の品を料理する）
+3. DOM への**コミット**（テーブルに注文の品を提供する）
 
 <IllustrationBlock sequential>
   <Illustration caption="Trigger" alt="レストランのウェイター役の React が、ユーザから注文を聞き取って、コンポーネントの厨房に渡している。" src="/images/docs/illustrations/i_render-and-commit1.png" />
-  <Illustration caption="Render" alt="Card 料理人が React に出来立ての Card コンポーネントを渡している。" src="/images/docs/illustrations/i_render-and-commit2.png" />
+  <Illustration caption="Render" alt="Card シェフが React に出来立ての Card コンポーネントを渡している。" src="/images/docs/illustrations/i_render-and-commit2.png" />
   <Illustration caption="Commit" alt="React がユーザの座っているテーブルに Card を提供している。" src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
 

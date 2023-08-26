@@ -20,12 +20,12 @@ title: レンダーとコミット
 コンポーネントが料理人として厨房に立ち、食材を調理して美味しい料理を作っている様子をイメージしてみてください。このシナリオにおいて React はウェイターです。お客様の注文を伝えて、できた料理をお客様に渡します。この UI の「注文」と「提供」のプロセスは、次の 3 つのステップからなります：
 
 1. レンダーの**トリガ**（お客様の注文を厨房に伝える）
-2. コンポーネントの**レンダー**（厨房で注文の品を準備する）
-3. DOM への**コミット**（テーブルに注文の品を置く）
+2. コンポーネントの**レンダー**（厨房で注文の品を料理する）
+3. DOM への**コミット**（テーブルに注文の品を提供する）
 
 <IllustrationBlock sequential>
   <Illustration caption="トリガ" alt="レストランのウェイター役の React が、ユーザから注文を聞き取って、コンポーネントの厨房に渡している。" src="/images/docs/illustrations/i_render-and-commit1.png" />
-  <Illustration caption="レンダー" alt="Card 料理人が React に出来立ての Card コンポーネントを渡している。" src="/images/docs/illustrations/i_render-and-commit2.png" />
+  <Illustration caption="レンダー" alt="Card シェフが React に出来立ての Card コンポーネントを渡している。" src="/images/docs/illustrations/i_render-and-commit2.png" />
   <Illustration caption="コミット" alt="React がユーザの座っているテーブルに Card を提供している。" src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
 
@@ -70,8 +70,8 @@ export default function Image() {
 コンポーネントが最初にレンダーされた後、[`set` 関数](/reference/react/useState#setstate)を使って state を更新することで、さらなるレンダーをトリガすることができます。コンポーネントの state を更新すると、自動的にレンダーがキューイングされます。（これは、レストランの客が最初の注文の後に、喉の渇きや空腹の状態に応じてお茶やデザートなどいろいろなものを注文するようなものだと考えることができます。）
 
 <IllustrationBlock sequential>
-  <Illustration caption="state の更新が..." alt="レストランのウェイターとしての React が Card UI を提供したところ。矢印頭の顧客は、黒ではなく、ピンクのカードが欲しいのだと注文している。" src="/images/docs/illustrations/i_rerender1.png" />
-  <Illustration caption="... トリガになって ..." alt="React は Component Kitchenに戻り、ピンクの Card が必要だとシェフに伝える。" src="/images/docs/illustrations/i_rerender2.png" />
+  <Illustration caption="state の更新が..." alt="レストランのウェイター役の React が Card UI を提供したところ。矢印頭の顧客は、黒ではなく、ピンクのカードが欲しいのだと注文している。" src="/images/docs/illustrations/i_rerender1.png" />
+  <Illustration caption="... トリガになって ..." alt="React はコンポーネントの厨房に戻り、ピンクの Card が必要だと Card シェフに伝える。" src="/images/docs/illustrations/i_rerender2.png" />
   <Illustration caption="... レンダーされる！" alt="Card シェフはピンクのカードを React に渡している。" src="/images/docs/illustrations/i_rerender3.png" />
 </IllustrationBlock>
 
