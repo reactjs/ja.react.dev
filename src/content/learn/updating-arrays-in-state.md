@@ -88,7 +88,7 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-代わりに、既存の要素と、末尾には新しい要素を含んだ*新しい*配列を作成します。これには複数の方法がありますが、もっとも簡単なのは `...` という[配列スプレッド構文](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals)を使用することです。
+代わりに、既存の要素の末尾に新しい要素が加わった、*新しい*配列を作成します。これには複数の方法がありますが、もっとも簡単なのは `...` という[配列スプレッド構文](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals)を使用することです。
 
 ```js
 setArtists( // Replace the state
