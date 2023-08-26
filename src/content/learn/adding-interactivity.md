@@ -354,7 +354,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 </Sandpack>
 
-[state はスナップショットである](/learn/state-as-a-snapshot)で、なぜこのようなことが起こってしまうのかを説明しています。state を設定すると、新しい再レンダーが要求されますが、すでに実行されているコード内の state は変更されません。そのため `setScore(score + 1)` を呼び出した直後は `score` が `0` であり続けます。
+[state はスナップショットである](/learn/state-as-a-snapshot)で、なぜこのようなことが起こってしまうのかを説明しています。state をセットすると、新しい再レンダーが要求されますが、すでに実行されているコード内の state は変更されません。そのため `setScore(score + 1)` を呼び出した直後は `score` が `0` であり続けます。
 
 ```js
 console.log(score);  // 0
@@ -366,7 +366,7 @@ setScore(score + 1); // setScore(0 + 1);
 console.log(score);  // 0
 ```
 
-state を設定する際に*更新用関数*を渡すことでこれを修正することができます。`setScore(score + 1)` を  `setScore(s => s + 1)` に置き換えることで、"+3" ボタンが修正されることに注目してください。これは、複数の state の更新をキューに入れる必要がある場合に便利です。
+state を設定する際に*更新用関数*を渡すことでこれを修正することができます。`setScore(score + 1)` を  `setScore(s => s + 1)` に置き換えることで、"+3" ボタンが修正されることに注目してください。こうすることで、複数回の state の更新がキューに入れられます。
 
 <Sandpack>
 
