@@ -1,165 +1,165 @@
 ---
-title: Versioning Policy
+title: バージョニングポリシー
 ---
 
 <Intro>
 
-All stable builds of React go through a high level of testing and follow semantic versioning (semver). React also offers unstable release channels to encourage early feedback on experimental features. This page describes what you can expect from React releases.
+React の全ての安定版ビルドは広範なテストに通過しており、セマンティックバージョニング (semver) に従います。また、実験的機能に対する早期フィードバックを促すため、不安定版のリリースチャンネルも提供されています。このページでは、React の各リリースで期待できることについて説明します。
 
 </Intro>
 
-## Stable releases {/*stable-releases*/}
+## 安定版リリース {/*stable-releases*/}
 
-Stable React releases (also known as "Latest" release channel) follow [semantic versioning (semver)](https://semver.org/) principles.
+安定版 (Stable) の React リリース（別名 "Latest" リリースチャンネル）は、[セマンティックバージョニング (semver)](https://semver.org/) の原則に従います。
 
-That means that with a version number **x.y.z**:
+つまり、バージョン番号が **x.y.z** の場合：
 
-* When releasing **critical bug fixes**, we make a **patch release** by changing the **z** number (ex: 15.6.2 to 15.6.3).
-* When releasing **new features** or **non-critical fixes**, we make a **minor release** by changing the **y** number (ex: 15.6.2 to 15.7.0).
-* When releasing **breaking changes**, we make a **major release** by changing the **x** number (ex: 15.6.2 to 16.0.0).
+* **重大なバグ修正**をリリースする際、**z** の数値を変更して**パッチリリース**を行います（例：15.6.2 から 15.6.3）。
+* **新機能**や**重大ではない修正**をリリースする際、**y** の数値を変更して**マイナーリリース**を行います（例：15.6.2 から 15.7.0）。
+* **破壊的な変更**をリリースする際、**x** の数値を変更して**メジャーリリース**を行います（例：15.6.2 から 16.0.0）。
 
-Major releases can also contain new features, and any release can include bug fixes.
+メジャーリリースには新機能が含まれることもあり、任意のリリースにバグ修正が含まれることがあります。
 
-Minor releases are the most common type of release.
+最も一般的なタイプのリリースはマイナーリリースです。
 
-### Breaking Changes {/*breaking-changes*/}
+### 破壊的な変更 {/*breaking-changes*/}
 
-Breaking changes are inconvenient for everyone, so we try to minimize the number of major releases – for example, React 15 was released in April 2016 and React 16 was released in September 2017, and React 17 was released in October 2020.
+破壊的な変更は誰にとっても煩わしいため、メジャーリリースの数は最小限に抑えるようにしています。例えば、React 15 は 2016 年 4 月にリリースされ、React 16 は 2017 年 9 月にリリースされ、React 17 は 2020 年 10 月にリリースされました。
 
-Instead, we release new features in minor versions. That means that minor releases are often more interesting and compelling than majors, despite their unassuming name.
+代わりに、新機能はマイナーバージョンでリリースします。つまり、マイナーリリースは控えめな名前をしているにもかかわらず、メジャーリリースよりも興味深く魅力的なことがあります。
 
-### Commitment to stability {/*commitment-to-stability*/}
+### 安定性へのコミットメント {/*commitment-to-stability*/}
 
-As we change React over time, we try to minimize the effort required to take advantage of new features. When possible, we'll keep an older API working, even if that means putting it in a separate package. For example, [mixins have been discouraged for years](https://legacy.reactjs.org/blog/2016/07/13/mixins-considered-harmful.html) but they're supported to this day [via create-react-class](https://legacy.reactjs.org/docs/react-without-es6.html#mixins) and many codebases continue to use them in stable, legacy code.
+React に変更を加える際は、新機能を利用するために必要な労力を最小限に抑えるよう努めています。可能な限り古い API を動作させ続けますが、別のパッケージに移動させることはありえます。例えば、[ミックスインは何年も前から推奨されていません](https://legacy.reactjs.org/blog/2016/07/13/mixins-considered-harmful.html)が、それらは今日まで [create-react-class を通じて](https://legacy.reactjs.org/docs/react-without-es6.html#mixins)サポートされており、多くのコードベースがそれらを安定したレガシーコードで使用し続けています。
 
-Over a million developers use React, collectively maintaining millions of components. The Facebook codebase alone has over 50,000 React components. That means we need to make it as easy as possible to upgrade to new versions of React; if we make large changes without a migration path, people will be stuck on old versions. We test these upgrade paths on Facebook itself – if our team of less than 10 people can update 50,000+ components alone, we hope the upgrade will be manageable for anyone using React. In many cases, we write [automated scripts](https://github.com/reactjs/react-codemod) to upgrade component syntax, which we then include in the open-source release for everyone to use.
+100 万人以上の開発者が React を使用しており、合わせれば何百万ものコンポーネントをメンテしています。Facebook のコードベースだけでも、React のコンポーネントは 50,000 個以上存在します。だからこそ私たちは、新バージョンの React へのアップグレードをできるだけ簡単にする必要があるのです。もし私たちが移行手段なしに大きな変更を行えば、人々は古いバージョンから移行できなくなってしまいます。私たちはこれらのアップグレード手段を Facebook 自体でテストしています。もし 10 人もいない我々のチームだけで 50,000 以上のコンポーネントをアップデートできるのであれば、React を使っている誰にとってもそのアップグレードを実行可能であることが期待されます。多くの場合、私たちはコンポーネントの構文をアップグレードするための[自動化スクリプト](https://github.com/reactjs/react-codemod)を書き、それをオープンソースのリリースに含めて、誰でも使えるようにします。
 
-### Gradual upgrades via warnings {/*gradual-upgrades-via-warnings*/}
+### 警告を通じた段階的アップグレード {/*gradual-upgrades-via-warnings*/}
 
-Development builds of React include many helpful warnings. Whenever possible, we add warnings in preparation for future breaking changes. That way, if your app has no warnings on the latest release, it will be compatible with the next major release. This allows you to upgrade your apps one component at a time.
+React の開発用ビルドには多くの有用な警告が含まれています。可能な限り、我々は将来の破壊的な変更に備えて、あらかじめ警告の追加を行います。ですので、最新リリースであなたのアプリに警告がないなら、それは次のメジャーリリースと互換性があるということです。これにより、あなたはアプリのコンポーネントをひとつずつアップグレードすることができます。
 
-Development warnings won't affect the runtime behavior of your app. That way, you can feel confident that your app will behave the same way between the development and production builds -- the only differences are that the production build won't log the warnings and that it is more efficient. (If you ever notice otherwise, please file an issue.)
+開発時の警告はアプリのランタイムの振る舞いに影響を与えません。そのため、アプリが開発用ビルドと本番用ビルドの間で同じように振る舞うことを確信することができます。唯一の違いは、本番用ビルドは警告をログに出力せず、より効率的に動作することです。（万一それ以外の違いを見つけた場合は問題を報告してください。）
 
-### What counts as a breaking change? {/*what-counts-as-a-breaking-change*/}
+### 何が破壊的な変更とみなされるのか？ {/*what-counts-as-a-breaking-change*/}
 
-In general, we *don't* bump the major version number for changes to:
+一般的に、我々は以下の変更についてはメジャーバージョン番号を*上げません*。
 
-* **Development warnings.** Since these don't affect production behavior, we may add new warnings or modify existing warnings in between major versions. In fact, this is what allows us to reliably warn about upcoming breaking changes.
-* **APIs starting with `unstable_`.** These are provided as experimental features whose APIs we are not yet confident in. By releasing these with an `unstable_` prefix, we can iterate faster and get to a stable API sooner.
-* **Alpha and canary versions of React.** We provide alpha versions of React as a way to test new features early, but we need the flexibility to make changes based on what we learn in the alpha period. If you use these versions, note that APIs may change before the stable release.
-* **Undocumented APIs and internal data structures.** If you access internal property names like `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` or `__reactInternalInstance$uk43rzhitjg`, there is no warranty.  You are on your own.
+* **開発時警告**。これらは本番環境での振る舞いに影響を与えないため、我々はメジャーバージョンの途中で新しい警告を追加したり、既存の警告を変更したりすることがあります。実際このおかげで、私たちは将来の破壊的な変更について確実な警告を行えるのです。
+* **`unstable_` で始まる API**。これらは私たちがまだ自信を持てていない実験的な機能として提供されています。これらを `unstable_` のプレフィックスでリリースすることで、より早くイテレーションを行い、より早く安定した API に到達することができます。
+* **React のアルファおよび Canary バージョン**。新しい機能を早期にテストするための方法として React のアルファバージョンを提供していますが、アルファ期間で学んだことに基づいて変更を加えるための柔軟性が必要です。これらのバージョンを使用する場合、API が安定リリース前に変更される可能性があることに注意してください。
+* **ドキュメント化されていない API や内部データ構造**。もし `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` や `__reactInternalInstance$uk43rzhitjg` のような内部プロパティ名にアクセスするなら、保証はありません。あなたの自己責任です。
 
-This policy is designed to be pragmatic: certainly, we don't want to cause headaches for you. If we bumped the major version for all of these changes, we would end up releasing more major versions and ultimately causing more versioning pain for the community. It would also mean that we can't make progress in improving React as fast as we'd like.
+ポリシーがこう設計されているのは実用上の理由です。これが頭痛の種になってほしくないのです。これらすべての変更に対してメジャーバージョンを上げていたのでは、メジャーバージョンのリリースが増えてしまい、結果的にコミュニティにとってバージョニングにまつわる痛みの増加に繋がります。また、私たちが思い通りに素早く React を改善できなくなってしまうことにもなるでしょう。
 
-That said, if we expect that a change on this list will cause broad problems in the community, we will still do our best to provide a gradual migration path.
+とはいえ、上記のリストにあるような変更がコミュニティ全体で問題を引き起こすと予想される場合、私たちは段階的な移行パスを提供するために最善を尽くします。
 
-### If a minor release includes no new features, why isn't it a patch? {/*if-a-minor-release-includes-no-new-features-why-isnt-it-a-patch*/}
+### 新機能のないリリースをパッチではなくマイナーバージョンでリリースする理由 {/*if-a-minor-release-includes-no-new-features-why-isnt-it-a-patch*/}
 
-It's possible that a minor release will not include new features. [This is allowed by semver](https://semver.org/#spec-item-7), which states **"[a minor version] MAY be incremented if substantial new functionality or improvements are introduced within the private code. It MAY include patch level changes."**
+マイナーリリースに新機能がないこともあります。[これは semver によって許可されています](https://semver.org/#spec-item-7)：**"[a minor version] MAY be incremented if substantial new functionality or improvements are introduced within the private code. It MAY include patch level changes."**
 
-However, it does raise the question of why these releases aren't versioned as patches instead.
+しかし、そのようなリリースをなぜパッチバージョンとしないのか疑問に感じるかもしれません。
 
-The answer is that any change to React (or other software) carries some risk of breaking in unexpected ways. Imagine a scenario where a patch release that fixes one bug accidentally introduces a different bug. This would not only be disruptive to developers, but also harm their confidence in future patch releases. It's especially regrettable if the original fix is for a bug that is rarely encountered in practice.
+答えは、React（あるいはソフトウェア一般）に対するあらゆる変更は、予期しない形で壊れてしまうリスクを伴うからです。あるバグを修正するためのパッチリリースが、誤って別のバグを引き起こすところを想像してみてください。これは開発者にとって煩わしいというだけでなく、将来のパッチリリースに対する信頼を損なうことにもなります。元の修正が実際にはほとんど遭遇しないバグのためのものである場合、もたらされる結果は特に残念なものとなるでしょう。
 
-We have a pretty good track record for keeping React releases free of bugs, but patch releases have an even higher bar for reliability because most developers assume they can be adopted without adverse consequences.
+React のリリースをバグのない状態に保つことに関しての私たちの実績はかなり良いものではあります。しかしパッチリリースに関しては問題なく採用できることをほとんどの開発者が前提としているため、信頼性に関するハードルはさらに高くなります。
 
-For these reasons, we reserve patch releases only for the most critical bugs and security vulnerabilities.
+これらの理由から、私たちは非常に重要なバグやセキュリティの脆弱性に対してのみ、パッチリリースを用います。
 
-If a release includes non-essential changes — such as internal refactors, changes to implementation details, performance improvements, or minor bugfixes — we will bump the minor version even when there are no new features.
+リリースが、必須ではない変更を含む場合（内部のリファクタリング、実装の詳細の変更、パフォーマンスの改善、またはマイナーなバグ修正など）、新機能がなくともマイナーバージョンを上げます。
 
-## All release channels {/*all-release-channels*/}
+## 全リリースチャンネル {/*all-release-channels*/}
 
-React relies on a thriving open source community to file bug reports, open pull requests, and [submit RFCs](https://github.com/reactjs/rfcs). To encourage feedback we sometimes share special builds of React that include unreleased features.
+バグレポートの報告、プルリクエストの提出、[RFC の提出](https://github.com/reactjs/rfcs)などについて、React は活発なオープンソースコミュニティを頼りにしています。フィードバックを促すため、ときおり未リリースの機能を含む特別なビルドの React を共有することがあります。
 
 <Note>
 
-This section will be most relevant to developers who work on frameworks, libraries, or developer tooling. Developers who use React primarily to build user-facing applications should not need to worry about our prerelease channels.
+このセクションの内容が最も関連するのは、フレームワーク、ライブラリ、開発者向けツールの開発者です。React を主にユーザ向けアプリケーションの構築に使用している開発者は、プレリリースチャンネルについて心配する必要はありません。
 
 </Note>
 
-Each of React's release channels is designed for a distinct use case:
+React のリリースチャンネルはそれぞれ異なるユースケースに対応するように設計されています。
 
-- [**Latest**](#latest-channel) is for stable, semver React releases. It's what you get when you install React from npm. This is the channel you're already using today. **User-facing applications that consume React directly use this channel.**
-- [**Canary**](#canary-channel) tracks the main branch of the React source code repository. Think of these as release candidates for the next semver release. **[Frameworks or other curated setups may choose to use this channel with a pinned version of React.](/blog/2023/05/03/react-canaries) You can also Canaries for integration testing between React and third party projects.**
-- [**Experimental**](#experimental-channel) includes experimental APIs and features that aren't available in the stable releases. These also track the main branch, but with additional feature flags turned on. Use this to try out upcoming features before they are released.
+- [**Latest**](#latest-channel) は、安定した、semver に基づく React リリースのためのものです。npm から React をインストールすると得られるものです。これが、あなたが今日すでに使用しているチャンネルです。**React を直接使用するユーザ向けアプリケーションは、このチャンネルを使用します**。
+- [**Canary**](#canary-channel) は、React ソースコードリポジトリのメインブランチを追跡します。これは、次の semver リリースのためのリリース候補だと考えてください。**[フレームワークや他の統合済みセットアップは、React のバージョンを固定してこのチャンネルを使用することができます](/blog/2023/05/03/react-canaries)。また、React とサードパーティプロジェクト間の統合テストに Canary を使用することもできます**。
+- [**Experimental**](#experimental-channel) には、安定リリースでは利用できない実験的な API や機能が含まれています。これらもメインブランチを追跡しますが、追加の機能フラグがオンになっています。リリース前に将来の機能を試すにはこちらを利用します。
 
-All releases are published to npm, but only Latest uses semantic versioning. Prereleases (those in the Canary and Experimental channels) have versions generated from a hash of their contents and the commit date, e.g. `18.3.0-canary-388686f29-20230503` for Canary and `0.0.0-experimental-388686f29-20230503` for Experimental.
+すべてのリリースは npm に公開されますが、semver を使用するのは Latest だけです。プレリリース（Canary と Experimental チャンネルにあるもの）は、その内容のハッシュとコミット日から生成されたバージョンになります。例えば、Canary の場合は `18.3.0-canary-388686f29-20230503`、Experimental の場合は `0.0.0-experimental-388686f29-20230503` のようになります。
 
-**Both Latest and Canary channels are officially supported for user-facing applications, but with different expectations**:
+**Latest と Canary のチャンネルのいずれも、ユーザ向けアプリケーションでの使用が公式にサポートされるものですが、期待できることが異なります**。
 
-* Latest releases follow the traditional semver model.
-* Canary releases [must be pinned](/blog/2023/05/03/react-canaries) and may include breaking changes. They exist for curated setups (like frameworks) that want to gradually release new React features and bugfixes on their own release schedule.
+* Latest リリースは伝統的な semver モデルに従います。
+* Canary リリースは[バージョンを固定する必要があり](/blog/2023/05/03/react-canaries)、破壊的な変更を含むことがあります。これらは、自身のリリーススケジュールで React の新機能やバグ修正を段階的にリリースしたい統合済みセットアップ（フレームワークなど）のために存在します。
 
-The Experimental releases are provided for testing purposes only, and we provide no guarantees that behavior won't change between releases. They do not follow the semver protocol that we use for releases from Latest.
+Experimental リリースはテスト目的のみに提供されており、リリース間での挙動が変わらないことを保証していません。Latest チャンネルのリリースで使用している semver 規約には従いません。
 
-By publishing prereleases to the same registry that we use for stable releases, we are able to take advantage of the many tools that support the npm workflow, like [unpkg](https://unpkg.com) and [CodeSandbox](https://codesandbox.io).
+安定版リリースと同じレジストリにプレリリースを公開することで、[unpkg](https://unpkg.com) や [CodeSandbox](https://codesandbox.io) など、npm ワークフローをサポートする多くのツールを活用できます。
 
-### Latest channel {/*latest-channel*/}
+### Latest チャンネル {/*latest-channel*/}
 
-Latest is the channel used for stable React releases. It corresponds to the `latest` tag on npm. It is the recommended channel for all React apps that are shipped to real users.
+Latest は、安定した React リリースに使用されるチャンネルです。npm の `latest` タグに対応しています。実際のユーザに提供されるすべての React アプリケーションに対して推奨されるチャンネルです。
 
-**If you're not sure which channel you should use, it's Latest.** If you're using React directly, this is what you're already using. You can expect updates to Latest to be extremely stable. Versions follow the semantic versioning scheme, as [described earlier.](#stable-releases)
+**どのチャンネルを使用すべきかわからない場合は、Latest を使用してください**。すでに React を直接使用している場合、これがあなたの使用しているものです。Latest での更新は非常に安定していると期待できます。[先に説明した通り](#stable-releases)、バージョンはセマンティックバージョニングの仕組みに従います。
 
-### Canary channel {/*canary-channel*/}
+### Canary チャンネル {/*canary-channel*/}
 
-The Canary channel is a prerelease channel that tracks the main branch of the React repository. We use prereleases in the Canary channel as release candidates for the Latest channel. You can think of Canary as a superset of Latest that is updated more frequently.
+Canary チャンネルは、React リポジトリのメインブランチを追跡するプレリリースチャンネルです。Canary チャンネルのプレリリースは、Latest チャンネルのリリース候補として使用します。Canary を、より頻繁に更新される Latest のスーパーセットと考えることができます。
 
-The degree of change between the most recent Canary release and the most recent Latest release is approximately the same as you would find between two minor semver releases. However, **the Canary channel does not conform to semantic versioning.** You should expect occasional breaking changes between successive releases in the Canary channel.
+最新の Canary リリースと最新の Latest リリースの間の違いは、概ね semver における 2 つのマイナーリリース間の違いに対応します。ただし **Canary チャンネルはセマンティックバージョニングに準拠していません**。Canary チャンネルでは連続したリリース間でときおり破壊的な変更が発生することを覚悟してください。
 
-**Do not use prereleases in user-facing applications directly unless you're following the [Canary workflow](/blog/2023/05/03/react-canaries).**
+**[Canary のワークフロー](/blog/2023/05/03/react-canaries)に従うのでない限り、ユーザ向けのアプリケーションで直接プレリリースを使用しないでください**。
 
-Releases in Canary are published with the `canary` tag on npm. Versions are generated from a hash of the build's contents and the commit date, e.g. `18.3.0-canary-388686f29-20230503`.
+Canary リリースは、npm の `canary` タグで公開されます。バージョンはビルドの内容のハッシュとコミット日から生成されます。例えば `18.3.0-canary-388686f29-20230503` のようになります。
 
-#### Using the canary channel for integration testing {/*using-the-canary-channel-for-integration-testing*/}
+#### 統合テストのための Canary チャンネルの使用 {/*using-the-canary-channel-for-integration-testing*/}
 
-The Canary channel also supports integration testing between React and other projects.
+Canary チャンネルは、React と他のプロジェクト間の統合テストもサポートしています。
 
-All changes to React go through extensive internal testing before they are released to the public. However, there are a myriad of environments and configurations used throughout the React ecosystem, and it's not possible for us to test against every single one.
+React へのすべての更新は、一般に公開される前に広範な内部テストを経ています。しかし、React エコシステム全体で使用されている環境やセットアップは無数にあるため、私たちがすべてをテストすることは不可能です。
 
-If you're the author of a third party React framework, library, developer tool, or similar infrastructure-type project, you can help us keep React stable for your users and the entire React community by periodically running your test suite against the most recent changes. If you're interested, follow these steps:
+もしあなたがサードパーティの React フレームワーク、ライブラリ、開発者ツール、または類似のインフラストラクチャ系のプロジェクトの作者であるなら、定期的にテストスイートを最新の変更に対して実行することで、あなたのユーザとすべての React コミュニティに対して React を安定したものに保つ手助けをしていただけます。興味がある方は、以下の手順に従ってください。
 
-- Set up a cron job using your preferred continuous integration platform. Cron jobs are supported by both [CircleCI](https://circleci.com/docs/2.0/triggers/#scheduled-builds) and [Travis CI](https://docs.travis-ci.com/user/cron-jobs/).
-- In the cron job, update your React packages to the most recent React release in the Canary channel, using `canary` tag on npm. Using the npm cli:
+- お好みの継続的インテグレーションプラットフォームを使用して cron ジョブを設定します。cron ジョブは [CircleCI](https://circleci.com/docs/2.0/triggers/#scheduled-builds) と [Travis CI](https://docs.travis-ci.com/user/cron-jobs/) の両方でサポートされています。
+- cron ジョブ内では、npm の `canary` タグを使用して、React パッケージを  Canary チャンネルの最新の React リリースに更新します。npm cli を使用する場合：
 
   ```console
   npm update react@canary react-dom@canary
   ```
 
-  Or yarn:
+  または yarn を使用する場合：
 
   ```console
   yarn upgrade react@canary react-dom@canary
   ```
-- Run your test suite against the updated packages.
-- If everything passes, great! You can expect that your project will work with the next minor React release.
-- If something breaks unexpectedly, please let us know by [filing an issue](https://github.com/facebook/react/issues).
+- 更新されたパッケージに対してテストスイートを実行します。
+- すべてのテストが通過した場合はおめでとうございます！ あなたのプロジェクトは次のマイナー React リリースでも動作すると期待できます。
+- 何か予期せぬ問題が発生した場合、[問題を報告](https://github.com/facebook/react/issues)してください。
 
-A project that uses this workflow is Next.js. You can refer to their [CircleCI configuration](https://github.com/zeit/next.js/blob/c0a1c0f93966fe33edd93fb53e5fafb0dcd80a9e/.circleci/config.yml) as an example.
+このワークフローを採用しているプロジェクトのひとつが Next.js です。例として彼らの [CircleCI 設定](https://github.com/zeit/next.js/blob/c0a1c0f93966fe33edd93fb53e5fafb0dcd80a9e/.circleci/config.yml)を参照してください。
 
-### Experimental channel {/*experimental-channel*/}
+### Experimental チャンネル {/*experimental-channel*/}
 
-Like Canary, the Experimental channel is a prerelease channel that tracks the main branch of the React repository. Unlike Canary, Experimental releases include additional features and APIs that are not ready for wider release.
+Canary と同様に、Experimental チャンネルは React リポジトリのメインブランチを追跡するプレリリースチャンネルです。しかし、Canary とは異なり、Experimental リリースには、広範にリリースする準備が整っていない追加機能と API が含まれています。
 
-Usually, an update to Canary is accompanied by a corresponding update to Experimental. They are based on the same source revision, but are built using a different set of feature flags.
+通常、Canary に更新がある場合、Experimental にも対応する更新が同時に行われます。これらは同じソースリビジョンに基づいていますが、異なる機能フラグセットを使用してビルドされています。
 
-Experimental releases may be significantly different than releases to Canary and Latest. **Do not use Experimental releases in user-facing applications.** You should expect frequent breaking changes between releases in the Experimental channel.
+Experimental リリースは、Canary や Latest へのリリースとは大きく異なる可能性があります。**ユーザ向けのアプリケーションで実験的なリリースを使用しないでください**。Experimental チャンネルのリリース間では、頻繁に破壊的変更が発生することを覚悟してください。
 
-Releases in Experimental are published with the `experimental` tag on npm. Versions are generated from a hash of the build's contents and the commit date, e.g. `0.0.0-experimental-68053d940-20210623`.
+Experimental のリリースは npm の `experimental` タグで公開されます。バージョンはビルド内容のハッシュとコミット日から生成され、例えば `0.0.0-experimental-68053d940-20210623` のようになります。
 
-#### What goes into an experimental release? {/*what-goes-into-an-experimental-release*/}
+#### Experimental リリースに含まれるもの {/*what-goes-into-an-experimental-release*/}
 
-Experimental features are ones that are not ready to be released to the wider public, and may change drastically before they are finalized. Some experiments may never be finalized -- the reason we have experiments is to test the viability of proposed changes.
+実験的な機能とは、広く公開する準備が整っておらず、最終版に至るまでに大幅に変更される可能性があるものです。実験はあくまで提案された変更の実現可能性を評価するためのものですので、一部の実験は永遠に最終版にならない可能性もあります。
 
-For example, if the Experimental channel had existed when we announced Hooks, we would have released Hooks to the Experimental channel weeks before they were available in Latest.
+例えば、フックを発表したときに Experimental チャンネルが存在していたなら、Latest で利用可能になる数週間前にフックを Experimental チャンネルにリリースしていたでしょう。
 
-You may find it valuable to run integration tests against Experimental. This is up to you. However, be advised that Experimental is even less stable than Canary. **We do not guarantee any stability between Experimental releases.**
+Experimental に対して統合テストを実行することに価値があると感じるかもしれません。これはあなた次第です。ただし、Experimental は Canary よりも安定性が低いことをご了承ください。**Experimental リリース間の安定性は一切保証されません**。
 
-#### How can I learn more about experimental features? {/*how-can-i-learn-more-about-experimental-features*/}
+#### 実験的な機能について詳しく知るには？ {/*how-can-i-learn-more-about-experimental-features*/}
 
-Experimental features may or may not be documented. Usually, experiments aren't documented until they are close to shipping in Canary or Latest.
+実験的機能は文書化される場合もされない場合もあります。通常は、実験は Canary や Latest でリリースする直前まで文書化されません。
 
-If a feature is not documented, they may be accompanied by an [RFC](https://github.com/reactjs/rfcs).
+機能が文書化されていない場合でも対応する [RFC](https://github.com/reactjs/rfcs) が存在する可能性はあります。
 
-We will post to the [React blog](/blog) when we're ready to announce new experiments, but that doesn't mean we will publicize every experiment.
+新しい実験を発表する準備が整ったときには [React ブログ](/blog) に投稿しますが、すべての実験を公表するわけではありません。
 
-You can always refer to our public GitHub repository's [history](https://github.com/facebook/react/commits/main) for a comprehensive list of changes.
+変更の包括的なリストは、公開 GitHub リポジトリの[履歴](https://github.com/facebook/react/commits/main)でいつでも参照できます。
