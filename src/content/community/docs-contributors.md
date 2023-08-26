@@ -1,10 +1,10 @@
 ---
-title: Docs Contributors
+title: ドキュメント貢献者
 ---
 
 <Intro>
 
-React documentation is written and maintained by the [React team](/community/team) and [external contributors.](https://github.com/reactjs/reactjs.org/graphs/contributors) On this page, we'd like to thank a few people who've made significant contributions to this site.
+React ドキュメントは [React チーム](/community/team)および[外部貢献者](https://github.com/reactjs/reactjs.org/graphs/contributors)によって書かれています。このページでは本サイトに特に顕著な貢献をしていただいた方を紹介します。
 
 </Intro>
 
@@ -39,4 +39,4 @@ React documentation is written and maintained by the [React team](/community/tea
 * [Harish Kumar](https://www.strek.in/): development and maintenance
 * [Luna Ruan](https://twitter.com/lunaruan): sandbox improvements
 
-We'd also like to thank countless alpha testers and community members who gave us feedback along the way.
+またアルファ版テスタの皆様やフィードバックを寄せていただいたコミュニティメンバにも感謝します。

@@ -1,10 +1,10 @@
 ---
-title: React Meetups
+title: React ミーティング
 ---
 
 <Intro>
 
-Do you have a local React.js meetup? Add it here! (Please keep the list alphabetical)
+各国で開催されている定期ミーティングをご存じの場合は、ここに追加してください（アルファベット順にしてください）。
 
 </Intro>
 
