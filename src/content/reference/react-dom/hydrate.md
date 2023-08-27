@@ -42,7 +42,7 @@ React は、`domNode` 内に存在する HTML にアタッチし、その内部�
 
 #### 引数 {/*parameters*/}
 
-* `reactNode`: 既存の HTML をレンダーするのに使用される "React ノード"。これは通常、`ReactDOM Server` のメソッド（例：React 17 の `renderToString(<App />)`）でレンダーされた JSX である`<App />`のようなものです。
+* `reactNode`: 既存の初期 HTML をレンダーするのに使用された "React ノード"。これは通常、`ReactDOM Server` のメソッド（例：React 17 の `renderToString(<App />)`）でレンダーされた JSX、例えば `<App />` になります。
 
 * `domNode`: サーバ上でルート要素としてレンダーされた [DOM 要素](https://developer.mozilla.org/en-US/docs/Web/API/Element)。
 
@@ -196,6 +196,6 @@ export default function App() {
 
 <Pitfall>
 
-このアプローチではコンポーネントを 2 回レンダーする必要があるためハイドレーションが遅くなります。低速な接続の場合、ユーザ体験に注意してください。JavaScript コードは初期レンダーされた HTML よりもかなり遅く読み込まれる場合があるため、ハイドレーション直後に異なる UI をレンダーするとユーザに不快感を与えるかもしれません。
+このアプローチではコンポーネントを 2 回レンダーする必要があるためハイドレーションが遅くなります。低速な接続におけるユーザ体験に注意してください。JavaScript コードは初期レンダーされた HTML よりもかなり遅く読み込まれる場合があるため、ハイドレーション直後に異なる UI をレンダーするとユーザに不快感を与えるかもしれません。
 
 </Pitfall>
