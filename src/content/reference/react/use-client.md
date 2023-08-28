@@ -52,7 +52,15 @@ export default function RichTextEditor(props) {
 ## 使用法 {/*usage*/}
 
 <Wip>
+This section is a work in progress. 
 
+<<<<<<< HEAD
 このセクションは未完成です。[Next.js のサーバコンポーネントに関するドキュメンテーション](https://beta.nextjs.org/docs/rendering/server-and-client-components)も参照してください。
 
 </Wip>
+=======
+This API can be used in any framework that supports React Server Components. You may find additional documentation from them.
+* [Next.js documentation](https://nextjs.org/docs/getting-started/react-essentials)
+* More coming soon
+</Wip>
+>>>>>>> 3189529259e89240a88c05680849ce4a8c454ed2
