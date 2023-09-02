@@ -38,7 +38,7 @@ const domNode = findDOMNode(componentInstance);
 
 #### 引数 {/*parameters*/}
 
-* `componentInstance`: [Component](/reference/react/Component) サブクラスのインスタンス。例えば、クラスコンポーネントにある this。
+* `componentInstance`: [Component](/reference/react/Component) サブクラスのインスタンス。例えば、クラスコンポーネントにある this になります。
 
 
 #### 返り値 {/*returns*/}
@@ -124,7 +124,7 @@ export default AutoselectingInput;
 
 ### ref からコンポーネントの独自の DOM ノードを読み取る {/*reading-components-own-dom-node-from-a-ref*/}
 
-`findDOMNode` を使用するコードは壊れやすいです。なぜなら JSX ノードと対応する DOM ノードを操作するコードとの間の接続が明示的でないためです。例えば、この `<input />` を `<div>` でラップしてみてください。
+`findDOMNode` を使用しているコードは壊れやすいです。なぜなら JSX ノードと対応する DOM ノードを操作するコード間の接続が明示的でないためです。例えば、この `<input />` を `<div>` でラップしてみてください。
 
 <Sandpack>
 
@@ -165,7 +165,7 @@ export default AutoselectingInput;
 
 </Sandpack>
 
-このコードは壊れます。なぜなら、`findDOMNode(this)` が `<div>` DOM ノードを見つけるようになったからですが、コードは `<input>` DOM ノードを期待しています。このような問題を避けるために、特定の DOM ノードを管理するために [`createRef`](/reference/react/createRef) を使用してください。
+このコードは壊れるでしょう。なぜなら、コードは `<input>` DOM ノードを期待していましたが、`findDOMNode(this)` が `<div>` DOM ノードを見つけたためです。このような問題を避けるために、特定の DOM ノードを管理するために [`createRef`](/reference/react/createRef) を使用してください。
 
 この例では、`findDOMNode` は使用されていません。代わりに、`inputRef = createRef(null)` がクラスのインスタンスフィールドとして定義されています。DOM ノードを読み取るには、`this.inputRef.current` を使用できます。それを JSX にアタッチするには、`<input ref={this.inputRef} />` をレンダーします。これにより、DOM ノードを使用するコードがその JSX に接続されます。
 
@@ -212,7 +212,7 @@ export default AutoselectingInput;
 
 </Sandpack>
 
-クラスコンポーネントがないモダンな React では、代わりに [`useRef`](/reference/react/useRef) を呼び出すコードになります。
+クラスコンポーネントがないモダンな React では、代わりに [`useRef`](/reference/react/useRef) を呼び出した同等のコードになります。
 
 <Sandpack>
 
@@ -305,7 +305,7 @@ export default function MyInput() {
 
 </Sandpack>
 
-`AutoselectingInput` 内にある `findDOMNode(this)` を呼び出すと、DOM の `<input>` を取得します。しかし、この `<input>` の JSX は `MyInput` コンポーネントの中に隠れています。この上の例では便利に思えますが、壊れやすいコードになりやすいです。後で MyInput を編集して、それをラップする `<div>` を追加するとどうなるでしょうか。`AutoselectingInput` のコードが壊れます（`<input>` が見つかることを期待している）。
+`AutoselectingInput` 内にある `findDOMNode(this)` を呼び出すと、DOM の `<input>` を取得します。しかし、この `<input>` の JSX は `MyInput` コンポーネントの中に隠れています。この上の例では便利に思えますが、壊れやすいコードになりやすいです。`MyInput` を編集して、それをラップする `<div>` を追加するとどうなるでしょうか。`AutoselectingInput` のコードが壊れます（`<input>` が見つかることを期待している）。
 
 この例の `findDOMNode` を置き換えるには、2 つのコンポーネントが連携する必要があります：
 
@@ -368,7 +368,7 @@ export default MyInput;
 
 </Sandpack>
 
-以下は、クラスコンポーネントの代わりに関数コンポーネントを使用した場合のコードの見た目です：
+クラスの代わりに関数コンポーネントを使用するとコードはどうなるのでしょうか：
 
 <Sandpack>
 
@@ -422,9 +422,9 @@ export default MyInput;
 
 ### `<div>` 要素のラッパーを追加する {/*adding-a-wrapper-div-element*/}
 
-コンポーネントは時々、子要素の位置やサイズを知る必要があります。`findDOMNode(this)` で子要素を見つけ、`getBoundingClientRect` のような測定するために DOM メソッドを使用できるのは魅力になります。
+コンポーネントは時々、子要素の位置やサイズを知る必要があります。そのため、`findDOMNode(this)` で子要素を見つけ、`getBoundingClientRect` のような DOM メソッドを使って計測したくなります。
 
-現在、このユースケースに直接対応できるものは存在しないため、`findDOMNode` が非推奨となっていますが、まだ完全に React から削除されていません。その間、コンテンツの周りにラッパーとして `<div>` ノードをレンダーし、そのノードへの ref を取得するという回避策を試すことができます。ただし、余分なラッパーはスタイリングを壊す可能性があります。
+現在、このユースケースに直接対応できるものは存在しないため、`findDOMNode` が非推奨となっていますが、まだ完全に React から削除されていません。その間、コンテンツの周りにラッパーとして `<div>` ノードをレンダーし、そのノードへの ref を取得するという回避策を試せます。ただし、余分なラッパーはスタイリングを壊す可能性があります。
 
 ```js
 <div ref={someRef}>
@@ -432,4 +432,4 @@ export default MyInput;
 </div>
 ```
 
-これは、任意の子要素にフォーカスしたり、スクロールしたりする場合にも適用されます。
+これは、任意の子要素にフォーカスや、スクロールにも適用されます。
