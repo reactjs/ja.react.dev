@@ -4,7 +4,7 @@ title: renderToStaticNodeStream
 
 <Intro>
 
-`renderToStaticNodeStream` renders a non-interactive React tree to a [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
+`renderToStaticNodeStream` は、非インタラクティブな React ツリーを [Node.js の Readable ストリーム](https://nodejs.org/api/stream.html#readable-streams) にレンダーします。
 
 ```js
 const stream = renderToStaticNodeStream(reactNode)
@@ -16,11 +16,11 @@ const stream = renderToStaticNodeStream(reactNode)
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `renderToStaticNodeStream(reactNode)` {/*rendertostaticnodestream*/}
 
-On the server, call `renderToStaticNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams).
+サーバ上において、`renderToStaticNodeStream` を呼び出して [Node.js の Readable ストリーム](https://nodejs.org/api/stream.html#readable-streams)を取得します。
 
 ```js
 import { renderToStaticNodeStream } from 'react-dom/server';
@@ -29,35 +29,35 @@ const stream = renderToStaticNodeStream(<Page />);
 stream.pipe(response);
 ```
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-The stream will produce non-interactive HTML output of your React components.
+このストリームは、React コンポーネントの非インタラクティブな HTML 出力を生成します。
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-* `reactNode`: A React node you want to render to HTML. For example, a JSX element like `<Page />`.
+* `reactNode`: HTML にレンダーしたい React ノード。例えば、`<Page />` のような JSX 要素。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-A [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) that outputs an HTML string. The resulting HTML can't be hydrated on the client.
+HTML 文字列を出力する [Node.js の Readable ストリーム](https://nodejs.org/api/stream.html#readable-streams)。結果として得られる HTML はクライアント上でハイドレーションすることはできません。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-* `renderToStaticNodeStream` output cannot be hydrated.
+* `renderToStaticNodeStream` の出力はハイドレーションすることができません。
 
-* This method will wait for all [Suspense boundaries](/reference/react/Suspense) to complete before returning any output.
+* このメソッドは、すべての[サスペンスバウンダリ](/reference/react/Suspense)が完了するまで出力を返さずに待機します。
 
-* As of React 18, this method buffers all of its output, so it doesn't actually provide any streaming benefits.
+* React 18 時点において、このメソッドはすべての出力をバッファリングするため、実際にはストリームを使用する利点が得られません。
 
-* The returned stream is a byte stream encoded in utf-8. If you need a stream in another encoding, take a look at a project like [iconv-lite](https://www.npmjs.com/package/iconv-lite), which provides transform streams for transcoding text.
+* 返されるストリームは utf-8 でエンコードされたバイトストリームです。他のエンコーディングのストリームが必要な場合は、テキストのトランスコーディング用の変換ストリームを提供する [iconv-lite](https://www.npmjs.com/package/iconv-lite) のようなプロジェクトを参照してください。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Rendering a React tree as static HTML to a Node.js Readable Stream {/*rendering-a-react-tree-as-static-html-to-a-nodejs-readable-stream*/}
+### React ツリーを静的 HTML として Node.js の Readable ストリームにレンダーする {/*rendering-a-react-tree-as-static-html-to-a-nodejs-readable-stream*/}
 
-Call `renderToStaticNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe to your server response:
+`renderToStaticNodeStream` を呼び出して、サーバからのレスポンスにパイプできる [Node.js の Readable ストリーム](https://nodejs.org/api/stream.html#readable-streams)を取得します。
 
 ```js {5-6}
 import { renderToStaticNodeStream } from 'react-dom/server';
@@ -69,12 +69,12 @@ app.use('/', (request, response) => {
 });
 ```
 
-The stream will produce the initial non-interactive HTML output of your React components.
+このストリームは、React コンポーネントの非インタラクティブな初期 HTML 出力を生成します。
 
 <Pitfall>
 
-This method renders **non-interactive HTML that cannot be hydrated.** This is useful if you want to use React as a simple static page generator, or if you're rendering completely static content like emails.
+このメソッドは、**ハイドレーションができない非インタラクティブな HTML をレンダーします**。これは、React をシンプルな静的ページジェネレータとして使用したい場合や、メールのような完全に静的なコンテンツをレンダーする場合に有用です。
 
-Interactive apps should use [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) on the server and [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) on the client.
+インタラクティブなアプリでは、サーバ上で [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) を、クライアント上で [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) を使用すべきです。
 
 </Pitfall>

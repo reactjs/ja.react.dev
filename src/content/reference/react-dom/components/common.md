@@ -1,10 +1,10 @@
 ---
-title: "Common components (e.g. <div>)"
+title: "<div> などの一般的なコンポーネント"
 ---
 
 <Intro>
 
-All built-in browser components, such as [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div), support some common props and events.
+[`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div) などすべての組み込みブラウザコンポーネントは、いくつかの共通の props とイベントをサポートしています。
 
 </Intro>
 
@@ -12,262 +12,262 @@ All built-in browser components, such as [`<div>`](https://developer.mozilla.org
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
-### Common components (e.g. `<div>`) {/*common*/}
+### `<div>` などの一般的なコンポーネント {/*common*/}
 
 ```js
 <div className="wrapper">Some content</div>
 ```
 
-[See more examples below.](#usage)
+[更に例を見る](#usage)
 
-#### Props {/*common-props*/}
+#### props {/*common-props*/}
 
-These special React props are supported for all built-in components:
+これらの特別な React の props はすべての組み込みコンポーネントでサポートされています。
 
-* `children`: A React node (an element, a string, a number, [a portal,](/reference/react-dom/createPortal) an empty node like `null`, `undefined` and booleans, or an array of other React nodes). Specifies the content inside the component. When you use JSX, you will usually specify the `children` prop implicitly by nesting tags like `<div><span /></div>`.
+* `children`: React ノード（要素、文字列、数値、[ポータル](/reference/react-dom/createPortal)、`null` や `undefined` やブーリアンのような空ノード、あるいは他の React ノードの配列）。コンポーネントの内容を指定します。JSX を使用する場合、通常は `<div><span /></div>` のようにタグをネストすることで props として暗黙的に `children` を指定します。
 
-* `dangerouslySetInnerHTML`: An object of the form `{ __html: '<p>some html</p>' }` with a raw HTML string inside. Overrides the [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) property of the DOM node and displays the passed HTML inside. This should be used with extreme caution! If the HTML inside isn't trusted (for example, if it's based on user data), you risk introducing an [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerability. [Read more about using `dangerouslySetInnerHTML`.](#dangerously-setting-the-inner-html)
+* `dangerouslySetInnerHTML`: `{ __html: '<p>some html</p>' }` という形式の、内部に生の HTML 文字列を含んだオブジェクト。DOM ノードの [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) プロパティを上書きし、渡された HTML を表示します。これは最大限に注意して使用する必要があります！ 内部の HTML が信頼できない場合（例えば、ユーザデータに基づいている場合）、[XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) 脆弱性を導入するリスクがあります。[`dangerouslySetInnerHTML` の使用について詳しく読む](#dangerously-setting-the-inner-html)
 
-* `ref`: A ref object from [`useRef`](/reference/react/useRef) or [`createRef`](/reference/react/createRef), or a [`ref` callback function,](#ref-callback) or a string for [legacy refs.](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) Your ref will be filled with the DOM element for this node. [Read more about manipulating the DOM with refs.](#manipulating-a-dom-node-with-a-ref)
+* `ref`: [`useRef`](/reference/react/useRef) または [`createRef`](/reference/react/createRef) から得られる ref オブジェクト、または [`ref` コールバック関数](#ref-callback)、または[レガシー ref](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) 用の文字列。指定された ref にこのノードの DOM 要素が渡されます。[ref を使った DOM の操作について詳しく読む](#manipulating-a-dom-node-with-a-ref)
 
-* `suppressContentEditableWarning`: A boolean. If `true`, suppresses the warning that React shows for elements that both have `children` and `contentEditable={true}` (which normally do not work together). Use this if you're building a text input library that manages the `contentEditable` content manually.
+* `suppressContentEditableWarning`: ブーリアン値。`true` の場合、React が `children` と `contentEditable={true}` を両方持つ要素（通常、これらは一緒に動作しません）に対して表示する警告を抑止します。`contentEditable` の内容を手動で管理するテキスト入力ライブラリを作成している場合に使用します。
 
-* `suppressHydrationWarning`: A boolean. If you use [server rendering,](/reference/react-dom/server) normally there is a warning when the server and the client render different content. In some rare cases (like timestamps), it is very hard or impossible to guarantee an exact match. If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. [Read about suppressing hydration errors.](/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors)
+* `suppressHydrationWarning`: ブーリアン値。[サーバレンダリング](/reference/react-dom/server)を使用する場合、通常、サーバとクライアントが異なる内容をレンダーすると警告が表示されます。一部の稀なケース（タイムスタンプなど）では、完全な一致を保証することが非常に困難または不可能です。`suppressHydrationWarning` を `true` に設定すると、React はその要素の属性と内容の不一致について警告しなくなります。これは 1 レベルの深さまでしか機能せず、避難ハッチとして使用することを目的としています。過度な使用はしないでください。[ハイドレーションエラーの抑制について読む](/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors)
 
-* `style`: An object with CSS styles, for example `{ fontWeight: 'bold', margin: 20 }`. Similarly to the DOM [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) property, the CSS property names need to be written as `camelCase`, for example `fontWeight` instead of `font-weight`. You can pass strings or numbers as values. If you pass a number, like `width: 100`, React will automatically append `px` ("pixels") to the value unless it's a [unitless property.](https://github.com/facebook/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57) We recommend using `style` only for dynamic styles where you don't know the style values ahead of time. In other cases, applying plain CSS classes with `className` is more efficient. [Read more about `className` and `style`.](#applying-css-styles)
+* `style`: CSS スタイルを持つオブジェクト。例えば `{ fontWeight: 'bold', margin: 20 }` のようなものです。DOM の [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) プロパティと同様に、CSS プロパティ名は `camelCase` で記述する必要があります。例えば `font-weight` ではなく `fontWeight` と書きます。値として文字列や数値を渡すことができます。数値を渡す場合、例えば `width: 100` のようにすると、React は自動的に `px`（"ピクセル"）を値に追加します。ただし、それが[単位のないプロパティ](https://github.com/facebook/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57)の場合は除きます。`style` は、スタイルの値が事前に分からない動的なスタイルに対してのみ使用することを推奨します。他の場合は、`className` を用いてプレーンな CSS クラスを適用する方が効率的です。[`className` と `style` について詳しく読む](#applying-css-styles)
 
-These standard DOM props are also supported for all built-in components:
+以下の標準的な DOM プロパティは、すべての組み込みコンポーネントでサポートされています。
 
-* [`accessKey`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey): A string. Specifies a keyboard shortcut for the element. [Not generally recommended.](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey#accessibility_concerns)
-* [`aria-*`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes): ARIA attributes let you specify the accessibility tree information for this element. See [ARIA attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes) for a complete reference. In React, all ARIA attribute names are exactly the same as in HTML.
-* [`autoCapitalize`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocapitalize): A string. Specifies whether and how the user input should be capitalized.
-* [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className): A string. Specifies the element's CSS class name. [Read more about applying CSS styles.](#applying-css-styles)
-* [`contentEditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable): A boolean. If `true`, the browser lets the user edit the rendered element directly. This is used to implement rich text input libraries like [Lexical.](https://lexical.dev/) React warns if you try to pass React children to an element with `contentEditable={true}` because React will not be able to update its content after user edits.
-* [`data-*`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*): Data attributes let you attach some string data to the element, for example `data-fruit="banana"`. In React, they are not commonly used because you would usually read data from props or state instead.
-* [`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir): Either `'ltr'` or `'rtl'`. Specifies the text direction of the element.
-* [`draggable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable): A boolean. Specifies whether the element is draggable. Part of [HTML Drag and Drop API.](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
-* [`enterKeyHint`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/enterKeyHint): A string. Specifies which action to present for the enter key on virtual keyboards.
-* [`htmlFor`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor): A string. For [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) and [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output), lets you [associate the label with some control.](/reference/react-dom/components/input#providing-a-label-for-an-input) Same as [`for` HTML attribute.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/for) React uses the standard DOM property names (`htmlFor`) instead of HTML attribute names.
-* [`hidden`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden): A boolean or a string. Specifies whether the element should be hidden.
-* [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id): A string. Specifies a unique identifier for this element, which can be used to find it later or connect it with other elements. Generate it with [`useId`](/reference/react/useId) to avoid clashes between multiple instances of the same component.
-* [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is): A string. If specified, the component will behave like a [custom element.](/reference/react-dom/components#custom-html-elements)
-* [`inputMode`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode): A string. Specifies what kind of keyboard to display (for example, text, number or telephone).
-* [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop): A string. Specifies which property the element represents for structured data crawlers.
-* [`lang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang): A string. Specifies the language of the element.
-* [`onAnimationEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationend_event): An [`AnimationEvent` handler](#animationevent-handler) function. Fires when a CSS animation completes.
-* `onAnimationEndCapture`: A version of `onAnimationEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onAnimationIteration`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationiteration_event): An [`AnimationEvent` handler](#animationevent-handler) function. Fires when an iteration of a CSS animation ends, and another one begins.
-* `onAnimationIterationCapture`: A version of `onAnimationIteration` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onAnimationStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationstart_event): An [`AnimationEvent` handler](#animationevent-handler) function. Fires when a CSS animation starts.
-* `onAnimationStartCapture`: `onAnimationStart`, but fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onAuxClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/auxclick_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when a non-primary pointer button was clicked.
-* `onAuxClickCapture`: A version of `onAuxClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* `onBeforeInput`: An [`InputEvent` handler](#inputevent-handler) function. Fires before the value of an editable element is modified. React does *not* yet use the native [`beforeinput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/beforeinput_event) event, and instead attempts to polyfill it using other events.
-* `onBeforeInputCapture`: A version of `onBeforeInput` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* `onBlur`: A [`FocusEvent` handler](#focusevent-handler) function. Fires when an element lost focus. Unlike the built-in browser [`blur`](https://developer.mozilla.org/en-US/docs/Web/API/Element/blur_event) event, in React the `onBlur` event bubbles.
-* `onBlurCapture`: A version of `onBlur` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the primary button was clicked on the pointing device.
-* `onClickCapture`: A version of `onClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCompositionStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionstart_event): A [`CompositionEvent` handler](#compositionevent-handler) function. Fires when an [input method editor](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) starts a new composition session.
-* `onCompositionStartCapture`: A version of `onCompositionStart` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCompositionEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionend_event): A [`CompositionEvent` handler](#compositionevent-handler) function. Fires when an [input method editor](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) completes or cancels a composition session.
-* `onCompositionEndCapture`: A version of `onCompositionEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCompositionUpdate`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionupdate_event): A [`CompositionEvent` handler](#compositionevent-handler) function. Fires when an [input method editor](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) receives a new character.
-* `onCompositionUpdateCapture`: A version of `onCompositionUpdate` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onContextMenu`](https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the user tries to open a context menu.
-* `onContextMenuCapture`: A version of `onContextMenu` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCopy`](https://developer.mozilla.org/en-US/docs/Web/API/Element/copy_event): A [`ClipboardEvent` handler](#clipboardevent-handler) function. Fires when the user tries to copy something into the clipboard.
-* `onCopyCapture`: A version of `onCopy` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/cut_event): A [`ClipboardEvent` handler](#clipboardevent-handler) function. Fires when the user tries to cut something into the clipboard.
-* `onCutCapture`: A version of `onCut` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* `onDoubleClick`: A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the user clicks twice. Corresponds to the browser [`dblclick` event.](https://developer.mozilla.org/en-US/docs/Web/API/Element/dblclick_event)
-* `onDoubleClickCapture`: A version of `onDoubleClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onDrag`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drag_event): A [`DragEvent` handler](#dragevent-handler) function. Fires while the user is dragging something. 
-* `onDragCapture`: A version of `onDrag` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onDragEnd`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragend_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when the user stops dragging something. 
-* `onDragEndCapture`: A version of `onDragEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onDragEnter`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragenter_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when the dragged content enters a valid drop target. 
-* `onDragEnterCapture`: A version of `onDragEnter` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onDragOver`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragover_event): A [`DragEvent` handler](#dragevent-handler) function. Fires on a valid drop target while the dragged content is dragged over it. You must call `e.preventDefault()` here to allow dropping.
-* `onDragOverCapture`: A version of `onDragOver` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onDragStart`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragstart_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when the user starts dragging an element.
-* `onDragStartCapture`: A version of `onDragStart` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onDrop`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drop_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when something is dropped on a valid drop target.
-* `onDropCapture`: A version of `onDrop` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* `onFocus`: A [`FocusEvent` handler](#focusevent-handler) function. Fires when an element receives focus. Unlike the built-in browser [`focus`](https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event) event, in React the `onFocus` event bubbles.
-* `onFocusCapture`: A version of `onFocus` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onGotPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/gotpointercapture_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when an element programmatically captures a pointer.
-* `onGotPointerCaptureCapture`: A version of `onGotPointerCapture` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onKeyDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event): A [`KeyboardEvent` handler](#pointerevent-handler) function. Fires when a key is pressed.
-* `onKeyDownCapture`: A version of `onKeyDown` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onKeyPress`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keypress_event): A [`KeyboardEvent` handler](#pointerevent-handler) function. Deprecated. Use `onKeyDown` or `onBeforeInput` instead.
-* `onKeyPressCapture`: A version of `onKeyPress` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onKeyUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keyup_event): A [`KeyboardEvent` handler](#pointerevent-handler) function. Fires when a key is released.
-* `onKeyUpCapture`: A version of `onKeyUp` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onLostPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/lostpointercapture_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when an element stops capturing a pointer.
-* `onLostPointerCaptureCapture`: A version of `onLostPointerCapture` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onMouseDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousedown_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer is pressed down.
-* `onMouseDownCapture`: A version of `onMouseDown` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onMouseEnter`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer moves inside an element. Does not have a capture phase. Instead, `onMouseLeave` and `onMouseEnter` propagate from the element being left to the one being entered.
-* [`onMouseLeave`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer moves outside an element. Does not have a capture phase. Instead, `onMouseLeave` and `onMouseEnter` propagate from the element being left to the one being entered.
-* [`onMouseMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer changes coordinates.
-* `onMouseMoveCapture`: A version of `onMouseMove` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onMouseOut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer moves outside an element, or if it moves into a child element.
-* `onMouseOutCapture`: A version of `onMouseOut` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onMouseUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer is released.
-* `onMouseUpCapture`: A version of `onMouseUp` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPointerCancel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointercancel_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when the browser cancels a pointer interaction.
-* `onPointerCancelCapture`: A version of `onPointerCancel` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPointerDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerdown_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer becomes active.
-* `onPointerDownCapture`: A version of `onPointerDown` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPointerEnter`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerenter_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer moves inside an element. Does not have a capture phase. Instead, `onPointerLeave` and `onPointerEnter` propagate from the element being left to the one being entered.
-* [`onPointerLeave`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerleave_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer moves outside an element. Does not have a capture phase. Instead, `onPointerLeave` and `onPointerEnter` propagate from the element being left to the one being entered.
-* [`onPointerMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer changes coordinates.
-* `onPointerMoveCapture`: A version of `onPointerMove` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPointerOut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerout_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer moves outside an element, if the pointer interaction is cancelled, and [a few other reasons.](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerout_event)
-* `onPointerOutCapture`: A version of `onPointerOut` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPointerUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerup_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer is no longer active.
-* `onPointerUpCapture`: A version of `onPointerUp` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPaste`](https://developer.mozilla.org/en-US/docs/Web/API/Element/paste_event): A [`ClipboardEvent` handler](#clipboardevent-handler) function. Fires when the user tries to paste something from the clipboard.
-* `onPasteCapture`: A version of `onPaste` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onScroll`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event): An [`Event` handler](#event-handler) function. Fires when an element has been scrolled. This event does not bubble.
-* `onScrollCapture`: A version of `onScroll` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event): An [`Event` handler](#event-handler) function. Fires after the selection inside an editable element like an input changes. React extends the `onSelect` event to work for `contentEditable={true}` elements as well. In addition, React extends it to fire for empty selection and on edits (which may affect the selection).
-* `onSelectCapture`: A version of `onSelect` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onTouchCancel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchcancel_event): A [`TouchEvent` handler](#touchevent-handler) function. Fires when the browser cancels a touch interaction.
-* `onTouchCancelCapture`: A version of `onTouchCancel` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onTouchEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchend_event): A [`TouchEvent` handler](#touchevent-handler) function. Fires when one or more touch points are removed.
-* `onTouchEndCapture`: A version of `onTouchEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onTouchMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchmove_event): A [`TouchEvent` handler](#touchevent-handler) function. Fires one or more touch points are moved.
-* `onTouchMoveCapture`: A version of `onTouchMove` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onTouchStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchstart_event): A [`TouchEvent` handler](#touchevent-handler) function. Fires when one or more touch points are placed.
-* `onTouchStartCapture`: A version of `onTouchStart` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onTransitionEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/transitionend_event): A [`TransitionEvent` handler](#transitionevent-handler) function. Fires when a CSS transition completes.
-* `onTransitionEndCapture`: A version of `onTransitionEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onWheel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/wheel_event): A [`WheelEvent` handler](#wheelevent-handler) function. Fires when the user rotates a wheel button.
-* `onWheelCapture`: A version of `onWheel` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles): A string. Specifies the element role explicitly for assistive technologies.
-* [`slot`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles): A string. Specifies the slot name when using shadow DOM. In React, an equivalent pattern is typically achieved by passing JSX as props, for example `<Layout left={<Sidebar />} right={<Content />} />`.
-* [`spellCheck`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck): A boolean or null. If explicitly set to `true` or `false`, enables or disables spellchecking.
-* [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex): A number. Overrides the default Tab button behavior. [Avoid using values other than `-1` and `0`.](https://www.tpgi.com/using-the-tabindex-attribute/)
-* [`title`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title): A string. Specifies the tooltip text for the element.
-* [`translate`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/translate): Either `'yes'` or `'no'`. Passing `'no'` excludes the element content from being translated.
+* [`accessKey`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey): 文字列。要素のキーボードショートカットを指定します。[一般的には推奨されません](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey#accessibility_concerns)。
+* [`aria-*`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes): ARIA 属性を使用すると、この要素のアクセシビリティツリー情報を指定できます。完全なリファレンスについては [ARIA 属性](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes)を参照してください。React では、すべての ARIA 属性名は HTML と全く同じです。
+* [`autoCapitalize`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocapitalize): 文字列。ユーザ入力の大文字への変換方法を制御します。
+* [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className): 文字列。要素の CSS クラス名を指定します。[CSS スタイルの適用についてもっと読む](#applying-css-styles)
+* [`contentEditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable): ブーリアン。`true` の場合、ブラウザはユーザがレンダーされた要素を直接編集することを許可します。これは [Lexical](https://lexical.dev/) のようなリッチテキスト入力ライブラリを実装するために使用されます。React は、`contentEditable={true}` の要素に React の子を渡そうとすると警告します。なぜなら、ユーザの編集後に React がその内容を更新できなくなるからです。
+* [`data-*`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*): データ属性を使用すると、要素にいくつかの文字列データを添付できます。例えば `data-fruit="banana"` のようなものです。React では通常は props や state からデータを読み取るため、あまり使用されません。
+* [`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir): `'ltr'` または `'rtl'` のいずれか。要素のテキスト方向を指定します。
+* [`draggable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable): ブーリアン。要素がドラッグ可能かどうかを指定します。[HTML Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API) の一部です。
+* [`enterKeyHint`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/enterKeyHint): 文字列。仮想キーボードのエンターキーに対してどのアクションを表示するかを指定します。
+* [`htmlFor`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor): 文字列。[`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) と [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output) に対して、[ラベルを何らかのコントロールに関連付ける](/reference/react-dom/components/input#providing-a-label-for-an-input) ために使います。[HTML の `for` 属性](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/for)と同じです。React では HTML 属性名ではなく、標準の DOM プロパティ名 (`htmlFor`) の方を使用します。
+* [`hidden`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden): ブール値または文字列。要素を非表示にするかどうかを指定します。
+* [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id): 文字列。この要素の一意の識別子を指定します。これは後でこの要素を見つけたり他の要素と接続したりするために使用できます。同じコンポーネントの複数のインスタンス間での衝突を避けるため、[`useId`](/reference/react/useId) で生成してください。
+* [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is): 文字列。指定された場合、コンポーネントは[カスタム要素](/reference/react-dom/components#custom-html-elements)のように動作します。
+* [`inputMode`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode): 文字列。表示するキーボードの種類（例えばテキスト、数値、電話番号）を指定します。
+* [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop): 文字列。構造化データクローラに対して、この要素がどのプロパティを表しているのかを指定します。
+* [`lang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang): 文字列。要素の言語を指定します。
+* [`onAnimationEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationend_event): [`AnimationEvent` ハンドラ](#animationevent-handler)関数。CSS アニメーションが完了したときに発火します。
+* `onAnimationEndCapture`: `onAnimationEnd` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onAnimationIteration`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationiteration_event): [`AnimationEvent` ハンドラ](#animationevent-handler)関数。CSS アニメーションのイテレーションが終了し、別のイテレーションが始まるときに発火します。
+* `onAnimationIterationCapture`: `onAnimationIteration` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onAnimationStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationstart_event): [`AnimationEvent` ハンドラ](#animationevent-handler)関数。CSS アニメーションが開始するときに発火します。
+* `onAnimationStartCapture`: `onAnimationStart` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onAuxClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/auxclick_event): [`MouseEvent` ハンドラ](#mouseevent-handler)関数。非プライマリポインタボタンがクリックされたときに発火します。
+* `onAuxClickCapture`: `onAuxClick` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* `onBeforeInput`: [`InputEvent` ハンドラ](#inputevent-handler)関数。編集可能な要素の値が変更される前に発火します。React はまだネイティブの [`beforeinput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/beforeinput_event) イベントを*使用しておらず*、他のイベントを使用してポリフィルを試みます。
+* `onBeforeInputCapture`: `onBeforeInput` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* `onBlur`: [`FocusEvent` ハンドラ](#focusevent-handler)関数。要素がフォーカスを失ったときに発火します。React の `onBlur` イベントは、ブラウザの組み込み [`blur`](https://developer.mozilla.org/en-US/docs/Web/API/Element/blur_event) イベントとは異なり、バブルします。
+* `onBlurCapture`: `onBlur` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event): [`MouseEvent` ハンドラ](#mouseevent-handler)関数。ポインティングデバイスのプライマリボタンがクリックされたときに発火します。
+* `onClickCapture`: `onClick` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onCompositionStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionstart_event): [`CompositionEvent` ハンドラ](#compositionevent-handler)関数。[インプットメソッドエディタ (IME)](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) が新しいコンポジションセッションを開始するときに発火します。
+* `onCompositionStartCapture`: `onCompositionStart` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onCompositionEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionend_event): [`CompositionEvent` ハンドラ](#compositionevent-handler)関数。[インプットメソッドエディタ](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor)がコンポジションセッションを完了またはキャンセルするときに発火します。
+* `onCompositionEndCapture`: `onCompositionEnd` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onCompositionUpdate`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionupdate_event): [`CompositionEvent` ハンドラ](#compositionevent-handler)関数。[インプットメソッドエディタ](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor)が新しい文字を受け取るときに発火します。
+* `onCompositionUpdateCapture`: `onCompositionUpdate` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onContextMenu`](https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event): [`MouseEvent` ハンドラ](#mouseevent-handler)関数。ユーザがコンテクストメニューを開こうとすると発火します。
+* `onContextMenuCapture`: `onContextMenu` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onCopy`](https://developer.mozilla.org/en-US/docs/Web/API/Element/copy_event): [`ClipboardEvent` ハンドラ](#clipboardevent-handler)関数。ユーザが何かをクリップボードにコピーしようとすると発火します。
+* `onCopyCapture`: `onCopy` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onCut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/cut_event): [`ClipboardEvent` ハンドラ](#clipboardevent-handler)関数。ユーザが何かをクリップボードに切り取ろうとすると発火します。
+* `onCutCapture`: `onCut` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* `onDoubleClick`: [`MouseEvent` ハンドラ](#mouseevent-handler)関数。ユーザがダブルクリックすると発火します。ブラウザの [`dblclick` イベント](https://developer.mozilla.org/en-US/docs/Web/API/Element/dblclick_event)に対応します。
+* `onDoubleClickCapture`: `onDoubleClick` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onDrag`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drag_event): [`DragEvent` ハンドラ](#dragevent-handler)関数。ユーザが何かをドラッグしている間発火します。
+* `onDragCapture`: `onDrag` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onDragEnd`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragend_event): [`DragEvent` ハンドラ](#dragevent-handler)関数。ユーザが何かのドラッグを止めると発火します。
+* `onDragEndCapture`: `onDragEnd` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onDragEnter`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragenter_event): [`DragEvent` ハンドラ](#dragevent-handler)関数。ドラッグされたコンテンツが有効なドロップターゲットに入ると発火します。
+* `onDragEnterCapture`: `onDragEnter` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onDragOver`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragover_event): [`DragEvent` ハンドラ](#dragevent-handler)関数。ドラッグされたコンテンツが有効なドロップターゲット上でドラッグされている間発火します。ドロップを許可するためにはここで `e.preventDefault()` を呼び出す必要があります。
+* `onDragOverCapture`: `onDragOver` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onDragStart`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragstart_event): [`DragEvent` ハンドラ](#dragevent-handler)関数。ユーザが要素のドラッグを開始すると発火します。
+* `onDragStartCapture`: `onDragStart` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onDrop`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drop_event): [`DragEvent` ハンドラ](#dragevent-handler)関数。何かが有効なドロップターゲットにドロップされたときに発火します。
+* `onDropCapture`: `onDrop` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* `onFocus`: [`FocusEvent` ハンドラ](#focusevent-handler)関数。要素がフォーカスを受け取ったときに発火します。ブラウザの組み込み [`focus`](https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event) イベントとは異なり、React の `onFocus` イベントはバブルします。
+* `onFocusCapture`: `onFocus` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onGotPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/gotpointercapture_event): [`PointerEvent` ハンドラ](#pointerevent-handler)関数。要素がプログラム的にポインタをキャプチャしたときに発火します。
+* `onGotPointerCaptureCapture`: `onGotPointerCapture` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onKeyDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event): [`KeyboardEvent` ハンドラ](#pointerevent-handler)関数。キーが押されたときに発火します。
+* `onKeyDownCapture`: `onKeyDown` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onKeyPress`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keypress_event): [`KeyboardEvent` ハンドラ](#pointerevent-handler)関数。非推奨です。代わりに `onKeyDown` または `onBeforeInput` を使用してください。
+* `onKeyPressCapture`: `onKeyPress` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onKeyUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keyup_event): [`KeyboardEvent` ハンドラ](#pointerevent-handler)関数。キーが離されたときに発火します。
+* `onKeyUpCapture`: `onKeyUp` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onLostPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/lostpointercapture_event): [`PointerEvent` ハンドラ](#pointerevent-handler)関数。要素がポインタのキャプチャを停止したときに発火します。
+* `onLostPointerCaptureCapture`: `onLostPointerCapture` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onMouseDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousedown_event): [`MouseEvent` ハンドラ](#mouseevent-handler)関数。ポインタが押されたときに発火します。
+* `onMouseDownCapture`: `onMouseDown` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onMouseEnter`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event): [`MouseEvent` ハンドラ](#mouseevent-handler)関数。ポインタが要素の内部に移動したときに発火します。キャプチャフェーズはありません。代わりに、`onMouseLeave` と `onMouseEnter` は、離れる要素から入る要素へと伝播します。
+* [`onMouseLeave`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event): [`MouseEvent` ハンドラ](#mouseevent-handler)関数。ポインタが要素の外に移動したときに発火します。キャプチャフェーズはありません。代わりに、`onMouseLeave` と `onMouseEnter` は、離れる要素から入る要素へと伝播します。
+* [`onMouseMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event): [`MouseEvent` ハンドラ](#mouseevent-handler)関数。ポインタの座標が変わったときに発火します。
+* `onMouseMoveCapture`: `onMouseMove` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onMouseOut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event): [`MouseEvent` ハンドラ](#mouseevent-handler)関数。ポインタが要素の外に移動したとき、または子要素に移動したときに発火します。
+* `onMouseOutCapture`: `onMouseOut` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onMouseUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event): [`MouseEvent` ハンドラ](#mouseevent-handler)関数。ポインタがリリースされたときに発火します。
+* `onMouseUpCapture`: `onMouseUp` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onPointerCancel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointercancel_event): [`PointerEvent` ハンドラ](#pointerevent-handler)関数。ブラウザがポインタによるインタラクションをキャンセルしたときに発火します。
+* `onPointerCancelCapture`: `onPointerCancel` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onPointerDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerdown_event): [`PointerEvent` ハンドラ](#pointerevent-handler)関数。ポインタがアクティブになったときに発火します。
+* `onPointerDownCapture`: `onPointerDown` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onPointerEnter`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerenter_event): [`PointerEvent` ハンドラ](#pointerevent-handler)関数。ポインタが要素の内部に移動したときに発火します。キャプチャフェーズはありません。代わりに、`onPointerLeave` と `onPointerEnter` は、離れる要素から入る要素へと伝播します。
+* [`onPointerLeave`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerleave_event): [`PointerEvent` ハンドラ](#pointerevent-handler)関数。ポインタが要素の外に移動したときに発火します。キャプチャフェーズはありません。代わりに、`onPointerLeave` と `onPointerEnter` は、離れる要素から入る要素へと伝播します。
+* [`onPointerMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event): [`PointerEvent` ハンドラ](#pointerevent-handler)関数。ポインタの座標が変わったときに発火します。
+* `onPointerMoveCapture`: `onPointerMove` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onPointerOut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerout_event): [`PointerEvent` ハンドラ](#pointerevent-handler)関数。ポインタが要素の外に移動したとき、ポインタのインタラクションがキャンセルされたとき、その他[いくつかの他の理由](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerout_event)で発火します。
+* `onPointerOutCapture`: `onPointerOut` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onPointerUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerup_event): [`PointerEvent` ハンドラ](#pointerevent-handler)関数。ポインタがもはやアクティブでなくなったときに発火します。
+* `onPointerUpCapture`: `onPointerUp` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onPaste`](https://developer.mozilla.org/en-US/docs/Web/API/Element/paste_event): [`ClipboardEvent` ハンドラ](#clipboardevent-handler)関数。ユーザがクリップボードから何かを貼り付けようとすると発火します。
+* `onPasteCapture`: `onPaste` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onScroll`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event): [`Event` ハンドラ](#event-handler)関数。要素がスクロールされたときに発火します。このイベントはバブルしません。
+* `onScrollCapture`: `onScroll` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event): [`Event` ハンドラ](#event-handler)関数。入力フィールドなどの編集可能な要素内の選択が変更された後に発火します。React は `onSelect` イベントを `contentEditable={true}` の要素でも動作するように拡張します。さらに、React は空の選択と編集（選択に影響を与える可能性があります）に対しても発火するように拡張します。
+* `onSelectCapture`: `onSelect` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onTouchCancel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchcancel_event): [`TouchEvent` ハンドラ](#touchevent-handler)関数。ブラウザがタッチインタラクションをキャンセルすると発火します。
+* `onTouchCancelCapture`: `onTouchCancel` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onTouchEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchend_event): [`TouchEvent` ハンドラ](#touchevent-handler)関数。1 つ以上のタッチポイントが削除されると発火します。
+* `onTouchEndCapture`: `onTouchEnd` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onTouchMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchmove_event): [`TouchEvent` ハンドラ](#touchevent-handler)関数。1 つ以上のタッチポイントが移動すると発火します。
+* `onTouchMoveCapture`: `onTouchMove` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onTouchStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchstart_event): [`TouchEvent` ハンドラ](#touchevent-handler)関数。1 つ以上のタッチポイントが配置されると発火します。
+* `onTouchStartCapture`: `onTouchStart` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onTransitionEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/transitionend_event): [`TransitionEvent` ハンドラ](#transitionevent-handler)関数。CSS のトランジションが完了すると発火します。
+* `onTransitionEndCapture`: `onTransitionEnd` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onWheel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/wheel_event): [`WheelEvent` ハンドラ](#wheelevent-handler)関数。ユーザがホイールボタンを回転させると発火します。
+* `onWheelCapture`: `onWheel` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles): 文字列。支援技術に対して要素の役割を明示的に指定します。
+* [`slot`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles): 文字列。シャドウ DOM を使用する際のスロット名を指定します。React では、同等のパターンは通常 JSX を props として渡すことで達成されます。例えば `<Layout left={<Sidebar />} right={<Content />} />` のようになります。
+* [`spellCheck`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck): ブーリアンまたは null。明示的に `true` または `false` に設定すると、スペルチェックを有効または無効にします。
+* [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex): 数値。デフォルトの Tab ボタンの動作を上書きします。[`-1` と `0` 以外の値の使用は避けてください](https://www.tpgi.com/using-the-tabindex-attribute/)。
+* [`title`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title): 文字列。要素のツールチップテキストを指定します。
+* [`translate`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/translate): `'yes'` または `'no'` のいずれか。`'no'` を渡すと、要素の内容の翻訳が除外されます。
 
-You can also pass custom attributes as props, for example `mycustomprop="someValue"`. This can be useful when integrating with third-party libraries. The custom attribute name must be lowercase and must not start with `on`. The value will be converted to a string. If you pass `null` or `undefined`, the custom attribute will be removed.
+カスタム属性も props として渡すことができます。例えば `mycustomprop="someValue"` のようになります。これはサードパーティのライブラリと統合する際に便利です。カスタム属性名は小文字でなければならず、`on` で始まってはいけません。値は文字列に変換されます。`null` または `undefined` を渡すと、カスタム属性は削除されます。
 
-These events fire only for the [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) elements:
+以下のイベントは [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) 要素のみで発火します：
 
-* [`onReset`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset_event): An [`Event` handler](#event-handler) function. Fires when a form gets reset.
-* `onResetCapture`: A version of `onReset` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onSubmit`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event): An [`Event` handler](#event-handler) function. Fires when a form gets submitted.
-* `onSubmitCapture`: A version of `onSubmit` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onReset`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset_event): [`Event` ハンドラ](#event-handler)関数。フォームがリセットされたときに発火します。
+* `onResetCapture`: `onReset` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onSubmit`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event): [`Event` ハンドラ](#event-handler)関数。フォームが送信されたときに発火します。
+* `onSubmitCapture`: `onSubmit` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
 
-These events fire only for the [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) elements. Unlike browser events, they bubble in React:
+以下のイベントは、[`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) 要素に対してのみ発火します。ブラウザのイベントとは異なり、React ではバブルします。
 
-* [`onCancel`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/cancel_event): An [`Event` handler](#event-handler) function. Fires when the user tries to dismiss the dialog.
-* `onCancelCapture`: A version of `onCancel` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onClose`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close_event): An [`Event` handler](#event-handler) function. Fires when a dialog has been closed.
-* `onCloseCapture`: A version of `onClose` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onCancel`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/cancel_event): [`Event` ハンドラ](#event-handler)関数。ユーザがダイアログをキャンセルしようとしたときに発火します。
+* `onCancelCapture`: `onCancel` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onClose`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close_event): [`Event` ハンドラ](#event-handler)関数。ダイアログが閉じられたときに発火します。
+* `onCloseCapture`: `onClose` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
 
-These events fire only for the [`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) elements. Unlike browser events, they bubble in React:
+以下のイベントは、[`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) 要素に対してのみ発火します。ブラウザのイベントとは異なり、React ではバブルします。
 
-* [`onToggle`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDetailsElement/toggle_event): An [`Event` handler](#event-handler) function. Fires when the user toggles the details.
-* `onToggleCapture`: A version of `onToggle` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onToggle`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDetailsElement/toggle_event): [`Event` ハンドラ](#event-handler)関数。ユーザが詳細を切り替えたときに発火します。
+* `onToggleCapture`: `onToggle` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
 
-These events fire for [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img), [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe), [`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object), [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed), [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link), and [SVG `<image>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/SVG_Image_Tag) elements. Unlike browser events, they bubble in React:
+これらのイベントは、[`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img)、[`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe)、[`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object)、[`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed)、[`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link)、および [SVG の `<image>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/SVG_Image_Tag) 要素に対して発火します。ブラウザのイベントとは異なり、React ではバブルします。
 
-* `onLoad`: An [`Event` handler](#event-handler) function. Fires when the resource has loaded.
-* `onLoadCapture`: A version of `onLoad` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onError`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/error_event): An [`Event` handler](#event-handler) function. Fires when the resource could not be loaded.
-* `onErrorCapture`: A version of `onError` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* `onLoad`: [`Event` ハンドラ](#event-handler)関数。リソースが読み込まれたときに発火します。
+* `onLoadCapture`: `onLoad` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onError`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/error_event): [`Event` ハンドラ](#event-handler)関数。リソースが読み込めなかったときに発火します。
+* `onErrorCapture`: `onError` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
 
-These events fire for resources like [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) and [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video). Unlike browser events, they bubble in React:
+以下のイベントは、[`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) や [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) などのリソースに対して発火します。ブラウザのイベントとは異なり、React ではこれらのイベントはバブルします。
 
-* [`onAbort`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/abort_event): An [`Event` handler](#event-handler) function. Fires when the resource has not fully loaded, but not due to an error.
-* `onAbortCapture`: A version of `onAbort` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCanPlay`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canplay_event): An [`Event` handler](#event-handler) function. Fires when there's enough data to start playing, but not enough to play to the end without buffering.
-* `onCanPlayCapture`: A version of `onCanPlay` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onCanPlayThrough`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canplaythrough_event): An [`Event` handler](#event-handler) function. Fires when there's enough data that it's likely possible to start playing without buffering until the end.
-* `onCanPlayThroughCapture`: A version of `onCanPlayThrough` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onDurationChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/durationchange_event): An [`Event` handler](#event-handler) function. Fires when the media duration has updated.
-* `onDurationChangeCapture`: A version of `onDurationChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onEmptied`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/emptied_event): An [`Event` handler](#event-handler) function. Fires when the media has become empty.
-* `onEmptiedCapture`: A version of `onEmptied` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onEncrypted`](https://w3c.github.io/encrypted-media/#dom-evt-encrypted): An [`Event` handler](#event-handler) function. Fires when the browser encounters encrypted media.
-* `onEncryptedCapture`: A version of `onEncrypted` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onEnded`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ended_event): An [`Event` handler](#event-handler) function. Fires when the playback stops because there's nothing left to play.
-* `onEndedCapture`: A version of `onEnded` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onError`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/error_event): An [`Event` handler](#event-handler) function. Fires when the resource could not be loaded.
-* `onErrorCapture`: A version of `onError` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onLoadedData`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadeddata_event): An [`Event` handler](#event-handler) function. Fires when the current playback frame has loaded.
-* `onLoadedDataCapture`: A version of `onLoadedData` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onLoadedMetadata`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadedmetadata_event): An [`Event` handler](#event-handler) function. Fires when metadata has loaded.
-* `onLoadedMetadataCapture`: A version of `onLoadedMetadata` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onLoadStart`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadstart_event): An [`Event` handler](#event-handler) function. Fires when the browser started loading the resource.
-* `onLoadStartCapture`: A version of `onLoadStart` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPause`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause_event): An [`Event` handler](#event-handler) function. Fires when the media was paused.
-* `onPauseCapture`: A version of `onPause` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPlay`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play_event): An [`Event` handler](#event-handler) function. Fires when the media is no longer paused.
-* `onPlayCapture`: A version of `onPlay` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onPlaying`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/playing_event): An [`Event` handler](#event-handler) function. Fires when the media starts or restarts playing.
-* `onPlayingCapture`: A version of `onPlaying` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onProgress`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/progress_event): An [`Event` handler](#event-handler) function. Fires periodically while the resource is loading.
-* `onProgressCapture`: A version of `onProgress` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onRateChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ratechange_event): An [`Event` handler](#event-handler) function. Fires when playback rate changes.
-* `onRateChangeCapture`: A version of `onRateChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* `onResize`: An [`Event` handler](#event-handler) function. Fires when video changes size.
-* `onResizeCapture`: A version of `onResize` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onSeeked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seeked_event): An [`Event` handler](#event-handler) function. Fires when a seek operation completes.
-* `onSeekedCapture`: A version of `onSeeked` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onSeeking`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seeking_event): An [`Event` handler](#event-handler) function. Fires when a seek operation starts.
-* `onSeekingCapture`: A version of `onSeeking` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onStalled`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/stalled_event): An [`Event` handler](#event-handler) function. Fires when the browser is waiting for data but it keeps not loading.
-* `onStalledCapture`: A version of `onStalled` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onSuspend`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/suspend_event): An [`Event` handler](#event-handler) function. Fires when loading the resource was suspended.
-* `onSuspendCapture`: A version of `onSuspend` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onTimeUpdate`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/timeupdate_event): An [`Event` handler](#event-handler) function. Fires when the current playback time updates.
-* `onTimeUpdateCapture`: A version of `onTimeUpdate` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onVolumeChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volumechange_event): An [`Event` handler](#event-handler) function. Fires when the volume has changed.
-* `onVolumeChangeCapture`: A version of `onVolumeChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onWaiting`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/waiting_event): An [`Event` handler](#event-handler) function. Fires when the playback stopped due to temporary lack of data.
-* `onWaitingCapture`: A version of `onWaiting` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onAbort`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/abort_event): [`Event` ハンドラ](#event-handler)関数。リソースが完全には読み込まれなかったが、エラーによるものではない場合に発火します。
+* `onAbortCapture`: `onAbort` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onCanPlay`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canplay_event): [`Event` ハンドラ](#event-handler)関数。再生を開始するのに十分なデータがあるが、バッファリングのための停止なしに最後まで再生するのに十分なデータはない場合に発火します。
+* `onCanPlayCapture`: `onCanPlay` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onCanPlayThrough`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canplaythrough_event): [`Event` ハンドラ](#event-handler)関数。バッファリングのための停止をせずとも再生を開始して最後まで再生できると考えられる十分なデータがある場合に発火します。
+* `onCanPlayThroughCapture`: `onCanPlayThrough` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onDurationChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/durationchange_event)：[`Event` ハンドラ](#event-handler)関数。メディアの再生時間が更新されたときに発火します。
+* `onDurationChangeCapture`: `onDurationChange` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onEmptied`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/emptied_event): [`Event` ハンドラ](#event-handler)関数。メディアが空になったときに発火します。
+* `onEmptiedCapture`: `onEmptied` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onEncrypted`](https://w3c.github.io/encrypted-media/#dom-evt-encrypted): [`Event` ハンドラ](#event-handler)関数。ブラウザが暗号化されたメディアに遭遇したときに発火します。
+* `onEncryptedCapture`: `onEncrypted` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onEnded`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ended_event): [`Event` ハンドラ](#event-handler)関数。再生するものが何も残っていないために再生が停止したときに発火します。
+* `onEndedCapture`: `onEnded` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onError`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/error_event): [`Event` ハンドラ](#event-handler)関数。リソースが読み込めなかったときに発火します。
+* `onErrorCapture`: `onError` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onLoadedData`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadeddata_event): [`Event` ハンドラ](#event-handler)関数。現在の再生フレームが読み込まれたときに発火します。
+* `onLoadedDataCapture`: `onLoadedData` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onLoadedMetadata`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadedmetadata_event): [`Event` ハンドラ](#event-handler)関数。メタデータが読み込まれたときに発火します。
+* `onLoadedMetadataCapture`: `onLoadedMetadata` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onLoadStart`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadstart_event): [`Event` ハンドラ](#event-handler)関数。ブラウザがリソースの読み込みを開始したときに発火します。
+* `onLoadStartCapture`: `onLoadStart` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onPause`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause_event): [`Event` ハンドラ](#event-handler)関数。メディアが一時停止したときに発火します。
+* `onPauseCapture`: `onPause` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onPlay`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play_event): [`Event` ハンドラ](#event-handler)関数。メディアが一時停止を解除したときに発火します。
+* `onPlayCapture`: `onPlay` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onPlaying`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/playing_event): [`Event` ハンドラ](#event-handler)関数。メディアが再生または再開したときに発火します。
+* `onPlayingCapture`: `onPlaying` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onProgress`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/progress_event): [`Event` ハンドラ](#event-handler)関数。リソースの読み込み中に定期的に発火します。
+* `onProgressCapture`: `onProgress` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onRateChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ratechange_event): [`Event` ハンドラ](#event-handler)関数。再生レートが変更されたときに発火します。
+* `onRateChangeCapture`: `onRateChange` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* `onResize`: [`Event` ハンドラ](#event-handler)関数。ビデオのサイズが変更されたときに発火します。
+* `onResizeCapture`: `onResize` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onSeeked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seeked_event): [`Event` ハンドラ](#event-handler)関数。シーク操作が完了したときに発火します。
+* `onSeekedCapture`: `onSeeked` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onSeeking`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seeking_event): [`Event` ハンドラ](#event-handler)関数。シーク操作を開始したときに発火します。
+* `onSeekingCapture`: `onSeeking` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onStalled`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/stalled_event): [`Event` ハンドラ](#event-handler)関数。ブラウザがデータを待っているが、ロードが進まないときに発火します。
+* `onStalledCapture`: `onStalled` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onSuspend`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/suspend_event): [`Event` ハンドラ](#event-handler)関数。リソースのロードが中断されたときに発火します。
+* `onSuspendCapture`: `onSuspend` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onTimeUpdate`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/timeupdate_event): [`Event` ハンドラ](#event-handler)関数。現在の再生時間が更新されたときに発火します。
+* `onTimeUpdateCapture`: `onTimeUpdate` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onVolumeChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volumechange_event): [`Event` ハンドラ](#event-handler)関数。ボリュームが変更されたときに発火します。
+* `onVolumeChangeCapture`: `onVolumeChange` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
+* [`onWaiting`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/waiting_event): [`Event` ハンドラ](#event-handler)関数。一時的なデータ不足により再生が停止したときに発火します。
+* `onWaitingCapture`: `onWaiting` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
 
-#### Caveats {/*common-caveats*/}
+#### 注意点 {/*common-caveats*/}
 
-- You cannot pass both `children` and `dangerouslySetInnerHTML` at the same time.
-- Some events (like `onAbort` and `onLoad`) don't bubble in the browser, but bubble in React.
+- `children` と `dangerouslySetInnerHTML` を同時に渡すことはできません。
+- 一部のイベント（`onAbort` や `onLoad` など）はブラウザではバブルしませんが、React ではバブルします。
 
 ---
 
-### `ref` callback function {/*ref-callback*/}
+### `ref` コールバック関数 {/*ref-callback*/}
 
-Instead of a ref object (like the one returned by [`useRef`](/reference/react/useRef#manipulating-the-dom-with-a-ref)), you may pass a function to the `ref` attribute.
+[`useRef`](/reference/react/useRef#manipulating-the-dom-with-a-ref) などが返す ref オブジェクトの代わりに、`ref` 属性に関数を渡すことができます。
 
 ```js
 <div ref={(node) => console.log(node)} />
 ```
 
-[See an example of using the `ref` callback.](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
+[`ref` コールバックを使用した例を見る](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
 
-When the `<div>` DOM node is added to the screen, React will call your `ref` callback with the DOM `node` as the argument. When that `<div>` DOM node is removed, React will call your `ref` callback with `null`.
+`<div>` DOM ノードが画面に追加されると、React はその DOM `node` を引数として `ref` コールバックを呼び出します。`<div>` DOM ノードが削除されると、React は `null` を引数として `ref` コールバックを呼び出します。
 
-React will also call your `ref` callback whenever you pass a *different* `ref` callback. In the above example, `(node) => { ... }` is a different function on every render. When your component re-renders, the *previous* function will be called with `null` as the argument, and the *next* function will be called with the DOM node.
+React は、*異なる* `ref` コールバックが渡された場合も `ref` コールバックを呼び出します。上記の例では、`(node) => { ... }` は毎回のレンダーで異なる関数です。コンポーネントが再レンダーされると、*前*の関数が `null` を引数として呼び出され、*次*の関数が DOM ノードを引数として呼び出されます。
 
-#### Parameters {/*ref-callback-parameters*/}
+#### 引数 {/*ref-callback-parameters*/}
 
-* `node`: A DOM node or `null`. React will pass you the DOM node when the ref gets attached, and `null` when the ref gets detached. Unless you pass the same function reference for the `ref` callback on every render, the callback will get temporarily detached and re-attached during every re-render of the component.
+* `node`: DOM ノードまたは `null`。ref がアタッチされるときに React は DOM ノードを渡し、ref がデタッチされるときに `null` を渡します。毎回のレンダーで `ref` コールバックに同じ関数参照を渡さない限り、コールバックは一時的にデタッチされ、コンポーネントの再レンダーごとに再アタッチされます。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-Do not return anything from the `ref` callback.
+`ref` コールバックからは何も返してはいけません。
 
 ---
 
-### React event object {/*react-event-object*/}
+### React イベントオブジェクト {/*react-event-object*/}
 
-Your event handlers will receive a *React event object.* It is also sometimes known as a "synthetic event".
+イベントハンドラは *React イベントオブジェクト*を受け取ります。これは "合成イベント (synthetic event)" とも呼ばれることがあります。
 
 ```js
 <button onClick={e => {
@@ -275,50 +275,50 @@ Your event handlers will receive a *React event object.* It is also sometimes kn
 }} />
 ```
 
-It conforms to the same standard as the underlying DOM events, but fixes some browser inconsistencies.
+これは対応する元の DOM イベントと同じ標準に準拠していますが、一部のブラウザ間の非一致を修正したものです。
 
-Some React events do not map directly to the browser's native events. For example in `onMouseLeave`, `e.nativeEvent` will point to a `mouseout` event. The specific mapping is not part of the public API and may change in the future. If you need the underlying browser event for some reason, read it from `e.nativeEvent`.
+一部の React イベントはブラウザのネイティブイベントに直接マッピングされません。例えば `onMouseLeave` においては `e.nativeEvent` は `mouseout` イベントになっています。具体的なマッピングは公開 API の一部ではなく、将来変更される可能性があります。何らかの理由で元となるブラウザイベントが必要な場合は、`e.nativeEvent` から読み取ってください。
 
-#### Properties {/*react-event-object-properties*/}
+#### プロパティ {/*react-event-object-properties*/}
 
-React event objects implement some of the standard [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) properties:
+React イベントオブジェクトは、標準の [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) プロパティの一部を実装しています。
 
-* [`bubbles`](https://developer.mozilla.org/en-US/docs/Web/API/Event/bubbles): A boolean. Returns whether the event bubbles through the DOM. 
-* [`cancelable`](https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelable): A boolean. Returns whether the event can be canceled.
-* [`currentTarget`](https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget): A DOM node. Returns the node to which the current handler is attached in the React tree.
-* [`defaultPrevented`](https://developer.mozilla.org/en-US/docs/Web/API/Event/defaultPrevented): A boolean. Returns whether `preventDefault` was called.
-* [`eventPhase`](https://developer.mozilla.org/en-US/docs/Web/API/Event/eventPhase): A number. Returns which phase the event is currently in.
-* [`isTrusted`](https://developer.mozilla.org/en-US/docs/Web/API/Event/isTrusted): A boolean. Returns whether the event was initiated by user.
-* [`target`](https://developer.mozilla.org/en-US/docs/Web/API/Event/target): A DOM node. Returns the node on which the event has occurred (which could be a distant child).
-* [`timeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/Event/timeStamp): A number. Returns the time when the event occurred.
+* [`bubbles`](https://developer.mozilla.org/en-US/docs/Web/API/Event/bubbles): ブーリアン。イベントが DOM をバブルするかどうかを返します。
+* [`cancelable`](https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelable): ブーリアン。イベントがキャンセル可能かどうかを返します。
+* [`currentTarget`](https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget): DOM ノード。React ツリー内で現在のハンドラがアタッチされているノードを返します。
+* [`defaultPrevented`](https://developer.mozilla.org/en-US/docs/Web/API/Event/defaultPrevented): ブーリアン。`preventDefault` が呼び出されたかどうかを返します。
+* [`eventPhase`](https://developer.mozilla.org/en-US/docs/Web/API/Event/eventPhase): 数値。イベントが現在どのフェーズにあるかを返します。
+* [`isTrusted`](https://developer.mozilla.org/en-US/docs/Web/API/Event/isTrusted): ブーリアン。イベントの発生理由がユーザによるものかどうかを返します。
+* [`target`](https://developer.mozilla.org/en-US/docs/Web/API/Event/target): DOM ノード。イベントが発生したノード（遠い子孫要素のこともある）を返します。
+* [`timeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/Event/timeStamp): 数値。イベントが発生した時間を返します。
 
-Additionally, React event objects provide these properties:
+さらに、React イベントオブジェクトは以下のプロパティを提供します。
 
-* `nativeEvent`: A DOM [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event). The original browser event object.
+* `nativeEvent`: DOM の [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event)。オリジナルのブラウザイベントオブジェクト。
 
-#### Methods {/*react-event-object-methods*/}
+#### メソッド {/*react-event-object-methods*/}
 
-React event objects implement some of the standard [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) methods:
+React イベントオブジェクトは、標準の [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) メソッドの一部を実装しています。
 
-* [`preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault): Prevents the default browser action for the event.
-* [`stopPropagation()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation): Stops the event propagation through the React tree.
+* [`preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault): イベントのデフォルトのブラウザアクションを防ぎます。
+* [`stopPropagation()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation): React ツリーを通じたイベントの伝播を停止します。
 
-Additionally, React event objects provide these methods:
+さらに、React イベントオブジェクトは以下のメソッドを提供します。
 
-* `isDefaultPrevented()`: Returns a boolean value indicating whether `preventDefault` was called.
-* `isPropagationStopped()`: Returns a boolean value indicating whether `stopPropagation` was called.
-* `persist()`: Not used with React DOM. With React Native, call this to read event's properties after the event.
-* `isPersistent()`: Not used with React DOM. With React Native, returns whether `persist` has been called.
+* `isDefaultPrevented()`: `preventDefault` が呼び出されたかどうかを示すブーリアンを返します。
+* `isPropagationStopped()`: `stopPropagation` が呼び出されたかどうかを示すブーリアンを返します。
+* `persist()`: React DOM では使用されません。React Native では、イベントのプロパティを読み取る際にこのイベントを呼び出します。
+* `isPersistent()`: React DOM では使用されません。React Native では、`persist` が呼び出されたかどうかを返します。
 
-#### Caveats {/*react-event-object-caveats*/}
+#### 注意点 {/*react-event-object-caveats*/}
 
-* The values of `currentTarget`, `eventPhase`, `target`, and `type` reflect the values your React code expects. Under the hood, React attaches event handlers at the root, but this is not reflected in React event objects. For example, `e.currentTarget` may not be the same as the underlying `e.nativeEvent.currentTarget`. For polyfilled events, `e.type` (React event type) may differ from `e.nativeEvent.type` (underlying type).
+* `currentTarget`、`eventPhase`、`target`、`type` の値は、あなたの React コードで期待される通りの値を反映しています。内部的には、React はルートにイベントハンドラをアタッチするのですが、この事実は React イベントオブジェクトには反映されません。例えば、`e.currentTarget` は元となる `e.nativeEvent.currentTarget` とは同じでないかもしれません。ポリフィルされたイベントでは、`e.type`（React イベントのタイプ）は `e.nativeEvent.type`（元イベントのタイプ）と異なることがあります。
 
 ---
 
-### `AnimationEvent` handler function {/*animationevent-handler*/}
+### `AnimationEvent` ハンドラ関数 {/*animationevent-handler*/}
 
-An event handler type for the [CSS animation](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations) events.
+[CSS アニメーション](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)イベントのイベントハンドラタイプです。
 
 ```js
 <div
@@ -328,18 +328,18 @@ An event handler type for the [CSS animation](https://developer.mozilla.org/en-U
 />
 ```
 
-#### Parameters {/*animationevent-handler-parameters*/}
+#### 引数 {/*animationevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`AnimationEvent`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent) properties:
+* `e`: 以下の追加の [`AnimationEvent`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent) プロパティを持つ [React イベントオブジェクト](#react-event-object)。
   * [`animationName`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/animationName)
   * [`elapsedTime`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/elapsedTime)
   * [`pseudoElement`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/pseudoElement)
 
 ---
 
-### `ClipboardEvent` handler function {/*clipboadevent-handler*/}
+### `ClipboardEvent` ハンドラ関数 {/*clipboadevent-handler*/}
 
-An event handler type for the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) events.
+[Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) イベントのイベントハンドラタイプです。
 
 ```js
 <input
@@ -349,17 +349,17 @@ An event handler type for the [Clipboard API](https://developer.mozilla.org/en-U
 />
 ```
 
-#### Parameters {/*clipboadevent-handler-parameters*/}
+#### 引数 {/*clipboadevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`ClipboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent) properties:
+* `e`: 以下の追加の [`ClipboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent) プロパティを持つ [React イベントオブジェクト](#react-event-object)。
 
-  * [`clipboardData`](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent/clipboardData)
+* [`clipboardData`](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent/clipboardData)
 
 ---
 
-### `CompositionEvent` handler function {/*compositionevent-handler*/}
+### `CompositionEvent` ハンドラ関数 {/*compositionevent-handler*/}
 
-An event handler type for the [input method editor (IME)](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) events.
+[インプットメソッドエディタ (IME)](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) イベントのためのイベントハンドラタイプです。
 
 ```js
 <input
@@ -369,16 +369,16 @@ An event handler type for the [input method editor (IME)](https://developer.mozi
 />
 ```
 
-#### Parameters {/*compositionevent-handler-parameters*/}
+#### 引数 {/*compositionevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`CompositionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent) properties:
+* `e`: 以下の追加の [`CompositionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent) プロパティを持つ [React イベントオブジェクト](#react-event-object)。
   * [`data`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent/data)
 
 ---
 
-### `DragEvent` handler function {/*dragevent-handler*/}
+### `DragEvent` ハンドラ関数 {/*dragevent-handler*/}
 
-An event handler type for the [HTML Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API) events.
+[HTML ドラッグ & ドロップ API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API) イベントのためのイベントハンドラタイプです。
 
 ```js
 <>
@@ -401,12 +401,12 @@ An event handler type for the [HTML Drag and Drop API](https://developer.mozilla
 </>
 ```
 
-#### Parameters {/*dragevent-handler-parameters*/}
+#### 引数 {/*dragevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`DragEvent`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) properties:
+* `e`: 以下の追加の [`DragEvent`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) プロパティを持つ [React イベントオブジェクト](#react-event-object)。
   * [`dataTransfer`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent/dataTransfer)
 
-  It also includes the inherited [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
+  また、継承元である [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) のプロパティも含みます：
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
@@ -425,16 +425,16 @@ An event handler type for the [HTML Drag and Drop API](https://developer.mozilla
   * [`screenY`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/screenY)
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/shiftKey)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  また、継承元である [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) のプロパティも含みます：
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `FocusEvent` handler function {/*focusevent-handler*/}
+### `FocusEvent` ハンドラ関数 {/*focusevent-handler*/}
 
-An event handler type for the focus events.
+フォーカスイベントのためのイベントハンドラタイプです。
 
 ```js
 <input
@@ -443,48 +443,48 @@ An event handler type for the focus events.
 />
 ```
 
-[See an example.](#handling-focus-events)
+[例を見る](#handling-focus-events)
 
-#### Parameters {/*focusevent-handler-parameters*/}
+#### 引数 {/*focusevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`FocusEvent`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent) properties:
+* `e`: 以下の追加の [`FocusEvent`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent) プロパティを持つ [React イベントオブジェクト](#react-event-object)。
   * [`relatedTarget`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent/relatedTarget)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  また、継承元である [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) のプロパティも含みます：
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `Event` handler function {/*event-handler*/}
+### `Event` ハンドラ関数 {/*event-handler*/}
 
-An event handler type for generic events.
+一般的なイベントのためのイベントハンドラタイプです。
 
-#### Parameters {/*event-handler-parameters*/}
+#### 引数 {/*event-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with no additional properties.
+* `e`: 追加のプロパティがない [React イベントオブジェクト](#react-event-object)。
 
 ---
 
-### `InputEvent` handler function {/*inputevent-handler*/}
+### `InputEvent` ハンドラ関数 {/*inputevent-handler*/}
 
-An event handler type for the `onBeforeInput` event.
+`onBeforeInput` イベントのためのイベントハンドラタイプです。
 
 ```js
 <input onBeforeInput={e => console.log('onBeforeInput')} />
 ```
 
-#### Parameters {/*inputevent-handler-parameters*/}
+#### 引数 {/*inputevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`InputEvent`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent) properties:
+* `e`: 以下の追加の [`InputEvent`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent) プロパティを持つ [React イベントオブジェクト](#react-event-object)。
   * [`data`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent/data)
 
 ---
 
-### `KeyboardEvent` handler function {/*keyboardevent-handler*/}
+### `KeyboardEvent` ハンドラ関数 {/*keyboardevent-handler*/}
 
-An event handler type for keyboard events.
+キーボードイベントのためのイベントハンドラタイプです。
 
 ```js
 <input
@@ -493,11 +493,11 @@ An event handler type for keyboard events.
 />
 ```
 
-[See an example.](#handling-keyboard-events)
+[例を見る](#handling-keyboard-events)
 
-#### Parameters {/*keyboardevent-handler-parameters*/}
+#### 引数 {/*keyboardevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`KeyboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent) properties:
+* `e`: 以下の追加の [`KeyboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent) プロパティを持つ [React イベントオブジェクト](#react-event-object)。
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/altKey)
   * [`charCode`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/charCode)
   * [`code`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code)
@@ -512,16 +512,16 @@ An event handler type for keyboard events.
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/shiftKey)
   * [`which`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/which)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  また、継承元である [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) のプロパティも含みます：
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `MouseEvent` handler function {/*mouseevent-handler*/}
+### `MouseEvent` ハンドラ関数 {/*mouseevent-handler*/}
 
-An event handler type for mouse events.
+マウスイベントのためのイベントハンドラタイプです。
 
 ```js
 <div
@@ -534,11 +534,11 @@ An event handler type for mouse events.
 />
 ```
 
-[See an example.](#handling-mouse-events)
+[例を見る](#handling-mouse-events)
 
-#### Parameters {/*mouseevent-handler-parameters*/}
+#### 引数 {/*mouseevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
+* `e`: 以下の追加の [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) プロパティを持つ [React イベントオブジェクト](#react-event-object)。
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
   * [`buttons`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons)
@@ -556,16 +556,16 @@ An event handler type for mouse events.
   * [`screenY`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/screenY)
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/shiftKey)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  また、継承元である [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) のプロパティも含みます：
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `PointerEvent` handler function {/*pointerevent-handler*/}
+### `PointerEvent` ハンドラ関数 {/*pointerevent-handler*/}
 
-An event handler type for [pointer events.](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events)
+[ポインタイベント](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events)のためのイベントハンドラタイプです。
 
 ```js
 <div
@@ -577,11 +577,11 @@ An event handler type for [pointer events.](https://developer.mozilla.org/en-US/
 />
 ```
 
-[See an example.](#handling-pointer-events)
+[例を見る](#handling-pointer-events)。
 
-#### Parameters {/*pointerevent-handler-parameters*/}
+#### 引数 {/*pointerevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`PointerEvent`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) properties:
+* `e`: 以下の追加の [`PointerEvent`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) プロパティを持つ [React イベントオブジェクト](#react-event-object)。
   * [`height`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/height)
   * [`isPrimary`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/isPrimary)
   * [`pointerId`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/pointerId)
@@ -593,7 +593,7 @@ An event handler type for [pointer events.](https://developer.mozilla.org/en-US/
   * [`twist`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/twist)
   * [`width`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/width)
 
-  It also includes the inherited [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
+  また、継承元である [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) のプロパティも含みます：
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
@@ -612,16 +612,16 @@ An event handler type for [pointer events.](https://developer.mozilla.org/en-US/
   * [`screenY`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/screenY)
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/shiftKey)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  また、継承元である [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) のプロパティも含みます：
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `TouchEvent` handler function {/*touchevent-handler*/}
+### `TouchEvent` ハンドラ関数 {/*touchevent-handler*/}
 
-An event handler type for [touch events.](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events)
+[タッチイベント](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events)のためのイベントハンドラタイプです。
 
 ```js
 <div
@@ -632,9 +632,9 @@ An event handler type for [touch events.](https://developer.mozilla.org/en-US/do
 />
 ```
 
-#### Parameters {/*touchevent-handler-parameters*/}
+#### 引数 {/*touchevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`TouchEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent) properties:
+* `e`: 以下の追加の [`TouchEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent) プロパティを持つ [React イベントオブジェクト](#react-event-object)。
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/altKey)
   * [`ctrlKey`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/ctrlKey)
   * [`changedTouches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/changedTouches)
@@ -644,16 +644,16 @@ An event handler type for [touch events.](https://developer.mozilla.org/en-US/do
   * [`touches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/touches)
   * [`targetTouches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/targetTouches)
   
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  また、継承元である [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) のプロパティも含みます：
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `TransitionEvent` handler function {/*transitionevent-handler*/}
+### `TransitionEvent` ハンドラ関数 {/*transitionevent-handler*/}
 
-An event handler type for the CSS transition events.
+CSS トランジションイベントのためのイベントハンドラタイプです。
 
 ```js
 <div
@@ -661,18 +661,18 @@ An event handler type for the CSS transition events.
 />
 ```
 
-#### Parameters {/*transitionevent-handler-parameters*/}
+#### 引数 {/*transitionevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`TransitionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent) properties:
+* `e`: 以下の追加の [`TransitionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent) プロパティを持つ [React イベントオブジェクト](#react-event-object)。
   * [`elapsedTime`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent/elapsedTime)
   * [`propertyName`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent/propertyName)
   * [`pseudoElement`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent/pseudoElement)
 
 ---
 
-### `UIEvent` handler function {/*uievent-handler*/}
+### `UIEvent` ハンドラ関数 {/*uievent-handler*/}
 
-An event handler type for generic UI events.
+一般的な UI イベントのためのイベントハンドラタイプです。
 
 ```js
 <div
@@ -680,17 +680,17 @@ An event handler type for generic UI events.
 />
 ```
 
-#### Parameters {/*uievent-handler-parameters*/}
+#### 引数 {/*uievent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+* `e`: 以下の追加の [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) プロパティを持つ [React イベントオブジェクト](#react-event-object)。
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `WheelEvent` handler function {/*wheelevent-handler*/}
+### `WheelEvent` ハンドラ関数 {/*wheelevent-handler*/}
 
-An event handler type for the `onWheel` event.
+`onWheel` イベントのためのイベントハンドラタイプです。
 
 ```js
 <div
@@ -698,16 +698,16 @@ An event handler type for the `onWheel` event.
 />
 ```
 
-#### Parameters {/*wheelevent-handler-parameters*/}
+#### 引数 {/*wheelevent-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with these extra [`WheelEvent`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent) properties:
+* `e`: 以下の追加の [`WheelEvent`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent) プロパティを持つ [React イベントオブジェクト](#react-event-object)。
   * [`deltaMode`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaMode)
   * [`deltaX`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaX)
   * [`deltaY`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaY)
   * [`deltaZ`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaZ)
 
 
-  It also includes the inherited [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
+  また、継承元である [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) のプロパティも含みます：
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
@@ -726,24 +726,24 @@ An event handler type for the `onWheel` event.
   * [`screenY`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/screenY)
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/shiftKey)
 
-  It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  また、継承元である [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) のプロパティも含みます：
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Applying CSS styles {/*applying-css-styles*/}
+### CSS スタイルの適用 {/*applying-css-styles*/}
 
-In React, you specify a CSS class with [`className`.](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) It works like the `class` attribute in HTML:
+React では、CSS クラスを [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) で指定します。これは HTML の `class` 属性と同様に動作します。
 
 ```js
 <img className="avatar" />
 ```
 
-Then you write the CSS rules for it in a separate CSS file:
+そして別の CSS ファイルでそれに対する CSS ルールを記述します。
 
 ```css
 /* In your CSS */
@@ -752,9 +752,9 @@ Then you write the CSS rules for it in a separate CSS file:
 }
 ```
 
-React does not prescribe how you add CSS files. In the simplest case, you'll add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag to your HTML. If you use a build tool or a framework, consult its documentation to learn how to add a CSS file to your project.
+React は CSS ファイルの追加方法を規定しません。最も単純なケースでは、HTML に [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) タグを追加します。ビルドツールやフレームワークを使用している場合は、そのドキュメンテーションを参照して、プロジェクトに CSS ファイルを追加する方法を学んでください。
 
-Sometimes, the style values depend on data. Use the `style` attribute to pass some styles dynamically:
+時には、スタイルの値がデータに依存することがあります。`style` 属性を使用して、一部のスタイルを動的に渡します。
 
 ```js {3-6}
 <img
@@ -767,7 +767,7 @@ Sometimes, the style values depend on data. Use the `style` attribute to pass so
 ```
 
 
-In the above example, `style={{}}` is not a special syntax, but a regular `{}` object inside the `style={ }` [JSX curly braces.](/learn/javascript-in-jsx-with-curly-braces) We recommend only using the `style` attribute when your styles depend on JavaScript variables.
+上記の例では、`style={{}}` は特別な構文ではなく、`style={ }` という [JSX の波括弧](/learn/javascript-in-jsx-with-curly-braces)内の通常の `{}` オブジェクトです。スタイルが JavaScript 変数に依存する場合にのみ `style` 属性を使用することをお勧めします。
 
 <Sandpack>
 
@@ -811,13 +811,13 @@ export default function Avatar({ user }) {
 
 <DeepDive>
 
-#### How to apply multiple CSS classes conditionally? {/*how-to-apply-multiple-css-classes-conditionally*/}
+#### 複数の CSS クラスを条件付きで適用する方法 {/*how-to-apply-multiple-css-classes-conditionally*/}
 
-To apply CSS classes conditionally, you need to produce the `className` string yourself using JavaScript.
+CSS クラスを条件付きで適用するには、JavaScript を使用して `className` 文字列を自分で生成する必要があります。
 
-For example, `className={'row ' + (isSelected ? 'selected': '')}` will produce either `className="row"` or `className="row selected"` depending on whether `isSelected` is `true`.
+例えば、`className={'row ' + (isSelected ? 'selected': '')}` は `isSelected` が `true` かどうかによって、`className="row"` または `className="row selected"` になります。
 
-To make this more readable, you can use a tiny helper library like [`classnames`:](https://github.com/JedWatson/classnames)
+これをより読みやすくするために、[`classnames`](https://github.com/JedWatson/classnames) のような小さなヘルパライブラリを使用できます。
 
 ```js
 import cn from 'classnames';
@@ -831,7 +831,7 @@ function Row({ isSelected }) {
 }
 ```
 
-It is especially convenient if you have multiple conditional classes:
+これは条件付きクラスが複数ある場合に特に便利です。
 
 ```js
 import cn from 'classnames';
@@ -853,11 +853,11 @@ function Row({ isSelected, size }) {
 
 ---
 
-### Manipulating a DOM node with a ref {/*manipulating-a-dom-node-with-a-ref*/}
+### ref を使って DOM ノードを操作する {/*manipulating-a-dom-node-with-a-ref*/}
 
-Sometimes, you'll need to get the browser DOM node associated with a tag in JSX. For example, if you want to focus an `<input>` when a button is clicked, you need to call [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) on the browser `<input>` DOM node.
+JSX タグに対応するブラウザの DOM ノードを取得する必要がある場合があります。例えば、ボタンがクリックされたときに `<input>` にフォーカスを当てたい場合、ブラウザの `<input>` DOM ノードに対して [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) を呼び出す必要があります。
 
-To obtain the browser DOM node for a tag, [declare a ref](/reference/react/useRef) and pass it as the `ref` attribute to that tag:
+あるタグに対応するブラウザ DOM ノードを取得するには、[ref を宣言](/reference/react/useRef)し、それをそのタグの `ref` 属性として渡します。
 
 ```js {7}
 import { useRef } from 'react';
@@ -870,7 +870,7 @@ export default function Form() {
     // ...
 ```
 
-React will put the DOM node into `inputRef.current` after it's been rendered to the screen.
+React は、画面にレンダーされた後に、DOM ノードを `inputRef.current` に代入します。
 
 <Sandpack>
 
@@ -897,24 +897,24 @@ export default function Form() {
 
 </Sandpack>
 
-Read more about [manipulating DOM with refs](/learn/manipulating-the-dom-with-refs) and [check out more examples.](/reference/react/useRef#examples-dom)
+[ref を使った DOM の操作](/learn/manipulating-the-dom-with-refs)に詳しい解説があります。[こちらに他の例があります](/reference/react/useRef#examples-dom)。
 
-For more advanced use cases, the `ref` attribute also accepts a [callback function.](#ref-callback)
+より高度なユースケースのために、`ref` 属性は[コールバック関数](#ref-callback)も受け入れます。
 
 ---
 
-### Dangerously setting the inner HTML {/*dangerously-setting-the-inner-html*/}
+### 危険を冒して内部 HTML をセットする {/*dangerously-setting-the-inner-html*/}
 
-You can pass a raw HTML string to an element like so:
+以下のように、要素に対して生の HTML 文字列を渡すことができます。
 
 ```js
 const markup = { __html: '<p>some raw html</p>' };
 return <div dangerouslySetInnerHTML={markup} />;
 ```
 
-**This is dangerous. As with the underlying DOM [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) property, you must exercise extreme caution! Unless the markup is coming from a completely trusted source, it is trivial to introduce an [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerability this way.**
+**これは危険です。元の DOM の [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) プロパティも同様ですが、最大限に注意を払ってください！ マークアップが完全に信頼できるソースから来ていない限り、この方法を使うといとも簡単に [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) 脆弱性が発生します**。
 
-For example, if you use a Markdown library that converts Markdown to HTML, you trust that its parser doesn't contain bugs, and the user only sees their own input, you can display the resulting HTML like this:
+例えば、Markdown を HTML に変換する Markdown ライブラリを使用しており、そのパーサにバグがないと信頼でき、ユーザは本人が入力したものしか見ない、という場合、結果 HTML を以下のように表示することができます。
 
 <Sandpack>
 
@@ -982,7 +982,7 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 </Sandpack>
 
-To see why rendering arbitrary HTML is dangerous, replace the code above with this:
+なぜ任意の HTML をレンダーすることが危険なのかを理解するために、上記のコードを以下のように置き換えてみてください。
 
 ```js {1-4,7,8}
 const post = {
@@ -997,13 +997,13 @@ export default function MarkdownPreview() {
 }
 ```
 
-The code embedded in the HTML will run. A hacker could use this security hole to steal user information or to perform actions on their behalf. **Only use `dangerouslySetInnerHTML` with trusted and sanitized data.**
+HTML に埋め込まれたコードが実行されます。ハッカーはこのセキュリティホールを利用してユーザ情報を盗んだり、ユーザに代わって行動したりすることができます。**`dangerouslySetInnerHTML` は信頼できる、そしてサニタイズされたデータでのみ使用してください**。
 
 ---
 
-### Handling mouse events {/*handling-mouse-events*/}
+### マウスイベントの処理 {/*handling-mouse-events*/}
 
-This example shows some common [mouse events](#mouseevent-handler) and when they fire.
+この例では、一般的な[マウスイベント](#mouseevent-handler)とそれらの発火タイミングを示しています。
 
 <Sandpack>
 
@@ -1048,9 +1048,9 @@ input { margin-left: 10px; }
 
 ---
 
-### Handling pointer events {/*handling-pointer-events*/}
+### ポインタイベントの処理 {/*handling-pointer-events*/}
 
-This example shows some common [pointer events](#pointerevent-handler) and when they fire.
+この例では、一般的な[ポインタイベント](#pointerevent-handler)とそれらの発火タイミングを示しています。
 
 <Sandpack>
 
@@ -1096,9 +1096,9 @@ input { margin-left: 10px; }
 
 ---
 
-### Handling focus events {/*handling-focus-events*/}
+### フォーカスイベントの処理 {/*handling-focus-events*/}
 
-In React, [focus events](#focusevent-handler) bubble. You can use the `currentTarget` and `relatedTarget` to differentiate if the focusing or blurring events originated from outside of the parent element. The example shows how to detect focusing a child, focusing the parent element, and how to detect focus entering or leaving the whole subtree.
+React では、[フォーカスイベント](#focusevent-handler)はバブルします。`currentTarget` と `relatedTarget` を使用して、フォーカスまたはブラー（フォーカス喪失）イベントが親要素の外部から発生したかどうかを判断できます。この例では、子要素へのフォーカス、親要素へのフォーカス、および全体のサブツリーへのフォーカスの入出を検出する方法を示しています。
 
 <Sandpack>
 
@@ -1152,9 +1152,9 @@ input { margin-left: 10px; }
 
 ---
 
-### Handling keyboard events {/*handling-keyboard-events*/}
+### キーボードイベントの処理 {/*handling-keyboard-events*/}
 
-This example shows some common [keyboard events](#keyboardevent-handler) and when they fire.
+この例では、一般的な[キーボードイベント](#keyboardevent-handler)とそれらの発火タイミングを示しています。
 
 <Sandpack>
 

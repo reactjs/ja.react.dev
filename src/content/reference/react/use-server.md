@@ -49,7 +49,9 @@ async function addToCart(data) {
 ## 使用法 {/*usage*/}
 
 <Wip>
+このセクションは未完成です。
 
-このセクションは未完成です。[Next.js の Server Components についてのドキュメント](https://beta.nextjs.org/docs/rendering/server-and-client-components)も参照してください。
-
+この API は React Server Components を利用するフレームワークで使用できます。フレームワークごとの追加のドキュメントが公開されています。
+* [Next.js ドキュメント](https://nextjs.org/docs/getting-started/react-essentials)
+* 今後追加予定
 </Wip>

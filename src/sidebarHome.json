@@ -4,34 +4,34 @@
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET STARTED"
+      "sectionHeader": "スタートガイド"
     },
     {
-      "title": "Quick Start",
+      "title": "クイックスタート",
       "path": "/learn"
     },
     {
-      "title": "Installation",
+      "title": "インストール",
       "path": "/learn/installation"
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "LEARN REACT"
+      "sectionHeader": "REACT を学ぶ"
     },
     {
-      "title": "Describing the UI",
+      "title": "UI の記述",
       "path": "/learn/describing-the-ui"
     },
     {
-      "title": "Adding Interactivity",
+      "title": "インタラクティビティの追加",
       "path": "/learn/adding-interactivity"
     },
     {
-      "title": "Managing State",
+      "title": "state の管理",
       "path": "/learn/managing-state"
     },
     {
-      "title": "Escape Hatches",
+      "title": "避難ハッチ",
       "path": "/learn/escape-hatches"
     },
     {
@@ -39,19 +39,19 @@
       "sectionHeader": "REACT API"
     },
     {
-      "title": "Hooks",
+      "title": "フック",
       "path": "/reference/react"
     },
     {
-      "title": "Components",
+      "title": "コンポーネント",
       "path": "/reference/react/components"
     },
     {
-      "title": "APIs",
+      "title": "API",
       "path": "/reference/react/apis"
     },
     {
-      "title": "Legacy APIs",
+      "title": "レガシー API",
       "path": "/reference/react/legacy"
     },
     {
@@ -59,35 +59,35 @@
       "sectionHeader": "REACT DOM API"
     },
     {
-      "title": "Components",
+      "title": "コンポーネント",
       "path": "/reference/react-dom/components"
     },
     {
-      "title": "APIs",
+      "title": "API",
       "path": "/reference/react-dom"
     },
     {
-      "title": "Client APIs",
+      "title": "クライアント API",
       "path": "/reference/react-dom/client"
     },
     {
-      "title": "Server APIs",
+      "title": "サーバ API",
       "path": "/reference/react-dom/server"
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET INVOLVED"
+      "sectionHeader": "コミュニティに参加する"
     },
     {
-      "title": "React Community",
+      "title": "React コミュニティ",
       "path": "/community"
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "STAY INFORMED"
+      "sectionHeader": "最新の情報"
     },
     {
-      "title": "React Blog",
+      "title": "React ブログ",
       "path": "/blog"
     }
   ]

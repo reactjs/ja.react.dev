@@ -4,7 +4,7 @@ title: "<progress>"
 
 <Intro>
 
-The [built-in browser `<progress>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) lets you render a progress indicator.
+[ブラウザ組み込みの `<progress>` コンポーネント](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress)を利用することで、進行状況のインジケータをレンダーすることができます。
 
 ```js
 <progress value={0.5} />
@@ -16,36 +16,36 @@ The [built-in browser `<progress>` component](https://developer.mozilla.org/en-U
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `<progress>` {/*progress*/}
 
-To display a progress indicator, render the [built-in browser `<progress>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) component.
+進行状況のインジケータを表示するためには、[ブラウザ組み込みの `<progress>` コンポーネント](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress)をレンダーします。
 
 ```js
 <progress value={0.5} />
 ```
 
-[See more examples below.](#usage)
+[更に例を見る](#usage)
 
-#### Props {/*props*/}
+#### props {/*props*/}
 
-`<progress>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<progress>` は[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
 
-Additionally, `<progress>` supports these props:
+さらに、`<progress>` は以下の props もサポートしています：
 
-* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#max): A number. Specifies the maximum `value`. Defaults to `1`.
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#value): A number between `0` and `max`, or `null` for indeterminate progress. Specifies how much was done.
+* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#max)： 数値。`value` の最大値を指定します。デフォルトは `1` です。
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#value)： `0` から `max` までの数値、または進行状況が不定 (indeterminate) であることを表す `null`。完了した量を指定します。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Controlling a progress indicator {/*controlling-a-progress-indicator*/}
+### 進行状況のインジケータの制御 {/*controlling-a-progress-indicator*/}
 
-To display a progress indicator, render a `<progress>` component. You can pass a number `value` between `0` and the `max` value you specify. If you don't pass a `max` value, it will assumed to be `1` by default.
+進行状況のインジケータを表示するためには、`<progress>` コンポーネントをレンダーします。`0` から `max` 値までの数値を `value` として渡すことができます。`max` 値を渡さない場合、デフォルトで `1` とみなされます。
 
-If the operation is not ongoing, pass `value={null}` to put the progress indicator into an indeterminate state.
+進行状況のインジケータを不定状態にするには `value={null}` を渡します。
 
 <Sandpack>
 

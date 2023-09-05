@@ -460,4 +460,4 @@ interface MyComponentProps {
 
  - [React TypeScript Cheatsheet](https://react-typescript-cheatsheet.netlify.app/) はコミュニティによってメンテナンスされている、React で TypeScript を使用するためのチートシートです。多くの有用なエッジケースをカバーしており、このドキュメントよりも広範な解説が得られます。
 
- - [TypeScript コミュニティ Discord](discord.com/invite/typescript) は、TypeScript と React の問題について質問したり、助けを得たりするための素晴らしい場所です。
+ - [TypeScript コミュニティ Discord](https://discord.com/invite/typescript) は、TypeScript と React の問題について質問したり、助けを得たりするための素晴らしい場所です。

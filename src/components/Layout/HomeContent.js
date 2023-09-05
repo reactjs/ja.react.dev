@@ -49,8 +49,9 @@ function Section({children, background = null}) {
 }
 
 function Header({children}) {
+  // "lg:max-w-xl" has been removed in Japanese version
   return (
-    <h2 className="leading-xl font-display text-primary dark:text-primary-dark font-semibold text-5xl lg:text-6xl -mt-4 mb-7 w-full max-w-3xl lg:max-w-xl">
+    <h2 className="leading-xl font-display text-primary dark:text-primary-dark font-semibold text-5xl lg:text-6xl -mt-4 mb-7 w-full max-w-3xl">
       {children}
     </h2>
   );
@@ -890,7 +891,7 @@ function ExampleLayout({
               {overlayStyles.map((styles, i) => (
                 <div
                   key={i}
-                  className="inset-x-0 bg-blue-30/5 border-2 border-link dark:border-link-dark absolute rounded-lg"
+                  className="top-0 start-0 bg-blue-30/5 border-2 border-link dark:border-link-dark absolute rounded-lg"
                   style={styles}
                 />
               ))}

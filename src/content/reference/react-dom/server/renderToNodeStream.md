@@ -4,13 +4,13 @@ title: renderToNodeStream
 
 <Deprecated>
 
-This API will be removed in a future major version of React. Use [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) instead.
+この API は、将来の React のメジャーバージョンで削除されます。代わりに [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) を使用してください。
 
 </Deprecated>
 
 <Intro>
 
-`renderToNodeStream` renders a React tree to a [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
+`renderToNodeStream` は、React のツリーを [Node.js の Readable ストリーム](https://nodejs.org/api/stream.html#readable-streams)にレンダーします。
 
 ```js
 const stream = renderToNodeStream(reactNode)
@@ -22,11 +22,11 @@ const stream = renderToNodeStream(reactNode)
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `renderToNodeStream(reactNode)` {/*rendertonodestream*/}
 
-On the server, call `renderToNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe into the response.
+サーバ上において、`renderToNodeStream` を呼び出して、レスポンスにパイプすることができる [Node.js の Readable ストリーム](https://nodejs.org/api/stream.html#readable-streams)を取得します。
 
 ```js
 import { renderToNodeStream } from 'react-dom/server';
@@ -35,33 +35,33 @@ const stream = renderToNodeStream(<App />);
 stream.pipe(response);
 ```
 
-On the client, call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to make the server-generated HTML interactive.
+クライアント側では、このようにサーバ生成された HTML を操作可能にするために [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) を用います。
 
-[See more examples below.](#usage)
+[更に例を見る](#usage)
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-* `reactNode`: A React node you want to render to HTML. For example, a JSX element like `<App />`.
+* `reactNode`: HTML にレンダーしたい React ノード。例えば、`<App />` のような JSX 要素。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-A [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) that outputs an HTML string.
+HTML 文字列を出力する [Node.js の Readable ストリーム](https://nodejs.org/api/stream.html#readable-streams)。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-* This method will wait for all [Suspense boundaries](/reference/react/Suspense) to complete before returning any output.
+* このメソッドは、すべての[サスペンスバウンダリ](/reference/react/Suspense)が完了するまで、出力を返さず待機します。
 
-* As of React 18, this method buffers all of its output, so it doesn't actually provide any streaming benefits. This is why it's recommended that you migrate to [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) instead.
+* React 18 時点において、このメソッドはすべての出力をバッファリングするため、実際にはストリームを使用する利点が得られません。これが、代わりに [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) に移行することが推奨される理由です。
 
-* The returned stream is a byte stream encoded in utf-8. If you need a stream in another encoding, take a look at a project like [iconv-lite](https://www.npmjs.com/package/iconv-lite), which provides transform streams for transcoding text.
+* 返されるストリームは、utf-8 でエンコードされたバイトストリームです。別のエンコーディングのストリームが必要な場合は、テキストのトランスコーディング用の変換ストリームを提供する [iconv-lite](https://www.npmjs.com/package/iconv-lite) のようなプロジェクトを参照してください。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Rendering a React tree as HTML to a Node.js Readable Stream {/*rendering-a-react-tree-as-html-to-a-nodejs-readable-stream*/}
+### React ツリーを HTML として Node.js の Readable ストリームにレンダーする {/*rendering-a-react-tree-as-html-to-a-nodejs-readable-stream*/}
 
-Call `renderToNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe to your server response:
+`renderToNodeStream` を呼び出して、サーバからのレスポンスにパイプできる [Node.js の Readable ストリーム](https://nodejs.org/api/stream.html#readable-streams)を取得します。
 
 ```js {5-6}
 import { renderToNodeStream } from 'react-dom/server';
@@ -73,4 +73,4 @@ app.use('/', (request, response) => {
 });
 ```
 
-The stream will produce the initial non-interactive HTML output of your React components. On the client, you will need to call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to *hydrate* that server-generated HTML and make it interactive.
+このストリームは、React コンポーネントの非インタラクティブな初期 HTML 出力を生成します。クライアント側では、サーバが生成した HTML の*ハイドレーション*を行い操作可能にするために、[`hydrateRoot`](/reference/react-dom/client/hydrateRoot) を呼び出す必要があります。
