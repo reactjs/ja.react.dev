@@ -1,38 +1,38 @@
 {
-  "title": "Community",
+  "title": "コミュニティ",
   "path": "/community",
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET INVOLVED"
+      "sectionHeader": "参加する"
     },
     {
-      "title": "Community",
+      "title": "コミュニティ",
       "path": "/community",
       "skipBreadcrumb": true,
       "routes": [
         {
-          "title": "React Conferences",
+          "title": "React カンファレンス",
           "path": "/community/conferences"
         },
         {
-          "title": "React Meetups",
+          "title": "React ミーティング",
           "path": "/community/meetups"
         },
         {
-          "title": "React Videos",
+          "title": "React 関連動画",
           "path": "/community/videos"
         },
         {
-          "title": "Meet the Team",
+          "title": "チーム紹介",
           "path": "/community/team"
         },
         {
-          "title": "Docs Contributors",
+          "title": "ドキュメント貢献者",
           "path": "/community/docs-contributors"
         },
         {
-          "title": "Acknowledgements",
+          "title": "謝辞",
           "path": "/community/acknowledgements"
         },
         {

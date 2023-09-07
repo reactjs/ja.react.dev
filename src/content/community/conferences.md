@@ -1,10 +1,10 @@
 ---
-title: React Conferences
+title: React カンファレンス
 ---
 
 <Intro>
 
-Do you know of a local React.js conference? Add it here! (Please keep the list chronological)
+各国で開催される React.js のカンファレンスをご存じの場合は、ここに追加してください（開催日順にしてください）。
 
 </Intro>
 
@@ -516,7 +516,7 @@ August 18 in Guangzhou, China
 
 [Website](https://react.w3ctech.com)
 
-### React Rally 2018{/*react-rally-2018*/}
+### React Rally 2018 {/*react-rally-2018*/}
 August 16-17 in Salt Lake City, Utah USA
 
 [Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)
