@@ -357,11 +357,11 @@ const [index, setIndex] = useState(0);
 
 <Note>
 
-慣習的に、このペアは `const [something, setSomething]` のように命名します。ほかの好きな名前を付けることもできますが、慣習に従うことでプロジェクト間で理解しやすくなります。
+慣習的に、このペアは `const [something, setSomething]` のように命名します。自由に名前を付けることもできますが、慣習に従うことでプロジェクト間で理解しやすくなります。
 
 </Note>
 
-`useState` に渡す唯一の引数は、state 変数の**初期値**です。この例では、`index` の初期値を `useState(0)` で `0` に設定しています。
+`useState` に渡す唯一の引数は、state 変数の**初期値**です。この例では `useState(0)` とすることで `index` の初期値を `0` に設定しています。
 
 コンポーネントがレンダーされるたびに、`useState` は以下の 2 つの値を含む配列を返します。
 
