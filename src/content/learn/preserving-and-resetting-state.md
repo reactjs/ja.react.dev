@@ -935,7 +935,11 @@ h1 {
 
 </DiagramGroup>
 
+<<<<<<< HEAD
 `Counter` の state は DOM から削除されるたびに破棄されます。これがボタンをクリックするたびにカウントがリセットされる理由です。
+=======
+Each `Counter`'s state gets destroyed each time it's removed from the DOM. This is why they reset every time you click the button.
+>>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
 
 この解決策は、同じ場所でレンダーされる独立したコンポーネントが数個しかない場合には便利です。この例では 2 つしかないので、両方を JSX 内で別々にレンダーしても大変ではありません。
 
