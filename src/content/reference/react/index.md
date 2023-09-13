@@ -106,6 +106,24 @@ function TodoList({ todos, tab, theme }) {
 
 ---
 
+## リソース関連フック {/*resource-hooks*/}
+
+*リソース (resource)* は state に入れずにコンポーネントからアクセスできます。例えばコンポーネントは Promise からメッセージを読み取ったり、コンテクストからスタイルに関する情報を読み取ったりできます。
+
+リソースから値を読み取るには、以下のフックを用いることができます：
+
+- [`use`](/reference/react/use) を用いることで [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) や[コンテクスト](/learn/passing-data-deeply-with-context)などのリソースから値を読み取ります。
+
+```js
+function MessageComponent({ messagePromise }) {
+  const message = use(messagePromise);
+  const theme = use(ThemeContext);
+  // ...
+}
+```
+
+---
+
 ## その他のフック {/*other-hooks*/}
 
 これらのフックはライブラリの開発者には有用ですが、アプリケーションコードでは通常は用いられることはありません。

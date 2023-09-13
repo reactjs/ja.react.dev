@@ -32,7 +32,7 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 #### 引数 {/*parameters*/}
 
-* `load`: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) または *thenable*（`then` メソッドを持つ Promise のようなオブジェクト）を返す関数。返されたコンポーネントを初めてレンダーしようとするときまで React は `load` を呼び出しません。React が初めて `load` を呼び出した後、それが解決 (resolve) するのを待ち、解決した値を React コンポーネントとしてレンダーします。返された Promise と解決済みの値は両方ともキャッシュされるため、React は `load` を 2 度以上呼び出しません。Promise が reject された場合、React はその理由を `throw` し、最も近いエラーバウンダリで処理できるようにします。
+* `load`: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) または *thenable*（`then` メソッドを持つ Promise のようなオブジェクト）を返す関数。返されたコンポーネントを初めてレンダーしようとするときまで React は `load` を呼び出しません。React が初めて `load` を呼び出した後、それが解決 (resolve) するのを待ち、解決した値の `.default` を React コンポーネントとしてレンダーします。返された Promise と解決済みの値は両方ともキャッシュされるため、React は `load` を 2 度以上呼び出しません。Promise が reject された場合、React はその理由を `throw` し、最も近いエラーバウンダリで処理できるようにします。
 
 #### 戻り値 {/*returns*/}
 
@@ -48,7 +48,7 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 #### 返り値 {/*load-returns*/}
 
-[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) または何らかの *thenable*（`then` メソッドを持つ Promise のようなオブジェクト）を返す必要があります。最終的に有効な React コンポーネント型、例えば関数、[`memo`](/reference/react/memo)、または [`forwardRef`](/reference/react/forwardRef) コンポーネントに解決される必要があります。
+[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) または何らかの *thenable*（`then` メソッドを持つ Promise のようなオブジェクト）を返す必要があります。最終的に、有効な React コンポーネント型、つまり例えば関数、[`memo`](/reference/react/memo)、または [`forwardRef`](/reference/react/forwardRef) コンポーネントのようなものを `.default` プロパティとして持つオブジェクトに解決される必要があります。
 
 ---
 
@@ -70,7 +70,7 @@ import { lazy } from 'react';
 const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 ```
 
-このコードは[ダイナミック `import()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) を用いており、あなたのバンドラやフレームワークからのサポートが必要かもしれません。
+このコードは[ダイナミック `import()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) を用いており、あなたのバンドラやフレームワークからのサポートが必要かもしれません。このパターンを用いる場合は、遅延インポートしようとしているコンポーネントが `default` でエクスポートされている必要があります。
 
 コンポーネントのコードがオンデマンドで読み込まれるようになったので、読み込みの最中には何を表示するべきかを指定する必要があります。これは、遅延コンポーネントまたはその親のいずれかを [`<Suspense>`](/reference/react/Suspense) バウンダリでラップすることで行うことができます。
 
