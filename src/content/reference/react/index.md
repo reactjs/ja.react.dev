@@ -106,16 +106,13 @@ function TodoList({ todos, tab, theme }) {
 
 ---
 
-<<<<<<< HEAD
-## その他のフック {/*other-hooks*/}
-=======
-## Resource Hooks {/*resource-hooks*/}
+## リソース関連フック {/*resource-hooks*/}
 
-*Resources* can be accessed by a component without having them as part of their state. For example, a component can read a message from a Promise or read styling information from a context.
+*リソース (resource)* は state に入れずにコンポーネントからアクセスできます。例えばコンポーネントは Promise からメッセージを読み取ったり、コンテクストからスタイルに関する情報を読み取ったりできます。
 
-To read a value from a resource, use this Hook:
+リソースから値を読み取るには、以下のフックを用いることができます：
 
-- [`use`](/reference/react/use) lets you read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+- [`use`](/reference/react/use) を用いることで [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) や[コンテクスト](/learn/passing-data-deeply-with-context)などのリソースから値を読み取ります。
 
 ```js
 function MessageComponent({ messagePromise }) {
@@ -127,8 +124,7 @@ function MessageComponent({ messagePromise }) {
 
 ---
 
-## Other Hooks {/*other-hooks*/}
->>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
+## その他のフック {/*other-hooks*/}
 
 これらのフックはライブラリの開発者には有用ですが、アプリケーションコードでは通常は用いられることはありません。
 

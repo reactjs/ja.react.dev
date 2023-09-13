@@ -50,10 +50,9 @@ title: "<select>"
 
 以下の `<select>` の props は、非制御セレクトボックスと制御されたセレクトボックスの両方で用いられます。
 
-<<<<<<< HEAD
 * [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#autocomplete): 文字列。可能な[オートコンプリート動作](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)の 1 つを指定します。
 * [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#autofocus): ブーリアン。`true` の場合、React は要素をマウント時にフォーカスします。
-* `children`: `<select>` は [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option)、[`<optgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup)、[`<datalist>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup) コンポーネントを子として受け入れます。カスタムコンポーネントを渡しても構いませんが、その場合は最終的に上記のコンポーネントのいずれかにレンダーされる必要があります。`<option>` タグを最終的にレンダーする独自のコンポーネントを渡す場合、レンダーする各 `<option>` には `value` が必要です。
+* `children`: `<select>` は [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option)、[`<optgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup)、[`<datalist>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) コンポーネントを子として受け入れます。カスタムコンポーネントを渡しても構いませんが、その場合は最終的に上記のコンポーネントのいずれかにレンダーされる必要があります。`<option>` タグを最終的にレンダーする独自のコンポーネントを渡す場合、レンダーする各 `<option>` には `value` が必要です。
 * [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#disabled): ブーリアン。`true` の場合、セレクトボックスはインタラクティブではなくなり、薄暗く表示されます。 
 * [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#form): 文字列。このセレクトボックスが属する `<form>` 要素の `id` を指定します。省略した場合、最も近い親フォームが対象となります。
 * [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#multiple): ブーリアン。`true` の場合、ブラウザで[複数選択](#enabling-multiple-selection)が可能になります。
@@ -66,23 +65,6 @@ title: "<select>"
 * `onInvalidCapture`: `onInvalid` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョンです。
 * [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#required): ブーリアン。`true` の場合、フォームを送信する際に値の指定を必須にします。
 * [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#size): 数値。`multiple={true}` となっている選択ボックスにおける最初に表示させたい項目の数を指定します。
-=======
-* [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#autocomplete): A string. Specifies one of the possible [autocomplete behaviors.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)
-* [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#autofocus): A boolean. If `true`, React will focus the element on mount.
-* `children`: `<select>` accepts [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option), [`<optgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup), and [`<datalist>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) components as children. You can also pass your own components as long as they eventually render one of the allowed components. If you pass your own components that eventually render `<option>` tags, each `<option>` you render must have a `value`.
-* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#disabled): A boolean. If `true`, the select box will not be interactive and will appear dimmed.
-* [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#form): A string. Specifies the `id` of the `<form>` this select box belongs to. If omitted, it's the closest parent form.
-* [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#multiple): A boolean. If `true`, the browser allows [multiple selection.](#enabling-multiple-selection)
-* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#name): A string. Specifies the name for this select box that's [submitted with the form.](#reading-the-select-box-value-when-submitting-a-form)
-* `onChange`: An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Required for [controlled select boxes.](#controlling-a-select-box-with-a-state-variable) Fires immediately when the user picks a different option. Behaves like the browser [`input` event.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)
-* `onChangeCapture`: A version of `onChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires immediately when the value is changed by the user. For historical reasons, in React it is idiomatic to use `onChange` instead which works similarly.
-* `onInputCapture`: A version of `onInput` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires if an input fails validation on form submit. Unlike the built-in `invalid` event, the React `onInvalid` event bubbles.
-* `onInvalidCapture`: A version of `onInvalid` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#required): A boolean. If `true`, the value must be provided for the form to submit.
-* [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#size): A number. For `multiple={true}` selects, specifies the preferred number of initially visible items.
->>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
 
 #### 注意点 {/*caveats*/}
 

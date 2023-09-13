@@ -32,11 +32,7 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 #### 引数 {/*parameters*/}
 
-<<<<<<< HEAD
-* `load`: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) または *thenable*（`then` メソッドを持つ Promise のようなオブジェクト）を返す関数。返されたコンポーネントを初めてレンダーしようとするときまで React は `load` を呼び出しません。React が初めて `load` を呼び出した後、それが解決 (resolve) するのを待ち、解決した値を React コンポーネントとしてレンダーします。返された Promise と解決済みの値は両方ともキャッシュされるため、React は `load` を 2 度以上呼び出しません。Promise が reject された場合、React はその理由を `throw` し、最も近いエラーバウンダリで処理できるようにします。
-=======
-* `load`: A function that returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or another *thenable* (a Promise-like object with a `then` method). React will not call `load` until the first time you attempt to render the returned component. After React first calls `load`, it will wait for it to resolve, and then render the resolved value's `.default` as a React component. Both the returned Promise and the Promise's resolved value will be cached, so React will not call `load` more than once. If the Promise rejects, React will `throw` the rejection reason for the nearest Error Boundary to handle.
->>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
+* `load`: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) または *thenable*（`then` メソッドを持つ Promise のようなオブジェクト）を返す関数。返されたコンポーネントを初めてレンダーしようとするときまで React は `load` を呼び出しません。React が初めて `load` を呼び出した後、それが解決 (resolve) するのを待ち、解決した値の `.default` を React コンポーネントとしてレンダーします。返された Promise と解決済みの値は両方ともキャッシュされるため、React は `load` を 2 度以上呼び出しません。Promise が reject された場合、React はその理由を `throw` し、最も近いエラーバウンダリで処理できるようにします。
 
 #### 戻り値 {/*returns*/}
 
@@ -52,11 +48,7 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 #### 返り値 {/*load-returns*/}
 
-<<<<<<< HEAD
-[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) または何らかの *thenable*（`then` メソッドを持つ Promise のようなオブジェクト）を返す必要があります。最終的に有効な React コンポーネント型、例えば関数、[`memo`](/reference/react/memo)、または [`forwardRef`](/reference/react/forwardRef) コンポーネントに解決される必要があります。
-=======
-You need to return a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or some other *thenable* (a Promise-like object with a `then` method). It needs to eventually resolve to an object whose `.default` property is a valid React component type, such as a function, [`memo`](/reference/react/memo), or a [`forwardRef`](/reference/react/forwardRef) component.
->>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
+[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) または何らかの *thenable*（`then` メソッドを持つ Promise のようなオブジェクト）を返す必要があります。最終的に、有効な React コンポーネント型、つまり例えば関数、[`memo`](/reference/react/memo)、または [`forwardRef`](/reference/react/forwardRef) コンポーネントのようなものを `.default` プロパティとして持つオブジェクトに解決される必要があります。
 
 ---
 
@@ -78,11 +70,7 @@ import { lazy } from 'react';
 const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 ```
 
-<<<<<<< HEAD
-このコードは[ダイナミック `import()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) を用いており、あなたのバンドラやフレームワークからのサポートが必要かもしれません。
-=======
-This code relies on [dynamic `import()`,](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) which might require support from your bundler or framework. Using this pattern requires that the lazy component you're importing was exported as the `default` export.
->>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
+このコードは[ダイナミック `import()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) を用いており、あなたのバンドラやフレームワークからのサポートが必要かもしれません。このパターンを用いる場合は、遅延インポートしようとしているコンポーネントが `default` でエクスポートされている必要があります。
 
 コンポーネントのコードがオンデマンドで読み込まれるようになったので、読み込みの最中には何を表示するべきかを指定する必要があります。これは、遅延コンポーネントまたはその親のいずれかを [`<Suspense>`](/reference/react/Suspense) バウンダリでラップすることで行うことができます。
 

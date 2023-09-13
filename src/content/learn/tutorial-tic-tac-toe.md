@@ -2266,11 +2266,7 @@ body {
 <li>Alexa: 5 tasks left</li>
 ```
 
-<<<<<<< HEAD
 人間がこれを読めばおそらく、カウントの数字が変わっていることに加えて、Alexa と Ben の順番が入れ替わり、Claudia が Alexa と Ben の間に挿入された、と言うことでしょう。しかし React はコンピュータプログラムでありあなたの意図を知ることはできません。なのでリストの各項目を兄弟間で区別するために、それぞれのリスト項目に *key* プロパティを指定する必要があります。データがデータベースから取得されている場合、Alexa、Ben、Claudia のデータベース ID を key として使用できます。
-=======
-In addition to the updated counts, a human reading this would probably say that you swapped Alexa and Ben's ordering and inserted Claudia between Alexa and Ben. However, React is a computer program and does not know what you intended, so you need to specify a _key_ property for each list item to differentiate each list item from its siblings. If your data was from a database, Alexa, Ben, and Claudia's database IDs could be used as keys.
->>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
 
 ```js {1}
 <li key={user.id}>
