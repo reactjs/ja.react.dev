@@ -4,7 +4,7 @@ title: "<option>"
 
 <Intro>
 
-The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) lets you render an option inside a [`<select>`](/reference/react-dom/components/select) box.
+[ブラウザ組み込みの `<option>` コンポーネント](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) を利用することで、[`<select>`](/reference/react-dom/components/select) ボックス内に選択肢をレンダーすることができます。
 
 ```js
 <select>
@@ -19,11 +19,11 @@ The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `<option>` {/*option*/}
 
-The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) lets you render an option inside a [`<select>`](/reference/react-dom/components/select) box.
+[ブラウザ組み込みの `<option>` コンポーネント](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) を利用することで、[`<select>`](/reference/react-dom/components/select) ボックス内にオプションをレンダーすることができます。
 
 ```js
 <select>
@@ -32,31 +32,31 @@ The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/
 </select>
 ```
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-#### Props {/*props*/}
+#### props {/*props*/}
 
-`<option>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<option>` は、[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
 
-Additionally, `<option>` supports these props:
+さらに、`<option>` は以下の props をサポートしています：
 
-* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#disabled): A boolean. If `true`, the option will not be selectable and will appear dimmed.
-* [`label`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#label): A string. Specifies the meaning of the option. If not specified, the text inside the option is used.
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#value): The value to be used [when submitting the parent `<select>` in a form](/reference/react-dom/components/select#reading-the-select-box-value-when-submitting-a-form) if this option is selected.
+* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#disabled): ブーリアン。`true` の場合、オプションは選択できなくなり、薄暗く表示されます。
+* [`label`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#label): 文字列。オプションの意味を指定します。指定しない場合、オプション内のテキストが使用されます。
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#value): このオプションが選択された場合に、[親の `<select>` をフォームで送信する](/reference/react-dom/components/select#reading-the-select-box-value-when-submitting-a-form)際に使用される値。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-* React does not support the `selected` attribute on `<option>`. Instead, pass this option's `value` to the parent [`<select defaultValue>`](/reference/react-dom/components/select#providing-an-initially-selected-option) for an uncontrolled select box, or [`<select value>`](/reference/react-dom/components/select#controlling-a-select-box-with-a-state-variable) for a controlled select.
+* React は `<option>` の `selected` 属性をサポートしていません。代わりに、このオプションの `value` を親の [`<select defaultValue>`](/reference/react-dom/components/select#providing-an-initially-selected-option) に渡して非制御のセレクトボックスを作成するか、[`<select value>`](/reference/react-dom/components/select#controlling-a-select-box-with-a-state-variable) に渡して制御されたセレクトボックスを作成します。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Displaying a select box with options {/*displaying-a-select-box-with-options*/}
+### 選択肢を含むセレクトボックスを表示する {/*displaying-a-select-box-with-options*/}
 
-Render a `<select>` with a list of `<option>` components inside to display a select box. Give each `<option>` a `value` representing the data to be submitted with the form.
+`<option>` コンポーネントのリストを内部に含む `<select>` をレンダーして、セレクトボックスを表示します。各 `<option>` に、フォームで送信されるデータを表す `value` を指定してください。
 
-[Read more about displaying a `<select>` with a list of `<option>` components.](/reference/react-dom/components/select)
+`<select>` を `<option>` コンポーネントのリストと共に表示する方法についての詳細は、[こちらをご覧ください](/reference/react-dom/components/select)。
 
 <Sandpack>
 
