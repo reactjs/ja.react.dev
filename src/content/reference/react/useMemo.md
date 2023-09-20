@@ -579,11 +579,11 @@ const List = memo(function List({ items }) {
 
 ```js {2-3,6-7}
 export default function TodoList({ todos, tab, theme }) {
-  // これは、theme が変化するたびに新しい配列になる...
+  // Every time the theme changes, this will be a different array...
   const visibleTodos = filterTodos(todos, tab);
   return (
     <div className={theme}>
-      {/* ... そのため、List の props が同じ値になることはなく、毎回再レンダーされることになる */}
+      {/* ... so List's props will never be the same, and it will re-render every time */}
       <List items={visibleTodos} />
     </div>
   );
@@ -594,14 +594,14 @@ export default function TodoList({ todos, tab, theme }) {
 
 ```js {2-3,5,9-10}
 export default function TodoList({ todos, tab, theme }) {
-  // Reactに、再レンダー間で計算結果をキャッシュするように伝えます、...
+  // Tell React to cache your calculation between re-renders...
   const visibleTodos = useMemo(
     () => filterTodos(todos, tab),
-    [todos, tab] // ...これらの依存値が変化しない限りは。
+    [todos, tab] // ...so as long as these dependencies don't change...
   );
   return (
     <div className={theme}>
-      {/* ... List は同じ props を受け取り、再レンダーをスキップします */}
+      {/* ...List will receive the same props and can skip re-rendering */}
       <List items={visibleTodos} />
     </div>
   );
@@ -1066,7 +1066,7 @@ function Dropdown({ allItems, text }) {
 
   const visibleItems = useMemo(() => {
     return searchItems(allItems, searchOptions);
-  }, [allItems, searchOptions]); // 🚩 注意: コンポーネントの本体で作成されたオブジェクトへの依存値
+  }, [allItems, searchOptions]); // 🚩 Caution: Dependency on an object created in the component body
   // ...
 ```
 
@@ -1078,11 +1078,11 @@ function Dropdown({ allItems, text }) {
 function Dropdown({ allItems, text }) {
   const searchOptions = useMemo(() => {
     return { matchMode: 'whole-word', text };
-  }, [text]); // ✅ text が変化したときだけ更新される
+  }, [text]); // ✅ Only changes when text changes
 
   const visibleItems = useMemo(() => {
     return searchItems(allItems, searchOptions);
-  }, [allItems, searchOptions]); // ✅ allItems か searchOptions が変化したときだけ更新される
+  }, [allItems, searchOptions]); // ✅ Only changes when allItems or searchOptions changes
   // ...
 ```
 
@@ -1093,7 +1093,7 @@ function Dropdown({ allItems, text }) {
   const visibleItems = useMemo(() => {
     const searchOptions = { matchMode: 'whole-word', text };
     return searchItems(allItems, searchOptions);
-  }, [allItems, text]); // ✅ allItems か text が変化したときだけ更新される
+  }, [allItems, text]); // ✅ Only changes when allItems or text changes
   // ...
 ```
 
@@ -1164,10 +1164,10 @@ export default function Page({ productId, referrer }) {
 
 ```js {2,5,6}
 function TodoList({ todos, tab }) {
-  // このコンポーネント関数は、レンダーごとに 2 回実行されます。
+  // This component function will run twice for every render.
 
   const visibleTodos = useMemo(() => {
-    // この計算は、依存値のいずれかが変化した場合に 2 回実行されます。
+    // This calculation will run twice if any of the dependencies change.
     return filterTodos(todos, tab);
   }, [todos, tab]);
 
@@ -1194,7 +1194,7 @@ function TodoList({ todos, tab }) {
 ```js {3,4}
   const visibleTodos = useMemo(() => {
     const filtered = filterTodos(todos, tab);
-    // ✅ 正しい: 計算中に作成したオブジェクトを変更している
+    // ✅ Correct: mutating an object you created during the calculation
     filtered.push({ id: 'last', text: 'Go for a walk!' });
     return filtered;
   }, [todos, tab]);
@@ -1211,7 +1211,7 @@ function TodoList({ todos, tab }) {
 以下のコードはうまく動作しません。
 
 ```js {1-2,5}
-  // 🔴 アロー関数からオブジェクトを返すには、`() => {` は利用できない
+  // 🔴 You can't return an object from an arrow function with () => {
   const searchOptions = useMemo(() => {
     matchMode: 'whole-word',
     text: text
@@ -1221,7 +1221,7 @@ function TodoList({ todos, tab }) {
 JavaScript では、`() => {` というコードでアロー関数の本体を開始するため、`{` の波括弧はオブジェクトの一部にはなりません。したがってオブジェクトは返されず、ミスにつながります。`({` や `})` のように丸括弧を追加することで修正できます。
 
 ```js {1-2,5}
-  // これは正しく動作しますが、誰かがまた壊してしまう可能性がある
+  // This works, but is easy for someone to break again
   const searchOptions = useMemo(() => ({
     matchMode: 'whole-word',
     text: text
@@ -1233,7 +1233,7 @@ JavaScript では、`() => {` というコードでアロー関数の本体を�
 このミスを避けるために、明示的に `return` 文を書きましょう。
 
 ```js {1-3,6-7}
-  // ✅ これは正しく動作し、明示的に書かれている
+  // ✅ This works and is explicit
   const searchOptions = useMemo(() => {
     return {
       matchMode: 'whole-word',
@@ -1252,7 +1252,7 @@ JavaScript では、`() => {` というコードでアロー関数の本体を�
 
 ```js {2-3}
 function TodoList({ todos, tab }) {
-  // 🔴 依存配列がない場合、毎回再計算を行う
+  // 🔴 Recalculates every time: no dependency array
   const visibleTodos = useMemo(() => filterTodos(todos, tab));
   // ...
 ```
@@ -1261,7 +1261,7 @@ function TodoList({ todos, tab }) {
 
 ```js {2-3}
 function TodoList({ todos, tab }) {
-  // ✅ 必要な場合しか再計算を行わない
+  // ✅ Does not recalculate unnecessarily
   const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
   // ...
 ```
@@ -1276,9 +1276,9 @@ function TodoList({ todos, tab }) {
 コンソール上で、別々の再レンダーによって表示された 2 つの配列を選びます。それぞれについて、配列を右クリックし、"Store as a global variable（グローバル変数として保存）" を選択することで、配列を保存することができます。1 回目に保存した配列が `temp1`、2 回目に保存した配列が `temp2` として保存されたとすると、ブラウザのコンソールを使用して、両方の配列の各依存値が同じかどうかを確認できます。
 
 ```js
-Object.is(temp1[0], temp2[0]); // 1 つ目の依存値が配列間で同じか
-Object.is(temp1[1], temp2[1]); // 2 つ目の依存値が配列間で同じか
-Object.is(temp1[2], temp2[2]); // ... 全ての依存値について繰り返す ...
+Object.is(temp1[0], temp2[0]); // Is the first dependency the same between the arrays?
+Object.is(temp1[1], temp2[1]); // Is the second dependency the same between the arrays?
+Object.is(temp1[2], temp2[2]); // ... and so on for every dependency ...
 ```
 
 メモ化を妨げている依存値を見つけたら、その依存値を削除する方法を探すか、その依存値も[メモ化](#memoizing-a-dependency-of-another-hook)しましょう。
@@ -1294,7 +1294,7 @@ function ReportList({ items }) {
   return (
     <article>
       {items.map(item => {
-        // 🔴 このように、ループの中で useMemo を呼び出すことはできない
+        // 🔴 You can't call useMemo in a loop like this:
         const data = useMemo(() => calculateReport(item), [item]);
         return (
           <figure key={item.id}>
@@ -1321,7 +1321,7 @@ function ReportList({ items }) {
 }
 
 function Report({ item }) {
-  // ✅ useMemo をトップレベルで呼び出すことができる
+  // ✅ Call useMemo at the top level:
   const data = useMemo(() => calculateReport(item), [item]);
   return (
     <figure>
