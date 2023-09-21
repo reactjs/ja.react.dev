@@ -1,43 +1,42 @@
 ---
-title: React DOM APIs
+title: React DOM API
 ---
 
 <Intro>
 
-The `react-dom` package contains methods that are only supported for the web applications (which run in the browser DOM environment). They are not supported for React Native.
+`react-dom` パッケージには、ウェブアプリケーション（ブラウザの DOM 環境で動作する）でのみサポートされるメソッドが含まれています。これらは React Native ではサポートされません。
 
 </Intro>
 
 ---
 
-## APIs {/*apis*/}
+## API {/*apis*/}
 
-These APIs can be imported from your components. They are rarely used:
+これらの API はインポートしてコンポーネントで使用できます。これらはあまり使用されません。
 
-* [`createPortal`](/reference/react-dom/createPortal) lets you render child components in a different part of the DOM tree.
-* [`flushSync`](/reference/react-dom/flushSync) lets you force React to flush a state update and update the DOM synchronously.
-
----
-
-## Entry points {/*entry-points*/}
-
-The `react-dom` package provides two additional entry points:
-
-* [`react-dom/client`](/reference/react-dom/client) contains APIs to render React components on the client (in the browser).
-* [`react-dom/server`](/reference/react-dom/server) contains APIs to render React components on the server.
+* [`createPortal`](/reference/react-dom/createPortal) は、DOM ツリーの別の場所に子コンポーネントをレンダーできるようにします。
+* [`flushSync`](/reference/react-dom/flushSync) は、React に state の更新を強制的にフラッシュさせ、DOM を同期的に更新させます。
 
 ---
 
-## Deprecated APIs {/*deprecated-apis*/}
+## エントリポイント {/*entry-points*/}
+
+`react-dom` パッケージは、2 つの追加のエントリポイントを提供します。
+
+* [`react-dom/client`](/reference/react-dom/client) は、クライアント（ブラウザ内）で React コンポーネントをレンダーするための API を含んでいます。
+* [`react-dom/server`](/reference/react-dom/server) は、サーバ上で React コンポーネントをレンダーするための API を含んでいます。
+
+---
+
+## 非推奨の API {/*deprecated-apis*/}
 
 <Deprecated>
 
-These APIs will be removed in a future major version of React.
+これらの API は、React の将来のメジャーバージョンで削除される予定です。
 
 </Deprecated>
 
-* [`findDOMNode`](/reference/react-dom/findDOMNode) finds the closest DOM node corresponding to a class component instance.
-* [`hydrate`](/reference/react-dom/hydrate) mounts a tree into the DOM created from server HTML. Deprecated in favor of [`hydrateRoot`](/reference/react-dom/client/hydrateRoot).
-* [`render`](/reference/react-dom/render) mounts a tree into the DOM. Deprecated in favor of [`createRoot`](/reference/react-dom/client/createRoot).
-* [`unmountComponentAtNode`](/reference/react-dom/unmountComponentAtNode) unmounts a tree from the DOM. Deprecated in favor of [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount).
-
+* [`findDOMNode`](/reference/react-dom/findDOMNode) は、クラスコンポーネントのインスタンスに対応する最も近い DOM ノードを検索します。
+* [`hydrate`](/reference/react-dom/hydrate) は、サーバの HTML から作成された DOM にツリーをマウントします。非推奨です。代わりに [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) を使用してください。
+* [`render`](/reference/react-dom/render) は、DOM にツリーをマウントします。非推奨です。代わりに [`createRoot`](/reference/react-dom/client/createRoot) を使用してください。
+* [`unmountComponentAtNode`](/reference/react-dom/unmountComponentAtNode) は、DOM からツリーをアンマウントします。非推奨です。代わりに [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount) を使用してください。
