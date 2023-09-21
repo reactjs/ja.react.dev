@@ -40,3 +40,4 @@ title: React DOM API
 * [`hydrate`](/reference/react-dom/hydrate) は、サーバの HTML から作成された DOM にツリーをマウントします。非推奨です。代わりに [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) を使用してください。
 * [`render`](/reference/react-dom/render) は、DOM にツリーをマウントします。非推奨です。代わりに [`createRoot`](/reference/react-dom/client/createRoot) を使用してください。
 * [`unmountComponentAtNode`](/reference/react-dom/unmountComponentAtNode) は、DOM からツリーをアンマウントします。非推奨です。代わりに [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount) を使用してください。
+
