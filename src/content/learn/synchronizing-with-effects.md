@@ -767,11 +767,7 @@ useEffect(() => {
   }
 ```
 
-<<<<<<< HEAD
-**これで分かるのは、再マウントでアプリケーションのロジックが壊れるなら、通常それは既存のバグが明らかになったのだということです**。ユーザの視点から見ると、ページを訪れることと、ページを訪れてリンクをクリックして別のページに行ってから戻るボタンを押すこととの間に、違いがあってはいけません。React は、開発環境でコンポーネントを 1 度再マウントすることで、この原則に従っていることを確認します。
-=======
-**This illustrates that if remounting breaks the logic of your application, this usually uncovers existing bugs.** From a user's perspective, visiting a page shouldn't be different from visiting it, clicking a link, then pressing Back to view the page again. React verifies that your components abide by this principle by remounting them once in development.
->>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
+**これで分かるのは、再マウントでアプリケーションのロジックが壊れるなら、通常それは既存のバグが明らかになったのだということです**。ユーザの視点から見ると、ページを訪れることと、ページを訪れてリンクをクリックしてから戻るボタンを押して元のページをもう一度見ることとの間に、違いがあってはいけません。React は、開発環境でコンポーネントを 1 度再マウントすることで、この原則に従っていることを確認します。
 
 ## ここまでのまとめ {/*putting-it-all-together*/}
 
