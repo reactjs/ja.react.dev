@@ -26,10 +26,13 @@ React コアチームのメンバーは、コアコンポーネントの API、R
     Dan は Microsoft PowerPoint の中に偶然 Visual Basic を発見したことからプログラミングを始めました。[Sebastian](#sebastian-markbåge) のツイートを長文のブログ投稿に翻訳することが真の使命であると感じています。Fortnite では、ゲームが終わるまで茂みの中に隠れて勝利することがあります。
 </TeamMember>
 
+<<<<<<< HEAD
 <TeamMember name="Dave McCabe" permalink="dave-mccabe" photo="/images/team/dave-mccabe.jpg" github="davidmccabe" twitter="mcc_abe" title="Engineer at Meta">
     David の本職はエンジニアですが、中身は野外活動家です。太陽光下プログラミングの分野における長年のイノベーターです。ビデオ通話の背景をアウトドア系にして同僚を驚かせている一方で、ギター演奏（もちろん日の光が降り注ぐ草原で）や格闘技（まだ室内ですが屋外に挑戦予定）を楽しんでいます。
 </TeamMember>
 
+=======
+>>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 <TeamMember name="Eli White" permalink="eli-white" photo="/images/team/eli-white.jpg" github="TheSavior" twitter="Eli_White" title="Engineering Manager at Meta">
     Eli のプログラミング経験は、ハッキングで中学校を停学処分になったことで始まりました。2017 年から React と React Native の開発に携わっています。お菓子を食べるのが好きで、特にアイスクリームとアップルパイがお気に入りです。Eli はよくパルクールや室内スカイダイビング、エアリアルシルクなど、風変わりな活動を試しています。
 </TeamMember>
@@ -54,10 +57,13 @@ React コアチームのメンバーは、コアコンポーネントの API、R
     Lauren のプログラミングキャリアは `<marquee>` タグを初めて見たときにピークを迎えました。それ以来、彼女はその時の高揚感を追い続けています。React にバグを追加する傍らで、チャットでお茶目なミームを投下したり、パートナや犬の Zelda と一緒にこれでもかとビデオゲームを楽しんだりしています。
 </TeamMember>
 
+<<<<<<< HEAD
 <TeamMember name="Luna Ruan" permalink="luna-ruan" photo="/images/team/lunaruan.jpg" github="lunaruan" twitter="lunaruan" title="Independent Engineer">
     Luna は、ゲームを作るためのものだと思ってプログラミングを学びました。その後結局、Pinterest のウェブアプリ、そして今では React 自体に取り組むことになりました。Luna はもうゲームを作りたいとは思っていませんが、暇ができれば文芸に挑戦する予定です。
 </TeamMember>
 
+=======
+>>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 <TeamMember name="Luna Wei" permalink="luna-wei" photo="/images/team/luna-wei.jpg" github="lunaleaps" twitter="lunaleaps" title="Engineer at Meta">
     Luna は 6 歳のときに父親から Python の基礎を学びました。それ以来、彼女を止めることは誰にもできません。典型的な Z 世代であらんと熱望する彼女のサクセスロードを形作るのは、環境保護活動、都会でのガーデニング、そして Voo-Doo'd（写真）と過ごす貴重な時間です。
 </TeamMember>
@@ -66,10 +72,13 @@ React コアチームのメンバーは、コアコンポーネントの API、R
     Matt は偶然コーディングに出会い、独りでは作り出せないようなものをコミュニティで作ることに夢中になりました。React に参加する前は、YouTube、Google アシスタント、Fuchsia、Google Cloud AI、そして Evernote に取り組んでいました。開発者ツールの改善を行う傍らで、山を楽しんだり、ジャズを聴いたり、家族と時間を過ごしたりしています。
 </TeamMember>
 
+<<<<<<< HEAD
 <TeamMember name="Mengdi Chen" permalink="mengdi-chen" photo="/images/team/mengdi-chen.jpg" github="mondaychen" twitter="mengdi_en" title="Engineer at Meta">
     Mengdi はデジタルアートの学位取得を目指す一方で、自らのフロントエンド技術に対して自惚れに近い自信を持っていました。彼の CSS は IE6 でも完全に動作したからです。しかしその後すぐ React によりプログラミングの新たな扉が開かれてからは、React チームに参加することを夢見てきました。仕事以外では、2 人の子供を追いかけ回したり、奇妙なレシピを集めたりしています。
 </TeamMember>
 
+=======
+>>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 <TeamMember name="Mofei Zhang" permalink="mofei-zhang" photo="/images/team/mofei-zhang.png" github="mofeiZ" title="Engineer at Meta">
     Mofei はゲームでチートを行うのに役立つと気づいたことでプログラミングを始めました。彼女は学部・大学院ではオペレーティングシステムを専門にしていましたが、今では React いじりを楽しんでいます。仕事の外では、ボルダリングの問題をデバッグすることや、次回のバックパック旅行の計画を楽しんでいます。
 </TeamMember>
@@ -86,10 +95,13 @@ React コアチームのメンバーは、コアコンポーネントの API、R
     Sathya は学校ではドラゴン本（コンパイラの教科書）が大嫌いだったにも関わらず、どういうわけかキャリアを通じてコンパイラに取り組むことになりました。React コンポーネントをコンパイルしていないときは、コーヒーを飲んでいるかひたすらドーサを食べているかのどちらかです。
 </TeamMember>
 
+<<<<<<< HEAD
 <TeamMember name="Sean Keegan" permalink="sean-keegan" photo="/images/team/sean-keegan.jpg" github="seanryankeegan" twitter="DevRelSean" title="Developer Advocate at Meta">
     Sean は数学教師として働き始めた後、必修で取る必要があった計算機科学入門の授業が「ちょっと楽しかった！」のを思い出しました。コーディングブートキャンプと幾つかのテック関連の仕事を経て、開発者アドボケートとしての仕事に出会い、以降はそれ一筋です。仕事外ではアルティメットフリスビーやビデオゲームを楽しんだり、家にある植物の栽培についての改善調査（ただし実践はほぼしない）を行ったりしています。
 </TeamMember>
 
+=======
+>>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 <TeamMember name="Sebastian Markbåge" permalink="sebastian-markbåge" photo="/images/team/sebmarkbage.jpg" github="sebmarkbage" twitter="sebmarkbage" title="Engineer at Vercel">
     Sebastian の専攻は心理学でした。普段の彼はもの静かです。彼が何かを言ったとしても、数か月後まで他の人には理解できないことがよくあります。彼の姓の発音は本来 "mark-boa-geh" ですが、実用性を優先して "mark-beige" に落ち着きました。彼の React へのアプローチも実用主義的です。
 </TeamMember>

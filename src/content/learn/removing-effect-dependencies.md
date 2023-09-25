@@ -926,7 +926,7 @@ function ChatRoom() {
 
   useEffect(() => {
     const options = createOptions();
-    const connection = createConnection();
+    const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
   }, []); // ✅ All dependencies declared
@@ -1613,7 +1613,11 @@ label, button { display: block; margin-bottom: 5px; }
 
 エフェクトが再実行されるのは、`options` オブジェクトに依存しているためです。オブジェクトはうっかり再作成されることがあるため、可能な場合は常に、エフェクトの依存値としては使用しないようにしましょう。
 
+<<<<<<< HEAD
 最も影響範囲の小さい修正方法は、エフェクトの外で `roomId` と `serverUrl` を読み取り、エフェクトをこれらプリミティブな値（意図せず変更されることがない）に依存させることです。エフェクト内でオブジェクトを作成し、それを `createConnection` に渡します。
+=======
+The least invasive fix is to read `roomId` and `serverUrl` right outside the Effect, and then make the Effect depend on those primitive values (which can't change unintentionally). Inside the Effect, create an object and pass it to `createConnection`:
+>>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 
 <Sandpack>
 

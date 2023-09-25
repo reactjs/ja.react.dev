@@ -77,9 +77,15 @@ state とレンダーの関係をもう少し詳しく見ていきましょう�
 
 React がコンポーネントを再レンダーする際には：
 
+<<<<<<< HEAD
 1. React が再度あなたの関数を呼び出します。
 2. 関数は新しい JSX のスナップショットを返します。
 3. React は返されたスナップショットに合わせて画面を更新します。
+=======
+1. React calls your function again.
+2. Your function returns a new JSX snapshot.
+3. React then updates the screen to match the snapshot your function returned.
+>>>>>>> 2390627c9cb305216e6bd56e67c6603a89e76e7f
 
 <IllustrationBlock sequential>
     <Illustration caption="React が関数を実行" src="/images/docs/illustrations/i_render1.png" />
