@@ -1,40 +1,40 @@
 ---
-title: "React DOM Components"
+title: "React DOM コンポーネント"
 ---
 
 <Intro>
 
-React supports all of the browser built-in [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) and [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Element) components.
+React は、ブラウザ組み込みのすべての [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) と [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Element) コンポーネントをサポートしています。
 
 </Intro>
 
 ---
 
-## Common components {/*common-components*/}
+## 一般的なコンポーネント {/*common-components*/}
 
-All of the built-in browser components support some props and events.
+すべてのブラウザ組み込みコンポーネントは、いくつかの props とイベントをサポートしています。
 
-* [Common components (e.g. `<div>`)](/reference/react-dom/components/common)
+* [`<div>` などの一般的なコンポーネント](/reference/react-dom/components/common)
 
-This includes React-specific props like `ref` and `dangerouslySetInnerHTML`.
+これには、`ref` や `dangerouslySetInnerHTML` のような React 固有の props も含みます。
 
 ---
 
-## Form components {/*form-components*/}
+## フォームコンポーネント {/*form-components*/}
 
-These built-in browser components accept user input:
+以下のブラウザ内蔵コンポーネントはユーザからの入力を受け付けます。
 
 * [`<input>`](/reference/react-dom/components/input)
 * [`<select>`](/reference/react-dom/components/select)
 * [`<textarea>`](/reference/react-dom/components/textarea)
 
-They are special in React because passing the `value` prop to them makes them *[controlled.](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable)*
+これらは React では特別です。なぜなら props として `value` を渡すと[*制御されたコンポーネント*](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable)になるからです。
 
 ---
 
-## All HTML components {/*all-html-components*/}
+## すべての HTML コンポーネント {/*all-html-components*/}
 
-React supports all built-in browser HTML components. This includes:
+React はブラウザ組み込みのすべての HTML コンポーネントをサポートしています。これには以下が含まれます。
 
 * [`<aside>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside)
 * [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
@@ -140,38 +140,38 @@ React supports all built-in browser HTML components. This includes:
 
 <Note>
 
-Similar to the [DOM standard,](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) React uses a `camelCase` convention for prop names. For example, you'll write `tabIndex` instead of `tabindex`. You can convert existing HTML to JSX with an [online converter.](https://transform.tools/html-to-jsx)
+[DOM 標準](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)と同様に、React では props の名前として `camelCase` 規則を使用します。例えば、`tabindex` ではなく `tabIndex` と書きます。既存の HTML を JSX に変換するための[オンラインコンバータ](https://transform.tools/html-to-jsx)を使用できます。
 
 </Note>
 
 ---
 
-### Custom HTML elements {/*custom-html-elements*/}
+### カスタム HTML 要素 {/*custom-html-elements*/}
 
-If you render a tag with a dash, like `<my-element>`, React will assume you want to render a [custom HTML element.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) In React, rendering custom elements works differently from rendering built-in browser tags:
+ダッシュを含むタグ、例えば `<my-element>` をレンダーする場合、React は[カスタム HTML 要素](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)をレンダーしていると想定します。React では、カスタム要素のレンダーは、組み込みのブラウザタグのレンダーとは異なる方法で行われます。
 
-- All custom element props are serialized to strings and are always set using attributes.
-- Custom elements accept `class` rather than `className`, and `for` rather than `htmlFor`.
+- すべてのカスタム要素の props は文字列にシリアライズされ、常に属性を使用して設定されます。
+- カスタム要素は `className` ではなく `class` を、`htmlFor` ではなく `for` を受け入れます。
 
-If you render a built-in browser HTML element with an [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is) attribute, it will also be treated as a custom element.
+組み込みのブラウザ HTML 要素を [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is) 属性を用いてレンダーする場合も、カスタム要素として扱われます。
 
 <Note>
 
-[A future version of React will include more comprehensive support for custom elements.](https://github.com/facebook/react/issues/11347#issuecomment-1122275286)
+[React の将来のバージョンでは、カスタム要素に対するより包括的なサポートが含まれます](https://github.com/facebook/react/issues/11347#issuecomment-1122275286)。
 
-You can try it by upgrading React packages to the most recent experimental version:
+これは、最新の実験的 (experimental) バージョンに React パッケージをアップグレードすることで試すことができます。
 
 - `react@experimental`
 - `react-dom@experimental`
 
-Experimental versions of React may contain bugs. Don't use them in production.
+React の実験的バージョンにはバグが含まれている可能性があります。本番環境では使用しないでください。
 
 </Note>
 ---
 
-## All SVG components {/*all-svg-components*/}
+## すべての SVG コンポーネント {/*all-svg-components*/}
 
-React supports all built-in browser SVG components. This includes:
+React は、組み込みのブラウザ SVG コンポーネントをすべてサポートしています。以下が含まれます。
 
 * [`<a>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/a)
 * [`<animate>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate)
@@ -242,20 +242,20 @@ React supports all built-in browser SVG components. This includes:
 
 <Note>
 
-Similar to the [DOM standard,](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) React uses a `camelCase` convention for prop names. For example, you'll write `tabIndex` instead of `tabindex`. You can convert existing SVG to JSX with an [online converter.](https://transform.tools/)
+[DOM 標準](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)と同様に、React では props の名前として `camelCase` 規則を使用します。例えば、`tabindex` ではなく `tabIndex` と書きます。既存の SVG を JSX に変換するための[オンラインコンバータ](https://transform.tools/html-to-jsx)を使用できます。
 
-Namespaced attributes also have to be written without the colon:
+名前空間付きの属性もコロンなしで書かなければなりません。
 
-* `xlink:actuate` becomes `xlinkActuate`.
-* `xlink:arcrole` becomes `xlinkArcrole`.
-* `xlink:href` becomes `xlinkHref`.
-* `xlink:role` becomes `xlinkRole`.
-* `xlink:show` becomes `xlinkShow`.
-* `xlink:title` becomes `xlinkTitle`.
-* `xlink:type` becomes `xlinkType`.
-* `xml:base` becomes `xmlBase`.
-* `xml:lang` becomes `xmlLang`.
-* `xml:space` becomes `xmlSpace`.
-* `xmlns:xlink` becomes `xmlnsXlink`.
+* `xlink:actuate` は `xlinkActuate` になります。
+* `xlink:arcrole` は `xlinkArcrole` になります。
+* `xlink:href` は `xlinkHref` になります。
+* `xlink:role` は `xlinkRole` になります。
+* `xlink:show` は `xlinkShow` になります。
+* `xlink:title` は `xlinkTitle` になります。
+* `xlink:type` は `xlinkType` になります。
+* `xml:base` は `xmlBase` になります。
+* `xml:lang` は `xmlLang` になります。
+* `xml:space` は `xmlSpace` になります。
+* `xmlns:xlink` は `xmlnsXlink` になります。
 
 </Note>
