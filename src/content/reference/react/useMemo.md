@@ -40,7 +40,7 @@ function TodoList({ todos, tab }) {
 
 * `calculateValue`: キャッシュしたい値を計算する関数。純関数で、引数を取らず、任意の型の何らかの値を返す必要があります。React は初回レンダー中にこの関数を呼び出します。次回以降のレンダーでは、直前のレンダーと `dependencies` が変化していなければ、同じ値を再度返します。`dependencies` が変化していれば、`calculateValue` を呼び出してその結果を返し、同時に、後から再利用するためにその結果を保存します。
 
-* `dependencies`: `calculateValue` のコード内で参照されているすべてのリアクティブ値の配列。リアクティブ値には、props、state、およびコンポーネント本体で直接宣言されているすべての変数と関数が含まれます。リンタが [React 向けに設定されている](/learn/editor-setup#linting)場合は、すべてのリアクティブ値が正しく依存値として指定されているかを確認します。依存配列は、`[dep1、dep2、dep3]` のようにインラインで記述され、配列の長さは一定である必要があります。各依存値は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を用いて、前回の値と比較されます。
+* `dependencies`: `calculateValue` のコード内で参照されているすべてのリアクティブ値の配列。リアクティブ値には、props、state、およびコンポーネント本体で直接宣言されているすべての変数と関数が含まれます。リンタが [React 向けに設定されている](/learn/editor-setup#linting)場合は、すべてのリアクティブ値が正しく依存値として指定されているかを確認します。依存配列は、`[dep1, dep2, dep3]` のようにインラインで記述され、配列の長さは一定である必要があります。各依存値は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を用いて、前回の値と比較されます。
 
 #### 返り値 {/*returns*/}
 
@@ -51,7 +51,7 @@ function TodoList({ todos, tab }) {
 #### 注意点 {/*caveats*/}
 
 * `useMemo` はフックなので、カスタムフックか**コンポーネントのトップレベル**でしか呼び出すことができません。ループや条件分岐の中で呼び出すことはできません。もしループや条件分岐の中で呼び出したい場合は、新しいコンポーネントに切り出して、その中に state を移動させてください。
-* Strict Mode では、[純粋でない関数を見つけやすくするために](#my-initializer-or-updater-function-runs-twice)、**計算関数 (`calculateValue`) が 2 度呼び出されます**。これは、開発時のみの挙動で、本番では影響は与えません。もし、計算関数が純粋であれば（純粋であるべきです）、2 回呼び出されてもコードに影響はありません。2 回の呼び出しのうち、一方の呼び出し結果は無視されます。
+* Strict Mode では、[純粋でない関数を見つけやすくするために](#my-calculation-runs-twice-on-every-re-render)、**計算関数 (`calculateValue`) が 2 度呼び出されます**。これは、開発時のみの挙動で、本番では影響は与えません。もし、計算関数が純粋であれば（純粋であるべきです）、2 回呼び出されてもコードに影響はありません。2 回の呼び出しのうち、一方の呼び出し結果は無視されます。
 * **特別な理由がない限り、キャッシュされた値が破棄されることはありません**。キャッシュが破棄されるケースの例としては、開発時にコンポーネントのファイルを編集した場合があります。また、開発時および本番時に、初回マウント中にコンポーネントがサスペンドすると、キャッシュは破棄されます。将来的には、キャッシュが破棄されることを前提とした機能が React に追加される可能性があります。例えば、将来的に仮想リストが組み込みでサポートされた場合、仮想テーブルのビューポートからスクロールアウトした項目は、キャッシュを破棄するようになるかもしれません。このような挙動は、パフォーマンス最適化のみを目的として `useMemo` を使っている場合には問題ありません。しかし、他の目的で利用している場合は、[state 変数](/reference/react/useState#avoiding-recreating-the-initial-state) や [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents) を利用した方が良いかもしれません。
 
 <Note>
