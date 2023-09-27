@@ -4,7 +4,7 @@ title: isValidElement
 
 <Intro>
 
-`isValidElement` checks whether a value is a React element.
+`isValidElement` は値が React 要素 (React element) であるかどうかを確認します。
 
 ```js
 const isElement = isValidElement(value)
@@ -16,11 +16,11 @@ const isElement = isValidElement(value)
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `isValidElement(value)` {/*isvalidelement*/}
 
-Call `isValidElement(value)` to check whether `value` is a React element.
+`isValidElement(value)` を呼び出して、`value` が React 要素であるかどうかを確認します。
 
 ```js
 import { isValidElement, createElement } from 'react';
@@ -35,34 +35,34 @@ console.log(isValidElement('Hello')); // false
 console.log(isValidElement({ age: 42 })); // false
 ```
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-* `value`: The `value` you want to check. It can be any a value of any type.
+* `value`: 確認対象の値。任意の型の値を指定できます。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-`isValidElement` returns `true` if the `value` is a React element. Otherwise, it returns `false`.
+`isValidElement` は `value` が React 要素であれば `true` を返します。それ以外の場合は `false` を返します。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-* **Only [JSX tags](/learn/writing-markup-with-jsx) and objects returned by [`createElement`](/reference/react/createElement) are considered to be React elements.** For example, even though a number like `42` is a valid React *node* (and can be returned from a component), it is not a valid React element. Arrays and portals created with [`createPortal`](/reference/react-dom/createPortal) are also *not* considered to be React elements.
+* **[JSX タグ](/learn/writing-markup-with-jsx)と [`createElement`](/reference/react/createElement) によって返されるオブジェクトだけが React 要素とみなされます**。例えば、`42` のような数値は有効な React *ノード (node)* ではあります（コンポーネントから返すことができるため）が、有効な React 要素ではありません。配列や、[`createPortal`](/reference/react-dom/createPortal) で作成されたポータルも、React 要素とは*見なされません*。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Checking if something is a React element {/*checking-if-something-is-a-react-element*/}
+### 値が React 要素かどうかを確認する {/*checking-if-something-is-a-react-element*/}
 
-Call `isValidElement` to check if some value is a *React element.*
+`isValidElement` を呼び出して、ある値が *React 要素*であるかどうかを確認します。
 
-React elements are:
+React 要素とは以下のようなものです。
 
-- Values produced by writing a [JSX tag](/learn/writing-markup-with-jsx)
-- Values produced by calling [`createElement`](/reference/react/createElement)
+- [JSX タグ](/learn/writing-markup-with-jsx)を書くことによって生成される値
+- [`createElement`](/reference/react/createElement) を呼び出すことによって生成される値
 
-For React elements, `isValidElement` returns `true`:
+React 要素に対しては、`isValidElement` は `true` を返します。
 
 ```js
 import { isValidElement, createElement } from 'react';
@@ -76,9 +76,9 @@ console.log(isValidElement(createElement('p'))); // true
 console.log(isValidElement(createElement(MyComponent))); // true
 ```
 
-Any other values, such as strings, numbers, or arbitrary objects and arrays, are not React elements.
+文字列、数値、または任意のオブジェクトや配列などの他の値は、React 要素ではありません。
 
-For them, `isValidElement` returns `false`:
+それらに対しては、`isValidElement` は `false` を返します：
 
 ```js
 // ❌ These are *not* React elements
@@ -90,15 +90,15 @@ console.log(isValidElement([<div />, <div />])); // false
 console.log(isValidElement(MyComponent)); // false
 ```
 
-It is very uncommon to need `isValidElement`. It's mostly useful if you're calling another API that *only* accepts elements (like [`cloneElement`](/reference/react/cloneElement) does) and you want to avoid an error when your argument is not a React element.
+`isValidElement` が必要となることは非常に稀です。主に、要素のみを受け入れる他の API（例えば [`cloneElement`](/reference/react/cloneElement) がそうです）を呼び出しており、引数が React 要素でないことによるエラーを避けたい場合に役立ちます。
 
-Unless you have some very specific reason to add an `isValidElement` check, you probably don't need it.
+`isValidElement` のチェックを追加するための特段の理由がない限り、おそらくこれは必要ありません。
 
 <DeepDive>
 
-#### React elements vs React nodes {/*react-elements-vs-react-nodes*/}
+#### React「要素」と React「ノード」 {/*react-elements-vs-react-nodes*/}
 
-When you write a component, you can return any kind of *React node* from it:
+コンポーネントを書くとき、そこからは任意の *React ノード* を返すことができます。
 
 ```js
 function MyComponent() {
@@ -106,16 +106,16 @@ function MyComponent() {
 }
 ```
 
-A React node can be:
+React ノードとは、以下のようなものです。
 
-- A React element created like `<div />` or `createElement('div')`
-- A portal created with [`createPortal`](/reference/react-dom/createPortal)
-- A string
-- A number
-- `true`, `false`, `null`, or `undefined` (which are not displayed)
-- An array of other React nodes
+- `<div />` や `createElement('div')` のようにして作成された React 要素
+- [`createPortal`](/reference/react-dom/createPortal) で作成されたポータル
+- 文字列
+- 数値
+- `true`, `false`, `null`, `undefined`（これらは表示されません）
+- 他の React ノードの配列
 
-**Note `isValidElement` checks whether the argument is a *React element,* not whether it's a React node.** For example, `42` is not a valid React element. However, it is a perfectly valid React node:
+**`isValidElement` は引数が *React 要素*であるかどうかをチェックしますが、それが React ノードであるかどうかをチェックするわけではありません**。例えば、`42` は有効な React 要素ではありません。しかし、これは完全に有効な React ノードです。
 
 ```js
 function MyComponent() {
@@ -123,6 +123,6 @@ function MyComponent() {
 }
 ```
 
-This is why you shouldn't use `isValidElement` as a way to check whether something can be rendered.
+したがって、何かがレンダーできるかどうかをチェックする方法として `isValidElement` を使うべきではありません。
 
 </DeepDive>
