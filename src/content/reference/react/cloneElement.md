@@ -26,7 +26,7 @@ const clonedElement = cloneElement(element, props, ...children)
 
 ### `cloneElement(element, props, ...children)` {/*cloneelement*/}
 
-`cloneElement` を呼び出して、`element` を基に、異なる `props` と `children` を持つ React 要素を作成します。
+`cloneElement` を呼び出して、`element` を基に、異なる `props` と `children` を持った React 要素を作成します。
 
 ```js
 import { cloneElement } from 'react';
@@ -62,13 +62,13 @@ console.log(clonedElement); // <Row title="Cabbage" isHighlighted={true}>Goodbye
 * `ref`: 元の `element.ref`。ただし、`props.ref` によって上書きされた場合は除く。
 * `key`: 元の `element.key`。ただし、`props.key` によって上書きされた場合は除く。
 
-通常、この結果はコンポーネントから返すか、他の要素の子として用います。要素のプロパティを読むことはできますが、作成後はすべての要素の構造を非公開 (opaque) として扱い、レンダーだけを行うようにすべきです。
+通常、この要素をコンポーネントから返すか、他の要素の子として用います。要素のプロパティを読み取ることは可能ですが、作成後は要素の構造を非公開 (opaque) として扱い、レンダーのみ行うようにするべきです。
 
 #### 注意点 {/*caveats*/}
 
 * 要素をクローンしても**元の要素は変更されません**。
 
-* **複数の children の内容がすべて静的に分かっている場合**、`cloneElement` には子を `cloneElement(element, null, child1, child2, child3)` のように**複数の引数として渡してください**。子が動的な場合は、配列全体を第 3 引数として `cloneElement(element, null, listItems)` のように渡してください。これにより、React は動的なリストに `key` が欠けている場合に[警告を出す](/learn/rendering-lists#keeping-list-items-in-order-with-key)ようになります。静的なリストでは並び替えは決して発生しないため、key は必要ありません。
+* **複数の子の内容がすべて静的に分かっている場合**、`cloneElement` には子を `cloneElement(element, null, child1, child2, child3)` のように**複数の引数として渡してください**。子が動的な場合は、配列全体を第 3 引数として `cloneElement(element, null, listItems)` のように渡してください。これにより、React は動的なリストに `key` が欠けている場合に[警告を出す](/learn/rendering-lists#keeping-list-items-in-order-with-key)ようになります。静的なリストでは並び替えは決して発生しないため、key は必要ありません。
 
 * `cloneElement` を使うとデータフローの追跡が難しくなるため、代わりに[代替手段](#alternatives)を試してみてください。
 
