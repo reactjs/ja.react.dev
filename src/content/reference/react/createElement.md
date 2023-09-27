@@ -4,7 +4,7 @@ title: createElement
 
 <Intro>
 
-`createElement` によって React 要素を作成できます。これは [JSX](/learn/writing-markup-with-jsx) を書く代替の手段として利用できます。
+`createElement` によって React 要素を作成できます。これは [JSX](/learn/writing-markup-with-jsx) を書く代わりの手段として利用できます。
 
 ```js
 const element = createElement(type, props, ...children)
@@ -38,9 +38,9 @@ function Greeting({ name }) {
 
 #### 引数 {/*parameters*/}
 
-* `type`: `type` 引数は有効な React のコンポーネントタイプでなければなりません。例えば、タグ名の文字列（`'div'` や `'span'`）や、React コンポーネント（関数、クラス、または [`Fragment`](/reference/react/Fragment) のような特別なコンポーネント）が該当します。
+* `type`: `type` 引数は有効な React のコンポーネント型でなければなりません。例えば、タグ名の文字列（`'div'` や `'span'`）や、React コンポーネント（関数、クラス、または [`Fragment`](/reference/react/Fragment) のような特別なコンポーネント）が該当します。
 
-* `props`: `props` 引数はオブジェクトか `null` でなければなりません。`null` を渡すと、空のオブジェクトと同じように扱われます。React は、渡された `props` に一致する props を持つ要素を作成します。`props` オブジェクトの `ref` と `key` は特別で、返された `element` の `element.props.ref` や `element.props.key` としては*利用できません*。`element.ref` ないし `element.key` となります。
+* `props`: `props` 引数はオブジェクトか `null` でなければなりません。`null` を渡すと、空のオブジェクトと同じように扱われます。React は、渡された `props` と同じ props を持った要素を作成します。`props` オブジェクトの `ref` と `key` は特別であり、返された `element` の `element.props.ref` や `element.props.key` として*利用できません*。`element.ref` ないし `element.key` となります。
 
 * **省略可能** `...children`: ゼロ個以上の子ノード。これらは React ノード、つまり、React 要素、文字列、数値、[ポータル](/reference/react-dom/createPortal)、空ノード（`null`、`undefined`、`true`、`false`）、あるいは React ノードの配列となります。
 
@@ -53,7 +53,7 @@ function Greeting({ name }) {
 * `ref`: 指定した `ref`。未指定の場合は `null`。
 * `key`: 指定した `key`。強制的に文字列に変換されます。未指定の場合は `null`。
 
-通常、あなたはこの要素をコンポーネントから返すか、他の要素の子として用います。要素のプロパティを読み取ることが可能ですが、作成後は要素の構造を非公開 (opaque) として扱い、レンダーのみ行うようにしてください。
+通常、この要素をコンポーネントから返すか、他の要素の子として用います。要素のプロパティを読み取ることは可能ですが、作成後は要素の構造を非公開 (opaque) として扱い、レンダーのみ行うようにするべきです。
 
 #### 注意点 {/*caveats*/}
 
@@ -61,7 +61,7 @@ function Greeting({ name }) {
 
 * JSX を使用する場合、**独自のカスタムコンポーネントをレンダーするためにはタグを大文字で始める必要があります**。つまり、`<Something />` は `createElement(Something)` と同等ですが、`<something />`（小文字）は `createElement('something')` と同等です（文字列なので、組み込みの HTML タグとして扱われます）。
 
-* **複数の children の内容がすべて静的に分かっている場合**、`createElement` には子を `createElement('h1', {}, child1, child2, child3)` のように**複数の引数として渡してください**。子が動的な場合は、配列全体を第 3 引数として `createElement('ul', {}, listItems)` のように渡してください。これにより、React は動的なリストに `key` が欠けている場合に[警告を出す](/learn/rendering-lists#keeping-list-items-in-order-with-key)ようになります。静的なリストでは並び替えは決して発生しないため、key は必要ありません。
+* **複数の子の内容がすべて静的に分かっている場合**、`createElement` には子を `createElement('h1', {}, child1, child2, child3)` のように**複数の引数として渡してください**。子が動的な場合は、配列全体を第 3 引数として `createElement('ul', {}, listItems)` のように渡してください。これにより、React は動的なリストに `key` が欠けている場合に[警告を出す](/learn/rendering-lists#keeping-list-items-in-order-with-key)ようになります。静的なリストでは並び替えは決して発生しないため、key は必要ありません。
 
 ---
 
@@ -69,7 +69,7 @@ function Greeting({ name }) {
 
 ### JSX を使わずに要素を作成する {/*creating-an-element-without-jsx*/}
 
-[JSX](/learn/writing-markup-with-jsx) が好きでない場合や、プロジェクトで使用できない場合は、代わりに `createElement` を使用できます。
+[JSX](/learn/writing-markup-with-jsx) が好きでない場合や、プロジェクトで使用できない場合には、代わりに `createElement` を使用できます。
 
 JSX を使わずに要素を作成するには、`createElement` を呼び出して、何らかの <CodeStep step={1}>type</CodeStep>、<CodeStep step={2}>props</CodeStep>、<CodeStep step={3}>children</CodeStep> を引数として渡します。
 
@@ -99,7 +99,7 @@ function Greeting({ name }) {
 }
 ```
 
-自分自身の React コンポーネントをレンダーするには、`'h1'` のような文字列ではなく `Greeting` のような関数を <CodeStep step={1}>type</CodeStep> として渡します。
+自身のカスタム React コンポーネントをレンダーするには、`'h1'` のような文字列ではなく `Greeting` のような関数を <CodeStep step={1}>type</CodeStep> として渡します。
 
 ```js [[1, 2, "Greeting"], [2, 2, "{ name: 'Taylor' }"]]
 export default function App() {
@@ -115,7 +115,7 @@ export default function App() {
 }
 ```
 
-以下は、`createElement` を使用して書かれた完全な例です：
+以下は、`createElement` を使用して書かれたフルのサンプルです。
 
 <Sandpack>
 
@@ -149,7 +149,7 @@ export default function App() {
 
 </Sandpack>
 
-同じ例を JSX で書くと以下のようになります。
+同じものを JSX で書くと以下のようになります。
 
 <Sandpack>
 
@@ -198,7 +198,7 @@ export default function App() {
 
 **このオブジェクトを作成しただけでは、`Greeting` コンポーネントがレンダーされたり、DOM 要素が作成されたりするわけではないことに注意してください**。
 
-React 要素とは、むしろ指示書のようなものです。React に後で `Greeting` コンポーネントをレンダーするよう指示します。このオブジェクトを `App` コンポーネントから返すことで、React に次に何をすべきかを伝えるのです。
+React 要素とは、むしろ指示書のようなものです。React に後で `Greeting` コンポーネントをレンダーするよう指示するものです。このオブジェクトを `App` コンポーネントから返すことで、React に次に何をすべきかを伝えるのです。
 
 要素の作成は非常に安価であるため、最適化したり避けたりする必要はありません。
 
