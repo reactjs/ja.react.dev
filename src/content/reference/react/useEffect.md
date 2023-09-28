@@ -62,7 +62,7 @@ function ChatRoom({ roomId }) {
 
 * 依存配列の一部にコンポーネント内で定義されたオブジェクトや関数がある場合、**エフェクトが必要以上に再実行される**可能性があります。これを修正するには、[オブジェクト型](#removing-unnecessary-object-dependencies)および[関数型](#removing-unnecessary-function-dependencies)の不要な依存値を削除します。また、エフェクトの外部に [state の更新](#updating-state-based-on-previous-state-from-an-effect)や[非リアクティブなロジック](#reading-the-latest-props-and-state-from-an-effect)を抽出することもできます。
 
-* エフェクトがユーザ操作（クリックなど）によって引き起こされたものでない場合、React はブラウザが**新しい画面を描画した後にエフェクトを実行**します。あなたのエフェクトが（ツールチップの配置など）何か視覚的な作業を行っており遅延が目立つ場合（ちらつくなど）、`useEffect` を [`useLayoutEffect` に置き換えてください](/reference/react/useLayoutEffect)。
+* エフェクトがユーザ操作（クリックなど）によって引き起こされたものでない場合、React は通常、ブラウザが**新しい画面を描画した後にエフェクトを実行**します。あなたのエフェクトが（ツールチップの配置など）何か視覚的な作業を行っており遅延が目立つ場合（ちらつくなど）、`useEffect` を [`useLayoutEffect` に置き換えてください](/reference/react/useLayoutEffect)。
 
 * エフェクトがユーザ操作（クリックなど）によって引き起こされた場合でも、**ブラウザはエフェクト内の state 更新処理の前に画面を再描画する可能性があります**。通常、これが望ましい動作です。しかし、ブラウザによる画面の再描画をブロックしなければならない場合、`useEffect` を [`useLayoutEffect` に置き換える必要があります](/reference/react/useLayoutEffect)。
 

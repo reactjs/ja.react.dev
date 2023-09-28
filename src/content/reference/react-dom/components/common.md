@@ -100,11 +100,11 @@ title: "<div> などの一般的なコンポーネント"
 * `onFocusCapture`: `onFocus` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
 * [`onGotPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/gotpointercapture_event): [`PointerEvent` ハンドラ](#pointerevent-handler)関数。要素がプログラム的にポインタをキャプチャしたときに発火します。
 * `onGotPointerCaptureCapture`: `onGotPointerCapture` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
-* [`onKeyDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event): [`KeyboardEvent` ハンドラ](#pointerevent-handler)関数。キーが押されたときに発火します。
+* [`onKeyDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event): [`KeyboardEvent` ハンドラ](#keyboardevent-handler)関数。キーが押されたときに発火します。
 * `onKeyDownCapture`: `onKeyDown` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
-* [`onKeyPress`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keypress_event): [`KeyboardEvent` ハンドラ](#pointerevent-handler)関数。非推奨です。代わりに `onKeyDown` または `onBeforeInput` を使用してください。
+* [`onKeyPress`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keypress_event): [`KeyboardEvent` ハンドラ](#keyboardevent-handler)関数。非推奨です。代わりに `onKeyDown` または `onBeforeInput` を使用してください。
 * `onKeyPressCapture`: `onKeyPress` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
-* [`onKeyUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keyup_event): [`KeyboardEvent` ハンドラ](#pointerevent-handler)関数。キーが離されたときに発火します。
+* [`onKeyUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keyup_event): [`KeyboardEvent` ハンドラ](#keyboardevent-handler)関数。キーが離されたときに発火します。
 * `onKeyUpCapture`: `onKeyUp` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。
 * [`onLostPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/lostpointercapture_event): [`PointerEvent` ハンドラ](#pointerevent-handler)関数。要素がポインタのキャプチャを停止したときに発火します。
 * `onLostPointerCaptureCapture`: `onLostPointerCapture` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョン。

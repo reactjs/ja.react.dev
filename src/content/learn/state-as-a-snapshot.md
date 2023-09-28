@@ -79,7 +79,7 @@ React がコンポーネントを再レンダーする際には：
 
 1. React が再度あなたの関数を呼び出します。
 2. 関数は新しい JSX のスナップショットを返します。
-3. React は返されたスナップショットに合わせて画面を更新します。
+3. React はあなたの関数が返したスナップショットに合わせて画面を更新します。
 
 <IllustrationBlock sequential>
     <Illustration caption="React が関数を実行" src="/images/docs/illustrations/i_render1.png" />
