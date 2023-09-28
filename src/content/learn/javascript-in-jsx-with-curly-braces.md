@@ -19,7 +19,7 @@ JSX により、JavaScript ファイル内に HTML のようなマークアッ�
 
 ## 引用符で文字列を渡す {/*passing-strings-with-quotes*/}
 
-JSX に文字列の属性を渡したい場合、それをシングルクオートかダブルクオートで囲みます：
+JSX に文字列の属性を渡したい場合、それをシングルクオートかダブルクオートで囲みます。
 
 <Sandpack>
 
@@ -43,7 +43,7 @@ export default function Avatar() {
 
 この例では `"https://i.imgur.com/7vQD0fPs.jpg"` と `"Gregorio Y. Zara"` が文字列として渡されています。
 
-では `src` や `alt` のテキストを動的に指定したい場合はどうすればいいのでしょう？ **`"` と `"` を `{` と `}` に置き換えることで、JavaScript の値を使う**ことができるのです：
+では `src` や `alt` のテキストを動的に指定したい場合はどうすればいいのでしょう？ **`"` と `"` を `{` と `}` に置き換えることで、JavaScript の値を使う**ことができるのです。
 
 <Sandpack>
 
@@ -71,7 +71,7 @@ export default function Avatar() {
 
 ## 波括弧は JavaScript 世界への窓口 {/*using-curly-braces-a-window-into-the-javascript-world*/}
 
-JSX とは JavaScript を書く特殊な方法のひとつです。つまりその中で JavaScript が使えるということであり、そのための手段が波括弧 `{}` です。以下の例では、とある科学者の名前を `name` として宣言し、それを `<h1>` 内に波括弧を使って埋め込んでいます：
+JSX とは JavaScript を書く特殊な方法のひとつです。つまりその中で JavaScript が使えるということであり、そのための手段が波括弧 `{}` です。以下の例では、とある科学者の名前を `name` として宣言し、それを `<h1>` 内に波括弧を使って埋め込んでいます。
 
 <Sandpack>
 
@@ -88,7 +88,7 @@ export default function TodoList() {
 
 `name` の値を `'Gregorio Y. Zara'` から `'Hedy Lamarr'` にしてみてください。To Do リストのタイトルが変わりましたか？
 
-波括弧の中では `formatDate()` のような関数呼び出しも含む、あらゆる JavaScript の式が動作します：
+波括弧の中では `formatDate()` のような関数呼び出しも含む、あらゆる JavaScript の式が動作します。
 
 <Sandpack>
 
@@ -113,7 +113,7 @@ export default function TodoList() {
 
 ### 波括弧を使える場所 {/*where-to-use-curly-braces*/}
 
-JSX 内部で波括弧を使う方法は 2 つだけです：
+JSX 内部で波括弧を使う方法は 2 つだけです。
 
 1. **テキストとして**、JSX タグの中で直接使う：`<h1>{name}'s To Do List</h1>` は動作しますが `<{tag}>Gregorio Y. Zara's To Do List</{tag}>` は動作しない。
 2. **属性として**、`=` 記号の直後に使う：`src={avatar}` は `avatar` という変数を読み出すが、`src="{avatar}"` と書くと `"{avatar}"` という文字列そのものを渡す。
@@ -122,7 +122,7 @@ JSX 内部で波括弧を使う方法は 2 つだけです：
 
 文字列や数字、その他の JavaScript の式に加えて、オブジェクトを JSX に渡すこともできます。オブジェクトも波括弧を使って `{ name: "Hedy Lamarr", inventions: 5 }` のように記述しますね。ですので JS オブジェクトを JSX に渡すときには、オブジェクトを別の波括弧のペアでラップして、`person={{ name: "Hedy Lamarr", inventions: 5 }}` のようにする必要があります。
 
-これは JSX 内でインラインの CSS スタイルを使うときに目にすることがあります。React でインラインスタイルを使わなければいけないわけではありません（大抵の場合は CSS クラスでうまくいきます）。しかしインラインスタイルが必要な場合は、`style` 属性にオブジェクトを渡します：
+これは JSX 内でインラインの CSS スタイルを使うときに目にすることがあります。React でインラインスタイルを使わなければいけないわけではありません（大抵の場合は CSS クラスでうまくいきます）。しかしインラインスタイルが必要な場合は、`style` 属性にオブジェクトを渡します。
 
 <Sandpack>
 
@@ -150,7 +150,7 @@ ul { padding: 20px 20px 20px 40px; margin: 0; }
 
 `backgroundColor` や `color` の値を変更してみてください。
 
-以下のように書けば波括弧の中に書かれた JavaScript のオブジェクトがよく見えてくるでしょう：
+以下のように書けば波括弧の中に書かれた JavaScript のオブジェクトがよく見えてくるでしょう。
 
 ```js {2-5}
 <ul style={
@@ -171,7 +171,7 @@ ul { padding: 20px 20px 20px 40px; margin: 0; }
 
 ## オブジェクトと波括弧でさらにいろいろやってみる {/*more-fun-with-javascript-objects-and-curly-braces*/}
 
-複数の式をひとつのオブジェクト内に移動して、JSX の波括弧内から参照することができます：
+複数の式をひとつのオブジェクト内に移動して、JSX の波括弧内から参照することができます。
 
 <Sandpack>
 
@@ -223,7 +223,7 @@ const person = {
 };
 ```
 
-コンポーネントは `person` から始めて以下のように書くことでこれらの値を使うことができます：
+コンポーネントは `person` から始めて以下のように書くことでこれらの値を使うことができます。
 
 ```js
 <div style={person.theme}>
@@ -234,7 +234,7 @@ JSX ではデータやロジックを書くのに JavaScript を使うため、J
 
 <Recap>
 
-これで JSX についてのほとんどを学びました：
+これで JSX についてのほとんどを学びました。
 
 * 引用符内に書かれた JSX 属性は文字列として渡される。
 * 波括弧を使えば JavaScript のロジックや変数をマークアップ内に含めることができる。
@@ -247,7 +247,7 @@ JSX ではデータやロジックを書くのに JavaScript を使うため、J
 
 #### 間違いを修正する {/*fix-the-mistake*/}
 
-以下のコードは `Objects are not valid as a React child` というエラーを出してクラッシュします：
+以下のコードは `Objects are not valid as a React child` というエラーを出してクラッシュします。
 
 <Sandpack>
 
@@ -295,7 +295,7 @@ body > div > div { padding: 20px; }
 
 このエラーが起きているのは、マークアップ内で文字列ではなく*オブジェクトそのもの*をレンダーしているからです。つまり `<h1>{person}'s Todos</h1>` が `person` オブジェクト全体をレンダーしようとしてしまっているのです。テキスト内容としてオブジェクトをそのまま含めようとすると、React はそれをどう表示したらいいか分からないため、エラーをスローします。
 
-修正するには、`<h1>{person}'s Todos</h1>` を `<h1>{person.name}'s Todos</h1>` で置き換えてください：
+修正するには、`<h1>{person}'s Todos</h1>` を `<h1>{person.name}'s Todos</h1>` で置き換えてください。
 
 <Sandpack>
 
@@ -381,7 +381,7 @@ body > div > div { padding: 20px; }
 
 <Solution>
 
-画像 URL を `person.imageUrl` というプロパティに移動して、それを `<img>` タグから波括弧を使って読み取ります：
+画像 URL を `person.imageUrl` というプロパティに移動して、それを `<img>` タグから波括弧を使って読み取ります。
 
 <Sandpack>
 
@@ -525,7 +525,7 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-あるいは以下の `getImageUrl` のように、別の関数にこの式を移動することもできます：
+あるいは以下の `getImageUrl` のように、別の関数にこの式を移動することもできます。
 
 <Sandpack>
 
