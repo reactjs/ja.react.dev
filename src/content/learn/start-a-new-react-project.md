@@ -21,12 +21,16 @@ React だけで新しいアプリやウェブサイトを作りたい場合は�
 **[Next.js](https://nextjs.org/) はフルスタックの React フレームワークです**。ほぼ静的なブログサイトから複雑でダイナミックなアプリまで、どんな規模の React アプリでも作成できる万能フレームワークです。Next.js プロジェクトを新規に作るには、ターミナルで次のコマンドを実行してください。
 
 <TerminalBlock>
-npx create-next-app
+npx create-next-app@latest
 </TerminalBlock>
 
 Next.js を初めて使う場合は、[Next.js チュートリアル](https://nextjs.org/learn/foundations/about-nextjs)を参照してください。
 
+<<<<<<< HEAD
 Next.js は [Vercel](https://vercel.com/) によってメンテナンスされています。Next.js アプリは Node.js やサーバーレスホスティングサービス、または自分自身のサーバーに[デプロイする](https://nextjs.org/docs/deployment)ことができます。[完全に静的な Next.js アプリ](https://nextjs.org/docs/advanced-features/static-html-export)は、どんな静的なホスティングサービスにもデプロイ可能です。
+=======
+Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any Node.js or serverless hosting, or to your own server. Next.js also supports a [static export](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports) which doesn't require a server.
+>>>>>>> 68f417a600c7d7b8c4131e39f8a843a856ae3909
 
 ### Remix {/*remix*/}
 
@@ -89,6 +93,7 @@ Expo は [Expo（社名）](https://expo.dev/about) によってメンテナン�
 
 ### Next.js (App Router) {/*nextjs-app-router*/}
 
+<<<<<<< HEAD
 **[Next.js の App Router](https://beta.nextjs.org/docs/getting-started) は、React チームのフルスタックアーキテクチャのビジョンを実現できるようデザインされた Next.js API の再設計です**。サーバー上またはビルド時に実行される非同期コンポーネントでデータを取得できるようになります。
 
 Next.js は [Vercel](https://vercel.com/) によってメンテナンスされています。[Next.js アプリのデプロイ](https://nextjs.org/docs/deployment)はあらゆる Next.js やサーバレスホスティングサービス上で行えます。Next.js は、サーバ不要の[静的エクスポート](https://beta.nextjs.org/docs/configuring/static-export)もサポートしています。
@@ -97,6 +102,11 @@ Next.js は [Vercel](https://vercel.com/) によってメンテナンスされ�
 現時点（2023 年 3 月時点）では、Next.js の App Router はベータ版であり、本番環境での使用はまだ推奨されていません。既存の Next.js プロジェクトで実験する場合は、[こちらの段階的な移行ガイド](https://beta.nextjs.org/docs/upgrade-guide#migrating-from-pages-to-app)を参照してください。
 
 </Pitfall>
+=======
+**[Next.js's App Router](https://nextjs.org/docs) is a redesign of the Next.js APIs aiming to fulfill the React team’s full-stack architecture vision.** It lets you fetch data in asynchronous components that run on the server or even during the build.
+
+Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any Node.js or serverless hosting, or to your own server. Next.js also supports [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) which doesn't require a server.
+>>>>>>> 68f417a600c7d7b8c4131e39f8a843a856ae3909
 
 <DeepDive>
 

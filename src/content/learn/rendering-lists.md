@@ -1086,7 +1086,11 @@ export const recipes = [{
 
 #### セパレータ付きリスト {/*list-with-a-separator*/}
 
+<<<<<<< HEAD
 この例では、葛飾北斎の有名な俳句を、各行を `<p>` タグで囲みつつ表示しています。あなたの仕事は、各段落の間に `<hr />` という区切り線を挿入することです。結果はこのような形にしてください。
+=======
+This example renders a famous haiku by Tachibana Hokushi, with each line wrapped in a `<p>` tag. Your job is to insert an `<hr />` separator between each paragraph. Your resulting structure should look like this:
+>>>>>>> 68f417a600c7d7b8c4131e39f8a843a856ae3909
 
 ```js
 <article>
