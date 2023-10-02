@@ -5,13 +5,13 @@ canary: true
 
 <Canary>
 
-The `use` Hook is currently only available in React's canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+`use` フックは現在、React の Canary および experimental チャンネルでのみ利用可能です。[React のリリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
 
 </Canary>
 
 <Intro>
 
-`use` is a React Hook that lets you read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+`use` は[プロミス (Promise)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) や[コンテクスト](/learn/passing-data-deeply-with-context)などのリソースから値を読み取るための React フックです。
 
 ```js
 const value = use(resource);
@@ -23,11 +23,11 @@ const value = use(resource);
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `use(resource)` {/*use*/}
 
-Call `use` in your component to read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+コンポーネント内で `use` を呼び出し、[プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)や[コンテクスト](/learn/passing-data-deeply-with-context)などのリソースから値を読み取ります。
 
 ```jsx
 import { use } from 'react';
@@ -38,33 +38,33 @@ function MessageComponent({ messagePromise }) {
   // ...
 ```
 
-Unlike all other React Hooks, `use` can be called within loops and conditional statements like `if`. Like other React Hooks, the function that calls `use` must be a Component or Hook.
+他のあらゆる React フックとは異なり、`use` は `if` のようなループや条件文内でも呼び出すことができます。他の React フックと同様に、`use` を呼び出す関数はコンポーネントまたはフックでなければなりません。
 
-When called with a Promise, the `use` Hook integrates with [`Suspense`](/reference/react/Suspense) and [error boundaries](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). The component calling `use` *suspends* while the Promise passed to `use` is pending. If the component that calls `use` is wrapped in a Suspense boundary, the fallback will be displayed.  Once the Promise is resolved, the Suspense fallback is replaced by the rendered components using the data returned by the `use` Hook. If the Promise passed to `use` is rejected, the fallback of the nearest Error Boundary will be displayed.
+プロミスを引数にして呼び出した場合、`use` フックは [`Suspense`](/reference/react/Suspense) や[エラーバウンダリ (error boundary)](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) と協調して動作します。`use` を呼び出すコンポーネントは、`use` に渡されたプロミスが保留中 (pending) である間、*サスペンド (suspend)* します。`use` を呼び出すコンポーネントがサスペンスバウンダリでラップされている場合、フォールバックが表示されます。プロミスが解決 (resolve) された時点で、サスペンスフォールバックは、`use` フックから返されたデータを使用してレンダーされたコンポーネントの内容に置き換わります。`use` に渡されたプロミスが拒否 (reject) されると、最も近いエラーバウンダリのフォールバックが表示されます。
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-* `resource`: this is the source of the data you want to read a value from. A resource can be a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or a [context](/learn/passing-data-deeply-with-context).
+* `resource`: 値を読み取りたいデータソース。リソースは[プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)または [コンテクスト](/learn/passing-data-deeply-with-context)のいずれかになります。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-The `use` Hook returns the value that was read from the resource like the resolved value of a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+`use` フックは、[プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)の解決された値や[コンテクスト](/learn/passing-data-deeply-with-context)など、リソースから読み取った値を返します。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-* The `use` Hook must be called inside a Component or a Hook.
-* When fetching data in a [Server Component](/reference/react/use-server), prefer `async` and `await` over `use`. `async` and `await` pick up rendering from the point where `await` was invoked, whereas `use` re-renders the component after the data is resolved.
-* Prefer creating Promises in [Server Components](/reference/react/use-server) and passing them to [Client Components](/reference/react/use-client) over creating Promises in Client Components. Promises created in Client Components are recreated on every render. Promises passed from a Server Component to a Client Component are stable across re-renders. [See this example](#streaming-data-from-server-to-client).
+* `use` フックは、コンポーネントまたは他のフック内で呼び出す必要があります。
+* [サーバコンポーネント](/reference/react/use-server)でデータをフェッチする際は、`use` よりも `async` と `await` を優先して使用してください。`async` と `await` は `await` が呼び出された地点からレンダーを再開しますが、`use` はデータが解決した後にコンポーネントを最初からレンダーします。
+* [クライアントコンポーネント](/reference/react/use-client)でプロミスを作成するよりも、[サーバコンポーネント](/reference/react/use-server)でプロミスを作成してそれをクライアントコンポーネントに渡すようにしてください。クライアントコンポーネントで作成されたプロミスは、レンダーごとに再作成されます。サーバコンポーネントからクライアントコンポーネントに渡されたプロミスは、再レンダー間で不変です。[こちらの例を参照してください](#streaming-data-from-server-to-client)。
 
 ---
 
-## Usage {/*usage*/}
+## 使用方法 {/*usage*/}
 
-### Reading context with `use` {/*reading-context-with-use*/}
+### `use` でコンテクストを読み取る {/*reading-context-with-use*/}
 
-When a [context](/learn/passing-data-deeply-with-context) is passed to `use`, it works similarly to [`useContext`](/reference/react/useContext). While `useContext` must be called at the top level of your component, `use` can be called inside conditionals like `if` and loops like `for`. `use` is preferred over `useContext` because it is more flexible.
+[コンテクスト](/learn/passing-data-deeply-with-context)が `use` に渡された場合、[`useContext`](/reference/react/useContext) と同様に動作します。`useContext` はコンポーネントのトップレベルで呼び出す必要がありますが、`use` は `if` や `for` などの条件式の中でも呼び出すことができます。`use` はより柔軟であるため、`useContext` よりも優先的に使用してください。
 
 ```js [[2, 4, "theme"], [1, 4, "ThemeContext"]]
 import { use } from 'react';
@@ -74,9 +74,9 @@ function Button() {
   // ... 
 ```
 
-`use` returns the <CodeStep step={2}>context value</CodeStep> for the <CodeStep step={1}>context</CodeStep> you passed. To determine the context value, React searches the component tree and finds **the closest context provider above** for that particular context.
+`use` は、渡した<CodeStep step={1}>コンテクスト</CodeStep>の<CodeStep step={2}>値</CodeStep>を返します。コンテクストの値を決定するために、React はコンポーネントツリーを上方向に検索し、当該コンテクストに対応する**最も近いコンテクストプロバイダ (context provider)** を見つけます。
 
-To pass context to a `Button`, wrap it or one of its parent components into the corresponding context provider.
+`Button` にコンテクストを渡すには、それまたはその親コンポーネントのいずれかを、対応するコンテクストプロバイダでラップします。
 
 ```js [[1, 3, "ThemeContext"], [2, 3, "\\"dark\\""], [1, 5, "ThemeContext"]]
 function MyPage() {
@@ -92,9 +92,9 @@ function Form() {
 }
 ```
 
-It doesn't matter how many layers of components there are between the provider and the `Button`. When a `Button` *anywhere* inside of `Form` calls `use(ThemeContext)`, it will receive `"dark"` as the value.
+プロバイダと `Button` の間に何層のコンポーネントがあっても問題ありません。`Form` の内部の*どこか*で `Button` が `use(ThemeContext)` を呼び出すと、値として `"dark"` を受け取ることになります。
 
-Unlike [`useContext`](/reference/react/useContext), <CodeStep step={2}>`use`</CodeStep> can be called in conditionals and loops like <CodeStep step={1}>`if`</CodeStep>.
+[`useContext`](/reference/react/useContext) とは異なり、<CodeStep step={2}>`use`</CodeStep> は <CodeStep step={1}>`if`</CodeStep> などの条件式やループの中で呼び出すことができます。
 
 ```js [[1, 2, "if"], [2, 3, "use"]]
 function HorizontalRule({ show }) {
@@ -106,11 +106,11 @@ function HorizontalRule({ show }) {
 }
 ```
 
-<CodeStep step={2}>`use`</CodeStep> is called from inside a <CodeStep step={1}>`if`</CodeStep> statement, allowing you to conditionally read values from a Context.
+<CodeStep step={2}>`use`</CodeStep> は <CodeStep step={1}>`if`</CodeStep> 文の中から呼び出さているため、条件付きでコンテクストから値を読み取ることができます。
 
 <Pitfall>
 
-Like `useContext`, `use(context)` always looks for the closest context provider *above* the component that calls it. It searches upwards and **does not** consider context providers in the component from which you're calling `use(context)`.
+`useContext` と同様に、`use(context)` は常にそれを呼び出しているコンポーネントの*上側*にある最も近いコンテクストプロバイダを探します。上方向に検索するため、`use(context)` を呼び出しているコンポーネント自体にあるコンテクストプロバイダは**考慮されません**。
 
 </Pitfall>
 
@@ -212,9 +212,9 @@ function Button({ show, children }) {
 
 </Sandpack>
 
-### Streaming data from the server to the client {/*streaming-data-from-server-to-client*/}
+### サーバからクライアントへのデータストリーミング {/*streaming-data-from-server-to-client*/}
 
-Data can be streamed from the server to the client by passing a Promise as a prop from a <CodeStep step={1}>Server Component</CodeStep> to a <CodeStep step={2}>Client Component</CodeStep>.
+<CodeStep step={1}>サーバコンポーネント</CodeStep>から<CodeStep step={2}>クライアントコンポーネント</CodeStep> に props としてプロミスを渡すことで、サーバからクライアントにデータをストリーミングすることができます。
 
 ```js [[1, 4, "App"], [2, 2, "Message"], [3, 7, "Suspense"], [4, 8, "messagePromise", 30], [4, 5, "messagePromise"]]
 import { fetchMessage } from './lib.js';
@@ -230,7 +230,7 @@ export default function App() {
 }
 ```
 
-The <CodeStep step={2}>Client Component</CodeStep> then takes <CodeStep step={4}>the Promise it received as a prop</CodeStep> and passes it to the <CodeStep step={5}>`use`</CodeStep> Hook. This allows the <CodeStep step={2}>Client Component</CodeStep> to read the value from <CodeStep step={4}>the Promise</CodeStep> that was initially created by the Server Component.
+<CodeStep step={2}>クライアントコンポーネント</CodeStep> は、<CodeStep step={4}>受け取ったプロミス</CodeStep> を <CodeStep step={5}>`use`</CodeStep> フックに渡します。これにより<CodeStep step={2}>クライアントコンポーネント</CodeStep>は、サーバコンポーネントが最初に作成した<CodeStep step={4}>プロミス</CodeStep>から値を読み取ることができます。
 
 ```js [[2, 6, "Message"], [4, 6, "messagePromise"], [4, 7, "messagePromise"], [5, 7, "use"]]
 // message.js
@@ -243,7 +243,7 @@ export function Message({ messagePromise }) {
   return <p>Here is the message: {messageContent}</p>;
 }
 ```
-Because <CodeStep step={2}>`Message`</CodeStep> is wrapped in <CodeStep step={3}>[`Suspense`](/reference/react/Suspense)</CodeStep>, the fallback will be displayed until the Promise is resolved. When the Promise is resolved, the value will be read by the <CodeStep step={5}>`use`</CodeStep> Hook and the <CodeStep step={2}>`Message`</CodeStep> component will replace the Suspense fallback.
+<CodeStep step={2}>`Message`</CodeStep> は <CodeStep step={3}>[`Suspense`](/reference/react/Suspense)</CodeStep> でラップされているため、プロミスが解決されるまでフォールバックが表示されます。プロミスが解決されると、その値が <CodeStep step={5}>`use`</CodeStep> フックによって読み取られ、<CodeStep step={2}>`Message`</CodeStep> コンポーネントがサスペンスフォールバックを置き換えます。
 
 <Sandpack>
 
@@ -325,16 +325,16 @@ root.render(
 
 <Note>
 
-When passing a Promise from a Server Component to a Client Component, its resolved value must be serializable to pass between server and client. Data types like functions aren't serializable and cannot be the resolved value of such a Promise.
+サーバコンポーネントからクライアントコンポーネントにプロミスを渡す場合、その解決値は、サーバとクライアント間でやりとり可能になるよう、シリアライズ可能でなければなりません。関数のようなデータ型はシリアライズ可能ではないため、プロミスの解決値として利用できません。
 
 </Note>
 
 
 <DeepDive>
 
-#### Should I resolve a Promise in a Server or Client Component? {/*resolve-promise-in-server-or-client-component*/}
+#### プロミスをサーバコンポーネントで解決するか、クライアントコンポーネントで解決するか？ {/*resolve-promise-in-server-or-client-component*/}
 
-A Promise can be passed from a Server Component to a Client Component and resolved in the Client component with the `use` Hook. You can also resolve the Promise in a Server Component with `await` and pass the required data to the Client Component as a prop.
+プロミスはサーバコンポーネントからクライアントコンポーネントに渡し、`use` フックを使ってクライアントコンポーネントで解決することができます。また、`await` を使ってサーバコンポーネント側でプロミスを解決し、必要なデータを props としてクライアントコンポーネントに渡すことも可能でしょう。
 
 ```js
 export default function App() {
@@ -343,24 +343,24 @@ export default function App() {
 }
 ```
 
-But using `await` in a [Server Component](/reference/react/components#server-components) will block its rendering until the `await` statement is finished. Passing a Promise from a Server Component to a Client Component prevents the Promise from blocking the rendering of the Server Component.
+しかし[サーバコンポーネント](/reference/react/components#server-components)で `await` を使用すると、`await` 文が終了するまでそのレンダーがブロックされます。サーバコンポーネントからクライアントコンポーネントにプロミスを渡すことで、プロミスがサーバコンポーネントのレンダーをブロックすることを防ぐことができます。
 
 </DeepDive>
 
-### Dealing with rejected Promises {/*dealing-with-rejected-promises*/}
+### 拒否されたプロミスの取り扱い {/*dealing-with-rejected-promises*/}
 
-In some cases a Promise passed to `use` could be rejected. You can handle rejected Promises by either:
+場合によっては、`use` に渡されたプロミスが拒否されることがあります。プロミスが拒否された場合にそれを処理する方法は以下の 2 つです。
 
-1. [Displaying an error to users with error boundary.](#displaying-an-error-to-users-with-error-boundary)
-2. [Providing an alternative value with `Promise.catch`](#providing-an-alternative-value-with-promise-catch)
+1. [エラーバウンダリを使ってユーザにエラーを表示する](#displaying-an-error-to-users-with-error-boundary)
+2. [`Promise.catch` で代替値を提供する](#providing-an-alternative-value-with-promise-catch)
 
 <Pitfall>
-`use` cannot be called in a try-catch block. Instead of a try-catch block [wrap your component in an Error Boundary](#displaying-an-error-to-users-with-error-boundary), or [provide an alternative value to use with the Promise's `.catch` method](#providing-an-alternative-value-with-promise-catch).
+`use` は try-catch ブロック内で呼び出すことはできません。try-catch ブロックを使う代わりに、[コンポーネントをエラーバウンダリでラップする](#displaying-an-error-to-users-with-error-boundary)か、または[プロミスの `.catch` メソッドで代替値を提供](#providing-an-alternative-value-with-promise-catch)してください。
 </Pitfall>
 
-#### Displaying an error to users with a error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
+#### エラーバウンダリを使ってユーザにエラーを表示する {/*displaying-an-error-to-users-with-error-boundary*/}
 
-If you'd like to display an error to your users when a Promise is rejected, you can use an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `use` Hook in an error boundary. If the Promise passed to `use` is rejected the fallback for the error boundary will be displayed.
+プロミスが拒否されたときにユーザにエラーを表示したい場合は、[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) を使用できます。エラーバウンダリを使用するには、`use` フックを呼び出しているコンポーネントをエラーバウンダリでラップします。`use` に渡されたプロミスが拒否されると、エラーバウンダリに書かれたフォールバックが表示されます。
 
 <Sandpack>
 
@@ -444,9 +444,9 @@ root.render(
 ```
 </Sandpack>
 
-#### Providing an alternative value with `Promise.catch` {/*providing-an-alternative-value-with-promise-catch*/}
+#### `Promise.catch` で代替値を提供する {/*providing-an-alternative-value-with-promise-catch*/}
 
-If you'd like to provide an alternative value when the Promise passed to `use` is rejected you can use the Promise's <CodeStep step={1}>[`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)</CodeStep> method.
+`use` に渡されたプロミスが拒否されたときに代替値を提供したい場合、プロミスの <CodeStep step={1}>[`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)</CodeStep> メソッドを使用できます。
 
 ```js [[1, 6, "catch"],[2, 7, "return"]]
 import { Message } from './message.js';
@@ -466,17 +466,17 @@ export default function App() {
 }
 ```
 
-To use the Promise's <CodeStep step={1}>`catch`</CodeStep> method, call <CodeStep step={1}>`catch`</CodeStep> on the Promise object. <CodeStep step={1}>`catch`</CodeStep> takes a single argument: a function that takes an error message as an argument. Whatever is <CodeStep step={2}>returned</CodeStep> by the function passed to <CodeStep step={1}>`catch`</CodeStep> will be used as the resolved value of the Promise.
+プロミスの <CodeStep step={1}>`catch`</CodeStep> メソッドを使用するには、プロミスオブジェクトの <CodeStep step={1}>`catch`</CodeStep> を呼び出します。<CodeStep step={1}>`catch`</CodeStep> はエラーメッセージを引数とする関数を唯一の関数として受け取ります。<CodeStep step={1}>`catch`</CodeStep> に渡された関数によって<CodeStep step={2}>返された任意の値</CodeStep>が、プロミスの解決値として使用されます。
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
 ### "Suspense Exception: This is not a real error!" {/*suspense-exception-error*/}
 
-You are either calling `use` outside of a React component or Hook function, or calling `use` in a try–catch block. If you are calling `use` inside a try–catch block, wrap your component in an error boundary, or call the Promise's `catch` to catch the error and resolve the Promise with another value. [See these examples](#dealing-with-rejected-promises).
+あなたは React コンポーネントまたはフック関数の外部で `use` を呼び出しているか、または try-catch ブロック内で `use` を呼び出しています。try-catch ブロック内で `use` を呼び出している場合は、コンポーネントをエラーバウンダリでラップするか、プロミスの `catch` を呼び出してエラーをキャッチし、別の値でプロミスを解決します。[こちらの例を参照してください](#dealing-with-rejected-promises)。
 
-If you are calling `use` outside a React component or Hook function, move the `use` call to a React component or Hook function.
+React コンポーネントまたはフック関数の外部で `use` を呼び出している場合は、`use` の呼び出しを React コンポーネントまたはフック関数に移動します。
 
 ```jsx
 function MessageComponent({messagePromise}) {
@@ -486,7 +486,7 @@ function MessageComponent({messagePromise}) {
     // ...
 ```
 
-Instead, call `use` outside any component closures, where the function that calls `use` is a component or Hook.
+上記の場合、コンポーネントのクロージャの外で `use` を呼び出すようにすることで、コンポーネントまたはフックから `use` を呼び出すという条件を満たすようになります。
 
 ```jsx
 function MessageComponent({messagePromise}) {
