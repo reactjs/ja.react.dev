@@ -20,7 +20,7 @@ React コンポーネントは互いにやりとりをする際に *props* と�
 
 ## お馴染みの props {/*familiar-props*/}
 
-props とは JSX タグに渡す情報のことです。例えば `className`、`src`、`alt`、`width` や `height` は `<img>` に渡すことのできる props の例です：
+props とは JSX タグに渡す情報のことです。例えば `className`、`src`、`alt`、`width` や `height` は、`<img>` に渡すことのできる props の例です。
 
 <Sandpack>
 
@@ -55,7 +55,7 @@ body { min-height: 120px; }
 
 ## コンポーネントに props を渡す {/*passing-props-to-a-component*/}
 
-以下のコードでは、`Profile` コンポーネントは子コンポーネントである `<Avatar>` に何の props も渡していません：
+以下のコードでは、`Profile` コンポーネントは子コンポーネントである `<Avatar>` に何の props も渡していません。
 
 ```js
 export default function Profile() {
@@ -65,11 +65,11 @@ export default function Profile() {
 }
 ```
 
-以下の 2 ステップで `Avatar` に props を与えることができます。
+以下の 2 ステップで、`Avatar` に props を与えることができます。
 
 ### Step 1: 子コンポーネントに props を渡す {/*step-1-pass-props-to-the-child-component*/}
 
-まず、`Avatar` に何か props を渡します。例えば `person`（オブジェクト）と `size`（数値）を渡してみましょう：
+まず、`Avatar` に何か props を渡します。例えば `person`（オブジェクト）と `size`（数値）を渡してみましょう。
 
 ```js
 export default function Profile() {
@@ -84,7 +84,7 @@ export default function Profile() {
 
 <Note>
 
-もし `person=` の後にある二重波括弧が分からない場合、これが JSX 波括弧の中にある[単なるオブジェクト](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx)であるということを思い出してください。
+もし `person=` の後にある二重の波括弧が分からない場合、これが JSX 波括弧の中にある[単なるオブジェクト](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx)であるということを思い出してください。
 
 </Note>
 
@@ -100,7 +100,7 @@ function Avatar({ person, size }) {
 }
 ```
 
-`Avatar` 内に `person` や `size` を使って何かをレンダーするロジックを書き加えれば完成です。
+`Avatar` 内に、`person` や `size` を使って何かをレンダーするロジックを書き加えれば完成です。
 
 これで `Avatar` に様々な props を渡すことで様々に表示を変えられるようになりました。実際に値をいじってみましょう！
 
@@ -184,7 +184,7 @@ function Avatar(props) {
 
 <Pitfall>
 
-props を宣言する際は `(` と `)` の中で **`{` と `}` という波括弧のペアを入れ忘れない**ようにしましょう：
+props を宣言する際は `(` と `)` の中に、**`{` と `}` という波括弧のペアを書き忘れない**ようにしましょう。
 
 ```js
 function Avatar({ person, size }) {
@@ -192,7 +192,7 @@ function Avatar({ person, size }) {
 }
 ```
 
-この構文は[「分割代入 (destructuring)」](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter)と呼ばれるもので、関数の引数からプロパティを読み出す以下のようなコードと同等です：
+この構文は ["分割代入 (destructuring)"](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) と呼ばれるもので、関数の引数からプロパティを読み出す以下のようなコードと同等です。
 
 ```js
 function Avatar(props) {
@@ -206,7 +206,7 @@ function Avatar(props) {
 
 ## props のデフォルト値を指定する {/*specifying-a-default-value-for-a-prop*/}
 
-props に、値が渡されなかった場合にフォールバックとして使うデフォルト値を指定したい場合、分割代入の中でパラメータ名の直後に `=` とデフォルト値を書くことができます：
+props に、値が渡されなかった場合にフォールバックとして使うデフォルト値を指定したい場合、分割代入の中でパラメータ名の直後に `=` とデフォルト値を書くことができます。
 
 ```js
 function Avatar({ person, size = 100 }) {
@@ -220,7 +220,7 @@ function Avatar({ person, size = 100 }) {
 
 ## JSX スプレッド構文で props を転送する {/*forwarding-props-with-the-jsx-spread-syntax*/}
 
-ときに、props の受け渡しが冗長な繰り返しになってしまうことがあります：
+ときに、props の受け渡しが冗長な繰り返しになってしまうことがあります。
 
 ```js
 function Profile({ person, size, isSepia, thickBorder }) {
@@ -237,7 +237,7 @@ function Profile({ person, size, isSepia, thickBorder }) {
 }
 ```
 
-繰り返しの多いコードが悪いわけではありませんし、その方が読みやすいこともあるでしょう。しかし簡潔であることに価値があることもあります。この `Profile` が `Avatar` に対してやっているように、コンポーネントの中には props をそのまま子コンポーネントに転送するものがあります。`Profile` は props を直接的に使っているわけではありませんので、以下のような「スプレッド」構文を使って短く書く方が理にかなっているかもしれません：
+繰り返しの多いコードが悪いわけではありませんし、その方が読みやすいこともあるでしょう。しかし簡潔であることに価値があることもあります。この `Profile` が `Avatar` に対してやっているように、コンポーネントの中には props をそのまま子コンポーネントに転送するものがあります。`Profile` は props を直接的に使っているわけではありませんので、以下のような「スプレッド」構文を使って短く書く方が理にかなっているかもしれません。
 
 ```js
 function Profile(props) {
@@ -271,7 +271,7 @@ function Profile(props) {
 </Card>
 ```
 
-このように JSX タグ内でコンテンツをネストした場合、親側のコンポーネントはその中身を `children` という props として受け取ります。例えば以下の `Card` コンポーネントは、`<Avatar />` がセットされた `children` プロパティを受け取って、ラッパ div 要素の内部にそれをレンダーしています：
+このように JSX タグ内でコンテンツをネストした場合、親側のコンポーネントはその中身を `children` という props として受け取ります。例えば以下の `Card` コンポーネントは、`<Avatar />` がセットされた `children` プロパティを受け取って、ラッパ div 要素の内部にそれをレンダーしています。
 
 <Sandpack>
 
@@ -357,7 +357,7 @@ export function getImageUrl(person, size = 's') {
 
 以下の `Clock` コンポーネントは親コンポーネントから `color` と `time` という 2 つの props を受け取っています。（親コンポーネントのコードは、まだ解説していない [state](/learn/state-a-components-memory) を使っているため省略しています。）
 
-以下の選択ボックスでカラーを変えてみてください：
+以下の選択ボックスでカラーを変えてみてください。
 
 <Sandpack>
 
@@ -409,9 +409,9 @@ export default function App() {
 
 この例は、**コンポーネントは時間経過とともに別の props を受け取る可能性がある**ということを示しています。props は常に固定だとは限らないのです！ ここでは `time` プロパティは毎秒変化していますし、`color` プロパティもあなたが別の色を選択するたびに変化します。props とはコンポーネントの最初の時点ではなく、任意の時点でのコンポーネントのデータを反映するものなのです。
 
-しかし、props は[イミュータブル (immutable)](https://en.wikipedia.org/wiki/Immutable_object) です。これは「不変な」という意味のコンピュータサイエンス用語です。コンポーネントの props が（例えばユーザ操作や新しいデータの到着に応じて）変わらないといけない場合、親のコンポーネントに*別の props*、つまり新しいオブジェクトを渡してもらう必要があります！ 古い props は忘れられ、使われていたメモリは JavaScript エンジンがそのうち回収します。
+しかし、props は[イミュータブル (immutable)](https://en.wikipedia.org/wiki/Immutable_object) です。これは「不変な」という意味のコンピュータサイエンス用語です。コンポーネントの props が（例えばユーザ操作や新しいデータの到着に反応して）変わらないといけない場合、親のコンポーネントに*別の props*、つまり新しいオブジェクトを渡してもらう必要があります！ 古い props は忘れられ、使われていたメモリは JavaScript エンジンがそのうち回収します。
 
-**「props の書き換え」をしようとしてはいけません。**（上記のカラー選択のように）ユーザの入力に反応する必要がある場合は、「state のセット」が必要です。これについては [State: A Component's Memory](/learn/state-a-components-memory) で学びます。
+**「props の書き換え」をしようとしてはいけません。**（上記のカラー選択のように）ユーザの入力に反応する必要がある場合は、「state のセット」が必要です。これについては [state：コンポーネントのメモリ](/learn/state-a-components-memory)で学びます。
 
 <Recap>
 
@@ -420,7 +420,7 @@ export default function App() {
 * `size = 100` のようなデフォルト値を指定でき、これは props がない場合や `undefined` の場合に使われる。
 * `<Avatar {...props} />` のような JSX スプレッド構文ですべての props を転送できるが、多様は禁物！
 * `<Card><Avatar /></Card>` のようなネストされた JSX を書くと `Card` コンポーネントの `children` プロパティになる。
-* props とはある時点での読み取り専用のスナップショットである。レンダー毎に新しい props のバージョンを受け取る。
+* props とはある時点での読み取り専用のスナップショットである。レンダー毎に新しいバージョンの props を受け取る。
 * props を書き換えることはできない。インタラクティブ性が必要な場合は state を設定する必要がある。
 
 </Recap>
@@ -431,7 +431,7 @@ export default function App() {
 
 #### コンポーネント抽出 {/*extract-a-component*/}
 
-以下の `Gallery` コンポーネントには 2 名のプロフィール用にとても似たマークアップが含まれてしまっています。ここから `Profile` というコンポーネントを抽出してコードの重複を減らしてください。どんな props を渡すのかは自分で決める必要があるでしょう。
+以下の `Gallery` コンポーネントには 2 名のプロフィール用にとても似たマークアップが含まれてしまっています。ここから `Profile` というコンポーネントを抽出してコードの重複を減らしてください。どんな props を渡すようにるのかは、自分で決めてください。
 
 <Sandpack>
 
@@ -524,7 +524,7 @@ li { margin: 5px; }
 
 <Hint>
 
-片方の科学者のマークアップを取り出すところから始めましょう。もう片方の人物と合わない部分を探し出し、その部分を props で設定できるようにします。
+一方の科学者のマークアップを取り出すところから始めましょう。もう一方の人物と合わない部分を探し出して、その部分を props で設定できるようにしましょう。
 
 </Hint>
 
@@ -630,9 +630,9 @@ li { margin: 5px; }
 
 </Sandpack>
 
-`awards` を配列として渡せば `awardCount` のような props を別に使う必要がないことに注意してください。こうすることで `awards.length` を使うことで受賞数がわかります。props にはあらゆる値を渡すことができ、配列も渡せるということを思い出してください！
+`awards` を配列として渡せば、`awardCount` のような props を別に使う必要がないことに注意してください。配列を渡すことで `awards.length` を使って受賞数がわかります。props にはあらゆる値を渡すことができ、配列も渡せるということを思い出してください！
 
-別の解法として、このページの上の方の例と同様に、ある人物の情報を単一のオブジェクトにグループ化してそのオブジェクトを 1 つの prop として渡すようにすることもできます：
+別の解法として、このページの上の方の例と同様に、ある人物の情報を単一のオブジェクトにグループ化して、そのオブジェクトを単一の値として props 経由で渡すようにすることもできます。
 
 <Sandpack>
 
@@ -786,7 +786,7 @@ export function getImageUrl(person, size) {
 
 <Solution>
 
-以下が解法の一例です：
+以下が解法の一例です。
 
 <Sandpack>
 
@@ -848,7 +848,7 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-[`window.devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) を考慮に入れて、高 DPI の画面でよりシャープな画像を表示するようにすることもできます：
+[`window.devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) を考慮に入れて、高 DPI の画面でよりシャープな画像を表示するようにすることもできます。
 
 <Sandpack>
 
@@ -925,7 +925,7 @@ props を使うことでこのようなロジックを `Avatar` 内にカプセ�
 
 #### `children` に JSX を渡す {/*passing-jsx-in-a-children-prop*/}
 
-以下のマークアップから `Card` コンポーネントを抽出し、`children` プロパティを使って異なる JSX が渡されるようにしてください。
+以下のマークアップから `Card` コンポーネントを抽出し、props である `children` を使って、異なる JSX を渡せるようにしてください。
 
 <Sandpack>
 
@@ -983,7 +983,7 @@ h1 {
 
 <Hint>
 
-コンポーネントのタグ内に書かれたあらゆる JSX はそのコンポーネントの `children` として渡されます。
+コンポーネントのタグ内に書かれたあらゆる JSX は、そのコンポーネントに `children` として渡されます。
 
 </Hint>
 
@@ -1051,7 +1051,7 @@ h1 {
 
 </Sandpack>
 
-`Card` に常にタイトルがあるようにしたい場合、`title` を独立した props にすることもできます：
+`Card` に常にタイトルがあるようにしたい場合、`title` を独立した props にすることもできます。
 
 <Sandpack>
 

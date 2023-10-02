@@ -34,7 +34,7 @@ title: リストのレンダー
 
 以下は、配列からアイテムのリストを生成する方法を示す簡単な例です。
 
-1. データを配列に**移動**します：
+1. データを配列に**移動**します。
 
 ```js
 const people = [
@@ -46,19 +46,19 @@ const people = [
 ];
 ```
 
-2. `people` 内のメンバを `listItems` という新しい JSX の配列に**マップ**します：
+2. `people` 内のメンバを `listItems` という新しい JSX の配列に**マップ**します。
 
 ```js
 const listItems = people.map(person => <li>{person}</li>);
 ```
 
-3. コンポーネントから `listItems` を `<ul>` で囲んで返します：
+3. コンポーネントから `listItems` を `<ul>` で囲んで返します。
 
 ```js
 return <ul>{listItems}</ul>;
 ```
 
-以下が結果です：
+以下が結果です。
 
 <Sandpack>
 
@@ -85,7 +85,7 @@ li { margin-bottom: 10px; }
 
 </Sandpack>
 
-上のサンドボックスには、コンソールエラーが表示されています：
+上のサンドボックスには、以下のようなコンソールエラーが表示されています。
 
 <ConsoleBlock level="error">
 
@@ -133,7 +133,7 @@ const chemists = people.filter(person =>
 );
 ```
 
-2. 次に `chemists` に対して **map** を適用します：
+2. 次に `chemists` に対して **map** を適用します。
 
 ```js {1,13}
 const listItems = chemists.map(person =>
@@ -244,7 +244,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <Pitfall>
 
-アロー関数は `=>` の直後の式を自動的に返しますので、`return` 文を直接書く必要はありません：
+アロー関数は `=>` の直後の式を自動的に返しますので、`return` 文を直接書く必要はありません。
 
 ```js
 const listItems = chemists.map(person =>
@@ -378,7 +378,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 各アイテムが 1 つの DOM ノードではなく、複数の DOM ノードをレンダーする必要がある場合はどうするのでしょうか？
 
-短い [`<>...</>` フラグメント](/reference/react/Fragment)構文では `key` を渡せないため、これらを 1 つの `<div>` にグループ化するか、やや長くて[より明示的な `<Fragment>` シンタックス](/reference/react/Fragment#rendering-a-list-of-fragments)を使用する必要があります：
+短い [`<>...</>` フラグメント](/reference/react/Fragment)構文では `key` を渡せないため、これらを 1 つの `<div>` にグループ化するか、やや長くて[より明示的な `<Fragment>` 構文](/reference/react/Fragment#rendering-a-list-of-fragments)を使用する必要があります。
 
 ```js
 import { Fragment } from 'react';
@@ -411,7 +411,7 @@ const listItems = people.map(person =>
 
 ### なぜ React は `key` を必要とするのか {/*why-does-react-need-keys*/}
 
-デスクトップ上のファイルに名前がない場合を想像してください。代わりに、最初のファイル、2 番目のファイルといったように、順番によってそれらを区別する必要があるとしましょう。そのうち番号に慣れるかもしれませんが、ファイルを削除した途端に混乱してしまいます。2 番目のファイルが 1 番目のファイルになり、3 番目のファイルが 2 番目のファイルになり、という具合です。
+デスクトップ上のファイルに名前がない場合を想像してください。代わりに、最初のファイル、2 番目のファイルといったように、順番によってそれらを区別する必要があるとしましょう。そのうち番号に慣れるかもしれませんが、ファイルを削除した途端に混乱してしまいますね。2 番目のファイルが 1 番目のファイルになり、3 番目のファイルが 2 番目のファイルになり、という具合です。
 
 フォルダ内のファイル名と JSX の key の目的は似ています。兄弟間で項目を一意に識別できるようにするのです。適切に選択された key は、配列内の位置よりも多くの情報を提供します。並べ替えによって*位置*が変更されたとしても、`key` のおかげで React はその項目が存在する限り、それを一意に識別できるのです。
 
@@ -427,7 +427,7 @@ const listItems = people.map(person =>
 
 <Recap>
 
-このページでは以下のことを学びました：
+このページでは以下のことを学びました。
 
 * コンポーネントからデータを配列やオブジェクトといったデータ構造に移動する方法。
 * JavaScript の `map()` を使用して類似したコンポーネントの集まりを作成する方法。
@@ -440,7 +440,7 @@ const listItems = people.map(person =>
 
 <Challenges>
 
-#### リストを 2 つに分割する {/*splitting-a-list-in-two*/}
+#### リストを 2 つに分割 {/*splitting-a-list-in-two*/}
 
 この例では、すべての人物の一覧を表示しています。
 
@@ -764,7 +764,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 注意深い方は、2 つの `filter` コールで各人物の職業を 2 回確認していることに気づくかもしれません。プロパティのチェックは非常に高速ですので、この例では問題ありません。あなたのロジックがそれ以上に重たい場合は、`filter` コールを手動のループに置き換え、各人物を一度だけチェックしながらループ内で手動で 2 つの配列を構築することができます。
 
-実際、`people` が一切変わらないのであれば、このコードをコンポーネントの外に移動しても構いません。React の観点からは、最終的に JSX ノードの配列が生成されていればよいのです。どのようにしてその配列を生成しているかは問題ではありません：
+実際、`people` が一切変わらないのであれば、このコードをコンポーネントの外に移動しても構いません。React の観点からは、最終的に JSX ノードの配列が生成されていればよいのです。どのようにしてその配列を生成しているかは問題ではありません。
 
 <Sandpack>
 
@@ -926,7 +926,7 @@ export const recipes = [{
 
 <Solution>
 
-以下が解決法のひとつです：
+以下が解決法のひとつです。
 
 <Sandpack>
 
@@ -1026,7 +1026,7 @@ export const recipes = [{
 
 <Solution>
 
-外側の `map` から新しい `Recipe` コンポーネントに JSX をコピーペーストして、その JSX を返すことができます。そして、`recipe.name` を `name` に、`recipe.id` を `id` に変更し、`Recipe` に props として渡します：
+外側の `map` から新しい `Recipe` コンポーネントに JSX をコピーペーストして、その JSX を返すことができます。そして、`recipe.name` を `name` に、`recipe.id` を `id` に変更し、`Recipe` に props として渡します。
 
 <Sandpack>
 
@@ -1078,9 +1078,9 @@ export const recipes = [{
 
 </Sandpack>
 
-ここで `<Recipe {...recipe} key={recipe.id} />` というのは「`recipe` オブジェクトのすべてのプロパティを `Recipe` コンポーネントの props として渡せ」という意味のショートカット構文です。個々の props を明示的に書いても構いません：`<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`
+ここで `<Recipe {...recipe} key={recipe.id} />` というのは「`recipe` オブジェクトのすべてのプロパティを `Recipe` コンポーネントの props として渡せ」という意味のショートカット構文です。`<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />` のように、個々の props を明示的に書いても構いません。
 
-**`key` は `<Recipe>` から返される `<div>` 内ではなく、`<Recipe>` 自体に指定する必要があることに注意してください**。これは、`key` を直接必要としているのはそれを囲んでいる配列という文脈だからです。これまでは `<div>` の配列があったので個々の div に `key` が必要でしたが、今存在するのは `<Recipe>` の配列です。別の言い方をすると、コンポーネントを抽出する場合は、コピーペーストする JSX の外に `key` を残すことを忘れないようにしましょう。
+**`key` は `<Recipe>` から返される `<div>` 内ではなく、`<Recipe>` 自体に指定する必要があることに注意してください**。これは、`key` を直接必要としているのはそれを囲んでいる配列の文脈の方だからです。これまでは `<div>` の配列があったので個々の div に `key` が必要でしたが、今存在するのは `<Recipe>` の配列です。別の言い方をすると、コンポーネントを抽出する場合は、コピーペーストする JSX の外に `key` を残すことを忘れないようにしましょう。
 
 </Solution>
 
