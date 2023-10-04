@@ -284,7 +284,7 @@ console.log(ref.current); // 5
 
 ## ref と DOM {/*refs-and-the-dom*/}
 
-ref には任意の値を指すことができます。ただし、ref の最も一般的な使用例は、DOM 要素にアクセスすることです。例えば、プログラムで入力にフォーカスを当てたい場合に便利です。`<div ref={myRef}>` のようにして JSX の `ref` 属性に ref を渡すと、React は対応する DOM 要素を `myRef.current` に入れます。これについては、[ref で DOM を操作する](/learn/manipulating-the-dom-with-refs)で詳しく説明しています。
+ref は任意の値を参照として保持できます。ただし、ref の最も一般的な使用例は、DOM 要素にアクセスすることです。例えば、プログラムで入力にフォーカスを当てたい場合に便利です。`<div ref={myRef}>` のようにして JSX の `ref` 属性に ref を渡すと、React は対応する DOM 要素を `myRef.current` に入れます。その要素が DOM から削除されると、React は `myRef.current` を `null` にセットします。これについては、[ref で DOM を操作する](/learn/manipulating-the-dom-with-refs)で詳しく説明しています。
 
 <Recap>
 

@@ -2073,7 +2073,13 @@ export default function Game() {
 }
 ```
 
-コードは以下のようになります。ただし ``Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of `Game`.`` というエラーが、開発者ツールのコンソールに表示されていることに注意してください。このエラーは次のセクションで修正します。
+コードは以下のようになります。なお開発者ツールのコンソールには以下のようなエラーが表示されています。
+
+<ConsoleBlock level="warning">
+Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of &#96;Game&#96;.
+</ConsoleBlock>
+
+このエラーは次のセクションで修正します。
 
 <Sandpack>
 
