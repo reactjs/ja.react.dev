@@ -4,7 +4,7 @@ title: state はスナップショットである
 
 <Intro>
 
-state 変数は、読んだり書いたりできる普通の JavaScript の変数のように見えるかもしれません。しかし、state はむしろ、スナップショットのように振る舞います。state をセットしても、既にある state 変数は変更されず、かわりに再レンダーがトリガされます。
+state 変数は、読んだり書いたりできる普通の JavaScript の変数のように見えるかもしれません。しかし、state はむしろ、スナップショットのように振る舞います。state をセットしても、既にある state 変数は変更されず、代わりに再レンダーがトリガされます。
 
 </Intro>
 
@@ -79,7 +79,7 @@ React がコンポーネントを再レンダーする際には：
 
 1. React が再度あなたの関数を呼び出します。
 2. 関数は新しい JSX のスナップショットを返します。
-3. React は返されたスナップショットに合わせて画面を更新します。
+3. React はあなたの関数が返したスナップショットに合わせて画面を更新します。
 
 <IllustrationBlock sequential>
     <Illustration caption="React が関数を実行" src="/images/docs/illustrations/i_render1.png" />

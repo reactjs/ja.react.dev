@@ -4,7 +4,7 @@ title: JSX でマークアップを記述する
 
 <Intro>
 
-*JSX* とは JavaScript の拡張であり、JavaScript ファイル内に HTML のようなマークアップを書けるようにするものです。コンポーネントを書く手段はほかにも存在しますが、ほとんどの React 開発者は JSX の簡潔さを好んでいるため、ほとんどのコードベースで使われています。
+*JSX* とは JavaScript の拡張であり、JavaScript ファイル内に HTML のようなマークアップを書けるようにするものです。コンポーネントを書く手段はほかにも存在しますが、ほとんどの React 開発者は JSX の簡潔さを好んでいるため、ほとんどのコードベースで JSX が使われています。
 
 </Intro>
 
@@ -18,7 +18,7 @@ title: JSX でマークアップを記述する
 
 ## JSX: JavaScript にマークアップを入れ込む {/*jsx-putting-markup-into-javascript*/}
 
-これまでウェブは HTML、CSS そして JavaScript を使って作られてきました。長年にわたり、ウェブ開発者はコンテンツは HTML で書き、デザインは CSS で書き、ロジックは JavaScript で書き、そして大抵の場合はそれらを別ファイルにしていました。コンテンツは HTML 内にマークアップされ、そのページのロジックは別ファイルの JavaScript に存在していました：
+これまで、ウェブは HTML、CSS そして JavaScript を使って作られてきました。長年にわたり、ウェブ開発者はコンテンツは HTML で書き、デザインは CSS で書き、ロジックは JavaScript で書き、そして大抵の場合はそれらを別ファイルにしていました。コンテンツが HTML 内にマークアップされる一方で、そのページのロジックは別ファイルの JavaScript に存在していました。
 
 <DiagramGroup>
 
@@ -42,13 +42,13 @@ JavaScript
 
 <Diagram name="writing_jsx_sidebar" height={330} width={325} alt="前述の例の HTML と JavaScript がミックスされた React コンポーネント。関数名は Sidebar であり、内部で isLoggedIn を呼び出している（黄色）。その中に、前述の例の p タグや、後で示すコンポーネントを呼び出すための Form タグがネストされている（紫）。">
 
-`Sidebar.js` React component
+`Sidebar.js` React コンポーネント
 
 </Diagram>
 
 <Diagram name="writing_jsx_form" height={330} width={325} alt="前述の例の HTML と JavaScript がミックスされた React コンポーネント。関数名は Form であり、onClick と onSubmit という 2 つのハンドラが含まれている（黄色）。ハンドラの後に HTML が続く（紫）。HTML 部分に、onClick プロパティの設定された input 要素がネストされている form 要素が含まれている。">
 
-`Form.js` React component
+`Form.js` React コンポーネント
 
 </Diagram>
 
@@ -136,7 +136,7 @@ img { height: 90px }
 
 コンポーネントから複数の要素を返すには、**それを単一の親タグで囲みます**。
 
-例えば `<div>` を使うことができます：
+例えば `<div>` を使うことができます。
 
 ```js {1,11}
 <div>
@@ -153,7 +153,7 @@ img { height: 90px }
 ```
 
 
-マークアップに余分な `<div>` を加えたくない場合は、`<>` と `</>` を代わりに使うことができます：
+マークアップに余分な `<div>` を加えたくない場合は、代わりに `<>` と `</>` を使うことができます。
 
 ```js {1,11}
 <>
@@ -169,7 +169,7 @@ img { height: 90px }
 </>
 ```
 
-この中身のないタグは *[フラグメント](/reference/react/Fragment)* と呼ばれるものです。フラグメントを使えば、ブラウザの HTML ツリーに痕跡を残さずに複数の要素をまとめることができます。
+この中身のないタグは[*フラグメント (Fragment)*](/reference/react/Fragment) と呼ばれるものです。フラグメントを使えば、ブラウザの HTML ツリーに痕跡を残すことなく、複数の要素をまとめることができます。
 
 <DeepDive>
 
@@ -183,7 +183,7 @@ JSX は HTML のように見えますが、裏ではプレーンな JavaScript �
 
 JSX ではすべてのタグを明示的に閉じる必要があります。`<img>` のような自動で閉じるタグは `<img />` のようになりますし、`<li>oranges` のような囲みタグは `<li>oranges</li>` と書かなければなりません。
 
-Hedy Lamarr の画像とリスト項目は、閉じタグを書いた状態では以下のようになります：
+Hedy Lamarr の画像とリスト項目は、閉じタグを書いた状態では以下のようになります。
 
 ```js {2-6,8-10}
 <>
@@ -226,7 +226,7 @@ JSX は JavaScript に変換され、中に書かれた属性は JavaScript オ�
 
 既存のマークアップの属性をすべて書きかえていくのは時に面倒です！ 既存の HTML や SVG を JSX に変換する場合は[コンバータ](https://transform.tools/html-to-jsx)を使うことをお勧めします。コンバータは実用上非常に役に立ちますが、自分でも楽に JSX が書けるよう、何が起こっているのかを理解しておくことも大切です。
 
-最終結果は以下のようなものになります：
+最終結果は以下のようなものになります。
 
 <Sandpack>
 
@@ -258,7 +258,7 @@ img { height: 90px }
 
 <Recap>
 
-これで JSX が存在する理由と、コンポーネント内での使い方について理解しました：
+これで JSX が存在する理由と、コンポーネント内での使い方について理解しました。
 
 * レンダリングロジックとマークアップは互いに関連しているので、React ではそれらをグループ化する。
 * JSX は HTML と似ているがいくつかの違いがある。必要なら[コンバータ](https://transform.tools/html-to-jsx)を使える。
@@ -272,7 +272,7 @@ img { height: 90px }
 
 #### HTML を JSX に変換する {/*convert-some-html-to-jsx*/}
 
-この HTML はコンポーネント内に貼り付けられたものですが、正しい JSX ではありません。修正してください：
+この HTML はコンポーネント内に貼り付けられたものですが、正しい JSX ではありません。修正してください。
 
 <Sandpack>
 

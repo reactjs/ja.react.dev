@@ -4,7 +4,7 @@
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET STARTED"
+      "sectionHeader": "スタートガイド"
     },
     {
       "title": "クイックスタート",
@@ -37,6 +37,10 @@
           "path": "/learn/editor-setup"
         },
         {
+          "title": "TypeScript の使用",
+          "path": "/learn/typescript"
+        },
+        {
           "title": "React Developer Tools",
           "path": "/learn/react-developer-tools"
         }
@@ -44,7 +48,7 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "LEARN REACT"
+      "sectionHeader": "REACT を学ぶ"
     },
     {
       "title": "UI の記述",
@@ -156,7 +160,7 @@
       ]
     },
     {
-      "title": "Escape Hatches",
+      "title": "避難ハッチ",
       "path": "/learn/escape-hatches",
       "tags": ["advanced"],
       "routes": [
@@ -181,7 +185,7 @@
           "path": "/learn/lifecycle-of-reactive-effects"
         },
         {
-          "title": "Separating Events from Effects",
+          "title": "イベントとエフェクトを切り離す",
           "path": "/learn/separating-events-from-effects"
         },
         {

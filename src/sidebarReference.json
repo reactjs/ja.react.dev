@@ -7,9 +7,14 @@
       "sectionHeader": "react@18.2.0"
     },
     {
-      "title": "Hooks",
+      "title": "フック",
       "path": "/reference/react",
       "routes": [
+        {
+          "title": "use",
+          "path": "/reference/react/use",
+          "canary": true
+        },
         {
           "title": "useCallback",
           "path": "/reference/react/useCallback"
@@ -73,7 +78,7 @@
       ]
     },
     {
-      "title": "Components",
+      "title": "コンポーネント",
       "path": "/reference/react/components",
       "routes": [
         {
@@ -95,9 +100,14 @@
       ]
     },
     {
-      "title": "APIs",
+      "title": "API",
       "path": "/reference/react/apis",
       "routes": [
+        {
+          "title": "cache",
+          "path": "/reference/react/cache",
+          "canary": true
+        },
         {
           "title": "createContext",
           "path": "/reference/react/createContext"
@@ -121,16 +131,19 @@
       ]
     },
     {
-      "title": "Directives",
+      "title": "ディレクティブ",
       "path": "/reference/react/directives",
+      "canary": true,
       "routes": [
         {
           "title": "'use client'",
-          "path": "/reference/react/use-client"
+          "path": "/reference/react/use-client",
+          "canary": true
         },
         {
           "title": "'use server'",
-          "path": "/reference/react/use-server"
+          "path": "/reference/react/use-server",
+          "canary": true
         }
       ]
     },
@@ -139,11 +152,11 @@
       "sectionHeader": "react-dom@18.2.0"
     },
     {
-      "title": "Components",
+      "title": "コンポーネント",
       "path": "/reference/react-dom/components",
       "routes": [
         {
-          "title": "Common (e.g. <div>)",
+          "title": "<div> などの一般的なコンポーネント",
           "path": "/reference/react-dom/components/common"
         },
         {
@@ -169,7 +182,7 @@
       ]
     },
     {
-      "title": "APIs",
+      "title": "API",
       "path": "/reference/react-dom",
       "routes": [
         {
@@ -199,7 +212,7 @@
       ]
     },
     {
-      "title": "Client APIs",
+      "title": "クライアント API",
       "path": "/reference/react-dom/client",
       "routes": [
         {
@@ -213,7 +226,7 @@
       ]
     },
     {
-      "title": "Server APIs",
+      "title": "サーバ API",
       "path": "/reference/react-dom/server",
       "routes": [
         {
@@ -244,10 +257,10 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Legacy APIs"
+      "sectionHeader": "レガシー API"
     },
     {
-      "title": "Legacy React APIs",
+      "title": "レガシー React API",
       "path": "/reference/react/legacy",
       "routes": [
         {

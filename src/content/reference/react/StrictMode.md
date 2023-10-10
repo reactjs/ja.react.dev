@@ -5,7 +5,7 @@ title: <StrictMode>
 
 <Intro>
 
-`<StrictMode>` lets you find common bugs in your components early during development.
+`<StrictMode>` は、開発環境においてコンポーネントの一般的なバグを早期に見つけるのに役立ちます。
 
 
 ```js
@@ -20,11 +20,11 @@ title: <StrictMode>
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `<StrictMode>` {/*strictmode*/}
 
-Use `StrictMode` to enable additional development behaviors and warnings for the component tree inside:
+`StrictMode` を使用して、内側のコンポーネントツリーに対して開発時専用の挙動と警告を有効にします。
 
 ```js
 import { StrictMode } from 'react';
@@ -38,32 +38,32 @@ root.render(
 );
 ```
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-Strict Mode enables the following development-only behaviors:
+Strict Mode では、以下のような開発時専用の挙動が有効になります。
 
-- Your components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
-- Your components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
-- Your components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
+- コンポーネントは、純粋でない (impure) レンダーによって引き起こされるバグを見つけるために、[レンダーを追加で 1 回行います](#fixing-bugs-found-by-double-rendering-in-development)。
+- コンポーネントは、エフェクトのクリーンアップし忘れによるバグを見つけるために、[エフェクトの実行を追加で 1 回行います](#fixing-bugs-found-by-re-running-effects-in-development)。
+- コンポーネントが[非推奨の API を使用していないかチェック](#fixing-deprecation-warnings-enabled-by-strict-mode)します。
 
-#### Props {/*props*/}
+#### props {/*props*/}
 
-`StrictMode` accepts no props.
+`StrictMode` は props を受け付けません。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-* There is no way to opt out of Strict Mode inside a tree wrapped in `<StrictMode>`. This gives you confidence that all components inside `<StrictMode>` are checked. If two teams working on a product disagree whether they find the checks valuable, they need to either reach consensus or move `<StrictMode>` down in the tree.
+* 一旦 `<StrictMode>` でラップされたツリー内で Strict Mode を無効化する方法はありません。これにより、`<StrictMode>` 内のすべてのコンポーネントがチェックされていることを確信できます。あるプロダクト内で、チェックに価値があると感じるかどうかに関して 2 つのチームの意見が割れた場合、合意に達するか、もしくは `<StrictMode>` をツリーの下側へ移動する必要があります。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Enabling Strict Mode for entire app {/*enabling-strict-mode-for-entire-app*/}
+### アプリ全体で Strict Mode を有効にする {/*enabling-strict-mode-for-entire-app*/}
 
-Strict Mode enables extra development-only checks for the entire component tree inside the `<StrictMode>` component. These checks help you find common bugs in your components early in the development process.
+Strict Mode は、`<StrictMode>` コンポーネント内の全コンポーネントツリーに対して追加の開発時専用チェックを有効にします。これらのチェックは、開発プロセスの早い段階でコンポーネントの一般的なバグを見つけるのに役立ちます。
 
 
-To enable Strict Mode for your entire app, wrap your root component with `<StrictMode>` when you render it:
+アプリ全体で Strict Mode を有効にするには、ルートコンポーネントをレンダーする際にそれを `<StrictMode>` でラップします。
 
 ```js {6,8}
 import { StrictMode } from 'react';
@@ -77,27 +77,27 @@ root.render(
 );
 ```
 
-We recommend wrapping your entire app in Strict Mode, especially for newly created apps. If you use a framework that calls [`createRoot`](/reference/react-dom/client/createRoot) for you, check its documentation for how to enable Strict Mode.
+特に新しく作成されたアプリについては、アプリ全体を Strict Mode でラップすることをお勧めします。[`createRoot`](/reference/react-dom/client/createRoot) の呼び出しを自動的に行うフレームワークを使用している場合は、ドキュメンテーションを参照して Strict Mode を有効にする方法を確認してください。
 
-Although the Strict Mode checks **only run in development,** they help you find bugs that already exist in your code but can be tricky to reliably reproduce in production. Strict Mode lets you fix bugs before your users report them.
+Strict Mode のチェックは**開発中にのみ実行される**ものですが、これらは既にコード内に存在するが本番環境での確実な再現が難しいバグを見つけるのに役立ちます。Strict Mode を使用することで、バグをユーザが報告してくる前に修正することができます。
 
 <Note>
 
-Strict Mode enables the following checks in development:
+Strict Mode は開発中に以下のチェックを有効にします：
 
-- Your components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
-- Your components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
-- Your components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
+- コンポーネントは、純粋でない (impure) レンダーによって引き起こされるバグを見つけるために、[レンダーを追加で 1 回行います](#fixing-bugs-found-by-double-rendering-in-development)。
+- コンポーネントは、エフェクトのクリーンアップし忘れによるバグを見つけるために、[エフェクトの実行を追加で 1 回行います](#fixing-bugs-found-by-re-running-effects-in-development)。
+- コンポーネントが[非推奨の API の使用を使っていないかチェック](#fixing-deprecation-warnings-enabled-by-strict-mode)します。
 
-**All of these checks are development-only and do not impact the production build.**
+**これらのチェックはすべて開発環境専用であり、本番用ビルドには影響しません。**
 
 </Note>
 
 ---
 
-### Enabling strict mode for a part of the app {/*enabling-strict-mode-for-a-part-of-the-app*/}
+### アプリの一部で Strict Mode を有効にする {/*enabling-strict-mode-for-a-part-of-the-app*/}
 
-You can also enable Strict Mode for any part of your application:
+アプリケーションの任意の一部分でのみ Strict Mode を有効にすることも可能です。
 
 ```js {7,12}
 import { StrictMode } from 'react';
@@ -118,25 +118,25 @@ function App() {
 }
 ```
 
-In this example, Strict Mode checks will not run against the `Header` and `Footer` components. However, they will run on `Sidebar` and `Content`, as well as all of the components inside them, no matter how deep.
+上記の例では、Strict Mode のチェックは `Header` と `Footer` コンポーネントに対しては実行されません。しかし、`Sidebar` と `Content`、およびそれらの中にあるすべてのコンポーネントに対しては、どれだけ深いところにあってもチェックが実行されます。
 
 ---
 
-### Fixing bugs found by double rendering in development {/*fixing-bugs-found-by-double-rendering-in-development*/}
+### 開発中の二重レンダーによって見つかったバグの修正 {/*fixing-bugs-found-by-double-rendering-in-development*/}
 
-[React assumes that every component you write is a pure function.](/learn/keeping-components-pure) This means that React components you write must always return the same JSX given the same inputs (props, state, and context).
+[React は、あなたの書くすべてのコンポーネントが純関数 (pure function) であると仮定しています](/learn/keeping-components-pure)。これは、あなたが書く React コンポーネントは、同じ入力（props、state、context）が与えられた場合に常に同じ JSX を返さなければならないという意味です。
 
-Components breaking this rule behave unpredictably and cause bugs. To help you find accidentally impure code, Strict Mode calls some of your functions (only the ones that should be pure) **twice in development.** This includes:
+このルールを守らないコンポーネントは予測不能な挙動を示し、バグを引き起こします。うっかり純粋でなくなってしまったコードを見つけるために、Strict Mode はあなたの関数の一部（純粋であるべきものだけ）を**開発中に 2 回呼び出します**。これには以下が含まれます。
 
-- Your component function body (only top-level logic, so this doesn't include code inside event handlers)
-- Functions that you pass to [`useState`](/reference/react/useState), [`set` functions](/reference/react/useState#setstate), [`useMemo`](/reference/react/useMemo), or [`useReducer`](/reference/react/useReducer)
-- Some class component methods like [`constructor`](/reference/react/Component#constructor), [`render`](/reference/react/Component#render), [`shouldComponentUpdate`](/reference/react/Component#shouldcomponentupdate) ([see the whole list](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects))
+- あなたのコンポーネント関数本体（トップレベルのロジックのみ。イベントハンドラ内のコードは含まれません。）
+- [`useState`](/reference/react/useState)、[`set` 関数](/reference/react/useState#setstate)、[`useMemo`](/reference/react/useMemo)、および [`useReducer`](/reference/react/useReducer) に渡す関数
+- [`constructor`](/reference/react/Component#constructor)、[`render`](/reference/react/Component#render)、[`shouldComponentUpdate`](/reference/react/Component#shouldcomponentupdate) などの一部のクラスコンポーネントメソッド（[全リストを見る](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects)）
 
-If a function is pure, running it twice does not change its behavior because a pure function produces the same result every time. However, if a function is impure (for example, it mutates the data it receives), running it twice tends to be noticeable (that's what makes it impure!) This helps you spot and fix the bug early.
+関数が純粋であれば、結果は毎回同じになるので、2 回実行してもその振る舞いは変わりません。しかし、関数が純粋でない（例えば、受け取ったデータを書き換えている）場合、2 回実行することで目に見える影響が出る（まさにそれが純粋でないということです！）傾向があります。これにより、バグを早期に見つけて修正するのに役立ちます。
 
-**Here is an example to illustrate how double rendering in Strict Mode helps you find bugs early.**
+**以下は、Strict Mode での二重レンダーがどのように早期にバグを見つけるのに役立つかを示す例です**。
 
-This `StoryTray` component takes an array of `stories` and adds one last "Create Story" item at the end:
+この `StoryTray` コンポーネントは `stories` の配列を受け取り、その最後に "Create Story" という項目を加えて表示します。
 
 <Sandpack>
 
@@ -212,9 +212,9 @@ li {
 
 </Sandpack>
 
-There is a mistake in the code above. However, it is easy to miss because the initial output appears correct.
+上記のコードには間違いがあります。しかし、初回の出力は正しく見えるため、容易に見落としてしまいます。
 
-This mistake will become more noticeable if the `StoryTray` component re-renders multiple times. For example, let's make the `StoryTray` re-render with a different background color whenever you hover over it: 
+`StoryTray` コンポーネントが複数回レンダーされるとこの間違いに気付きやすくなります。例えば、マウスを `StoryTray` の上にホバーすると背景色を変えて `StoryTray` が再レンダーされるようにしてみましょう。
 
 <Sandpack>
 
@@ -299,9 +299,9 @@ li {
 
 </Sandpack>
 
-Notice how every time you hover over the `StoryTray` component, "Create Story" gets added to the list again. The intention of the code was to add it once at the end. But `StoryTray` directly modifies the `stories` array from the props. Every time `StoryTray` renders, it adds "Create Story" again at the end of the same array. In other words, `StoryTray` is not a pure function--running it multiple times produces different results.
+`StoryTray` コンポーネントの上にマウスをホバーするたびに、"Create Story" が再度リストに追加されることに注意してください。コードの意図は、最後に一度だけ追加することでした。しかし、`StoryTray` は props の `stories` 配列を直接書き換えています。`StoryTray` がレンダーされるたびに、同じ配列の最後に "Create Story" を再び追加しています。つまり、`StoryTray` は純関数ではなく、複数回実行することで異なる結果が返ってきます。
 
-To fix this problem, you can make a copy of the array, and modify that copy instead of the original one:
+この問題を解決するためには、配列のコピーを作り、元の配列の代わりにそのコピーを書き換えるようにできます。
 
 ```js {2}
 export default function StoryTray({ stories }) {
@@ -310,9 +310,9 @@ export default function StoryTray({ stories }) {
   items.push({ id: 'create', label: 'Create Story' });
 ```
 
-This would [make the `StoryTray` function pure.](/learn/keeping-components-pure) Each time it is called, it would only modify a new copy of the array, and would not affect any external objects or variables. This solves the bug, but you had to make the component re-render more often before it became obvious that something is wrong with its behavior.
+これにより、[`StoryTray` 関数は純関数になります](/learn/keeping-components-pure)。呼び出されるたびに、新しい配列のコピーだけが書き換わり、外部のオブジェクトや変数には影響を与えません。これによりバグは修正されましたが、振る舞いに問題があることに気付けるようになる前に、コンポーネントを通常より多く再レンダーする必要がありました。
 
-**In the original example, the bug wasn't obvious. Now let's wrap the original (buggy) code in `<StrictMode>`:**
+**この例では、バグが明らかではありませんでした。では、元の（バグがある）コードを `<StrictMode>` でラップしてみましょう：**
 
 <Sandpack>
 
@@ -393,7 +393,7 @@ li {
 
 </Sandpack>
 
-**Strict Mode *always* calls your rendering function twice, so you can see the mistake right away** ("Create Story" appears twice). This lets you notice such mistakes early in the process. When you fix your component to render in Strict Mode, you *also* fix many possible future production bugs like the hover functionality from before:
+**Strict Mode は*常に*レンダー関数を 2 回呼び出すため、すぐに間違った結果が目に入ります**（"Create Story" が 2 回表示されます）。これにより、早期にこのような間違いに気づくことができます。Strict Mode でコンポーネントをレンダーするようにすることで、先ほどのホバー機能のような、将来本番環境で発生しうる多くのバグも、あらかじめ潰しておけるのです。
 
 <Sandpack>
 
@@ -483,29 +483,29 @@ li {
 
 </Sandpack>
 
-Without Strict Mode, it was easy to miss the bug until you added more re-renders. Strict Mode made the same bug appear right away. Strict Mode helps you find bugs before you push them to your team and to your users.
+Strict Mode がなければ、再レンダーを追加しない限りバグを容易に見逃してしまう状態でした。Strict Mode は同じバグをすぐに見つかるようにします。Strict Mode は、チームやユーザに公開してしまう前にバグを見つけるのに役立ちます。
 
-[Read more about keeping components pure.](/learn/keeping-components-pure)
+[コンポーネントを純粋に保つ方法について詳しく読む](/learn/keeping-components-pure)
 
 <Note>
 
-If you have [React DevTools](/learn/react-developer-tools) installed, any `console.log` calls during the second render call will appear slightly dimmed. React DevTools also offers a setting (off by default) to suppress them completely.
+[React DevTools](/learn/react-developer-tools) をインストールしている場合、2 回目のレンダー呼び出し中の `console.log` 呼び出しは少し暗く表示されます。React DevTools には、それらを完全に非表示にする設定もあります（デフォルトではオフ）。
 
 </Note>
 
 ---
 
-### Fixing bugs found by re-running Effects in development {/*fixing-bugs-found-by-re-running-effects-in-development*/}
+### 開発中にエフェクトを再実行して見つかったバグの修正 {/*fixing-bugs-found-by-re-running-effects-in-development*/}
 
-Strict Mode can also help find bugs in [Effects.](/learn/synchronizing-with-effects)
+Strict Mode は、[エフェクト](/learn/synchronizing-with-effects)のバグを見つけるのにも役立ちます。
 
-Every Effect has some setup code and may have some cleanup code. Normally, React calls setup when the component *mounts* (is added to the screen) and calls cleanup when the component *unmounts* (is removed from the screen). React then calls cleanup and setup again if its dependencies changed since the last render.
+すべてのエフェクトにはセットアップコードがあり、一部のエフェクトにはクリーンアップコードもあります。通常、React はコンポーネントが*マウント*（画面に追加）されたときにセットアップコードを呼び出し、コンポーネントが*アンマウント*（画面から削除）されたときにクリーンアップコードを呼び出します。その後、前回のレンダー以降に依存配列が変更された場合、React は再度クリーンアップとセットアップを呼び出します。
 
-When Strict Mode is on, React will also run **one extra setup+cleanup cycle in development for every Effect.** This may feel surprising, but it helps reveal subtle bugs that are hard to catch manually.
+Strict Mode がオンの場合、React は開発中にすべてのエフェクトに対して **追加で 1 回、セットアップ+クリーンアップのサイクルを実行します**。この挙動に驚くかもしれませんが、手動で見つけるのが難しい微妙なバグを明らかにするのに役立ちます。
 
-**Here is an example to illustrate how re-running Effects in Strict Mode helps you find bugs early.**
+**Strict Mode でエフェクトを再実行することが、早期にバグを見つけるのにどのように役立つかを示す例を示します。**
 
-Consider this example that connects a component to a chat:
+以下の例では、コンポーネントをチャットに接続しています。
 
 <Sandpack>
 
@@ -562,9 +562,9 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-There is an issue with this code, but it might not be immediately clear.
+このコードには問題がありますが、すぐには明らかではないかもしれません。
 
-To make the issue more obvious, let's implement a feature. In the example below, `roomId` is not hardcoded. Instead, the user can select the `roomId` that they want to connect to from a dropdown. Click "Open chat" and then select different chat rooms one by one. Keep track of the number of active connections in the console:
+問題を目立たせるため、機能を実装してみましょう。以下の例では、`roomId` はハードコードされておらず、代わりに、ユーザはドロップダウンから接続したい `roomId` を選択できます。"Open chat" をクリックし、次にひとつずつ異なるチャットルームを選択してください。コンソールでアクティブな接続の数を数えてみてください。
 
 <Sandpack>
 
@@ -646,7 +646,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-You'll notice that the number of open connections always keeps growing. In a real app, this would cause performance and network problems. The issue is that [your Effect is missing a cleanup function:](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed)
+開いている接続の数が増え続けていくことにお気づきでしょう。実際のアプリケーションでは、これによりパフォーマンスやネットワークの問題が発生します。問題は、[エフェクトにクリーンアップ関数がない](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed)ことです。
 
 ```js {4}
   useEffect(() => {
@@ -656,9 +656,9 @@ You'll notice that the number of open connections always keeps growing. In a rea
   }, [roomId]);
 ```
 
-Now that your Effect "cleans up" after itself and destroys the outdated connections, the leak is solved. However, notice that the problem did not become visible until you've added more features (the select box).
+これでエフェクトが自身を「クリーンアップ」し、古い接続を破棄するようになったので、リークは解消されました。しかし、問題が見えてくるのは、より多くの機能（選択ボックス）を追加した後でした。
 
-**In the original example, the bug wasn't obvious. Now let's wrap the original (buggy) code in `<StrictMode>`:**
+**元の例では、バグは明らかではありませんでした。では、元の（バグのある）コードを `<StrictMode>` でラップしてみましょう：**
 
 <Sandpack>
 
@@ -720,9 +720,9 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-**With Strict Mode, you immediately see that there is a problem** (the number of active connections jumps to 2). Strict Mode runs an extra setup+cleanup cycle for every Effect. This Effect has no cleanup logic, so it creates an extra connection but doesn't destroy it. This is a hint that you're missing a cleanup function.
+**Strict Mode を使用すると、すぐに問題があることがわかります**（アクティブな接続の数が 2 に跳ね上がります）。Strict Mode は、すべてのエフェクトに対してセットアップ+クリーンアップのサイクルを追加で実行します。このエフェクトにはクリーンアップロジックがないため、余分な接続が作成されても破棄されませんでした。これは、クリーンアップ関数が欠けていることを示すヒントです。
 
-Strict Mode lets you notice such mistakes early in the process. When you fix your Effect by adding a cleanup function in Strict Mode, you *also* fix many possible future production bugs like the select box from before:
+Strict Mode を使用すると、このようなミスを早期に気付くことができます。Strict Mode でエフェクトにクリーンアップ関数を追加して修正することで、先ほどの選択ボックスのような、将来本番環境で発生しうる多くのバグも、あらかじめ潰しておけるのです。
 
 <Sandpack>
 
@@ -810,21 +810,21 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice how the active connection count in the console doesn't keep growing anymore.
+コンソールに表示されるアクティブな接続の数が増えていかなくなったことに注目してください。
 
-Without Strict Mode, it was easy to miss that your Effect needed cleanup. By running *setup → cleanup → setup* instead of *setup* for your Effect in development, Strict Mode made the missing cleanup logic more noticeable.
+Strict Mode がなければ、エフェクトがクリーンアップを必要としていることを容易に見逃すところでした。開発中にエフェクトに対して「*セットアップ → クリーンアップ → セットアップ*」を実行することで、Strict Mode はクリーンアップロジックが欠けていることにより気付きやすくしたのです。
 
-[Read more about implementing Effect cleanup.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+[エフェクトのクリーンアップの実装について詳しく読む](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 
 ---
 
-### Fixing deprecation warnings enabled by Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
+### Strict Mode によって有効化された非推奨警告の修正 {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
 
-React warns if some component anywhere inside a `<StrictMode>` tree uses one of these deprecated APIs:
+React は、`<StrictMode>` ツリー内のいずれかのコンポーネントが以下の非推奨 API を使用している場合に警告を発します。
 
-* [`findDOMNode`](/reference/react-dom/findDOMNode). [See alternatives.](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
-* `UNSAFE_` class lifecycle methods like [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [See alternatives.](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles) 
-* Legacy context ([`childContextTypes`](/reference/react/Component#static-childcontexttypes), [`contextTypes`](/reference/react/Component#static-contexttypes), and [`getChildContext`](/reference/react/Component#getchildcontext)). [See alternatives.](/reference/react/createContext)
-* Legacy string refs ([`this.refs`](/reference/react/Component#refs)). [See alternatives.](https://reactjs.org/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage)
+* [`findDOMNode`](/reference/react-dom/findDOMNode)。[代替手段を見る](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
+* `UNSAFE_` クラスライフサイクルメソッド（[`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount) など）。[代替手段を見る](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles) 
+* レガシーコンテクスト（[`childContextTypes`](/reference/react/Component#static-childcontexttypes)、[`contextTypes`](/reference/react/Component#static-contexttypes)、[`getChildContext`](/reference/react/Component#getchildcontext)）。[代替手段を見る](/reference/react/createContext)
+* レガシーの文字列型 ref（[`this.refs`](/reference/react/Component#refs)）。[代替手段を見る](https://reactjs.org/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage)
 
-These APIs are primarily used in older [class components](/reference/react/Component) so they rarely appear in modern apps.
+これらの API は主に古い[クラスコンポーネント](/reference/react/Component)で使用されているものであり、現在のアプリケーションではほとんど見られません。

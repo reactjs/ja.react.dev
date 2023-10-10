@@ -4,15 +4,15 @@ title: unmountComponentAtNode
 
 <Deprecated>
 
-This API will be removed in a future major version of React.
+この API は、将来の React のメジャーバージョンで削除されます。
 
-In React 18, `unmountComponentAtNode` was replaced by [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount).
+React 18 では、`unmountComponentAtNode` は [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount) に置き換えられました。
 
 </Deprecated>
 
 <Intro>
 
-`unmountComponentAtNode` removes a mounted React component from the DOM.
+`unmountComponentAtNode` は、マウントされた React コンポーネントを DOM から削除します。
 
 ```js
 unmountComponentAtNode(domNode)
@@ -24,11 +24,11 @@ unmountComponentAtNode(domNode)
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `unmountComponentAtNode(domNode)` {/*unmountcomponentatnode*/}
 
-Call `unmountComponentAtNode` to remove a mounted React component from the DOM and clean up its event handlers and state.
+`unmountComponentAtNode` を呼び出して、マウントされた React コンポーネントを DOM から削除し、そのイベントハンドラと state をクリーンアップします。
 
 ```js
 import { unmountComponentAtNode } from 'react-dom';
@@ -39,21 +39,21 @@ render(<App />, domNode);
 unmountComponentAtNode(domNode);
 ```
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-* `domNode`: A [DOM element.](https://developer.mozilla.org/en-US/docs/Web/API/Element) React will remove a mounted React component from this element.
+* `domNode`: [DOM 要素](https://developer.mozilla.org/en-US/docs/Web/API/Element)。React はこの要素からマウント済みの React コンポーネントを削除します。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-`unmountComponentAtNode` returns `true` if a component was unmounted and `false` otherwise.
+`unmountComponentAtNode` は、コンポーネントがアンマウントされた場合は `true` を、そうでない場合は `false` を返します。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-Call `unmountComponentAtNode` to remove a <CodeStep step={1}>mounted React component</CodeStep> from a <CodeStep step={2}>browser DOM node</CodeStep> and clean up its event handlers and state.
+`unmountComponentAtNode` を呼び出して、<CodeStep step={1}>マウントされた React コンポーネント</CodeStep>を <CodeStep step={2}>ブラウザの DOM ノード</CodeStep>から削除し、そのイベントハンドラと state をクリーンアップします。
 
 ```js [[1, 5, "<App />"], [2, 5, "rootNode"], [2, 8, "rootNode"]]
 import { render, unmountComponentAtNode } from 'react-dom';
@@ -67,11 +67,11 @@ unmountComponentAtNode(rootNode);
 ```
 
 
-### Removing a React app from a DOM element {/*removing-a-react-app-from-a-dom-element*/}
+### DOM 要素から React アプリを削除する {/*removing-a-react-app-from-a-dom-element*/}
 
-Occasionally, you may want to "sprinkle" React on an existing page, or a page that is not fully written in React. In those cases, you may need to "stop" the React app, by removing all of the UI, state, and listeners from the DOM node it was rendered to.
+ときに、既存のページや、完全に React で書かれていないページに、React を「散りばめる」ことがあります。そのような場合、アプリがレンダーされた DOM ノードから UI、state、リスナをすべて削除して React アプリを「停止」する必要があるかもしれません。
 
-In this example, clicking "Render React App" will render a React app. Click "Unmount React App" to destroy it:
+以下の例では、"Render React App" をクリックすると React アプリがレンダーされます。"Unmount React App" をクリックするとそれが破棄されます。
 
 <Sandpack>
 

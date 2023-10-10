@@ -1189,7 +1189,7 @@ export default function Board() {
 }
 ```
 
-新しい `() =>` 構文に注目してください。この `() => handleClick(0)` は*アロー関数*と呼ばれる、関数を短く定義する方法です。マス目ががクリックされると、アロー (`=>`) の後のコードが実行され、`handleClick(0)` が呼び出されます。
+新しい `() =>` 構文に注目してください。この `() => handleClick(0)` は*アロー関数*と呼ばれる、関数を短く定義する方法です。マス目がクリックされると、アロー (`=>`) の後のコードが実行され、`handleClick(0)` が呼び出されます。
 
 それでは、残り 8 つの Square のコードも更新して、アロー関数の中から `handleClick` が呼び出されるようにしましょう。`handleClick` の各呼び出しの引数が、正しくマス目のインデックスに対応していることを確認してください。
 
@@ -2073,7 +2073,13 @@ export default function Game() {
 }
 ```
 
-コードは以下のようになります。ただし ``Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of `Game`.`` というエラーが、開発者ツールのコンソールに表示されていることに注意してください。このエラーは次のセクションで修正します。
+コードは以下のようになります。なお開発者ツールのコンソールには以下のようなエラーが表示されています。
+
+<ConsoleBlock level="warning">
+Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of &#96;Game&#96;.
+</ConsoleBlock>
+
+このエラーは次のセクションで修正します。
 
 <Sandpack>
 

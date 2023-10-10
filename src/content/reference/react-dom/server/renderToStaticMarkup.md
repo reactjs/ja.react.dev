@@ -4,7 +4,7 @@ title: renderToStaticMarkup
 
 <Intro>
 
-`renderToStaticMarkup` renders a non-interactive React tree to an HTML string.
+`renderToStaticMarkup` は、非インタラクティブな React ツリーを HTML 文字列にレンダーします。
 
 ```js
 const html = renderToStaticMarkup(reactNode)
@@ -16,11 +16,11 @@ const html = renderToStaticMarkup(reactNode)
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `renderToStaticMarkup(reactNode)` {/*rendertostaticmarkup*/}
 
-On the server, call `renderToStaticMarkup` to render your app to HTML.
+サーバ上において、`renderToStaticMarkup` を呼び出してアプリを HTML にレンダーします。
 
 ```js
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -28,33 +28,33 @@ import { renderToStaticMarkup } from 'react-dom/server';
 const html = renderToStaticMarkup(<Page />);
 ```
 
-It will produce non-interactive HTML output of your React components.
+これにより、React コンポーネントの非インタラクティブな HTML 出力が生成されます。
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-* `reactNode`: A React node you want to render to HTML. For example, a JSX node like `<Page />`.
+* `reactNode`: HTML にレンダーしたい React ノード。例えば、`<Page />` のような JSX ノード。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-An HTML string.
+HTML 文字列。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-* `renderToStaticMarkup` output cannot be hydrated.
+* `renderToStaticMarkup` の出力に対してハイドレーションは行えません。
 
-* `renderToStaticMarkup` has limited Suspense support. If a component suspends, `renderToStaticMarkup` immediately sends its fallback as HTML.
+* `renderToStaticMarkup` のサスペンスに対するサポートは限定的です。コンポーネントがサスペンドすると、`renderToStaticMarkup` はそのフォールバックを HTML として直ちに出力します。
 
-* `renderToStaticMarkup` works in the browser, but using it in the client code is not recommended. If you need to render a component to HTML in the browser, [get the HTML by rendering it into a DOM node.](/reference/react-dom/server/renderToString#removing-rendertostring-from-the-client-code)
+* `renderToStaticMarkup` はブラウザで動作しますが、クライアントコードでの使用は推奨されません。ブラウザでコンポーネントを HTML にレンダーする必要がある場合は、[DOM ノードにレンダーしてその HTML を取得してください](/reference/react-dom/server/renderToString#removing-rendertostring-from-the-client-code)。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Rendering a non-interactive React tree as HTML to a string {/*rendering-a-non-interactive-react-tree-as-html-to-a-string*/}
+### 非インタラクティブな React ツリーを HTML として文字列にレンダーする {/*rendering-a-non-interactive-react-tree-as-html-to-a-string*/}
 
-Call `renderToStaticMarkup` to render your app to an HTML string which you can send with your server response:
+`renderToStaticMarkup` を呼び出して、あなたのアプリを、サーバからのレスポンスとして送信できる HTML 文字列にレンダーします。
 
 ```js {5-6}
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -66,12 +66,12 @@ app.use('/', (request, response) => {
 });
 ```
 
-This will produce the initial non-interactive HTML output of your React components.
+これにより、React コンポーネントの非インタラクティブな初期 HTML 出力が生成されます。
 
 <Pitfall>
 
-This method renders **non-interactive HTML that cannot be hydrated.**  This is useful if you want to use React as a simple static page generator, or if you're rendering completely static content like emails.
+このメソッドは、**ハイドレーションができない非インタラクティブな HTML をレンダーします**。これは、React をシンプルな静的ページジェネレータとして使用したい場合や、メールのような完全に静的なコンテンツをレンダーする場合に有用です。
 
-Interactive apps should use [`renderToString`](/reference/react-dom/server/renderToString) on the server and [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) on the client.
+インタラクティブなアプリでは、サーバ上で [`renderToString`](/reference/react-dom/server/renderToString) を、クライアント上で [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) を使用すべきです。
 
 </Pitfall>
