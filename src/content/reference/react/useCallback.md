@@ -48,14 +48,14 @@ export default function ProductPage({ productId, referrer, theme }) {
 
 その後のレンダー時には、前回のレンダーからすでに保存されている `fn` 関数を返すか（依存配列が変更されていない場合）、このレンダー時に渡された `fn` 関数を返します。
 
-#### 注意事項 {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
 * `useCallback` はフックですので、**コンポーネントのトップレベル**または独自のフックでのみ呼び出すことができます。ループや条件の中で呼び出すことはできません。それが必要な場合は、新しいコンポーネントを抽出し、その中にその状態を移動させてください。
 * React は、**特定の理由がない限り、キャッシュされた関数を破棄しません**。たとえば、開発環境では、コンポーネントのファイルを編集すると React はキャッシュを破棄します。開発環境と本番環境の両方で、初回マウント時にコンポーネントがサスペンドすると、React はキャッシュを破棄します。将来的に、React はキャッシュを破棄することを活用したさらなる機能を追加するかもしれません。例えば、将来的に React が仮想化リストに対する組み込みサポートを追加する場合、仮想化されたテーブルのビューポートからスクロールアウトした項目のキャッシュを破棄することが理にかなっています。これは、`useCallback` をパフォーマンスの最適化として利用する場合に期待に沿った動作となります。そうでない場合は、[state 変数](/reference/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) や [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents) の方が適切かもしれません。
 
 ---
 
-## 使い方 {/*usage*/}
+## 使用法 {/*usage*/}
 
 ### コンポーネントの再レンダーをスキップする {/*skipping-re-rendering-of-components*/}
 
