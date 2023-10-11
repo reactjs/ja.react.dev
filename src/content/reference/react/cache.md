@@ -408,7 +408,7 @@ function App() {
 
 ### メモ化された関数が、同じ引数で呼び出されても実行される {/*memoized-function-still-runs*/}
 
-以前に述べた落とし穴を参照してください。
+上で述べた落とし穴を参照してください。
 * [異なるメモ化された関数を呼び出すと、異なるキャッシュから読み取ります。](#pitfall-different-memoized-functions)
 * [コンポーネントの外部でメモ化関数を呼び出すと、キャッシュは使用されません。](#pitfall-memoized-call-outside-component)
 
