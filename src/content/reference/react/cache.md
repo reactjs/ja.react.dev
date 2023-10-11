@@ -206,7 +206,7 @@ async function MinimalWeatherCard({city}) {
 
 [//]: # 'TODO: add links to Server Components when merged.'
 
-<CodeStep step={3}>非同期レンダー</CodeStep> はサーバコンポーネントでのみサポートされています。
+<CodeStep step={3}>非同期レンダー</CodeStep>はサーバコンポーネントでのみサポートされています。
 
 ```js [[3, 1, "async"], [3, 2, "await"]]
 async function AnimatedWeatherCard({city}) {
