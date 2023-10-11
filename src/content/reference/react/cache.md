@@ -443,7 +443,7 @@ function App() {
 
 この場合、2つの `MapMarker` は同じ処理を行い、`calculateNorm` を `{x: 10, y: 10, z:10}` の同じ値で呼び出しているように見えます。オブジェクトが同じ値を含んでいても、それぞれのコンポーネントが自身の `props` オブジェクトを作成するため、同じオブジェクト参照ではありません。
 
-Reactは入力に対して [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を呼び出し、キャッシュヒットがあるかどうかを確認します。
+React は入力に対して [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を呼び出し、キャッシュヒットがあるかどうかを確認します。
 
 ```js {3,9}
 import {cache} from 'react';
