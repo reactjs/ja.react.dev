@@ -221,7 +221,7 @@ async function AnimatedWeatherCard({city}) {
 
 ### データをプリロードする {/*preload-data*/}
 
-長時間実行されるデータ取得をキャッシュすることで、コンポーネントのレンダー前に非同期処理を開始することができます。
+時間のかかるデータ取得をキャッシュすることで、コンポーネントのレンダー前に非同期処理を開始することができます。
 
 ```jsx [[2, 6, "await getUser(id)"], [1, 17, "getUser(id)"]]
 const getUser = cache(async (id) => {
