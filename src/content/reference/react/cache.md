@@ -260,7 +260,7 @@ function Page({id}) {
 
 [非同期関数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) を評価するとき、その処理の [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) を受け取ります。Promise はその処理の状態（_pending_、_fulfilled_、_failed_）とその最終的な結果を保持します。
 
-この例では、非同期関数 <CodeStep step={1}>`fetchData`</CodeStep> は `fetch` を待っている Promise を返します。
+この例では、非同期関数 <CodeStep step={1}>`fetchData`</CodeStep> は `fetch` 結果を待機するプロミスを返します。
 
 ```js [[1, 1, "fetchData()"], [2, 8, "getData()"], [3, 10, "getData()"]]
 async function fetchData() {
