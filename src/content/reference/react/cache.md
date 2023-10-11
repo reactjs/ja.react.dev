@@ -27,7 +27,7 @@ const cachedFn = cache(fn);
 
 ### `cache(fn)` {/*cache*/}
 
-キャッシュを持つバージョンの関数を作成するために、コンポーネントの外部で `cache` を呼び出します。
+コンポーネントの外部で `cache` を呼び出して、キャッシュが有効化されたバージョンの関数を作成します。
 
 ```js {4,7}
 import {cache} from 'react';
