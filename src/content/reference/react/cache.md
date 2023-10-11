@@ -277,7 +277,7 @@ async function MyComponent() {
 }
 ```
 
-最初の <CodeStep step={2}>`getData`</CodeStep> 呼び出しでは、<CodeStep step={1}>`fetchData`</CodeStep> から返された Promise がキャッシュされます。その後のキャッシュ探索では、同じ Promise が返されます。
+最初の <CodeStep step={2}>`getData`</CodeStep> 呼び出しでは、<CodeStep step={1}>`fetchData`</CodeStep> から返されたプロミスがキャッシュされます。その後のキャッシュ探索では、同じプロミスが返されます。
 
 最初の <CodeStep step={2}>`getData`</CodeStep> 呼び出しは `await` せず、<CodeStep step={3}>2回目</CodeStep> は `await` します。[`await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) は JavaScript の演算子で、Promise の結果を待って返します。最初の <CodeStep step={2}>`getData`</CodeStep> 呼び出しは単に `fetch` を開始して Promise をキャッシュし、2回目の <CodeStep step={3}>`getData`</CodeStep> で探索します。
 
