@@ -141,7 +141,7 @@ export function Precipitation({cityData}) {
 
 さらに、`Temperature` はコンポーネントがレンダーされるたびに<CodeStep step={1}>新しいメモ化された関数</CodeStep>を作成しているため、キャッシュによる共有はそもそも一切行えません。
 
-キャッシュヒットを最大化し、処理を減らすためには、2 つのコンポーネントは同じメモ化された関数を呼び出して同じキャッシュにアクセスするべきです。寧ろ、専用のモジュールでメモ化された関数を定義し、コンポーネント間で [`インポート`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) します。
+キャッシュヒットを最大化し、処理を減らすためには、2 つのコンポーネントは同じメモ化された関数を呼び出して同じキャッシュにアクセスするべきです。上記のようにするのではなく、複数のコンポーネントから [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) が行えるよう、メモ化された関数をそれ専用のモジュールで定義してください。
 
 ```js [[3, 5, "export default cache(calculateWeekReport)"]]
 // getWeekReport.js
