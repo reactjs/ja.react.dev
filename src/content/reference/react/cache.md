@@ -11,7 +11,7 @@ canary: true
 
 <Intro>
 
-`cache` は、fetch や計算した結果をキャッシュすることができます。
+`cache` を使い、データフェッチや計算結果をキャッシュすることができます。
 
 ```js
 const cachedFn = cache(fn);
