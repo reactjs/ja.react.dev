@@ -4,7 +4,7 @@ canary: true
 ---
 
 <Canary>
-* `cache` は、[React サーバコンポーネント](https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) と一緒に使用するためのものです。React サーバコンポーネントをサポートする [フレームワーク](https://react.dev/learn/start-a-new-react-project#bleeding-edge-react-frameworks) をご覧ください。
+* `cache` は、[React サーバコンポーネント](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components)で使用するためのものです。React サーバコンポーネントをサポートする[フレームワーク](https://react.dev/learn/start-a-new-react-project#bleeding-edge-react-frameworks)をご覧ください。
 
 * `cache` は、React の [Canary](https://react.dev/community/versioning-policy#canary-channel) と [experimental](https://react.dev/community/versioning-policy#experimental-channel) チャンネルでのみ利用可能です。本番環境で `cache` を使用する前に、制限事項を理解してください。[React のリリースチャンネルについてはこちら](/community/versioning-policy#all-release-channels) をご覧ください。
 </Canary>
