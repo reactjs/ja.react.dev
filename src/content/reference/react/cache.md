@@ -170,7 +170,7 @@ export default function Precipitation({cityData}) {
   // ...
 }
 ```
-ここでは、両方のコンポーネントが `./getWeekReport.js` からエクスポートされた <CodeStep step={3}>同じメモ化された関数</CodeStep> を呼び出して、同じキャッシュを読み書きします。
+これで、両方のコンポーネントが `./getWeekReport.js` からエクスポートされた<CodeStep step={3}>同じメモ化された関数</CodeStep>を呼び出して、同じキャッシュを読み書きするようになります。
 </Pitfall>
 
 ### データのスナップショットを共有する {/*take-and-share-snapshot-of-data*/}
