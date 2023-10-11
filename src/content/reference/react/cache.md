@@ -106,7 +106,7 @@ function TeamReport({users}) {
 
 <Pitfall>
 
-##### 異なるメモ化された関数を呼び出すと、異なるキャッシュから読み取られます。 {/*pitfall-different-memoized-functions*/}
+##### メモ化された関数を複数作って呼び出すと異なるキャッシュから読み取られる {/*pitfall-different-memoized-functions*/}
 
 同じキャッシュにアクセスするためには、コンポーネントは同じメモ化された関数を呼び出さなければなりません。
 
