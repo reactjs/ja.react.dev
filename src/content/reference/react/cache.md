@@ -252,7 +252,7 @@ function Page({id}) {
 
 `Page` をレンダーするとき、コンポーネントは <CodeStep step={1}>`getUser`</CodeStep> を呼び出しますが、返されたデータは使用しません。この早期の <CodeStep step={1}>`getUser`</CodeStep> 呼び出しは、`Page` が他の計算処理を行い、子をレンダーしている間に非同期のデータベースクエリを開始します。
 
-`Profile` をレンダーするとき、再び <CodeStep step={2}>`getUser`</CodeStep> を呼び出します。最初の <CodeStep step={1}>`getUser`</CodeStep> 呼び出しがすでにユーザーデータを返し、キャッシュしている場合、`Profile` が <CodeStep step={2}>このデータを要求し、待機するとき</CodeStep>、別のリモートプロシージャ呼び出しを必要とせずにキャッシュからシンプルに読み取ることができます。もし <CodeStep step={1}>最初のデータリクエスト</CodeStep> がまだ完了していない場合、このパターンでデータをプリロードすることで、データ取得の遅延を減らすことができます。
+`Profile` をレンダーするとき、再び <CodeStep step={2}>`getUser`</CodeStep> を呼び出します。最初の <CodeStep step={1}>`getUser`</CodeStep> 呼び出しがすでに完了しユーザデータをキャッシュしている場合、`Profile` が <CodeStep step={2}>このデータを要求して待機する時点</CodeStep>では、新たなリモートプロシージャ呼び出しを必要とせずにキャッシュから単に読み取ることができます。もし<CodeStep step={1}>最初のデータリクエスト</CodeStep>がまだ完了していない場合でも、このパターンでデータをプリロードすることで、データ取得の遅延を減らすことができます。
 
 <DeepDive>
 
