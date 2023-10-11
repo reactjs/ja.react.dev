@@ -98,7 +98,7 @@ function TeamReport({users}) {
 }
 ```
 
-同じ `user` オブジェクトが `Profile` と `TeamReport` の両方でレンダーされる場合、2つのコンポーネントは処理を共有でき、その `user` に対して `calculateUserMetrics` を一度だけ呼び出します。
+同じ `user` オブジェクトが `Profile` と `TeamReport` の両方でレンダーされる場合、2 つのコンポーネントは処理を共有でき、その `user` に対して `calculateUserMetrics` が一度だけ呼び出されるようになります。
 
 最初に `Profile` がレンダーされると仮定します。<CodeStep step={1}>`getUserMetrics`</CodeStep> が呼び出され、キャッシュされた結果があるかどうかを確認します。その `user` で `getUserMetrics` を呼び出すのは初めてなので、キャッシュミスが発生します。`getUserMetrics` はその後、その `user` で `calculateUserMetrics` を呼び出し、結果をキャッシュに書き込みます。
 
