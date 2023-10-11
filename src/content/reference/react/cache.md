@@ -57,7 +57,7 @@ function Chart({data}) {
 
 <Note>
 
-入力に基づいて戻り値をキャッシュする最適化は、[_メモ化_](https://en.wikipedia.org/wiki/Memoization) として知られています。`cache` から返される関数をメモ化された関数と呼びます。
+入力に基づいて返り値をキャッシュする最適化は、[*メモ化 (memoization)*](https://en.wikipedia.org/wiki/Memoization) として知られています。`cache` から返される関数をメモ化された関数 (memoized function) と呼びます。
 
 </Note>
 
