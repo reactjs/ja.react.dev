@@ -65,7 +65,7 @@ function Chart({data}) {
 
 [//]: # 'TODO: add links to Server/Client Component reference once https://github.com/reactjs/react.dev/pull/6177 is merged'
 
-- React は、各サーバーリクエストごとにすべてのメモ化された関数のキャッシュを無効化します。
+- React は、サーバへの各リクエストごとにすべてのメモ化された関数のキャッシュを無効化します。
 - `cache` を呼び出すたびに新しい関数が作成されます。これは、同じ関数で `cache` を複数回呼び出すと、同じキャッシュを共有しない異なるメモ化された関数が返されることを意味します。
 - `cachedFn` はエラーもキャッシュします。特定の引数で `fn` がエラーをスローすると、それがキャッシュされ、同じ引数で `cachedFn` が呼び出されると同じエラーが再スローされます。
 - `cache` は、[サーバコンポーネント](https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) でのみ使用できます。
