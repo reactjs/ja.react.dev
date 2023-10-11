@@ -137,7 +137,7 @@ export function Precipitation({cityData}) {
 }
 ```
 
-上記の例では、<CodeStep step={2}>`Precipitation`</CodeStep> と <CodeStep step={1}>`Temperature`</CodeStep> はそれぞれ `cache` を呼び出して、それぞれ独自のキャッシュの索引を持つ新しいメモ化された関数を作成します。両方のコンポーネントが同じ `cityData` でレンダーする場合、それぞれが `calculateWeekReport` を呼び出すため、重複した処理をすることになります。
+上記の例では、<CodeStep step={2}>`Precipitation`</CodeStep> と <CodeStep step={1}>`Temperature`</CodeStep> はそれぞれ `cache` を呼び出して、それぞれ独自のキャッシュテーブルを持つ新しいメモ化された関数を作成しています。両方のコンポーネントが同じ `cityData` でレンダーする場合、それぞれが `calculateWeekReport` を呼び出すため、重複した処理が行われることになります。
 
 さらに、`Temperature` はコンポーネントがレンダーされるたびに<CodeStep step={1}>新しいメモ化された関数</CodeStep>を作成しているため、キャッシュによる共有はそもそも一切行えません。
 
