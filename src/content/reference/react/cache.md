@@ -196,7 +196,7 @@ async function MinimalWeatherCard({city}) {
 }
 ```
 
-`AnimatedWeatherCard` と `MinimalWeatherCard` の両方が同じ <CodeStep step={1}>city</CodeStep> でレンダーする場合、<CodeStep step={2}>メモ化された関数</CodeStep> から同じデータのスナップショットを受け取ります。
+`AnimatedWeatherCard` と `MinimalWeatherCard` の両方が同じ <CodeStep step={1}>city</CodeStep> でレンダーする場合、<CodeStep step={2}>メモ化された関数</CodeStep>から同じデータのスナップショットを受け取ります。
 
 `AnimatedWeatherCard` と `MinimalWeatherCard` が異なる <CodeStep step={1}>city</CodeStep> 引数を <CodeStep step={2}>`getTemperature`</CodeStep> に渡した場合、`fetchTemperature` は 2 回呼び出され、それぞれの呼び出しが異なるデータを受け取ります。
 
