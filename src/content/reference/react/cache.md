@@ -288,7 +288,7 @@ Promise がすでに解決している場合、エラーまたは _fulfilled_ �
 
 <Pitfall>
 
-##### コンポーネントの外部でメモ化された関数を呼び出すと、キャッシュは使用されません。{/*pitfall-memoized-call-outside-component*/}
+##### メモ化された関数をコンポーネント外で呼び出すとキャッシュは使用されない {/*pitfall-memoized-call-outside-component*/}
 
 ```jsx [[1, 3, "getUser"]]
 import {cache} from 'react';
