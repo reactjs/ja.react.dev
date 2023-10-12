@@ -288,6 +288,7 @@ function ProfilePage() {
 
 - [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) や [Next.js](https://nextjs.org/docs/getting-started/react-essentials) のようなサスペンス対応のフレームワークでのデータフェッチ
 - [`lazy`](/reference/react/lazy) を用いたコンポーネントコードの遅延ロード
+- [`use`](/reference/react/use) を用いたプロミス (Promise) からの値の読み取り
 
 サスペンスはエフェクトやイベントハンドラ内でデータフェッチが行われた場合にはそれを**検出しません**。
 
