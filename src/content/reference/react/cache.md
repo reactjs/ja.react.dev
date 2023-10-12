@@ -250,7 +250,7 @@ function Page({id}) {
 }
 ```
 
-`Page` をレンダーするとき、コンポーネントは <CodeStep step={1}>`getUser`</CodeStep> を呼び出しますが、返されたデータは使用しません。この早期の <CodeStep step={1}>`getUser`</CodeStep> 呼び出しは、`Page` が他の計算処理を行い、子をレンダーしている間に非同期のデータベースクエリを開始します。
+`Page` のレンダー時にコンポーネントは <CodeStep step={1}>`getUser`</CodeStep> を呼び出していますが、返されたデータを使用していないことに着目してください。この早期の <CodeStep step={1}>`getUser`</CodeStep> 呼び出しは、`Page` が他の計算処理を行ったり子をレンダーしたりしている間に実行される、非同期のデータベースクエリを開始します。
 
 `Profile` をレンダーするとき、再び <CodeStep step={2}>`getUser`</CodeStep> を呼び出します。最初の <CodeStep step={1}>`getUser`</CodeStep> 呼び出しがすでに完了しユーザデータをキャッシュしている場合、`Profile` が <CodeStep step={2}>このデータを要求して待機する時点</CodeStep>では、新たなリモートプロシージャ呼び出しを必要とせずにキャッシュから単に読み取ることができます。もし<CodeStep step={1}>最初のデータリクエスト</CodeStep>がまだ完了していない場合でも、このパターンでデータをプリロードすることで、データ取得の遅延を減らすことができます。
 
@@ -281,7 +281,7 @@ async function MyComponent() {
 
 最初の <CodeStep step={2}>`getData`</CodeStep> 呼び出しでは `await` しておらず、<CodeStep step={3}>2 回目の呼び出し</CodeStep> では `await` していることに注目してください。[`await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) は JavaScript の演算子であり、プロミスの結果を待機して返します。最初の <CodeStep step={2}>`getData`</CodeStep> 呼び出しは単に `fetch` を開始してプロミスをキャッシュし、2 回目の <CodeStep step={3}>`getData`</CodeStep> のときに見つかるようにしているのです。
 
-<CodeStep step={3}>2回目の呼び出し</CodeStep> までに Promise がまだ _pending_ の場合、`await` は結果を待ちます。`fetch` を待っている間に React が計算作業を続けることができるため、<CodeStep step={3}>2回目の呼び出し</CodeStep> の待ち時間を短縮することが最適化になります。
+<CodeStep step={3}>2 回目の呼び出し</CodeStep>時点でプロミスがまだ _pending_ の場合、`await` は結果を待ちます。`fetch` を待っている間に React が計算処理を続けることができるため、<CodeStep step={3}>2 回目の呼び出し</CodeStep>の待ち時間を短縮できる、という最適化になります。
 
 プロミスの最終状態がすでに決定 (settled) している場合、結果がエラーの場合でも正常終了 (fulfilled) の場合でも、`await` はその値をすぐに返します。どちらの結果でも、パフォーマンス上の利点があります。
 </DeepDive>
