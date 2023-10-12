@@ -315,7 +315,7 @@ React がメモ化された関数に対してキャッシュアクセスを提�
 
 <DeepDive>
 
-#### `cache`、[`memo`](/reference/react/memo)、[`useMemo`](/reference/react/useMemo) のどれをいつ使うべきですか？{/*cache-memo-usememo*/}
+#### `cache`、[`memo`](/reference/react/memo)、[`useMemo`](/reference/react/useMemo) のどれをいつ使うべきか {/*cache-memo-usememo*/}
 
 上記のすべての API はメモ化を提供しますが、それらが何をメモ化することを意図しているか、誰がキャッシュにアクセスできるか、そしてキャッシュが無効になるタイミングはいつか、という点で違いがあります。
 
