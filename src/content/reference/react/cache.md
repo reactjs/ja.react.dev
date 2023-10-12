@@ -68,7 +68,7 @@ function Chart({data}) {
 - React は、サーバへの各リクエストごとにすべてのメモ化された関数のキャッシュを無効化します。
 - `cache` を呼び出すたびに新しい関数が作成されます。これは、同じ関数で `cache` を複数回呼び出すと、同じキャッシュを共有しない異なるメモ化された関数が返されることを意味します。
 - `cachedFn` はエラーもキャッシュします。特定の引数で `fn` がエラーをスローすると、それがキャッシュされ、同じ引数で `cachedFn` が呼び出されると同じエラーが再スローされます。
-- `cache` は、[サーバコンポーネント](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) でのみ使用できます。
+- `cache` は、[サーバコンポーネント](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components)でのみ使用できます。
 
 ---
 
@@ -398,7 +398,7 @@ function App() {
 
 この例では、両方の `MemoWeatherReport` コンポーネントは最初にレンダーされたときに `calculateAvg` を呼び出します。しかし、`App` が再レンダーされ、`record` に変更がない場合、props は一切変わらないため `MemoWeatherReport` は再レンダーされません。
 
-`useMemo` とは異なり、`memo` は特定の計算ではなく props に基づいてコンポーネントのレンダーをメモ化します。一方で最後の prop 値に対応する最後のレンダー結果だけがキャッシュされるという点では `useMemo` と似ています。props が変更されるとキャッシュは無効化され、コンポーネントは再レンダーされます。
+`useMemo` とは異なり、`memo` は特定の計算ではなく props に基づいてコンポーネントのレンダーをメモ化します。一方で最後の props の値に対応する最後のレンダー結果だけがキャッシュされるという点では `useMemo` と似ています。props が変更されるとキャッシュは無効化され、コンポーネントは再レンダーされます。
 
 </DeepDive>
 
