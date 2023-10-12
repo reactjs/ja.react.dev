@@ -117,6 +117,6 @@ function subscribe(callback) {
 useDebugValue(date, date => date.toDateString());
 ```
 
-あなたのフォーマッタ関数は、<CodeStep step={1}>デバッグ値</CodeStep>をパラメータとして受け取り、<CodeStep step={2}>フォーマットされた表示値</CodeStep>を返す必要があります。コンポーネントがインスペクトされると、React DevTools はこの関数を呼び出し、その結果を表示します。
+あなたのフォーマッタ関数は、<CodeStep step={1}>デバッグ値</CodeStep>を引数として受け取り、<CodeStep step={2}>フォーマットされた表示値</CodeStep>を返す必要があります。コンポーネントがインスペクトされると、React DevTools はこの関数を呼び出し、その結果を表示します。
 
 これにより、コンポーネントが実際にインスペクトされない限り、コストがかかる可能性があるフォーマットロジックを実行することを回避できます。例えば、`date` が Date 値の場合、レンダーの度に `toDateString()` を呼び出すことを回避できます。

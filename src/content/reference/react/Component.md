@@ -44,7 +44,7 @@ class Greeting extends Component {
 
 `render` メソッドのみが必須です。他のメソッドはオプションです。
 
-[さらに例を読む](#usage)
+[さらに例を見る](#usage)
 
 ---
 

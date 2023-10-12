@@ -60,7 +60,7 @@ function MessageComponent({ messagePromise }) {
 
 ---
 
-## 使用方法 {/*usage*/}
+## 使用法 {/*usage*/}
 
 ### `use` でコンテクストを読み取る {/*reading-context-with-use*/}
 

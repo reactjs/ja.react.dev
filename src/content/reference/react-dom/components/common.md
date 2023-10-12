@@ -20,7 +20,7 @@ title: "<div> などの一般的なコンポーネント"
 <div className="wrapper">Some content</div>
 ```
 
-[更に例を見る](#usage)
+[さらに例を見る](#usage)
 
 #### props {/*common-props*/}
 

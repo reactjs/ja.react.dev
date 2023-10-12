@@ -34,7 +34,7 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 * `load`: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) または *thenable*（`then` メソッドを持つ Promise のようなオブジェクト）を返す関数。返されたコンポーネントを初めてレンダーしようとするときまで React は `load` を呼び出しません。React が初めて `load` を呼び出した後、それが解決 (resolve) するのを待ち、解決した値の `.default` を React コンポーネントとしてレンダーします。返された Promise と解決済みの値は両方ともキャッシュされるため、React は `load` を 2 度以上呼び出しません。Promise が reject された場合、React はその理由を `throw` し、最も近いエラーバウンダリで処理できるようにします。
 
-#### 戻り値 {/*returns*/}
+#### 返り値 {/*returns*/}
 
 `lazy` は、ツリー内でレンダーできる React コンポーネントを返します。遅延コンポーネントのコードがまだ読み込まれていない間、レンダーしようとするとサスペンド (suspend) します。[`<Suspense>`](/reference/react/Suspense) を使用して、読み込み中にローディングインジケータを表示します。
 
