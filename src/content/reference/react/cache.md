@@ -283,7 +283,7 @@ async function MyComponent() {
 
 <CodeStep step={3}>2回目の呼び出し</CodeStep> までに Promise がまだ _pending_ の場合、`await` は結果を待ちます。`fetch` を待っている間に React が計算作業を続けることができるため、<CodeStep step={3}>2回目の呼び出し</CodeStep> の待ち時間を短縮することが最適化になります。
 
-Promise がすでに解決している場合、エラーまたは _fulfilled_ の結果になると、`await` はその値をすぐに返します。どちらの結果でも、パフォーマンスの利点があります。
+プロミスの最終状態がすでに決定 (settled) している場合、結果がエラーの場合でも正常終了 (fulfilled) の場合でも、`await` はその値をすぐに返します。どちらの結果でも、パフォーマンス上の利点があります。
 </DeepDive>
 
 <Pitfall>
