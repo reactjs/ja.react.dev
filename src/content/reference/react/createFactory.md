@@ -4,13 +4,13 @@ title: createFactory
 
 <Deprecated>
 
-This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
+この API は、将来の React のメジャーバージョンで削除される予定です。[代替手段についてはこちらをご覧ください](#alternatives)。
 
 </Deprecated>
 
 <Intro>
 
-`createFactory` lets you create a function that produces React elements of a given type.
+`createFactory` は、指定したタイプの React 要素を生成するための関数を作成します。
 
 ```js
 const factory = createFactory(type)
@@ -22,11 +22,11 @@ const factory = createFactory(type)
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `createFactory(type)` {/*createfactory*/}
 
-Call `createFactory(type)` to create a factory function which produces React elements of a given `type`.
+`createFactory(type)` を呼び出して、指定した `type` の React 要素を生成するためのファクトリ関数を作成します。
 
 ```js
 import { createFactory } from 'react';
@@ -34,7 +34,7 @@ import { createFactory } from 'react';
 const button = createFactory('button');
 ```
 
-Then you can use it to create React elements without JSX:
+この後、JSX を使わずに React 要素を作成することができます。
 
 ```js
 export default function App() {
@@ -46,25 +46,25 @@ export default function App() {
 }
 ```
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-* `type`: The `type` argument must be a valid React component type. For example, it could be a tag name string (such as `'div'` or `'span'`), or a React component (a function, a class, or a special component like [`Fragment`](/reference/react/Fragment)).
+* `type`: `type` 引数は有効な React のコンポーネントタイプでなければなりません。例えば、タグ名の文字列（`'div'` や `'span'`）や、React コンポーネント（関数、クラス、または [`Fragment`](/reference/react/Fragment) のような特別なコンポーネント）が該当します。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-Returns a factory function. That factory function receives a `props` object as the first argument, followed by a list of `...children` arguments, and returns a React element with the given `type`, `props` and `children`.
+ファクトリ関数を返します。そのファクトリ関数は、最初の引数として `props` オブジェクトを受け取り、その後に `...children` 引数のリストを受け取り、指定した `type`、`props`、`children` を持った React 要素を返します。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Creating React elements with a factory {/*creating-react-elements-with-a-factory*/}
+### ファクトリ関数を使って React 要素を作成する {/*creating-react-elements-with-a-factory*/}
 
-Although most React projects use [JSX](/learn/writing-markup-with-jsx) to describe the user interface, JSX is not required. In the past, `createFactory` used to be one of the ways you could describe the user interface without JSX.
+ほとんどの React プロジェクトではユーザインターフェースを記述するために [JSX](/learn/writing-markup-with-jsx) を使用していますが、JSX は必須ではありません。過去には `createFactory` が、JSX を使わずにユーザインターフェースを記述するための方法のひとつでした。
 
-Call `createFactory` to create a *factory function* for a specific element type like `'button'`:
+`createFactory` を呼び出して、`'button'` のような特定の要素タイプの*ファクトリ関数*を作成します。
 
 ```js
 import { createFactory } from 'react';
@@ -72,7 +72,7 @@ import { createFactory } from 'react';
 const button = createFactory('button');
 ```
 
-Calling that factory function will produce React elements with the props and children you have provided:
+そのファクトリ関数を呼び出すと、指定した props と children を持つ React 要素が生成されます。
 
 <Sandpack>
 
@@ -92,15 +92,15 @@ export default function App() {
 
 </Sandpack>
 
-This is how `createFactory` was used as an alternative to JSX. However, `createFactory` is deprecated, and you should not call `createFactory` in any new code. See how to migrate away from `createFactory` below.
+このようにして `createFactory` が JSX の代替として使用されていました。しかし、`createFactory` は非推奨であり、新しいコードでは `createFactory` を呼び出すべきではありません。`createFactory` から移行する方法については下記をご覧ください。
 
 ---
 
-## Alternatives {/*alternatives*/}
+## 代替手段 {/*alternatives*/}
 
-### Copying `createFactory` into your project {/*copying-createfactory-into-your-project*/}
+### `createFactory` をプロジェクトにコピーする {/*copying-createfactory-into-your-project*/}
 
-If your project has many `createFactory` calls, copy this `createFactory.js` implementation into your project:
+プロジェクト内で多くの `createFactory` 呼び出しがある場合は、この `createFactory.js` の実装をプロジェクトにコピーします：
 
 <Sandpack>
 
@@ -128,13 +128,13 @@ export function createFactory(type) {
 
 </Sandpack>
 
-This lets you keep all of your code unchanged except the imports.
+これにより、インポートを除くすべてのコードを変更せずに保持できます。
 
 ---
 
-### Replacing `createFactory` with `createElement` {/*replacing-createfactory-with-createelement*/}
+### `createFactory` を `createElement` に置き換える {/*replacing-createfactory-with-createelement*/}
 
-If you have a few `createFactory` calls that you don't mind porting manually, and you don't want to use JSX, you can replace every call a factory function with a [`createElement`](/reference/react/createElement) call. For example, you can replace this code:
+少数の `createFactory` の呼び出しがあり手動で移植しても構わず、かつ JSX を使用したくない、という場合、ファクトリ関数のすべての呼び出しを [`createElement`](/reference/react/createElement) の呼び出しに置き換えることができます。例えば以下のコードは：
 
 ```js {1,3,6}
 import { createFactory } from 'react';
@@ -150,7 +150,7 @@ export default function App() {
 }
 ```
 
-with this code:
+以下のコードに置き換えが可能です：
 
 
 ```js {1,4}
@@ -165,7 +165,7 @@ export default function App() {
 }
 ```
 
-Here is a complete example of using React without JSX:
+以下は、JSX を使用せずに React を使用する完全な例です。
 
 <Sandpack>
 
@@ -185,9 +185,9 @@ export default function App() {
 
 ---
 
-### Replacing `createFactory` with JSX {/*replacing-createfactory-with-jsx*/}
+### `createFactory` を JSX に置き換える {/*replacing-createfactory-with-jsx*/}
 
-Finally, you can use JSX instead of `createFactory`. This is the most common way to use React:
+最後に、`createFactory` の代わりに JSX を使用することができます。これが React を使用する最も一般的な方法です。
 
 <Sandpack>
 
@@ -207,7 +207,7 @@ export default function App() {
 
 <Pitfall>
 
-Sometimes, your existing code might pass some variable as a `type` instead of a constant like `'button'`:
+既存のコードには、`'button'` のような定数ではなく変数を用いて `type` を指定するものがあるかもしれません。
 
 ```js {3}
 function Heading({ isSubheading, ...props }) {
@@ -217,7 +217,7 @@ function Heading({ isSubheading, ...props }) {
 }
 ```
 
-To do the same in JSX, you need to rename your variable to start with an uppercase letter like `Type`:
+JSX で同じことをする場合、変数の名前を `Type` のように大文字で始まるように変更する必要があります。
 
 ```js {2,3}
 function Heading({ isSubheading, ...props }) {
@@ -226,6 +226,6 @@ function Heading({ isSubheading, ...props }) {
 }
 ```
 
-Otherwise React will interpret `<type>` as a built-in HTML tag because it is lowercase.
+さもないと、React は `<type>` を（小文字なので）組み込みの HTML タグと解釈してしまいます。
 
 </Pitfall>

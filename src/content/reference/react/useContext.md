@@ -48,7 +48,7 @@ function MyComponent() {
 
 ---
 
-## 使い方 {/*usage*/}
+## 使用法 {/*usage*/}
 
 
 ### ツリーの深くにデータを渡す {/*passing-data-deeply-into-the-tree*/}

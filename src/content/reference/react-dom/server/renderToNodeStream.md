@@ -37,7 +37,7 @@ stream.pipe(response);
 
 クライアント側では、このようにサーバ生成された HTML を操作可能にするために [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) を用います。
 
-[更に例を見る](#usage)
+[さらに例を見る](#usage)
 
 #### 引数 {/*parameters*/}
 

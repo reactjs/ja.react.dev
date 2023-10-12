@@ -26,7 +26,7 @@ title: "<progress>"
 <progress value={0.5} />
 ```
 
-[更に例を見る](#usage)
+[さらに例を見る](#usage)
 
 #### props {/*props*/}
 
