@@ -4,13 +4,13 @@ title: PureComponent
 
 <Pitfall>
 
-We recommend defining components as functions instead of classes. [See how to migrate.](#alternatives)
+クラスの代わりに関数でコンポーネントを定義することを推奨します。[移行方法はこちら](#alternatives)。
 
 </Pitfall>
 
 <Intro>
 
-`PureComponent` is similar to [`Component`](/reference/react/Component) but it skips re-renders for same props and state. Class components are still supported by React, but we don't recommend using them in new code.
+`PureComponent` は [`Component`](/reference/react/Component) と似ていますが、同じ props と state に対しては再レンダーをスキップします。クラスコンポーネントはまだ React によってサポートされていますが、新しいコードでの使用は推奨されません。
 
 ```js
 class Greeting extends PureComponent {
@@ -26,11 +26,11 @@ class Greeting extends PureComponent {
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `PureComponent` {/*purecomponent*/}
 
-To skip re-rendering a class component for same props and state, extend `PureComponent` instead of [`Component`:](/reference/react/Component)
+同じ props と state に対してクラスコンポーネントの再レンダーをスキップしたい場合、[`Component`](/reference/react/Component) の代わりに `PureComponent` を継承します。
 
 ```js
 import { PureComponent } from 'react';
@@ -42,18 +42,17 @@ class Greeting extends PureComponent {
 }
 ```
 
-`PureComponent` is a subclass of `Component` and supports [all the `Component` APIs.](/reference/react/Component#reference) Extending `PureComponent` is equivalent to defining a custom [`shouldComponentUpdate`](/reference/react/Component#shouldcomponentupdate) method that shallowly compares props and state.
+`PureComponent` は `Component` のサブクラスであり、[すべての `Component` API](/reference/react/Component#reference) をサポートしています。`PureComponent` を拡張することは、props と state を浅く比較するカスタムの [`shouldComponentUpdate`](/reference/react/Component#shouldcomponentupdate) メソッドを定義することと同等です。
 
-
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Skipping unnecessary re-renders for class components {/*skipping-unnecessary-re-renders-for-class-components*/}
+### クラスコンポーネントの不要な再レンダーをスキップする {/*skipping-unnecessary-re-renders-for-class-components*/}
 
-React normally re-renders a component whenever its parent re-renders. As an optimization, you can create a component that React will not re-render when its parent re-renders so long as its new props and state are the same as the old props and state. [Class components](/reference/react/Component) can opt into this behavior by extending `PureComponent`:
+React は通常、親が再レンダーされるたびにコンポーネントを再レンダーします。最適化として、新しい props や state が古い props や state と同じである限り、親が再レンダーされても React が再レンダーを行わない、というコンポーネントを作成することができます。[クラスコンポーネント](/reference/react/Component)では、`PureComponent` を継承することにより、この挙動を有効化できます。
 
 ```js {1}
 class Greeting extends PureComponent {
@@ -63,9 +62,9 @@ class Greeting extends PureComponent {
 }
 ```
 
-A React component should always have [pure rendering logic.](/learn/keeping-components-pure) This means that it must return the same output if its props, state, and context haven't changed. By using `PureComponent`, you are telling React that your component complies with this requirement, so React doesn't need to re-render as long as its props and state haven't changed. However, your component will still re-render if a context that it's using changes.
+React コンポーネントは常に[純粋なレンダーロジックを持つべきです](/learn/keeping-components-pure)。これはすなわち、その props、state、コンテクストが変わらない場合は、常に同じ出力を返す必要がある、という意味です。`PureComponent` を使用することで、あなたのコンポーネントがこの要件を満たしていると React に伝えることができ、そのため React は props と state が変わらない限り再レンダーする必要がないと判断します。ただし、使用しているコンテクストが変更された場合、コンポーネントは再レンダーされます。
 
-In this example, notice that the `Greeting` component re-renders whenever `name` is changed (because that's one of its props), but not when `address` is changed (because it's not passed to `Greeting` as a prop):
+以下の例で、`name` が変更されるたびに `Greeting` コンポーネントが再レンダーされる（`name` が props として渡されているため）が、`address` が変更されても再レンダーされない（`Greeting` に props として渡されていないため）ことに注目してください。
 
 <Sandpack>
 
@@ -109,17 +108,18 @@ label {
 
 <Pitfall>
 
-We recommend defining components as functions instead of classes. [See how to migrate.](#alternatives)
+クラスの代わりに関数でコンポーネントを定義することを推奨します。[移行方法はこちら](#alternatives)。
+
 
 </Pitfall>
 
 ---
 
-## Alternatives {/*alternatives*/}
+## 代替手段 {/*alternatives*/}
 
-### Migrating from a `PureComponent` class component to a function {/*migrating-from-a-purecomponent-class-component-to-a-function*/}
+### `PureComponent` クラスのコンポーネントから関数コンポーネントへの移行 {/*migrating-from-a-purecomponent-class-component-to-a-function*/}
 
-We recommend using function components instead of [class components](/reference/react/Component) in new code. If you have some existing class components using `PureComponent`, here is how you can convert them. This is the original code:
+新しいコードでは、[クラスコンポーネント](/reference/react/Component)の代わりに関数コンポーネントを使用することを推奨します。以下では、既存の `PureComponent` を使用したクラスコンポーネントがある場合、どのように移行するかを説明します。こちらが元のコードです。
 
 <Sandpack>
 
@@ -161,7 +161,7 @@ label {
 
 </Sandpack>
 
-When you [convert this component from a class to a function,](/reference/react/Component#alternatives) wrap it in [`memo`:](/reference/react/memo)
+このコンポーネントを[クラスから関数に移行](/reference/react/Component#alternatives)したい場合は、[`memo`](/reference/react/memo) でラップしてください。
 
 <Sandpack>
 
@@ -203,6 +203,6 @@ label {
 
 <Note>
 
-Unlike `PureComponent`, [`memo`](/reference/react/memo) does not compare the new and the old state. In function components, calling the [`set` function](/reference/react/useState#setstate) with the same state [already prevents re-renders by default,](/reference/react/memo#updating-a-memoized-component-using-state) even without `memo`.
+`PureComponent` とは異なり、[`memo`](/reference/react/memo) は新旧の state を比較しません。関数コンポーネントでは、同一の state 値で [`set` 関数](/reference/react/useState#setstate)を呼び出した場合、`memo` がなくても[デフォルトで再レンダーが防止されます](/reference/react/memo#updating-a-memoized-component-using-state)。
 
 </Note>
