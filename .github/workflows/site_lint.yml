@@ -25,3 +25,6 @@ jobs:
 
       - name: Lint codebase
         run: yarn ci-check
+
+      - name: Textlint (Japanese)
+        run: yarn textlint
