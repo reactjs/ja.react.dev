@@ -30,7 +30,7 @@ title: リストのレンダー
 </ul>
 ```
 
-これらのリスト項目は、その中身、すなわちデータのみが異なっています。インターフェースを構築する際にはよく、コメント一覧やプロフィール画像のギャラリーなどのように、異なるデータを使用して同じコンポーネントの複数のインスタンスを表示する必要があります。このような場合、JavaScript のオブジェクトや配列にそのデータを保存し、[`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) や [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) などのメソッドを使ってコンポーネントのリストをレンダーすることができます。
+これらのリスト項目は、その中身、すなわちデータのみが異なっています。インターフェースを構築する際にはよく、コメント一覧やプロフィール画像のギャラリなどのように、異なるデータを使用して同じコンポーネントの複数のインスタンスを表示する必要があります。このような場合、JavaScript のオブジェクトや配列にそのデータを保存し、[`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) や [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) などのメソッドを使ってコンポーネントのリストをレンダーすることができます。
 
 以下は、配列からアイテムのリストを生成する方法を示す簡単な例です。
 
