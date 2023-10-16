@@ -18,14 +18,12 @@ next: state-and-lifecycle.html
 
 <div class="scary">
 
-> 新しい React ドキュメントをお試しください。
+> この記事は古くなっており、今後更新されません。新しい React ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
 > 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
 >
-> - [Your First Component](https://beta.reactjs.org/learn/your-first-component)
-> - [Passing Props to a Component](https://beta.reactjs.org/learn/passing-props-to-a-component)
->
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> - [初めてのコンポーネント](https://ja.react.dev/learn/your-first-component)
+> - [コンポーネントに props を渡す](https://ja.react.dev/learn/passing-props-to-a-component)
 
 </div>
 

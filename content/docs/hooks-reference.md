@@ -8,11 +8,11 @@ next: hooks-faq.html
 
 <div class="scary">
 
-> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> この記事は古くなっており、今後更新されません。新しい React ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
+> 
+> 以下の新しいドキュメントで最新の React の使い方が学べます。
 >
-> These new documentation pages teach modern React:
->
-> - [`react`: Hooks](https://react.dev/reference/react)
+> - [`react`: フック](https://ja.react.dev/reference/react)
 
 </div>
 

@@ -5,7 +5,7 @@ author: [fisherwebdev]
 
 <div class="scary">
 
-> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+> このブログはアーカイブされています。最新の記事は [ja.react.dev/blog](https://ja.react.dev/blog) でご覧ください。
 
 </div>
 
@@ -19,7 +19,7 @@ Where the Dispatcher Fits in the Flux Data Flow
 
 <div class="scary">
 
-> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+> このブログはアーカイブされています。最新の記事は [ja.react.dev/blog](https://ja.react.dev/blog) でご覧ください。
 
 </div>
 
@@ -31,7 +31,7 @@ Actions and ActionCreators
 
 <div class="scary">
 
-> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+> このブログはアーカイブされています。最新の記事は [ja.react.dev/blog](https://ja.react.dev/blog) でご覧ください。
 
 </div>
 
@@ -49,7 +49,7 @@ Why We Need a Dispatcher
 
 <div class="scary">
 
-> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+> このブログはアーカイブされています。最新の記事は [ja.react.dev/blog](https://ja.react.dev/blog) でご覧ください。
 
 </div>
 
@@ -67,7 +67,7 @@ Example Chat App
 
 <div class="scary">
 
-> This blog site has been archived. Go to [react.dev/blog](https://react.dev/blog) to see the recent posts.
+> このブログはアーカイブされています。最新の記事は [ja.react.dev/blog](https://ja.react.dev/blog) でご覧ください。
 
 </div>
 

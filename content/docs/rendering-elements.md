@@ -11,12 +11,12 @@ next: components-and-props.html
 <div class="scary">
 
 >
-> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> この記事は古くなっており、今後更新されません。新しい React ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 >
-> These new documentation pages teach how to write JSX and show it on an HTML page:
+> 以下の新しいドキュメントで JSX の書き方や HTML ページへの表示方法が学べます。
 >
-> - [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx)
-> - [Add React to an Existing Project](https://react.dev/learn/add-react-to-an-existing-project#step-2-render-react-components-anywhere-on-the-page)
+> - [JSX でマークアップを記述する](https://ja.react.dev/learn/writing-markup-with-jsx)
+> - [既存プロジェクトに React を追加する](https://ja.react.dev/learn/add-react-to-an-existing-project#step-2-render-react-components-anywhere-on-the-page)
 
 </div>
 

@@ -17,9 +17,11 @@ redirect_from:
 
 <div class="scary">
 
-> 新しい React ドキュメントをお試しください：[`Component`](https://beta.reactjs.org/reference/react/Component)
+> この記事は古くなっており、今後更新されません。新しい React ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> 以下の新しいドキュメントで最新の React の使い方が学べます。
+>
+> [React.Component](https://ja.react.dev/reference/react/Component)
 
 </div>
 

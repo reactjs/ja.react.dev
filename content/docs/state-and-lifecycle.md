@@ -10,14 +10,12 @@ next: handling-events.html
 
 <div class="scary">
 
-> 新しい React ドキュメントをお試しください。
+> この記事は古くなっており、今後更新されません。新しい React ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
 > 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
 >
-> - [State: A Component's Memory](https://beta.reactjs.org/learn/state-a-components-memory)
-> - [Synchronizing with Effects](https://beta.reactjs.org/learn/synchronizing-with-effects)
->
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> - [state：コンポーネントのメモリ](https://ja.react.dev/learn/state-a-components-memory)
+> - [エフェクトを使って同期を行う](https://ja.react.dev/learn/synchronizing-with-effects)
 
 </div>
 

@@ -6,14 +6,14 @@ permalink: docs/integrating-with-other-libraries.html
 
 <div class="scary">
 
-> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> この記事は古くなっており、今後更新されません。新しい React ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
-> These new documentation pages teach modern React:
+> 以下の新しいドキュメントで最新の React の使い方が学べます。
 >
-> - [`useSyncExternalStore`: Subscribing to an external store 
-](https://react.dev/reference/react/useSyncExternalStore#subscribing-to-an-external-store)
-> - [`createPortal`: Rendering React components into non-React DOM nodes 
-](https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes)
+> - [`useSyncExternalStore`: 外部ストアへのサブスクライブ
+](https://ja.react.dev/reference/react/useSyncExternalStore#subscribing-to-an-external-store)
+> - [`createPortal`: 非 React DOM ノードに React コンポーネントをレンダー
+](https://ja.react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes)
 
 </div>
 

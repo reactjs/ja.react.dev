@@ -8,7 +8,7 @@ permalink: community/articles.html
 
 <div class="scary">
 
-> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> この記事は古くなっており、今後更新されません。新しい React ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 
 </div>
 

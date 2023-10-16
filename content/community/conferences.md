@@ -10,9 +10,9 @@ redirect_from:
 
 <div class="scary">
 
-> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> この記事は古くなっており、今後更新されません。新しい React ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 >
-> See the [Conferences](https://react.dev/community/conferences) page on the new site.
+> 新サイトの [React カンファレンス](https://ja.react.dev/community/conferences)を参照してください。
 >
 </div>
 

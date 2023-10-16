@@ -6,12 +6,12 @@ permalink: docs/code-splitting.html
 
 <div class="scary">
 
-> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> この記事は古くなっており、今後更新されません。新しい React ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
-> These new documentation pages teach modern React and include live examples:
+> 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
 >
-> - [`lazy`](https://react.dev/reference/react/lazy)
-> - [`<Suspense>`](https://react.dev/reference/react/Suspense)
+> - [`lazy`](https://ja.react.dev/reference/react/lazy)
+> - [`<Suspense>`](https://ja.react.dev/reference/react/Suspense)
 
 </div>
 

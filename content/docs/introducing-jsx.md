@@ -8,14 +8,12 @@ next: rendering-elements.html
 
 <div class="scary">
 
-> 新しい React ドキュメントをお試しください。
+> この記事は古くなっており、今後更新されません。新しい React ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
 > 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
 >
-> - [Writing Markup with JSX](https://beta.reactjs.org/learn/writing-markup-with-jsx)
-> - [JavaScript in JSX with Curly Braces](https://beta.reactjs.org/learn/javascript-in-jsx-with-curly-braces)
->
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> - [JSX でマークアップを記述する](https://ja.react.dev/learn/writing-markup-with-jsx)
+> - [JSX に波括弧で JavaScript を含める](https://ja.react.dev/learn/javascript-in-jsx-with-curly-braces)
 
 </div>
 

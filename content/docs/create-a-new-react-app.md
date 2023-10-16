@@ -11,9 +11,9 @@ next: cdn-links.html
 <div class="scary">
 
 >
-> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> この記事は古くなっており、今後更新されません。新しい React ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
-> See [Start a New React Project](https://react.dev/learn/start-a-new-react-project) for the recommended ways to create an app.
+> アプリを作成する際のおすすめの方法については、[React プロジェクトを始める](https://ja.react.dev/learn/start-a-new-react-project)を参照してください。
 
 </div>
 
