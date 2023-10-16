@@ -284,7 +284,11 @@ export default App = AppTSX;
 
 </Sandpack>
 
+<<<<<<< HEAD
 意味のあるデフォルト値が存在する場合にはこれでうまくいきます。しかし時にはそうではない場合もあり、デフォルト値として `null` が適切に感じられることもあるでしょう。型システムにあなたのコードを理解させるため、`createContext` 呼び出しで `ContextShape | null` と明示的に指定する必要があります。
+=======
+This technique works when you have a default value which makes sense - but there are occasionally cases when you do not, and in those cases `null` can feel reasonable as a default value. However, to allow the type-system to understand your code, you need to explicitly set `ContextShape | null` on the `createContext`. 
+>>>>>>> e85b71de88a20cda9588f51f01d4a70e5cbe1cb4
 
 これにより、コンテクストを利用する側で `| null` の可能性を排除する必要が生じます。お勧めの方法は、値が存在することをフックで実行時にチェックし、存在しない場合にエラーをスローするようにすることです。
 
@@ -460,4 +464,8 @@ interface MyComponentProps {
 
  - [React TypeScript Cheatsheet](https://react-typescript-cheatsheet.netlify.app/) はコミュニティによってメンテナンスされている、React で TypeScript を使用するためのチートシートです。多くの有用なエッジケースをカバーしており、このドキュメントよりも広範な解説が得られます。
 
+<<<<<<< HEAD
  - [TypeScript コミュニティ Discord](https://discord.com/invite/typescript) は、TypeScript と React の問題について質問したり、助けを得たりするための素晴らしい場所です。
+=======
+ - [TypeScript Community Discord](https://discord.com/invite/typescript) is a great place to ask questions and get help with TypeScript and React issues.
+>>>>>>> e85b71de88a20cda9588f51f01d4a70e5cbe1cb4
