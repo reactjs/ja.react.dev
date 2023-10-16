@@ -10,10 +10,8 @@ permalink: docs/integrating-with-other-libraries.html
 > 
 > 以下の新しいドキュメントで最新の React の使い方が学べます。
 >
-> - [`useSyncExternalStore`: 外部ストアへのサブスクライブ
-](https://ja.react.dev/reference/react/useSyncExternalStore#subscribing-to-an-external-store)
-> - [`createPortal`: 非 React DOM ノードに React コンポーネントをレンダー
-](https://ja.react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes)
+> - [`useSyncExternalStore`: 外部ストアへのサブスクライブ](https://ja.react.dev/reference/react/useSyncExternalStore#subscribing-to-an-external-store)
+> - [`createPortal`: 非 React DOM ノードに React コンポーネントをレンダー](https://ja.react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes)
 
 </div>
 

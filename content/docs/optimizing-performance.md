@@ -12,8 +12,7 @@ redirect_from:
 > 
 > 以下の新しいドキュメントで最新の React の使い方が学べます。
 >
-> - [`memo`: props が変更されていない場合に再レンダーをスキップする
-](https://ja.react.dev/reference/react/memo#skipping-re-rendering-when-props-are-unchanged)
+> - [`memo`: props が変更されていない場合に再レンダーをスキップする](https://ja.react.dev/reference/react/memo#skipping-re-rendering-when-props-are-unchanged)
 
 </div>
 
