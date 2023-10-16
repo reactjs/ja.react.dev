@@ -57,11 +57,11 @@ function TodosApp() {
 
 * 再レンダー中に異なる `subscribe` 関数が渡された場合、React は新しく渡された `subscribe` 関数を使ってストアに再サブスクライブします。これを防ぐには、`subscribe` をコンポーネントの外で宣言します。
 
-* If the store is mutated during a [non-blocking transition update](/reference/react/useTransition), React will fall back to performing that update as blocking. Specifically, React will call `getSnapshot` a second time just before applying changes to the DOM. If it returns a different value than when it was called originally, React will restart the transition update from scratch, this time applying it as a blocking update, to ensure that every component on screen is reflecting the same version of the store.
+* [ノンブロッキング型のトランジション更新](/reference/react/useTransition)の最中にストアの書き換えが発生した場合、React はその更新をブロッキング型で行うようにフォールバックします。具体的には、React は DOM に更新を適用する前に `getSnapshot` を再度呼び出します。そこで最初の値とは異なる値が返された場合、React はトランジションの更新を最初からやり直しますが、再試行時にはブロッキング型の更新を行うことで、画面上の全コンポーネントがストアからの同一バージョンの値を反映していることを保証します。
 
-* It's not recommended to _suspend_ a render based on a store value returned by `useSyncExternalStore`. The reason is that mutations to the external store cannot be [marked as non-blocking transition updates](/reference/react/useTransition), so they will trigger the nearest [`Suspense` fallback](/reference/react/Suspense), replacing already-rendered content on screen with a loading spinner, which typically makes a poor UX.
+* `useSyncExternalStore` から返される値に基づいてレンダーを*サスペンド*させることは推奨されていません。外部ストアで起きた変更は[ノンブロッキング型のトランジション更新](/reference/react/useTransition)としてマークすることができないため、直近の [`Suspense` フォールバック](/reference/react/Suspense)が起動してしまいます。既に画面上に表示されているコンテンツがローディングスピナで隠れてしまうため、通常は望ましくないユーザ体験につながります。
 
-  For example, the following are discouraged:
+  例えば以下のようなコードは推奨されません。
 
   ```js
   const LazyProductDetailPage = lazy(() => import('./ProductDetailPage.js'));
