@@ -20,7 +20,7 @@ redirect_from:
 
 <div class="scary">
 
-> この記事は古くなっており、今後更新されません。
+> この記事は古くなっており、今後更新されません。新しい React ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
 > 新しい[クイックスタートガイド](https://ja.react.dev/learn)では最新の React がライブサンプル付きで学べます。
 
