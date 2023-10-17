@@ -11,7 +11,7 @@ next: components-and-props.html
 <div class="scary">
 
 >
-> この記事は古くなっており、今後更新されません。新しい React ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
+> この記事は古くなっており、今後更新されません。新しい React 日本語ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 >
 > 以下の新しいドキュメントで JSX の書き方や HTML ページへの表示方法が学べます。
 >

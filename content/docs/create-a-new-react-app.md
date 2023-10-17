@@ -11,7 +11,7 @@ next: cdn-links.html
 <div class="scary">
 
 >
-> この記事は古くなっており、今後更新されません。新しい React ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
+> この記事は古くなっており、今後更新されません。新しい React 日本語ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
 > アプリを作成する際のおすすめの方法については、[React プロジェクトを始める](https://ja.react.dev/learn/start-a-new-react-project)を参照してください。
 

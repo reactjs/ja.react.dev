@@ -6,7 +6,7 @@ permalink: docs/static-type-checking.html
 
 <div class="scary">
 
-> この記事は古くなっており、今後更新されません。新しい React ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
+> この記事は古くなっており、今後更新されません。新しい React 日本語ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 >
 > [React TypeScript cheatsheet](https://react-typescript-cheatsheet.netlify.app/) で TypeScript を使って React を書く方法が学べます。
 

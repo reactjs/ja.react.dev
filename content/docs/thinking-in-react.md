@@ -10,7 +10,7 @@ prev: composition-vs-inheritance.html
 
 <div class="scary">
 
-> この記事は古くなっており、今後更新されません。新しい React ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
+> この記事は古くなっており、今後更新されません。新しい React 日本語ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
 > 新しいバージョンの [React の流儀](https://ja.react.dev/learn/thinking-in-react)では、最新の React の使い方がライブサンプル付きで学べます。
 

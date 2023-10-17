@@ -8,7 +8,7 @@ permalink: community/meetups.html
 
 <div class="scary">
 
-> この記事は古くなっており、今後更新されません。新しい React ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
+> この記事は古くなっており、今後更新されません。新しい React 日本語ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 >
 > 新サイトの [React ミーティング](https://ja.react.dev/community/meetups)を参照してください。
 >
