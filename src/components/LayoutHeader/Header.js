@@ -24,7 +24,7 @@ import logoSvg from 'icons/logo.svg';
 const ContainerWrapper = ({children}) => (
   <div
     css={{
-      backgroundColor: 'hsl(222, 14%, 10%)',
+      backgroundColor: 'brown',
     }}>
     {children}
   </div>
