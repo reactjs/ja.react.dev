@@ -244,7 +244,7 @@ function reducer(state, action) {
     }
 ```
 
-詳しくは、[state 内のオブジェクトの更新](/learn/updating-objects-in-state)と[state 内の配列の更新](/learn/updating-arrays-in-state)を参照ください。
+詳しくは、[state 内のオブジェクトの更新](/learn/updating-objects-in-state)と [state 内の配列の更新](/learn/updating-arrays-in-state)を参照ください。
 
 </Pitfall>
 

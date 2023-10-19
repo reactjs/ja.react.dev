@@ -218,7 +218,7 @@ export default function Heading({ level, children }) {
 
 </Diagram>
 
-<Diagram name="passing_data_context_far" height={430} width={608} captionPosition="top" alt="10 ノードからなるツリーの図。各ノードには最大 2 つの子がある。ルート親ノードにはオレンジ色でハイライトされた値がある。値はツリー内の 4 つのリーフノードと 1 つの中間コンポーネントに直接投影され、それらは全てオレンジ色でハイライトされている。他の中間コンポーネントはハイライトされていない。">
+<Diagram name="passing_data_context_far" height={430} width={608} captionPosition="top" alt="10 ノードからなるツリーの図。各ノードには最大 2 つの子がある。ルート親ノードにはオレンジ色でハイライトされた値がある。値はツリー内の 4 つのリーフノードと 1 つの中間コンポーネントに直接投影され、それらはすべてオレンジ色でハイライトされている。他の中間コンポーネントはハイライトされていない。">
 
 遠くの子にコンテクストを使用
 
