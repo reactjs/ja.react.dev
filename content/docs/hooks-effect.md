@@ -8,15 +8,13 @@ prev: hooks-state.html
 
 <div class="scary">
 
-> 新しい React ドキュメントをお試しください。
+> この記事は古くなっており、今後更新されません。新しい React 日本語ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
 > 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
 >
-> - [Synchronizing with Effects](https://beta.reactjs.org/learn/synchronizing-with-effects)
-> - [You Might Not Need an Effect](https://beta.reactjs.org/learn/you-might-not-need-an-effect)
-> - [`useEffect`](https://beta.reactjs.org/reference/react/useEffect)
->
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> - [エフェクトを使って同期を行う](https://ja.react.dev/learn/synchronizing-with-effects)
+> - [エフェクトは必要ないかもしれない](https://ja.react.dev/learn/you-might-not-need-an-effect)
+> - [`useEffect`](https://ja.react.dev/reference/react/useEffect)
 
 </div>
 

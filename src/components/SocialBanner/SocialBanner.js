@@ -16,7 +16,7 @@ const linkProps = {
 };
 
 const bannerText = 'このサイトの更新は終了しました。';
-const bannerLink = 'ja.react.dev (翻訳中) へ';
+const bannerLink = 'ja.react.dev へ';
 
 export default function SocialBanner() {
   return (

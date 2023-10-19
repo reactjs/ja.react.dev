@@ -16,18 +16,16 @@ redirect_from:
 
 <div class="scary">
 
-> 新しい React ドキュメントをお試しください。
+> この記事は古くなっており、今後更新されません。新しい React 日本語ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
 > 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
 >
-> - [Common components (e.g. `<div>`)](https://beta.reactjs.org/reference/react-dom/components/common)
-> - [`<input>`](https://beta.reactjs.org/reference/react-dom/components/input)
-> - [`<option>`](https://beta.reactjs.org/reference/react-dom/components/option)
-> - [`<progress>`](https://beta.reactjs.org/reference/react-dom/components/progress)
-> - [`<select>`](https://beta.reactjs.org/reference/react-dom/components/select)
-> - [`<textarea>`](https://beta.reactjs.org/reference/react-dom/components/textarea)
->
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> - [Common components (e.g. `<div>`)](https://ja.react.dev/reference/react-dom/components/common)
+> - [`<input>`](https://ja.react.dev/reference/react-dom/components/input)
+> - [`<option>`](https://ja.react.dev/reference/react-dom/components/option)
+> - [`<progress>`](https://ja.react.dev/reference/react-dom/components/progress)
+> - [`<select>`](https://ja.react.dev/reference/react-dom/components/select)
+> - [`<textarea>`](https://ja.react.dev/reference/react-dom/components/textarea)
 
 </div>
 

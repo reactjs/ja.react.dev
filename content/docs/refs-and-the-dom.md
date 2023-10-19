@@ -13,14 +13,14 @@ redirect_from:
 
 <div class="scary">
 
-> 新しい React ドキュメントをお試しください。
+> この記事は古くなっており、今後更新されません。新しい React 日本語ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
-> - [Referencing Values with Refs](https://beta.reactjs.org/learn/referencing-values-with-refs)
-> - [Manipulating the DOM with Refs](https://beta.reactjs.org/learn/manipulating-the-dom-with-refs)
-> - [`useRef`](https://beta.reactjs.org/reference/react/useRef)
-> - [`forwardRef`](https://beta.reactjs.org/reference/react/forwardRef)
->
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> 以下の新しいドキュメントで最新の React の使い方がライブサンプル付きで学べます。
+> 
+> - [ref で値を参照する](https://ja.react.dev/learn/referencing-values-with-refs)
+> - [ref で DOM を操作する](https://ja.react.dev/learn/manipulating-the-dom-with-refs)
+> - [`useRef`](https://ja.react.dev/reference/react/useRef)
+> - [`forwardRef`](https://ja.react.dev/reference/react/forwardRef)
 
 </div>
 

@@ -14,11 +14,9 @@ redirect_from:
 
 <div class="scary">
 
-> 新しい React ドキュメントをお試しください。
+> この記事は古くなっており、今後更新されません。新しい React 日本語ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
-> [チュートリアル](https://beta.reactjs.org/learn/tutorial-tic-tac-toe) の更新版では最新の React の使い方がライブサンプル付きで学べます。
->
-> まもなく新しいドキュメントがリリースされ、このページはアーカイブされる予定です。[フィードバックを送る](https://github.com/reactjs/reactjs.org/issues/3308)
+> 新しくなった[チュートリアル](https://ja.react.dev/learn/tutorial-tic-tac-toe)では最新の React の使い方がライブサンプル付きで学べます。
 
 </div>
 

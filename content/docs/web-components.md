@@ -8,9 +8,9 @@ redirect_from:
 
 <div class="scary">
 
-> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> この記事は古くなっており、今後更新されません。新しい React 日本語ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 >
-> See [Custom HTML elements](https://react.dev/reference/react-dom/components#custom-html-elements) in the new docs.
+> 新ドキュメントの[カスタム HTML 要素](https://ja.react.dev/reference/react-dom/components#custom-html-elements)を参照してください。
 >
 </div>
 

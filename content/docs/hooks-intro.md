@@ -7,13 +7,13 @@ next: hooks-overview.html
 
 <div class="scary">
 
-> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> この記事は古くなっており、今後更新されません。新しい React 日本語ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 >
-> These new documentation pages teach React with Hooks:
+> 以下の新しいドキュメントでフックを用いた最新の React の使い方が学べます。
 >
-> - [Quick Start](https://react.dev/learn)
-> - [Tutorial](https://react.dev/learn/tutorial-tic-tac-toe)
-> - [`react`: Hooks](https://react.dev/reference/react)
+> - [クイックスタート](https://ja.react.dev/learn)
+> - [チュートリアル](https://ja.react.dev/learn/tutorial-tic-tac-toe)
+> - [`react`: フック](https://ja.react.dev/reference/react)
 
 </div>
 

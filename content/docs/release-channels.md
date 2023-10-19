@@ -11,9 +11,9 @@ next: hello-world.html
 <div class="scary">
 
 >
-> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> この記事は古くなっており、今後更新されません。新しい React 日本語ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
-> See [Versioning Policy](https://react.dev/community/versioning-policy) to learn about the React release channels.
+> React のリリースチャンネルについては[バージョニングポリシー](https://ja.react.dev/community/versioning-policy)を参照してください。
 
 </div>
 

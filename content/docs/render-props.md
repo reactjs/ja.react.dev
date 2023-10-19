@@ -6,10 +6,10 @@ permalink: docs/render-props.html
 
 <div class="scary">
 
-> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> この記事は古くなっており、今後更新されません。新しい React 日本語ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 >
-> Render props are used in modern React, but aren't very common.  
-> For many cases, they have been replaced by [custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks).
+> レンダープロップはモダンな React でも使われますが、あまり一般的ではなくなっています。
+> 多くのユースケースでは、[カスタムフック](https://ja.react.dev/learn/reusing-logic-with-custom-hooks)に置き換わりました。
 
 </div>
 

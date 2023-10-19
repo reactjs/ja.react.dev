@@ -9,9 +9,9 @@ next: release-channels.html
 <div class="scary">
 
 >
-> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> この記事は古くなっており、今後更新されません。新しい React 日本語ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
-> See [Add React to an Existing Project](https://react.dev/learn/add-react-to-an-existing-project) for the recommended ways to add React.
+> React を追加する推奨の方法については、[既存プロジェクトに React を追加する](https://ja.react.dev/learn/add-react-to-an-existing-project)を参照してください。
 
 </div>
 

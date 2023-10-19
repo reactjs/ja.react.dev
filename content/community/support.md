@@ -11,9 +11,9 @@ redirect_from:
 <div class="scary">
 
 >
-> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> この記事は古くなっており、今後更新されません。新しい React 日本語ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
-> See the [Community](https://react.dev/community) resources on the new site.
+> 新サイトの[コミュニティ](https://ja.react.dev/community)リソースを参照してください。
 
 </div>
 

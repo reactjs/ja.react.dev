@@ -6,9 +6,9 @@ permalink: docs/higher-order-components.html
 
 <div class="scary">
 
-> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> この記事は古くなっており、今後更新されません。新しい React 日本語ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
-> Higher-order components are not commonly used in modern React code.
+> 高階コンポーネントはモダンな React コードではあまり使われなくなりました。
 
 </div>
 

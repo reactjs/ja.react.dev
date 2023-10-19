@@ -9,9 +9,9 @@ permalink: community/team.html
 <div class="scary">
 
 >
-> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> この記事は古くなっており、今後更新されません。新しい React 日本語ドキュメントである [ja.react.dev](https://ja.react.dev) をご利用ください。
 > 
-> See the [Team](https://react.dev/community/team) page on the new site.
+> 新サイトの[チーム紹介](https://ja.react.dev/community/team)ページを参照してください。
 
 </div>
 
