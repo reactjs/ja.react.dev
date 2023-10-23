@@ -10,6 +10,7 @@ state は複数のコンポーネント間で独立しています。React は U
 
 <YouWillLearn>
 
+<<<<<<< HEAD
 * React にはコンポーネント構造がどのように「見える」のか
 * React が state の保持とリセットを行うタイミング
 * React にコンポーネントの state のリセットを強制する方法
@@ -36,7 +37,19 @@ React はコンポーネントから UI ツリーを作成し、React DOM はそ
 ## state はツリー内の位置に結びついている {/*state-is-tied-to-a-position-in-the-tree*/}
 
 コンポーネントに state を与えると、その state はそのコンポーネントの内部で「生存」しているように思えるかもしれません。しかし、実際には state は React の中に保持されています。React は、「UI ツリー内でそのコンポーネントがどの位置にあるか」に基づいて、保持している各 state を正しいコンポーネントに関連付けます。
+=======
+* When React chooses to preserve or reset the state
+* How to force React to reset component's state
+* How keys and types affect whether the state is preserved
 
+</YouWillLearn>
+
+## State is tied to a position in the render tree {/*state-is-tied-to-a-position-in-the-tree*/}
+
+React builds [render trees](learn/understanding-your-ui-as-a-tree#the-render-tree) for the component structure in your UI.
+>>>>>>> a0cacd7d3a89375e5689ccfba0461e293bfe9eeb
+
+When you give a component state, you might think the state "lives" inside the component. But the state is actually held inside React. React associates each piece of state it's holding with the correct component by where that component sits in the render tree.
 
 以下のコードには `<Counter />` JSX タグは 1 つしかありませんが、それが 2 つの異なる位置にレンダーされています。
 
@@ -190,7 +203,11 @@ state の更新
 </DiagramGroup>
 
 
+<<<<<<< HEAD
 React は、同じコンポーネントを同じ位置でレンダーしている限り、その state を保持し続けます。これを確認するため、両方のカウンタを増加させてから、"Render the second counter" のチェックボックスのチェックを外して 2 つ目のコンポーネントを削除し、再びチェックを入れて元に戻してみてください。
+=======
+React will keep the state around for as long as you render the same component at the same position in the tree. To see this, increment both counters, then remove the second component by unchecking "Render the second counter" checkbox, and then add it back by ticking it again:
+>>>>>>> a0cacd7d3a89375e5689ccfba0461e293bfe9eeb
 
 <Sandpack>
 

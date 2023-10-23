@@ -252,7 +252,11 @@ function Page({id}) {
 
 `Page` のレンダー時にコンポーネントは <CodeStep step={1}>`getUser`</CodeStep> を呼び出していますが、返されたデータを使用していないことに着目してください。この早期の <CodeStep step={1}>`getUser`</CodeStep> 呼び出しは、`Page` が他の計算処理を行ったり子をレンダーしたりしている間に実行される、非同期のデータベースクエリを開始します。
 
+<<<<<<< HEAD
 `Profile` をレンダーするとき、再び <CodeStep step={2}>`getUser`</CodeStep> を呼び出します。最初の <CodeStep step={1}>`getUser`</CodeStep> 呼び出しがすでに完了しユーザデータをキャッシュしている場合、`Profile` が <CodeStep step={2}>このデータを要求して待機する時点</CodeStep>では、新たなリモートプロシージャ呼び出しを必要とせずにキャッシュから単に読み取ることができます。もし<CodeStep step={1}>最初のデータリクエスト</CodeStep>がまだ完了していない場合でも、このパターンでデータをプリロードすることで、データ取得の遅延を減らすことができます。
+=======
+When rendering `Profile`, we call <CodeStep step={2}>`getUser`</CodeStep> again. If the initial <CodeStep step={1}>`getUser`</CodeStep> call has already returned and cached the user data, when `Profile` <CodeStep step={2}>asks and waits for this data</CodeStep>, it can simply read from the cache without requiring another remote procedure call. If the <CodeStep step={1}> initial data request</CodeStep> hasn't been completed, preloading data in this pattern reduces delay in data-fetching.
+>>>>>>> a0cacd7d3a89375e5689ccfba0461e293bfe9eeb
 
 <DeepDive>
 
