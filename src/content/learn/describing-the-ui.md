@@ -10,7 +10,6 @@ React は、ユーザインターフェース（UI）を表示するための Ja
 
 <YouWillLearn isChapter={true}>
 
-<<<<<<< HEAD
 * [初めてのコンポーネントの書き方](/learn/your-first-component)
 * [コンポーネントファイルを複数に分ける理由とその方法](/learn/importing-and-exporting-components)
 * [JSX を使って JavaScript にマークアップを追加する方法](/learn/writing-markup-with-jsx)
@@ -19,17 +18,7 @@ React は、ユーザインターフェース（UI）を表示するための Ja
 * [コンポーネントを条件付きでレンダーする方法](/learn/conditional-rendering)
 * [複数のコンポーネントを同時にレンダーする方法](/learn/rendering-lists)
 * [コンポーネントを純粋に保つことで混乱を避ける方法](/learn/keeping-components-pure)
-=======
-* [How to write your first React component](/learn/your-first-component)
-* [When and how to create multi-component files](/learn/importing-and-exporting-components)
-* [How to add markup to JavaScript with JSX](/learn/writing-markup-with-jsx)
-* [How to use curly braces with JSX to access JavaScript functionality from your components](/learn/javascript-in-jsx-with-curly-braces)
-* [How to configure components with props](/learn/passing-props-to-a-component)
-* [How to conditionally render components](/learn/conditional-rendering)
-* [How to render multiple components at a time](/learn/rendering-lists)
-* [How to avoid confusing bugs by keeping components pure](/learn/keeping-components-pure)
 * [Why understanding your UI as trees is useful](/learn/understanding-your-ui-as-a-tree)
->>>>>>> a0cacd7d3a89375e5689ccfba0461e293bfe9eeb
 
 </YouWillLearn>
 
@@ -535,9 +524,6 @@ export default function TeaSet() {
 
 </LearnMore>
 
-<<<<<<< HEAD
-## 次のステップ {/*whats-next*/}
-=======
 ## Your UI as a tree {/*your-ui-as-a-tree*/}
 
 React uses trees to model the relationships between components and modules. 
@@ -561,8 +547,7 @@ Read **[Your UI as a Tree](/learn/understanding-your-ui-as-a-tree)** to learn ho
 </LearnMore>
 
 
-## What's next? {/*whats-next*/}
->>>>>>> a0cacd7d3a89375e5689ccfba0461e293bfe9eeb
+## 次のステップ {/*whats-next*/}
 
 [初めてのコンポーネント](/learn/your-first-component)に進んで、この章をページごとに読み進めましょう！
 
