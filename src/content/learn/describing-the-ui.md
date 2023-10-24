@@ -18,7 +18,7 @@ React は、ユーザインターフェース（UI）を表示するための Ja
 * [コンポーネントを条件付きでレンダーする方法](/learn/conditional-rendering)
 * [複数のコンポーネントを同時にレンダーする方法](/learn/rendering-lists)
 * [コンポーネントを純粋に保つことで混乱を避ける方法](/learn/keeping-components-pure)
-* [Why understanding your UI as trees is useful](/learn/understanding-your-ui-as-a-tree)
+* [UI をツリーとして理解することが有用である理由](/learn/understanding-your-ui-as-a-tree)
 
 </YouWillLearn>
 
