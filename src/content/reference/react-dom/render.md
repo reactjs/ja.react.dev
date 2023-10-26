@@ -1,5 +1,5 @@
 ---
-title: レンダー
+title: render
 ---
 
 <Deprecated>
