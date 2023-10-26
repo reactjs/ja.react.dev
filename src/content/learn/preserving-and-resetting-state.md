@@ -16,11 +16,11 @@ state は複数のコンポーネント間で独立しています。React は U
 
 </YouWillLearn>
 
-## state はツリー内の位置に結びついている {/*state-is-tied-to-a-position-in-the-tree*/}
+## state はレンダーツリー内の位置に結びついている {/*state-is-tied-to-a-position-in-the-tree*/}
 
 React はあなたの UI のコンポーネント構造を[レンダーツリー](learn/understanding-your-ui-as-a-tree#the-render-tree)としてビルドします。
 
-コンポーネントに state を与えると、その state はそのコンポーネントの内部で「生存」しているように思えるかもしれません。しかし、実際には state は React の中に保持されています。React は、「UI ツリー内でそのコンポーネントがどの位置にあるか」に基づいて、保持している各 state を正しいコンポーネントに関連付けます。
+コンポーネントに state を与えると、その state はそのコンポーネントの内部で「生存」しているように思えるかもしれません。しかし、実際には state は React の中に保持されています。React は、「レンダーツリー内でそのコンポーネントがどの位置にあるか」に基づいて、保持している各 state を正しいコンポーネントに関連付けます。
 
 以下のコードには `<Counter />` JSX タグは 1 つしかありませんが、それが 2 つの異なる位置にレンダーされています。
 
