@@ -86,6 +86,10 @@
         {
           "title": "コンポーネントを純粋に保つ",
           "path": "/learn/keeping-components-pure"
+        },
+        {
+          "title": "UI をツリーとして理解する",
+          "path": "/learn/understanding-your-ui-as-a-tree"
         }
       ]
     },

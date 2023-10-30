@@ -162,6 +162,17 @@
       "sectionHeader": "react-dom@18.2.0"
     },
     {
+      "title": "フック",
+      "path": "/reference/react-dom/hooks",
+      "routes": [
+        {
+          "title": "useFormStatus",
+          "path": "/reference/react-dom/hooks/useFormStatus",
+          "canary": true
+        }
+      ]
+    },
+    {
       "title": "コンポーネント",
       "path": "/reference/react-dom/components",
       "routes": [

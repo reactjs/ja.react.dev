@@ -10,33 +10,17 @@ state は複数のコンポーネント間で独立しています。React は U
 
 <YouWillLearn>
 
-* React にはコンポーネント構造がどのように「見える」のか
 * React が state の保持とリセットを行うタイミング
 * React にコンポーネントの state のリセットを強制する方法
 * key とタイプが state の保持にどのように影響するか
 
 </YouWillLearn>
 
-## UI ツリー {/*the-ui-tree*/}
+## state はレンダーツリー内の位置に結びついている {/*state-is-tied-to-a-position-in-the-tree*/}
 
-ブラウザは、UI をモデル化するために多くのツリー構造を使用します。[DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) は HTML 要素を、[CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model) は CSS を表現します。[アクセシビリティツリー](https://developer.mozilla.org/docs/Glossary/Accessibility_tree)というものもあります！
+React はあなたの UI のコンポーネント構造を[レンダーツリー](learn/understanding-your-ui-as-a-tree#the-render-tree)としてビルドします。
 
-React もまた、ユーザが作成した UI を管理しモデリングするためにツリー構造を使用します。React は JSX から **UI ツリー**を作成します。次に React DOM が、その UI ツリーに合わせてブラウザの DOM 要素を更新します。（React Native の場合は UI ツリーをモバイルプラットフォーム固有の要素に変換します。）
-
-<DiagramGroup>
-
-<Diagram name="preserving_state_dom_tree" height={193} width={864} alt="横に並んだ 3 つのセクションで構成された図。最初のセクションには、'コンポーネント A'、'コンポーネント B'、'コンポーネント C' という名前の 3 つの長方形が縦に並んでいる。次のセクションに移る矢印があり、その上には React ロゴが付いた 'React' というラベルがある。中央のセクションには、ルートに 'A'、その子に 'B'、'C' とラベル付けされたコンポーネントツリー。次のセクションへの矢印は 'React DOM' というラベルの上に React ロゴが付いている。最後のセクションではブラウザのフレームの中に 8 個のノードからなるツリーがあり、一部は中央セクションからのものであるためハイライトされている。">
-
-React はコンポーネントから UI ツリーを作成し、React DOM はそれを DOM に変換する
-
-</Diagram>
-
-</DiagramGroup>
-
-## state はツリー内の位置に結びついている {/*state-is-tied-to-a-position-in-the-tree*/}
-
-コンポーネントに state を与えると、その state はそのコンポーネントの内部で「生存」しているように思えるかもしれません。しかし、実際には state は React の中に保持されています。React は、「UI ツリー内でそのコンポーネントがどの位置にあるか」に基づいて、保持している各 state を正しいコンポーネントに関連付けます。
-
+コンポーネントに state を与えると、その state はそのコンポーネントの内部で「生存」しているように思えるかもしれません。しかし、実際には state は React の中に保持されています。React は、「レンダーツリー内でそのコンポーネントがどの位置にあるか」に基づいて、保持している各 state を正しいコンポーネントに関連付けます。
 
 以下のコードには `<Counter />` JSX タグは 1 つしかありませんが、それが 2 つの異なる位置にレンダーされています。
 
@@ -190,7 +174,7 @@ state の更新
 </DiagramGroup>
 
 
-React は、同じコンポーネントを同じ位置でレンダーしている限り、その state を保持し続けます。これを確認するため、両方のカウンタを増加させてから、"Render the second counter" のチェックボックスのチェックを外して 2 つ目のコンポーネントを削除し、再びチェックを入れて元に戻してみてください。
+React は、同じコンポーネントをツリー内の同じ位置でレンダーしている限り、その state を保持し続けます。これを確認するため、両方のカウンタを増加させてから、"Render the second counter" のチェックボックスのチェックを外して 2 つ目のコンポーネントを削除し、再びチェックを入れて元に戻してみてください。
 
 <Sandpack>
 

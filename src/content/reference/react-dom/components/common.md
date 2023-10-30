@@ -694,7 +694,7 @@ CSS トランジションイベントのためのイベントハンドラタイ�
 
 ```js
 <div
-  onScroll={e => console.log('onScroll')}
+  onWheel={e => console.log('onWheel')}
 />
 ```
 
