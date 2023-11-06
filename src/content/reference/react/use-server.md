@@ -1,6 +1,6 @@
 ---
 title: "'use server'"
-titleForTitleTag: "'use server' directive"
+titleForTitleTag: "'use server' ディレクティブ"
 canary: true
 ---
 
@@ -25,11 +25,7 @@ canary: true
 
 ### `'use server'` {/*use-server*/}
 
-<<<<<<< HEAD
-非同期 (async) 関数の冒頭に `'use server';` を追加することで、その関数がクライアントから実行できることをマークします。
-=======
-Add `'use server'` at the top of an async function body to mark the function as callable by the client. We call these functions _server actions_.
->>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
+非同期 (async) 関数の本体の冒頭に `'use server';` を追加することで、その関数がクライアントから実行できることをマークします。そのような関数のことを*サーバアクション (server action)* と呼びます。
 
 ```js {2}
 async function addToCart(data) {
@@ -38,18 +34,6 @@ async function addToCart(data) {
 }
 ```
 
-<<<<<<< HEAD
-このような関数は、クライアントに渡すことができます。この関数がクライアント側で呼び出されると、渡された引数がシリアライズされ、それを含んだネットワークリクエストをサーバに送信します。このサーバ関数が値を返す場合、シリアライズされてクライアントに返されます。
-
-または、ファイルの最上部に `'use server';` を追加すると、そのファイル内のすべてのエクスポートが、クライアントコンポーネントファイルを含むあらゆる場所で使用できる非同期サーバ関数である、とマークします。
-
-#### 注意点 {/*caveats*/}
-
-* `'use server'` でマークされた関数に渡される引数はクライアントで完全に制御可能です。セキュリティのため、引数を常に信頼できない入力として扱い、適切にバリデーションやエスケープを行うことを忘れないでください。
-* クライアント側とサーバ側のコードを同じファイルに混在させることによる混乱を避けるため、`'use server'` はサーバ側のファイルでのみ使用できます。結果として得られる関数は、props を通じてクライアントコンポーネントに渡すことができます。
-* 内部で用いられるネットワーク呼び出しは常に非同期であるため、`'use server'` は非同期関数でのみ使用できます。
-* `'use server'` のようなディレクティブは、関数やファイルの冒頭部分で、他のコード（インポートを含む）より上になければなりません（ただしコメントはディレクティブの上に記載できます）。シングルクォートまたはダブルクォートで書く必要があり、バックティックは使えません。（`'use xyz'` というディレクティブの形式は `useXyz()` というフックの命名規則に多少似ていますが、これは偶然です。）
-=======
 When calling a server action on the client, it will make a network request to the server that includes a serialized copy of any arguments passed. If the server action returns a value, that value will be serialized and returned to the client.
 
 Instead of individually marking functions with `'use server'`, you can add the directive to the top of a file to mark all exports within that file as server actions that can be used anywhere, including imported in client code.
@@ -113,19 +97,9 @@ Notably, these are not supported:
 
 Supported serializable return values are the same as [serializable props](/reference/react/use-client#passing-props-from-server-to-client-components) for a boundary Client Component.
 
->>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
 
 ## 使用法 {/*usage*/}
 
-<<<<<<< HEAD
-<Wip>
-このセクションは未完成です。
-
-この API は React Server Components を利用するフレームワークで使用できます。フレームワークごとの追加のドキュメントが公開されています。
-* [Next.js ドキュメント](https://nextjs.org/docs/getting-started/react-essentials)
-* 今後追加予定
-</Wip>
-=======
 ### Server actions in forms {/*server-actions-in-forms*/}
 
 The most common use case of server actions will be calling server functions that mutate data. On the browser, the [HTML form element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) is the traditional approach for a user to submit a mutation. With React Server Components, React introduces first-class support for server actions in [forms](/reference/react-dom/components/form).
@@ -239,4 +213,3 @@ export default async incrementLike() {
 ```
 
 To read a server action return value, you'll need to `await` the promise returned.
->>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04

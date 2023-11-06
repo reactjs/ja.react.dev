@@ -1,23 +1,23 @@
 ---
-title: "Built-in React Hooks"
+title: "組み込みの React フック"
 ---
 
 <Intro>
 
-*Hooks* let you use different React features from your components. You can either use the built-in Hooks or combine them to build your own. This page lists all built-in Hooks in React.
+*フック*を用いると、コンポーネントから様々な React の機能を使えるようになります。組み込みのフックを使うこともできますし、組み合わせて自分だけのものを作ることもできます。このページでは、React に組み込まれたすべてのフックを説明します。
 
 </Intro>
 
 ---
 
-## State Hooks {/*state-hooks*/}
+## state フック {/*state-hooks*/}
 
-*State* lets a component ["remember" information like user input.](/learn/state-a-components-memory) For example, a form component can use state to store the input value, while an image gallery component can use state to store the selected image index.
+*state* を使うと、ユーザの入力などの情報を[コンポーネントに「記憶」](/learn/state-a-components-memory)させることができます。例えば、フォームコンポーネントは入力された文字を保持し、画像ギャラリのコンポーネントは選択された画像を保持できます。
 
-To add state to a component, use one of these Hooks:
+コンポーネントに state を追加するには、次のフックのいずれかを使います：
 
-* [`useState`](/reference/react/useState) declares a state variable that you can update directly.
-* [`useReducer`](/reference/react/useReducer) declares a state variable with the update logic inside a [reducer function.](/learn/extracting-state-logic-into-a-reducer)
+* [`useState`](/reference/react/useState) は直接的に更新できる state 変数を定義します。
+* [`useReducer`](/reference/react/useReducer) は、[リデューサ関数](/learn/extracting-state-logic-into-a-reducer)内に書いたロジックを用いて更新を行う state 変数を定義します。
 
 ```js
 function ImageGallery() {
@@ -27,11 +27,11 @@ function ImageGallery() {
 
 ---
 
-## Context Hooks {/*context-hooks*/}
+## コンテクストフック {/*context-hooks*/}
 
-*Context* lets a component [receive information from distant parents without passing it as props.](/learn/passing-props-to-a-component) For example, your app's top-level component can pass the current UI theme to all components below, no matter how deep.
+*コンテクスト*を用いると、コンポーネントは props を渡すことなく、[離れた親要素から情報を取得できるようになります](/learn/passing-props-to-a-component)。例えば、アプリの最上位のコンポーネントが、現在の UI テーマをコンポーネントの階層に関係なくすべてのコンポーネントに渡すことができます。
 
-* [`useContext`](/reference/react/useContext) reads and subscribes to a context.
+* [`useContext`](/reference/react/useContext) は、コンテクストの値を読み取り、変更を受け取れるようにします。
 
 ```js
 function Button() {
@@ -41,12 +41,12 @@ function Button() {
 
 ---
 
-## Ref Hooks {/*ref-hooks*/}
+## ref フック {/*ref-hooks*/}
 
-*Refs* let a component [hold some information that isn't used for rendering,](/learn/referencing-values-with-refs) like a DOM node or a timeout ID. Unlike with state, updating a ref does not re-render your component. Refs are an "escape hatch" from the React paradigm. They are useful when you need to work with non-React systems, such as the built-in browser APIs.
+*ref* を用いると、コンポーネントは DOM ノードやタイムアウト ID などの、[レンダーに用いない情報を保持](/learn/referencing-values-with-refs)することができます。state と違い、ref の値を更新してもコンポーネントは再レンダーされません。ref は、React パラダイムからの「避難ハッチ」です。これらは組み込みのブラウザ API などの、React 外のシステムを取り扱うときに役立ちます。
 
-* [`useRef`](/reference/react/useRef) declares a ref. You can hold any value in it, but most often it's used to hold a DOM node.
-* [`useImperativeHandle`](/reference/react/useImperativeHandle) lets you customize the ref exposed by your component. This is rarely used.
+* [`useRef`](/reference/react/useRef) は ref を宣言します。useRef にはどんな値でも格納できますが、多くの場合、DOM ノードを格納するために使われます。
+* [`useImperativeHandle`](/reference/react/useImperativeHandle) を用いると、コンポーネントが公開する ref をカスタマイズできます。これはほとんど用いられることはありません。
 
 ```js
 function Form() {
@@ -56,11 +56,11 @@ function Form() {
 
 ---
 
-## Effect Hooks {/*effect-hooks*/}
+## エフェクトフック {/*effect-hooks*/}
 
-*Effects* let a component [connect to and synchronize with external systems.](/learn/synchronizing-with-effects) This includes dealing with network, browser DOM, animations, widgets written using a different UI library, and other non-React code.
+*エフェクト*を使うことで、[コンポーネントを外部システムに接続し、同期させる](/learn/synchronizing-with-effects)ことができます。これには、ネットワーク、ブラウザの DOM、アニメーション、別の UI ライブラリを使って書かれたウィジェット、その他の非 React コードの処理が含まれます。
 
-* [`useEffect`](/reference/react/useEffect) connects a component to an external system.
+* [`useEffect`](/reference/react/useEffect) は外部のシステムとコンポーネントを接続します。
 
 ```js
 function ChatRoom({ roomId }) {
@@ -72,23 +72,23 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Effects are an "escape hatch" from the React paradigm. Don't use Effects to orchestrate the data flow of your application. If you're not interacting with an external system, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
+エフェクトは、React パラダイムからの「脱出ハッチ」です。エフェクトをアプリケーションのデータフローを調整するために使ってはいけません。外部のシステムとやりとりを行わないならば、[エフェクトは必要ないかもしれません](/learn/you-might-not-need-an-effect)。
 
-There are two rarely used variations of `useEffect` with differences in timing:
+`useEffect` には、実行タイミングが異なり、まれに使われることのある 2 つのバリエーションがあります：
 
-* [`useLayoutEffect`](/reference/react/useLayoutEffect) fires before the browser repaints the screen. You can measure layout here.
-* [`useInsertionEffect`](/reference/react/useInsertionEffect) fires before React makes changes to the DOM. Libraries can insert dynamic CSS here.
+* [`useLayoutEffect`](/reference/react/useLayoutEffect) はブラウザが画面を再描画する前に発火します。このフックでレイアウトを測定できます。
+* [`useInsertionEffect`](/reference/react/useInsertionEffect) は React が DOM に変更を加える前に発火します。ライブラリは動的な CSS をこのフックで挿入できます。
 
 ---
 
-## Performance Hooks {/*performance-hooks*/}
+## パフォーマンス関連フック {/*performance-hooks*/}
 
-A common way to optimize re-rendering performance is to skip unnecessary work. For example, you can tell React to reuse a cached calculation or to skip a re-render if the data has not changed since the previous render.
+再レンダーのパフォーマンスを最適化するためのよくある方法は、不要な処理を減らすことです。例えばキャッシュ済みの計算結果を再利用したり、データの変更がない場合の再レンダーをスキップしたりするよう、React に伝えることができます。
 
-To skip calculations and unnecessary re-rendering, use one of these Hooks:
+不要な計算やレンダーをスキップするためには、以下のフックを用いることができます：
 
-- [`useMemo`](/reference/react/useMemo) lets you cache the result of an expensive calculation.
-- [`useCallback`](/reference/react/useCallback) lets you cache a function definition before passing it down to an optimized component.
+- [`useMemo`](/reference/react/useMemo) を用いると高負荷な計算の結果をキャッシュできます。
+- [`useCallback`](/reference/react/useCallback) を用いると、最適化済みのコンポーネントに渡すために関数定義をキャッシュしておくことができます。
 
 ```js
 function TodoList({ todos, tab, theme }) {
@@ -97,22 +97,22 @@ function TodoList({ todos, tab, theme }) {
 }
 ```
 
-Sometimes, you can't skip re-rendering because the screen actually needs to update. In that case, you can improve performance by separating blocking updates that must be synchronous (like typing into an input) from non-blocking updates which don't need to block the user interface (like updating a chart).
+画面の更新が実際にあるため、再レンダーをスキップできない場合もあるでしょう。その場合、同期的に行う必要があるユーザインターフェイスをブロックする更新（ユーザの文字入力など）を、ユーザインターフェイスをブロックする必要のないノンブロッキングな更新（図の更新など）から分離することで、パフォーマンスを向上することができます。
 
-To prioritize rendering, use one of these Hooks:
+レンダーの優先度付けを行うために、以下のフックを用いることができます：
 
-- [`useTransition`](/reference/react/useTransition) lets you mark a state transition as non-blocking and allow other updates to interrupt it.
-- [`useDeferredValue`](/reference/react/useDeferredValue) lets you defer updating a non-critical part of the UI and let other parts update first.
+- [`useTransition`](/reference/react/useTransition) を用いることで、state の遷移をノンブロッキングなものとしてマークし、他の更新による割り込みを許可します。
+- [`useDeferredValue`](/reference/react/useDeferredValue) を用いると、UI の重要でない部分の更新を遅延させて、他の部分を先に更新させることができます。
 
 ---
 
-## Resource Hooks {/*resource-hooks*/}
+## リソース関連フック {/*resource-hooks*/}
 
-*Resources* can be accessed by a component without having them as part of their state. For example, a component can read a message from a Promise or read styling information from a context.
+*リソース (resource)* は state に入れずにコンポーネントからアクセスできます。例えばコンポーネントは Promise からメッセージを読み取ったり、コンテクストからスタイルに関する情報を読み取ったりできます。
 
-To read a value from a resource, use this Hook:
+リソースから値を読み取るには、以下のフックを用いることができます：
 
-- [`use`](/reference/react/use) lets you read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+- [`use`](/reference/react/use) を用いることで [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) や[コンテクスト](/learn/passing-data-deeply-with-context)などのリソースから値を読み取ります。
 
 ```js
 function MessageComponent({ messagePromise }) {
@@ -124,16 +124,16 @@ function MessageComponent({ messagePromise }) {
 
 ---
 
-## Other Hooks {/*other-hooks*/}
+## その他のフック {/*other-hooks*/}
 
-These Hooks are mostly useful to library authors and aren't commonly used in the application code.
+これらのフックはライブラリの開発者には有用ですが、アプリケーションコードでは通常は用いられることはありません。
 
-- [`useDebugValue`](/reference/react/useDebugValue) lets you customize the label React DevTools displays for your custom Hook.
-- [`useId`](/reference/react/useId) lets a component associate a unique ID with itself. Typically used with accessibility APIs.
-- [`useSyncExternalStore`](/reference/react/useSyncExternalStore) lets a component subscribe to an external store.
+- [`useDebugValue`](/reference/react/useDebugValue) を用いると、React DevTools が表示するカスタムフックのラベルをカスタマイズできます。
+- [`useId`](/reference/react/useId) を用いると、コンポーネントにユニークな ID を関連付けることができます。通常はアクセシビリティ API とともに使用されます。 
+- [`useSyncExternalStore`](/reference/react/useSyncExternalStore) を用いると、コンポーネントは外部のストアを参照できるようになります。
 
 ---
 
-## Your own Hooks {/*your-own-hooks*/}
+## 独自のフック {/*your-own-hooks*/}
 
-You can also [define your own custom Hooks](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component) as JavaScript functions.
+JavaScript の関数として[独自のカスタムフックを定義](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component)することもできます。

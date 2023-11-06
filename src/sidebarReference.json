@@ -7,17 +7,12 @@
       "sectionHeader": "react@18.2.0"
     },
     {
-<<<<<<< HEAD
-      "title": "フック",
-      "path": "/reference/react",
-=======
-      "title": "Overview",
+      "title": "概要",
       "path": "/reference/react"
     },
     {
-      "title": "Hooks",
+      "title": "フック",
       "path": "/reference/react/hooks",
->>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
       "routes": [
         {
           "title": "use",

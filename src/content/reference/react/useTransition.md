@@ -1501,18 +1501,15 @@ main {
 
 ---
 
-<<<<<<< HEAD
-## トラブルシューティング {/*troubleshooting*/}
-=======
-### Displaying an error to users with a error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
+### エラーバウンダリでユーザにエラーを表示する {/*displaying-an-error-to-users-with-error-boundary*/}
 
 <Canary>
 
-Error Boundary for useTransition is currently only available in React's canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+useTransition でのエラーバウンダリの使用は React の Canary と experimental バージョンでのみ使用可能です。[React のリリースチャンネルについてはこちら](/community/versioning-policy#all-release-channels)。
 
 </Canary>
 
-If a function passed to `startTransition` throws an error, you can display an error to your user with an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `useTransition` in an error boundary. Once the function passed to `startTransition` errors, the fallback for the error boundary will be displayed.
+`startTransition` に渡された関数がエラーをスローした場合、[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary)を使用してユーザにエラーを表示することができます。エラーバウンダリを使用するには、`useTransition` を呼び出しているコンポーネントをエラーバウンダリで囲みます。`startTransition` に渡された関数がエラーになった場合、エラーバウンダリに指定されているフォールバックが表示されます。
 
 <Sandpack>
 
@@ -1598,8 +1595,7 @@ root.render(
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
->>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
+## トラブルシューティング {/*troubleshooting*/}
 
 ### トランジション中に入力フィールドを更新できない {/*updating-an-input-in-a-transition-doesnt-work*/}
 

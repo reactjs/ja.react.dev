@@ -1,6 +1,6 @@
 ---
 title: "'use client'"
-titleForTitleTag: "'use client' directive"
+titleForTitleTag: "'use client' ディレクティブ"
 canary: true
 ---
 
@@ -13,11 +13,7 @@ canary: true
 
 <Intro>
 
-<<<<<<< HEAD
-`'use client'` でソースファイルをマークすることにより、ファイル内のコンポーネントがクライアント上で実行されることを示します。
-=======
-`'use client'` lets you mark what code runs on the client.
->>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
+`'use client'` を使い、どのコードがクライアントで実行されるかをマークします。
 
 </Intro>
 
@@ -29,10 +25,7 @@ canary: true
 
 ### `'use client'` {/*use-client*/}
 
-<<<<<<< HEAD
-ファイルの最上部に `'use client';` を追加すると、どこでインポートされているかに関わらず、当該ファイル（それが使用する任意の子コンポーネントを含む）はクライアント上で実行されるものである、とマークします。
-=======
-Add `'use client'` at the top of a file to mark the module and its transitive dependencies as client code.
+ファイルのトップに `'use client'` を加えることで、当該モジュールとそれが間接的にインポートしている依存モジュールがクライアントコードであるとマークします。
 
 ```js {1}
 'use client';
@@ -182,7 +175,6 @@ By the above definitions, the component `FancyText` is both a Server and Client 
 First, let's clarify that the term "component" is not very precise. Here are just two ways "component" can be understood:
 
 1. A "component" can refer to a **component definition**. In most cases this will be a function.
->>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
 
 ```js
 // This is a definition of a component
@@ -314,31 +306,6 @@ export default function Counter({initialValue = 0}) {
 }
 ```
 
-<<<<<<< HEAD
-`'use client'` とマークされたファイルがサーバコンポーネントからインポートされると、[互換性のあるバンドラ](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)は、当該インポートをサーバ専用コードとクライアントコードとの間の「切り離しポイント」として扱います。モジュールグラフでこのポイントおよび下側にあるコンポーネントは、[`useState`](/reference/react/useState) のようなクライアント専用の React 機能を使用できます。
-
-#### 注意点 {/*caveats*/}
-
-* クライアント専用の React 機能を使用するあらゆるファイルに `'use client'` を追加していく必要はありません。サーバコンポーネントファイルからインポートされるファイルにのみ追加します。`'use client'` はサーバ専用コードとクライアントコードとの間の*境界*を示すものです。ここよりツリーの下側にあるあらゆるコンポーネントは自動的にクライアント上で実行されます。`'use client'` の書かれたファイルからエクスポートされるコンポーネントはサーバコンポーネントからレンダーされるため、シリアライズ可能な props を持つ必要があります。
-* `'use client'` ファイルがサーバファイルからインポートされる場合、インポートされる値は React コンポーネントとしてレンダーされるか、もしくはクライアントコンポーネントに props 経由で渡されます。それ以外の使い方をすると例外をスローします。
-* `'use client'` ファイルが他のクライアントファイルからインポートされる場合、ディレクティブは効果を有しません。これにより、サーバコンポーネントからもクライアントコンポーネントからも使えるクライアント専用コンポーネントを書くことができます。
-* `'use client'` ファイル内のすべてのコード、およびそれが（直接的にまたは間接的に）インポートするすべてのモジュールはクライアントモジュールグラフの一部となるため、ブラウザが表示するためにはクライアントに送信され、実行される必要があります。クライアントでのバンドルサイズを減らし、サーバ機能を最大限に活用するためには、可能な限りツリーの下部に state（および `'use client'` ディレクティブ）を移動し、レンダーされたサーバコンポーネントを [children として](/learn/passing-props-to-a-component#passing-jsx-as-children)クライアントコンポーネントに渡すようにします。
-* props はサーバとクライアントの境界を越えてシリアライズされるため、ディレクティブの配置の仕方がクライアントに送信されるデータ量に影響を与える可能性があります。必要以上に大きなデータ構造を避けてください。
-* サーバ専用機能もクライアント専用機能も使用しないコンポーネント（例：`<MarkdownRenderer>`）は、一般的に `'use client'` でマークすべきではありません。マークしないことにより、サーバコンポーネントから使用されるときにはサーバ上でのみレンダーされ、クライアントコンポーネントから使用されるときにはクライアントバンドルに含まれるようになります。
-* npm に公開されるライブラリは、エクスポートしているコンポーネントがシリアライズ可能な props でレンダーでき、クライアント専用の React 機能を使用している場合、`'use client'` を含めるようにすべきです。これにより、それらのコンポーネントをサーバコンポーネントからインポートしてレンダーすることが可能になります。さもないと、ユーザはライブラリコンポーネントを自分で `'use client'` ファイルにラップしなければなりません。これは面倒ですし、ライブラリが後でロジックをサーバに移動できなくなってしまいます。事前バンドル済のファイルを npm で公開する際は、`'use client'` となっているソースファイルは `'use client'` でマークされたバンドルに含まれるようにし、サーバ上で直接使用できるエクスポートを含んだバンドルとは別になるようにしてください。
-* クライアントコンポーネントは、今後もサーバサイドレンダリング (server-side rendering, SSR) やビルド時の静的サイト生成 (static site generation, SSG) の過程としては実行されます。これらは、コンポーネントの初期レンダー出力を HTML に変換し、JavaScript バンドルのダウンロード前に表示を行えるようにするために使われます。しかし、データベースから直接読み取るといったサーバ専用機能は使用できません。
-* `'use client'` のようなディレクティブは、ファイルの冒頭部分で、あらゆるインポート文や他のコードより上になければなりません（ただしコメントはディレクティブの上に記載できます）。シングルクォートまたはダブルクォートで書く必要があり、バックティックは使えません。（`'use xyz'` というディレクティブの形式は `useXyz()` というフックの命名規則に多少似ていますが、これは偶然です。）
-
-## 使用法 {/*usage*/}
-
-<Wip>
-このセクションは未完成です。
-
-この API は React Server Components を利用するフレームワークで使用できます。フレームワークごとの追加のドキュメントが公開されています。
-* [Next.js ドキュメント](https://nextjs.org/docs/getting-started/react-essentials)
-* 今後追加予定
-</Wip>
-=======
 </Sandpack>
 
 As `Counter` requires both the `useState` hook and event handlers to increment or decrement the value, this component must be a Client Component and will require a `'use client'` directive at the top.
@@ -411,4 +378,3 @@ These libraries may rely on component Hooks or client APIs. Third-party componen
 If these libraries have been updated to be compatible with React Server Components, then they will already include `'use client'` markers of their own, allowing you to use them directly from your Server Components. If a library hasn't been updated, or if a component needs props like event handlers that can only be specified on the client, you may need to add your own Client Component file in between the third-party Client Component and your Server Component where you'd like to use it.
 
 [TODO]: <> (Troubleshooting - need use-cases)
->>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04

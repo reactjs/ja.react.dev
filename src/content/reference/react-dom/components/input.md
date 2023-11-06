@@ -32,30 +32,26 @@ title: "<input>"
 
 `<input>` は[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
 
-<<<<<<< HEAD
-以下の props を渡すことで、[入力欄を制御されたコンポーネント (controlled component)](#controlling-an-input-with-a-state-variable) にできます。
-=======
 <Canary>
 
-React's extensions to the `formAction` prop are currently only available in React's canary and experimental channels. In stable releases of React `formAction` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+`formAction` に対する React の拡張は React の Canary および experimental リリースのみの機能です。React の安定版では `formAction` は[組み込みブラウザコンポーネント](https://react.dev/reference/react-dom/components#all-html-components)の機能としてのみ動作します。[React のリリースチャンネルについてはこちら](/community/versioning-policy#all-release-channels)。
 </Canary>
 
-[`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): A string or function. Overrides the parent `<form action>` for `type="submit"` and `type="image"`. When a URL is passed to `action` the form will behave like a standard HTML form. When a function is passed to `formAction` the function will handle the form submission. See [`<form action>`](/reference/react-dom/components/form#props).
+[`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): 文字列または関数。`type="submit"` and `type="image"` の場合に親の `<form action>` を上書きする。`action` に URL が渡された場合はフォームは標準的な HTML フォームとして動作する。関数が渡された場合はその関数がフォームの送信を処理する。[`<form action>`](/reference/react-dom/components/form#props) を参照。
 
-You can [make an input controlled](#controlling-an-input-with-a-state-variable) by passing one of these props:
->>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
+以下の props を渡すことで、[入力欄を制御されたコンポーネント (controlled component)](#controlling-an-input-with-a-state-variable) にできます。
 
 * [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): ブーリアン。チェックボックスまたはラジオボタンの場合、選択されているかどうかを制御します。
 * [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): 文字列。テキスト入力の場合、そのテキストを制御します。（ラジオボタンの場合は、フォームデータを指定します。）
 
 これらのいずれかを渡す場合は、渡された値を更新する `onChange` ハンドラも渡す必要があります。
 
-これらの `<input>` の props は、非制御 (uncontrolled) の入力欄にのみ使用されます。
+以下の `<input>` の props は、非制御 (uncontrolled) の入力欄にのみ使用されます。
 
 * [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): ブーリアン。`type="checkbox"` および `type="radio"` の入力欄の場合に、[初期値](#providing-an-initial-value-for-an-input)を指定します。 
 * [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): 文字列。テキスト入力の場合に、[初期値](#providing-an-initial-value-for-an-input)を指定します。
 
-これらの `<input>` の props は、非制御の入力欄と制御された入力欄の両方で用いられます。
+以下の `<input>` の props は、非制御の入力欄と制御された入力欄の両方で用いられます。
 
 * [`accept`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#accept): 文字列。`type="file"` である入力欄が受け付けるファイルの種類を指定します。
 * [`alt`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#alt): 文字列。`type="image"` である入力欄の場合に、代替画像テキストを指定します。

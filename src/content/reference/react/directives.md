@@ -19,10 +19,5 @@ canary: true
 
 ## ソースコードディレクティブ {/*source-code-directives*/}
 
-<<<<<<< HEAD
-* [`'use client'`](/reference/react/use-client) は、クライアント上で実行されるコンポーネントが書かれたソースファイルをマークします。
-* [`'use server'`](/reference/react/use-server) は、クライアント側のコードから呼び出すことができるサーバサイド関数をマークします。
-=======
-* [`'use client'`](/reference/react/use-client) lets you mark what code runs on the client.
-* [`'use server'`](/reference/react/use-server) marks server-side functions that can be called from client-side code.
->>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
+* [`'use client'`](/reference/react/use-client) によりどのコードがクライアント上で実行されるべきかマークします。
+* [`'use server'`](/reference/react/use-server) によりクライアント側のコードから呼び出すことができるサーバサイド関数をマークします。
