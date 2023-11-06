@@ -309,7 +309,11 @@ async function DemoProfile() {
 
 React がメモ化された関数に対してキャッシュアクセスを提供するのはコンポーネント内のみです。コンポーネントの外部で <CodeStep step={1}>`getUser`</CodeStep> を呼び出した場合も関数は評価されますが、キャッシュは読み取られず、更新もされません。
 
+<<<<<<< HEAD
 これは、キャッシュアクセスがコンポーネントからのみアクセス可能な[コンテクスト](/learn/passing-data-deeply-with-context)を通じて提供されるためです。
+=======
+This is because cache access is provided through a [context](/learn/passing-data-deeply-with-context) which is only accessible from a component. 
+>>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
 
 </Pitfall>
 

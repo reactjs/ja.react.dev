@@ -1,4 +1,5 @@
 ---
+<<<<<<< HEAD
 title: "組み込みの React フック"
 ---
 
@@ -6,10 +7,19 @@ title: "組み込みの React フック"
 
 *フック*を用いると、コンポーネントから様々な React の機能を使えるようになります。組み込みのフックを使うこともできますし、組み合わせて自分だけのものを作ることもできます。このページでは、React に組み込まれたすべてのフックを説明します。
 
-</Intro>
-
+=======
+title: React Reference Overview
 ---
 
+<Intro>
+This section provides detailed reference documentation for working with React. 
+For an introduction to React, please visit the [Learn](/learn) section. 
+>>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
+</Intro>
+
+Our The React reference documentation is broken down into functional subsections: 
+
+<<<<<<< HEAD
 ## state フック {/*state-hooks*/}
 
 *state* を使うと、ユーザの入力などの情報を[コンポーネントに「記憶」](/learn/state-a-components-memory)させることができます。例えば、フォームコンポーネントは入力された文字を保持し、画像ギャラリのコンポーネントは選択された画像を保持できます。
@@ -137,3 +147,24 @@ function MessageComponent({ messagePromise }) {
 ## 独自のフック {/*your-own-hooks*/}
 
 JavaScript の関数として[独自のカスタムフックを定義](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component)することもできます。
+=======
+## React {/*react*/}
+Programmatic React features:  
+* [Hooks](/reference/react/hooks) - Use different React features from your components.
+* [Components](/reference/react/components) - Documents built-in components that you can use in your JSX.
+* [APIs](/reference/react/apis) - APIs that are useful for defining components. 
+* [Directives](/reference/react/directives) - Provide instructions to bundlers compatible with React Server Components.
+
+## React DOM {/*react-dom*/}
+React-dom contains features that are only supported for web applications 
+(which run in the browser DOM environment). This section is broken into the following:
+
+* [Hooks](/reference/react-dom/hooks) - Hooks for web applications which run in the browser DOM environment.
+* [Components](/reference/react-dom/components) - React supports all of the browser built-in HTML and SVG components.
+* [APIs](/reference/react-dom) - The `react-dom` package contains methods supported only in web applications.
+* [Client APIs](/reference/react-dom/client) - The `react-dom/client` APIs let you render React components on the client (in the browser). 
+* [Server APIs](/reference/react-dom/server) - The `react-dom/server` APIs let you render React components to HTML on the server.
+
+## Legacy APIs {/*legacy-apis*/}
+* [Legacy APIs](/reference/react/legacy) - Exported from the react package, but not recommended for use in newly written code. 
+>>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04

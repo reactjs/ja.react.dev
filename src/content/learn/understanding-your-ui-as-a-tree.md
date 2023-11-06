@@ -253,7 +253,11 @@ export default [
 
 この例では、`inspiration.type` の値によって、`<FancyText>` または `<Color>` のいずれかがレンダーされます。一連のレンダーが起きるたびに、レンダーツリーは異なったものになる可能性があるのです。
 
+<<<<<<< HEAD
 毎回のレンダーごとにレンダーツリーが異なることがあるにせよ、このようなツリーは一般的に、React アプリケーションにおいてトップレベルコンポーネントとリーフ（葉, 末端）コンポーネントがどれなのかを理解するのに役立ちます。トップレベルコンポーネントとはルートコンポーネントに最も近いコンポーネントです。下にあるすべてのコンポーネントのレンダーパフォーマンスに影響を与え、しばしばとても複雑な内容を含んでいます。リーフコンポーネントはツリーの下側にあり、子コンポーネントを持たず、通常は頻繁に再レンダーされます。
+=======
+Although render trees may differ across render passes, these trees are generally helpful for identifying what the *top-level* and *leaf components* are in a React app. Top-level components are the components nearest to the root component and affect the rendering performance of all the components beneath them and often contain the most complexity. Leaf components are near the bottom of the tree and have no child components and are often frequently re-rendered.
+>>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
 
 これらのカテゴリのコンポーネントを特定することにより、アプリケーションのデータの流れとパフォーマンスを理解するのに役立ちます。
 

@@ -74,7 +74,11 @@ React コンポーネント内のプレーンな JavaScript をリアクティ�
 
 ## オフスクリーンレンダリング {/*offscreen-rendering*/}
 
+<<<<<<< HEAD
 オフスクリーンレンダリングは今後提供予定の React 機能であり、追加のパフォーマンスオーバーヘッドなしにバックグラウンドで画面をレンダーすることができます。これは、DOM 要素だけでなく React コンポーネントでも機能する [`content-visiblity` CSS プロパティ](https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility) の一形態のようなものと考えることができます。研究の過程で、さまざまなユースケースが見つかりました。
+=======
+Offscreen rendering is an upcoming capability in React for rendering screens in the background without additional performance overhead. You can think of it as a version of the [`content-visibility` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility) that works not only for DOM elements but React components, too. During our research, we've discovered a variety of use cases:
+>>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
 
 - ルータは、ユーザが画面遷移を行ったときに瞬時に利用できるよう、バックグラウンドで画面を事前レンダーしておくことができます。
 - タブ切り替えコンポーネントは、非表示タブの state を保持できるため、進行済みの作業を失うことなくユーザがタブ間を切り替えることができます。

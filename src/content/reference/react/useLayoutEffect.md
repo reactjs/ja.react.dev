@@ -732,7 +732,11 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 - `useLayoutEffect` を [`useEffect`](/reference/react/useEffect) に置き換えます。これにより React に対して、初期レンダー結果の表示を描画をブロックせずに行ってよいことを伝えます（元の HTML はエフェクトが実行される前に表示されるからです）。
 
+<<<<<<< HEAD
 - あるいは、[コンポーネントをクライアント専用としてマークします](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content)。これにより React に対して、サーバレンダリング中に最も近い [`<Suspense>`](/reference/react/Suspense) バウンダリまで、コンテンツをロード中というフォールバック（例えば、スピナやグリマー）に置き換えるように指示します。
+=======
+- Alternatively, [mark your component as client-only.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content) This tells React to replace its content up to the closest [`<Suspense>`](/reference/react/Suspense) boundary with a loading fallback (for example, a spinner or a glimmer) during server rendering.
+>>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
 
 - あるいは、`useLayoutEffect` を持つコンポーネントをハイドレーションの後にのみレンダーします。`false` に初期化されたブーリアン型の `isMounted` という state を保持しておき、`useEffect` の呼び出し内で `true` に設定します。そしてレンダーロジックは `return isMounted ? <RealContent /> : <FallbackContent />` のようにします。サーバ上およびハイドレーション中は、ユーザは `useLayoutEffect` を呼び出さない `FallbackContent` を見ることになります。その後、React はそれをクライアント専用の `RealContent` に置き換えますが、そこには `useLayoutEffect` の呼び出しを含むことができます。
 
