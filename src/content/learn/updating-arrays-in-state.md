@@ -198,7 +198,7 @@ export default function List() {
 
 </Sandpack>
 
-何度か "Delete" タンをクリックして動作を確認したら、クリックハンドラを見てみましょう。
+何度か "Delete" ボタンをクリックして動作を確認したら、クリックハンドラを見てみましょう。
 
 ```js
 setArtists(
