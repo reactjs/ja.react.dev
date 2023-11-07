@@ -13,7 +13,7 @@ canary: true
 
 <Intro>
 
-`'use server'` は、クライアントサイドのコードから呼び出し可能なサーバサイドの関数をマークします。
+`'use server'` は、クライアントサイドのコードから呼び出せる、サーバサイドの関数をマークします。
 
 </Intro>
 
@@ -25,7 +25,7 @@ canary: true
 
 ### `'use server'` {/*use-server*/}
 
-非同期 (async) 関数の本体の冒頭に `'use server';` を追加することで、その関数がクライアントから実行できることをマークします。そのような関数のことを*サーバアクション (server action)* と呼びます。
+非同期 (async) 関数の本体の冒頭に `'use server';` を追加することで、その関数がクライアントから実行可能であるとマークします。そのような関数のことを*サーバアクション (server action)* と呼びます。
 
 ```js {2}
 async function addToCart(data) {
@@ -63,7 +63,7 @@ async function addToCart(data) {
 
 ### シリアライズ可能な引数と返り値 {/*serializable-parameters-and-return-values*/}
 
-クライアントコードがネットワーク経由でサーバアクションを呼び出すため、渡される任意の引数はシリアライズ可能である必要があります。
+クライアントコードのサーバアクション呼び出しはネットワーク経由で行われるため、関数に渡すあらゆる引数はシリアライズ可能である必要があります。
 
 以下は、サーバアクションの引数としてサポートされる型です。
 
@@ -131,7 +131,7 @@ export default App() {
 
 上記のユーザ名リクエストフォームでは、ユーザ名が利用できない可能性もあります。`requestUsername` は成功したか失敗したかを伝えられるべきです。
 
-プログレッシブエンハンスメントをサポートしつつサーバアクションの結果に基づいて UI を更新するためには、[`useFormState`](/reference/react-dom/hooks/useFormState) を使用します。
+プログレッシブエンハンスメントをサポートしつつサーバアクションの結果に基づいて UI を更新するには、[`useFormState`](/reference/react-dom/hooks/useFormState) を使用します。
 
 ```js
 // requestUsername.js
@@ -169,11 +169,11 @@ function UsernameForm() {
 }
 ```
 
-ほとんどのフックと同様に、`useFormState` は<CodeStep step={1}>[クライアントコード](/reference/react/use-client)</CodeStep>内でのみ呼び出すことができることに注意してください。
+ほとんどのフックと同様に、`useFormState` は<CodeStep step={1}>[クライアントコード](/reference/react/use-client)</CodeStep>内でしか呼び出せないことに注意してください。
 
 ### `<form>` の外部でサーバアクションを呼び出す {/*calling-a-server-action-outside-of-form*/}
 
-サーバアクションとはサーバ側のエンドポイントとして公開されているものであり、クライアントコードのどこからでも呼び出すことができます。
+サーバアクションはサーバ側の公開エンドポイントであり、クライアントコードのどこからでも呼び出すことができます。
 
 [フォーム](/reference/react-dom/components/form)の外部でサーバアクションを使用する場合、[トランジション](/reference/react/useTransition)内でサーバアクションを呼び出すようにしてください。これによりローディングインジケータを表示したり、[楽観的に state 更新結果を表示](/reference/react/useOptimistic)したり、予期せぬエラーを処理したりすることができるようになります。フォームではサーバアクションは自動的にトランジション内にラップされます。
 
