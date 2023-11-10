@@ -29,6 +29,16 @@ function Link({
     // eslint-disable-next-line jsx-a11y/anchor-has-content
     return <a href={href} className={className} {...props} />;
   }
+
+  // Tweak external links (added by ja.react.dev team)
+  href = href
+    .replace(
+      'https://developer.mozilla.org/en-US/',
+      'https://developer.mozilla.org/'
+    )
+    .replace('https://reactjs.org/', 'https://ja.reactjs.org/')
+    .replace('https://legacy.reactjs.org/', 'https://ja.legacy.reactjs.org/');
+
   return (
     <>
       {href.startsWith('https://') ? (
