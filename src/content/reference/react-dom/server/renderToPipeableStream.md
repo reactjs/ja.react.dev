@@ -431,7 +431,7 @@ function ProfilePage() {
 }
 ```
 
-`Posts` コンポーネントまたはその内部のどこかでエラーが発生した場合、React はそこからの[復帰を試みます](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content)。
+`Posts` コンポーネントまたはその内部のどこかでエラーが発生した場合、React はそこからの[復帰を試みます](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content)。
 
 1. 最も近い `<Suspense>` バウンダリ (`PostsGlimmer`) のローディングフォールバックを HTML として出力します。
 2. サーバ上で `Posts` のコンテンツをレンダーしようとするのを諦めます。

@@ -361,7 +361,7 @@ function subscribe(callback) {
 - サーバ上で、HTML を生成する際に実行される。
 - クライアント上で、React がサーバ HTML をインタラクティブにするとき、つまり[ハイドレーション](/reference/react-dom/client/hydrateRoot)中に実行される。
 
-これにより、アプリがインタラクティブになる前に使用される初期のスナップショット値を指定できます。サーバレンダリング中に意味のある初期値が存在しない場合は、この引数を省略して、[強制的にクライアントでレンダーする](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content)ようにします。
+これにより、アプリがインタラクティブになる前に使用される初期のスナップショット値を指定できます。サーバレンダリング中に意味のある初期値が存在しない場合は、この引数を省略して、[強制的にクライアントでレンダーする](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content)ようにします。
 
 <Note>
 

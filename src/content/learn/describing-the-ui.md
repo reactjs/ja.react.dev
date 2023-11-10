@@ -530,13 +530,21 @@ React はコンポーネント間あるいはモジュール間の関係性を�
 
 React レンダーツリーとはコンポーネントの親子関係を表現したものです。
 
-<Diagram name="generic_render_tree" height={250} width={500} alt="5 つのノードからなるツリー。それぞれのノードはコンポーネントを表している。ルートノードはツリーの最上部にあり 'Root Component' と書かれている。そこから 2 本の矢印が下に伸びており 'Component A' および 'Component C' と書かれたノードを指している。それぞれの矢印には 'renders' と書かれている。'Component A' からは 'renders' と書かれた矢印が 'Component B' と書かれたノードに伸びている。'Component C' からは 'renders' と書かれた矢印が 'Component D' と書かれたノードに伸びている。">React のレンダーツリーの例</Diagram>
+<Diagram name="generic_render_tree" height={250} width={500} alt="5 つのノードからなるツリー。それぞれのノードはコンポーネントを表している。ルートノードはツリーの最上部にあり 'Root Component' と書かれている。そこから 2 本の矢印が下に伸びており 'Component A' および 'Component C' と書かれたノードを指している。それぞれの矢印には 'renders' と書かれている。'Component A' からは 'renders' と書かれた矢印が 'Component B' と書かれたノードに伸びている。'Component C' からは 'renders' と書かれた矢印が 'Component D' と書かれたノードに伸びている。">
+
+React のレンダーツリーの例
+
+</Diagram>
 
 ツリーの上側、つまりルートに近いコンポーネントはトップレベルコンポーネントです。子を持たないコンポーネントはリーフ（葉）コンポーネントです。このようなコンポーネントの分類は、データの流れやレンダーパフォーマンスを理解する際に有用です。
 
 アプリを理解する上では、JavaScript のモジュール間の関係性をモデルすることも重要です。このようなものをモジュール依存関係ツリーと呼びます。
 
-<Diagram name="generic_dependency_tree" height={250} width={500} alt="5 つのノードからなるツリー。それぞれのノードは JavaScript のモジュールを表している。最上部のノードは 'RootModule.js' と書かれている。そこから 'ModuleA.js'、'ModuleB.js'、'ModuleC.js' へと 3 本の矢印が伸びている。各矢印には 'imports' と書かれている。'ModuleC.js' からは 'imports' と書かれた矢印が 'ModuleD.js' と書かれたノードに伸びている。">モジュール依存関係ツリーの例</Diagram>
+<Diagram name="generic_dependency_tree" height={250} width={500} alt="5 つのノードからなるツリー。それぞれのノードは JavaScript のモジュールを表している。最上部のノードは 'RootModule.js' と書かれている。そこから 'ModuleA.js'、'ModuleB.js'、'ModuleC.js' へと 3 本の矢印が伸びている。各矢印には 'imports' と書かれている。'ModuleC.js' からは 'imports' と書かれた矢印が 'ModuleD.js' と書かれたノードに伸びている。">
+
+モジュール依存関係ツリーの例
+
+</Diagram>
 
 依存関係ツリーは、関連する JavaScript コードをすべてバンドルしてクライアントがダウンロード・レンダーできるようにするために、ビルドツールでよく使用されます。バンドルサイズが大きいと、React アプリのユーザ体験は悪化します。モジュール依存関係ツリーを理解することは、そのような問題をデバッグするのに役立ちます。
 
