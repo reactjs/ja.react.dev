@@ -334,7 +334,11 @@ root.render(
 
 #### プロミスをサーバコンポーネントで解決するか、クライアントコンポーネントで解決するか？ {/*resolve-promise-in-server-or-client-component*/}
 
+<<<<<<< HEAD
 プロミスはサーバコンポーネントからクライアントコンポーネントに渡し、`use` フックを使ってクライアントコンポーネントで解決することができます。また、`await` を使ってサーバコンポーネント側でプロミスを解決し、必要なデータを props としてクライアントコンポーネントに渡すことも可能でしょう。
+=======
+A Promise can be passed from a Server Component to a Client Component and resolved in the Client Component with the `use` Hook. You can also resolve the Promise in a Server Component with `await` and pass the required data to the Client Component as a prop.
+>>>>>>> fcd00068bd1bdd4eb37e3e0ab0488a9d093670bc
 
 ```js
 export default function App() {
