@@ -28,13 +28,8 @@ Webpack と Vite の両方で振る舞いが同じになるようバンドラの
 
 ## アセットのロード {/*asset-loading*/}
 
-<<<<<<< HEAD
 現在のところ、スクリプトや外部スタイル・フォント・画像のようなアセットは、典型的には外部のシステムを通じてプリロードあるいはロードされています。しかしこれにより、ストリーミングやサーバコンポーネントといった新たな環境でうまく動くようにするのが難しくなることがあります。
 あらゆる React の環境で動作する API を追加し、それを通じて外部に分離されたアセットをプリロードあるいはロードできるよう、検討を進めています。
-=======
-Currently, assets like scripts, external styles, fonts, and images are typically preloaded and loaded using external systems. This can make it tricky to coordinate across new environments like streaming, Server Components, and more.
-We’re looking at adding APIs to preload and load deduplicated external assets through React APIs that work in all React environments.
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 また、この新たな API がサスペンスをサポートすることで、画像や CSS やフォントを使っても、これらがロードされるまで表示はブロックするがストリーミングや並列レンダーはブロックしない、というようにしたいと考えています。これにより、画面上の要素がポップしレイアウトがずれるという[「ポップコーン」現象](https://twitter.com/sebmarkbage/status/1516852731251724293)を防ぐことができます。
 
@@ -46,11 +41,7 @@ Static Site Generation (SSG) と Incremental Static Regeneration (ISR) はキャ
 
 React Conf 2021 において、React Forget についての[アーリープレビュー](https://www.youtube.com/watch?v=lGEMwh32soc)をお届けしました。これは、React のプログラミングモデルを保ちつつ、`useMemo` や `useCallback` の同等物を自動で作成して再レンダーのコストを最小化するためのコンパイラです。
 
-<<<<<<< HEAD
 最近になって、このコンパイラの安定性と機能を向上するための書き直しが完了しました。新しいアーキテクチャは、[ローカルでの変数書き換え](/learn/keeping-components-pure#local-mutation-your-components-little-secret)のような、より複雑なパターンも解析してメモ化を適用することが可能であり、単にメモ化用フックと同じ事ができるという以上に、様々なコンパイル時最適化の可能性を開くことができます。
-=======
-Recently, we finished a rewrite of the compiler to make it more reliable and capable. This new architecture allows us to analyze and memoize more complex patterns such as the use of [local mutations](/learn/keeping-components-pure#local-mutation-your-components-little-secret), and opens up many new compile-time optimization opportunities beyond just being on par with memoization Hooks.
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 また、このコンパイラの様々な機能について試すためのプレイグラウンドを作成しています。プレイグラウンドの主目的はコンパイラ自体の開発をやりやすくすることですが、コンパイラを試して何をやっているのか直観で理解できるようにすることにも役立つと考えています。これにより裏で何をやっているのか洞察できるようになりますし、タイプして即座にコンパイル出力を見ることもできるようになります。こちらはコンパイラのリリースの際に同時にリリースされる予定です。
 

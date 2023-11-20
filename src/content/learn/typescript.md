@@ -11,17 +11,10 @@ TypeScript は JavaScript コードベースに型定義を追加するための
 
 <YouWillLearn>
 
-<<<<<<< HEAD
 * [TypeScript で React コンポーネントを書く方法](/learn/typescript#typescript-with-react-components)
 * [フックの型付けの例](/learn/typescript#example-hooks)
 * [`@types/react` にある一般的な型](/learn/typescript/#useful-types)
 * [さらに学習するためのリソース](/learn/typescript/#further-learning)
-=======
-* [TypeScript with React Components](/learn/typescript#typescript-with-react-components)
-* [Examples of typing with Hooks](/learn/typescript#example-hooks)
-* [Common types from `@types/react`](/learn/typescript/#useful-types)
-* [Further learning locations](/learn/typescript/#further-learning)
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 </YouWillLearn>
 
@@ -131,7 +124,6 @@ export default App = AppTSX;
 
 ## 例：フック {/*example-hooks*/}
 
-<<<<<<< HEAD
 `@types/react` にある型定義には、組み込みのフックに対する型が含まれており、追加のセットアップなしにあなたのコンポーネント内で使用することができます。これらはあなたがコンポーネントに書くコードを考慮できるように作られており、多くの場合は[型の推論](https://www.typescriptlang.org/docs/handbook/type-inference.html)が働くため、理想的にはこまごまと型の指定を行う必要がないようになっています。
 
 とはいえ、フックの型をどのように指定するかについて、ここでいくつかの例を見ておきましょう。
@@ -139,15 +131,6 @@ export default App = AppTSX;
 ### `useState` {/*typing-usestate*/}
 
 [`useState` フック](/reference/react/useState)は、初期 state として渡された値を利用して、その値の型が何であるべきかを決定します。例えば：
-=======
-The type definitions from `@types/react` include types for the built-in Hooks, so you can use them in your components without any additional setup. They are built to take into account the code you write in your component, so you will get [inferred types](https://www.typescriptlang.org/docs/handbook/type-inference.html) a lot of the time and ideally do not need to handle the minutiae of providing the types. 
-
-However, we can look at a few examples of how to provide types for Hooks.
-
-### `useState` {/*typing-usestate*/}
-
-The [`useState` Hook](/reference/react/useState) will re-use the value passed in as the initial state to determine what the type of the value should be. For example:
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 ```ts
 // Infer the type as "boolean"
@@ -183,11 +166,7 @@ const [requestState, setRequestState] = useState<RequestState>({ status: 'idle' 
 
 ### `useReducer` {/*typing-usereducer*/}
 
-<<<<<<< HEAD
 [`useReducer` フック](/reference/react/useReducer) は、リデューサ関数と初期 state を受け取る、より複雑なフックです。リデューサ関数の型は初期 state から推論されます。`useReducer` の呼び出しに型引数を含めることで state の型を指定することもできますが、通常は代わりに初期 state 自体に型を指定する方が良いでしょう。
-=======
-The [`useReducer` Hook](/reference/react/useReducer) is a more complex Hook that takes a reducer function and an initial state. The types for the reducer function are inferred from the initial state. You can optionally provide a type argument to the `useReducer` call to provide a type for the state, but it is often better to set the type on the initial state instead:
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 <Sandpack>
 
@@ -263,11 +242,7 @@ export default function App() {
 
 ### `useContext` {/*typing-usecontext*/}
 
-<<<<<<< HEAD
 [`useContext` フック](/reference/react/useContext)は、props を使って多数のコンポーネントを経由させることなく、コンポーネントツリーを通じてデータを下に渡すための技術です。使用するにはプロバイダコンポーネントを作成し、多くの場合は子コンポーネントで値を受け取るためのフックを用います。
-=======
-The [`useContext` Hook](/reference/react/useContext) is a technique for passing data down the component tree without having to pass props through components. It is used by creating a provider component and often by creating a Hook to consume the value in a child component.
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 コンテクストが提供する値の型は、`createContext` の呼び出しに渡す値から推論されます。
 
@@ -311,11 +286,7 @@ export default App = AppTSX;
 
 意味のあるデフォルト値が存在する場合にはこれでうまくいきます。しかし時にはそうではない場合もあり、デフォルト値として `null` が適切に感じられることもあるでしょう。型システムにあなたのコードを理解させるため、`createContext` 呼び出しで `ContextShape | null` と明示的に指定する必要があります。
 
-<<<<<<< HEAD
 これにより、コンテクストを利用する側で `| null` の可能性を排除する必要が生じます。お勧めの方法は、値が存在することをフックで実行時にチェックし、存在しない場合にエラーをスローするようにすることです。
-=======
-This causes the issue that you need to eliminate the `| null` in the type for context consumers. Our recommendation is to have the Hook do a runtime check for it's existence and throw an error when not present:
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 ```js {5, 16-20}
 import { createContext, useContext, useState, useMemo } from 'react';
@@ -358,11 +329,7 @@ function MyComponent() {
 
 ### `useMemo` {/*typing-usememo*/}
 
-<<<<<<< HEAD
 [`useMemo`](/reference/react/useMemo) フックは、関数呼び出しからの値の作成/再アクセスを行い、2 番目の引数として渡された依存配列が変更されたときにのみ関数を再実行します。フックの呼び出し結果の型は、1 番目の引数として指定した関数の返り値の型から推論されます。フックに型引数を指定することで明示的にすることができます。
-=======
-The [`useMemo`](/reference/react/useMemo) Hooks will create/re-access a memorized value from a function call, re-running the function only when dependencies passed as the 2nd parameter are changed. The result of calling the Hook is inferred from the return value from the function in the first parameter. You can be more explicit by providing a type argument to the Hook.
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 ```ts
 // The type of visibleTodos is inferred from the return value of filterTodos
@@ -372,11 +339,7 @@ const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
 
 ### `useCallback` {/*typing-usecallback*/}
 
-<<<<<<< HEAD
 [`useCallback`](/reference/react/useCallback) は、第 2 引数に渡される依存配列が同じである限り、関数への安定した参照を提供するものです。`useMemo` と同様に、関数の型は 1 番目の引数として指定した関数から推論され、フックに型引数を指定することでより明示的にすることができます。
-=======
-The [`useCallback`](/reference/react/useCallback) provide a stable reference to a function as long as the dependencies passed into the second parameter are the same. Like `useMemo`, the function's type is inferred from the return value of the function in the first parameter, and you can be more explicit by providing a type argument to the Hook.
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 
 ```ts

@@ -1145,11 +1145,7 @@ hr {
 
 <Hint>
 
-<<<<<<< HEAD
 `map` を手動のループに置き換えるか、フラグメントを使う必要があります。
-=======
-You'll either need to convert `map` to a manual loop, or use a Fragment.
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 </Hint>
 
@@ -1212,11 +1208,7 @@ hr {
 
 各セパレータと段落は同じ配列に入るので、元の行インデックスを `key` として使用することはできなくなります。ですが `key={i + '-text'}` のように後ろに文字を付加することで、一意なキーを与えることができます。
 
-<<<<<<< HEAD
 あるいは、`<hr />` と `<p>...</p>` を含むフラグメントの配列をレンダーすることもできます。しかし、`<>...</>` という省略記法は key を渡すことをサポートしていないため、明示的に `<Fragment>` と記述する必要があります：
-=======
-Alternatively, you could render a collection of Fragments which contain `<hr />` and `<p>...</p>`. However, the `<>...</>` shorthand syntax doesn't support passing keys, so you'd have to write `<Fragment>` explicitly:
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 <Sandpack>
 
@@ -1262,11 +1254,7 @@ hr {
 
 </Sandpack>
 
-<<<<<<< HEAD
 フラグメント（通常は `<> </>` のように書かれる）によって、余分な `<div>` を増やさずに JSX ノードをグループ化できるということを覚えておきましょう！
-=======
-Remember, Fragments (often written as `<> </>`) let you group JSX nodes without adding extra `<div>`s!
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 </Solution>
 

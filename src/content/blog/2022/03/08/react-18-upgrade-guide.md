@@ -224,13 +224,8 @@ function handleClick() {
 
 React 18 ワーキンググループでライブラリメンテナと共同で作業を行い、スタイルや外部ストアといった分野に特有のユースケースで並行レンダー機能をサポートするため、新しい API を作成しました。一部のライブラリは、React 18 をサポートするために以下の API に切り替える必要があるかもしれません：
 
-<<<<<<< HEAD
 * `useSyncExternalStore` は、ストアへの更新を強制的に同期的に行うことで、並行読み取りを外部ストアがサポートできるようにするための新たなフックです。この新しい API は React 外部の状態を扱うあらゆるライブラリにとって推奨されるものです。詳細は [useSyncExternalStore 概要](https://github.com/reactwg/react-18/discussions/70)および [useSyncExternalStore API 詳細](https://github.com/reactwg/react-18/discussions/86)を参照してください。
 * `useInsertionEffect` は、CSS-in-JS ライブラリがレンダー時にスタイルを注入する際のパフォーマンス上の問題に対処できるようにするための新しいフックです。すでに CSS-in-JS ライブラリを構築しているのでなければ、これを使うことはまずないでしょう。このフックは、DOM が書き換えられた後、レイアウト副作用 (layout effect) が新しいレイアウトを読み込む前に実行されます。これにより React 17 およびそれ以前から既に存在した問題が解決されますが、React 18 では並行レンダー中にブラウザに処理が渡り、そこでレイアウトが再計算される可能性があるため、より重要です。詳細は [Library Upgrade Guide for `<style>`](https://github.com/reactwg/react-18/discussions/110) を参照してください。
-=======
-* `useSyncExternalStore` is a new Hook that allows external stores to support concurrent reads by forcing updates to the store to be synchronous. This new API is recommended for any library that integrates with state external to React. For more information, see the [useSyncExternalStore overview post](https://github.com/reactwg/react-18/discussions/70) and [useSyncExternalStore API details](https://github.com/reactwg/react-18/discussions/86).
-* `useInsertionEffect` is a new Hook that allows CSS-in-JS libraries to address performance issues of injecting styles in render. Unless you've already built a CSS-in-JS library we don't expect you to ever use this. This Hook will run after the DOM is mutated, but before layout effects read the new layout. This solves an issue that already exists in React 17 and below, but is even more important in React 18 because React yields to the browser during concurrent rendering, giving it a chance to recalculate layout. For more information, see the [Library Upgrade Guide for `<style>`](https://github.com/reactwg/react-18/discussions/110).
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 React 18 では `startTransition`、`useDeferredValue` や `useId` のような新しい API も導入しており、[リリース告知記事](/blog/2022/03/29/react-v18)にて詳細をお伝えします。
 

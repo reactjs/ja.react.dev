@@ -34,11 +34,7 @@ title: "<input>"
 
 <Canary>
 
-<<<<<<< HEAD
 `formAction` に対する React の拡張は React の Canary および experimental リリースのみの機能です。React の安定版では `formAction` は[組み込みブラウザコンポーネント](https://react.dev/reference/react-dom/components#all-html-components)の機能としてのみ動作します。[React のリリースチャンネルについてはこちら](/community/versioning-policy#all-release-channels)。
-=======
-React's extensions to the `formAction` prop are currently only available in React's Canary and experimental channels. In stable releases of React `formAction` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 </Canary>
 
 [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): 文字列または関数。`type="submit"` and `type="image"` の場合に親の `<form action>` を上書きする。`action` に URL が渡された場合はフォームは標準的な HTML フォームとして動作する。関数が渡された場合はその関数がフォームの送信を処理する。[`<form action>`](/reference/react-dom/components/form#props) を参照。

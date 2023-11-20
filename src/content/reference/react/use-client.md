@@ -47,31 +47,18 @@ export default function RichTextEditor({ timestamp, text }) {
 
 #### 注意点 {/*caveats*/}
 
-<<<<<<< HEAD
 * `'use client'` はファイルの冒頭、すなわちインポートや他のコードより先になければなりません（コメントは OK です）。シングルクォートまたはダブルクォートで書かれていなければならず、バックティックは無効です。
 * `'use client'` モジュールが別のクライアントレンダーされるモジュールからインポートされた場合、ディレクティブの効果はありません。
 * コンポーネントモジュールに `'use client'` ディレクティブが含まれている場合、そのコンポーネントは必ずクライアントコンポーネントであることが保証されます。しかしコンポーネントに直接 `'use client'` ディレクティブがなくとも、クライアントで評価されることがあります。
 	* コンポーネントがクライアントコンポーネントと見なされるのは、それが `'use client'` ディレクティブを含むモジュールで定義されている場合、またはそれが `'use client'` ディレクティブを含むモジュールの間接的な依存モジュールである場合です。それ以外の場合、サーバコンポーネントとなります。
 * クライアントで評価されるようマークされるコードとはコンポーネントに限りません。クライアントモジュールのサブツリーに含まれるすべてのコードは、クライアントに送信され、クライアントで実行されます。
 * サーバで評価されるモジュールが `'use client'` のモジュールから値をインポートする場合、その値は React コンポーネントであるか、またはクライアントコンポーネントに渡せるよう[サポート済のシリアライズ可能な props の型](#passing-props-from-server-to-client-components)のいずれかでなければなりません。それ以外の方法で使用すると例外がスローされます。
-=======
-* `'use client'` must be at the very beginning of a file, above any imports or other code (comments are OK). They must be written with single or double quotes, but not backticks.
-* When a `'use client'` module is imported from another client-rendered module, the directive has no effect.
-* When a component module contains a `'use client'` directive, any usage of that component is guaranteed to be a Client Component. However, a component can still be evaluated on the client even if it does not have a `'use client'` directive.
-	* A component usage is considered a Client Component if it is defined in module with `'use client'` directive or when it is a transitive dependency of a module that contains a `'use client'` directive. Otherwise, it is a Server Component.
-* Code that is marked for client evaluation is not limited to components. All code that is a part of the Client module sub-tree is sent to and run by the client.
-* When a server evaluated module imports values from a `'use client'` module, the values must either be a React component or [supported serializable prop values](#passing-props-from-server-to-client-components) to be passed to a Client Component. Any other use case will throw an exception.
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 ### `'use client'` がクライアントコードをマークする方法 {/*how-use-client-marks-client-code*/}
 
 React アプリでは、コンポーネントはしばしば別々のファイル、すなわち[モジュール](/learn/importing-and-exporting-components#exporting-and-importing-a-component)に分割されます。
 
-<<<<<<< HEAD
 React Server Components を使用するアプリでは、デフォルトでアプリはサーバでレンダーされます。`'use client'` は[モジュール依存関係ツリー](/learn/understanding-your-ui-as-a-tree#the-module-dependency-tree)にサーバ・クライアント境界を導入、つまり実質的にはクライアントモジュールのサブツリーの作成を行います。
-=======
-For apps that use React Server Components, the app is server-rendered by default. `'use client'` introduces a server-client boundary in the [module dependency tree](/learn/understanding-your-ui-as-a-tree#the-module-dependency-tree), effectively creating a subtree of Client modules.
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 これをより具体的に示すために、以下の React Server Components アプリを考えてみましょう。
 
@@ -158,11 +145,7 @@ export default [
 
 </Sandpack>
 
-<<<<<<< HEAD
 このサンプルアプリのモジュール依存関係ツリーでは、`InspirationGenerator.js` に書かれた `'use client'` ディレクティブが、当該モジュールとそのすべての間接的な依存モジュールをクライアントモジュールとしてマークします。これで `InspirationGenerator.js` から始まるサブツリー全体がクライアントモジュールとなるのです。
-=======
-In the module dependency tree of this example app, the `'use client'` directive in `InspirationGenerator.js` marks that module and all of its transitive dependencies as Client modules. The subtree starting at `InspirationGenerator.js` is now marked as Client modules.
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 <Diagram name="use_client_module_dependency" height={250} width={545} alt="トップノードがモジュール 'App.js' を表す木構造のグラフ。'App.js'には 'Copyright.js'、'FancyText.js'、'InspirationGenerator.js' の 3 つの子ノードがある。'InspirationGenerator.js'には 'FancyText.js'と'inspirations.js' の 2 つの子ノードがある。'InspirationGenerator.js'を含む下のノードには黄色い背景色が付けられており、'InspirationGenerator.js'の 'use client' ディレクティブによってこのサブグラフがクライアント側でレンダーされることを示している。">
 `'use client'` は React Server Components アプリのモジュール依存関係ツリーを分割し、`InspirationGenerator.js` とそのすべての依存モジュールをクライアントレンダーされるものとしてマークする
@@ -253,15 +236,9 @@ function App() {
 
 話を簡単にするためサーバコンポーネントについて説明しますが、サーバで実行されるアプリのすべてのコードに同じ原則が適用されます。
 
-<<<<<<< HEAD
 #### サーバコンポーネントの利点 {/*advantages*/}
 * サーバコンポーネントにより、クライアントに送信され実行されるコードの量を減らすことができます。バンドルされてクライアントで評価されるのはクライアントモジュールだけです。
 * サーバコンポーネントにはサーバ上で実行されることに伴う利点があります。ローカルファイルシステムにアクセスでき、データフェッチやネットワークリクエストのレイテンシが低い可能性があります。
-=======
-#### Advantages of Server Components {/*advantages*/}
-* Server Components can reduce the amount of code sent and run by the client. Only Client modules are bundled and evaluated by the client.
-* Server Components benefit from running on the server. They can access the local filesystem and may experience low latency for data fetches and network requests.
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 #### サーバコンポーネントの制限事項 {/*limitations*/}
 * サーバコンポーネントはユーザによるインタラクションをサポートできません。イベントハンドラはクライアントで登録されトリガされる必要があるためです。
@@ -291,17 +268,10 @@ React アプリケーションでは一般的に、親コンポーネントか�
 	* [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
 	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) と [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
 * [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
-<<<<<<< HEAD
 * プレーンな[オブジェクト](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): [オブジェクト初期化子](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer)で作成され、シリアライズ可能なプロパティを持つもの
 * [サーバアクション (server action)](/reference/react/use-server) としての関数
 * クライアントまたはサーバコンポーネントの要素（JSX）
 * [プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-=======
-* Plain [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): those created with [object initializers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), with serializable properties
-* Functions that are [Server Actions](/reference/react/use-server)
-* Client or Server Component elements (JSX)
-* [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 以下のものはサポートされていません。
 * クライアントとマークされたモジュールからエクスポートされていない、または [`'use server'`](/reference/react/use-server) でマークされていない[関数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
@@ -337,11 +307,7 @@ export default function Counter({initialValue = 0}) {
 
 </Sandpack>
 
-<<<<<<< HEAD
 `Counter` は値を増減させるために `useState` フックとイベントハンドラを必要とするので、このコンポーネントはクライアントコンポーネントでなければならず、ファイル冒頭に `'use client'` ディレクティブが必要です。
-=======
-As `Counter` requires both the `useState` Hook and event handlers to increment or decrement the value, this component must be a Client Component and will require a `'use client'` directive at the top.
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 対照的に、インタラクションなしで UI をレンダーするコンポーネントはクライアントコンポーネントである必要はありません。
 

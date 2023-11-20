@@ -44,17 +44,10 @@ React の開発用ビルドには多くの有用な警告が含まれていま�
 
 一般的に、我々は以下の変更についてはメジャーバージョン番号を*上げません*。
 
-<<<<<<< HEAD
 * **開発時警告**。これらは本番環境での振る舞いに影響を与えないため、我々はメジャーバージョンの途中で新しい警告を追加したり、既存の警告を変更したりすることがあります。実際このおかげで、私たちは将来の破壊的な変更について確実な警告を行えるのです。
 * **`unstable_` で始まる API**。これらは私たちがまだ自信を持てていない実験的な機能として提供されています。これらを `unstable_` のプレフィックスでリリースすることで、より早くイテレーションを行い、より早く安定した API に到達することができます。
 * **React のアルファおよび Canary バージョン**。新しい機能を早期にテストするための方法として React のアルファバージョンを提供していますが、アルファ期間で学んだことに基づいて変更を加えるための柔軟性が必要です。これらのバージョンを使用する場合、API が安定リリース前に変更される可能性があることに注意してください。
 * **ドキュメント化されていない API や内部データ構造**。もし `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` や `__reactInternalInstance$uk43rzhitjg` のような内部プロパティ名にアクセスするなら、保証はありません。あなたの自己責任です。
-=======
-* **Development warnings.** Since these don't affect production behavior, we may add new warnings or modify existing warnings in between major versions. In fact, this is what allows us to reliably warn about upcoming breaking changes.
-* **APIs starting with `unstable_`.** These are provided as experimental features whose APIs we are not yet confident in. By releasing these with an `unstable_` prefix, we can iterate faster and get to a stable API sooner.
-* **Alpha and Canary versions of React.** We provide alpha versions of React as a way to test new features early, but we need the flexibility to make changes based on what we learn in the alpha period. If you use these versions, note that APIs may change before the stable release.
-* **Undocumented APIs and internal data structures.** If you access internal property names like `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` or `__reactInternalInstance$uk43rzhitjg`, there is no warranty.  You are on your own.
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 ポリシーがこう設計されているのは実用上の理由です。これが頭痛の種になってほしくないのです。これらすべての変更に対してメジャーバージョンを上げていたのでは、メジャーバージョンのリリースが増えてしまい、結果的にコミュニティにとってバージョニングにまつわる痛みの増加に繋がります。また、私たちが思い通りに素早く React を改善できなくなってしまうことにもなるでしょう。
 

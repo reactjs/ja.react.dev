@@ -428,11 +428,7 @@ export default function PackingList() {
 
 `importance` が `0` の場合に `0` が結果として表示されてしまわないよう、`importance && ...` ではなく `importance > 0 && ...` と書く必要があることに注意してください。
 
-<<<<<<< HEAD
 この答えでは、名前と重要度ラベルの間にスペースを挿入するために、2 つの条件が使用されています。代わりに、先頭にスペースを入れたフラグメントを使用することができます：`importance > 0 && <> <i>...</i></>` あるいは、`<i>` の直接内側にスペースを追加することもできます：`importance > 0 && <i> ...</i>`。
-=======
-In this solution, two separate conditions are used to insert a space between then name and the importance label. Alternatively, you could use a Fragment with a leading space: `importance > 0 && <> <i>...</i></>` or add a space immediately inside the `<i>`:  `importance > 0 && <i> ...</i>`.
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 </Solution>
 
@@ -646,9 +642,4 @@ React チームでは、[Rachel Nabors](https://twitter.com/rachelnabors/) が�
 
 アルファテスト及びベータテストプログラムに参加してくださった皆さんに心から感謝します。皆さんの情熱と貴重なフィードバックによって、このドキュメントを形作ることができました。そして React Conf 2021 で自身の経験をもとに React ドキュメントについて語っていただいた、ベータテスタの [Debbie O'Brien](https://twitter.com/debs_obrien) に特別な感謝を送ります。
 
-<<<<<<< HEAD
 最後に、この取り組みの背後にあるインスピレーションを与えてくださった React コミュニティに感謝します。これを行っているのは皆さんがいるからです。新しいドキュメントが、皆さんの望むどのようなユーザインターフェースであっても、それを React で構築する際の手助けとなれば幸いです。
-
-=======
-Finally, thanks to the React community for being the inspiration behind this effort. You are the reason we do this, and we hope that the new docs will help you use React to build any user interface that you want.
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
