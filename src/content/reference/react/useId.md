@@ -179,7 +179,11 @@ input { margin: 5px; }
 
 `useId` の主な利点は、React が、[サーバレンダリング](/reference/react-dom/server)で確実に機能することを保証していることです。サーバでのレンダー中に、コンポーネントは HTML 形式の出力を生成します。その後クライアント上で、生成された HTML に、[ハイドレーション](/reference/react-dom/client/hydrateRoot)によって、イベントハンドラがアタッチされます。ハイドレーションが機能するには、クライアントの出力がサーバの HTML と一致する必要があります。
 
+<<<<<<< HEAD
 クライアントコンポーネントがハイドレートされる順序は、サーバ HTML が出力された順序と一致しない可能性があるため、これをインクリメントカウンタで保証することは非常に困難です。`useId` を呼び出すことで、ハイドレーションが機能し、サーバとクライアントの間で出力が一致することが保証されます。
+=======
+This is very difficult to guarantee with an incrementing counter because the order in which the Client Components are hydrated may not match the order in which the server HTML was emitted. By calling `useId`, you ensure that hydration will work, and the output will match between the server and the client.
+>>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 React 内部では、呼び出し元コンポーネントの "親のパス (parent path)" から `useId` が生成されます。そのため、クライアントとサーバのツリーが同じであれば、レンダー順序に関係なく "親のパス" が一致することになります。
 
@@ -302,4 +306,3 @@ input { margin: 5px; }
 ```
 
 </Sandpack>
-

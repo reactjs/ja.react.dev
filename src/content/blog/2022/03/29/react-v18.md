@@ -139,8 +139,13 @@ startTransition(() => {
 startTransition でラップした更新は緊急性の低いものとして扱われ、クリックやキー押下のような緊急性の高い更新がやってきた場合には中断されます。トランジションがユーザによって中断された場合（例えば素早く複数のタイプが起こった場合）、React は完了しないままに古くなったレンダーを破棄して、最後の更新のみレンダーします。
 
 
+<<<<<<< HEAD
 * `useTransition`: トランジションを開始するためのフックであり、保留中かどうかの状態を追跡するための値も含まれます。
 * `startTransition`: フックが使えない場合にトランジションを開始するためのメソッドです。
+=======
+* `useTransition`: a Hook to start transitions, including a value to track the pending state.
+* `startTransition`: a method to start transitions when the Hook cannot be used.
+>>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 トランジションを使うと並行レンダー機能にオプトインし、更新が中断可能になります。また、コンテンツが再サスペンドした場合、バックグラウンドでトランジション中のコンテンツをレンダーしつつ、現在のコンテンツを表示し続けるよう React に伝えます（詳細については [サスペンス RFC](https://github.com/reactjs/rfcs/blob/main/text/0213-suspense-in-react-18.md) を参照）。
 
@@ -229,7 +234,11 @@ React 18 の strict モードでは、開発時にコンポーネントがマウ
 
 #### useId {/*useid*/}
 
+<<<<<<< HEAD
 `useId` はハイドレーション時の不整合を防ぎつつクライアントとサーバで一意な ID を生成するためのフックです。これは主に、一意な ID を必要とするアクセシビリティ API を組み込むようなコンポーネントライブラリで有用なものです。これにより React 17 およびそれ以前から既に存在した問題が解決されますが、React 18 では新しいストリーミング対応のサーバレンダラが HTML を順番通りに送信しなくなるため、この問題はより重要です。[こちらのドキュメントを参照](/docs/hooks-reference.html#useid)。
+=======
+`useId` is a new Hook for generating unique IDs on both the client and server, while avoiding hydration mismatches. It is primarily useful for component libraries integrating with accessibility APIs that require unique IDs. This solves an issue that already exists in React 17 and below, but it's even more important in React 18 because of how the new streaming server renderer delivers HTML out-of-order. [See docs here](/reference/react/useId).
+>>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 > 補足
 >
@@ -245,7 +254,11 @@ React 18 の strict モードでは、開発時にコンポーネントがマウ
 
 #### useSyncExternalStore {/*usesyncexternalstore*/}
 
+<<<<<<< HEAD
 `useSyncExternalStore` は、外部ストアへの更新を強制的に同期的に行うことで、外部ストアが並行読み取りを行えるようにします。これにより外部のデータソースに購読する際に `useEffect` を使う必要性がなくなるので、React 外部の状態を扱うあらゆるライブラリにとって推奨されるものです。[こちらのドキュメントを参照](/reference/react/useSyncExternalStore)。
+=======
+`useSyncExternalStore` is a new Hook that allows external stores to support concurrent reads by forcing updates to the store to be synchronous. It removes the need for useEffect when implementing subscriptions to external data sources, and is recommended for any library that integrates with state external to React. [See docs here](/reference/react/useSyncExternalStore).
+>>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 > 補足
 >
@@ -253,7 +266,11 @@ React 18 の strict モードでは、開発時にコンポーネントがマウ
 
 #### useInsertionEffect {/*useinsertioneffect*/}
 
+<<<<<<< HEAD
 `useInsertionEffect` は、CSS-in-JS ライブラリがレンダー時にスタイルを注入する際のパフォーマンス上の問題に対処できるようにするための新しいフックです。すでに CSS-in-JS ライブラリを構築しているのでなければ、これを使うことはまずないでしょう。このフックは、DOM が書き換えられた後、レイアウト副作用 (layout effect) が新しいレイアウトを読み込む前に実行されます。これにより React 17 およびそれ以前から既に存在した問題が解決されますが、React 18 では並行レンダー中にブラウザに処理が渡り、そこでレイアウトが再計算される可能性があるため、より重要です。[こちらのドキュメントを参照](/reference/react/useInsertionEffect)。
+=======
+`useInsertionEffect` is a new Hook that allows CSS-in-JS libraries to address performance issues of injecting styles in render. Unless you’ve already built a CSS-in-JS library we don’t expect you to ever use this. This Hook will run after the DOM is mutated, but before layout effects read the new layout. This solves an issue that already exists in React 17 and below, but is even more important in React 18 because React yields to the browser during concurrent rendering, giving it a chance to recalculate layout. [See docs here](/reference/react/useInsertionEffect).
+>>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 > 補足
 >
@@ -339,4 +356,3 @@ React 18 の strict モードでは、開発時にコンポーネントがマウ
 * Update webpack plugin for webpack 5 ([#22739](https://github.com/facebook/react/pull/22739)  by [@michenly](https://github.com/michenly))
 * Fix a mistake in the Node loader. ([#22537](https://github.com/facebook/react/pull/22537)  by [@btea](https://github.com/btea))
 * Use `globalThis` instead of `window` for edge environments. ([#22777](https://github.com/facebook/react/pull/22777)  by [@huozhi](https://github.com/huozhi))
-

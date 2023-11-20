@@ -24,7 +24,11 @@ RSC は、サーバセントリックなマルチページアプリケーショ�
 
 前回のアップデート以降、[React Server Components RFC](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md) をマージして提案を承認しました。[React Server Module Conventions](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md) の提案に関する大きな課題を解決し、`"use client"` を使うという規約に関してパートナーとのコンセンサスを得ました。これらの文書は、RSC 互換実装がサポートするべき仕様としても機能します。
 
+<<<<<<< HEAD
 最大の変更点は、サーバコンポーネントにおいては [`async` / `await`](https://github.com/reactjs/rfcs/pull/229) を主要なデータフェッチ方法として導入することにしたことです。また、Promise の中身を取り出す新しいフック `use` を導入してクライアントでのデータロードをサポートする予定です。クライアントのみのアプリにおいては、あらゆるコンポーネントで `async / await` をサポートすることはできませんが、RSC アプリの構造に似た方法でクライアントオンリーのアプリを作成する場合にはそれができるよう、サポートを追加する予定です。
+=======
+The biggest change is that we introduced [`async` / `await`](https://github.com/reactjs/rfcs/pull/229) as the primary way to do data fetching from Server Components. We also plan to support data loading from the client by introducing a new Hook called `use` that unwraps Promises. Although we can't support `async / await` in arbitrary components in client-only apps, we plan to add support for it when you structure your client-only app similar to how RSC apps are structured.
+>>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 データフェッチがかなり整理されましたので、クライアントからサーバという逆方向へのデータ送信を行って、データベース更新やフォームの実装ができる方法についても検討しています。サーバー/クライアントの境界を越えて Server Action 関数を渡せるようにすることで、クライアントがそれを呼び出し、シームレスな RPC を実現できるようする、という方法を考えています。Server Action により、JavaScript が読み込まれる前に段階的に動作するようになるフォームを提供することも可能です。
 

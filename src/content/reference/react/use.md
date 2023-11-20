@@ -5,7 +5,11 @@ canary: true
 
 <Canary>
 
+<<<<<<< HEAD
 `use` フックは現在、React の Canary および experimental チャンネルでのみ利用可能です。[React のリリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
+=======
+The `use` Hook is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+>>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 </Canary>
 
@@ -334,7 +338,11 @@ root.render(
 
 #### プロミスをサーバコンポーネントで解決するか、クライアントコンポーネントで解決するか？ {/*resolve-promise-in-server-or-client-component*/}
 
+<<<<<<< HEAD
 プロミスはサーバコンポーネントからクライアントコンポーネントに渡し、`use` フックを使ってクライアントコンポーネントで解決することができます。また、`await` を使ってサーバコンポーネント側でプロミスを解決し、必要なデータを props としてクライアントコンポーネントに渡すことも可能でしょう。
+=======
+A Promise can be passed from a Server Component to a Client Component and resolved in the Client Component with the `use` Hook. You can also resolve the Promise in a Server Component with `await` and pass the required data to the Client Component as a prop.
+>>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 ```js
 export default function App() {
