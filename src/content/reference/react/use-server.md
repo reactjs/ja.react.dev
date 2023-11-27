@@ -25,7 +25,7 @@ canary: true
 
 ### `'use server'` {/*use-server*/}
 
-非同期 (async) 関数の本体の冒頭に `'use server';` を追加することで、その関数がクライアントから実行可能であるとマークします。そのような関数のことを*サーバアクション (server action)* と呼びます。
+非同期 (async) 関数の本体の冒頭に `'use server';` を追加することで、その関数がクライアントから実行可能であるとマークします。そのような関数のことを*サーバアクション (Server Action)* と呼びます。
 
 ```js {2}
 async function addToCart(data) {

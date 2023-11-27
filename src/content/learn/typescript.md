@@ -299,7 +299,7 @@ type ComplexObject = {
 // The context is created with `| null` in the type, to accurately reflect the default value.
 const Context = createContext<ComplexObject | null>(null);
 
-// The `| null` will be removed via the check in the hook.
+// The `| null` will be removed via the check in the Hook.
 const useGetComplexObject = () => {
   const object = useContext(Context);
   if (!object) { throw new Error("useGetComplexObject must be used within a Provider") }
