@@ -11,7 +11,7 @@ canary: true
 
 <Intro>
 
-`useOptimistic` は、UI を楽観的に更新するための React フックです。
+`useOptimistic` は、UI を楽観的に (optimistically) 更新するための React フックです。
 
 ```js
   const [optimisticState, addOptimistic] = useOptimistic(state, updateFn);
@@ -51,13 +51,13 @@ function AppContainer() {
 #### 引数 {/*parameters*/}
 
 * `state`: 初期状態や、実行中のアクションが存在しない場合に返される値。
-* `updateFn(currentState, optimisticValue)`: 現在の state と `addOptimistic` に渡された楽観的な値を受け取り、結果としての楽観的な state を返す関数。純関数でなければなりません。`updateFn` は `currentState` と `optimisticValue` の 2 つの引数を受け取ります。返り値は `currentState` に `optimisticValue` の値を反映させたものとなります。
+* `updateFn(currentState, optimisticValue)`: state の現在値と、`addOptimistic` に渡された楽観的更新に使用する値 (optimistic value) を受け取り、結果としての楽観的 state を返す関数。純関数でなければなりません。`updateFn` は `currentState` と `optimisticValue` の 2 つの引数を受け取ります。返り値は `currentState` に `optimisticValue` の値を反映させたものとなります。
 
 
 #### 返り値 {/*returns*/}
 
 * `optimisticState`: 結果としての楽観的 state。実行中のアクションがない場合は `state` と等しくなり、何らかのアクションが実行中の場合は `updateFn` が返す値と等しくなります。
-* `addOptimistic`: 楽観的な更新を行う際に呼び出すためのディスパッチ関数。任意の型の引数 `optimisticValue` を 1 つだけ受け取り、それにより `state` と `optimisticValue` を引数にした `updateFn` が呼び出されます。
+* `addOptimistic`: 楽観的な更新を行う際に呼び出すためのディスパッチ関数。任意の型の引数 `optimisticValue` を 1 つだけ受け取ります。それにより、`state` と `optimisticValue` を引数にして `updateFn` が呼び出されます。
 
 ---
 
