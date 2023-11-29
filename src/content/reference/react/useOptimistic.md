@@ -5,13 +5,13 @@ canary: true
 
 <Canary>
 
-The `useOptimistic` Hook is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+`useOptimistic` フックは、現在 React の Canary および experimental チャンネルでのみ利用可能です。[React のリリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
 
 </Canary>
 
 <Intro>
 
-`useOptimistic` is a React Hook that lets you optimistically update the UI.
+`useOptimistic` は、UI を楽観的に (optimistically) 更新するための React フックです。
 
 ```js
   const [optimisticState, addOptimistic] = useOptimistic(state, updateFn);
@@ -23,13 +23,13 @@ The `useOptimistic` Hook is currently only available in React's Canary and exper
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `useOptimistic(state, updateFn)` {/*use*/}
 
-`useOptimistic` is a React Hook that lets you show a different state while an async action is underway. It accepts some state as an argument and returns a copy of that state that can be different during the duration of an async action such as a network request. You provide a function that takes the current state and the input to the action, and returns the optimistic state to be used while the action is pending.
+`useOptimistic` は、何らかの非同期アクションが進行中の間だけ、異なる state を表示するための React フックです。ある state を引数として受け取ってそのコピーを返しますが、ネットワークリクエストなどの非同期アクションが実行中の場合に異なる値を返すことができます。現在の state とアクションへの入力を受け取り、アクション実行中に使用される楽観的 state を返すような関数を渡します。
 
-This state is called the "optimistic" state because it is usually used to immediately present the user with the result of performing an action, even though the action actually takes time to complete.
+このような state が「楽観的」state と呼ばれるのは、実際にはアクションの完了には時間がかかるにも関わらず、そのアクションの実行結果をユーザに即座に提示するために通常使用されるものだからです。
 
 ```js
 import { useOptimistic } from 'react';
@@ -46,28 +46,28 @@ function AppContainer() {
 }
 ```
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-* `state`: the value to be returned initially and whenever no action is pending.
-* `updateFn(currentState, optimisticValue)`: a function that takes the current state and the optimistic value passed to `addOptimistic` and returns the resulting optimistic state. It must be a pure function. `updateFn` takes in two parameters. The `currentState` and the `optimisticValue`. The return value will be the merged value of the `currentState` and `optimisticValue`.
+* `state`: 初期状態や、実行中のアクションが存在しない場合に返される値。
+* `updateFn(currentState, optimisticValue)`: state の現在値と、`addOptimistic` に渡された楽観的更新に使用する値 (optimistic value) を受け取り、結果としての楽観的 state を返す関数。純関数でなければなりません。`updateFn` は `currentState` と `optimisticValue` の 2 つの引数を受け取ります。返り値は `currentState` に `optimisticValue` の値を反映させたものとなります。
 
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-* `optimisticState`: The resulting optimistic state. It is equal to `state` unless an action is pending, in which case it is equal to the value returned by `updateFn`.
-* `addOptimistic`: `addOptimistic` is the dispatching function to call when you have an optimistic update. It takes one argument, `optimisticValue`, of any type and will call the `updateFn` with `state` and `optimisticValue`.
+* `optimisticState`: 結果としての楽観的 state。実行中のアクションがない場合は `state` と等しくなり、何らかのアクションが実行中の場合は `updateFn` が返す値と等しくなります。
+* `addOptimistic`: 楽観的な更新を行う際に呼び出すためのディスパッチ関数。任意の型の引数 `optimisticValue` を 1 つだけ受け取ります。それにより、`state` と `optimisticValue` を引数にして `updateFn` が呼び出されます。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Optimistically updating forms {/*optimistically-updating-with-forms*/}
+### フォームの楽観的な更新 {/*optimistically-updating-with-forms*/}
 
-The `useOptimistic` Hook provides a way to optimistically update the user interface before a background operation, like a network request, completes. In the context of forms, this technique helps to make apps feel more responsive. When a user submits a form, instead of waiting for the server's response to reflect the changes, the interface is immediately updated with the expected outcome.
+`useOptimistic` フックは、ネットワークリクエストのようなバックグラウンド作業が完了する前に、ユーザインターフェースを楽観的に更新する方法を提供します。フォームにおいては、この技術はアプリをよりレスポンシブに感じさせるために役立ちます。ユーザがフォームを送信した際に、サーバのレスポンスを待たずに、予想される結果を用いてインターフェースを即座に更新しておきます。
 
-For example, when a user types a message into the form and hits the "Send" button, the `useOptimistic` Hook allows the message to immediately appear in the list with a "Sending..." label, even before the message is actually sent to a server. This "optimistic" approach gives the impression of speed and responsiveness. The form then attempts to truly send the message in the background. Once the server confirms the message has been received, the "Sending..." label is removed.
+例えば、ユーザがフォームにメッセージを入力して送信ボタンを押すと、`useOptimistic` フックにより、メッセージが実際にサーバに送信される前であっても、リストに "Sending..." というラベル付きでメッセージを即座に表示できるようになります。この「楽観的」アプローチにより、アプリの印象が高速でレスポンシブになります。その後フォームはバックグラウンドでメッセージの実際の送信を試みます。サーバにメッセージが到着したことを確認すると、"Sending..." ラベルが取り除かれます。
 
 <Sandpack>
 
