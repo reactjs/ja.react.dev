@@ -95,11 +95,7 @@ Strict Mode は開発中に以下のチェックを有効にします：
 
 ---
 
-<<<<<<< HEAD
 ### アプリの一部で Strict Mode を有効にする {/*enabling-strict-mode-for-a-part-of-the-app*/}
-=======
-### Enabling Strict Mode for a part of the app {/*enabling-strict-mode-for-a-part-of-the-app*/}
->>>>>>> af54fc873819892f6050340df236f33a18ba5fb8
 
 アプリケーションの任意の一部分でのみ Strict Mode を有効にすることも可能です。
 

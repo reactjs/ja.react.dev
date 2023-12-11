@@ -305,9 +305,9 @@ input { margin: 5px; }
 
 ---
 
-### Using the same ID prefix on the client and the server {/*using-the-same-id-prefix-on-the-client-and-the-server*/}
+### クライアントとサーバで同じ ID プレフィックスを使う {/*using-the-same-id-prefix-on-the-client-and-the-server*/}
 
-If you [render multiple independent React apps on the same page](#specifying-a-shared-prefix-for-all-generated-ids), and some of these apps are server-rendered, make sure that the `identifierPrefix` you pass to the [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) call on the client side is the same as the `identifierPrefix` you pass to the [server APIs](/reference/react-dom/server) such as [`renderToPipeableStream`.](/reference/react-dom/server/renderToPipeableStream)
+もし[同じページ上で複数の独立した React アプリをレンダー](#specifying-a-shared-prefix-for-all-generated-ids)しており、そのうちいくつかがサーバでレンダーされる場合は、クライアント側の [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) 呼び出しに渡す `identifierPrefix` が、[`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) などの[サーバ API](/reference/react-dom/server) に渡す `identifierPrefix` と同じになるようにしてください。
 
 ```js
 // Server
@@ -331,4 +331,4 @@ const root = hydrateRoot(
 );
 ```
 
-You do not need to pass `identifierPrefix` if you only have one React app on the page.
+ページ内に React アプリが 1 つしかない場合は `identifierPrefix` を渡す必要はありません。
