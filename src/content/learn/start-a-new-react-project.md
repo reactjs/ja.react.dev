@@ -24,7 +24,11 @@ React だけで新しいアプリやウェブサイトを作りたい場合は�
 npx create-next-app@latest
 </TerminalBlock>
 
+<<<<<<< HEAD
 Next.js を初めて使う場合は、[Next.js チュートリアル](https://nextjs.org/learn/foundations/about-nextjs)を参照してください。
+=======
+If you're new to Next.js, check out the [learn Next.js course.](https://nextjs.org/learn)
+>>>>>>> af54fc873819892f6050340df236f33a18ba5fb8
 
 Next.js は [Vercel](https://vercel.com/) によってメンテナンスされています。Next.js アプリは Node.js やサーバレスホスティングサービス、または自分自身のサーバーに[デプロイする](https://nextjs.org/docs/app/building-your-application/deploying)ことができます。Next.js はサーバを必要としない[静的なエクスポート](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports)もサポートしています。
 
