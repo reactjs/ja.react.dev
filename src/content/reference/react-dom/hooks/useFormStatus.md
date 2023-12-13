@@ -5,7 +5,7 @@ canary: true
 
 <Canary>
 
-`useFormState` フックは、現在 React の Canary および experimental チャンネルでのみ利用可能です。[リリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
+`useFormStatus` フックは、現在 React の Canary および experimental チャンネルでのみ利用可能です。[リリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
 
 </Canary>
 
@@ -65,14 +65,14 @@ export default App() {
 
 * `data`: [`FormData` インターフェース](https://developer.mozilla.org/en-US/docs/Web/API/FormData)を実装したオブジェクト。親 `<form>` が送信中のデータを含んでいます。送信がアクティブでない場合や親 `<form>` がない場合は `null` になります。
 
-* `method`: `'get'` または `'post'` のいずれかの文字列。親 `<form>` が `GET` と `POST` [HTTP メソッド](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)のどちらで送信しているかを表します。デフォルトでは、`<form>` は `GET` メソッドを使用します。[`method`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#method) プロパティによって指定することができます。
+* `method`: `'get'` または `'post'` のいずれかの文字列。親 `<form>` が `GET` と `POST` [HTTP メソッド](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)のどちらで送信されているかを表します。デフォルトでは、`<form>` は `GET` メソッドを使用しますが、[`method`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#method) によって指定することができます。
 
 [//]: # (Link to `<form>` documentation. "Read more on the `action` prop on `<form>`.")
-* `action`: 親 `<form>` の `action` プロパティに渡された関数への参照。親 `<form>` がない場合、このプロパティは `null` です。`action` プロパティに URI 値が渡された場合や `action` プロパティが指定されていない場合、`status.action` は `null` になります。
+* `action`: 親 `<form>` の props である `action` に渡された関数への参照。親 `<form>` がない場合、このプロパティは `null` です。`action` プロパティに URI 値が渡された場合や `action` プロパティが指定されていない場合も、`status.action` は `null` になります。
 
 #### 注意点 {/*caveats*/}
 
-* `useFormStatus` フックは、`<form>` 内でレンダーされるコンポーネントから呼び出されなければなりません。
+* `useFormStatus` フックは、`<form>` 内でレンダーされるコンポーネントから呼び出す必要があります。
 * `useFormStatus` は親 `<form>` のステータス情報のみを返します。同じコンポーネントや子コンポーネント内でレンダーされた `<form>` のステータス情報は返しません。
 
 ---
@@ -80,7 +80,7 @@ export default App() {
 ## 使用法 {/*usage*/}
 
 ### フォーム送信中にステータスを表示 {/*display-a-pending-state-during-form-submission*/}
-フォームが送信中の間にそのステータスを表示するには、`<form>` 内でレンダーされるコンポーネントで `useFormStatus` フックを呼び出し、返された `pending` プロパティを読み取ります。
+フォームの送信中にそのステータスを表示するには、`<form>` 内でレンダーされるコンポーネントで `useFormStatus` フックを呼び出し、返された `pending` プロパティを読み取ります。
 
 以下では、フォームが送信中であることを示すために `pending` プロパティを使用しています。
 
@@ -146,7 +146,7 @@ function Form() {
 }
 ```
 
-代わりに、`useFormStatus` を `<form>` の内部に位置するコンポーネントから呼び出してください。
+こうするのではなく、`useFormStatus` を `<form>` の内部にあるコンポーネントから呼び出してください。
 
 ```js
 function Submit() {
@@ -171,7 +171,7 @@ function Form() {
 
 `useFormStatus` から返されるステータス情報の `data` プロパティを使用して、ユーザが送信しているデータを表示できます。
 
-以下の例は、ユーザが欲しいユーザネームを要求できるフォームです。`useFormStatus` を使用することで、ユーザがどんなユーザネームを要求したのか確認できる一時的なステータスメッセージを表示できます。
+以下の例は、ユーザが自分の欲しいユーザネームを要求できるフォームです。`useFormStatus` を使用することで、ユーザがどんなユーザネームを要求したのか確認できる一時的なステータスメッセージを表示できます。
 
 <Sandpack>
 
@@ -258,4 +258,4 @@ export async function submitForm(query) {
 
 `useFormStatus` を呼び出しているコンポーネントが `<form>` の中にネストされていない場合、`status.pending` は常に `false` を返します。`useFormStatus` が `<form>` 要素の子コンポーネント内で呼び出されていることを確認してください。
 
-`useFormStatus` は、同じコンポーネントでレンダーされた `<form>` の状態は追跡しません。詳細は[落とし穴](#useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component)を参照してください。
+`useFormStatus` は、同じコンポーネントでレンダーされた `<form>` の状態は追跡しません。詳細は[落とし穴](#useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component)欄を参照してください。
