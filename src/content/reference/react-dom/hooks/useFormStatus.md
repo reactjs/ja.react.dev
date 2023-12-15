@@ -5,13 +5,13 @@ canary: true
 
 <Canary>
 
-The `useFormStatus` Hook is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+`useFormStatus` フックは、現在 React の Canary および experimental チャンネルでのみ利用可能です。[リリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
 
 </Canary>
 
 <Intro>
 
-`useFormStatus` is a Hook that gives you status information of the last form submission.
+`useFormStatus` は、直近のフォーム送信に関するステータス情報を提供するフックです。
 
 ```js
 const { pending, data, method, action } = useFormStatus();
@@ -23,11 +23,11 @@ const { pending, data, method, action } = useFormStatus();
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `useFormStatus()` {/*use-form-status*/}
 
-The `useFormStatus` Hook provides status information of the last form submission.
+`useFormStatus` フックは、直近のフォーム送信に関するステータス情報を提供します。
 
 ```js {5},[[1, 6, "status.pending"]]
 import { useFormStatus } from "react-dom";
@@ -47,42 +47,42 @@ export default App() {
 }
 ```
 
-To get status information, the `Submit` component must be rendered within a `<form>`. The Hook returns information like the <CodeStep step={1}>`pending`</CodeStep> property which tells you if the form is actively submitting. 
+ステータス情報を取得するには、この `Submit` コンポーネントが `<form>` 内でレンダーされている必要があります。このフックは、フォームが送信中かどうかを示す <CodeStep step={1}>`pending`</CodeStep> プロパティなどの情報を返します。
 
-In the above example, `Submit` uses this information to disable `<button>` presses while the form is submitting.
+上記の例では、`Submit` がこの情報を使用して、フォームが送信中の間 `<button>` を無効にして押せなくしています。
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-`useFormStatus` does not take any parameters.
+`useFormStatus` は引数を受け取りません。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-A `status` object with the following properties:
+以下のプロパティを持つ `status` オブジェクト。
 
-* `pending`: A boolean. If `true`, this means the parent `<form>` is pending submission. Otherwise, `false`.
+* `pending`: ブーリアン。`true` の場合、親 `<form>` で送信が進行中であることを意味します。それ以外の場合は `false` となります。
 
-* `data`: An object implementing the [`FormData interface`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) that contains the data the parent `<form>` is submitting. If there is no active submission or no parent `<form>`, it will be `null`.
+* `data`: [`FormData` インターフェース](https://developer.mozilla.org/en-US/docs/Web/API/FormData)を実装したオブジェクト。親 `<form>` が送信中のデータを含んでいます。送信がアクティブでない場合や親 `<form>` がない場合は `null` になります。
 
-* `method`: A string value of either `'get'` or `'post'`. This represents whether the parent `<form>` is submitting with either a `GET` or `POST` [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods). By default, a `<form>` will use the `GET` method and can be specified by the [`method`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#method) property.
+* `method`: `'get'` または `'post'` のいずれかの文字列。親 `<form>` が `GET` と `POST` [HTTP メソッド](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)のどちらで送信されているかを表します。デフォルトでは、`<form>` は `GET` メソッドを使用しますが、[`method`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#method) によって指定することができます。
 
 [//]: # (Link to `<form>` documentation. "Read more on the `action` prop on `<form>`.")
-* `action`: A reference to the function passed to the `action` prop on the parent `<form>`. If there is no parent `<form>`, the property is `null`. If there is a URI value provided to the `action` prop, or no `action` prop specified, `status.action` will be `null`.
+* `action`: 親 `<form>` の props である `action` に渡された関数への参照。親 `<form>` がない場合、このプロパティは `null` です。`action` プロパティに URI 値が渡された場合や `action` プロパティが指定されていない場合も、`status.action` は `null` になります。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-* The `useFormStatus` Hook must be called from a component that is rendered inside a `<form>`. 
-* `useFormStatus` will only return status information for a parent `<form>`. It will not return status information for any `<form>` rendered in that same component or children components.
+* `useFormStatus` フックは、`<form>` 内でレンダーされるコンポーネントから呼び出す必要があります。
+* `useFormStatus` は親 `<form>` のステータス情報のみを返します。同じコンポーネントや子コンポーネント内でレンダーされた `<form>` のステータス情報は返しません。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Display a pending state during form submission {/*display-a-pending-state-during-form-submission*/}
-To display a pending state while a form is submitting, you can call the `useFormStatus` Hook in a component rendered in a `<form>` and read the `pending` property returned.
+### フォーム送信中にステータスを表示 {/*display-a-pending-state-during-form-submission*/}
+フォームの送信中にそのステータスを表示するには、`<form>` 内でレンダーされるコンポーネントで `useFormStatus` フックを呼び出し、返された `pending` プロパティを読み取ります。
 
-Here, we use the `pending` property to indicate the form is submitting. 
+以下では、フォームが送信中であることを示すために `pending` プロパティを使用しています。
 
 <Sandpack>
 
@@ -133,9 +133,9 @@ export async function submitForm(query) {
 
 <Pitfall>
 
-##### `useFormStatus` will not return status information for a `<form>` rendered in the same component. {/*useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component*/}
+##### `useFormStatus` は同じコンポーネントでレンダーされた `<form>` のステータス情報を返さない {/*useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component*/}
 
-The `useFormStatus` Hook only returns status information for a parent `<form>` and not for any `<form>` rendered in the same component calling the Hook, or child components.
+`useFormStatus` フックは親の `<form>` に対するステータス情報のみを返します。フックを呼び出しているのと同じコンポーネントや子コンポーネントでレンダーされる `<form>` には対応していません。
 
 ```js
 function Form() {
@@ -146,7 +146,7 @@ function Form() {
 }
 ```
 
-Instead call `useFormStatus` from inside a component that is located inside `<form>`.
+こうするのではなく、`useFormStatus` を `<form>` の内部にあるコンポーネントから呼び出してください。
 
 ```js
 function Submit() {
@@ -167,11 +167,11 @@ function Form() {
 
 </Pitfall>
 
-### Read the form data being submitted {/*read-form-data-being-submitted*/}
+### ユーザが送信中のフォームデータを読み取る {/*read-form-data-being-submitted*/}
 
-You can use the `data` property of the status information returned from `useFormStatus` to display what data is being submitted by the user.
+`useFormStatus` から返されるステータス情報の `data` プロパティを使用して、ユーザが送信しているデータを表示できます。
 
-Here, we have a form where users can request a username. We can use `useFormStatus` to display a temporary status message confirming what username they have requested.
+以下の例は、ユーザが自分の欲しいユーザネームを要求できるフォームです。`useFormStatus` を使用することで、ユーザがどんなユーザネームを要求したのか確認できる一時的なステータスメッセージを表示できます。
 
 <Sandpack>
 
@@ -250,12 +250,12 @@ export async function submitForm(query) {
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### `status.pending` is never `true` {/*pending-is-never-true*/}
+### `status.pending` が `true` にならない {/*pending-is-never-true*/}
 
-`useFormStatus` will only return status information for a parent `<form>`. 
+`useFormStatus` は親の `<form>` に対するステータス情報のみを返します。
 
-If the component that calls `useFormStatus` is not nested in a `<form>`, `status.pending` will always return `false`. Verify `useFormStatus` is called in a component that is a child of a `<form>` element.
+`useFormStatus` を呼び出しているコンポーネントが `<form>` の中にネストされていない場合、`status.pending` は常に `false` を返します。`useFormStatus` が `<form>` 要素の子コンポーネント内で呼び出されていることを確認してください。
 
-`useFormStatus` will not track the status of a `<form>` rendered in the same component. See [Pitfall](#useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component) for more details.
+`useFormStatus` は、同じコンポーネントでレンダーされた `<form>` の状態は追跡しません。詳細は[落とし穴](#useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component)欄を参照してください。
