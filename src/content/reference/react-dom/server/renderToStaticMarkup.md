@@ -35,6 +35,8 @@ const html = renderToStaticMarkup(<Page />);
 #### 引数 {/*parameters*/}
 
 * `reactNode`: HTML にレンダーしたい React ノード。例えば、`<Page />` のような JSX ノード。
+* **省略可能** `options`: サーバレンダー用のオプションが含まれたオブジェクト。
+  * **省略可能** `identifierPrefix`: React が [`useId`](/reference/react/useId) によって生成する ID に使用する文字列プレフィックス。同じページ上に複数のルートを使用する際に、競合を避けるために用います。
 
 #### 返り値 {/*returns*/}
 
