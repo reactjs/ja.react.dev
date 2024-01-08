@@ -62,7 +62,7 @@ React による `<form>` の機能拡張は、現在 React の Canary および 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 export default function Search() {
   function search(formData) {
     const query = formData.get("query");
@@ -146,7 +146,7 @@ function AddToCart({productId}) {
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useFormStatus } from "react-dom";
 import { submitForm } from "./actions.js";
 
@@ -172,7 +172,7 @@ export default function App() {
 }
 ```
 
-```js actions.js hidden
+```js src/actions.js hidden
 export async function submitForm(query) {
     await new Promise((res) => setTimeout(res, 1000));
 }
@@ -201,7 +201,7 @@ export async function submitForm(query) {
 <Sandpack>
 
 
-```js App.js
+```js src/App.js
 import { useOptimistic, useState, useRef } from "react";
 import { deliverMessage } from "./actions.js";
 
@@ -251,7 +251,7 @@ export default function App() {
 }
 ```
 
-```js actions.js
+```js src/actions.js
 export async function deliverMessage(message) {
   await new Promise((res) => setTimeout(res, 1000));
   return message;
@@ -282,7 +282,7 @@ export async function deliverMessage(message) {
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { ErrorBoundary } from "react-error-boundary";
 
 export default function Search() {
@@ -330,7 +330,7 @@ export default function Search() {
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useFormState } from "react-dom";
 import { signUpNewUser } from "./api";
 
@@ -361,7 +361,7 @@ export default function Page() {
 }
 ```
 
-```js api.js hidden
+```js src/api.js hidden
 let emails = [];
 
 export async function signUpNewUser(newEmail) {
@@ -396,7 +396,7 @@ export async function signUpNewUser(newEmail) {
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 export default function Search() {
   function publish(formData) {
     const content = formData.get("content");

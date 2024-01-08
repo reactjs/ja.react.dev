@@ -88,7 +88,7 @@ React で完全に構築されたアプリでは、**通常、アプリ全体の
 <div id="root"><h1>Hello, world!</h1></div>
 ```
 
-```js index.js active
+```js src/index.js active
 import './styles.css';
 import { hydrate } from 'react-dom';
 import App from './App.js';
@@ -96,7 +96,7 @@ import App from './App.js';
 hydrate(<App />, document.getElementById('root'));
 ```
 
-```js App.js
+```js src/App.js
 export default function App() {
   return <h1>Hello, world!</h1>;
 }
@@ -126,7 +126,7 @@ export default function App() {
 <div id="root"><h1>Current Date: 01/01/2020</h1></div>
 ```
 
-```js index.js
+```js src/index.js
 import './styles.css';
 import { hydrate } from 'react-dom';
 import App from './App.js';
@@ -134,7 +134,7 @@ import App from './App.js';
 hydrate(<App />, document.getElementById('root'));
 ```
 
-```js App.js active
+```js src/App.js active
 export default function App() {
   return (
     <h1 suppressHydrationWarning={true}>
@@ -164,7 +164,7 @@ export default function App() {
 <div id="root"><h1>Is Server</h1></div>
 ```
 
-```js index.js
+```js src/index.js
 import './styles.css';
 import { hydrate } from 'react-dom';
 import App from './App.js';
@@ -172,7 +172,7 @@ import App from './App.js';
 hydrate(<App />, document.getElementById('root'));
 ```
 
-```js App.js active
+```js src/App.js active
 import { useState, useEffect } from "react";
 
 export default function App() {
