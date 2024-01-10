@@ -27,7 +27,7 @@ title: 'エフェクトからイベントを分離する'
 1. コンポーネントは選択中のチャットルームに自動的に接続する。
 2. "Send" ボタンをクリックすると、チャットにメッセージが送信される。
 
-このためのコードはすでに実装されているが、それをどこに置くか迷っているとしましょう。イベントハンドラを使うべきか、エフェクトを使うべきか。このような質問に答える必要がある場合は常に、[*なぜ*そのコードを実行する必要があるのか](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events)を考えるようにしてください。
+このためのコードはすでに実装されているが、それをどこに置くか迷っているとしましょう。イベントハンドラを使うべきでしょうか、エフェクトを使うべきでしょうか。このような質問に答える必要がある場合は常に、[*なぜ*そのコードを実行する必要があるのか](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events)を考えるようにしてください。
 
 ### イベントハンドラは具体的なユーザ操作に反応して実行される {/*event-handlers-run-in-response-to-specific-interactions*/}
 
