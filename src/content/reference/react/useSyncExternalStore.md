@@ -59,11 +59,7 @@ function TodosApp() {
 
 * [ノンブロッキング型のトランジション更新](/reference/react/useTransition)の最中にストアの書き換えが発生した場合、React はその更新をブロッキング型で行うようにフォールバックします。具体的には、トランザクションによる更新のたびに、React は DOM に更新を適用する前に `getSnapshot` を再度呼び出します。そこで最初の値とは異なる値が返された場合、React は更新を最初からやり直しますが、再試行時にはブロッキング型の更新を行うことで、画面上の全コンポーネントがストアからの同一バージョンの値を反映していることを保証します。
 
-<<<<<<< HEAD
 * `useSyncExternalStore` から返される値に基づいてレンダーを*サスペンド*させることは推奨されていません。外部ストアで起きた変更は[ノンブロッキング型のトランジション更新](/reference/react/useTransition)としてマークすることができないため、直近の [`Suspense` フォールバック](/reference/react/Suspense)が起動してしまいます。既に画面上に表示されているコンテンツがローディングスピナで隠れてしまうため、通常は望ましくないユーザ体験につながります。
-=======
-* It's not recommended to _suspend_ a render based on a store value returned by `useSyncExternalStore`. The reason is that mutations to the external store cannot be marked as [non-blocking transition updates](/reference/react/useTransition), so they will trigger the nearest [`Suspense` fallback](/reference/react/Suspense), replacing already-rendered content on screen with a loading spinner, which typically makes a poor UX.
->>>>>>> 315cb7a38a1645623fc55501429285ab680b8a6a
 
   例えば以下のようなコードは推奨されません。
 

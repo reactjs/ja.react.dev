@@ -982,13 +982,9 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 </Sandpack>
 
-<<<<<<< HEAD
-なぜ任意の HTML をレンダーすることが危険なのかを理解するために、上記のコードを以下のように置き換えてみてください。
-=======
-The `{__html}` object should be created as close to where the HTML is generated as possible, like the above example does in the `renderMarkdownToHTML` function. This ensures that all raw HTML being used in your code is explicitly marked as such, and that only variables that you expect to contain HTML are passed to `dangerouslySetInnerHTML`. It is not recommended to create the object inline like `<div dangerouslySetInnerHTML={{__html: markup}} />`.
+この `{__html}` というオブジェクトは、HTML が生成される場所にできるだけ近いところで作成するようにしてください。例えば上記の例の `renderMarkdownToHTML` のようにします。これにより、あなたのコード内で使われる生 HTML が生 HTML であるとマークされるようになり、HTML を含んでいると思われる変数だけが `dangerouslySetInnerHTML` に渡されるようになります。`<div dangerouslySetInnerHTML={{__html: markup}} />` のようにしてこのオブジェクトをインラインで作成することは推奨されません。
 
-To see why rendering arbitrary HTML is dangerous, replace the code above with this:
->>>>>>> 315cb7a38a1645623fc55501429285ab680b8a6a
+なぜ任意の HTML をレンダーすることが危険なのかを理解するために、上記のコードを以下のように置き換えてみてください。
 
 ```js {1-4,7,8}
 const post = {
