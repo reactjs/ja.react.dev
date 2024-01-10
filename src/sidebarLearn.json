@@ -189,7 +189,7 @@
           "path": "/learn/lifecycle-of-reactive-effects"
         },
         {
-          "title": "イベントとエフェクトを切り離す",
+          "title": "エフェクトからイベントを分離する",
           "path": "/learn/separating-events-from-effects"
         },
         {
