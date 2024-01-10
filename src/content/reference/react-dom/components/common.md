@@ -771,7 +771,7 @@ React は CSS ファイルの追加方法を規定しません。最も単純な
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import Avatar from './Avatar.js';
 
 const user = {
@@ -785,7 +785,7 @@ export default function App() {
 }
 ```
 
-```js Avatar.js active
+```js src/Avatar.js active
 export default function Avatar({ user }) {
   return (
     <img
@@ -801,7 +801,7 @@ export default function Avatar({ user }) {
 }
 ```
 
-```css styles.css
+```css src/styles.css
 .avatar {
   border-radius: 50%;
 }
@@ -940,7 +940,7 @@ export default function MarkdownEditor() {
 }
 ```
 
-```js MarkdownPreview.js active
+```js src/MarkdownPreview.js active
 import { Remarkable } from 'remarkable';
 
 const md = new Remarkable();
@@ -981,6 +981,8 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 ```
 
 </Sandpack>
+
+この `{__html}` というオブジェクトは、HTML が生成される場所にできるだけ近いところで作成するようにしてください。例えば上記の例の `renderMarkdownToHTML` のようにします。これにより、あなたのコード内で使われる生 HTML が生 HTML であるとマークされるようになり、HTML を含んでいると思われる変数だけが `dangerouslySetInnerHTML` に渡されるようになります。`<div dangerouslySetInnerHTML={{__html: markup}} />` のようにしてこのオブジェクトをインラインで作成することは推奨されません。
 
 なぜ任意の HTML をレンダーすることが危険なのかを理解するために、上記のコードを以下のように置き換えてみてください。
 
