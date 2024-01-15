@@ -47,10 +47,17 @@ function MyComponent() {
 
 #### 注意点 {/*caveats*/}
 
+<<<<<<< HEAD
 * `ref.current` プロパティは書き換えが可能です。つまり state と違いミュータブル (mutable) です。ただし、レンダーに利用されるオブジェクト（state の一部など）を保持している場合は、変更すべきではありません。
 * `ref.current` プロパティを変更しても、React はコンポーネントを再レンダーしません。ref はただの JavaScript オブジェクトですので、変更されたとしても、それを React が知ることはできないのです。
 * [初期化](#avoiding-recreating-the-ref-contents)時を除いて、レンダー中に `ref.current` の値を*読み取ったり*書き込んだりしないでください。コンポーネントの振る舞いが予測不能になります。
 * Strict Mode では、[純粋でない関数を見つけやすくするために](#my-initializer-or-updater-function-runs-twice)、コンポーネント関数が **2 回呼び出されます**。これは開発時のみの振る舞いであり、本番には影響しません。各 ref オブジェクトは 2 回生成されますが、そのうちの 1 つは破棄されます。コンポーネント関数が純粋であれば（そうであるべきです）、この振る舞いはロジックに影響しません。
+=======
+* You can mutate the `ref.current` property. Unlike state, it is mutable. However, if it holds an object that is used for rendering (for example, a piece of your state), then you shouldn't mutate that object.
+* When you change the `ref.current` property, React does not re-render your component. React is not aware of when you change it because a ref is a plain JavaScript object.
+* Do not write _or read_ `ref.current` during rendering, except for [initialization.](#avoiding-recreating-the-ref-contents) This makes your component's behavior unpredictable.
+* In Strict Mode, React will **call your component function twice** in order to [help you find accidental impurities.](/reference/react/useState#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. Each ref object will be created twice, but one of the versions will be discarded. If your component function is pure (as it should be), this should not affect the behavior.
+>>>>>>> 6bfde58c109ec86fd6c5767421404cb679ffba9a
 
 ---
 

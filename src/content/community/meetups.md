@@ -72,7 +72,8 @@ title: React ミーティング
 ## England (UK) {/*england-uk*/}
 * [Manchester](https://www.meetup.com/Manchester-React-User-Group/)
 * [React.JS Girls London](https://www.meetup.com/ReactJS-Girls-London/)
-* [React London : Bring Your Own Project](https://www.meetup.com/React-London-Bring-Your-Own-Project/)
+* [React Advanced London](https://guild.host/react-advanced-london)
+* [React Native London](https://guild.host/RNLDN)
 
 ## France {/*france*/}
 * [Nantes](https://www.meetup.com/React-Nantes/)
@@ -86,7 +87,7 @@ title: React ミーティング
 * [Karlsruhe](https://www.meetup.com/react_ka/)
 * [Kiel](https://www.meetup.com/Kiel-React-Native-Meetup/)
 * [Munich](https://www.meetup.com/ReactJS-Meetup-Munich/)
-* [React Berlin](https://www.meetup.com/React-Open-Source/)
+* [React Berlin](https://guild.host/react-berlin)
 
 ## Greece {/*greece*/}
 * [Athens](https://www.meetup.com/React-To-React-Athens-MeetUp/)
@@ -108,7 +109,7 @@ title: React ミーティング
 * [Indonesia](https://www.meetup.com/reactindonesia/)
 
 ## Ireland {/*ireland*/}
-* [Dublin](https://www.meetup.com/ReactJS-Dublin/)
+* [Dublin](https://guild.host/reactjs-dublin)
 
 ## Israel {/*israel*/}
 * [Tel Aviv](https://www.meetup.com/ReactJS-Israel/)
@@ -124,7 +125,7 @@ title: React ミーティング
 * [Penang](https://www.facebook.com/groups/reactpenang/)
 
 ## Netherlands {/*netherlands*/}
-* [Amsterdam](https://www.meetup.com/React-Amsterdam/)
+* [Amsterdam](https://guild.host/react-amsterdam)
 
 ## New Zealand {/*new-zealand*/}
 * [Wellington](https://www.meetup.com/React-Wellington/)
@@ -201,6 +202,7 @@ title: React ミーティング
 * [New York, NY - React Ladies](https://www.meetup.com/React-Ladies/)
 * [New York, NY - React Native](https://www.meetup.com/React-Native-NYC/)
 * [New York, NY - useReactNYC](https://www.meetup.com/useReactNYC/)
+* [New York, NY - React.NYC](https://guild.host/react-nyc)
 * [Omaha, NE - ReactJS/React Native](https://www.meetup.com/omaha-react-meetup-group/)
 * [Palo Alto, CA - React Native](https://www.meetup.com/React-Native-Silicon-Valley/)
 * [Philadelphia, PA - ReactJS](https://www.meetup.com/Reactadelphia/)
