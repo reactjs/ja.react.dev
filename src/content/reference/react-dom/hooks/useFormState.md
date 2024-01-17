@@ -104,11 +104,7 @@ function MyComponent() {
 
 フォームが送信されると、あなたが渡した<CodeStep step={3}>アクション</CodeStep>関数が呼び出されます。その返り値が、新たなフォームの <CodeStep step={1}>state 現在値</CodeStep>になります。
 
-<<<<<<< HEAD
-あなたが渡す<CodeStep step={3}>アクション</CodeStep>は、新たな第 1 引数として、フォームの<CodeStep step={1}>現在 state</CodeStep>を受け取ります。フォームが初めて送信されるとき、これはあなたが渡した<CodeStep step={4}>初期 state</CodeStep> になります。次回以降の送信では、アクションが前回呼び出されたときの返り値になります。残りの引数は `useFormState` を使用しなかった場合と同じです。
-=======
-The <CodeStep step={3}>action</CodeStep> that you provide will also receive a new first argument, namely the <CodeStep step={1}>current state</CodeStep> of the form. The first time the form is submitted, this will be the <CodeStep step={4}>initial state</CodeStep> you provided, while with subsequent submissions, it will be the return value from the last time the action was called. The rest of the arguments are the same as if `useFormState` had not been used.
->>>>>>> 6bfde58c109ec86fd6c5767421404cb679ffba9a
+あなたが渡す<CodeStep step={3}>アクション</CodeStep>は、新たな第 1 引数として、フォームの<CodeStep step={1}>state の現在値</CodeStep>を受け取ります。フォームが初めて送信されるとき、これはあなたが渡した<CodeStep step={4}>初期 state</CodeStep> と等しくなります。次回以降の送信では、アクションが前回呼び出されたときの返り値になります。残りの引数は `useFormState` を使用しなかった場合と同じです。
 
 ```js [[3, 1, "action"], [1, 1, "currentState"]]
 function action(currentState, formData) {

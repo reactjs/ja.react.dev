@@ -5,11 +5,7 @@ canary: true
 
 <Canary>
 
-<<<<<<< HEAD
 React による `<form>` の機能拡張は、現在 React の Canary および experimental チャンネルでのみ利用可能です。React の安定版リリースでは、`<form>` は単なる[組み込みのブラウザ HTML コンポーネント](https://react.dev/reference/react-dom/components#all-html-components)として機能します。[React のリリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
-=======
-React's extensions to `<form>` are currently only available in React's canary and experimental channels. In stable releases of React, `<form>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
->>>>>>> 6bfde58c109ec86fd6c5767421404cb679ffba9a
 
 </Canary>
 
@@ -122,11 +118,7 @@ function AddToCart({productId}) {
 }
 ```
 
-<<<<<<< HEAD
 hidden フィールドを使用して `<form>` アクションにデータを渡す代わりに、<CodeStep step={1}>`bind`</CodeStep> メソッドを呼び出して追加の引数を渡すこともできます。これにより、渡された引数である <CodeStep step={3}>`formData`</CodeStep> に加えて新しい引数 (<CodeStep step={2}>`productId`</CodeStep>) がバインドされます。
-=======
-In lieu of using hidden form fields to provide data to the `<form>`'s action, you can call the <CodeStep step={1}>`bind`</CodeStep> method to supply it with extra arguments. This will bind a new argument (<CodeStep step={2}>`productId`</CodeStep>) to the function in addition to the <CodeStep step={3}>`formData`</CodeStep> that is passed as an argument to the function.
->>>>>>> 6bfde58c109ec86fd6c5767421404cb679ffba9a
 
 ```jsx [[1, 8, "bind"], [2,8, "productId"], [2,4, "productId"], [3,4, "formData"]]
 import { updateCart } from './lib.js';
@@ -286,11 +278,7 @@ export async function deliverMessage(message) {
 
 ### フォーム送信エラーの処理 {/*handling-form-submission-errors*/}
 
-<<<<<<< HEAD
 場合によっては、`<form>` の `action` で呼び出された関数がエラーをスローすることがあります。このようなエラーを処理するには、`<form>` をエラーバウンダリでラップします。`<form>` の `action` で呼び出される関数がエラーをスローすると、エラーバウンダリのフォールバックが表示されます。
-=======
-In some cases the function called by a `<form>`'s `action` prop throws an error. You can handle these errors by wrapping `<form>` in an Error Boundary. If the function called by a `<form>`'s `action` prop throws an error, the fallback for the error boundary will be displayed.
->>>>>>> 6bfde58c109ec86fd6c5767421404cb679ffba9a
 
 <Sandpack>
 

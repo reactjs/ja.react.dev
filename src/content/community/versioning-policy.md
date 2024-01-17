@@ -79,15 +79,9 @@ React のリリースをバグのない状態に保つことに関しての私�
 
 React のリリースチャンネルはそれぞれ異なるユースケースに対応するように設計されています。
 
-<<<<<<< HEAD
 - [**Latest**](#latest-channel) は、安定した、semver に基づく React リリースのためのものです。npm から React をインストールすると得られるものです。これが、あなたが今日すでに使用しているチャンネルです。**React を直接使用するユーザ向けアプリケーションは、このチャンネルを使用します**。
 - [**Canary**](#canary-channel) は、React ソースコードリポジトリのメインブランチを追跡します。これは、次の semver リリースのためのリリース候補だと考えてください。**[フレームワークや他の統合済みセットアップは、React のバージョンを固定してこのチャンネルを使用することができます](/blog/2023/05/03/react-canaries)。また、React とサードパーティプロジェクト間の統合テストに Canary を使用することもできます**。
 - [**Experimental**](#experimental-channel) には、安定リリースでは利用できない実験的な API や機能が含まれています。これらもメインブランチを追跡しますが、追加の機能フラグがオンになっています。リリース前に将来の機能を試すにはこちらを利用します。
-=======
-- [**Latest**](#latest-channel) is for stable, semver React releases. It's what you get when you install React from npm. This is the channel you're already using today. **User-facing applications that consume React directly use this channel.**
-- [**Canary**](#canary-channel) tracks the main branch of the React source code repository. Think of these as release candidates for the next semver release. **[Frameworks or other curated setups may choose to use this channel with a pinned version of React.](/blog/2023/05/03/react-canaries) You can also use Canaries for integration testing between React and third party projects.**
-- [**Experimental**](#experimental-channel) includes experimental APIs and features that aren't available in the stable releases. These also track the main branch, but with additional feature flags turned on. Use this to try out upcoming features before they are released.
->>>>>>> 6bfde58c109ec86fd6c5767421404cb679ffba9a
 
 すべてのリリースは npm に公開されますが、semver を使用するのは Latest だけです。プレリリース（Canary と Experimental チャンネルにあるもの）は、その内容のハッシュとコミット日から生成されたバージョンになります。例えば、Canary の場合は `18.3.0-canary-388686f29-20230503`、Experimental の場合は `0.0.0-experimental-388686f29-20230503` のようになります。
 
