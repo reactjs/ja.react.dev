@@ -7,7 +7,7 @@ title: useState
 `useState` は、コンポーネントに [state 変数](/learn/state-a-components-memory) を追加するための React フックです。
 
 ```js
-const [state, setState] = useState(initialState);
+const [state, setState] = useState(initialState)
 ```
 
 </Intro>

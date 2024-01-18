@@ -42,7 +42,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 #### 注意点 {/*caveats*/}
 
-* Strict Mode では、React は[レンダー関数が誤って純関数でなくなってしまう問題を見つけやすくする](#my-initializer-or-updater-function-runs-twice)ため、**レンダー関数を 2 回呼び出します**。これは開発環境専用の挙動であり、本番環境には影響しません。レンダー関数が純粋である場合（そうであるべきです）、これはコンポーネントのロジックに影響を与えません。呼び出しのうちの一方からの結果は無視されます。
+* Strict Mode では、React は[レンダー関数が誤って純関数でなくなってしまう問題を見つけやすくする](/reference/react/useState#my-initializer-or-updater-function-runs-twice)ため、**レンダー関数を 2 回呼び出します**。これは開発環境専用の挙動であり、本番環境には影響しません。レンダー関数が純粋である場合（そうであるべきです）、これはコンポーネントのロジックに影響を与えません。呼び出しのうちの一方からの結果は無視されます。
 
 
 ---
