@@ -337,7 +337,11 @@ import './styles.css';
 import App from './App';
 ```
 
+<<<<<<< HEAD
 1〜5 行目で、必要なすべての部品を取り出しています：
+=======
+Lines 1-5 bring all the necessary pieces together: 
+>>>>>>> 3563d95efe8719bdae8bbd258e6ab4134753348b
 
 * React
 * Web ブラウザとやり取りするための React ライブラリ (React DOM)
