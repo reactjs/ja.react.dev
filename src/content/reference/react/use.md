@@ -337,7 +337,7 @@ root.render(
 プロミスはサーバコンポーネントからクライアントコンポーネントに渡し、`use` フックを使ってクライアントコンポーネントで解決することができます。また、`await` を使ってサーバコンポーネント側でプロミスを解決し、必要なデータを props としてクライアントコンポーネントに渡すことも可能でしょう。
 
 ```js
-export default function App() {
+export default async function App() {
   const messageContent = await fetchMessage();
   return <Message messageContent={messageContent} />
 }
