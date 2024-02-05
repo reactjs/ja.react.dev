@@ -87,12 +87,21 @@ async function addToCart(data) {
 * [サーバアクション (server action)](/reference/react/use-server) としての関数
 * [プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
+<<<<<<< HEAD
 以下のものはサポートされていません。
 * React 要素すなわち [JSX](https://react.dev/learn/writing-markup-with-jsx)
 * 関数。関数コンポーネントや、サーバアクションでない他のあらゆる関数を含む。
 * [クラス](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
 * 任意のクラスのインスタンス（上記の組み込みクラスを除く）や、[null プロトタイプのオブジェクト](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
 * グローバルに登録されていないシンボル、例：`Symbol('my new symbol')`
+=======
+Notably, these are not supported:
+* React elements, or [JSX](/learn/writing-markup-with-jsx)
+* Functions, including component functions or any other function that is not a Server Action
+* [Classes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
+* Objects that are instances of any class (other than the built-ins mentioned) or objects with [a null prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
+* Symbols not registered globally, ex. `Symbol('my new symbol')`
+>>>>>>> 2372ecf920ac4cda7c900f9ac7f9c0cd4284f281
 
 
 サポートされるシリアライズ可能な返り値は、クライアントコンポーネントに渡せる[シリアライズ可能な props](/reference/react/use-client#passing-props-from-server-to-client-components) の型と同じです。

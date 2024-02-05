@@ -263,11 +263,19 @@ body {
 
 このチュートリアルはローカル開発環境でも進めていくことができます。そのためには以下の手順が必要です。
 
+<<<<<<< HEAD
 1. [Node.js](https://nodejs.org/en/) をインストール
 1. さきほど開いた CodeSandbox のタブで、左上隅のボタンを押してメニューを開き、そのメニューで **File > Export to ZIP** を選択して、ファイルをローカルにアーカイブとしてダウンロード
 1. アーカイブを解凍し、ターミナルを開いて解凍したディレクトリに `cd` する
 1. `npm install` で依存ライブラリをインストール
 1. `npm start` でローカルサーバを起動し、プロンプト通りに操作し、ブラウザで実行されるコードを確認する
+=======
+1. Install [Node.js](https://nodejs.org/en/)
+1. In the CodeSandbox tab you opened earlier, press the top-left corner button to open the menu, and then choose **Download Sandbox** in that menu to download an archive of the files locally
+1. Unzip the archive, then open a terminal and `cd` to the directory you unzipped
+1. Install the dependencies with `npm install`
+1. Run `npm start` to start a local server and follow the prompts to view the code running in a browser
+>>>>>>> 2372ecf920ac4cda7c900f9ac7f9c0cd4284f281
 
 うまくいかない場合でもここで挫けるのは止めましょう！ オンラインで進めて、後で再度ローカル環境のセットアップにトライしてください。
 
@@ -337,7 +345,11 @@ import './styles.css';
 import App from './App';
 ```
 
+<<<<<<< HEAD
 1〜5 行目で、必要なすべての部品を取り出しています：
+=======
+Lines 1-5 bring all the necessary pieces together: 
+>>>>>>> 2372ecf920ac4cda7c900f9ac7f9c0cd4284f281
 
 * React
 * Web ブラウザとやり取りするための React ライブラリ (React DOM)
