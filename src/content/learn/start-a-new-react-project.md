@@ -4,52 +4,40 @@ title: React プロジェクトを始める
 
 <Intro>
 
-<<<<<<< HEAD
-React だけで新しいアプリやウェブサイトを作りたい場合は、コミュニティで人気のある React フレームワークから、ひとつ選ぶことをおすすめします。フレームワークは、ルーティング、データ取得、HTML 生成といった、ほとんどのアプリやサイトで遅かれ早かれ必要になる機能を提供します。
-=======
-If you want to build a new app or a new website fully with React, we recommend picking one of the React-powered frameworks popular in the community.
->>>>>>> 2372ecf920ac4cda7c900f9ac7f9c0cd4284f281
+React だけで新しいアプリやウェブサイトを作りたい場合は、コミュニティで人気のある React フレームワークから、ひとつを選ぶことをおすすめします。
 
 </Intro>
 
 
-<<<<<<< HEAD
-**ローカルで開発するには [Node.js](https://nodejs.org/en/) をインストールする必要があります**。本番環境でも Node.js を使うことができますが、これは必須ではありません。多くの React フレームワークは、静的な HTML/CSS/JS フォルダにエクスポートする機能をサポートしています。
-=======
-You can use React without a framework, however we’ve found that most apps and sites eventually build solutions to common problems such as code-splitting, routing, data fetching, and generating HTML. These problems are common to all UI libraries, not just React.
->>>>>>> 2372ecf920ac4cda7c900f9ac7f9c0cd4284f281
+フレームワークなしで React を使うことも可能ですが、ほとんどのアプリやサイトにおいては、コード分割、ルーティング、データ取得、HTML 生成といった問題に対処するための開発が必要であることが分かっています。これらは React に限らずあらゆる UI ライブラリに共通の問題です。
 
-By starting with a framework, you can get started with React quickly, and avoid essentially building your own framework later.
+フレームワークを使ってスタートすることで React での開発を素早く立ち上げ、後で実質的に独自フレームワークのようなものを作ってしまわずに済むようになるでしょう。
 
 <DeepDive>
 
-#### Can I use React without a framework? {/*can-i-use-react-without-a-framework*/}
+#### フレームワークなしで React を使うことは可能？ {/*can-i-use-react-without-a-framework*/}
 
-You can definitely use React without a framework--that's how you'd [use React for a part of your page.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) **However, if you're building a new app or a site fully with React, we recommend using a framework.**
+React をフレームワークなしで使うことも確かに可能です。[既存のページに React を追加する](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page)場合はそのようにします。**しかし、新しいアプリやサイトをフルで React を使って構築する場合は、フレームワークを使用することをお勧めします。**
 
-Here's why.
+理由は次のとおりです。
 
-Even if you don't need routing or data fetching at first, you'll likely want to add some libraries for them. As your JavaScript bundle grows with every new feature, you might have to figure out how to split code for every route individually. As your data fetching needs get more complex, you are likely to encounter server-client network waterfalls that make your app feel very slow. As your audience includes more users with poor network conditions and low-end devices, you might need to generate HTML from your components to display content early--either on the server, or during the build time. Changing your setup to run some of your code on the server or during the build can be very tricky.
+もし最初にルーティングやデータ取得が必要ない場合でも、後になってそれらのためにライブラリを追加する必要が出てくる可能性が高いでしょう。新しい機能が増えるたびに JavaScript バンドルは大きくなっていき、個々のルートごとにコードを分割する方法を考える必要があります。データ取得の要件が複雑になるにつれて、サーバ・クライアント間のネットワークウォーターフォールが原因となり、アプリは非常に遅く感じるようになるでしょう。低速なネットワーク環境やロースペックなデバイスのユーザが増えると、コンテンツをできるだけ早く表示するため、サーバ上であるいはビルド時に、コンポーネントから HTML を生成する必要が生じることがあるでしょう。後になってセットアップを変更し、サーバ上であるいはビルド時にあなたのコードの一部が実行されるようにすることは、非常に複雑な作業です。
 
-**These problems are not React-specific. This is why Svelte has SvelteKit, Vue has Nuxt, and so on.** To solve these problems on your own, you'll need to integrate your bundler with your router and with your data fetching library. It's not hard to get an initial setup working, but there are a lot of subtleties involved in making an app that loads quickly even as it grows over time. You'll want to send down the minimal amount of app code but do so in a single client–server roundtrip, in parallel with any data required for the page. You'll likely want the page to be interactive before your JavaScript code even runs, to support progressive enhancement. You may want to generate a folder of fully static HTML files for your marketing pages that can be hosted anywhere and still work with JavaScript disabled. Building these capabilities yourself takes real work.
+**これらの問題は React に固有のものではありません。まさにこれが、Svelte には SvelteKit、Vue には Nuxt といったフレームワークが存在する理由です**。これらの問題を自力で解決するには、ルータやデータ取得ライブラリをバンドラに結合する作業を自分で行う必要があります。最初のセットアップをひとまず動作させることは難しくありませんが、時間が経ってアプリが成長してもなお素早く読み込めるサイトを作るためには、数々の細々とした問題に対処する必要が出てきます。アプリに必要な最小限のコードを 1 回のクライアント・サーバ間の往復で送信しつつ、並行してページ表示に必要なデータも送信したい、と思い始めるでしょう。ページが段階的に読み込まれ、JavaScript コードが実行すらされないうちから操作可能になるプログレッシブ・エンハンスメントのサポートが欲しくなるでしょう。どこにでもホストでき JavaScript が無効になっていても動作する、マーケティングページのための完全に静的な HTML ファイルが入ったフォルダを生成したい、と考え始めるでしょう。これらの機能を自分で構築するには、大変な労力が必要です。
 
-**React frameworks on this page solve problems like these by default, with no extra work from your side.** They let you start very lean and then scale your app with your needs. Each React framework has a community, so finding answers to questions and upgrading tooling is easier. Frameworks also give structure to your code, helping you and others retain context and skills between different projects. Conversely, with a custom setup it's easier to get stuck on unsupported dependency versions, and you'll essentially end up creating your own framework—albeit one with no community or upgrade path (and if it's anything like the ones we've made in the past, more haphazardly designed).
+**このページで紹介する React フレームワークは、これらの問題をデフォルトで解決しているため、あなたが余計な作業をする必要はありません**。これらのフレームワークを使用することで、非常にスリムに始めて、ニーズに応じてアプリをスケーリングできます。各 React フレームワークにはコミュニティがあるため、質問に対する回答を見つけたり、ツールのアップグレードをしたりすることもより簡単に行えます。フレームワークはあなたのコードに構造を与えるので、あなたや他の人が複数のプロジェクト間でコンテクストやスキルを保持するのにも役立ちます。逆に、カスタムセットアップを行った場合、サポートされなくなった依存関係バージョンにハマる可能性が高まり、いずれ実質的には独自フレームワークのようなものを作成する羽目に陥ります。ただしそのようなフレームワークにはコミュニティもアップグレードパスもなく、仮に過去に作成されていたものに近かったとしても、行き当たりばったりで設計されたものに過ぎないわけですが。
 
-If your app has unusual constraints not served well by these frameworks, or you prefer to solve these problems yourself, you can roll your own custom setup with React. Grab `react` and `react-dom` from npm, set up your custom build process with a bundler like [Vite](https://vitejs.dev/) or [Parcel](https://parceljs.org/), and add other tools as you need them for routing, static generation or server-side rendering, and more.
+以下のフレームワークではうまく対処できない特殊な制約がある場合や、これらの問題に自分自身で対処したいという場合は、React で自分独自のカスタムセットアップを行うことも可能です。npm から `react` と `react-dom` を入手し、[Vite](https://vitejs.dev/) や [Parcel](https://parceljs.org/) のようなバンドラを使ってカスタムビルドプロセスをセットアップし、ルーティング、静的ファイル生成、サーバーサイドレンダリングなどのための各種ツールを必要に応じて追加していってください。
 
 </DeepDive>
 
 ## 本番環境対応の React フレームワーク {/*production-grade-react-frameworks*/}
 
-These frameworks support all the features you need to deploy and scale your app in production and are working towards supporting our [full-stack architecture vision](#which-features-make-up-the-react-teams-full-stack-architecture-vision). All of the frameworks we recommend are open source with active communities for support, and can be deployed to your own server or a hosting provider. If you’re a framework author interested in being included on this list, [please let us know](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+).
+以下に挙げるフレームワークは、アプリを本番環境でデプロイしスケールさせるために必要なすべての機能を備えており、我々の[フルスタックアーキテクチャ](#which-features-make-up-the-react-teams-full-stack-architecture-vision)の実現に向けて開発中です。ここでお勧めするフレームワークはすべてオープンソースであり、活発なコミュニティを有しており、自分自身のサーバにもホスティングプロバイダにもデプロイできます。このリストに掲載を希望するフレームワークの作者は[お知らせください](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+)。
 
-<<<<<<< HEAD
-**[Next.js](https://nextjs.org/) はフルスタックの React フレームワークです**。ほぼ静的なブログサイトから複雑でダイナミックなアプリまで、どんな規模の React アプリでも作成できる万能フレームワークです。Next.js プロジェクトを新規に作るには、ターミナルで次のコマンドを実行してください。
-=======
 ### Next.js {/*nextjs-pages-router*/}
 
-**[Next.js' Pages Router](https://nextjs.org/) is a full-stack React framework.** It's versatile and lets you create React apps of any size--from a mostly static blog to a complex dynamic application. To create a new Next.js project, run in your terminal:
->>>>>>> 2372ecf920ac4cda7c900f9ac7f9c0cd4284f281
+**[Next.js の Pages Router](https://nextjs.org/) はフルスタックの React フレームワークです**。ほぼ静的なブログサイトから複雑でダイナミックなアプリまで、どんな規模の React アプリでも作成できる万能フレームワークです。Next.js プロジェクトを新規に作るには、ターミナルで次のコマンドを実行してください。
 
 <TerminalBlock>
 npx create-next-app@latest
@@ -95,28 +83,7 @@ Expo を初めて使う場合は、[Expo チュートリアル](https://docs.exp
 
 Expo は [Expo（社名）](https://expo.dev/about) によってメンテナンスされています。Expo を使用してアプリをビルドすることは無料であり、Google や Apple のアプリストアに制限なくアップロードすることができます。また Expo では有料のクラウドサービスも提供しています。
 
-<<<<<<< HEAD
-<DeepDive>
-
-#### フレームワークなしで React を使うことはできますか？ {/*can-i-use-react-without-a-framework*/}
-
-確かに、React をフレームワークなしで使うことは可能です。[既存のページに React を追加する](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page)場合はそのようにします。**しかし、新しいアプリやサイトをフルで React を使って構築する場合は、フレームワークを使用することをお勧めします。**
-
-理由は次のとおりです。
-
-もし最初にルーティングやデータ取得が必要ない場合でも、後になってそれらのためにライブラリを追加する必要が出てくる可能性が高いでしょう。新しい機能が増えるたびに JavaScript バンドルは大きくなっていき、個々のルートごとにコードを分割する方法を考える必要があります。データ取得のニーズが複雑になるにつれて、サーバー・クライアント間のネットワークウォーターフォールが原因となり、アプリは非常に遅く感じるようになるでしょう。低速なネットワーク環境やロースペックなデバイスのユーザが増えると、コンテンツをできるだけ早く表示するため、サーバ上であるいはビルド時に、コンポーネントから HTML を生成する必要が生じることがあるでしょう。後になってセットアップを変更し、サーバ上であるいはビルド時にあなたのコードの一部が実行されるようにすることは、非常に複雑な作業です。
-
-**これらの問題は React に固有のものではありません。まさにこれが、Svelte には SvelteKit、Vue には Nuxt といったフレームワークが存在する理由です**。これらの問題を自力で解決するには、ルータやデータ取得ライブラリをバンドラに結合する作業を自分で行う必要があります。最初のセットアップをひとまず動作させることは難しくありませんが、時間が経ってアプリが成長してもなお素早く読み込めるサイトを作るためには、数々の細々とした問題に対処する必要が出てきます。アプリに必要な最小限のコードを 1 回のクライアント・サーバ間の往復で送信しつつ、並行してページ表示に必要なデータも送信したい、と思い始めるでしょう。ページが段階的に読み込まれ、JavaScript コードが実行すらされないうちから操作可能であってほしくなるでしょう。どこにでもホストでき JavaScript が無効になっていても動作する、マーケティングページのための完全に静的な HTML ファイルが入ったフォルダを生成したい、と考え始めるでしょう。これらの機能を自分で構築するには、大変な労力が必要です。
-
-**このページで紹介する React フレームワークは、これらの問題をデフォルトで解決しているため、あなたが余計な作業をする必要はありません**。これらのフレームワークを使用することで、非常にスリムに始めて、ニーズに応じてアプリをスケーリングできます。各 React フレームワークにはコミュニティがあるため、質問に対する回答を見つけたり、ツールのアップグレードをしたりすることもより簡単に行えます。フレームワークはあなたのコードに構造を与えるので、あなたや他の人が複数のプロジェクト間でコンテクストやスキルを保持するのにも役立ちます。逆に、カスタムセットアップを行った場合、サポートされなくなった依存関係バージョンにハマる可能性が高まり、いずれ実質的には独自フレームワークのようなものを作成する羽目に陥ります。ただしそのようなフレームワークにはコミュニティもアップグレードパスもなく、仮に過去に作成されていたものに近かったとしても、行き当たりばったりで設計されたものに過ぎないわけですが。
-
-これでも納得できないという場合、またはフレームワークでは対処しきれない特殊な制約があって自分独自のセットアップを行いたい、という場合は、止めはしませんのでどうぞそうしてください！ npm から `react` と `react-dom` を入手し、[Vite](https://vitejs.dev/) や [Parcel](https://parceljs.org/) のようなバンドラを使ってカスタムビルドプロセスをセットアップし、ルーティング、静的ファイル生成、サーバーサイドレンダリングなどのための各種ツールを必要に応じて追加していってください。
-</DeepDive>
-
 ## 超最先端の React フレームワーク {/*bleeding-edge-react-frameworks*/}
-=======
-## Bleeding-edge React frameworks {/*bleeding-edge-react-frameworks*/}
->>>>>>> 2372ecf920ac4cda7c900f9ac7f9c0cd4284f281
 
 我々が React の進化について探求する中で、React をフレームワークと（特にルーティング、バンドル作成、サーバテクノロジーと）より密接に統合することが、React ユーザがよりよいアプリを構築する手助けをするための最大の機会となるということに気づきました。Next.js チームは、[React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) のようなフレームワークに依存しない最先端の React 機能に関して、私たちと共同で研究、開発、統合、テストを行うことに同意しました。
 

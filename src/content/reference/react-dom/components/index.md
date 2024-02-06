@@ -22,7 +22,7 @@ React は、ブラウザ組み込みのすべての [HTML](https://developer.moz
 
 ## フォームコンポーネント {/*form-components*/}
 
-以下のブラウザ内蔵コンポーネントはユーザからの入力を受け付けます。
+以下のブラウザ組み込みコンポーネントはユーザからの入力を受け付けます。
 
 * [`<input>`](/reference/react-dom/components/input)
 * [`<select>`](/reference/react-dom/components/select)
@@ -32,12 +32,9 @@ React は、ブラウザ組み込みのすべての [HTML](https://developer.moz
 
 ---
 
-<<<<<<< HEAD
-## すべての HTML コンポーネント {/*all-html-components*/}
-=======
-## Resource and Metadata Components {/*resource-and-metadata-components*/}
+## リソース・メタデータ関連コンポーネント {/*resource-and-metadata-components*/}
 
-These bulit-in browser components let you load external resources or annotate the document with metadata:
+以下のブラウザ組み込みコンポーネントを用いて、外部リソースを読み込んだり、ドキュメントにメタデータを付与したりすることができます。
 
 * [`<link>`](/reference/react-dom/components/link)
 * [`<meta>`](/reference/react-dom/components/meta)
@@ -45,12 +42,11 @@ These bulit-in browser components let you load external resources or annotate th
 * [`<style>`](/reference/react-dom/components/style)
 * [`<title>`](/reference/react-dom/components/title)
 
-They are special in React because React can render them into the document head, suspend while resources are loading, and enact other behaviors that are described on the reference page for each specific component.
+これらが React にとって特別なのは、React がこれらをドキュメントの head 要素に入れることができ、リソースのロード中にサスペンドができ、また個々のコンポーネントのリファレンスページで説明されているような特別な挙動が有効になるからです。
 
 ---
 
-## All HTML components {/*all-html-components*/}
->>>>>>> 2372ecf920ac4cda7c900f9ac7f9c0cd4284f281
+## すべての HTML コンポーネント {/*all-html-components*/}
 
 React はブラウザ組み込みのすべての HTML コンポーネントをサポートしています。これには以下が含まれます。
 
