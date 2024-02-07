@@ -33,7 +33,7 @@ React をフレームワークなしで使うことも確かに可能です。[�
 
 ## 本番環境対応の React フレームワーク {/*production-grade-react-frameworks*/}
 
-以下に挙げるフレームワークは、アプリを本番環境でデプロイしスケールさせるために必要なすべての機能を備えており、我々の[フルスタックアーキテクチャ](#which-features-make-up-the-react-teams-full-stack-architecture-vision)の実現に向けて開発中です。ここでお勧めするフレームワークはすべてオープンソースであり、活発なコミュニティを有しており、自分自身のサーバにもホスティングプロバイダにもデプロイできます。このリストに掲載を希望するフレームワークの作者は[お知らせください](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+)。
+以下に挙げるフレームワークは、アプリを本番環境でデプロイしスケールさせるために必要なすべての機能を備えており、我々の[フルスタックアーキテクチャ](#which-features-make-up-the-react-teams-full-stack-architecture-vision)の実現に向けて開発されています。ここでお勧めするフレームワークはすべてオープンソースであり、助けになる活発なコミュニティがあり、自分自身のサーバにもホスティングプロバイダにもデプロイできます。このリストに掲載を希望するフレームワークの作者は[お知らせください](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+)。
 
 ### Next.js {/*nextjs-pages-router*/}
 
