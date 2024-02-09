@@ -22,13 +22,27 @@ React は、ブラウザ組み込みのすべての [HTML](https://developer.moz
 
 ## フォームコンポーネント {/*form-components*/}
 
-以下のブラウザ内蔵コンポーネントはユーザからの入力を受け付けます。
+以下のブラウザ組み込みコンポーネントはユーザからの入力を受け付けます。
 
 * [`<input>`](/reference/react-dom/components/input)
 * [`<select>`](/reference/react-dom/components/select)
 * [`<textarea>`](/reference/react-dom/components/textarea)
 
 これらは React では特別です。なぜなら props として `value` を渡すと[*制御されたコンポーネント*](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable)になるからです。
+
+---
+
+## リソース・メタデータ関連コンポーネント {/*resource-and-metadata-components*/}
+
+以下のブラウザ組み込みコンポーネントを用いて、外部リソースを読み込んだり、ドキュメントにメタデータを付与したりすることができます。
+
+* [`<link>`](/reference/react-dom/components/link)
+* [`<meta>`](/reference/react-dom/components/meta)
+* [`<script>`](/reference/react-dom/components/script)
+* [`<style>`](/reference/react-dom/components/style)
+* [`<title>`](/reference/react-dom/components/title)
+
+これらが React にとって特別なのは、React がこれらをドキュメントの head 要素に入れることができ、リソースのロード中にサスペンドができ、また個々のコンポーネントのリファレンスページで説明されているような特別な挙動が有効になるからです。
 
 ---
 

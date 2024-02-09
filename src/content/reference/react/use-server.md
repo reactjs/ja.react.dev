@@ -88,7 +88,7 @@ async function addToCart(data) {
 * [プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 以下のものはサポートされていません。
-* React 要素すなわち [JSX](https://react.dev/learn/writing-markup-with-jsx)
+* React 要素すなわち [JSX](/learn/writing-markup-with-jsx)
 * 関数。関数コンポーネントや、サーバアクションでない他のあらゆる関数を含む。
 * [クラス](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
 * 任意のクラスのインスタンス（上記の組み込みクラスを除く）や、[null プロトタイプのオブジェクト](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
