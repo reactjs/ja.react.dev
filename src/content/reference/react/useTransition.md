@@ -1501,7 +1501,11 @@ main {
 
 ---
 
+<<<<<<< HEAD
 ### エラーバウンダリでユーザにエラーを表示する {/*displaying-an-error-to-users-with-error-boundary*/}
+=======
+### Displaying an error to users with an error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
+>>>>>>> bb3a0f5c10aaeba6e6fb35f31f36b47812ece158
 
 <Canary>
 
