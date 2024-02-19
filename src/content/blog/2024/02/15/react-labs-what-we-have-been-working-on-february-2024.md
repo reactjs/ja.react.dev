@@ -26,7 +26,7 @@ React Labs 記事では、現在活発に研究・開発が行われているプ
 
 React Compiler は、もはや研究プロジェクトではありません。このコンパイラは現在 instagram.com の本番環境で動作しています。Meta の他のプラットフォームにもコンパイラを展開するための作業や、オープンソースとしての初回リリースを行うための準備を進めています。
 
-私たちが[前回の投稿](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-optimizing-compiler)でお伝えしたように、React は state が変更された際、*どきどき*過剰な再レンダーを行います。React の黎明期より、このような場合の解決策は手動によるメモ化を行うことでした。現在の API においては、これは [`useMemo`](/reference/react/useMemo)、[`useCallback`](/reference/react/useCallback)、[`memo`](/reference/react/memo) の各 API を適用して、state の変更に対する React の再レンダーの量を手動で調整することを意味します。しかし、手動によるメモ化は妥協の産物です。コードが読みづらくなり、間違いが起きやすくなり、最新の状態に保つために余分な作業が必要です。
+私たちが[前回の投稿](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-optimizing-compiler)でお伝えしたように、React は state が変更された際、*ときどき*過剰な再レンダーを行います。React の黎明期より、このような場合の解決策は手動によるメモ化を行うことでした。現在の API においては、これは [`useMemo`](/reference/react/useMemo)、[`useCallback`](/reference/react/useCallback)、[`memo`](/reference/react/memo) の各 API を適用して、state の変更に対する React の再レンダーの量を手動で調整することを意味します。しかし、手動によるメモ化は妥協の産物です。コードが読みづらくなり、間違いが起きやすくなり、最新の状態に保つために余分な作業が必要です。
 
 手動のメモ化は合理的な妥協策ではありますが、私たちは満足していませんでした。私たちのビジョンは、state が変更されたときに React が*自動的に* UI の正しい部分だけを再レンダーすることであり、それを *React の思考モデルを損なうことなしに*行うことです。UI を状態に対する単純な関数として捉え、JavaScript の標準的な値や記法を使って表現する、という React のアプローチが、多くの開発者にとって React が親しみやすいものである理由の一部である、と私たちは信じています。だからこそ、React のための最適化コンパイラの構築に投資することにしたのです。
 
@@ -102,7 +102,7 @@ Activity はまだ研究中であり、残された作業は、ライブラリ�
 
 * * *
 
-このアップデートに加えて、私たちのチームはカンファレンスでの発表やポッドキャストへの出演を通じ、我々の作業についてお伝えし、質問にお答えてしいます。
+このアップデートに加えて、私たちのチームはカンファレンスでの発表やポッドキャストへの出演を通じ、我々の作業についてお伝えし、質問にお答えしています。
 
 - [Sathya Gunasekaran](/community/team#sathya-gunasekaran) は [React India](https://www.youtube.com/watch?v=kjOacmVsLSE) カンファレンスで React コンパイラについて話しました。
 
