@@ -8,7 +8,11 @@ title: React リファレンス概要
 
 </Intro>
 
+<<<<<<< HEAD
 React リファレンスは機能別にいくつかのサブセクションに分かれています。
+=======
+The React reference documentation is broken down into functional subsections:
+>>>>>>> 35530eea4bb8ba2567c1f57f1ccf730cc89b76de
 
 ## React {/*react*/}
 

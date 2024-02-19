@@ -25,6 +25,16 @@ April 19 - 20, 2024. In-person in Miami, FL, USA
 
 [Website](https://reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
 
+### React Connection 2024 {/*react-connection-2024*/}
+April 22, 2024. In-person in Paris, France 
+
+[Website](https://reactconnection.io/) - [Twitter](https://twitter.com/ReactConn)
+
+### React Native Connection 2024 {/*react-native-connection-2024*/}
+April 23, 2024. In-person in Paris, France 
+
+[Website](https://reactnativeconnection.io/) - [Twitter](https://twitter.com/ReactNativeConn)
+
 ### React Conf 2024 {/*react-conf-2024*/}
 May 15 - 16, 2024. In-person in Henderson, NV, USA + remote
 
@@ -54,6 +64,11 @@ June 14, 2024. In-person at Farris Bad Hotel in Larvik, Norway and online (hybri
 July 04 & 05, 2024. Bangalore, India (In-person event)
 
 [Website](https://reactnexus.com/) - [Twitter](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
+
+### Chain React 2024 {/*chain-react-2024*/}
+July 17-19, 2024. In-person in Portland, OR, USA
+
+[Website](https://chainreactconf.com) - [Twitter](https://twitter.com/ChainReactConf)
 
 ### React India 2024 {/*react-india-2024*/}
 October 17 - 19, 2024. In-person in Goa, India (hybrid event) + Oct 15 2024 - remote day

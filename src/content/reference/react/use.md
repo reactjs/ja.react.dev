@@ -351,14 +351,23 @@ export default async function App() {
 
 場合によっては、`use` に渡されたプロミスが拒否されることがあります。プロミスが拒否された場合にそれを処理する方法は以下の 2 つです。
 
+<<<<<<< HEAD
 1. [エラーバウンダリを使ってユーザにエラーを表示する](#displaying-an-error-to-users-with-error-boundary)
 2. [`Promise.catch` で代替値を提供する](#providing-an-alternative-value-with-promise-catch)
+=======
+1. [Displaying an error to users with an error boundary.](#displaying-an-error-to-users-with-error-boundary)
+2. [Providing an alternative value with `Promise.catch`](#providing-an-alternative-value-with-promise-catch)
+>>>>>>> 35530eea4bb8ba2567c1f57f1ccf730cc89b76de
 
 <Pitfall>
 `use` は try-catch ブロック内で呼び出すことはできません。try-catch ブロックを使う代わりに、[コンポーネントをエラーバウンダリでラップする](#displaying-an-error-to-users-with-error-boundary)か、または[プロミスの `.catch` メソッドで代替値を提供](#providing-an-alternative-value-with-promise-catch)してください。
 </Pitfall>
 
+<<<<<<< HEAD
 #### エラーバウンダリを使ってユーザにエラーを表示する {/*displaying-an-error-to-users-with-error-boundary*/}
+=======
+#### Displaying an error to users with an error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
+>>>>>>> 35530eea4bb8ba2567c1f57f1ccf730cc89b76de
 
 プロミスが拒否されたときにユーザにエラーを表示したい場合は、[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) を使用できます。エラーバウンダリを使用するには、`use` フックを呼び出しているコンポーネントをエラーバウンダリでラップします。`use` に渡されたプロミスが拒否されると、エラーバウンダリに書かれたフォールバックが表示されます。
 
