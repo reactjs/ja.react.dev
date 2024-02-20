@@ -14,6 +14,12 @@ React チームからの公式な更新のお知らせはこのブログに掲�
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<BlogCard title="React Labs: 私達のこれまでの取り組み - 2024年2月版" date="February 15, 2024" url="/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024">
+
+React Labs 記事では、現在活発に研究・開発が行われているプロジェクトについて述べていきます。前回のアップデート以降に、React Compiler、新機能、React 19 に関する大きな進展がありましたので、我々が学んだことを共有していきます。
+
+</BlogCard>
+
 <BlogCard title="React Canary: Meta 外での段階的な新機能導入" date="May 3, 2023" url="/blog/2023/05/03/react-canaries">
 
 従来、React の新機能は Meta 社内で先に利用可能になり、オープンソースでのリリースは後になっていました。私たちは、Meta 社内での React 使用法と同様に、安定版がリリースされる前に個々の新機能の設計がほぼ確定した段階でそれらを採用できるという選択肢を、React コミュニティに提供したいと考えています。私たちは、新たに公式サポート対象となる Canary リリースチャンネルを導入します。これにより、フレームワークのような統合済セットアップが、個々の React 機能の採用を React のリリーススケジュールから切り離して行えるようになります。
