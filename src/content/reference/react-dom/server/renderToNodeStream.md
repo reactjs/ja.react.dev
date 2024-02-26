@@ -13,7 +13,7 @@ title: renderToNodeStream
 `renderToNodeStream` は、React のツリーを [Node.js の Readable ストリーム](https://nodejs.org/api/stream.html#readable-streams)にレンダーします。
 
 ```js
-const stream = renderToNodeStream(reactNode)
+const stream = renderToNodeStream(reactNode, options?)
 ```
 
 </Intro>
@@ -24,7 +24,7 @@ const stream = renderToNodeStream(reactNode)
 
 ## リファレンス {/*reference*/}
 
-### `renderToNodeStream(reactNode)` {/*rendertonodestream*/}
+### `renderToNodeStream(reactNode, options?)` {/*rendertonodestream*/}
 
 サーバ上において、`renderToNodeStream` を呼び出して、レスポンスにパイプすることができる [Node.js の Readable ストリーム](https://nodejs.org/api/stream.html#readable-streams)を取得します。
 
