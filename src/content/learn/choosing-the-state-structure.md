@@ -554,9 +554,13 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
+<<<<<<< HEAD
 （または、選択されたインデックスを state に保持することもできます。）
 
 以前は state がこのように重複していました。
+=======
+The state used to be duplicated like this:
+>>>>>>> 265fa26e3b39739f06c956140d9acf618c6b4e6b
 
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedItem = {id: 0, title: 'pretzels'}`

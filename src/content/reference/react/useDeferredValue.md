@@ -40,7 +40,11 @@ function SearchPage() {
 
 #### 返り値 {/*returns*/}
 
+<<<<<<< HEAD
 初回レンダー時には、返される値はあなたが渡した値と同一になります。更新時には、React はまず古い値で再レンダーを試み（つまり返り値は古い値になり）、次に新しい値でバックグラウンドで再レンダーを試みます（返り値は更新後の値になります）。
+=======
+During the initial render, the returned deferred value will be the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in the background with the new value (so it will return the updated value). 
+>>>>>>> 265fa26e3b39739f06c956140d9acf618c6b4e6b
 
 #### 注意点 {/*caveats*/}
 
@@ -76,7 +80,11 @@ function SearchPage() {
 
 初回レンダー時には、<CodeStep step={2}>遅延される値</CodeStep>は関数に渡した<CodeStep step={1}>値</CodeStep>と同じになります。
 
+<<<<<<< HEAD
 更新時には、<CodeStep step={2}>遅延される値</CodeStep>は最新の<CodeStep step={1}>値</CodeStep>から「遅れ」ます。具体的には、React はまず遅延値を*更新せずに*再レンダーを行い、次に新たに受け取った値でバックグラウンドでの再レンダーを試みます。
+=======
+During updates, the <CodeStep step={2}>deferred value</CodeStep> will "lag behind" the latest <CodeStep step={1}>value</CodeStep>. In particular, React will first re-render *without* updating the deferred value, and then try to re-render with the newly received value in the background.
+>>>>>>> 265fa26e3b39739f06c956140d9acf618c6b4e6b
 
 **例を使って、これが役立つ場面を見ていきましょう**。
 
@@ -508,7 +516,11 @@ input { margin: 10px; }
 
 1. **まず React は、`query` は新しい値 (`"ab"`) だが `deferredQuery` は古い値 (`"a"`) のまま、という状態で再レンダーを試みます**。結果リストに渡す側の値である `deferredQuery` は*遅延されて*おり、`query` の値に「遅れて」ついていきます。
 
+<<<<<<< HEAD
 2. **バックグラウンドで React は、`query` と `deferredQuery` の両方が `"ab"` に更新された状態で再レンダーを試みます**。この再レンダーが完了した場合、React はそれを画面に表示します。しかし、それがサスペンドした（`"ab"` の結果がまだ読み込まれていない）場合、React はこのレンダーの試行を放棄し、データが読み込まれた後にこの再レンダーを再試行します。ユーザは、データが準備できるまで古い遅延された値を見続けます。
+=======
+2. **In the background, React tries to re-render with *both* `query` and `deferredQuery` updated to `"ab"`.** If this re-render completes, React will show it on the screen. However, if it suspends (the results for `"ab"` have not loaded yet), React will abandon this rendering attempt, and retry this re-render again after the data has loaded. The user will keep seeing the stale deferred value until the data is ready.
+>>>>>>> 265fa26e3b39739f06c956140d9acf618c6b4e6b
 
 遅延された「バックグラウンド」レンダーは中断可能です。例えば、再度入力欄にタイプを行うと、React はそれを放棄し、新しい値でやり直します。React は常に最後に提供された値を使用します。
 
@@ -952,7 +964,11 @@ export default SlowList;
 
 デバウンスやスロットリングとは異なり、遅延される時間を固定で選ぶ必要はありません。ユーザのデバイスが速い場合（例えばパワフルなラップトップ）、遅延された再レンダーはほぼ即座に行われるため、気づかれません。ユーザのデバイスが遅い場合、リストはデバイスの遅さに比例するように入力から「遅れ」ていきます。
 
+<<<<<<< HEAD
 また、デバウンスやスロットリングとは異なり、`useDeferredValue` による遅延された再レンダーはデフォルトで中断可能です。これは、React が大きなリストを再レンダーしている途中で、ユーザが別のキーストロークを行うと、React はその再レンダーを放棄し、キーストロークを処理し、再びバックグラウンドでレンダーをやり直せるという意味です。対照的に、デバウンスやスロットリングの動作は*ブロッキング*であるため、やはり不快な体験を生み出します。それらはレンダーがキーストロークをブロックするタイミングを単に遅らせているに過ぎないのです。
+=======
+Also, unlike with debouncing or throttling, deferred re-renders done by `useDeferredValue` are interruptible by default. This means that if React is in the middle of re-rendering a large list, but the user makes another keystroke, React will abandon that re-render, handle the keystroke, and then start rendering in the background again. By contrast, debouncing and throttling still produce a janky experience because they're *blocking:* they merely postpone the moment when rendering blocks the keystroke.
+>>>>>>> 265fa26e3b39739f06c956140d9acf618c6b4e6b
 
 最適化しようとしている作業がレンダーの最中に行われるものでない場合、デバウンスとスロットリングは依然として有用です。例えば、ネットワークリクエストの回数を減らすことができます。これらの手法を一緒に使用することもできます。
 

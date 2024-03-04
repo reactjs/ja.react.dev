@@ -7,7 +7,7 @@ title: renderToStaticNodeStream
 `renderToStaticNodeStream` は、非インタラクティブな React ツリーを [Node.js の Readable ストリーム](https://nodejs.org/api/stream.html#readable-streams) にレンダーします。
 
 ```js
-const stream = renderToStaticNodeStream(reactNode)
+const stream = renderToStaticNodeStream(reactNode, options?)
 ```
 
 </Intro>
@@ -18,7 +18,7 @@ const stream = renderToStaticNodeStream(reactNode)
 
 ## リファレンス {/*reference*/}
 
-### `renderToStaticNodeStream(reactNode)` {/*rendertostaticnodestream*/}
+### `renderToStaticNodeStream(reactNode, options?)` {/*rendertostaticnodestream*/}
 
 サーバ上において、`renderToStaticNodeStream` を呼び出して [Node.js の Readable ストリーム](https://nodejs.org/api/stream.html#readable-streams)を取得します。
 
