@@ -22,7 +22,7 @@ TypeScript は JavaScript コードベースに型定義を追加するための
 
 すべての[本番環境向け React フレームワーク](/learn/start-a-new-react-project#production-grade-react-frameworks)は TypeScript の使用をサポートしています。フレームワーク個別のガイドに従ってインストールを行ってください。
 
-- [Next.js](https://nextjs.org/docs/pages/building-your-application/configuring/typescript)
+- [Next.js](https://nextjs.org/docs/app/building-your-application/configuring/typescript)
 - [Remix](https://remix.run/docs/en/1.19.2/guides/typescript)
 - [Gatsby](https://www.gatsbyjs.com/docs/how-to/custom-configuration/typescript/)
 - [Expo](https://docs.expo.dev/guides/typescript/)
