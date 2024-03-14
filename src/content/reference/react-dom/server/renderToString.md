@@ -13,7 +13,7 @@ title: renderToString
 `renderToString` は React ツリーを HTML 文字列にレンダーします。
 
 ```js
-const html = renderToString(reactNode)
+const html = renderToString(reactNode, options?)
 ```
 
 </Intro>
@@ -24,7 +24,7 @@ const html = renderToString(reactNode)
 
 ## リファレンス {/*reference*/}
 
-### `renderToString(reactNode)` {/*rendertostring*/}
+### `renderToString(reactNode, options?)` {/*rendertostring*/}
 
 サーバ上において、`renderToString` を呼び出してあなたのアプリを HTML にレンダーします。
 

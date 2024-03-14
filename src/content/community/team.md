@@ -22,7 +22,7 @@ React コアチームのメンバーは、コアコンポーネントの API、R
     Andrey はデザイナとしてキャリアをスタートした後、徐々にウェブ開発へと移行しました。Meta の React Data チームに参加した後は、Relay にインクリメンタル JavaScript コンパイラを追加する作業に取り組み、のちにそのコンパイラを Relay から削除する作業に取り組みました。仕事以外の時間では音楽を演奏したり、さまざまなスポーツをしたりしています。
 </TeamMember>
 
-<TeamMember name="Dan Abramov" permalink="dan-abramov" photo="/images/team/gaearon.jpg" github="gaearon" twitter="dan_abramov" title="Engineer at Meta">
+<TeamMember name="Dan Abramov" permalink="dan-abramov" photo="/images/team/gaearon.jpg" github="gaearon" twitter="dan_abramov2" title="Independent Engineer">
     Dan は Microsoft PowerPoint の中に偶然 Visual Basic を発見したことからプログラミングを始めました。[Sebastian](#sebastian-markbåge) のツイートを長文のブログ投稿に翻訳することが真の使命であると感じています。Fortnite では、ゲームが終わるまで茂みの中に隠れて勝利することがあります。
 </TeamMember>
 

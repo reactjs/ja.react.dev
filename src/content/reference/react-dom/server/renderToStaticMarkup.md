@@ -7,7 +7,7 @@ title: renderToStaticMarkup
 `renderToStaticMarkup` は、非インタラクティブな React ツリーを HTML 文字列にレンダーします。
 
 ```js
-const html = renderToStaticMarkup(reactNode)
+const html = renderToStaticMarkup(reactNode, options?)
 ```
 
 </Intro>
@@ -18,7 +18,7 @@ const html = renderToStaticMarkup(reactNode)
 
 ## リファレンス {/*reference*/}
 
-### `renderToStaticMarkup(reactNode)` {/*rendertostaticmarkup*/}
+### `renderToStaticMarkup(reactNode, options?)` {/*rendertostaticmarkup*/}
 
 サーバ上において、`renderToStaticMarkup` を呼び出してアプリを HTML にレンダーします。
 
