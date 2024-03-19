@@ -29,18 +29,14 @@ React DOM には（ブラウザの DOM 環境で動作する）ウェブアプ�
 * [クライアント API](/reference/react-dom/client) - クライアント（ブラウザ）で React コンポーネントをレンダーするための `react-dom/client` API 群
 * [サーバ API](/reference/react-dom/server) - サーバで React コンポーネントを HTML にレンダーするための `react-dom/server` API 群
 
-<<<<<<< HEAD
+## React のルール {/*rules-of-react*/}
+
+React には、読みやすいコードを書いて高品質なアプリケーションを作り出すための慣行的記法、ないしルールが存在します。
+
+* [コンポーネントとフックを純粋に保つ](/reference/rules/components-and-hooks-must-be-pure) – コードを純粋に保つことでコードの理解とデバッグが容易になり、React がコンポーネントやフックを自動的に最適化する際にも役立ちます。
+* [コンポーネントやフックを呼び出すのは React](/reference/rules/react-calls-components-and-hooks) – ユーザ体験を最適化するために必要に応じてコンポーネントやフックを呼び出すというのは React 自身の責務です。
+* [フックのルール](/reference/rules/rules-of-hooks) – フックは再利用可能な UI ロジックを表す JavaScript の関数として定義されており、呼び出せる場所に関する制約があります。
+
 ## レガシー API {/*legacy-apis*/}
-=======
-## Rules of React {/*rules-of-react*/}
-
-React has idioms — or rules — for how to express patterns in a way that is easy to understand and yields high-quality applications:
-
-* [Components and Hooks must be pure](/reference/rules/components-and-hooks-must-be-pure) – Purity makes your code easier to understand, debug, and allows React to automatically optimize your components and hooks correctly.
-* [React calls Components and Hooks](/reference/rules/react-calls-components-and-hooks) – React is responsible for rendering components and hooks when necessary to optimize the user experience.
-* [Rules of Hooks](/reference/rules/rules-of-hooks) – Hooks are defined using JavaScript functions, but they represent a special type of reusable UI logic with restrictions on where they can be called.
-
-## Legacy APIs {/*legacy-apis*/}
->>>>>>> f55d9487c6648570fc80f1421d7dca0a3b9b94b6
 
 * [レガシー API](/reference/react/legacy) - `react` パッケージからエクスポートされているが新しいコードでは使用が推奨されないもの
