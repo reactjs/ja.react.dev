@@ -202,7 +202,7 @@ export default function MyInput() {
 
 #### チェックボックス (boolean) {/*checkbox-boolean*/}
 
-この例では、`linked` state 変数が真偽値 (boolean) を保持しています。input をクリックすると、`setLiked` はブラウザのチェックボックスの input がチェックされているかどうかで、`liked` state 変数を更新します。`liked` 変数は、チェックボックスの下のテキストをレンダーするために使用されます。
+この例では、`liked` state 変数が真偽値 (boolean) を保持しています。input をクリックすると、`setLiked` はブラウザのチェックボックスの input がチェックされているかどうかで、`liked` state 変数を更新します。`liked` 変数は、チェックボックスの下のテキストをレンダーするために使用されます。
 
 <Sandpack>
 
