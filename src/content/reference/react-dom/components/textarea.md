@@ -330,7 +330,11 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 <Pitfall>
 
+<<<<<<< HEAD
 **`onChange` を指定せずに `value` を渡すと、テキストエリアに入力することができなくなります**。テキストエリアに `value` を渡して制御を行うと、渡した値でテキストエリアを*強制的に固定*することになります。したがって、state 変数を `value` として渡しても、`onChange` イベントハンドラ内でその state 変数を同期的に更新するのを忘れた場合、React はテキストエリアを、キーストローク毎に指定した `value` に戻してしまいます。
+=======
+**If you pass `value` without `onChange`, it will be impossible to type into the text area.** When you control a text area by passing some `value` to it, you *force* it to always have the value you passed. So if you pass a state variable as a `value` but forget to update that state variable synchronously during the `onChange` event handler, React will revert the text area after every keystroke back to the `value` that you specified.
+>>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 </Pitfall>
 

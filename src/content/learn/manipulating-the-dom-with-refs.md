@@ -493,7 +493,11 @@ React では、すべての更新は [2 つのフェーズ](/learn/render-and-co
 
 React が `ref.current` をセットするのはコミット中です。DOM を更新する前に、React は影響を受ける `ref.current` の値を `null` に設定します。DOM を更新した後すぐに、React はそれらを対応する DOM ノードにセットします。
 
+<<<<<<< HEAD
 **通常、ref にアクセスするのはイベントハンドラからです**。ref を使って何かをしたいが、それをするための特定のイベントがないという場合は、エフェクト (Effect) が必要になるかもしれません。これ以降の数ページでは、エフェクトについて説明します。
+=======
+**Usually, you will access refs from event handlers.** If you want to do something with a ref, but there is no particular event to do it in, you might need an Effect. We will discuss Effects on the next pages.
+>>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 <DeepDive>
 
