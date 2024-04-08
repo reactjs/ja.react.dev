@@ -18,16 +18,23 @@ React コアチームのメンバーは、コアコンポーネントの API、R
     Andrew は WordPress を使ったサイト作りからウェブ開発を始め、いつの間にか JavaScript にハマっていました。お気に入りの暇つぶしはカラオケです。日によってある時はディズニーの悪役に、またある時はディズニーのお姫様になっています。
 </TeamMember>
 
+<<<<<<< HEAD
 <TeamMember name="Andrey Lunyov" permalink="andrey-lunyov" photo="/images/team/andrey-lunyov.jpg" github="alunyov" twitter="alunyov" threads="alunyov" title="Engineer at Meta">
     Andrey はデザイナとしてキャリアをスタートした後、徐々にウェブ開発へと移行しました。Meta の React Data チームに参加した後は、Relay にインクリメンタル JavaScript コンパイラを追加する作業に取り組み、のちにそのコンパイラを Relay から削除する作業に取り組みました。仕事以外の時間では音楽を演奏したり、さまざまなスポーツをしたりしています。
 </TeamMember>
 
+=======
+>>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 <TeamMember name="Dan Abramov" permalink="dan-abramov" photo="/images/team/gaearon.jpg" github="gaearon" twitter="dan_abramov2" title="Independent Engineer">
     Dan は Microsoft PowerPoint の中に偶然 Visual Basic を発見したことからプログラミングを始めました。[Sebastian](#sebastian-markbåge) のツイートを長文のブログ投稿に翻訳することが真の使命であると感じています。Fortnite では、ゲームが終わるまで茂みの中に隠れて勝利することがあります。
 </TeamMember>
 
 <TeamMember name="Eli White" permalink="eli-white" photo="/images/team/eli-white.jpg" github="TheSavior" twitter="Eli_White" threads="elicwhite" title="Engineering Manager at Meta">
     Eli のプログラミング経験は、ハッキングで中学校を停学処分になったことで始まりました。2017 年から React と React Native の開発に携わっています。お菓子を食べるのが好きで、特にアイスクリームとアップルパイがお気に入りです。Eli はよくパルクールや室内スカイダイビング、エアリアルシルクなど、風変わりな活動を試しています。
+</TeamMember>
+
+<TeamMember name="Jack Pope" permalink="jack-pope" photo="/images/team/jack-pope.jpg" github="jackpope" personal="jackpope.me" title="Engineer at Meta">
+    Shortly after being introduced to AutoHotkey, Jack had written scripts to automate everything he could think of. When reaching limitations there, he dove headfirst into web app development and hasn't looked back. Most recently, Jack worked on the web platform at Instagram before moving to React. His favorite programming language is JSX.
 </TeamMember>
 
 <TeamMember name="Jason Bonta" permalink="jason-bonta" photo="/images/team/jasonbonta.jpg" threads="someextent" title="Engineering Manager at Meta">
@@ -74,8 +81,13 @@ React コアチームのメンバーは、コアコンポーネントの API、R
     Sebastian の専攻は心理学でした。普段の彼はもの静かです。彼が何かを言ったとしても、数か月後まで他の人には理解できないことがよくあります。彼の姓の発音は本来 "mark-boa-geh" ですが、実用性を優先して "mark-beige" に落ち着きました。彼の React へのアプローチも実用主義的です。
 </TeamMember>
 
+<<<<<<< HEAD
 <TeamMember name="Sebastian Silbermann" permalink="sebastian-silbermann" photo="/images/team/sebsilbermann.jpg" github="eps1lon" twitter="sebsilbermann" threads="sebsilbermann" title="Independent Engineer">
     Sebastian は、授業中に遊んでいたブラウザゲームをより楽しくするためにプログラミングを学びました。それはいずれ、オープンソースコードに可能な限りの貢献をすることにつながりました。コーディング以外の時間では、彼は React コミュニティにいるほかの Sebastian や Zilberman と混同されないために頑張っています。
+=======
+<TeamMember name="Sebastian Silbermann" permalink="sebastian-silbermann" photo="/images/team/sebsilbermann.jpg" github="eps1lon" twitter="sebsilbermann" threads="sebsilbermann" title="Engineer at Vercel">
+    Sebastian learned programming to make the browser games he played during class more enjoyable. Eventually this lead to contributing to as much open source code as possible. Outside of coding he's busy making sure people don't confuse him with the other Sebastians and Zilberman of the React community.
+>>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 </TeamMember>
 
 <TeamMember name="Seth Webster" permalink="seth-webster" photo="/images/team/seth.jpg" github="sethwebster" twitter="sethwebster" threads="sethwebster" personal="sethwebster.com" title="Engineering Manager at Meta">
