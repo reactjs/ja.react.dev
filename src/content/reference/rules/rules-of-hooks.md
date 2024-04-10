@@ -1,23 +1,23 @@
 ---
-title: Rules of Hooks
+title: フックのルール
 ---
 
 <Intro>
-Hooks are defined using JavaScript functions, but they represent a special type of reusable UI logic with restrictions on where they can be called.
+フックは再利用可能な UI ロジックを表す JavaScript の関数として定義されており、呼び出せる場所に関する制約があります。
 </Intro>
 
 <InlineToc />
 
 ---
 
-##  Only call Hooks at the top level {/*only-call-hooks-at-the-top-level*/}
+## フックはトップレベルでのみ呼び出す {/*only-call-hooks-at-the-top-level*/}
 
-Functions whose names start with `use` are called [*Hooks*](/reference/react) in React.
+`use` で始まる関数名を持つ関数は React では[*フック (hook)*](/reference/react) と呼ばれます。
 
-**Don’t call Hooks inside loops, conditions, nested functions, or `try`/`catch`/`finally` blocks.** Instead, always use Hooks at the top level of your React function, before any early returns. You can only call Hooks while React is rendering a function component:
+**ループ、条件分岐、ネストされた関数、`try`/`catch`/`finally` ブロックの内部でフックを呼び出してはいけません**。代わりに、フックは常に React 関数のトップレベルで、早期 return を行う前に行います。フックは React が関数コンポーネントをレンダーしている間にのみ呼び出すことができます。
 
-* ✅ Call them at the top level in the body of a [function component](/learn/your-first-component).
-* ✅ Call them at the top level in the body of a [custom Hook](/learn/reusing-logic-with-custom-hooks).
+* ✅ [関数コンポーネント](/learn/your-first-component)本体のトップレベルで呼び出す。
+* ✅ [カスタムフック](/learn/reusing-logic-with-custom-hooks)本体のトップレベルで呼び出す。
 
 ```js{2-3,8-9}
 function Counter() {
@@ -33,16 +33,16 @@ function useWindowWidth() {
 }
 ```
 
-It’s **not** supported to call Hooks (functions starting with `use`) in any other cases, for example:
+以下のような場合にフック（`use` で始まる関数）を呼び出すことは**サポートされていません**。
 
-* 🔴 Do not call Hooks inside conditions or loops.
-* 🔴 Do not call Hooks after a conditional `return` statement.
-* 🔴 Do not call Hooks in event handlers.
-* 🔴 Do not call Hooks in class components.
-* 🔴 Do not call Hooks inside functions passed to `useMemo`, `useReducer`, or `useEffect`.
-* 🔴 Do not call Hooks inside `try`/`catch`/`finally` blocks.
+* 🔴 条件やループの内部でフックを呼び出してはいけない。
+* 🔴 条件付き `return` 文の後でフックを呼び出してはいけない。
+* 🔴 イベントハンドラ内でフックを呼び出してはいけない。
+* 🔴 クラスコンポーネント内でフックを呼び出してはいけない。
+* 🔴 `useMemo`、`useReducer`、`useEffect` に渡される関数内でフックを呼び出してはいけない。
+* 🔴 `try`/`catch`/`finally` ブロック内でフックを呼び出してはいけない。
 
-If you break these rules, you might see this error.
+これらのルールを破ると、以下のエラーが表示される可能性があります。
 
 ```js{3-4,11-12,20-21}
 function Bad({ cond }) {
@@ -105,24 +105,24 @@ function Bad() {
 }
 ```
 
-You can use the [`eslint-plugin-react-hooks` plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to catch these mistakes.
+これらの間違いを捕捉するために [`eslint-plugin-react-hooks` プラグイン](https://www.npmjs.com/package/eslint-plugin-react-hooks)が利用可能です。
 
 <Note>
 
-[Custom Hooks](/learn/reusing-logic-with-custom-hooks) *may* call other Hooks (that's their whole purpose). This works because custom Hooks are also supposed to only be called while a function component is rendering.
+[カスタムフック](/learn/reusing-logic-with-custom-hooks)は他のフックを呼び出しても*構いません*（むしろそれが主目的です）。これは、カスタムフックも関数コンポーネントのレンダー中にのみ呼び出されることが前提だからです。
 
 </Note>
 
 ---
 
-## Only call Hooks from React functions {/*only-call-hooks-from-react-functions*/}
+## React の関数からのみフックを呼び出す {/*only-call-hooks-from-react-functions*/}
 
-Don’t call Hooks from regular JavaScript functions. Instead, you can:
+通常の JavaScript 関数からフックを呼び出さないでください。代わりに以下ようにします。
 
-✅ Call Hooks from React function components.
-✅ Call Hooks from [custom Hooks](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component).
+✅ React の関数コンポーネントからフックを呼び出す。
+✅ [カスタムフック](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component)からフックを呼び出す。
 
-By following this rule, you ensure that all stateful logic in a component is clearly visible from its source code.
+このルールに従うことで、コンポーネント内のすべてのステートフルなロジックがそのソースコードから明確に見えることが保証されます。
 
 ```js {2,5}
 function FriendList() {
