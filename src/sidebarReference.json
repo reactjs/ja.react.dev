@@ -352,10 +352,10 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Rules of React"
+      "sectionHeader": "React のルール"
     },
     {
-      "title": "Overview",
+      "title": "概要",
       "path": "/reference/rules"
     },
     {
