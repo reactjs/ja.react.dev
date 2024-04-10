@@ -1606,7 +1606,7 @@ root.render(
 const [text, setText] = useState('');
 // ...
 function handleChange(e) {
-  // ❌ Can't use transitions for controlled input state
+  // ❌ Can't use Transitions for controlled input state
   startTransition(() => {
     setText(e.target.value);
   });
@@ -1713,7 +1713,7 @@ function startTransition(scope) {
 
 function setState() {
   if (isInsideTransition) {
-    // ... schedule a transition state update ...
+    // ... schedule a Transition state update ...
   } else {
     // ... schedule an urgent state update ...
   }

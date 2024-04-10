@@ -456,7 +456,7 @@ interface MyComponentProps {
 
  - [The TypeScript handbook](https://www.typescriptlang.org/docs/handbook/) は TypeScript の公式ドキュメントであり、ほとんどの主要な言語機能をカバーしています。
 
- - [TypeScript のリリースノート](https://devblogs.microsoft.com/typescript/)では、それぞれの新機能が詳細に解説されています。
+ - [TypeScript のリリースノート](https://devblogs.microsoft.com/typescript/)では新機能が詳細に解説されています。
 
  - [React TypeScript Cheatsheet](https://react-typescript-cheatsheet.netlify.app/) はコミュニティによってメンテナンスされている、React で TypeScript を使用するためのチートシートです。多くの有用なエッジケースをカバーしており、このドキュメントよりも広範な解説が得られます。
 

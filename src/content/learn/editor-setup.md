@@ -40,7 +40,7 @@ title: エディタのセットアップ
 
 ### コードフォーマット {/*formatting*/}
 
-他の人とコードを共有するにあたって何よりも避けたいのは、[タブ vs スペース](https://www.google.com/search?q=tabs+vs+spaces) についての議論に巻き込まれてしまうことです！ 幸いなことに、[Prettier](https://prettier.io/) は、あらかじめ設定できるルールに従ってコードを再フォーマットすることで、あなたのコードを綺麗にしてくれます。Prettier を実行すれば、タブはスペースに変換され、インデント、引用符なども設定に従って変更されます。理想的なセットアップでは、Prettier はファイルを保存するたびに実行され、瞬時にれらの変更を適用してくれます。
+他の人とコードを共有するにあたって何よりも避けたいのは、[タブ vs スペース](https://www.google.com/search?q=tabs+vs+spaces)についての議論に巻き込まれてしまうことです！ 幸いなことに、[Prettier](https://prettier.io/) は、あらかじめ設定できるルールに従ってコードを再フォーマットすることで、あなたのコードを綺麗にしてくれます。Prettier を実行すれば、タブはスペースに変換され、インデント、引用符なども設定に従って変更されます。理想的なセットアップでは、Prettier はファイルを保存するたびに実行され、瞬時にこれらの変更を適用してくれます。
 
 [VSCode 用の Prettier 拡張機能](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) を VS Code にインストールするには、次の手順に従ってください。
 
