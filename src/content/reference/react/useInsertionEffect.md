@@ -10,11 +10,7 @@ title: useInsertionEffect
 
 <Intro>
 
-<<<<<<< HEAD
 `useInsertionEffect` はレイアウトエフェクトが発火する前に DOM に要素を挿入するために使用します。
-=======
-`useInsertionEffect` allows inserting elements into the DOM before any layout Effects fire.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js
 useInsertionEffect(setup, dependencies?)
@@ -30,11 +26,7 @@ useInsertionEffect(setup, dependencies?)
 
 ### `useInsertionEffect(setup, dependencies?)` {/*useinsertioneffect*/}
 
-<<<<<<< HEAD
 `useInsertionEffect` を呼び出して、レイアウトを読み取る可能性があるエフェクトが実行される前にスタイルの挿入を行います。
-=======
-Call `useInsertionEffect` to insert styles before any Effects fire that may need to read layout:
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js
 import { useInsertionEffect } from 'react';
@@ -52,11 +44,7 @@ function useCSS(rule) {
 
 #### 引数 {/*parameters*/}
 
-<<<<<<< HEAD
 * `setup`: エフェクトのロジックが記述された関数です。このセットアップ関数は、オプションで*クリーンアップ*関数を返すことができます。コンポーネントが初めて DOM に追加された後、レイアウトエフェクトが発火する前に、React はセットアップ関数を実行します。依存配列 (dependencies) が変更された再レンダー時には、React はまず古い値を使ってクリーンアップ関数（あれば）を実行し、次に新しい値を使ってセットアップ関数を実行します。コンポーネントが DOM から削除された後、React はクリーンアップ関数を最後にもう一度実行します。
-=======
-* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. When your component is added to the DOM, but before any layout Effects fire, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. When your component is removed from the DOM, React will run your cleanup function.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
  
 * **省略可能** `dependencies`: `setup` コード内で参照されるすべてのリアクティブな値のリストです。リアクティブな値には、props、state、コンポーネント本体に直接宣言されたすべての変数および関数が含まれます。リンタが [React 用に設定されている場合](/learn/editor-setup#linting)、すべてのリアクティブな値が依存値として正しく指定されているか確認できます。依存値のリストは要素数が一定である必要があり、`[dep1, dep2, dep3]` のようにインラインで記述する必要があります。React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を使った比較で、それぞれの依存値を以前の値と比較します。この引数を省略すると、エフェクトはコンポーネントの毎回のレンダー後に再実行されます。
 
@@ -100,11 +88,7 @@ CSS-in-JS を使用する場合、最初の 2 つのアプローチの組み合�
 
 このうち最初の問題は解決不可能ですが、`useInsertionEffect` は 2 つ目の問題を解決するのに役立ちます。
 
-<<<<<<< HEAD
 レイアウトエフェクトの発火前にスタイルを挿入するために `useInsertionEffect` を呼び出しましょう。
-=======
-Call `useInsertionEffect` to insert the styles before any layout Effects fire:
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js {4-11}
 // Inside your CSS-in-JS library

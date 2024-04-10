@@ -51,17 +51,10 @@ flushSync(() => {
 
 #### 注意点 {/*caveats*/}
 
-<<<<<<< HEAD
-* `flushSync` はパフォーマンスを大幅に低下させる可能性があります。控え目に使用してください。
-* `flushSync` は保留中のサスペンスバウンダリを強制的に `fallback` 状態にする可能性があります。
-* `flushSync` はリターンの前に、保留中のエフェクトを実行し、そこに含まれた任意の更新も同期的に適用する場合があります。
-* `flushSync` は、コールバック内の更新をフラッシュするために必要な場合、コールバック外の更新もフラッシュすることがあります。例えば、クリックによる保留中の更新作業がある場合、React はコールバック内の更新をフラッシュする前に先にそれらをフラッシュするかもしれません。
-=======
 * `flushSync` can significantly hurt performance. Use sparingly.
 * `flushSync` may force pending Suspense boundaries to show their `fallback` state.
 * `flushSync` may run pending Effects and synchronously apply any updates they contain before returning.
 * `flushSync` may flush updates outside the callback when necessary to flush the updates inside the callback. For example, if there are pending updates from a click, React may flush those before flushing the updates inside the callback.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ---
 

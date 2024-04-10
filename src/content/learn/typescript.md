@@ -435,11 +435,7 @@ interface ModalRendererProps {
 
 子要素が特定の JSX 要素の型であることを TypeScript で記述することはできないことに注意してください。子要素として `<li>` のみを受け入れるコンポーネントを型システムで記述することはできません。
 
-<<<<<<< HEAD
 [こちらの TypeScript プレイグラウンド](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgIilQ3wChSB6CxYmAOmXRgDkIATJOdNJMGAZzgwAFpxAR+8YADswAVwGkZMJFEzpOjDKw4AFHGEEBvUnDhphwADZsi0gFw0mDWjqQBuUgF9yaCNMlENzgAXjgACjADfkctFnYkfQhDAEpQgD44AB42YAA3dKMo5P46C2tbJGkvLIpcgt9-QLi3AEEwMFCItJDMrPTTbIQ3dKywdIB5aU4kKyQQKpha8drhhIGzLLWODbNs3b3s8YAxKBQAcwXpAThMaGWDvbH0gFloGbmrgQfBzYpd1YjQZbEYARkB6zMwO2SHSAAlZlYIBCdtCRkZpHIrFYahQYQD8UYYFA5EhcfjyGYqHAXnJAsIUHlOOUbHYhMIIHJzsI0Qk4P9SLUBuRqXEXEwAKKfRZcNA8PiCfxWACecAAUgBlAAacFm80W-CU11U6h4TgwUv11yShjgJjMLMqDnN9Dilq+nh8pD8AXgCHdMrCkWisVoAet0R6fXqhWKhjKllZVVxMcavpd4Zg7U6Qaj+2hmdG4zeRF10uu-Aeq0LBfLMEe-V+T2L7zLVu+FBWLdLeq+lc7DYFf39deFVOotMCACNOCh1dq219a+30uC8YWoZsRyuEdjkevR8uvoVMdjyTWt4WiSSydXD4NqZP4AymeZE072ZzuUeZQKheQgA)で、`React.ReactNode` と `React.ReactElement` の両方の例を型チェッカ付きで確認することができます。
-=======
-You can see an example of both `React.ReactNode` and `React.ReactElement` with the type-checker in [this TypeScript playground](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgIilQ3wChSB6CxYmAOmXRgDkIATJOdNJMGAZzgwAFpxAR+8YADswAVwGkZMJFEzpOjDKw4AFHGEEBvUnDhphwADZsi0gFw0mDWjqQBuUgF9yaCNMlENzgAXjgACjADfkctFnYkfQhDAEpQgD44AB42YAA3dKMo5P46C2tbJGkvLIpcgt9-QLi3AEEwMFCItJDMrPTTbIQ3dKywdIB5aU4kKyQQKpha8drhhIGzLLWODbNs3b3s8YAxKBQAcwXpAThMaGWDvbH0gFloGbmrgQfBzYpd1YjQZbEYARkB6zMwO2SHSAAlZlYIBCdtCRkZpHIrFYahQYQD8UYYFA5EhcfjyGYqHAXnJAsIUHlOOUbHYhMIIHJzsI0Qk4P9SLUBuRqXEXEwAKKfRZcNA8PiCfxWACecAAUgBlAAacFm80W-CU11U6h4TgwUv11yShjgJjMLMqDnN9Dilq+nh8pD8AXgCHdMrCkWisVoAet0R6fXqhWKhjKllZVVxMcavpd4Zg7U6Qaj+2hmdG4zeRF10uu-Aeq0LBfLMEe-V+T2L7zLVu+FBWLdLeq+lc7DYFf39deFVOotMCACNOCh1dq219a+30uC8YWoZsRyuEdjkevR8uvoVMdjyTWt4WiSSydXD4NqZP4AymeZE072ZzuUeZQKheQgA).
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ### スタイル props {/*typing-style-props*/}
 
@@ -460,11 +456,7 @@ interface MyComponentProps {
 
  - [The TypeScript handbook](https://www.typescriptlang.org/docs/handbook/) は TypeScript の公式ドキュメントであり、ほとんどの主要な言語機能をカバーしています。
 
-<<<<<<< HEAD
- - [TypeScript のリリースノート](https://devblogs.microsoft.com/typescript/)では、それぞれの新機能が詳細に解説されています。
-=======
- - [The TypeScript release notes](https://devblogs.microsoft.com/typescript/) cover new features in depth.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
+ - [TypeScript のリリースノート](https://devblogs.microsoft.com/typescript/)では新機能が詳細に解説されています。
 
  - [React TypeScript Cheatsheet](https://react-typescript-cheatsheet.netlify.app/) はコミュニティによってメンテナンスされている、React で TypeScript を使用するためのチートシートです。多くの有用なエッジケースをカバーしており、このドキュメントよりも広範な解説が得られます。
 

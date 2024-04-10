@@ -152,11 +152,7 @@ export default function App() {
 
 ### クライアントとサーバで異なるコンテンツの処理 {/*handling-different-client-and-server-content*/}
 
-<<<<<<< HEAD
 サーバとクライアントで意図的に異なるものをレンダーする必要がある場合、2 回に分けたレンダーを行うことができます。クライアントで異なるものをレンダーするコンポーネントは、`isClient` のような [state 変数](/reference/react/useState)を読み取るようにし、この変数を[エフェクト](/reference/react/useEffect)内で `true` に設定することができます。
-=======
-If you intentionally need to render something different on the server and the client, you can do a two-pass rendering. Components that render something different on the client can read a [state variable](/reference/react/useState) like `isClient`, which you can set to `true` in an [Effect](/reference/react/useEffect):
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 <Sandpack>
 

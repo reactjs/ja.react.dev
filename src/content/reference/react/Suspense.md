@@ -1348,11 +1348,7 @@ input { margin: 10px; }
 
 <Note>
 
-<<<<<<< HEAD
 値の遅延 (deferred value) と[トランジション](#preventing-already-revealed-content-from-hiding)はいずれも、サスペンスフォールバックの表示を防いで代わりにインラインでインジケータを表示するために使えます。トランジションは更新の全体を低緊急度 (non-urgent) であるとマークするため、通常はフレームワークやルータライブラリでナビゲーションに使用されます。一方、値の遅延は主にアプリケーションコードで有用であり、UI の一部分を低緊急度とマークして、UI の他の部分に「遅れて」表示できるようにします。
-=======
-Both deferred values and [Transitions](#preventing-already-revealed-content-from-hiding) let you avoid showing Suspense fallback in favor of inline indicators. Transitions mark the whole update as non-urgent so they are typically used by frameworks and router libraries for navigation. Deferred values, on the other hand, are mostly useful in application code where you want to mark a part of UI as non-urgent and let it "lag behind" the rest of the UI.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 </Note>
 
@@ -1731,11 +1727,7 @@ main {
 
 ボタンを押した時点で、`Router` コンポーネントは `IndexPage` の代わりに `ArtistPage` をレンダーしました。`ArtistPage` 内のコンポーネントがサスペンドしたため、最も近いサスペンスバウンダリがフォールバックを表示し始めました。最も近いサスペンスバウンダリはルート近くにあったため、サイト全体のレイアウトが `BigSpinner` に置き換えられてしまいました。
 
-<<<<<<< HEAD
 これを防ぐため、ナビゲーションの state 更新を [`startTransition`](/reference/react/startTransition) で*トランジション*としてマークすることができます。
-=======
-To prevent this, you can mark the navigation state update as a *Transition* with [`startTransition`:](/reference/react/startTransition)
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js {5,7}
 function Router() {
@@ -1749,11 +1741,7 @@ function Router() {
   // ...
 ```
 
-<<<<<<< HEAD
 これにより、React に対して state の遷移が緊急のものではなく、既に表示されている内容を隠すよりも前のページを表示し続ける方が良いと伝えます。これで、ボタンをクリックすると `Biography` の読み込みを「待つ」ようになります。
-=======
-This tells React that the state Transition is not urgent, and it's better to keep showing the previous page instead of hiding any already revealed content. Now clicking the button "waits" for the `Biography` to load:
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 <Sandpack>
 
@@ -2124,33 +2112,19 @@ main {
 
 </Sandpack>
 
-<<<<<<< HEAD
 トランジションは*すべて*のコンテンツの読み込みを待機するわけではありません。既に表示されたコンテンツを隠さない範囲でのみ待機を行います。例えば、ウェブサイトの `Layout` は既に表示されていたので、それをローディングスピナで隠すのは良くありません。しかし、その内部で `Albums` を囲んでいる `Suspense` バウンダリは新しいものなので、トランジションがそれを待つことはありません。
 
 <Note>
 
 サスペンス対応のルータは、デフォルトでナビゲーションの更新をトランジションにラップすることが期待されます。
-=======
-A Transition doesn't wait for *all* content to load. It only waits long enough to avoid hiding already revealed content. For example, the website `Layout` was already revealed, so it would be bad to hide it behind a loading spinner. However, the nested `Suspense` boundary around `Albums` is new, so the Transition doesn't wait for it.
-
-<Note>
-
-Suspense-enabled routers are expected to wrap the navigation updates into Transitions by default.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 </Note>
 
 ---
 
-<<<<<<< HEAD
 ### トランジションが進行中であることを示す {/*indicating-that-a-transition-is-happening*/}
 
 上記の例では、ボタンをクリックした後、ナビゲーションが進行中であることを視覚的に示すものがありません。インジケータを追加するために、[`startTransition`](/reference/react/startTransition) を [`useTransition`](/reference/react/useTransition) に置き換えることで、ブーリアン型の `isPending` 値が得られます。以下の例では、トランジションが進行中である間、ウェブサイトのヘッダのスタイルを変更するために使用されています。
-=======
-### Indicating that a Transition is happening {/*indicating-that-a-transition-is-happening*/}
-
-In the above example, once you click the button, there is no visual indication that a navigation is in progress. To add an indicator, you can replace [`startTransition`](/reference/react/startTransition) with [`useTransition`](/reference/react/useTransition) which gives you a boolean `isPending` value. In the example below, it's used to change the website header styling while a Transition is happening:
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 <Sandpack>
 
@@ -2528,21 +2502,13 @@ main {
 
 ### ナビゲーション時にサスペンスバウンダリをリセットする {/*resetting-suspense-boundaries-on-navigation*/}
 
-<<<<<<< HEAD
 トランジション中、React は既に表示されているコンテンツを隠さないようにします。しかし、異なるパラメータを持つルートに移動する場合、React にそれが*異なる*コンテンツであると伝えたいことがあります。これを表現するために、`key` が使えます。
-=======
-During a Transition, React will avoid hiding already revealed content. However, if you navigate to a route with different parameters, you might want to tell React it is *different* content. You can express this with a `key`:
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js
 <ProfilePage key={queryParams.id} />
 ```
 
-<<<<<<< HEAD
 単一のユーザのプロフィールページ内を閲覧していて、何かがサスペンドすると想像してみてください。その更新がトランジションでラップされている場合、既に表示されているコンテンツのフォールバックをトリガしません。これは期待される動作です。
-=======
-Imagine you're navigating within a user's profile page, and something suspends. If that update is wrapped in a Transition, it will not trigger the fallback for already visible content. That's the expected behavior.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 しかし、2 人の異なるユーザのプロフィール間を移動していると想像してみてください。その場合は、フォールバックを表示することが理にかなっています。例えば、あるユーザのタイムラインは別のユーザのタイムラインとは*異なるコンテンツ*です。`key` を指定することで、React は異なるユーザのプロフィールを異なるコンポーネントとして扱うので、ナビゲーション中にサスペンスバウンダリをリセットします。サスペンスを統合したルータは、これを自動的に行うべきです。
 
@@ -2579,11 +2545,7 @@ function Chat() {
 
 すでに表示中の UI をフォールバックに置き換えると、ユーザ体験が不快になります。これは、更新がコンポーネントをサスペンドさせるが、最も近いサスペンスバウンダリがすでにユーザにコンテンツを表示している、という場合に発生します。
 
-<<<<<<< HEAD
 これを防ぐには、[`startTransition` を使用して更新を低緊急度としてマークします](#preventing-already-revealed-content-from-hiding)。トランジション中、React は十分なデータがロードされるまで待機し、不要なフォールバックが表示されるのを防ぎます。
-=======
-To prevent this from happening, [mark the update as non-urgent using `startTransition`](#preventing-already-revealed-content-from-hiding). During a Transition, React will wait until enough data has loaded to prevent an unwanted fallback from appearing:
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js {2-3,5}
 function handleNextPageClick() {

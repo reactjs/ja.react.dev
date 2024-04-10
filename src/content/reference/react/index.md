@@ -29,9 +29,6 @@ React DOM には（ブラウザの DOM 環境で動作する）ウェブアプ�
 * [クライアント API](/reference/react-dom/client) - クライアント（ブラウザ）で React コンポーネントをレンダーするための `react-dom/client` API 群
 * [サーバ API](/reference/react-dom/server) - サーバで React コンポーネントを HTML にレンダーするための `react-dom/server` API 群
 
-<<<<<<< HEAD
-## レガシー API {/*legacy-apis*/}
-=======
 ## Rules of React {/*rules-of-react*/}
 
 React has idioms — or rules — for how to express patterns in a way that is easy to understand and yields high-quality applications:
@@ -40,7 +37,6 @@ React has idioms — or rules — for how to express patterns in a way that is e
 * [React calls Components and Hooks](/reference/rules/react-calls-components-and-hooks) – React is responsible for rendering components and hooks when necessary to optimize the user experience.
 * [Rules of Hooks](/reference/rules/rules-of-hooks) – Hooks are defined using JavaScript functions, but they represent a special type of reusable UI logic with restrictions on where they can be called.
 
-## Legacy APIs {/*legacy-apis*/}
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
+## レガシー API {/*legacy-apis*/}
 
 * [レガシー API](/reference/react/legacy) - `react` パッケージからエクスポートされているが新しいコードでは使用が推奨されないもの

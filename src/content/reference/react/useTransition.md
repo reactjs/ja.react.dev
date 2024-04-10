@@ -20,11 +20,7 @@ const [isPending, startTransition] = useTransition()
 
 ### `useTransition()` {/*usetransition*/}
 
-<<<<<<< HEAD
 コンポーネントのトップレベルで `useTransition` を呼び出し、state 更新の一部をトランジションとしてマークします。
-=======
-Call `useTransition` at the top level of your component to mark some state updates as Transitions.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js
 import { useTransition } from 'react';
@@ -45,23 +41,14 @@ function TabContainer() {
 
 `useTransition` は常に 2 つの要素を含む配列を返します。
 
-<<<<<<< HEAD
 1. トランジションが保留中であるかどうかを示す `isPending` フラグ。
 2. state 更新をトランジションとしてマークするための [`startTransition` 関数](#starttransition)。
-=======
-1. The `isPending` flag that tells you whether there is a pending Transition.
-2. The [`startTransition` function](#starttransition) that lets you mark a state update as a Transition.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ---
 
 ### `startTransition` 関数 {/*starttransition*/}
 
-<<<<<<< HEAD
 `useTransition` によって返される `startTransition` 関数により、ある state 更新をトランジションとしてマークすることができます。
-=======
-The `startTransition` function returned by `useTransition` lets you mark a state update as a Transition.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js {6,8}
 function TabContainer() {
@@ -79,11 +66,7 @@ function TabContainer() {
 
 #### 引数 {/*starttransition-parameters*/}
 
-<<<<<<< HEAD
 * `scope`: 1 つ以上の [`set` 関数](/reference/react/useState#setstate)を呼び出して state を更新する関数。React は引数なしで直ちに `scope` を呼び出し、`scope` 関数呼び出し中に同期的にスケジュールされたすべての state 更新をトランジションとしてマークします。このような更新は[ノンブロッキング](#marking-a-state-update-as-a-non-blocking-transition)になり、[不要なローディングインジケータを表示しない](#preventing-unwanted-loading-indicators)ようになります。
-=======
-* `scope`: A function that updates some state by calling one or more [`set` functions.](/reference/react/useState#setstate) React immediately calls `scope` with no parameters and marks all state updates scheduled synchronously during the `scope` function call as Transitions. They will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators.](#preventing-unwanted-loading-indicators)
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 #### 返り値 {/*starttransition-returns*/}
 
@@ -91,7 +74,6 @@ function TabContainer() {
 
 #### 注意点 {/*starttransition-caveats*/}
 
-<<<<<<< HEAD
 * `useTransition` はフックであるため、コンポーネント内かカスタムフック内でのみ呼び出すことができます。他の場所（例えば、データライブラリ）でトランジションを開始する必要がある場合は、代わりにスタンドアロンの [`startTransition`](/reference/react/startTransition) を呼び出してください。
 
 * state の `set` 関数にアクセスできる場合にのみ、state 更新をトランジションにラップできます。ある props やカスタムフックの値に反応してトランジションを開始したい場合は、代わりに [`useDeferredValue`](/reference/react/useDeferredValue) を試してみてください。
@@ -99,37 +81,18 @@ function TabContainer() {
 * `startTransition` に渡す関数は同期的でなければなりません。React はこの関数を直ちに実行し、その実行中に行われるすべての state 更新をトランジションとしてマークします。後になって（例えばタイムアウト内で）さらに state 更新をしようとすると、それらはトランジションとしてマークされません。
 
 * トランジションとしてマークされた state 更新は、他の state 更新によって中断されます。例えば、トランジション内でチャートコンポーネントを更新した後、チャートの再レンダーの途中で入力フィールドに入力を始めた場合、React は入力欄の更新の処理後にチャートコンポーネントのレンダー作業を再開します。
-=======
-* `useTransition` is a Hook, so it can only be called inside components or custom Hooks. If you need to start a Transition somewhere else (for example, from a data library), call the standalone [`startTransition`](/reference/react/startTransition) instead.
-
-* You can wrap an update into a Transition only if you have access to the `set` function of that state. If you want to start a Transition in response to some prop or a custom Hook value, try [`useDeferredValue`](/reference/react/useDeferredValue) instead.
-
-* The function you pass to `startTransition` must be synchronous. React immediately executes this function, marking all state updates that happen while it executes as Transitions. If you try to perform more state updates later (for example, in a timeout), they won't be marked as Transitions.
-
-* A state update marked as a Transition will be interrupted by other state updates. For example, if you update a chart component inside a Transition, but then start typing into an input while the chart is in the middle of a re-render, React will restart the rendering work on the chart component after handling the input update.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 * トランジションによる更新はテキスト入力欄の制御には使用できません。
 
-<<<<<<< HEAD
 * 進行中のトランジションが複数ある場合、React は現在それらをひとつに束ねる処理を行います。この制限は将来のリリースではおそらく削除されます。
-=======
-* If there are multiple ongoing Transitions, React currently batches them together. This is a limitation that will likely be removed in a future release.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ---
 
 ## 使用法 {/*usage*/}
 
-<<<<<<< HEAD
 ### state 更新をノンブロッキングのトランジションとしてマークする {/*marking-a-state-update-as-a-non-blocking-transition*/}
 
 コンポーネントのトップレベルで `useTransition` を呼び出し、state 更新を非ブロッキングの*トランジション*としてマークします。
-=======
-### Marking a state update as a non-blocking Transition {/*marking-a-state-update-as-a-non-blocking-transition*/}
-
-Call `useTransition` at the top level of your component to mark state updates as non-blocking *Transitions*.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js [[1, 4, "isPending"], [2, 4, "startTransition"]]
 import { useState, useTransition } from 'react';
@@ -142,17 +105,10 @@ function TabContainer() {
 
 `useTransition` は正確に 2 つの項目を含む配列を返します：
 
-<<<<<<< HEAD
 1. トランジションが保留中であるかどうかを示す <CodeStep step={1}>`isPending` フラグ</CodeStep>。
 2. state 更新をトランジションとしてマークするための <CodeStep step={2}>`startTransition` 関数</CodeStep>。
 
 その後、次のようにして state 更新をトランジションとしてマークできます。
-=======
-1. The <CodeStep step={1}>`isPending` flag</CodeStep> that tells you whether there is a pending Transition.
-2. The <CodeStep step={2}>`startTransition` function</CodeStep> that lets you mark a state update as a Transition.
-
-You can then mark a state update as a Transition like this:
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js {6,8}
 function TabContainer() {
@@ -170,27 +126,15 @@ function TabContainer() {
 
 トランジションを使用することで、遅いデバイスでもユーザインターフェースの更新をレスポンシブに保つことができます。
 
-<<<<<<< HEAD
 トランジションを使用すると、再レンダーの途中でも UI がレスポンシブに保たれます。例えば、ユーザがタブをクリックしたが、その後気が変わって別のタブをクリックする場合、最初の再レンダーが終了するのを待つことなくそれを行うことができます。
-=======
-With a Transition, your UI stays responsive in the middle of a re-render. For example, if the user clicks a tab but then change their mind and click another tab, they can do that without waiting for the first re-render to finish.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 <Recipes titleText="useTransition と通常の state 更新の違い" titleId="examples">
 
-<<<<<<< HEAD
 #### トランジションで現在のタブを更新する {/*updating-the-current-tab-in-a-transition*/}
-=======
-#### Updating the current tab in a Transition {/*updating-the-current-tab-in-a-transition*/}
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 この例では、"Posts" タブが**人為的に遅延**させられているため、レンダーには少なくとも 1 秒かかります。
 
-<<<<<<< HEAD
 "Posts" をクリックし、すぐに "Contact" をクリックしてみてください。これにより、"Posts" の遅いレンダーが中断されます。"Contact" タブはすぐに表示されます。この state 更新はトランジションとしてマークされているため、遅い再レンダーがユーザインターフェースをフリーズさせることはありません。
-=======
-Click "Posts" and then immediately click "Contact". Notice that this interrupts the slow render of "Posts". The "Contact" tab shows immediately. Because this state update is marked as a Transition, a slow re-render did not freeze the user interface.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 <Sandpack>
 
@@ -325,19 +269,11 @@ b { display: inline-block; margin-right: 10px; }
 
 <Solution />
 
-<<<<<<< HEAD
 #### トランジションなしで現在のタブを更新する {/*updating-the-current-tab-without-a-transition*/}
 
 この例でも、"Posts" タブが**人為的に遅延**させられているため、レンダーには少なくとも 1 秒かかります。前の例とは異なり、この state 更新は**トランジションではありません**。
 
 "Posts" をクリックし、直後に "Contact" をクリックしてみてください。アプリはこの遅いタブのレンダー中にフリーズし、UI は反応しなくなります。この state 更新はトランジションではないため、遅い再レンダーがユーザインターフェースをフリーズさせたのです。
-=======
-#### Updating the current tab without a Transition {/*updating-the-current-tab-without-a-transition*/}
-
-In this example, the "Posts" tab is also **artificially slowed down** so that it takes at least a second to render. Unlike in the previous example, this state update is **not a Transition.**
-
-Click "Posts" and then immediately click "Contact". Notice that the app freezes while rendering the slowed down tab, and the UI becomes unresponsive. This state update is not a Transition, so a slow re-render freezed the user interface.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 <Sandpack>
 
@@ -473,15 +409,9 @@ b { display: inline-block; margin-right: 10px; }
 
 ---
 
-<<<<<<< HEAD
 ### トランジション中に親コンポーネントを更新する {/*updating-the-parent-component-in-a-transition*/}
 
 `useTransition` の呼び出しから親コンポーネントの state を更新することもできます。例えば、この `TabButton` コンポーネントは `onClick` のロジックをトランジションでラップしています。
-=======
-### Updating the parent component in a Transition {/*updating-the-parent-component-in-a-transition*/}
-
-You can update a parent component's state from the `useTransition` call, too. For example, this `TabButton` component wraps its `onClick` logic in a Transition:
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js {8-10}
 export default function TabButton({ children, isActive, onClick }) {
@@ -501,11 +431,7 @@ export default function TabButton({ children, isActive, onClick }) {
 }
 ```
 
-<<<<<<< HEAD
 親コンポーネントは `onClick` イベントハンドラ内で state を更新しているため、その state 更新はトランジションとしてマークされます。このため、前の例と同様に、"Post" をクリックした直後に "Contact" をクリックできます。選択されたタブの更新はトランジションとしてマークされているため、ユーザ操作をブロックしません。
-=======
-Because the parent component updates its state inside the `onClick` event handler, that state update gets marked as a Transition. This is why, like in the earlier example, you can click on "Posts" and then immediately click "Contact". Updating the selected tab is marked as a Transition, so it does not block user interactions.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 <Sandpack>
 
@@ -634,15 +560,9 @@ b { display: inline-block; margin-right: 10px; }
 
 ---
 
-<<<<<<< HEAD
 ### トランジション中に保留中状態を視覚的に表示する {/*displaying-a-pending-visual-state-during-the-transition*/}
 
 `useTransition` によって返される `isPending` ブーリアン値を使用して、ユーザにトランジションが進行中であることを示すことができます。例えば、タブボタンは特別な "pending" という視覚的状態を持つことができます。
-=======
-### Displaying a pending visual state during the Transition {/*displaying-a-pending-visual-state-during-the-transition*/}
-
-You can use the `isPending` boolean value returned by `useTransition` to indicate to the user that a Transition is in progress. For example, the tab button can have a special "pending" visual state:
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js {4-6}
 function TabButton({ children, isActive, onClick }) {
@@ -1167,19 +1087,11 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-<<<<<<< HEAD
 [サスペンスとトランジションの詳細はこちらをご覧ください](/reference/react/Suspense#preventing-already-revealed-content-from-hiding)。
 
 <Note>
 
 トランジションは（今回のタブコンテナのような）*すでに表示されている*コンテンツを隠さない範囲で「待機」を行います。もし Posts タブに[ネストした `<Suspense>` バウンダリ](/reference/react/Suspense#revealing-nested-content-as-it-loads)がある場合、トランジションはそれを「待機」することはありません。
-=======
-[Read more about using Transitions with Suspense.](/reference/react/Suspense#preventing-already-revealed-content-from-hiding)
-
-<Note>
-
-Transitions will only "wait" long enough to avoid hiding *already revealed* content (like the tab container). If the Posts tab had a [nested `<Suspense>` boundary,](/reference/react/Suspense#revealing-nested-content-as-it-loads) the Transition would not "wait" for it.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 </Note>
 
@@ -1187,11 +1099,7 @@ Transitions will only "wait" long enough to avoid hiding *already revealed* cont
 
 ### サスペンス対応ルータの構築 {/*building-a-suspense-enabled-router*/}
 
-<<<<<<< HEAD
 React のフレームワークやルータを構築している場合、ページのナビゲーションをトランジションとしてマークすることをお勧めします。
-=======
-If you're building a React framework or a router, we recommend marking page navigations as Transitions.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js {3,6,8}
 function Router() {
@@ -1211,11 +1119,7 @@ function Router() {
 - [トランジションは中断可能](#marking-a-state-update-as-a-non-blocking-transition)であるため、ユーザは再レンダーの完了を待たずにクリックしてページから離れることができます。
 - [トランジションは不要なローディングインジケータを防ぐ](#preventing-unwanted-loading-indicators)ため、ユーザがナビゲーション時の不快なちらつきを避けることができます。
 
-<<<<<<< HEAD
 以下は、ナビゲーションにトランジションを使用した非常に簡易的なルータの例です。
-=======
-Here is a tiny simplified router example using Transitions for navigations.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 <Sandpack>
 
@@ -1591,11 +1495,7 @@ main {
 
 <Note>
 
-<<<<<<< HEAD
 [サスペンス対応](/reference/react/Suspense)のルータは、デフォルトでナビゲーションの更新をトランジションにラップすることが期待されます。
-=======
-[Suspense-enabled](/reference/react/Suspense) routers are expected to wrap the navigation updates into Transitions by default.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 </Note>
 
@@ -1698,15 +1598,9 @@ root.render(
 
 ## トラブルシューティング {/*troubleshooting*/}
 
-<<<<<<< HEAD
 ### トランジション中に入力フィールドを更新できない {/*updating-an-input-in-a-transition-doesnt-work*/}
 
 入力フィールドを制御する state 変数に対してトランジションを使用することはできません。
-=======
-### Updating an input in a Transition doesn't work {/*updating-an-input-in-a-transition-doesnt-work*/}
-
-You can't use a Transition for a state variable that controls an input:
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js {4,10}
 const [text, setText] = useState('');
@@ -1721,7 +1615,6 @@ function handleChange(e) {
 return <input value={text} onChange={handleChange} />;
 ```
 
-<<<<<<< HEAD
 これは、トランジションが非ブロッキングである一方、change イベントへの応答として入力を更新する処理は同期的である必要があるためです。タイピングに応じてトランジションを実行したい場合、2 つの選択肢があります：
 
 1. 入力フィールド用の state（常に同期的に更新される）と、トランジションで更新する state を別々に宣言する。これにより、同期的な state を使用して入力フィールドを制御しつつ、トランジション state 変数（入力欄より「遅れる」ことになる）をレンダーロジックの残りの部分に渡すことができます。
@@ -1732,18 +1625,6 @@ return <input value={text} onChange={handleChange} />;
 ### React が state 更新をトランジションとして扱わない {/*react-doesnt-treat-my-state-update-as-a-transition*/}
 
 state 更新をトランジションでラップするとき、更新が `startTransition` の呼び出しの*最中*に行われていることを確認してください：
-=======
-This is because Transitions are non-blocking, but updating an input in response to the change event should happen synchronously. If you want to run a Transition in response to typing, you have two options:
-
-1. You can declare two separate state variables: one for the input state (which always updates synchronously), and one that you will update in a Transition. This lets you control the input using the synchronous state, and pass the Transition state variable (which will "lag behind" the input) to the rest of your rendering logic.
-2. Alternatively, you can have one state variable, and add [`useDeferredValue`](/reference/react/useDeferredValue) which will "lag behind" the real value. It will trigger non-blocking re-renders to "catch up" with the new value automatically.
-
----
-
-### React doesn't treat my state update as a Transition {/*react-doesnt-treat-my-state-update-as-a-transition*/}
-
-When you wrap a state update in a Transition, make sure that it happens *during* the `startTransition` call:
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js
 startTransition(() => {
@@ -1754,11 +1635,7 @@ startTransition(() => {
 
 `startTransition` に渡す関数は同期的でなければなりません。
 
-<<<<<<< HEAD
 以下のような形で更新をトランジションとしてマークすることはできません。
-=======
-You can't mark an update as a Transition like this:
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js
 startTransition(() => {
@@ -1780,11 +1657,7 @@ setTimeout(() => {
 }, 1000);
 ```
 
-<<<<<<< HEAD
 同様に、以下のように更新をトランジションとしてマークすることはできません。
-=======
-Similarly, you can't mark an update as a Transition like this:
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js
 startTransition(async () => {
@@ -1825,11 +1698,7 @@ startTransition(() => {
 console.log(3);
 ```
 
-<<<<<<< HEAD
 **1、2、3 が出力されるのは期待通りの動作です**。`startTransition` に渡す関数は遅延されません。ブラウザの `setTimeout` を使う場合とは異なり、コールバックは後で実行されるのではありません。React はあなたの関数をすぐに実行しますが、*それが実行されている間*にスケジュールされた state 更新をトランジションとしてマークします。以下のように動作していると考えることができます。
-=======
-**It is expected to print 1, 2, 3.** The function you pass to `startTransition` does not get delayed. Unlike with the browser `setTimeout`, it does not run the callback later. React executes your function immediately, but any state updates scheduled *while it is running* are marked as Transitions. You can imagine that it works like this:
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js
 // A simplified version of how React works

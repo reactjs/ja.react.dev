@@ -38,7 +38,6 @@ async function addToCart(data) {
 
 個々の関数に `'use server'` をマークする代わりに、このディレクティブをファイルの先頭に追加することもできます。その場合はそのファイル内のすべてのエクスポートが、クライアントコードでインポートされる場合も含み、あらゆる場所で使用できるサーバアクションとしてマークされます。
 
-<<<<<<< HEAD
 #### 注意点 {/*caveats*/}
 * `'use server'` は、関数やモジュールの冒頭、つまりインポートも含む他のコードよりも上にある必要があります（ディレクティブの上にコメントを書くことは OK）。シングルクォートまたはダブルクォートで書かれていなければならず、バックティックは無効です。
 * `'use server'` は、サーバサイドのファイルでのみ使用できます。結果として得られるサーバアクションは、props を通じてクライアントコンポーネントに渡せるようになります。サポートされている[シリアライズ可能な型](#serializable-parameters-and-return-values)を参照してください。
@@ -47,16 +46,6 @@ async function addToCart(data) {
 * サーバアクションへの引数は常に信頼できない入力として扱い、あらゆるデータ書き換えを検証してください。[セキュリティに関する考慮事項](#security)を参照してください。
 * サーバアクションは[トランジション](/reference/react/useTransition)の中で呼び出すようにしてください。サーバアクションが [`<form action>`](/reference/react-dom/components/form#props) または [`formAction`](/reference/react-dom/components/input#props) に渡される場合、自動的にトランジション内で呼び出されます。
 * サーバアクションは、サーバ側の状態を書き換える、更新目的のために設計されています。データの取得には推奨されません。したがって、サーバアクションを実装するフレームワークは通常、一度にひとつのアクションのみを処理し、返り値をキャッシュしないようにします。
-=======
-#### Caveats {/*caveats*/}
-* `'use server'` must be at the very beginning of their function or module; above any other code including imports (comments above directives are OK). They must be written with single or double quotes, not backticks.
-* `'use server'` can only be used in server-side files. The resulting Server Actions can be passed to Client Components through props. See supported [types for serialization](#serializable-parameters-and-return-values).
-* To import a Server Action from [client code](/reference/react/use-client), the directive must be used on a module level.
-* Because the underlying network calls are always asynchronous, `'use server'` can only be used on async functions.
-* Always treat arguments to Server Actions as untrusted input and authorize any mutations. See [security considerations](#security).
-* Server Actions should be called in a [Transition](/reference/react/useTransition). Server Actions passed to [`<form action>`](/reference/react-dom/components/form#props) or [`formAction`](/reference/react-dom/components/input#props) will automatically be called in a transition.
-* Server Actions are designed for mutations that update server-side state; they are not recommended for data fetching. Accordingly, frameworks implementing Server Actions typically process one action at a time and do not have a way to cache the return value.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ### セキュリティについての考慮事項 {/*security*/}
 
@@ -188,11 +177,7 @@ function UsernameForm() {
 
 サーバアクションはサーバ側の公開エンドポイントであり、クライアントコードのどこからでも呼び出すことができます。
 
-<<<<<<< HEAD
 [フォーム](/reference/react-dom/components/form)の外部でサーバアクションを使用する場合、[トランジション](/reference/react/useTransition)内でサーバアクションを呼び出すようにしてください。これによりローディングインジケータを表示したり、[楽観的に state 更新結果を表示](/reference/react/useOptimistic)したり、予期せぬエラーを処理したりすることができるようになります。フォームではサーバアクションは自動的にトランジション内にラップされます。
-=======
-When using a Server Action outside of a [form](/reference/react-dom/components/form), call the Server Action in a [Transition](/reference/react/useTransition), which allows you to display a loading indicator, show [optimistic state updates](/reference/react/useOptimistic), and handle unexpected errors. Forms will automatically wrap Server Actions in transitions.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 ```js {9-12}
 import incrementLike from './actions';

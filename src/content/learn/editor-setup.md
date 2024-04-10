@@ -40,11 +40,7 @@ title: エディタのセットアップ
 
 ### コードフォーマット {/*formatting*/}
 
-<<<<<<< HEAD
-他の人とコードを共有するにあたって何よりも避けたいのは、[タブ vs スペース](https://www.google.com/search?q=tabs+vs+spaces) についての議論に巻き込まれてしまうことです！ 幸いなことに、[Prettier](https://prettier.io/) は、あらかじめ設定できるルールに従ってコードを再フォーマットすることで、あなたのコードを綺麗にしてくれます。Prettier を実行すれば、タブはスペースに変換され、インデント、引用符なども設定に従って変更されます。理想的なセットアップでは、Prettier はファイルを保存するたびに実行され、瞬時にれらの変更を適用してくれます。
-=======
-The last thing you want to do when sharing your code with another contributor is get into a discussion about [tabs vs spaces](https://www.google.com/search?q=tabs+vs+spaces)! Fortunately, [Prettier](https://prettier.io/) will clean up your code by reformatting it to conform to preset, configurable rules. Run Prettier, and all your tabs will be converted to spaces—and your indentation, quotes, etc will also all be changed to conform to the configuration. In the ideal setup, Prettier will run when you save your file, quickly making these edits for you.
->>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
+他の人とコードを共有するにあたって何よりも避けたいのは、[タブ vs スペース](https://www.google.com/search?q=tabs+vs+spaces)についての議論に巻き込まれてしまうことです！ 幸いなことに、[Prettier](https://prettier.io/) は、あらかじめ設定できるルールに従ってコードを再フォーマットすることで、あなたのコードを綺麗にしてくれます。Prettier を実行すれば、タブはスペースに変換され、インデント、引用符なども設定に従って変更されます。理想的なセットアップでは、Prettier はファイルを保存するたびに実行され、瞬時にれらの変更を適用してくれます。
 
 [VSCode 用の Prettier 拡張機能](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) を VS Code にインストールするには、次の手順に従ってください。
 
