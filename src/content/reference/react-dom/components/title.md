@@ -5,14 +5,14 @@ canary: true
 
 <Canary>
 
-React's extensions to `<title>` are currently only available in React's canary and experimental channels. In stable releases of React `<title>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+React による `<title>` の機能拡張は、現在 React の Canary および experimental チャンネルでのみ利用可能です。React の安定版リリースでは、`<title>` は単なる[組み込みのブラウザ HTML コンポーネント](https://react.dev/reference/react-dom/components#all-html-components)として機能します。[React のリリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
 
 </Canary>
 
 
 <Intro>
 
-The [built-in browser `<title>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title) lets you specify the title of the document.
+[ブラウザ組み込みの `<title>` コンポーネント](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title)を利用することで、ドキュメントのタイトルを指定できます。
 
 ```js
 <title>My Blog</title>
@@ -24,45 +24,45 @@ The [built-in browser `<title>` component](https://developer.mozilla.org/en-US/d
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `<title>` {/*title*/}
 
-To specify the title of the document, render the [built-in browser `<title>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title). You can render `<title>` from any component and React will always place the corresponding DOM element in the document head.
+ドキュメントのタイトルを指定するには、[ブラウザ組み込みの `<title>` コンポーネント](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title)をレンダーします。任意のコンポーネントから `<title>` をレンダーでき、React は常に対応する DOM 要素をドキュメントの head 内に配置します。
 
 ```js
 <title>My Blog</title>
 ```
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-#### Props {/*props*/}
+#### props {/*props*/}
 
-`<title>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<title>` は、[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
 
-* `children`: `<title>` accepts only text as a child. This text will become the title of the document. You can also pass your own components as long as they only render text.
+* `children`: `<title>` は子としてテキストのみを受け入れます。このテキストがドキュメントのタイトルになります。それがテキストのみをレンダーする限り、カスタムのコンポーネントを渡すこともできます。
 
-#### Special rendering behavior {/*special-rendering-behavior*/}
+#### 特別なレンダー動作 {/*special-rendering-behavior*/}
 
-React will always place the DOM element corresponding to the `<title>` component within the document’s `<head>`, regardless of where in the React tree it is rendered. The `<head>` is the only valid place for `<title>` to exist within the DOM, yet it’s convenient and keeps things composable if a component representing a specific page can render its `<title>` itself. 
+`<title>` コンポーネントが React ツリー内のどこでレンダーされていても、React は対応する DOM 要素を常にドキュメントの `<head>` 内に配置します。`<head>` は DOM 内で `<title>` が存在できる唯一の有効な場所ですが、ある特定のページを表すコンポーネントが自分自身で `<title>` コンポーネントをレンダーできれば有用であり、コンポーネントの組み合わせやすさが保たれます。
 
-There are two exception to this:
-* If `<title>` is within an `<svg>` component, then there is no special behavior, because in this context it doesn’t represent the document’s title but rather is an [accessibility annotation for that SVG graphic](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/title).
-* If the `<title>` has an [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop) prop, there is no special behavior, because in this case it doesn’t represent the document’s title but rather metadata about a specific part of the page. 
+これには 2 つの例外があります。
+* `<title>` が `<svg>` コンポーネント内にある場合、特別な動作は発生しません。その文脈ではドキュメントのタイトルではなく[当該 SVG グラフィックに対するアクセシビリティ用の説明](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/title)を表すことになるからです。
+* `<title>` に props として [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop) がある場合、特別な動作は発生しません。その場合はドキュメントのタイトルではなく、ページの特定の部分に関するメタデータを表すことになるからです。
 
 <Pitfall>
 
-Only render a single `<title>` at a time. If more than one component renders a `<title>` tag at the same time, React will place all of those titles in the document head. When this happens, the behavior of browsers and search engines is undefined.
+一度にひとつの `<title>` だけがレンダーされるようにしてください。複数のコンポーネントが同時に `<title>` タグをレンダーすると、React はそれらのタイトルをすべてドキュメントの head に配置します。このような場合のブラウザや検索エンジンの動作は定義されていません。
 
 </Pitfall>
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Set the document title {/*set-the-document-title*/}
+### ドキュメントのタイトルを設定する {/*set-the-document-title*/}
 
-Render the `<title>` component from any component with text as its children. React will put a `<title>` DOM node in the document `<head>`.
+任意のコンポーネントから、テキストを children として持つ `<title>` コンポーネントをレンダーします。React は `<title>` DOM ノードをドキュメントの `<head>` に配置します。
 
 <SandpackWithHTMLOutput>
 
@@ -82,15 +82,15 @@ export default function ContactUsPage() {
 
 </SandpackWithHTMLOutput>
 
-### Use variables in the title {/*use-variables-in-the-title*/}
+### タイトルに変数を使用する {/*use-variables-in-the-title*/}
 
-The children of the `<title>` component must be a single string of text. (Or a single number or a single object with a `toString` method.) It might not be obvious, but using JSX curly braces like this:
+`<title>` コンポーネントの children は、単一の文字列（あるいは単一の数値、または `toString` メソッドを持つ単一のオブジェクト）でなければなりません。気付きにくいかもしれませんが、以下のように JSX で波括弧を使用した場合：
 
 ```js
 <title>Results page {pageNumber}</title> // 🔴 Problem: This is not a single string
 ```
 
-... actually causes the `<title>` component to get a two-element array as its children (the string `"Results page"` and the value of `pageNumber`). This will cause an error. Instead, use string interpolation to pass `<title>` a single string:
+...実際には、`<title>` コンポーネントは children として 2 つの要素（`"Results page"` という文字列と、`pageNumber` の値）を持つ配列を受け取ることになります。これはエラーを引き起こします。代わりに、文字列補間を使用することで `<title>` に単一の文字列を渡すようにしてください。
 
 ```js
 <title>{`Results page ${pageNumber}`}</title>
