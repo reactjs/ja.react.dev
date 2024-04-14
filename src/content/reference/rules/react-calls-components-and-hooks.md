@@ -1,19 +1,19 @@
 ---
-title: React calls Components and Hooks
+title: コンポーネントやフックを呼び出すのは React
 ---
 
 <Intro>
-React is responsible for rendering components and Hooks when necessary to optimize the user experience. It is declarative: you tell React what to render in your component’s logic, and React will figure out how best to display it to your user.
+ユーザ体験を最適化するために必要に応じてコンポーネントやフックを呼び出すというのは React 自身の責務です。React は宣言型 (declarative) です。あなたは*何 (what)* をレンダーしたいのかだけを React に伝え、それを*どうやって (how)* ユーザにうまく表示するのかについては React が考えます。
 </Intro>
 
 <InlineToc />
 
 ---
 
-## Never call component functions directly {/*never-call-component-functions-directly*/}
-Components should only be used in JSX. Don't call them as regular functions. React should call it.
+## コンポーネント関数を直接呼び出さない {/*never-call-component-functions-directly*/}
+コンポーネントは JSX 内でのみ使用すべきです。通常の関数として呼び出してはいけません。呼び出すのは React です。
 
-React must decide when your component function is called [during rendering](/reference/rules/components-and-hooks-must-be-pure#how-does-react-run-your-code). In React, you do this using JSX.
+[レンダー中](/reference/rules/components-and-hooks-must-be-pure#how-does-react-run-your-code)にコンポーネント関数をいつ呼び出すかを決定する必要があるのは React です。React では、これを JSX を使用して行います。
 
 ```js {2}
 function BlogPost() {
@@ -27,29 +27,29 @@ function BlogPost() {
 }
 ```
 
-If a component contains Hooks, it's easy to violate the [Rules of Hooks](/reference/rules/rules-of-hooks) when components are called directly in a loop or conditionally.
+コンポーネントにフックが含まれている場合、ループや条件内でコンポーネントを直接呼び出すと、[フックのルール](/reference/rules/rules-of-hooks)にいとも簡単に違反してしまいます。
 
-Letting React orchestrate rendering also allows a number of benefits:
+React にレンダーの指揮権を与えることで、多くの利点が得られます。
 
-* **Components become more than functions.** React can augment them with features like _local state_ through Hooks that are tied to the component's identity in the tree.
-* **Component types participate in reconciliation.** By letting React call your components, you also tell it more about the conceptual structure of your tree. For example, when you move from rendering `<Feed>` to the `<Profile>` page, React won’t attempt to re-use them.
-* **React can enhance your user experience.** For example, it can let the browser do some work between component calls so that re-rendering a large component tree doesn’t block the main thread.
-* **A better debugging story.** If components are first-class citizens that the library is aware of, we can build rich developer tools for introspection in development.
-* **More efficient reconciliation.** React can decide exactly which components in the tree need re-rendering and skip over the ones that don't. That makes your app faster and more snappy.
+* **コンポーネントが単なる関数以上のものになる**。ツリー内のコンポーネントの同一性に基づいた処理を行うフックを通じて、React は*ローカル state* などの機能を追加できます。
+* **コンポーネントの型情報を差分検出処理時に利用できる**。React にコンポーネントの呼び出しを任せることで、ツリーの概念的構造について React はより多くの情報を得られます。たとえば `<Feed>` から `<Profile>` ページへとレンダーが移行するとき、React はそれらを再利用しようとせずに済みます。
+* **React がユーザ体験を向上させられる**。たとえば、大きなコンポーネントツリーの再レンダーがメインスレッドをブロックしないよう、複数のコンポーネントのレンダーの合間にブラウザに一部の作業を行わせることができます。
+* **より良いデバッグ体験**。ライブラリがコンポーネントのことを基本部品として認識していれば、開発中の調査のためのリッチな開発者ツールを構築できます。
+* **より効率的な差分検出処理**。React は、ツリー内のどのコンポーネントを再レンダーすべきか正確に把握し、残りをスキップします。これによりアプリの動作は高速でキビキビとしたものになります。
 
 ---
 
-## Never pass around Hooks as regular values {/*never-pass-around-hooks-as-regular-values*/}
+## フックを通常の値として取り回さない {/*never-pass-around-hooks-as-regular-values*/}
 
-Hooks should only be called inside of components or Hooks. Never pass it around as a regular value.
+フックはコンポーネントまたはフックの内部でのみ呼び出すべきです。通常の値のように取り回してはいけません。
 
-Hooks allow you to augment a component with React features. They should always be called as a function, and never passed around as a regular value. This enables _local reasoning_, or the ability for developers to understand everything a component can do by looking at that component in isolation.
+フックは、コンポーネントに React の機能を加えるために使用します。常に関数として呼び出すだけにし、通常の値のように取りまわしてはいけません。これにより*ローカル・リーズニング*が可能に、すなわち開発者がそのコンポーネントだけを見てコンポーネントにできることをすべて理解できるようになります。
 
-Breaking this rule will cause React to not automatically optimize your component.
+このルールを破ると、React はコンポーネントを自動的に最適化することができなくなります。
 
-### Don't dynamically mutate a Hook {/*dont-dynamically-mutate-a-hook*/}
+### フックを動的に変更しない {/*dont-dynamically-mutate-a-hook*/}
 
-Hooks should be as "static" as possible. This means you shouldn't dynamically mutate them. For example, this means you shouldn't write higher order Hooks:
+フックは可能な限り「静的」であるべきです。つまり、動的に変更してはいけません。たとえば、高階 (higher-order) フックを書くべきではありません。
 
 ```js {2}
 function ChatInput() {
@@ -58,7 +58,7 @@ function ChatInput() {
 }
 ```
 
-Hooks should be immutable and not be mutated. Instead of mutating a Hook dynamically, create a static version of the Hook with the desired functionality.
+フックはイミュータブルであるべきで、動的に変更するべきではありません。フックを動的に変更する代わりに、望ましい機能を持つ静的なバージョンのフックを作成してください。
 
 ```js {2,6}
 function ChatInput() {
@@ -70,9 +70,9 @@ function useDataWithLogging() {
 }
 ```
 
-### Don't dynamically use Hooks {/*dont-dynamically-use-hooks*/}
+### フックを動的に使用しない {/*dont-dynamically-use-hooks*/}
 
-Hooks should also not be dynamically used: for example, instead of doing dependency injection in a component by passing a Hook as a value:
+フックを動的に使用してはいけません。例えば以下のように、フックそのものを値としてコンポーネントに渡して依存性注入を行わないようにしてください。
 
 ```js {2}
 function ChatInput() {
@@ -80,7 +80,7 @@ function ChatInput() {
 }
 ```
 
-You should always inline the call of the Hook into that component and handle any logic in there.
+代わりにコンポーネント内でインラインでフックをコールし、そこでロジックを処理するべきです。
 
 ```js {6}
 function ChatInput() {
@@ -97,5 +97,5 @@ function useDataWithLogging() {
 }
 ```
 
-This way, `<Button />` is much easier to understand and debug. When Hooks are used in dynamic ways, it increases the complexity of your app greatly and inhibits local reasoning, making your team less productive in the long term. It also makes it easier to accidentally break the [Rules of Hooks](/reference/rules/rules-of-hooks) that Hooks should not be called conditionally. If you find yourself needing to mock components for tests, it's better to mock the server instead to respond with canned data. If possible, it's also usually more effective to test your app with end-to-end tests.
+こうすることで `<Button />` を理解しデバッグするのがずっと簡単になります。フックを動的に使用すると、アプリの複雑さが大幅に増し、ローカル・リーズニングを妨げ、長期的にはチームの生産性を低下させます。また、条件付きでフックを呼び出すべきではないという[フックのルール](/reference/rules/rules-of-hooks)を誤って破る可能性も高まります。テストのためにコンポーネントをモックする必要がある場合は、代わりにサーバをモックして固定データで応答する方が良いでしょう。可能であれば、end-to-end テストでアプリをテストする方が通常はより効果的です。
 
