@@ -40,7 +40,7 @@ React による `<style>` の機能拡張は、現在 React の Canary および
 `<style>` は、[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
 
 * `children`: 文字列、必須。スタイルシートの内容です。
-* `precedence`: 文字列。React がドキュメントの `<head>` 内で `<style>` DOM ノードを他と比較してどのように順序付けるかを指定します。これによりどのスタイルシートが他を上書きできるかが決まります。可能な値は優先度が低い順に `"reset"`、`"low"`、`"medium"`、`"high"` です。同じ優先順位を持つスタイルシートは、`<link>` の場合でもインライン `<style>` タグの場合でも、あるいは [`preload`](/reference/react-dom/preload) や [`preinit`](/reference/react-dom/preinit) 関数を使用してロードされた場合でも、一緒に配置されます。
+* `precedence`: 文字列。React がドキュメントの `<head>` 内で `<style>` DOM ノードを他と比較してどのように順序付けるかを指定します。これによりどのスタイルシートが他を上書きできるかが決まります。指定可能な値は優先度が低い順に `"reset"`、`"low"`、`"medium"`、`"high"` です。同じ優先順位を持つスタイルシートは、`<link>` の場合でもインライン `<style>` タグの場合でも、あるいは [`preload`](/reference/react-dom/preload) や [`preinit`](/reference/react-dom/preinit) 関数を使用してロードされた場合でも、一緒に配置されます。
 * `href`: 文字列。同じ `href` を持つスタイルに対して React が[重複解消処理](#special-rendering-behavior)を行えるようにします。
 * `media`: 文字列。スタイルの適用を特定の[メディアクエリ](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries)に制限します。
 * `nonce`: 文字列。厳格なコンテンツセキュリティポリシーを使用する際に[リソースを許可するための暗号化 nonce](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce)。
@@ -48,7 +48,7 @@ React による `<style>` の機能拡張は、現在 React の Canary および
 
 以下は React での使用が**推奨されない** props です。
 
-* `blocking`：文字列。`"render"` と設定されている場合、スタイルシートがロードされるまでページを描画しないようブラウザに指示します。React ではサスペンスを通じてより細かい制御を提供します。
+* `blocking`: 文字列。`"render"` と設定されている場合、スタイルシートがロードされるまでページを描画しないようブラウザに指示します。React ではサスペンスを通じてより細かい制御を提供します。
 
 #### 特別なレンダー動作 {/*special-rendering-behavior*/}
 
