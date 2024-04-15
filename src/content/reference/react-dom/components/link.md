@@ -61,21 +61,21 @@ React による `<link>` の機能拡張は、現在 React の Canary および 
 
 以下の props は、`rel="icon"` または `rel="apple-touch-icon"` の場合に適用されます。
 
-* `sizes`：文字列。アイコンの[サイズ](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)。
+* `sizes`: 文字列。アイコンの[サイズ](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)。
 
 以下の props はすべての場合に適用されます。
 
-* `href`：文字列。リンクするリソースの URL。
-* `crossOrigin`：文字列。使用する [CORS ポリシー](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin)。可能な値は `anonymous` と `use-credentials` です。`as` が `"fetch"` に設定されている場合は必須です。
-* `referrerPolicy`：文字列。フェッチ時に送信する [Referrer ヘッダ](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#referrerpolicy)。可能な値は `no-referrer-when-downgrade`（デフォルト）、`no-referrer`、`origin`、`origin-when-cross-origin`、および `unsafe-url` です。
-* `fetchPriority`：文字列。リソースのフェッチに対する相対的な優先度のヒントです。可能な値は `auto`（デフォルト）、`high`、および `low` です。
-* `hrefLang`：文字列。リンクするリソースの言語。
-* `integrity`：文字列。[真正性を検証する](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)ために使用するリソースの暗号化ハッシュ。
+* `href`: 文字列。リンクするリソースの URL。
+* `crossOrigin`: 文字列。使用する [CORS ポリシー](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin)。可能な値は `anonymous` と `use-credentials` です。`as` が `"fetch"` に設定されている場合は必須です。
+* `referrerPolicy`: 文字列。フェッチ時に送信する [Referrer ヘッダ](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#referrerpolicy)。可能な値は `no-referrer-when-downgrade`（デフォルト）、`no-referrer`、`origin`、`origin-when-cross-origin`、および `unsafe-url` です。
+* `fetchPriority`: 文字列。リソースのフェッチに対する相対的な優先度のヒントです。可能な値は `auto`（デフォルト）、`high`、および `low` です。
+* `hrefLang`: 文字列。リンクするリソースの言語。
+* `integrity`: 文字列。[真正性を検証する](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)ために使用するリソースの暗号化ハッシュ。
 * `type`：文字列。リンクされるリソースの MIME タイプ。
 
 以下は React での使用が**推奨されない** props です。
 
-* `blocking`：文字列。`"render"` と設定されている場合、スタイルシートがロードされるまでページを描画しないようブラウザに指示します。React ではサスペンスを通じてより細かい制御を提供します。
+* `blocking`: 文字列。`"render"` と設定されている場合、スタイルシートがロードされるまでページを描画しないようブラウザに指示します。React ではサスペンスを通じてより細かい制御を提供します。
 
 #### 特別なレンダー動作 {/*special-rendering-behavior*/}
 
