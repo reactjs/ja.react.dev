@@ -5,19 +5,19 @@ canary: true
 
 <Canary>
 
-The `preinitModule` function is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+`preinitModule` 関数は、現在 React の Canary および experimental チャンネルでのみ利用可能です。[React のリリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
 
 </Canary>
 
 <Note>
 
-[React-based frameworks](/learn/start-a-new-react-project) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
+[React ベースのフレームワーク](/learn/start-a-new-react-project)は、多くの場合リソースの読み込みを自動で処理してくれるため、この API を直接呼び出す必要はないかもしれません。詳細はフレームワークのドキュメントを参照してください。
 
 </Note>
 
 <Intro>
 
-`preinitModule` lets you eagerly fetch and evaluate an ESM module.
+`preinitModule` は、ESM モジュールを事前にフェッチして評価することができます。
 
 ```js
 preinitModule("https://example.com/module.js", {as: "script"});
@@ -29,11 +29,11 @@ preinitModule("https://example.com/module.js", {as: "script"});
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `preinitModule(href, options)` {/*preinitmodule*/}
 
-To preinit an ESM module, call the `preinitModule` function from `react-dom`.
+ESM モジュールを事前初期化するためには、`react-dom` の `preinitModule` 関数を呼び出します。
 
 ```js
 import { preinitModule } from 'react-dom';
@@ -45,36 +45,36 @@ function AppRoot() {
 
 ```
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-The `preinitModule` function provides the browser with a hint that it should start downloading and executing the given module, which can save time. Modules that you `preinit` are executed when they finish downloading.
+`preinitModule` 関数は、指定されたモジュールのダウンロードと実行を開始するようブラウザに対してヒントを与えます。これにより時間を節約できる可能性があります。事前初期化されたスクリプトは、ダウンロードが完了すると実行されます。
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-* `href`: a string. The URL of the module you want to download and exeucute.
-* `options`: an object. It contains the following properties:
-  *  `as`: a required string. It must be `'script'`.
-  *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
-  *  `integrity`: a string. A cryptographic hash of the module, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
-  *  `nonce`: a string. A cryptographic [nonce to allow the module](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy. 
+* `href`: 文字列。ダウンロードして実行したいモジュールの URL。
+* `options`: オブジェクト。以下のプロパティを含みます。
+  *  `as`: 必須の文字列。`'script'` である必要があります。
+  *  `crossOrigin`: 文字列。使用する [CORS ポリシー](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin)。可能な値は `anonymous` と `use-credentials` です。
+  *  `integrity`: 文字列。[真正性を検証する](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)ために使用するリソースの暗号化ハッシュ。
+  *  `nonce`: 文字列。厳格なコンテンツセキュリティポリシーを使用する際に[リソースを許可するための暗号化 nonce](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce)。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-`preinitModule` returns nothing.
+`preinitModule` は何も返しません。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-* Multiple calls to `preinitModule` with the same `href` have the same effect as a single call.
-* In the browser, you can call `preinitModule` in any situation: while rendering a component, in an Effect, in an event handler, and so on.
-* In server-side rendering or when rendering Server Components, `preinitModule` only has an effect if you call it while rendering a component or in an async context originating from rendering a component. Any other calls will be ignored.
+* 同じ `href` で `preinitModule` を複数回呼び出した場合の効果は、一度のみ呼び出した場合と同様です。
+* ブラウザからは、コンポーネントのレンダー中、エフェクト内、イベントハンドラ内も含むどんな状況においても `preinitModule` の呼び出しが可能です。
+* サーバサイドレンダリングやサーバコンポーネントのレンダー時には、コンポーネントのレンダー中やレンダーから派生した非同期処理の中で `preinitModule` を呼び出した場合にのみ効果があります。それ以外の呼び出しは無視されます。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Preloading when rendering {/*preloading-when-rendering*/}
+### レンダー時のプリロード {/*preloading-when-rendering*/}
 
-Call `preinitModule` when rendering a component if you know that it or its children will use a specific module and you're OK with the module being evaluated and thereby taking effect immediately upon being downloaded.
+コンポーネントをレンダーする際に自身あるいはその子が特定のモジュールを使用することが分かっており、かつそのモジュールがダウンロードされた直後に評価され効果が現れても問題ないという場合、`preinitModule` を呼び出します。
 
 ```js
 import { preinitModule } from 'react-dom';
@@ -85,11 +85,11 @@ function AppRoot() {
 }
 ```
 
-If you want the browser to download the module but not to execute it right away, use [`preloadModule`](/reference/react-dom/preloadModule) instead. If you want to preinit a script that isn't an ESM module, use [`preinit`](/reference/react-dom/preinit).
+ブラウザにモジュールをダウンロードさせたいが、すぐに実行させたくない場合は、代わりに [`preloadModule`](/reference/react-dom/preloadModule) を使用してください。ESM モジュールではないスクリプトを事前初期化したい場合は、[`preinit`](/reference/react-dom/preinit) を使用してください。
 
-### Preloading in an event handler {/*preloading-in-an-event-handler*/}
+### イベントハンドラ内でのプリロード {/*preloading-in-an-event-handler*/}
 
-Call `preinitModule` in an event handler before transitioning to a page or state where the module will be needed. This gets the process started earlier than if you call it during the rendering of the new page or state.
+外部リソースを必要とするページ遷移や状態遷移を行う前に、イベントハンドラで `preinitModule` を呼び出しておきます。これにより、新しいページや状態がレンダーされる時点で読み込むのと比べ、早期に処理を開始できます。
 
 ```js
 import { preinitModule } from 'react-dom';

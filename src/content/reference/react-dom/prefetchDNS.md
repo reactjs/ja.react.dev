@@ -5,13 +5,13 @@ canary: true
 
 <Canary>
 
-The `prefetchDNS` function is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+`prefetchDNS` 関数は、現在 React の Canary および experimental チャンネルでのみ利用可能です。[React のリリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
 
 </Canary>
 
 <Intro>
 
-`prefetchDNS` lets you eagerly look up the IP of a server that you expect to load resources from.
+`prefetchDNS` を使用して、リソースをロードする予定のサーバに対して IP ルックアップを事前に行うことができます。
 
 ```js
 prefetchDNS("https://example.com");
@@ -23,11 +23,11 @@ prefetchDNS("https://example.com");
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `prefetchDNS(href)` {/*prefetchdns*/}
 
-To look up a host, call the `prefetchDNS` function from `react-dom`.
+ホストのルックアップを行うには、`react-dom` の `prefetchDNS` 関数を呼び出します。
 
 ```js
 import { prefetchDNS } from 'react-dom';
@@ -39,34 +39,34 @@ function AppRoot() {
 
 ```
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-The prefetchDNS function provides the browser with a hint that it should look up the IP address of a given server. If the browser chooses to do so, this can speed up the loading of resources from that server. 
+prefetchDNS 関数は、指定されたサーバの IP アドレスを調べるようブラウザに対してヒントを与えます。ブラウザがそのヒントに従うと、そのサーバからのリソースのロードが素早く行える可能性があります。
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-* `href`: a string. The URL of the server you want to connect to.
+* `href`: 文字列。接続したいサーバの URL。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-`prefetchDNS` returns nothing.
+`prefetchDNS` は何も返しません。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-* Multiple calls to `prefetchDNS` with the same server have the same effect as a single call.
-* In the browser, you can call `prefetchDNS` in any situation: while rendering a component, in an Effect, in an event handler, and so on.
-* In server-side rendering or when rendering Server Components, `prefetchDNS` only has an effect if you call it while rendering a component or in an async context originating from rendering a component. Any other calls will be ignored.
-* If you know the specific resources you'll need, you can call [other functions](/reference/react-dom/#resource-preloading-apis) instead that will start loading the resources right away.
-* There is no benefit to prefetching the same server the webpage itself is hosted from because it's already been looked up by the time the hint would be given.
-* Compared with [`preconnect`](/reference/react-dom/preconnect), `prefetchDNS` may be better if you are speculatively connecting to a large number of domains, in which case the overhead of preconnections might outweigh the benefit.
+* 同じサーバに対して `prefetchDNS` を複数回呼び出した場合の効果は、一度のみ呼び出した場合と同様です。
+* ブラウザからは、コンポーネントのレンダー中、エフェクト内、イベントハンドラ内も含むどんな状況においても `prefetchDNS` の呼び出しが可能です。
+* サーバサイドレンダリングやサーバコンポーネントのレンダー時には、コンポーネントのレンダー中やレンダーから派生した非同期処理の中で `prefetchDNS` を呼び出した場合にのみ効果があります。それ以外の呼び出しは無視されます。
+* どのリソースが必要か具体的に分かっている場合は、リソースのロードを即座に開始する[他の関数](/reference/react-dom/#resource-preloading-apis)を利用することができます。
+* ウェブページ自体がホストされているのと同じサーバにプリフェッチを行う利点はありません。ヒントが与えられた時点で既にルックアップが完了しているからです。
+* [`preconnect`](/reference/react-dom/preconnect) と比較して、大量のドメインに投機的に接続する場合は `prefetchDNS` の方が適しているかもしれません。大量に事前接続するとそのオーバーヘッドが利益を上回る可能性があるためです。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Prefetching DNS when rendering {/*prefetching-dns-when-rendering*/}
+### レンダー時の DNS プリフェッチ {/*prefetching-dns-when-rendering*/}
 
-Call `prefetchDNS` when rendering a component if you know that its children will load external resources from that host.
+コンポーネントをレンダーする際に子コンポーネントがホストから外部リソースをロードすると分かっている場合に、`prefetchDNS` を呼び出しておきます。
 
 ```js
 import { prefetchDNS } from 'react-dom';
@@ -77,9 +77,9 @@ function AppRoot() {
 }
 ```
 
-### Prefetching DNS in an event handler {/*prefetching-dns-in-an-event-handler*/}
+### イベントハンドラ内での DNS プリフェッチ {/*prefetching-dns-in-an-event-handler*/}
 
-Call `prefetchDNS` in an event handler before transitioning to a page or state where external resources will be needed. This gets the process started earlier than if you call it during the rendering of the new page or state.
+外部リソースを必要とするページ遷移や状態遷移を行う前に、イベントハンドラで `prefetchDNS` を呼び出しておきます。これにより、新しいページや状態がレンダーされる時点で読み込むのと比べ、早期に処理を開始できます。
 
 ```js
 import { prefetchDNS } from 'react-dom';
