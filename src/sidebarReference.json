@@ -359,7 +359,7 @@
       "path": "/reference/rules"
     },
     {
-      "title": "Components and Hooks must be pure",
+      "title": "コンポーネントとフックを純粋に保つ",
       "path": "/reference/rules/components-and-hooks-must-be-pure"
     },
     {
