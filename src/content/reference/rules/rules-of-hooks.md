@@ -117,7 +117,7 @@ function Bad() {
 
 ## React の関数からのみフックを呼び出す {/*only-call-hooks-from-react-functions*/}
 
-通常の JavaScript 関数からフックを呼び出さないでください。代わりに以下ようにします。
+通常の JavaScript 関数からフックを呼び出さないでください。代わりに以下のようにします。
 
 ✅ React の関数コンポーネントからフックを呼び出す。
 ✅ [カスタムフック](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component)からフックを呼び出す。
