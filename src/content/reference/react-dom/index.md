@@ -17,18 +17,18 @@ title: React DOM API
 * [`createPortal`](/reference/react-dom/createPortal) は、DOM ツリーの別の場所に子コンポーネントをレンダーできるようにします。
 * [`flushSync`](/reference/react-dom/flushSync) は、React に state の更新を強制的にフラッシュさせ、DOM を同期的に更新させます。
 
-## Resource Preloading APIs {/*resource-preloading-apis*/}
+## リソースプリロード関連の API {/*resource-preloading-apis*/}
 
-These APIs can be used to make apps faster by pre-loading resources such as scripts, stylesheets, and fonts as soon as you know you need them, for example before navigating to another page where the resources will be used.
+これらの API は、例えばスクリプト、スタイルシート、フォントなどのリソースを必要とする別のページに実際に遷移する前に、それらのリソースが必要となることが判明した時点で即座にプリロードを開始することで、アプリを高速化するためのものです。
 
-[React-based frameworks](/learn/start-a-new-react-project) frequently handle resource loading for you, so you might not have to call these APIs yourself. Consult your framework's documentation for details.
+[React ベースのフレームワーク](/learn/start-a-new-react-project)は、多くの場合リソースの読み込みを自動で処理してくれるため、この API を直接呼び出す必要はないかもしれません。詳細はフレームワークのドキュメントを参照してください。
 
-* [`prefetchDNS`](/reference/react-dom/prefetchDNS) lets you prefetch the IP address of a DNS domain name that you expect to connect to.
-* [`preconnect`](/reference/react-dom/preconnect) lets you connect to a server you expect to request resources from, even if you don't know what resources you'll need yet.
-* [`preload`](/reference/react-dom/preload) lets you fetch a stylesheet, font, image, or external script that you expect to use.
-* [`preloadModule`](/reference/react-dom/preloadModule) lets you fetch an ESM module that you expect to use.
-* [`preinit`](/reference/react-dom/preinit) lets you fetch and evaluate an external script or fetch and insert a stylesheet.
-* [`preinitModule`](/reference/react-dom/preinitModule) lets you fetch and evaluate an ESM module.
+* [`prefetchDNS`](/reference/react-dom/prefetchDNS) は、接続予定の DNS ドメインネームに対応する IP アドレスをプリフェッチします。
+* [`preconnect`](/reference/react-dom/preconnect) は、具体的なリソースが不明な場合でも事前にリクエスト先のサーバへの接続を確立します。
+* [`preload`](/reference/react-dom/preload) は、使用予定のスタイルシート、フォント、画像や外部スクリプトのフェッチを行います。
+* [`preloadModule`](/reference/react-dom/preloadModule) は、使用予定の ESM モジュールのフェッチを行います。
+* [`preinit`](/reference/react-dom/preinit) は、外部スクリプトのフェッチと実行、またはスタイルシートのフェッチと挿入を行います。
+* [`preinitModule`](/reference/react-dom/preinitModule) は、ESM モジュールのフェッチと実行を行います。
 
 ---
 
