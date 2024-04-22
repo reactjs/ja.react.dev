@@ -4,7 +4,7 @@ title: "<option>"
 
 <Intro>
 
-[ブラウザ組み込みの `<option>` コンポーネント](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) を利用することで、[`<select>`](/reference/react-dom/components/select) ボックス内に選択肢をレンダーすることができます。
+[ブラウザ組み込みの `<option>` コンポーネント](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option)を利用することで、[`<select>`](/reference/react-dom/components/select) ボックス内に選択肢をレンダーすることができます。
 
 ```js
 <select>

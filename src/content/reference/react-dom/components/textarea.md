@@ -4,7 +4,7 @@ title: "<textarea>"
 
 <Intro>
 
-[ブラウザ組み込みの `<textarea>` コンポーネント](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) を利用することで、複数行のテキスト入力エリアをレンダーすることができます。
+[ブラウザ組み込みの `<textarea>` コンポーネント](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea)を利用することで、複数行のテキスト入力エリアをレンダーすることができます。
 
 ```js
 <textarea />
