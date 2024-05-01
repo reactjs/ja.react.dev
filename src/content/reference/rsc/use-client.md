@@ -268,6 +268,7 @@ React アプリケーションでは一般的に、親コンポーネントか�
 	* [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
 	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) と [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
 * [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
+<<<<<<< HEAD:src/content/reference/react/use-client.md
 * プレーンな[オブジェクト](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): [オブジェクト初期化子](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer)で作成され、シリアライズ可能なプロパティを持つもの
 * [サーバアクション (server action)](/reference/react/use-server) としての関数
 * クライアントまたはサーバコンポーネントの要素（JSX）
@@ -278,6 +279,18 @@ React アプリケーションでは一般的に、親コンポーネントか�
 * [クラス](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
 * 任意のクラスのインスタンス（上記の組み込みクラスを除く）や、[null プロトタイプのオブジェクト](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
 * グローバルに登録されていないシンボル、例：`Symbol('my new symbol')`
+=======
+* Plain [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): those created with [object initializers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), with serializable properties
+* Functions that are [Server Actions](/reference/rsc/use-server)
+* Client or Server Component elements (JSX)
+* [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+Notably, these are not supported:
+* [Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) that are not exported from client-marked modules or marked with [`'use server'`](/reference/rsc/use-server)
+* [Classes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
+* Objects that are instances of any class (other than the built-ins mentioned) or objects with [a null prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
+* Symbols not registered globally, ex. `Symbol('my new symbol')`
+>>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951:src/content/reference/rsc/use-client.md
 
 
 ## 使用法 {/*usage*/}

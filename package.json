@@ -15,13 +15,18 @@
     "prettier:diff": "yarn nit:source",
     "lint-heading-ids": "node scripts/headingIdLinter.js",
     "fix-headings": "node scripts/headingIdLinter.js --fix",
-    "ci-check": "npm-run-all prettier:diff --parallel lint tsc lint-heading-ids",
+    "ci-check": "npm-run-all prettier:diff --parallel lint tsc lint-heading-ids rss",
     "tsc": "tsc --noEmit",
     "start": "next start",
     "postinstall": "patch-package && (is-ci || husky install .husky)",
+<<<<<<< HEAD
     "check-all": "npm-run-all prettier lint:fix tsc",
     "textlint": "cd textlint && yarn --frozen-lockfile && yarn textlint",
     "textlint-staged": "cd textlint && yarn --frozen-lockfile && yarn textlint-staged --"
+=======
+    "check-all": "npm-run-all prettier lint:fix tsc rss",
+    "rss": "node scripts/generateRss.js"
+>>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "2.13.5",
