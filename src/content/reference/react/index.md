@@ -17,7 +17,7 @@ React リファレンスは機能別にいくつかのサブセクションに�
 * [フック](/reference/react/hooks) - コンポーネント内から使用する様々な React の機能
 * [コンポーネント](/reference/react/components) - JSX 内で用いる組み込みコンポーネント
 * [API](/reference/react/apis) - コンポーネントの定義に用いる API
-* [ディレクティブ](/reference/react/directives) - React Server Components 互換のバンドラに与えるための指示情報
+* [ディレクティブ](/reference/rsc/directives) - React Server Components 互換のバンドラに与えるための指示情報
 
 ## React DOM {/*react-dom*/}
 

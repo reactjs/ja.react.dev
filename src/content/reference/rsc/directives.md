@@ -19,5 +19,5 @@ canary: true
 
 ## ソースコードディレクティブ {/*source-code-directives*/}
 
-* [`'use client'`](/reference/react/use-client) によりどのコードがクライアント上で実行されるべきかマークします。
-* [`'use server'`](/reference/react/use-server) によりクライアント側のコードから呼び出すことができるサーバサイド関数をマークします。
+* [`'use client'`](/reference/rsc/use-client) によりどのコードがクライアント上で実行されるべきかマークします。
+* [`'use server'`](/reference/rsc/use-server) によりクライアント側のコードから呼び出すことができるサーバサイド関数をマークします。

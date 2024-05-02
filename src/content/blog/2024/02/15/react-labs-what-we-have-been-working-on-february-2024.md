@@ -1,5 +1,8 @@
 ---
 title: "React Labs: 私達のこれまでの取り組み - 2024年2月版"
+author: Joseph Savona, Ricky Hanlon, Andrew Clark, Matt Carroll, and Dan Abramov
+date: 2024/02/15
+description: In React Labs posts, we write about projects in active research and development. We’ve made significant progress since our last update, and we’d like to share our progress.
 ---
 
 February 15, 2024 by [Joseph Savona](https://twitter.com/en_JS), [Ricky Hanlon](https://twitter.com/rickhanlonii), [Andrew Clark](https://twitter.com/acdlite), [Matt Carroll](https://twitter.com/mattcarrollcode), and [Dan Abramov](https://twitter.com/dan_abramov).
@@ -52,7 +55,7 @@ JavaScript は、そのルールの緩さと動的な性質のために、最適
 </form>
 ```
 
-この `action` 関数は同期的にも非同期的にも動作します。クライアント側で標準の JavaScript を使用して定義することもできますし、[`'use server'`](/reference/react/use-server) ディレクティブを使用してサーバ側で定義することも可能です。アクションを使用することで、React がデータ送信に関するライフサイクルを管理するようになり、[`useFormStatus`](/reference/react-dom/hooks/useFormStatus) や [`useFormState`](/reference/react-dom/hooks/useFormState) などのフックを通じて、現在の送信ステータスやフォームアクションのレスポンスにアクセスできるようになります。
+この `action` 関数は同期的にも非同期的にも動作します。クライアント側で標準の JavaScript を使用して定義することもできますし、[`'use server'`](/reference/rsc/use-server) ディレクティブを使用してサーバ側で定義することも可能です。アクションを使用することで、React がデータ送信に関するライフサイクルを管理するようになり、[`useFormStatus`](/reference/react-dom/hooks/useFormStatus) や [`useActionState`](/reference/react/useActionState) などのフックを通じて、現在の送信ステータスやフォームアクションのレスポンスにアクセスできるようになります。
 
 デフォルトでは、アクションは[トランジション](/reference/react/useTransition)内で送信されるため、アクションが処理されている間も現在のページをインタラクティブに保ちます。アクションは非同期関数をサポートしているため、トランジション内で `async/await` を使用する機能も追加しました。これにより、`fetch` のような非同期リクエストが開始されたときにトランジションの `isPending` 状態を使って保留中 (pending) UI を表示できるようになり、更新の適用が完了するまで保留中 UI を表示し続けることができます。
 
@@ -72,13 +75,13 @@ Canary は我々の新しい React 開発方法です。これまで、新機能
 
 React Server Components、アセットローディング、ドキュメントメタデータ、およびアクションは、すべて React Canary で導入済みであり、これらの機能に関するドキュメントは react.dev に追加されています。
 
-- **ディレクティブ**：[`"use client"`](/reference/react/use-client) と [`"use server"`](/reference/react/use-server) はフルスタック React フレームワーク用に設計されたバンドラ機能であり、2 つの環境間の「切り離しポイント」をマークします。`"use client"` はバンドラに `<script>` タグを生成するよう指示し（[Astro Islands](https://docs.astro.build/en/concepts/islands/#creating-an-island) のように）、`"use server"` はバンドラに POST エンドポイントを生成するよう指示します（[tRPC Mutations](https://trpc.io/docs/concepts) のように）。これらが協調して働くことで、クライアント側でのユーザ操作と関連するサーバ側のロジックが組み合わさった、再利用可能なコンポーネントを書くことが可能になります。
+- **ディレクティブ**：[`"use client"`](/reference/rsc/use-client) と [`"use server"`](/reference/rsc/use-server) はフルスタック React フレームワーク用に設計されたバンドラ機能であり、2 つの環境間の「切り離しポイント」をマークします。`"use client"` はバンドラに `<script>` タグを生成するよう指示し（[Astro Islands](https://docs.astro.build/en/concepts/islands/#creating-an-island) のように）、`"use server"` はバンドラに POST エンドポイントを生成するよう指示します（[tRPC Mutations](https://trpc.io/docs/concepts) のように）。これらが協調して働くことで、クライアント側でのユーザ操作と関連するサーバ側のロジックが組み合わさった、再利用可能なコンポーネントを書くことが可能になります。
 
 - **ドキュメントメタデータ**：コンポーネントツリーのどこからでも [`<title>`](/reference/react-dom/components/title)、[`<meta>`](/reference/react-dom/components/meta)、およびメタデータ用 [`<link>`](/reference/react-dom/components/link) タグをレンダーできるようにするための組み込みサポートを追加しました。これらは、完全にクライアントのみのコード、SSR、および RSC を含むすべての環境において、同様に機能します。これにより、[React Helmet](https://github.com/nfl/react-helmet) などのライブラリが先行して切り開いた機能に対するサポートが、組み込みで提供されるようになります。
 
 - **アセットローディング**：スタイルシート、フォント、スクリプトなどのリソースのローディングライフサイクルをサスペンス (Suspense) と統合し、React が [`<style>`](/reference/react-dom/components/style)、[`<link>`](/reference/react-dom/components/link)、[`<script>`](/reference/react-dom/components/script) などの要素に対応する内容の表示準備ができているかどうか判断する際にこれを考慮するようにしました。また、リソースがいつロードおよび初期化されるべきかをより細かく制御するために、`preload` や `preinit` などの新しい [リソースローディング API](/reference/react-dom#resource-preloading-apis) を追加しました。
 
-- **アクション**: 上記で述べた通り、クライアントからサーバへのデータ送信を管理する機能であるアクションを追加しました。[`<form/>`](/reference/react-dom/components/form) などの要素に `action` を追加し、[`useFormStatus`](/reference/react-dom/hooks/useFormStatus) で送信ステータスを取得し、[`useFormState`](/reference/react-dom/hooks/useFormState) で結果を処理し、[`useOptimistic`](/reference/react/useOptimistic) で UI を楽観的に更新することが可能です。
+- **アクション**: 上記で述べた通り、クライアントからサーバへのデータ送信を管理する機能であるアクションを追加しました。[`<form/>`](/reference/react-dom/components/form) などの要素に `action` を追加し、[`useFormStatus`](/reference/react-dom/hooks/useFormStatus) で送信ステータスを取得し、[`useActionState`](/reference/react/useActionState) で結果を処理し、[`useOptimistic`](/reference/react/useOptimistic) で UI を楽観的に更新することが可能です。
 
 これらの機能はすべて連携して動作するため、個別に安定版チャンネルでリリースすることは困難です。フォームステータスを取得するためのフックによる補完なしでアクションをリリースすれば、実用的な有用性は限定されてしまうでしょう。React Server Components をサーバアクションと統合せずに導入すれば、サーバ上のデータを変更することが大変になってしまうでしょう。
 

@@ -41,7 +41,9 @@ React は、`domNode` 内に存在する HTML にアタッチし、その内部�
 
 * **省略可能** `options`: この React ルートのオプションを含むオブジェクト。
 
-  * **省略可能** `onRecoverableError`: React が自動的にエラーから回復したときに呼び出されるコールバック。
+  * <CanaryBadge title="This feature is only available in the Canary channel" /> **省略可能** `onCaughtError`: エラーバウンダリ内で React がエラーをキャッチしたときに呼び出されるコールバック。エラーバウンダリにキャッチされた `error` と、`componentStack` を含んだ `errorInfo` を引数にして呼び出されます。
+  * <CanaryBadge title="This feature is only available in the Canary channel" /> **省略可能** `onUncaughtError`: エラーがスローされがエラーバウンダリでキャッチされななかったときに呼び出されるコールバック。スローされた `error` と、`componentStack` を含んだ `errorInfo` を引数にして呼び出されます。
+  * **optional** `onRecoverableError`: React が自動的にエラーから回復したときに呼び出されるコールバック。React がスローする `error` と、`componentStack` を含んだ `errorInfo` を引数にして呼び出されます。復帰可能なエラーの一部は元のエラーを `error.cause` として含んでいます。
   * **省略可能** `identifierPrefix`: React が [`useId`](/reference/react/useId) によって生成する ID に使用する文字列プレフィックス。同じページ上に複数のルートを使用する際に、競合を避けるために用います。サーバ上で使用されたものと同じプレフィックスでなければなりません。
 
 
@@ -371,3 +373,826 @@ export default function App({counter}) {
 </Sandpack>
 
 ハイドレーションされたルートで [`root.render`](#root-render) を呼び出すことは滅多にありません。通常、代わりにコンポーネントの中で [state を更新](/reference/react/useState) します。
+
+### キャッチされないエラーに対するダイアログを表示 {/*show-a-dialog-for-uncaught-errors*/}
+
+<Canary>
+
+`onUncaughtError` は最新版の React Canary リリースでのみ利用可能です。
+
+</Canary>
+
+デフォルトでは React は、キャッチされなかったエラーをコンソールにログとして表示します。独自のエラーレポーティングを実装するには、省略可能なルートオプションである `onUncaughtError` を指定します。
+
+```js [[1, 7, "onUncaughtError"], [2, 7, "error", 1], [3, 7, "errorInfo"], [4, 11, "componentStack"]]
+import { hydrateRoot } from 'react-dom/client';
+
+const root = hydrateRoot(
+  document.getElementById('root'),
+  <App />,
+  {
+    onUncaughtError: (error, errorInfo) => {
+      console.error(
+        'Uncaught error',
+        error,
+        errorInfo.componentStack
+      );
+    }
+  }
+);
+root.render(<App />);
+```
+
+<CodeStep step={1}>onUncaughtError</CodeStep> オプションに指定するのは、以下の 2 つの引数を付けて呼ばれる関数です。
+
+1. スローされた <CodeStep step={2}>error</CodeStep>。
+2. <CodeStep step={3}>errorInfo</CodeStep> オブジェクト。エラーの <CodeStep step={4}>componentStack</CodeStep> を含んでいる。
+
+エラーダイアログを表示するために `onUncaughtError` ルートオプションを用いることが可能です。
+
+<Sandpack>
+
+```html index.html hidden
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My app</title>
+</head>
+<body>
+<!--
+  Error dialog in raw HTML
+  since an error in the React app may crash.
+-->
+<div id="error-dialog" class="hidden">
+  <h1 id="error-title" class="text-red"></h1>
+  <h3>
+    <pre id="error-message"></pre>
+  </h3>
+  <p>
+    <pre id="error-body"></pre>
+  </p>
+  <h4 class="-mb-20">This error occurred at:</h4>
+  <pre id="error-component-stack" class="nowrap"></pre>
+  <h4 class="mb-0">Call stack:</h4>
+  <pre id="error-stack" class="nowrap"></pre>
+  <div id="error-cause">
+    <h4 class="mb-0">Caused by:</h4>
+    <pre id="error-cause-message"></pre>
+    <pre id="error-cause-stack" class="nowrap"></pre>
+  </div>
+  <button
+    id="error-close"
+    class="mb-10"
+    onclick="document.getElementById('error-dialog').classList.add('hidden')"
+  >
+    Close
+  </button>
+  <h3 id="error-not-dismissible">This error is not dismissible.</h3>
+</div>
+<!--
+  HTML content inside <div id="root">...</div>
+  was generated from App by react-dom/server.
+-->
+<div id="root"><div><span>This error shows the error dialog:</span><button>Throw error</button></div></div>
+</body>
+</html>
+```
+
+```css src/styles.css active
+label, button { display: block; margin-bottom: 20px; }
+html, body { min-height: 300px; }
+
+#error-dialog {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  padding: 15px;
+  opacity: 0.9;
+  text-wrap: wrap;
+  overflow: scroll;
+}
+
+.text-red {
+  color: red;
+}
+
+.-mb-20 {
+  margin-bottom: -20px;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+pre {
+  text-wrap: wrap;
+}
+
+pre.nowrap {
+  text-wrap: nowrap;
+}
+
+.hidden {
+ display: none;  
+}
+```
+
+```js src/reportError.js hidden
+function reportError({ title, error, componentStack, dismissable }) {
+  const errorDialog = document.getElementById("error-dialog");
+  const errorTitle = document.getElementById("error-title");
+  const errorMessage = document.getElementById("error-message");
+  const errorBody = document.getElementById("error-body");
+  const errorComponentStack = document.getElementById("error-component-stack");
+  const errorStack = document.getElementById("error-stack");
+  const errorClose = document.getElementById("error-close");
+  const errorCause = document.getElementById("error-cause");
+  const errorCauseMessage = document.getElementById("error-cause-message");
+  const errorCauseStack = document.getElementById("error-cause-stack");
+  const errorNotDismissible = document.getElementById("error-not-dismissible");
+  
+  // Set the title
+  errorTitle.innerText = title;
+  
+  // Display error message and body
+  const [heading, body] = error.message.split(/\n(.*)/s);
+  errorMessage.innerText = heading;
+  if (body) {
+    errorBody.innerText = body;
+  } else {
+    errorBody.innerText = '';
+  }
+
+  // Display component stack
+  errorComponentStack.innerText = componentStack;
+
+  // Display the call stack
+  // Since we already displayed the message, strip it, and the first Error: line.
+  errorStack.innerText = error.stack.replace(error.message, '').split(/\n(.*)/s)[1];
+  
+  // Display the cause, if available
+  if (error.cause) {
+    errorCauseMessage.innerText = error.cause.message;
+    errorCauseStack.innerText = error.cause.stack;
+    errorCause.classList.remove('hidden');
+  } else {
+    errorCause.classList.add('hidden');
+  }
+  // Display the close button, if dismissible
+  if (dismissable) {
+    errorNotDismissible.classList.add('hidden');
+    errorClose.classList.remove("hidden");
+  } else {
+    errorNotDismissible.classList.remove('hidden');
+    errorClose.classList.add("hidden");
+  }
+  
+  // Show the dialog
+  errorDialog.classList.remove("hidden");
+}
+
+export function reportCaughtError({error, cause, componentStack}) {
+  reportError({ title: "Caught Error", error, componentStack,  dismissable: true});
+}
+
+export function reportUncaughtError({error, cause, componentStack}) {
+  reportError({ title: "Uncaught Error", error, componentStack, dismissable: false });
+}
+
+export function reportRecoverableError({error, cause, componentStack}) {
+  reportError({ title: "Recoverable Error", error, componentStack,  dismissable: true });
+}
+```
+
+```js src/index.js active
+import { hydrateRoot } from "react-dom/client";
+import App from "./App.js";
+import {reportUncaughtError} from "./reportError";
+import "./styles.css";
+import {renderToString} from 'react-dom/server';
+
+const container = document.getElementById("root");
+const root = hydrateRoot(container, <App />, {
+  onUncaughtError: (error, errorInfo) => {
+    if (error.message !== 'Known error') {
+      reportUncaughtError({
+        error,
+        componentStack: errorInfo.componentStack
+      });
+    }
+  }
+});
+```
+
+```js src/App.js
+import { useState } from 'react';
+
+export default function App() {
+  const [throwError, setThrowError] = useState(false);
+  
+  if (throwError) {
+    foo.bar = 'baz';
+  }
+  
+  return (
+    <div>
+      <span>This error shows the error dialog:</span>
+      <button onClick={() => setThrowError(true)}>
+        Throw error
+      </button>
+    </div>
+  );
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "^5.0.0"
+  },
+  "main": "/index.js"
+}
+```
+
+</Sandpack>
+
+
+### エラーバウンダリでキャッチしたエラーを表示 {/*displaying-error-boundary-errors*/}
+
+<Canary>
+
+`onCaughtError` は最新の React Canary リリースでのみ利用可能です。
+
+</Canary>
+
+デフォルトでは、React はエラーバウンダリによってキャッチされたすべてのエラーを `console.error` に記録します。この動作をオーバーライドするには、省略可能なルートオプションである `onCaughtError` を指定して、[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary)によってキャッチされたエラーを処理するようにします。
+
+```js [[1, 7, "onCaughtError"], [2, 7, "error", 1], [3, 7, "errorInfo"], [4, 11, "componentStack"]]
+import { hydrateRoot } from 'react-dom/client';
+
+const root = hydrateRoot(
+  document.getElementById('root'),
+  <App />,
+  {
+    onCaughtError: (error, errorInfo) => {
+      console.error(
+        'Caught error',
+        error,
+        errorInfo.componentStack
+      );
+    }
+  }
+);
+root.render(<App />);
+```
+
+<CodeStep step={1}>onCaughtError</CodeStep> オプションに指定するのは、以下の 2 つの引数を付けて呼ばれる関数です。
+
+1. バウンダリによってキャッチされた <CodeStep step={2}>error</CodeStep>。
+2. <CodeStep step={3}>errorInfo</CodeStep> オブジェクト。当該エラーの <CodeStep step={4}>componentStack</CodeStep> を含んでいる。
+
+`onCaughtError` ルートオプションを用いて、エラーダイアログを表示したり、既知のエラーをログから除外したりできます。
+
+<Sandpack>
+
+```html index.html hidden
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My app</title>
+</head>
+<body>
+<!--
+  Error dialog in raw HTML
+  since an error in the React app may crash.
+-->
+<div id="error-dialog" class="hidden">
+  <h1 id="error-title" class="text-red"></h1>
+  <h3>
+    <pre id="error-message"></pre>
+  </h3>
+  <p>
+    <pre id="error-body"></pre>
+  </p>
+  <h4 class="-mb-20">This error occurred at:</h4>
+  <pre id="error-component-stack" class="nowrap"></pre>
+  <h4 class="mb-0">Call stack:</h4>
+  <pre id="error-stack" class="nowrap"></pre>
+  <div id="error-cause">
+    <h4 class="mb-0">Caused by:</h4>
+    <pre id="error-cause-message"></pre>
+    <pre id="error-cause-stack" class="nowrap"></pre>
+  </div>
+  <button
+    id="error-close"
+    class="mb-10"
+    onclick="document.getElementById('error-dialog').classList.add('hidden')"
+  >
+    Close
+  </button>
+  <h3 id="error-not-dismissible">This error is not dismissible.</h3>
+</div>
+<!--
+  HTML content inside <div id="root">...</div>
+  was generated from App by react-dom/server.
+-->
+<div id="root"><span>This error will not show the error dialog:</span><button>Throw known error</button><span>This error will show the error dialog:</span><button>Throw unknown error</button></div>
+</body>
+</html>
+```
+
+```css src/styles.css active
+label, button { display: block; margin-bottom: 20px; }
+html, body { min-height: 300px; }
+
+#error-dialog {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  padding: 15px;
+  opacity: 0.9;
+  text-wrap: wrap;
+  overflow: scroll;
+}
+
+.text-red {
+  color: red;
+}
+
+.-mb-20 {
+  margin-bottom: -20px;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+pre {
+  text-wrap: wrap;
+}
+
+pre.nowrap {
+  text-wrap: nowrap;
+}
+
+.hidden {
+ display: none;  
+}
+```
+
+```js src/reportError.js hidden
+function reportError({ title, error, componentStack, dismissable }) {
+  const errorDialog = document.getElementById("error-dialog");
+  const errorTitle = document.getElementById("error-title");
+  const errorMessage = document.getElementById("error-message");
+  const errorBody = document.getElementById("error-body");
+  const errorComponentStack = document.getElementById("error-component-stack");
+  const errorStack = document.getElementById("error-stack");
+  const errorClose = document.getElementById("error-close");
+  const errorCause = document.getElementById("error-cause");
+  const errorCauseMessage = document.getElementById("error-cause-message");
+  const errorCauseStack = document.getElementById("error-cause-stack");
+  const errorNotDismissible = document.getElementById("error-not-dismissible");
+  
+  // Set the title
+  errorTitle.innerText = title;
+  
+  // Display error message and body
+  const [heading, body] = error.message.split(/\n(.*)/s);
+  errorMessage.innerText = heading;
+  if (body) {
+    errorBody.innerText = body;
+  } else {
+    errorBody.innerText = '';
+  }
+
+  // Display component stack
+  errorComponentStack.innerText = componentStack;
+
+  // Display the call stack
+  // Since we already displayed the message, strip it, and the first Error: line.
+  errorStack.innerText = error.stack.replace(error.message, '').split(/\n(.*)/s)[1];
+  
+  // Display the cause, if available
+  if (error.cause) {
+    errorCauseMessage.innerText = error.cause.message;
+    errorCauseStack.innerText = error.cause.stack;
+    errorCause.classList.remove('hidden');
+  } else {
+    errorCause.classList.add('hidden');
+  }
+  // Display the close button, if dismissible
+  if (dismissable) {
+    errorNotDismissible.classList.add('hidden');
+    errorClose.classList.remove("hidden");
+  } else {
+    errorNotDismissible.classList.remove('hidden');
+    errorClose.classList.add("hidden");
+  }
+  
+  // Show the dialog
+  errorDialog.classList.remove("hidden");
+}
+
+export function reportCaughtError({error, cause, componentStack}) {
+  reportError({ title: "Caught Error", error, componentStack,  dismissable: true});
+}
+
+export function reportUncaughtError({error, cause, componentStack}) {
+  reportError({ title: "Uncaught Error", error, componentStack, dismissable: false });
+}
+
+export function reportRecoverableError({error, cause, componentStack}) {
+  reportError({ title: "Recoverable Error", error, componentStack,  dismissable: true });
+}
+```
+
+```js src/index.js active
+import { hydrateRoot } from "react-dom/client";
+import App from "./App.js";
+import {reportCaughtError} from "./reportError";
+import "./styles.css";
+
+const container = document.getElementById("root");
+const root = hydrateRoot(container, <App />, {
+  onCaughtError: (error, errorInfo) => {
+    if (error.message !== 'Known error') {
+      reportCaughtError({
+        error,
+        componentStack: errorInfo.componentStack
+      });
+    }
+  }
+});
+```
+
+```js src/App.js
+import { useState } from 'react';
+import { ErrorBoundary } from "react-error-boundary";
+
+export default function App() {
+  const [error, setError] = useState(null);
+  
+  function handleUnknown() {
+    setError("unknown");
+  }
+
+  function handleKnown() {
+    setError("known");
+  }
+  
+  return (
+    <>
+      <ErrorBoundary
+        fallbackRender={fallbackRender}
+        onReset={(details) => {
+          setError(null);
+        }}
+      >
+        {error != null && <Throw error={error} />}
+        <span>This error will not show the error dialog:</span>
+        <button onClick={handleKnown}>
+          Throw known error
+        </button>
+        <span>This error will show the error dialog:</span>
+        <button onClick={handleUnknown}>
+          Throw unknown error
+        </button>
+      </ErrorBoundary>
+      
+    </>
+  );
+}
+
+function fallbackRender({ resetErrorBoundary }) {
+  return (
+    <div role="alert">
+      <h3>Error Boundary</h3>
+      <p>Something went wrong.</p>
+      <button onClick={resetErrorBoundary}>Reset</button>
+    </div>
+  );
+}
+
+function Throw({error}) {
+  if (error === "known") {
+    throw new Error('Known error')
+  } else {
+    foo.bar = 'baz';
+  }
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "^5.0.0",
+    "react-error-boundary": "4.0.3"
+  },
+  "main": "/index.js"
+}
+```
+
+</Sandpack>
+
+### 復帰可能なハイドレーション不一致エラーに対するダイアログを表示 {/*show-a-dialog-for-recoverable-hydration-mismatch-errors*/}
+
+React がハイドレーション時に不一致を検出した場合、自動的にクライアント側でレンダーの復帰をを試みます。デフォルトでは、ハイドレーション不一致に関するエラーは `console.error` に記録されます。この動作をオーバーライドするには、省略可能なルートオプションである `onRecoverableError` を指定します。
+
+```js [[1, 7, "onRecoverableError"], [2, 7, "error", 1], [3, 11, "error.cause", 1], [4, 7, "errorInfo"], [5, 12, "componentStack"]]
+import { hydrateRoot } from 'react-dom/client';
+
+const root = hydrateRoot(
+  document.getElementById('root'),
+  <App />,
+  {
+    onRecoverableError: (error, errorInfo) => {
+      console.error(
+        'Caught error',
+        error,
+        error.cause,
+        errorInfo.componentStack
+      );
+    }
+  }
+);
+```
+
+<CodeStep step={1}>onRecoverableError</CodeStep> オプションに指定するのは、以下の 2 つの引数を付けて呼ばれる関数です。
+
+1. React たスローした <CodeStep step={2}>error</CodeStep>。一部のエラーは元のエラーを <CodeStep step={3}>error.cause</CodeStep> として含んでいる。
+2. <CodeStep step={4}>errorInfo</CodeStep> オブジェクト。エラーの <CodeStep step={5}>componentStack</CodeStep> を含んでいる。
+
+`onRecoverableError` を用いてハイドレーション不一致に関するエラーダイアログを表示することができます。
+
+<Sandpack>
+
+```html index.html hidden
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My app</title>
+</head>
+<body>
+<!--
+  Error dialog in raw HTML
+  since an error in the React app may crash.
+-->
+<div id="error-dialog" class="hidden">
+  <h1 id="error-title" class="text-red"></h1>
+  <h3>
+    <pre id="error-message"></pre>
+  </h3>
+  <p>
+    <pre id="error-body"></pre>
+  </p>
+  <h4 class="-mb-20">This error occurred at:</h4>
+  <pre id="error-component-stack" class="nowrap"></pre>
+  <h4 class="mb-0">Call stack:</h4>
+  <pre id="error-stack" class="nowrap"></pre>
+  <div id="error-cause">
+    <h4 class="mb-0">Caused by:</h4>
+    <pre id="error-cause-message"></pre>
+    <pre id="error-cause-stack" class="nowrap"></pre>
+  </div>
+  <button
+    id="error-close"
+    class="mb-10"
+    onclick="document.getElementById('error-dialog').classList.add('hidden')"
+  >
+    Close
+  </button>
+  <h3 id="error-not-dismissible">This error is not dismissible.</h3>
+</div>
+<!--
+  HTML content inside <div id="root">...</div>
+  was generated from App by react-dom/server.
+-->
+<div id="root"><span>Server</span></div>
+</body>
+</html>
+```
+
+```css src/styles.css active
+label, button { display: block; margin-bottom: 20px; }
+html, body { min-height: 300px; }
+
+#error-dialog {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  padding: 15px;
+  opacity: 0.9;
+  text-wrap: wrap;
+  overflow: scroll;
+}
+
+.text-red {
+  color: red;
+}
+
+.-mb-20 {
+  margin-bottom: -20px;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+pre {
+  text-wrap: wrap;
+}
+
+pre.nowrap {
+  text-wrap: nowrap;
+}
+
+.hidden {
+ display: none;  
+}
+```
+
+```js src/reportError.js hidden
+function reportError({ title, error, componentStack, dismissable }) {
+  const errorDialog = document.getElementById("error-dialog");
+  const errorTitle = document.getElementById("error-title");
+  const errorMessage = document.getElementById("error-message");
+  const errorBody = document.getElementById("error-body");
+  const errorComponentStack = document.getElementById("error-component-stack");
+  const errorStack = document.getElementById("error-stack");
+  const errorClose = document.getElementById("error-close");
+  const errorCause = document.getElementById("error-cause");
+  const errorCauseMessage = document.getElementById("error-cause-message");
+  const errorCauseStack = document.getElementById("error-cause-stack");
+  const errorNotDismissible = document.getElementById("error-not-dismissible");
+  
+  // Set the title
+  errorTitle.innerText = title;
+  
+  // Display error message and body
+  const [heading, body] = error.message.split(/\n(.*)/s);
+  errorMessage.innerText = heading;
+  if (body) {
+    errorBody.innerText = body;
+  } else {
+    errorBody.innerText = '';
+  }
+
+  // Display component stack
+  errorComponentStack.innerText = componentStack;
+
+  // Display the call stack
+  // Since we already displayed the message, strip it, and the first Error: line.
+  errorStack.innerText = error.stack.replace(error.message, '').split(/\n(.*)/s)[1];
+  
+  // Display the cause, if available
+  if (error.cause) {
+    errorCauseMessage.innerText = error.cause.message;
+    errorCauseStack.innerText = error.cause.stack;
+    errorCause.classList.remove('hidden');
+  } else {
+    errorCause.classList.add('hidden');
+  }
+  // Display the close button, if dismissible
+  if (dismissable) {
+    errorNotDismissible.classList.add('hidden');
+    errorClose.classList.remove("hidden");
+  } else {
+    errorNotDismissible.classList.remove('hidden');
+    errorClose.classList.add("hidden");
+  }
+  
+  // Show the dialog
+  errorDialog.classList.remove("hidden");
+}
+
+export function reportCaughtError({error, cause, componentStack}) {
+  reportError({ title: "Caught Error", error, componentStack,  dismissable: true});
+}
+
+export function reportUncaughtError({error, cause, componentStack}) {
+  reportError({ title: "Uncaught Error", error, componentStack, dismissable: false });
+}
+
+export function reportRecoverableError({error, cause, componentStack}) {
+  reportError({ title: "Recoverable Error", error, componentStack,  dismissable: true });
+}
+```
+
+```js src/index.js active
+import { hydrateRoot } from "react-dom/client";
+import App from "./App.js";
+import {reportRecoverableError} from "./reportError";
+import "./styles.css";
+
+const container = document.getElementById("root");
+const root = hydrateRoot(container, <App />, {
+  onRecoverableError: (error, errorInfo) => {
+    reportRecoverableError({
+      error,
+      cause: error.cause,
+      componentStack: errorInfo.componentStack
+    });
+  }
+});
+```
+
+```js src/App.js
+import { useState } from 'react';
+import { ErrorBoundary } from "react-error-boundary";
+
+export default function App() {
+  const [error, setError] = useState(null);
+  
+  function handleUnknown() {
+    setError("unknown");
+  }
+
+  function handleKnown() {
+    setError("known");
+  }
+  
+  return (
+    <span>{typeof window !== 'undefined' ? 'Client' : 'Server'}</span>
+  );
+}
+
+function fallbackRender({ resetErrorBoundary }) {
+  return (
+    <div role="alert">
+      <h3>Error Boundary</h3>
+      <p>Something went wrong.</p>
+      <button onClick={resetErrorBoundary}>Reset</button>
+    </div>
+  );
+}
+
+function Throw({error}) {
+  if (error === "known") {
+    throw new Error('Known error')
+  } else {
+    foo.bar = 'baz';
+  }
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "^5.0.0",
+    "react-error-boundary": "4.0.3"
+  },
+  "main": "/index.js"
+}
+```
+
+</Sandpack>
+
+## Troubleshooting {/*troubleshooting*/}
+
+
+### "You passed a second argument to root.render" というエラーが出る {/*im-getting-an-error-you-passed-a-second-argument-to-root-render*/}
+
+よくある間違いとして、`hydrateRoot` 用のオプションを `root.render(...)` に渡してしまうことが挙げられます。
+
+<ConsoleBlock level="error">
+
+Warning: You passed a second argument to root.render(...) but it only accepts one argument.
+
+</ConsoleBlock>
+
+修正するには、ルートオプションを `hydrateRoot(...)` に渡すようにしてください。`root.render(...)` ではありません。
+```js {2,5}
+// 🚩 Wrong: root.render only takes one argument.
+root.render(App, {onUncaughtError});
+
+// ✅ Correct: pass options to createRoot.
+const root = hydrateRoot(container, <App />, {onUncaughtError});
+```

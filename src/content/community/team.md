@@ -43,7 +43,7 @@ React コアチームのメンバーは、コアコンポーネントの API、R
 </TeamMember>
 
 <TeamMember name="Lauren Tan" permalink="lauren-tan" photo="/images/team/lauren.jpg" github="poteto" twitter="potetotes" threads="potetotes" personal="no.lol" title="Engineer at Meta">
-    Lauren のプログラミングキャリアは `<marquee>` タグを初めて見たときにピークを迎えました。それ以来、彼女はその時の高揚感を追い続けています。React にバグを追加する傍らで、チャットでお茶目なミームを投下したり、パートナや犬の Zelda と一緒にこれでもかとビデオゲームを楽しんだりしています。
+    Lauren のプログラミングキャリアは `<marquee>` タグを初めて見たときにピークを迎えました。それ以来、彼女はその時の高揚感を追い続けています。大学ではコンピュータサイエンスではなく経済学を学んでいたため、コーディングは Java ではなく Excel で学びました。Lauren はチャットでお茶目なミームを投下したり、パートナとゲームを楽しんだり、犬の Zelda を可愛がったりするのが好きです。
 </TeamMember>
 
 <TeamMember name="Luna Wei" permalink="luna-wei" photo="/images/team/luna-wei.jpg" github="lunaleaps" twitter="lunaleaps" threads="lunaleaps" title="Engineer at Meta">
@@ -64,6 +64,10 @@ React コアチームのメンバーは、コアコンポーネントの API、R
 
 <TeamMember name="Rick Hanlon" permalink="rick-hanlon" photo="/images/team/rickhanlonii.jpg" github="rickhanlonii" twitter="rickhanlonii" threads="rickhanlonii" personal="rickhanlon.codes" title="Engineer at Meta">
     Ricky は理論数学を専攻していましたが、どういうわけか React Native チームで数年過ごしたあと、React チームにやってきました。プログラミングをしていないときは、スノーボード、自転車、クライミング、ゴルフを楽しんだり、テンプレートに合致しない GitHub の issue をクローズしたりしています。
+</TeamMember>
+
+<TeamMember name="Ruslan Lesiutin" permalink="ruslan-lesiutin" photo="/images/team/lesiutin.jpg" github="hoxyq" twitter="ruslanlesiutin" threads="lesiutin" title="Engineer at Meta">
+    Ruslan の UI プログラミングの経験は、子供のころにゲーム掲示板で HTML テンプレートを手でカスタマイズしたのが最初でした。その後いろいろあってコンピュータサイエンスを専攻することとなりました。好きなものは音楽、ゲーム、ネットミームです。特にネットミームです。
 </TeamMember>
 
 <TeamMember name="Sathya Gunasekaran " permalink="sathya-gunasekaran" photo="/images/team/sathya.jpg" github="gsathya" twitter="_gsathya" threads="gsathya.03" title="Engineer at Meta">

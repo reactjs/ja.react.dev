@@ -32,6 +32,10 @@
           "path": "/community/docs-contributors"
         },
         {
+          "title": "翻訳",
+          "path": "/community/translations"
+        },
+        {
           "title": "謝辞",
           "path": "/community/acknowledgements"
         },

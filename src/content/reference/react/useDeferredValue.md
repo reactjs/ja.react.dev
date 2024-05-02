@@ -18,7 +18,7 @@ const deferredValue = useDeferredValue(value)
 
 ## リファレンス {/*reference*/}
 
-### `useDeferredValue(value)` {/*usedeferredvalue*/}
+### `useDeferredValue(value, initialValue?)` {/*usedeferredvalue*/}
 
 コンポーネントのトップレベルで `useDeferredValue` を呼び出し、その値の遅延されたバージョンを取得します。
 
@@ -37,12 +37,22 @@ function SearchPage() {
 #### 引数 {/*parameters*/}
 
 * `value`: 遅延させたい値。任意の型を持つことができます。
+* <CanaryBadge title="This feature is only available in the Canary channel" /> **省略可能** `initialValue`: コンポーネントの初回レンダー時に使用する値です。このオプションが省略された場合、初回レンダー時には代わりにレンダーできる `value` の前のバージョンがないことになるので、`useDeferredValue` は値の遅延を行いません。
+
 
 #### 返り値 {/*returns*/}
 
-初回レンダー時には、返される値はあなたが渡した値と同一になります。更新時には、React はまず古い値で再レンダーを試み（つまり返り値は古い値になり）、次に新しい値でバックグラウンドで再レンダーを試みます（返り値は更新後の値になります）。
+- `currentValue`: 初回レンダー時には、返される値はあなたが渡した値と同一になります。更新時には、React はまず古い値で再レンダーを試み（つまり返り値は古い値になり）、次に新しい値でバックグラウンドで再レンダーを試みます（返り値は更新後の値になります）。
+
+<Canary>
+
+最新の React Canary バージョンでは、`useDeferredValue` は初回レンダー時に `initialValue` を返し、バックグラウンドでその `value` を使った再レンダーをスケジュールします。
+
+</Canary>
 
 #### 注意点 {/*caveats*/}
+
+- 更新がトランジション内で発生する場合、更新は既に遅延されているため、`useDeferredValue` は常に新しい `value` のみを返し、新たな遅延レンダーを発生させません。
 
 - `useDeferredValue` に渡す値は、プリミティブな値（文字列や数値など）またはレンダーの外部で作成されたオブジェクトであるべきです。レンダー中に新しいオブジェクトを作成してすぐにそれを `useDeferredValue` に渡すと、それは毎回のレンダーで異なるものとなるため、不必要なバックグラウンドでの再レンダーを引き起こします。
 

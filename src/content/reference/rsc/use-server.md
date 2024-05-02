@@ -41,7 +41,7 @@ async function addToCart(data) {
 #### 注意点 {/*caveats*/}
 * `'use server'` は、関数やモジュールの冒頭、つまりインポートも含む他のコードよりも上にある必要があります（ディレクティブの上にコメントを書くことは OK）。シングルクォートまたはダブルクォートで書かれていなければならず、バックティックは無効です。
 * `'use server'` は、サーバサイドのファイルでのみ使用できます。結果として得られるサーバアクションは、props を通じてクライアントコンポーネントに渡せるようになります。サポートされている[シリアライズ可能な型](#serializable-parameters-and-return-values)を参照してください。
-* [クライアントコード](/reference/react/use-client)からサーバアクションをインポートする場合は、ディレクティブをモジュールレベルで使用する必要があります。
+* [クライアントコード](/reference/rsc/use-client)からサーバアクションをインポートする場合は、ディレクティブをモジュールレベルで使用する必要があります。
 * 内部で使用されるネットワーク呼び出しは常に非同期であるため、`'use server'` は非同期関数でのみ使用できます。
 * サーバアクションへの引数は常に信頼できない入力として扱い、あらゆるデータ書き換えを検証してください。[セキュリティに関する考慮事項](#security)を参照してください。
 * サーバアクションは[トランジション](/reference/react/useTransition)の中で呼び出すようにしてください。サーバアクションが [`<form action>`](/reference/react-dom/components/form#props) または [`formAction`](/reference/react-dom/components/input#props) に渡される場合、自動的にトランジション内で呼び出されます。
@@ -95,7 +95,7 @@ async function addToCart(data) {
 * グローバルに登録されていないシンボル、例：`Symbol('my new symbol')`
 
 
-サポートされるシリアライズ可能な返り値は、クライアントコンポーネントに渡せる[シリアライズ可能な props](/reference/react/use-client#passing-props-from-server-to-client-components) の型と同じです。
+サポートされるシリアライズ可能な返り値は、クライアントコンポーネントに渡せる[シリアライズ可能な props](/reference/rsc/use-client#passing-props-from-server-to-client-components) の型と同じです。
 
 
 ## 使用法 {/*usage*/}
@@ -133,7 +133,7 @@ export default function App() {
 
 上記のユーザ名リクエストフォームでは、ユーザ名が利用できない可能性もあります。`requestUsername` は成功したか失敗したかを伝えられるべきです。
 
-プログレッシブエンハンスメントをサポートしつつサーバアクションの結果に基づいて UI を更新するには、[`useFormState`](/reference/react-dom/hooks/useFormState) を使用します。
+プログレッシブエンハンスメントをサポートしつつサーバアクションの結果に基づいて UI を更新するには、[`useActionState`](/reference/react/useActionState) を使用します。
 
 ```js
 // requestUsername.js
@@ -153,11 +153,11 @@ export default async function requestUsername(formData) {
 // UsernameForm.js
 'use client';
 
-import { useFormState } from 'react-dom';
+import { useActionState } from 'react';
 import requestUsername from './requestUsername';
 
 function UsernameForm() {
-  const [returnValue, action] = useFormState(requestUsername, 'n/a');
+  const [state, action] = useActionState(requestUsername, null, 'n/a');
 
   return (
     <>
@@ -165,13 +165,13 @@ function UsernameForm() {
         <input type="text" name="username" />
         <button type="submit">Request</button>
       </form>
-      <p>Last submission request returned: {returnValue}</p>
+      <p>Last submission request returned: {state}</p>
     </>
   );
 }
 ```
 
-ほとんどのフックと同様に、`useFormState` は<CodeStep step={1}>[クライアントコード](/reference/react/use-client)</CodeStep>内でしか呼び出せないことに注意してください。
+ほとんどのフックと同様に、`useActionState` は<CodeStep step={1}>[クライアントコード](/reference/rsc/use-client)</CodeStep>内でしか呼び出せないことに注意してください。
 
 ### `<form>` の外部でサーバアクションを呼び出す {/*calling-a-server-action-outside-of-form*/}
 

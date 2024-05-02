@@ -8,6 +8,8 @@ React のすべての安定版ビルドは広範なテストに通過してお�
 
 </Intro>
 
+過去のリリースの一覧は [Versions](/versions) ページをご覧ください。
+
 ## 安定版リリース {/*stable-releases*/}
 
 安定版 (Stable) の React リリース（別名 "Latest" リリースチャンネル）は、[セマンティックバージョニング (semver)](https://semver.org/) の原則に従います。
