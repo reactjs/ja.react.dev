@@ -14,9 +14,6 @@ React チームからの公式な更新のお知らせはこのブログに掲�
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
-<<<<<<< HEAD
-<BlogCard title="React Labs: 私達のこれまでの取り組み - 2024年2月版" date="February 15, 2024" url="/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024">
-=======
 <BlogCard title="React 19 Beta " date="April 25, 2024" url="/blog/2024/04/25/react-19">
 
 In the React 19 Beta Upgrade Guide, we shared step-by-step instructions for upgrading your app to React 19 Beta. In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
@@ -29,8 +26,7 @@ The improvements added to React 19 require some breaking changes, but we've work
 
 </BlogCard>
 
-<BlogCard title="React Labs: What We've Been Working On – February 2024" date="February 15, 2024" url="/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024">
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
+<BlogCard title="React Labs: 私達のこれまでの取り組み - 2024年2月版" date="February 15, 2024" url="/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024">
 
 React Labs 記事では、現在活発に研究・開発が行われているプロジェクトについて述べていきます。前回のアップデート以降に、React Compiler、新機能、React 19 に関する大きな進展がありましたので、我々が学んだことを共有していきます。
 

@@ -93,11 +93,7 @@ export default function Search() {
 
 ### サーバアクションを使ってフォームの送信を処理する {/*handle-form-submission-with-a-server-action*/}
 
-<<<<<<< HEAD
-`<form>` をレンダーし、入力フィールドと送信ボタンを配置します。フォームが送信されたときに関数を実行するために、サーバアクション（Server Action; [`'use server'`](/reference/react/use-server) でマークされた関数）を form の `action` に渡します。
-=======
-Render a `<form>` with an input and submit button. Pass a Server Action (a function marked with [`'use server'`](/reference/rsc/use-server)) to the `action` prop of form to run the function when the form is submitted.
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
+`<form>` をレンダーし、入力フィールドと送信ボタンを配置します。フォームが送信されたときに関数を実行するために、サーバアクション（Server Action; [`'use server'`](/reference/rsc/use-server) でマークされた関数）を form の `action` に渡します。
 
 `<form action>` にサーバアクションを渡すことで、JavaScript が無効あるいはコードがロードされる前の状態でも、ユーザがフォームを送信できるようになります。これは、接続やデバイスが遅い、または JavaScript が無効になっているユーザにとって有益であり、`action` に URL を渡したフォームと同様に動作します。
 
@@ -141,11 +137,7 @@ function AddToCart({productId}) {
 }
 ```
 
-<<<<<<< HEAD
-[サーバコンポーネント](/reference/react/use-client) によって `<form>` をレンダーし、`<form>` の `action` に[サーバアクション](/reference/react/use-server)を渡すことで、フォームの[プログレッシブエンハンスメント](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement)が有効になります。
-=======
-When `<form>` is rendered by a [Server Component](/reference/rsc/use-client), and a [Server Action](/reference/rsc/use-server) is passed to the `<form>`'s `action` prop, the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
+[サーバコンポーネント](/reference/rsc/use-client) によって `<form>` をレンダーし、`<form>` の `action` に[サーバアクション](/reference/rsc/use-server)を渡すことで、フォームの[プログレッシブエンハンスメント](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement)が有効になります。
 
 ### フォームの送信中状態を表示する {/*display-a-pending-state-during-form-submission*/}
 フォームが送信されている間に保留 (pending) 状態を表示するには、`<form>` 内でレンダーされるコンポーネントで `useFormStatus` フックを呼び出して、返された `pending` プロパティを読み取ります。
@@ -330,19 +322,11 @@ export default function Search() {
 
 プログレッシブエンハンスメントの実現のため JavaScript バンドルが読み込まれる前にフォーム送信エラーメッセージを表示できるようにするには、以下の条件を満たす必要があります。
 
-<<<<<<< HEAD
-1. `<form>` が [サーバコンポーネント](/reference/react/use-client)によってレンダーされている
-1. `<form>` の `action` プロパティに渡される関数が[サーバアクション](/reference/react/use-server)である
-1. `useFormState` フックを使用してエラーメッセージを表示している
+1. `<form>` が [サーバコンポーネント](/reference/rsc/use-client)によってレンダーされている
+1. `<form>` の `action` プロパティに渡される関数が[サーバアクション](/reference/rsc/use-server)である
+1. `useActionState` フックを使用してエラーメッセージを表示している
 
-`useFormState` は[サーバアクション](/reference/react/use-server)と初期 state の 2 つの引数を受け取り、state 変数とアクションの 2 つの値を返します。`useFormState` が返したアクションは、フォームの `action` プロパティに渡します。`useFormState` が返した state 変数は、エラーメッセージを表示するために使用できます。`useFormState` に渡す[サーバアクション](/reference/react/use-server)が返す値は、state 変数を更新するために使用されます。
-=======
-1. `<form>` be rendered by a [Server Component](/reference/rsc/use-client)
-1. the function passed to the `<form>`'s `action` prop be a [Server Action](/reference/rsc/use-server)
-1. the `useActionState` Hook be used to display the error message
-
-`useActionState` takes two parameters: a [Server Action](/reference/rsc/use-server) and an initial state. `useActionState` returns two values, a state variable and an action. The action returned by `useActionState` should be passed to the `action` prop of the form. The state variable returned by `useActionState` can be used to displayed an error message. The value returned by the [Server Action](/reference/rsc/use-server) passed to `useActionState` will be used to update the state variable.
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
+`useActionState` は[サーバアクション](/reference/rsc/use-server)と初期 state の 2 つの引数を受け取り、state 変数とアクションの 2 つの値を返します。`useActionState` が返したアクションは、フォームの `action` プロパティに渡します。`useActionState` が返した state 変数は、エラーメッセージを表示するために使用できます。`useActionState` に渡す[サーバアクション](/reference/rsc/use-server)が返す値は、state 変数を更新するために使用されます。
 
 <Sandpack>
 
@@ -402,11 +386,7 @@ export async function signUpNewUser(newEmail) {
 
 </Sandpack>
 
-<<<<<<< HEAD
-フォームアクションから state を更新する方法については、[`useFormState`](/reference/react-dom/hooks/useFormState) のドキュメントを参照してください。
-=======
-Learn more about updating state from a form action with the [`useActionState`](/reference/react/hooks/useActionState) docs
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
+フォームアクションから state を更新する方法については、[`useActionState`](/reference/react/hooks/useActionState) のドキュメントを参照してください。
 
 ### 複数の送信タイプを処理する {/*handling-multiple-submission-types*/}
 

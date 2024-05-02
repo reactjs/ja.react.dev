@@ -137,11 +137,7 @@ export default App = AppTSX;
 const [enabled, setEnabled] = useState(false);
 ```
 
-<<<<<<< HEAD
 これで `enabled` に `boolean` 型が割り当てられ、また `setEnabled` は引数として `boolean` 値または `boolean` を返す関数を受け取る関数になります。state の型を明示的に指定したい場合は、`useState` の呼び出しに型引数を渡すことで行えます。
-=======
-This will assign the type of `boolean` to `enabled`, and `setEnabled` will be a function accepting either a `boolean` argument, or a function that returns a `boolean`. If you want to explicitly provide a type for the state, you can do so by providing a type argument to the `useState` call:
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 
 ```ts 
 // Explicitly set the type to "boolean"

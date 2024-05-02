@@ -1,35 +1,35 @@
 ---
-title: Translations
+title: 翻訳
 ---
 
 <Intro>
 
-React docs are translated by the global community into many languages all over the world.
+React ドキュメントはグローバルコミュニティによって世界中の多くの言語に翻訳されています。
 
 </Intro>
 
-## Source site {/*main-site*/}
+## ソースサイト {/*main-site*/}
 
-All translations are provided from the canonical source docs:
+翻訳は以下の元ドキュメントをベースに行われます。
 
 - [English](https://react.dev/) &mdash; [Contribute](https://github.com/reactjs/react.dev/)
 
-## Full translations {/*full-translations*/}
+## 翻訳済み言語 {/*full-translations*/}
 
 {/* If you are a language maintainer and want to add your language here, finish the "Core" translations and edit `deployedTranslations` under `src/utils`. */}
 
 <LanguageList progress="complete" />
 
-## In-progress translations {/*in-progress-translations*/}
+## 翻訳作業中の言語 {/*in-progress-translations*/}
 
-For the progress of each translation, see: [Is React Translated Yet?](https://translations.react.dev/)
+個々の言語の進行状況については [Is React Translated Yet?](https://translations.react.dev/) を参照してください。
 
 <LanguageList progress="in-progress" />
 
-## How to contribute {/*how-to-contribute*/}
+## 貢献の方法 {/*how-to-contribute*/}
 
-You can contribute to the translation efforts! 
+あなたも翻訳に参加できます！
 
-The community conducts the translation work for the React docs on each language-specific fork of react.dev. Typical translation work involves directly translating a Markdown file and creating a pull request. Click the "contribute" link above to the GitHub repository for your language, and follow the instructions there to help with the translation effort.
+コミュニティでは、react.dev を各言語用にフォークしてそこで React ドキュメントの翻訳作業を行っています。典型的な翻訳作業は、Markdown ファイルを直接編集してプルリクエストを作成するというものです。翻訳を手伝うには、上記の "Contribute" リンクをクリックしてあなたの言語の GitHub リポジトリに行き、そこにある指示に従ってください。
 
-If you want to start a new translation for your language, visit: [translations.react.dev](https://github.com/reactjs/translations.react.dev)
+ご自身の言語に対する翻訳を新たに始めたい場合は [translations.react.dev](https://github.com/reactjs/translations.react.dev) を参照してください。

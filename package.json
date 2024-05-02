@@ -19,14 +19,10 @@
     "tsc": "tsc --noEmit",
     "start": "next start",
     "postinstall": "patch-package && (is-ci || husky install .husky)",
-<<<<<<< HEAD
-    "check-all": "npm-run-all prettier lint:fix tsc",
+    "check-all": "npm-run-all prettier lint:fix tsc rss",
+    "rss": "node scripts/generateRss.js",
     "textlint": "cd textlint && yarn --frozen-lockfile && yarn textlint",
     "textlint-staged": "cd textlint && yarn --frozen-lockfile && yarn textlint-staged --"
-=======
-    "check-all": "npm-run-all prettier lint:fix tsc rss",
-    "rss": "node scripts/generateRss.js"
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "2.13.5",

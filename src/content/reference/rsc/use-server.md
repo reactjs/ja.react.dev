@@ -38,25 +38,14 @@ async function addToCart(data) {
 
 個々の関数に `'use server'` をマークする代わりに、このディレクティブをファイルの先頭に追加することもできます。その場合はそのファイル内のすべてのエクスポートが、クライアントコードでインポートされる場合も含み、あらゆる場所で使用できるサーバアクションとしてマークされます。
 
-<<<<<<< HEAD:src/content/reference/react/use-server.md
 #### 注意点 {/*caveats*/}
 * `'use server'` は、関数やモジュールの冒頭、つまりインポートも含む他のコードよりも上にある必要があります（ディレクティブの上にコメントを書くことは OK）。シングルクォートまたはダブルクォートで書かれていなければならず、バックティックは無効です。
 * `'use server'` は、サーバサイドのファイルでのみ使用できます。結果として得られるサーバアクションは、props を通じてクライアントコンポーネントに渡せるようになります。サポートされている[シリアライズ可能な型](#serializable-parameters-and-return-values)を参照してください。
-* [クライアントコード](/reference/react/use-client)からサーバアクションをインポートする場合は、ディレクティブをモジュールレベルで使用する必要があります。
+* [クライアントコード](/reference/rsc/use-client)からサーバアクションをインポートする場合は、ディレクティブをモジュールレベルで使用する必要があります。
 * 内部で使用されるネットワーク呼び出しは常に非同期であるため、`'use server'` は非同期関数でのみ使用できます。
 * サーバアクションへの引数は常に信頼できない入力として扱い、あらゆるデータ書き換えを検証してください。[セキュリティに関する考慮事項](#security)を参照してください。
 * サーバアクションは[トランジション](/reference/react/useTransition)の中で呼び出すようにしてください。サーバアクションが [`<form action>`](/reference/react-dom/components/form#props) または [`formAction`](/reference/react-dom/components/input#props) に渡される場合、自動的にトランジション内で呼び出されます。
 * サーバアクションは、サーバ側の状態を書き換える、更新目的のために設計されています。データの取得には推奨されません。したがって、サーバアクションを実装するフレームワークは通常、一度にひとつのアクションのみを処理し、返り値をキャッシュしないようにします。
-=======
-#### Caveats {/*caveats*/}
-* `'use server'` must be at the very beginning of their function or module; above any other code including imports (comments above directives are OK). They must be written with single or double quotes, not backticks.
-* `'use server'` can only be used in server-side files. The resulting Server Actions can be passed to Client Components through props. See supported [types for serialization](#serializable-parameters-and-return-values).
-* To import a Server Action from [client code](/reference/rsc/use-client), the directive must be used on a module level.
-* Because the underlying network calls are always asynchronous, `'use server'` can only be used on async functions.
-* Always treat arguments to Server Actions as untrusted input and authorize any mutations. See [security considerations](#security).
-* Server Actions should be called in a [Transition](/reference/react/useTransition). Server Actions passed to [`<form action>`](/reference/react-dom/components/form#props) or [`formAction`](/reference/react-dom/components/input#props) will automatically be called in a transition.
-* Server Actions are designed for mutations that update server-side state; they are not recommended for data fetching. Accordingly, frameworks implementing Server Actions typically process one action at a time and do not have a way to cache the return value.
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951:src/content/reference/rsc/use-server.md
 
 ### セキュリティについての考慮事項 {/*security*/}
 
@@ -106,11 +95,7 @@ async function addToCart(data) {
 * グローバルに登録されていないシンボル、例：`Symbol('my new symbol')`
 
 
-<<<<<<< HEAD:src/content/reference/react/use-server.md
-サポートされるシリアライズ可能な返り値は、クライアントコンポーネントに渡せる[シリアライズ可能な props](/reference/react/use-client#passing-props-from-server-to-client-components) の型と同じです。
-=======
-Supported serializable return values are the same as [serializable props](/reference/rsc/use-client#passing-props-from-server-to-client-components) for a boundary Client Component.
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951:src/content/reference/rsc/use-server.md
+サポートされるシリアライズ可能な返り値は、クライアントコンポーネントに渡せる[シリアライズ可能な props](/reference/rsc/use-client#passing-props-from-server-to-client-components) の型と同じです。
 
 
 ## 使用法 {/*usage*/}
@@ -148,11 +133,7 @@ export default function App() {
 
 上記のユーザ名リクエストフォームでは、ユーザ名が利用できない可能性もあります。`requestUsername` は成功したか失敗したかを伝えられるべきです。
 
-<<<<<<< HEAD:src/content/reference/react/use-server.md
-プログレッシブエンハンスメントをサポートしつつサーバアクションの結果に基づいて UI を更新するには、[`useFormState`](/reference/react-dom/hooks/useFormState) を使用します。
-=======
-To update the UI based on the result of a Server Action while supporting progressive enhancement, use [`useActionState`](/reference/react/useActionState).
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951:src/content/reference/rsc/use-server.md
+プログレッシブエンハンスメントをサポートしつつサーバアクションの結果に基づいて UI を更新するには、[`useActionState`](/reference/react/useActionState) を使用します。
 
 ```js
 // requestUsername.js
@@ -190,11 +171,7 @@ function UsernameForm() {
 }
 ```
 
-<<<<<<< HEAD:src/content/reference/react/use-server.md
-ほとんどのフックと同様に、`useFormState` は<CodeStep step={1}>[クライアントコード](/reference/react/use-client)</CodeStep>内でしか呼び出せないことに注意してください。
-=======
-Note that like most Hooks, `useActionState` can only be called in <CodeStep step={1}>[client code](/reference/rsc/use-client)</CodeStep>.
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951:src/content/reference/rsc/use-server.md
+ほとんどのフックと同様に、`useActionState` は<CodeStep step={1}>[クライアントコード](/reference/rsc/use-client)</CodeStep>内でしか呼び出せないことに注意してください。
 
 ### `<form>` の外部でサーバアクションを呼び出す {/*calling-a-server-action-outside-of-form*/}
 

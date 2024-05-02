@@ -155,26 +155,6 @@
       ]
     },
     {
-<<<<<<< HEAD
-      "title": "ディレクティブ",
-      "path": "/reference/react/directives",
-      "canary": true,
-      "routes": [
-        {
-          "title": "'use client'",
-          "path": "/reference/react/use-client",
-          "canary": true
-        },
-        {
-          "title": "'use server'",
-          "path": "/reference/react/use-server",
-          "canary": true
-        }
-      ]
-    },
-    {
-=======
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
       "hasSectionHeader": true,
       "sectionHeader": "react-dom@{{version}}"
     },
@@ -358,35 +338,19 @@
       "sectionHeader": "React のルール"
     },
     {
-<<<<<<< HEAD
       "title": "概要",
-      "path": "/reference/rules"
-    },
-    {
-      "title": "コンポーネントとフックを純粋に保つ",
-      "path": "/reference/rules/components-and-hooks-must-be-pure"
-    },
-    {
-      "title": "コンポーネントやフックを呼び出すのは React",
-      "path": "/reference/rules/react-calls-components-and-hooks"
-    },
-    {
-      "title": "フックのルール",
-      "path": "/reference/rules/rules-of-hooks"
-=======
-      "title": "Overview",
       "path": "/reference/rules",
       "routes": [
         {
-        "title": "Components and Hooks must be pure",
+        "title": "コンポーネントとフックを純粋に保つ",
         "path": "/reference/rules/components-and-hooks-must-be-pure"
         },
         {
-          "title": "React calls Components and Hooks",
+          "title": "コンポーネントやフックを呼び出すのは React",
           "path": "/reference/rules/react-calls-components-and-hooks"
         },
         {
-          "title": "Rules of Hooks",
+          "title": "フックのルール",
           "path": "/reference/rules/rules-of-hooks"
         }
       ]
@@ -406,7 +370,7 @@
       "canary": true
     },
     {
-      "title": "Directives",
+      "title": "ディレクティブ",
       "path": "/reference/rsc/directives",
       "canary": true,
       "routes": [
@@ -421,7 +385,6 @@
           "canary": true
         }
       ]
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
     },
     {
       "hasSectionHeader": true,

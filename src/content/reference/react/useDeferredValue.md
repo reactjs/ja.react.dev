@@ -36,37 +36,25 @@ function SearchPage() {
 
 #### 引数 {/*parameters*/}
 
-<<<<<<< HEAD
 * `value`: 遅延させたい値。任意の型を持つことができます。
-=======
-* `value`: The value you want to defer. It can have any type.
-* <CanaryBadge title="This feature is only available in the Canary channel" /> **optional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
+* <CanaryBadge title="This feature is only available in the Canary channel" /> **省略可能** `initialValue`: コンポーネントの初回レンダー時に使用する値です。このオプションが省略された場合、初回レンダー時には代わりにレンダーできる `value` の前のバージョンがないことになるので、`useDeferredValue` は値の遅延を行いません。
 
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 
 #### 返り値 {/*returns*/}
 
-<<<<<<< HEAD
-初回レンダー時には、返される値はあなたが渡した値と同一になります。更新時には、React はまず古い値で再レンダーを試み（つまり返り値は古い値になり）、次に新しい値でバックグラウンドで再レンダーを試みます（返り値は更新後の値になります）。
-=======
-- `currentValue`: During the initial render, the returned deferred value will be the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in the background with the new value (so it will return the updated value).
+- `currentValue`: 初回レンダー時には、返される値はあなたが渡した値と同一になります。更新時には、React はまず古い値で再レンダーを試み（つまり返り値は古い値になり）、次に新しい値でバックグラウンドで再レンダーを試みます（返り値は更新後の値になります）。
 
 <Canary>
 
-In the latest React Canary versions, `useDeferredValue` returns the `initialValue` on initial render, and schedules a re-render in the background with the `value` returned.
+最新の React Canary バージョンでは、`useDeferredValue` は初回レンダー時に `initialValue` を返し、バックグラウンドでその `value` を使った再レンダーをスケジュールします。
 
 </Canary>
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 
 #### 注意点 {/*caveats*/}
 
-<<<<<<< HEAD
-- `useDeferredValue` に渡す値は、プリミティブな値（文字列や数値など）またはレンダーの外部で作成されたオブジェクトであるべきです。レンダー中に新しいオブジェクトを作成してすぐにそれを `useDeferredValue` に渡すと、それは毎回のレンダーで異なるものとなるため、不必要なバックグラウンドでの再レンダーを引き起こします。
-=======
-- When an update is inside a Transition, `useDeferredValue` always returns the new `value` and does not spawn a deferred render, since the update is already deferred.
+- 更新がトランジション内で発生する場合、更新は既に遅延されているため、`useDeferredValue` は常に新しい `value` のみを返し、新たな遅延レンダーを発生させません。
 
-- The values you pass to `useDeferredValue` should either be primitive values (like strings and numbers) or objects created outside of rendering. If you create a new object during rendering and immediately pass it to `useDeferredValue`, it will be different on every render, causing unnecessary background re-renders.
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
+- `useDeferredValue` に渡す値は、プリミティブな値（文字列や数値など）またはレンダーの外部で作成されたオブジェクトであるべきです。レンダー中に新しいオブジェクトを作成してすぐにそれを `useDeferredValue` に渡すと、それは毎回のレンダーで異なるものとなるため、不必要なバックグラウンドでの再レンダーを引き起こします。
 
 - `useDeferredValue` が（[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) で比較して）異なる値を受け取ると、（前回の値を使用する）現在のレンダーに加えて、新しい値でバックグラウンドで再レンダーをスケジュールします。バックグラウンドでの再レンダーは中断可能です。`value` に別の更新があると、React はバックグラウンドでの再レンダーを最初からやり直します。例えば、ユーザが素早く入力を行い、それがその値を受け取るチャートコンポーネントが再レンダーできるよりも速かった場合、チャートはユーザがタイプを止めたあとに再表示されることになります。
 

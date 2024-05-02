@@ -1741,11 +1741,7 @@ function Router() {
   // ...
 ```
 
-<<<<<<< HEAD
 これにより、React に対して state の遷移が緊急のものではなく、既に表示されている内容を隠すよりも前のページを表示し続ける方が良いと伝えます。これで、ボタンをクリックすると `Biography` の読み込みを「待つ」ようになります。
-=======
-This tells React that the state transition is not urgent, and it's better to keep showing the previous page instead of hiding any already revealed content. Now clicking the button "waits" for the `Biography` to load:
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 
 <Sandpack>
 

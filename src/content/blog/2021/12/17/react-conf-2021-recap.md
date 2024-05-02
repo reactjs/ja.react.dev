@@ -1,12 +1,8 @@
 ---
-<<<<<<< HEAD
 title: "React Conf 2021 振り返り"
-=======
-title: "React Conf 2021 Recap"
 author: Jesslyn Tannady and Rick Hanlon
 date: 2021/12/17
 description: Last week we hosted our 6th React Conf. In previous years, we've used the React Conf stage to deliver industry changing announcements such as React Native and React Hooks. This year, we shared our multi-platform vision for React, starting with the release of React 18 and gradual adoption of concurrent features.
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 ---
 
 December 17, 2021 by [Jesslyn Tannady](https://twitter.com/jtannady) and [Rick Hanlon](https://twitter.com/rickhanlonii)

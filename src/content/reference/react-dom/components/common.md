@@ -257,20 +257,13 @@ React は、*異なる* `ref` コールバックが渡された場合も `ref` �
 
 #### 引数 {/*ref-callback-parameters*/}
 
-<<<<<<< HEAD
-* `node`: DOM ノードまたは `null`。ref がアタッチされるときに React は DOM ノードを渡し、ref がデタッチされるときに `null` を渡します。毎回のレンダーで `ref` コールバックに同じ関数参照を渡さない限り、コールバックは一時的にデタッチされ、コンポーネントの再レンダーごとに再アタッチされます。
-=======
-* `node`: A DOM node or `null`. React will pass you the DOM node when the ref gets attached, and `null` when the `ref` gets detached. Unless you pass the same function reference for the `ref` callback on every render, the callback will get temporarily detached and re-attached during every re-render of the component.
+* `node`: DOM ノードまたは `null`。ref がアタッチされるときに React は DOM ノードを渡し、`ref` がデタッチされるときに `null` を渡します。毎回のレンダーで `ref` コールバックに同じ関数参照を渡さない限り、コールバックは一時的にデタッチされ、コンポーネントの再レンダーごとに再アタッチされます。
 
 <Canary>
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 
 #### 返り値 {/*returns*/}
 
-<<<<<<< HEAD
-`ref` コールバックからは何も返してはいけません。
-=======
-*  **optional** `cleanup function`: When the `ref` is detached, React will call the cleanup function. If a function is not returned by the `ref` callback, React will call the callback again with `null` as the argument when the `ref` gets detached.
+*  **省略可能** `cleanup function`: `ref` がデタッチされる際に React はこのクリーンアップ関数を実行します。`ref` コールバックから関数が返されない場合は、`ref` がデタッチされる際に `null` を引数にして元のコールバックの方を再度呼び出します。
 
 ```js
 
@@ -284,13 +277,12 @@ React は、*異なる* `ref` コールバックが渡された場合も `ref` �
 
 ```
 
-#### Caveats {/*caveats*/}
+#### 注意事項 {/*caveats*/}
 
-* When Strict Mode is on, React will **run one extra development-only setup+cleanup cycle** before the first real setup. This is a stress-test that ensures that your cleanup logic "mirrors" your setup logic and that it stops or undoes whatever the setup is doing. If this causes a problem, implement the cleanup function.
-* When you pass a *different* `ref` callback, React will call the *previous* callback's cleanup function if provided. If not cleanup function is defined, the `ref` callback will be called with `null` as the argument. The *next* function will be called with the DOM node.
+* Strict Mode が有効の場合、React は最終的なセットアップの前に、**開発時専用のセットアップ＋クリーンアップのサイクルを追加で 1 回実行します**。これはクリーンアップのロジックがセットアップロジックに「鏡のように対応」しており、セットアップが行っていることが何であれそれの停止ないし取り消しを行っている、ということを保証するために行う、ストレステストです。問題が生じている場合は正しくクリーンアップ関数を実装してください。
+* *異なる* `ref` のコールバックを渡した場合、React は*古い*コールバックのクリーンアップが存在する場合それをまず実行します。クリーンアップ関数が定義されていない場合は、`ref` コールバック自体が `null` を引数にして呼び出されます。*新しい*関数は、DOM ノードを引数に呼び出されます。
 
 </Canary>
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 
 ---
 

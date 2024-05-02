@@ -106,42 +106,14 @@ function TodoList({ todos, tab, theme }) {
 
 ---
 
-<<<<<<< HEAD
-## リソース関連フック {/*resource-hooks*/}
-
-*リソース (resource)* は state に入れずにコンポーネントからアクセスできます。例えばコンポーネントは Promise からメッセージを読み取ったり、コンテクストからスタイルに関する情報を読み取ったりできます。
-
-リソースから値を読み取るには、以下のフックを用いることができます：
-
-- [`use`](/reference/react/use) を用いることで [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) や[コンテクスト](/learn/passing-data-deeply-with-context)などのリソースから値を読み取ります。
-
-```js
-function MessageComponent({ messagePromise }) {
-  const message = use(messagePromise);
-  const theme = use(ThemeContext);
-  // ...
-}
-```
-
----
-
 ## その他のフック {/*other-hooks*/}
-=======
-## Other Hooks {/*other-hooks*/}
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 
 これらのフックはライブラリの開発者には有用ですが、アプリケーションコードでは通常は用いられることはありません。
 
-<<<<<<< HEAD
 - [`useDebugValue`](/reference/react/useDebugValue) を用いると、React DevTools が表示するカスタムフックのラベルをカスタマイズできます。
 - [`useId`](/reference/react/useId) を用いると、コンポーネントにユニークな ID を関連付けることができます。通常はアクセシビリティ API とともに使用されます。 
 - [`useSyncExternalStore`](/reference/react/useSyncExternalStore) を用いると、コンポーネントは外部のストアを参照できるようになります。
-=======
-- [`useDebugValue`](/reference/react/useDebugValue) lets you customize the label React DevTools displays for your custom Hook.
-- [`useId`](/reference/react/useId) lets a component associate a unique ID with itself. Typically used with accessibility APIs.
-- [`useSyncExternalStore`](/reference/react/useSyncExternalStore) lets a component subscribe to an external store.
-* [`useActionState`](/reference/react/useActionState) allows you to manage state of actions.
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
+- [`useActionState`](/reference/react/useActionState) によってアクションの state を管理できます。
 
 ---
 

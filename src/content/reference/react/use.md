@@ -5,21 +5,13 @@ canary: true
 
 <Canary>
 
-<<<<<<< HEAD
-`use` フックは現在、React の Canary および experimental チャンネルでのみ利用可能です。[React のリリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
-=======
-The `use` API is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
+`use` API は現在、React の Canary および experimental チャンネルでのみ利用可能です。[React のリリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
 
 </Canary>
 
 <Intro>
 
-<<<<<<< HEAD
-`use` は[プロミス (Promise)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) や[コンテクスト](/learn/passing-data-deeply-with-context)などのリソースから値を読み取るための React フックです。
-=======
-`use` is a React API that lets you read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
+`use` は[プロミス (Promise)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) や[コンテクスト](/learn/passing-data-deeply-with-context)などのリソースから値を読み取るための React API です。
 
 ```js
 const value = use(resource);
@@ -46,15 +38,9 @@ function MessageComponent({ messagePromise }) {
   // ...
 ```
 
-<<<<<<< HEAD
-他のあらゆる React フックとは異なり、`use` は `if` のようなループや条件文内でも呼び出すことができます。他の React フックと同様に、`use` を呼び出す関数はコンポーネントまたはフックでなければなりません。
+React フックとは異なり、`use` は `if` のようなループや条件文内でも呼び出すことができます。ただし React フックと同様に、`use` を呼び出す関数はコンポーネントまたはフック内でなければなりません。
 
-プロミスを引数にして呼び出した場合、`use` フックは [`Suspense`](/reference/react/Suspense) や[エラーバウンダリ (error boundary)](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) と協調して動作します。`use` を呼び出すコンポーネントは、`use` に渡されたプロミスが保留中 (pending) である間、*サスペンド (suspend)* します。`use` を呼び出すコンポーネントがサスペンスバウンダリでラップされている場合、フォールバックが表示されます。プロミスが解決 (resolve) された時点で、サスペンスフォールバックは、`use` フックから返されたデータを使用してレンダーされたコンポーネントの内容に置き換わります。`use` に渡されたプロミスが拒否 (reject) されると、最も近いエラーバウンダリのフォールバックが表示されます。
-=======
-Unlike React Hooks, `use` can be called within loops and conditional statements like `if`. Like React Hooks, the function that calls `use` must be a Component or Hook.
-
-When called with a Promise, the `use` API integrates with [`Suspense`](/reference/react/Suspense) and [error boundaries](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). The component calling `use` *suspends* while the Promise passed to `use` is pending. If the component that calls `use` is wrapped in a Suspense boundary, the fallback will be displayed.  Once the Promise is resolved, the Suspense fallback is replaced by the rendered components using the data returned by the `use` API. If the Promise passed to `use` is rejected, the fallback of the nearest Error Boundary will be displayed.
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
+プロミスを引数にして呼び出した場合、`use` API は [`Suspense`](/reference/react/Suspense) や[エラーバウンダリ (error boundary)](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) と協調して動作します。`use` を呼び出すコンポーネントは、`use` に渡されたプロミスが保留中 (pending) である間、*サスペンド (suspend)* します。`use` を呼び出すコンポーネントがサスペンスバウンダリでラップされている場合、フォールバックが表示されます。プロミスが解決 (resolve) された時点で、サスペンスフォールバックは、`use` API から返されたデータを使用してレンダーされたコンポーネントの内容に置き換わります。`use` に渡されたプロミスが拒否 (reject) されると、最も近いエラーバウンダリのフォールバックが表示されます。
 
 [さらに例を見る](#usage)
 
@@ -64,23 +50,13 @@ When called with a Promise, the `use` API integrates with [`Suspense`](/referenc
 
 #### 返り値 {/*returns*/}
 
-<<<<<<< HEAD
-`use` フックは、[プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)の解決された値や[コンテクスト](/learn/passing-data-deeply-with-context)など、リソースから読み取った値を返します。
-=======
-The `use` API returns the value that was read from the resource like the resolved value of a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
+`use` API は、[プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)の解決された値や[コンテクスト](/learn/passing-data-deeply-with-context)など、リソースから読み取った値を返します。
 
 #### 注意点 {/*caveats*/}
 
-<<<<<<< HEAD
-* `use` フックは、コンポーネントまたは他のフック内で呼び出す必要があります。
-* [サーバコンポーネント](/reference/react/use-server)でデータをフェッチする際は、`use` よりも `async` と `await` を優先して使用してください。`async` と `await` は `await` が呼び出された地点からレンダーを再開しますが、`use` はデータが解決した後にコンポーネントを最初からレンダーします。
-* [クライアントコンポーネント](/reference/react/use-client)でプロミスを作成するよりも、[サーバコンポーネント](/reference/react/use-server)でプロミスを作成してそれをクライアントコンポーネントに渡すようにしてください。クライアントコンポーネントで作成されたプロミスは、レンダーごとに再作成されます。サーバコンポーネントからクライアントコンポーネントに渡されたプロミスは、再レンダー間で不変です。[こちらの例を参照してください](#streaming-data-from-server-to-client)。
-=======
-* The `use` API must be called inside a Component or a Hook.
-* When fetching data in a [Server Component](/reference/rsc/use-server), prefer `async` and `await` over `use`. `async` and `await` pick up rendering from the point where `await` was invoked, whereas `use` re-renders the component after the data is resolved.
-* Prefer creating Promises in [Server Components](/reference/rsc/use-server) and passing them to [Client Components](/reference/rsc/use-client) over creating Promises in Client Components. Promises created in Client Components are recreated on every render. Promises passed from a Server Component to a Client Component are stable across re-renders. [See this example](#streaming-data-from-server-to-client).
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
+* `use` API は、コンポーネントまたは他のフック内で呼び出す必要があります。
+* [サーバコンポーネント](/reference/rsc/use-server)でデータをフェッチする際は、`use` よりも `async` と `await` を優先して使用してください。`async` と `await` は `await` が呼び出された地点からレンダーを再開しますが、`use` はデータが解決した後にコンポーネントを最初からレンダーします。
+* [クライアントコンポーネント](/reference/rsc/use-client)でプロミスを作成するよりも、[サーバコンポーネント](/reference/react/use-server)でプロミスを作成してそれをクライアントコンポーネントに渡すようにしてください。クライアントコンポーネントで作成されたプロミスは、レンダーごとに再作成されます。サーバコンポーネントからクライアントコンポーネントに渡されたプロミスは、再レンダー間で不変です。[こちらの例を参照してください](#streaming-data-from-server-to-client)。
 
 ---
 
@@ -254,11 +230,7 @@ export default function App() {
 }
 ```
 
-<<<<<<< HEAD
-<CodeStep step={2}>クライアントコンポーネント</CodeStep> は、<CodeStep step={4}>受け取ったプロミス</CodeStep> を <CodeStep step={5}>`use`</CodeStep> フックに渡します。これにより<CodeStep step={2}>クライアントコンポーネント</CodeStep>は、サーバコンポーネントが最初に作成した<CodeStep step={4}>プロミス</CodeStep>から値を読み取ることができます。
-=======
-The <CodeStep step={2}>Client Component</CodeStep> then takes <CodeStep step={4}>the Promise it received as a prop</CodeStep> and passes it to the <CodeStep step={5}>`use`</CodeStep> API. This allows the <CodeStep step={2}>Client Component</CodeStep> to read the value from <CodeStep step={4}>the Promise</CodeStep> that was initially created by the Server Component.
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
+<CodeStep step={2}>クライアントコンポーネント</CodeStep> は、<CodeStep step={4}>受け取ったプロミス</CodeStep> を <CodeStep step={5}>`use`</CodeStep> API に渡します。これにより<CodeStep step={2}>クライアントコンポーネント</CodeStep>は、サーバコンポーネントが最初に作成した<CodeStep step={4}>プロミス</CodeStep>から値を読み取ることができます。
 
 ```js [[2, 6, "Message"], [4, 6, "messagePromise"], [4, 7, "messagePromise"], [5, 7, "use"]]
 // message.js
@@ -271,11 +243,7 @@ export function Message({ messagePromise }) {
   return <p>Here is the message: {messageContent}</p>;
 }
 ```
-<<<<<<< HEAD
-<CodeStep step={2}>`Message`</CodeStep> は <CodeStep step={3}>[`Suspense`](/reference/react/Suspense)</CodeStep> でラップされているため、プロミスが解決されるまでフォールバックが表示されます。プロミスが解決されると、その値が <CodeStep step={5}>`use`</CodeStep> フックによって読み取られ、<CodeStep step={2}>`Message`</CodeStep> コンポーネントがサスペンスフォールバックを置き換えます。
-=======
-Because <CodeStep step={2}>`Message`</CodeStep> is wrapped in <CodeStep step={3}>[`Suspense`](/reference/react/Suspense)</CodeStep>, the fallback will be displayed until the Promise is resolved. When the Promise is resolved, the value will be read by the <CodeStep step={5}>`use`</CodeStep> API and the <CodeStep step={2}>`Message`</CodeStep> component will replace the Suspense fallback.
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
+<CodeStep step={2}>`Message`</CodeStep> は <CodeStep step={3}>[`Suspense`](/reference/react/Suspense)</CodeStep> でラップされているため、プロミスが解決されるまでフォールバックが表示されます。プロミスが解決されると、その値が <CodeStep step={5}>`use`</CodeStep> API によって読み取られ、<CodeStep step={2}>`Message`</CodeStep> コンポーネントがサスペンスフォールバックを置き換えます。
 
 <Sandpack>
 
@@ -366,11 +334,7 @@ root.render(
 
 #### プロミスをサーバコンポーネントで解決するか、クライアントコンポーネントで解決するか？ {/*resolve-promise-in-server-or-client-component*/}
 
-<<<<<<< HEAD
-プロミスはサーバコンポーネントからクライアントコンポーネントに渡し、`use` フックを使ってクライアントコンポーネントで解決することができます。また、`await` を使ってサーバコンポーネント側でプロミスを解決し、必要なデータを props としてクライアントコンポーネントに渡すことも可能でしょう。
-=======
-A Promise can be passed from a Server Component to a Client Component and resolved in the Client Component with the `use` API. You can also resolve the Promise in a Server Component with `await` and pass the required data to the Client Component as a prop.
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
+プロミスはサーバコンポーネントからクライアントコンポーネントに渡し、`use` API を使ってクライアントコンポーネントで解決することができます。また、`await` を使ってサーバコンポーネント側でプロミスを解決し、必要なデータを props としてクライアントコンポーネントに渡すことも可能でしょう。
 
 ```js
 export default async function App() {
@@ -396,11 +360,7 @@ export default async function App() {
 
 #### エラーバウンダリを使ってユーザにエラーを表示する {/*displaying-an-error-to-users-with-error-boundary*/}
 
-<<<<<<< HEAD
-プロミスが拒否されたときにユーザにエラーを表示したい場合は、[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) を使用できます。エラーバウンダリを使用するには、`use` フックを呼び出しているコンポーネントをエラーバウンダリでラップします。`use` に渡されたプロミスが拒否されると、エラーバウンダリに書かれたフォールバックが表示されます。
-=======
-If you'd like to display an error to your users when a Promise is rejected, you can use an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `use` API in an error boundary. If the Promise passed to `use` is rejected the fallback for the error boundary will be displayed.
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
+プロミスが拒否されたときにユーザにエラーを表示したい場合は、[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) を使用できます。エラーバウンダリを使用するには、`use` API を呼び出しているコンポーネントをエラーバウンダリでラップします。`use` に渡されたプロミスが拒否されると、エラーバウンダリに書かれたフォールバックが表示されます。
 
 <Sandpack>
 
@@ -514,15 +474,9 @@ export default function App() {
 
 ### "Suspense Exception: This is not a real error!" {/*suspense-exception-error*/}
 
-<<<<<<< HEAD
 あなたは React コンポーネントまたはフック関数の外部で `use` を呼び出しているか、または try-catch ブロック内で `use` を呼び出しています。try-catch ブロック内で `use` を呼び出している場合は、コンポーネントをエラーバウンダリでラップするか、プロミスの `catch` を呼び出してエラーをキャッチし、別の値でプロミスを解決します。[こちらの例を参照してください](#dealing-with-rejected-promises)。
 
 React コンポーネントまたはフック関数の外部で `use` を呼び出している場合は、`use` の呼び出しを React コンポーネントまたはフック関数に移動します。
-=======
-You are either calling `use` outside of a React Component or Hook function, or calling `use` in a try–catch block. If you are calling `use` inside a try–catch block, wrap your component in an error boundary, or call the Promise's `catch` to catch the error and resolve the Promise with another value. [See these examples](#dealing-with-rejected-promises).
-
-If you are calling `use` outside a React Component or Hook function, move the `use` call to a React Component or Hook function.
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 
 ```jsx
 function MessageComponent({messagePromise}) {
@@ -532,11 +486,7 @@ function MessageComponent({messagePromise}) {
     // ...
 ```
 
-<<<<<<< HEAD
 上記の場合、コンポーネントのクロージャの外で `use` を呼び出すようにすることで、コンポーネントまたはフックから `use` を呼び出すという条件を満たすようになります。
-=======
-Instead, call `use` outside any component closures, where the function that calls `use` is a Component or Hook.
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 
 ```jsx
 function MessageComponent({messagePromise}) {
