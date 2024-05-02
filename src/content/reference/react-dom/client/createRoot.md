@@ -45,9 +45,9 @@ React で完全に構築されたアプリには、ルートコンポーネン�
 
 * **省略可能** `options`: この React ルートに関するオプションが含まれたオブジェクト。
 
-  * <CanaryBadge title="This feature is only available in the Canary channel" /> **optional** `onCaughtError`: Callback called when React catches an error in an Error Boundary. Called with the `error` caught by the Error Boundary, and an `errorInfo` object containing the `componentStack`.
-  * <CanaryBadge title="This feature is only available in the Canary channel" /> **optional** `onUncaughtError`: Callback called when an error is thrown and not caught by an Error Boundary. Called with the `error` that was thrown, and an `errorInfo` object containing the `componentStack`.
-  * **optional** `onRecoverableError`: React が自動的にエラーから回復したときに呼び出されるコールバック。Called with an `error` React throws, and an `errorInfo` object containing the `componentStack`. Some recoverable errors may include the original error cause as `error.cause`.
+  * <CanaryBadge title="This feature is only available in the Canary channel" /> **省略可能** `onCaughtError`: エラーバウンダリ内で React がエラーをキャッチしたときに呼び出されるコールバック。エラーバウンダリにキャッチされた `error` と、`componentStack` を含んだ `errorInfo` を引数にして呼び出されます。
+  * <CanaryBadge title="This feature is only available in the Canary channel" /> **省略可能** `onUncaughtError`: エラーがスローされがエラーバウンダリでキャッチされななかったときに呼び出されるコールバック。スローされた `error` と、`componentStack` を含んだ `errorInfo` を引数にして呼び出されます。
+  * **省略可能** `onRecoverableError`: React が自動的にエラーから回復したときに呼び出されるコールバック。React がスローする `error` と、`componentStack` を含んだ `errorInfo` を引数にして呼び出されます。復帰可能なエラーの一部は元のエラーを `error.cause` として含んでいます。
   * **省略可能** `identifierPrefix`: React が [`useId`](/reference/react/useId) によって生成する ID に使用する文字列プレフィックス。同じページ上に複数のルートを使用する際に、競合を避けるために用います。
 
 #### 返り値 {/*returns*/}
@@ -344,15 +344,15 @@ export default function App({counter}) {
 
 `render` を複数回呼び出すことは滅多にありません。通常、コンポーネントは代わりに [state の更新](/reference/react/useState)を行います。
 
-### Show a dialog for uncaught errors {/*show-a-dialog-for-uncaught-errors*/}
+### キャッチされないエラーに対するダイアログを表示 {/*show-a-dialog-for-uncaught-errors*/}
 
 <Canary>
 
-`onUncaughtError` is only available in the latest React Canary release.
+`onUncaughtError` は最新版の React Canary リリースでのみ利用可能です。
 
 </Canary>
 
-By default, React will log all uncaught errors to the console. To implement your own error reporting, you can provide the optional `onUncaughtError` root option:
+デフォルトでは React は、キャッチされなかったエラーをコンソールにログとして表示します。独自のエラーレポーティングを実装するには、省略可能なルートオプションである `onUncaughtError` を指定します。
 
 ```js [[1, 6, "onUncaughtError"], [2, 6, "error", 1], [3, 6, "errorInfo"], [4, 10, "componentStack"]]
 import { createRoot } from 'react-dom/client';
@@ -372,12 +372,12 @@ const root = createRoot(
 root.render(<App />);
 ```
 
-The <CodeStep step={1}>onUncaughtError</CodeStep> option is a function called with two arguments:
+<CodeStep step={1}>onUncaughtError</CodeStep> オプションに指定するのは、以下の 2 つの引数を付けて呼ばれる関数です。
 
-1. The <CodeStep step={2}>error</CodeStep> that was thrown.
-2. An <CodeStep step={3}>errorInfo</CodeStep> object that contains the <CodeStep step={4}>componentStack</CodeStep> of the error.
+1. スローされた <CodeStep step={2}>error</CodeStep>。
+2. <CodeStep step={3}>errorInfo</CodeStep> オブジェクト。エラーの <CodeStep step={4}>componentStack</CodeStep> を含んでいる。
 
-You can use the `onUncaughtError` root option to display error dialogs:
+エラーダイアログを表示するために `onUncaughtError` ルートオプションを用いることが可能です。
 
 <Sandpack>
 
@@ -592,15 +592,15 @@ export default function App() {
 </Sandpack>
 
 
-### Displaying Error Boundary errors {/*displaying-error-boundary-errors*/}
+### エラーバウンダリでキャッチしたエラーを表示 {/*displaying-error-boundary-errors*/}
 
 <Canary>
 
-`onCaughtError` is only available in the latest React Canary release.
+`onCaughtError` は最新の React Canary リリースでのみ利用可能です。
 
 </Canary>
 
-By default, React will log all errors caught by an Error Boundary to `console.error`. To override this behavior, you can provide the optional `onCaughtError` root option to handle errors caught by an [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary):
+デフォルトでは、React はエラーバウンダリによってキャッチされたすべてのエラーを `console.error` に記録します。この動作をオーバーライドするには、省略可能なルートオプションである `onCaughtError` を指定して、[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary)によってキャッチされたエラーを処理するようにします。
 
 ```js [[1, 6, "onCaughtError"], [2, 6, "error", 1], [3, 6, "errorInfo"], [4, 10, "componentStack"]]
 import { createRoot } from 'react-dom/client';
@@ -620,12 +620,12 @@ const root = createRoot(
 root.render(<App />);
 ```
 
-The <CodeStep step={1}>onCaughtError</CodeStep> option is a function called with two arguments:
+<CodeStep step={1}>onCaughtError</CodeStep> オプションに指定するのは、以下の 2 つの引数を付けて呼ばれる関数です。
 
-1. The <CodeStep step={2}>error</CodeStep> that was caught by the boundary.
-2. An <CodeStep step={3}>errorInfo</CodeStep> object that contains the <CodeStep step={4}>componentStack</CodeStep> of the error.
+1. バウンダリによってキャッチされた <CodeStep step={2}>error</CodeStep>。
+2. <CodeStep step={3}>errorInfo</CodeStep> オブジェクト。当該エラーの <CodeStep step={4}>componentStack</CodeStep> を含んでいる。
 
-You can use the `onCaughtError` root option to display error dialogs or filter known errors from logging:
+`onCaughtError` ルートオプションを用いて、エラーダイアログを表示したり、既知のエラーをログから除外したりできます。
 
 <Sandpack>
 
@@ -876,9 +876,9 @@ function Throw({error}) {
 
 </Sandpack>
 
-### Displaying a dialog for recoverable errors {/*displaying-a-dialog-for-recoverable-errors*/}
+### 復帰可能なエラーに対するダイアログを表示 {/*displaying-a-dialog-for-recoverable-errors*/}
 
-React may automatically render a component a second time to attempt to recover from an error thrown in render. If successful, React will log a recoverable error to the console to notify the developer. To override this behavior, you can provide the optional `onRecoverableError` root option:
+React はレンダー中にスローされたエラーから復帰するためにコンポーネントを自動的に再度レンダーすることがあります。成功すると、コンソールに復帰可能なエラーについてログを残し、開発者に通知します。この動作をオーバーライドするには、省略可能なルートオプションである `onRecoverableError` を指定します。
 
 ```js [[1, 6, "onRecoverableError"], [2, 6, "error", 1], [3, 10, "error.cause"], [4, 6, "errorInfo"], [5, 11, "componentStack"]]
 import { createRoot } from 'react-dom/client';
@@ -899,12 +899,12 @@ const root = createRoot(
 root.render(<App />);
 ```
 
-The <CodeStep step={1}>onRecoverableError</CodeStep> option is a function called with two arguments:
+<CodeStep step={1}>onRecoverableError</CodeStep> オプションに指定するのは、以下の 2 つの引数を付けて呼ばれる関数です。
 
-1. The <CodeStep step={2}>error</CodeStep> that React throws. Some errors may include the original cause as <CodeStep step={3}>error.cause</CodeStep>. 
-2. An <CodeStep step={4}>errorInfo</CodeStep> object that contains the <CodeStep step={5}>componentStack</CodeStep> of the error.
+1. React たスローした <CodeStep step={2}>error</CodeStep>。一部のエラーは元のエラーを <CodeStep step={3}>error.cause</CodeStep> として含んでいる。
+2. <CodeStep step={4}>errorInfo</CodeStep> オブジェクト。エラーの <CodeStep step={5}>componentStack</CodeStep> を含んでいる。
 
-You can use the `onRecoverableError` root option to display error dialogs:
+`onRecoverableError` を用いてエラーダイアログを表示することができます。
 
 <Sandpack>
 
@@ -1154,9 +1154,9 @@ root.render(<App />);
 
 ---
 
-### I'm getting an error: "You passed a second argument to root.render" {/*im-getting-an-error-you-passed-a-second-argument-to-root-render*/}
+### "You passed a second argument to root.render" というエラーが出る {/*im-getting-an-error-you-passed-a-second-argument-to-root-render*/}
 
-A common mistake is to pass the options for `createRoot` to `root.render(...)`:
+よくある間違いとして、`createRoot` 用のオプションを `root.render(...)` に渡してしまうことが挙げられます。
 
 <ConsoleBlock level="error">
 
@@ -1164,7 +1164,7 @@ Warning: You passed a second argument to root.render(...) but it only accepts on
 
 </ConsoleBlock>
 
-To fix, pass the root options to `createRoot(...)`, not `root.render(...)`:
+修正するには、ルートオプションを `createRoot(...)` に渡すようにしてください。`root.render(...)` ではありません。
 ```js {2,5}
 // 🚩 Wrong: root.render only takes one argument.
 root.render(App, {onUncaughtError});
