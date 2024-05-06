@@ -4,7 +4,11 @@ title: ドキュメント貢献者
 
 <Intro>
 
+<<<<<<< HEAD
 React ドキュメントは [React チーム](/community/team)および[外部貢献者](https://github.com/reactjs/reactjs.org/graphs/contributors)によって書かれています。このページでは本サイトに特に顕著な貢献をしていただいた方を紹介します。
+=======
+React documentation is written and maintained by the [React team](/community/team) and [external contributors.](https://github.com/reactjs/react.dev/graphs/contributors) On this page, we'd like to thank a few people who've made significant contributions to this site.
+>>>>>>> 556063bdce0ed00f29824bc628f79dac0a4be9f4
 
 </Intro>
 

@@ -613,7 +613,11 @@ button { display: block; margin-top: 10px; }
 
 ## この次は？ {/*whats-next*/}
 
+<<<<<<< HEAD
 これで私たちのミニツアーは終了です！ 新しいウェブサイトを見て回り、好きな部分や嫌いな部分を見つけたら、これからも[匿名アンケート](https://www.surveymonkey.co.uk/r/PYRPF3X)や[イシュートラッカ](https://github.com/reactjs/reactjs.org/issues)にフィードバックを送ってください。
+=======
+That's a wrap for our little tour! Have a look around the new website, see what you like or don't like, and keep the feedback coming in our [issue tracker](https://github.com/reactjs/react.dev/issues).
+>>>>>>> 556063bdce0ed00f29824bc628f79dac0a4be9f4
 
 このプロジェクトのリリースまでに長い時間がかかってしまったことを認識しています。私たちは React コミュニティに読んでいただくに値する、高い品質のハードルを維持したかったのです。これらのドキュメントを書き、数々のサンプルを作っていくにあたり、私たちは自身のこれまでの説明が誤っていたことに気づき、React のバグを見つけ、さらには React の設計自体の不備を見つけて対処を始めたりすらしました。新しいドキュメントが、今後 React 自体の品質を一段階引き上げるのに役立つことを願っています。
 
