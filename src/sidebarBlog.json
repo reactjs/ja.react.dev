@@ -12,8 +12,8 @@
       "skipBreadcrumb": true,
       "routes": [
         {
-          "title": "React 19 ベータ",
-          "titleForHomepage": "React 19 ベータ",
+          "title": "React 19 Beta",
+          "titleForHomepage": "React 19 Beta",
           "icon": "blog",
           "date": "April 25, 2024",
           "path": "/blog/2024/04/25/react-19"
