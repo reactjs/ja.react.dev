@@ -20,9 +20,9 @@ In the React 19 Beta Upgrade Guide, we shared step-by-step instructions for upgr
 
 </BlogCard>
 
-<BlogCard title="React 19 ベータアップグレードガイド" date="April 25, 2024" url="/blog/2024/04/25/react-19-upgrade-guide">
+<BlogCard title="React 19 Beta アップグレードガイド" date="April 25, 2024" url="/blog/2024/04/25/react-19-upgrade-guide">
 
-React 19 に追加された改善にはいくつかの破壊的変更が必要ですが、アップグレードをできるだけスムーズに行えるよう努力しているため、ほとんどのアプリには影響が出ないことを予想しています。この投稿では、ライブラリを React 19 ベータにアップグレードする手順をご案内します。
+React 19 に追加された改善にはいくつかの破壊的変更が必要ですが、アップグレードをできるだけスムーズに行えるよう努力しているため、ほとんどのアプリには影響が出ないことを予想しています。この投稿では、ライブラリを React 19 Beta にアップグレードする手順をご案内します。
 
 </BlogCard>
 

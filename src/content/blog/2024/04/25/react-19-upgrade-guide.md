@@ -1,8 +1,8 @@
 ---
-title: "React 19 ベータアップグレードガイド"
+title: "React 19 Beta アップグレードガイド"
 author: Ricky Hanlon
 date: 2024/04/25
-description: React 19 に追加された改善にはいくつかの破壊的変更が必要ですが、アップグレードをできるだけスムーズに行えるよう努力しているため、ほとんどのアプリには影響が出ないことを予想しています。この投稿では、ライブラリを React 19 ベータにアップグレードする手順をご案内します。
+description: React 19 に追加された改善にはいくつかの破壊的変更が必要ですが、アップグレードをできるだけスムーズに行えるよう努力しているため、ほとんどのアプリには影響が出ないことを予想しています。この投稿では、ライブラリを React 19 Beta にアップグレードする手順をご案内します。
 ---
 
 April 25, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii)
@@ -36,7 +36,7 @@ React 19 にアップグレードする前に、問題点を見つけるため�
 
 </Note>
 
-この投稿では、ライブラリを React 19 ベータ版にアップグレードする手順をご案内します。
+この投稿では、ライブラリを React 19 Beta 版にアップグレードする手順をご案内します。
 
 - [インストール](#installing)
 - [破壊的変更](#breaking-changes)
@@ -45,7 +45,7 @@ React 19 にアップグレードする前に、問題点を見つけるため�
 - [TypeScript 関連の変更](#typescript-changes)
 - [Changelog](#changelog)
 
-React 19 をテストしていただける方は、このアップグレードガイドに従い、遭遇した[問題を報告](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D)してください。React 19 ベータ版に追加された新機能のリストについては、[React 19 リリースのお知らせ](/blog/2024/04/25/react-19)をご覧ください。
+React 19 をテストしていただける方は、このアップグレードガイドに従い、遭遇した[問題を報告](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D)してください。React 19 Beta 版に追加された新機能のリストについては、[React 19 リリースのお知らせ](/blog/2024/04/25/react-19)をご覧ください。
 
 ---
 ## インストール {/*installing*/}
