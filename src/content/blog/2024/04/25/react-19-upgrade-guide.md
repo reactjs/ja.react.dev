@@ -441,7 +441,7 @@ Accessing element.ref is no longer supported. ref is now a regular prop. It will
 
 このテストレンダラは、[React Testing Library](https://testing-library.com) のようなより実用的なテスト戦略が利用可能になる前に作成されたものです。現在では、モダンなテストライブラリの使用が推奨されます。
 
-React 19 では、`react-test-renderer` は非推奨警告をログに記録し、並行レンダリングに切り替わりました。モダンかつよりよくサポートされたテスト体験のために、テストを [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) または [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started) に移行することを推奨します。
+React 19 では、`react-test-renderer` は非推奨警告をログに記録するようになり、また並行レンダーに切り替わりました。モダンかつよりよくサポートされたテスト体験のためには、テストを [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) または [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started) に移行することを推奨します。
 
 ## 注目すべき変更点 {/*notable-changes*/}
 
