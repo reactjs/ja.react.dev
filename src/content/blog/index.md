@@ -14,9 +14,9 @@ React チームからの公式な更新のお知らせはこのブログに掲�
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
-<BlogCard title="React 19 Beta " date="April 25, 2024" url="/blog/2024/04/25/react-19">
+<BlogCard title="React 19 Beta" date="April 25, 2024" url="/blog/2024/04/25/react-19">
 
-In the React 19 Beta Upgrade Guide, we shared step-by-step instructions for upgrading your app to React 19 Beta. In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
+React 19 Beta アップグレードガイドでは、アプリを React 19 Beta にアップグレードするためのステップバイステップガイドをお示ししました。この投稿では、React 19 の新機能と、それらをどのように採用するかについて概説します。
 
 </BlogCard>
 
