@@ -4,7 +4,7 @@ title: ドキュメント貢献者
 
 <Intro>
 
-React ドキュメントは [React チーム](/community/team)および[外部貢献者](https://github.com/reactjs/reactjs.org/graphs/contributors)によって書かれています。このページでは本サイトに特に顕著な貢献をしていただいた方を紹介します。
+React ドキュメントは [React チーム](/community/team)および[外部貢献者](https://github.com/reactjs/react.dev/graphs/contributors)によって書かれています。このページでは本サイトに特に顕著な貢献をしていただいた方を紹介します。
 
 </Intro>
 
