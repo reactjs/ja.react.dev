@@ -45,9 +45,15 @@ title: 'エフェクトを使って同期を行う'
 
 エフェクトを書くには、以下の 3 つのステップに従ってください。
 
+<<<<<<< HEAD
 1. **エフェクトを宣言する**。デフォルトでは、エフェクトはすべてのレンダー後に実行されます。
 2. **エフェクトの依存値 (dependency) の配列を指定する**。ほとんどのエフェクトは、レンダー後に毎回ではなく、*必要に応じて*再実行されるべきものです。例えば、フェードインアニメーションの開始は、コンポーネントが表示されるときにのみ行われるべきです。チャットルームへの接続と切断は、コンポーネントが表示されたり消えたりするときや、チャットルームが変更されたときにのみ行われるべきです。*依存配列*を指定してこれをコントロールする方法について、後で説明します。
 3. **必要に応じてクリーンアップを追加する**。一部のエフェクトは、行っていたことを停止、元に戻す、またはクリーンアップする方法を指定する必要があります。例えば、「接続」には「切断」が必要で、「登録」には「解除」が必要で、「取得」には「キャンセル」または「無視」が必要です。*クリーンアップ関数*を返すことで、これを行う方法を学びます。
+=======
+1. **Declare an Effect.** By default, your Effect will run after every [commit](/learn/render-and-commit).
+2. **Specify the Effect dependencies.** Most Effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
+3. **Add cleanup if needed.** Some Effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect", "subscribe" needs "unsubscribe", and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
+>>>>>>> b7bf6c16fb3152626a71c115b3242df6eb93bc6e
 
 それぞれのステップを詳しく見ていきましょう。
 
@@ -598,7 +604,38 @@ React は、開発中に意図的にコンポーネントを再マウントし�
 
 ほとんどのエフェクトは、以下の一般的なパターンのいずれかに合致します。
 
+<<<<<<< HEAD
 ### React 以外のウィジェットを制御する {/*controlling-non-react-widgets*/}
+=======
+<Pitfall>
+
+#### Don't use refs to prevent Effects from firing {/*dont-use-refs-to-prevent-effects-from-firing*/}
+
+A common pitfall for preventing Effects firing twice in development is to use a `ref` to prevent the Effect from running more than once. For example, you could "fix" the above bug with a `useRef`:
+
+```js {1,3-4}
+  const connectionRef = useRef(null);
+  useEffect(() => {
+    // 🚩 This wont fix the bug!!!
+    if (!connectionRef.current) {
+      connectionRef.current = createConnection();
+      connectionRef.current.connect();
+    }
+  }, []);
+```
+
+This makes it so you only see `"✅ Connecting..."` once in development, but it doesn't fix the bug.
+
+When the user navigates away, the connection still isn't closed and when they navigate back, a new connection is created. As the user navigates across the app, the connections would keep piling up, the same as it would before the "fix". 
+
+To fix the bug, it is not enough to just make the Effect run once. The effect needs to work after re-mounting, which means the connection needs to be cleaned up like in the solution above.
+
+See the examples below for how to handle common patterns.
+
+</Pitfall>
+
+### Controlling non-React widgets {/*controlling-non-react-widgets*/}
+>>>>>>> b7bf6c16fb3152626a71c115b3242df6eb93bc6e
 
 時に、React で書かれていない UI ウィジェットを追加したい場合があります。例えば、ページに地図コンポーネントを追加しようとしているとします。`setZoomLevel()` メソッドがあり、React のコード内の `zoomLevel` という state 変数と同期させたいとします。エフェクトは次のようになります。
 
