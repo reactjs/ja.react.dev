@@ -1,8 +1,8 @@
 ---
-title: "React 19 Beta Upgrade Guide"
+title: "React 19 Beta アップグレードガイド"
 author: Ricky Hanlon
 date: 2024/04/25
-description: The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible and we don't expect the changes to impact most apps. In this post, we will guide you through the steps for upgrading libraries to React 19 beta.
+description: React 19 に追加された改善にはいくつかの破壊的変更が必要ですが、アップグレードをできるだけスムーズに行えるよう努力しているため、ほとんどのアプリには影響が出ないことを予想しています。この投稿では、ライブラリを React 19 Beta にアップグレードする手順をご案内します。
 ---
 
 April 25, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii)
@@ -11,52 +11,52 @@ April 25, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii)
 
 <Note>
 
-This beta release is for libraries to prepare for React 19. App developers should upgrade to 18.3.0 and wait for React 19 stable as we work with libraries and make changes based on feedback.
+このベータリリースは、ライブラリが React 19 に備えるためのものです。アプリ開発者は、私たちがライブラリと協力してフィードバックに基づいた修正を行う間、18.3.0 にアップグレードしたうえで、React 19 の安定版をお待ちください。
 
 </Note>
 
 
 <Intro>
 
-The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible and we don't expect the changes to impact most apps.
+React 19 に追加された改善にはいくつかの破壊的変更が必要ですが、アップグレードをできるだけスムーズに行えるよう努力しているため、ほとんどのアプリには影響が出ないことを予想しています。
 
-To help make the upgrade easier, today we are also publishing React 18.3.
+アップグレードを容易にするために、本日 React 18.3 も公開します。
 
 </Intro>
 
 <Note>
 
-#### React 18.3 has also been published {/*react-18-3*/}
+#### React 18.3 も公開されました {/*react-18-3*/}
 
-To help make the upgrade to React 19 easier, we've published a `react@18.3` release that is identical to 18.2 but adds warnings for deprecated APIs and other changes that are needed for React 19. 
+React 19 へのアップグレードを容易にするため、`react@18.3` リリースを公開しました。これは 18.2 とほぼ同一ですが、非推奨化 API や React 19 に向けて必要なその他の変更に対する警告が追加されています。
 
-We recommend upgrading to React 18.3 first to help identify any issues before upgrading to React 19.
+React 19 にアップグレードする前に、問題点を見つけるためにまず React 18.3 にアップグレードすることをお勧めします。
 
-For a list of changes in 18.3 see the [Release Notes](https://github.com/facebook/react/blob/main/CHANGELOG.md).
+18.3 における変更点については、[リリースノート](https://github.com/facebook/react/blob/main/CHANGELOG.md)をご覧ください。
 
 </Note>
 
-In this post, we will guide you through the steps for upgrading libraries to React 19 beta:
+この投稿では、ライブラリを React 19 Beta 版にアップグレードする手順をご案内します。
 
-- [Installing](#installing)
-- [Breaking changes](#breaking-changes)
-- [New deprecations](#new-deprecations)
-- [Notable changes](#notable-changes)
-- [TypeScript changes](#typescript-changes)
+- [インストール](#installing)
+- [破壊的変更](#breaking-changes)
+- [新たな非推奨化](#new-deprecations)
+- [注目すべき変更点](#notable-changes)
+- [TypeScript 関連の変更](#typescript-changes)
 - [Changelog](#changelog)
 
-If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19 beta, see the [React 19 release post](/blog/2024/04/25/react-19).
+React 19 をテストしていただける方は、このアップグレードガイドに従い、遭遇した[問題を報告](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D)してください。React 19 Beta 版に追加された新機能のリストについては、[React 19 リリースのお知らせ](/blog/2024/04/25/react-19)をご覧ください。
 
 ---
-## Installing {/*installing*/}
+## インストール {/*installing*/}
 
 <Note>
 
-#### New JSX Transform is now required {/*new-jsx-transform-is-now-required*/}
+#### 新しい JSX トランスフォームの必須化 {/*new-jsx-transform-is-now-required*/}
 
-We introduced a [new JSX transform](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) in 2020 to improve bundle size and use JSX without importing React. In React 19, we're adding additional improvements like using ref as a prop and JSX speed improvements that require the new transform.
+2020 年に、バンドルサイズを改善し、React をインポートせずに JSX を使用できるようにするための[新しい JSX トランスフォーム](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html)を導入しました。React 19 では、ref を props として使用できるようにしたり JSX の速度を向上させたりといった追加の改善を行っており、これらには新しいトランスフォームが必須です。
 
-If the new transform is not enabled, you will see this warning:
+新しいトランスフォームが有効になっていない場合、次の警告が表示されます。
 
 <ConsoleBlockMulti>
 
@@ -69,18 +69,18 @@ Your app (or one of its dependencies) is using an outdated JSX transform. Update
 </ConsoleBlockMulti>
 
 
-We expect most apps will not be affected since the transform is enabled in most environments already. For manual instructions on how to upgrade, please see the [announcement post](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html).
+ほとんどの環境ではこのトランスフォームがすでに有効になっているため、ほとんどのアプリは影響を受けないと予想されます。手動でアップグレードする方法については、[告知記事](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html)をご覧ください。
 
 </Note>
 
 
-To install the latest version of React and React DOM:
+React と React DOM の最新バージョンをインストールするには以下のようにします。
 
 ```bash
 npm install react@beta react-dom@beta
 ```
 
-If you're using TypeScript, you also need to update the types. Once React 19 is released as stable, you can install the types as usual from `@types/react` and `@types/react-dom`.  During the beta period, the types are available in different packages which need to be enforced in your `package.json`:
+TypeScript を使用している場合は、型も更新する必要があります。React 19 が安定版としてリリースされた後は、通常通り `@types/react` と `@types/react-dom` から型をインストールできます。ベータ期間中は `package.json` で強制的に別のパッケージを指定することで、新しい型を利用できます。
 
 ```json
 {
@@ -95,21 +95,21 @@ If you're using TypeScript, you also need to update the types. Once React 19 is 
 }
 ```
 
-We're also including a codemod for the most common replacements. See [TypeScript changes](#typescript-changes) below.
+また、最も一般的な書き換えのための codemod も含まれています。下記の [TypeScript 関連の変更](#typescript-changes)を参照してください。
 
 
-## Breaking changes {/*breaking-changes*/}
+## 破壊的変更 {/*breaking-changes*/}
 
-### Errors in render are not re-thrown {/*errors-in-render-are-not-re-thrown*/}
+### レンダー中のエラーは再スローされない {/*errors-in-render-are-not-re-thrown*/}
 
-In previous versions of React, errors thrown during render were caught and rethrown. In DEV, we would also log to `console.error`, resulting in duplicate error logs. 
+これまでのバージョンの React では、レンダー中にスローされたエラーはキャッチされた後に再スローされていました。開発環境では、`console.error` にもログを出力していたため、エラーログの重複が発生していました。
 
-In React 19, we've [improved how errors are handled](/blog/2024/04/25/react-19#error-handling) to reduce duplication by not re-throwing:
+React 19 では、重複を減らすためにエラーの扱いを[改善し](/blog/2024/04/25/react-19#error-handling)、再スローは行わないようになりました。
 
-- **Uncaught Errors**: Errors that are not caught by an Error Boundary are reported to `window.reportError`.
-- **Caught Errors**: Errors that are caught by an Error Boundary are reported to `console.error`.
+- **キャッチされないエラー**：エラーバウンダリによってキャッチされないエラーは `window.reportError` に報告されます。
+- **キャッチされたエラー**：エラーバウンダリによってキャッチされたエラーは `console.error` に報告されます。
 
-This change should not impact most apps, but if your production error reporting relies on errors being re-thrown, you may need to update your error handling. To support this, we've added new methods to `createRoot` and `hydrateRoot` for custom error handling:
+この変更はほとんどのアプリに影響を与えないはずですが、本番環境におけるエラーレポートシステムが再スローの挙動に依存している場合は、エラー処理を更新する必要があります。これをサポートするために、カスタムのエラー処理を行うための新しい手段を `createRoot` と `hydrateRoot` に追加しました。
 
 ```js [[1, 2, "onUncaughtError"], [2, 5, "onCaughtError"]]
 const root = createRoot(container, {
@@ -122,17 +122,17 @@ const root = createRoot(container, {
 });
 ```
 
-For more info, see the docs for [`createRoot`](https://react.dev/reference/react-dom/client/createRoot) and [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot).
+詳細は、[`createRoot`](https://react.dev/reference/react-dom/client/createRoot) と [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot) のドキュメントを参照してください。
 
 
-### Removed deprecated React APIs {/*removed-deprecated-react-apis*/}
+### 非推奨化 React API の削除 {/*removed-deprecated-react-apis*/}
 
-#### Removed: `propTypes` and `defaultProps` for functions {/*removed-proptypes-and-defaultprops*/}
-`PropTypes` were deprecated in [April 2017 (v15.5.0)](https://legacy.reactjs.org/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings). 
+#### 廃止：関数コンポーネントの `propTypes` と `defaultProps` {/*removed-proptypes-and-defaultprops*/}
+`PropTypes` は [2017 年 4 月 (v15.5.0)](https://legacy.reactjs.org/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings) に非推奨化されました。
 
-In React 19, we're removing the `propType` checks from the React package, and using them will be silently ignored. If you're using `propTypes`, we recommend migrating to TypeScript or another type-checking solution.
+React 19 では、React パッケージから `propTypes` チェックが削除されており、使用しても無視されるようになります。`propTypes` を使用している場合は、TypeScript または他の型チェックソリューションへの移行をお勧めします。
 
-We're also removing `defaultProps` from function components in place of ES6 default parameters. Class components will continue to support `defaultProps` since there is no ES6 alternative.
+また、関数コンポーネントから `defaultProps` を削除します。ES6 のデフォルトパラメータを代わりに使用してください。クラスコンポーネントでは ES6 による代替手段がないため、`defaultProps` を引き続きサポートします。
 
 ```js
 // Before
@@ -158,13 +158,13 @@ function Heading({text = 'Hello, world!'}: Props) {
 }
 ```
 
-#### Removed: Legacy Context using `contextTypes` and `getChildContext` {/*removed-removing-legacy-context*/}
+#### 廃止：`contextTypes` と `getChildContext` を使用したレガシーコンテクスト {/*removed-removing-legacy-context*/}
 
-Legacy Context was deprecated in [October 2018 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html).
+レガシーコンテクストは [2018 年 10 月 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html) に非推奨化されました。
 
-Legacy Context was only available in class components using the APIs `contextTypes` and `getChildContext`, and was replaced with `contextType` due to subtle bugs that were easy to miss. In React 19, we're removing Legacy Context to make React slightly smaller and faster.
+レガシーコンテクストは、`contextTypes` と `getChildContext` を使用するクラスコンポーネントでのみ利用可能であり、見逃しやすい微妙なバグのため、のちに `contextType` に置き換えられました。React 19 では、React を少し小さく、速くするためにレガシーコンテクストを削除しています。
 
-If you're still using Legacy Context in class components, you'll need to migrate to the new `contextType` API:
+クラスコンポーネントでまだレガシーコンテクストを使用している場合、新しい `contextType` API に移行する必要があります。
 
 ```js {5-11,19-21}
 // Before
@@ -218,12 +218,12 @@ class Child extends React.Component {
 }
 ```
 
-#### Removed: string refs {/*removed-string-refs*/}
-String refs were deprecated in [March, 2018 (v16.3.0)](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html).
+#### 削除：文字列形式の ref {/*removed-string-refs*/}
+文字列形式の ref は [2018 年 3 月 (v16.3.0)](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html) に非推奨化されました。
 
-Class components supported string refs before being replaced by ref callbacks due to [multiple downsides](https://github.com/facebook/react/issues/1373). In React 19, we're removing string refs to make React simpler and easier to understand.
+[いくつかの問題](https://github.com/facebook/react/issues/1373)のためコールバック形式の ref に置き換えられるまで、クラスコンポーネントは文字列形式の ref をサポートしていました。React 19 では、React をよりシンプルで理解しやすくするため、文字列形式の ref を削除します。
 
-If you're still using string refs in class components, you'll need to migrate to ref callbacks:
+クラスコンポーネントでまだ文字列形式の ref を使用している場合は、コールバック形式の ref に移行する必要があります。
 
 ```js {4,8}
 // Before
@@ -253,14 +253,14 @@ class MyComponent extends React.Component {
 
 <Note>
 
-To help with the migration, we will be publishing a [react-codemod](https://github.com/reactjs/react-codemod/#string-refs) to automatically replace string refs with `ref` callbacks. Follow [this PR](https://github.com/reactjs/react-codemod/pull/309) for updates and to try it out.
+移行を支援するために、文字列 ref を `ref` コールバックに自動的に置き換える [react-codemod](https://github.com/reactjs/react-codemod/#string-refs) を公開する予定です。最新情報や試用については[この PR](https://github.com/reactjs/react-codemod/pull/309) をフォローしてください。
 
 </Note>
 
-#### Removed: Module pattern factories {/*removed-module-pattern-factories*/}
-Module pattern factories were deprecated in [August 2019 (v16.9.0)](https://legacy.reactjs.org/blog/2019/08/08/react-v16.9.0.html#deprecating-module-pattern-factories).
+#### 削除：モジュールパターンファクトリ {/*removed-module-pattern-factories*/}
+モジュールパターンファクトリは [2019 年 8 月 (v16.9.0)](https://legacy.reactjs.org/blog/2019/08/08/react-v16.9.0.html#deprecating-module-pattern-factories) に非推奨化されました。
 
-This pattern was rarely used and supporting it causes React to be slightly larger and slower than necessary. In React 19, we're removing support for module pattern factories, and you'll need to migrate to regular functions:
+このパターンはほとんど使用されておらず、サポートすることで React がわずかに大きく、遅くなる原因となっています。React 19 ではモジュールパターンファクトリのサポートが削除されており、通常の関数に移行する必要があります。
 
 ```js
 // Before
@@ -276,10 +276,10 @@ function FactoryComponent() {
 }
 ```
 
-#### Removed: `React.createFactory` {/*removed-createfactory*/}
-`createFactory` was deprecated in [February 2020 (v16.13.0)](https://legacy.reactjs.org/blog/2020/02/26/react-v16.13.0.html#deprecating-createfactory).
+#### 削除：`React.createFactory` {/*removed-createfactory*/}
+`createFactory` は [2020 年 2 月 (v16.13.0)](https://legacy.reactjs.org/blog/2020/02/26/react-v16.13.0.html#deprecating-createfactory) に非推奨化されました。
 
-Using `createFactory` was common before broad support for JSX, but it's rarely used today and can be replaced with JSX. In React 19, we're removing `createFactory` and you'll need to migrate to JSX:
+JSX が広範にサポートされる以前は `createFactory` の使用が一般的でしたが、今ではほとんど使用されておらず、JSX に置き換えることができます。React 19 では `createFactory` が削除されており、JSX に移行する必要があります。
 
 ```js
 // Before
@@ -293,9 +293,9 @@ const button = createFactory('button');
 const button = <button />;
 ```
 
-#### Removed: `react-test-renderer/shallow` {/*removed-react-test-renderer-shallow*/}
+#### 削除：`react-test-renderer/shallow` {/*removed-react-test-renderer-shallow*/}
 
-In React 18, we updated `react-test-renderer/shallow` to re-export [react-shallow-renderer](https://github.com/enzymejs/react-shallow-renderer). In React 19, we're removing `react-test-render/shallow` to prefer installing the package directly:
+React 18 において、`react-test-renderer/shallow` を更新して [react-shallow-renderer](https://github.com/enzymejs/react-shallow-renderer) を再エクスポートするようにしていました。React 19 では、`react-test-render/shallow` が削除されており、代わりにこのパッケージを直接インストールするようになります。
 
 ```bash
 npm install react-shallow-renderer --save-dev
@@ -307,17 +307,17 @@ npm install react-shallow-renderer --save-dev
 
 <Note>
 
-##### Please reconsider shallow rendering {/*please-reconsider-shallow-rendering*/}
+##### シャローレンダリングの再考を {/*please-reconsider-shallow-rendering*/}
 
-Shallow rendering depends on React internals and can block you from future upgrades. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started). 
+シャローレンダリングは React の内部構造に依存しており、将来のアップグレードの妨げとなる可能性があります。テストを [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) や [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started) に移行することをお勧めします。
 
 </Note>
 
-### Removed deprecated React DOM APIs {/*removed-deprecated-react-dom-apis*/}
+### 非推奨化 React DOM API の削除 {/*removed-deprecated-react-dom-apis*/}
 
-#### Removed: `react-dom/test-utils` {/*removed-react-dom-test-utils*/}
+#### 削除：`react-dom/test-utils` {/*removed-react-dom-test-utils*/}
 
-We've moved `act` from `react-dom/test-utils` to the `react` package:
+`act` を `react-dom/test-utils` から `react` パッケージに移動しました。
 
 <ConsoleBlockMulti>
 
@@ -329,20 +329,20 @@ We've moved `act` from `react-dom/test-utils` to the `react` package:
 
 </ConsoleBlockMulti>
 
-To fix this warning, you can import `act` from `react`:
+この警告を修正するには、`act` を `react` からインポートするようにします。
 
 ```diff
 - import {act} from 'react-dom/test-utils'
 + import {act} from 'react';
 ```
 
-All other `test-utils` functions have been removed. These utilities were uncommon, and made it too easy to depend on low level implementation details of your components and React. In React 19, these functions will error when called and their exports will be removed in a future version.
+その他の `test-utils` 関数はすべて削除されました。これらのユーティリティは一般的ではなく、コンポーネントや React の低レベルな内部実装の詳細へ依存しやすくなってしまうものでした。React 19 でこれらの関数を呼び出すとエラーとなります。将来のバージョンではエクスポートが削除されます。
 
-See the [warning page](https://react.dev/warnings/react-dom-test-utils) for alternatives.
+代替手段については、[警告ページ](https://react.dev/warnings/react-dom-test-utils)をご覧ください。
 
-#### Removed: `ReactDOM.render` {/*removed-reactdom-render*/}
+#### 削除：`ReactDOM.render` {/*removed-reactdom-render*/}
 
-`ReactDOM.render` was deprecated in [March 2022 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide). In React 19, we're removing `ReactDOM.render` and you'll need to migrate to using [`ReactDOM.createRoot`](https://react.dev/reference/react-dom/client/createRoot):
+`ReactDOM.render` は [2022 年 3 月 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide) に非推奨化されました。React 19 では `ReactDOM.render` が削除されており、[`ReactDOM.createRoot`](https://react.dev/reference/react-dom/client/createRoot) を使用するよう移行する必要があります。
 
 ```js
 // Before
@@ -355,9 +355,9 @@ const root = createRoot(document.getElementById('root'));
 root.render(<App />);
 ```
 
-#### Removed: `ReactDOM.hydrate` {/*removed-reactdom-hydrate*/}
+#### 削除：`ReactDOM.hydrate` {/*removed-reactdom-hydrate*/}
 
-`ReactDOM.hydrate` was deprecated in [March 2022 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide). In React 19, we're removing `ReactDOM.hydrate` you'll need to migrate to using [`ReactDOM.hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot),
+`ReactDOM.hydrate` は [2022 年 3 月 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide) に非推奨化されました。React 19 では `ReactDOM.hydrate` が削除されており、[`ReactDOM.hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot) を使用するよう移行する必要があります。
 
 ```js
 // Before
@@ -370,9 +370,9 @@ hydrateRoot(document.getElementById('root'), <App />);
 ```
 
 
-#### Removed: `unmountComponentAtNode` {/*removed-unmountcomponentatnode*/}
+#### 削除：`unmountComponentAtNode` {/*removed-unmountcomponentatnode*/}
 
-`ReactDOM.unmountComponentAtNode` was deprecated in [March 2022 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide). In React 19, you'll need to migrate to using `root.unmount()`.
+`ReactDOM.unmountComponentAtNode` は [2022 年 3 月 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide) に非推奨化されました。React 19 では、`root.unmount()` を使用するよう移行する必要があります。
 
 
 ```js
@@ -383,13 +383,13 @@ unmountComponentAtNode(document.getElementById('root'));
 root.unmount();
 ```
 
-For more see `root.unmount()` for [`createRoot`](https://react.dev/reference/react-dom/client/createRoot#root-unmount) and [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot#root-unmount).
+詳細については、[`createRoot`](https://react.dev/reference/react-dom/client/createRoot#root-unmount) と [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot#root-unmount) の `root.unmount()` をご覧ください。
 
 
-#### Removed: `ReactDOM.findDOMNode` {/*removed-reactdom-finddomnode*/}
-`ReactDOM.findDOMNode` was [deprecated in October 2018 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode). 
+#### 削除：`ReactDOM.findDOMNode` {/*removed-reactdom-finddomnode*/}
+`ReactDOM.findDOMNode` は [2018 年 10 月 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode) に非推奨化されました。
 
-We're removing `findDOMNode` because it was a legacy escape hatch that was slow to execute, fragile to refactoring, only returned the first child, and broke abstraction levels (see more [here](https://legacy.reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)). You can replace `ReactDOM.findDOMNode` with [DOM refs](/learn/manipulating-the-dom-with-refs):
+`findDOMNode` はレガシーな避難ハッチであり、実行速度が遅く、リファクタリングが困難で、最初の子要素しか返せず、抽象化レイヤーを破壊するといった問題があるため（詳細は[こちら](https://legacy.reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)）、削除されます。`ReactDOM.findDOMNode` は [DOM 用の ref](/learn/manipulating-the-dom-with-refs) で置き換えることができます。
 
 ```js
 // Before
@@ -417,13 +417,13 @@ function AutoselectingInput() {
 }
 ```
 
-## New deprecations {/*new-deprecations*/}
+## 新たな非推奨化 {/*new-deprecations*/}
 
-### Deprecated: `element.ref` {/*deprecated-element-ref*/}
+### 非推奨化：`element.ref` {/*deprecated-element-ref*/}
 
-React 19 supports [`ref` as a prop](/blog/2024/04/25/react-19#ref-as-a-prop), so we're deprecating the `element.ref` in place of `element.props.ref`.
+React 19 では [props としての `ref`](/blog/2024/04/25/react-19#ref-as-a-prop) がサポートされるため、`element.ref` を非推奨化します。代わりに `element.props.ref` を使用します。
 
-Accessing `element.ref` will warn:
+`element.ref` にアクセスすると、以下の警告が表示されます。
 
 <ConsoleBlockMulti>
 
@@ -435,29 +435,29 @@ Accessing element.ref is no longer supported. ref is now a regular prop. It will
 
 </ConsoleBlockMulti>
 
-### Deprecated: `react-test-renderer` {/*deprecated-react-test-renderer*/}
+### 非推奨化：`react-test-renderer` {/*deprecated-react-test-renderer*/}
 
-We are deprecating `react-test-renderer` because it implements its own renderer environment that doesn't match the environment users use, promotes testing implementation details, and relies on introspection of React's internals.
+`react-test-renderer` を非推奨化します。これはユーザが使用する環境とは異なる独自のレンダラ環境を実装しており、内部実装の詳細に対するテストを助長し、React 内部の構造に依存するものだからです。
 
-The test renderer was created before there were more viable testing strategies available like [React Testing Library](https://testing-library.com), and we now recommend using a modern testing library instead.
+このテストレンダラは、[React Testing Library](https://testing-library.com) のようなより実用的なテスト戦略が利用可能になる前に作成されたものです。現在では、モダンなテストライブラリの使用が推奨されます。
 
-In React 19, `react-test-renderer` logs a deprecation warning, and has switched to concurrent rendering. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started) for a modern and well supported testing experience.
+React 19 では、`react-test-renderer` は非推奨警告をログに記録するようになり、また並行レンダーに切り替わりました。モダンかつよりよくサポートされたテスト体験のためには、テストを [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) または [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started) に移行することを推奨します。
 
-## Notable changes {/*notable-changes*/}
+## 注目すべき変更点 {/*notable-changes*/}
 
-### StrictMode changes {/*strict-mode-improvements*/}
+### StrictMode の変更点 {/*strict-mode-improvements*/}
 
-React 19 includes several fixes and improvements to Strict Mode.
+React 19 には、Strict Mode に関するいくつかの修正と改善が含まれています。
 
-When double rendering in Strict Mode in development, `useMemo` and `useCallback` will reuse the memoized results from the first render during the second render. Components that are already Strict Mode compatible should not notice a difference in behavior.
+開発中に Strict Mode で二重レンダーが発生した際、`useMemo` と `useCallback` は 1 回目のレンダー時にメモ化された結果を 2 回目のレンダーで再利用します。既に Strict Mode に対応しているコンポーネントでは、挙動に違いを感じることはないはずです。
 
-As with all Strict Mode behaviors, these features are designed to proactively surface bugs in your components during development so you can fix them before they are shipped to production. For example, during development, Strict Mode will double-invoke ref callback functions on initial mount, to simulate what happens when a mounted component is replaced by a Suspense fallback.
+すべての Strict Mode の挙動と同様、これらの機能は開発中にコンポーネントのバグを積極的に目立たせて、本番環境にリリースされる前に修正できるよう設計されています。例えば、開発環境において Strict Mode は初回マウント時に ref コールバック関数を 2 回呼び出すことで、マウントされたコンポーネントがサスペンスフォールバックに置き換えられたときに何が起こるかをシミュレートします。
 
-### UMD builds removed {/*umd-builds-removed*/}
+### UMD ビルドの削除 {/*umd-builds-removed*/}
 
-UMD was widely used in the past as a convenient way to load React without a build step. Now, there are modern alternatives for loading modules as scripts in HTML documents. Starting with React 19, React will no longer produce UMD builds to reduce the complexity of its testing and release process. 
+UMD は過去には、ビルドステップなしで React を読み込むための便利な方法として広く使用されていました。現在では、HTML ドキュメント内でスクリプトとしてモジュールをロードするためのモダンな代替手段があります。テストとリリースプロセスの複雑性を軽減するため、React 19 からは UMD ビルドを生成しなくなります。
 
-To load React 19 with a script tag, we recommend using an ESM-based CDN such as [esm.sh](https://esm.sh/).
+script タグで React 19 をロードしたい場合は、[esm.sh](https://esm.sh/) などの ESM ベースの CDN を使用することを推奨します。
 
 ```html
 <script type="module">
@@ -467,32 +467,32 @@ To load React 19 with a script tag, we recommend using an ESM-based CDN such as 
 </script>
 ```
 
-### Libraries depending on React internals may block upgrades {/*libraries-depending-on-react-internals-may-block-upgrades*/}
+### React の内部構造に依存するライブラリはアップグレードできない原因となる {/*libraries-depending-on-react-internals-may-block-upgrades*/}
 
-This release includes changes to React internals that may impact libraries that ignore our pleas to not use internals like `SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED`. These changes are necessary to land improvements in React 19, and will not break libraries that follow our guidelines.
+本リリースには、`SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` のような内部構造を使用しないようにという私たちのお願いを無視しているライブラリに影響を与える可能性のある React 内部構造の変更が含まれています。これらの変更は React 19 における改善を実現するために必要なものであり、ガイドラインに従っているライブラリには影響を与えません。
 
-Based on our [Versioning Policy](https://react.dev/community/versioning-policy#what-counts-as-a-breaking-change), these updates are not listed as breaking changes, and we are not including docs for how to upgrade them. The recommendation is to remove any code that depends on internals.
+私たちの[バージョニングポリシー](https://react.dev/community/versioning-policy#what-counts-as-a-breaking-change)に基づき、このような更新は破壊的変更としてリストされませんし、アップグレード方法に関するドキュメントも提供されません。内部実装に依存するコードを削除することを推奨します。
 
-To reflect the impact of using internals, we have renamed the `SECRET_INTERNALS` suffix to: 
+内部構造を使用する影響を反映するために、`SECRET_INTERNALS` という接尾辞を以下のように変更します。
 
 `_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE`
 
-In the future we will more aggressively block accessing internals from React to discourage usage and ensure users are not blocked from upgrading.
+将来的には、React の内部構造へのアクセスをより積極的にブロックすることで使用を抑制し、ユーザのアップグレードの妨げとならないようにする予定です。
 
-## TypeScript changes {/*typescript-changes*/}
+## TypeScript 関連の変更 {/*typescript-changes*/}
 
-### Removed deprecated TypeScript types {/*removed-deprecated-typescript-types*/}
+### 非推奨化 TypeScript 型を削除 {/*removed-deprecated-typescript-types*/}
 
-We've cleaned up the TypeScript types based on the removed APIs in React 19. Some of the removed have types been moved to more relevant packages, and others are no longer needed to describe React's behavior.
+React 19 で削除された API に基づいて、TypeScript の型を整理しました。削除された型の一部は、より関連性の高いパッケージに移動され、他の型はもはや React の挙動を記述するために必要がなくなりました。
 
 <Note>
-We've published [`types-react-codemod`](https://github.com/eps1lon/types-react-codemod/) to migrate most type related breaking changes:
+型関連の破壊的変更に関する移行のために、[`types-react-codemod`](https://github.com/eps1lon/types-react-codemod/) を公開しました。
 
 ```bash
 npx types-react-codemod@latest preset-19 ./path-to-app
 ```
 
-If you have a lot of unsound access to `element.props`, you can run this additional codemod:
+`element.props` への不正確なアクセスが多い場合、この追加の codemod を実行できます。
 
 ```bash
 npx types-react-codemod@latest react-element-default-any-props ./path-to-your-react-ts-files
@@ -500,28 +500,28 @@ npx types-react-codemod@latest react-element-default-any-props ./path-to-your-re
 
 </Note>
 
-Check out [`types-react-codemod`](https://github.com/eps1lon/types-react-codemod/) for a list of supported replacements. If you feel a codemod is missing, it can be tracked in the [list of missing React 19 codemods](https://github.com/eps1lon/types-react-codemod/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22React+19%22+label%3Aenhancement).
+サポートされている書き換えのリストについては、[`types-react-codemod`](https://github.com/eps1lon/types-react-codemod/) をご覧ください。codemod が不足していると感じた場合は、[React 19 で不足している codemod のリスト](https://github.com/eps1lon/types-react-codemod/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22React+19%22+label%3Aenhancement)で追跡できます。
 
 
-### `ref` cleanups required {/*ref-cleanup-required*/}
+### `ref` クリーンアップの必須化 {/*ref-cleanup-required*/}
 
-_This change is included in the `react-19` codemod preset as [`no-implicit-ref-callback-return
-`](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return)._
+_この変更は、`react-19` の codemod プリセットに [`no-implicit-ref-callback-return`](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return) として含まれています。_
 
-Due to the introduction of ref cleanup functions, returning anything else from a ref callback will now be rejected by TypeScript. The fix is usually to stop using implicit returns:
+
+ref クリーンアップ関数の導入により、ref コールバックから何か他のものを返すと、TypeScript によって拒否されるようになります。通常、修正は、暗黙の return の使用をやめることです。
 
 ```diff [[1, 1, "("], [1, 1, ")"], [2, 2, "{", 15], [2, 2, "}", 1]]
 - <div ref={current => (instance = current)} />
 + <div ref={current => {instance = current}} />
 ```
 
-The original code returned the instance of the `HTMLDivElement` and TypeScript wouldn't know if this was supposed to be a cleanup function or not.
+元のコードは `HTMLDivElement` のインスタンスを返していますが、TypeScript はこれがクリーンアップ関数のつもりで書かれたものかどうかを判断できません。
 
-### `useRef` requires an argument {/*useref-requires-argument*/}
+### `useRef` の引数の必須化 {/*useref-requires-argument*/}
 
-_This change is included in the `react-19` codemod preset as [`refobject-defaults`](https://github.com/eps1lon/types-react-codemod/#refobject-defaults)._
+_この変更は、`react-19` のコードモッドプリセットに [`refobject-defaults`](https://github.com/eps1lon/types-react-codemod/#refobject-defaults) として含まれています。_
 
-A long-time complaint of how TypeScript and React work has been `useRef`. We've changed the types so that `useRef` now requires an argument. This significantly simplifies its type signature. It'll now behave more like `createContext`.
+TypeScript と React の動作に関する長年の不満のひとつが `useRef` でした。今後 `useRef` には引数が必須になるよう型を変更することにしました。これにより、型シグネチャが大幅に簡素化されます。これで、`createContext` と同様に動作するようになります。
 
 ```ts
 // @ts-expect-error: Expected 1 argument but saw none
@@ -534,7 +534,7 @@ createContext();
 createContext(undefined);
 ```
 
-This now also means that all refs are mutable. You'll no longer hit the issue where you can't mutate a ref because you initialised it with `null`:
+これにより、すべての ref はミュータブルになります。`null` で初期化したために ref を変更できない、という問題で困ることはなくなるでしょう。
 
 ```ts
 const ref = useRef<number>(null);
@@ -543,7 +543,7 @@ const ref = useRef<number>(null);
 ref.current = 1;
 ```
 
-`MutableRef` is now deprecated in favor of a single `RefObject` type which `useRef` will always return:
+`MutableRef` は廃止され、`useRef` は常に単一の `RefObject` 型を返すようになりました。
 
 ```ts
 interface RefObject<T> {
@@ -553,36 +553,36 @@ interface RefObject<T> {
 declare function useRef<T>: RefObject<T>
 ```
 
-`useRef` still has a convenience overload for `useRef<T>(null)` that automatically returns `RefObject<T | null>`. To ease migration due to the required argument for `useRef`, a convenience overload for `useRef(undefined)` was added that automatically returns `RefObject<T | undefined>`.
+`useRef` には便宜上のオーバーロードがまだ存在し、`useRef<T>(null)` は自動的に `RefObject<T | null>` を返すようになっています。`useRef` の引数必須化に対する移行を容易にするために、`useRef(undefined)` に対する実用的なオーバーロードが追加され、自動的に `RefObject<T | undefined>` 型を返すようになります。
 
-Check out [[RFC] Make all refs mutable](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/64772) for prior discussions about this change.
+この変更についてのこれまでの議論は、[[RFC] Make all refs mutable](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/64772) をご覧ください。
 
-### Changes to the `ReactElement` TypeScript type {/*changes-to-the-reactelement-typescript-type*/}
+### `ReactElement` TypeScript 型の変更 {/*changes-to-the-reactelement-typescript-type*/}
 
-_This change is included in the [`react-element-default-any-props`](https://github.com/eps1lon/types-react-codemod#react-element-default-any-props) codemod._
+_この変更は [`react-element-default-any-props`](https://github.com/eps1lon/types-react-codemod#react-element-default-any-props) codemod に含まれています。_
 
-The `props` of React elements now default to `unknown` instead of `any` if the element is typed as `ReactElement`. This does not affect you if you pass a type argument to `ReactElement`:
+React 要素が `ReactElement` として型付けされている場合、その `props` のデフォルトの型は `any` ではなく `unknown` になります。`ReactElement` に型引数を渡している場合は、影響を受けません。
 
 ```ts
 type Example2 = ReactElement<{ id: string }>["props"];
 //   ^? { id: string }
 ```
 
-But if you relied on the default, you now have to handle `unknown`:
+しかし、このデフォルトの型に依存していた場合、`unknown` を扱うようにする必要があります。
 
 ```ts
 type Example = ReactElement["props"];
 //   ^? Before, was 'any', now 'unknown'
 ```
 
-You should only need it if you have a lot of legacy code relying on unsound access of element props. Element introspection only exists as an escape hatch, and you should make it explicit that your props access is unsound via an explicit `any`.
+要素の props に対する型安全でないアクセスに依存している古いコードが多くある場合にのみ、これが必要です。要素の内部構造の参照は避難ハッチとしてのみ存在しており、props に安全でないアクセスを行う場合には、`any` を明示的に用いてそうであると明示するべきです。
 
-### The JSX namespace in TypeScript {/*the-jsx-namespace-in-typescript*/}
-This change is included in the `react-19` codemod preset as [`scoped-jsx`](https://github.com/eps1lon/types-react-codemod#scoped-jsx)
+### TypeScript における JSX 名前空間 {/*the-jsx-namespace-in-typescript*/}
+この変更は `react-19` codemod プリセットに [`scoped-jsx`](https://github.com/eps1lon/types-react-codemod#scoped-jsx) として含まれています。
 
-A long-time request is to remove the global `JSX` namespace from our types in favor of `React.JSX`. This helps prevent pollution of global types which prevents conflicts between different UI libraries that leverage JSX.
+グローバルな `JSX` 名前空間を型から削除して `React.JSX` に置き換えるというのは長い間の要望でした。これにより、グローバル型の汚染を防ぎ、JSX を利用する異なる UI ライブラリ間での競合が防止できます。
 
-You'll now need to wrap module augmentation of the JSX namespace in `declare module "....":
+これからは、JSX 名前空間のモジュール拡張 (module augumentation) は `declare module "....":` でラップする必要があります。
 
 ```diff
 // global.d.ts
@@ -597,34 +597,34 @@ You'll now need to wrap module augmentation of the JSX namespace in `declare mod
 + }
 ```
 
-The exact module specifier depends on the JSX runtime you specified in the `compilerOptions` of your `tsconfig.json`:
+正確なモジュール指定子は、`tsconfig.json` の `compilerOptions` で指定した JSX ランタイムに依存します。
 
-- For `"jsx": "react-jsx"` it would be `react/jsx-runtime`.
-- For `"jsx": "react-jsxdev"` it would be `react/jsx-dev-runtime`.
-- For `"jsx": "react"` and `"jsx": "preserve"` it would be `react`.
+- `"jsx": "react-jsx"` の場合は `react/jsx-runtime` です。
+- `"jsx": "react-jsxdev"` の場合は `react/jsx-dev-runtime` です。
+- `"jsx": "react"` および `"jsx": "preserve"` の場合は `react` です。
 
-### Better `useReducer` typings {/*better-usereducer-typings*/}
+### `useReducer` の型の改善 {/*better-usereducer-typings*/}
 
-`useReducer` now has improved type inference thanks to [@mfp22](https://github.com/mfp22).
+[@mfp22](https://github.com/mfp22) の協力により、`useReducer` の型推論が改善されました。
 
-However, this required a breaking change where `useReducer` doesn't accept the full reducer type as a type parameter but instead either needs none (and rely on contextual typing) or needs both the state and action type.
+しかしこれには、`useReducer` がリデューサ全体の型を型パラメータとして受け取る代わりに、型を全く渡さない（型推論に任せる）か、もしくは state の型とアクションの型を両方渡すかのいずれかにする必要がある、という破壊的変更が必要でした。
 
-The new best practice is _not_ to pass type arguments to `useReducer`.
+新しいベストプラクティスは、`useReducer` に型引数を渡さないことです。
 ```diff
 - useReducer<React.Reducer<State, Action>>(reducer)
 + useReducer(reducer)
 ```
-This may not work in edge cases where you can explicitly type the state and action, by passing in the `Action` in a tuple:
+これは一部の稀なケースでは機能しないかもしれませんが、その場合は state とアクションを明示的に型付けしつつ、`Action` をタプルで渡すことで解決できます。
 ```diff
 - useReducer<React.Reducer<State, Action>>(reducer)
 + useReducer<State, [Action]>(reducer)
 ```
-If you define the reducer inline, we encourage to annotate the function parameters instead:
+リデューサをインラインで定義する場合は、関数パラメータに型注釈を付けることをお勧めします。
 ```diff
 - useReducer<React.Reducer<State, Action>>((state, action) => state)
 + useReducer((state: State, action: Action) => state)
 ```
-This is also what you'd also have to do if you move the reducer outside of the `useReducer` call:
+これは、`useReducer` 呼び出しの外にリデューサを移動する場合にも行うべきでしょう。
 
 ```ts
 const reducer = (state: State, action: Action) => state;
@@ -632,27 +632,27 @@ const reducer = (state: State, action: Action) => state;
 
 ## Changelog {/*changelog*/}
 
-### Other breaking changes {/*other-breaking-changes*/}
+### その他の破壊的変更 {/*other-breaking-changes*/}
 
-- **react-dom**: Error for javascript URLs in src/href [#26507](https://github.com/facebook/react/pull/26507)
-- **react-dom**: Remove `errorInfo.digest` from `onRecoverableError` [#28222](https://github.com/facebook/react/pull/28222)
-- **react-dom**: Remove `unstable_flushControlled` [#26397](https://github.com/facebook/react/pull/26397)
-- **react-dom**: Remove `unstable_createEventHandle` [#28271](https://github.com/facebook/react/pull/28271)
-- **react-dom**: Remove `unstable_renderSubtreeIntoContainer` [#28271](https://github.com/facebook/react/pull/28271)
-- **react-dom**: Remove `unstable_runWithPrioirty` [#28271](https://github.com/facebook/react/pull/28271)
-- **react-is**: Remove deprecated methods from `react-is` [28224](https://github.com/facebook/react/pull/28224)
+- **react-dom**: src/href での JavaScript URL に対するエラー [#26507](https://github.com/facebook/react/pull/26507)
+- **react-dom**: `onRecoverableError` から `errorInfo.digest` を削除 [#28222](https://github.com/facebook/react/pull/28222)
+- **react-dom**: `unstable_flushControlled` を削除 [#26397](https://github.com/facebook/react/pull/26397)
+- **react-dom**: `unstable_createEventHandle` を削除 [#28271](https://github.com/facebook/react/pull/28271)
+- **react-dom**: `unstable_renderSubtreeIntoContainer` を削除 [#28271](https://github.com/facebook/react/pull/28271)
+- **react-dom**: `unstable_runWithPrioirty` を削除 [#28271](https://github.com/facebook/react/pull/28271)
+- **react-is**: `react-is` から非推奨のメソッドを削除 [28224](https://github.com/facebook/react/pull/28224)
 
-### Other notable changes {/*other-notable-changes*/}
+### その他の注目すべき変更点 {/*other-notable-changes*/}
 
-- **react**: Batch sync, default and continuous lanes [#25700](https://github.com/facebook/react/pull/25700)
-- **react**: Don't prerender siblings of suspended component [#26380](https://github.com/facebook/react/pull/26380)
-- **react**: Detect infinite update loops caused by render phase updates [#26625](https://github.com/facebook/react/pull/26625)
-- **react-dom**: Transitions in popstate are now synchronous [#26025](https://github.com/facebook/react/pull/26025)
-- **react-dom**: Remove layout effect warning during SSR [#26395](https://github.com/facebook/react/pull/26395)
-- **react-dom**: Warn and don’t set empty string for src/href (except anchor tags) [#28124](https://github.com/facebook/react/pull/28124)
+- **react**: 同期・デフォルト・連続レーンのバッチ処理 [#25700](https://github.com/facebook/react/pull/25700)
+- **react**: サスペンドされたコンポーネントの兄弟を事前レンダーしない [#26380](https://github.com/facebook/react/pull/26380)
+- **react**: レンダーフェーズでの更新によって引き起こされる無限更新ループを検出 [#26625](https://github.com/facebook/react/pull/26625)
+- **react-dom**: popstate でのトランジションを同期的に [#26025](https://github.com/facebook/react/pull/26025)
+- **react-dom**: SSR 中のレイアウトエフェクト警告を削除 [#26395](https://github.com/facebook/react/pull/26395)
+- **react-dom**: src/href に空文字列を設定しないよう警告（アンカータグを除く）[#28124](https://github.com/facebook/react/pull/28124)
 
-We'll publish the full changelog with the stable release of React 19.
+React 19 の安定版リリース時に、完全な変更履歴を公開します。
 
 ---
 
-Thanks to [Andrew Clark](https://twitter.com/acdlite), [Eli White](https://twitter.com/Eli_White), [Jack Pope](https://github.com/jackpope), [Jan Kassens](https://github.com/kassens), [Josh Story](https://twitter.com/joshcstory), [Matt Carroll](https://twitter.com/mattcarrollcode), [Noah Lemen](https://twitter.com/noahlemen), [Sophie Alpert](https://twitter.com/sophiebits), and [Sebastian Silbermann](https://twitter.com/sebsilbermann) for reviewing and editing this post.
+この投稿のレビューと編集に協力してくれた [Andrew Clark](https://twitter.com/acdlite)、[Eli White](https://twitter.com/Eli_White)、[Jack Pope](https://github.com/jackpope)、[Jan Kassens](https://github.com/kassens)、[Josh Story](https://twitter.com/joshcstory)、[Matt Carroll](https://twitter.com/mattcarrollcode)、[Noah Lemen](https://twitter.com/noahlemen)、[Sophie Alpert](https://twitter.com/sophiebits)、そして [Sebastian Silbermann](https://twitter.com/sebsilbermann) に感謝します。
