@@ -492,7 +492,7 @@ React 19 で削除された API に基づいて、TypeScript の型を整理し�
 npx types-react-codemod@latest preset-19 ./path-to-app
 ```
 
-`element.props` への不正確なアクセスが多い場合、この追加の codemod を実行できます。
+`element.props` への型安全ではないアクセスを多く行っている場合、以下の追加の codemod を実行できます。
 
 ```bash
 npx types-react-codemod@latest react-element-default-any-props ./path-to-your-react-ts-files
