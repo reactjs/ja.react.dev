@@ -375,8 +375,8 @@ export async function signUpNewUser(newEmail) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "18.3.0-canary-6db7f4209-20231021",
-    "react-dom": "18.3.0-canary-6db7f4209-20231021",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "^5.0.0"
   },
   "main": "/index.js",
@@ -386,7 +386,11 @@ export async function signUpNewUser(newEmail) {
 
 </Sandpack>
 
+<<<<<<< HEAD
 フォームアクションから state を更新する方法については、[`useActionState`](/reference/react/hooks/useActionState) のドキュメントを参照してください。
+=======
+Learn more about updating state from a form action with the [`useActionState`](/reference/react/useActionState) docs
+>>>>>>> 9967ded394d85af74e0ecdbf00feeb7921a28142
 
 ### 複数の送信タイプを処理する {/*handling-multiple-submission-types*/}
 

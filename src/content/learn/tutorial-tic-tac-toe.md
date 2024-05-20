@@ -2915,4 +2915,8 @@ body {
 1. どちらかが勝利したときに、勝利につながった 3 つのマス目をハイライト表示する。引き分けになった場合は、引き分けになったという結果をメッセージに表示する。
 1. 着手履歴リストで、各着手の場所を (row, col) という形式で表示する。
 
+<<<<<<< HEAD
 このチュートリアルを通じて、React のコンセプトである React 要素、コンポーネント、props、state に触れてきました。ゲーム制作においてこれらの概念がどのように機能するかが分かったので、次は [React の流儀](/learn/thinking-in-react)をチェックして、アプリの UI を構築する際にこれらの React のコンセプトがどのように機能するのかを確認してください。
+=======
+Throughout this tutorial, you've touched on React concepts including elements, components, props, and state. Now that you've seen how these concepts work when building a game, check out [Thinking in React](/learn/thinking-in-react) to see how the same React concepts work when building an app's UI.
+>>>>>>> 9967ded394d85af74e0ecdbf00feeb7921a28142

@@ -111,10 +111,17 @@ function UpdateName({}) {
 
 アクションはあなたの代わりに自動的にデータの送信を管理してくれます。
 
+<<<<<<< HEAD
 - **送信中状態**：アクションは送信中状態を提供します。これはリクエストと共に開始され、最終的な state の更新がコミットされると自動的にリセットされます。
 - **楽観的更新**：アクションは新しい [`useOptimistic`](#new-feature-optimistic-updates) フックをサポートしており、リクエスト送信中にユーザに対し即時のフィードバックを表示することができます。
 - **エラー処理**：アクションはエラー処理を提供するため、リクエストが失敗した場合にエラーバウンダリを表示し、楽観的更新を自動的に元の状態に復元できます。
 - **フォーム**：`<form>` 要素は、props である `action` および `formAction` に関数を渡すことをサポートするようになりました。`action` に関数を渡すことでデフォルトでアクションとして扱われ、送信後にフォームを自動的にリセットします。
+=======
+- **Pending state**: Actions provide a pending state that starts at the beginning of a request and automatically resets when the final state update is committed.
+- **Optimistic updates**: Actions support the new [`useOptimistic`](#new-hook-optimistic-updates) hook so you can show users instant feedback while the requests are submitting.
+- **Error handling**: Actions provide error handling so you can display Error Boundaries when a request fails, and revert optimistic updates to their original value automatically.
+- **Forms**: `<form>` elements now support passing functions to the `action` and `formAction` props. Passing functions to the `action` props use Actions by default and reset the form automatically after submission.
+>>>>>>> 9967ded394d85af74e0ecdbf00feeb7921a28142
 
 </Note>
 

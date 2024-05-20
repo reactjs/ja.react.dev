@@ -39,12 +39,21 @@ React による `<style>` の機能拡張は、現在 React の Canary および
 
 `<style>` は、[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
 
+<<<<<<< HEAD
 * `children`: 文字列、必須。スタイルシートの内容です。
 * `precedence`: 文字列。React がドキュメントの `<head>` 内で `<style>` DOM ノードを他と比較してどのように順序付けるかを指定します。これによりどのスタイルシートが他を上書きできるかが決まります。指定可能な値は優先度が低い順に `"reset"`、`"low"`、`"medium"`、`"high"` です。同じ優先順位を持つスタイルシートは、`<link>` の場合でもインライン `<style>` タグの場合でも、あるいは [`preload`](/reference/react-dom/preload) や [`preinit`](/reference/react-dom/preinit) 関数を使用してロードされた場合でも、一緒に配置されます。
 * `href`: 文字列。同じ `href` を持つスタイルに対して React が[重複解消処理](#special-rendering-behavior)を行えるようにします。
 * `media`: 文字列。スタイルの適用を特定の[メディアクエリ](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries)に制限します。
 * `nonce`: 文字列。厳格なコンテンツセキュリティポリシーを使用する際に[リソースを許可するための暗号化 nonce](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce)。
 * `title`: 文字列。[代替スタイルシート](https://developer.mozilla.org/en-US/docs/Web/CSS/Alternative_style_sheets)の名前を指定します。
+=======
+* `children`: a string, required. The contents of the stylesheet.
+* `precedence`: a string. Tells React where to rank the `<style>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other. Its value can be (in order of precedence) `"reset"`, `"low"`, `"medium"`, `"high"`. Stylesheets with the same precedence go together whether they are `<link>` or inline `<style>` tags or loaded using the [`preload`](/reference/react-dom/preload) or [`preinit`](/reference/react-dom/preinit) functions.
+* `href`: a string. Allows React to [de-duplicate styles](#special-rendering-behavior) that have the same `href`.
+* `media`: a string. Restricts the stylesheet to a certain [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries).
+* `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
+* `title`: a string. Specifies the name of an [alternative stylesheet](https://developer.mozilla.org/en-US/docs/Web/CSS/Alternative_style_sheets).
+>>>>>>> 9967ded394d85af74e0ecdbf00feeb7921a28142
 
 以下は React での使用が**推奨されない** props です。
 
