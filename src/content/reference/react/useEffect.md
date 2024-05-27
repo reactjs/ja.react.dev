@@ -64,7 +64,13 @@ function ChatRoom({ roomId }) {
 
 * エフェクトがユーザ操作（クリックなど）によって引き起こされたものでない場合、React は通常、ブラウザが**新しい画面を描画した後にエフェクトを実行**します。あなたのエフェクトが（ツールチップの配置など）何か視覚的な作業を行っており遅延が目立つ場合（ちらつくなど）、`useEffect` を [`useLayoutEffect` に置き換えてください](/reference/react/useLayoutEffect)。
 
+<<<<<<< HEAD
 * エフェクトがユーザ操作（クリックなど）によって引き起こされた場合でも、**ブラウザはエフェクト内の state 更新処理の前に画面を再描画する可能性があります**。通常、これが望ましい動作です。しかし、ブラウザによる画面の再描画をブロックしなければならない場合、`useEffect` を [`useLayoutEffect` に置き換える必要があります](/reference/react/useLayoutEffect)。
+=======
+* If your Effect is caused by an interaction (like a click), **React may run your Effect before the browser paints the updated screen**. This ensures that the result of the Effect can be observed by the event system. Usually, this works as expected. However, if you must defer the work until after paint, such as an `alert()`, you can use `setTimeout`. See [reactwg/react-18/128](https://github.com/reactwg/react-18/discussions/128) for more information.
+
+* Even if your Effect was caused by an interaction (like a click), **React may allow the browser to repaint the screen before processing the state updates inside your Effect.** Usually, this works as expected. However, if you must block the browser from repainting the screen, you need to replace `useEffect` with [`useLayoutEffect`.](/reference/react/useLayoutEffect)
+>>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 * エフェクトは**クライアント上でのみ実行されます**。サーバレンダリング中には実行されません。
 

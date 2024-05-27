@@ -14,6 +14,7 @@ React チームからの公式な更新のお知らせはこのブログに掲�
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<<<<<<< HEAD
 <BlogCard title="React 19 Beta" date="April 25, 2024" url="/blog/2024/04/25/react-19">
 
 React 19 Beta アップグレードガイドでは、アプリを React 19 Beta にアップグレードするためのステップバイステップガイドをお示ししました。この投稿では、React 19 の新機能と、それらをどのように採用するかについて概説します。
@@ -23,6 +24,23 @@ React 19 Beta アップグレードガイドでは、アプリを React 19 Beta 
 <BlogCard title="React 19 Beta アップグレードガイド" date="April 25, 2024" url="/blog/2024/04/25/react-19-upgrade-guide">
 
 React 19 に追加された改善にはいくつかの破壊的変更が必要ですが、アップグレードをできるだけスムーズに行えるよう努力しているため、ほとんどのアプリには影響が出ないことを予想しています。この投稿では、ライブラリを React 19 Beta にアップグレードする手順をご案内します。
+=======
+<BlogCard title="React Conf 2024 Recap" date="May 22, 2024" url="/blog/2024/05/22/react-conf-2024-recap">
+
+Last week we hosted React Conf 2024, a two-day conference in Henderson, Nevada where 700+ attendees gathered in-person to discuss the latest in UI engineering. This was our first in-person conference since 2019, and we were thrilled to be able to bring the community together again ...
+
+</BlogCard>
+
+<BlogCard title="React 19 RC " date="April 25, 2024" url="/blog/2024/04/25/react-19">
+
+In the React 19 RC Upgrade Guide, we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them ...
+
+</BlogCard>
+
+<BlogCard title="React 19 RC Upgrade Guide" date="April 25, 2024" url="/blog/2024/04/25/react-19-upgrade-guide">
+
+The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible, and we don't expect the changes to impact most apps. In this post, we will guide you through the steps for upgrading libraries to React 19 ...
+>>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 </BlogCard>
 

@@ -45,9 +45,15 @@ title: 'エフェクトを使って同期を行う'
 
 エフェクトを書くには、以下の 3 つのステップに従ってください。
 
+<<<<<<< HEAD
 1. **エフェクトを宣言する**。デフォルトでは、エフェクトはすべてのレンダー後に実行されます。
 2. **エフェクトの依存値 (dependency) の配列を指定する**。ほとんどのエフェクトは、レンダー後に毎回ではなく、*必要に応じて*再実行されるべきものです。例えば、フェードインアニメーションの開始は、コンポーネントが表示されるときにのみ行われるべきです。チャットルームへの接続と切断は、コンポーネントが表示されたり消えたりするときや、チャットルームが変更されたときにのみ行われるべきです。*依存配列*を指定してこれをコントロールする方法について、後で説明します。
 3. **必要に応じてクリーンアップを追加する**。一部のエフェクトは、行っていたことを停止、元に戻す、またはクリーンアップする方法を指定する必要があります。例えば、「接続」には「切断」が必要で、「登録」には「解除」が必要で、「取得」には「キャンセル」または「無視」が必要です。*クリーンアップ関数*を返すことで、これを行う方法を学びます。
+=======
+1. **Declare an Effect.** By default, your Effect will run after every [commit](/learn/render-and-commit).
+2. **Specify the Effect dependencies.** Most Effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
+3. **Add cleanup if needed.** Some Effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect", "subscribe" needs "unsubscribe", and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
+>>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 それぞれのステップを詳しく見ていきましょう。
 
@@ -598,7 +604,38 @@ React は、開発中に意図的にコンポーネントを再マウントし�
 
 ほとんどのエフェクトは、以下の一般的なパターンのいずれかに合致します。
 
+<<<<<<< HEAD
 ### React 以外のウィジェットを制御する {/*controlling-non-react-widgets*/}
+=======
+<Pitfall>
+
+#### Don't use refs to prevent Effects from firing {/*dont-use-refs-to-prevent-effects-from-firing*/}
+
+A common pitfall for preventing Effects firing twice in development is to use a `ref` to prevent the Effect from running more than once. For example, you could "fix" the above bug with a `useRef`:
+
+```js {1,3-4}
+  const connectionRef = useRef(null);
+  useEffect(() => {
+    // 🚩 This wont fix the bug!!!
+    if (!connectionRef.current) {
+      connectionRef.current = createConnection();
+      connectionRef.current.connect();
+    }
+  }, []);
+```
+
+This makes it so you only see `"✅ Connecting..."` once in development, but it doesn't fix the bug.
+
+When the user navigates away, the connection still isn't closed and when they navigate back, a new connection is created. As the user navigates across the app, the connections would keep piling up, the same as it would before the "fix". 
+
+To fix the bug, it is not enough to just make the Effect run once. The effect needs to work after re-mounting, which means the connection needs to be cleaned up like in the solution above.
+
+See the examples below for how to handle common patterns.
+
+</Pitfall>
+
+### Controlling non-React widgets {/*controlling-non-react-widgets*/}
+>>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 時に、React で書かれていない UI ウィジェットを追加したい場合があります。例えば、ページに地図コンポーネントを追加しようとしているとします。`setZoomLevel()` メソッドがあり、React のコード内の `zoomLevel` という state 変数と同期させたいとします。エフェクトは次のようになります。
 
@@ -1573,7 +1610,11 @@ export async function fetchBio(person) {
 - `'Bob'` の取得が完了する
 - `'Bob'` のレンダーからのエフェクトは、`ignore` フラグが `true` に設定されているため、**何も行わない**
 
+<<<<<<< HEAD
 古い API コールの結果を無視するだけでなく、[`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) を使用して、不要になったリクエストをキャンセルすることもできます。ただし、これだけでは競合状態を防ぐのに十分ではありません。フェッチの後にさらに非同期ステップが連続する可能性があるため、`ignore` のような明示的なフラグを使用することが、このタイプの問題を解決する最も確実な方法です。
+=======
+In addition to ignoring the result of an outdated API call, you can also use [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) to cancel the requests that are no longer needed. However, by itself this is not enough to protect against race conditions. More asynchronous steps could be chained after the fetch, so using an explicit flag like `ignore` is the most reliable way to fix this type of problem.
+>>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 </Solution>
 
