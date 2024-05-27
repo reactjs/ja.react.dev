@@ -2,23 +2,12 @@
 title: "React 19 RC"
 author: The React Team
 date: 2024/04/25
-<<<<<<< HEAD
-description: React 19 Beta が npm で利用可能になりました！ この投稿では React 19 の新機能、およびそれらをどのように採用するかについて概説します。
-=======
-description: React 19 RC is now available on npm! In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
->>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
+description: React 19 RC が npm で利用可能になりました！ この投稿では React 19 の新機能、およびそれらをどのように採用するかについて概説します。
 ---
 
 April 25, 2024 by [The React Team](/community/team)
 
 ---
-
-<<<<<<< HEAD
-<Note>
-
-このベータリリースは、ライブラリが React 19 に備えるためのものです。アプリ開発者は、私たちがライブラリと協力してフィードバックに基づいた修正を行う間、18.3.0 にアップグレードしたうえで、React 19 の安定版をお待ちください。
-
-</Note>
 
 <Intro>
 
@@ -26,16 +15,7 @@ npm で React 19 Beta が利用可能になりました！
 
 </Intro>
 
-[React 19 Beta アップグレードガイド](/blog/2024/04/25/react-19-upgrade-guide)では、アプリを React 19 Beta にアップグレードするためのステップバイステップガイドをお示ししました。この投稿では、React 19 の新機能と、それらをどのように採用するかについて概説します。
-=======
-<Intro>
-
-React 19 RC is now available on npm!
-
-</Intro>
-
-In our [React 19 RC Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide), we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
->>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
+[React 19 RC アップグレードガイド](/blog/2024/04/25/react-19-upgrade-guide)では、アプリを React 19 にアップグレードするためのステップバイステップガイドをお示ししました。この投稿では、React 19 の新機能と、それらをどのように採用するかについて概説します。
 
 - [React 19 の新機能](#whats-new-in-react-19)
 - [React 19 の改善点](#improvements-in-react-19)
@@ -125,17 +105,10 @@ function UpdateName({}) {
 
 アクションはあなたの代わりに自動的にデータの送信を管理してくれます。
 
-<<<<<<< HEAD
 - **送信中状態**：アクションは送信中状態を提供します。これはリクエストと共に開始され、最終的な state の更新がコミットされると自動的にリセットされます。
-- **楽観的更新**：アクションは新しい [`useOptimistic`](#new-feature-optimistic-updates) フックをサポートしており、リクエスト送信中にユーザに対し即時のフィードバックを表示することができます。
+- **楽観的更新**：アクションは新しい [`useOptimistic`](#new-hook-optimistic-updates) フックをサポートしており、リクエスト送信中にユーザに対し即時のフィードバックを表示することができます。
 - **エラー処理**：アクションはエラー処理を提供するため、リクエストが失敗した場合にエラーバウンダリを表示し、楽観的更新を自動的に元の状態に復元できます。
 - **フォーム**：`<form>` 要素は、props である `action` および `formAction` に関数を渡すことをサポートするようになりました。`action` に関数を渡すことでデフォルトでアクションとして扱われ、送信後にフォームを自動的にリセットします。
-=======
-- **Pending state**: Actions provide a pending state that starts at the beginning of a request and automatically resets when the final state update is committed.
-- **Optimistic updates**: Actions support the new [`useOptimistic`](#new-hook-optimistic-updates) hook so you can show users instant feedback while the requests are submitting.
-- **Error handling**: Actions provide error handling so you can display Error Boundaries when a request fails, and revert optimistic updates to their original value automatically.
-- **Forms**: `<form>` elements now support passing functions to the `action` and `formAction` props. Passing functions to the `action` props use Actions by default and reset the form automatically after submission.
->>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 </Note>
 
@@ -531,12 +504,7 @@ ref クリーンアップ関数の導入により、`ref` コールバックか�
 
 元のコードは `HTMLDivElement` のインスタンスを返していますが、TypeScript はこれがクリーンアップ関数を返すつもりでミスをしたのか、クリーンアップ関数を返したくないのか判断できないのです。
 
-<<<<<<< HEAD
 このパターンは [`no-implicit-ref-callback-return`](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return) の codemod を用いて修正できます。
-=======
-You can codemod this pattern with [`no-implicit-ref-callback-return`](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return).
->>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
-
 
 ### `useDeferredValue` の初期値 {/*use-deferred-value-initial-value*/}
 

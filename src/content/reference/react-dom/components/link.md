@@ -43,27 +43,15 @@ React による `<link>` の機能拡張は、現在 React の Canary および 
 
 以下の props は `rel="stylesheet"` の場合に適用されます。
 
-<<<<<<< HEAD
-* `precedence`: 文字列。React がドキュメントの `<head>` 内で `<link>` DOM ノードを他と比較してどのように順序付けるかを指定します。これによりどのスタイルシートが他のスタイルシートを上書きできるかが決まります。可能な値は優先度が低い順に `"reset"`、`"low"`、`"medium"`、`"high"` です。同じ優先順位を持つスタイルシートは、`<link>` の場合でもインライン `<style>` タグの場合でも、あるいは [`preload`](/reference/react-dom/preload) や [`preinit`](/reference/react-dom/preinit) 関数を使用してロードされた場合でも、一緒に配置されます。
+* `precedence`: 文字列。React がドキュメントの `<head>` 内で `<link>` DOM ノードを他と比較してどのように順序付けるかを指定します。これによりどのスタイルシートが他のスタイルシートを上書きできるかが決まります。React は、最初に見つけた優先順位の値を「低い」と見なし、後に見つけた優先順位の値を「高い」と見なします。多くのスタイルシステムは、スタイルルールがアトミックであるため、単一の優先順位の値を使用しても問題なく機能します。同じ優先順位を持つスタイルシートは、`<link>` の場合でもインライン `<style>` タグの場合でも、あるいは [`preinit`](/reference/react-dom/preinit) 関数を使用してロードされた場合でも、一緒に配置されます。
 * `media`: 文字列。スタイルシートの適用を特定の[メディアクエリ](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries)に制限します。
 * `title`: 文字列。[代替スタイルシート](https://developer.mozilla.org/en-US/docs/Web/CSS/Alternative_style_sheets)の名前を指定します。
-=======
-* `precedence`: a string. Tells React where to rank the `<link>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other. React will infer that precedence values it discovers first are "lower" and precedence values it discovers later are "higher". Many style systems can work fine using a single precedence value because style rules are atomic. Stylesheets with the same precedence go together whether they are `<link>` or inline `<style>` tags or loaded using [`preinit`](/reference/react-dom/preinit) functions.
-* `media`: a string. Restricts the stylesheet to a certain [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries).
-* `title`: a string. Specifies the name of an [alternative stylesheet](https://developer.mozilla.org/en-US/docs/Web/CSS/Alternative_style_sheets).
->>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 以下の props は `rel="stylesheet"` の場合に適用されますが、React の[スタイルシートに関する特別な扱い](#special-rendering-behavior)を無効にします。
 
-<<<<<<< HEAD
 * `disabled`: ブール値。スタイルシートを無効にします。
 * `onError`: 関数。スタイルシートの読み込みに失敗したときに呼び出されます。
 * `onLoad`: 関数。スタイルシートの読み込みが完了したときに呼び出されます。
-=======
-* `disabled`: a boolean. Disables the stylesheet.
-* `onError`: a function. Called when the stylesheet fails to load.
-* `onLoad`: a function. Called when the stylesheet finishes being loaded.
->>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 以下の props は `rel="preload"` または `rel="modulepreload"` の場合に適用されます。
 

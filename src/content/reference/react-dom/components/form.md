@@ -386,11 +386,7 @@ export async function signUpNewUser(newEmail) {
 
 </Sandpack>
 
-<<<<<<< HEAD
-フォームアクションから state を更新する方法については、[`useActionState`](/reference/react/hooks/useActionState) のドキュメントを参照してください。
-=======
-Learn more about updating state from a form action with the [`useActionState`](/reference/react/useActionState) docs
->>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
+フォームアクションから state を更新する方法については、[`useActionState`](/reference/react/useActionState) のドキュメントを参照してください。
 
 ### 複数の送信タイプを処理する {/*handling-multiple-submission-types*/}
 

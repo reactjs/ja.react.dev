@@ -240,11 +240,7 @@ React 18 の strict モードでは、開発時にコンポーネントがマウ
 
 #### useTransition {/*usetransition*/}
 
-<<<<<<< HEAD
 `useTransition` と `startTransition` により、一部の更新は緊急性が低いということをマークできるようになります。その他の更新はデフォルトで緊急性が高いものとして扱われます。React は緊急性の高い更新（例えばテキスト入力の更新）が、緊急性の低い更新（例えば検索結果のリストのレンダー）を中断できるようになります。[こちらのドキュメントを参照](/reference/react/useTransition)。
-=======
-`useTransition` and `startTransition` let you mark some state updates as not urgent. Other state updates are considered urgent by default. React will allow urgent state updates (for example, updating a text input) to interrupt non-urgent state updates (for example, rendering a list of search results). [See docs here](/reference/react/useTransition).
->>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 #### useDeferredValue {/*usedeferredvalue*/}
 

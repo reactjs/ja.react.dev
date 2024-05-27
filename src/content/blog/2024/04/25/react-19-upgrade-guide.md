@@ -1,40 +1,18 @@
 ---
-<<<<<<< HEAD
-title: "React 19 Beta アップグレードガイド"
+title: "React 19 RC アップグレードガイド"
 author: Ricky Hanlon
 date: 2024/04/25
-description: React 19 に追加された改善にはいくつかの破壊的変更が必要ですが、アップグレードをできるだけスムーズに行えるよう努力しているため、ほとんどのアプリには影響が出ないことを予想しています。この投稿では、ライブラリを React 19 Beta にアップグレードする手順をご案内します。
-=======
-title: "React 19 RC Upgrade Guide"
-author: Ricky Hanlon
-date: 2024/04/25
-description: The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible and we don't expect the changes to impact most apps. In this post, we will guide you through the steps for upgrading apps and libraries to React 19.
->>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
+description: React 19 に追加された改善にはいくつかの破壊的変更が必要ですが、アップグレードをできるだけスムーズに行えるよう努力しているため、ほとんどのアプリには影響が出ないことを予想しています。この投稿では、アプリやライブラリを React 19 にアップグレードする手順をご案内します。
 ---
 
 April 25, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii)
 
 ---
 
-<<<<<<< HEAD
-<Note>
-
-このベータリリースは、ライブラリが React 19 に備えるためのものです。アプリ開発者は、私たちがライブラリと協力してフィードバックに基づいた修正を行う間、18.3.0 にアップグレードしたうえで、React 19 の安定版をお待ちください。
-
-</Note>
-
 
 <Intro>
 
 React 19 に追加された改善にはいくつかの破壊的変更が必要ですが、アップグレードをできるだけスムーズに行えるよう努力しているため、ほとんどのアプリには影響が出ないことを予想しています。
-
-アップグレードを容易にするために、本日 React 18.3 も公開します。
-=======
-
-<Intro>
-
-The improvements added to React 19 RC require some breaking changes, but we've worked to make the upgrade as smooth as possible, and we don't expect the changes to impact most apps.
->>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 </Intro>
 
@@ -50,30 +28,17 @@ React 19 にアップグレードする前に、問題点を見つけるため�
 
 </Note>
 
-<<<<<<< HEAD
-この投稿では、ライブラリを React 19 Beta 版にアップグレードする手順をご案内します。
+この投稿では、React 19 にアップグレードする手順をご案内します。
 
 - [インストール](#installing)
+- [Codemod](#codemods)
 - [破壊的変更](#breaking-changes)
 - [新たな非推奨化](#new-deprecations)
 - [注目すべき変更点](#notable-changes)
 - [TypeScript 関連の変更](#typescript-changes)
 - [Changelog](#changelog)
 
-React 19 をテストしていただける方は、このアップグレードガイドに従い、遭遇した[問題を報告](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D)してください。React 19 Beta 版に追加された新機能のリストについては、[React 19 リリースのお知らせ](/blog/2024/04/25/react-19)をご覧ください。
-=======
-In this post, we will guide you through the steps for upgrading to React 19:
-
-- [Installing](#installing)
-- [Codemods](#codemods)
-- [Breaking changes](#breaking-changes)
-- [New deprecations](#new-deprecations)
-- [Notable changes](#notable-changes)
-- [TypeScript changes](#typescript-changes)
-- [Changelog](#changelog)
-
-If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19, see the [React 19 release post](/blog/2024/04/25/react-19).
->>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
+React 19 をテストしていただける方は、このアップグレードガイドに従い、遭遇した[問題を報告](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D)してください。React 19 に追加された新機能のリストについては、[React 19 リリースのお知らせ](/blog/2024/04/25/react-19)をご覧ください。
 
 ---
 ## インストール {/*installing*/}
@@ -108,11 +73,7 @@ React と React DOM の最新バージョンをインストールするには以
 npm install react@rc react-dom@rc
 ```
 
-<<<<<<< HEAD
-TypeScript を使用している場合は、型も更新する必要があります。React 19 が安定版としてリリースされた後は、通常通り `@types/react` と `@types/react-dom` から型をインストールできます。ベータ期間中は `package.json` で強制的に別のパッケージを指定することで、新しい型を利用できます。
-=======
-If you're using TypeScript, you also need to update the types. Once React 19 is released as stable, you can install the types as usual from `@types/react` and `@types/react-dom`.  Until the stable release, the types are available in different packages which need to be enforced in your `package.json`:
->>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
+TypeScript を使用している場合は、型も更新する必要があります。React 19 が安定版としてリリースされた後は、通常通り `@types/react` と `@types/react-dom` から型をインストールできます。安定版になるまでは `package.json` で強制的に別のパッケージを指定することで、新しい型を利用できます。
 
 ```json
 {
@@ -129,37 +90,37 @@ If you're using TypeScript, you also need to update the types. Once React 19 is 
 
 また、最も一般的な書き換えのための codemod も含まれています。下記の [TypeScript 関連の変更](#typescript-changes)を参照してください。
 
-## Codemods {/*codemods*/}
+## codemod {/*codemods*/}
 
-To help with the upgrade, we've worked with the team at [codemod.com](https://codemod.com) to publish codemods that will automatically update your code to many of the new APIs and patterns in React 19.
+アップグレードを支援するため、[codemod.com](https://codemod.com) のチームと協力し、React 19 の新しい API やパターンにコードを自動的に更新するための codemod を公開しました。
 
-All codemods are available in the [`react-codemod` repo](https://github.com/reactjs/react-codemod) and the Codemod team have joined in helping maintain the codemods. To run these codemods, we recommend using the `codemod` command instead of the `react-codemod` because it runs faster, handles more complex code migrations, and provides better support for TypeScript.
+すべての codemod は [`react-codemod` リポジトリ](https://github.com/reactjs/react-codemod)で利用可能であり、Codemod チームも codemod の保守に参加しています。これらの codemod を実行するには、`react-codemod` コマンドではなく `codemod` コマンドの使用をお勧めします。こちらのコマンドの方が高速に実行され、複雑なコードの移行を処理でき、TypeScript のサポートもより良好です。
 
 
 <Note>
 
-#### Run all React 19 codemods {/*run-all-react-19-codemods*/}
+#### React 19 関連の codemod をすべて実行 {/*run-all-react-19-codemods*/}
 
-Run all codemods listed in this guide with the React 19 `codemod` recipe:
+このガイドにある codemode をすべて実行するには React 19 の `codemod` レシピを以下のように実行します。
 
 ```bash
 npx codemod@latest react/19/migration-recipe
 ```
 
-This will run the following codemods from `react-codemod`:
+これにより以下の `react-codemod` の codemod が実行されます。
 - [`replace-reactdom-render`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-reactdom-render) 
 - [`replace-string-ref`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-string-ref)
 - [`replace-act-import`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-act-import)
 - [`replace-use-form-state`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-use-form-state) 
 - [`prop-types-typescript`](TODO)
 
-This does not include the TypeScript changes. See [TypeScript changes](#typescript-changes) below.
+これには TypeScript 関連の変更は含まれていません。以下の [TypeScript 関連の変更](#typescript-changes)を参照してください。
 
 </Note>
 
-Changes that include a codemod include the command below. 
+変更のうち codemod が利用できるものは以下で紹介されています。
 
-For a list of all available codemods, see the [`react-codemod` repo](https://github.com/reactjs/react-codemod).
+利用可能なすべての codemod の一覧については、[`react-codemod` リポジトリ](https://github.com/reactjs/react-codemod)を参照してください。
 
 ## 破壊的変更 {/*breaking-changes*/}
 
@@ -190,13 +151,8 @@ const root = createRoot(container, {
 
 ### 非推奨化 React API の削除 {/*removed-deprecated-react-apis*/}
 
-<<<<<<< HEAD
 #### 廃止：関数コンポーネントの `propTypes` と `defaultProps` {/*removed-proptypes-and-defaultprops*/}
 `PropTypes` は [2017 年 4 月 (v15.5.0)](https://legacy.reactjs.org/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings) に非推奨化されました。
-=======
-#### Removed: `propTypes` and `defaultProps` for functions {/*removed-proptypes-and-defaultprops*/}
-`PropTypes` were deprecated in [April 2017 (v15.5.0)](https://legacy.reactjs.org/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings).
->>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 React 19 では、React パッケージから `propTypes` チェックが削除されており、使用しても無視されるようになります。`propTypes` を使用している場合は、TypeScript または他の型チェックソリューションへの移行をお勧めします。
 
@@ -226,12 +182,9 @@ function Heading({text = 'Hello, world!'}: Props) {
 }
 ```
 
-<<<<<<< HEAD
-#### 廃止：`contextTypes` と `getChildContext` を使用したレガシーコンテクスト {/*removed-removing-legacy-context*/}
-=======
 <Note>
 
-Codemod `propTypes` to TypeScript with:
+codemod で以下のように `propTypes` を TypeScript に変換できます。
 
 ```bash
 npx codemod@latest react/prop-types-typescript
@@ -239,8 +192,7 @@ npx codemod@latest react/prop-types-typescript
 
 </Note>
 
-#### Removed: Legacy Context using `contextTypes` and `getChildContext` {/*removed-removing-legacy-context*/}
->>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
+#### 廃止：`contextTypes` と `getChildContext` を使用したレガシーコンテクスト {/*removed-removing-legacy-context*/}
 
 レガシーコンテクストは [2018 年 10 月 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html) に非推奨化されました。
 
@@ -335,15 +287,11 @@ class MyComponent extends React.Component {
 
 <Note>
 
-<<<<<<< HEAD
-移行を支援するために、文字列 ref を `ref` コールバックに自動的に置き換える [react-codemod](https://github.com/reactjs/react-codemod/#string-refs) を公開する予定です。最新情報や試用については[この PR](https://github.com/reactjs/react-codemod/pull/309) をフォローしてください。
-=======
-Codemod string refs with `ref` callbacks:
+codemod で以下のように文字列形式の ref をコールバック形式の `ref` に変換できます。
 
 ```bash
 npx codemod@latest react/19/replace-string-ref
 ```
->>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
 
 </Note>
 
@@ -430,12 +378,9 @@ npm install react-shallow-renderer --save-dev
 
 代替手段については、[警告ページ](https://react.dev/warnings/react-dom-test-utils)をご覧ください。
 
-<<<<<<< HEAD
-#### 削除：`ReactDOM.render` {/*removed-reactdom-render*/}
-=======
 <Note>
 
-Codemod `ReactDOMTestUtils.act` to `React.act`:
+codemod で以下のように `ReactDOMTestUtils.act` を `React.act` に変換できます。
 
 ```bash
 npx codemod@latest react/19/replace-act-import
@@ -443,8 +388,7 @@ npx codemod@latest react/19/replace-act-import
 
 </Note>
 
-#### Removed: `ReactDOM.render` {/*removed-reactdom-render*/}
->>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
+#### 削除：`ReactDOM.render` {/*removed-reactdom-render*/}
 
 `ReactDOM.render` は [2022 年 3 月 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide) に非推奨化されました。React 19 では `ReactDOM.render` が削除されており、[`ReactDOM.createRoot`](https://react.dev/reference/react-dom/client/createRoot) を使用するよう移行する必要があります。
 
@@ -459,12 +403,9 @@ const root = createRoot(document.getElementById('root'));
 root.render(<App />);
 ```
 
-<<<<<<< HEAD
-#### 削除：`ReactDOM.hydrate` {/*removed-reactdom-hydrate*/}
-=======
 <Note>
 
-Codemod `ReactDOM.render` to `ReactDOM.createRoot`:
+codemod で以下のように `ReactDOM.render` を `ReactDOM.createRoot` に変換できます。
 
 ```bash
 npx codemod@latest react/19/replace-reactdom-render
@@ -472,8 +413,7 @@ npx codemod@latest react/19/replace-reactdom-render
 
 </Note>
 
-#### Removed: `ReactDOM.hydrate` {/*removed-reactdom-hydrate*/}
->>>>>>> c3bc5affa0e7452e306c785af11798d16b4f6dd4
+#### 削除：`ReactDOM.hydrate` {/*removed-reactdom-hydrate*/}
 
 `ReactDOM.hydrate` は [2022 年 3 月 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide) に非推奨化されました。React 19 では `ReactDOM.hydrate` が削除されており、[`ReactDOM.hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot) を使用するよう移行する必要があります。
 
