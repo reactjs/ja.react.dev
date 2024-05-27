@@ -31,7 +31,7 @@ React コアチームのメンバーは、コアコンポーネントの API、R
 </TeamMember>
 
 <TeamMember name="Jason Bonta" permalink="jason-bonta" photo="/images/team/jasonbonta.jpg" threads="someextent" title="Engineering Manager at Meta">
-    Jason のお気に入りは、職場に大量の Amazon のパッケージを届けてもらい、それを使って要塞を築くことです。チームとの間に（物理的な意味で）よく壁を作っており、for-of ループの動作も理解していないにも関わらず、我々は彼が仕事に持ち込むユニークさを評価しています。
+    Jason は、組み込み C 開発を完全に捨ててフロントエンドエンジニアとしてのキャリアを選びました。難解な CSS の知識と美しい UI への情熱を武器に 2010 年に Facebook に参加し、JavaScript 開発の成長を見届けることができたことを光栄に思っています。`for...of` ループの動作は理解していないかもしれませんが、素晴らしい人々と一緒に、素晴らしい UX を実現するプロジェクトに取り組むことを愛しています。
 </TeamMember>
 
 <TeamMember name="Joe Savona" permalink="joe-savona" photo="/images/team/joe.jpg" github="josephsavona" twitter="en_JS" threads="joesavona" title="Engineer at Meta">

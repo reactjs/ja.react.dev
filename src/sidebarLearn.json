@@ -43,6 +43,11 @@
         {
           "title": "React Developer Tools",
           "path": "/learn/react-developer-tools"
+        },
+        {
+          "title": "React Compiler",
+          "path": "/learn/react-compiler",
+          "canary": true
         }
       ]
     },
@@ -194,7 +199,7 @@
         },
         {
           "title": "エフェクトから依存値を取り除く",
-          "path": "/learn/removing-effect-dependencies"              
+          "path": "/learn/removing-effect-dependencies"
         },
         {
           "title": "カスタムフックでロジックを再利用する",

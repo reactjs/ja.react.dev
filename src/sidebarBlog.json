@@ -12,14 +12,21 @@
       "skipBreadcrumb": true,
       "routes": [
         {
-          "title": "React 19 Beta",
-          "titleForHomepage": "React 19 Beta",
+          "title": "React Conf 2024 Recap",
+          "titleForHomepage": "React Conf 2024 Recap",
+          "icon": "blog",
+          "date": "May 22, 2024",
+          "path": "/blog/2024/05/22/react-conf-2024-recap"
+        },
+        {
+          "title": "React 19 RC",
+          "titleForHomepage": "React 19 RC",
           "icon": "blog",
           "date": "April 25, 2024",
           "path": "/blog/2024/04/25/react-19"
         },
         {
-          "title": "React 19 Beta アップグレードガイド",
+          "title": "React 19 RC アップグレードガイド",
           "titleForHomepage": "React 19 Beta アップグレードガイド",
           "icon": "blog",
           "date": "April 25, 2024",

@@ -14,13 +14,19 @@ React チームからの公式な更新のお知らせはこのブログに掲�
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
-<BlogCard title="React 19 Beta" date="April 25, 2024" url="/blog/2024/04/25/react-19">
+<BlogCard title="React Conf 2024 Recap" date="May 22, 2024" url="/blog/2024/05/22/react-conf-2024-recap">
 
-React 19 Beta アップグレードガイドでは、アプリを React 19 Beta にアップグレードするためのステップバイステップガイドをお示ししました。この投稿では、React 19 の新機能と、それらをどのように採用するかについて概説します。
+Last week we hosted React Conf 2024, a two-day conference in Henderson, Nevada where 700+ attendees gathered in-person to discuss the latest in UI engineering. This was our first in-person conference since 2019, and we were thrilled to be able to bring the community together again ...
 
 </BlogCard>
 
-<BlogCard title="React 19 Beta アップグレードガイド" date="April 25, 2024" url="/blog/2024/04/25/react-19-upgrade-guide">
+<BlogCard title="React 19 RC " date="April 25, 2024" url="/blog/2024/04/25/react-19">
+
+React 19 RC アップグレードガイドでは、アプリを React 19 にアップグレードするためのステップバイステップガイドをお示ししました。この投稿では、React 19 の新機能と、それらをどのように採用するかについて概説します。
+
+</BlogCard>
+
+<BlogCard title="React 19 RC アップグレードガイド" date="April 25, 2024" url="/blog/2024/04/25/react-19-upgrade-guide">
 
 React 19 に追加された改善にはいくつかの破壊的変更が必要ですが、アップグレードをできるだけスムーズに行えるよう努力しているため、ほとんどのアプリには影響が出ないことを予想しています。この投稿では、ライブラリを React 19 Beta にアップグレードする手順をご案内します。
 
