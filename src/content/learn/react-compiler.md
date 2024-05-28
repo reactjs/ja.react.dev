@@ -3,7 +3,7 @@ title: React Compiler
 ---
 
 <Intro>
-このページでは、新しい実験的プロジェクトである React Compiler の概要と、その試し方について説明します。
+このページでは、新しい実験的プロジェクトである React Compiler の概要と、試用の方法について説明します。
 </Intro>
 
 <Wip>
@@ -12,7 +12,7 @@ title: React Compiler
 
 <YouWillLearn>
 
-* コンパイラの始め方
+* コンパイラを使い始める
 * コンパイラと eslint プラグインのインストール
 * トラブルシューティング
 
@@ -21,7 +21,7 @@ title: React Compiler
 <Note>
 React Compiler は実験的なコンパイラであり、コミュニティから早期フィードバックを得るためにオープンソース化したものです。まだ粗削りな部分があり、本番環境で使用できる準備は整っていません。
 
-React Compiler の使用には React 19 RC が必要です。React 19 にアップグレードできない場合は、[Working Group](https://github.com/reactwg/react-compiler/discussions/6) で説明されているように、キャッシュ関数に対するユーザスペースの実装を試すことができます。ただし、これは推奨されておらず、可能な限り React 19 にアップグレードするべきです。
+React Compiler の使用には React 19 RC が必要です。React 19 にアップグレードできない場合は、[Working Group](https://github.com/reactwg/react-compiler/discussions/6) で説明されているように、キャッシュ関数に対するユーザスペースの実装を試すことができます。ただしこれは推奨されておらず、可能な限り React 19 にアップグレードするべきです。
 </Note>
 
 React Compiler は実験的なコンパイラであり、コミュニティから早期フィードバックを得るためにオープンソース化したものです。これはビルド時のみに実行されるツールであり、あなたの React アプリを自動的に最適化します。プレーンな JavaScript で動作し、[React のルール](/reference/rules)を理解しているため、コードを書き直す必要はありません。
@@ -367,7 +367,7 @@ React Native は Metro 経由で Babel を使用するため、インストー�
 
 これは React 19 RC 以降を使用していない場合に発生します。これを修正するには、まず[アプリを React 19 RC にアップグレード](https://react.dev/blog/2024/04/25/react-19-upgrade-guide)してください。
 
-React 19 にアップグレードできない場合は、[Working Group](https://github.com/reactwg/react-compiler/discussions/6) で説明されているように、キャッシュ関数に関するユーザスペースの実装を試すことができます。ただし、これは推奨されておらず、可能な限り React 19 にアップグレードするべきです。
+React 19 にアップグレードできない場合は、[Working Group](https://github.com/reactwg/react-compiler/discussions/6) で説明されているように、キャッシュ関数に関するユーザスペースの実装を試すことができます。ただしこれは推奨されておらず、可能な限り React 19 にアップグレードするべきです。
 
 ### コンポーネントが最適化されたかどうかを知る方法 {/*how-do-i-know-my-components-have-been-optimized*/}
 
@@ -390,12 +390,12 @@ function SuspiciousComponent() {
 <Note>
 #### `"use no memo"` {/*use-no-memo*/}
 
-`"use no memo"` は、React Compiler によってコンパイルされるコンポーネントやフックを一時的に除外するための*一時的な*避難ハッチです。このディレクティブは、例えば [`"use client"`](/reference/rsc/use-client) のように長期に渡って使用されることを意図したものではありません。
+`"use no memo"` は、React Compiler によるコンパイルからコンポーネントやフックを一時的に除外するための*一時的な*避難ハッチです。このディレクティブは、例えば [`"use client"`](/reference/rsc/use-client) のように長期に渡って使用されることを意図したものではありません。
 
 このディレクティブを使用するのは本当に必要な場合に限ることをお勧めします。一度コンポーネントやフックを除外してしまえば、ディレクティブを削除するまで永遠に除外され続けることになります。つまり、コードの問題を修正しても、ディレクティブを削除しない限りコンパイラはコンパイルを行わなくなります。
 </Note>
 
-これでエラーが解消された場合、除外ディレクティブを削除してみて問題が再発することを確認してください。その後、バグレポートを [React Compiler Playground](https://playground.react.dev) を使って共有してください（小さな再現コードに削減するか、オープンソースコードであればソース全体を貼り付けることもできます）。これにより問題を特定して修正する手助けができます。
+これでエラーが解消された場合、この除外ディレクティブを削除してみて問題が再発することを確認してください。その後、バグレポートを [React Compiler Playground](https://playground.react.dev) を使って共有してください（小さな再現コードに削減するか、オープンソースコードであればソース全体を貼り付けることもできます）。これにより問題を特定して修正する手助けができるようになります。
 
 ### その他の問題 {/*other-issues*/}
 
