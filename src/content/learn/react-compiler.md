@@ -3,52 +3,52 @@ title: React Compiler
 ---
 
 <Intro>
-This page will give you an introduction to the new experimental React Compiler and how to try it out successfully.
+このページでは、新しい実験的プロジェクトである React Compiler の概要と、試用の方法について説明します。
 </Intro>
 
 <Wip>
-These docs are still a work in progress. More documentation is available in the [React Compiler Working Group repo](https://github.com/reactwg/react-compiler/discussions), and will be upstreamed into these docs when they are more stable.
+このドキュメントはまだ作成中です。詳細なドキュメントは [React Compiler Working Group リポジトリ](https://github.com/reactwg/react-compiler/discussions)にあり、安定化後にこちらのドキュメントに反映されます。
 </Wip>
 
 <YouWillLearn>
 
-* Getting started with the compiler
-* Installing the compiler and eslint plugin
-* Troubleshooting
+* コンパイラを使い始める
+* コンパイラと eslint プラグインのインストール
+* トラブルシューティング
 
 </YouWillLearn>
 
 <Note>
-React Compiler is a new experimental compiler that we've open sourced to get early feedback from the community. It still has rough edges and is not yet fully ready for production.
+React Compiler は実験的なコンパイラであり、コミュニティから早期フィードバックを得るためにオープンソース化したものです。まだ粗削りな部分があり、本番環境で使用できる準備は整っていません。
 
-React Compiler requires React 19 RC. If you are unable to upgrade to React 19, you may try a userspace implementation of the cache function as described in the [Working Group](https://github.com/reactwg/react-compiler/discussions/6). However, please note that this is not recommended and you should upgrade to React 19 when possible.
+React Compiler の使用には React 19 RC が必要です。React 19 にアップグレードできない場合は、[Working Group](https://github.com/reactwg/react-compiler/discussions/6) で説明されているように、キャッシュ関数に対するユーザスペースの実装を試すことができます。ただしこれは推奨されておらず、可能な限り React 19 にアップグレードするべきです。
 </Note>
 
-React Compiler is a new experimental compiler that we've open sourced to get early feedback from the community. It is a build-time only tool that automatically optimizes your React app. It works with plain JavaScript, and understands the [Rules of React](/reference/rules), so you don't need to rewrite any code to use it.
+React Compiler は実験的なコンパイラであり、コミュニティから早期フィードバックを得るためにオープンソース化したものです。これはビルド時のみに実行されるツールであり、あなたの React アプリを自動的に最適化します。プレーンな JavaScript で動作し、[React のルール](/reference/rules)を理解しているため、コードを書き直す必要はありません。
 
-The compiler also includes an [eslint plugin](#installing-eslint-plugin-react-compiler) that surfaces the analysis from the compiler right in your editor. The plugin runs independently of the compiler and can be used even if you aren't using the compiler in your app. We recommend all React developers to use this eslint plugin to help improve the quality of your codebase.
+コンパイラには、コンパイラの分析結果をエディタ内でその場で表示できる [eslint プラグイン](#installing-eslint-plugin-react-compiler) も含まれています。このプラグインはコンパイラとは独立して動作し、アプリでコンパイラを使用していなくても利用できます。すべての React 開発者に、この eslint プラグインを使用してコードベースの品質向上を図ることをお勧めします。
 
-### What does the compiler do? {/*what-does-the-compiler-do*/}
+### コンパイラは何をするのか {/*what-does-the-compiler-do*/}
 
-In order to optimize applications, React Compiler automatically memoizes your code. You may be familiar today with memoization through APIs such as `useMemo`, `useCallback`, and `React.memo`. With these APIs you can tell React that certain parts of your application don't need to recompute if their inputs haven't changed, reducing work on updates. While powerful, it's easy to forget to apply memoization or apply them incorrectly. This can lead to inefficient updates as React has to check parts of your UI that don't have any _meaningful_ changes.
+アプリケーションを最適化するために、React Compiler は自動的にコードをメモ化します。現在皆さんは、`useMemo`、`useCallback`、`React.memo` などの API を使ったメモ化に慣れているかもしれません。これらの API を使用することで、入力が変更されていない場合にアプリケーションの特定部分を再計算する必要がないということを React に伝え、更新時の作業を減らすことができます。強力な機能ですが、いとも簡単にメモ化を適用し忘れたり、誤って適用したりしてしまいます。こうなると、意味のある変化がない部分の UI についても React がチェックしなければならないため、非効率的な更新が発生してしまう可能性があります。
 
-The compiler uses its knowledge of JavaScript and React's rules to automatically memoize values or groups of values within your components and hooks. If it detects breakages of the rules, it will automatically skip over just those components or hooks, and continue safely compiling other code.
+このコンパイラは、JavaScript と React のルールに関する知識を使用して、コンポーネントやフック内にある値や値のグループを、自動的にメモ化します。ルールが守られていない部分を検出した場合、該当のコンポーネントやフックだけを自動的にスキップし、他のコードを安全にコンパイルし続けます。
 
-If your codebase is already very well-memoized, you might not expect to see major performance improvements with the compiler. However, in practice memoizing the correct dependencies that cause performance issues is tricky to get right by hand.
+コードベースがすでに非常によくメモ化されている場合、コンパイラによる大きなパフォーマンス向上は期待できないかもしれません。しかし現実的には、パフォーマンス問題を引き起こす依存値を手動で正しくメモ化していくのは困難です。
 
 <DeepDive>
-#### What kind of memoization does React Compiler add? {/*what-kind-of-memoization-does-react-compiler-add*/}
+#### React Compiler が行うメモ化の種類 {/*what-kind-of-memoization-does-react-compiler-add*/}
 
-The initial release of React Compiler is primarily focused on **improving update performance** (re-rendering existing components), so it focuses on these two use cases:
+React Compiler の初期リリースでは、主に**更新（既存コンポーネントの再レンダー）時のパフォーマンスの向上**に焦点を当てており、以下の 2 つのユースケースに重点を置いています。
 
-1. **Skipping cascading re-rendering of components**
-    * Re-rendering `<Parent />` causes many components in its component tree to re-render, even though only `<Parent />` has changed
-1. **Skipping expensive calculations from outside of React**
-    * For example, calling `expensivelyProcessAReallyLargeArrayOfObjects()` inside of your component or hook that needs that data
+1. **コンポーネントの連鎖的な再レンダーのスキップ**
+    * `<Parent />` を再レンダーすると、実際には `<Parent />` そのものしか変更されていないにも関わらず、コンポーネントツリー内の多くのコンポーネントが再レンダーされる
+1. **React 外での高コストな計算のスキップ**
+    * 例えば、コンポーネントやフック内で `expensivelyProcessAReallyLargeArrayOfObjects()` を呼び出してこのデータを取り出している
 
-#### Optimizing Re-renders {/*optimizing-re-renders*/}
+#### 再レンダーの最適化 {/*optimizing-re-renders*/}
 
-React lets you express your UI as a function of their current state (more concretely: their props, state, and context). In its current implementation, when a component's state changes, React will re-render that component _and all of its children_ — unless you have applied some form of manual memoization with `useMemo()`, `useCallback()`, or `React.memo()`. For example, in the following example, `<MessageButton>` will re-render whenever `<FriendList>`'s state changes:
+React では、UI を現在の状態（具体的には props、state、コンテクスト）に対する関数として表現できます。現在の実装では、コンポーネントの state が変わると、React はそのコンポーネント*およびそのすべての子コンポーネント*を再レンダーします。`useMemo()`、`useCallback()`、または `React.memo()` を使用して手動でメモ化を適用していなければ、そうなります。例えば、次の例では、`<FriendList>` の state が変わるたびに、`<MessageButton>` が再レンダーされます。
 
 ```javascript
 function FriendList({ friends }) {
@@ -67,13 +67,13 @@ function FriendList({ friends }) {
   );
 }
 ```
-[_See this example in the React Compiler Playground_](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAYjHgpgCYAyeYOAFMEWuZVWEQL4CURwADrEicQgyKEANnkwIAwtEw4iAXiJQwCMhWoB5TDLmKsTXgG5hRInjRFGbXZwB0UygHMcACzWr1ABn4hEWsYBBxYYgAeADkIHQ4uAHoAPksRbisiMIiYYkYs6yiqPAA3FMLrIiiwAAcAQ0wU4GlZBSUcbklDNqikusaKkKrgR0TnAFt62sYHdmp+VRT7SqrqhOo6Bnl6mCoiAGsEAE9VUfmqZzwqLrHqM7ubolTVol5eTOGigFkEMDB6u4EAAhKA4HCEZ5DNZ9ErlLIWYTcEDcIA)
+[_React Compiler Playground でこの例を見る_](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAYjHgpgCYAyeYOAFMEWuZVWEQL4CURwADrEicQgyKEANnkwIAwtEw4iAXiJQwCMhWoB5TDLmKsTXgG5hRInjRFGbXZwB0UygHMcACzWr1ABn4hEWsYBBxYYgAeADkIHQ4uAHoAPksRbisiMIiYYkYs6yiqPAA3FMLrIiiwAAcAQ0wU4GlZBSUcbklDNqikusaKkKrgR0TnAFt62sYHdmp+VRT7SqrqhOo6Bnl6mCoiAGsEAE9VUfmqZzwqLrHqM7ubolTVol5eTOGigFkEMDB6u4EAAhKA4HCEZ5DNZ9ErlLIWYTcEDcIA)
 
-React Compiler automatically applies the equivalent of manual memoization, ensuring that only the relevant parts of an app re-render as state changes, which is sometimes referred to as "fine-grained reactivity". In the above example, React Compiler determines that the return value of `<FriendListCard />` can be reused even as `friends` changes, and can avoid recreating this JSX _and_ avoid re-rendering `<MessageButton>` as the count changes.
+React Compiler は手動によるメモ化と同等の処理を自動的に適用し、state の変化に応じてアプリの関連部分のみが再レンダーされるようにします。これは「細粒度リアクティビティ (fine-grained reactivity)」と呼ばれることもあります。上記の例では、React Compiler は `<FriendListCard />` の返り値は `friends` が変わっても再利用できると判断し、この JSX の再作成*および* `count` が変わるときの `<MessageButton>` の再レンダーを回避できます。
 
-#### Expensive calculations also get memoized {/*expensive-calculations-also-get-memoized*/}
+#### 高コストな計算もメモ化される {/*expensive-calculations-also-get-memoized*/}
 
-The compiler can also automatically memoize for expensive calculations used during rendering:
+コンパイラは、レンダー中に使用される高コストな計算も自動的にメモ化できます。
 
 ```js
 // **Not** memoized by React Compiler, since this is not a component or hook
@@ -86,51 +86,51 @@ function TableContainer({ items }) {
   // ...
 }
 ```
-[_See this example in the React Compiler Playground_](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAejQAgFTYHIQAuumAtgqRAJYBeCAJpgEYCemASggIZyGYDCEUgAcqAGwQwANJjBUAdokyEAFlTCZ1meUUxdMcIcIjyE8vhBiYVECAGsAOvIBmURYSonMCAB7CzcgBuCGIsAAowEIhgYACCnFxioQAyXDAA5gixMDBcLADyzvlMAFYIvGAAFACUmMCYaNiYAHStOFgAvk5OGJgAshTUdIysHNy8AkbikrIKSqpaWvqGIiZmhE6u7p7ymAAqXEwSguZcCpKV9VSEFBodtcBOmAYmYHz0XIT6ALzefgFUYKhCJRBAxeLcJIsVIZLI5PKFYplCqVa63aoAbm6u0wMAQhFguwAPPRAQA+YAfL4dIloUmBMlODogDpAA)
+[_React Compiler Playground でこの例を見る_](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAejQAgFTYHIQAuumAtgqRAJYBeCAJpgEYCemASggIZyGYDCEUgAcqAGwQwANJjBUAdokyEAFlTCZ1meUUxdMcIcIjyE8vhBiYVECAGsAOvIBmURYSonMCAB7CzcgBuCGIsAAowEIhgYACCnFxioQAyXDAA5gixMDBcLADyzvlMAFYIvGAAFACUmMCYaNiYAHStOFgAvk5OGJgAshTUdIysHNy8AkbikrIKSqpaWvqGIiZmhE6u7p7ymAAqXEwSguZcCpKV9VSEFBodtcBOmAYmYHz0XIT6ALzefgFUYKhCJRBAxeLcJIsVIZLI5PKFYplCqVa63aoAbm6u0wMAQhFguwAPPRAQA+YAfL4dIloUmBMlODogDpAA)
 
-However, if `expensivelyProcessAReallyLargeArrayOfObjects` is truly an expensive function, you may want to consider implementing its own memoization outside of React, because:
+ただし、`expensivelyProcessAReallyLargeArrayOfObjects` が本当に高コストな関数である場合は、React の外部で独自のメモ化を実装することを検討すべきかもしれません。
 
-- React Compiler only memoizes React components and hooks, not every function
-- React Compiler's memoization is not shared across multiple components or hooks
+- React Compiler は React コンポーネントとフックのみをメモ化し、すべての関数をメモ化するわけではない
+- React Compiler のメモ化は複数のコンポーネントやフック間で共有されない
 
-So if `expensivelyProcessAReallyLargeArrayOfObjects` was used in many different components, even if the same exact items were passed down, that expensive calculation would be run repeatedly. We recommend [profiling](https://react.dev/reference/react/useMemo#how-to-tell-if-a-calculation-is-expensive) first to see if it really is that expensive before making code more complicated.
+従って、`expensivelyProcessAReallyLargeArrayOfObjects` が多くの異なるコンポーネントで使用されている場合、同じ items が渡されたとしても、高コストな計算が繰り返し実行さることになります。コードを複雑化する前に、まずは[プロファイリング](https://react.dev/reference/react/useMemo#how-to-tell-if-a-calculation-is-expensive)して、それが本当に高コストかどうかを確認することをお勧めします。
 </DeepDive>
 
-### What does the compiler assume? {/*what-does-the-compiler-assume*/}
+### コンパイラが前提としていること {/*what-does-the-compiler-assume*/}
 
-React Compiler assumes that your code:
+React Compiler は、あなたのコードが以下ようになっていることを仮定します。
 
-1. Is valid, semantic JavaScript
-2. Tests that nullable/optional values and properties are defined before accessing them (for example, by enabling [`strictNullChecks`](https://www.typescriptlang.org/tsconfig/#strictNullChecks) if using TypeScript), i.e., `if (object.nullableProperty) { object.nullableProperty.foo }` or with optional-chaining `object.nullableProperty?.foo`
-3. Follows the [Rules of React](https://react.dev/reference/rules)
+1. 有効でセマンティックな JavaScript であること。
+2. nullable ないし省略可能な値について（例えば、TypeScript を使用している場合は [`strictNullChecks`](https://www.typescriptlang.org/tsconfig/#strictNullChecks) を使うなどで）チェックを行っていること。つまり `if (object.nullableProperty) { object.nullableProperty.foo }` とするか、オプショナルチェーンを使用して `object.nullableProperty?.foo` のようにしていること。
+3. [React のルール](https://react.dev/reference/rules)に従っていること。
 
-React Compiler can verify many of the Rules of React statically, and will safely skip compilation when it detects an error. To see the errors we recommend also installing [eslint-plugin-react-compiler](https://www.npmjs.com/package/eslint-plugin-react-compiler).
+React Comiler は多くの React のルールを静的に検証でき、エラーを検出した場合は安全にコンパイルをスキップします。エラーを確認するために、[eslint-plugin-react-compiler](https://www.npmjs.com/package/eslint-plugin-react-compiler) のインストールもお勧めします。
 
-### Should I try out the compiler? {/*should-i-try-out-the-compiler*/}
+### コンパイラを試すべきか {/*should-i-try-out-the-compiler*/}
 
-Please note that the compiler is still experimental and has many rough edges. While it has been used in production at companies like Meta, rolling out the compiler to production for your app will depend on the health of your codebase and how well you've followed the [Rules of React](/reference/rules).
+コンパイラはまだ実験的であり、多くの粗削りな部分があります。Meta のような企業で本番環境で使用されてはいますが、アプリにコンパイラを本番導入すべきかどうかは、コードベースの健全性と [React のルール](/reference/rules)にどれだけ従っているかに依存します。
 
-**You don't have to rush into using the compiler now. It's okay to wait until it reaches a stable release before adopting it.** However, we do appreciate trying it out in small experiments in your apps so that you can [provide feedback](#reporting-issues) to us to help make the compiler better.
+**今すぐコンパイラを使用する必要はありません。安定版リリースを待ってから採用しても構いません**。ただし、アプリで小規模な実験として試してみて、[フィードバック](#reporting-issues)を提供していただれば、コンパイラの改善に役立ちます。
 
-## Getting Started {/*getting-started*/}
+## スタートガイド {/*getting-started*/}
 
-In addition to these docs, we recommend checking the [React Compiler Working Group](https://github.com/reactwg/react-compiler) for additional information and discussion about the compiler.
+以下のドキュメントに加えて、コンパイラに関する追加情報やディスカッションについて [React Compiler Working Group](https://github.com/reactwg/react-compiler) を確認することをお勧めします。
 
-### Checking compatibility {/*checking-compatibility*/}
+### 互換性の確認 {/*checking-compatibility*/}
 
-Prior to installing the compiler, you can first check to see if your codebase is compatible:
+コンパイラをインストールする前に、まずコードベースが互換性があるかどうかを確認してください。
 
 <TerminalBlock>
 npx react-compiler-healthcheck@latest
 </TerminalBlock>
 
-This script will:
+このスクリプトは以下をチェックします。
 
-- Check how many components can be successfully optimized: higher is better
-- Check for `<StrictMode>` usage: having this enabled and followed means a higher chance that the [Rules of React](/reference/rules) are followed
-- Check for incompatible library usage: known libraries that are incompatible with the compiler
+- どれだけ多くのコンポーネントが正常に最適化できるか：多いほど良い
+- `<StrictMode>` の使用：これを有効にして指示に従っている場合、[React のルール](/reference/rules)に従っている可能性が高い
+- 非互換ライブラリの使用：コンパイラと互換性がないことが既知のライブラリ
 
-As an example:
+以下は実行例です。
 
 <TerminalBlock>
 Successfully compiled 8 out of 9 components.
@@ -138,15 +138,15 @@ StrictMode usage not found.
 Found no usage of incompatible libraries.
 </TerminalBlock>
 
-### Installing eslint-plugin-react-compiler {/*installing-eslint-plugin-react-compiler*/}
+### eslint-plugin-react-compiler のインストール {/*installing-eslint-plugin-react-compiler*/}
 
-React Compiler also powers an eslint plugin. The eslint plugin can be used **independently** of the compiler, meaning you can use the eslint plugin even if you don't use the compiler.
+React Compiler は eslint プラグインも提供しています。eslint プラグインはコンパイラとは**独立して**使用できるため、コンパイラを使用しなくても eslint プラグインだけを使用できます。
 
 <TerminalBlock>
 npm install eslint-plugin-react-compiler
 </TerminalBlock>
 
-Then, add it to your eslint config:
+次に、eslint の設定に以下を追加します。
 
 ```js
 module.exports = {
@@ -159,16 +159,16 @@ module.exports = {
 }
 ```
 
-The eslint plugin will display any violations of the rules of React in your editor. When it does this, it means that the compiler has skipped over optimizing that component or hook. This is perfectly okay, and the compiler can recover and continue optimizing other components in your codebase.
+eslint プラグインは、エディタ内で React のルールに関する違反を表示します。これが表示される場合、そのコンポーネントやフックの最適化をコンパイラがスキップしたということを意味します。これ自体は全く問題なく、コンパイラは他のコンポーネントの最適化を続けることができます。
 
-**You don't have to fix all eslint violations straight away.** You can address them at your own pace to increase the amount of components and hooks being optimized, but it is not required to fix everything before you can use the compiler.
+**すべての eslint の違反をすぐに修正する必要はありません**。ルール違反を自分のペースで修正しつつ、最適化されるコンポーネントやフックの数を徐々に増やしていくことができます。コンパイラを使用する前にすべてを修正する必要はありません。
 
-### Rolling out the compiler to your codebase {/*using-the-compiler-effectively*/}
+### コンパイラをコードベースに展開する {/*using-the-compiler-effectively*/}
 
-#### Existing projects {/*existing-projects*/}
-The compiler is designed to compile functional components and hooks that follow the [Rules of React](/reference/rules). It can also handle code that breaks those rules by bailing out (skipping over) those components or hooks. However, due to the flexible nature of JavaScript, the compiler cannot catch every possible violation and may compile with false negatives: that is, the compiler may accidentally compile a component/hook that breaks the Rules of React which can lead to undefined behavior.
+#### 既存のプロジェクト {/*existing-projects*/}
+コンパイラは、[React のルール](/reference/rules)に従う関数コンポーネントやフックをコンパイルするように設計されています。また、これらのルールを破っているコードもバイパス（スキップ）することで処理できます。しかし、JavaScript の柔軟性のため、コンパイラはすべての違反を検出することはできません。偽陰性、つまりルールを破っているコンポーネントやフックを見逃して誤ってコンパイルしてしまい、未定義の動作が発生する可能性があります。
 
-For this reason, to adopt the compiler successfully on existing projects, we recommend running it on a small directory in your product code first. You can do this by configuring the compiler to only run on a specific set of directories:
+このため、既存のプロジェクトでコンパイラをうまく導入するには、まず本番コードのうちの小さなディレクトリで実行することをお勧めします。そのためには、特定のディレクトリの組み合わせでのみコンパイラを実行するように設定します。
 
 ```js {3}
 const ReactCompilerConfig = {
@@ -178,7 +178,7 @@ const ReactCompilerConfig = {
 };
 ```
 
-In rare cases, you can also configure the compiler to run in "opt-in" mode using the `compilationMode: "annotation"` option. This makes it so the compiler will only compile components and hooks annotated with a `"use memo"` directive. Please note that the `annotation` mode is a temporary one to aid early adopters, and that we don't intend for the `"use memo"` directive to be used for the long term.
+稀なケースですが、`compilationMode: "annotation"` のオプションを使用してコンパイラを「オプトイン」モードで実行するように設定することもできます。これにより、`"use memo"` ディレクティブでラベル付けされたコンポーネントやフックのみがコンパイルされるようになります。`annotation` モードはアーリーアダプタを補助するための一時的なものであり、`"use memo"` ディレクティブを長期的に使用することは意図していないことに注意してください。
 
 ```js {2,7}
 const ReactCompilerConfig = {
@@ -192,13 +192,13 @@ export default function App() {
 }
 ```
 
-When you have more confidence with rolling out the compiler, you can expand coverage to other directories as well and slowly roll it out to your whole app.
+コンパイラの本番採用に自信がついたら、他のディレクトリにも適用範囲を拡大していき、アプリ全体に徐々に展開していくことができます。
 
-#### New projects {/*new-projects*/}
+#### 新規プロジェクト {/*new-projects*/}
 
-If you're starting a new project, you can enable the compiler on your entire codebase, which is the default behavior.
+新しいプロジェクトを開始する場合、コードベース全体でコンパイラを有効化できます。これがデフォルトの動作です。
 
-## Usage {/*installation*/}
+## 使用法 {/*installation*/}
 
 ### Babel {/*usage-with-babel*/}
 
@@ -206,9 +206,9 @@ If you're starting a new project, you can enable the compiler on your entire cod
 npm install babel-plugin-react-compiler
 </TerminalBlock>
 
-The compiler includes a Babel plugin which you can use in your build pipeline to run the compiler.
+コンパイラには、ビルドパイプラインでコンパイラを実行するために使用できる Babel プラグインが含まれています。
 
-After installing, add it to your Babel config. Please note that it's critical that the compiler run **first** in the pipeline:
+インストール後、プラグインを Babel の設定に追加します。コンパイラがパイプライン内で**最初に**実行されることが重要です。
 
 ```js {7}
 // babel.config.js
@@ -224,11 +224,11 @@ module.exports = function () {
 };
 ```
 
-`babel-plugin-react-compiler` should run first before other Babel plugins as the compiler requires the input source information for sound analysis.
+`babel-plugin-react-compiler` は、他の Babel プラグインより前に、最初に実行される必要があります。コンパイラは、正確な解析のために入力ソース情報を必要とするためです。
 
 ### Vite {/*usage-with-vite*/}
 
-If you use Vite, you can add the plugin to vite-plugin-react:
+Vite を使用する場合、vite-plugin-react にプラグインを追加できます。
 
 ```js {10}
 // vite.config.js
@@ -252,16 +252,16 @@ export default defineConfig(() => {
 
 ### Next.js {/*usage-with-nextjs*/}
 
-Next.js has an experimental configuration to enable the React Compiler. It automatically ensures Babel is set up with `babel-plugin-react-compiler`.
+Next.js には React Compiler を有効にするための実験的な設定があります。これにより、Babel が `babel-plugin-react-compiler` と共に自動的にセットアップされます。
 
-- Install Next.js canary, which uses React 19 Release Candidate
-- Install `babel-plugin-react-compiler`
+- React 19 Release Candidate を使用する Next.js canary をインストールする
+- `babel-plugin-react-compiler` をインストールする
 
 <TerminalBlock>
 npm install next@canary babel-plugin-react-compiler
 </TerminalBlock>
 
-Then configure the experimental option in `next.config.js`:
+次に以下のようにして `next.config.js` 内で実験的オプションを設定します。
 
 ```js {4,5,6}
 // next.config.js
@@ -275,16 +275,16 @@ const nextConfig = {
 module.exports = nextConfig;
 ```
 
-Using the experimental option ensures support for the React Compiler in:
+この実験的オプションを使用ことで、以下で React Compiler がサポートされるようになります。
 
 - App Router
 - Pages Router
-- Webpack (default)
-- Turbopack (opt-in through `--turbo`)
+- Webpack（デフォルト）
+- Turbopack（`--turbo` を通じてオプトイン）
 
 
 ### Remix {/*usage-with-remix*/}
-Install `vite-plugin-babel`, and add the compiler's Babel plugin to it:
+`vite-plugin-babel` をインストールし、コンパイラ付属の Babel プラグインを追加します。
 
 <TerminalBlock>
 npm install vite-plugin-babel
@@ -314,7 +314,7 @@ export default defineConfig({
 
 ### Webpack {/*usage-with-webpack*/}
 
-You can create your own loader for React Compiler, like so:
+React Compiler 用の独自のローダは、以下のようにして作成できます。
 
 ```js
 const ReactCompilerConfig = { /* ... */ };
@@ -351,34 +351,34 @@ module.exports = reactCompilerLoader;
 
 ### Expo {/*usage-with-expo*/}
 
-Expo uses Babel via Metro, so refer to the [Usage with Babel](#usage-with-babel) section for installation instructions.
+Expo は Metro 経由で Babel を使用するため、インストール手順については [Babel での使用](#usage-with-babel)セクションを参照してください。
 
 ### Metro (React Native) {/*usage-with-react-native-metro*/}
 
-React Native uses Babel via Metro, so refer to the [Usage with Babel](#usage-with-babel) section for installation instructions.
+React Native は Metro 経由で Babel を使用するため、インストール手順については [Babel での使用](#usage-with-babel)セクションを参照してください。
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-To report issues, please first create a minimal repro on the [React Compiler Playground](https://playground.react.dev/) and include it in your bug report. You can open issues in the [facebook/react](https://github.com/facebook/react/issues) repo.
+問題を報告するには、まず [React Compiler Playground](https://playground.react.dev/) で最小限の再現コードを作成し、それをバグ報告に含めてください。問題は [facebook/react](https://github.com/facebook/react/issues) リポジトリで報告できます。
 
-You can also provide feedback in the React Compiler Working Group by applying to be a member. Please see [the README for more details on joining](https://github.com/reactwg/react-compiler).
+また、メンバとして参加することで React Compiler Working Group にフィードバックを提供することもできます。参加方法の詳細については [README](https://github.com/reactwg/react-compiler) を参照してください。
 
-### `(0 , _c) is not a function` error {/*0--_c-is-not-a-function-error*/}
+### `(0 , _c) is not a function` エラー {/*0--_c-is-not-a-function-error*/}
 
-This occurs if you are not using React 19 RC and up. To fix this, [upgrade your app to React 19 RC](https://react.dev/blog/2024/04/25/react-19-upgrade-guide) first.
+これは React 19 RC 以降を使用していない場合に発生します。これを修正するには、まず[アプリを React 19 RC にアップグレード](https://react.dev/blog/2024/04/25/react-19-upgrade-guide)してください。
 
-If you are unable to upgrade to React 19, you may try a userspace implementation of the cache function as described in the [Working Group](https://github.com/reactwg/react-compiler/discussions/6). However, please note that this is not recommended and you should upgrade to React 19 when possible.
+React 19 にアップグレードできない場合は、[Working Group](https://github.com/reactwg/react-compiler/discussions/6) で説明されているように、キャッシュ関数に関するユーザスペースの実装を試すことができます。ただしこれは推奨されておらず、可能な限り React 19 にアップグレードするべきです。
 
-### How do I know my components have been optimized? {/*how-do-i-know-my-components-have-been-optimized*/}
+### コンポーネントが最適化されたかどうかを知る方法 {/*how-do-i-know-my-components-have-been-optimized*/}
 
-[React Devtools](/learn/react-developer-tools) (v5.0+) has built-in support for React Compiler and will display a "Memo ✨" badge next to components that have been optimized by the compiler.
+[React Devtools](/learn/react-developer-tools) (v5.0+) には React Compiler のサポートが組み込まれており、コンパイラによって最適化されたコンポーネントの横に "Memo ✨" バッジが表示されます。
 
-### Something is not working after compilation {/*something-is-not-working-after-compilation*/}
-If you have eslint-plugin-react-compiler installed, the compiler will display any violations of the rules of React in your editor. When it does this, it means that the compiler has skipped over optimizing that component or hook. This is perfectly okay, and the compiler can recover and continue optimizing other components in your codebase. **You don't have to fix all eslint violations straight away.** You can address them at your own pace to increase the amount of components and hooks being optimized.
+### コンパイル後に何かが動作しない場合 {/*something-is-not-working-after-compilation*/}
+eslint-plugin-react-compiler がインストールされている場合、コンパイラはエディタ内で React のルールに対する違反を表示します。これが表示された場合、コンパイラはそのコンポーネントやフックの最適化をスキップしたという意味です。これ自体は全く問題なく、コンパイラは他のコンポーネントの最適化を続けることができます。**すべての eslint 違反をすぐに修正する必要はありません**。自分のペースで対応して、最適化されるコンポーネントやフックの数を増やしていくことができます。
 
-Due to the flexible and dynamic nature of JavaScript however, it's not possible to comprehensively detect all cases. Bugs and undefined behavior such as infinite loops may occur in those cases.
+JavaScript の柔軟かつ動的な性質のため、すべてのケースを包括的に検出することはできません。無限ループなどのバグや未定義の動作が発生することがあります。
 
-If your app doesn't work properly after compilation and you aren't seeing any eslint errors, the compiler may be incorrectly compiling your code. To confirm this, try to make the issue go away by aggressively opting out any component or hook you think might be related via the [`"use no memo"` directive](#opt-out-of-the-compiler-for-a-component).
+コンパイル後にアプリが正しく動作せず、eslint エラーも表示されない場合、コンパイラがコードを誤ってコンパイルしている可能性があります。これを確認するには、関連があると思われるコンポーネントやフックを明示的に [`"use no memo"` ディレクティブ](#opt-out-of-the-compiler-for-a-component)を使って除外してみてください。
 
 ```js {2}
 function SuspiciousComponent() {
@@ -390,13 +390,13 @@ function SuspiciousComponent() {
 <Note>
 #### `"use no memo"` {/*use-no-memo*/}
 
-`"use no memo"` is a _temporary_ escape hatch that lets you opt-out components and hooks from being compiled by the React Compiler. This directive is not meant to be long lived the same way as eg [`"use client"`](/reference/rsc/use-client) is.
+`"use no memo"` は、React Compiler によるコンパイルからコンポーネントやフックを一時的に除外するための*一時的な*避難ハッチです。このディレクティブは、例えば [`"use client"`](/reference/rsc/use-client) のように長期に渡って使用されることを意図したものではありません。
 
-It is not recommended to reach for this directive unless it's strictly necessary. Once you opt-out a component or hook, it is opted-out forever until the directive is removed. This means that even if you fix the code, the compiler will still skip over compiling it unless you remove the directive.
+このディレクティブを使用するのは本当に必要な場合に限ることをお勧めします。一度コンポーネントやフックを除外してしまえば、ディレクティブを削除するまで永遠に除外され続けることになります。つまり、コードの問題を修正しても、ディレクティブを削除しない限りコンパイラはコンパイルを行わなくなります。
 </Note>
 
-When you make the error go away, confirm that removing the opt out directive makes the issue come back. Then share a bug report with us (you can try to reduce it to a small repro, or if it's open source code you can also just paste the entire source) using the [React Compiler Playground](https://playground.react.dev) so we can identify and help fix the issue.
+これでエラーが解消された場合、この除外ディレクティブを削除してみて問題が再発することを確認してください。その後、バグレポートを [React Compiler Playground](https://playground.react.dev) を使って共有してください（小さな再現コードに削減するか、オープンソースコードであればソース全体を貼り付けることもできます）。これにより問題を特定して修正する手助けができるようになります。
 
-### Other issues {/*other-issues*/}
+### その他の問題 {/*other-issues*/}
 
-Please see https://github.com/reactwg/react-compiler/discussions/7.
+https://github.com/reactwg/react-compiler/discussions/7 をご覧ください。
