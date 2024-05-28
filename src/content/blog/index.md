@@ -14,9 +14,9 @@ React チームからの公式な更新のお知らせはこのブログに掲�
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
-<BlogCard title="React Conf 2024 Recap" date="May 22, 2024" url="/blog/2024/05/22/react-conf-2024-recap">
+<BlogCard title="React Conf 2024 振り返り" date="May 22, 2024" url="/blog/2024/05/22/react-conf-2024-recap">
 
-Last week we hosted React Conf 2024, a two-day conference in Henderson, Nevada where 700+ attendees gathered in-person to discuss the latest in UI engineering. This was our first in-person conference since 2019, and we were thrilled to be able to bring the community together again ...
+先週、ネバダ州ヘンダーソンで 700 人以上の参加者が集まり、最新の UI エンジニアリングについて議論する 2 日間のカンファレンス、React Conf 2024 を開催しました。対面でのカンファレンスは 2019 年以来であり、コミュニティが再び一堂に会することができたことを大変に嬉しく思いました。
 
 </BlogCard>
 
