@@ -418,7 +418,7 @@ export default function App() {
 * props を渡すには HTML で属性を書くのと同様のやり方で JSX 内に書く。
 * props を読み出すには、`function Avatar({ person, size })` のような分割代入構文を使う。
 * `size = 100` のようなデフォルト値を指定でき、これは props がない場合や `undefined` の場合に使われる。
-* `<Avatar {...props} />` のような JSX スプレッド構文ですべての props を転送できるが、多様は禁物！
+* `<Avatar {...props} />` のような JSX スプレッド構文ですべての props を転送できるが、多用は禁物！
 * `<Card><Avatar /></Card>` のようなネストされた JSX を書くと `Card` コンポーネントの `children` プロパティになる。
 * props とはある時点での読み取り専用のスナップショットである。レンダー毎に新しいバージョンの props を受け取る。
 * props を書き換えることはできない。インタラクティブ性が必要な場合は state を設定する必要がある。
