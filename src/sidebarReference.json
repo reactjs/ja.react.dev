@@ -360,7 +360,7 @@
       "sectionHeader": "React Server Components"
     },
     {
-      "title": "Server Components",
+      "title": "サーバコンポーネント",
       "path": "/reference/rsc/server-components",
       "canary": true
     },
