@@ -405,7 +405,11 @@ root.render(<App />);
 
 <Note>
 
+<<<<<<< HEAD
 codemod で以下のように `ReactDOM.render` を `ReactDOM.createRoot` に変換できます。
+=======
+Codemod `ReactDOM.render` to `ReactDOMClient.createRoot`:
+>>>>>>> b12743c31af7f5cda2c25534f64281ff030b7205
 
 ```bash
 npx codemod@latest react/19/replace-reactdom-render
@@ -427,6 +431,15 @@ import {hydrateRoot} from 'react-dom/client';
 hydrateRoot(document.getElementById('root'), <App />);
 ```
 
+<Note>
+
+Codemod `ReactDOM.hydrate` to `ReactDOMClient.hydrateRoot`:
+
+```bash
+npx codemod@latest react/19/replace-reactdom-render
+```
+
+</Note>
 
 #### 削除：`unmountComponentAtNode` {/*removed-unmountcomponentatnode*/}
 
@@ -443,9 +456,24 @@ root.unmount();
 
 詳細については、[`createRoot`](https://react.dev/reference/react-dom/client/createRoot#root-unmount) と [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot#root-unmount) の `root.unmount()` をご覧ください。
 
+<Note>
 
+Codemod `unmountComponentAtNode` to `root.unmount`:
+
+```bash
+npx codemod@latest react/19/replace-reactdom-render
+```
+
+</Note>
+
+<<<<<<< HEAD
 #### 削除：`ReactDOM.findDOMNode` {/*removed-reactdom-finddomnode*/}
 `ReactDOM.findDOMNode` は [2018 年 10 月 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode) に非推奨化されました。
+=======
+#### Removed: `ReactDOM.findDOMNode` {/*removed-reactdom-finddomnode*/}
+
+`ReactDOM.findDOMNode` was [deprecated in October 2018 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode). 
+>>>>>>> b12743c31af7f5cda2c25534f64281ff030b7205
 
 `findDOMNode` はレガシーな避難ハッチであり、実行速度が遅く、リファクタリングが困難で、最初の子要素しか返せず、抽象化レイヤーを破壊するといった問題があるため（詳細は[こちら](https://legacy.reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)）、削除されます。`ReactDOM.findDOMNode` は [DOM 用の ref](/learn/manipulating-the-dom-with-refs) で置き換えることができます。
 
