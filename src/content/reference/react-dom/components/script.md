@@ -68,13 +68,21 @@ props として `children` または `src` のいずれかが必要です。
 
 #### 特別なレンダー動作 {/*special-rendering-behavior*/}
 
+<<<<<<< HEAD
 React は `<script>` コンポーネントをドキュメントの `<head>` に移動させ、同一スクリプトの重複解消処理を行い、スクリプトの読み込み中に[サスペンド](/reference/react/Suspense)を発生させます。
+=======
+React can move `<script>` components to the document's `<head>` and de-duplicate identical scripts.
+>>>>>>> 56df8af577407c69889f24a4c7d9ddb54745a26b
 
 この動作を有効にするには、props として `src` と `async={true}` の props を指定してください。React は同じ `src` を持つスクリプトが重複しないようにします。スクリプトを安全に移動させるために `async` が true である必要があります。
 
+<<<<<<< HEAD
 props として `onLoad` または `onError` を指定した場合、特別な動作は発生しません。これらの props は、コンポーネント内でスクリプトの読み込みを手動で管理してしていることを意味するからです。
 
 この特別な動作に関して、以下の 2 つの注意点があります。
+=======
+This special treatment comes with two caveats:
+>>>>>>> 56df8af577407c69889f24a4c7d9ddb54745a26b
 
 * スクリプトがレンダーされた後、React は props に変更があってもそれを無視します（開発中にこれが起きた場合は React が警告を発します）。
 * スクリプトをレンダーしていたコンポーネントがアンマウントされた後も、React は DOM にスクリプトを残すことがあります。（スクリプトは DOM に挿入された際に一度だけ実行されるものなので、これによる影響はありません。）
@@ -85,9 +93,17 @@ props として `onLoad` または `onError` を指定した場合、特別な�
 
 ### 外部スクリプトのレンダー {/*rendering-an-external-script*/}
 
+<<<<<<< HEAD
 コンポーネントが正しく表示されるために特定のスクリプトに依存している場合、当該コンポーネント内で `<script>` をレンダーできます。
 
 props として `src` と `async` を指定すると、スクリプトが読み込まれる間、コンポーネントはサスペンド状態になります。スクリプトの重複を避けるため、複数のコンポーネントが同じ `src` を持つスクリプトをレンダーしている場合には React は DOM にそれをひとつだけ挿入します。
+=======
+If a component depends on certain scripts in order to be displayed correctly, you can render a `<script>` within the component.
+However, the component might be committed before the script has finished loading.
+You can start depending on the script content once the `load` event is fired e.g. by using the `onLoad` prop.
+
+React will de-duplicate scripts that have the same `src`, inserting only one of them into the DOM even if multiple components render it.
+>>>>>>> 56df8af577407c69889f24a4c7d9ddb54745a26b
 
 <SandpackWithHTMLOutput>
 
@@ -97,7 +113,7 @@ import ShowRenderedHTML from './ShowRenderedHTML.js';
 function Map({lat, long}) {
   return (
     <>
-      <script async src="map-api.js" />
+      <script async src="map-api.js" onLoad={() => console.log('script loaded')} />
       <div id="map" data-lat={lat} data-long={long} />
     </>
   );
@@ -120,7 +136,11 @@ export default function Page() {
 
 ### インラインスクリプトのレンダー {/*rendering-an-inline-script*/}
 
+<<<<<<< HEAD
 インラインスクリプトを含めるには、`<script>` コンポーネントをレンダーする際に children としてスクリプトのソースコードを指定します。インラインスクリプトは重複解消処理が行われず、ドキュメントの `<head>` に移動されません。外部リソースを読み込まないため、コンポーネントがサスペンド状態になることはありません。
+=======
+To include an inline script, render the `<script>` component with the script source code as its children. Inline scripts are not de-duplicated or moved to the document `<head>`.
+>>>>>>> 56df8af577407c69889f24a4c7d9ddb54745a26b
 
 <SandpackWithHTMLOutput>
 
