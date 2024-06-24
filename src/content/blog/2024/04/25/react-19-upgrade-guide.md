@@ -70,7 +70,13 @@ Your app (or one of its dependencies) is using an outdated JSX transform. Update
 React と React DOM の最新バージョンをインストールするには以下のようにします。
 
 ```bash
-npm install react@rc react-dom@rc
+npm install --save-exact react@rc react-dom@rc
+```
+
+Or, if you're using Yarn:
+
+```bash
+yarn add --exact react@rc react-dom@rc
 ```
 
 TypeScript を使用している場合は、型も更新する必要があります。React 19 が安定版としてリリースされた後は、通常通り `@types/react` と `@types/react-dom` から型をインストールできます。安定版になるまでは `package.json` で強制的に別のパッケージを指定することで、新しい型を利用できます。
@@ -405,7 +411,11 @@ root.render(<App />);
 
 <Note>
 
+<<<<<<< HEAD
 codemod で以下のように `ReactDOM.render` を `ReactDOM.createRoot` に変換できます。
+=======
+Codemod `ReactDOM.render` to `ReactDOMClient.createRoot`:
+>>>>>>> 169d5c1820cd1514429bfac2a923e51dd782d37e
 
 ```bash
 npx codemod@latest react/19/replace-reactdom-render
@@ -427,6 +437,15 @@ import {hydrateRoot} from 'react-dom/client';
 hydrateRoot(document.getElementById('root'), <App />);
 ```
 
+<Note>
+
+Codemod `ReactDOM.hydrate` to `ReactDOMClient.hydrateRoot`:
+
+```bash
+npx codemod@latest react/19/replace-reactdom-render
+```
+
+</Note>
 
 #### 削除：`unmountComponentAtNode` {/*removed-unmountcomponentatnode*/}
 
@@ -443,9 +462,24 @@ root.unmount();
 
 詳細については、[`createRoot`](https://react.dev/reference/react-dom/client/createRoot#root-unmount) と [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot#root-unmount) の `root.unmount()` をご覧ください。
 
+<Note>
 
+Codemod `unmountComponentAtNode` to `root.unmount`:
+
+```bash
+npx codemod@latest react/19/replace-reactdom-render
+```
+
+</Note>
+
+<<<<<<< HEAD
 #### 削除：`ReactDOM.findDOMNode` {/*removed-reactdom-finddomnode*/}
 `ReactDOM.findDOMNode` は [2018 年 10 月 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode) に非推奨化されました。
+=======
+#### Removed: `ReactDOM.findDOMNode` {/*removed-reactdom-finddomnode*/}
+
+`ReactDOM.findDOMNode` was [deprecated in October 2018 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode). 
+>>>>>>> 169d5c1820cd1514429bfac2a923e51dd782d37e
 
 `findDOMNode` はレガシーな避難ハッチであり、実行速度が遅く、リファクタリングが困難で、最初の子要素しか返せず、抽象化レイヤーを破壊するといった問題があるため（詳細は[こちら](https://legacy.reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)）、削除されます。`ReactDOM.findDOMNode` は [DOM 用の ref](/learn/manipulating-the-dom-with-refs) で置き換えることができます。
 

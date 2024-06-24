@@ -20,7 +20,7 @@ canary: true
 `preinit` を使用して、スタイルシートや外部スクリプトを事前にフェッチして評価することができます。
 
 ```js
-preinit("https://example.com/script.js", {as: "style"});
+preinit("https://example.com/script.js", {as: "script"});
 ```
 
 </Intro>
