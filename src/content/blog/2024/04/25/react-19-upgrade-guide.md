@@ -73,7 +73,7 @@ React と React DOM の最新バージョンをインストールするには以
 npm install --save-exact react@rc react-dom@rc
 ```
 
-Or, if you're using Yarn:
+Yarn をお使いの場合は以下のようにします。
 
 ```bash
 yarn add --exact react@rc react-dom@rc
@@ -411,11 +411,7 @@ root.render(<App />);
 
 <Note>
 
-<<<<<<< HEAD
-codemod で以下のように `ReactDOM.render` を `ReactDOM.createRoot` に変換できます。
-=======
-Codemod `ReactDOM.render` to `ReactDOMClient.createRoot`:
->>>>>>> 169d5c1820cd1514429bfac2a923e51dd782d37e
+codemod で以下のように `ReactDOM.render` を `ReactDOMClient.createRoot` に変換できます。
 
 ```bash
 npx codemod@latest react/19/replace-reactdom-render
@@ -439,7 +435,7 @@ hydrateRoot(document.getElementById('root'), <App />);
 
 <Note>
 
-Codemod `ReactDOM.hydrate` to `ReactDOMClient.hydrateRoot`:
+codemod で以下のように `ReactDOM.hydrate` を `ReactDOMClient.hydrateRoot` に変換できます。
 
 ```bash
 npx codemod@latest react/19/replace-reactdom-render
@@ -464,7 +460,7 @@ root.unmount();
 
 <Note>
 
-Codemod `unmountComponentAtNode` to `root.unmount`:
+codemod で以下のように `unmountComponentAtNode` を `root.unmount` に変換できます。
 
 ```bash
 npx codemod@latest react/19/replace-reactdom-render
@@ -472,14 +468,9 @@ npx codemod@latest react/19/replace-reactdom-render
 
 </Note>
 
-<<<<<<< HEAD
 #### 削除：`ReactDOM.findDOMNode` {/*removed-reactdom-finddomnode*/}
-`ReactDOM.findDOMNode` は [2018 年 10 月 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode) に非推奨化されました。
-=======
-#### Removed: `ReactDOM.findDOMNode` {/*removed-reactdom-finddomnode*/}
 
-`ReactDOM.findDOMNode` was [deprecated in October 2018 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode). 
->>>>>>> 169d5c1820cd1514429bfac2a923e51dd782d37e
+`ReactDOM.findDOMNode` は [2018 年 10 月 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode) に非推奨化されました。
 
 `findDOMNode` はレガシーな避難ハッチであり、実行速度が遅く、リファクタリングが困難で、最初の子要素しか返せず、抽象化レイヤーを破壊するといった問題があるため（詳細は[こちら](https://legacy.reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)）、削除されます。`ReactDOM.findDOMNode` は [DOM 用の ref](/learn/manipulating-the-dom-with-refs) で置き換えることができます。
 

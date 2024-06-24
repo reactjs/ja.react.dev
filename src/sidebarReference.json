@@ -346,13 +346,8 @@
       "path": "/reference/rules",
       "routes": [
         {
-<<<<<<< HEAD
-        "title": "コンポーネントとフックを純粋に保つ",
-        "path": "/reference/rules/components-and-hooks-must-be-pure"
-=======
-          "title": "Components and Hooks must be pure",
+          "title": "コンポーネントとフックを純粋に保つ",
           "path": "/reference/rules/components-and-hooks-must-be-pure"
->>>>>>> 169d5c1820cd1514429bfac2a923e51dd782d37e
         },
         {
           "title": "コンポーネントやフックを呼び出すのは React",
