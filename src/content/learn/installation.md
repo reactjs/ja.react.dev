@@ -37,7 +37,7 @@ export default function App() {
 
 直接編集しても構いませんし、右上の "Fork" ボタンを押して新しいタブで開くこともできます。
 
-React ドキュメントのほとんどのページには、このようなサンドボックスが含まれています。React のドキュメント外にも、React をサポートするオンラインサンドボックスがたくさんあります。例えば、[CodeSandbox](https://codesandbox.io/s/new)、[StackBlitz](https://stackblitz.com/fork/react) や [CodePen](https://codepen.io/pen?&editors=0010&layout=left&prefill_data_id=3f4569d1-1b11-4bce-bd46-89090eed5ddb) が挙げられます。
+React ドキュメントのほとんどのページには、このようなサンドボックスが含まれています。React のドキュメント外にも、React をサポートするオンラインサンドボックスがたくさんあります。例えば、[CodeSandbox](https://codesandbox.io/s/new)、[StackBlitz](https://stackblitz.com/fork/react) や [CodePen](https://codepen.io/pen?template=QWYVwWN) が挙げられます。
 
 ### ローカルで React を試す {/*try-react-locally*/}
 

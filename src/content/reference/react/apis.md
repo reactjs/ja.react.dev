@@ -15,6 +15,7 @@ title: "React の組み込み API"
 * [`lazy`](/reference/react/lazy) を利用すると、コンポーネントのコードの読み込みを初回レンダーまで遅延することができます。
 * [`memo`](/reference/react/memo) を利用すると、同じ props を持つコンポーネントの再レンダーをスキップできます。[`useMemo`](/reference/react/useMemo) や [`useCallback`](/reference/react/useCallback) と一緒に使用されます。
 * [`startTransition`](/reference/react/startTransition) を使うと、state の更新を低緊急度 (non-urgent) としてマークできます。[`useTransition`](/reference/react/useTransition) に似ています。
+* [`act`](/reference/react/act) を使うと、テスト環境でレンダーやユーザ操作をラップして、アサーションを行う前に更新が確実に処理されるようにします。
 
 ---
 

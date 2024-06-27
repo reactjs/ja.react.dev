@@ -68,11 +68,9 @@ props として `children` または `src` のいずれかが必要です。
 
 #### 特別なレンダー動作 {/*special-rendering-behavior*/}
 
-React は `<script>` コンポーネントをドキュメントの `<head>` に移動させ、同一スクリプトの重複解消処理を行い、スクリプトの読み込み中に[サスペンド](/reference/react/Suspense)を発生させます。
+React は `<script>` コンポーネントをドキュメントの `<head>` に移動させ、同一スクリプトの重複解消処理を行います。
 
 この動作を有効にするには、props として `src` と `async={true}` の props を指定してください。React は同じ `src` を持つスクリプトが重複しないようにします。スクリプトを安全に移動させるために `async` が true である必要があります。
-
-props として `onLoad` または `onError` を指定した場合、特別な動作は発生しません。これらの props は、コンポーネント内でスクリプトの読み込みを手動で管理してしていることを意味するからです。
 
 この特別な動作に関して、以下の 2 つの注意点があります。
 
@@ -86,8 +84,10 @@ props として `onLoad` または `onError` を指定した場合、特別な�
 ### 外部スクリプトのレンダー {/*rendering-an-external-script*/}
 
 コンポーネントが正しく表示されるために特定のスクリプトに依存している場合、当該コンポーネント内で `<script>` をレンダーできます。
+ただしコンポーネントはスクリプトのロードが完了する前にコミットされる可能性があります。
+`onLoad` プロパティを使うなどで `load` イベントが発火したのを確認してからスクリプトの内容に依存するコードを使用するようにしてください。
 
-props として `src` と `async` を指定すると、スクリプトが読み込まれる間、コンポーネントはサスペンド状態になります。スクリプトの重複を避けるため、複数のコンポーネントが同じ `src` を持つスクリプトをレンダーしている場合には React は DOM にそれをひとつだけ挿入します。
+React 重複解消処理を行うため、複数のコンポーネントが同じ `src` を持つスクリプトをレンダーしている場合でも、React はそれらのうちひとつだけを DOM に挿入します。
 
 <SandpackWithHTMLOutput>
 
@@ -97,7 +97,7 @@ import ShowRenderedHTML from './ShowRenderedHTML.js';
 function Map({lat, long}) {
   return (
     <>
-      <script async src="map-api.js" />
+      <script async src="map-api.js" onLoad={() => console.log('script loaded')} />
       <div id="map" data-lat={lat} data-long={long} />
     </>
   );
@@ -120,7 +120,7 @@ export default function Page() {
 
 ### インラインスクリプトのレンダー {/*rendering-an-inline-script*/}
 
-インラインスクリプトを含めるには、`<script>` コンポーネントをレンダーする際に children としてスクリプトのソースコードを指定します。インラインスクリプトは重複解消処理が行われず、ドキュメントの `<head>` に移動されません。外部リソースを読み込まないため、コンポーネントがサスペンド状態になることはありません。
+インラインスクリプトを含めるには、`<script>` コンポーネントをレンダーする際に children としてスクリプトのソースコードを指定します。インラインスクリプトは重複解消処理が行われず、ドキュメントの `<head>` に移動されません。
 
 <SandpackWithHTMLOutput>
 

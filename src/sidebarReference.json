@@ -113,6 +113,10 @@
       "path": "/reference/react/apis",
       "routes": [
         {
+          "title": "act",
+          "path": "/reference/react/act"
+        },
+        {
           "title": "cache",
           "path": "/reference/react/cache",
           "canary": true
@@ -342,8 +346,8 @@
       "path": "/reference/rules",
       "routes": [
         {
-        "title": "コンポーネントとフックを純粋に保つ",
-        "path": "/reference/rules/components-and-hooks-must-be-pure"
+          "title": "コンポーネントとフックを純粋に保つ",
+          "path": "/reference/rules/components-and-hooks-must-be-pure"
         },
         {
           "title": "コンポーネントやフックを呼び出すのは React",
