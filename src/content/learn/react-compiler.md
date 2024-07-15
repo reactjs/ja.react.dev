@@ -351,13 +351,29 @@ module.exports = reactCompilerLoader;
 
 ### Expo {/*usage-with-expo*/}
 
+<<<<<<< HEAD
 Expo は Metro 経由で Babel を使用するため、インストール手順については [Babel での使用](#usage-with-babel)セクションを参照してください。
+=======
+Please refer to [Expo's docs](https://docs.expo.dev/preview/react-compiler/) to enable and use the React Compiler in Expo apps.
+>>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
 
 ### Metro (React Native) {/*usage-with-react-native-metro*/}
 
 React Native は Metro 経由で Babel を使用するため、インストール手順については [Babel での使用](#usage-with-babel)セクションを参照してください。
 
+<<<<<<< HEAD
 ## トラブルシューティング {/*troubleshooting*/}
+=======
+### Rspack {/*usage-with-rspack*/}
+
+Please refer to [Rspack's docs](https://rspack.dev/guide/tech/react#react-compiler) to enable and use the React Compiler in Rspack apps.
+
+### Rsbuild {/*usage-with-rsbuild*/}
+
+Please refer to [Rsbuild's docs](https://rsbuild.dev/guide/framework/react#react-compiler) to enable and use the React Compiler in Rsbuild apps.
+
+## Troubleshooting {/*troubleshooting*/}
+>>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
 
 問題を報告するには、まず [React Compiler Playground](https://playground.react.dev/) で最小限の再現コードを作成し、それをバグ報告に含めてください。問題は [facebook/react](https://github.com/facebook/react/issues) リポジトリで報告できます。
 
