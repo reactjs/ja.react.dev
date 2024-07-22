@@ -1899,7 +1899,11 @@ export default function Counter() {
 }
 ```
 
+<<<<<<< HEAD
 カスタムフックを `useCounter.js` に記述して、`Counter.js` ファイルにインポートする必要があります。
+=======
+You'll need to write your custom Hook in `useCounter.js` and import it into the `App.js` file.
+>>>>>>> 6274d4faf5afcef74357871d06191558050e23d3
 
 <Sandpack>
 
