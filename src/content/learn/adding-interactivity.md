@@ -265,11 +265,7 @@ setCount(count + 1); // Request a re-render with 1
 console.log(count);  // Still 0!
 ```
 
-<<<<<<< HEAD
 このおかげで、見逃しやすい小さなバグを回避することができます。ここに小さなチャットアプリがあります。まず「送信」を押して、*次に*受信者を「ボブ」に変更したら何が起こるか、推測してみてください。5 秒後の `alert` には誰の名前が表示されるでしょうか？
-=======
-This behavior helps you avoid subtle bugs. Here is a little chat app. Try to guess what happens if you press "Send" first and *then* change the recipient to Bob. Whose name will appear in the `alert` five seconds later?
->>>>>>> 6274d4faf5afcef74357871d06191558050e23d3
 
 <Sandpack>
 
