@@ -351,11 +351,19 @@ module.exports = reactCompilerLoader;
 
 ### Expo {/*usage-with-expo*/}
 
-Expo は Metro 経由で Babel を使用するため、インストール手順については [Babel での使用](#usage-with-babel)セクションを参照してください。
+Expo アプリで React Compiler を有効化する方法については [Expo のドキュメント](https://docs.expo.dev/preview/react-compiler/)を参照してください。
 
 ### Metro (React Native) {/*usage-with-react-native-metro*/}
 
 React Native は Metro 経由で Babel を使用するため、インストール手順については [Babel での使用](#usage-with-babel)セクションを参照してください。
+
+### Rspack {/*usage-with-rspack*/}
+
+Rspack アプリで React Compiler を有効化する方法については [Rspack のドキュメント](https://rspack.dev/guide/tech/react#react-compiler)を参照してください。
+
+### Rsbuild {/*usage-with-rsbuild*/}
+
+Rsbuild アプリで React Compiler を有効化する方法については [Rsbuild のドキュメント](https://rsbuild.dev/guide/framework/react#react-compiler)を参照してください。
 
 ## トラブルシューティング {/*troubleshooting*/}
 

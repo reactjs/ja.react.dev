@@ -1899,7 +1899,7 @@ export default function Counter() {
 }
 ```
 
-カスタムフックを `useCounter.js` に記述して、`Counter.js` ファイルにインポートする必要があります。
+カスタムフックを `useCounter.js` に記述して、`App.js` ファイルにインポートする必要があります。
 
 <Sandpack>
 
