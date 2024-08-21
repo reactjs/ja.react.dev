@@ -1724,7 +1724,7 @@ function Page({ url, shoppingCart }) {
 }
 ```
 
-**エフェクトイベントはリアクティブでなはいため、あなたのエフェクトの依存配列からは常に除く必要があります**。これにより、非リアクティブなコード（最新の props や state の値を読むことができるコード）をエフェクトイベント内に入れることができます。`onVisit` の中で `shoppingCart` を読むことで、`shoppingCart` がエフェクトを再実行することがなくなります。
+**エフェクトイベントはリアクティブではないため、あなたのエフェクトの依存配列からは常に除く必要があります**。これにより、非リアクティブなコード（最新の props や state の値を読むことができるコード）をエフェクトイベント内に入れることができます。`onVisit` の中で `shoppingCart` を読むことで、`shoppingCart` がエフェクトを再実行することがなくなります。
 
 [エフェクトイベントがリアクティブなコードと非リアクティブなコードをどのように分離するか詳しく読む](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)。
 
