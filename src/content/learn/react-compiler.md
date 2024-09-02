@@ -121,7 +121,7 @@ React Comiler は多くの React のルールを静的に検証でき、エラ�
 コンパイラをインストールする前に、まずコードベースが互換性があるかどうかを確認してください。
 
 <TerminalBlock>
-npx react-compiler-healthcheck@latest
+npx react-compiler-healthcheck@experimental
 </TerminalBlock>
 
 このスクリプトは以下をチェックします。
@@ -143,7 +143,7 @@ Found no usage of incompatible libraries.
 React Compiler は eslint プラグインも提供しています。eslint プラグインはコンパイラとは**独立して**使用できるため、コンパイラを使用しなくても eslint プラグインだけを使用できます。
 
 <TerminalBlock>
-npm install eslint-plugin-react-compiler
+npm install eslint-plugin-react-compiler@experimental
 </TerminalBlock>
 
 次に、eslint の設定に以下を追加します。
@@ -203,7 +203,7 @@ export default function App() {
 ### Babel {/*usage-with-babel*/}
 
 <TerminalBlock>
-npm install babel-plugin-react-compiler
+npm install babel-plugin-react-compiler@experimental
 </TerminalBlock>
 
 コンパイラには、ビルドパイプラインでコンパイラを実行するために使用できる Babel プラグインが含まれています。
@@ -258,7 +258,7 @@ Next.js には React Compiler を有効にするための実験的な設定が�
 - `babel-plugin-react-compiler` をインストールする
 
 <TerminalBlock>
-npm install next@canary babel-plugin-react-compiler
+npm install next@canary babel-plugin-react-compiler@experimental
 </TerminalBlock>
 
 次に以下のようにして `next.config.js` 内で実験的オプションを設定します。
