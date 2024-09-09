@@ -41,7 +41,11 @@ function TodosApp() {
 
 #### 引数 {/*parameters*/}
 
+<<<<<<< HEAD
 * `subscribe`: ストアにサブスクライブを開始し、また callback 引数を受け取る関数。ストアが変更された際に渡された callback を呼び出す必要があります。これにより、コンポーネントが再レンダーされます。`subscribe` 関数は、サブスクリプションをクリーンアップする関数を返す必要があります。
+=======
+* `subscribe`: A function that takes a single `callback` argument and subscribes it to the store. When the store changes, it should invoke the provided `callback`, which will cause React to re-call `getSnapshot` and (if needed) re-render the component. The `subscribe` function should return a function that cleans up the subscription.
+>>>>>>> 9aa2e3668da290f92f8997a25f28bd3f58b2a26d
 
 * `getSnapshot`: コンポーネントが必要とするストアにあるデータのスナップショットを返す関数。ストアが変更されていない場合、`getSnapshot` への再呼び出しは同じ値を返す必要があります。ストアが変更されて返された値が（[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) で比較して）異なる場合、React はコンポーネントを再レンダーします。
 

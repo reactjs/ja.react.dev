@@ -34,7 +34,11 @@ React は、ブラウザ組み込みのすべての [HTML](https://developer.moz
 
 ## リソース・メタデータ関連コンポーネント {/*resource-and-metadata-components*/}
 
+<<<<<<< HEAD
 以下のブラウザ組み込みコンポーネントを用いて、外部リソースを読み込んだり、ドキュメントにメタデータを付与したりすることができます。
+=======
+These built-in browser components let you load external resources or annotate the document with metadata:
+>>>>>>> 9aa2e3668da290f92f8997a25f28bd3f58b2a26d
 
 * [`<link>`](/reference/react-dom/components/link)
 * [`<meta>`](/reference/react-dom/components/meta)
