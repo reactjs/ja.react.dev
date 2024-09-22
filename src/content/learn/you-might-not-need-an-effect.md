@@ -408,15 +408,9 @@ function Game() {
 
 このコードには 2 つの問題があります。
 
-<<<<<<< HEAD
 1 つ目の問題は、非常に効率が悪いことです。コンポーネント（およびその子）は、連鎖内の各 `set` コールの間で毎回再レンダーする必要があります。上記の例では、最悪の場合、下位のツリーに 3 回の不要な再レンダー（`setCard` → レンダー → `setGoldCardCount` → レンダー → `setRound` → レンダー → `setIsGameOver` → レンダー）が発生することになります。
 
-たとえこれが遅くなかったとしても、コードが発展するにつれ、書いた「チェイン」が新しい要件に適合しないケースが出てきます。例えばゲームの手順を遡る機能を追加しているとしましょう。このためには、各 state 変数を過去のある時点の値に再セットしていくことになります。しかし過去の値から `card` の state をセットした時点で再びエフェクトの連鎖処理がトリガされ、表示されるデータが変更されてしまいます。このようなコードは、硬直的で壊れやすいものです。
-=======
-First problem is that it is very inefficient: the component (and its children) have to re-render between each `set` call in the chain. In the example above, in the worst case (`setCard` → render → `setGoldCardCount` → render → `setRound` → render → `setIsGameOver` → render) there are three unnecessary re-renders of the tree below.
-
-The second problem is that even if it weren't slow, as your code evolves, you will run into cases where the "chain" you wrote doesn't fit the new requirements. Imagine you are adding a way to step through the history of the game moves. You'd do it by updating each state variable to a value from the past. However, setting the `card` state to a value from the past would trigger the Effect chain again and change the data you're showing. Such code is often rigid and fragile.
->>>>>>> 0f2284ddc8dcab8bbb9b42c04f3c7af94b5b2e73
+2 つ目の問題は、たとえこれが遅くなかったとしても、コードが発展するにつれ、書いた「チェイン」が新しい要件に適合しないケースが出てくるということです。例えばゲームの手順を遡る機能を追加しているとしましょう。このためには、各 state 変数を過去のある時点の値に再セットしていくことになります。しかし過去の値から `card` の state をセットした時点で再びエフェクトの連鎖処理がトリガされ、表示されるデータが変更されてしまいます。このようなコードは、硬直的で壊れやすいものです。
 
 このような場合、レンダー中に計算できるものはそこで行い、イベントハンドラで state の調整を終わらせる方が良いでしょう。
 

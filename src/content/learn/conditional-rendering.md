@@ -52,11 +52,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-<<<<<<< HEAD
-複数の `Item` コンポーネントのうち一部のみで、props である `isPacked` が `false` ではなく `true` になっていることに注意してください。目的は、`isPacked={true}` の場合にのみチェックマーク (✔) を表示させることです。
-=======
-Notice that some of the `Item` components have their `isPacked` prop set to `true` instead of `false`. You want to add a checkmark (✅) to packed items if `isPacked={true}`.
->>>>>>> 0f2284ddc8dcab8bbb9b42c04f3c7af94b5b2e73
+複数の `Item` コンポーネントのうち一部のみで、props である `isPacked` が `false` ではなく `true` になっていることに注意してください。目的は、`isPacked={true}` の場合にのみチェックマーク (✅) を表示させることです。
 
 これは [`if`/`else` 文](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)を使って、以下のように書くことができます。
 
@@ -206,11 +202,7 @@ return (
 );
 ```
 
-<<<<<<< HEAD
-これは「*`isPacked` が true なら `name + ' ✔'` をレンダーし、それ以外 (`:`) の場合は `name` をレンダーする*」というように読んでください。
-=======
-You can read it as *"if `isPacked` is true, then (`?`) render `name + ' ✅'`, otherwise (`:`) render `name`"*.
->>>>>>> 0f2284ddc8dcab8bbb9b42c04f3c7af94b5b2e73
+これは「*`isPacked` が true なら `name + ' ✅'` をレンダーし、それ以外 (`:`) の場合は `name` をレンダーする*」というように読んでください。
 
 <DeepDive>
 

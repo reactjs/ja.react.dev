@@ -67,7 +67,7 @@ function Tooltip() {
 
 * `useLayoutEffect` 内のコードと、そこでスケジュールされたすべての state 更新は、**ブラウザによる画面の再描画をブロックします**。過度に使用すると、アプリが遅くなります。可能な限り [`useEffect` を使用してください](/reference/react/useEffect)。
 
-* If you trigger a state update inside `useLayoutEffect`, React will execute all remaining Effects immediately including `useEffect`.
+* `useLayoutEffect` 内で state の更新をトリガすると、React は `useEffect` も含む残りのエフェクトをすべて即座に実行します。
 
 ---
 
