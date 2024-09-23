@@ -52,13 +52,13 @@ export default function PackingList() {
 
 </Sandpack>
 
-複数の `Item` コンポーネントのうち一部のみで、props である `isPacked` が `false` ではなく `true` になっていることに注意してください。目的は、`isPacked={true}` の場合にのみチェックマーク (✔) を表示させることです。
+複数の `Item` コンポーネントのうち一部のみで、props である `isPacked` が `false` ではなく `true` になっていることに注意してください。目的は、`isPacked={true}` の場合にのみチェックマーク (✅) を表示させることです。
 
 これは [`if`/`else` 文](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)を使って、以下のように書くことができます。
 
 ```js
 if (isPacked) {
-  return <li className="item">{name} ✔</li>;
+  return <li className="item">{name} ✅</li>;
 }
 return <li className="item">{name}</li>;
 ```
@@ -70,7 +70,7 @@ return <li className="item">{name}</li>;
 ```js
 function Item({ name, isPacked }) {
   if (isPacked) {
-    return <li className="item">{name} ✔</li>;
+    return <li className="item">{name} ✅</li>;
   }
   return <li className="item">{name}</li>;
 }
@@ -159,7 +159,7 @@ export default function PackingList() {
 前の例では、コンポーネントが複数の JSX ツリーのうちどれを返すのか（あるいは何も返さないのか）をコントロールしていました。しかし、レンダー出力に重複があることに気付かれたでしょう。
 
 ```js
-<li className="item">{name} ✔</li>
+<li className="item">{name} ✅</li>
 ```
 
 これは以下とほとんど同じです。
@@ -172,7 +172,7 @@ export default function PackingList() {
 
 ```js
 if (isPacked) {
-  return <li className="item">{name} ✔</li>;
+  return <li className="item">{name} ✅</li>;
 }
 return <li className="item">{name}</li>;
 ```
@@ -187,7 +187,7 @@ JavaScript には、条件式を書くためのコンパクトな構文があり
 
 ```js
 if (isPacked) {
-  return <li className="item">{name} ✔</li>;
+  return <li className="item">{name} ✅</li>;
 }
 return <li className="item">{name}</li>;
 ```
@@ -197,12 +197,12 @@ return <li className="item">{name}</li>;
 ```js
 return (
   <li className="item">
-    {isPacked ? name + ' ✔' : name}
+    {isPacked ? name + ' ✅' : name}
   </li>
 );
 ```
 
-これは「*`isPacked` が true なら `name + ' ✔'` をレンダーし、それ以外 (`:`) の場合は `name` をレンダーする*」というように読んでください。
+これは「*`isPacked` が true なら `name + ' ✅'` をレンダーし、それ以外 (`:`) の場合は `name` をレンダーする*」というように読んでください。
 
 <DeepDive>
 
@@ -222,7 +222,7 @@ function Item({ name, isPacked }) {
     <li className="item">
       {isPacked ? (
         <del>
-          {name + ' ✔'}
+          {name + ' ✅'}
         </del>
       ) : (
         name
@@ -265,7 +265,7 @@ export default function PackingList() {
 ```js
 return (
   <li className="item">
-    {name} {isPacked && '✔'}
+    {name} {isPacked && '✅'}
   </li>
 );
 ```
@@ -280,7 +280,7 @@ return (
 function Item({ name, isPacked }) {
   return (
     <li className="item">
-      {name} {isPacked && '✔'}
+      {name} {isPacked && '✅'}
     </li>
   );
 }
@@ -337,7 +337,7 @@ let itemContent = name;
 
 ```js
 if (isPacked) {
-  itemContent = name + " ✔";
+  itemContent = name + " ✅";
 }
 ```
 
@@ -357,7 +357,7 @@ if (isPacked) {
 function Item({ name, isPacked }) {
   let itemContent = name;
   if (isPacked) {
-    itemContent = name + " ✔";
+    itemContent = name + " ✅";
   }
   return (
     <li className="item">
@@ -401,7 +401,7 @@ function Item({ name, isPacked }) {
   if (isPacked) {
     itemContent = (
       <del>
-        {name + " ✔"}
+        {name + " ✅"}
       </del>
     );
   }
@@ -464,7 +464,7 @@ JavaScript に慣れていない場合、これだけ多様なスタイルがあ
 function Item({ name, isPacked }) {
   return (
     <li className="item">
-      {name} {isPacked && '✔'}
+      {name} {isPacked && '✅'}
     </li>
   );
 }
@@ -502,7 +502,7 @@ export default function PackingList() {
 function Item({ name, isPacked }) {
   return (
     <li className="item">
-      {name} {isPacked ? '✔' : '❌'}
+      {name} {isPacked ? '✅' : '❌'}
     </li>
   );
 }
