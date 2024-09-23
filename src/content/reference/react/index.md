@@ -14,10 +14,17 @@ React リファレンスは機能別にいくつかのサブセクションに�
 
 プログラムから利用する React の機能です。
 
+<<<<<<< HEAD
 * [フック](/reference/react/hooks) - コンポーネント内から使用する様々な React の機能
 * [コンポーネント](/reference/react/components) - JSX 内で用いる組み込みコンポーネント
 * [API](/reference/react/apis) - コンポーネントの定義に用いる API
 * [ディレクティブ](/reference/rsc/directives) - React Server Components 互換のバンドラに与えるための指示情報
+=======
+* [Hooks](/reference/react/hooks) - Use different React features from your components.
+* [Components](/reference/react/components) - Built-in components that you can use in your JSX.
+* [APIs](/reference/react/apis) - APIs that are useful for defining components.
+* [Directives](/reference/rsc/directives) - Provide instructions to bundlers compatible with React Server Components.
+>>>>>>> c003ac4eb130fca70b88cf3a1b80ce5f76c51ae3
 
 ## React DOM {/*react-dom*/}
 
