@@ -191,7 +191,7 @@ input { display: block; margin-bottom: 20px; }
 
 </LearnMore>
 
-## エフェクトは必要ないかもしれない {/*you-might-not-need-an-effect*/}
+## そのエフェクトは必要かも {/*you-might-not-need-an-effect*/}
 
 エフェクトは React のパラダイムからの避難ハッチです。React の外に「踏み出して」、何らかの外部システムと同期させることができるものです。外部システムが関与していない場合（例えば、props や state の変更に合わせてコンポーネントの state を更新したい場合）、エフェクトは必要ありません。不要なエフェクトを削除することで、コードが読みやすくなり、実行速度が向上し、エラーが発生しにくくなります。
 
@@ -231,7 +231,7 @@ function Form() {
 
 <LearnMore path="/learn/you-might-not-need-an-effect">
 
-[**エフェクトは必要ないかもしれない**](/learn/you-might-not-need-an-effect)を読んで、不要なエフェクトを削除する方法を学びましょう。
+[**そのエフェクトは不要かも**](/learn/you-might-not-need-an-effect)を読んで、不要なエフェクトを削除する方法を学びましょう。
 
 </LearnMore>
 
