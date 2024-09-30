@@ -85,7 +85,13 @@ function handleClick() {
 
 * React は [state の更新をまとめて行います（バッチ処理）](/learn/queueing-a-series-of-state-updates)。**すべてのイベントハンドラを実行し終え**、`set` 関数が呼び出された後に、画面を更新します。これにより、1 つのイベント中に複数回の再レンダーが発生することはありません。まれに、早期に画面を更新する必要がある場合（例えば DOM にアクセスする場合など）がありますが、その場合は [`flushSync`](/reference/react-dom/flushSync) を利用できます。
 
+<<<<<<< HEAD
 * レンダー中に `set` 関数を呼び出すことは、*現在レンダー中の*コンポーネント内からのみ許されています。その場合、React はその出力を破棄し、新しい state で再レンダーを試みます。このパターンが必要になることはほとんどありませんが、**前回のレンダーからの情報を保存**するために使用できます。[例を見る](#storing-information-from-previous-renders)
+=======
+* The `set` function has a stable identity, so you will often see it omitted from effect dependencies, but including it will not cause the effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+
+* Calling the `set` function *during rendering* is only allowed from within the currently rendering component. React will discard its output and immediately attempt to render it again with the new state. This pattern is rarely needed, but you can use it to **store information from the previous renders**. [See an example below.](#storing-information-from-previous-renders)
+>>>>>>> fe37c42e0b51167d7f3c98593f50de997d666266
 
 * Strict Mode では、[純粋でない関数を見つけやすくするために](#my-initializer-or-updater-function-runs-twice)**更新用関数が 2 回呼び出されます**。これは開発時のみの振る舞いであり、本番には影響しません。更新用関数が純粋であれば（そうであるべきです）、2 回呼び出されてもコードに影響はありません。2 回の呼び出しのうち 1 回の呼び出し結果は無視されます。
 
