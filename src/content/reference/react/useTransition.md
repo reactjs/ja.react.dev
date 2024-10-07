@@ -80,13 +80,9 @@ function TabContainer() {
 
 * `startTransition` に渡す関数は同期的でなければなりません。React はこの関数を直ちに実行し、その実行中に行われるすべての state 更新をトランジションとしてマークします。後になって（例えばタイムアウト内で）さらに state 更新をしようとすると、それらはトランジションとしてマークされません。
 
-<<<<<<< HEAD
-* トランジションとしてマークされた state 更新は、他の state 更新によって中断されます。例えば、トランジション内でチャートコンポーネントを更新した後、チャートの再レンダーの途中で入力フィールドに入力を始めた場合、React は入力欄の更新の処理後にチャートコンポーネントのレンダー作業を再開します。
-=======
-* The `startTransition` function has a stable identity, so you will often see it omitted from effect dependencies, but including it will not cause the effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+* `startTransition` 関数は常に同一のものとなるため、多くの場合エフェクトの依存配列では省略されますが、依存配列に含めてもエフェクトの再実行は起こりません。依存値を削除してもリンタがエラーを出さない場合、削除しても安全です。[エフェクトから依存値を取り除く方法](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)を参照してください。
 
-* A state update marked as a Transition will be interrupted by other state updates. For example, if you update a chart component inside a Transition, but then start typing into an input while the chart is in the middle of a re-render, React will restart the rendering work on the chart component after handling the input update.
->>>>>>> 1697ae89a3bbafd76998dd7496754e5358bc1e9a
+* トランジションとしてマークされた state 更新は、他の state 更新によって中断されます。例えば、トランジション内でチャートコンポーネントを更新した後、チャートの再レンダーの途中で入力フィールドに入力を始めた場合、React は入力欄の更新の処理後にチャートコンポーネントのレンダー作業を再開します。
 
 * トランジションによる更新はテキスト入力欄の制御には使用できません。
 

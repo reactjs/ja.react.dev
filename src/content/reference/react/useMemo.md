@@ -1056,12 +1056,9 @@ label {
 
 ---
 
-<<<<<<< HEAD
-### 他のフックに渡す依存値をメモ化する {/*memoizing-a-dependency-of-another-hook*/}
-=======
-### Preventing an Effect from firing too often {/*preventing-an-effect-from-firing-too-often*/}
+### エフェクトが過度に実行されるのを抑制する {/*preventing-an-effect-from-firing-too-often*/}
 
-Sometimes, you might want to use a value inside an [Effect:](/learn/synchronizing-with-effects)
+[エフェクト](/learn/synchronizing-with-effects)内で何らかの値を使用したくなる場合があります。
 
 ```js {4-7,10}
 function ChatRoom({ roomId }) {
@@ -1078,7 +1075,7 @@ function ChatRoom({ roomId }) {
     // ...
 ```
 
-This creates a problem. [Every reactive value must be declared as a dependency of your Effect.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) However, if you declare `options` as a dependency, it will cause your Effect to constantly reconnect to the chat room:
+これにより問題が生じます。[すべてのリアクティブ値はエフェクト内で依存値として宣言する必要があります](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency)。しかしこの `options` を依存値として宣言してしまうと、エフェクトがチャットルームへの再接続を繰り返すようになってしまいます。
 
 
 ```js {5}
@@ -1090,7 +1087,7 @@ This creates a problem. [Every reactive value must be declared as a dependency o
   // ...
 ```
 
-To solve this, you can wrap the object you need to call from an Effect in `useMemo`:
+これを解決するために、エフェクト内で使用されるオブジェクトを `useMemo` でラップすることができます。
 
 ```js {4-9,16}
 function ChatRoom({ roomId }) {
@@ -1112,9 +1109,9 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-This ensures that the `options` object is the same between re-renders if `useMemo` returns the cached object.
+これにより、`useMemo` がキャッシュ済みのオブジェクトを返している限り、`options` オブジェクトが再レンダー間で等しくなることが保証されます。
 
-However, since `useMemo` is performance optimization, not a semantic guarantee, React may throw away the cached value if [there is a specific reason to do that](#caveats). This will also cause the effect to re-fire, **so it's even better to remove the need for a function dependency** by moving your object *inside* the Effect:
+しかし `useMemo` はパフォーマンス最適化のためのものであり、意味的な保証があるものではありません。[特定の理由](#caveats)がある場合は、React はキャッシュされた値を破棄することがあります。これによりエフェクトも再実行されるため、エフェクト*内*にオブジェクトを移動することで**このような依存値自体を不必要にする**方がより良いでしょう。
 
 ```js {5-8,13}
 function ChatRoom({ roomId }) {
@@ -1133,11 +1130,10 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Now your code is simpler and doesn't need `useMemo`. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+これでコードはよりシンプルになり、`useMemo` も不要となりました。[エフェクトから依存値を取り除く方法についてさらに読む](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 
 
-### Memoizing a dependency of another Hook {/*memoizing-a-dependency-of-another-hook*/}
->>>>>>> 1697ae89a3bbafd76998dd7496754e5358bc1e9a
+### 他のフックに渡す依存値をメモ化する {/*memoizing-a-dependency-of-another-hook*/}
 
 ある計算が、コンポーネントの本体で直接作成されたオブジェクトに依存しているとしましょう。
 

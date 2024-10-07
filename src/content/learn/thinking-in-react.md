@@ -265,19 +265,11 @@ props と state は異なるものですが、それらは協調して働きま�
 
 それではこの戦術をサンプルアプリにも適用してみましょう：
 
-<<<<<<< HEAD
 1. **state を使用するコンポーネントの特定：**
    * `ProductTable` は、これらの state（検索テキストとチェックボックスの値）に基づいて製品リストをフィルタリングする必要があります。
    * `SearchBar` は、これらの state（検索テキストとチェックボックスの値）を表示する必要があります。
-1. **共通の親を見つける：** 両方のコンポーネントに共通の最初の親コンポーネントは `FilterableProductTable` です。
-2. **state がどこにあるべきかを決定する：** フィルタ文字列とチェック状態の値を `FilterableProductTable` に保持することにします。
-=======
-1. **Identify components that use state:**
-    * `ProductTable` needs to filter the product list based on that state (search text and checkbox value). 
-    * `SearchBar` needs to display that state (search text and checkbox value).
-2. **Find their common parent:** The first parent component both components share is `FilterableProductTable`.
-3. **Decide where the state lives**: We'll keep the filter text and checked state values in `FilterableProductTable`.
->>>>>>> 1697ae89a3bbafd76998dd7496754e5358bc1e9a
+2. **共通の親を見つける：** 両方のコンポーネントに共通の最初の親コンポーネントは `FilterableProductTable` です。
+3. **state がどこにあるべきかを決定する：** フィルタ文字列とチェック状態の値を `FilterableProductTable` に保持することにします。
 
 したがって、state の値は `FilterableProductTable` にあることになります。
 

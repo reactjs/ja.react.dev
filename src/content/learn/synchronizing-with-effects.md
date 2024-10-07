@@ -627,11 +627,7 @@ React は、開発中に意図的にコンポーネントを再マウントし�
 
 ### React 以外のウィジェットを制御する {/*controlling-non-react-widgets*/}
 
-<<<<<<< HEAD
 時に、React で書かれていない UI ウィジェットを追加したい場合があります。例えば、ページに地図コンポーネントを追加しようとしているとします。`setZoomLevel()` メソッドがあり、React のコード内の `zoomLevel` という state 変数と同期させたいとします。エフェクトは次のようになります。
-=======
-Sometimes you need to add UI widgets that aren't written in React. For example, let's say you're adding a map component to your page. It has a `setZoomLevel()` method, and you'd like to keep the zoom level in sync with a `zoomLevel` state variable in your React code. Your Effect would look similar to this:
->>>>>>> 1697ae89a3bbafd76998dd7496754e5358bc1e9a
 
 ```js
 useEffect(() => {
