@@ -408,7 +408,11 @@ function Game() {
 
 このコードには 2 つの問題があります。
 
+<<<<<<< HEAD
 1 つ目の問題は、非常に効率が悪いことです。コンポーネント（およびその子）は、連鎖内の各 `set` コールの間で毎回再レンダーする必要があります。上記の例では、最悪の場合、下位のツリーに 3 回の不要な再レンダー（`setCard` → レンダー → `setGoldCardCount` → レンダー → `setRound` → レンダー → `setIsGameOver` → レンダー）が発生することになります。
+=======
+The first problem is that it is very inefficient: the component (and its children) have to re-render between each `set` call in the chain. In the example above, in the worst case (`setCard` → render → `setGoldCardCount` → render → `setRound` → render → `setIsGameOver` → render) there are three unnecessary re-renders of the tree below.
+>>>>>>> 1697ae89a3bbafd76998dd7496754e5358bc1e9a
 
 2 つ目の問題は、たとえこれが遅くなかったとしても、コードが発展するにつれ、書いた「チェイン」が新しい要件に適合しないケースが出てくるということです。例えばゲームの手順を遡る機能を追加しているとしましょう。このためには、各 state 変数を過去のある時点の値に再セットしていくことになります。しかし過去の値から `card` の state をセットした時点で再びエフェクトの連鎖処理がトリガされ、表示されるデータが変更されてしまいます。このようなコードは、硬直的で壊れやすいものです。
 

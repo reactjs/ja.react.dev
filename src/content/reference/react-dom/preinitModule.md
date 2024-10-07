@@ -51,12 +51,21 @@ function AppRoot() {
 
 #### 引数 {/*parameters*/}
 
+<<<<<<< HEAD
 * `href`: 文字列。ダウンロードして実行したいモジュールの URL。
 * `options`: オブジェクト。以下のプロパティを含みます。
   *  `as`: 必須の文字列。`'script'` である必要があります。
   *  `crossOrigin`: 文字列。使用する [CORS ポリシー](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin)。可能な値は `anonymous` と `use-credentials` です。
   *  `integrity`: 文字列。[真正性を検証する](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)ために使用するリソースの暗号化ハッシュ。
   *  `nonce`: 文字列。厳格なコンテンツセキュリティポリシーを使用する際に[リソースを許可するための暗号化 nonce](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce)。
+=======
+* `href`: a string. The URL of the module you want to download and execute.
+* `options`: an object. It contains the following properties:
+  *  `as`: a required string. It must be `'script'`.
+  *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
+  *  `integrity`: a string. A cryptographic hash of the module, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+  *  `nonce`: a string. A cryptographic [nonce to allow the module](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy. 
+>>>>>>> 1697ae89a3bbafd76998dd7496754e5358bc1e9a
 
 #### 返り値 {/*returns*/}
 

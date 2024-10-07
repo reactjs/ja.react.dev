@@ -1133,7 +1133,11 @@ export default function Board() {
 
 <Note>
 
+<<<<<<< HEAD
 JavaScript は[クロージャ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)をサポートしているため、内側の関数（例：`handleClick`）は外側の関数（例：`Board`）で定義されている変数や関数にアクセスできます。`handleClick` 関数は、state である `squares` を読み取ったり、`setSquares` メソッドを呼び出したりできます。これらは両方とも `Board` 関数の内部で定義されているためです。
+=======
+JavaScript supports [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) which means an inner function (e.g. `handleClick`) has access to variables and functions defined in an outer function (e.g. `Board`). The `handleClick` function can read the `squares` state and call the `setSquares` method because they are both defined inside of the `Board` function.
+>>>>>>> 1697ae89a3bbafd76998dd7496754e5358bc1e9a
 
 </Note>
 

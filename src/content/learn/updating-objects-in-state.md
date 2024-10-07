@@ -57,6 +57,7 @@ position.x = 5;
 
 ```js
 import { useState } from 'react';
+
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,
@@ -127,6 +128,7 @@ onPointerMove={e => {
 
 ```js
 import { useState } from 'react';
+
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,
@@ -377,7 +379,11 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 #### 複数のフィールドに単一のイベントハンドラを使う {/*using-a-single-event-handler-for-multiple-fields*/}
 
+<<<<<<< HEAD
 オブジェクト定義内で `[` と `]` 括弧を使って、動的な名前のプロパティを指定することもできます。以下は上記と同じ例ですが、3 つの異なるイベントハンドラの代わりに 1 つのイベントハンドラを使用しています。
+=======
+You can also use the `[` and `]` braces inside your object definition to specify a property with a dynamic name. Here is the same example, but with a single event handler instead of three different ones:
+>>>>>>> 1697ae89a3bbafd76998dd7496754e5358bc1e9a
 
 <Sandpack>
 
