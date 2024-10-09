@@ -1056,6 +1056,83 @@ label {
 
 ---
 
+### エフェクトが過度に実行されるのを抑制する {/*preventing-an-effect-from-firing-too-often*/}
+
+[エフェクト](/learn/synchronizing-with-effects)内で、以下のようにして何らかの値を使用したくなる場合があります。
+
+```js {4-7,10}
+function ChatRoom({ roomId }) {
+  const [message, setMessage] = useState('');
+
+  const options = {
+    serverUrl: 'https://localhost:1234',
+    roomId: roomId
+  }
+
+  useEffect(() => {
+    const connection = createConnection(options);
+    connection.connect();
+    // ...
+```
+
+しかしこれにより問題が生じます。[すべてのリアクティブ値はエフェクト内で依存値として宣言する必要があります](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency)。しかしこの `options` を依存値として宣言してしまうと、エフェクトがチャットルームへの再接続を繰り返すようになってしまいます。
+
+
+```js {5}
+  useEffect(() => {
+    const connection = createConnection(options);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [options]); // 🔴 Problem: This dependency changes on every render
+  // ...
+```
+
+これを修正するために、エフェクト内で使用されるオブジェクトを `useMemo` でラップすることができます。
+
+```js {4-9,16}
+function ChatRoom({ roomId }) {
+  const [message, setMessage] = useState('');
+
+  const options = useMemo(() => {
+    return {
+      serverUrl: 'https://localhost:1234',
+      roomId: roomId
+    };
+  }, [roomId]); // ✅ Only changes when roomId changes
+
+  useEffect(() => {
+    const options = createOptions();
+    const connection = createConnection(options);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [options]); // ✅ Only changes when createOptions changes
+  // ...
+```
+
+これで、`useMemo` がキャッシュ済みのオブジェクトを返している限り、`options` オブジェクトが再レンダー間で等しくなることが保証されます。
+
+しかし `useMemo` はパフォーマンス最適化のためのものであり、意味的な保証があるものではありません。[特定の理由](#caveats)がある場合は、React はキャッシュされた値を破棄することがあります。これによりエフェクトも再実行されるため、エフェクト*内*にオブジェクトを移動することで**このような依存値自体を不必要にする**方がより良いでしょう。
+
+```js {5-8,13}
+function ChatRoom({ roomId }) {
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    const options = { // ✅ No need for useMemo or object dependencies!
+      serverUrl: 'https://localhost:1234',
+      roomId: roomId
+    }
+    
+    const connection = createConnection(options);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [roomId]); // ✅ Only changes when roomId changes
+  // ...
+```
+
+これでコードはよりシンプルになり、`useMemo` も不要となりました。[エフェクトから依存値を取り除く方法](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)について参照してください。
+
+
 ### 他のフックに渡す依存値をメモ化する {/*memoizing-a-dependency-of-another-hook*/}
 
 ある計算が、コンポーネントの本体で直接作成されたオブジェクトに依存しているとしましょう。

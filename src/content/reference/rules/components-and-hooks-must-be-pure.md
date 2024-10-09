@@ -190,7 +190,7 @@ function ExpenseForm() {
 
 ```js {2}
 function ProductDetailPage({ product }) {
-  document.window.title = product.title; // 🔴 Bad: Changes the DOM
+  document.title = product.title; // 🔴 Bad: Changes the DOM
 }
 ```
 

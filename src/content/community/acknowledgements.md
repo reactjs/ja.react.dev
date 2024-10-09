@@ -59,7 +59,7 @@ title: 謝辞
 
 このリストは全員を網羅したものではありません。
 
-特に、長年にわたる指導とサポートをしていただいた [Tom Occhino](https://github.com/tomocchino) と [Adam Wolff](https://github.com/wolffiex) に感謝いたします。[React を他の言語に翻訳](https://translations.reactjs.org/)してくださったボランティアの皆様にも感謝いたします。
+特に、長年にわたる指導とサポートをしていただいた [Tom Occhino](https://github.com/tomocchino) と [Adam Wolff](https://github.com/wolffiex) に感謝いたします。[React を他の言語に翻訳](https://translations.react.dev/)してくださったボランティアの皆様にも感謝いたします。
 
 ## 追加の謝辞 {/*additional-thanks*/}
 

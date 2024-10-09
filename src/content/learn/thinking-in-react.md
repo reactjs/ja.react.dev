@@ -268,8 +268,8 @@ props と state は異なるものですが、それらは協調して働きま�
 1. **state を使用するコンポーネントの特定：**
    * `ProductTable` は、これらの state（検索テキストとチェックボックスの値）に基づいて製品リストをフィルタリングする必要があります。
    * `SearchBar` は、これらの state（検索テキストとチェックボックスの値）を表示する必要があります。
-1. **共通の親を見つける：** 両方のコンポーネントに共通の最初の親コンポーネントは `FilterableProductTable` です。
-2. **state がどこにあるべきかを決定する：** フィルタ文字列とチェック状態の値を `FilterableProductTable` に保持することにします。
+2. **共通の親を見つける：** 両方のコンポーネントに共通の最初の親コンポーネントは `FilterableProductTable` です。
+3. **state がどこにあるべきかを決定する：** フィルタ文字列とチェック状態の値を `FilterableProductTable` に保持することにします。
 
 したがって、state の値は `FilterableProductTable` にあることになります。
 

@@ -90,7 +90,7 @@ function Counter() {
 
 ```js  {10,12}
 import {act} from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOMClient from 'react-dom/client';
 import Counter from './Counter';
 
 it('can render and update a counter', async () => {
@@ -99,7 +99,7 @@ it('can render and update a counter', async () => {
   
   // ✅ Render the component inside act().
   await act(() => {
-    ReactDOM.createRoot(container).render(<Counter />);
+    ReactDOMClient.createRoot(container).render(<Counter />);
   });
   
   const button = container.querySelector('button');
@@ -119,7 +119,7 @@ it('can render and update a counter', async () => {
 
 ```js {14,16}
 import {act} from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOMClient from 'react-dom/client';
 import Counter from './Counter';
 
 it.only('can render and update a counter', async () => {
