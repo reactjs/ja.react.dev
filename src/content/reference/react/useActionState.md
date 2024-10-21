@@ -20,7 +20,7 @@ React Canary の以前のバージョンでは、この API は React DOM の一
 `useActionState` は、フォームアクションの結果に基づいて state を更新するためのフックです。
 
 ```js
-const [state, formAction] = useActionState(fn, initialState, permalink?);
+const [state, formAction, isPending] = useActionState(fn, initialState, permalink?);
 ```
 
 </Intro>
@@ -35,7 +35,11 @@ const [state, formAction] = useActionState(fn, initialState, permalink?);
 
 {/* TODO T164397693: link to actions documentation once it exists */}
 
+<<<<<<< HEAD
 コンポーネントのトップレベルで `useActionState` を呼び出してコンポーネントの state を作成し、[フォームアクションが呼び出されたとき](/reference/react-dom/components/form)に更新されるようにします。既存のフォームアクション関数と初期 state を `useActionState` に渡し、フォームで使用する新しいアクションと最新のフォーム state が返されます。あなたが渡した関数にも、最新のフォーム state が渡されるようになります。
+=======
+Call `useActionState` at the top level of your component to create component state that is updated [when a form action is invoked](/reference/react-dom/components/form). You pass `useActionState` an existing form action function as well as an initial state, and it returns a new action that you use in your form, along with the latest form state and whether the Action is still pending. The latest form state is also passed to the function that you provided.
+>>>>>>> 9467bc58868e66c53ca9385c8531dcf7b02178c2
 
 ```js
 import { useActionState } from "react";
@@ -71,10 +75,18 @@ function StatefulForm({}) {
 
 #### 返り値 {/*returns*/}
 
+<<<<<<< HEAD
 `useActionState` は 2 つの値を含む配列を返します。
 
 1. 現在の state。初回レンダー時には、渡した `initialState` と等しくなります。アクションが呼び出された後は、そのアクションが返した値と等しくなります。
 2. フォームコンポーネントの `action` プロパティや、フォーム内の任意の `button` コンポーネントの `formAction` プロパティとして渡すことができる新しいアクション。
+=======
+`useActionState` returns an array with the following values:
+
+1. The current state. During the first render, it will match the `initialState` you have passed. After the action is invoked, it will match the value returned by the action.
+2. A new action that you can pass as the `action` prop to your `form` component or `formAction` prop to any `button` component within the form.
+3. The `isPending` flag that tells you whether there is a pending Transition.
+>>>>>>> 9467bc58868e66c53ca9385c8531dcf7b02178c2
 
 #### 注意点 {/*caveats*/}
 
@@ -104,10 +116,18 @@ function MyComponent() {
 }
 ```
 
+<<<<<<< HEAD
 `useActionState` は、2 つの項目を含む配列を返します。
 
 1. フォームの <CodeStep step={1}>state の現在値</CodeStep>。初期値はあなたが渡した <CodeStep step={4}>初期 state</CodeStep> となり、フォームが送信された後はあなたが渡した<CodeStep step={3}>アクション</CodeStep>の返り値となります。
 2. `<form>` の props である `action` に渡せる<CodeStep step={2}>新しいアクション</CodeStep>。
+=======
+`useActionState` returns an array with the following items:
+
+1. The <CodeStep step={1}>current state</CodeStep> of the form, which is initially set to the <CodeStep step={4}>initial state</CodeStep> you provided, and after the form is submitted is set to the return value of the <CodeStep step={3}>action</CodeStep> you provided.
+2. A <CodeStep step={2}>new action</CodeStep> that you pass to `<form>` as its `action` prop.
+3. A <CodeStep step={1}>pending state</CodeStep> that you can utilise whilst your action is processing.
+>>>>>>> 9467bc58868e66c53ca9385c8531dcf7b02178c2
 
 フォームが送信されると、あなたが渡した<CodeStep step={3}>アクション</CodeStep>関数が呼び出されます。その返り値が、新たなフォームの <CodeStep step={1}>state 現在値</CodeStep>になります。
 
@@ -133,13 +153,13 @@ import { useActionState, useState } from "react";
 import { addToCart } from "./actions.js";
 
 function AddToCartForm({itemID, itemTitle}) {
-  const [message, formAction] = useActionState(addToCart, null);
+  const [message, formAction, isPending] = useActionState(addToCart, null);
   return (
     <form action={formAction}>
       <h2>{itemTitle}</h2>
       <input type="hidden" name="itemID" value={itemID} />
       <button type="submit">Add to Cart</button>
-      {message}
+      {isPending ? "Loading..." : message}
     </form>
   );
 }
@@ -162,6 +182,10 @@ export async function addToCart(prevState, queryData) {
   if (itemID === "1") {
     return "Added to cart";
   } else {
+    // Add a fake delay to make waiting noticeable.
+    await new Promise(resolve => {
+      setTimeout(resolve, 2000);
+    });
     return "Couldn't add to cart: the item is sold out.";
   }
 }

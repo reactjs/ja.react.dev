@@ -85,7 +85,11 @@ function handleClick() {
 
 * React は [state の更新をまとめて行います（バッチ処理）](/learn/queueing-a-series-of-state-updates)。**すべてのイベントハンドラを実行し終え**、`set` 関数が呼び出された後に、画面を更新します。これにより、1 つのイベント中に複数回の再レンダーが発生することはありません。まれに、早期に画面を更新する必要がある場合（例えば DOM にアクセスする場合など）がありますが、その場合は [`flushSync`](/reference/react-dom/flushSync) を利用できます。
 
+<<<<<<< HEAD
 * `set` 関数は常に同一のものとなるため、多くの場合エフェクトの依存配列では省略されますが、依存配列に含めてもエフェクトの再実行は起こりません。依存値を削除してもリンタがエラーを出さない場合、削除しても安全です。[エフェクトから依存値を取り除く方法](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)を参照してください。
+=======
+* The `set` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+>>>>>>> 9467bc58868e66c53ca9385c8531dcf7b02178c2
 
 * レンダー中に `set` 関数を呼び出すことは、*現在レンダー中の*コンポーネント内からのみ許されています。その場合、React はその出力を破棄し、新しい state で再レンダーを試みます。このパターンが必要になることはほとんどありませんが、**前回のレンダーからの情報を保存**するために使用できます。[例を見る](#storing-information-from-previous-renders)
 
