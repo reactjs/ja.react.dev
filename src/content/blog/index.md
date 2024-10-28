@@ -14,7 +14,17 @@ React チームからの公式な更新のお知らせはこのブログに掲�
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<<<<<<< HEAD
 <BlogCard title="React Conf 2024 振り返り" date="May 22, 2024" url="/blog/2024/05/22/react-conf-2024-recap">
+=======
+<BlogCard title="React Compiler Beta Release" date="October 21, 2024" url="/blog/2024/10/21/react-compiler-beta-release">
+
+We announced an experimental release of React Compiler at React Conf 2024. We've made a lot of progress since then, and in this post we want to share what's next for React Compiler ...
+
+</BlogCard>
+
+<BlogCard title="React Conf 2024 Recap" date="May 22, 2024" url="/blog/2024/05/22/react-conf-2024-recap">
+>>>>>>> eb174dd932613fb0784a78ee2d9360554538cc08
 
 先週、ネバダ州ヘンダーソンで 700 人以上の参加者が集まり、最新の UI エンジニアリングについて議論する 2 日間のカンファレンス、React Conf 2024 を開催しました。対面でのカンファレンスは 2019 年以来であり、コミュニティが再び一堂に会することができたことを大変に嬉しく思いました。
 
