@@ -12,25 +12,25 @@ October 21, 2024 by [Lauren Tan](https://twitter.com/potetotes).
 
 <Intro>
 
-React チームより新しいアップデートを共有できることを嬉しく思います。
+React チームより以下の最新情報を共有できることを嬉しく思います。
 
 </Intro>
 
-1. React Compiler ベータ版を本日公開し、アーリーアダプタやライブラリのメンテナが試用し、フィードバックを行えるようになります。
-2. React 17+ のアプリに対して、オプションの `react-compiler-runtime` パッケージを通じて React Compiler を公式にサポートします。
+1. React Compiler ベータ版を本日公開します。アーリーアダプタやライブラリのメンテナが試用し、フィードバックを行えるようになります。
+2. React 17+ のアプリに対して、オプションの `react-compiler-runtime` パッケージを通じた React Compiler の使用を公式にサポートします。
 3. コンパイラの段階的な採用に備えて、[React Compiler Working Group](https://github.com/reactwg/react-compiler) の公開メンバーシップを開放します。
 
 ---
 
 [React Conf 2024](/blog/2024/05/22/react-conf-2024-recap) にて、React Compiler の実験的リリースを発表しました。これは、ビルド時の自動的なメモ化を通じて React アプリを最適化するツールです。[React Compiler の紹介はこちらでご覧いただけます](/learn/react-compiler)。
 
-最初のリリース以来、React コミュニティから報告された多数のバグを修正し、コンパイラに対する貴重なバグ修正や貢献[^1]をいくつか頂き、多様な JavaScript パターンに対してコンパイラをより堅牢にする作業を行い、Meta 社内でコンパイラの展開を続けてきました。
+初期のリリース以来、React コミュニティから報告された多数のバグを修正し、コンパイラに対する貴重なバグ修正や貢献[^1]をいくつか頂き、多様な JavaScript パターンに対してコンパイラをより堅牢にする作業を行い、Meta 社内でコンパイラの展開を続けてきました。
 
 この投稿では、React Compiler の次のステップを共有したいと思います。
 
 ## React Compiler Beta をすぐに試す {/*try-react-compiler-beta-today*/}
 
-[React India 2024](https://www.youtube.com/watch?v=qd5yk2gxbtg) で、React Compiler のアップデートを共有しました。本日、React Compiler と ESLint プラグインの新しいベータ版のリリースを発表できることを嬉しく思います。新しいベータ版は `@beta` タグ付きで npm に公開されています。
+[React India 2024](https://www.youtube.com/watch?v=qd5yk2gxbtg) で、React Compiler の最新情報を共有しました。本日、React Compiler と ESLint プラグインの新しいベータ版のリリースを発表できることを嬉しく思います。新しいベータ版は `@beta` タグ付きで npm に公開されています。
 
 React Compiler ベータ版をインストールするには以下のようにします。
 
@@ -92,7 +92,7 @@ React Compiler はライブラリのコンパイルにも使用できます。Re
 
 [React Conf](/blog/2024/05/22/react-conf-2024-recap) では、Quest Store と Instagram におけるコンパイラの本番投入が成功したことを発表しました。それ以来、[Facebook](https://www.facebook.com) や [Threads](https://www.threads.net) を含む Meta 社の複数の主要ウェブアプリにおいて、React Compiler の展開を行ってきました。つまり最近これらのアプリを使用していたなら、その体験をコンパイラが支えていたということです。これらのアプリをコンパイラに乗せるために必要なコード変更はほとんどなく、10 万以上の React コンポーネントを含むモノレポで移行に成功しました。
 
-これらのアプリ全体で、顕著なパフォーマンス向上が見られました。展開を進める中で、[以前 React Conf で発表したもの](https://youtu.be/lyEKhv8-3n0?t=3223)と同程度の成果が、引き続き確認されています。これらのアプリは長らく Meta のエンジニアや React の専門家により手作業で調整され最適化されてきたものですから、数パーセントの改善でも大きな成果と言えるでしょう。
+これらのアプリ全体で、顕著なパフォーマンス向上が見られました。導入を進める中で、[以前 React Conf で発表したもの](https://youtu.be/lyEKhv8-3n0?t=3223)と同程度の成果が、引き続き確認されています。これらのアプリは長らく Meta のエンジニアや React の専門家により手作業で調整され最適化されてきたものですから、数パーセントの改善でも大きな成果と言えるでしょう。
 
 また、React Compiler による開発者の生産性向上も期待される効果でした。これを測定するために、Meta のデータサイエンスパートナー[^2]と協力して、手動メモ化が生産性に与える影響について広範な統計分析を行いました。Meta でコンパイラを投入する以前は、React に関するプルリクエストの約 8% でしか手動メモ化が利用されておらず、そのようなプルリクエストは作成に 31-46% 長くかかっていました[^3]。この結果は、手動メモ化が認知的負担を引き起こすという我々の直感に合致するものであり、React Compiler により効率的なコード作成とレビューが実現できる可能性を示唆するものです。特に、React Compiler は、開発者が明示的にメモ化を適用してくれる一部の（私たちの場合 8%）コードだけではなく、すべてのコードがデフォルトでメモ化されることを保証してくれるのです。
 
@@ -123,4 +123,4 @@ React Compiler はライブラリのコンパイルにも使用できます。Re
 
 [^2]: Meta での React コンパイラに関する本研究を主導し、この投稿をレビューしていただいた [Vaishali Garg](https://www.linkedin.com/in/vaishaligarg09) に感謝します。
 
-[^3]: 作者の在職期間、差分の長さ・複雑さなど、潜在的な交絡因子を調整済み。
+[^3]: 作成者の在職期間、差分の長さ・複雑さなど、潜在的な交絡因子を調整済み。
