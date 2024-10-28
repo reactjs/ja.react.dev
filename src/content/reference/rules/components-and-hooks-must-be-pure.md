@@ -194,11 +194,7 @@ function ProductDetailPage({ product }) {
 }
 ```
 
-<<<<<<< HEAD
-`window.title` を更新するという望ましい結果をレンダーの外で達成する方法のひとつは、[`window` とコンポーネントを同期させる](/learn/synchronizing-with-effects)ことです。
-=======
-One way to achieve the desired result of updating `document.title` outside of render is to [synchronize the component with `document`](/learn/synchronizing-with-effects).
->>>>>>> eb174dd932613fb0784a78ee2d9360554538cc08
+`document.title` を更新するという望ましい結果をレンダーの外で達成する方法のひとつは、[`document` とコンポーネントを同期させる](/learn/synchronizing-with-effects)ことです。
 
 コンポーネントを複数回呼び出しても安全であり、他のコンポーネントのレンダーに影響を与えないのであれば、React はそれが厳密な関数型プログラミングの意味で 100% 純粋であるかどうかを気にしません。より重要なのは、[コンポーネントは冪等でなければならない](/reference/rules/components-and-hooks-must-be-pure)ということです。
 
