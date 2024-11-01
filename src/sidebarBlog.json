@@ -12,6 +12,13 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "React Compiler Beta リリースとロードマップ",
+          "titleForHomepage": "React Compiler Beta リリースとロードマップ",
+          "icon": "blog",
+          "date": "October 21, 2024",
+          "path": "/blog/2024/10/21/react-compiler-beta-release"
+        },
+        {
           "title": "React Conf 2024 振り返り",
           "titleForHomepage": "React Conf 2024 振り返り",
           "icon": "blog",

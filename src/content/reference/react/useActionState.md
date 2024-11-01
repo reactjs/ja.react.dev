@@ -20,7 +20,7 @@ React Canary の以前のバージョンでは、この API は React DOM の一
 `useActionState` は、フォームアクションの結果に基づいて state を更新するためのフックです。
 
 ```js
-const [state, formAction] = useActionState(fn, initialState, permalink?);
+const [state, formAction, isPending] = useActionState(fn, initialState, permalink?);
 ```
 
 </Intro>
@@ -35,7 +35,7 @@ const [state, formAction] = useActionState(fn, initialState, permalink?);
 
 {/* TODO T164397693: link to actions documentation once it exists */}
 
-コンポーネントのトップレベルで `useActionState` を呼び出してコンポーネントの state を作成し、[フォームアクションが呼び出されたとき](/reference/react-dom/components/form)に更新されるようにします。既存のフォームアクション関数と初期 state を `useActionState` に渡し、フォームで使用する新しいアクションと最新のフォーム state が返されます。あなたが渡した関数にも、最新のフォーム state が渡されるようになります。
+コンポーネントのトップレベルで `useActionState` を呼び出してコンポーネントの state を作成し、[フォームアクションが呼び出されたとき](/reference/react-dom/components/form)に更新されるようにします。既存のフォームアクション関数と初期 state を `useActionState` に渡し、フォームで使用する新しいアクションと最新のフォーム state、およびアクションの進行状況が返されます。あなたが渡した関数にも、最新のフォーム state が渡されるようになります。
 
 ```js
 import { useActionState } from "react";
@@ -71,10 +71,11 @@ function StatefulForm({}) {
 
 #### 返り値 {/*returns*/}
 
-`useActionState` は 2 つの値を含む配列を返します。
+`useActionState` は以下の値を含む配列を返します。
 
 1. 現在の state。初回レンダー時には、渡した `initialState` と等しくなります。アクションが呼び出された後は、そのアクションが返した値と等しくなります。
 2. フォームコンポーネントの `action` プロパティや、フォーム内の任意の `button` コンポーネントの `formAction` プロパティとして渡すことができる新しいアクション。
+3. 進行中のトランジションがあるかどうかを表す `isPending` フラグ。
 
 #### 注意点 {/*caveats*/}
 
@@ -104,10 +105,11 @@ function MyComponent() {
 }
 ```
 
-`useActionState` は、2 つの項目を含む配列を返します。
+`useActionState` は、以下の項目を含む配列を返します。
 
 1. フォームの <CodeStep step={1}>state の現在値</CodeStep>。初期値はあなたが渡した <CodeStep step={4}>初期 state</CodeStep> となり、フォームが送信された後はあなたが渡した<CodeStep step={3}>アクション</CodeStep>の返り値となります。
 2. `<form>` の props である `action` に渡せる<CodeStep step={2}>新しいアクション</CodeStep>。
+3. アクションが処理中かどうかを知るのに利用できる <CodeStep step={1}>pending 状態</CodeStep>。
 
 フォームが送信されると、あなたが渡した<CodeStep step={3}>アクション</CodeStep>関数が呼び出されます。その返り値が、新たなフォームの <CodeStep step={1}>state 現在値</CodeStep>になります。
 
@@ -133,13 +135,13 @@ import { useActionState, useState } from "react";
 import { addToCart } from "./actions.js";
 
 function AddToCartForm({itemID, itemTitle}) {
-  const [message, formAction] = useActionState(addToCart, null);
+  const [message, formAction, isPending] = useActionState(addToCart, null);
   return (
     <form action={formAction}>
       <h2>{itemTitle}</h2>
       <input type="hidden" name="itemID" value={itemID} />
       <button type="submit">Add to Cart</button>
-      {message}
+      {isPending ? "Loading..." : message}
     </form>
   );
 }
@@ -162,6 +164,10 @@ export async function addToCart(prevState, queryData) {
   if (itemID === "1") {
     return "Added to cart";
   } else {
+    // Add a fake delay to make waiting noticeable.
+    await new Promise(resolve => {
+      setTimeout(resolve, 2000);
+    });
     return "Couldn't add to cart: the item is sold out.";
   }
 }
