@@ -536,7 +536,29 @@ React 19 には、Strict Mode に関するいくつかの修正と改善が含�
 
 すべての Strict Mode の挙動と同様、これらの機能は開発中にコンポーネントのバグを積極的に目立たせて、本番環境にリリースされる前に修正できるよう設計されています。例えば、開発環境において Strict Mode は初回マウント時に ref コールバック関数を 2 回呼び出すことで、マウントされたコンポーネントがサスペンスフォールバックに置き換えられたときに何が起こるかをシミュレートします。
 
+<<<<<<< HEAD
 ### UMD ビルドの削除 {/*umd-builds-removed*/}
+=======
+### Improvements to Suspense {/*improvements-to-suspense*/}
+
+In React 19, when a component suspends, React will immediately commit the fallback of the nearest Suspense boundary without waiting for the entire sibling tree to render. After the fallback commits, React schedules another render for the suspended siblings to "pre-warm" lazy requests in the rest of the tree:
+
+<Diagram name="prerender" height={162} width={1270} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Both Panel components contain isActive with value false.">
+
+Previously, when a component suspended, the suspended siblings were rendered and then the fallback was committed.
+
+</Diagram>
+
+<Diagram name="prewarm" height={162} width={1270} alt="The same diagram as the previous, with the isActive of the first child Panel component highlighted indicating a click with the isActive value set to true. The second Panel component still contains value false." >
+
+In React 19, when a component suspends, the fallback is committed and then the suspended siblings are rendered.
+
+</Diagram>
+
+This change means Suspense fallbacks display faster, while still warming lazy requests in the suspended tree.
+
+### UMD builds removed {/*umd-builds-removed*/}
+>>>>>>> 84f29eb20af17e9c154b9ad71c21af4c9171e4a2
 
 UMD は過去には、ビルドステップなしで React を読み込むための便利な方法として広く使用されていました。現在では、HTML ドキュメント内でスクリプトとしてモジュールをロードするためのモダンな代替手段があります。テストとリリースプロセスの複雑性を軽減するため、React 19 からは UMD ビルドを生成しなくなります。
 
