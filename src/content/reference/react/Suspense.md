@@ -29,7 +29,7 @@ title: <Suspense>
 
 #### 注意点 {/*caveats*/}
 
-- React は、初回マウントが成功するより前にサスペンドしたレンダーに関しては、一切の state を保持しません。コンポーネントが読み込まれたときに、React はサスペンドしていたたツリーのレンダーを最初からやり直します。
+- React は、初回マウントが成功するより前にサスペンドしたレンダーに関しては、一切の state を保持しません。コンポーネントが読み込まれたときに、React はサスペンドしていたツリーのレンダーを最初からやり直します。
 - すでにツリーにコンテンツを表示していたサスペンスが再度サスペンドした場合、`fallback` が再び表示されます。しかしその更新が [`startTransition`](/reference/react/startTransition) または [`useDeferredValue`](/reference/react/useDeferredValue) によって引き起こされた場合を除きます。
 - 既に表示されているコンテンツが再度サスペンドしたために React がそれを隠す必要が生じた場合、React はコンテンツツリーの[レイアウトエフェクト](/reference/react/useLayoutEffect)をクリーンアップします。コンテンツが再度表示できるようになったら、React はレイアウトエフェクトを再度実行します。これにより、DOM レイアウトを測定するエフェクトがコンテンツが隠れている間に測定を試みないようにします。
 - React には、*ストリーミングサーバレンダリング*や*選択的ハイドレーション*などの、サスペンスと統合された自動的な最適化が含まれています。詳しくは、[アーキテクチャの概要](https://github.com/reactwg/react-18/discussions/37)や[テクニカルトーク](https://www.youtube.com/watch?v=pj5N-Khihgc)を参照してください。
