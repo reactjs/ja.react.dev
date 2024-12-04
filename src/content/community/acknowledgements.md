@@ -4,7 +4,11 @@ title: 謝辞
 
 <Intro>
 
+<<<<<<< HEAD
 オリジナルの React は [Jordan Walke](https://github.com/jordwalke) によって作成されました。現在、React に取り組んでいる[フルタイムの専門チーム](/community/team)があり、また [1000 名を超えるオープンソース貢献者](https://github.com/facebook/react/blob/main/AUTHORS)がいます。
+=======
+React was originally created by [Jordan Walke.](https://github.com/jordwalke) Today, React has a [dedicated full-time team working on it](/community/team), as well as over a thousand [open source contributors.](https://github.com/facebook/react/graphs/contributors)
+>>>>>>> 84f29eb20af17e9c154b9ad71c21af4c9171e4a2
 
 </Intro>
 
