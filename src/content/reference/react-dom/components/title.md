@@ -1,8 +1,8 @@
 ---
 title: "<title>"
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 React による `<title>` の機能拡張は、現在 React の Canary および experimental チャンネルでのみ利用可能です。React の安定版リリースでは、`<title>` は単なる[組み込みのブラウザ HTML コンポーネント](https://react.dev/reference/react-dom/components#all-html-components)として機能します。[React のリリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
@@ -10,6 +10,8 @@ React による `<title>` の機能拡張は、現在 React の Canary および
 </Canary>
 
 
+=======
+>>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 <Intro>
 
 [ブラウザ組み込みの `<title>` コンポーネント](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title)を利用することで、ドキュメントのタイトルを指定できます。

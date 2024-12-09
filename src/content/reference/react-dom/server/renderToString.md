@@ -86,9 +86,15 @@ app.use('/', (request, response) => {
 
 ## 代替手段 {/*alternatives*/}
 
+<<<<<<< HEAD
 ### サーバ上で `renderToString` からストリーム対応メソッドへの移行 {/*migrating-from-rendertostring-to-a-streaming-method-on-the-server*/}
 
 `renderToString` は直ちに文字列を返すため、ストリーミングやデータの待機をサポートしていません。
+=======
+### Migrating from `renderToString` to a streaming render on the server {/*migrating-from-rendertostring-to-a-streaming-method-on-the-server*/}
+
+`renderToString` returns a string immediately, so it does not support streaming content as it loads.
+>>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 
 可能な場合、全機能を備えた以下の代替手段の使用を推奨します。
 
@@ -99,7 +105,24 @@ app.use('/', (request, response) => {
 
 ---
 
+<<<<<<< HEAD
 ### クライアントコードから `renderToString` を削除する {/*removing-rendertostring-from-the-client-code*/}
+=======
+### Migrating from `renderToString` to a static prerender on the server {/*migrating-from-rendertostring-to-a-static-prerender-on-the-server*/}
+
+`renderToString` returns a string immediately, so it does not support waiting for data to load for static HTML generation.
+
+We recommend using these fully-featured alternatives:
+
+* If you use Node.js, use [`prerenderToNodeStream`.](/reference/react-dom/static/prerenderToNodeStream)
+* If you use Deno or a modern edge runtime with [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), use [`prerender`.](/reference/react-dom/static/prerender)
+
+You can continue using `renderToString` if your static site generation environment does not support streams.
+
+---
+
+### Removing `renderToString` from the client code {/*removing-rendertostring-from-the-client-code*/}
+>>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 
 時に、`renderToString` はクライアント上で何らかのコンポーネントを HTML に変換するために使用されることがあります。
 
@@ -137,5 +160,9 @@ console.log(div.innerHTML); // For example, "<svg>...</svg>"
 
 何らかのコンポーネントが（[`lazy`](/reference/react/lazy) で定義されている、データをフェッチしているなどの理由で）サスペンドした場合、`renderToString` はそのコンテンツがロードされるのを待ちません。代わりに、`renderToString` はその上にある最も近い [`<Suspense>`](/reference/react/Suspense) バウンダリを見つけ、その `fallback` を HTML にレンダーします。コンテンツは、クライアントでコードがロードされるまで表示されません。
 
+<<<<<<< HEAD
 これを解決するには、[ストリーミング対応の推奨ソリューション](#migrating-from-rendertostring-to-a-streaming-method-on-the-server)のいずれかを使用します。これらは、サーバ上でコンテンツがロードされるにつれて分割してコンテンツをストリームするため、クライアントコードがロードされる前に、ユーザはページが徐々に埋まっていくところを見ることができます。
+=======
+To solve this, use one of the [recommended streaming solutions.](#alternatives) For server side rendering, they can stream content in chunks as it resolves on the server so that the user sees the page being progressively filled in before the client code loads. For static site generation, they can wait for all the content to resolve before generating the static HTML.
+>>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 
