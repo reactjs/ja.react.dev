@@ -17,7 +17,11 @@ May 22, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii).
 
 ---
 
+<<<<<<< HEAD
 React Conf 2024 では、[React 19 RC](/blog/2024/04/25/react-19)、[React Native New Architecture Beta](https://github.com/reactwg/react-native-new-architecture/discussions/189)、および [React Compiler](/learn/react-compiler) の実験的リリースを発表しました。コミュニティもステージに立ち、[React Router v7](https://remix.run/blog/merging-remix-and-react-router)、Expo Router の [Universal Server Components](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=20765s)、[RedwoodJS](https://redwoodjs.com/blog/rsc-now-in-redwoodjs) での React Server Components など、多くの発表を行いました。
+=======
+At React Conf 2024, we announced the [React 19 RC](/blog/2024/12/05/react-19), the [React Native New Architecture Beta](https://github.com/reactwg/react-native-new-architecture/discussions/189), and an experimental release of the [React Compiler](/learn/react-compiler). The community also took the stage to announce [React Router v7](https://remix.run/blog/merging-remix-and-react-router), [Universal Server Components](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=20765s) in Expo Router, React Server Components in [RedwoodJS](https://redwoodjs.com/blog/rsc-now-in-redwoodjs), and much more.
+>>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 
 [1 日目](https://www.youtube.com/watch?v=T8TZQ6k4SLE) と [2 日目](https://www.youtube.com/watch?v=0ckOUBiuxVY)の全ストリームがオンラインで視聴可能です。この投稿では、イベントでの講演と発表をまとめます。
 
@@ -36,7 +40,11 @@ _[1 日目の全ストリームはこちらから視聴できます。](https://
 - [RedwoodJS, now with React Server Components](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=26815s) by [Amy Dutton](https://twitter.com/selfteachme)
 - [Introducing Universal React Server Components in Expo Router](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=20765s) by [Evan Bacon](https://twitter.com/Baconbrix)
 
+<<<<<<< HEAD
 次の基調講演では、[Josh Story](https://twitter.com/joshcstory) と [Andrew Clark](https://twitter.com/acdlite) が React 19 に登場する新機能を共有し、React 19 RC が本番環境でのテストに準備が整ったことを発表しました。すべての機能については [React 19 リリースポスト](/blog/2024/04/25/react-19)をご覧ください。また、新機能について詳しく知りたい方は以下の講演をご覧ください。
+=======
+Next in the keynote, [Josh Story](https://twitter.com/joshcstory) and [Andrew Clark](https://twitter.com/acdlite) shared new features coming in React 19, and announced the React 19 RC which is ready for testing in production. Check out all the features in the [React 19 release post](/blog/2024/12/05/react-19), and see these talks for deep dives on the new features:
+>>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 
 - [What's new in React 19](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=8880s) by [Lydia Hallie](https://twitter.com/lydiahallie)
 - [React Unpacked: A Roadmap to React 19](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=10112s) by [Sam Selikoff](https://twitter.com/samselikoff)

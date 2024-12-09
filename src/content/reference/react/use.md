@@ -1,14 +1,16 @@
 ---
 title: use
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 `use` API は現在、React の Canary および experimental チャンネルでのみ利用可能です。[React のリリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
 
 </Canary>
 
+=======
+>>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 <Intro>
 
 `use` は[プロミス (Promise)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) や[コンテクスト](/learn/passing-data-deeply-with-context)などのリソースから値を読み取るための React API です。
@@ -54,9 +56,15 @@ React フックとは異なり、`use` は `if` のようなループや条件�
 
 #### 注意点 {/*caveats*/}
 
+<<<<<<< HEAD
 * `use` API は、コンポーネントまたは他のフック内で呼び出す必要があります。
 * [サーバコンポーネント](/reference/rsc/use-server)でデータをフェッチする際は、`use` よりも `async` と `await` を優先して使用してください。`async` と `await` は `await` が呼び出された地点からレンダーを再開しますが、`use` はデータが解決した後にコンポーネントを最初からレンダーします。
 * [クライアントコンポーネント](/reference/rsc/use-client)でプロミスを作成するよりも、[サーバコンポーネント](/reference/react/use-server)でプロミスを作成してそれをクライアントコンポーネントに渡すようにしてください。クライアントコンポーネントで作成されたプロミスは、レンダーごとに再作成されます。サーバコンポーネントからクライアントコンポーネントに渡されたプロミスは、再レンダー間で不変です。[こちらの例を参照してください](#streaming-data-from-server-to-client)。
+=======
+* The `use` API must be called inside a Component or a Hook.
+* When fetching data in a [Server Component](/reference/rsc/server-components), prefer `async` and `await` over `use`. `async` and `await` pick up rendering from the point where `await` was invoked, whereas `use` re-renders the component after the data is resolved.
+* Prefer creating Promises in [Server Components](/reference/rsc/server-components) and passing them to [Client Components](/reference/rsc/use-client) over creating Promises in Client Components. Promises created in Client Components are recreated on every render. Promises passed from a Server Component to a Client Component are stable across re-renders. [See this example](#streaming-data-from-server-to-client).
+>>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 
 ---
 
@@ -199,17 +207,6 @@ function Button({ show, children }) {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js"
-}
-```
-
 </Sandpack>
 
 ### サーバからクライアントへのデータストリーミング {/*streaming-data-from-server-to-client*/}
@@ -291,9 +288,6 @@ export default function App() {
 ```
 
 ```js src/index.js hidden
-// TODO: update to import from stable
-// react instead of canary once the `use`
-// API is in a stable release of React
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -311,16 +305,6 @@ root.render(
 );
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js"
-}
-```
 </Sandpack>
 
 <Note>
@@ -411,9 +395,6 @@ export default function App() {
 ```
 
 ```js src/index.js hidden
-// TODO: update to import from stable
-// react instead of canary once the `use`
-// API is in a stable release of React
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -431,17 +412,6 @@ root.render(
 );
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
-    "react-scripts": "^5.0.0",
-    "react-error-boundary": "4.0.3"
-  },
-  "main": "/index.js"
-}
-```
 </Sandpack>
 
 #### `Promise.catch` で代替値を提供する {/*providing-an-alternative-value-with-promise-catch*/}
