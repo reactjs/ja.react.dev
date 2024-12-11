@@ -207,15 +207,9 @@ async function getAlbums() {
 
 **サスペンスコンポーネントをアクティブ化できるのはサスペンス対応のデータソースだけです**。これには以下が含まれます：
 
-<<<<<<< HEAD
 - [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) や [Next.js](https://nextjs.org/docs/getting-started/react-essentials) のようなサスペンス対応のフレームワークでのデータフェッチ
 - [`lazy`](/reference/react/lazy) を用いたコンポーネントコードの遅延ロード
-- [`use`](/reference/react/use) を用いたプロミス (Promise) からの値の読み取り
-=======
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
-- Reading the value of a cached Promise with [`use`](/reference/react/use)
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+- [`use`](/reference/react/use) を用いたキャッシュ済みプロミス (Promise) からの値の読み取り
 
 サスペンスはエフェクトやイベントハンドラ内でデータフェッチが行われた場合にはそれを**検出しません**。
 
@@ -489,17 +483,10 @@ function Details({ artistId }) {
 
 以下のような順番になります。
 
-<<<<<<< HEAD
 1. `Biography` がまだロードされていない場合、`BigSpinner` が全体のコンテンツエリアの代わりに表示されます。
-1. `Biography` のロードが完了すると、`BigSpinner` はコンテンツに置き換えられます。
-1. `Albums` がまだロードされていない場合、`AlbumsGlimmer` が `Albums` とその親の `Panel` の代わりに表示されます。
-1. 最後に、`Albums` のロードが完了すると、それが `AlbumsGlimmer` を置き換えて表示されます。
-=======
-1. If `Biography` hasn't loaded yet, `BigSpinner` is shown in place of the entire content area.
-2. Once `Biography` finishes loading, `BigSpinner` is replaced by the content.
-3. If `Albums` hasn't loaded yet, `AlbumsGlimmer` is shown in place of `Albums` and its parent `Panel`.
-4. Finally, once `Albums` finishes loading, it replaces `AlbumsGlimmer`.
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+2. `Biography` のロードが完了すると、`BigSpinner` はコンテンツに置き換えられます。
+3. `Albums` がまだロードされていない場合、`AlbumsGlimmer` が `Albums` とその親の `Panel` の代わりに表示されます。
+4. 最後に、`Albums` のロードが完了すると、それが `AlbumsGlimmer` を置き換えて表示されます。
 
 <Sandpack>
 

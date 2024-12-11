@@ -2,16 +2,6 @@
 title: "<form>"
 ---
 
-<<<<<<< HEAD
-<Canary>
-
-React による `<form>` の機能拡張は、現在 React の Canary および experimental チャンネルでのみ利用可能です。React の安定版リリースでは、`<form>` は単なる[組み込みのブラウザ HTML コンポーネント](https://react.dev/reference/react-dom/components#all-html-components)として機能します。[React のリリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
-
-</Canary>
-
-
-=======
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 <Intro>
 
 [ブラウザ組み込みの `<form>` コンポーネント](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)を利用することで、情報を送信するためのインタラクティブなコントロールを作成できます。
@@ -81,23 +71,13 @@ export default function Search() {
 
 </Sandpack>
 
-<<<<<<< HEAD
-### サーバアクションを使ってフォームの送信を処理する {/*handle-form-submission-with-a-server-action*/}
+### サーバ関数を使ってフォームの送信を処理する {/*handle-form-submission-with-a-server-function*/}
 
-`<form>` をレンダーし、入力フィールドと送信ボタンを配置します。フォームが送信されたときに関数を実行するために、サーバアクション（Server Action; [`'use server'`](/reference/rsc/use-server) でマークされた関数）を form の `action` に渡します。
+`<form>` をレンダーし、入力フィールドと送信ボタンを配置します。フォームが送信されたときに関数を実行するために、サーバ関数（Server Function; [`'use server'`](/reference/rsc/use-server) でマークされた関数）を form の `action` に渡します。
 
-`<form action>` にサーバアクションを渡すことで、JavaScript が無効あるいはコードがロードされる前の状態でも、ユーザがフォームを送信できるようになります。これは、接続やデバイスが遅い、または JavaScript が無効になっているユーザにとって有益であり、`action` に URL を渡したフォームと同様に動作します。
+`<form action>` にサーバ関数を渡すことで、JavaScript が無効あるいはコードがロードされる前の状態でも、ユーザがフォームを送信できるようになります。これは、接続やデバイスが遅い、または JavaScript が無効になっているユーザにとって有益であり、`action` に URL を渡したフォームと同様に動作します。
 
-`<form>` のアクションには hidden となっているフォームフィールドを使ってデータを送信することもできます。サーバアクションは、hidden フィールドのデータも [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) インスタンスに含まれた状態で呼び出されます。
-=======
-### Handle form submission with a Server Function {/*handle-form-submission-with-a-server-function*/}
-
-Render a `<form>` with an input and submit button. Pass a Server Function (a function marked with [`'use server'`](/reference/rsc/use-server)) to the `action` prop of form to run the function when the form is submitted.
-
-Passing a Server Function to `<form action>` allow users to submit forms without JavaScript enabled or before the code has loaded. This is beneficial to users who have a slow connection, device, or have JavaScript disabled and is similar to the way forms work when a URL is passed to the `action` prop.
-
-You can use hidden form fields to provide data to the `<form>`'s action. The Server Function will be called with the hidden form field data as an instance of [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+`<form>` のアクションには hidden となっているフォームフィールドを使ってデータを送信することもできます。サーバ関数は、hidden フィールドのデータも [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) インスタンスに含まれた状態で呼び出されます。
 
 ```jsx
 import { updateCart } from './lib.js';
@@ -137,11 +117,7 @@ function AddToCart({productId}) {
 }
 ```
 
-<<<<<<< HEAD
-[サーバコンポーネント](/reference/rsc/use-client) によって `<form>` をレンダーし、`<form>` の `action` に[サーバアクション](/reference/rsc/use-server)を渡すことで、フォームの[プログレッシブエンハンスメント](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement)が有効になります。
-=======
-When `<form>` is rendered by a [Server Component](/reference/rsc/use-client), and a [Server Function](/reference/rsc/server-function) is passed to the `<form>`'s `action` prop, the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+[サーバコンポーネント](/reference/rsc/use-client) によって `<form>` をレンダーし、`<form>` の `action` に[サーバ関数](/reference/rsc/server-function)を渡すことで、フォームの[プログレッシブエンハンスメント](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement)が有効になります。
 
 ### フォームの送信中状態を表示する {/*display-a-pending-state-during-form-submission*/}
 フォームが送信されている間に保留 (pending) 状態を表示するには、`<form>` 内でレンダーされるコンポーネントで `useFormStatus` フックを呼び出して、返された `pending` プロパティを読み取ります。
@@ -302,19 +278,11 @@ export default function Search() {
 
 プログレッシブエンハンスメントの実現のため JavaScript バンドルが読み込まれる前にフォーム送信エラーメッセージを表示できるようにするには、以下の条件を満たす必要があります。
 
-<<<<<<< HEAD
 1. `<form>` が [サーバコンポーネント](/reference/rsc/use-client)によってレンダーされている
-1. `<form>` の `action` プロパティに渡される関数が[サーバアクション](/reference/rsc/use-server)である
+1. `<form>` の `action` プロパティに渡される関数が[サーバ関数](/reference/rsc/server-functions)である
 1. `useActionState` フックを使用してエラーメッセージを表示している
 
-`useActionState` は[サーバアクション](/reference/rsc/use-server)と初期 state の 2 つの引数を受け取り、state 変数とアクションの 2 つの値を返します。`useActionState` が返したアクションは、フォームの `action` プロパティに渡します。`useActionState` が返した state 変数は、エラーメッセージを表示するために使用できます。`useActionState` に渡す[サーバアクション](/reference/rsc/use-server)が返す値は、state 変数を更新するために使用されます。
-=======
-1. `<form>` be rendered by a [Server Component](/reference/rsc/use-client)
-1. the function passed to the `<form>`'s `action` prop be a [Server Function](/reference/rsc/server-functions)
-1. the `useActionState` Hook be used to display the error message
-
-`useActionState` takes two parameters: a [Server Function](/reference/rsc/server-functions) and an initial state. `useActionState` returns two values, a state variable and an action. The action returned by `useActionState` should be passed to the `action` prop of the form. The state variable returned by `useActionState` can be used to display an error message. The value returned by the Server Function passed to `useActionState` will be used to update the state variable.
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+`useActionState` は[サーバ関数](/reference/rsc/server-functions)と初期 state の 2 つの引数を受け取り、state 変数とアクションの 2 つの値を返します。`useActionState` が返したアクションは、フォームの `action` プロパティに渡します。`useActionState` が返した state 変数は、エラーメッセージを表示するために使用できます。`useActionState` に渡すサーバ関数が返す値は、state 変数を更新するために使用されます。
 
 <Sandpack>
 

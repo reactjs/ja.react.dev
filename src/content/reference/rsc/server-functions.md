@@ -1,18 +1,18 @@
 ---
-title: Server Functions
+title: サーバ関数
 ---
 
 <RSC>
 
-Server Functions are for use in [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+サーバ関数は [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) で使用するための機能です。
 
-**Note:** Until September 2024, we referred to all Server Functions as "Server Actions". If a Server Function is passed to an action prop or called from inside an action then it is a Server Action, but not all Server Functions are Server Actions. The naming in this documentation has been updated to reflect that Server Functions can be used for multiple purposes.
+**補足**：2024 年 9 月までは、すべてのサーバ関数を「サーバアクション (Server Action)」と呼んでいました。サーバ関数が `action` プロパティに渡されるか `action` 内から呼び出されている場合は、それはサーバアクションとも呼べるでしょうが、すべてのサーバ関数がサーバアクションであるとは限りません。サーバ関数自体は様々な目的で使用できるものですので、それを反映するために本ドキュメントでは名前を変更しました。
 
 </RSC>
 
 <Intro>
 
-Server Functions allow Client Components to call async functions executed on the server.
+サーバ関数 (Server Function) を使用することで、サーバで実行される非同期関数をクライアントコンポーネントから呼び出すことができます。
 
 </Intro>
 
@@ -20,23 +20,23 @@ Server Functions allow Client Components to call async functions executed on the
 
 <Note>
 
-#### How do I build support for Server Functions? {/*how-do-i-build-support-for-server-functions*/}
+#### サーバ関数のサポートを追加する方法 {/*how-do-i-build-support-for-server-functions*/}
 
-While Server Functions in React 19 are stable and will not break between major versions, the underlying APIs used to implement Server Functions in a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
+React 19 のサーバ関数は安定しており、マイナーバージョン間での破壊的変更はありませんが、サーバコンポーネントのバンドラやフレームワーク内でサーバアクションを実装するために使用される、基盤となる API は semver に従いません。React 19.x のマイナーバージョン間で変更が生じる可能性があります。
 
-To support Server Functions as a bundler or framework, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stabilize the APIs used to implement Server Functions in the future.
+サーバ関数をバンドラやフレームワークでサポートする場合は、特定の React バージョンに固定するか、Canary リリースを使用することをお勧めします。サーバ関数を実装するために使用される API を安定化させるため、今後もバンドラやフレームワークと連携を続けていきます。
 
 </Note>
 
-When a Server Functions is defined with the [`"use server"`](/reference/rsc/use-server) directive, your framework will automatically create a reference to the server function, and pass that reference to the Client Component. When that function is called on the client, React will send a request to the server to execute the function, and return the result.
+サーバ関数が `"use server"` ディレクティブを付けて定義されると、フレームワークは自動的にそのサーバ関数への参照を作成し、その参照をクライアントコンポーネントに渡します。クライアントでこの関数が呼び出されると、React はサーバにリクエストを送信して元の関数を実行し、その結果を返します。
 
-Server Functions can be created in Server Components and passed as props to Client Components, or they can be imported and used in Client Components.
+サーバアクションはサーバコンポーネント内で作成し、クライアントコンポーネントに props として渡すことができます。また、クライアントコンポーネントで直接インポートして使用することも可能です。
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Creating a Server Function from a Server Component {/*creating-a-server-function-from-a-server-component*/}
+### サーバコンポーネントでサーバ関数を作成する {/*creating-a-server-function-from-a-server-component*/}
 
-Server Components can define Server Functions with the `"use server"` directive:
+サーバコンポーネントは `"use server"` ディレクティブを使用してサーバ関数を定義できます。
 
 ```js [[2, 7, "'use server'"], [1, 5, "createNoteAction"], [1, 12, "createNoteAction"]]
 // Server Component
@@ -54,7 +54,7 @@ function EmptyNote () {
 }
 ```
 
-When React renders the `EmptyNote` Server Function, it will create a reference to the `createNoteAction` function, and pass that reference to the `Button` Client Component. When the button is clicked, React will send a request to the server to execute the `createNoteAction` function with the reference provided:
+React はサーバコンポーネントである `EmptyNote` をレンダーする際に、`createNoteAction` 関数への参照を作成し、この参照をクライアントコンポーネントである `Button` に渡します。ボタンがクリックされると、React は渡された参照を使用してサーバにリクエストを送信し、`createNoteAction` 関数を実行します。
 
 ```js {5}
 "use client";
@@ -66,12 +66,12 @@ export default function Button({onClick}) {
 }
 ```
 
-For more, see the docs for [`"use server"`](/reference/rsc/use-server).
+詳細については、[`"use server"`](/reference/rsc/use-server) のドキュメントを参照してください。
 
 
-### Importing Server Functions from Client Components {/*importing-server-functions-from-client-components*/}
+### クライアントコンポーネントからサーバ関数をインポートする {/*importing-server-functions-from-client-components*/}
 
-Client Components can import Server Functions from files that use the `"use server"` directive:
+クライアントコンポーネントは `"use server"` ディレクティブを使用するファイルから、サーバ関数をインポートできます。
 
 ```js [[1, 3, "createNote"]]
 "use server";
@@ -82,7 +82,7 @@ export async function createNote() {
 
 ```
 
-When the bundler builds the `EmptyNote` Client Component, it will create a reference to the `createNoteAction` function in the bundle. When the `button` is clicked, React will send a request to the server to execute the `createNoteAction` function using the reference provided:
+バンドラがクライアントコンポーネントである `EmptyNote` をビルドする際に、バンドル内で `createNoteAction` 関数への参照を作成します。`button` がクリックされると、React は渡された参照を使用してサーバにリクエストを送信し、`createNoteAction` 関数を実行します。
 
 ```js [[1, 2, "createNote"], [1, 5, "createNote"], [1, 7, "createNote"]]
 "use client";
@@ -95,11 +95,11 @@ function EmptyNote() {
 }
 ```
 
-For more, see the docs for [`"use server"`](/reference/rsc/use-server).
+詳細については、[`"use server"`](/reference/rsc/use-server) のドキュメントを参照してください。
 
-### Server Functions with Actions {/*server-functions-with-actions*/}
+### サーバ関数をアクションと組み合わせる {/*server-functions-with-actions*/}
 
-Server Functions can be called from Actions on the client:
+クライアントでは、サーバ関数をアクション内で呼び出せます。
 
 ```js [[1, 3, "updateName"]]
 "use server";
@@ -143,15 +143,15 @@ function UpdateName() {
 }
 ```
 
-This allows you to access the `isPending` state of the Server Function by wrapping it in an Action on the client.
+このようにクライアント側のアクションでラップすることで、サーバ関数由来の `isPending` state にアクセスできるようになります。
 
-For more, see the docs for [Calling a Server Function outside of `<form>`](/reference/rsc/use-server#calling-a-server-function-outside-of-form)
+詳細については、[`<form>` 外でサーバ関数を呼び出す](/reference/rsc/use-server#calling-a-server-function-outside-of-form)を参照してください。
 
-### Server Functions with Form Actions {/*using-server-functions-with-form-actions*/}
+### サーバ関数とフォームアクション {/*using-server-functions-with-form-actions*/}
 
-Server Functions work with the new Form features in React 19.
+サーバ関数は React 19 の新しいフォーム関連機能と連携して動作します。
 
-You can pass a Server Function to a Form to automatically submit the form to the server:
+フォームにサーバ関数を渡すことで、自動的にフォームをサーバに送信できます。
 
 
 ```js [[1, 3, "updateName"], [1, 7, "updateName"]]
@@ -168,13 +168,13 @@ function UpdateName() {
 }
 ```
 
-When the Form submission succeeds, React will automatically reset the form. You can add `useActionState` to access the pending state, last response, or to support progressive enhancement.
+フォームの送信が成功すると、React は自動的にフォームをリセットします。`useActionState` を追加して、進行中 (pending) state や最終的なレスポンスにアクセスしたり、プログレッシブエンハンスメント (progressive enhancement) をサポートしたりすることが可能です。
 
-For more, see the docs for [Server Functions in Forms](/reference/rsc/use-server#server-functions-in-forms).
+詳細については、[フォーム内でのサーバ関数](/reference/rsc/use-server#server-functions-in-forms)を参照してください。
 
-### Server Functions with `useActionState` {/*server-functions-with-use-action-state*/}
+### `useActionState` とサーバ関数 {/*server-functions-with-use-action-state*/}
 
-You can call Server Functions with `useActionState` for the common case where you just need access to the action pending state and last returned response:
+`useActionState` とサーバ関数を組み合わせることで、アクションの進行中 state と最後に返されたレスポンスにアクセスする、という一般的なユースケースに対応できます。
 
 ```js [[1, 3, "updateName"], [1, 6, "updateName"], [2, 6, "submitAction"], [2, 9, "submitAction"]]
 "use client";
@@ -193,13 +193,13 @@ function UpdateName() {
 }
 ```
 
-When using `useActionState` with Server Functions, React will also automatically replay form submissions entered before hydration finishes. This means users can interact with your app even before the app has hydrated.
+サーバ関数と `useActionState` を使用する場合、React はハイドレーションの完了前に実行されたフォーム送信を自動的に再現します。これにより、ユーザはアプリのハイドレーションが起きる前からアプリを操作できるようになります。
 
-For more, see the docs for [`useActionState`](/reference/react-dom/hooks/useFormState).
+詳細については、[`useActionState`](/reference/react-dom/hooks/useFormState) のドキュメントを参照してください。
 
-### Progressive enhancement with `useActionState` {/*progressive-enhancement-with-useactionstate*/}
+### `useActionState` を使用したプログレッシブエンハンスメント {/*progressive-enhancement-with-useactionstate*/}
 
-Server Functions also support progressive enhancement with the third argument of `useActionState`.
+サーバ関数は `useActionState` の第 3 引数を使用してプログレッシブエンハンスメントもサポートします。
 
 ```js [[1, 3, "updateName"], [1, 6, "updateName"], [2, 6, "/name/update"], [3, 6, "submitAction"], [3, 9, "submitAction"]]
 "use client";
@@ -217,6 +217,6 @@ function UpdateName() {
 }
 ```
 
-When the <CodeStep step={2}>permalink</CodeStep> is provided to `useActionState`, React will redirect to the provided URL if the form is submitted before the JavaScript bundle loads.
+<CodeStep step={2}>パーマリンク</CodeStep>が `useActionState` に渡された場合、JavaScript バンドルが読み込まれる前にフォームが送信されると、React はこの渡された URL にリダイレクトします。
 
-For more, see the docs for [`useActionState`](/reference/react-dom/hooks/useFormState).
+詳しくは、[`useActionState`](/reference/react-dom/hooks/useFormState) のドキュメントを参照してください。

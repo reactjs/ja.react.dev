@@ -318,31 +318,6 @@ li {
   key={cat.id}
   ref={node => {
     const map = getMap();
-<<<<<<< HEAD
-    if (node) {
-      // Add to the Map
-      map.set(cat, node);
-    } else {
-      // Remove from the Map
-      map.delete(cat);
-    }
-  }}
->
-```
-
-これにより、後で Map から個々の DOM ノードを読み取ることができます。
-
-<Canary>
-
-This example shows another approach for managing the Map with a `ref` callback cleanup function.
-
-```js
-<li
-  key={cat.id}
-  ref={node => {
-    const map = getMap();
-=======
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
     // Add to the Map
     map.set(cat, node);
 
@@ -354,13 +329,13 @@ This example shows another approach for managing the Map with a `ref` callback c
 >
 ```
 
-This lets you read individual DOM nodes from the Map later.
+こうしておけば、後で Map から個々の DOM ノードを読み取れるようになります。
 
 <Note>
 
-When Strict Mode is enabled, ref callbacks will run twice in development.
+Strict Mode が有効の場合、ref コールバックは開発環境で 2 回呼び出されます。
 
-Read more about [how this helps find bugs](/reference/react/StrictMode#fixing-bugs-found-by-re-running-ref-callbacks-in-development) in callback refs.
+コールバック ref で[これがバグの発見にどう役立つのか](/reference/react/StrictMode#fixing-bugs-found-by-re-running-ref-callbacks-in-development)ご覧ください。
 
 </Note>
 

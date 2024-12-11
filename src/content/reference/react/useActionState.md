@@ -2,21 +2,6 @@
 title: useActionState
 ---
 
-<<<<<<< HEAD
-<Canary>
-
-`useActionState` フックは、現在 React の Canary および experimental チャンネルでのみ利用可能です。[リリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。また、`useActionState` の利点をフルに活かすためには、[React Server Components](/reference/rsc/use-client) をサポートするフレームワークを使用する必要があります。
-
-</Canary>
-
-<Note>
-
-React Canary の以前のバージョンでは、この API は React DOM の一部であり `useFormState` という名前でした。
-
-</Note>
-
-=======
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 <Intro>
 
 `useActionState` は、フォームアクションの結果に基づいて state を更新するためのフックです。
@@ -29,7 +14,7 @@ const [state, formAction, isPending] = useActionState(fn, initialState, permalin
 
 <Note>
 
-In earlier React Canary versions, this API was part of React DOM and called `useFormState`.
+React Canary の以前のバージョンでは、この API は React DOM の一部であり `useFormState` という名前でした。
 
 </Note>
 
@@ -66,25 +51,15 @@ function StatefulForm({}) {
 
 フォーム state とは、フォームが最後に送信されたときにアクションによって返される値です。フォームがまだ送信されていない場合は、渡された初期 state が使われます。
 
-<<<<<<< HEAD
-サーバアクションと併用して `useActionState` を使うことで、ハイドレーションが完了する前にフォームが送信された場合でも、そのサーバからのレスポンスを表示できるようになります。
-=======
-If used with a Server Function, `useActionState` allows the server's response from submitting the form to be shown even before hydration has completed.
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+サーバ関数と併用して `useActionState` を使うことで、ハイドレーションが完了する前にフォームが送信された場合でも、そのサーバからのレスポンスを表示できるようになります。
 
 [さらに例を見る](#usage)
 
 #### 引数 {/*parameters*/}
 
-<<<<<<< HEAD
 * `fn`: フォームが送信されたりボタンが押されたりしたときに呼び出される関数。この関数が呼び出される際には、1 番目の引数としてはフォームの前回 state（初回は渡した `initialState`、2 回目以降は前回の返り値）を受け取り、次の引数としてはフォームアクションが通常受け取る引数を受け取ります。
 * `initialState`: state の初期値として使いたい値。シリアライズ可能な任意の値です。この引数はアクションが一度呼び出された後は無視されます。
-* **省略可能** `permalink`: このフォームが書き換えの対象とするユニークなページ URL を含んだ文字列。ダイナミックなコンテンツ（ページフィードなど）のあるページでプログレッシブエンハンスメントを組み合わせる場合に使用します。`fn` が[サーバアクション](/reference/rsc/use-server)であり、かつフォームが JavaScript バンドルの読み込み完了前に送信された場合、ブラウザは現在のページ URL ではなくこの指定されたパーマリンク用 URL に移動するようになります。React が state を正しく受け渡せるよう、移動先となるページでも（アクション `fn` と `permalink` も含む）同じフォームが必ずレンダーされるようにしてください。フォームのハイドレーションが完了した後は、このパラメータは無視されます。
-=======
-* `fn`: The function to be called when the form is submitted or button pressed. When the function is called, it will receive the previous state of the form (initially the `initialState` that you pass, subsequently its previous return value) as its initial argument, followed by the arguments that a form action normally receives.
-* `initialState`: The value you want the state to be initially. It can be any serializable value. This argument is ignored after the action is first invoked.
-* **optional** `permalink`: A string containing the unique page URL that this form modifies. For use on pages with dynamic content (eg: feeds) in conjunction with progressive enhancement: if `fn` is a [server function](/reference/rsc/server-functions) and the form is submitted before the JavaScript bundle loads, the browser will navigate to the specified permalink URL, rather than the current page's URL. Ensure that the same form component is rendered on the destination page (including the same action `fn` and `permalink`) so that React knows how to pass the state through. Once the form has been hydrated, this parameter has no effect.
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+* **省略可能** `permalink`: このフォームが書き換えの対象とするユニークなページ URL を含んだ文字列。ダイナミックなコンテンツ（ページフィードなど）のあるページでプログレッシブエンハンスメントを組み合わせる場合に使用します。`fn` が[サーバ関数](/reference/rsc/server-functions)であり、かつフォームが JavaScript バンドルの読み込み完了前に送信された場合、ブラウザは現在のページ URL ではなくこの指定されたパーマリンク用 URL に移動するようになります。React が state を正しく受け渡せるよう、移動先となるページでも（アクション `fn` と `permalink` も含む）同じフォームが必ずレンダーされるようにしてください。フォームのハイドレーションが完了した後は、このパラメータは無視されます。
 
 {/* TODO T164397693: link to serializable values docs once it exists */}
 
@@ -145,11 +120,7 @@ function action(currentState, formData) {
 
 #### フォームエラーの表示 {/*display-form-errors*/}
 
-<<<<<<< HEAD
-サーバアクションによって返されるメッセージをエラーメッセージやトーストとして表示するには、そのアクションを `useActionState` の呼び出しでラップします。
-=======
-To display messages such as an error message or toast that's returned by a Server Function, wrap the action in a call to `useActionState`.
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+サーバ関数によって返されるメッセージをエラーメッセージやトーストとして表示するには、そのアクションを `useActionState` の呼び出しでラップします。
 
 <Sandpack>
 
@@ -213,11 +184,7 @@ form button {
 
 #### フォーム送信後に構造化された情報を表示 {/*display-structured-information-after-submitting-a-form*/}
 
-<<<<<<< HEAD
-サーバアクションからの返り値は、シリアライズ可能な値であれば任意です。例えばオブジェクトにして、アクションが成功したかどうかを示すブーリアン値や、エラーメッセージや、更新後の情報を含めることもできます。
-=======
-The return value from a Server Function can be any serializable value. For example, it could be an object that includes a boolean indicating whether the action was successful, an error message, or updated information.
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+サーバ関数からの返り値は、シリアライズ可能な値であれば任意です。例えばオブジェクトにして、アクションが成功したかどうかを示すブーリアン値や、エラーメッセージや、更新後の情報を含めることもできます。
 
 <Sandpack>
 

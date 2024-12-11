@@ -42,16 +42,10 @@ root.render(
 
 Strict Mode では、以下のような開発時専用の挙動が有効になります。
 
-<<<<<<< HEAD
 - コンポーネントは、純粋でない (impure) レンダーによって引き起こされるバグを見つけるために、[レンダーを追加で 1 回行います](#fixing-bugs-found-by-double-rendering-in-development)。
 - コンポーネントは、エフェクトのクリーンアップし忘れによるバグを見つけるために、[エフェクトの実行を追加で 1 回行います](#fixing-bugs-found-by-re-running-effects-in-development)。
+- コンポーネントは、ref のクリーンアップし忘れによるバグを見つけるために、[ref コールバックの実行を追加で 1 回行います](#fixing-bugs-found-by-re-running-ref-callbacks-in-development)。
 - コンポーネントが[非推奨の API を使用していないかチェック](#fixing-deprecation-warnings-enabled-by-strict-mode)します。
-=======
-- Your components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
-- Your components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
-- Your components will [re-run refs callbacks an extra time](#fixing-bugs-found-by-re-running-ref-callbacks-in-development) to find bugs caused by missing ref cleanup.
-- Your components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 
 #### props {/*props*/}
 
@@ -92,16 +86,10 @@ Strict Mode のチェックは**開発中にのみ実行される**ものです�
 
 Strict Mode は開発中に以下のチェックを有効にします：
 
-<<<<<<< HEAD
 - コンポーネントは、純粋でない (impure) レンダーによって引き起こされるバグを見つけるために、[レンダーを追加で 1 回行います](#fixing-bugs-found-by-double-rendering-in-development)。
 - コンポーネントは、エフェクトのクリーンアップし忘れによるバグを見つけるために、[エフェクトの実行を追加で 1 回行います](#fixing-bugs-found-by-re-running-effects-in-development)。
-- コンポーネントが[非推奨の API の使用を使っていないかチェック](#fixing-deprecation-warnings-enabled-by-strict-mode)します。
-=======
-- Your components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
-- Your components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
-- Your components will [re-run ref callbacks an extra time](#fixing-bugs-found-by-cleaning-up-and-re-attaching-dom-refs-in-development) to find bugs caused by missing ref cleanup.
-- Your components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+- コンポーネントは、ref のクリーンアップし忘れによるバグを見つけるために、[ref コールバックの実行を追加で 1 回行います](#fixing-bugs-found-by-cleaning-up-and-re-attaching-dom-refs-in-development)。
+- コンポーネントが[非推奨の API を使っていないかチェック](#fixing-deprecation-warnings-enabled-by-strict-mode)します。
 
 **これらのチェックはすべて開発環境専用であり、本番用ビルドには影響しません。**
 
@@ -744,7 +732,7 @@ button { margin-left: 10px; }
 
 **Strict Mode を使用すると、すぐに問題があることがわかります**（アクティブな接続の数が 2 に跳ね上がります）。Strict Mode は、すべてのエフェクトに対してセットアップ+クリーンアップのサイクルを追加で実行します。このエフェクトにはクリーンアップロジックがないため、余分な接続が作成されても破棄されませんでした。これは、クリーンアップ関数が欠けていることを示すヒントです。
 
-Strict Mode を使用すると、このようなミスを早期に気付くことができます。Strict Mode でエフェクトにクリーンアップ関数を追加して修正することで、先ほどの選択ボックスのような、将来本番環境で発生しうる多くのバグも、あらかじめ潰しておけるのです。
+Strict Mode を使用すると、このようなミスに早期に気付くことができます。Strict Mode でエフェクトにクリーンアップ関数を追加して修正することで、先ほどの選択ボックスのような、将来本番環境で発生しうる多くのバグも、あらかじめ潰しておけるのです。
 
 <Sandpack>
 
@@ -839,18 +827,15 @@ Strict Mode がなければ、エフェクトがクリーンアップを必要�
 [エフェクトのクリーンアップの実装について詳しく読む](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 
 ---
-### Fixing bugs found by re-running ref callbacks in development {/*fixing-bugs-found-by-re-running-ref-callbacks-in-development*/}
+### 開発中に ref コールバックの再実行によって見つかったバグの修正 {/*fixing-bugs-found-by-re-running-ref-callbacks-in-development*/}
 
-<<<<<<< HEAD
-### Strict Mode によって有効化された非推奨警告の修正 {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
-=======
-Strict Mode can also help find bugs in [callbacks refs.](/learn/manipulating-the-dom-with-refs)
+Strict Mode は、[コールバック形式の ref](/learn/manipulating-the-dom-with-refs) のバグを見つけるのにも役立ちます。
 
-Every callback `ref` has some setup code and may have some cleanup code. Normally, React calls setup when the element is *created* (is added to the DOM) and calls cleanup when the element is *removed* (is removed from the DOM).
+すべてのコールバック `ref` にはセットアップコードが含まれ、一部にはクリーンアップコードも含まれます。通常、React は要素が**作成されたとき**（DOM に追加されたとき）にセットアップを呼び出し、要素が（DOM から）**削除されたとき**にクリーンアップを呼び出します。
 
-When Strict Mode is on, React will also run **one extra setup+cleanup cycle in development for every callback `ref`.** This may feel surprising, but it helps reveal subtle bugs that are hard to catch manually.
+Strict Mode が有効な場合、React は開発中に**すべてのコールバック `ref` に対して追加で 1 回、セットアップ+クリーンアップのサイクルを実行**します。この挙動に驚くかもしれませんが、手動で見つけるのが難しい微妙なバグを明らかにするのに役立ちます。
 
-Consider this example, which allows you to select an animal and then scroll to one of them. Notice when you switch from "Cats" to "Dogs", the console logs show that the number of animals in the list keeps growing, and the "Scroll to" buttons stop working:
+以下の例を考えてみましょう。この例では、動物の種類を選択した後に、リスト内の動物のいずれかにスクロールすることができます。"Cats" から "Dogs" に切り替えると、コンソールのログに表示される動物の数が増え続けていき、"Scroll to" ボタンが機能しなくなるのがわかります。
 
 <Sandpack>
 
@@ -970,9 +955,9 @@ li {
 </Sandpack>
 
 
-**This is a production bug!** Since the ref callback doesn't remove animals from the list in the cleanup, the list of animals keeps growing. This is a memory leak that can cause performance problems in a real app, and breaks the behavior of the app.
+**これは本番環境でのバグです！** ref コールバックのクリーンアップでリストから動物を削除していないため、動物のリストが増え続けていっています。これはメモリリークであり、本番環境でパフォーマンスの問題や動作の不具合を引き起こします。
 
-The issue is the ref callback doesn't cleanup after itself:
+問題は ref コールバックがクリーンアップを正しく行っていないことです。
 
 ```js {6-8}
 <li
@@ -987,7 +972,7 @@ The issue is the ref callback doesn't cleanup after itself:
 </li>
 ```
 
-Now let's wrap the original (buggy) code in `<StrictMode>`:
+元の（バグのある）例を `<StrictMode>` でラップしてみましょう。
 
 <Sandpack>
 
@@ -1111,9 +1096,9 @@ li {
 
 </Sandpack>
 
-**With Strict Mode, you immediately see that there is a problem**. Strict Mode runs an extra setup+cleanup cycle for every callback ref. This callback ref has no cleanup logic, so it adds refs but doesn't remove them. This is a hint that you're missing a cleanup function.
+**Strict Mode を使用することで、即座に問題に気づけるようになります**。Strict Mode では、すべてのコールバック `ref` に対して追加のセットアップ+クリーンアップサイクルが実行されます。このコールバック `ref` にはクリーンアップロジックがないため、ref は追加されるだけで削除されません。これはクリーンアップ関数が欠けていることを示すヒントです。
 
-Strict Mode lets you eagerly find mistakes in callback refs. When you fix your callback by adding a cleanup function in Strict Mode, you *also* fix many possible future production bugs like the "Scroll to" bug from before:
+Strict Mode を使うことで、コールバック `ref` のミスを積極的に見つけだすことができます。Strict Mode を使いクリーンアップ関数を追加してコールバックを修正することで、先ほどの "Scroll to" のような、将来本番環境で発生しうる多くのバグも、あらかじめ潰しておけるのです。
 
 <Sandpack>
 
@@ -1238,7 +1223,7 @@ li {
 
 </Sandpack>
 
-Now on inital mount in StrictMode, the ref callbacks are all setup, cleaned up, and setup again:
+StrictMode が有効になると、初回レンダー時に ref コールバックがセットアップされ、クリーンアップされ、またセットアップされます。
 
 ```
 ...
@@ -1249,23 +1234,15 @@ Now on inital mount in StrictMode, the ref callbacks are all setup, cleaned up, 
 ✅ Adding animal to the map. Total animals: 10
 ```
 
-**This is expected.** Strict Mode confirms that the ref callbacks are cleaned up correctly, so the size never grows above the expected amount. After the fix, there are no memory leaks, and all the features work as expected.
+**この挙動は問題ありません**。Strict Mode により、ref コールバックが正しくクリーンアップされており、予想外にサイズが大きくならないことを確認できます。修正後にはメモリリークはなくなり、すべての機能が予期したとおりに動作するようになります。
 
-Without Strict Mode, it was easy to miss the bug until you clicked around to app to notice broken features. Strict Mode made the bugs appear right away, before you push them to production.
+Strict Mode がなければ、アプリをクリックして動かない機能があることに気付くまで、このバグは見逃される危険がありました。Strict Mode により、本番環境に投入するプッシュする前にバグがすぐに明らかになったのです。
 
 --- 
-### Fixing deprecation warnings enabled by Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+### Strict Mode によって現れるようになった非推奨警告の修正 {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
 
 React は、`<StrictMode>` ツリー内のいずれかのコンポーネントが以下の非推奨 API を使用している場合に警告を発します。
 
-<<<<<<< HEAD
-* [`findDOMNode`](/reference/react-dom/findDOMNode)。[代替手段を見る](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
 * `UNSAFE_` クラスライフサイクルメソッド（[`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount) など）。[代替手段を見る](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles) 
-* レガシーコンテクスト（[`childContextTypes`](/reference/react/Component#static-childcontexttypes)、[`contextTypes`](/reference/react/Component#static-contexttypes)、[`getChildContext`](/reference/react/Component#getchildcontext)）。[代替手段を見る](/reference/react/createContext)
-* レガシーの文字列型 ref（[`this.refs`](/reference/react/Component#refs)）。[代替手段を見る](https://reactjs.org/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage)
-=======
-* `UNSAFE_` class lifecycle methods like [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [See alternatives.](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles)
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 
 これらの API は主に古い[クラスコンポーネント](/reference/react/Component)で使用されているものであり、現在のアプリケーションではほとんど見られません。

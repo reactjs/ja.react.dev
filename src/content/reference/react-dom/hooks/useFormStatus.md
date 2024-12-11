@@ -3,15 +3,6 @@ title: useFormStatus
 canary: true
 ---
 
-<<<<<<< HEAD
-<Canary>
-
-`useFormStatus` フックは、現在 React の Canary および experimental チャンネルでのみ利用可能です。[リリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
-
-</Canary>
-
-=======
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 <Intro>
 
 `useFormStatus` は、直近のフォーム送信に関するステータス情報を提供するフックです。

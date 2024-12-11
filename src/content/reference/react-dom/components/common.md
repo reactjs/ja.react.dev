@@ -246,30 +246,6 @@ title: "<div> などの一般的なコンポーネント"
 [`useRef`](/reference/react/useRef#manipulating-the-dom-with-a-ref) などが返す ref オブジェクトの代わりに、`ref` 属性に関数を渡すことができます。
 
 ```js
-<<<<<<< HEAD
-<div ref={(node) => console.log(node)} />
-```
-
-[`ref` コールバックを使用した例を見る](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
-
-`<div>` DOM ノードが画面に追加されると、React はその DOM `node` を引数として `ref` コールバックを呼び出します。`<div>` DOM ノードが削除されると、React は `null` を引数として `ref` コールバックを呼び出します。
-
-React は、*異なる* `ref` コールバックが渡された場合も `ref` コールバックを呼び出します。上記の例では、`(node) => { ... }` は毎回のレンダーで異なる関数です。コンポーネントが再レンダーされると、*前*の関数が `null` を引数として呼び出され、*次*の関数が DOM ノードを引数として呼び出されます。
-
-#### 引数 {/*ref-callback-parameters*/}
-
-* `node`: DOM ノードまたは `null`。ref がアタッチされるときに React は DOM ノードを渡し、`ref` がデタッチされるときに `null` を渡します。毎回のレンダーで `ref` コールバックに同じ関数参照を渡さない限り、コールバックは一時的にデタッチされ、コンポーネントの再レンダーごとに再アタッチされます。
-
-<Canary>
-
-#### 返り値 {/*returns*/}
-
-*  **省略可能** `cleanup function`: `ref` がデタッチされる際に React はこのクリーンアップ関数を実行します。`ref` コールバックから関数が返されない場合は、`ref` がデタッチされる際に `null` を引数にして元のコールバックの方を再度呼び出します。
-
-```js
-
-=======
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 <div ref={(node) => {
   console.log('Attached', node);
 
@@ -279,41 +255,32 @@ React は、*異なる* `ref` コールバックが渡された場合も `ref` �
 }}>
 ```
 
-<<<<<<< HEAD
-#### 注意事項 {/*caveats*/}
+[`ref` コールバックを使用した例を見る](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
 
-* Strict Mode が有効の場合、React は最終的なセットアップの前に、**開発時専用のセットアップ＋クリーンアップのサイクルを追加で 1 回実行します**。これはクリーンアップのロジックがセットアップロジックに「鏡のように対応」しており、セットアップが行っていることが何であれそれの停止ないし取り消しを行っている、ということを保証するために行う、ストレステストです。問題が生じている場合は正しくクリーンアップ関数を実装してください。
-* *異なる* `ref` のコールバックを渡した場合、React は*古い*コールバックのクリーンアップが存在する場合それをまず実行します。クリーンアップ関数が定義されていない場合は、`ref` コールバック自体が `null` を引数にして呼び出されます。*新しい*関数は、DOM ノードを引数に呼び出されます。
+`<div>` DOM ノードが画面に追加されると、React はその DOM `node` を引数として `ref` コールバックを呼び出します。`<div>` DOM ノードが削除されると、React はコールバックが返したクリーンアップ関数を呼び出します。
 
-</Canary>
-=======
-[See an example of using the `ref` callback.](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
+React は、*異なる* `ref` コールバックが渡された場合も `ref` コールバックを呼び出します。上記の例では、`(node) => { ... }` は毎回のレンダーで異なる関数です。コンポーネントが再レンダーされると、*前*の関数が `null` を引数として呼び出され、*次*の関数が DOM ノードを引数として呼び出されます。
 
-When the `<div>` DOM node is added to the screen, React will call your `ref` callback with the DOM `node` as the argument. When that `<div>` DOM node is removed, React will call your the cleanup function returned from the callback.
+#### 引数 {/*ref-callback-parameters*/}
 
-React will also call your `ref` callback whenever you pass a *different* `ref` callback. In the above example, `(node) => { ... }` is a different function on every render. When your component re-renders, the *previous* function will be called with `null` as the argument, and the *next* function will be called with the DOM node.
-
-#### Parameters {/*ref-callback-parameters*/}
-
-* `node`: A DOM node. React will pass you the DOM node when the ref gets attached. Unless you pass the same function reference for the `ref` callback on every render, the callback will get temporarily cleanup and re-create during every re-render of the component.
+* `node`: DOM ノード。ref がアタッチされるときに React は DOM ノードを渡します。毎回のレンダーで `ref` コールバックに同じ関数参照を渡さない限り、コンポーネントのレンダー毎に一時的なクリーンアップと再作成が繰り返されることになります。
 
 <Note>
 
-#### React 19 added cleanup functions for `ref` callbacks. {/*react-19-added-cleanup-functions-for-ref-callbacks*/}
+#### `ref` コールバックのクリーンアップは React 19 で追加されました {/*react-19-added-cleanup-functions-for-ref-callbacks*/}
 
-To support backwards compatibility, if a cleanup function is not returned from the `ref` callback, `node` will be called with `null` when the `ref` is detached. This behavior will be removed in a future version.
+後方互換性をサポートするため、`ref` コールバックからクリーンアップ関数が返されない場合、`ref` がデタッチされると `node` を `null` としてコールバックが呼び出されます。この動作は将来のバージョンで削除される予定です。
 
 </Note>
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-* **optional** `cleanup function`: When the `ref` is detached, React will call the cleanup function. If a function is not returned by the `ref` callback, React will call the callback again with `null` as the argument when the `ref` gets detached. This behavior will be removed in a future version.
+* **省略可能** クリーンアップ関数：`ref` がデタッチされると、React はクリーンアップ関数を呼び出します。ref コールバックが関数を返さない場合、ref がデタッチされたときに、React は null を引数として再度コールバックを呼び出しますが、この動作は将来のバージョンで削除される予定です。
 
-#### Caveats {/*caveats*/}
+#### 注意事項 {/*caveats*/}
 
-* When Strict Mode is on, React will **run one extra development-only setup+cleanup cycle** before the first real setup. This is a stress-test that ensures that your cleanup logic "mirrors" your setup logic and that it stops or undoes whatever the setup is doing. If this causes a problem, implement the cleanup function.
-* When you pass a *different* `ref` callback, React will call the *previous* callback's cleanup function if provided. If no cleanup function is defined, the `ref` callback will be called with `null` as the argument. The *next* function will be called with the DOM node.
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+* Strict Mode が有効の場合、React は最終的なセットアップの前に、**開発時専用のセットアップ＋クリーンアップのサイクルを追加で 1 回実行します**。これはクリーンアップのロジックがセットアップロジックに「鏡のように対応」しており、セットアップが行っていることが何であれそれの停止ないし取り消しを行っている、ということを保証するために行う、ストレステストです。問題が生じている場合は正しくクリーンアップ関数を実装してください。
+* *異なる* `ref` のコールバックを渡した場合、React は*古い*コールバックのクリーンアップが存在する場合それをまず実行します。クリーンアップ関数が定義されていない場合は、`ref` コールバック自体が `null` を引数にして呼び出されます。その後*新しい*関数が、DOM ノードを引数にして呼び出されます。
 
 ---
 

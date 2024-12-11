@@ -36,28 +36,13 @@ function SearchPage() {
 
 #### 引数 {/*parameters*/}
 
-<<<<<<< HEAD
 * `value`: 遅延させたい値。任意の型を持つことができます。
-* <CanaryBadge title="This feature is only available in the Canary channel" /> **省略可能** `initialValue`: コンポーネントの初回レンダー時に使用する値です。このオプションが省略された場合、初回レンダー時には代わりにレンダーできる `value` の前のバージョンがないことになるので、`useDeferredValue` は値の遅延を行いません。
-=======
-* `value`: The value you want to defer. It can have any type.
-* **optional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+* **省略可能** `initialValue`: コンポーネントの初回レンダー時に使用する値です。このオプションが省略された場合、初回レンダー時には代わりにレンダーできる `value` の前のバージョンがないことになるので、`useDeferredValue` は値の遅延を行いません。
 
 
 #### 返り値 {/*returns*/}
 
-<<<<<<< HEAD
-- `currentValue`: 初回レンダー時には、返される値はあなたが渡した値と同一になります。更新時には、React はまず古い値で再レンダーを試み（つまり返り値は古い値になり）、次に新しい値でバックグラウンドで再レンダーを試みます（返り値は更新後の値になります）。
-
-<Canary>
-
-最新の React Canary バージョンでは、`useDeferredValue` は初回レンダー時に `initialValue` を返し、バックグラウンドでその `value` を使った再レンダーをスケジュールします。
-
-</Canary>
-=======
-- `currentValue`: During the initial render, the returned deferred value will be the `initialValue`, or the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in the background with the new value (so it will return the updated value).
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+- `currentValue`: 初回レンダー時には、`initialValue` を遅延された値として返すか、もしくはあなたが渡した値をそのまま返します。更新時には、React はまず古い値で再レンダーを試み（つまり返り値は古い値になり）、次に新しい値でバックグラウンドで再レンダーを試みます（返り値は更新後の値になります）。
 
 #### 注意点 {/*caveats*/}
 

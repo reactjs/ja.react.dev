@@ -48,17 +48,10 @@ function Greeting({ name }) {
 
 `createElement` は以下のプロパティを持つ React 要素オブジェクトを返します。
 
-<<<<<<< HEAD
 * `type`: 指定した `type`。
-* `props`: 指定した `props`、ただし `ref` と `key` は除く。もし `type` がレガシーの `type.defaultProps` を持つコンポーネントであれば、欠けているか undefined となっている `props` は `type.defaultProps` から値を取得します。
+* `props`: 指定した `props`、ただし `ref` と `key` は除く。
 * `ref`: 指定した `ref`。未指定の場合は `null`。
 * `key`: 指定した `key`。強制的に文字列に変換されます。未指定の場合は `null`。
-=======
-* `type`: The `type` you have passed.
-* `props`: The `props` you have passed except for `ref` and `key`.
-* `ref`: The `ref` you have passed. If missing, `null`.
-* `key`: The `key` you have passed, coerced to a string. If missing, `null`.
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 
 通常、この要素をコンポーネントから返すか、他の要素の子として用います。要素のプロパティを読み取ることは可能ですが、作成後は要素の構造を非公開 (opaque) として扱い、レンダーのみ行うようにするべきです。
 

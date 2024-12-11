@@ -4,11 +4,7 @@ title: useTransition
 
 <Intro>
 
-<<<<<<< HEAD
-`useTransition` は、UI をブロックせずに state を更新するための React フックです。
-=======
-`useTransition` is a React Hook that lets you render a part of the UI in the background.
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+`useTransition` は、UI を部分的にバックグラウンドでレンダーするための React フックです。
 
 ```js
 const [isPending, startTransition] = useTransition()
@@ -45,25 +41,14 @@ function TabContainer() {
 
 `useTransition` は常に 2 つの要素を含む配列を返します。
 
-<<<<<<< HEAD
 1. トランジションが保留中であるかどうかを示す `isPending` フラグ。
-2. state 更新をトランジションとしてマークするための [`startTransition` 関数](#starttransition)。
-
----
-
-### `startTransition` 関数 {/*starttransition*/}
-
-`useTransition` によって返される `startTransition` 関数により、ある state 更新をトランジションとしてマークすることができます。
-=======
-1. The `isPending` flag that tells you whether there is a pending Transition.
-2. The [`startTransition` function](#starttransition) that lets you mark updates as a Transition.
+2. 更新をトランジションとしてマークするための [`startTransition` 関数](#starttransition)。
 
 ---
 
 ### `startTransition(action)` {/*starttransition*/}
 
-The `startTransition` function returned by `useTransition` lets you mark a updates as a Transition.
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+`useTransition` によって返される `startTransition` 関数により、更新をトランジションとしてマークすることができます。
 
 ```js {6,8}
 function TabContainer() {
@@ -79,11 +64,6 @@ function TabContainer() {
 }
 ```
 
-<<<<<<< HEAD
-#### 引数 {/*starttransition-parameters*/}
-
-* `scope`: 1 つ以上の [`set` 関数](/reference/react/useState#setstate)を呼び出して state を更新する関数。React は引数なしで直ちに `scope` を呼び出し、`scope` 関数呼び出し中に同期的にスケジュールされたすべての state 更新をトランジションとしてマークします。このような更新は[ノンブロッキング](#marking-a-state-update-as-a-non-blocking-transition)になり、[不要なローディングインジケータを表示しない](#preventing-unwanted-loading-indicators)ようになります。
-=======
 <Note>
 #### Functions called in `startTransition` are called "Actions". {/*functions-called-in-starttransition-are-called-actions*/}
 
@@ -113,10 +93,9 @@ function SubmitButton({ submitAction }) {
 
 
 
-#### Parameters {/*starttransition-parameters*/}
+#### 引数 {/*starttransition-parameters*/}
 
-* `action`: A function that updates some state by calling one or more [`set` functions](/reference/react/useState#setstate). React calls `action` immediately with no parameters and marks all state updates scheduled synchronously during the `action` function call as Transitions. Any async calls that are awaited in the `action` will be included in the Transition, but currently require wrapping any `set` functions after the `await` in an additional `startTransition` (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)). State updates marked as Transitions will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators](#preventing-unwanted-loading-indicators).
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+* `action`: 1 つ以上の [`set` 関数](/reference/react/useState#setstate)を呼び出して state を更新する関数。React は引数なしで直ちに `action` を呼び出し、`action` 関数呼び出し中に同期的にスケジュールされたすべての state 更新をトランジションとしてマークします。`action` 内で await されている非同期関数のコールもトランジションの一部ではありますが、現時点では `await` の後に来る `set` 関数は別の `startTransition` にラップする必要があります（[トラブルシューティング](#react-doesnt-treat-my-state-update-after-await-as-a-transition)参照）。トランジションとしてマークされた state の更新は[ノンブロッキング](#marking-a-state-update-as-a-non-blocking-transition)になり、[不要なローディングインジケータを表示しない](#preventing-unwanted-loading-indicators)ようになります。
 
 #### 返り値 {/*starttransition-returns*/}
 
@@ -128,13 +107,9 @@ function SubmitButton({ submitAction }) {
 
 * state の `set` 関数にアクセスできる場合にのみ、state 更新をトランジションにラップできます。ある props やカスタムフックの値に反応してトランジションを開始したい場合は、代わりに [`useDeferredValue`](/reference/react/useDeferredValue) を試してみてください。
 
-<<<<<<< HEAD
-* `startTransition` に渡す関数は同期的でなければなりません。React はこの関数を直ちに実行し、その実行中に行われるすべての state 更新をトランジションとしてマークします。後になって（例えばタイムアウト内で）さらに state 更新をしようとすると、それらはトランジションとしてマークされません。
-=======
-* The function you pass to `startTransition` is called immediately, marking all state updates that happen while it executes as Transitions. If you try to perform state updates in a `setTimeout`, for example, they won't be marked as Transitions.
+* `startTransition` に渡された関数は即座に呼び出され、その関数の実行中に発生するすべての state 更新がトランジションとしてマークされます。しかし例えば、`setTimeout` 内で state を更新しようとした場合は、それはトランジションとしてマークされません。
 
-* You must wrap any state updates after any async requests in another `startTransition` to mark them as Transitions. This is a known limitation that we will fix in the future (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)).
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+* 非同期リクエスト後に state 更新を行いたい場合は、トランジションとしてマークするために別の `startTransition` でラップする必要があります。これは既知の制限であり、将来的に修正される予定です（詳細は[トラブルシューティング](#react-doesnt-treat-my-state-update-after-await-as-a-transition)を参照してください）。
 
 * `startTransition` 関数は常に同一のものとなるため、多くの場合エフェクトの依存配列では省略されますが、依存配列に含めてもエフェクトの再実行は起こりません。依存値を削除してもリンタがエラーを出さない場合、削除しても安全です。[エフェクトから依存値を取り除く方法](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)を参照してください。
 
@@ -142,25 +117,13 @@ function SubmitButton({ submitAction }) {
 
 * トランジションによる更新はテキスト入力欄の制御には使用できません。
 
-<<<<<<< HEAD
-* 進行中のトランジションが複数ある場合、React は現在それらをひとつに束ねる処理を行います。この制限は将来のリリースではおそらく削除されます。
-
----
-=======
-* If there are multiple ongoing Transitions, React currently batches them together. This is a limitation that may be removed in a future release.
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+* 進行中のトランジションが複数ある場合、React は現在それらをひとつに束ねる処理を行います。この制限は将来のリリースでは削除される可能性があります。
 
 ## 使用法 {/*usage*/}
 
-<<<<<<< HEAD
-### state 更新をノンブロッキングのトランジションとしてマークする {/*marking-a-state-update-as-a-non-blocking-transition*/}
+### ノンブロッキングな更新をアクションを使って実行する {/*perform-non-blocking-updates-with-actions*/}
 
-コンポーネントのトップレベルで `useTransition` を呼び出し、state 更新を非ブロッキングの*トランジション*としてマークします。
-=======
-### Perform non-blocking updates with Actions {/*perform-non-blocking-updates-with-actions*/}
-
-Call `useTransition` at the top of your component to create Actions, and access the pending state:
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+コンポーネントのトップレベルで `useTransition` を呼び出してアクション (Action) を作成し、保留中 (pending) 状態にアクセスします。
 
 ```js [[1, 4, "isPending"], [2, 4, "startTransition"]]
 import {useState, useTransition} from 'react';
@@ -173,17 +136,10 @@ function CheckoutForm() {
 
 `useTransition` は正確に 2 つの項目を含む配列を返します：
 
-<<<<<<< HEAD
 1. トランジションが保留中であるかどうかを示す <CodeStep step={1}>`isPending` フラグ</CodeStep>。
-2. state 更新をトランジションとしてマークするための <CodeStep step={2}>`startTransition` 関数</CodeStep>。
+2. アクションを作成するための <CodeStep step={2}>`startTransition` 関数</CodeStep>。
 
-その後、次のようにして state 更新をトランジションとしてマークできます。
-=======
-1. The <CodeStep step={1}>`isPending` flag</CodeStep> that tells you whether there is a pending Transition.
-2. The <CodeStep step={2}>`startTransition` function</CodeStep> that lets you create an Action.
-
-To start a Transition, pass a function to `startTransition` like this:
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+トランジションを開始するには、以下のようにして `startTransition` に関数を渡します。
 
 ```js
 import {useState, useTransition} from 'react';
@@ -205,31 +161,17 @@ function CheckoutForm() {
 }
 ```
 
-<<<<<<< HEAD
-トランジションを使用することで、遅いデバイスでもユーザインターフェースの更新をレスポンシブに保つことができます。
+`startTransition` に渡される関数が "アクション (Action)" と呼ばれるものです。アクション内では state を更新したり、（必要に応じて）副作用を実行したりすることができます。その作業はバックグラウンドで、ページ上のユーザ操作をブロックすることなく行われます。ひとつのトランジションが複数のアクションを含むことができ、トランジションが進行中でも UI の応答性は保たれます。例えば、ユーザがタブをクリックしたあとに気が変わって別のタブをクリックした場合でも、最初の更新が終了するのを待つことなく、2 回目のクリックが即座に処理されます。
 
-トランジションを使用すると、再レンダーの途中でも UI がレスポンシブに保たれます。例えば、ユーザがタブをクリックしたが、その後気が変わって別のタブをクリックする場合、最初の再レンダーが終了するのを待つことなくそれを行うことができます。
+トランジションの進行中状態に関するフィードバックをユーザに提供するために、`startTransition` が最初に呼び出されると `isPending` state が `true` に切り替わり、すべてのアクションが完了して最終的な状態がユーザに表示されるまで `true` のままになります。トランジションによりアクション内の副作用が順番に完了することが保証され、[不要なローディングインジケータが抑止](#preventing-unwanted-loading-indicators)されます。また、`useOptimistic` を使用することで、トランジションが進行中の間にも即時のフィードバックを提供することができます。
 
-<Recipes titleText="useTransition と通常の state 更新の違い" titleId="examples">
+<Recipes titleText="useTransition と通常の state 更新の違い">
 
-#### トランジションで現在のタブを更新する {/*updating-the-current-tab-in-a-transition*/}
+#### アクションで数量を更新 {/*updating-the-quantity-in-an-action*/}
 
-この例では、"Posts" タブが**人為的に遅延**させられているため、レンダーには少なくとも 1 秒かかります。
+この例では、`updateQuantity` 関数がカート内の商品の数量を更新するリクエストをサーバに送信する部分をシミュレーションしています。この関数は、リクエストの完了に少なくとも 1 秒かかるように**意図的に遅延**させられています。
 
-"Posts" をクリックし、すぐに "Contact" をクリックしてみてください。これにより、"Posts" の遅いレンダーが中断されます。"Contact" タブはすぐに表示されます。この state 更新はトランジションとしてマークされているため、遅い再レンダーがユーザインターフェースをフリーズさせることはありません。
-=======
-The function passed to `startTransition` is called the "Action". You can update state and (optionally) perform side effects within an Action, and the work will be done in the background without blocking user interactions on the page. A Transition can include multiple Actions, and while a Transition is in progress, your UI stays responsive. For example, if the user clicks a tab but then changes their mind and clicks another tab, the second click will be immediately handled without waiting for the first update to finish. 
-
-To give the user feedback about in-progress Transitions, to `isPending` state switches to `true` at the first call to `startTransition`, and stays `true` until all Actions complete and the final state is shown to the user. Transitions ensure side effects in Actions to complete in order to [prevent unwanted loading indicators](#preventing-unwanted-loading-indicators), and you can provide immediate feedback while the Transition is in progress with `useOptimistic`.
-
-<Recipes titleText="The difference between Actions and regular event handling">
-
-#### Updating the quantity in an Action {/*updating-the-quantity-in-an-action*/}
-
-In this example, the `updateQuantity` function simulates a request to the server to update the item's quantity in the cart. This function is *artificially slowed down* so that it takes at least a second to complete the request.
-
-Update the quantity multiple times quickly. Notice that the pending "Total" state is shown while any requests are in progress, and the "Total" updates only after the final request is complete. Because the update is in an Action, the "quantity" can continue to be updated while the request is in progress.
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+数量欄を素早く複数回更新してみてください。リクエストが進行中の間、"Total" 欄には保留中状態が表示され、最後のリクエストが完了した後にのみ "Total" が更新されることに注意してください。更新がアクション内で行われるため、リクエストの進行中でも "quantity" 欄を更新し続けることが可能です。
 
 <Sandpack>
 
@@ -363,30 +305,22 @@ export async function updateQuantity(newQuantity) {
 
 </Sandpack>
 
-This is a basic example to demonstrate how Actions work, but this example does not handle requests completing out of order. When updating the quantity multiple times, it's possible for the previous requests to finish after later requests causing the quantity to update out of order. This is a known limitation that we will fix in the future (see [Troubleshooting](#my-state-updates-in-async-transitions-are-out-of-order) below).
+これはアクションの動作を示す基本的な例となっていますが、この例ではリクエストが順番通り完了しなかった場合の問題を処理していません。数量を複数回更新すると、後続のリクエストの後で以前のリクエストが完了するために、数量がおかしな順番で更新されてしまう可能性があります。これは既知の制限であり、将来的に修正される予定です（詳細は[トラブルシューティング](#my-state-updates-in-async-transitions-are-out-of-order)を参照してください）。
 
-For common use cases, React provides built-in abstractions such as:
+React は、一般的なユースケースに対応する以下のような組み込みの抽象化を提供しています。
 - [`useActionState`](/reference/react/useActionState)
-- [`<form>` actions](/reference/react-dom/components/form)
-- [Server Actions](/reference/rsc/server-actions)
+- [`<form>` アクション](/reference/react-dom/components/form)
+- [サーバアクション](/reference/rsc/server-actions)
 
-These solutions handle request ordering for you. When using Transitions to build your own custom hooks or libraries that manage async state transitions, you have greater control over the request ordering, but you must handle it yourself.
+これらのソリューションはリクエスト順序の問題を自動的に管理します。トランジションを使って非同期の state 遷移を管理するカスタムフックやライブラリを構築する場合、リクエスト順序をより高度に制御可能ですが、問題を手動で管理する必要があります。
 
 <Solution />
 
-<<<<<<< HEAD
-#### トランジションなしで現在のタブを更新する {/*updating-the-current-tab-without-a-transition*/}
+#### アクションなしで数量を更新 {/*updating-the-users-name-without-an-action*/}
 
-この例でも、"Posts" タブが**人為的に遅延**させられているため、レンダーには少なくとも 1 秒かかります。前の例とは異なり、この state 更新は**トランジションではありません**。
+今回も、`updateQuantity` 関数がカート内の商品の数量を更新するリクエストをサーバに送信する部分をシミュレーションしています。この関数は、リクエストの完了に少なくとも 1 秒かかるように**意図的に遅延**させられています。
 
-"Posts" をクリックし、直後に "Contact" をクリックしてみてください。アプリはこの遅いタブのレンダー中にフリーズし、UI は反応しなくなります。この state 更新はトランジションではないため、遅い再レンダーがユーザインターフェースをフリーズさせたのです。
-=======
-#### Updating the quantity without an Action {/*updating-the-users-name-without-an-action*/}
-
-In this example, the `updateQuantity` function also simulates a request to the server to update the item's quantity in the cart. This function is *artificially slowed down* so that it takes at least a second to complete the request.
-
-Update the quantity multiple times quickly. Notice that the pending "Total" state is shown while any requests is in progress, but the "Total" updates multiple times for each time the "quantity" was clicked:
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+数量欄を素早く複数回更新してみてください。"Total" の保留中状態がリクエストの進行中に表示されますが、"quantity" のクリック回数に応じて "Total" が複数回更新されることに注意してください。
 
 <Sandpack>
 
@@ -513,7 +447,7 @@ export async function updateQuantity(newQuantity) {
 
 </Sandpack>
 
-A common solution to this problem is to prevent the user from making changes while the quantity is updating:
+このような問題に対するよくある解決法は、数量の更新中にユーザがさらなる変更を行えないようにしてしまうことです。
 
 <Sandpack>
 
@@ -639,7 +573,7 @@ export async function updateQuantity(newQuantity) {
 
 </Sandpack>
 
-This solution makes the app feel slow, because the user must wait each time they update the quantity. It's possible to add more complex handling manually to allow the user to interact with the UI while the quantity is updating, but Actions handle this case with a straight-forward built-in API.
+ですがこのソリューションでは、数量を更新するたびにユーザが待つ必要があるため、アプリが遅く感じられます。数量の更新中もユーザが UI を操作できるよう、手動でより複雑な処理を追加することも可能ですが、アクションを使用すれば、シンプルな組み込み API でこのケースに対処できます。
 
 <Solution />
 
@@ -647,18 +581,12 @@ This solution makes the app feel slow, because the user must wait each time they
 
 ---
 
-<<<<<<< HEAD
-### トランジション中に親コンポーネントを更新する {/*updating-the-parent-component-in-a-transition*/}
-
-`useTransition` の呼び出しから親コンポーネントの state を更新することもできます。例えば、この `TabButton` コンポーネントは `onClick` のロジックをトランジションでラップしています。
-=======
 ### Exposing `action` prop from components {/*exposing-action-props-from-components*/}
 
-You can expose an `action` prop from a component to allow a parent to call an Action.
+コンポーネントが props として `action` を公開することで、親がアクションを呼び出せるようにできます。
 
 
-For example, this `TabButton` component wraps its `onClick` logic in an `action` prop:
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+例えばこの `TabButton` コンポーネントは `onClick` 時のロジックを `action` 内にラップしています。
 
 ```js {8-10}
 export default function TabButton({ action, children, isActive }) {
@@ -678,11 +606,7 @@ export default function TabButton({ action, children, isActive }) {
 }
 ```
 
-<<<<<<< HEAD
-親コンポーネントは `onClick` イベントハンドラ内で state を更新しているため、その state 更新はトランジションとしてマークされます。このため、前の例と同様に、"Post" をクリックした直後に "Contact" をクリックできます。選択されたタブの更新はトランジションとしてマークされているため、ユーザ操作をブロックしません。
-=======
-Because the parent component updates its state inside the `action`, that state update gets marked as a Transition. This means you can click on "Posts" and then immediately click "Contact" and it does not block user interactions:
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+これで親コンポーネントは state を `action` 内で更新するようになるため、この state 更新はトランジションとしてマークされます。つまり、"Posts" をクリックした直後に "Contact" をクリックしても、ユーザ操作がブロックされないようになるということです。
 
 <Sandpack>
 
@@ -811,13 +735,9 @@ b { display: inline-block; margin-right: 10px; }
 
 ---
 
-<<<<<<< HEAD
-### トランジション中に保留中状態を視覚的に表示する {/*displaying-a-pending-visual-state-during-the-transition*/}
-=======
-### Displaying a pending visual state {/*displaying-a-pending-visual-state*/}
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+### 保留中状態を視覚的に表示する {/*displaying-a-pending-visual-state*/}
 
-`useTransition` によって返される `isPending` ブーリアン値を使用して、ユーザにトランジションが進行中であることを示すことができます。例えば、タブボタンは特別な "pending" という視覚的状態を持つことができます。
+`useTransition` によって返される `isPending` ブーリアン値を使用して、ユーザにトランジションが進行中であることを示すことができます。例えば、タブボタンは特別な "pending" という視覚状態を持つことができます。
 
 ```js {4-6}
 function TabButton({ action, children, isActive }) {
@@ -964,11 +884,7 @@ b { display: inline-block; margin-right: 10px; }
 
 ### 望ましくないローディングインジケータの防止 {/*preventing-unwanted-loading-indicators*/}
 
-<<<<<<< HEAD
-この例では、`PostsTab` コンポーネントは[サスペンス (Suspense) 対応の](/reference/react/Suspense)データソースを使用していくつかのデータをフェッチしています。"Posts" タブをクリックすると、`PostsTab` コンポーネントが*サスペンド*し、その結果、最も近いローディングフォールバックが表示されます：
-=======
-In this example, the `PostsTab` component fetches some data using [use](/reference/react/use). When you click the "Posts" tab, the `PostsTab` component *suspends*, causing the closest loading fallback to appear:
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+この例では、`PostsTab` コンポーネントは [use](/reference/react/use) を使用していくつかのデータをフェッチしています。"Posts" タブをクリックすると、`PostsTab` コンポーネントが*サスペンド*し、その結果、最も近いローディングフォールバックが表示されます：
 
 <Sandpack>
 
@@ -1122,11 +1038,7 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-<<<<<<< HEAD
 ローディングインジケータを表示するためにタブのコンテナ全体が隠れることは不快なユーザ体験となってしまいます。`TabButton` に `useTransition` を追加すると、代わりにタブボタン内に保留状態を表示することができます。
-=======
-Hiding the entire tab container to show a loading indicator leads to a jarring user experience. If you add `useTransition` to `TabButton`, you can instead display the pending state in the tab button instead.
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 
 "Posts" をクリックしても、もはやタブコンテナ全体がスピナに置き換わることはなくなったことに注目してください。
 
@@ -1294,11 +1206,7 @@ b { display: inline-block; margin-right: 10px; }
 
 <Note>
 
-<<<<<<< HEAD
 トランジションは（今回のタブコンテナのような）*すでに表示されている*コンテンツを隠さない範囲で「待機」を行います。もし Posts タブに[ネストした `<Suspense>` バウンダリ](/reference/react/Suspense#revealing-nested-content-as-it-loads)がある場合、トランジションはそれを「待機」することはありません。
-=======
-Transitions only "wait" long enough to avoid hiding *already revealed* content (like the tab container). If the Posts tab had a [nested `<Suspense>` boundary,](/reference/react/Suspense#revealing-nested-content-as-it-loads) the Transition would not "wait" for it.
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 
 </Note>
 
@@ -1321,22 +1229,13 @@ function Router() {
   // ...
 ```
 
-<<<<<<< HEAD
-これが推奨されるのは以下の 2 つの理由からです：
+これが推奨されるのは以下の 3 つの理由からです：
 
 - [トランジションは中断可能](#marking-a-state-update-as-a-non-blocking-transition)であるため、ユーザは再レンダーの完了を待たずにクリックしてページから離れることができます。
 - [トランジションは不要なローディングインジケータを防ぐ](#preventing-unwanted-loading-indicators)ため、ユーザがナビゲーション時の不快なちらつきを避けることができます。
+- [トランジションはすべての保留中のアクションを待機します](#perform-non-blocking-updates-with-actions)。これにより、新しいページが表示される前に副作用の完了をユーザが待つことができます。
 
-以下は、ナビゲーションにトランジションを使用した非常に簡易的なルータの例です。
-=======
-This is recommended for three reasons:
-
-- [Transitions are interruptible,](#marking-a-state-update-as-a-non-blocking-transition) which lets the user click away without waiting for the re-render to complete.
-- [Transitions prevent unwanted loading indicators,](#preventing-unwanted-loading-indicators) which lets the user avoid jarring jumps on navigation.
-- [Transitions wait for all pending actions](#perform-non-blocking-updates-with-actions) which lets the user wait for side effects to complete before the new page is shown.
-
-Here is a simplified router example using Transitions for navigations.
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+以下は、ナビゲーションにトランジションを使用した簡易的なルータの例です。
 
 <Sandpack>
 
@@ -1645,17 +1544,7 @@ main {
 
 ### エラーバウンダリでユーザにエラーを表示する {/*displaying-an-error-to-users-with-error-boundary*/}
 
-<<<<<<< HEAD
-<Canary>
-
-useTransition でのエラーバウンダリの使用は React の Canary と experimental バージョンでのみ使用可能です。[React のリリースチャンネルについてはこちら](/community/versioning-policy#all-release-channels)。
-
-</Canary>
-
 `startTransition` に渡された関数がエラーをスローした場合、[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary)を使用してユーザにエラーを表示することができます。エラーバウンダリを使用するには、`useTransition` を呼び出しているコンポーネントをエラーバウンダリで囲みます。`startTransition` に渡された関数がエラーになった場合、エラーバウンダリに指定されているフォールバックが表示されます。
-=======
-If a function passed to `startTransition` throws an error, you can display an error to your user with an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `useTransition` in an error boundary. Once the function passed to `startTransition` errors, the fallback for the error boundary will be displayed.
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 
 <Sandpack>
 
@@ -1772,13 +1661,7 @@ startTransition(() => {
 });
 ```
 
-<<<<<<< HEAD
-`startTransition` に渡す関数は同期的でなければなりません。
-
-以下のような形で更新をトランジションとしてマークすることはできません。
-=======
-The function you pass to `startTransition` must be synchronous. You can't mark an update as a Transition like this:
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+`startTransition` に渡す関数は同期的でなければなりません。以下のような形で更新をトランジションとしてマークすることはできません。
 
 ```js
 startTransition(() => {
@@ -1800,15 +1683,11 @@ setTimeout(() => {
 }, 1000);
 ```
 
-<<<<<<< HEAD
-同様に、以下のように更新をトランジションとしてマークすることはできません。
-=======
 ---
 
-### React doesn't treat my state update after `await` as a Transition {/*react-doesnt-treat-my-state-update-after-await-as-a-transition*/}
+### `await` 後の state 更新がトランジションにならない {/*react-doesnt-treat-my-state-update-after-await-as-a-transition*/}
 
-When you use `await` inside a `startTransition` function, the state updates that happen after the `await` are not marked as Transitions. You must wrap state updates after each `await` in a `startTransition` call:
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+`startTransition` 関数内で `await` を使用した場合、`await` の後に行われる state 更新はトランジションとしてマークされません。各 `await` 後の state 更新をそれぞれ `startTransition` 呼び出しでラップする必要があります。
 
 ```js
 startTransition(async () => {
@@ -1830,7 +1709,7 @@ startTransition(async () => {
 });
 ```
 
-This is a JavaScript limitation due to React losing the scope of the async context. In the future, when [AsyncContext](https://github.com/tc39/proposal-async-context) is available, this limitation will be removed.
+これは JavaScript の制限により React が非同期コンテクストのスコープを失うために発生する問題です。将来的に [AsyncContext](https://github.com/tc39/proposal-async-context) が利用可能になれば、この制限は解消される予定です。
 
 ---
 
@@ -1875,13 +1754,13 @@ function setState() {
 }
 ```
 
-### My state updates in Transitions are out of order {/*my-state-updates-in-transitions-are-out-of-order*/}
+### トランジション内で state 更新の順番がおかしくなる {/*my-state-updates-in-transitions-are-out-of-order*/}
 
-If you `await` inside `startTransition`, you might see the updates happen out of order.
+`startTransition` 内で `await` を使用すると、更新が順不同で発生する可能性があります。
 
-In this example, the `updateQuantity` function simulates a request to the server to update the item's quantity in the cart. This function *artificially returns the every other request after the previous* to simulate race conditions for network requests.
+以下の例では、`updateQuantity` 関数がカート内の商品の数量を更新するリクエストをサーバに送信する部分をシミュレーションしています。この関数は、ネットワークリクエストの競合状態をシミュレートするため、*初回リクエストの結果が常に後続リクエストの結果より後に返ってくる*ようになっています。
 
-Try updating the quantity once, then update it quickly multiple times. You might see the incorrect total:
+数量を一度だけ更新した場合と、素早く複数回更新した場合を試してみてください。誤った合計が表示される場合があることに気付くでしょう。
 
 <Sandpack>
 
@@ -2049,8 +1928,7 @@ export async function updateQuantity(newName) {
 </Sandpack>
 
 
-When clicking multiple times, it's possible for previous requests to finish after later requests. When this happens, React currently has no way to know the intended order. This is because the updates are scheduled asynchronously, and React loses context of the order across the async boundary.
+複数回のクリックがあると、後続のリクエストが完了した後で古いリクエストが完了する場合があります。この場合、現在の React は意図した順序を認識できません。これは、更新が非同期的にスケジュールされ、非同期の境界を越えると React が順序の情報を保持できないからです。
 
-This is expected, because Actions within a Transition do not guarantee execution order. For common use cases, React provides higher-level abstractions like [`useActionState`](/reference/react/useActionState) and [`<form>` actions](/reference/react-dom/components/form) that handle ordering for you. For advanced use cases, you'll need to implement your own queuing and abort logic to handle this.
-
+トランジション内のアクションは実行順序を保証しないため、これは想定された動作です。一般的なユースケースのために、React は [`useActionState`](/reference/react/useActionState) や [`<form>` アクション](/reference/react-dom/components/form) のような高レベルの抽象化を提供しており、順序の管理を自動化します。高度なユースケースでは、独自のキューイングや中断ロジックを実装して、実行順序を管理する必要があります。
 

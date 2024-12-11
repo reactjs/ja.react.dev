@@ -50,11 +50,7 @@ class Greeting extends Component {
 
 ### `context` {/*context*/}
 
-<<<<<<< HEAD
-クラスコンポーネントでは[コンテクスト](/learn/passing-data-deeply-with-context)を `this.context` の形で利用できます。これは、[`static contextType`](#static-contexttype)（現行版）または [`static contextTypes`](#static-contexttypes)（非推奨）を使用して受け取りたいコンテクストを指定した場合にのみ利用できます。
-=======
-The [context](/learn/passing-data-deeply-with-context) of a class component is available as `this.context`. It is only available if you specify *which* context you want to receive using [`static contextType`](#static-contexttype).
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+クラスコンポーネントでは[コンテクスト](/learn/passing-data-deeply-with-context)を `this.context` の形で利用できます。これは、[`static contextType`](#static-contexttype) を使用して受け取りたいコンテクストを指定した場合にのみ利用できます。
 
 クラスコンポーネントは、一度に 1 種類のコンテクストしか読み取ることができません。
 
@@ -109,21 +105,6 @@ class Greeting extends Component {
 
 ---
 
-<<<<<<< HEAD
-### `refs` {/*refs*/}
-
-<Deprecated>
-
-この API は React の将来のメジャーバージョンで削除されます。[代わりに `createRef` を使用してください](/reference/react/createRef)。
-
-</Deprecated>
-
-このコンポーネントの[レガシーな文字列形式 ref](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) にアクセスできます。
-
----
-
-=======
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 ### `state` {/*state*/}
 
 クラスコンポーネントの state は `this.state` の形で利用できます。`state` フィールドはオブジェクトでなければなりません。state を直接書き換えてはいけません。state を変更したい場合は、新しい state を引数にして `setState` を呼び出します。
@@ -501,21 +482,6 @@ class ChatRoom extends Component {
 
 ---
 
-<<<<<<< HEAD
-### `getChildContext()` {/*getchildcontext*/}
-
-<Deprecated>
-
-この API は、React の将来のメジャーバージョンで削除されます。代わりに [`Context.Provider` を使用してください](/reference/react/createContext#provider)。
-
-</Deprecated>
-
-このコンポーネントが提供する[レガシーコンテクスト](https://reactjs.org/docs/legacy-context.html)の値を指定します。
-
----
-
-=======
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 ### `getSnapshotBeforeUpdate(prevProps, prevState)` {/*getsnapshotbeforeupdate*/}
 
 `getSnapshotBeforeUpdate` を実装すると、React は DOM を更新する直前にそれを呼び出します。これにより、コンポーネントは DOM から情報（例えばスクロール位置）を取得することができます。このライフサイクルメソッドが返すあらゆる値は、[`componentDidUpdate`](#componentdidupdate) に引数として渡されます。
@@ -746,15 +712,9 @@ class Rectangle extends Component {
 
 #### 引数 {/*shouldcomponentupdate-parameters*/}
 
-<<<<<<< HEAD
 - `nextProps`: コンポーネントがレンダーしようとしている次の props。何が変わったかを判断するために `nextProps` を [`this.props`](#props) と比較します。
 - `nextState`: コンポーネントがレンダーしようとしている次の state。何が変わったかを判断するために `nextState` を [`this.state`](#props) と比較します。
-- `nextContext`: コンポーネントがレンダーしようとしている次のコンテクスト。何が変わったかを判断するために `nextContext` を [`this.context`](#context) と比較します。[`static contextType`](#static-contexttype)（現行版）または [`static contextTypes`](#static-contexttypes)（レガシー）を指定した場合のみ利用可能です。
-=======
-- `nextProps`: The next props that the component is about to render with. Compare `nextProps` to [`this.props`](#props) to determine what changed.
-- `nextState`: The next state that the component is about to render with. Compare `nextState` to [`this.state`](#props) to determine what changed.
-- `nextContext`: The next context that the component is about to render with. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype).
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+- `nextContext`: コンポーネントがレンダーしようとしている次のコンテクスト。何が変わったかを判断するために `nextContext` を [`this.context`](#context) と比較します。[`static contextType`](#static-contexttype) を指定した場合のみ利用可能です。
 
 #### 返り値 {/*shouldcomponentupdate-returns*/}
 
@@ -828,13 +788,8 @@ class Rectangle extends Component {
 
 #### 引数 {/*unsafe_componentwillreceiveprops-parameters*/}
 
-<<<<<<< HEAD
 - `nextProps`: コンポーネントが親コンポーネントから受け取ろうとしている次の props。何が変更されたかを判断するために `nextProps` を [`this.props`](#props) と比較します。
-- `nextContext`: コンポーネントが最も近いプロバイダから受け取ろうとしている次のコンテクスト。何が変更されたかを判断するために `nextContext` を [`this.context`](#context) と比較します。[`static contextType`](#static-contexttype)（現行版）または [`static contextTypes`](#static-contexttypes)（レガシー）を指定した場合のみ利用可能です。
-=======
-- `nextProps`: The next props that the component is about to receive from its parent component. Compare `nextProps` to [`this.props`](#props) to determine what changed.
-- `nextContext`: The next context that the component is about to receive from the closest provider. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype).
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
+- `nextContext`: コンポーネントが最も近いプロバイダから受け取ろうとしている次のコンテクスト。何が変更されたかを判断するために `nextContext` を [`this.context`](#context) と比較します。[`static contextType`](#static-contexttype) を指定した場合のみ利用可能です。
 
 #### 返り値 {/*unsafe_componentwillreceiveprops-returns*/}
 
@@ -899,33 +854,6 @@ class Rectangle extends Component {
 
 ---
 
-<<<<<<< HEAD
-### `static childContextTypes` {/*static-childcontexttypes*/}
-
-<Deprecated>
-
-この API は React の将来のメジャーバージョンで削除されます。代わりに [`static contextType`](#static-contexttype) を使用してください。
-
-</Deprecated>
-
-このコンポーネントによって提供される[レガシーコンテクスト](https://reactjs.org/docs/legacy-context.html)を指定します。
-
----
-
-### `static contextTypes` {/*static-contexttypes*/}
-
-<Deprecated>
-
-この API は React の将来のメジャーバージョンで削除されます。代わりに [`static contextType`](#static-contexttype) を使用してください。
-
-</Deprecated>
-
-このコンポーネントが使用する[レガシーコンテクスト](https://reactjs.org/docs/legacy-context.html)を指定します。
-
----
-
-=======
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 ### `static contextType` {/*static-contexttype*/}
 
 クラスコンポーネントで [`this.context`](#context-instance-field) を読み取りたい場合、読み取りたいコンテクストをこれで指定する必要があります。`static contextType` として指定するコンテクストは、以前に [`createContext`](/reference/react/createContext) で作成されている値でなければなりません。
@@ -1000,37 +928,6 @@ class Button extends Component {
 
 ---
 
-<<<<<<< HEAD
-### `static propTypes` {/*static-proptypes*/}
-
-コンポーネントが受け入れる props の型を宣言するために、[`prop-types`](https://www.npmjs.com/package/prop-types) ライブラリと一緒に `static propTypes` を定義することができます。これらの型はレンダー中、かつ開発中にのみチェックされます。
-
-```js
-import PropTypes from 'prop-types';
-
-class Greeting extends React.Component {
-  static propTypes = {
-    name: PropTypes.string
-  };
-
-  render() {
-    return (
-      <h1>Hello, {this.props.name}</h1>
-    );
-  }
-}
-```
-
-<Note>
-
-ランタイムでの props の型チェックの代わりに [TypeScript](https://www.typescriptlang.org/) を使用することをお勧めします。
-
-</Note>
-
----
-
-=======
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
 ### `static getDerivedStateFromError(error)` {/*static-getderivedstatefromerror*/}
 
 `static getDerivedStateFromError` を定義すると、子コンポーネント（遠くの子を含む）がレンダー中にエラーをスローしたときに React がそれを呼び出します。これにより、UI をクリアする代わりにエラーメッセージを表示できます。

@@ -293,7 +293,7 @@
       ]
     },
     {
-      "title": "Static APIs",
+      "title": "静的サイト用 API",
       "path": "/reference/react-dom/static",
       "routes": [
         {
@@ -334,23 +334,12 @@
       "sectionHeader": "React Server Components"
     },
     {
-<<<<<<< HEAD
       "title": "サーバコンポーネント",
-      "path": "/reference/rsc/server-components",
-      "canary": true
-    },
-    {
-      "title": "サーバアクション",
-      "path": "/reference/rsc/server-actions",
-      "canary": true
-=======
-      "title": "Server Components",
       "path": "/reference/rsc/server-components"
     },
     {
-      "title": "Server Functions",
+      "title": "サーバ関数",
       "path": "/reference/rsc/server-functions"
->>>>>>> 69edd845b9a654c6ac9ed68da19d5b42897e636e
     },
     {
       "title": "ディレクティブ",
