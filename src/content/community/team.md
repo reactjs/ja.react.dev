@@ -18,7 +18,7 @@ React コアチームのメンバーは、コアコンポーネントの API、R
     Andrew は WordPress を使ったサイト作りからウェブ開発を始め、いつの間にか JavaScript にハマっていました。お気に入りの暇つぶしはカラオケです。日によってある時はディズニーの悪役に、またある時はディズニーのお姫様になっています。
 </TeamMember>
 
-<TeamMember name="Dan Abramov" permalink="dan-abramov" photo="/images/team/gaearon.jpg" github="gaearon" twitter="dan_abramov2" title="Independent Engineer">
+<TeamMember name="Dan Abramov" permalink="dan-abramov" photo="/images/team/gaearon.jpg" github="gaearon" bsky="danabra.mov" title="Independent Engineer">
     Dan は Microsoft PowerPoint の中に偶然 Visual Basic を発見したことからプログラミングを始めました。[Sebastian](#sebastian-markbåge) のツイートを長文のブログ投稿に翻訳することが真の使命であると感じています。Fortnite では、ゲームが終わるまで茂みの中に隠れて勝利することがあります。
 </TeamMember>
 
@@ -38,11 +38,11 @@ React コアチームのメンバーは、コアコンポーネントの API、R
     Joe は数学と哲学を専攻する予定でしたが、Matlab で物理シミュレーションを書いたことからコンピュータサイエンスに興味を持ちました。React に取り組む前は、Relay、RSocket.js、Skip プログラミング言語などに取り組んでいました。何かしらのリアクティブシステムを構築する傍らでは、ランニングをしたり、日本語を勉強したり、家族と過ごしたりしています。
 </TeamMember>
 
-<TeamMember name="Josh Story" permalink="josh-story" photo="/images/team/josh.jpg" github="gnoff" twitter="joshcstory" title="Engineer at Vercel">
+<TeamMember name="Josh Story" permalink="josh-story" photo="/images/team/josh.jpg" github="gnoff" bsky="storyhb.com" title="Engineer at Vercel">
     Josh は大学で数学を専攻し、そこでプログラミングに出会いました。プロ開発者としての最初の仕事は、リアクティブプログラミングのお手本たる Microsoft Excel で保険料計算プログラムを書くことであり、きっとそれが今 React に取り組んでいる理由なのでしょう。その間 Josh はいくつかのスタートアップで IC、マネージャー、エグゼクティブも務めてきました。仕事以外では、料理で自分の限界に挑戦することが好きです。
 </TeamMember>
 
-<TeamMember name="Lauren Tan" permalink="lauren-tan" photo="/images/team/lauren.jpg" github="poteto" twitter="potetotes" threads="potetotes" personal="no.lol" title="Engineer at Meta">
+<TeamMember name="Lauren Tan" permalink="lauren-tan" photo="/images/team/lauren.jpg" github="poteto" twitter="potetotes" threads="potetotes" bsky="no.lol" title="Engineer at Meta">
     Lauren のプログラミングキャリアは `<marquee>` タグを初めて見たときにピークを迎えました。それ以来、彼女はその時の高揚感を追い続けています。大学ではコンピュータサイエンスではなく経済学を学んでいたため、コーディングは Java ではなく Excel で学びました。Lauren はチャットでお茶目なミームを投下したり、パートナとゲームを楽しんだり、犬の Zelda を可愛がったりするのが好きです。
 </TeamMember>
 
@@ -62,7 +62,7 @@ React コアチームのメンバーは、コアコンポーネントの API、R
     Noah の UI プログラミングに対する興味に火が付いたのはニューヨーク大で音楽技術を学んでいる時でした。Meta では内部ツール、ブラウザ、ウェブパフォーマンスに関する業務を行い、現在は React に注力しています。仕事以外では、シンセサイザーをいじったり、猫と過ごしたりしています。
 </TeamMember>
 
-<TeamMember name="Rick Hanlon" permalink="rick-hanlon" photo="/images/team/rickhanlonii.jpg" github="rickhanlonii" twitter="rickhanlonii" threads="rickhanlonii" personal="rickhanlon.codes" title="Engineer at Meta">
+<TeamMember name="Rick Hanlon" permalink="rick-hanlon" photo="/images/team/rickhanlonii.jpg" github="rickhanlonii" twitter="rickhanlonii" threads="rickhanlonii" bsky="ricky.fm" title="Engineer at Meta">
     Ricky は理論数学を専攻していましたが、どういうわけか React Native チームで数年過ごしたあと、React チームにやってきました。プログラミングをしていないときは、スノーボード、自転車、クライミング、ゴルフを楽しんだり、テンプレートに合致しない GitHub の issue をクローズしたりしています。
 </TeamMember>
 

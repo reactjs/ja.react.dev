@@ -1,13 +1,12 @@
 ---
 title: "ディレクティブ"
-canary: true
 ---
 
-<Canary>
+<RSC>
 
-これらのディレクティブは、[React Server Components を使用している](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)場合や、それらと互換性のあるライブラリを構築している場合にのみ必要です。
+ディレクティブは [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) 用の機能です。
 
-</Canary>
+</RSC>
 
 <Intro>
 

@@ -1,5 +1,5 @@
 ---
-title: "React 19 RC アップグレードガイド"
+title: "React 19 アップグレードガイド"
 author: Ricky Hanlon
 date: 2024/04/25
 description: React 19 に追加された改善にはいくつかの破壊的変更が必要ですが、アップグレードをできるだけスムーズに行えるよう努力しているため、ほとんどのアプリには影響が出ないことを予想しています。この投稿では、アプリやライブラリを React 19 にアップグレードする手順をご案内します。
@@ -38,7 +38,7 @@ React 19 にアップグレードする前に、問題点を見つけるため�
 - [TypeScript 関連の変更](#typescript-changes)
 - [Changelog](#changelog)
 
-React 19 をテストしていただける方は、このアップグレードガイドに従い、遭遇した[問題を報告](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D)してください。React 19 に追加された新機能のリストについては、[React 19 リリースのお知らせ](/blog/2024/04/25/react-19)をご覧ください。
+React 19 をテストしていただける方は、このアップグレードガイドに従い、遭遇した[問題を報告](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D)してください。React 19 に追加された新機能のリストについては、[React 19 リリースのお知らせ](/blog/2024/12/05/react-19)をご覧ください。
 
 ---
 ## インストール {/*installing*/}
@@ -70,28 +70,23 @@ Your app (or one of its dependencies) is using an outdated JSX transform. Update
 React と React DOM の最新バージョンをインストールするには以下のようにします。
 
 ```bash
-npm install --save-exact react@rc react-dom@rc
+npm install --save-exact react@^19.0.0 react-dom@^19.0.0
 ```
 
 Yarn をお使いの場合は以下のようにします。
 
 ```bash
-yarn add --exact react@rc react-dom@rc
+yarn add --exact react@^19.0.0 react-dom@^19.0.0
 ```
 
-TypeScript を使用している場合は、型も更新する必要があります。React 19 が安定版としてリリースされた後は、通常通り `@types/react` と `@types/react-dom` から型をインストールできます。安定版になるまでは `package.json` で強制的に別のパッケージを指定することで、新しい型を利用できます。
+TypeScript を使用している場合は、型も更新する必要があります。
+```bash
+npm install --save-exact @types/react@^19.0.0 @types/react-dom@^19.0.0
+```
 
-```json
-{
-  "dependencies": {
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc"
-  },
-  "overrides": {
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc"
-  }
-}
+Or, if you're using Yarn:
+```bash
+yarn add --exact @types/react@^19.0.0 @types/react-dom@^19.0.0
 ```
 
 また、最も一般的な書き換えのための codemod も含まれています。下記の [TypeScript 関連の変更](#typescript-changes)を参照してください。
@@ -536,6 +531,24 @@ React 19 には、Strict Mode に関するいくつかの修正と改善が含�
 
 すべての Strict Mode の挙動と同様、これらの機能は開発中にコンポーネントのバグを積極的に目立たせて、本番環境にリリースされる前に修正できるよう設計されています。例えば、開発環境において Strict Mode は初回マウント時に ref コールバック関数を 2 回呼び出すことで、マウントされたコンポーネントがサスペンスフォールバックに置き換えられたときに何が起こるかをシミュレートします。
 
+### サスペンスに関する改善 {/*improvements-to-suspense*/}
+
+React 19 では、コンポーネントがサスペンドした際には兄弟ツリー全体のレンダーを待たずに、直近のサスペンスバウンダリのフォールバックを即座にコミットするようになります。フォールバックがコミットされた後で、React は改めてツリー内でサスペンド対象となっている兄弟コンポーネントをレンダーし、遅延リクエストを開始しておけるようにします。
+
+<Diagram name="prerender" height={162} width={1270} alt="3つのコンポーネントのツリー。親はAccordionとラベル付けされ、2つの子はPanelとラベル付けされている。両方のPanelコンポーネントは、isActiveの値がfalseになっている。">
+
+これまでは、コンポーネントがサスペンドされた場合、サスペンド対象の兄弟コンポーネントがレンダーされてからフォールバックがコミットされていた。
+
+</Diagram>
+
+<Diagram name="prewarm" height={162} width={1270} alt="前の図と同じ図で、クリックにより最初の子PanelコンポーネントのisActiveがハイライトされ、isActiveがtrueに設定されている。2番目のPanelコンポーネントは引き続きfalseとなっている。">
+
+React 19 では、コンポーネントがサスペンドすると、フォールバックがコミットされた後で、サスペンド対象の兄弟コンポーネントがレンダーされる。
+
+</Diagram>
+
+この変更により、サスペンスのフォールバックがより早く表示される一方で、サスペンドされたツリー内にある遅延リクエストも事前に準備されるようになります。
+
 ### UMD ビルドの削除 {/*umd-builds-removed*/}
 
 UMD は過去には、ビルドステップなしで React を読み込むための便利な方法として広く使用されていました。現在では、HTML ドキュメント内でスクリプトとしてモジュールをロードするためのモダンな代替手段があります。テストとリリースプロセスの複雑性を軽減するため、React 19 からは UMD ビルドを生成しなくなります。
@@ -717,12 +730,12 @@ const reducer = (state: State, action: Action) => state;
 
 ### その他の破壊的変更 {/*other-breaking-changes*/}
 
-- **react-dom**: src/href での JavaScript URL に対するエラー [#26507](https://github.com/facebook/react/pull/26507)
+- **react-dom**: `src` と `href での JavaScript URL に対するエラー [#26507](https://github.com/facebook/react/pull/26507)
 - **react-dom**: `onRecoverableError` から `errorInfo.digest` を削除 [#28222](https://github.com/facebook/react/pull/28222)
 - **react-dom**: `unstable_flushControlled` を削除 [#26397](https://github.com/facebook/react/pull/26397)
 - **react-dom**: `unstable_createEventHandle` を削除 [#28271](https://github.com/facebook/react/pull/28271)
 - **react-dom**: `unstable_renderSubtreeIntoContainer` を削除 [#28271](https://github.com/facebook/react/pull/28271)
-- **react-dom**: `unstable_runWithPrioirty` を削除 [#28271](https://github.com/facebook/react/pull/28271)
+- **react-dom**: `unstable_runWithPriority` を削除 [#28271](https://github.com/facebook/react/pull/28271)
 - **react-is**: `react-is` から非推奨のメソッドを削除 [28224](https://github.com/facebook/react/pull/28224)
 
 ### その他の注目すべき変更点 {/*other-notable-changes*/}
@@ -734,7 +747,7 @@ const reducer = (state: State, action: Action) => state;
 - **react-dom**: SSR 中のレイアウトエフェクト警告を削除 [#26395](https://github.com/facebook/react/pull/26395)
 - **react-dom**: src/href に空文字列を設定しないよう警告（アンカータグを除く）[#28124](https://github.com/facebook/react/pull/28124)
 
-React 19 の安定版リリース時に、完全な変更履歴を公開します。
+全変更点のリストについては、[Changelog](https://github.com/facebook/react/blob/main/CHANGELOG.md#1900-december-5-2024) を参照してください。
 
 ---
 

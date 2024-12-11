@@ -15,7 +15,6 @@ title: サーバ用 React DOM API
 以下のメソッドは、[Node.js ストリーム](https://nodejs.org/api/stream.html)が利用可能な環境でのみ使用できます。
 
 * [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) は、React ツリーをパイプ可能な [Node.js ストリーム](https://nodejs.org/api/stream.html)にレンダーします。
-* [`renderToStaticNodeStream`](/reference/react-dom/server/renderToStaticNodeStream) は、非インタラクティブな React ツリーを [Node.js の Readable ストリーム](https://nodejs.org/api/stream.html#readable-streams)にレンダーします。
 
 ---
 
@@ -27,7 +26,7 @@ title: サーバ用 React DOM API
 
 ---
 
-## ストリームをサポートしない環境向けのサーバ API {/*server-apis-for-non-streaming-environments*/}
+## 非ストリーム環境向けのレガシーサーバ API {/*legacy-server-apis-for-non-streaming-environments*/}
 
 以下のメソッドは、ストリームをサポートしていない環境で使用できます。
 
@@ -35,15 +34,3 @@ title: サーバ用 React DOM API
 * [`renderToStaticMarkup`](/reference/react-dom/server/renderToStaticMarkup) は、非インタラクティブな React ツリーを文字列にレンダーします。
 
 これらは、ストリーミング API に比べて機能が限定されています。
-
----
-
-## 非推奨のサーバ API {/*deprecated-server-apis*/}
-
-<Deprecated>
-
-以下の API は、React の将来のメジャーバージョンで削除される予定です。
-
-</Deprecated>
-
-* [`renderToNodeStream`](/reference/react-dom/server/renderToNodeStream) は、React ツリーを [Node.js の Readable ストリーム](https://nodejs.org/api/stream.html#readable-streams) にレンダーします。（非推奨）

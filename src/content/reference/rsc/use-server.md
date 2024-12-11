@@ -1,14 +1,13 @@
 ---
 title: "'use server'"
 titleForTitleTag: "'use server' ディレクティブ"
-canary: true
 ---
 
-<Canary>
+<RSC>
 
-`'use server'` は、[React Server Components を使用している](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)場合や、それらと互換性のあるライブラリを構築している場合にのみ必要です。
+`'use server'` は [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) 用の機能です。
 
-</Canary>
+</RSC>
 
 
 <Intro>
@@ -25,7 +24,7 @@ canary: true
 
 ### `'use server'` {/*use-server*/}
 
-非同期 (async) 関数の本体の冒頭に `'use server';` を追加することで、その関数がクライアントから実行可能であるとマークします。そのような関数のことを*サーバアクション (Server Action)* と呼びます。
+非同期 (async) 関数の本体の冒頭に `'use server';` を追加することで、その関数がクライアントから実行可能であるとマークします。そのような関数のことを[サーバ関数 (Server Function)](/reference/rsc/server-functions) と呼びます。
 
 ```js {2}
 async function addToCart(data) {
@@ -34,28 +33,28 @@ async function addToCart(data) {
 }
 ```
 
-クライアント上でサーバアクションを呼び出すと、渡された引数のシリアライズされたコピーを含んだネットワークリクエストがサーバに送信されます。サーバアクションが値を返す場合は、その値がシリアライズされてクライアントに返されます。
+クライアント上でサーバ関数を呼び出すと、渡された引数のシリアライズされたコピーを含んだネットワークリクエストがサーバに送信されます。サーバ関数が値を返す場合は、その値がシリアライズされてクライアントに返されます。
 
 個々の関数に `'use server'` をマークする代わりに、このディレクティブをファイルの先頭に追加することもできます。その場合はそのファイル内のすべてのエクスポートが、クライアントコードでインポートされる場合も含み、あらゆる場所で使用できるサーバアクションとしてマークされます。
 
 #### 注意点 {/*caveats*/}
 * `'use server'` は、関数やモジュールの冒頭、つまりインポートも含む他のコードよりも上にある必要があります（ディレクティブの上にコメントを書くことは OK）。シングルクォートまたはダブルクォートで書かれていなければならず、バックティックは無効です。
-* `'use server'` は、サーバサイドのファイルでのみ使用できます。結果として得られるサーバアクションは、props を通じてクライアントコンポーネントに渡せるようになります。サポートされている[シリアライズ可能な型](#serializable-parameters-and-return-values)を参照してください。
-* [クライアントコード](/reference/rsc/use-client)からサーバアクションをインポートする場合は、ディレクティブをモジュールレベルで使用する必要があります。
+* `'use server'` は、サーバサイドのファイルでのみ使用できます。結果として得られるサーバ関数は、props を通じてクライアントコンポーネントに渡せるようになります。サポートされている[シリアライズ可能な型](#serializable-parameters-and-return-values)を参照してください。
+* [クライアントコード](/reference/rsc/use-client)からサーバ関数をインポートする場合は、ディレクティブをモジュールレベルで使用する必要があります。
 * 内部で使用されるネットワーク呼び出しは常に非同期であるため、`'use server'` は非同期関数でのみ使用できます。
-* サーバアクションへの引数は常に信頼できない入力として扱い、あらゆるデータ書き換えを検証してください。[セキュリティに関する考慮事項](#security)を参照してください。
-* サーバアクションは[トランジション](/reference/react/useTransition)の中で呼び出すようにしてください。サーバアクションが [`<form action>`](/reference/react-dom/components/form#props) または [`formAction`](/reference/react-dom/components/input#props) に渡される場合、自動的にトランジション内で呼び出されます。
-* サーバアクションは、サーバ側の状態を書き換える、更新目的のために設計されています。データの取得には推奨されません。したがって、サーバアクションを実装するフレームワークは通常、一度にひとつのアクションのみを処理し、返り値をキャッシュしないようにします。
+* サーバ関数への引数は常に信頼できない入力として扱い、あらゆるデータ書き換えを検証してください。[セキュリティに関する考慮事項](#security)を参照してください。
+* サーバ関数は[トランジション](/reference/react/useTransition)の中で呼び出すようにしてください。サーバ関数が [`<form action>`](/reference/react-dom/components/form#props) または [`formAction`](/reference/react-dom/components/input#props) に渡される場合、自動的にトランジション内で呼び出されます。
+* サーバ関数は、サーバ側の状態を書き換える、更新目的のために設計されています。データの取得には推奨されません。したがって、サーバ関数を実装するフレームワークは通常、一度にひとつのアクションのみを処理し、返り値をキャッシュしないようにします。
 
 ### セキュリティについての考慮事項 {/*security*/}
 
-サーバアクションへの引数は、完全にクライアントで制御されるものです。セキュリティのため、入力は常に信頼できないものとして扱い、引数の検証やエスケープを適切に行ってください。
+サーバ関数への引数は、完全にクライアントで制御されるものです。セキュリティのため、入力は常に信頼できないものとして扱い、引数の検証やエスケープを適切に行ってください。
 
-あらゆるサーバアクションにおいて、ログイン済みのユーザがそのアクションを実行できることを確認してください。
+あらゆるサーバ関数において、ログイン済みのユーザにその処理の実行が許可されているのかを確認するようにしてください。
 
 <Wip>
 
-サーバアクションから機密データが送信されるのを防ぐために、ユニークな値やオブジェクトがクライアントコードに渡されるのを防ぐ実験的な汚染 API (taint API) があります。
+サーバ関数から機密データが送信されるのを防ぐために、ユニークな値やオブジェクトがクライアントコードに渡されるのを防ぐ実験的な汚染 API (taint API) があります。
 
 [experimental_taintUniqueValue](/reference/react/experimental_taintUniqueValue) と [experimental_taintObjectReference](/reference/react/experimental_taintObjectReference) を参照してください。
 
@@ -63,9 +62,9 @@ async function addToCart(data) {
 
 ### シリアライズ可能な引数と返り値 {/*serializable-parameters-and-return-values*/}
 
-クライアントコードのサーバアクション呼び出しはネットワーク経由で行われるため、関数に渡すあらゆる引数はシリアライズ可能である必要があります。
+クライアントコードのサーバ関数呼び出しはネットワーク経由で行われるため、関数に渡すあらゆる引数はシリアライズ可能である必要があります。
 
-以下は、サーバアクションの引数としてサポートされる型です。
+以下は、サーバ関数の引数としてサポートされる型です。
 
 * プリミティブ
 	* [文字列](https://developer.mozilla.org/en-US/docs/Glossary/String)
@@ -84,15 +83,16 @@ async function addToCart(data) {
 * [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 * [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) のインスタンス
 * プレーンな[オブジェクト](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): [オブジェクト初期化子](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer)で作成され、シリアライズ可能なプロパティを持つもの
-* [サーバアクション (server action)](/reference/react/use-server) としての関数
+* それ自体がサーバ関数である関数
 * [プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 以下のものはサポートされていません。
 * React 要素すなわち [JSX](/learn/writing-markup-with-jsx)
-* 関数。関数コンポーネントや、サーバアクションでない他のあらゆる関数を含む。
+* 関数。関数コンポーネントや、それ自体がサーバ関数でない他のあらゆる関数を含む。
 * [クラス](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
 * 任意のクラスのインスタンス（上記の組み込みクラスを除く）や、[null プロトタイプのオブジェクト](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
 * グローバルに登録されていないシンボル、例：`Symbol('my new symbol')`
+* イベントハンドラが受け取るイベント
 
 
 サポートされるシリアライズ可能な返り値は、クライアントコンポーネントに渡せる[シリアライズ可能な props](/reference/rsc/use-client#passing-props-from-server-to-client-components) の型と同じです。
@@ -100,9 +100,9 @@ async function addToCart(data) {
 
 ## 使用法 {/*usage*/}
 
-### フォームでサーバアクションを使用する {/*server-actions-in-forms*/}
+### フォームでサーバ関数を使用する {/*server-functions-in-forms*/}
 
-サーバアクションの最も一般的なユースケースは、データを更新するためにサーバ関数を呼び出すことです。ブラウザ上においては [HTML フォーム要素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)が、ユーザが更新処理を送信する際の伝統的な方法です。React Server Components により、[フォーム](/reference/react-dom/components/form)に書かれたサーバアクションに対する第 1 級サポートが導入されます。
+サーバ関数の最も一般的なユースケースは、データを更新するための関数呼び出しです。ブラウザ上においては [HTML フォーム要素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)が、ユーザが更新処理を送信する際の伝統的な方法です。React Server Components により、[フォーム](/reference/react-dom/components/form)に書かれたサーバ関数に対する第 1 級サポートが導入されます。
 
 以下は、ユーザがユーザ名をリクエストできるフォームです。
 
@@ -125,15 +125,15 @@ export default function App() {
 }
 ```
 
-この例では、`requestUsername` は `<form>` に渡されるサーバアクションとなります。ユーザがこのフォームを送信すると、サーバ関数 `requestUsername` へのネットワークリクエストが発生します。フォーム内でサーバアクションを呼び出すとき、React はフォームの <CodeStep step={1}>[FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)</CodeStep> をサーバアクションの最初の引数として提供します。
+この例では、`requestUsername` は `<form>` に渡されるサーバ関数となります。ユーザがこのフォームを送信すると、サーバ関数 `requestUsername` へのネットワークリクエストが発生します。フォーム内でサーバ関数を呼び出すとき、React はフォームの <CodeStep step={1}>[FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)</CodeStep> をサーバ関数の最初の引数として提供します。
 
-フォームの `action` にサーバアクションを渡すことで、React によるフォームの[プログレッシブエンハンスメント (progressive enhancement)](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement) が有効になります。つまり JavaScript バンドルがロードされる前にフォームを送信できるようになるということです。
+フォームの `action` にサーバ関数を渡すことで、React によるフォームの[プログレッシブエンハンスメント (progressive enhancement)](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement) が有効になります。つまり JavaScript バンドルがロードされる前にフォームを送信できるようになるということです。
 
 #### フォームでの返り値の取り扱い {/*handling-return-values*/}
 
 上記のユーザ名リクエストフォームでは、ユーザ名が利用できない可能性もあります。`requestUsername` は成功したか失敗したかを伝えられるべきです。
 
-プログレッシブエンハンスメントをサポートしつつサーバアクションの結果に基づいて UI を更新するには、[`useActionState`](/reference/react/useActionState) を使用します。
+プログレッシブエンハンスメントをサポートしつつサーバ関数の結果に基づいて UI を更新するには、[`useActionState`](/reference/react/useActionState) を使用します。
 
 ```js
 // requestUsername.js
@@ -173,11 +173,11 @@ function UsernameForm() {
 
 ほとんどのフックと同様に、`useActionState` は<CodeStep step={1}>[クライアントコード](/reference/rsc/use-client)</CodeStep>内でしか呼び出せないことに注意してください。
 
-### `<form>` の外部でサーバアクションを呼び出す {/*calling-a-server-action-outside-of-form*/}
+### `<form>` の外部でサーバ関数を呼び出す {/*calling-a-server-function-outside-of-form*/}
 
-サーバアクションはサーバ側の公開エンドポイントであり、クライアントコードのどこからでも呼び出すことができます。
+サーバ関数とはサーバ側の公開エンドポイントとなるため、クライアントコードのどこからでも呼び出すことができます。
 
-[フォーム](/reference/react-dom/components/form)の外部でサーバアクションを使用する場合、[トランジション](/reference/react/useTransition)内でサーバアクションを呼び出すようにしてください。これによりローディングインジケータを表示したり、[楽観的に state 更新結果を表示](/reference/react/useOptimistic)したり、予期せぬエラーを処理したりすることができるようになります。フォームではサーバアクションは自動的にトランジション内にラップされます。
+[フォーム](/reference/react-dom/components/form)の外部でサーバ関数を使用する場合、[トランジション](/reference/react/useTransition)内でサーバ関数を呼び出すようにしてください。これによりローディングインジケータを表示したり、[楽観的に state 更新結果を表示](/reference/react/useOptimistic)したり、予期せぬエラーを処理したりすることができるようになります。フォームではサーバ関数は自動的にトランジション内にラップされます。
 
 ```js {9-12}
 import incrementLike from './actions';
@@ -214,4 +214,4 @@ export default async function incrementLike() {
 }
 ```
 
-サーバアクションからの返り値を読み取るには、返されたプロミスを `await` する必要があります。
+サーバ関数からの返り値を読み取るには、返されたプロミスを `await` する必要があります。

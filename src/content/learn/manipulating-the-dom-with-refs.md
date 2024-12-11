@@ -256,11 +256,11 @@ export default function CatFriends() {
               key={cat}
               ref={(node) => {
                 const map = getMap();
-                if (node) {
-                  map.set(cat, node);
-                } else {
+                map.set(cat, node);
+
+                return () => {
                   map.delete(cat);
-                }
+                };
               }}
             >
               <img src={cat} />
@@ -309,41 +309,9 @@ li {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  }
-}
-```
-
 </Sandpack>
 
 この例では、`itemsRef` は単一の DOM ノードを保持していません。代わりに、アイテム ID から DOM ノードへの [Map](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) を保持しています。（[ref はどんな値でも保持できます！](/learn/referencing-values-with-refs)）すべてのリストアイテムの [`ref` コールバック](/reference/react-dom/components/common#ref-callback) が、Map を更新します。
-
-```js
-<li
-  key={cat.id}
-  ref={node => {
-    const map = getMap();
-    if (node) {
-      // Add to the Map
-      map.set(cat, node);
-    } else {
-      // Remove from the Map
-      map.delete(cat);
-    }
-  }}
->
-```
-
-これにより、後で Map から個々の DOM ノードを読み取ることができます。
-
-<Canary>
-
-This example shows another approach for managing the Map with a `ref` callback cleanup function.
 
 ```js
 <li
@@ -361,7 +329,15 @@ This example shows another approach for managing the Map with a `ref` callback c
 >
 ```
 
-</Canary>
+こうしておけば、後で Map から個々の DOM ノードを読み取れるようになります。
+
+<Note>
+
+Strict Mode が有効の場合、ref コールバックは開発環境で 2 回呼び出されます。
+
+コールバック ref で[これがバグの発見にどう役立つのか](/reference/react/StrictMode#fixing-bugs-found-by-re-running-ref-callbacks-in-development)ご覧ください。
+
+</Note>
 
 </DeepDive>
 

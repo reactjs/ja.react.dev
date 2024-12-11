@@ -1,13 +1,13 @@
 ---
 title: "'use client'"
 titleForTitleTag: "'use client' ディレクティブ"
-canary: true
 ---
 
-<Canary>
+<RSC>
 
-`'use client'` は、[React Server Components を使用している](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)場合や、それらと互換性のあるライブラリを構築している場合にのみ必要です。
-</Canary>
+`'use client'` は [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) 用の機能です。
+
+</RSC>
 
 
 <Intro>
@@ -269,7 +269,7 @@ React アプリケーションでは一般的に、親コンポーネントか�
 	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) と [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
 * [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 * プレーンな[オブジェクト](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): [オブジェクト初期化子](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer)で作成され、シリアライズ可能なプロパティを持つもの
-* [サーバアクション (server action)](/reference/rsc/use-server) としての関数
+* [サーバ関数 (server function)](/reference/rsc/server-functions) としての関数
 * クライアントまたはサーバコンポーネントの要素（JSX）
 * [プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 

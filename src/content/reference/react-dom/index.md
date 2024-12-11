@@ -41,16 +41,13 @@ title: React DOM API
 
 ---
 
-## 非推奨の API {/*deprecated-apis*/}
+## 削除済み API {/*removed-apis*/}
 
-<Deprecated>
+以下の API は React 19 で削除されています。
 
-これらの API は、React の将来のメジャーバージョンで削除される予定です。
-
-</Deprecated>
-
-* [`findDOMNode`](/reference/react-dom/findDOMNode) は、クラスコンポーネントのインスタンスに対応する最も近い DOM ノードを検索します。
-* [`hydrate`](/reference/react-dom/hydrate) は、サーバの HTML から作成された DOM にツリーをマウントします。非推奨です。代わりに [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) を使用してください。
-* [`render`](/reference/react-dom/render) は、DOM にツリーをマウントします。非推奨です。代わりに [`createRoot`](/reference/react-dom/client/createRoot) を使用してください。
-* [`unmountComponentAtNode`](/reference/react-dom/unmountComponentAtNode) は、DOM からツリーをアンマウントします。非推奨です。代わりに [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount) を使用してください。
-
+* [`findDOMNode`](https://18.react.dev/reference/react-dom/findDOMNode): [代替手段](https://18.react.dev/reference/react-dom/findDOMNode#alternatives)を参照してください。
+* [`hydrate`](https://18.react.dev/reference/react-dom/hydrate): 代わりに [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) を使用してください。
+* [`render`](https://18.react.dev/reference/react-dom/render): 代わりに [`createRoot`](/reference/react-dom/client/createRoot) を使用してください。
+* [`unmountComponentAtNode`](/reference/react-dom/unmountComponentAtNode): 代わりに [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount) を使用してください。
+* [`renderToNodeStream`](https://18.react.dev/reference/react-dom/server/renderToNodeStream): 代わりに [`react-dom/server`](/reference/react-dom/server) の API を使用してください。
+* [`renderToStaticNodeStream`](https://18.react.dev/reference/react-dom/server/renderToStaticNodeStream): 代わりに [`react-dom/server`](/reference/react-dom/server) の API を使用してください。

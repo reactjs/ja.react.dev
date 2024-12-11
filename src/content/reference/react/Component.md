@@ -50,7 +50,7 @@ class Greeting extends Component {
 
 ### `context` {/*context*/}
 
-クラスコンポーネントでは[コンテクスト](/learn/passing-data-deeply-with-context)を `this.context` の形で利用できます。これは、[`static contextType`](#static-contexttype)（現行版）または [`static contextTypes`](#static-contexttypes)（非推奨）を使用して受け取りたいコンテクストを指定した場合にのみ利用できます。
+クラスコンポーネントでは[コンテクスト](/learn/passing-data-deeply-with-context)を `this.context` の形で利用できます。これは、[`static contextType`](#static-contexttype) を使用して受け取りたいコンテクストを指定した場合にのみ利用できます。
 
 クラスコンポーネントは、一度に 1 種類のコンテクストしか読み取ることができません。
 
@@ -102,18 +102,6 @@ class Greeting extends Component {
 [移行方法を見る](#migrating-a-simple-component-from-a-class-to-a-function)
 
 </Note>
-
----
-
-### `refs` {/*refs*/}
-
-<Deprecated>
-
-この API は React の将来のメジャーバージョンで削除されます。[代わりに `createRef` を使用してください](/reference/react/createRef)。
-
-</Deprecated>
-
-このコンポーネントの[レガシーな文字列形式 ref](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) にアクセスできます。
 
 ---
 
@@ -494,18 +482,6 @@ class ChatRoom extends Component {
 
 ---
 
-### `getChildContext()` {/*getchildcontext*/}
-
-<Deprecated>
-
-この API は、React の将来のメジャーバージョンで削除されます。代わりに [`Context.Provider` を使用してください](/reference/react/createContext#provider)。
-
-</Deprecated>
-
-このコンポーネントが提供する[レガシーコンテクスト](https://reactjs.org/docs/legacy-context.html)の値を指定します。
-
----
-
 ### `getSnapshotBeforeUpdate(prevProps, prevState)` {/*getsnapshotbeforeupdate*/}
 
 `getSnapshotBeforeUpdate` を実装すると、React は DOM を更新する直前にそれを呼び出します。これにより、コンポーネントは DOM から情報（例えばスクロール位置）を取得することができます。このライフサイクルメソッドが返すあらゆる値は、[`componentDidUpdate`](#componentdidupdate) に引数として渡されます。
@@ -738,7 +714,7 @@ class Rectangle extends Component {
 
 - `nextProps`: コンポーネントがレンダーしようとしている次の props。何が変わったかを判断するために `nextProps` を [`this.props`](#props) と比較します。
 - `nextState`: コンポーネントがレンダーしようとしている次の state。何が変わったかを判断するために `nextState` を [`this.state`](#props) と比較します。
-- `nextContext`: コンポーネントがレンダーしようとしている次のコンテクスト。何が変わったかを判断するために `nextContext` を [`this.context`](#context) と比較します。[`static contextType`](#static-contexttype)（現行版）または [`static contextTypes`](#static-contexttypes)（レガシー）を指定した場合のみ利用可能です。
+- `nextContext`: コンポーネントがレンダーしようとしている次のコンテクスト。何が変わったかを判断するために `nextContext` を [`this.context`](#context) と比較します。[`static contextType`](#static-contexttype) を指定した場合のみ利用可能です。
 
 #### 返り値 {/*shouldcomponentupdate-returns*/}
 
@@ -813,7 +789,7 @@ class Rectangle extends Component {
 #### 引数 {/*unsafe_componentwillreceiveprops-parameters*/}
 
 - `nextProps`: コンポーネントが親コンポーネントから受け取ろうとしている次の props。何が変更されたかを判断するために `nextProps` を [`this.props`](#props) と比較します。
-- `nextContext`: コンポーネントが最も近いプロバイダから受け取ろうとしている次のコンテクスト。何が変更されたかを判断するために `nextContext` を [`this.context`](#context) と比較します。[`static contextType`](#static-contexttype)（現行版）または [`static contextTypes`](#static-contexttypes)（レガシー）を指定した場合のみ利用可能です。
+- `nextContext`: コンポーネントが最も近いプロバイダから受け取ろうとしている次のコンテクスト。何が変更されたかを判断するために `nextContext` を [`this.context`](#context) と比較します。[`static contextType`](#static-contexttype) を指定した場合のみ利用可能です。
 
 #### 返り値 {/*unsafe_componentwillreceiveprops-returns*/}
 
@@ -875,30 +851,6 @@ class Rectangle extends Component {
 関数コンポーネントには `UNSAFE_componentWillUpdate` に直接対応するものはありません。
 
 </Note>
-
----
-
-### `static childContextTypes` {/*static-childcontexttypes*/}
-
-<Deprecated>
-
-この API は React の将来のメジャーバージョンで削除されます。代わりに [`static contextType`](#static-contexttype) を使用してください。
-
-</Deprecated>
-
-このコンポーネントによって提供される[レガシーコンテクスト](https://reactjs.org/docs/legacy-context.html)を指定します。
-
----
-
-### `static contextTypes` {/*static-contexttypes*/}
-
-<Deprecated>
-
-この API は React の将来のメジャーバージョンで削除されます。代わりに [`static contextType`](#static-contexttype) を使用してください。
-
-</Deprecated>
-
-このコンポーネントが使用する[レガシーコンテクスト](https://reactjs.org/docs/legacy-context.html)を指定します。
 
 ---
 
@@ -971,34 +923,6 @@ class Button extends Component {
 <Note>
 
 クラスコンポーネントで `defaultProps` を定義することは、関数コンポーネントで[デフォルト値](/learn/passing-props-to-a-component#specifying-a-default-value-for-a-prop)を使用するのと同様のものです。
-
-</Note>
-
----
-
-### `static propTypes` {/*static-proptypes*/}
-
-コンポーネントが受け入れる props の型を宣言するために、[`prop-types`](https://www.npmjs.com/package/prop-types) ライブラリと一緒に `static propTypes` を定義することができます。これらの型はレンダー中、かつ開発中にのみチェックされます。
-
-```js
-import PropTypes from 'prop-types';
-
-class Greeting extends React.Component {
-  static propTypes = {
-    name: PropTypes.string
-  };
-
-  render() {
-    return (
-      <h1>Hello, {this.props.name}</h1>
-    );
-  }
-}
-```
-
-<Note>
-
-ランタイムでの props の型チェックの代わりに [TypeScript](https://www.typescriptlang.org/) を使用することをお勧めします。
 
 </Note>
 
