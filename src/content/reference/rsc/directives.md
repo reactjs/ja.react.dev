@@ -1,13 +1,21 @@
 ---
+<<<<<<< HEAD
 title: "ディレクティブ"
 canary: true
+=======
+title: Directives
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 ---
 
-<Canary>
+<RSC>
 
+<<<<<<< HEAD
 これらのディレクティブは、[React Server Components を使用している](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)場合や、それらと互換性のあるライブラリを構築している場合にのみ必要です。
+=======
+Directives are for use in [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
-</Canary>
+</RSC>
 
 <Intro>
 

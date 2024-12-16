@@ -3,12 +3,15 @@ title: useFormStatus
 canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 `useFormStatus` フックは、現在 React の Canary および experimental チャンネルでのみ利用可能です。[リリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
 
 </Canary>
 
+=======
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 <Intro>
 
 `useFormStatus` は、直近のフォーム送信に関するステータス情報を提供するフックです。
@@ -117,18 +120,6 @@ export async function submitForm(query) {
     await new Promise((res) => setTimeout(res, 1000));
 }
 ```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
 </Sandpack>  
 
 <Pitfall>
@@ -234,17 +225,6 @@ button {
 
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
 </Sandpack>  
 
 ---

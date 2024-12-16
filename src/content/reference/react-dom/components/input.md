@@ -32,12 +32,16 @@ title: "<input>"
 
 `<input>` は[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
 
+<<<<<<< HEAD
 <Canary>
 
 `formAction` に対する React の拡張は React の Canary および experimental リリースのみの機能です。React の安定版では `formAction` は[組み込みブラウザコンポーネント](/reference/react-dom/components#all-html-components)の機能としてのみ動作します。[React のリリースチャンネルについてはこちら](/community/versioning-policy#all-release-channels)。
 </Canary>
 
 [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): 文字列または関数。`type="submit"` and `type="image"` の場合に親の `<form action>` を上書きする。`action` に URL が渡された場合はフォームは標準的な HTML フォームとして動作する。関数が渡された場合はその関数がフォームの送信を処理する。[`<form action>`](/reference/react-dom/components/form#props) を参照。
+=======
+- [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): A string or function. Overrides the parent `<form action>` for `type="submit"` and `type="image"`. When a URL is passed to `action` the form will behave like a standard HTML form. When a function is passed to `formAction` the function will handle the form submission. See [`<form action>`](/reference/react-dom/components/form#props).
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
 以下の props を渡すことで、[入力欄を制御されたコンポーネント (controlled component)](#controlling-an-input-with-a-state-variable) にできます。
 

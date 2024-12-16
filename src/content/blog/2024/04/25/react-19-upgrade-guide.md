@@ -1,5 +1,9 @@
 ---
+<<<<<<< HEAD
 title: "React 19 RC アップグレードガイド"
+=======
+title: "React 19 Upgrade Guide"
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 author: Ricky Hanlon
 date: 2024/04/25
 description: React 19 に追加された改善にはいくつかの破壊的変更が必要ですが、アップグレードをできるだけスムーズに行えるよう努力しているため、ほとんどのアプリには影響が出ないことを予想しています。この投稿では、アプリやライブラリを React 19 にアップグレードする手順をご案内します。
@@ -12,7 +16,11 @@ April 25, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii)
 
 <Intro>
 
+<<<<<<< HEAD
 React 19 に追加された改善にはいくつかの破壊的変更が必要ですが、アップグレードをできるだけスムーズに行えるよう努力しているため、ほとんどのアプリには影響が出ないことを予想しています。
+=======
+The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible, and we don't expect the changes to impact most apps.
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
 </Intro>
 
@@ -38,7 +46,11 @@ React 19 にアップグレードする前に、問題点を見つけるため�
 - [TypeScript 関連の変更](#typescript-changes)
 - [Changelog](#changelog)
 
+<<<<<<< HEAD
 React 19 をテストしていただける方は、このアップグレードガイドに従い、遭遇した[問題を報告](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D)してください。React 19 に追加された新機能のリストについては、[React 19 リリースのお知らせ](/blog/2024/04/25/react-19)をご覧ください。
+=======
+If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19, see the [React 19 release post](/blog/2024/12/05/react-19).
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
 ---
 ## インストール {/*installing*/}
@@ -70,28 +82,27 @@ Your app (or one of its dependencies) is using an outdated JSX transform. Update
 React と React DOM の最新バージョンをインストールするには以下のようにします。
 
 ```bash
-npm install --save-exact react@rc react-dom@rc
+npm install --save-exact react@^19.0.0 react-dom@^19.0.0
 ```
 
 Yarn をお使いの場合は以下のようにします。
 
 ```bash
-yarn add --exact react@rc react-dom@rc
+yarn add --exact react@^19.0.0 react-dom@^19.0.0
 ```
 
+<<<<<<< HEAD
 TypeScript を使用している場合は、型も更新する必要があります。React 19 が安定版としてリリースされた後は、通常通り `@types/react` と `@types/react-dom` から型をインストールできます。安定版になるまでは `package.json` で強制的に別のパッケージを指定することで、新しい型を利用できます。
+=======
+If you're using TypeScript, you also need to update the types.
+```bash
+npm install --save-exact @types/react@^19.0.0 @types/react-dom@^19.0.0
+```
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
-```json
-{
-  "dependencies": {
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc"
-  },
-  "overrides": {
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc"
-  }
-}
+Or, if you're using Yarn:
+```bash
+yarn add --exact @types/react@^19.0.0 @types/react-dom@^19.0.0
 ```
 
 また、最も一般的な書き換えのための codemod も含まれています。下記の [TypeScript 関連の変更](#typescript-changes)を参照してください。
@@ -536,7 +547,29 @@ React 19 には、Strict Mode に関するいくつかの修正と改善が含�
 
 すべての Strict Mode の挙動と同様、これらの機能は開発中にコンポーネントのバグを積極的に目立たせて、本番環境にリリースされる前に修正できるよう設計されています。例えば、開発環境において Strict Mode は初回マウント時に ref コールバック関数を 2 回呼び出すことで、マウントされたコンポーネントがサスペンスフォールバックに置き換えられたときに何が起こるかをシミュレートします。
 
+<<<<<<< HEAD
 ### UMD ビルドの削除 {/*umd-builds-removed*/}
+=======
+### Improvements to Suspense {/*improvements-to-suspense*/}
+
+In React 19, when a component suspends, React will immediately commit the fallback of the nearest Suspense boundary without waiting for the entire sibling tree to render. After the fallback commits, React schedules another render for the suspended siblings to "pre-warm" lazy requests in the rest of the tree:
+
+<Diagram name="prerender" height={162} width={1270} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Both Panel components contain isActive with value false.">
+
+Previously, when a component suspended, the suspended siblings were rendered and then the fallback was committed.
+
+</Diagram>
+
+<Diagram name="prewarm" height={162} width={1270} alt="The same diagram as the previous, with the isActive of the first child Panel component highlighted indicating a click with the isActive value set to true. The second Panel component still contains value false." >
+
+In React 19, when a component suspends, the fallback is committed and then the suspended siblings are rendered.
+
+</Diagram>
+
+This change means Suspense fallbacks display faster, while still warming lazy requests in the suspended tree.
+
+### UMD builds removed {/*umd-builds-removed*/}
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
 UMD は過去には、ビルドステップなしで React を読み込むための便利な方法として広く使用されていました。現在では、HTML ドキュメント内でスクリプトとしてモジュールをロードするためのモダンな代替手段があります。テストとリリースプロセスの複雑性を軽減するため、React 19 からは UMD ビルドを生成しなくなります。
 
@@ -717,6 +750,7 @@ const reducer = (state: State, action: Action) => state;
 
 ### その他の破壊的変更 {/*other-breaking-changes*/}
 
+<<<<<<< HEAD
 - **react-dom**: src/href での JavaScript URL に対するエラー [#26507](https://github.com/facebook/react/pull/26507)
 - **react-dom**: `onRecoverableError` から `errorInfo.digest` を削除 [#28222](https://github.com/facebook/react/pull/28222)
 - **react-dom**: `unstable_flushControlled` を削除 [#26397](https://github.com/facebook/react/pull/26397)
@@ -724,6 +758,15 @@ const reducer = (state: State, action: Action) => state;
 - **react-dom**: `unstable_renderSubtreeIntoContainer` を削除 [#28271](https://github.com/facebook/react/pull/28271)
 - **react-dom**: `unstable_runWithPrioirty` を削除 [#28271](https://github.com/facebook/react/pull/28271)
 - **react-is**: `react-is` から非推奨のメソッドを削除 [28224](https://github.com/facebook/react/pull/28224)
+=======
+- **react-dom**: Error for javascript URLs in `src` and `href` [#26507](https://github.com/facebook/react/pull/26507)
+- **react-dom**: Remove `errorInfo.digest` from `onRecoverableError` [#28222](https://github.com/facebook/react/pull/28222)
+- **react-dom**: Remove `unstable_flushControlled` [#26397](https://github.com/facebook/react/pull/26397)
+- **react-dom**: Remove `unstable_createEventHandle` [#28271](https://github.com/facebook/react/pull/28271)
+- **react-dom**: Remove `unstable_renderSubtreeIntoContainer` [#28271](https://github.com/facebook/react/pull/28271)
+- **react-dom**: Remove `unstable_runWithPriority` [#28271](https://github.com/facebook/react/pull/28271)
+- **react-is**: Remove deprecated methods from `react-is` [28224](https://github.com/facebook/react/pull/28224)
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
 ### その他の注目すべき変更点 {/*other-notable-changes*/}
 
@@ -734,7 +777,11 @@ const reducer = (state: State, action: Action) => state;
 - **react-dom**: SSR 中のレイアウトエフェクト警告を削除 [#26395](https://github.com/facebook/react/pull/26395)
 - **react-dom**: src/href に空文字列を設定しないよう警告（アンカータグを除く）[#28124](https://github.com/facebook/react/pull/28124)
 
+<<<<<<< HEAD
 React 19 の安定版リリース時に、完全な変更履歴を公開します。
+=======
+For a full list of changes, please see the [Changelog](https://github.com/facebook/react/blob/main/CHANGELOG.md#1900-december-5-2024).
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
 ---
 

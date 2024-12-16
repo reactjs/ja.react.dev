@@ -52,6 +52,7 @@ react-devtools
 
 ![スタンドアロン版 React Developer Tools](/images/docs/react-devtools-standalone.png)
 
+<<<<<<< HEAD
 ## モバイル (React Native) {/*mobile-react-native*/}
 React Developer Tools は [React Native](https://reactnative.dev/) を使って構築されたアプリの調査にも利用できます。
 
@@ -59,11 +60,15 @@ React Developer Tools を最も簡単に使う方法は、グローバルにイ�
 ```bash
 # Yarn
 yarn global add react-devtools
+=======
+## Mobile (React Native) {/*mobile-react-native*/}
 
-# Npm
-npm install -g react-devtools
-```
+To inspect apps built with [React Native](https://reactnative.dev/), you can use [React Native DevTools](https://reactnative.dev/docs/debugging/react-native-devtools), the built-in debugger that deeply integrates React Developer Tools. All features work identically to the browser extension, including native element highlighting and selection.
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
+[Learn more about debugging in React Native.](https://reactnative.dev/docs/debugging)
+
+<<<<<<< HEAD
 次に、ターミナルから開発者ツールを開きます。
 ```bash
 react-devtools
@@ -74,3 +79,6 @@ react-devtools
 > 数秒待っても開発者ツールが接続されない場合は、アプリをリロードしてみてください。
 
 [React Native のデバッグについてもっと学ぶ](https://reactnative.dev/docs/debugging)
+=======
+> For versions of React Native earlier than 0.76, please use the standalone build of React DevTools by following the [Safari and other browsers](#safari-and-other-browsers) guide above.
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04

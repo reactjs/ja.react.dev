@@ -1,7 +1,12 @@
 ---
-title: React Server Components
-canary: true
+title: Server Components
 ---
+
+<RSC>
+
+Sever Components are for use in [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+
+</RSC>
 
 <Intro>
 
@@ -188,7 +193,11 @@ async function Author({id}) {
 
 #### サーバコンポーネントのためのディレクティブはない {/*there-is-no-directive-for-server-components*/}
 
+<<<<<<< HEAD
 よくある誤解として、サーバコンポーネントを "use server" を用いて定義するものだと考えるというものがあります。サーバコンポーネントにはディレクティブがありません。"use server" ディレクティブは、サーバアクションのためのものです。
+=======
+A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Functions.
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
 詳細については、[ディレクティブ](/reference/rsc/directives) のドキュメントをご覧ください。
 

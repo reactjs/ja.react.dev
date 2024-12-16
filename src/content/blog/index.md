@@ -14,7 +14,17 @@ React チームからの公式な更新のお知らせはこのブログに掲�
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<<<<<<< HEAD
 <BlogCard title="React Compiler Beta リリース" date="October 21, 2024" url="/blog/2024/10/21/react-compiler-beta-release">
+=======
+<BlogCard title="React v19 " date="December 5, 2024" url="/blog/2024/12/05/react-19">
+
+In the React 19 Upgrade Guide, we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them ...
+
+</BlogCard>
+
+<BlogCard title="React Compiler Beta Release" date="October 21, 2024" url="/blog/2024/10/21/react-compiler-beta-release">
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
 以前 React Conf 2024 で React Compiler の実験的リリースを行いました。それ以降も多くの進展がありましたので、この投稿では React Compiler の次の展開についてお伝えしたいと思います。
 
@@ -26,6 +36,7 @@ React チームからの公式な更新のお知らせはこのブログに掲�
 
 </BlogCard>
 
+<<<<<<< HEAD
 <BlogCard title="React 19 RC " date="April 25, 2024" url="/blog/2024/04/25/react-19">
 
 React 19 RC アップグレードガイドでは、アプリを React 19 にアップグレードするためのステップバイステップガイドをお示ししました。この投稿では、React 19 の新機能と、それらをどのように採用するかについて概説します。
@@ -33,6 +44,9 @@ React 19 RC アップグレードガイドでは、アプリを React 19 にア�
 </BlogCard>
 
 <BlogCard title="React 19 RC アップグレードガイド" date="April 25, 2024" url="/blog/2024/04/25/react-19-upgrade-guide">
+=======
+<BlogCard title="React 19 Upgrade Guide" date="April 25, 2024" url="/blog/2024/04/25/react-19-upgrade-guide">
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
 React 19 に追加された改善にはいくつかの破壊的変更が必要ですが、アップグレードをできるだけスムーズに行えるよう努力しているため、ほとんどのアプリには影響が出ないことを予想しています。この投稿では、ライブラリを React 19 Beta にアップグレードする手順をご案内します。
 

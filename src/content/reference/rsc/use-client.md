@@ -1,13 +1,23 @@
 ---
 title: "'use client'"
+<<<<<<< HEAD
 titleForTitleTag: "'use client' ディレクティブ"
 canary: true
+=======
+titleForTitleTag: "'use client' directive"
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 ---
 
-<Canary>
+<RSC>
 
+<<<<<<< HEAD
 `'use client'` は、[React Server Components を使用している](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)場合や、それらと互換性のあるライブラリを構築している場合にのみ必要です。
 </Canary>
+=======
+`'use client'` is for use with [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+
+</RSC>
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
 
 <Intro>
@@ -268,10 +278,17 @@ React アプリケーションでは一般的に、親コンポーネントか�
 	* [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
 	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) と [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
 * [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
+<<<<<<< HEAD
 * プレーンな[オブジェクト](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): [オブジェクト初期化子](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer)で作成され、シリアライズ可能なプロパティを持つもの
 * [サーバアクション (server action)](/reference/rsc/use-server) としての関数
 * クライアントまたはサーバコンポーネントの要素（JSX）
 * [プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+=======
+* Plain [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): those created with [object initializers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), with serializable properties
+* Functions that are [Server Functions](/reference/rsc/server-functions)
+* Client or Server Component elements (JSX)
+* [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
 以下のものはサポートされていません。
 * クライアントとマークされたモジュールからエクスポートされていない、または [`'use server'`](/reference/rsc/use-server) でマークされていない[関数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)

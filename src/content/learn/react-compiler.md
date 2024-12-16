@@ -278,7 +278,11 @@ export default defineConfig(() => {
 
 ### Next.js {/*usage-with-nextjs*/}
 
+<<<<<<< HEAD
 詳細については [Next.js ドキュメント](https://nextjs.org/docs/canary/app/api-reference/next-config-js/reactCompiler)を参照してください。
+=======
+Please refer to the [Next.js docs](https://nextjs.org/docs/app/api-reference/next-config-js/reactCompiler) for more information.
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
 ### Remix {/*usage-with-remix*/}
 `vite-plugin-babel` をインストールし、コンパイラ付属の Babel プラグインを追加します。
@@ -315,7 +319,11 @@ export default defineConfig({
 
 ### Expo {/*usage-with-expo*/}
 
+<<<<<<< HEAD
 Expo アプリで React Compiler を有効化する方法については [Expo のドキュメント](https://docs.expo.dev/preview/react-compiler/)を参照してください。
+=======
+Please refer to [Expo's docs](https://docs.expo.dev/guides/react-compiler/) to enable and use the React Compiler in Expo apps.
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 
 ### Metro (React Native) {/*usage-with-react-native-metro*/}
 

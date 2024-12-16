@@ -1,21 +1,46 @@
 ---
-title: "React 19 RC"
+title: "React v19"
 author: The React Team
+<<<<<<< HEAD:src/content/blog/2024/04/25/react-19.md
 date: 2024/04/25
 description: React 19 RC が npm で利用可能になりました！ この投稿では React 19 の新機能、およびそれらをどのように採用するかについて概説します。
+=======
+date: 2024/12/05
+description: React 19 is now available on npm! In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04:src/content/blog/2024/12/05/react-19.md
 ---
 
-April 25, 2024 by [The React Team](/community/team)
+December 05, 2024 by [The React Team](/community/team)
 
 ---
+<Note>
+
+### React 19 is now stable! {/*react-19-is-now-stable*/}
+
+Additions since this post was originally shared with the React 19 RC in April:
+
+- **Pre-warming for suspended trees**: see [Improvements to Suspense](/blog/2024/04/25/react-19-upgrade-guide#improvements-to-suspense).
+- **React DOM static APIs**: see [New React DOM Static APIs](#new-react-dom-static-apis).
+
+_The date for this post has been update to reflect the stable release date._
+
+</Note>
 
 <Intro>
 
+<<<<<<< HEAD:src/content/blog/2024/04/25/react-19.md
 npm で React 19 Beta が利用可能になりました！
 
 </Intro>
 
 [React 19 RC アップグレードガイド](/blog/2024/04/25/react-19-upgrade-guide)では、アプリを React 19 にアップグレードするためのステップバイステップガイドをお示ししました。この投稿では、React 19 の新機能と、それらをどのように採用するかについて概説します。
+=======
+React v19 is now available on npm!
+
+</Intro>
+
+In our [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide), we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04:src/content/blog/2024/12/05/react-19.md
 
 - [React 19 の新機能](#whats-new-in-react-19)
 - [React 19 の改善点](#improvements-in-react-19)
@@ -312,6 +337,30 @@ function Heading({children}) {
 
 詳細については、[`use`](/reference/react/use) のドキュメントをご覧ください。
 
+## New React DOM Static APIs {/*new-react-dom-static-apis*/}
+
+We've added two new APIs to `react-dom/static` for static site generation:
+- [`prerender`](/reference/react-dom/static/prerender)
+- [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream)
+
+These new APIs improve on `renderToString` by waiting for data to load for static HTML generation. They are designed to work with streaming environments like Node.js Streams and Web Streams. For example, in a Web Stream environment, you can prerender a React tree to static HTML with `prerender`: 
+
+```js
+import { prerender } from 'react-dom/static';
+
+async function handler(request) {
+  const {prelude} = await prerender(<App />, {
+    bootstrapScripts: ['/main.js']
+  });
+  return new Response(prelude, {
+    headers: { 'content-type': 'text/html' },
+  });
+}
+```
+
+Prerender APIs will wait for all data to load before returning the static HTML stream. Streams can be converted to strings, or sent with a streaming response. They do not support streaming content as it loads, which is supported by the existing [React DOM server rendering APIs](/reference/react-dom/server).
+
+For more information, see [React DOM Static APIs](/reference/react-dom/static).
 
 ## React Server Components {/*react-server-components*/}
 
@@ -771,5 +820,4 @@ React におけるカスタム要素のサポートに関し、設計と実装�
 #### アップグレード方法 {/*how-to-upgrade*/}
 アップグレードに関するステップバイステップのガイドや、重要な変更点の完全なリストについては、[React 19 アップグレードガイド](/blog/2024/04/25/react-19-upgrade-guide)を参照してください。
 
-
-
+_Note: this post was originally published 04/25/2024 and has been updated to 12/05/2024 with the stable release._

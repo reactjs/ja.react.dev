@@ -1,14 +1,16 @@
 ---
 title: preconnect
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 `preconnect` 関数は、現在 React の Canary および experimental チャンネルでのみ利用可能です。[React のリリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
 
 </Canary>
 
+=======
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 <Intro>
 
 `preconnect` を使用して、リソースをロードする予定のサーバにあらかじめ接続しておくことができます。

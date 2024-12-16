@@ -1,14 +1,16 @@
 ---
 style: "<style>"
-canary: true
 ---
 
+<<<<<<< HEAD
 <Canary>
 
 React による `<style>` の機能拡張は、現在 React の Canary および experimental チャンネルでのみ利用可能です。React の安定版リリースでは、`<style>` は単なる[組み込みのブラウザ HTML コンポーネント](https://react.dev/reference/react-dom/components#all-html-components)として機能します。[React のリリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
 
 </Canary>
 
+=======
+>>>>>>> 3b02f828ff2a4f9d2846f077e442b8a405e2eb04
 <Intro>
 
 [ブラウザ組み込みの `<style>` コンポーネント](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style)を利用することで、ドキュメントにインラインの CSS スタイルシートを追加できます。
