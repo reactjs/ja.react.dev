@@ -42,7 +42,7 @@ React は、`domNode` 内に存在する HTML にアタッチし、その内部�
 * **省略可能** `options`: この React ルートのオプションを含むオブジェクト。
 
   * <CanaryBadge title="This feature is only available in the Canary channel" /> **省略可能** `onCaughtError`: エラーバウンダリ内で React がエラーをキャッチしたときに呼び出されるコールバック。エラーバウンダリにキャッチされた `error` と、`componentStack` を含んだ `errorInfo` を引数にして呼び出されます。
-  * <CanaryBadge title="This feature is only available in the Canary channel" /> **省略可能** `onUncaughtError`: エラーがスローされがエラーバウンダリでキャッチされななかったときに呼び出されるコールバック。スローされた `error` と、`componentStack` を含んだ `errorInfo` を引数にして呼び出されます。
+  * <CanaryBadge title="This feature is only available in the Canary channel" /> **省略可能** `onUncaughtError`: エラーがスローされたがエラーバウンダリでキャッチされなかったときに呼び出されるコールバック。スローされた `error` と、`componentStack` を含んだ `errorInfo` を引数にして呼び出されます。
   * **optional** `onRecoverableError`: React が自動的にエラーから回復したときに呼び出されるコールバック。React がスローする `error` と、`componentStack` を含んだ `errorInfo` を引数にして呼び出されます。復帰可能なエラーの一部は元のエラーを `error.cause` として含んでいます。
   * **省略可能** `identifierPrefix`: React が [`useId`](/reference/react/useId) によって生成する ID に使用する文字列プレフィックス。同じページ上に複数のルートを使用する際に、競合を避けるために用います。サーバ上で使用されたものと同じプレフィックスでなければなりません。
 
