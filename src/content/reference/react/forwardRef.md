@@ -2,6 +2,14 @@
 title: forwardRef
 ---
 
+<Deprecated>
+
+React 19 では、`forwardRef` は不要となりました。代わりに props として `ref` を渡すようにしてください。
+
+`forwardRef` は将来のリリースでは非推奨化される予定です。詳しくは[こちら](/blog/2024/04/25/react-19#ref-as-a-prop)を参照してください。
+
+</Deprecated>
+
 <Intro>
 
 `forwardRef` は、親コンポーネントに対して DOM ノードを [ref](/learn/manipulating-the-dom-with-refs) として公開できるようにします。

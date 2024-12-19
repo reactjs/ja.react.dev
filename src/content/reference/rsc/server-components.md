@@ -1,7 +1,12 @@
 ---
-title: React Server Components
-canary: true
+title: サーバコンポーネント
 ---
+
+<RSC>
+
+サーバコンポーネントは [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) 用の機能です。
+
+</RSC>
 
 <Intro>
 
@@ -188,7 +193,7 @@ async function Author({id}) {
 
 #### サーバコンポーネントのためのディレクティブはない {/*there-is-no-directive-for-server-components*/}
 
-よくある誤解として、サーバコンポーネントを "use server" を用いて定義するものだと考えるというものがあります。サーバコンポーネントにはディレクティブがありません。"use server" ディレクティブは、サーバアクションのためのものです。
+よくある誤解として、サーバコンポーネントを "use server" を用いて定義するものだと考えるというものがあります。サーバコンポーネントにはディレクティブがありません。"use server" ディレクティブは、サーバ関数のためのものです。
 
 詳細については、[ディレクティブ](/reference/rsc/directives) のドキュメントをご覧ください。
 

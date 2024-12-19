@@ -1,13 +1,6 @@
 ---
 link: "<link>"
-canary: true
 ---
-
-<Canary>
-
-React による `<link>` の機能拡張は、現在 React の Canary および experimental チャンネルでのみ利用可能です。React の安定版リリースでは、`<link>` は単なる[組み込みのブラウザ HTML コンポーネント](https://react.dev/reference/react-dom/components#all-html-components)として機能します。[React のリリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
-
-</Canary>
 
 <Intro>
 

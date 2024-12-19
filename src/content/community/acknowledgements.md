@@ -4,7 +4,7 @@ title: 謝辞
 
 <Intro>
 
-オリジナルの React は [Jordan Walke](https://github.com/jordwalke) によって作成されました。現在、React に取り組んでいる[フルタイムの専門チーム](/community/team)があり、また [1000 名を超えるオープンソース貢献者](https://github.com/facebook/react/blob/main/AUTHORS)がいます。
+オリジナルの React は [Jordan Walke](https://github.com/jordwalke) によって作成されました。現在、React に取り組んでいる[フルタイムの専門チーム](/community/team)があり、また [1000 名を超えるオープンソース貢献者](https://github.com/facebook/react/graphs/contributors)がいます。
 
 </Intro>
 

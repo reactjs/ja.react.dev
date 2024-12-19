@@ -45,8 +45,8 @@ React で完全に構築されたアプリには、ルートコンポーネン�
 
 * **省略可能** `options`: この React ルートに関するオプションが含まれたオブジェクト。
 
-  * <CanaryBadge title="This feature is only available in the Canary channel" /> **省略可能** `onCaughtError`: エラーバウンダリ内で React がエラーをキャッチしたときに呼び出されるコールバック。エラーバウンダリにキャッチされた `error` と、`componentStack` を含んだ `errorInfo` を引数にして呼び出されます。
-  * <CanaryBadge title="This feature is only available in the Canary channel" /> **省略可能** `onUncaughtError`: エラーがスローされがエラーバウンダリでキャッチされななかったときに呼び出されるコールバック。スローされた `error` と、`componentStack` を含んだ `errorInfo` を引数にして呼び出されます。
+  * **省略可能** `onCaughtError`: エラーバウンダリ内で React がエラーをキャッチしたときに呼び出されるコールバック。エラーバウンダリにキャッチされた `error` と、`componentStack` を含んだ `errorInfo` を引数にして呼び出されます。
+  * **省略可能** `onUncaughtError`: エラーがスローされたがエラーバウンダリでキャッチされなかったときに呼び出されるコールバック。スローされた `error` と、`componentStack` を含んだ `errorInfo` を引数にして呼び出されます。
   * **省略可能** `onRecoverableError`: React が自動的にエラーから回復したときに呼び出されるコールバック。React がスローする `error` と、`componentStack` を含んだ `errorInfo` を引数にして呼び出されます。復帰可能なエラーの一部は元のエラーを `error.cause` として含んでいます。
   * **省略可能** `identifierPrefix`: React が [`useId`](/reference/react/useId) によって生成する ID に使用する文字列プレフィックス。同じページ上に複数のルートを使用する際に、競合を避けるために用います。
 
@@ -346,12 +346,6 @@ export default function App({counter}) {
 
 ### キャッチされないエラーに対するダイアログを表示 {/*show-a-dialog-for-uncaught-errors*/}
 
-<Canary>
-
-`onUncaughtError` は最新版の React Canary リリースでのみ利用可能です。
-
-</Canary>
-
 デフォルトでは React は、キャッチされなかったエラーをコンソールにログとして表示します。独自のエラーレポーティングを実装するには、省略可能なルートオプションである `onUncaughtError` を指定します。
 
 ```js [[1, 6, "onUncaughtError"], [2, 6, "error", 1], [3, 6, "errorInfo"], [4, 10, "componentStack"]]
@@ -578,27 +572,10 @@ export default function App() {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js"
-}
-```
-
 </Sandpack>
 
 
 ### エラーバウンダリでキャッチしたエラーを表示 {/*displaying-error-boundary-errors*/}
-
-<Canary>
-
-`onCaughtError` は最新の React Canary リリースでのみ利用可能です。
-
-</Canary>
 
 デフォルトでは、React はエラーバウンダリによってキャッチされたすべてのエラーを `console.error` に記録します。この動作をオーバーライドするには、省略可能なルートオプションである `onCaughtError` を指定して、[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary)によってキャッチされたエラーを処理するようにします。
 
@@ -865,8 +842,8 @@ function Throw({error}) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
+    "react": "19.0.0-rc-3edc000d-20240926",
+    "react-dom": "19.0.0-rc-3edc000d-20240926",
     "react-scripts": "^5.0.0",
     "react-error-boundary": "4.0.3"
   },
@@ -1123,8 +1100,8 @@ function Throw({error}) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
+    "react": "19.0.0-rc-3edc000d-20240926",
+    "react-dom": "19.0.0-rc-3edc000d-20240926",
     "react-scripts": "^5.0.0",
     "react-error-boundary": "4.0.3"
   },

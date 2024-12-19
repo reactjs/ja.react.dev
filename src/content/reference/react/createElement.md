@@ -49,7 +49,7 @@ function Greeting({ name }) {
 `createElement` は以下のプロパティを持つ React 要素オブジェクトを返します。
 
 * `type`: 指定した `type`。
-* `props`: 指定した `props`、ただし `ref` と `key` は除く。もし `type` がレガシーの `type.defaultProps` を持つコンポーネントであれば、欠けているか undefined となっている `props` は `type.defaultProps` から値を取得します。
+* `props`: 指定した `props`、ただし `ref` と `key` は除く。
 * `ref`: 指定した `ref`。未指定の場合は `null`。
 * `key`: 指定した `key`。強制的に文字列に変換されます。未指定の場合は `null`。
 

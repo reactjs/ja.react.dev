@@ -1,21 +1,33 @@
 ---
-title: "React 19 RC"
+title: "React v19"
 author: The React Team
-date: 2024/04/25
-description: React 19 RC が npm で利用可能になりました！ この投稿では React 19 の新機能、およびそれらをどのように採用するかについて概説します。
+date: 2024/12/05
+description: React 19 が npm で利用可能になりました！ この投稿では React 19 の新機能、およびそれらをどのように採用するかについて概説します。
 ---
 
-April 25, 2024 by [The React Team](/community/team)
+December 05, 2024 by [The React Team](/community/team)
 
 ---
+<Note>
+
+### React 19 は安定版になりました {/*react-19-is-now-stable*/}
+
+4 月に React 19 RC の記事として本記事が公開されて以降に、以下の内容が追加となっています。
+
+- **サスペンド中のツリーのプリウォーム**：[サスペンスに関する改善](/blog/2024/04/25/react-19-upgrade-guide#improvements-to-suspense)
+- **静的サイト用の React DOM API**: [静的サイト用の新 DOM API](#new-react-dom-static-apis)
+
+_この記事の投稿日時も、安定版リリースに合わせて変更となっています。_
+
+</Note>
 
 <Intro>
 
-npm で React 19 Beta が利用可能になりました！
+npm で React 19 が利用可能になりました！
 
 </Intro>
 
-[React 19 RC アップグレードガイド](/blog/2024/04/25/react-19-upgrade-guide)では、アプリを React 19 にアップグレードするためのステップバイステップガイドをお示ししました。この投稿では、React 19 の新機能と、それらをどのように採用するかについて概説します。
+[React 19 アップグレードガイド](/blog/2024/04/25/react-19-upgrade-guide)では、アプリを React 19 にアップグレードするためのステップバイステップガイドをお示ししました。この投稿では、React 19 の新機能と、それらをどのように採用するかについて概説します。
 
 - [React 19 の新機能](#whats-new-in-react-19)
 - [React 19 の改善点](#improvements-in-react-19)
@@ -312,6 +324,30 @@ function Heading({children}) {
 
 詳細については、[`use`](/reference/react/use) のドキュメントをご覧ください。
 
+## 静的サイト用の新 DOM API {/*new-react-dom-static-apis*/}
+
+静的サイト生成 (static site generation) のための API を `react-dom/static` に 2 つ追加しました。
+- [`prerender`](/reference/react-dom/static/prerender)
+- [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream)
+
+これらは `renderToString` の改善版であり、静的な HTML 生成の際に、データの待機を行うようになっています。Node.js のストリームや Web 標準のストリームで動作するよう設計されています。例えば Web ストリームの環境では、`prerender` を使って React ツリーを静的な HTML にプリレンダーできます。
+
+```js
+import { prerender } from 'react-dom/static';
+
+async function handler(request) {
+  const {prelude} = await prerender(<App />, {
+    bootstrapScripts: ['/main.js']
+  });
+  return new Response(prelude, {
+    headers: { 'content-type': 'text/html' },
+  });
+}
+```
+
+プリレンダー API は、静的な HTML をストリームとして返す前に、すべてのデータの読み込みを待機します。このストリームは文字列に変換することも、レスポンスに含めて送信することも可能です。ただし、既存の [React DOM サーバレンダリング API](/reference/react-dom/server) がサポートするような、データを読み込みながらコンテンツをストリーミングする機能はサポートしていません。
+
+詳細については [React DOM 静的サイト用 API](/reference/react-dom/static) を参照してください。
 
 ## React Server Components {/*react-server-components*/}
 
@@ -771,5 +807,4 @@ React におけるカスタム要素のサポートに関し、設計と実装�
 #### アップグレード方法 {/*how-to-upgrade*/}
 アップグレードに関するステップバイステップのガイドや、重要な変更点の完全なリストについては、[React 19 アップグレードガイド](/blog/2024/04/25/react-19-upgrade-guide)を参照してください。
 
-
-
+_Note: this post was originally published 04/25/2024 and has been updated to 12/05/2024 with the stable release._

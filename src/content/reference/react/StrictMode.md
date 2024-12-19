@@ -44,6 +44,7 @@ Strict Mode では、以下のような開発時専用の挙動が有効にな�
 
 - コンポーネントは、純粋でない (impure) レンダーによって引き起こされるバグを見つけるために、[レンダーを追加で 1 回行います](#fixing-bugs-found-by-double-rendering-in-development)。
 - コンポーネントは、エフェクトのクリーンアップし忘れによるバグを見つけるために、[エフェクトの実行を追加で 1 回行います](#fixing-bugs-found-by-re-running-effects-in-development)。
+- コンポーネントは、ref のクリーンアップし忘れによるバグを見つけるために、[ref コールバックの実行を追加で 1 回行います](#fixing-bugs-found-by-re-running-ref-callbacks-in-development)。
 - コンポーネントが[非推奨の API を使用していないかチェック](#fixing-deprecation-warnings-enabled-by-strict-mode)します。
 
 #### props {/*props*/}
@@ -87,7 +88,8 @@ Strict Mode は開発中に以下のチェックを有効にします：
 
 - コンポーネントは、純粋でない (impure) レンダーによって引き起こされるバグを見つけるために、[レンダーを追加で 1 回行います](#fixing-bugs-found-by-double-rendering-in-development)。
 - コンポーネントは、エフェクトのクリーンアップし忘れによるバグを見つけるために、[エフェクトの実行を追加で 1 回行います](#fixing-bugs-found-by-re-running-effects-in-development)。
-- コンポーネントが[非推奨の API の使用を使っていないかチェック](#fixing-deprecation-warnings-enabled-by-strict-mode)します。
+- コンポーネントは、ref のクリーンアップし忘れによるバグを見つけるために、[ref コールバックの実行を追加で 1 回行います](#fixing-bugs-found-by-cleaning-up-and-re-attaching-dom-refs-in-development)。
+- コンポーネントが[非推奨の API を使っていないかチェック](#fixing-deprecation-warnings-enabled-by-strict-mode)します。
 
 **これらのチェックはすべて開発環境専用であり、本番用ビルドには影響しません。**
 
@@ -730,7 +732,7 @@ button { margin-left: 10px; }
 
 **Strict Mode を使用すると、すぐに問題があることがわかります**（アクティブな接続の数が 2 に跳ね上がります）。Strict Mode は、すべてのエフェクトに対してセットアップ+クリーンアップのサイクルを追加で実行します。このエフェクトにはクリーンアップロジックがないため、余分な接続が作成されても破棄されませんでした。これは、クリーンアップ関数が欠けていることを示すヒントです。
 
-Strict Mode を使用すると、このようなミスを早期に気付くことができます。Strict Mode でエフェクトにクリーンアップ関数を追加して修正することで、先ほどの選択ボックスのような、将来本番環境で発生しうる多くのバグも、あらかじめ潰しておけるのです。
+Strict Mode を使用すると、このようなミスに早期に気付くことができます。Strict Mode でエフェクトにクリーンアップ関数を追加して修正することで、先ほどの選択ボックスのような、将来本番環境で発生しうる多くのバグも、あらかじめ潰しておけるのです。
 
 <Sandpack>
 
@@ -825,14 +827,422 @@ Strict Mode がなければ、エフェクトがクリーンアップを必要�
 [エフェクトのクリーンアップの実装について詳しく読む](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 
 ---
+### 開発中に ref コールバックの再実行によって見つかったバグの修正 {/*fixing-bugs-found-by-re-running-ref-callbacks-in-development*/}
 
-### Strict Mode によって有効化された非推奨警告の修正 {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
+Strict Mode は、[コールバック形式の ref](/learn/manipulating-the-dom-with-refs) のバグを見つけるのにも役立ちます。
+
+すべてのコールバック `ref` にはセットアップコードが含まれ、一部にはクリーンアップコードも含まれます。通常、React は要素が**作成されたとき**（DOM に追加されたとき）にセットアップを呼び出し、要素が（DOM から）**削除されたとき**にクリーンアップを呼び出します。
+
+Strict Mode が有効な場合、React は開発中に**すべてのコールバック `ref` に対して追加で 1 回、セットアップ+クリーンアップのサイクルを実行**します。この挙動に驚くかもしれませんが、手動で見つけるのが難しい微妙なバグを明らかにするのに役立ちます。
+
+以下の例を考えてみましょう。この例では、動物の種類を選択した後に、リスト内の動物のいずれかにスクロールすることができます。"Cats" から "Dogs" に切り替えると、コンソールのログに表示される動物の数が増え続けていき、"Scroll to" ボタンが機能しなくなるのがわかります。
+
+<Sandpack>
+
+```js src/index.js
+import { createRoot } from 'react-dom/client';
+import './styles.css';
+
+import App from './App';
+
+const root = createRoot(document.getElementById("root"));
+// ❌ Not using StrictMode.
+root.render(<App />);
+```
+
+```js src/App.js active
+import { useRef, useState } from "react";
+
+export default function AnimalFriends() {
+  const itemsRef = useRef([]);
+  const [animalList, setAnimalList] = useState(setupAnimalList);
+  const [animal, setAnimal] = useState('cat');
+
+  function scrollToAnimal(index) {
+    const list = itemsRef.current;
+    const {node} = list[index];
+    node.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }
+  
+  const animals = animalList.filter(a => a.type === animal)
+  
+  return (
+    <>
+      <nav>
+        <button onClick={() => setAnimal('cat')}>Cats</button>
+        <button onClick={() => setAnimal('dog')}>Dogs</button>
+      </nav>
+      <hr />
+      <nav>
+        <span>Scroll to:</span>{animals.map((animal, index) => (
+          <button key={animal.src} onClick={() => scrollToAnimal(index)}>
+            {index}
+          </button>
+        ))}
+      </nav>
+      <div>
+        <ul>
+          {animals.map((animal) => (
+              <li
+                key={animal.src}
+                ref={(node) => {
+                  const list = itemsRef.current;
+                  const item = {animal: animal, node}; 
+                  list.push(item);
+                  console.log(`✅ Adding animal to the map. Total animals: ${list.length}`);
+                  if (list.length > 10) {
+                    console.log('❌ Too many animals in the list!');
+                  }
+                  return () => {
+                    // 🚩 No cleanup, this is a bug!
+                  }
+                }}
+              >
+                <img src={animal.src} />
+              </li>
+            ))}
+          
+        </ul>
+      </div>
+    </>
+  );
+}
+
+function setupAnimalList() {
+  const animalList = [];
+  for (let i = 0; i < 10; i++) {
+    animalList.push({type: 'cat', src: "https://loremflickr.com/320/240/cat?lock=" + i});
+  }
+  for (let i = 0; i < 10; i++) {
+    animalList.push({type: 'dog', src: "https://loremflickr.com/320/240/dog?lock=" + i});
+  }
+
+  return animalList;
+}
+
+```
+
+```css
+div {
+  width: 100%;
+  overflow: hidden;
+}
+
+nav {
+  text-align: center;
+}
+
+button {
+  margin: .25rem;
+}
+
+ul,
+li {
+  list-style: none;
+  white-space: nowrap;
+}
+
+li {
+  display: inline;
+  padding: 0.5rem;
+}
+```
+
+</Sandpack>
+
+
+**これは本番環境でのバグです！** ref コールバックのクリーンアップでリストから動物を削除していないため、動物のリストが増え続けていっています。これはメモリリークであり、本番環境でパフォーマンスの問題や動作の不具合を引き起こします。
+
+問題は ref コールバックがクリーンアップを正しく行っていないことです。
+
+```js {6-8}
+<li
+  ref={node => {
+    const list = itemsRef.current;
+    const item = {animal, node};
+    list.push(item);
+    return () => {
+      // 🚩 No cleanup, this is a bug!
+    }
+  }}
+</li>
+```
+
+元の（バグのある）例を `<StrictMode>` でラップしてみましょう。
+
+<Sandpack>
+
+```js src/index.js
+import { createRoot } from 'react-dom/client';
+import {StrictMode} from 'react';
+import './styles.css';
+
+import App from './App';
+
+const root = createRoot(document.getElementById("root"));
+// ✅ Using StrictMode.
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+```js src/App.js active
+import { useRef, useState } from "react";
+
+export default function AnimalFriends() {
+  const itemsRef = useRef([]);
+  const [animalList, setAnimalList] = useState(setupAnimalList);
+  const [animal, setAnimal] = useState('cat');
+
+  function scrollToAnimal(index) {
+    const list = itemsRef.current;
+    const {node} = list[index];
+    node.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }
+  
+  const animals = animalList.filter(a => a.type === animal)
+  
+  return (
+    <>
+      <nav>
+        <button onClick={() => setAnimal('cat')}>Cats</button>
+        <button onClick={() => setAnimal('dog')}>Dogs</button>
+      </nav>
+      <hr />
+      <nav>
+        <span>Scroll to:</span>{animals.map((animal, index) => (
+          <button key={animal.src} onClick={() => scrollToAnimal(index)}>
+            {index}
+          </button>
+        ))}
+      </nav>
+      <div>
+        <ul>
+          {animals.map((animal) => (
+              <li
+                key={animal.src}
+                ref={(node) => {
+                  const list = itemsRef.current;
+                  const item = {animal: animal, node} 
+                  list.push(item);
+                  console.log(`✅ Adding animal to the map. Total animals: ${list.length}`);
+                  if (list.length > 10) {
+                    console.log('❌ Too many animals in the list!');
+                  }
+                  return () => {
+                    // 🚩 No cleanup, this is a bug!
+                  }
+                }}
+              >
+                <img src={animal.src} />
+              </li>
+            ))}
+          
+        </ul>
+      </div>
+    </>
+  );
+}
+
+function setupAnimalList() {
+  const animalList = [];
+  for (let i = 0; i < 10; i++) {
+    animalList.push({type: 'cat', src: "https://loremflickr.com/320/240/cat?lock=" + i});
+  }
+  for (let i = 0; i < 10; i++) {
+    animalList.push({type: 'dog', src: "https://loremflickr.com/320/240/dog?lock=" + i});
+  }
+
+  return animalList;
+}
+
+```
+
+```css
+div {
+  width: 100%;
+  overflow: hidden;
+}
+
+nav {
+  text-align: center;
+}
+
+button {
+  margin: .25rem;
+}
+
+ul,
+li {
+  list-style: none;
+  white-space: nowrap;
+}
+
+li {
+  display: inline;
+  padding: 0.5rem;
+}
+```
+
+</Sandpack>
+
+**Strict Mode を使用することで、即座に問題に気づけるようになります**。Strict Mode では、すべてのコールバック `ref` に対して追加のセットアップ+クリーンアップサイクルが実行されます。このコールバック `ref` にはクリーンアップロジックがないため、ref は追加されるだけで削除されません。これはクリーンアップ関数が欠けていることを示すヒントです。
+
+Strict Mode を使うことで、コールバック `ref` のミスを積極的に見つけだすことができます。Strict Mode を使いクリーンアップ関数を追加してコールバックを修正することで、先ほどの "Scroll to" のような、将来本番環境で発生しうる多くのバグも、あらかじめ潰しておけるのです。
+
+<Sandpack>
+
+```js src/index.js
+import { createRoot } from 'react-dom/client';
+import {StrictMode} from 'react';
+import './styles.css';
+
+import App from './App';
+
+const root = createRoot(document.getElementById("root"));
+// ✅ Using StrictMode.
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+```js src/App.js active
+import { useRef, useState } from "react";
+
+export default function AnimalFriends() {
+  const itemsRef = useRef([]);
+  const [animalList, setAnimalList] = useState(setupAnimalList);
+  const [animal, setAnimal] = useState('cat');
+
+  function scrollToAnimal(index) {
+    const list = itemsRef.current;
+    const {node} = list[index];
+    node.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }
+  
+  const animals = animalList.filter(a => a.type === animal)
+  
+  return (
+    <>
+      <nav>
+        <button onClick={() => setAnimal('cat')}>Cats</button>
+        <button onClick={() => setAnimal('dog')}>Dogs</button>
+      </nav>
+      <hr />
+      <nav>
+        <span>Scroll to:</span>{animals.map((animal, index) => (
+          <button key={animal.src} onClick={() => scrollToAnimal(index)}>
+            {index}
+          </button>
+        ))}
+      </nav>
+      <div>
+        <ul>
+          {animals.map((animal) => (
+              <li
+                key={animal.src}
+                ref={(node) => {
+                  const list = itemsRef.current;
+                  const item = {animal, node};
+                  list.push({animal: animal, node});
+                  console.log(`✅ Adding animal to the map. Total animals: ${list.length}`);
+                  if (list.length > 10) {
+                    console.log('❌ Too many animals in the list!');
+                  }
+                  return () => {
+                    list.splice(list.indexOf(item));
+                    console.log(`❌ Removing animal from the map. Total animals: ${itemsRef.current.length}`);
+                  }
+                }}
+              >
+                <img src={animal.src} />
+              </li>
+            ))}
+          
+        </ul>
+      </div>
+    </>
+  );
+}
+
+function setupAnimalList() {
+  const animalList = [];
+  for (let i = 0; i < 10; i++) {
+    animalList.push({type: 'cat', src: "https://loremflickr.com/320/240/cat?lock=" + i});
+  }
+  for (let i = 0; i < 10; i++) {
+    animalList.push({type: 'dog', src: "https://loremflickr.com/320/240/dog?lock=" + i});
+  }
+
+  return animalList;
+}
+
+```
+
+```css
+div {
+  width: 100%;
+  overflow: hidden;
+}
+
+nav {
+  text-align: center;
+}
+
+button {
+  margin: .25rem;
+}
+
+ul,
+li {
+  list-style: none;
+  white-space: nowrap;
+}
+
+li {
+  display: inline;
+  padding: 0.5rem;
+}
+```
+
+</Sandpack>
+
+StrictMode が有効になると、初回レンダー時に ref コールバックがセットアップされ、クリーンアップされ、またセットアップされます。
+
+```
+...
+✅ Adding animal to the map. Total animals: 10
+...
+❌ Removing animal from the map. Total animals: 0
+...
+✅ Adding animal to the map. Total animals: 10
+```
+
+**この挙動は問題ありません**。Strict Mode により、ref コールバックが正しくクリーンアップされており、予想外にサイズが大きくならないことを確認できます。修正後にはメモリリークはなくなり、すべての機能が予期したとおりに動作するようになります。
+
+Strict Mode がなければ、アプリをクリックして動かない機能があることに気付くまで、このバグは見逃される危険がありました。Strict Mode により、本番環境に投入するプッシュする前にバグがすぐに明らかになったのです。
+
+--- 
+### Strict Mode によって現れるようになった非推奨警告の修正 {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
 
 React は、`<StrictMode>` ツリー内のいずれかのコンポーネントが以下の非推奨 API を使用している場合に警告を発します。
 
-* [`findDOMNode`](/reference/react-dom/findDOMNode)。[代替手段を見る](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
 * `UNSAFE_` クラスライフサイクルメソッド（[`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount) など）。[代替手段を見る](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles) 
-* レガシーコンテクスト（[`childContextTypes`](/reference/react/Component#static-childcontexttypes)、[`contextTypes`](/reference/react/Component#static-contexttypes)、[`getChildContext`](/reference/react/Component#getchildcontext)）。[代替手段を見る](/reference/react/createContext)
-* レガシーの文字列型 ref（[`this.refs`](/reference/react/Component#refs)）。[代替手段を見る](https://reactjs.org/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage)
 
 これらの API は主に古い[クラスコンポーネント](/reference/react/Component)で使用されているものであり、現在のアプリケーションではほとんど見られません。

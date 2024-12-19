@@ -1,13 +1,6 @@
 ---
 title: use
-canary: true
 ---
-
-<Canary>
-
-`use` API は現在、React の Canary および experimental チャンネルでのみ利用可能です。[React のリリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
-
-</Canary>
 
 <Intro>
 
@@ -55,8 +48,8 @@ React フックとは異なり、`use` は `if` のようなループや条件�
 #### 注意点 {/*caveats*/}
 
 * `use` API は、コンポーネントまたは他のフック内で呼び出す必要があります。
-* [サーバコンポーネント](/reference/rsc/use-server)でデータをフェッチする際は、`use` よりも `async` と `await` を優先して使用してください。`async` と `await` は `await` が呼び出された地点からレンダーを再開しますが、`use` はデータが解決した後にコンポーネントを最初からレンダーします。
-* [クライアントコンポーネント](/reference/rsc/use-client)でプロミスを作成するよりも、[サーバコンポーネント](/reference/react/use-server)でプロミスを作成してそれをクライアントコンポーネントに渡すようにしてください。クライアントコンポーネントで作成されたプロミスは、レンダーごとに再作成されます。サーバコンポーネントからクライアントコンポーネントに渡されたプロミスは、再レンダー間で不変です。[こちらの例を参照してください](#streaming-data-from-server-to-client)。
+* [サーバコンポーネント](/reference/rsc/server-components)でデータをフェッチする際は、`use` よりも `async` と `await` を優先して使用してください。`async` と `await` は `await` が呼び出された地点からレンダーを再開しますが、`use` はデータが解決した後にコンポーネントを最初からレンダーします。
+* [クライアントコンポーネント](/reference/rsc/use-client)でプロミスを作成するよりも、なるべく[サーバコンポーネント](/reference/react/server-components)でプロミスを作成してそれをクライアントコンポーネントに渡すようにしてください。クライアントコンポーネントで作成されたプロミスは、レンダーごとに再作成されます。サーバコンポーネントからクライアントコンポーネントに渡されたプロミスは、再レンダー間で不変です。[こちらの例を参照してください](#streaming-data-from-server-to-client)。
 
 ---
 
@@ -199,17 +192,6 @@ function Button({ show, children }) {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js"
-}
-```
-
 </Sandpack>
 
 ### サーバからクライアントへのデータストリーミング {/*streaming-data-from-server-to-client*/}
@@ -291,9 +273,6 @@ export default function App() {
 ```
 
 ```js src/index.js hidden
-// TODO: update to import from stable
-// react instead of canary once the `use`
-// API is in a stable release of React
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -311,16 +290,6 @@ root.render(
 );
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js"
-}
-```
 </Sandpack>
 
 <Note>
@@ -411,9 +380,6 @@ export default function App() {
 ```
 
 ```js src/index.js hidden
-// TODO: update to import from stable
-// react instead of canary once the `use`
-// API is in a stable release of React
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -431,17 +397,6 @@ root.render(
 );
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
-    "react-scripts": "^5.0.0",
-    "react-error-boundary": "4.0.3"
-  },
-  "main": "/index.js"
-}
-```
 </Sandpack>
 
 #### `Promise.catch` で代替値を提供する {/*providing-an-alternative-value-with-promise-catch*/}

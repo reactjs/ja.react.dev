@@ -1,13 +1,6 @@
 ---
 title: preinit
-canary: true
 ---
-
-<Canary>
-
-`preinit` 関数は、現在 React の Canary および experimental チャンネルでのみ利用可能です。[React のリリースチャンネルについてはこちらをご覧ください](/community/versioning-policy#all-release-channels)。
-
-</Canary>
 
 <Note>
 
