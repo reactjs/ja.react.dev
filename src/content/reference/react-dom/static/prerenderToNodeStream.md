@@ -4,7 +4,11 @@ title: prerenderToNodeStream
 
 <Intro>
 
+<<<<<<< HEAD
 `prerenderToNodeStream` は React ツリーを [Node.js ストリーム](https://nodejs.org/api/stream.html)を用いて静的な HTML 文字列にレンダーします。
+=======
+`prerenderToNodeStream` renders a React tree to a static HTML string using a [Node.js Stream.](https://nodejs.org/api/stream.html).
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 ```js
 const {prelude} = await prerenderToNodeStream(reactNode, options?)
@@ -291,5 +295,10 @@ function ProfilePage() {
 
 `prerenderToNodeStream` の返り値は解決する前に、全サスペンスバウンダリが解決することも含む、アプリ全体のレンダーの終了を待機します。これは事前静的サイト生成 (SSG) のために設計されているものであり、コンテンツを読み込みながらのストリーミングをサポートしません。
 
+<<<<<<< HEAD
 コンテンツを読み込みながらストリームしたい場合は、サーバレンダー API である [renderToReadableStream](/reference/react-dom/server/renderToReadableStream) などを使用してください。
  
+=======
+To stream content as it loads, use a streaming server render API like [renderToPipeableStream](/reference/react-dom/server/renderToPipeableStream).
+ 
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682

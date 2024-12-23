@@ -343,17 +343,42 @@ Strict Mode が有効の場合、ref コールバックは開発環境で 2 回�
 
 ## 別のコンポーネントの DOM ノードにアクセスする {/*accessing-another-components-dom-nodes*/}
 
+<<<<<<< HEAD
 `<input />` のようなブラウザ要素を出力する組み込みコンポーネントに ref を置いた場合、React はその ref の `current` プロパティを、対応する DOM ノード（ブラウザの実際の `<input />` など）にセットします。
 
 ただし、**独自の**コンポーネント、例えば `<MyInput />` に ref を置こうとすると、デフォルトでは `null` が返されます。以下はそれを示す例です。ボタンをクリックしても入力フィールドにフォーカスが当たらないことに注意してください。
+=======
+<Pitfall>
+Refs are an escape hatch. Manually manipulating _another_ component's DOM nodes can make your code fragile.
+</Pitfall>
+
+You can pass refs from parent component to child components [just like any other prop](/learn/passing-props-to-a-component).
+
+```js {3-4,9}
+import { useRef } from 'react';
+
+function MyInput({ ref }) {
+  return <input ref={ref} />;
+}
+
+function MyForm() {
+  const inputRef = useRef(null);
+  return <MyInput ref={inputRef} />
+}
+```
+
+In the above example, a ref is created in the parent component, `MyForm`, and is passed to the child component, `MyInput`. `MyInput` then passes the ref to `<input>`. Because `<input>` is a [built-in component](/reference/react-dom/components/common) React sets the `.current` property of the ref to the `<input>` DOM element.
+
+The `inputRef` created in `MyForm` now points to the `<input>` DOM element returned by `MyInput`. A click handler created in `MyForm` can access `inputRef` and call `focus()` to set the focus on `<input>`.
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 <Sandpack>
 
 ```js
 import { useRef } from 'react';
 
-function MyInput(props) {
-  return <input {...props} />;
+function MyInput({ ref }) {
+  return <input ref={ref} />;
 }
 
 export default function MyForm() {
@@ -376,6 +401,7 @@ export default function MyForm() {
 
 </Sandpack>
 
+<<<<<<< HEAD
 問題に気付きやすくするため、React はコンソールにもエラーを出力します。
 
 <ConsoleBlock level="error">
@@ -433,22 +459,24 @@ export default function Form() {
 
 デザインシステムにおいて、ボタン、入力フィールドなどの低レベルなコンポーネントが、内部の DOM ノードに ref を転送することは一般的なパターンです。一方、フォーム、リスト、ページセクションなどの高レベルなコンポーネントは、DOM 構造への偶発的な依存関係を避けるため、通常は DOM ノードを公開しません。
 
+=======
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 <DeepDive>
 
 #### 命令型ハンドルで API の一部を公開する {/*exposing-a-subset-of-the-api-with-an-imperative-handle*/}
 
+<<<<<<< HEAD
 上記の例では、`MyInput` は元の DOM の input 要素を公開しています。これにより親コンポーネント側からその要素の `focus()` を呼び出すことができます。しかしこれにより、親コンポーネントが他のこと、例えば、CSS スタイルを変更することもできてしまいます。一般的なことではありませんが、公開される機能を制限したいということがあります。それには `useImperativeHandle` を使います。
+=======
+In the above example, the ref passed to `MyInput` is passed on to the original DOM input element. This lets the parent component call `focus()` on it. However, this also lets the parent component do something else--for example, change its CSS styles. In uncommon cases, you may want to restrict the exposed functionality. You can do that with [`useImperativeHandle`](/reference/react/useImperativeHandle):
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 <Sandpack>
 
 ```js
-import {
-  forwardRef, 
-  useRef, 
-  useImperativeHandle
-} from 'react';
+import { useRef, useImperativeHandle } from "react";
 
-const MyInput = forwardRef((props, ref) => {
+function MyInput({ ref }) {
   const realInputRef = useRef(null);
   useImperativeHandle(ref, () => ({
     // Only expose focus and nothing else
@@ -456,8 +484,8 @@ const MyInput = forwardRef((props, ref) => {
       realInputRef.current.focus();
     },
   }));
-  return <input {...props} ref={realInputRef} />;
-});
+  return <input ref={realInputRef} />;
+};
 
 export default function Form() {
   const inputRef = useRef(null);
@@ -469,9 +497,7 @@ export default function Form() {
   return (
     <>
       <MyInput ref={inputRef} />
-      <button onClick={handleClick}>
-        Focus the input
-      </button>
+      <button onClick={handleClick}>Focus the input</button>
     </>
   );
 }
@@ -479,7 +505,11 @@ export default function Form() {
 
 </Sandpack>
 
+<<<<<<< HEAD
 ここでは、`MyInput` 内の `realInputRef` が本物の DOM の input ノードを保持しています。ただし、`useImperativeHandle` は、親コンポーネントに対して渡す ref の値として、独自の特別なオブジェクトを使うよう、React に指示します。そのため、`Form` コンポーネント内の `inputRef.current` には `focus` メソッドのみが含まれます。この例での、ref "handle" とは DOM ノードではなく、`useImperativeHandle` の呼び出し内で作成するカスタムオブジェクトです。
+=======
+Here, `realInputRef` inside `MyInput` holds the actual input DOM node. However, [`useImperativeHandle`](/reference/react/useImperativeHandle) instructs React to provide your own special object as the value of a ref to the parent component. So `inputRef.current` inside the `Form` component will only have the `focus` method. In this case, the ref "handle" is not the DOM node, but the custom object you create inside [`useImperativeHandle`](/reference/react/useImperativeHandle) call.
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 </DeepDive>
 
@@ -591,7 +621,7 @@ export default function TodoList() {
     const newTodo = { id: nextId++, text: text };
     flushSync(() => {
       setText('');
-      setTodos([ ...todos, newTodo]);      
+      setTodos([ ...todos, newTodo]);
     });
     listRef.current.lastChild.scrollIntoView({
       behavior: 'smooth',

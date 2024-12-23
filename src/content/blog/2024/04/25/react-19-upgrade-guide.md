@@ -113,7 +113,7 @@ npx codemod@latest react/19/migration-recipe
 - [`replace-string-ref`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-string-ref)
 - [`replace-act-import`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-act-import)
 - [`replace-use-form-state`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-use-form-state) 
-- [`prop-types-typescript`](TODO)
+- [`prop-types-typescript`](https://codemod.com/registry/react-prop-types-typescript)
 
 これには TypeScript 関連の変更は含まれていません。以下の [TypeScript 関連の変更](#typescript-changes)を参照してください。
 

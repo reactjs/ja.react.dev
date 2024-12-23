@@ -22,7 +22,11 @@ title: サーバ関数
 
 #### サーバ関数のサポートを追加する方法 {/*how-do-i-build-support-for-server-functions*/}
 
+<<<<<<< HEAD
 React 19 のサーバ関数は安定しており、マイナーバージョン間での破壊的変更はありませんが、サーバコンポーネントのバンドラやフレームワーク内でサーバアクションを実装するために使用される、基盤となる API は semver に従いません。React 19.x のマイナーバージョン間で変更が生じる可能性があります。
+=======
+While Server Functions in React 19 are stable and will not break between minor versions, the underlying APIs used to implement Server Functions in a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 サーバ関数をバンドラやフレームワークでサポートする場合は、特定の React バージョンに固定するか、Canary リリースを使用することをお勧めします。サーバ関数を実装するために使用される API を安定化させるため、今後もバンドラやフレームワークと連携を続けていきます。
 

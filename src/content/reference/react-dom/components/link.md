@@ -151,9 +151,13 @@ export default function SiteMapPage() {
 
 ### スタイルシートの優先度の制御 {/*controlling-stylesheet-precedence*/}
 
+<<<<<<< HEAD
 スタイルシートは互いに競合することがあり、その場合ブラウザはドキュメント内で後に来るものを採用します。React では props である `precedence` を使用してスタイルシートの順序を制御できます。以下の例では 2 つのコンポーネントがスタイルシートをレンダーしています。優先度の高いリンクをレンダーしているコンポーネントが先に来ていますが、ドキュメント内では後に配置されます。
 
 {/*FIXME: this doesn't appear to actually work -- I guess precedence isn't implemented yet?*/}
+=======
+Stylesheets can conflict with each other, and when they do, the browser goes with the one that comes later in the document. React lets you control the order of stylesheets with the `precedence` prop. In this example, three components render stylesheets, and the ones with the same precedence are grouped together in the `<head>`. 
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 <SandpackWithHTMLOutput>
 
@@ -165,24 +169,35 @@ export default function HomePage() {
     <ShowRenderedHTML>
       <FirstComponent />
       <SecondComponent />
+      <ThirdComponent/>
       ...
     </ShowRenderedHTML>
   );
 }
 
 function FirstComponent() {
-  return <link rel="stylesheet" href="first.css" precedence="high" />;
+  return <link rel="stylesheet" href="first.css" precedence="first" />;
 }
 
 function SecondComponent() {
-  return <link rel="stylesheet" href="second.css" precedence="low" />;
+  return <link rel="stylesheet" href="second.css" precedence="second" />;
+}
+
+function ThirdComponent() {
+  return <link rel="stylesheet" href="third.css" precedence="first" />;
 }
 
 ```
 
 </SandpackWithHTMLOutput>
 
+<<<<<<< HEAD
 ### スタイルシートレンダーの重複解消処理 {/*deduplicated-stylesheet-rendering*/}
+=======
+Note the `precedence` values themselves are arbitrary and their naming is up to you. React will infer that precedence values it discovers first are "lower" and precedence values it discovers later are "higher".
+
+### Deduplicated stylesheet rendering {/*deduplicated-stylesheet-rendering*/}
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 複数のコンポーネントが同じスタイルシートをレンダーする場合、React はドキュメントの head 内に `<link>` をひとつだけ配置します。
 

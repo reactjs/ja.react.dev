@@ -397,6 +397,17 @@ root.render(
 );
 ```
 
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-scripts": "^5.0.0",
+    "react-error-boundary": "4.0.3"
+  },
+  "main": "/index.js"
+}
+```
 </Sandpack>
 
 #### `Promise.catch` で代替値を提供する {/*providing-an-alternative-value-with-promise-catch*/}

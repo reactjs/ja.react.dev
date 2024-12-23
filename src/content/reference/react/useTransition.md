@@ -48,7 +48,11 @@ function TabContainer() {
 
 ### `startTransition(action)` {/*starttransition*/}
 
+<<<<<<< HEAD
 `useTransition` によって返される `startTransition` 関数により、更新をトランジションとしてマークすることができます。
+=======
+The `startTransition` function returned by `useTransition` lets you mark an update as a Transition.
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 ```js {6,8}
 function TabContainer() {
@@ -305,12 +309,21 @@ export async function updateQuantity(newQuantity) {
 
 </Sandpack>
 
+<<<<<<< HEAD
 これはアクションの動作を示す基本的な例となっていますが、この例ではリクエストが順番通り完了しなかった場合の問題を処理していません。数量を複数回更新すると、後続のリクエストの後で以前のリクエストが完了するために、数量がおかしな順番で更新されてしまう可能性があります。これは既知の制限であり、将来的に修正される予定です（詳細は[トラブルシューティング](#my-state-updates-in-async-transitions-are-out-of-order)を参照してください）。
+=======
+This is a basic example to demonstrate how Actions work, but this example does not handle requests completing out of order. When updating the quantity multiple times, it's possible for the previous requests to finish after later requests causing the quantity to update out of order. This is a known limitation that we will fix in the future (see [Troubleshooting](#my-state-updates-in-transitions-are-out-of-order) below).
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 React は、一般的なユースケースに対応する以下のような組み込みの抽象化を提供しています。
 - [`useActionState`](/reference/react/useActionState)
+<<<<<<< HEAD
 - [`<form>` アクション](/reference/react-dom/components/form)
 - [サーバアクション](/reference/rsc/server-actions)
+=======
+- [`<form>` actions](/reference/react-dom/components/form)
+- [Server Functions](/reference/rsc/server-functions)
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 これらのソリューションはリクエスト順序の問題を自動的に管理します。トランジションを使って非同期の state 遷移を管理するカスタムフックやライブラリを構築する場合、リクエスト順序をより高度に制御可能ですが、問題を手動で管理する必要があります。
 
@@ -340,7 +353,7 @@ React は、一般的なユースケースに対応する以下のような組�
 ```
 
 ```js src/App.js
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import { updateQuantity } from "./api";
 import Item from "./Item";
 import Total from "./Total";

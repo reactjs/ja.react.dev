@@ -24,7 +24,11 @@ titleForTitleTag: "'use server' ディレクティブ"
 
 ### `'use server'` {/*use-server*/}
 
+<<<<<<< HEAD
 非同期 (async) 関数の本体の冒頭に `'use server';` を追加することで、その関数がクライアントから実行可能であるとマークします。そのような関数のことを[サーバ関数 (Server Function)](/reference/rsc/server-functions) と呼びます。
+=======
+Add `'use server'` at the top of an async function body to mark the function as callable by the client. We call these functions [_Server Functions_](/reference/rsc/server-functions).
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 ```js {2}
 async function addToCart(data) {
