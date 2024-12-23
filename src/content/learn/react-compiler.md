@@ -347,11 +347,7 @@ React Comiler は多くの React のルールを静的に検証でき、エラ�
 
 ### コンポーネントが最適化されたかどうかを知る方法 {/*how-do-i-know-my-components-have-been-optimized*/}
 
-<<<<<<< HEAD
-[React Devtools](/learn/react-developer-tools) (v5.0+) には React Compiler のサポートが組み込まれており、コンパイラによって最適化されたコンポーネントの横に "Memo ✨" バッジが表示されます。
-=======
-[React DevTools](/learn/react-developer-tools) (v5.0+) and [React Native DevTools](https://reactnative.dev/docs/react-native-devtools) have built-in support for React Compiler and will display a "Memo ✨" badge next to components that have been optimized by the compiler.
->>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
+[React DevTools](/learn/react-developer-tools) (v5.0+) と [React Native DevTools](https://reactnative.dev/docs/react-native-devtools) には React Compiler のサポートが組み込まれており、コンパイラによって最適化されたコンポーネントの横に "Memo ✨" バッジが表示されます。
 
 ### コンパイル後に何かが動作しない場合 {/*something-is-not-working-after-compilation*/}
 eslint-plugin-react-compiler がインストールされている場合、コンパイラはエディタ内で React のルールに対する違反を表示します。これが表示された場合、コンパイラはそのコンポーネントやフックの最適化をスキップしたという意味です。これ自体は全く問題なく、コンパイラは他のコンポーネントの最適化を続けることができます。**すべての ESLint 違反をすぐに修正する必要はありません**。自分のペースで対応して、最適化されるコンポーネントやフックの数を増やしていくことができます。

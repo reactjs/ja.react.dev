@@ -448,11 +448,7 @@ button { display: block; margin-bottom: 20px; }
 
 #### 独自コンポーネントの ref を公開 {/*exposing-a-ref-to-your-own-component*/}
 
-<<<<<<< HEAD
-親コンポーネントから、独自コンポーネント内の DOM を操作したい場合があります。たとえば、`MyInput` コンポーネントを作成しているとして、親コンポーネントが input にフォーカスを当てたい場合などです（親コンポーネントは、input にはアクセスできません）。この場合は、`useRef` と [`forwardRef`](/reference/react/forwardRef) を組み合わせて利用します。`useRef` で input を保持し、`forwardRef` で input への参照を親コンポーネントに公開します。詳しくは、[別のコンポーネントの DOM ノードにアクセスする](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)を参照してください。
-=======
-Sometimes, you may want to let the parent component manipulate the DOM inside of your component. For example, maybe you're writing a `MyInput` component, but you want the parent to be able to focus the input (which the parent has no access to). You can create a `ref` in the parent and pass the `ref` as prop to the child component. Read a [detailed walkthrough](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) here.
->>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
+親コンポーネントから、独自コンポーネント内の DOM を操作したい場合があります。たとえば、`MyInput` コンポーネントを作成しているとして、親コンポーネントが input にフォーカスを当てたい場合などです（親コンポーネントは input にはアクセスできません）。この場合は、親側で `ref` を作成して、その `ref` を props として子コンポーネントに渡すようにします。[こちらの詳細な説明](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)を参照してください。
 
 <Sandpack>
 
@@ -577,11 +573,7 @@ export default function MyInput({ value, onChange }) {
 }
 ```
 
-<<<<<<< HEAD
-そして、次のように [`forwardRef`](/reference/react/forwardRef) でラップします。
-=======
-And then add `ref` to the list of props your component accepts and pass `ref` as a prop to the relevent child [built-in component](/reference/react-dom/components/common) like this:
->>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
+次にコンポーネントが受け取る props のリストに `ref` を追加し、その `ref` を、対応する[組み込み](/reference/react-dom/components/common)子コンポーネントに以下のようにして渡します。
 
 ```js {1,6}
 function MyInput({ value, onChange, ref }) {

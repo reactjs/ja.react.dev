@@ -62,15 +62,11 @@ React は `<style>` コンポーネントをドキュメントの `<head>` に�
 
 コンポーネントが正しく表示されるために特定の CSS スタイルに依存している場合、インラインスタイルシートを当該コンポーネント内でレンダーできます。
 
-<<<<<<< HEAD
-props として `href` と `precedence` を指定すると、スタイルシートがロードされる間、コンポーネントはサスペンドします。（インラインスタイルシートであっても、スタイルシートが参照しているフォントや画像のためのロード時間が発生することがあります。）props である `href` は、このスタイルシートを一意に識別する必要があります。React は同じ `href` を持つスタイルシートに対して重複解消処理を行うからです。
-=======
-The `href` prop should uniquely identify the stylesheet, because React will de-duplicate stylesheets that have the same `href`.
-If you supply a `precedence` prop, React will reorder inline stylesheets based on the order these values appear in the component tree.
+props である `href` は、このスタイルシートを一意に識別する必要があります。React は同じ `href` を持つスタイルシートに対して重複解消処理を行うからです。
+props として `precedence` を与えた場合、React は各々の値がコンポーネントツリーに現れた順番を基準にして、インラインのスタイルシートを並び替えます。
 
-Inline stylesheets will not trigger Suspense boundaries while they're loading.
-Even if they load async resources like fonts or images.
->>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
+インラインのスタイルシートはロード中にサスペンスバウンダリをトリガしません。
+これは内部でフォントや画像などのリソースを非同期的に読み込んでいる場合でも同様です。
 
 <SandpackWithHTMLOutput>
 

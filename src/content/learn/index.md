@@ -4,11 +4,7 @@ title: クイックスタート
 
 <Intro>
 
-<<<<<<< HEAD
 React ドキュメントへようこそ！ このページでは、日々の開発で使用する React のコンセプトのうち 80％ の部分を紹介します。
-=======
-Welcome to the React documentation! This page will give you an introduction to 80% of the React concepts that you will use on a daily basis.
->>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 </Intro>
 

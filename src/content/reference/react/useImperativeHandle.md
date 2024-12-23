@@ -38,27 +38,19 @@ function MyInput({ ref }) {
 
 #### 引数 {/*parameters*/}
 
-<<<<<<< HEAD
-* `ref`: [`forwardRef` レンダー関数](/reference/react/forwardRef#render-function)から 2 番目の引数として受け取った `ref` です。
-=======
-* `ref`: The `ref` you received as a prop to the `MyInput` component.
->>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
+* `ref`: `MyInput` コンポーネントから props として受け取る `ref` です。
 
 * `createHandle`: 引数を受け取らず、公開したい ref ハンドルを返す関数です。ref ハンドルは任意の型が使えます。通常、公開したいメソッドを持つオブジェクトを返します。
 
 * **省略可能** `dependencies`: `createHandle` コード内で参照されるすべてのリアクティブな値のリストです。リアクティブな値には、props、state、コンポーネント本体に直接宣言されたすべての変数および関数が含まれます。リンタが [React 用に設定されている場合](/learn/editor-setup#linting)、すべてのリアクティブな値が依存値として正しく指定されているか確認できます。依存値のリストは要素数が一定である必要があり、`[dep1, dep2, dep3]` のようにインラインで記述する必要があります。React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を使った比較で、それぞれの依存値を以前の値と比較します。再レンダーにより依存値のいずれかが変更された場合、または引数自体を省略した場合、`createHandle` 関数は再実行され、新しく作成されたハンドルが ref に割り当てられます。
 
-<<<<<<< HEAD
-#### 返り値 {/*returns*/}
-=======
 <Note>
 
-Starting with React 19, [`ref` is available a prop.](/blog/2024/12/05/react-19#ref-as-a-prop) In React 18 and earlier, it was necessary to get the `ref` from [`forwardRef`.](/reference/react/forwardRef) 
+React 19 からは [`ref` は props として渡されます](/blog/2024/12/05/react-19#ref-as-a-prop)。React 18 以前では、`ref` を受け取るために [`forwardRef`](/reference/react/forwardRef) が必要でした。
 
 </Note>
 
-#### Returns {/*returns*/}
->>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
+#### 返り値 {/*returns*/}
 
 `useImperativeHandle` は `undefined` を返します。
 
@@ -68,11 +60,7 @@ Starting with React 19, [`ref` is available a prop.](/blog/2024/12/05/react-19#r
 
 ### 親コンポーネントにカスタム ref ハンドルを公開する {/*exposing-a-custom-ref-handle-to-the-parent-component*/}
 
-<<<<<<< HEAD
-デフォルトでは、コンポーネントはその DOM ノードを親コンポーネントに公開しません。例えば、`MyInput` の親コンポーネントが `<input>` DOM ノードに[アクセスできるように](/learn/manipulating-the-dom-with-refs)したい場合は、[`forwardRef`](/reference/react/forwardRef) を使って明示的に許可する必要があります。 
-=======
-To expose a DOM node to the parent element, pass in the `ref` prop to the node.
->>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
+親要素に DOM ノードを公開するには、props として `ref` を受け取るようにします。
 
 ```js {2}
 function MyInput({ ref }) {
@@ -80,11 +68,7 @@ function MyInput({ ref }) {
 };
 ```
 
-<<<<<<< HEAD
-上記のコードでは、[`MyInput` の ref は `<input>` DOM ノードを受け取ります。](/reference/react/forwardRef#exposing-a-dom-node-to-the-parent-component)ただし、代わりにカスタムな値を公開することもできます。公開されるハンドルをカスタマイズするには、コンポーネントのトップレベルで `useImperativeHandle` を呼び出します。
-=======
-With the code above, [a ref to `MyInput` will receive the `<input>` DOM node.](/learn/manipulating-the-dom-with-refs) However, you can expose a custom value instead. To customize the exposed handle, call `useImperativeHandle` at the top level of your component:
->>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
+上記のコードでは、[`MyInput` の ref は `<input>` の DOM ノードを受け取ります](/learn/manipulating-the-dom-with-refs)。ただし、代わりにカスタムな値を公開することもできます。公開されるハンドルをカスタマイズするには、コンポーネントのトップレベルで `useImperativeHandle` を呼び出します。
 
 ```js {4-8}
 import { useImperativeHandle } from 'react';
@@ -100,11 +84,7 @@ function MyInput({ ref }) {
 };
 ```
 
-<<<<<<< HEAD
 上記のコードでは、`ref` が `<input>` に受け渡しされなくなっていることに注意してください。
-=======
-Note that in the code above, the `ref` is no longer passed to the `<input>`.
->>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 例えば、`<input>` DOM ノード全体を公開したくはないが、その 2 つのメソッド、`focus` と `scrollIntoView` は公開したいとします。これを行うには、実際のブラウザの DOM を別の ref に保持しておきます。そして、`useImperativeHandle` を使用して、親コンポーネントに呼び出してほしいメソッドのみを含むハンドルを公開します。
 

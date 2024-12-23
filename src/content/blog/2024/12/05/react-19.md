@@ -17,11 +17,7 @@ December 05, 2024 by [The React Team](/community/team)
 - **サスペンド中のツリーのプリウォーム**：[サスペンスに関する改善](/blog/2024/04/25/react-19-upgrade-guide#improvements-to-suspense)
 - **静的サイト用の React DOM API**: [静的サイト用の新 DOM API](#new-react-dom-static-apis)
 
-<<<<<<< HEAD
 _この記事の投稿日時も、安定版リリースに合わせて変更となっています。_
-=======
-_The date for this post has been updated to reflect the stable release date._
->>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
 </Note>
 
@@ -366,11 +362,7 @@ React 19 には、Canary チャンネルにあったすべての React Server Co
 
 #### サーバコンポーネントのサポートを追加する方法 {/*how-do-i-build-support-for-server-components*/}
 
-<<<<<<< HEAD
-React 19 の React Server Components は安定しており、メジャーバージョン間での破壊的変更はありませんが、サーバコンポーネントのバンドラやフレームワークを実装するために使用される基盤となる API は semver に従いません。React 19.x のマイナーバージョン間で変更が生じる可能性があります。
-=======
-While React Server Components in React 19 are stable and will not break between minor versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
->>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
+React 19 の React Server Components は安定しており、マイナーバージョン間での破壊的変更はありませんが、サーバコンポーネントのバンドラやフレームワークを実装するために使用される基盤となる API は semver に従いません。React 19.x のマイナーバージョン間で変更が生じる可能性があります。
 
 React Server Components をバンドラやフレームワークでサポートする場合は、特定の React バージョンに固定するか、Canary リリースを使用することをお勧めします。React Server Components を実装するために使用される API を安定化させるため、今後もバンドラやフレームワークと連携を続けていきます。
 
