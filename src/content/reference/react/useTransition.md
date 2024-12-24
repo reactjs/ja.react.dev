@@ -305,12 +305,12 @@ export async function updateQuantity(newQuantity) {
 
 </Sandpack>
 
-これはアクションの動作を示す基本的な例となっていますが、この例ではリクエストが順番通り完了しなかった場合の問題を処理していません。数量を複数回更新すると、後続のリクエストの後で以前のリクエストが完了するために、数量がおかしな順番で更新されてしまう可能性があります。これは既知の制限であり、将来的に修正される予定です（詳細は[トラブルシューティング](#my-state-updates-in-async-transitions-are-out-of-order)を参照してください）。
+これはアクションの動作を示す基本的な例となっていますが、この例ではリクエストが順番通り完了しなかった場合の問題を処理していません。数量を複数回更新すると、後続のリクエストの後で以前のリクエストが完了するために、数量がおかしな順番で更新されてしまう可能性があります。これは既知の制限であり、将来的に修正される予定です（詳細は[トラブルシューティング](#my-state-updates-in-transitions-are-out-of-order)を参照してください）。
 
 React は、一般的なユースケースに対応する以下のような組み込みの抽象化を提供しています。
 - [`useActionState`](/reference/react/useActionState)
 - [`<form>` アクション](/reference/react-dom/components/form)
-- [サーバアクション](/reference/rsc/server-actions)
+- [サーバ関数](/reference/rsc/server-functions)
 
 これらのソリューションはリクエスト順序の問題を自動的に管理します。トランジションを使って非同期の state 遷移を管理するカスタムフックやライブラリを構築する場合、リクエスト順序をより高度に制御可能ですが、問題を手動で管理する必要があります。
 
@@ -340,7 +340,7 @@ React は、一般的なユースケースに対応する以下のような組�
 ```
 
 ```js src/App.js
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import { updateQuantity } from "./api";
 import Item from "./Item";
 import Total from "./Total";

@@ -448,16 +448,16 @@ button { display: block; margin-bottom: 20px; }
 
 #### 独自コンポーネントの ref を公開 {/*exposing-a-ref-to-your-own-component*/}
 
-親コンポーネントから、独自コンポーネント内の DOM を操作したい場合があります。たとえば、`MyInput` コンポーネントを作成しているとして、親コンポーネントが input にフォーカスを当てたい場合などです（親コンポーネントは、input にはアクセスできません）。この場合は、`useRef` と [`forwardRef`](/reference/react/forwardRef) を組み合わせて利用します。`useRef` で input を保持し、`forwardRef` で input への参照を親コンポーネントに公開します。詳しくは、[別のコンポーネントの DOM ノードにアクセスする](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)を参照してください。
+親コンポーネントから、独自コンポーネント内の DOM を操作したい場合があります。たとえば、`MyInput` コンポーネントを作成しているとして、親コンポーネントが input にフォーカスを当てたい場合などです（親コンポーネントは input にはアクセスできません）。この場合は、親側で `ref` を作成して、その `ref` を props として子コンポーネントに渡すようにします。[こちらの詳細な説明](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)を参照してください。
 
 <Sandpack>
 
 ```js
-import { forwardRef, useRef } from 'react';
+import { useRef } from 'react';
 
-const MyInput = forwardRef((props, ref) => {
-  return <input {...props} ref={ref} />;
-});
+function MyInput({ ref }) {
+  return <input ref={ref} />;
+};
 
 export default function Form() {
   const inputRef = useRef(null);
@@ -554,7 +554,7 @@ return <MyInput ref={inputRef} />;
 
 <ConsoleBlock level="error">
 
-Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+TypeError: Cannot read properties of null
 
 </ConsoleBlock>
 
@@ -573,12 +573,10 @@ export default function MyInput({ value, onChange }) {
 }
 ```
 
-そして、次のように [`forwardRef`](/reference/react/forwardRef) でラップします。
+次にコンポーネントが受け取る props のリストに `ref` を追加し、その `ref` を、対応する[組み込み](/reference/react-dom/components/common)子コンポーネントに以下のようにして渡します。
 
-```js {3,8}
-import { forwardRef } from 'react';
-
-const MyInput = forwardRef(({ value, onChange }, ref) => {
+```js {1,6}
+function MyInput({ value, onChange, ref }) {
   return (
     <input
       value={value}
@@ -586,7 +584,7 @@ const MyInput = forwardRef(({ value, onChange }, ref) => {
       ref={ref}
     />
   );
-});
+};
 
 export default MyInput;
 ```

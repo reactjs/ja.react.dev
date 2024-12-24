@@ -207,7 +207,7 @@ async function getAlbums() {
 
 **サスペンスコンポーネントをアクティブ化できるのはサスペンス対応のデータソースだけです**。これには以下が含まれます：
 
-- [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) や [Next.js](https://nextjs.org/docs/getting-started/react-essentials) のようなサスペンス対応のフレームワークでのデータフェッチ
+- [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) や [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense) のようなサスペンス対応のフレームワークでのデータフェッチ
 - [`lazy`](/reference/react/lazy) を用いたコンポーネントコードの遅延ロード
 - [`use`](/reference/react/use) を用いたキャッシュ済みプロミス (Promise) からの値の読み取り
 

@@ -53,24 +53,9 @@ react-devtools
 ![スタンドアロン版 React Developer Tools](/images/docs/react-devtools-standalone.png)
 
 ## モバイル (React Native) {/*mobile-react-native*/}
-React Developer Tools は [React Native](https://reactnative.dev/) を使って構築されたアプリの調査にも利用できます。
 
-React Developer Tools を最も簡単に使う方法は、グローバルにインストールすることです。
-```bash
-# Yarn
-yarn global add react-devtools
+[React Native](https://reactnative.dev/) で作成するアプリの調査を行う場合は、React Developer Tools と密に統合された組み込みデバッガである [React Native DevTools](https://reactnative.dev/docs/debugging/react-native-devtools) を使用できます。要素のハイライトや選択を含むすべての機能が、ブラウザ版の機能拡張と同様に動作します。
 
-# Npm
-npm install -g react-devtools
-```
+[React Native のデバッグについてさらに読む](https://reactnative.dev/docs/debugging)
 
-次に、ターミナルから開発者ツールを開きます。
-```bash
-react-devtools
-```
-
-これで、実行中のローカルな React Native アプリに接続されるはずです。
-
-> 数秒待っても開発者ツールが接続されない場合は、アプリをリロードしてみてください。
-
-[React Native のデバッグについてもっと学ぶ](https://reactnative.dev/docs/debugging)
+> 0.76 より前のバージョンの React Native の場合は、上記の [Safari および他のブラウザ](#safari-and-other-browsers)のガイドに従ってスタンドアロン版の React DevTools を使用してください。

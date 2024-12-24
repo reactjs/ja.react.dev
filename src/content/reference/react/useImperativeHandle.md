@@ -23,9 +23,9 @@ useImperativeHandle(ref, createHandle, dependencies?)
 `useImperativeHandle` をコンポーネントのトップレベルで呼び出し、公開される ref ハンドルをカスタマイズします。
 
 ```js
-import { forwardRef, useImperativeHandle } from 'react';
+import { useImperativeHandle } from 'react';
 
-const MyInput = forwardRef(function MyInput(props, ref) {
+function MyInput({ ref }) {
   useImperativeHandle(ref, () => {
     return {
       // ... your methods ...
@@ -38,11 +38,17 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 #### 引数 {/*parameters*/}
 
-* `ref`: [`forwardRef` レンダー関数](/reference/react/forwardRef#render-function)から 2 番目の引数として受け取った `ref` です。
+* `ref`: `MyInput` コンポーネントから props として受け取る `ref` です。
 
 * `createHandle`: 引数を受け取らず、公開したい ref ハンドルを返す関数です。ref ハンドルは任意の型が使えます。通常、公開したいメソッドを持つオブジェクトを返します。
 
 * **省略可能** `dependencies`: `createHandle` コード内で参照されるすべてのリアクティブな値のリストです。リアクティブな値には、props、state、コンポーネント本体に直接宣言されたすべての変数および関数が含まれます。リンタが [React 用に設定されている場合](/learn/editor-setup#linting)、すべてのリアクティブな値が依存値として正しく指定されているか確認できます。依存値のリストは要素数が一定である必要があり、`[dep1, dep2, dep3]` のようにインラインで記述する必要があります。React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を使った比較で、それぞれの依存値を以前の値と比較します。再レンダーにより依存値のいずれかが変更された場合、または引数自体を省略した場合、`createHandle` 関数は再実行され、新しく作成されたハンドルが ref に割り当てられます。
+
+<Note>
+
+React 19 からは [`ref` は props として渡されます](/blog/2024/12/05/react-19#ref-as-a-prop)。React 18 以前では、`ref` を受け取るために [`forwardRef`](/reference/react/forwardRef) が必要でした。
+
+</Note>
 
 #### 返り値 {/*returns*/}
 
@@ -54,30 +60,28 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 ### 親コンポーネントにカスタム ref ハンドルを公開する {/*exposing-a-custom-ref-handle-to-the-parent-component*/}
 
-デフォルトでは、コンポーネントはその DOM ノードを親コンポーネントに公開しません。例えば、`MyInput` の親コンポーネントが `<input>` DOM ノードに[アクセスできるように](/learn/manipulating-the-dom-with-refs)したい場合は、[`forwardRef`](/reference/react/forwardRef) を使って明示的に許可する必要があります。 
+親要素に DOM ノードを公開するには、props として `ref` を受け取るようにします。
 
-```js {4}
-import { forwardRef } from 'react';
-
-const MyInput = forwardRef(function MyInput(props, ref) {
-  return <input {...props} ref={ref} />;
-});
+```js {2}
+function MyInput({ ref }) {
+  return <input ref={ref} />;
+};
 ```
 
-上記のコードでは、[`MyInput` の ref は `<input>` DOM ノードを受け取ります。](/reference/react/forwardRef#exposing-a-dom-node-to-the-parent-component)ただし、代わりにカスタムな値を公開することもできます。公開されるハンドルをカスタマイズするには、コンポーネントのトップレベルで `useImperativeHandle` を呼び出します。
+上記のコードでは、[`MyInput` の ref は `<input>` の DOM ノードを受け取ります](/learn/manipulating-the-dom-with-refs)。ただし、代わりにカスタムな値を公開することもできます。公開されるハンドルをカスタマイズするには、コンポーネントのトップレベルで `useImperativeHandle` を呼び出します。
 
 ```js {4-8}
-import { forwardRef, useImperativeHandle } from 'react';
+import { useImperativeHandle } from 'react';
 
-const MyInput = forwardRef(function MyInput(props, ref) {
+function MyInput({ ref }) {
   useImperativeHandle(ref, () => {
     return {
       // ... your methods ...
     };
   }, []);
 
-  return <input {...props} />;
-});
+  return <input />;
+};
 ```
 
 上記のコードでは、`ref` が `<input>` に受け渡しされなくなっていることに注意してください。
@@ -85,9 +89,9 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 例えば、`<input>` DOM ノード全体を公開したくはないが、その 2 つのメソッド、`focus` と `scrollIntoView` は公開したいとします。これを行うには、実際のブラウザの DOM を別の ref に保持しておきます。そして、`useImperativeHandle` を使用して、親コンポーネントに呼び出してほしいメソッドのみを含むハンドルを公開します。
 
 ```js {7-14}
-import { forwardRef, useRef, useImperativeHandle } from 'react';
+import { useRef, useImperativeHandle } from 'react';
 
-const MyInput = forwardRef(function MyInput(props, ref) {
+function MyInput({ ref }) {
   const inputRef = useRef(null);
 
   useImperativeHandle(ref, () => {
@@ -101,8 +105,8 @@ const MyInput = forwardRef(function MyInput(props, ref) {
     };
   }, []);
 
-  return <input {...props} ref={inputRef} />;
-});
+  return <input ref={inputRef} />;
+};
 ```
 
 これで、親コンポーネントが `MyInput` への ref を取得し、そのコンポーネントで `focus` メソッドと `scrollIntoView` メソッドを呼び出すことができるようになります。ただし、親コンポーネントは背後にある `<input>` DOM ノードへの完全なアクセス権は持ちません。
@@ -134,9 +138,9 @@ export default function Form() {
 ```
 
 ```js src/MyInput.js
-import { forwardRef, useRef, useImperativeHandle } from 'react';
+import { useRef, useImperativeHandle } from 'react';
 
-const MyInput = forwardRef(function MyInput(props, ref) {
+function MyInput({ ref, ...props }) {
   const inputRef = useRef(null);
 
   useImperativeHandle(ref, () => {
@@ -151,7 +155,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
   }, []);
 
   return <input {...props} ref={inputRef} />;
-});
+};
 
 export default MyInput;
 ```
@@ -195,11 +199,11 @@ export default function Page() {
 ```
 
 ```js src/Post.js
-import { forwardRef, useRef, useImperativeHandle } from 'react';
+import { useRef, useImperativeHandle } from 'react';
 import CommentList from './CommentList.js';
 import AddComment from './AddComment.js';
 
-const Post = forwardRef((props, ref) => {
+function Post({ ref }) {
   const commentsRef = useRef(null);
   const addCommentRef = useRef(null);
 
@@ -221,16 +225,16 @@ const Post = forwardRef((props, ref) => {
       <AddComment ref={addCommentRef} />
     </>
   );
-});
+};
 
 export default Post;
 ```
 
 
 ```js src/CommentList.js
-import { forwardRef, useRef, useImperativeHandle } from 'react';
+import { useRef, useImperativeHandle } from 'react';
 
-const CommentList = forwardRef(function CommentList(props, ref) {
+function CommentList({ ref }) {
   const divRef = useRef(null);
 
   useImperativeHandle(ref, () => {
@@ -252,17 +256,17 @@ const CommentList = forwardRef(function CommentList(props, ref) {
       {comments}
     </div>
   );
-});
+}
 
 export default CommentList;
 ```
 
 ```js src/AddComment.js
-import { forwardRef, useRef, useImperativeHandle } from 'react';
+import { useRef, useImperativeHandle } from 'react';
 
-const AddComment = forwardRef(function AddComment(props, ref) {
+function AddComment({ ref }) {
   return <input placeholder="Add comment..." ref={ref} />;
-});
+}
 
 export default AddComment;
 ```

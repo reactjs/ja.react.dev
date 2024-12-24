@@ -41,7 +41,7 @@ function TabContainer() {
 
 #### 引数 {/*parameters*/}
 
-* `action`: 1 つ以上の [`set` 関数](/reference/react/useState#setstate)を呼び出して state を更新する関数。React は引数なしで直ちに `action` を呼び出し、`action` 関数呼び出し中に同期的にスケジュールされたすべての state 更新をトランジションとしてマークします。`action` 内で await されている非同期関数のコールもトランジションに含まれるべきですが、現時点では `await` の後に来る `set` 関数は別の `startTransition` にラップする必要があります（[トラブルシューティング](#react-doesnt-treat-my-state-update-after-await-as-a-transition)参照）。トランジションとしてマークされた state の更新は[ノンブロッキング](#marking-a-state-update-as-a-non-blocking-transition)になり、[不要なローディングインジケータを表示しない](#preventing-unwanted-loading-indicators)ようになります。
+* `action`: 1 つ以上の [`set` 関数](/reference/react/useState#setstate)を呼び出して state を更新する関数。React は引数なしで直ちに `action` を呼び出し、`action` 関数呼び出し中に同期的にスケジュールされたすべての state 更新をトランジションとしてマークします。`action` 内で await されている非同期関数のコールもトランジションに含まれるべきですが、現時点では `await` の後に来る `set` 関数は別の `startTransition` にラップする必要があります（[トラブルシューティング](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition))参照）。トランジションとしてマークされた state の更新は[ノンブロッキング](#marking-a-state-update-as-a-non-blocking-transition)になり、[不要なローディングインジケータを表示しない](/reference/react/useTransition#preventing-unwanted-loading-indicators)ようになります。
 
 #### 返り値 {/*returns*/}
 
@@ -55,7 +55,7 @@ function TabContainer() {
 
 * `startTransition` に渡された関数は即座に呼び出され、その関数の実行中に発生するすべての state 更新がトランジションとしてマークされます。しかし例えば、`setTimeout` 内で state を更新しようとした場合は、それはトランジションとしてマークされません。
 
-* 非同期リクエスト後に state 更新を行いたい場合は、トランジションとしてマークするために別の `startTransition` でラップする必要があります。これは既知の制限であり、将来的に修正される予定です（詳細は[トラブルシューティング](#react-doesnt-treat-my-state-update-after-await-as-a-transition)を参照してください）。
+* 非同期リクエスト後に state 更新を行いたい場合は、トランジションとしてマークするために別の `startTransition` でラップする必要があります。これは既知の制限であり、将来的に修正される予定です（詳細は[トラブルシューティング](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition)を参照してください）。
 
 * トランジションとしてマークされた state 更新は、他の state 更新によって中断されます。例えば、トランジション内でチャートコンポーネントを更新した後、チャートの再レンダーの途中で入力フィールドに入力を始めた場合、React は入力欄の更新の処理後にチャートコンポーネントのレンダー作業を再開します。
 

@@ -153,8 +153,6 @@ export default function SiteMapPage() {
 
 スタイルシートは互いに競合することがあり、その場合ブラウザはドキュメント内で後に来るものを採用します。React では props である `precedence` を使用してスタイルシートの順序を制御できます。以下の例では 2 つのコンポーネントがスタイルシートをレンダーしています。優先度の高いリンクをレンダーしているコンポーネントが先に来ていますが、ドキュメント内では後に配置されます。
 
-{/*FIXME: this doesn't appear to actually work -- I guess precedence isn't implemented yet?*/}
-
 <SandpackWithHTMLOutput>
 
 ```js src/App.js active
@@ -165,22 +163,29 @@ export default function HomePage() {
     <ShowRenderedHTML>
       <FirstComponent />
       <SecondComponent />
+      <ThirdComponent/>
       ...
     </ShowRenderedHTML>
   );
 }
 
 function FirstComponent() {
-  return <link rel="stylesheet" href="first.css" precedence="high" />;
+  return <link rel="stylesheet" href="first.css" precedence="first" />;
 }
 
 function SecondComponent() {
-  return <link rel="stylesheet" href="second.css" precedence="low" />;
+  return <link rel="stylesheet" href="second.css" precedence="second" />;
+}
+
+function ThirdComponent() {
+  return <link rel="stylesheet" href="third.css" precedence="first" />;
 }
 
 ```
 
 </SandpackWithHTMLOutput>
+
+`precedence` として指定する値自体は任意であり、何を指定するかは自由であることに注意してください。React は最初に現れた値を「低優先度」と考え、後に現れたものを「高優先度」と見なします。
 
 ### スタイルシートレンダーの重複解消処理 {/*deduplicated-stylesheet-rendering*/}
 

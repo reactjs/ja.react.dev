@@ -362,7 +362,7 @@ React 19 には、Canary チャンネルにあったすべての React Server Co
 
 #### サーバコンポーネントのサポートを追加する方法 {/*how-do-i-build-support-for-server-components*/}
 
-React 19 の React Server Components は安定しており、メジャーバージョン間での破壊的変更はありませんが、サーバコンポーネントのバンドラやフレームワークを実装するために使用される基盤となる API は semver に従いません。React 19.x のマイナーバージョン間で変更が生じる可能性があります。
+React 19 の React Server Components は安定しており、マイナーバージョン間での破壊的変更はありませんが、サーバコンポーネントのバンドラやフレームワークを実装するために使用される基盤となる API は semver に従いません。React 19.x のマイナーバージョン間で変更が生じる可能性があります。
 
 React Server Components をバンドラやフレームワークでサポートする場合は、特定の React バージョンに固定するか、Canary リリースを使用することをお勧めします。React Server Components を実装するために使用される API を安定化させるため、今後もバンドラやフレームワークと連携を続けていきます。
 

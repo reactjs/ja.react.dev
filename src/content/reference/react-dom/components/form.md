@@ -50,7 +50,7 @@ title: "<form>"
 
 ### クライアント上でフォーム送信を処理する {/*handle-form-submission-on-the-client*/}
 
-フォームの `action` プロパティに関数を渡すことで、フォームが送信されたときにその関数が実行されるようにします。この関数には [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) が引数として渡されるため、フォームが送信したデータにアクセスできます。これは URL のみを受け付ける本来の [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action) とは異なる、独自の動作です。
+フォームの `action` プロパティに関数を渡すことで、フォームが送信されたときにその関数が実行されるようにします。この関数には [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) が引数として渡されるため、フォームが送信したデータにアクセスできます。これは URL のみを受け付ける本来の [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action) とは異なる、独自の動作です。`action` に指定された関数が成功した後、非制御のフィールド要素はすべてリセットされます。
 
 <Sandpack>
 
@@ -117,7 +117,7 @@ function AddToCart({productId}) {
 }
 ```
 
-[サーバコンポーネント](/reference/rsc/use-client) によって `<form>` をレンダーし、`<form>` の `action` に[サーバ関数](/reference/rsc/server-function)を渡すことで、フォームの[プログレッシブエンハンスメント](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement)が有効になります。
+[サーバコンポーネント](/reference/rsc/use-client) によって `<form>` をレンダーし、`<form>` の `action` に[サーバ関数](/reference/rsc/server-functions)を渡すことで、フォームの[プログレッシブエンハンスメント](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement)が有効になります。
 
 ### フォームの送信中状態を表示する {/*display-a-pending-state-during-form-submission*/}
 フォームが送信されている間に保留 (pending) 状態を表示するには、`<form>` 内でレンダーされるコンポーネントで `useFormStatus` フックを呼び出して、返された `pending` プロパティを読み取ります。

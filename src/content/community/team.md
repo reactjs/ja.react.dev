@@ -43,7 +43,7 @@ React コアチームのメンバーは、コアコンポーネントの API、R
 </TeamMember>
 
 <TeamMember name="Lauren Tan" permalink="lauren-tan" photo="/images/team/lauren.jpg" github="poteto" twitter="potetotes" threads="potetotes" bsky="no.lol" title="Engineer at Meta">
-    Lauren のプログラミングキャリアは `<marquee>` タグを初めて見たときにピークを迎えました。それ以来、彼女はその時の高揚感を追い続けています。大学ではコンピュータサイエンスではなく経済学を学んでいたため、コーディングは Java ではなく Excel で学びました。Lauren はチャットでお茶目なミームを投下したり、パートナとゲームを楽しんだり、犬の Zelda を可愛がったりするのが好きです。
+    Lauren のプログラミングキャリアは `<marquee>` タグを初めて見たときにピークを迎えました。それ以来、彼女はその時の高揚感を追い続けています。大学ではコンピュータサイエンスではなく経済学を学んでいたため、コーディングは Excel で学びました。Lauren はチャットでお茶目なミームを投下したり、パートナとゲームを楽しんだり、韓国語を学んだり、犬の Zelda を可愛がったりするのが好きです。
 </TeamMember>
 
 <TeamMember name="Luna Wei" permalink="luna-wei" photo="/images/team/luna-wei.jpg" github="lunaleaps" twitter="lunaleaps" threads="lunaleaps" title="Engineer at Meta">
