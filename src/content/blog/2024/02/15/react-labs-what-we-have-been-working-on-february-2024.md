@@ -2,7 +2,7 @@
 title: "React Labs: 私達のこれまでの取り組み - 2024年2月版"
 author: Joseph Savona, Ricky Hanlon, Andrew Clark, Matt Carroll, and Dan Abramov
 date: 2024/02/15
-description: In React Labs posts, we write about projects in active research and development. We’ve made significant progress since our last update, and we’d like to share our progress.
+description: React Labs 記事では、現在活発に研究・開発が行われているプロジェクトについて述べていきます。前回のアップデートから大きな進展がありましたので、我々が学んだことを共有していきます。
 ---
 
 February 15, 2024 by [Joseph Savona](https://twitter.com/en_JS), [Ricky Hanlon](https://twitter.com/rickhanlonii), [Andrew Clark](https://twitter.com/acdlite), [Matt Carroll](https://twitter.com/mattcarrollcode), and [Dan Abramov](https://twitter.com/dan_abramov).
