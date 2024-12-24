@@ -2,7 +2,7 @@
 title: "How to Upgrade to React 18"
 author: Rick Hanlon
 date: 2022/03/08
-description: As we shared in the release post, React 18 introduces features powered by our new concurrent renderer, with a gradual adoption strategy for existing applications. In this post, we will guide you through the steps for upgrading to React 18.
+description: リリース告知の記事でお伝えしたとおり、React 18 には新たな並行レンダラを用いた機能が加わっており、既存のアプリケーションが段階的に採用できる方法も提供しています。この投稿では、React 18 にアップグレードするためのステップについてご案内します。
 ---
 
 March 08, 2022 by [Rick Hanlon](https://twitter.com/rickhanlonii)
