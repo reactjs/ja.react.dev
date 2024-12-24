@@ -24,13 +24,13 @@ const getAllFiles = function (dirPath, arrayOfFiles) {
 
 exports.generateRssFeed = function () {
   const feed = new Feed({
-    title: 'React Blog',
+    title: 'React Blog (JA)',
     description:
-      'This blog is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted here first.',
-    feed_url: 'https://react.dev/rss.xml',
-    site_url: 'https://react.dev/',
-    language: 'en',
-    favicon: 'https://react.dev/favicon.ico',
+      'React チームからの公式な更新のお知らせが掲載されるブログです。リリースノートや非推奨化のお知らせなどの重要なことはすべて、まずこちらに掲載されます。',
+    feed_url: 'https://ja.react.dev/rss.xml',
+    site_url: 'https://ja.react.dev/',
+    language: 'ja',
+    favicon: 'https://ja.react.dev/favicon.ico',
     pubDate: new Date(),
     generator: 'react.dev rss module',
   });
@@ -72,7 +72,7 @@ exports.generateRssFeed = function () {
         title: data.title,
         author: data.author || '',
         date: new Date(data.date),
-        url: `https://react.dev/blog/${slug}`,
+        url: `https://ja.react.dev/blog/${slug}`,
         description: data.description,
       });
     }
