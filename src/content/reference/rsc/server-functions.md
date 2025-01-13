@@ -82,7 +82,11 @@ export async function createNote() {
 
 ```
 
+<<<<<<< HEAD
 バンドラがクライアントコンポーネントである `EmptyNote` をビルドする際に、バンドル内で `createNoteAction` 関数への参照を作成します。`button` がクリックされると、React は渡された参照を使用してサーバにリクエストを送信し、`createNoteAction` 関数を実行します。
+=======
+When the bundler builds the `EmptyNote` Client Component, it will create a reference to the `createNote` function in the bundle. When the `button` is clicked, React will send a request to the server to execute the `createNote` function using the reference provided:
+>>>>>>> 9000e6e003854846c4ce5027703b5ce6f81aad80
 
 ```js [[1, 2, "createNote"], [1, 5, "createNote"], [1, 7, "createNote"]]
 "use client";
@@ -90,7 +94,7 @@ import {createNote} from './actions';
 
 function EmptyNote() {
   console.log(createNote);
-  // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNoteAction'}
+  // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNote'}
   <button onClick={() => createNote()} />
 }
 ```
