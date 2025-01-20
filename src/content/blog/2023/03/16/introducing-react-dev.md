@@ -5,7 +5,7 @@ date: 2023/03/16
 description: 本日、React とそのドキュメントの新しいホームとなる react.dev の立ち上げを発表することができ、大変うれしく思います。この記事では、新しいサイトの見どころをご紹介します。
 ---
 
-March 16, 2023 by [Dan Abramov](https://twitter.com/dan_abramov) and [Rachel Nabors](https://twitter.com/rachelnabors)
+March 16, 2023 by [Dan Abramov](https://bsky.app/profile/danabra.mov) and [Rachel Nabors](https://twitter.com/rachelnabors)
 
 ---
 
@@ -631,7 +631,11 @@ React を学ぶには、今がこれまでで最高のタイミングだと思�
 
 ## 誰がこのプロジェクトに取り組んだのか？ {/*who-worked-on-this*/}
 
+<<<<<<< HEAD
 React チームでは、[Rachel Nabors](https://twitter.com/rachelnabors/) がプロジェクトをリードし（イラストも提供）、[Dan Abramov](https://twitter.com/dan_abramov) がカリキュラムをデザインしました。この 2 人が共同でほとんどのコンテンツを執筆しました。
+=======
+On the React team, [Rachel Nabors](https://twitter.com/rachelnabors/) led the project (and provided the illustrations), and [Dan Abramov](https://bsky.app/profile/danabra.mov) designed the curriculum. They co-authored most of the content together as well.
+>>>>>>> b22cbc3fed310b39c99fdd0f01621ac1903d1e8e
 
 もちろん、これほど大きなプロジェクトが少人数で進むことはありません。お礼を言いたい方がたくさんいます！
 

@@ -97,9 +97,16 @@ Transition Tracing API により、[React のトランジション](/reference/r
 * * *
 このページでのアップデートに加えて、私たちのチームは最近、コミュニティのポッドキャストやライブストリームにゲスト出演し、取り組みについてより多くのことをお話しし、質問に答える機会がありました。
 
+<<<<<<< HEAD
 * [Dan Abramov](https://twitter.com/dan_abramov) と [Joe Savona](https://twitter.com/en_JS) は [Kent C. Dodds の YouTube チャンネル](https://www.youtube.com/watch?v=h7tur48JSaw) でインタビューを受け、React Server Components に関する懸念について議論を行いました。
 * [Dan Abramov](https://twitter.com/dan_abramov) と [Joe Savona](https://twitter.com/en_JS) は [JSParty ポッドキャスト](https://jsparty.fm/267) のゲストとして招かれ、React の未来についての考えを共有しました。
 
 この投稿のレビューに協力していただいた [Andrew Clark](https://twitter.com/acdlite)、[Dan Abramov](https://twitter.com/dan_abramov)、[Dave McCabe](https://twitter.com/mcc_abe)、[Luna Wei](https://twitter.com/lunaleaps)、[Matt Carroll](https://twitter.com/mattcarrollcode)、[Sean Keegan](https://twitter.com/DevRelSean)、[Sebastian Silbermann](https://twitter.com/sebsilbermann)、[Seth Webster](https://twitter.com/sethwebster)、[Sophie Alpert](https://twitter.com/sophiebits) に感謝します。
+=======
+* [Dan Abramov](https://bsky.app/profile/danabra.mov) and [Joe Savona](https://twitter.com/en_JS) were interviewed by [Kent C. Dodds on his YouTube channel](https://www.youtube.com/watch?v=h7tur48JSaw), where they discussed concerns around React Server Components.
+* [Dan Abramov](https://bsky.app/profile/danabra.mov) and [Joe Savona](https://twitter.com/en_JS) were guests on the [JSParty podcast](https://jsparty.fm/267) and shared their thoughts about the future of React.
+
+Thanks to [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Dave McCabe](https://twitter.com/mcc_abe), [Luna Wei](https://twitter.com/lunaleaps), [Matt Carroll](https://twitter.com/mattcarrollcode), [Sean Keegan](https://twitter.com/DevRelSean), [Sebastian Silbermann](https://twitter.com/sebsilbermann), [Seth Webster](https://twitter.com/sethwebster), and [Sophie Alpert](https://twitter.com/sophiebits) for reviewing this post.
+>>>>>>> b22cbc3fed310b39c99fdd0f01621ac1903d1e8e
 
 お読みいただきありがとうございました。次のアップデートでお会いしましょう！

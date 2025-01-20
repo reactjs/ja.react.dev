@@ -252,7 +252,7 @@ React で構築されていない静的ページあるいはサーバレンダ�
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>
