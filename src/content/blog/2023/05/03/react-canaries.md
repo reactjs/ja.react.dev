@@ -5,7 +5,7 @@ date: 2023/05/03
 description: 私たちは、安定版がリリースされる前に、個々の新機能の設計がほぼ確定した段階でそれらを採用できるという選択肢を、React コミュニティに提供したいと考えています。これは、Meta が長年、React の最先端バージョンを社内で使用してきたやり方に似ています。私たちは、新たに公式サポート対象となる Canary リリースチャンネルを導入します。これにより、フレームワークのような統合済セットアップが、個々の React 機能の採用を React のリリーススケジュールから切り離して行えるようになります。
 ---
 
-May 3, 2023 by [Dan Abramov](https://twitter.com/dan_abramov), [Sophie Alpert](https://twitter.com/sophiebits), [Rick Hanlon](https://twitter.com/rickhanlonii), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Andrew Clark](https://twitter.com/acdlite)
+May 3, 2023 by [Dan Abramov](https://bsky.app/profile/danabra.mov), [Sophie Alpert](https://twitter.com/sophiebits), [Rick Hanlon](https://twitter.com/rickhanlonii), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Andrew Clark](https://twitter.com/acdlite)
 
 ---
 

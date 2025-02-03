@@ -289,7 +289,11 @@ function ProfilePage() {
 
 ### アプリ全体がレンダーされるまでストリームが始まらない {/*my-stream-doesnt-start-until-the-entire-app-is-rendered*/}
 
+<<<<<<< HEAD
 `prerenderToNodeStream` の返り値は解決する前に、全サスペンスバウンダリが解決することも含む、アプリ全体のレンダーの終了を待機します。これは事前静的サイト生成 (SSG) のために設計されているものであり、コンテンツを読み込みながらのストリーミングをサポートしません。
+=======
+The `prerenderToNodeStream` response waits for the entire app to finish rendering, including waiting for all Suspense boundaries to resolve, before resolving. It is designed for static site generation (SSG) ahead of time and does not support streaming more content as it loads.
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 コンテンツを読み込みながらストリームしたい場合は、サーバレンダー API である [renderToReadableStream](/reference/react-dom/server/renderToReadableStream) などを使用してください。
  
