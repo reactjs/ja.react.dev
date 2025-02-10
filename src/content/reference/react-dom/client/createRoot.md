@@ -144,7 +144,7 @@ root.render(<App />);
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>
@@ -375,7 +375,7 @@ root.render(<App />);
 
 <Sandpack>
 
-```html index.html hidden
+```html public/index.html hidden
 <!DOCTYPE html>
 <html>
 <head>
@@ -606,7 +606,7 @@ root.render(<App />);
 
 <Sandpack>
 
-```html index.html hidden
+```html public/index.html hidden
 <!DOCTYPE html>
 <html>
 <head>
@@ -885,7 +885,7 @@ root.render(<App />);
 
 <Sandpack>
 
-```html index.html hidden
+```html public/index.html hidden
 <!DOCTYPE html>
 <html>
 <head>

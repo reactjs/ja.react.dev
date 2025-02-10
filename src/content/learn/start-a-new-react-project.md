@@ -27,7 +27,11 @@ React をフレームワークなしで使うことも確かに可能です。[�
 
 **このページで紹介する React フレームワークは、これらの問題をデフォルトで解決しているため、あなたが余計な作業をする必要はありません**。これらのフレームワークを使用することで、非常にスリムに始めて、ニーズに応じてアプリをスケーリングできます。各 React フレームワークにはコミュニティがあるため、質問に対する回答を見つけたり、ツールのアップグレードをしたりすることもより簡単に行えます。フレームワークはあなたのコードに構造を与えるので、あなたや他の人が複数のプロジェクト間でコンテクストやスキルを保持するのにも役立ちます。逆に、カスタムセットアップを行った場合、サポートされなくなった依存関係バージョンにハマる可能性が高まり、いずれ実質的には独自フレームワークのようなものを作成する羽目に陥ります。ただしそのようなフレームワークにはコミュニティもアップグレードパスもなく、仮に過去に作成されていたものに近かったとしても、行き当たりばったりで設計されたものに過ぎないわけですが。
 
+<<<<<<< HEAD
 以下のフレームワークではうまく対処できない特殊な制約がある場合や、これらの問題に自分自身で対処したいという場合は、React で自分独自のカスタムセットアップを行うことも可能です。npm から `react` と `react-dom` を入手し、[Vite](https://vitejs.dev/) や [Parcel](https://parceljs.org/) のようなバンドラを使ってカスタムビルドプロセスをセットアップし、ルーティング、静的ファイル生成、サーバーサイドレンダリングなどのための各種ツールを必要に応じて追加していってください。
+=======
+If your app has unusual constraints not served well by these frameworks, or you prefer to solve these problems yourself, you can roll your own custom setup with React. Grab `react` and `react-dom` from npm, set up your custom build process with a bundler like [Vite](https://vite.dev/) or [Parcel](https://parceljs.org/), and add other tools as you need them for routing, static generation or server-side rendering, and more.
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
 
 </DeepDive>
 

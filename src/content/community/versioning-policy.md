@@ -8,7 +8,11 @@ React のすべての安定版ビルドは広範なテストに通過してお�
 
 </Intro>
 
+<<<<<<< HEAD
 過去のリリースの一覧は [Versions](/versions) ページをご覧ください。
+=======
+This versioning policy describes our approach to version numbers for packages such as `react` and `react-dom`. For a list of previous releases, see the [Versions](/versions) page.
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
 
 ## 安定版リリース {/*stable-releases*/}
 
@@ -24,7 +28,13 @@ React のすべての安定版ビルドは広範なテストに通過してお�
 
 最も一般的なタイプのリリースはマイナーリリースです。
 
+<<<<<<< HEAD
 ### 破壊的な変更 {/*breaking-changes*/}
+=======
+We know our users continue to use old versions of React in production. If we learn of a security vulnerability in React, we release a backported fix for all major versions that are affected by the vulnerability.
+
+### Breaking changes {/*breaking-changes*/}
+>>>>>>> 91614a51a1be9078777bc337ba83fc62e606cc14
 
 破壊的な変更は誰にとっても煩わしいため、メジャーリリースの数は最小限に抑えるようにしています。例えば、React 15 は 2016 年 4 月にリリースされ、React 16 は 2017 年 9 月にリリースされ、React 17 は 2020 年 10 月にリリースされました。
 
