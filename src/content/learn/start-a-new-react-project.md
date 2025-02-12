@@ -45,7 +45,7 @@ npx create-next-app@latest
 
 Next.js を初めて使う場合は、[Next.js の学習コース](https://nextjs.org/learn)を参照してください。
 
-Next.js は [Vercel](https://vercel.com/) によってメンテナンスされています。Next.js アプリは Node.js やサーバレスホスティングサービス、または自分自身のサーバーに[デプロイする](https://nextjs.org/docs/app/building-your-application/deploying)ことができます。Next.js はサーバを必要としない[静的なエクスポート](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports)もサポートしています。
+Next.js は [Vercel](https://vercel.com/) によってメンテナンスされています。Next.js アプリは Node.js やサーバーレスホスティングサービス、または自分自身のサーバに[デプロイする](https://nextjs.org/docs/app/building-your-application/deploying)ことができます。Next.js はサーバを必要としない[静的なエクスポート](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports)もサポートしています。
 
 ### Remix {/*remix*/}
 
@@ -85,7 +85,7 @@ Expo は [Expo（社名）](https://expo.dev/about) によってメンテナン�
 
 ## 超最先端の React フレームワーク {/*bleeding-edge-react-frameworks*/}
 
-我々が React の進化について探求する中で、React をフレームワークと（特にルーティング、バンドル作成、サーバテクノロジーと）より密接に統合することが、React ユーザがよりよいアプリを構築する手助けをするための最大の機会となるということに気づきました。Next.js チームは、[React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) のようなフレームワークに依存しない最先端の React 機能に関して、私たちと共同で研究、開発、統合、テストを行うことに同意しました。
+我々が React の進化について探求する中で、React をフレームワークと（特にルーティング、バンドル作成、サーバーテクノロジーと）より密接に統合することが、React ユーザがよりよいアプリを構築する手助けをするための最大の機会となるということに気づきました。Next.js チームは、[React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) のようなフレームワークに依存しない最先端の React 機能に関して、私たちと共同で研究、開発、統合、テストを行うことに同意しました。
 
 これらの機能は、本番環境で使える段階へと日々近づいており、他のバンドラやフレームワーク開発者とも統合について話し合っています。私たちの希望は、このページにリストされているすべてのフレームワークが、1 年か 2 年のうちにこれらの機能を完全にサポートするようになることです。（あなたがフレームワーク作者で、これらの機能を実験するため我々と協力することに興味がある場合、ぜひご連絡ください！）
 
@@ -93,13 +93,13 @@ Expo は [Expo（社名）](https://expo.dev/about) によってメンテナン�
 
 **[Next.js の App Router](https://nextjs.org/docs) は、React チームのフルスタックアーキテクチャビジョンを実現するために再設計された Next.js の API です**。サーバ上で、あるいはビルド時に非同期コンポーネントからデータのフェッチが行えるようになります。
 
-Next.js は [Vercel](https://vercel.com/) によってメンテナンスされています。[Next.js アプリのデプロイ](https://nextjs.org/docs/app/building-your-application/deploying)はあらゆる Next.js やサーバレスホスティングサービス上で行えます。Next.js は、サーバ不要の[静的エクスポート](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)もサポートしています。
+Next.js は [Vercel](https://vercel.com/) によってメンテナンスされています。[Next.js アプリのデプロイ](https://nextjs.org/docs/app/building-your-application/deploying)はあらゆる Next.js やサーバーレスホスティングサービス上で行えます。Next.js は、サーバ不要の[静的エクスポート](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)もサポートしています。
 
 <DeepDive>
 
 #### React チームのフルスタックアーキテクチャビジョンに含まれる機能 {/*which-features-make-up-the-react-teams-full-stack-architecture-vision*/}
 
-Next.js の App Router バンドラは、公式の [React Server Components 仕様](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md)を完全に実装しています。これにより単一の React ツリー内で、バンドル時専用コンポーネント、サーバ専用コンポーネント、インタラクティブなコンポーネントを混在させることができます。
+Next.js の App Router バンドラは、公式の [React Server Components 仕様](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md)を完全に実装しています。これにより単一の React ツリー内で、バンドル時専用コンポーネント、サーバー専用コンポーネント、インタラクティブなコンポーネントを混在させることができます。
 
 例えば、データベースやファイルから読み込みを行う React コンポーネントを非同期 (`async`) 関数として記述できます。そしてそのデータをインタラクティブなコンポーネントに渡すこともできます：
 
@@ -125,6 +125,6 @@ Next.js の App Router は、[サスペンス (suspense) を使用したデー�
 </Suspense>
 ```
 
-サーバコンポーネントとサスペンスは、Next.js の機能ではなく React の機能です。しかしフレームワークレベルでこれらを採用するには、合意形成とかなりの実装の手間が必要です。現時点では、Next.js の App Router が最も完全な実装です。React チームはバンドラの開発者と協力して、次世代のフレームワークでこれらの機能を実装しやすくすることを目指しています。
+サーバーコンポーネントとサスペンスは、Next.js の機能ではなく React の機能です。しかしフレームワークレベルでこれらを採用するには、合意形成とかなりの実装の手間が必要です。現時点では、Next.js の App Router が最も完全な実装です。React チームはバンドラの開発者と協力して、次世代のフレームワークでこれらの機能を実装しやすくすることを目指しています。
 
 </DeepDive>
