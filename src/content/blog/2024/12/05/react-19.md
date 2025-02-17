@@ -294,7 +294,11 @@ A component was suspended by an uncached promise. Creating promises inside a Cli
 
 </ConsoleBlockMulti>
 
+<<<<<<< HEAD
 修正するには、プロミスをキャッシュできるサスペンス対応のライブラリまたはフレームワークで作られたプロミスを渡す必要があります。将来的には、レンダー中にプロミスをキャッシュしやすくする機能を提供する予定です。
+=======
+To fix, you need to pass a promise from a Suspense powered library or framework that supports caching for promises. In the future we plan to ship features to make it easier to cache promises in render.
+>>>>>>> 49284218b1f5c94f930f8a9b305040dbe7d3dd48
 
 </Note>
 
