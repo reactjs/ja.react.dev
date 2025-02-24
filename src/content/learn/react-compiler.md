@@ -311,7 +311,11 @@ export default defineConfig({
 
 ### Webpack {/*usage-with-webpack*/}
 
+<<<<<<< HEAD
 コミュニティによる Webpack ローダは[こちらで利用可能](https://github.com/SukkaW/react-compiler-webpack)です。
+=======
+A community webpack loader is [now available here](https://github.com/SukkaW/react-compiler-webpack).
+>>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 ### Expo {/*usage-with-expo*/}
 

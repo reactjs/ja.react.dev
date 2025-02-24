@@ -295,7 +295,11 @@ export default function Square() {
 }
 ```
 
+<<<<<<< HEAD
 _ブラウザ_ セクションには、以下のように X の入ったマス目が表示されているはずです。
+=======
+The _browser_ section should be displaying a square with an X in it like this:
+>>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 ![X と書かれたマス目](../images/tutorial/x-filled-square.png)
 
@@ -1325,7 +1329,11 @@ state 管理が `Board` コンポーネントに移動されたので、親で�
 1. `handleClick` は引数 `0` を使って、`squares` 配列の最初の要素を `null` から `X` に更新します。
 1. `Board` コンポーネントの state である `squares` が更新されたので、`Board` とそのすべての子が再レンダーされます。これにより、インデックス `0` である `Square` コンポーネントの `value` プロパティが `null` から `X` に変更されます。
 
+<<<<<<< HEAD
 最終的に、クリックによって左上のマス目が空白から `X` に変わったという結果をユーザが目にすることになります。
+=======
+In the end the user sees that the upper left square has changed from empty to having an `X` after clicking it.
+>>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 <Note>
 
@@ -1406,7 +1414,11 @@ export default function Board() {
 
 `X` が `O` で上書きされてしまっています！ これでも大変興味深い特殊ルールにはなりそうですが、今のところはオリジナルのルールを守りましょう。
 
+<<<<<<< HEAD
 マス目に `X` や `O` を置く前に、まずそのマス目に既に `X` や `O` の値があるかどうか、まだチェックしていません。これは、*早期リターン (early return)* をすることで修正できます。マス目に既に `X` または `O` があるかどうかを確認し、既にある場合は `handleClick` 関数内から早期 `return` し、盤面の state が更新されてしまわないようにしましょう。
+=======
+When you mark a square with an `X` or an `O` you aren't first checking to see if the square already has an `X` or `O` value. You can fix this by *returning early*. You'll check to see if the square already has an `X` or an `O`. If the square is already filled, you will `return` in the `handleClick` function early--before it tries to update the board state.
+>>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 ```js {2,3,4}
 function handleClick(i) {
@@ -1556,7 +1568,11 @@ function calculateWinner(squares) {
 
 </Note>
 
+<<<<<<< HEAD
 `Board` コンポーネントの `handleClick` 関数で `calculateWinner(squares)` を呼び出して、いずれかのプレーヤが勝利したかどうか判定します。これは、ユーザがすでに `X` や `O` のあるマス目をクリックしたかどうかチェックしている場所と同じところで行えます。どちらの場合でも早期リターンを行いたいです。
+=======
+You will call `calculateWinner(squares)` in the `Board` component's `handleClick` function to check if a player has won. You can perform this check at the same time you check if a user has clicked a square that already has an `X` or an `O`. We'd like to return early in both cases:
+>>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 ```js {2}
 function handleClick(i) {
