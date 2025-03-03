@@ -70,9 +70,15 @@ export default function Image() {
 コンポーネントが最初にレンダーされた後、[`set` 関数](/reference/react/useState#setstate)を使って state を更新することで、さらなるレンダーをトリガすることができます。コンポーネントの state を更新すると、自動的にレンダーがキューイングされます。（これは、レストランの客が最初の注文の後に、喉の渇きや空腹の状態に応じてお茶やデザートなどいろいろなものを注文するようなものだと考えることができます。）
 
 <IllustrationBlock sequential>
+<<<<<<< HEAD
   <Illustration caption="state の更新が..." alt="レストランのウェイター役の React が Card UI を提供したところ。矢印頭の顧客は、黒ではなく、ピンクのカードが欲しいのだと注文している。" src="/images/docs/illustrations/i_rerender1.png" />
   <Illustration caption="... トリガになって ..." alt="React はコンポーネントの厨房に戻り、ピンクの Card が必要だと Card シェフに伝える。" src="/images/docs/illustrations/i_rerender2.png" />
   <Illustration caption="... レンダーされる！" alt="Card シェフはピンクのカードを React に渡している。" src="/images/docs/illustrations/i_rerender3.png" />
+=======
+  <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. The patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
+  <Illustration caption="...triggers..." alt="React returns to the Component Kitchen and tells the Card Chef they need a pink Card." src="/images/docs/illustrations/i_rerender2.png" />
+  <Illustration caption="...render!" alt="The Card Chef gives React the pink Card." src="/images/docs/illustrations/i_rerender3.png" />
+>>>>>>> 6326e7b1b9fa2a7e36a555792e2f1b97cfcf2669
 </IllustrationBlock>
 
 ## ステップ 2：React がコンポーネントをレンダー {/*step-2-react-renders-your-components*/}
@@ -84,7 +90,11 @@ export default function Image() {
 
 このプロセスは再帰的に発生します。更新されたコンポーネントが他のコンポーネントを返す場合、次に*その*コンポーネントを React がレンダーし、そのコンポーネントも何かコンポーネントを返す場合、*その*コンポーネントも次にレンダーし、といった具合に続きます。このプロセスは、ネストされたコンポーネントがなくなり、React が画面に表示されるべき内容を知り尽くすまで続きます。
 
+<<<<<<< HEAD
 次の例では、React は `Gallery()` を呼び出した後、`Image()` を何度も呼び出します。
+=======
+In the following example, React will call `Gallery()` and `Image()` several times:
+>>>>>>> 6326e7b1b9fa2a7e36a555792e2f1b97cfcf2669
 
 <Sandpack>
 
@@ -148,10 +158,17 @@ img { margin: 0 10px 10px 0; }
 
 ## ステップ 3：React が DOM への変更をコミットする {/*step-3-react-commits-changes-to-the-dom*/}
 
+<<<<<<< HEAD
 あなたのコンポーネントをレンダー（関数として呼び出し）した後、React は DOM を変更します。
 
 * **初回レンダー時には**、React は [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API を使用して、作成したすべての DOM ノードを画面に表示します。
 * **再レンダー時には**、React は最新のレンダー出力に合わせて DOM を変更するため、必要な最小限の操作（レンダー中に計算されたもの！）を適用します。
+=======
+After rendering (calling) your components, React will modify the DOM.
+
+* **For the initial render,** React will use the [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API to put all the DOM nodes it has created on screen.
+* **For re-renders,** React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
+>>>>>>> 6326e7b1b9fa2a7e36a555792e2f1b97cfcf2669
 
 **React はレンダー間で違いがあった場合にのみ DOM ノードを変更します**。例えば、以下のコンポーネントは親から渡された異なる props で毎秒再レンダーされます。実際に試してみてください。`<input>` にテキストを追加して `value` を更新することができますが、コンポーネントが再レンダーされる瞬間もテキストが消えることはありません：
 

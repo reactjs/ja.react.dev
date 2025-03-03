@@ -51,8 +51,14 @@ React は `<style>` コンポーネントをドキュメントの `<head>` に�
 
 この特別な動作に関して、以下の 2 つの注意点があります。
 
+<<<<<<< HEAD
 * スタイルがレンダーされた後、React は props に変更があってもそれを無視します（開発中にこれが起きた場合は React が警告を発します）。
 * コンポーネントがアンマウントされた後も、React は DOM にスタイルを残すことがあります。
+=======
+* React will ignore changes to props after the style has been rendered. (React will issue a warning in development if this happens.)
+* React will drop all extraneous props when using the `precedence` prop (beyond `href` and `precedence`).
+* React may leave the style in the DOM even after the component that rendered it has been unmounted.
+>>>>>>> 6326e7b1b9fa2a7e36a555792e2f1b97cfcf2669
 
 ---
 

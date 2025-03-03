@@ -299,4 +299,8 @@ function Comments({commentsPromise}) {
 
 `note` の内容はページをレンダーするために重要なデータなので、サーバ側で `await` します。コメントは折りたたまれており優先度が低いため、サーバではプロミスを開始だけして、クライアントで `use` API を使用してそれを待機します。これによりクライアント側でサスペンドが起きますが、`note` の内容のレンダーをブロックしないで済みます。
 
+<<<<<<< HEAD
 非同期コンポーネントは[クライアントではサポートされていない](#why-cant-i-use-async-components-on-the-client) ため、プロミスの待機は `use` を使用して行います。
+=======
+Since async components are not supported on the client, we await the promise with `use`.
+>>>>>>> 6326e7b1b9fa2a7e36a555792e2f1b97cfcf2669

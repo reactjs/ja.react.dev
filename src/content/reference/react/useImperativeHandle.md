@@ -46,7 +46,11 @@ function MyInput({ ref }) {
 
 <Note>
 
+<<<<<<< HEAD
 React 19 からは [`ref` は props として渡されます](/blog/2024/12/05/react-19#ref-as-a-prop)。React 18 以前では、`ref` を受け取るために [`forwardRef`](/reference/react/forwardRef) が必要でした。
+=======
+Starting with React 19, [`ref` is available as a prop.](/blog/2024/12/05/react-19#ref-as-a-prop) In React 18 and earlier, it was necessary to get the `ref` from [`forwardRef`.](/reference/react/forwardRef) 
+>>>>>>> 6326e7b1b9fa2a7e36a555792e2f1b97cfcf2669
 
 </Note>
 

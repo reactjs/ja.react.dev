@@ -297,7 +297,11 @@ input { margin: 5px; }
 
 <Pitfall>
 
+<<<<<<< HEAD
 デフォルトでは、`<form>` 内の*あらゆる* `<button>` はフォームの送信を行います。これは予想外の挙動かもしれません！ 独自のカスタム `Button` React コンポーネントを利用している場合は、`<button>` の代わりに [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) を返すようにすることを考慮してください。そしてフォームを送信することが*意図されている*ボタンには明示的に `<button type="submit">` を使用してください。
+=======
+By default, a `<button>` inside a `<form>` without a `type` attribute will submit it. This can be surprising! If you have your own custom `Button` React component, consider using [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) instead of `<button>` (with no type). Then, to be explicit, use `<button type="submit">` for buttons that *are* supposed to submit the form.
+>>>>>>> 6326e7b1b9fa2a7e36a555792e2f1b97cfcf2669
 
 </Pitfall>
 

@@ -20,9 +20,15 @@ title: 既存プロジェクトに React を追加する
 
 以下の手順に従って設定することをお勧めします。
 
+<<<<<<< HEAD
 1. [React ベースのフレームワーク](/learn/start-a-new-react-project)のうちひとつを使い、アプリの **React 部分をビルド**します。
 2. フレームワークの設定で `/some-app` を ***base path* に指定**します（方法：[Next.js](https://nextjs.org/docs/api-reference/next.config.js/basepath)、[Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)）。
 3. **サーバーまたはプロキシを設定**して、`/some-app/` 以下のすべてのリクエストを React アプリで処理するようにします。
+=======
+1. **Build the React part of your app** using one of the [React-based frameworks](/learn/start-a-new-react-project).
+2. **Specify `/some-app` as the *base path*** in your framework's configuration (here's how: [Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
+3. **Configure your server or a proxy** so that all requests under `/some-app/` are handled by your React app.
+>>>>>>> 6326e7b1b9fa2a7e36a555792e2f1b97cfcf2669
 
 こうすることで、アプリの React 部分がこれらのフレームワークに組み込まれた[ベストプラクティスを最大限に取り入れる](/learn/start-a-new-react-project#can-i-use-react-without-a-framework)ことができます。
 
@@ -45,7 +51,11 @@ title: 既存プロジェクトに React を追加する
 
 * **アプリが既に `import` 文を使ってファイル分割するよう設定されている場合**、その既存の設定を使用するようにしてみてください。JS コードで `<div />` と記述すると、構文エラーが発生するかどうかを確認してください。構文エラーが発生する場合は、[Babel を使用して JavaScript を変換](https://babeljs.io/setup)するようにし、JSX を使うために [Babel React プリセット](https://babeljs.io/docs/babel-preset-react) を有効にしてください。
 
+<<<<<<< HEAD
 * **JavaScript モジュールをコンパイルする既存のセットアップがない場合**は、[Vite](https://vitejs.dev/) を使ってセットアップします。Vite コミュニティは、Rails、Django、Laravel をはじめ、[多くのバックエンドフレームワークとのインテグレーション](https://github.com/vitejs/awesome-vite#integrations-with-backends)をメンテナンスしています。あなたのバックエンドフレームワークがリストされていない場合は、[このガイドに従って](https://vitejs.dev/guide/backend-integration.html)手動で Vite ビルドをバックエンドと統合してください。
+=======
+* **If your app doesn't have an existing setup for compiling JavaScript modules,** set it up with [Vite](https://vite.dev/). The Vite community maintains [many integrations with backend frameworks](https://github.com/vitejs/awesome-vite#integrations-with-backends), including Rails, Django, and Laravel. If your backend framework is not listed, [follow this guide](https://vite.dev/guide/backend-integration.html) to manually integrate Vite builds with your backend.
+>>>>>>> 6326e7b1b9fa2a7e36a555792e2f1b97cfcf2669
 
 セットアップがうまくいっているかどうかを確認するには、プロジェクトフォルダーで次のコマンドを実行します。
 
@@ -57,12 +67,13 @@ npm install react react-dom
 
 <Sandpack>
 
-```html index.html hidden
+```html public/index.html hidden
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>
   <body>
     <!-- Your existing page content (in this example, it gets replaced) -->
+    <div id="root"></div>
   </body>
 </html>
 ```
@@ -84,7 +95,11 @@ root.render(<h1>Hello, world</h1>);
 
 <Note>
 
+<<<<<<< HEAD
 既存のプロジェクトにモジュラーな JavaScript 環境を組み込むことを最初は不安に感じるかもしれませんが、その価値はあると思います！ 行き詰まったら、[コミュニティのリソース](/community)または [Vite Chat](https://chat.vitejs.dev/) を試してみてください。
+=======
+Integrating a modular JavaScript environment into an existing project for the first time can feel intimidating, but it's worth it! If you get stuck, try our [community resources](/community) or the [Vite Chat](https://chat.vite.dev/).
+>>>>>>> 6326e7b1b9fa2a7e36a555792e2f1b97cfcf2669
 
 </Note>
 
@@ -119,7 +134,7 @@ root.render(<h1>Hello, world</h1>);
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>

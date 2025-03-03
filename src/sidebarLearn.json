@@ -25,13 +25,28 @@
       "path": "/learn/installation",
       "routes": [
         {
+<<<<<<< HEAD
           "title": "React プロジェクトを始める",
           "path": "/learn/start-a-new-react-project"
+=======
+          "title": "Creating a React App",
+          "path": "/learn/creating-a-react-app"
+        },
+        {
+          "title": "Build a React App from Scratch",
+          "path": "/learn/build-a-react-app-from-scratch"
+>>>>>>> 6326e7b1b9fa2a7e36a555792e2f1b97cfcf2669
         },
         {
           "title": "既存プロジェクトに React を追加する",
           "path": "/learn/add-react-to-an-existing-project"
-        },
+        }
+      ]
+    },
+    {
+      "title": "Setup",
+      "path": "/learn/setup",
+      "routes": [
         {
           "title": "エディタのセットアップ",
           "path": "/learn/editor-setup"
