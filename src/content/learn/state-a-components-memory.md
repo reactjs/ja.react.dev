@@ -1452,7 +1452,11 @@ export default function FeedbackForm() {
 
 #### 不要な state を削除 {/*remove-unnecessary-state*/}
 
+<<<<<<< HEAD
 この例では、ボタンがクリックされると、ユーザの名前を尋ねて、挨拶を表示するアラートが表示されるはずです。名前を保持するために state を使用しようとしましたが、何らかの理由で常に "Hello, !" と表示されます。
+=======
+When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason the first time it shows "Hello, !", and then "Hello, [name]!" with the previous input every time after.
+>>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
 
 このコードを修正するには、不要な state 変数を削除してください（[この問題が発生した理由](/learn/state-as-a-snapshot)については後で説明します）。
 

@@ -23,7 +23,7 @@ useEffect(setup, dependencies?)
 コンポーネントのトップレベルで `useEffect` を呼び出して、エフェクト (Effect) を宣言します。
 
 ```js
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
 function ChatRoom({ roomId }) {
@@ -81,7 +81,7 @@ function ChatRoom({ roomId }) {
 [コンポーネントを外部システムに接続する](/learn/synchronizing-with-effects)には、コンポーネントのトップレベルで `useEffect` を呼び出します。
 
 ```js [[1, 8, "const connection = createConnection(serverUrl, roomId);"], [1, 9, "connection.connect();"], [2, 11, "connection.disconnect();"], [3, 13, "[serverUrl, roomId]"]]
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
 function ChatRoom({ roomId }) {

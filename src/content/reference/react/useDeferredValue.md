@@ -88,9 +88,15 @@ function SearchPage() {
 
 この例では、以下のようなサスペンス (Suspense) 対応のデータソースを使用していることを前提としています。
 
+<<<<<<< HEAD
 - [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) や [Next.js](https://nextjs.org/docs/getting-started/react-essentials) のようなサスペンス対応のフレームワークでのデータフェッチ
 - [`lazy`](/reference/react/lazy) を用いたコンポーネントコードの遅延ロード
 - [`use`](/reference/react/use) を用いたプロミス (Promise) からの値の読み取り
+=======
+- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/app/getting-started/fetching-data#with-suspense)
+- Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Reading the value of a Promise with [`use`](/reference/react/use)
+>>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
 
 [サスペンスとその制限について詳しく学ぶ。](/reference/react/Suspense)
 
