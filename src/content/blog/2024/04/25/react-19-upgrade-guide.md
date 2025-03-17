@@ -24,11 +24,7 @@ React 19 へのアップグレードを容易にするため、`react@18.3` リ�
 
 React 19 にアップグレードする前に、問題点を見つけるためにまず React 18.3 にアップグレードすることをお勧めします。
 
-<<<<<<< HEAD
-18.3 における変更点については、[リリースノート](https://github.com/facebook/react/blob/main/CHANGELOG.md)をご覧ください。
-=======
-For a list of changes in 18.3 see the [Release Notes](https://github.com/facebook/react/blob/main/CHANGELOG.md#1830-april-25-2024).
->>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
+18.3 における変更点については、[リリースノート](https://github.com/facebook/react/blob/main/CHANGELOG.md#1830-april-25-2024)をご覧ください。
 
 </Note>
 

@@ -111,12 +111,7 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,css}": "yarn prettier",
-<<<<<<< HEAD
     "src/**/*.md": ["yarn fix-headings", "yarn textlint-staged --"]
-  }
-=======
-    "src/**/*.md": "yarn fix-headings"
   },
   "packageManager": "yarn@1.22.22"
->>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
 }

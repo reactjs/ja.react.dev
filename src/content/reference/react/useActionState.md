@@ -67,15 +67,9 @@ function StatefulForm({}) {
 
 `useActionState` は以下の値を含む配列を返します。
 
-<<<<<<< HEAD
 1. 現在の state。初回レンダー時には、渡した `initialState` と等しくなります。アクションが呼び出された後は、そのアクションが返した値と等しくなります。
-2. フォームコンポーネントの `action` プロパティや、フォーム内の任意の `button` コンポーネントの `formAction` プロパティとして渡すことができる新しいアクション。
+2. フォームコンポーネントの `action` プロパティや、フォーム内の任意の `button` コンポーネントの `formAction` プロパティとして渡すことができる新しいアクション。アクションは [`startTransition`](/reference/react/startTransition) 内で手動で呼び出すことも可能です。
 3. 進行中のトランジションがあるかどうかを表す `isPending` フラグ。
-=======
-1. The current state. During the first render, it will match the `initialState` you have passed. After the action is invoked, it will match the value returned by the action.
-2. A new action that you can pass as the `action` prop to your `form` component or `formAction` prop to any `button` component within the form. The action can also be called manually within [`startTransition`](/reference/react/startTransition).
-3. The `isPending` flag that tells you whether there is a pending Transition.
->>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
 
 #### 注意点 {/*caveats*/}
 
@@ -107,15 +101,9 @@ function MyComponent() {
 
 `useActionState` は、以下の項目を含む配列を返します。
 
-<<<<<<< HEAD
 1. フォームの <CodeStep step={1}>state の現在値</CodeStep>。初期値はあなたが渡した <CodeStep step={4}>初期 state</CodeStep> となり、フォームが送信された後はあなたが渡した<CodeStep step={3}>アクション</CodeStep>の返り値となります。
-2. `<form>` の props である `action` に渡せる<CodeStep step={2}>新しいアクション</CodeStep>。
+2. `<form>` の props である `action` に渡すか、手動で呼び出すことで利用できる<CodeStep step={2}>新しいアクション</CodeStep>。
 3. アクションが処理中かどうかを知るのに利用できる <CodeStep step={1}>pending 状態</CodeStep>。
-=======
-1. The <CodeStep step={1}>current state</CodeStep> of the form, which is initially set to the <CodeStep step={4}>initial state</CodeStep> you provided, and after the form is submitted is set to the return value of the <CodeStep step={3}>action</CodeStep> you provided.
-2. A <CodeStep step={2}>new action</CodeStep> that you pass to `<form>` as its `action` prop or call manually within `startTransition`.
-3. A <CodeStep step={1}>pending state</CodeStep> that you can utilise while your action is processing.
->>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
 
 フォームが送信されると、あなたが渡した<CodeStep step={3}>アクション</CodeStep>関数が呼び出されます。その返り値が、新たなフォームの <CodeStep step={1}>state 現在値</CodeStep>になります。
 

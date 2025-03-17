@@ -1273,7 +1273,7 @@ button { margin-left: 10px; }
 
 エラーバウンダリコンポーネントを実装するためには、エラーに反応して state を更新し、ユーザにエラーメッセージを表示するための [`static getDerivedStateFromError`](#static-getderivedstatefromerror) を提供する必要があります。またオプションで、例えばエラーを分析サービスに記録するなどの追加のロジックを追加するために [`componentDidCatch`](#componentdidcatch) を実装することもできます。
 
-<CanaryBadge /> With [`captureOwnerStack`](/reference/react/captureOwnerStack) you can include the Owner Stack during development.
+<CanaryBadge /> [`captureOwnerStack`](/reference/react/captureOwnerStack) を使うことで開発中にオーナーのスタックトレースを含めることが可能です。
 
 ```js {9-12,14-27}
 import * as React from 'react';

@@ -644,21 +644,12 @@ DOM 要素を手動で削除した後、`setState` を使用して再度表示�
 
 <Recap>
 
-<<<<<<< HEAD
 - ref は一般的な概念だが、ほとんどの場合、DOM 要素を保持するために使用する。
 - `<div ref={myRef}>` のように渡すことで、React に DOM ノードを `myRef.current` に入れるよう指示する。
 - 通常、フォーカス、スクロール、または DOM 要素の測定などの非破壊的なアクションに ref を使用する。
-- コンポーネントはデフォルトでは内部の DOM ノードを公開しない。`forwardRef` を使用して特定のノードに 2 番目の `ref` 引数を渡すことで、DOM ノードの公開を明示的に許可する。
+- コンポーネントはデフォルトでは内部の DOM ノードを公開しない。props として `ref` を用いることで、DOM ノードの公開を明示的に許可する。
 - React によって管理される DOM ノードの変更を避ける。
 - React によって管理される DOM ノードをどうしても変更する場合は、React が更新する理由のない部分のみ変更する。
-=======
-- Refs are a generic concept, but most often you'll use them to hold DOM elements.
-- You instruct React to put a DOM node into `myRef.current` by passing `<div ref={myRef}>`.
-- Usually, you will use refs for non-destructive actions like focusing, scrolling, or measuring DOM elements.
-- A component doesn't expose its DOM nodes by default. You can opt into exposing a DOM node by using the `ref` prop.
-- Avoid changing DOM nodes managed by React.
-- If you do modify DOM nodes managed by React, modify parts that React has no reason to update.
->>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
 
 </Recap>
 
@@ -1058,11 +1049,7 @@ img {
 
 <Hint>
 
-<<<<<<< HEAD
-`SearchInput` のような独自コンポーネントから DOM ノードを公開するためには、`forwardRef` が必要です。
-=======
-You'll need to pass `ref` as a prop to opt into exposing a DOM node from your own component like `SearchInput`.
->>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
+`SearchInput` のような独自コンポーネントから DOM ノードを公開するためには、props としての `ref` の受け渡しが必要です。
 
 </Hint>
 

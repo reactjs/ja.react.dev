@@ -631,11 +631,7 @@ React を学ぶには、今がこれまでで最高のタイミングだと思�
 
 ## 誰がこのプロジェクトに取り組んだのか？ {/*who-worked-on-this*/}
 
-<<<<<<< HEAD
-React チームでは、[Rachel Nabors](https://twitter.com/rachelnabors/) がプロジェクトをリードし（イラストも提供）、[Dan Abramov](https://twitter.com/dan_abramov) がカリキュラムをデザインしました。この 2 人が共同でほとんどのコンテンツを執筆しました。
-=======
-On the React team, [Rachel Nabors](https://twitter.com/rachelnabors/) led the project (and provided the illustrations), and [Dan Abramov](https://bsky.app/profile/danabra.mov) designed the curriculum. They co-authored most of the content together as well.
->>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
+React チームでは、[Rachel Nabors](https://twitter.com/rachelnabors/) がプロジェクトをリードし（イラストも提供）、[Dan Abramov](https://bsky.app/profile/danabra.mov) がカリキュラムをデザインしました。この 2 人が共同でほとんどのコンテンツを執筆しました。
 
 もちろん、これほど大きなプロジェクトが少人数で進むことはありません。お礼を言いたい方がたくさんいます！
 

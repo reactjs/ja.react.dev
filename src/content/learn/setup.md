@@ -1,28 +1,28 @@
 ---
-title: Setup
+title: セットアップ
 ---
 <Intro>
 
-React integrates with tools like editors, TypeScript, browser extensions, and compilers. This section will help you get your environment set up.
+React はエディタ、TypeScript、ブラウザ拡張機能、コンパイラといったツールと連携します。このセクションでは環境セットアップの方法を説明します。
 
 </Intro>
 
-## Editor Setup {/*editor-setup*/}
+## エディタのセットアップ {/*editor-setup*/}
 
-See our [recommended editors](/learn/editor-setup) and learn how to set them up to work with React.
+[推奨エディタ](/learn/editor-setup)を確認し、React での作業に適したセットアップ方法を学びましょう。
 
-## Using TypeScript {/*using-typescript*/}
+## TypeScript の使用 {/*using-typescript*/}
 
-TypeScript is a popular way to add type definitions to JavaScript codebases. [Learn how to integrate TypeScript into your React projects](/learn/typescript).
+TypeScript は JavaScript のコードベースに型定義を追加する一般的な方法です。[React プロジェクトに TypeScript を組み込む方法を学びましょう](/learn/typescript)。
 
 ## React Developer Tools {/*react-developer-tools*/}
 
-React Developer Tools is a browser extension that can inspect React components, edit props and state, and identify performance problems. Learn how to install it [here](learn/react-developer-tools).
+React Developer Tools は React コンポーネントの調査を行い、props や state を編集し、パフォーマンスの問題を特定できるブラウザ拡張機能です。インストール方法は[こちら](learn/react-developer-tools)で確認できます。
 
 ## React Compiler {/*react-compiler*/}
 
-React Compiler is a tool that automatically optimizes your React app. [Learn more](/learn/react-compiler).
+React Compiler は React アプリを自動的に最適化するツールです。[詳細はこちら](/learn/react-compiler)。
 
-## Next steps {/*next-steps*/}
+## 次のステップ {/*next-steps*/}
 
-Head to the [Quick Start](/learn) guide for a tour of the most important React concepts you will encounter every day.
+[クイックスタート](/learn)ガイドに進んで、日常的に遭遇する最も重要な React の概念についてのツアーを始めましょう。

@@ -8,20 +8,7 @@ React は当初より、段階的に導入できるように設計されてい�
 
 </Intro>
 
-<<<<<<< HEAD
-<YouWillLearn isChapter={true}>
-
-* [新しい React プロジェクトを始める方法](/learn/start-a-new-react-project)
-* [既存プロジェクトに React を追加する方法](/learn/add-react-to-an-existing-project)
-* [エディタの設定方法](/learn/editor-setup)
-* [React Developer Tools のインストール方法](/learn/react-developer-tools)
-
-</YouWillLearn>
-
 ## React を試してみる {/*try-react*/}
-=======
-## Try React {/*try-react*/}
->>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
 
 React を試すために何かをインストールする必要はありません。このサンドボックスを編集してみてください！
 
@@ -43,42 +30,28 @@ export default function App() {
 
 React ドキュメントのほとんどのページには、このようなサンドボックスが含まれています。React のドキュメント外にも、React をサポートするオンラインサンドボックスがたくさんあります。例えば、[CodeSandbox](https://codesandbox.io/s/new)、[StackBlitz](https://stackblitz.com/fork/react) や [CodePen](https://codepen.io/pen?template=QWYVwWN) が挙げられます。
 
-<<<<<<< HEAD
-### ローカルで React を試す {/*try-react-locally*/}
-
 あなたのコンピュータのローカル環境で React を試すには、[この HTML ページをダウンロードしてください](https://gist.githubusercontent.com/gaearon/0275b1e1518599bbeafcde4722e79ed1/raw/db72dcbf3384ee1708c4a07d3be79860db04bff0/example.html)。そしてエディタとブラウザで開いてください！
 
-## 新しい React プロジェクトを開始する {/*start-a-new-react-project*/}
+## React アプリの新規作成 {/*creating-a-react-app*/}
 
-アプリやウェブサイトを React でフルに構築したい場合は、[新しい React プロジェクトを始めましょう](/learn/start-a-new-react-project)。
-=======
-To try React locally on your computer, [download this HTML page.](https://gist.githubusercontent.com/gaearon/0275b1e1518599bbeafcde4722e79ed1/raw/db72dcbf3384ee1708c4a07d3be79860db04bff0/example.html) Open it in your editor and in your browser!
+新しい React アプリを立ち上げたい場合は、推奨されるフレームワークを用いて[新しい React アプリを作成](/learn/creating-a-react-app)します。
 
-## Creating a React App {/*creating-a-react-app*/}
+## ゼロからの React アプリ構築 {/*build-a-react-app-from-scratch*/}
 
-If you want to start a new React app, you can [create a React app](/learn/creating-a-react-app) using a recommended framework.
-
-## Build a React App from Scratch {/*build-a-react-app-from-scratch*/}
-
-If a framework is not a good fit for your project, you prefer to build your own framework, or you just want to learn the basics of a React app you can [build a React app from scratch](/learn/build-a-react-app-from-scratch).
->>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
+あなたのプロジェクトにフレームワークが適さない場合、自分自身でフレームワークを構築したい場合、あるいは React を基本から学びたい場合は、[ゼロから React アプリを構築する](/learn/build-a-react-app-from-scratch)ことも可能です。
 
 ## 既存のプロジェクトに React を追加する {/*add-react-to-an-existing-project*/}
 
-<<<<<<< HEAD
-既存のアプリやウェブサイトで React を試してみたい場合は、[既存のプロジェクトに React を追加してください](/learn/add-react-to-an-existing-project)。
-=======
-If want to try using React in your existing app or a website, you can [add React to an existing project.](/learn/add-react-to-an-existing-project)
+既存のアプリやウェブサイトで React を試してみたい場合は、[既存のプロジェクトに React を追加](/learn/add-react-to-an-existing-project)することもできます。
 
 
 <Note>
 
-#### Should I use Create React App? {/*should-i-use-create-react-app*/}
+#### Create React App を使うべき？ {/*should-i-use-create-react-app*/}
 
-No. Create React App has been deprecated. For more information, see [Sunsetting Create React App](/blog/2025/02/14/sunsetting-create-react-app).
+いいえ、Create React App は非推奨となっています。詳細は [Create React App のサポート終了](/blog/2025/02/14/sunsetting-create-react-app)を参照してください。
 
 </Note>
->>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
 
 ## 次のステップ {/*next-steps*/}
 

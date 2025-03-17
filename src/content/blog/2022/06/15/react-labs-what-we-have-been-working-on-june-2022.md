@@ -27,11 +27,7 @@ June 15, 2022 by [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](http
 
 特に、I/O ライブラリをフォークして例えば react-fetch のようなものを作成していく、というアイディアは捨て去ることにし、代わりに互換性のために async/await モデルを採用することにします。データフェッチングにはルータを使うこともできるのでこれにより RSC のリリースが遅れるということはありません。もうひとつの変更は、ファイルの拡張子でサーバコンポーネントかどうかを区別するというアプローチをやめ、[区別を注釈で行う](https://github.com/reactjs/rfcs/pull/189#issuecomment-1116482278)ことにする、というものです。
 
-<<<<<<< HEAD
-Webpack と Vite の両方で振る舞いが同じになるようバンドラのサポートを共通化することについて、Vercel および Shopify とともに取り組んでいます。リリース前に、React のエコシステム全体で RSC の振る舞いが同じになるようにしたいと考えています。この部分が安定化前の最大の障壁となっています。
-=======
-We’re working together with Vercel and Shopify to unify bundler support for shared semantics in both webpack and Vite. Before launch, we want to make sure that the semantics of RSCs are the same across the whole React ecosystem. This is the major blocker for reaching stable.
->>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
+webpack と Vite の両方で振る舞いが同じになるようバンドラのサポートを共通化することについて、Vercel および Shopify とともに取り組んでいます。リリース前に、React のエコシステム全体で RSC の振る舞いが同じになるようにしたいと考えています。この部分が安定化前の最大の障壁となっています。
 
 ## アセットのロード {/*asset-loading*/}
 
