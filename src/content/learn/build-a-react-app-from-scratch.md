@@ -1,143 +1,143 @@
 ---
-title: Build a React app from Scratch
+title: ゼロからの React アプリ構築
 ---
 
 <Intro>
 
-If your app has constraints not well-served by existing frameworks, you prefer to build your own framework, or you just want to learn the basics of a React app, you can build a React app from scratch.
+あなたのアプリが既存のフレームワークではうまく対応できない制約を有している場合や、自分自身でフレームワークを構築したい場合、または React アプリの基本を学びたい場合は、ゼロから React アプリを構築することも可能です。
 
 </Intro>
 
 <DeepDive>
 
-#### Consider using a framework {/*consider-using-a-framework*/}
+#### まずはフレームワーク使用の検討を {/*consider-using-a-framework*/}
 
-Starting from scratch is an easy way to get started using React, but a major tradeoff to be aware of is that going this route is often the same as building your own adhoc framework. As your requirements evolve, you may need to solve more framework-like problems that our recommended frameworks already have well developed and supported solutions for. 
+ゼロから始めるのは React を使い始める簡単な方法ですが、この方法を選ぶ際は、これがその場限りの独自フレームワークを構築しているのと変わらない、という重要なトレードオフについて認識してください。アプリの要件が進化するにつれ、推奨フレームワークがすでに開発済みでうまくサポートしているような、よりフレームワーク的な問題について、自前で解決する必要が出てくるかもしれません。
 
-For example, if in the future your app needs support for server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC), you will have to implement those on your own. Similarly, future React features that require integrating at the framework level will have to be implemented on your own if you want to use them.
+たとえば、将来的にアプリがサーバサイドレンダリング (SSR)、静的サイト生成 (SSG)、または React サーバコンポーネント (RSC) のサポートを必要とする場合、それらを自前で実装しなければなりません。同様に、フレームワークレベルでの統合を必要とする将来の React 機能を使用したい場合、それらも自分で実装しなければなりません。
 
-Our recommended frameworks also help you build better performing apps. For example, reducing or eliminating waterfalls from network requests makes for a better user experience. This might not be a high priority when you are building a toy project, but if your app gains users you may want to improve its performance.
+私たちが推奨するフレームワークは、よりパフォーマンスの良いアプリを構築するのにも役立ちます。たとえば、ネットワークリクエストのウォーターフォールを減らしたり排除したりすることで、より良いユーザ体験を提供します。小さなプロジェクトを構築している間は優先度が低いかもしれませんが、アプリにユーザが増えていけばパフォーマンスを向上させたいと思うかもしれません。
 
-Going this route also makes it more difficult to get support, since the way you develop routing, data-fetching, and other features will be unique to your situation. You should only choose this option if you are comfortable tackling these problems on your own, or if you’re confident that you will never need these features.
+またこのアプローチでは、ルーティングやデータフェッチ、その他の機能の開発のされ方があなたの事情に特有のものになるため、サポートを受けるのも難しくなります。これらの問題に自分で取り組むことに自信がある場合、または将来的にもこれらの機能が必要になることはないと確信している場合にのみ、このオプションを選ぶようにすべきです。
 
-For a list of recommended frameworks, check out [Creating a React App](/learn/creating-a-react-app).
+推奨フレームワークのリストについては、[React アプリの作成](/learn/creating-a-react-app)をご覧ください。
 
 </DeepDive>
 
 
-## Step 1: Install a build tool {/*step-1-install-a-build-tool*/}
+## ステップ 1：ビルドツールのインストール {/*step-1-install-a-build-tool*/}
 
-The first step is to install a build tool like `vite`, `parcel`, or `rsbuild`. These build tools provide features to package and run source code, provide a development server for local development and a build command to deploy your app to a production server.
+最初のステップは、`vite`、`parcel`、または `rsbuild` のようなビルドツールをインストールすることです。これらのビルドツールは、ソースコードをパッケージ化して実行する機能、ローカル開発用の開発サーバ、およびアプリを本番サーバにデプロイするためのビルドコマンドを提供します。
 
 ### Vite {/*vite*/}
 
-[Vite](https://vite.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects.
+[Vite](https://vite.dev/) は、モダンなウェブプロジェクトのために素早くかつスリムな開発体験を提供することを目指したビルドツールです。
 
 <TerminalBlock>
 {`npm create vite@latest my-app -- --template react`}
 </TerminalBlock>
 
-Vite is opinionated and comes with sensible defaults out of the box. Vite has a rich ecosystem of plugins to support fast refresh, JSX,  Babel/SWC, and other common features. See Vite's [React plugin](https://vite.dev/plugins/#vitejs-plugin-react) or [React SWC plugin](https://vite.dev/plugins/#vitejs-plugin-react-swc) and [React SSR example project](https://vite.dev/guide/ssr.html#example-projects) to get started.
+Vite はデフォルトで適切な設定がされた、使い方に規約がある (opinionated) ツールです。Vite には、ファストリフレッシュ、JSX、Babel/SWC、その他の一般的な機能をサポートする豊富なプラグインのエコシステムがあります。Vite の [React プラグイン](https://vite.dev/plugins/#vitejs-plugin-react)や [React SWC プラグイン](https://vite.dev/plugins/#vitejs-plugin-react-swc)、[React SSR のサンプルプロジェクト](https://vite.dev/guide/ssr.html#example-projects) を参照して始めてみてください。
 
-Vite is already being used as a build tool in one of our [recommended frameworks](/learn/creating-a-react-app): [React Router](https://reactrouter.com/start/framework/installation).
+Vite は、[推奨フレームワーク](/learn/creating-a-react-app) のひとつである [React Router](https://reactrouter.com/start/framework/installation) でもビルドツールとして使用されています。
 
 ### Parcel {/*parcel*/}
 
-[Parcel](https://parceljs.org/) combines a great out-of-the-box development experience with a scalable architecture that can take your project from just getting started to massive production applications.
+[Parcel](https://parceljs.org/) は、素晴らしい初期開発体験とスケーラブルなアーキテクチャの両方を備えており、プロジェクトを始めたばかりの状態から大規模な本番アプリケーションにまで成長させることができます。
 
 <TerminalBlock>
 {`npm install --save-dev parcel`}
 </TerminalBlock>
 
-Parcel supports fast refresh, JSX, TypeScript, Flow, and styling out of the box. See [Parcel's React recipe](https://parceljs.org/recipes/react/#getting-started) to get started.
+Parcel は、ファストリフレッシュ、JSX、TypeScript、Flow、スタイリングをデフォルトでサポートしています。[Parcel の React レシピ](https://parceljs.org/recipes/react/#getting-started)を参照して始めてみてください。
 
 ### Rsbuild {/*rsbuild*/}
 
-[Rsbuild](https://rsbuild.dev/) is an Rspack-powered build tool that provides a seamless development experience for React applications. It comes with carefully tuned defaults and performance optimizations ready to use.
+[Rsbuild](https://rsbuild.dev/) は、Rspack を基にしたビルドツールで、React アプリケーションのためのシームレスな開発体験を提供します。慎重に調整されたデフォルト設定とパフォーマンス最適化が最初から利用できます。
 
 <TerminalBlock>
 {`npx create-rsbuild --template react`}
 </TerminalBlock>
 
-Rsbuild includes built-in support for React features like fast refresh, JSX, TypeScript, and styling. See [Rsbuild's React guide](https://rsbuild.dev/guide/framework/react) to get started.
+Rsbuild には、ファストリフレッシュ、JSX、TypeScript、スタイリングなどの React 機能のサポートが組み込まれています。[Rsbuild の React ガイド](https://rsbuild.dev/guide/framework/react)を参照して始めてみてください。
 
 <Note>
 
-#### Metro for React Native {/*react-native*/}
+#### React Native 用の Metro {/*react-native*/}
 
-If you'd you're starting from scratch with React Native you'll need to use [Metro](https://metrobundler.dev/), the JavaScript bundler for React Native. Metro supports bundling for platforms like iOS and Android, but lacks many features when compared to the tools here. We recommend starting with Vite, Parcel, or Rsbuild unless your project requires React Native support.
+React Native をゼロから始める場合は、React Native 用の JavaScript バンドラである [Metro](https://metrobundler.dev/) を使用する必要があります。Metro は iOS や Android などのプラットフォーム向けのバンドル機能をサポートしていますが、上記で紹介したツールと比較すると多くの機能が不足しています。プロジェクトが React Native のサポートを必要としているのでない限り、Vite、Parcel、または Rsbuild から始めることをお勧めします。
 
 </Note>
 
-## Step 2: Build Common Application Patterns {/*step-2-build-common-application-patterns*/}
+## ステップ 2：一般的なアプリケーションパターンの構築 {/*step-2-build-common-application-patterns*/}
 
-The build tools listed above start off with a client-only, single-page app (SPA), but don't include any further solutions for common functionality like routing, data fetching, or styling.
+上記のビルドツールを使うとクライアントのみのシングルページアプリ (SPA) から始まりますが、それ以上のもの、つまりルーティング、データフェッチ、スタイリングといった一般的な機能に対するソリューションは含まれていません。
 
-The React ecosystem includes many tools for these problems. We've listed a few that are widely used as a starting point, but feel free to choose other tools if those work better for you.
+React エコシステムには、これらの問題に対するツールがたくさん存在します。手始めとして、ここでは広く使用されているものをいくつか紹介していますが、他のツールがあなたにとってより適している場合は自由に選んでください。
 
-### Routing {/*routing*/}
+### ルーティング {/*routing*/}
 
-Routing determines what content or pages to display when a user visits a particular URL. You need to set up a router to map URLs to different parts of your app. You'll also need to handle nested routes, route parameters, and query parameters.  Routers can be configured within your code, or defined based on your component folder and file structures.
+ルーティング (routing) は、ユーザが特定の URL にアクセスしたときにどのコンテンツやページを表示するかを決定するものです。ある URL をアプリの異なる部分にマッピングするために、ルータの設定が必要です。また、ネストされたルート、ルートパラメータ、クエリパラメータを処理する必要があります。ルータはコード内で設定することも、コンポーネントのフォルダやファイル構造に基づいて定義することもできます。
 
-Routers are a core part of modern applications, and are usually integrated with data fetching (including prefetching data for a whole page for faster loading), code splitting (to minimize client bundle sizes), and page rendering approaches (to decide how each page gets generated).
+ルータは現代のアプリケーションの中核をなす部分であり、通常はデータフェッチ（ページ全体のデータの高速なプリフェッチを含む）、コード分割（クライアントのバンドルサイズを最小化する）、およびページのレンダー方法（各ページがどのように生成されるかを決定する）と統合されています。
 
-We suggest using:
+以下のライブラリの使用をお勧めします。
 
 - [React Router](https://reactrouter.com/start/framework/custom)
 - [Tanstack Router](https://tanstack.com/router/latest)
 
 
-### Data Fetching {/*data-fetching*/}
+### データフェッチ {/*data-fetching*/}
 
-Fetching data from a server or other data source is a key part of most applications. Doing this properly requires handling loading states, error states, and caching the fetched data, which can be complex.
+サーバやその他のデータソースからデータを取得することは、ほとんどのアプリケーションにおいて重要な作業です。これを適切に行うには、読み込み中状態の管理、エラー状態の管理、および取得したデータのキャッシュ管理が必要であり、複雑になることがあります。
 
-Purpose-built data fetching libraries do the hard work of fetching and caching the data for you, letting you focus on what data your app needs and how to display it.  These libraries are typically used directly in your components, but can also be integrated into routing loaders for faster pre-fetching and better performance, and in server rendering as well.
+この目的に特化したデータフェッチライブラリは、データの取得とキャッシュに関する難しい作業を行ってくれるため、あなたはアプリが必要とするデータとその表示方法に集中できます。これらのライブラリは通常、コンポーネント内で直接使用されますが、ルーティングのローダに統合して高速な事前取得とパフォーマンスの向上を図ることもでき、サーバレンダーにも利用できます。
 
-Note that fetching data directly in components can lead to slower loading times due to network request waterfalls, so we recommend prefetching data in router loaders or on the server as much as possible!  This allows a page's data to be fetched all at once as the page is being displayed.
+コンポーネント内で直接データを取得すると、ネットワークリクエストのウォーターフォールに伴う遅延が発生し、読み込み時間が遅くなる可能性があることに注意してください。可能な限り、ルータローダやサーバで、データを事前フェッチすることをお勧めします！ これによりページの表示とページデータの取得をまとめて同時に行うことができます。
 
-If you're fetching data from most backends or REST-style APIs, we suggest using:
+ほとんどのデータをバックエンドや REST スタイルの API から取得している場合、以下のライブラリの使用をお勧めします。
 
 - [React Query](https://react-query.tanstack.com/)
 - [SWR](https://swr.vercel.app/)
 - [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
 
-If you're fetching data from a GraphQL API, we suggest using:
+GraphQL API からデータを取得する場合、以下の使用をお勧めします。
 
 - [Apollo](https://www.apollographql.com/docs/react)
 - [Relay](https://relay.dev/)
 
 
-### Code-splitting {/*code-splitting*/}
+### コード分割 {/*code-splitting*/}
 
-Code-splitting is the process of breaking your app into smaller bundles that can be loaded on demand. An app's code size increases with every new feature and additional dependency. Apps can become slow to load because all of the code for the entire app needs to be sent before it can be used. Caching, reducing features/dependencies, and moving some code to run on the server can help mitigate slow loading but are incomplete solutions that can sacrifice functionality if overused.
+コード分割 (code splitting) とは、オンデマンドで読み込める小さな複数のバンドルへとアプリを分割するための作業です。アプリのコードサイズは、新しい機能や依存ライブラリを追加するたびに増加します。実際に使用する前にアプリ全体のコードをすべて送信する必要がある場合、読み込みが遅くなることがあります。キャッシュ、機能や依存ライブラリの削減、一部コードのサーバ側実行といった方法で読み込みの遅さを軽減することもできますが、これらは過度に使用すると機能性を犠牲にしてしまう不完全な解決策です。
 
-Similarly, if you rely on the apps using your framework to split the code, you might encounter situations where loading becomes slower than if no code splitting were happening at all. For example, [lazily loading](/reference/react/lazy) a chart delays sending the code needed to render the chart, splitting the chart code from the rest of the app. [Parcel supports code splitting with React.lazy](https://parceljs.org/recipes/react/#code-splitting). However, if the chart loads its data *after* it has been initially rendered you are now waiting twice. This is a waterfall: rather than fetching the data for the chart and sending the code to render it simultaneously, you must wait for each step to complete one after the other.
+同様に、アプリが使っている独自フレームワークにコード分割を任せていると、コード分割がまったく行われていない場合よりも読み込みが遅くなるという状況に遭遇することがあります。たとえば、[遅延読み込み](/reference/react/lazy)でチャートを読み込むようにした場合、チャートコードをアプリの残りの部分から分離し、チャートのレンダーに必要なコードの送信を遅延させることができます。[Parcel は React.lazy を使用したコード分割をサポートしています](https://parceljs.org/recipes/react/#code-splitting)。ところが、チャート自身が初回レンダー後にデータを読み込んでいる場合、2 回待つことになります。これがウォーターフォールです。チャートのためのデータとそれを表示するためのコードを同時にフェッチするのではなく、各ステップが順番に完了するのを待たなければならないという状況です。
 
-Splitting code by route, when integrated with bundling and data fetching, can reduce the initial load time of your app and the time it takes for the largest visible content of the app to render ([Largest Contentful Paint](https://web.dev/articles/lcp)).
+ルートごとにコードを分割するだけでなく、バンドルやデータフェッチと統合することで、アプリの初期読み込み時間とアプリの最大可視コンテンツのレンダー時間 ([Largest Contentful Paint](https://web.dev/articles/lcp)) を短縮できます。
 
-For code-splitting instructions, see your build tool docs:
-- [Vite build optimizations](https://v3.vitejs.dev/guide/features.html#build-optimizations)
-- [Parcel code splitting](https://parceljs.org/features/code-splitting/)
-- [Rsbuild code splitting](https://rsbuild.dev/guide/optimization/code-splitting)
+コード分割の手順については、ビルドツールのドキュメントを参照してください。
+- [Vite のビルド最適化](https://v3.vitejs.dev/guide/features.html#build-optimizations)
+- [Parcel のコード分割](https://parceljs.org/features/code-splitting/)
+- [Rsbuild のコード分割](https://rsbuild.dev/guide/optimization/code-splitting)
 
-### Improving Application Performance {/*improving-application-performance*/}
+### アプリケーションパフォーマンスの向上 {/*improving-application-performance*/}
 
-Since the build tool you select only support single page apps (SPAs) you'll need to implement other [rendering patterns](https://www.patterns.dev/vanilla/rendering-patterns) like server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC). Even if you don't need these features at first, in the future there may be some routes that would benefit SSR, SSG or RSC.
+あなたが選択したビルドツールは、シングルページアプリ (SPA) のみをサポートしています。このためサーバサイドレンダリング (SSR)、静的サイト生成 (SSG)、あるいは React Server Components (RSC) などの他の[レンダーパターン](https://www.patterns.dev/vanilla/rendering-patterns)は自分で実装する必要があります。最初はこれらの機能が必要でなくても、将来的には SSR、SSG、または RSC の恩恵を受けるルート（ページ）があるかもしれません。
 
-* **Single-page apps (SPA)** load a single HTML page and dynamically updates the page as the user interacts with the app. SPAs are easier to get started with, but they can have slower initial load times. SPAs are the default architecture for most build tools.
+* **シングルページアプリ (SPA)** は、単一の HTML ページを読み込み、ユーザがアプリを操作した際にページを動的に更新します。SPA は始めやすいですが、初期読み込み時間が遅くなることがあります。SPA はほとんどのビルドツールにおけるデフォルトのアーキテクチャです。
 
-* **Streaming Server-side rendering (SSR)** renders a page on the server and sends the fully rendered page to the client. SSR can improve performance, but it can be more complex to set up and maintain than a single-page app. With the addition of streaming, SSR can be very complex to set up and maintain. See [Vite's SSR guide]( https://vite.dev/guide/ssr).
+* **ストリーミングサーバーサイドレンダリング (SSR)** は、サーバでページをレンダーし、完全にレンダーされたページをクライアントに送信します。SSR はパフォーマンスを向上できますが、シングルページアプリよりも設定とメンテナンスが複雑になることがあります。ストリーミングを追加すると、SSR の構築とメンテナンスは非常に複雑になります。[Vite の SSR ガイド](https://vite.dev/guide/ssr)を参照してください。
 
-* **Static site generation (SSG)** generates static HTML files for your app at build time. SSG can improve performance, but it can be more complex to set up and maintain than server-side rendering. See [Vite's SSG guide](https://vite.dev/guide/ssr.html#pre-rendering-ssg).
+* **静的サイト生成 (SSG)** は、ビルド時にアプリの静的 HTML ファイルを生成します。SSG はパフォーマンスを向上させることができますが、サーバーサイドレンダリングよりも設定とメンテナンスが複雑になることがあります。[Vite の SSG ガイド](https://vite.dev/guide/ssr.html#pre-rendering-ssg)を参照してください。
 
-* **React Server Components (RSC)** lets you mix build-time, server-only, and interactive components in a single React tree. RSC can improve performance, but it currently requires deep expertise to set up and maintain. See [Parcel's RSC examples](https://github.com/parcel-bundler/rsc-examples).
+* **React Server Components (RSC)** は、ビルド時専用コンポーネント、サーバ専用コンポーネント、そしてインタラクティブなコンポーネントを、単一の React ツリーで混在させることができます。RSC はパフォーマンスを向上させることができますが、現在のところ、設定とメンテナンスには深い専門知識が必要です。[Parcel の RSC の例](https://github.com/parcel-bundler/rsc-examples)を参照してください。
 
-Your rendering strategies need to integrate with your router so apps built with your framework can choose the rendering strategy on a per-route level. This will enable different rendering strategies without having to rewrite your whole app. For example, the landing page for your app might benefit from being statically generated (SSG), while a page with a content feed might perform best with server-side rendering. 
+あなたのレンダー戦略を、ルータと統合する必要があります。それによりあなたのフレームワークで構築されたアプリが、ルートごとにレンダー戦略を選択できるようにするのです。これにより、アプリ全体を書き直すことなく、異なるレンダー戦略を利用できます。たとえば、アプリの最初のページでは静的な生成 (SSG) が有益かもしれませんが、コンテンツフィードを持つページはサーバーサイドレンダリングが最適かもしれません。
 
-Using the right rendering strategy for the right routes can decrease the time it takes for the first byte of content to be loaded ([Time to First Byte](https://web.dev/articles/ttfb)), the first piece of content to render ([First Contentful Paint](https://web.dev/articles/fcp)), and the largest visible content of the app to render ([Largest Contentful Paint](https://web.dev/articles/lcp)).
+適切なルートに適切なレンダー戦略を使用することで、コンテンツの最初のバイトが読み込まれるまでの時間 ([Time to First Byte](https://web.dev/articles/ttfb))、最初のコンテンツが表示されるまでの時間 ([First Contentful Paint](https://web.dev/articles/fcp))、およびアプリの最大の可視コンテンツが表示されるまでの時間 ([Largest Contentful Paint](https://web.dev/articles/lcp)) を短縮できるのです。
 
-### And more... {/*and-more*/}
+### さらに... {/*and-more*/}
 
-These are just a few examples of the features a new app will need to consider when building from scratch. Many limitations you'll hit can be difficult to solve as each problem is interconnected with the others and can require deep expertise in problem areas you may not be familiar with. 
+これらは、新しいアプリをゼロから構築する際に考慮すべき機能のほんの一例です。あなたが直面するであろう多くの問題は、それぞれが他の問題と相互に関連しており、不慣れな領域での深い専門知識を必要とする場合もあるため、解決が難しいことがあります。
 
-If you don't want to solve these problems on your own, you can [get started with a framework](/learn/creating-a-react-app) that provides these features out of the box. 
+これらの問題を自分で解決したくない場合は、これらの機能をデフォルトで利用できるフレームワークで[始めることができます](/learn/creating-a-react-app)。

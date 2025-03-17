@@ -1,78 +1,78 @@
 ---
-title: Creating a React App
+title: React アプリの作成
 ---
 
 <Intro>
 
-If you want to build a new app or website with React, we recommend starting with a framework.
+React を使って新しいアプリやウェブサイトを作成したい場合は、フレームワークを使って始めることをおすすめします。
 
 </Intro>
 
-If your app has constraints not well-served by existing frameworks, you prefer to build your own framework, or you just want to learn the basics of a React app, you can [build a React app from scratch](/learn/build-a-react-app-from-scratch).
+あなたのアプリが既存のフレームワークではうまく対応できない制約を有している場合や、自分自身でフレームワークを構築したい場合、または React アプリの基本を学びたい場合は、[React アプリをゼロから構築する](/learn/build-a-react-app-from-scratch)ことも可能です。
 
-## Full-stack frameworks {/*full-stack-frameworks*/}
+## フルスタックフレームワーク {/*full-stack-frameworks*/}
 
-These recommended frameworks support all the features you need to deploy and scale your app in production. They have integrated the latest React features and take advantage of React’s architecture.
+これらの推奨フレームワークは、アプリを本番環境でデプロイしスケールするために必要な、すべての機能をサポートしています。最新の React 機能を統合し、React のアーキテクチャを活用しています。
 
 <Note>
 
-#### Full-stack frameworks do not require a server. {/*react-frameworks-do-not-require-a-server*/}
+#### フルスタックフレームワークは必ずしもサーバを必要としない {/*react-frameworks-do-not-require-a-server*/}
 
-All the frameworks on this page support client-side rendering ([CSR](https://developer.mozilla.org/en-US/docs/Glossary/CSR)), single-page apps ([SPA](https://developer.mozilla.org/en-US/docs/Glossary/SPA)), and static-site generation ([SSG](https://developer.mozilla.org/en-US/docs/Glossary/SSG)). These apps can be deployed to a [CDN](https://developer.mozilla.org/en-US/docs/Glossary/CDN) or static hosting service without a server. Additionally, these frameworks allow you to add server-side rendering on a per-route basis, when it makes sense for your use case.
+このページのすべてのフレームワークは、クライアントサイドレンダリング (client-side rendering; [CSR](https://developer.mozilla.org/en-US/docs/Glossary/CSR))、シングルページアプリケーション (single-page app; [SPA](https://developer.mozilla.org/en-US/docs/Glossary/SPA)) および静的サイト生成 (static-site generation; [SSG](https://developer.mozilla.org/en-US/docs/Glossary/SSG)) をサポートしています。これらのアプリは、サーバ機能なしで [CDN](https://developer.mozilla.org/en-US/docs/Glossary/CDN) や静的ホスティングサービスにデプロイできます。さらに、これらのフレームワークは、ユースケースに応じてサーバサイドレンダリングをルートごとに追加することを可能にします。
 
-This allows you to start with a client-only app, and if your needs change later, you can opt-in to using server features on individual routes without rewriting your app. See your framework's documentation for configuring the rendering strategy.
+これにより、クライアントのみのアプリから始めておき、後で要件が変化した場合に、アプリを書き直すことなく個々のルートでサーバ機能を使用することを選択できます。レンダー戦略の設定については、フレームワークのドキュメントを参照してください。
 
 </Note>
 
 ### Next.js (App Router) {/*nextjs-app-router*/}
 
-**[Next.js's App Router](https://nextjs.org/docs) is a React framework that takes full advantage of React's architecture to enable full-stack React apps.**
+**[Next.js の App Router](https://nextjs.org/docs) は、React のアーキテクチャを最大限に活用してフルスタック React アプリを実現する React フレームワークです**。
 
 <TerminalBlock>
 npx create-next-app@latest
 </TerminalBlock>
 
-Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any Node.js or serverless hosting, or to your own server. Next.js also supports [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) which doesn't require a server. Vercel additionally provides opt-in paid cloud services.
+Next.js は [Vercel](https://vercel.com/) によってメンテナンスされています。Next.js アプリを Node.js やサーバレスホスティング、または独自のサーバに[デプロイできます](https://nextjs.org/docs/app/building-your-application/deploying)。Next.js はまた、サーバを必要としない[静的エクスポート](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)をサポートしています。Vercel はさらにオプトインの有料クラウドサービスも提供しています。
 
 ### React Router (v7) {/*react-router-v7*/}
 
-**[React Router](https://reactrouter.com/start/framework/installation) is the most popular routing library for React and can be paired with Vite to create a full-stack React framework**. It emphasizes standard Web APIs and has several [ready to deploy templates](https://github.com/remix-run/react-router-templates) for various JavaScript runtimes and platforms.
+**[React Router](https://reactrouter.com/start/framework/installation) は、React 用の最も人気のあるルーティングライブラリであり、Vite と組み合わせてフルスタック React フレームワークを作成できます**。標準の Web API を重視しており、さまざまな JavaScript ランタイムやプラットフォーム向けに[そのままデプロイできるテンプレート](https://github.com/remix-run/react-router-templates)をいくつか提供しています。
 
-To create a new React Router framework project, run:
+新しい React Router フレームワークプロジェクトを作成するには、以下のコマンドを実行します。
 
 <TerminalBlock>
 npx create-react-router@latest
 </TerminalBlock>
 
-React Router is maintained by [Shopify](https://www.shopify.com).
+React Router は [Shopify](https://www.shopify.com) によってメンテナンスされています。
 
-### Expo (for native apps) {/*expo*/}
+### Expo (ネイティブアプリ用) {/*expo*/}
 
-**[Expo](https://expo.dev/) is a React framework that lets you create universal Android, iOS, and web apps with truly native UIs.** It provides an SDK for [React Native](https://reactnative.dev/) that makes the native parts easier to use. To create a new Expo project, run:
+**[Expo](https://expo.dev/) は、真にネイティブな UI を持つユニバーサルな Android、iOS、および Web アプリを作成できる React フレームワークです**。[React Native](https://reactnative.dev/) 用の SDK を提供することでネイティブ部分を使いやすくしています。新しい Expo プロジェクトを作成するには、以下のコマンドを実行します。
 
 <TerminalBlock>
 npx create-expo-app@latest
 </TerminalBlock>
 
-If you're new to Expo, check out the [Expo tutorial](https://docs.expo.dev/tutorial/introduction/).
+Expo を初めて使用する場合は、[Expo チュートリアル](https://docs.expo.dev/tutorial/introduction/)をチェックしてください。
 
-Expo is maintained by [Expo (the company)](https://expo.dev/about). Building apps with Expo is free, and you can submit them to the Google and Apple app stores without restrictions. Expo additionally provides opt-in paid cloud services.
+Expo は [Expo（社名）](https://expo.dev/about) によってメンテナンスされています。Expo を使ったアプリ構築は無料であり、Google や Apple のアプリストアにも制限なく申請できます。また Expo ではオプトインの有料クラウドサービスも提供しています。
 
 
-## Other frameworks {/*other-frameworks*/}
+## その他のフレームワーク {/*other-frameworks*/}
 
-There are other up-and-coming frameworks that are working towards our full stack React vision:
+私たちのフルスタック React ビジョンに向けて取り組んでいる他の新進のフレームワークも存在します。
 
-- [TanStack Start (Beta)](https://tanstack.com/): TanStack Start is a full-stack React framework powered by TanStack Router. It provides a full-document SSR, streaming, server functions, bundling, and more using tools like Nitro and Vite.
-- [RedwoodJS](https://redwoodjs.com/): Redwood is a full stack React framework with lots of pre-installed packages and configuration that makes it easy to build full-stack web applications.
+- [TanStack Start (Beta)](https://tanstack.com/): TanStack Start は、TanStack Router を活用したフルスタック React フレームワークです。Nitro や Vite などのツールを使用して、フルドキュメント SSR、ストリーミング、サーバ関数、バンドル機能などを提供します。
+- [RedwoodJS](https://redwoodjs.com/): Redwood は、多くのプリインストールされたパッケージと設定を備えたフルスタック React フレームワークで、フルスタックウェブアプリケーションを簡単に構築できます。
 
 <DeepDive>
 
-#### Which features make up the React team’s full-stack architecture vision? {/*which-features-make-up-the-react-teams-full-stack-architecture-vision*/}
+#### React チームのフルスタックアーキテクチャビジョンに含まれる機能 {/*which-features-make-up-the-react-teams-full-stack-architecture-vision*/}
 
-Next.js's App Router bundler fully implements the official [React Server Components specification](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md). This lets you mix build-time, server-only, and interactive components in a single React tree.
+Next.js の App Router バンドラは、公式の [React Server Components 仕様](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md)を完全に実装しています。これにより単一の React ツリー内で、バンドル時専用コンポーネント、サーバ専用コンポーネント、インタラクティブなコンポーネントを混在させることができます。
 
-For example, you can write a server-only React component as an `async` function that reads from a database or from a file. Then you can pass data down from it to your interactive components:
+例えば、データベースやファイルから読み込みを行う React コンポーネントを非同期 (`async`) 関数として記述できます。そしてそのデータをインタラクティブなコンポーネントに渡すこともできます。
 
 ```js
 // This component runs *only* on the server (or during the build).
@@ -88,7 +88,7 @@ async function Talks({ confId }) {
 }
 ```
 
-Next.js's App Router also integrates [data fetching with Suspense](/blog/2022/03/29/react-v18#suspense-in-data-frameworks). This lets you specify a loading state (like a skeleton placeholder) for different parts of your user interface directly in your React tree:
+Next.js の App Router は、[サスペンス (Suspense) を使用したデータフェッチ](/blog/2022/03/29/react-v18#suspense-in-data-frameworks)を統合しています。これにより、React ツリー内で直接、UI の様々な場所に表示されるロード中状態（スケルトンプレースホルダなど）を指定できるようになります。
 
 ```js
 <Suspense fallback={<TalksLoading />}>
@@ -96,18 +96,18 @@ Next.js's App Router also integrates [data fetching with Suspense](/blog/2022/03
 </Suspense>
 ```
 
-Server Components and Suspense are React features rather than Next.js features. However, adopting them at the framework level requires buy-in and non-trivial implementation work. At the moment, the Next.js App Router is the most complete implementation. The React team is working with bundler developers to make these features easier to implement in the next generation of frameworks.
+サーバコンポーネントとサスペンスは、Next.js の機能ではなく React の機能です。しかしフレームワークレベルでこれらを採用するには、合意形成とかなりの実装の手間が必要です。現時点では、Next.js の App Router が最も完全な実装です。React チームはバンドラの開発者と協力して、次世代のフレームワークでこれらの機能を実装しやすくすることを目指しています。
 
 </DeepDive>
 
-## Start From Scratch {/*start-from-scratch*/}
+## ゼロから構築を始める {/*start-from-scratch*/}
 
-If your app has constraints not well-served by existing frameworks, you prefer to build your own framework, or you just want to learn the basics of a React app, there are other options available for starting a React project from scratch.
+あなたのアプリが既存のフレームワークではうまく対応できない制約を有している場合や、自分自身でフレームワークを構築したい場合、または React アプリの基本を学びたい場合には、ゼロから React プロジェクトを始めるための他の選択肢があります。
 
-Starting from scratch gives you more flexibility, but does require that you make choices on which tools to use for routing, data fetching, and other common usage patterns.  It's a lot like building your own framework, instead of using a framework that already exists. The [frameworks we recommend](#full-stack-frameworks) have built-in solutions for these problems.  
+ゼロから始めることでより柔軟性が得られますが、ルーティング、データフェッチ、その他の一般的な使用パターンにどのツールを使用するかを選択する必要があります。これは、既存のフレームワークを使用する代わりに自分自身でフレームワークを構築するようなものです。[おすすめのフルスタックフレームワーク](#full-stack-frameworks)には、これらの問題に対する組み込みの解決策があります。
 
-If you want to build your own solutions, see our guide to [build a React app from Scratch](/learn/build-a-react-app-from-scratch) for instructions on how to set up a new React project starting with a built tool like [Vite](https://vite.dev/), [Parcel](https://parceljs.org/), or [RSbuild](https://rsbuild.dev/).
+独自のソリューションを構築したい場合は、[ゼロからの React アプリ構築](/learn/build-a-react-app-from-scratch)ガイドを参照し、[Vite](https://vite.dev/)、[Parcel](https://parceljs.org/)、または [RSbuild](https://rsbuild.dev/) のようなビルドツールを使って新しい React プロジェクトをセットアップする方法を確認してください。
 
 -----
 
-_If you’re a framework author interested in being included on this page, [please let us know](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+)._
+_このページに掲載されることに興味のあるフレームワークの作者の方は、[こちらからお知らせください](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+)_。
