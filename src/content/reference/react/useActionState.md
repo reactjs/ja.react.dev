@@ -68,7 +68,7 @@ function StatefulForm({}) {
 `useActionState` は以下の値を含む配列を返します。
 
 1. 現在の state。初回レンダー時には、渡した `initialState` と等しくなります。アクションが呼び出された後は、そのアクションが返した値と等しくなります。
-2. フォームコンポーネントの `action` プロパティや、フォーム内の任意の `button` コンポーネントの `formAction` プロパティとして渡すことができる新しいアクション。
+2. フォームコンポーネントの `action` プロパティや、フォーム内の任意の `button` コンポーネントの `formAction` プロパティとして渡すことができる新しいアクション。アクションは [`startTransition`](/reference/react/startTransition) 内で手動で呼び出すことも可能です。
 3. 進行中のトランジションがあるかどうかを表す `isPending` フラグ。
 
 #### 注意点 {/*caveats*/}
@@ -102,7 +102,7 @@ function MyComponent() {
 `useActionState` は、以下の項目を含む配列を返します。
 
 1. フォームの <CodeStep step={1}>state の現在値</CodeStep>。初期値はあなたが渡した <CodeStep step={4}>初期 state</CodeStep> となり、フォームが送信された後はあなたが渡した<CodeStep step={3}>アクション</CodeStep>の返り値となります。
-2. `<form>` の props である `action` に渡せる<CodeStep step={2}>新しいアクション</CodeStep>。
+2. `<form>` の props である `action` に渡すか、手動で呼び出すことで利用できる<CodeStep step={2}>新しいアクション</CodeStep>。
 3. アクションが処理中かどうかを知るのに利用できる <CodeStep step={1}>pending 状態</CodeStep>。
 
 フォームが送信されると、あなたが渡した<CodeStep step={3}>アクション</CodeStep>関数が呼び出されます。その返り値が、新たなフォームの <CodeStep step={1}>state 現在値</CodeStep>になります。

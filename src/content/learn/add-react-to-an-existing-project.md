@@ -21,8 +21,8 @@ title: 既存プロジェクトに React を追加する
 以下の手順に従って設定することをお勧めします。
 
 1. [React ベースのフレームワーク](/learn/start-a-new-react-project)のうちひとつを使い、アプリの **React 部分をビルド**します。
-2. フレームワークの設定で `/some-app` を ***base path* に指定**します（方法：[Next.js](https://nextjs.org/docs/api-reference/next.config.js/basepath)、[Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)）。
-3. **サーバーまたはプロキシを設定**して、`/some-app/` 以下のすべてのリクエストを React アプリで処理するようにします。
+2. フレームワークの設定で `/some-app` を ***base path* に指定**します（方法：[Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath)、[Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)）。
+3. **サーバまたはプロキシを設定**して、`/some-app/` 以下のすべてのリクエストを React アプリで処理するようにします。
 
 こうすることで、アプリの React 部分がこれらのフレームワークに組み込まれた[ベストプラクティスを最大限に取り入れる](/learn/start-a-new-react-project#can-i-use-react-without-a-framework)ことができます。
 
@@ -45,7 +45,7 @@ title: 既存プロジェクトに React を追加する
 
 * **アプリが既に `import` 文を使ってファイル分割するよう設定されている場合**、その既存の設定を使用するようにしてみてください。JS コードで `<div />` と記述すると、構文エラーが発生するかどうかを確認してください。構文エラーが発生する場合は、[Babel を使用して JavaScript を変換](https://babeljs.io/setup)するようにし、JSX を使うために [Babel React プリセット](https://babeljs.io/docs/babel-preset-react) を有効にしてください。
 
-* **JavaScript モジュールをコンパイルする既存のセットアップがない場合**は、[Vite](https://vitejs.dev/) を使ってセットアップします。Vite コミュニティは、Rails、Django、Laravel をはじめ、[多くのバックエンドフレームワークとのインテグレーション](https://github.com/vitejs/awesome-vite#integrations-with-backends)をメンテナンスしています。あなたのバックエンドフレームワークがリストされていない場合は、[このガイドに従って](https://vitejs.dev/guide/backend-integration.html)手動で Vite ビルドをバックエンドと統合してください。
+* **JavaScript モジュールをコンパイルする既存のセットアップがない場合**は、[Vite](https://vite.dev/) を使ってセットアップします。Vite コミュニティは、Rails、Django、Laravel をはじめ、[多くのバックエンドフレームワークとのインテグレーション](https://github.com/vitejs/awesome-vite#integrations-with-backends)をメンテナンスしています。あなたのバックエンドフレームワークがリストされていない場合は、[このガイドに従って](https://vite.dev/guide/backend-integration.html)手動で Vite ビルドをバックエンドと統合してください。
 
 セットアップがうまくいっているかどうかを確認するには、プロジェクトフォルダーで次のコマンドを実行します。
 
@@ -57,12 +57,13 @@ npm install react react-dom
 
 <Sandpack>
 
-```html index.html hidden
+```html public/index.html hidden
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>
   <body>
     <!-- Your existing page content (in this example, it gets replaced) -->
+    <div id="root"></div>
   </body>
 </html>
 ```
@@ -84,7 +85,7 @@ root.render(<h1>Hello, world</h1>);
 
 <Note>
 
-既存のプロジェクトにモジュラーな JavaScript 環境を組み込むことを最初は不安に感じるかもしれませんが、その価値はあると思います！ 行き詰まったら、[コミュニティのリソース](/community)または [Vite Chat](https://chat.vitejs.dev/) を試してみてください。
+既存のプロジェクトにモジュラーな JavaScript 環境を組み込むことを最初は不安に感じるかもしれませんが、その価値はあると思います！ 行き詰まったら、[コミュニティのリソース](/community)または [Vite Chat](https://chat.vite.dev/) を試してみてください。
 
 </Note>
 
@@ -119,7 +120,7 @@ root.render(<h1>Hello, world</h1>);
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>

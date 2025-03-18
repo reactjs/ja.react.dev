@@ -468,15 +468,15 @@ import { LevelContext } from './LevelContext.js';
 export default function Section({ level, children }) {
   return (
     <section className="section">
-      <LevelContext.Provider value={level}>
+      <LevelContext value={level}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
 ```
 
-これにより、「この `<Section>` の下にあるコンポーネントが `LevelContext` の値を要求した場合、この `level` を渡せ」と React に伝えていることになります。コンポーネントは、UI ツリー内の上側で、最も近い `<LevelContext.Provider>` の値を使用します。
+これにより、「この `<Section>` の下にあるコンポーネントが `LevelContext` の値を要求した場合、この `level` を渡せ」と React に伝えていることになります。コンポーネントは、UI ツリー内の上側で、最も近い `<LevelContext>` の値を使用します。
 
 <Sandpack>
 
@@ -514,9 +514,9 @@ import { LevelContext } from './LevelContext.js';
 export default function Section({ level, children }) {
   return (
     <section className="section">
-      <LevelContext.Provider value={level}>
+      <LevelContext value={level}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
@@ -567,7 +567,7 @@ export const LevelContext = createContext(1);
 元のコードと見た目の結果は同じですが、`level` を props として個々の `Heading` コンポーネントに渡さずに済んでいます！ 代わりに、見出しは最も近い `Section` に値を要求して、自分の見出しレベルを自分で「判断」しているのです。
 
 1. `<Section>` に props として `level` を渡す。
-2. `Section` は子要素を `<LevelContext.Provider value={level}>` でラップする。
+2. `Section` は子要素を `<LevelContext value={level}>` でラップする。
 3. `Heading` は `useContext(LevelContext)` とすることで、上にある最も近い `LevelContext` の値を要求する。
 
 ## 同一コンポーネントでコンテクストを使用しつつ提供 {/*using-and-providing-context-from-the-same-component*/}
@@ -595,9 +595,9 @@ export default function Section({ children }) {
   const level = useContext(LevelContext);
   return (
     <section className="section">
-      <LevelContext.Provider value={level + 1}>
+      <LevelContext value={level + 1}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
@@ -643,9 +643,9 @@ export default function Section({ children }) {
   const level = useContext(LevelContext);
   return (
     <section className="section">
-      <LevelContext.Provider value={level + 1}>
+      <LevelContext value={level + 1}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
@@ -776,9 +776,9 @@ export default function Section({ children, isFancy }) {
       'section ' +
       (isFancy ? 'fancy' : '')
     }>
-      <LevelContext.Provider value={level + 1}>
+      <LevelContext value={level + 1}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
@@ -868,7 +868,7 @@ CSS では、`color` や `background-color` といった異なるプロパティ
 * コンテクストを使うには：
   1. `export const MyContext = createContext(defaultValue)` を使用して作成およびエクスポートする。
   2. フックに `useContext(MyContext)` のようにコンテクストを渡せば、どんな深い子コンポーネントからも値が読み取れる。
-  3. コンテクストの値を提供するには子要素を `<MyContext.Provider value={...}>` でラップする。
+  3. コンテクストの値を提供するには子要素を `<MyContext value={...}>` でラップする。
 * コンテクストは中間コンポーネントを貫通する。
 * コンテクストを使えば、「周囲に適応する」コンポーネントが書ける。
 * コンテクストを使用する前に、props を渡すか、`children` として JSX を渡す方法を検討してみる。
@@ -1022,7 +1022,7 @@ li {
 
 すべてのコンポーネントの props から `imageSize` を削除します。
 
-`Context.js` で `ImageSizeContext` を作成してエクスポートします。次に、List を `<ImageSizeContext.Provider value={imageSize}>` でラップすることで下に値を渡します。`PlaceImage` で `useContext(ImageSizeContext)` を使ってそれを読み取ります。
+`Context.js` で `ImageSizeContext` を作成してエクスポートします。次に、List を `<ImageSizeContext value={imageSize}>` でラップすることで下に値を渡します。`PlaceImage` で `useContext(ImageSizeContext)` を使ってそれを読み取ります。
 
 <Sandpack>
 
@@ -1036,7 +1036,7 @@ export default function App() {
   const [isLarge, setIsLarge] = useState(false);
   const imageSize = isLarge ? 150 : 100;
   return (
-    <ImageSizeContext.Provider
+    <ImageSizeContext
       value={imageSize}
     >
       <label>
@@ -1051,7 +1051,7 @@ export default function App() {
       </label>
       <hr />
       <List />
-    </ImageSizeContext.Provider>
+    </ImageSizeContext>
   )
 }
 

@@ -82,7 +82,7 @@ export async function createNote() {
 
 ```
 
-バンドラがクライアントコンポーネントである `EmptyNote` をビルドする際に、バンドル内で `createNoteAction` 関数への参照を作成します。`button` がクリックされると、React は渡された参照を使用してサーバにリクエストを送信し、`createNoteAction` 関数を実行します。
+バンドラがクライアントコンポーネントである `EmptyNote` をビルドする際に、バンドル内で `createNote` 関数への参照を作成します。`button` がクリックされると、React は渡された参照を使用してサーバにリクエストを送信し、`createNote` 関数を実行します。
 
 ```js [[1, 2, "createNote"], [1, 5, "createNote"], [1, 7, "createNote"]]
 "use client";
@@ -90,7 +90,7 @@ import {createNote} from './actions';
 
 function EmptyNote() {
   console.log(createNote);
-  // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNoteAction'}
+  // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNote'}
   <button onClick={() => createNote()} />
 }
 ```
@@ -126,7 +126,7 @@ function UpdateName() {
   const submitAction = async () => {
     startTransition(async () => {
       const {error} = await updateName(name);
-      if (!error) {
+      if (error) {
         setError(error);
       } else {
         setName('');
@@ -137,7 +137,7 @@ function UpdateName() {
   return (
     <form action={submitAction}>
       <input type="text" name="name" disabled={isPending}/>
-      {state.error && <span>Failed: {state.error}</span>}
+      {error && <span>Failed: {error}</span>}
     </form>
   )
 }

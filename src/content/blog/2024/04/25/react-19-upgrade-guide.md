@@ -24,7 +24,7 @@ React 19 へのアップグレードを容易にするため、`react@18.3` リ�
 
 React 19 にアップグレードする前に、問題点を見つけるためにまず React 18.3 にアップグレードすることをお勧めします。
 
-18.3 における変更点については、[リリースノート](https://github.com/facebook/react/blob/main/CHANGELOG.md)をご覧ください。
+18.3 における変更点については、[リリースノート](https://github.com/facebook/react/blob/main/CHANGELOG.md#1830-april-25-2024)をご覧ください。
 
 </Note>
 
@@ -113,7 +113,7 @@ npx codemod@latest react/19/migration-recipe
 - [`replace-string-ref`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-string-ref)
 - [`replace-act-import`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-act-import)
 - [`replace-use-form-state`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-use-form-state) 
-- [`prop-types-typescript`](https://codemod.com/registry/react-prop-types-typescript)
+- [`prop-types-typescript`](https://github.com/reactjs/react-codemod#react-proptypes-to-prop-types)
 
 これには TypeScript 関連の変更は含まれていません。以下の [TypeScript 関連の変更](#typescript-changes)を参照してください。
 

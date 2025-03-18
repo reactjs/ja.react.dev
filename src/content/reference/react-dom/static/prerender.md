@@ -55,16 +55,16 @@ async function handler(request) {
   * **省略可能** `bootstrapModules`: `bootstrapScripts` と同様ですが、代わりに [`<script type="module">`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) を出力します。
   * **省略可能** `identifierPrefix`: React が [`useId`](/reference/react/useId) によって生成する ID に使用する文字列プレフィックス。同じページ上に複数のルートを使用する際に、競合を避けるために用います。[`hydrateRoot`](/reference/react-dom/client/hydrateRoot#parameters) にも同じプレフィックスを渡す必要があります。
   * **省略可能** `namespaceURI`: このストリームのルート[ネームスペース URI](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElementNS#important_namespace_uris) 文字列。デフォルトでは通常の HTML です。SVG の場合は `'http://www.w3.org/2000/svg'`、MathML の場合は `'http://www.w3.org/1998/Math/MathML'` を渡します。
-  * **省略可能** `onError`: サーバエラーが発生するたびに発火するコールバック。[復帰可能なエラー](#recovering-from-errors-outside-the-shell)の場合も[そうでないエラー](#recovering-from-errors-inside-the-shell)の場合もあります。デフォルトでは `console.error` のみを呼び出します。これを上書きして[クラッシュレポートをログに記録する](#logging-crashes-on-the-server)場合でも `console.error` を呼び出すようにしてください。また、シェルが出力される前に[ステータスコードを調整する](#setting-the-status-code)ためにも使用できます。
+  * **省略可能** `onError`: サーバエラーが発生するたびに発火するコールバック。[復帰可能なエラー](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-outside-the-shell)の場合も[そうでないエラー](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell)の場合もあります。デフォルトでは `console.error` のみを呼び出します。これを上書きして[クラッシュレポートをログに記録する](/reference/react-dom/server/renderToReadableStream#logging-crashes-on-the-server)場合でも `console.error` を呼び出すようにしてください。また、シェルが出力される前に[ステータスコードを調整する](/reference/react-dom/server/renderToReadableStream#setting-the-status-code)ためにも使用できます。
   * **省略可能** `progressiveChunkSize`: チャンクのバイト数。[デフォルトの推論方法についてはこちらを参照してください](https://github.com/facebook/react/blob/14c2be8dac2d5482fda8a0906a31d239df8551fc/packages/react-server/src/ReactFizzServer.js#L210-L225)。
-  * **省略可能** `signal`: [サーバでのレンダーを中止](#aborting-server-rendering)してクライアントで残りをレンダーするために使用できる [abort signal](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal)。
+  * **省略可能** `signal`: [サーバでのレンダーを中止](/reference/react-dom/server/renderToReadableStream#aborting-server-rendering)してクライアントで残りをレンダーするために使用できる [abort signal](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal)。
 
 #### 返り値 {/*returns*/}
 
-`prerender` は Promise を返します。
+`prerender` はプロミスを返します。
 - レンダーが成功した場合、プロミスは以下を含んだオブジェクトに解決 (resolve) されます。
   - `prelude`: HTML の [Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API)。このストリームを使ってレスポンスを送信したり、ストリームを文字列に一括して読み出したりできます。
-- レンダーが失敗した場合は、Promise は拒否 (reject) されます。[これを使用してフォールバックシェルを出力します](#recovering-from-errors-inside-the-shell)。
+- レンダーが失敗した場合は、Promise は拒否 (reject) されます。[これを使用してフォールバックシェルを出力します](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell)。
 
 
 
@@ -230,7 +230,7 @@ async function renderToString() {
     bootstrapScripts: ['/main.js']
   });
   
-  const reader = stream.getReader();
+  const reader = prelude.getReader();
   let content = '';
   while (true) {
     const {done, value} = await reader.read();

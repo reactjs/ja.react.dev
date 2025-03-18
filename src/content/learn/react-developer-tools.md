@@ -54,7 +54,7 @@ react-devtools
 
 ## モバイル (React Native) {/*mobile-react-native*/}
 
-[React Native](https://reactnative.dev/) で作成するアプリの調査を行う場合は、React Developer Tools と密に統合された組み込みデバッガである [React Native DevTools](https://reactnative.dev/docs/debugging/react-native-devtools) を使用できます。要素のハイライトや選択を含むすべての機能が、ブラウザ版の機能拡張と同様に動作します。
+[React Native](https://reactnative.dev/) で作成するアプリの調査を行う場合は、React Developer Tools と密に統合された組み込みデバッガである [React Native DevTools](https://reactnative.dev/docs/react-native-devtools) を使用できます。要素のハイライトや選択を含むすべての機能が、ブラウザ版の機能拡張と同様に動作します。
 
 [React Native のデバッグについてさらに読む](https://reactnative.dev/docs/debugging)
 
