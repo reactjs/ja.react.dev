@@ -14,7 +14,11 @@ title: "組み込みの React DOM フック"
 
 *フォーム*により、情報を送信するためのインタラクティブなコントロールを作成できます。コンポーネント内でフォームを管理するために以下のフックを使用できます。
 
+<<<<<<< HEAD
 * [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) によりフォームのステータスに基づいて UI を更新できます。
+=======
+* [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) allows you to make updates to the UI based on the status of a form.
+>>>>>>> 2859efa07357dfc2927517ce9765515acf903c7c
 
 ```js
 function Form({ action }) {
