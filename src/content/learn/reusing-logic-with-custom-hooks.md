@@ -1333,7 +1333,11 @@ export function useOnlineStatus() {
 
 上記の例では、`useOnlineStatus` は [`useState`](/reference/react/useState) と [`useEffect`](/reference/react/useEffect) のペアで実装されています。しかし、これは最善のソリューションではありません。考慮されていないエッジケースがいくつかあります。例えば、コンポーネントがマウントされたとき `isOnline` は `true` であると仮定していますが、ネットワークがすでにオフラインになっていた場合、これは誤りです。ブラウザの [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine) API を使ってそれをチェックすることはできますが、それを直接使うと、サーバで初期 HTML を生成する際には動作しません。要するに、このコードには改善の余地があるということです。
 
+<<<<<<< HEAD
 幸いなことに React 18 には、これらの問題をすべて解決してくれる専用の API である [`useSyncExternalStore`](/reference/react/useSyncExternalStore) が含まれています。以下は、この新しい API を活用して書き直された `useOnlineStatus` フックです。
+=======
+React includes a dedicated API called [`useSyncExternalStore`](/reference/react/useSyncExternalStore) which takes care of all of these problems for you. Here is your `useOnlineStatus` Hook, rewritten to take advantage of this new API:
+>>>>>>> 5138e605225b24d25701a1a1f68daa90499122a4
 
 <Sandpack>
 

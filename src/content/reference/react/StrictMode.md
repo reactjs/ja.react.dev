@@ -86,10 +86,17 @@ Strict Mode のチェックは**開発中にのみ実行される**ものです�
 
 Strict Mode は開発中に以下のチェックを有効にします：
 
+<<<<<<< HEAD
 - コンポーネントは、純粋でない (impure) レンダーによって引き起こされるバグを見つけるために、[レンダーを追加で 1 回行います](#fixing-bugs-found-by-double-rendering-in-development)。
 - コンポーネントは、エフェクトのクリーンアップし忘れによるバグを見つけるために、[エフェクトの実行を追加で 1 回行います](#fixing-bugs-found-by-re-running-effects-in-development)。
 - コンポーネントは、ref のクリーンアップし忘れによるバグを見つけるために、[ref コールバックの実行を追加で 1 回行います](#fixing-bugs-found-by-cleaning-up-and-re-attaching-dom-refs-in-development)。
 - コンポーネントが[非推奨の API を使っていないかチェック](#fixing-deprecation-warnings-enabled-by-strict-mode)します。
+=======
+- Your components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
+- Your components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
+- Your components will [re-run ref callbacks an extra time](#fixing-bugs-found-by-re-running-ref-callbacks-in-development) to find bugs caused by missing ref cleanup.
+- Your components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
+>>>>>>> 5138e605225b24d25701a1a1f68daa90499122a4
 
 **これらのチェックはすべて開発環境専用であり、本番用ビルドには影響しません。**
 
@@ -121,6 +128,12 @@ function App() {
 ```
 
 上記の例では、Strict Mode のチェックは `Header` と `Footer` コンポーネントに対しては実行されません。しかし、`Sidebar` と `Content`、およびそれらの中にあるすべてのコンポーネントに対しては、どれだけ深いところにあってもチェックが実行されます。
+
+<Note>
+
+When `StrictMode` is enabled for a part of the app, React will only enable behaviors that are possible in production. For example, if `<StrictMode>` is not enabled at the root of the app, it will not [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) on initial mount, since this would cause child effects to double fire without the parent effects, which cannot happen in production.
+
+</Note>
 
 ---
 
