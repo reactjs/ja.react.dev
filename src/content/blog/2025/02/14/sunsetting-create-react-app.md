@@ -11,7 +11,7 @@ February 14, 2025 by [Matt Carroll](https://twitter.com/mattcarrollcode) and [Ri
 
 <Intro>
 
-本日、新しいアプリに対して [Create React App](https://create-react-app.dev/) を非推奨とます。既存のアプリに対しては、[フレームワーク](#how-to-migrate-to-a-framework)への移行、または Vite、Parcel、RSBuild などの[ビルドツールへの移行](#how-to-migrate-to-a-build-tool)を推奨します。
+本日、新しいアプリに対して [Create React App](https://create-react-app.dev/) を非推奨とします。既存のアプリに対しては、[フレームワーク](#how-to-migrate-to-a-framework)への移行、または Vite、Parcel、RSBuild などの[ビルドツールへの移行](#how-to-migrate-to-a-build-tool)を推奨します。
 
 また、フレームワークがプロジェクトに適していない場合や、独自のフレームワークを構築したい場合、あるいは[ゼロから React アプリを構築する](/learn/build-a-react-app-from-scratch)ことで React がどのように動作するかを学びたい場合のためのドキュメントも提供します。
 
