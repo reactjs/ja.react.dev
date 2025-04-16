@@ -124,7 +124,7 @@ function App() {
 
 <Note>
 
-`StrictMode` がアプリの一部のみで有効になっている場合、React は本番環境で起こりえる動作のみを再現します。例えば、アプリのルートで <StrictMode> が有効になっていない場合、初期マウント時に[エフェクトを追加で再実行](#fixing-bugs-found-by-re-running-effects-in-development)することはなくなります。親エフェクトなしに子エフェクトが二重に発火することは本番環境では起こらないためです。
+`StrictMode` がアプリの一部のみで有効になっている場合、React は本番環境で起こりえる動作のみを再現します。例えば、アプリのルートで `<StrictMode>` が有効になっていない場合、初期マウント時に[エフェクトを追加で再実行](#fixing-bugs-found-by-re-running-effects-in-development)することはなくなります。親エフェクトなしに子エフェクトが二重に発火することは本番環境では起こらないためです。
 
 </Note>
 
