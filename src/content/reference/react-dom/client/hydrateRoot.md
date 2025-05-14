@@ -378,12 +378,13 @@ export default function App({counter}) {
 
 デフォルトでは、React はすべてのエラーをコンソールに記録します。独自のエラーレポートの仕組みを実装するには、省略可能なルートオプションとして `onUncaughtError`、`onCaughtError`、`onRecoverableError` のエラーハンドラを提供することができます。
 
-```js [[1, 6, "onCaughtError"], [2, 6, "error", 1], [3, 6, "errorInfo"], [4, 10, "componentStack", 15]]
+```js [[1, 7, "onCaughtError"], [2, 7, "error", 1], [3, 7, "errorInfo"], [4, 11, "componentStack", 15]]
 import { hydrateRoot } from "react-dom/client";
+import App from "./App.js";
 import { reportCaughtError } from "./reportError";
 
 const container = document.getElementById("root");
-const root = hydrateRoot(container, {
+const root = hydrateRoot(container, <App />, {
   onCaughtError: (error, errorInfo) => {
     if (error.message !== "Known error") {
       reportCaughtError({
