@@ -4,7 +4,11 @@ title: サーバ関数
 
 <RSC>
 
+<<<<<<< HEAD
 サーバ関数は [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) で使用するための機能です。
+=======
+Server Functions are for use in [React Server Components](/reference/rsc/server-components).
+>>>>>>> 65d297e93b36be5370e58ab7828d022c741ecbe2
 
 **補足**：2024 年 9 月までは、すべてのサーバ関数を「サーバアクション (Server Action)」と呼んでいました。サーバ関数が `action` プロパティに渡されるか `action` 内から呼び出されている場合は、それはサーバアクションとも呼べるでしょうが、すべてのサーバ関数がサーバアクションであるとは限りません。サーバ関数自体は様々な目的で使用できるものですので、それを反映するために本ドキュメントでは名前を変更しました。
 
@@ -28,7 +32,11 @@ React 19 のサーバ関数は安定しており、マイナーバージョン�
 
 </Note>
 
+<<<<<<< HEAD
 サーバ関数が `"use server"` ディレクティブを付けて定義されると、フレームワークは自動的にそのサーバ関数への参照を作成し、その参照をクライアントコンポーネントに渡します。クライアントでこの関数が呼び出されると、React はサーバにリクエストを送信して元の関数を実行し、その結果を返します。
+=======
+When a Server Function is defined with the [`"use server"`](/reference/rsc/use-server) directive, your framework will automatically create a reference to the server function, and pass that reference to the Client Component. When that function is called on the client, React will send a request to the server to execute the function, and return the result.
+>>>>>>> 65d297e93b36be5370e58ab7828d022c741ecbe2
 
 サーバアクションはサーバコンポーネント内で作成し、クライアントコンポーネントに props として渡すことができます。また、クライアントコンポーネントで直接インポートして使用することも可能です。
 
@@ -54,7 +62,11 @@ function EmptyNote () {
 }
 ```
 
+<<<<<<< HEAD
 React はサーバコンポーネントである `EmptyNote` をレンダーする際に、`createNoteAction` 関数への参照を作成し、この参照をクライアントコンポーネントである `Button` に渡します。ボタンがクリックされると、React は渡された参照を使用してサーバにリクエストを送信し、`createNoteAction` 関数を実行します。
+=======
+When React renders the `EmptyNote` Server Component, it will create a reference to the `createNoteAction` function, and pass that reference to the `Button` Client Component. When the button is clicked, React will send a request to the server to execute the `createNoteAction` function with the reference provided:
+>>>>>>> 65d297e93b36be5370e58ab7828d022c741ecbe2
 
 ```js {5}
 "use client";

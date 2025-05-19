@@ -1273,7 +1273,11 @@ button { margin-left: 10px; }
 
 エラーバウンダリコンポーネントを実装するためには、エラーに反応して state を更新し、ユーザにエラーメッセージを表示するための [`static getDerivedStateFromError`](#static-getderivedstatefromerror) を提供する必要があります。またオプションで、例えばエラーを分析サービスに記録するなどの追加のロジックを追加するために [`componentDidCatch`](#componentdidcatch) を実装することもできます。
 
+<<<<<<< HEAD
 <CanaryBadge /> [`captureOwnerStack`](/reference/react/captureOwnerStack) を使うことで開発中にオーナーのスタックトレースを含めることが可能です。
+=======
+With [`captureOwnerStack`](/reference/react/captureOwnerStack) you can include the Owner Stack during development.
+>>>>>>> 65d297e93b36be5370e58ab7828d022c741ecbe2
 
 ```js {9-12,14-27}
 import * as React from 'react';
@@ -1298,8 +1302,7 @@ class ErrorBoundary extends React.Component {
       //   in div (created by App)
       //   in App
       info.componentStack,
-      // Only available in react@canary.
-      // Warning: Owner Stack is not available in production.
+      // Warning: `captureOwnerStack` is not available in production.
       React.captureOwnerStack(),
     );
   }

@@ -44,6 +44,7 @@ function AppRoot() {
 
 #### 引数 {/*parameters*/}
 
+<<<<<<< HEAD
 * `href`: 文字列。ダウンロードして実行したいリソースの URL。
 * `options`: オブジェクト。以下のプロパティを含みます。
   * `as`: 必須の文字列。リソースの種別。可能な値は `script` と `style` です。
@@ -52,6 +53,16 @@ function AppRoot() {
   * `integrity`: 文字列。[真正性を検証する](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)ために使用するリソースの暗号化ハッシュ。
   * `nonce`: 文字列。厳格なコンテンツセキュリティポリシーを使用する際に[リソースを許可するための暗号化 nonce](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce)。
   * `fetchPriority`: 文字列。リソースの相対的なフェッチ優先度のヒントです。指定可能な値は `auto`（デフォルト）、`high`、`low` です。
+=======
+* `href`: a string. The URL of the resource you want to download and execute.
+* `options`: an object. It contains the following properties:
+  *  `as`: a required string. The type of resource. Its possible values are `script` and `style`.
+  * `precedence`: a string. Required with stylesheets. Says where to insert the stylesheet relative to others. Stylesheets with higher precedence can override those with lower precedence. The possible values are `reset`, `low`, `medium`, `high`. 
+  *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
+  *  `integrity`: a string. A cryptographic hash of the resource, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+  *  `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy. 
+  *  `fetchPriority`: a string. Suggests a relative priority for fetching the resource. The possible values are `auto` (the default), `high`, and `low`.
+>>>>>>> 65d297e93b36be5370e58ab7828d022c741ecbe2
 
 #### 返り値 {/*returns*/}
 

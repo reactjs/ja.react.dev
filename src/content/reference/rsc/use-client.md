@@ -5,7 +5,11 @@ titleForTitleTag: "'use client' ディレクティブ"
 
 <RSC>
 
+<<<<<<< HEAD
 `'use client'` は [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) 用の機能です。
+=======
+`'use client'` is for use with [React Server Components](/reference/rsc/server-components).
+>>>>>>> 65d297e93b36be5370e58ab7828d022c741ecbe2
 
 </RSC>
 

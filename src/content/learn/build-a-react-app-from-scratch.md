@@ -65,7 +65,11 @@ Rsbuild には、ファストリフレッシュ、JSX、TypeScript、スタイ�
 
 #### React Native 用の Metro {/*react-native*/}
 
+<<<<<<< HEAD
 React Native をゼロから始める場合は、React Native 用の JavaScript バンドラである [Metro](https://metrobundler.dev/) を使用する必要があります。Metro は iOS や Android などのプラットフォーム向けのバンドル機能をサポートしていますが、上記で紹介したツールと比較すると多くの機能が不足しています。プロジェクトが React Native のサポートを必要としているのでない限り、Vite、Parcel、または Rsbuild から始めることをお勧めします。
+=======
+If you're starting from scratch with React Native you'll need to use [Metro](https://metrobundler.dev/), the JavaScript bundler for React Native. Metro supports bundling for platforms like iOS and Android, but lacks many features when compared to the tools here. We recommend starting with Vite, Parcel, or Rsbuild unless your project requires React Native support.
+>>>>>>> 65d297e93b36be5370e58ab7828d022c741ecbe2
 
 </Note>
 
@@ -83,7 +87,7 @@ React エコシステムには、これらの問題に対するツールがた�
 
 以下のライブラリの使用をお勧めします。
 
-- [React Router](https://reactrouter.com/start/framework/custom)
+- [React Router](https://reactrouter.com/start/data/custom)
 - [Tanstack Router](https://tanstack.com/router/latest)
 
 
@@ -115,10 +119,17 @@ GraphQL API からデータを取得する場合、以下の使用をお勧め�
 
 ルートごとにコードを分割するだけでなく、バンドルやデータフェッチと統合することで、アプリの初期読み込み時間とアプリの最大可視コンテンツのレンダー時間 ([Largest Contentful Paint](https://web.dev/articles/lcp)) を短縮できます。
 
+<<<<<<< HEAD
 コード分割の手順については、ビルドツールのドキュメントを参照してください。
 - [Vite のビルド最適化](https://v3.vitejs.dev/guide/features.html#build-optimizations)
 - [Parcel のコード分割](https://parceljs.org/features/code-splitting/)
 - [Rsbuild のコード分割](https://rsbuild.dev/guide/optimization/code-splitting)
+=======
+For code-splitting instructions, see your build tool docs:
+- [Vite build optimizations](https://vite.dev/guide/features.html#build-optimizations)
+- [Parcel code splitting](https://parceljs.org/features/code-splitting/)
+- [Rsbuild code splitting](https://rsbuild.dev/guide/optimization/code-splitting)
+>>>>>>> 65d297e93b36be5370e58ab7828d022c741ecbe2
 
 ### アプリケーションパフォーマンスの向上 {/*improving-application-performance*/}
 

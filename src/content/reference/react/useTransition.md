@@ -77,8 +77,8 @@ function SubmitButton({ submitAction }) {
     <button
       disabled={isPending}
       onClick={() => {
-        startTransition(() => {
-          submitAction();
+        startTransition(async () => {
+          await submitAction();
         });
       }}
     >
@@ -163,7 +163,11 @@ function CheckoutForm() {
 
 `startTransition` に渡される関数が "アクション (Action)" と呼ばれるものです。アクション内では state を更新したり、（必要に応じて）副作用を実行したりすることができます。その作業はバックグラウンドで、ページ上のユーザ操作をブロックすることなく行われます。ひとつのトランジションが複数のアクションを含むことができ、トランジションが進行中でも UI の応答性は保たれます。例えば、ユーザがタブをクリックしたあとに気が変わって別のタブをクリックした場合でも、最初の更新が終了するのを待つことなく、2 回目のクリックが即座に処理されます。
 
+<<<<<<< HEAD
 トランジションの進行中状態に関するフィードバックをユーザに提供するために、`startTransition` が最初に呼び出されると `isPending` state が `true` に切り替わり、すべてのアクションが完了して最終的な状態がユーザに表示されるまで `true` のままになります。トランジションによりアクション内の副作用が順番に完了することが保証され、[不要なローディングインジケータが抑止](#preventing-unwanted-loading-indicators)されます。また、`useOptimistic` を使用することで、トランジションが進行中の間にも即時のフィードバックを提供することができます。
+=======
+To give the user feedback about in-progress Transitions, the `isPending` state switches to `true` at the first call to `startTransition`, and stays `true` until all Actions complete and the final state is shown to the user. Transitions ensure side effects in Actions to complete in order to [prevent unwanted loading indicators](#preventing-unwanted-loading-indicators), and you can provide immediate feedback while the Transition is in progress with `useOptimistic`.
+>>>>>>> 65d297e93b36be5370e58ab7828d022c741ecbe2
 
 <Recipes titleText="useTransition と通常の state 更新の違い">
 
@@ -227,9 +231,9 @@ import { startTransition } from "react";
 
 export default function Item({action}) {
   function handleChange(event) {
-    // To expose an action prop, call the callback in startTransition.
+    // To expose an action prop, await the callback in startTransition.
     startTransition(async () => {
-      action(event.target.value);
+      await action(event.target.value);
     })
   }
   return (
@@ -585,10 +589,14 @@ export async function updateQuantity(newQuantity) {
 
 コンポーネントが props として `action` を公開することで、親がアクションを呼び出せるようにできます。
 
+<<<<<<< HEAD
 
 例えばこの `TabButton` コンポーネントは `onClick` 時のロジックを `action` 内にラップしています。
+=======
+For example, this `TabButton` component wraps its `onClick` logic in an `action` prop:
+>>>>>>> 65d297e93b36be5370e58ab7828d022c741ecbe2
 
-```js {8-10}
+```js {8-12}
 export default function TabButton({ action, children, isActive }) {
   const [isPending, startTransition] = useTransition();
   if (isActive) {
@@ -596,8 +604,10 @@ export default function TabButton({ action, children, isActive }) {
   }
   return (
     <button onClick={() => {
-      startTransition(() => {
-        action();
+      startTransition(async () => {
+        // await the action that's passed in.
+        // This allows it to be either sync or async. 
+        await action();
       });
     }}>
       {children}
@@ -656,10 +666,15 @@ export default function TabButton({ action, children, isActive }) {
   if (isActive) {
     return <b>{children}</b>
   }
+  if (isPending) {
+    return <b className="pending">{children}</b>;
+  }
   return (
-    <button onClick={() => {
-      startTransition(() => {
-        action();
+    <button onClick={async () => {
+      startTransition(async () => {
+        // await the action that's passed in.
+        // This allows it to be either sync or async. 
+        await action();
       });
     }}>
       {children}
@@ -729,9 +744,18 @@ export default function ContactTab() {
 ```css
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
+.pending { color: #777; }
 ```
 
 </Sandpack>
+
+<Note>
+
+When exposing an `action` prop from a component, you should `await` it inside the transition. 
+
+This allows the `action` callback to be either synchronous or asynchronous without requiring an additional `startTransition` to wrap the `await` in the action.
+
+</Note>
 
 ---
 
@@ -804,8 +828,8 @@ export default function TabButton({ action, children, isActive }) {
   }
   return (
     <button onClick={() => {
-      startTransition(() => {
-        action();
+      startTransition(async () => {
+        await action();
       });
     }}>
       {children}
@@ -1095,8 +1119,8 @@ export default function TabButton({ action, children, isActive }) {
   }
   return (
     <button onClick={() => {
-      startTransition(() => {
-        action();
+      startTransition(async () => {
+        await action();
       });
     }}>
       {children}
@@ -1822,8 +1846,8 @@ import {startTransition} from 'react';
 export default function Item({action}) {
   function handleChange(e) {
     // Update the quantity in an Action.
-    startTransition(() => {
-      action(e.target.value);
+    startTransition(async () => {
+      await action(e.target.value);
     });
   }  
   return (
@@ -1932,3 +1956,162 @@ export async function updateQuantity(newName) {
 
 トランジション内のアクションは実行順序を保証しないため、これは想定された動作です。一般的なユースケースのために、React は [`useActionState`](/reference/react/useActionState) や [`<form>` アクション](/reference/react-dom/components/form) のような高レベルの抽象化を提供しており、順序の管理を自動化します。高度なユースケースでは、独自のキューイングや中断ロジックを実装して、実行順序を管理する必要があります。
 
+Example of `useActionState` handling execution order:
+
+<Sandpack>
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "beta",
+    "react-dom": "beta"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+```js src/App.js
+import { useState, useActionState } from "react";
+import { updateQuantity } from "./api";
+import Item from "./Item";
+import Total from "./Total";
+
+export default function App({}) {
+  // Store the actual quantity in separate state to show the mismatch.
+  const [clientQuantity, setClientQuantity] = useState(1);
+  const [quantity, updateQuantityAction, isPending] = useActionState(
+    async (prevState, payload) => {
+      setClientQuantity(payload);
+      const savedQuantity = await updateQuantity(payload);
+      return savedQuantity; // Return the new quantity to update the state
+    },
+    1 // Initial quantity
+  );
+
+  return (
+    <div>
+      <h1>Checkout</h1>
+      <Item action={updateQuantityAction}/>
+      <hr />
+      <Total clientQuantity={clientQuantity} savedQuantity={quantity} isPending={isPending} />
+    </div>
+  );
+}
+
+```
+
+```js src/Item.js
+import {startTransition} from 'react';
+
+export default function Item({action}) {
+  function handleChange(e) {
+    // Update the quantity in an Action.
+    startTransition(() => {
+      action(e.target.value);
+    });
+  }  
+  return (
+    <div className="item">
+      <span>Eras Tour Tickets</span>
+      <label htmlFor="name">Quantity: </label>
+      <input
+        type="number"
+        onChange={handleChange}
+        defaultValue={1}
+        min={1}
+      />
+    </div>
+  )
+}
+```
+
+```js src/Total.js
+const intl = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD"
+});
+
+export default function Total({ clientQuantity, savedQuantity, isPending }) {
+  return (
+    <div className="total">
+      <span>Total:</span>
+      <div>
+        <div>
+          {isPending
+            ? "🌀 Updating..."
+            : `${intl.format(savedQuantity * 9999)}`}
+        </div>
+        <div className="error">
+          {!isPending &&
+            clientQuantity !== savedQuantity &&
+            `Wrong total, expected: ${intl.format(clientQuantity * 9999)}`}
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+```js src/api.js
+let firstRequest = true;
+export async function updateQuantity(newName) {
+  return new Promise((resolve, reject) => {
+    if (firstRequest === true) {
+      firstRequest = false;
+      setTimeout(() => {
+        firstRequest = true;
+        resolve(newName);
+        // Simulate every other request being slower
+      }, 1000);
+    } else {
+      setTimeout(() => {
+        resolve(newName);
+      }, 50);
+    }
+  });
+}
+```
+
+```css
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.item label {
+  flex: 1;
+  text-align: right;
+}
+
+.item input {
+  margin-left: 4px;
+  width: 60px;
+  padding: 4px;
+}
+
+.total {
+  height: 50px;
+  line-height: 25px;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.total div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.error {
+  color: red;
+}
+```
+
+</Sandpack>
