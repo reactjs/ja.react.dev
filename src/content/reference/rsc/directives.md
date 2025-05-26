@@ -4,7 +4,11 @@ title: "ディレクティブ"
 
 <RSC>
 
+<<<<<<< HEAD
 ディレクティブは [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) 用の機能です。
+=======
+Directives are for use in [React Server Components](/reference/rsc/server-components).
+>>>>>>> 2571aee6dba2e9790172a70224dac8371640b772
 
 </RSC>
 
