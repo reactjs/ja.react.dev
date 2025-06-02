@@ -32,7 +32,11 @@ React を使って新しいアプリやウェブサイトを作成したい場�
 npx create-next-app@latest
 </TerminalBlock>
 
+<<<<<<< HEAD
 Next.js は [Vercel](https://vercel.com/) によってメンテナンスされています。Next.js アプリを Node.js やサーバレスホスティング、または独自のサーバに[デプロイできます](https://nextjs.org/docs/app/building-your-application/deploying)。Next.js はまた、サーバを必要としない[静的エクスポート](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)をサポートしています。Vercel はさらにオプトインの有料クラウドサービスも提供しています。
+=======
+Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any hosting provider that supports Node.js or Docker containers, or to your own server. Next.js also supports [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) which doesn't require a server.
+>>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
 
 ### React Router (v7) {/*react-router-v7*/}
 
@@ -106,7 +110,11 @@ Next.js の App Router は、[サスペンス (Suspense) を使用したデー�
 
 ゼロから始めることでより柔軟性が得られますが、ルーティング、データフェッチ、その他の一般的な使用パターンにどのツールを使用するかを選択する必要があります。これは、既存のフレームワークを使用する代わりに自分自身でフレームワークを構築するようなものです。[おすすめのフルスタックフレームワーク](#full-stack-frameworks)には、これらの問題に対する組み込みの解決策があります。
 
+<<<<<<< HEAD
 独自のソリューションを構築したい場合は、[ゼロからの React アプリ構築](/learn/build-a-react-app-from-scratch)ガイドを参照し、[Vite](https://vite.dev/)、[Parcel](https://parceljs.org/)、または [RSbuild](https://rsbuild.dev/) のようなビルドツールを使って新しい React プロジェクトをセットアップする方法を確認してください。
+=======
+If you want to build your own solutions, see our guide to [build a React app from Scratch](/learn/build-a-react-app-from-scratch) for instructions on how to set up a new React project starting with a build tool like [Vite](https://vite.dev/), [Parcel](https://parceljs.org/), or [RSbuild](https://rsbuild.dev/).
+>>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
 
 -----
 

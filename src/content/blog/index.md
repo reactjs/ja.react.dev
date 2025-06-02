@@ -4,7 +4,11 @@ title: React Blog
 
 <Intro>
 
+<<<<<<< HEAD
 React チームからの公式な更新のお知らせはこのブログに掲載されます。リリースノートや非推奨化のお知らせなどの重要なことはすべて、まずこちらに掲載されます。
+=======
+This blog is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted here first.
+>>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
 
 Bluesky の [@react.dev](https://bsky.app/profile/react.dev) や Twitter の [@reactjs](https://twitter.com/reactjs) アカウントをフォローすることもできますが、このブログさえ読んでいれば、重要なことを見逃す心配はありません。
 
@@ -16,7 +20,19 @@ Bluesky の [@react.dev](https://bsky.app/profile/react.dev) や Twitter の [@r
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
-<BlogCard title="Sunsetting Create React App" date="February 13, 2025" url="/blog/2025/02/14/sunsetting-create-react-app">
+<BlogCard title="React Labs: View Transitions, Activity, and more" date="April 23, 2025" url="/blog/2025/04/23/react-labs-view-transitions-activity-and-more">
+
+In React Labs posts, we write about projects in active research and development. In this post, we're sharing two new experimental features that are ready to try today, and sharing other areas we're working on now ...
+
+</BlogCard>
+
+<BlogCard title="React Compiler RC" date="April 21, 2025" url="/blog/2025/04/21/react-compiler-rc">
+
+We are releasing the compiler's first Release Candidate (RC) today.
+
+</BlogCard>
+
+<BlogCard title="Sunsetting Create React App" date="February 14, 2025" url="/blog/2025/02/14/sunsetting-create-react-app">
 
 Today, we’re deprecating Create React App for new apps, and encouraging existing apps to migrate to a framework, or to migrate to a build tool like Vite, Parcel, or RSBuild. We’re also providing docs for when a framework isn’t a good fit for your project, you want to build your own framework, or you just want to learn how React works by building a React app from scratch ...
 

@@ -439,7 +439,11 @@ function ChatRoom({ roomId, theme }) {
   // ...
 ```
 
+<<<<<<< HEAD
 これで問題は解決しました。なお、エフェクトの依存値のリストに `onConnected` を入れてはいけません。**エフェクトイベント自体はリアクティブではないので、依存配列から除外する必要があります**。
+=======
+This solves the problem. Note that you had to *remove* `theme` from the list of your Effect's dependencies, because it's no longer used in the Effect. You also don't need to *add* `onConnected` to it, because **Effect Events are not reactive and must be omitted from dependencies.**
+>>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
 
 新しい動作が期待通りであることを確認してください。
 
@@ -973,6 +977,23 @@ function useTimer(callback, delay) {
 
 <Sandpack>
 
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+
 ```js
 import { useState, useEffect } from 'react';
 
@@ -1025,6 +1046,22 @@ button { margin: 10px; }
 無効化コメントを削除すると、React はこのエフェクトのコードが `increment` に依存していることを教えてくれます。このエフェクトはリアクティブな値に依存していない (`[]`) と主張することで React に「嘘をついた」のです。依存配列に `increment` を追加しましょう。
 
 <Sandpack>
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
 
 ```js
 import { useState, useEffect } from 'react';
