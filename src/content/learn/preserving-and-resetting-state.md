@@ -672,11 +672,7 @@ label {
 
 </Sandpack>
 
-<<<<<<< HEAD
 チェックボックスをクリックするとカウンタの state がリセットされます。`Counter` をレンダーしていることは同じでも、`<div>` の最初の子が `section` から `div` に変わっています。子側の `section` が DOM から削除されたとき、その下のツリー全体（`Counter` とその state を含む）も破棄されたのです。
-=======
-The counter state gets reset when you click the checkbox. Although you render a `Counter`, the first child of the `div` changes from a `section` to a `div`. When the child `section` was removed from the DOM, the whole tree below it (including the `Counter` and its state) was destroyed as well.
->>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
 
 <DiagramGroup>
 

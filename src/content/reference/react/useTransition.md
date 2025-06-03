@@ -163,11 +163,7 @@ function CheckoutForm() {
 
 `startTransition` に渡される関数が "アクション (Action)" と呼ばれるものです。アクション内では state を更新したり、（必要に応じて）副作用を実行したりすることができます。その作業はバックグラウンドで、ページ上のユーザ操作をブロックすることなく行われます。ひとつのトランジションが複数のアクションを含むことができ、トランジションが進行中でも UI の応答性は保たれます。例えば、ユーザがタブをクリックしたあとに気が変わって別のタブをクリックした場合でも、最初の更新が終了するのを待つことなく、2 回目のクリックが即座に処理されます。
 
-<<<<<<< HEAD
 トランジションの進行中状態に関するフィードバックをユーザに提供するために、`startTransition` が最初に呼び出されると `isPending` state が `true` に切り替わり、すべてのアクションが完了して最終的な状態がユーザに表示されるまで `true` のままになります。トランジションによりアクション内の副作用が順番に完了することが保証され、[不要なローディングインジケータが抑止](#preventing-unwanted-loading-indicators)されます。また、`useOptimistic` を使用することで、トランジションが進行中の間にも即時のフィードバックを提供することができます。
-=======
-To give the user feedback about in-progress Transitions, the `isPending` state switches to `true` at the first call to `startTransition`, and stays `true` until all Actions complete and the final state is shown to the user. Transitions ensure side effects in Actions to complete in order to [prevent unwanted loading indicators](#preventing-unwanted-loading-indicators), and you can provide immediate feedback while the Transition is in progress with `useOptimistic`.
->>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
 
 <Recipes titleText="useTransition と通常の state 更新の違い">
 
@@ -589,12 +585,7 @@ export async function updateQuantity(newQuantity) {
 
 コンポーネントが props として `action` を公開することで、親がアクションを呼び出せるようにできます。
 
-<<<<<<< HEAD
-
 例えばこの `TabButton` コンポーネントは `onClick` 時のロジックを `action` 内にラップしています。
-=======
-For example, this `TabButton` component wraps its `onClick` logic in an `action` prop:
->>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
 
 ```js {8-12}
 export default function TabButton({ action, children, isActive }) {
@@ -751,9 +742,9 @@ b { display: inline-block; margin-right: 10px; }
 
 <Note>
 
-When exposing an `action` prop from a component, you should `await` it inside the transition. 
+コンポーネント内から props として `action` を公開する場合は、トランジション内で `await` するべきです。
 
-This allows the `action` callback to be either synchronous or asynchronous without requiring an additional `startTransition` to wrap the `await` in the action.
+これにより `action` コールバックが同期的な場合でも非同期の場合でも、アクションを `await` でラップするために余分に `startTransition` を用いる必要がなくなります。
 
 </Note>
 

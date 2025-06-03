@@ -1241,11 +1241,7 @@ export default function Timer() {
 
 </Sandpack>
 
-<<<<<<< HEAD
 エフェクトの中で `count` を読み取る代わりに、`c => c + 1` という指示（「この数値をインクリメントせよ」）を React に渡します。React は次のレンダー時にそれを適用します。エフェクトの中で `count` の値を読み取る必要がなくなったので、エフェクトの依存配列を空 (`[]`) に保つことができます。これにより、エフェクトが毎秒インターバルを再作成するのを防ぐことができます。
-=======
-Instead of reading `count` inside the Effect, you pass a `c => c + 1` instruction ("increment this number!") to React. React will apply it on the next render. And since you don't need to read the value of `count` inside your Effect anymore, you can keep your Effect's dependencies empty (`[]`). This prevents your Effect from re-creating the interval on every tick.
->>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
 
 </Solution>
 

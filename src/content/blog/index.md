@@ -4,11 +4,7 @@ title: React Blog
 
 <Intro>
 
-<<<<<<< HEAD
 React チームからの公式な更新のお知らせはこのブログに掲載されます。リリースノートや非推奨化のお知らせなどの重要なことはすべて、まずこちらに掲載されます。
-=======
-This blog is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted here first.
->>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
 
 Bluesky の [@react.dev](https://bsky.app/profile/react.dev) や Twitter の [@reactjs](https://twitter.com/reactjs) アカウントをフォローすることもできますが、このブログさえ読んでいれば、重要なことを見逃す心配はありません。
 

@@ -2247,11 +2247,7 @@ body {
 
 </Sandpack>
 
-<<<<<<< HEAD
 `map` に渡される関数の内部で `history` を反復処理する部分では、`squares` 引数が `history` の各要素を順に受け取り、`move` 引数が配列のインデックス `0`, `1`, `2`, … を順に受け取ります。（大抵は、実際の配列の中身が必要になりますが、今回の着手リストのレンダーで必要なのはインデックスの方だけです。）
-=======
-As you iterate through the `history` array inside the function you passed to `map`, the `squares` argument goes through each element of `history`, and the `move` argument goes through each array index: `0`, `1`, `2`, …. (In most cases, you'd need the actual array elements, but to render a list of moves you will only need indexes.)
->>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
 
 三目並べゲームの履歴にある着手のそれぞれについて、ボタン `<button>` の入ったリストアイテム `<li>` を作成します。ボタンには `jumpTo` という関数を呼び出す `onClick` ハンドラがありますが、これはまだ実装していません。
 

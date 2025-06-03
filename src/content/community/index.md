@@ -29,8 +29,4 @@ Stack Overflow は、コードレベルの質問をしたい場合や、特定�
 
 ## ニュース {/*news*/}
 
-<<<<<<< HEAD
-React の最新ニュースについては、[Twitter の **@reactjs**](https://twitter.com/reactjs) と、このウェブサイト上の[公式 React ブログ](/blog/)をフォローしてください。
-=======
-For the latest news about React, [follow **@reactjs** on Twitter](https://twitter.com/reactjs), [**@react.dev** on Bluesky](https://bsky.app/profile/react.dev) and the [official React blog](/blog/) on this website.
->>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
+React の最新ニュースについては、[Twitter の **@reactjs**](https://twitter.com/reactjs)、[Bluesky の **@react.dev**](https://bsky.app/profile/react.dev) や、このウェブサイトの[公式 React ブログ](/blog/)をフォローしてください。

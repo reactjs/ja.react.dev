@@ -6,13 +6,6 @@ title: React Compiler
 このページでは、React Compiler の概要と、試用の方法について説明します。
 </Intro>
 
-<<<<<<< HEAD
-<Wip>
-このドキュメントはまだ作成中です。詳細なドキュメントは [React Compiler Working Group リポジトリ](https://github.com/reactwg/react-compiler/discussions)にあり、安定化後にこちらのドキュメントに反映されます。
-</Wip>
-
-=======
->>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
 <YouWillLearn>
 
 * コンパイラを使い始める
@@ -22,29 +15,16 @@ title: React Compiler
 </YouWillLearn>
 
 <Note>
-<<<<<<< HEAD
-React Compiler はベータ版の新しいコンパイラであり、コミュニティから早期フィードバックを得るためにオープンソース化したものです。Meta などの企業の本番環境で利用されていますが、あなたのアプリでコンパイラを本番利用できるかどうかは、コードベースの健全性や、[React のルール](/reference/rules)をどの程度守れているかに依存します。
+React Compiler は新しいコンパイラであり、現在リリース候補版です。コミュニティからフィードバックを得るためにオープンソース化したものです。現在、すべての方にコンパイラーを試した上でフィードバックを寄せていただくことを推奨しています。
 
-最新版のベータリリースは `@beta` タグで、またデイリーの実験的リリースは `@experimental` タグで利用可能です。
+最新版のリリース候補は `@rc` タグで、またデイリーの実験的リリースは `@experimental` タグで利用可能です。
 </Note>
 
-React Compiler は新しいコンパイラであり、コミュニティから早期フィードバックを得るためにオープンソース化したものです。これはビルド時のみに実行されるツールであり、あなたの React アプリを自動的に最適化します。プレーンな JavaScript で動作し、[React のルール](/reference/rules)を理解しているため、コードを書き直す必要はありません。
+React Compiler は新しいコンパイラであり、コミュニティからフィードバックを得るためにオープンソース化したものです。これはビルド時のみに実行されるツールであり、あなたの React アプリを自動的に最適化します。プレーンな JavaScript で動作し、[React のルール](/reference/rules)を理解しているため、コードを書き直す必要はありません。
 
-コンパイラには、コンパイラの分析結果をエディタ内でその場で表示できる [ESLint プラグイン](#installing-eslint-plugin-react-compiler) も含まれています。**すべての開発者に、このリンタを直ちに有効化することを強くお勧めします**。このリンタはコンパイラがインストールされていなくとも動作するため、アプリでコンパイラを試用する準備ができていない場合でも利用できます。
+eslint-plugin-react-hooks には、コンパイラの分析結果をエディタ内でその場で表示できる [ESLint ルール](#installing-eslint-plugin-react-compiler) も含まれています。**すべての開発者に、このリンタを直ちに有効化することを強くお勧めします**。このリンタはコンパイラがインストールされていなくとも動作するため、アプリでコンパイラを試用する準備ができていない場合でも利用できます。
 
-このコンパイラは現在 `beta` としてリリースされており、React 17 以降のアプリやライブラリで試すことができます。ベータ版をインストールするには以下のようにします。
-=======
-React Compiler is a new compiler currently in RC, that we've open sourced to get feedback from the community. We now recommend everyone to try the compiler and provide feedback.
-
-The latest RC release can be found with the `@rc` tag, and daily experimental releases with `@experimental`.
-</Note>
-
-React Compiler is a new compiler that we've open sourced to get feedback from the community. It is a build-time only tool that automatically optimizes your React app. It works with plain JavaScript, and understands the [Rules of React](/reference/rules), so you don't need to rewrite any code to use it.
-
-eslint-plugin-react-hooks also includes an [ESLint rule](#installing-eslint-plugin-react-compiler) that surfaces the analysis from the compiler right in your editor. **We strongly recommend everyone use the linter today.** The linter does not require that you have the compiler installed, so you can use it even if you are not ready to try out the compiler.
-
-The compiler is currently released as `rc`, and is available to try out on React 17+ apps and libraries. To install the RC:
->>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
+このコンパイラは現在 `rc` としてリリースされており、React 17 以降のアプリやライブラリで試すことができます。リリース候補版をインストールするには以下のようにします。
 
 <TerminalBlock>
 {`npm install -D babel-plugin-react-compiler@rc eslint-plugin-react-hooks@^6.0.0-rc.1`}
@@ -132,11 +112,7 @@ function TableContainer({ items }) {
 
 ### コンパイラを試すべきか {/*should-i-try-out-the-compiler*/}
 
-<<<<<<< HEAD
-コンパイラはまだベータ版であり、多くの粗削りな部分があります。Meta のような企業で本番環境で使用されてはいますが、アプリにコンパイラを本番導入すべきかどうかは、コードベースの健全性と [React のルール](/reference/rules)にどれだけ従っているかに依存します。
-=======
-The compiler is now in RC and has been tested extensively in production. While it has been used in production at companies like Meta, rolling out the compiler to production for your app will depend on the health of your codebase and how well you've followed the [Rules of React](/reference/rules).
->>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
+コンパイラは現在リリース候補 (RC) であり、本番環境で広範にテストされています。Meta のような企業で本番環境で使用されてはいますが、アプリにコンパイラを本番導入すべきかどうかは、コードベースの健全性と [React のルール](/reference/rules)にどれだけ従っているかに依存します。
 
 **今すぐコンパイラを使用する必要はありません。安定版リリースを待ってから採用しても構いません**。ただし、アプリで小規模な実験として試してみて、[フィードバック](#reporting-issues)を提供していただれば、コンパイラの改善に役立ちます。
 
@@ -144,53 +120,15 @@ The compiler is now in RC and has been tested extensively in production. While i
 
 以下のドキュメントに加えて、コンパイラに関する追加情報やディスカッションについて [React Compiler Working Group](https://github.com/reactwg/react-compiler) を確認することをお勧めします。
 
-<<<<<<< HEAD
-### eslint-plugin-react-compiler のインストール {/*installing-eslint-plugin-react-compiler*/}
+### eslint-plugin-react-hooks のインストール {/*installing-eslint-plugin-react-compiler*/}
 
-React Compiler は ESLint プラグインも提供しています。eslint プラグインはコンパイラとは**独立して**使用できるため、コンパイラを使用しなくても ESLint プラグインだけを使用できます。
-=======
-### Installing eslint-plugin-react-hooks {/*installing-eslint-plugin-react-compiler*/}
-
-React Compiler also powers an ESLint plugin. You can try it out by installing eslint-plugin-react-hooks@^6.0.0-rc.1.
->>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
+React Compiler は ESLint プラグインも提供しています。eslint-plugin-react-hooks@^6.0.0-rc.1 をインストールすることで試用可能です。
 
 <TerminalBlock>
 {`npm install -D eslint-plugin-react-hooks@^6.0.0-rc.1`}
 </TerminalBlock>
 
-<<<<<<< HEAD
-次に、ESLint の設定に以下を追加します。
-
-```js
-import reactCompiler from 'eslint-plugin-react-compiler'
-
-export default [
-  {
-    plugins: {
-      'react-compiler': reactCompiler,
-    },
-    rules: {
-      'react-compiler/react-compiler': 'error',
-    },
-  },
-]
-```
-
-あるいは、非推奨の eslintrc 形式の設定ファイルの場合、以下のようにします。
-
-```js
-module.exports = {
-  plugins: [
-    'eslint-plugin-react-compiler',
-  ],
-  rules: {
-    'react-compiler/react-compiler': 'error',
-  },
-}
-```
-=======
-See our [editor setup](/learn/editor-setup#linting) guide for more details.
->>>>>>> 3ee3a60a1bcc687c0b87039a3a6582e3b1d6887c
+詳細については[エディタのセットアップ](/learn/editor-setup#linting)を参照してください。
 
 ESLint プラグインは、エディタ内で React のルールに関する違反を表示します。これが表示される場合、そのコンポーネントやフックの最適化をコンパイラがスキップしたということを意味します。これ自体は全く問題なく、コンパイラは他のコンポーネントの最適化を続けることができます。
 
