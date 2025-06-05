@@ -10,7 +10,7 @@ The `captureOwnerStack` API is currently only available in React's Canary and ex
 
 <Intro>
 
-`captureOwnerStack` reads the current Owner Stack in development and returns it as a string if available.
+`captureOwnerStack` は、開発環境で現在のオーナスタック (Owner Stack) を読み取り、利用可能な場合は文字列として返します。
 
 ```js
 const stack = captureOwnerStack();
@@ -22,11 +22,11 @@ const stack = captureOwnerStack();
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `captureOwnerStack()` {/*captureownerstack*/}
 
-Call `captureOwnerStack` to get the current Owner Stack.
+`captureOwnerStack` を呼び出して、現在のオーナスタックを取得します。
 
 ```js {5,5}
 import * as React from 'react';
@@ -39,33 +39,33 @@ function Component() {
 }
 ```
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-`captureOwnerStack` does not take any parameters.
+`captureOwnerStack` は引数を受け取りません。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-`captureOwnerStack` returns `string | null`.
+`captureOwnerStack` は `string | null` を返します。
 
-Owner Stacks are available in
-- Component render
-- Effects (e.g. `useEffect`)
-- React's event handlers (e.g. `<button onClick={...} />`)
-- React error handlers ([React Root options](/reference/react-dom/client/createRoot#parameters) `onCaughtError`, `onRecoverableError`, and `onUncaughtError`)
+オーナスタックは、以下の状況で利用できます。
+- コンポーネントのレンダー中
+- エフェクト（`useEffect` など）内
+- React のイベントハンドラ内（`<button onClick={...} />` など）
+- React のエラーハンドラ（[React ルートオプション](/reference/react-dom/client/createRoot#parameters) の `onCaughtError`、`onRecoverableError`、`onUncaughtError` など）
 
-If no Owner Stack is available, `null` is returned (see [Troubleshooting: The Owner Stack is `null`](#the-owner-stack-is-null)).
+オーナスタックが利用できない場合は `null` が返されます（[トラブルシューティング：オーナスタックが `null` になる](#the-owner-stack-is-null) を参照）。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-- Owner Stacks are only available in development. `captureOwnerStack` will always return `null` outside of development.
+- オーナスタックは開発環境でのみ利用できます。開発環境以外では `captureOwnerStack` は常に `null` を返します。
 
 <DeepDive>
 
-#### Owner Stack vs Component Stack {/*owner-stack-vs-component-stack*/}
+#### オーナスタックとコンポーネントスタックの違い {/*owner-stack-vs-component-stack*/}
 
-The Owner Stack is different from the Component Stack available in React error handlers like [`errorInfo.componentStack` in `onUncaughtError`](/reference/react-dom/client/hydrateRoot#show-a-dialog-for-uncaught-errors).
+オーナスタックは、React のエラーハンドラで利用できるコンポーネントスタック（例：[`onUncaughtError` 内での `errorInfo.componentStack`](/reference/react-dom/client/hydrateRoot#show-a-dialog-for-uncaught-errors)）とは異なります。
 
-For example, consider the following code:
+例えば、次のコードを考えてみましょう。
 
 <Sandpack>
 
@@ -158,8 +158,8 @@ createRoot(document.createElement('div'), {
 
 </Sandpack>
 
-`SubComponent` would throw an error.
-The Component Stack of that error would be
+`SubComponent` でエラーがスローされるとします。
+そのエラーのコンポーネントスタックは次のようになります。
 
 ```
 at SubComponent
@@ -170,23 +170,23 @@ at React.Suspense
 at App
 ```
 
-However, the Owner Stack would only read
+一方、オーナスタックは次のようになります。
 
 ```
 at Component
 ```
 
-Neither `App` nor the DOM components (e.g. `fieldset`) are considered Owners in this Stack since they didn't contribute to "creating" the node containing `SubComponent`. `App` and DOM components only forwarded the node. `App` just rendered the `children` node as opposed to `Component` which created a node containing `SubComponent` via `<SubComponent />`.
+このスタックでは、`App` や DOM コンポーネント（例：`fieldset`）は「オーナ」扱いとなりません。それらは `SubComponent` を「作成」したわけではなく、ノードを単に転送しただけだからです。`Component` は `<SubComponent />` というマークアップを通じて `SubComponent` ノードを作成しているのに対し、`App` は `children` を単にレンダーしているだけです。
 
-Neither `Navigation` nor `legend` are in the stack at all since it's only a sibling to a node containing `<SubComponent />`.
+また、`Navigation` や `legend` も、`<SubComponent />` を含むノードの兄弟であるためスタックには含まれません。
 
-`SubComponent` is omitted because it's already part of the callstack.
+`SubComponent` はすでにコールスタックに含まれているため、オーナスタックには表示されません。
 
 </DeepDive>
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Enhance a custom error overlay {/*enhance-a-custom-error-overlay*/}
+### カスタムのエラーオーバーレイの機能強化 {/*enhance-a-custom-error-overlay*/}
 
 ```js [[1, 5, "console.error"], [4, 7, "captureOwnerStack"]]
 import { captureOwnerStack } from "react";
@@ -205,7 +205,7 @@ console.error = function patchedConsoleError(...args) {
 };
 ```
 
-If you intercept <CodeStep step={1}>`console.error`</CodeStep> calls to highlight them in an error overlay, you can call <CodeStep step={2}>`captureOwnerStack`</CodeStep> to include the Owner Stack.
+<CodeStep step={1}>`console.error`</CodeStep> の呼び出しをインターセプトしてエラーオーバーレイとして表示する場合、<CodeStep step={2}>`captureOwnerStack`</CodeStep> を呼び出してオーナスタックを含めることができます。
 
 <Sandpack>
 
@@ -385,13 +385,13 @@ export default function App() {
 
 </Sandpack>
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### The Owner Stack is `null` {/*the-owner-stack-is-null*/}
+### オーナスタックが `null` になる {/*the-owner-stack-is-null*/}
 
-The call of `captureOwnerStack` happened outside of a React controlled function e.g. in a `setTimeout` callback, after a `fetch` call or in a custom DOM event handler. During render, Effects, React event handlers, and React error handlers (e.g. `hydrateRoot#options.onCaughtError`) Owner Stacks should be available.
+`captureOwnerStack` の呼び出しが React 管理外の関数（`setTimeout` のコールバック、`fetch` の後、カスタム DOM イベントハンドラなど）で行われています。レンダー中、エフェクト内、React 管理のイベントハンドラやエラーハンドラ（例：`hydrateRoot#options.onCaughtError`）内では、オーナスタックが利用できるはずです。
 
-In the example below, clicking the button will log an empty Owner Stack because `captureOwnerStack` was called during a custom DOM event handler. The Owner Stack must be captured earlier e.g. by moving the call of `captureOwnerStack` into the Effect body.
+以下の例では、`captureOwnerStack` の呼び出しがカスタム DOM イベントハンドラ内で行われているため、ボタンをクリックしてもログに出力されるオーナスタックは空になります。オーナスタックの取得は、呼び出しをエフェクト本体に移動するなどして先に取得しておく必要があります。
 <Sandpack>
 
 ```js
@@ -435,9 +435,9 @@ export default function App() {
 
 </Sandpack>
 
-### `captureOwnerStack` is not available {/*captureownerstack-is-not-available*/}
+### `captureOwnerStack` 関数にアクセスできない {/*captureownerstack-is-not-available*/}
 
-`captureOwnerStack` is only exported in development builds. It will be `undefined` in production builds. If `captureOwnerStack` is used in files that are bundled for production and development, you should conditionally access it from a namespace import.
+`captureOwnerStack` は開発ビルドでのみエクスポートされます。本番ビルドでは `undefined` になります。開発・本番両方でバンドルされるファイルで `captureOwnerStack` を使う場合は、名前付きインポートではなく名前空間インポートを使い、条件付きでアクセスするようにしてください。
 
 ```js
 // Don't use named imports of `captureOwnerStack` in files that are bundled for development and production.
