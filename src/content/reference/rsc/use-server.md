@@ -5,7 +5,7 @@ titleForTitleTag: "'use server' ディレクティブ"
 
 <RSC>
 
-`'use server'` は [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) 用の機能です。
+`'use server'` は [React Server Components](/reference/rsc/server-components) 用の機能です。
 
 </RSC>
 

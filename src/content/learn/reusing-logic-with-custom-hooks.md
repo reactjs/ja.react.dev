@@ -1333,7 +1333,7 @@ export function useOnlineStatus() {
 
 上記の例では、`useOnlineStatus` は [`useState`](/reference/react/useState) と [`useEffect`](/reference/react/useEffect) のペアで実装されています。しかし、これは最善のソリューションではありません。考慮されていないエッジケースがいくつかあります。例えば、コンポーネントがマウントされたとき `isOnline` は `true` であると仮定していますが、ネットワークがすでにオフラインになっていた場合、これは誤りです。ブラウザの [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine) API を使ってそれをチェックすることはできますが、それを直接使うと、サーバで初期 HTML を生成する際には動作しません。要するに、このコードには改善の余地があるということです。
 
-幸いなことに React 18 には、これらの問題をすべて解決してくれる専用の API である [`useSyncExternalStore`](/reference/react/useSyncExternalStore) が含まれています。以下は、この新しい API を活用して書き直された `useOnlineStatus` フックです。
+React には、これらの問題をすべて解決してくれる専用の API である [`useSyncExternalStore`](/reference/react/useSyncExternalStore) が含まれています。以下は、この新しい API を活用して書き直された `useOnlineStatus` フックです。
 
 <Sandpack>
 
@@ -2081,7 +2081,6 @@ export function useCounter(delay) {
 <Sandpack>
 
 ```js
-import { useState } from 'react';
 import { useCounter } from './useCounter.js';
 
 export default function Counter() {

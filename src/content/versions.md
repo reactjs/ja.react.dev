@@ -11,7 +11,7 @@ title: React のバージョン
 私たちは、同一メジャーバージョン内ではドキュメントを最新の状態に保つようにしており、マイナーバージョンやパッチバージョン別にドキュメントを公開することはありません。新しいメジャーバージョンのリリース後、前バージョンのドキュメントは `x.react.dev` としてアーカイブされます。詳細は[バージョニングポリシー](/community/versioning-policy)を参照してください。
 
 過去のメジャーバージョンのアーカイブは以下から参照できます。
-## Latest version: 19.0 {/*latest-version*/}
+## Latest version: 19.1 {/*latest-version*/}
 
 - [react.dev](https://react.dev) {/*docs-19*/}
 
@@ -51,6 +51,7 @@ React 15 より前のバージョンについては [15.react.dev](https://15.re
 - [React 19 Deep Dive: Coordinating HTML](https://www.youtube.com/watch?v=IBBN-s77YSI)
 
 **Releases**
+- [v19.1.0 (March, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1910-march-28-2025)
 - [v19.0.0 (December, 2024)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1900-december-5-2024)
 
 ### React 18 {/*react-18*/}
