@@ -1,16 +1,16 @@
 ---
-title: React Versions
+title: React のバージョン
 ---
 
 <Intro>
 
-The React docs at [react.dev](https://react.dev) provide documentation for the latest version of React.
+[react.dev](https://react.dev)（日本語版：[ja.react.dev](https://ja.react.dev)）の React ドキュメントは、React の最新バージョン向けのドキュメントです。
 
 </Intro>
 
-We aim to keep the docs updated within major versions, and do not publish versions for each minor or patch version. When a new major is released, we archive the docs for the previous version as `x.react.dev`. See our [versioning policy](/community/versioning-policy) for more info.
+私たちは、同一メジャーバージョン内ではドキュメントを最新の状態に保つようにしており、マイナーバージョンやパッチバージョン別にドキュメントを公開することはありません。新しいメジャーバージョンのリリース後、前バージョンのドキュメントは `x.react.dev` としてアーカイブされます。詳細は[バージョニングポリシー](/community/versioning-policy)を参照してください。
 
-You can find an archive of previous major versions below.
+過去のメジャーバージョンのアーカイブは以下から参照できます。
 ## Latest version: 19.0 {/*latest-version*/}
 
 - [react.dev](https://react.dev) {/*docs-19*/}
@@ -24,11 +24,11 @@ You can find an archive of previous major versions below.
 
 <Note>
 
-#### Legacy Docs {/*legacy-docs*/}
+#### レガシードキュメント {/*legacy-docs*/}
 
-In 2023, we [launched our new docs](/blog/2023/03/16/introducing-react-dev) for React 18 as [react.dev](https://react.dev). The legacy React 18 docs are available at [legacy.reactjs.org](https://legacy.reactjs.org). Versions 17 and below are hosted on legacy sites.
+2023 年、React 18 向けの新しいドキュメントを [react.dev](https://react.dev) として[公開しました](/blog/2023/03/16/introducing-react-dev)。従来の React 18 ドキュメントは [legacy.reactjs.org](https://legacy.reactjs.org) で利用できます。バージョン 17 以下はレガシーサイトでホストされています。
 
-For versions older than React 15, see [15.react.dev](https://15.react.dev).
+React 15 より前のバージョンについては [15.react.dev](https://15.react.dev) を参照してください。
 
 </Note>
 
@@ -290,12 +290,12 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [v0.3.1 (May 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#031-may-30-2013)
 - [v0.3.0 (May 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#031-may-30-2013)
 
-### Initial Commit {/*initial-commit*/}
+### 初回コミット {/*initial-commit*/}
 
-React was open-sourced on May 29, 2013. The initial commit is: [`75897c`: Initial public release](https://github.com/facebook/react/commit/75897c2dcd1dd3a6ca46284dd37e13d22b4b16b4)
+React は 2013 年 5 月 29 日にオープンソース化されました。初回コミットはこちらです：[`75897c`: Initial public release](https://github.com/facebook/react/commit/75897c2dcd1dd3a6ca46284dd37e13d22b4b16b4)
 
-See the first blog post: [Why did we build React?](https://legacy.reactjs.org/blog/2013/06/05/why-react.html) 
+最初のブログ記事もご覧ください：[なぜ React を作ったのか？](https://legacy.reactjs.org/blog/2013/06/05/why-react.html)
 
-React was open sourced at Facebook Seattle in 2013:
+React は 2013 年、シアトルの Facebook 社でオープンソース化されました。
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/XxVg_s8xAms?si=466vSJrnXTn05j9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
