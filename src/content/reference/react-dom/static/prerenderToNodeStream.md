@@ -291,7 +291,7 @@ function ProfilePage() {
 
 ### プリレンダーの中止 {/*aborting-prerendering*/}
 
-プリレンダー処理は、一定時間経過したら強制的に「諦めさせる」ことが可能です。
+プリレンダー処理は、一定時間経過 (timeout) 後に強制的に「諦めさせる」ことが可能です。
 
 ```js {2-5,11}
 async function renderToString() {
