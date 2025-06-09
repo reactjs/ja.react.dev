@@ -240,7 +240,11 @@ export default function ModalContent({ onClose }) {
 
 ポータルを使用する際には、アプリを正しくアクセシブルにすることが重要です。例えば、ユーザが自然にポータルの内または外へフォーカスを移動できるよう、キーボードフォーカスを管理する必要があるかもしれません。
 
+<<<<<<< HEAD
 モーダルを作成する際には、[WAI-ARIA のモーダル作成実践ガイド](https://www.w3.org/WAI/ARIA/apg/#dialog_modal)に従ってください。コミュニティパッケージを使用する場合は、それがアクセシブルであり、このガイドラインに従っていることを確認してください。
+=======
+Follow the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal) when creating modals. If you use a community package, ensure that it is accessible and follows these guidelines.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 </Pitfall>
 
