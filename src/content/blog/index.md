@@ -24,7 +24,7 @@ In React Labs posts, we write about projects in active research and development.
 
 <BlogCard title="React Compiler RC" date="April 21, 2025" url="/blog/2025/04/21/react-compiler-rc">
 
-We are releasing the compiler's first Release Candidate (RC) today.
+本日、コンパイラの最初のリリース候補 (RC) を公開します。
 
 </BlogCard>
 
