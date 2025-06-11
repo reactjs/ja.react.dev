@@ -1,8 +1,8 @@
 ---
-title: "React Labs: View Transitions, Activity, and more"
+title: "React Labs: ビュー遷移、Activity、その他もろもろ"
 author: Ricky Hanlon
 date: 2025/04/23
-description: In React Labs posts, we write about projects in active research and development. In this post, we're sharing two new experimental features that are ready to try today, and updates on other areas we're working on now.
+description: React Labs 記事では、現在活発に研究・開発が行われているプロジェクトについて述べていきます。この投稿では、今すぐ試すことができる 2 つの新しい実験的機能と、現在取り組んでいる他の分野の更新情報を共有します。
 ---
 
 April 23, 2025 by [Ricky Hanlon](https://twitter.com/rickhanlonii)
@@ -11,55 +11,55 @@ April 23, 2025 by [Ricky Hanlon](https://twitter.com/rickhanlonii)
 
 <Intro>
 
-In React Labs posts, we write about projects in active research and development. In this post, we're sharing two new experimental features that are ready to try today, and updates on other areas we're working on now.
+React Labs 記事では、現在活発に研究・開発が行われているプロジェクトについて述べていきます。この投稿では、今すぐ試すことができる 2 つの新しい実験的機能と、現在取り組んでいる他の分野の更新情報を共有します。
 
 </Intro>
 
 
 <Note>
 
-React Conf 2025 is scheduled for October 7–8 in Henderson, Nevada! 
+React Conf 2025 が 10 月 7-8 日にネバダ州ヘンダーソンで開催されます！
 
-We're looking for speakers to help us create talks about the features covered in this post. If you're interested in speaking at ReactConf, [please apply here](https://forms.reform.app/react-conf/call-for-speakers/) (no talk proposal required).
+この投稿で取り上げた機能について講演を行うためのスピーカーを募集しています。React Conf での講演に興味がある方は、[こちらからご応募ください](https://forms.reform.app/react-conf/call-for-speakers/)（講演概要は不要です）。
 
-For more info on tickets, free streaming, sponsoring, and more, see [the React Conf website](https://conf.react.dev).
+チケット、無料ストリーミング、スポンサーシップなどの詳細については、[React Conf のウェブサイト](https://conf.react.dev)をご覧ください。
 
 </Note>
 
-Today, we're excited to release documentation for two new experimental features that are ready for testing:
+本日、試用の準備が整った 2 つの新しい実験的な機能のドキュメントをリリースします！
 
-- [View Transitions](#view-transitions)
+- [ビュー遷移 (View Transition)](#view-transitions)
 - [Activity](#activity)
 
-We're also sharing updates on new features currently in development:
-- [React Performance Tracks](#react-performance-tracks)
-- [Compiler IDE Extension](#compiler-ide-extension)
-- [Automatic Effect Dependencies](#automatic-effect-dependencies)
-- [Fragment Refs](#fragment-refs)
-- [Concurrent Stores](#concurrent-stores)
+また、現在開発中の新機能の更新情報も共有します。
+- [React パフォーマンストラック](#react-performance-tracks)
+- [コンパイラの IDE 拡張](#compiler-ide-extension)
+- [エフェクト依存配列の自動化](#automatic-effect-dependencies)
+- [フラグメント ref](#fragment-refs)
+- [並行ストア](#concurrent-stores)
 
 ---
 
-# New Experimental Features {/*new-experimental-features*/}
+# 新しい実験的な機能 {/*new-experimental-features*/}
 
-View Transitions and Activity are now ready for testing in `react@experimental`. These features have been tested in production and are stable, but the final API may still change as we incorporate feedback.
+ビュー遷移 (View Transition) と Activity について、`react@experimental` でテストする準備が整いました。これらの機能は本番環境でテストされており安定していますが、フィードバックを取り入れる過程で最終的な API が変更される可能性が残っています。
 
-You can try them by upgrading React packages to the most recent experimental version:
+React パッケージを最新の実験的なバージョンにアップグレードすることで試すことが可能です。
 
 - `react@experimental`
 - `react-dom@experimental`
 
-Read on to learn how to use these features in your app, or check out the newly published docs:
+これらの機能をアプリで使用する方法を学ぶか、新しく公開されたドキュメントをチェックしてください：
 
-- [`<ViewTransition>`](/reference/react/ViewTransition): A component that lets you activate an animation for a Transition.
-- [`addTransitionType`](/reference/react/addTransitionType): A function that allows you to specify the cause of a Transition.
-- [`<Activity>`](/reference/react/Activity): A component that lets you hide and show parts of the UI.
+- [`<ViewTransition>`](/reference/react/ViewTransition)：ビュー遷移アニメーションを有効にするコンポーネント。
+- [`addTransitionType`](/reference/react/addTransitionType)：ビュー遷移の起因 (cause) を指定するための関数。
+- [`<Activity>`](/reference/react/Activity)：UI の一部を非表示・表示するために使用するコンポーネント。
 
-## View Transitions {/*view-transitions*/}
+## ビュー遷移 {/*view-transitions*/}
 
-React View Transitions are a new experimental feature that makes it easier to add animations to UI transitions in your app. Under-the-hood, these animations use the new [`startViewTransition`](https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition) API available in most modern browsers.
+React View Transition は、アプリの UI 遷移にアニメーションを追加しやすくするための新しい実験的機能です。内部的にこれらのアニメーションは、ほとんどのモダンブラウザで利用可能な新しい API である [`startViewTransition`](https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition) を使用します。
 
-To opt-in to animating an element, wrap it in the new `<ViewTransition>` component:
+要素に対してアニメーションを有効化するには、新登場の `<ViewTransition>` コンポーネントで要素をラップします。
 
 ```js
 // "what" to animate.
@@ -68,9 +68,9 @@ To opt-in to animating an element, wrap it in the new `<ViewTransition>` compone
 </ViewTransition>
 ```
 
-This new component lets you declaratively define "what" to animate when an animation is activated. 
+この新しいコンポーネントを使用することで、アニメーションが起動した際に「何を」アニメーションするかを宣言的に定義できます。
 
-You can define "when" to animate by using one of these three triggers for a View Transition:
+「いつ」アニメーションするかの方は、以下の 3 つのビュー遷移トリガのいずれかを使用して定義します。
 
 ```js
 // "when" to animate.
@@ -87,7 +87,7 @@ const deferred = useDeferredValue(value);
 </Suspense>
 ```
 
-By default, these animations use the [default CSS animations for View Transitions](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#customizing_your_animations) applied (typically a smooth cross-fade). You can use [view transition pseudo-selectors](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#the_view_transition_pseudo-element_tree) to define "how" the animation runs. For example, you can use `*` to change the default animation for all transitions:
+デフォルトでは、これらのアニメーションは[ビュー遷移のためのデフォルト CSS アニメーション](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#customizing_your_animations) を使用します（通常はスムースなクロスフェード）。アニメーションの実行方法を定義するために[ビュー遷移関連の擬似セレクタ](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#the_view_transition_pseudo-element_tree)を使用できます。たとえば、すべてのビュー遷移についてデフォルトのアニメーションを変更するには `*` を使用できます。
 
 ```
 // "how" to animate.
@@ -99,16 +99,16 @@ By default, these animations use the [default CSS animations for View Transition
 }
 ```
 
-When the DOM updates due to an animation trigger&mdash;like `startTransition`, `useDeferredValue`, or a `Suspense` fallback switching to content&mdash;React will use [declarative heuristics](/reference/react/ViewTransition#viewtransition) to automatically determine which `<ViewTransition>` components to activate for the animation. The browser will then run the animation that's defined in CSS.
+アニメーションのトリガ（`startTransition`、`useDeferredValue`、または `Suspense` フォールバックからコンテンツへの切り替え）によって DOM が更新される場合、React は[宣言的なヒューリスティックス](/reference/react/ViewTransition#viewtransition)を使用して、どの `<ViewTransition>` コンポーネントでアニメーションを起動するかを自動的に決定します。その後、CSS で定義されたアニメーションをブラウザが実行します。
 
-If you're familiar with the browser's View Transition API and want to know how React supports it, check out [How does `<ViewTransition>` Work](/reference/react/ViewTransition#how-does-viewtransition-work) in the docs. 
+ブラウザのビュー遷移 API をすでにご存じで、React がそれをどのようにサポートしているかを知りたい場合は、ドキュメントの [`<ViewTransition>` の動作の仕組み](/reference/react/ViewTransition#how-does-viewtransition-work)をチェックしてください。
 
-In this post, let's take a look at a few examples of how to use View Transitions. 
+この投稿では、ビュー遷移を使用するいくつかの例を見てみましょう。
 
-We'll start with this app, which doesn't animate any of the following interactions:
-- Click a video to view the details.
-- Click "back" to go back to the feed.
-- Type in the list to filter the videos.
+以下のアプリから始めましょう。次のような操作ができますが、何のアニメーションも含まれてません。
+- ビデオをクリックして詳細を表示
+- "Back" をクリックしてフィードに戻る
+- リスト内でタイプしてビデオをフィルタリング
 
 <Sandpack>
 
@@ -1264,17 +1264,17 @@ root.render(
 
 <Note>
 
-#### View Transitions do not replace CSS and JS driven animations {/*view-transitions-do-not-replace-css-and-js-driven-animations*/}
+#### ビュー遷移は CSS・JS 駆動のアニメーションを置き換えるものではない {/*view-transitions-do-not-replace-css-and-js-driven-animations*/}
 
-View Transitions are meant to be used for UI transitions such as navigation, expanding, opening, or re-ordering. They are not meant to replace all the animations in your app.
+ビュー遷移は、ナビゲーション、内容展開、オープン、並べ替えといった UI 遷移に対して使用されることを意図しています。アプリ内のすべてのアニメーションを置き換えることが意図されているわけではありません。
 
-In our example app above, notice that there are already animations when you click the "like" button and in the Suspense fallback glimmer. These are good use cases for CSS animations because they are animating a specific element.
+上記のサンプルアプリでは、"Like" ボタンをクリックしたときやサスペンスフォールバック内のローディング表示には、すでにアニメーションがあることに注意してください。これらは特定の要素だけをアニメーションしているため、CSS アニメーションの良い使用例です。
 
 </Note>
 
-### Animating navigations {/*animating-navigations*/}
+### ナビゲーションのアニメーション {/*animating-navigations*/}
 
-Our app includes a Suspense-enabled router, with [page transitions already marked as Transitions](/reference/react/useTransition#building-a-suspense-enabled-router), which means navigations are performed with `startTransition`:
+このアプリにはサスペンス対応のルータが含まれており、[ページの遷移はすでにトランジションとしてマークされています](/reference/react/useTransition#building-a-suspense-enabled-router)。つまり、ナビゲーションは `startTransition` 内で実行されます。
 
 ```js
 function navigate(url) {
@@ -1284,7 +1284,7 @@ function navigate(url) {
 }
 ```
 
-`startTransition` is a View Transition trigger, so we can add `<ViewTransition>` to animate between pages:
+`startTransition` はビュー遷移のトリガの一種なので、ページ間でアニメーションするために `<ViewTransition>` を追加できます。
 
 ```js
 // "what" to animate
@@ -1293,10 +1293,10 @@ function navigate(url) {
 </ViewTransition>
 ```
 
-When the `url` changes, the `<ViewTransition>` and new route are rendered. Since the `<ViewTransition>` was updated inside of `startTransition`, the `<ViewTransition>` is activated for an animation.
+`url` が変化すると、`<ViewTransition>` と新しいページがレンダーされます。`<ViewTransition>` の更新が `startTransition` 内で起きたため、この `<ViewTransition>` のアニメーションが起動されます。
 
 
-By default, View Transitions include the browser default cross-fade animation. Adding this to our example, we now have a cross-fade whenever we navigate between pages: 
+デフォルトでは、ビュー遷移としてブラウザのデフォルトのクロスフェードアニメーションが含まれています。これを追加することで、ページ間を移動するたびにクロスフェードが発生するようになります。
 
 <Sandpack>
 
@@ -2458,17 +2458,17 @@ root.render(
 
 </Sandpack>
 
-Since our router already updates the route using `startTransition`, this one line change to add `<ViewTransition>` activates with the default cross-fade animation. 
+ルータのページ更新はすでに `startTransition` を使用して行われているため、`<ViewTransition>` を追加するというこの 1 行の変更だけで、デフォルトのクロスフェードアニメーションが有効になるのです。
 
-If you're curious how this works, see the docs for [How does `<ViewTransition>` work?](/reference/react/ViewTransition#how-does-viewtransition-work)
+これがどのように機能するかに興味がある場合は、ドキュメントの [`<ViewTransition>` の動作の仕組み](/reference/react/ViewTransition#how-does-viewtransition-work)を参照してください。
 
 <Note>
 
-#### Opting out of `<ViewTransition>` animations {/*opting-out-of-viewtransition-animations*/}
+#### `<ViewTransition>` アニメーションのオプトアウト {/*opting-out-of-viewtransition-animations*/}
 
-In this example, we're wrapping the root of the app in `<ViewTransition>` for simplicity, but this means that all transitions in the app will be animated, which can lead to unexpected animations. 
+今回の例では単純化のため、アプリのルート (root) を `<ViewTransition>` でラップしていますが、これによりアプリ内のすべての UI 遷移がアニメーション化され、予期しないアニメーションが発生する可能性があります。
 
-To fix, we're wrapping route children with `"none"` so each page can control its own animation:
+修正するには、ルートの子を `"none"` でラップして、各ページが独自のアニメーションを制御できるようにします。
 
 ```js
 // Layout.js
@@ -2477,17 +2477,17 @@ To fix, we're wrapping route children with `"none"` so each page can control its
 </ViewTransition>
 ```
 
-In practice, navigations should be done via "enter" and "exit" props, or by using Transition Types. 
+実際には、ナビゲーションは props の "enter" と "exit" を介して、または遷移タイプを使用して行うべきです。
 
 </Note>
 
-### Customizing animations {/*customizing-animations*/}
+### アニメーションのカスタマイズ {/*customizing-animations*/}
 
-By default, `<ViewTransition>` includes the default cross-fade from the browser.
+デフォルトでは、`<ViewTransition>` にはブラウザのデフォルトのクロスフェードが含まれています。
 
-To customize animations, you can provide props to the `<ViewTransition>` component to specify which animations to use, based on [how the `<ViewTransition>` activates](/reference/react/ViewTransition#props).
+アニメーションをカスタマイズするには、`<ViewTransition>` コンポーネントに props を渡して、[`<ViewTransition>` の起動方法](/reference/react/ViewTransition#props)に記載されているようにして使用するアニメーションを指定できます。
 
-For example, we can slow down the `default` cross fade animation:
+たとえば、`default` クロスフェードアニメーションを遅くするには以下のようにします。
 
 ```js
 <ViewTransition default="slow-fade">
@@ -2495,7 +2495,7 @@ For example, we can slow down the `default` cross fade animation:
 </ViewTransition>
 ```
 
-And define `slow-fade` in CSS using [view transition classes](/reference/react/ViewTransition#view-transition-classes):
+その後に[ビュー遷移クラス](/reference/react/ViewTransition#view-transition-classes)を用いて CSS で `slow-fade` を定義します。
 
 ```css
 ::view-transition-old(.slow-fade) {
@@ -2507,7 +2507,7 @@ And define `slow-fade` in CSS using [view transition classes](/reference/react/V
 }
 ```
 
-Now, the cross fade is slower:
+これで、クロスフェードが遅くなりました。
 
 <Sandpack>
 
@@ -3686,13 +3686,13 @@ root.render(
 
 </Sandpack>
 
-See [Styling View Transitions](/reference/react/ViewTransition#styling-view-transitions) for a full guide on styling `<ViewTransition>`.
+[ビュー遷移のスタイリング](/reference/react/ViewTransition#styling-view-transitions)に、`<ViewTransition>` のスタイリングに関する完全なガイドがあります。
 
-### Shared Element Transitions {/*shared-element-transitions*/}
+### 共通要素の遷移 {/*shared-element-transitions*/}
 
-When two pages include the same element, often you want to animate it from one page to the next.
+2 つのページに同一の要素が含まれている場合、その要素をページをまたいでアニメーションさせたいことがあります。
 
-To do this you can add a unique `name` to the `<ViewTransition>`:
+これを行うには、`<ViewTransition>` に一意の `name` を追加します。
 
 ```js
 <ViewTransition name={`video-${video.id}`}>
@@ -3700,7 +3700,7 @@ To do this you can add a unique `name` to the `<ViewTransition>`:
 </ViewTransition>
 ```
 
-Now the video thumbnail animates between the two pages:
+これで、ビデオのサムネイルが 2 つのページをまたいでアニメーションします。
 
 <Sandpack>
 
@@ -4895,13 +4895,13 @@ root.render(
 
 </Sandpack>
 
-By default, React automatically generates a unique `name` for each element activated for a transition (see [How does `<ViewTransition>` work](/reference/react/ViewTransition#how-does-viewtransition-work)). When React sees a transition where a `<ViewTransition>` with a `name` is removed and a new `<ViewTransition>` with the same `name` is added, it will activate a shared element transition.
+デフォルトでは、React はビュー遷移で起動された各要素に一意の `name` を自動的に生成します（[`<ViewTransition>` の動作の仕組み](/reference/react/ViewTransition#how-does-viewtransition-work)を参照）。`name` 付きの `<ViewTransition>` が削除され、新しい `<ViewTransition>` が同じ `name` で追加されるようなビュー遷移を React が検出すると、共通要素のビュー遷移 (shared element transition) が起動します。
 
-For more info, see the docs for [Animating a Shared Element](/reference/react/ViewTransition#animating-a-shared-element).
+詳細については、ドキュメントで[共通要素のアニメーション](/reference/react/ViewTransition#animating-a-shared-element)を参照してください。
 
-### Animating based on cause {/*animating-based-on-cause*/}
+### 起因別のアニメーション {/*animating-based-on-cause*/}
 
-Sometimes, you may want elements to animate differently based on how it was triggered. For this use case, we've added a new API called `addTransitionType` to specify the cause of a transition:
+場合によっては、アニメーションがトリガされた起因 (cause) に基づいて、要素を異なる方法でアニメーションさせたいことがあります。このユースケースのために、ビュー遷移の起因を指定するための新しい API である `addTransitionType` を追加しました。
 
 ```js {4,11}
 function navigate(url) {
@@ -4920,7 +4920,7 @@ function navigateBack(url) {
 }
 ```
 
-With transition types, you can provide custom animations via props to `<ViewTransition>`. Let's add a shared element transition to the header for "6 Videos" and "Back":
+遷移タイプ (transition type) を使用することで、`<ViewTransition>` に渡す props を介して、カスタムアニメーションを提供できます。ヘッダの "6 Videos" と "Back" の部分に共通要素のビュー遷移を追加してみましょう。
 
 ```js {4,5}
 <ViewTransition
@@ -4933,7 +4933,7 @@ With transition types, you can provide custom animations via props to `<ViewTran
 </ViewTransition>
 ```
 
-Here we pass a `share` prop to define how to animate based on the transition type. When the share transition activates from `nav-forward`, the view transition class `slide-forward` is applied. When it's from `nav-back`, the `slide-back` animation is activated. Let's define these animations in CSS:
+ここでは、遷移タイプに基づいてどのようにアニメーションするかを定義するため、props として `share` を渡しています。`nav-forward` による共通要素ビュー遷移が起動すると、ビュー遷移クラスとして `slide-forward` が適用されます。`nav-back` による場合は、`slide-back` のアニメーションが起動します。これらのアニメーションを CSS で定義しましょう。
 
 ```css
 ::view-transition-old(.slide-forward) {
@@ -4957,7 +4957,7 @@ Here we pass a `share` prop to define how to animate based on the transition typ
 }
 ```
 
-Now we can animate the header along with thumbnail based on navigation type:
+これで、サムネールだけではなくヘッダも、ナビゲーションの種類に基づいてアニメーションできるようになりました。
 
 <Sandpack>
 
@@ -6211,11 +6211,11 @@ root.render(
 
 </Sandpack>
 
-### Animating Suspense Boundaries {/*animating-suspense-boundaries*/}
+### サスペンスバウンダリのアニメーション {/*animating-suspense-boundaries*/}
 
-Suspense will also activate View Transitions. 
+サスペンスもビュー遷移を起動できます。
 
-To animate the fallback to content, we can wrap `Suspense` with `<ViewTranstion>`:
+フォールバックからコンテンツへのアニメーションを行うには、`<ViewTranstion>` で `Suspense` をラップします。
 
 ```js
 <ViewTransition>
@@ -6225,7 +6225,7 @@ To animate the fallback to content, we can wrap `Suspense` with `<ViewTranstion>
 </ViewTransition>
 ```
 
-By adding this, the fallback will cross-fade into the content. Click a video and see the video info animate in:
+これを追加することで、フォールバックからコンテンツにクロスフェードするようになります。ビデオをクリックし、ビデオ情報がアニメーションで表示されるようになったことを確認してください。
 
 <Sandpack>
 
@@ -7509,7 +7509,7 @@ root.render(
 
 </Sandpack>
 
-We can also provide custom animations using an `exit` on the fallback, and `enter` on the content:
+また、フォールバック側に `exit` を、コンテンツ側に `enter` を使用して、カスタムアニメーションを提供することもできます。
 
 ```js {3,8}
 <Suspense
@@ -7525,7 +7525,7 @@ We can also provide custom animations using an `exit` on the fallback, and `ente
 </Suspense>
 ```
 
-Here's how we'll define `slide-down` and `slide-up` with CSS:
+以下のようにして CSS を使用して `slide-down` と `slide-up` を定義します。
 
 ```css {1, 6}
 ::view-transition-old(.slide-down) { 
@@ -7539,7 +7539,7 @@ Here's how we'll define `slide-down` and `slide-up` with CSS:
 }
 ```
 
-Now, the Suspense content replaces the fallback with a sliding animation:
+これで、サスペンス内のコンテンツがフォールバックを置き換える際にスライドアニメーションが使われます。
 
 <Sandpack>
 
@@ -8831,9 +8831,9 @@ root.render(
 </Sandpack>
 
 
-### Animating Lists {/*animating-lists*/}
+### リストのアニメーション {/*animating-lists*/}
 
-You can also use `<ViewTransition>` to animate lists of items as they re-order, like in a searchable list of items:
+`<ViewTransition>` を使用すれば、以下の検索可能なアイテムリストのように、アイテムの並べ替えをアニメーション化することもできます。
 
 ```js {3,5}
 <div className="videos">
@@ -8845,7 +8845,7 @@ You can also use `<ViewTransition>` to animate lists of items as they re-order, 
 </div>
 ```
 
-To activate the ViewTransition, we can use `useDeferredValue`:
+この ViewTransition を起動するために `useDeferredValue` を使用します。
 
 ```js {2}
 const [searchText, setSearchText] = useState('');
@@ -8853,7 +8853,7 @@ const deferredSearchText = useDeferredValue(searchText);
 const filteredVideos = filterVideos(videos, deferredSearchText);
 ```
 
-Now the items animate as you type in the search bar:
+これで、検索バーに入力するたびにアイテムがアニメーションします。
 
 <Sandpack>
 
@@ -10171,13 +10171,13 @@ root.render(
 
 </Sandpack>
 
-### Final result {/*final-result*/}
+### 最終結果 {/*final-result*/}
 
-By adding a few `<ViewTransition>` components and a few lines of CSS, we were able to add all the animations above into the final result.
+いくつかの `<ViewTransition>` コンポーネントと数行の CSS を追加することで、上記のすべてのアニメーションを最終結果に追加することができました。
 
-We're excited about View Transitions and think they will level up the apps you're able to build. They're ready to start trying today in the experimental channel of React releases.
+我々はビュー遷移機能に非常に期待しており、みなさんが構築できるアプリのレベルアップに役立つと考えています。React リリースの実験的チャンネルで、今日から試す準備が整っています。
 
-Let's remove the slow fade, and take a look at the final result:
+遅いフェードを削除して、最終結果を見ておきましょう。
 
 <Sandpack>
 
@@ -11457,19 +11457,19 @@ root.render(
 
 </Sandpack>
 
-If you're curious to know more about how they work, check out [How Does `<ViewTransition>` Work](/reference/react/ViewTransition#how-does-viewtransition-work) in the docs.
+これらがどのように機能するかについてもっと知りたい場合は、ドキュメントで [`<ViewTransition>` の動作の仕組み](/reference/react/ViewTransition#how-does-viewtransition-work)をチェックしてください。
 
-_For more background on how we built View Transitions, see: [#31975](https://github.com/facebook/react/pull/31975), [#32105](https://github.com/facebook/react/pull/32105), [#32041](https://github.com/facebook/react/pull/32041), [#32734](https://github.com/facebook/react/pull/32734), [#32797](https://github.com/facebook/react/pull/32797) [#31999](https://github.com/facebook/react/pull/31999), [#32031](https://github.com/facebook/react/pull/32031), [#32050](https://github.com/facebook/react/pull/32050), [#32820](https://github.com/facebook/react/pull/32820), [#32029](https://github.com/facebook/react/pull/32029), [#32028](https://github.com/facebook/react/pull/32028), and [#32038](https://github.com/facebook/react/pull/32038) by [@sebmarkbage](https://twitter.com/sebmarkbage) (thanks Seb!)._
+_ビュー遷移機能の開発経緯についての詳細は、[@sebmarkbage](https://twitter.com/sebmarkbage) による [#31975](https://github.com/facebook/react/pull/31975)、[#32105](https://github.com/facebook/react/pull/32105)、[#32041](https://github.com/facebook/react/pull/32041)、[#32734](https://github.com/facebook/react/pull/32734)、[#32797](https://github.com/facebook/react/pull/32797)、[#31999](https://github.com/facebook/react/pull/31999)、[#32031](https://github.com/facebook/react/pull/32031)、[#32050](https://github.com/facebook/react/pull/32050)、[#32820](https://github.com/facebook/react/pull/32820)、[#32029](https://github.com/facebook/react/pull/32029)、[#32028](https://github.com/facebook/react/pull/32028)、および [#32038](https://github.com/facebook/react/pull/32038) を参照してください (thanks Seb!)。_
 
 ---
 
 ## Activity {/*activity*/}
 
-In [past](/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022#offscreen) [updates](/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024#offscreen-renamed-to-activity), we shared that we were researching an API to allow components to be visually hidden and deprioritized, preserving UI state with reduced performance costs relative to unmounting or hiding with CSS.
+[過去の](/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022#offscreen) [お知らせ](/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024#offscreen-renamed-to-activity) で、コンポーネントを視覚的に隠して優先度を下げることで、UI の state を保持しつつ、アンマウントや CSS による非表示と比べてパフォーマンスコストを削減する API を研究していることをお話ししました。
 
-We're now ready to share the API and how it works, so you can start testing it in experimental React versions.
+この API とその仕組みを共有する準備が整い、React の実験的バージョンでテストを始められるようになりました。
 
-`<Activity>` is a new component to hide and show parts of the UI:
+`<Activity>` は、UI を部分的に隠したり表示したりするための新しいコンポーネントです。
 
 ```js [[1, 1, "'visible'"], [2, 1, "'hidden'"]]
 <Activity mode={isVisible ? 'visible' : 'hidden'}>
@@ -11477,25 +11477,25 @@ We're now ready to share the API and how it works, so you can start testing it i
 </Activity>
 ```
 
-When an Activity is <CodeStep step={1}>visible</CodeStep> it's rendered as normal. When an Activity is <CodeStep step={2}>hidden</CodeStep> it is unmounted, but will save its state and continue to render at a lower priority than anything visible on screen.
+Activity が <CodeStep step={1}>visible</CodeStep> のときは通常通りレンダーされます。Activity が <CodeStep step={2}>hidden</CodeStep> のときはアンマウントされますが、その state を保存し、画面上に表示されているものよりも低い優先度でレンダーを続けます。
 
-You can use `Activity` to save state for parts of the UI the user isn't using, or pre-render parts that a user is likely to use next.
+`Activity` を使用して、ユーザが使用していない UI の state を保存したり、ユーザが次に使用する可能性が高い部分を事前にレンダーしておくことが可能です。
 
-Let's look at some examples improving the View Transition examples above.
+以下で、上記のビュー遷移サンプルを改善する例を見ていきましょう。
 
 <Note>
 
-**Effects don’t mount when an Activity is hidden.**
+**Activity が非表示のとき、エフェクトはマウントされない**
 
-When an `<Activity>` is `hidden`, Effects are unmounted. Conceptually, the component is unmounted, but React saves the state for later.
+`<Activity>` が `hidden` のとき、エフェクトはアンマウントされます。概念的にはコンポーネントはアンマウントされているのですが、React は state を後で使用するために保存します。
 
-In practice, this works as expected if you have followed the [You Might Not Need an Effect](/learn/you-might-not-need-an-effect) guide. To eagerly find problematic Effects, we recommend adding [`<StrictMode>`](/reference/react/StrictMode) which will eagerly perform Activity unmounts and mounts to catch any unexpected side effects.
+実際には、[そのエフェクトは不要かも](/learn/you-might-not-need-an-effect)のガイドに従っている限りは、これは期待通りに動作します。問題のあるエフェクトを積極的に見つけるために、[`<StrictMode>`](/reference/react/StrictMode) を追加することをお勧めします。これにより、予期しない副作用をキャッチするために Activity のアンマウントとマウントが積極的に行われます。
 
 </Note>
 
-### Restoring state with Activity {/*restoring-state-with-activity*/}
+### Activity で state を復元する {/*restoring-state-with-activity*/}
 
-When a user navigates away from a page, it's common to stop rendering the old page:
+ユーザがページから離れる際は、以前のページのレンダーを止めてしまうのが一般的です。
 
 ```js {6,7}
 function App() {
@@ -11510,9 +11510,9 @@ function App() {
 }
 ```
 
-However, this means if the user goes back to the old page, all of the previous state is lost. For example, if the `<Home />` page has an `<input>` field, when the user leaves the page the `<input>` is unmounted, and all of the text they had typed is lost.
+しかしこれでは、ユーザが前のページに戻ったとき、以前のすべての state が失われていることになります。たとえば、`<Home />` ページに `<input>` フィールドがある場合、ユーザがページを離れると `<input>` はアンマウントされ、入力したすべてのテキストは消えてしまいます。
 
-Activity allows you to keep the state around as the user changes pages, so when they come back they can resume where they left off. This is done by wrapping part of the tree in `<Activity>` and toggling the `mode`:
+Activity を使用すると、ユーザがページを移動しても state を保持できるため、戻ってきたときに以前の状態から再開できます。これは、ツリーの一部を `<Activity>` でラップし、`mode` を切り替えることで実現できます。
 
 ```js {6-8}
 function App() {
@@ -11529,9 +11529,9 @@ function App() {
 }
 ```
 
-With this change, we can improve on our View Transitions example above. Before, when you searched for a video, selected one, and returned, your search filter was lost. With Activity, your search filter is restored and you can pick up where you left off.
+以前のビュー遷移の例を、これで改善できます。以前は、ビデオを検索し、選択して戻ってくると、入力された検索フィルタが失われていました。Activity を使用すると検索フィルタが復元され、以前の状態から再開できます。
 
-Try searching for a video, selecting it, and clicking "back":
+ビデオを検索し、選択したあと "Back" をクリックしてみてください。
 
 <Sandpack>
 
@@ -12848,11 +12848,11 @@ root.render(
 
 </Sandpack>
 
-### Pre-rendering with Activity {/*prerender-with-activity*/}
+### Activity によるプリレンダー {/*prerender-with-activity*/}
 
-Sometimes, you may want to prepare the next part of the UI a user is likely to use ahead of time, so it's ready by the time they are ready to use it. This is especially useful if the next route needs to suspend on data it needs to render, because you can help ensure the data is already fetched before the user navigates.
+ときには、ユーザが次に使用する可能性が高い UI を事前に準備しておき、ユーザが使用したくなったときにすぐに利用できるようにしたいことがあります。これは、次のページがレンダーに必要なデータをサスペンドする必要がある場合に特に有用です。ユーザがナビゲートする前にデータをすでに取得済みにできるからです。
 
-For example, our app currently needs to suspend to load the data for each video when you select one. We can improve this by rendering all of the pages in a hidden `<Activity>` until the user navigates:
+たとえば、現在のアプリでは、ビデオを選択する際に各ビデオの詳細データを読み込むためにサスペンスを使用しています。これを改善するために、ユーザがナビゲートする前に、すべてのページを非表示の `<Activity>` でレンダーしておきます。
 
 ```js {2,5,8}
 <ViewTransition>
@@ -12868,7 +12868,7 @@ For example, our app currently needs to suspend to load the data for each video 
 <ViewTransition>
 ```
 
-With this update, if the content on the next page has time to pre-render, it will animate in without the Suspense fallback. Click a video, and notice that the video title and description on the Details page render immediately, without a fallback:
+これにより、次のページのコンテンツをプリレンダーする余裕がある場合は、サスペンスフォールバックなしでアニメーションが表示されます。ビデオをクリックしてみて、詳細ページのビデオタイトルと説明がフォールバックなしで即座にレンダーされることを確認してください。
 
 <Sandpack>
 
@@ -14186,45 +14186,45 @@ root.render(
 
 </Sandpack>
 
-### Server-Side Rendering with Activity {/*server-side-rendering-with-activity*/}
+### Activity によるサーバサイドレンダリング {/*server-side-rendering-with-activity*/}
 
-When using Activity on a page that uses server-side rendering (SSR), there are additional optimizations.
+サーバサイドレンダリング (server-side rendering; SSR) を使用するページで Activity を使用する場合、追加の最適化が行われます。
 
-If part of the page is rendered with `mode="hidden"`, then it will not be included in the SSR response. Instead, React will schedule a client render for the content inside Activity while the rest of the page hydrates, prioritizing the visible content on screen.
+ページの一部が `mode="hidden"` でレンダーされる場合、それは SSR のレスポンスに含まれません。代わりに React は、画面上の可視コンテンツのハイドレーションを優先しつつ、Activity 内のコンテンツのクライアントレンダーをスケジュールします。
 
-For parts of the UI rendered with `mode="visible"`, React will de-prioritize hydration of content within Activity, similar to how Suspense content is hydrated at a lower priority. If the user interacts with the page, we'll prioritize hydration within the boundary if needed.
+UI の一部が `mode="visible"` でレンダーされる場合、React は Activity 内のコンテンツのハイドレーションを、優先度を下げて行います。これは、サスペンスのコンテンツが低い優先度でハイドレーションされるのと似ています。ユーザがページを操作した場合は、必要に応じてサスペンスバウンダリのハイドレーションを優先します。
 
-These are advanced use cases, but they show the additional benefits considered with Activity.
+これらは高度なユースケースですが、Activity を使用することで得られる可能性がある追加の利点となっています。
 
-### Future modes for Activity {/*future-modes-for-activity*/}
+### 将来の Activity モード {/*future-modes-for-activity*/}
 
-In the future, we may add more modes to Activity.
+将来的には、Activity にさらに多くのモードを追加するかもしれません。
 
-For example, a common use case is rendering a modal, where the previous "inactive" page is visible behind the "active" modal view. The "hidden" mode does not work for this use case because it's not visible and not included in SSR.
+たとえば、一般的なユースケースはモーダルのレンダーです。「アクティブ」なモーダルビューの背後に、「非アクティブ」なページが表示され続けます。このケースで "hidden" モードを使うと、表示自体がされず SSR にも含まれないことになるため、うまくいきません。
 
-Instead, we're considering a new mode that would keep the content visible&mdash;and included in SSR&mdash;but keep it unmounted and de-prioritize updates. This mode may also need to "pause" DOM updates, since it can be distracting to see backgrounded content updating while a modal is open.
+代わりに、コンテンツを表示したままにして SSR にも含めるが、アンマウント状態に保って更新の優先度を下げる、という新しいモードを検討しています。モーダルが開いている間に背後のコンテンツが更新されると気が散るため、このモードでは DOM の更新を「一時停止」するようにするかもしれません。
 
-Another mode we're considering for Activity is the ability to automatically destroy state for hidden Activities if there is too much memory being used. Since the component is already unmounted, it may be preferable to destroy state for the least recently used hidden parts of the app rather than consume too many resources.
+Activity の別のモードとして我々が考慮しているのは、メモリ使用量が多すぎる場合に非表示の Activity の state を自動的に破棄する機能です。コンポーネントはすでにアンマウントされているため、アプリの非表示の部分のうち最近使用されていない部分から state を破棄していくことは、リソースを過剰に消費するよりも好ましいかもしれません。
 
-These are areas we're still exploring, and we'll share more as we make progress. For more information on what Activity includes today, [check out the docs](/reference/react/Activity).
+これらはまだ探求中の領域であり、進展があれば共有します。現段階で Activity に含まれている機能の詳細は、[ドキュメントをチェックしてください](/reference/react/Activity)。
 
 ---
 
-# Features in development {/*features-in-development*/}
+# 開発中の機能 {/*features-in-development*/}
 
-We're also developing features to help solve the common problems below. 
+他にも、一般的な問題を解決するために、以下のような機能を開発中です。
 
-As we iterate on possible solutions, you may see some potential APIs we're testing being shared based on the PRs we are landing. Please keep in mind that as we try different ideas, we often change or remove different solutions after trying them out. 
+考えうるソリューションを私たちが検討していく中で、マージ予定の PR 内でテスト中の API 候補が共有されることがあります。様々なアイデアが試された後に、これらのソリューションは変更されたり削除されたりすることがよくあることをご承知おきください。
 
-When the solutions we're working on are shared too early, it can create churn and confusion in the community. To balance being transparent and limiting confusion, we're sharing the problems we're currently developing solutions for, without sharing a particular solution we have in mind. 
+私たちが取り組んでいるソリューションが時期尚早に共有されると、コミュニティに混乱を招く可能性があります。透明性を保ちつつ混乱を最小限に抑えるために、私たちは現在解決法を開発しようとしている問題点については共有しますが、具体的なソリューションについては共有しないこととします。
 
-As these features progress, we'll announce them on the blog with docs included so you can try them out. 
+これらの機能に進捗があれば、ブログでの発表とドキュメントの公開を行い、試していただけるようになる予定です。
 
-## React Performance Tracks {/*react-performance-tracks*/}
+## React パフォーマンストラック {/*react-performance-tracks*/}
 
-We're working on a new set of custom tracks to performance profilers using browser APIs that [allow adding custom tracks](https://developer.chrome.com/docs/devtools/performance/extension) to provide more information about the performance of your React app.
+現在、ブラウザ API を使用してパフォーマンスプロファイラに[カスタムのトラック (track) を追加](https://developer.chrome.com/docs/devtools/performance/extension)できる機能を開発しており、これにより React アプリケーションのパフォーマンスに関するより多くの情報を提供できるようになります。
 
-This feature is still in progress, so we're not ready to publish docs to fully release it as an experimental feature yet. You can get a sneak preview when using an experimental version of React, which will automatically add the performance tracks to profiles:
+この機能はまだ開発中でありドキュメントの準備が整っていないため、実験的機能として完全にリリースできてはいません。ですが React の実験的バージョンを使用すれば、パフォーマンストラックが自動的にプロファイルに追加されるため、一足早く試すことが可能です。
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <picture >
@@ -14237,31 +14237,31 @@ This feature is still in progress, so we're not ready to publish docs to fully r
   </picture>
 </div>
 
-There are a few known issues we plan to address such as performance, and the scheduler track not always "connecting" work across Suspended trees, so it's not quite ready to try. We're also still collecting feedback from early adopters to improve the design and usability of the tracks.
+対応予定の既知の問題がいくつか存在しています。例えば、パフォーマンスに関する問題や、スケジューラーのトラックがサスペンドされたツリー間で作業を「接続」できない場合がある、といった問題です。そのため、まだ試せる段階にはありません。また、トラックのデザインと使いやすさを改善するために、初期ユーザからのフィードバックを収集している最中です。
 
-Once we solve those issues, we'll publish experimental docs and share that it's ready to try.
+これらの問題を解決後に、実験的機能としてドキュメントを公開し、試す準備が整ったことをお知らせする予定です。
 
 ---
 
-## Automatic Effect Dependencies {/*automatic-effect-dependencies*/}
+## エフェクト依存配列の自動化 {/*automatic-effect-dependencies*/}
 
-When we released hooks, we had three motivations:
+フックをリリースしたとき、私たちには 3 つの動機がありました。
 
-- **Sharing code between components**: hooks replaced patterns like render props and higher-order components to allow you to reuse stateful logic without changing your component hierarchy.
-- **Think in terms of function, not lifecycles**: hooks let you split one component into smaller functions based on what pieces are related (such as setting up a subscription or fetching data), rather than forcing a split based on lifecycle methods.
-- **Support ahead-of-time compilation**: hooks were designed to support ahead-of-time compilation with less pitfalls causing unintentional de-optimizations caused by lifecycle methods, and limitations of classes.
+- **コンポーネント間でのコード共有**：フックがレンダープロップや高階コンポーネントといったパターンを置き換えたことで、コンポーネントの階層構造を変更せずにステートフルなロジックを再利用できるようになりました。
+- **ライフサイクルではなく関数指向で考える**：コンポーネントのコードをライフサイクルメソッドに基づいて無理矢理分割する代わりに、フックのおかげでコードの意味的な関連性（サブスクリプションの設定やデータフェッチ）に基づいて 1 つのコンポーネントをより小さな関数に分割できるようになりました。
+- **事前コンパイルのサポート**：フックは、事前コンパイルをサポートし、ライフサイクルメソッドやクラスの制限によって引き起こされる最適化漏れといった落とし穴を減らせるように設計されました。
 
-Since their release, hooks have been successful at *sharing code between components*. Hooks are now the favored way to share logic between components, and there are less use cases for render props and higher order components. Hooks have also been successful at supporting features like Fast Refresh that were not possible with class components. 
+リリース以来、フックは*コンポーネント間でのコード共有*という点では成功しています。フックは、コンポーネント間でロジックを共有するための望ましい方法となり、レンダープロップや高階コンポーネントの使用例は減少しています。フックはまた、クラスコンポーネントでは不可能だった Fast Refresh のような機能をサポートすることにも成功しています。
 
-### Effects can be hard {/*effects-can-be-hard*/}
+### エフェクトは難しい {/*effects-can-be-hard*/}
 
-Unfortunately, some hooks are still hard to think in terms of function instead of lifecycles. Effects specifically are still hard to understand and are the most common pain point we hear from developers. Last year, we spent a significant amount of time researching how Effects were used, and how those use cases could be simplified and easier to understand.
+残念ながら一部のフックは、ライフサイクルではなく関数の観点で考えることがいまだに困難です。特にエフェクトは理解しにくく、この辛さは開発者から最もよく聞かれるところとなっています。昨年私たちは、エフェクトの使われ方や、エフェクトのユースケースを簡素化し理解しやすくするための方法について、多くの時間を費やし研究を行いました。
 
-We found that often, the confusion is from using an Effect when you don't need to. The [You Might Not Need an Effect](/learn/you-might-not-need-an-effect) guide covers many cases for when Effects are not the right solution. However, even when an Effect is the right fit for a problem, Effects can still be harder to understand than class component lifecycles.
+多くの場合に混乱の原因は、必要もなくエフェクトが使われていることにあるとわかりました。[そのエフェクトは不要かも](/learn/you-might-not-need-an-effect)のガイドは、エフェクトがソリューションとして適切ではないパターンの多くをカバーしています。しかし、ある問題に対してエフェクトが適切であるという場合ですら、エフェクトはクラスコンポーネントのライフサイクルよりも理解しにくい場合があります。
 
-We believe one of the reasons for confusion is that developers to think of Effects from the _component's_ perspective (like a lifecycle), instead of the _Effects_ point of view (what the Effect does).
+混乱の一因は、開発者がエフェクトをエフェクト自体の視点（エフェクトが何をするか）ではなく、ライフサイクルのような*コンポーネント*の視点から考えてしまっていることにあると考えています。
 
-Let's look at an example [from the docs](/learn/lifecycle-of-reactive-effects#thinking-from-the-effects-perspective):
+[ドキュメントにあるこちらの例](/learn/lifecycle-of-reactive-effects#thinking-from-the-effects-perspective)を見てみましょう。
 
 ```js
 useEffect(() => {
@@ -14275,15 +14275,15 @@ useEffect(() => {
 }, [roomId]);
 ```
 
-Many users would read this code as "on mount, connect to the roomId. whenever `roomId` changes, disconnect to the old room and re-create the connection". However, this is thinking from the component's lifecycle perspective, which means you will need to think of every component lifecycle state to write the Effect correctly. This can be difficult, so it's understandable that Effects seem harder than class lifecycles when using the component perspective.
+多くのユーザはこのコードを「マウント時に `roomId` に接続し、`roomId` が変更されるたびに古いルームから切断して接続を再確立する」のように読んでしまいます。しかしこれでは、コンポーネントのライフサイクルの視点から考えてしまっています。つまり、エフェクトを正しく書くためにコンポーネントライフサイクルの全状態を考える必要があるのです。これは難しいことです。コンポーネントの視点で考えていると、エフェクトがクラスのライフサイクルよりも難しいと感じてしまうのは理解できます。
 
-### Effects without dependencies {/*effects-without-dependencies*/}
+### 依存配列のないエフェクト {/*effects-without-dependencies*/}
 
-Instead, it's better to think from the Effect's perspective. The Effect doesn't know about the component lifecycles. It only describes how to start synchronization and how to stop it. When users think of Effects in this way, their Effects tend to be easier to write, and more resilient to being started and stopped as many times as is needed.
+代わりに、エフェクトの視点から考える方がベターです。エフェクトはコンポーネントのライフサイクルについて知りません。同期を開始する方法と停止する方法が記述されているだけです。ユーザがこのようにエフェクトを考えることでエフェクトは書きやすくなり、必要次第で何度も開始・停止されることに対して、より頑強になります。
 
-We spent some time researching why Effects are thought of from the component perspective, and we think one of the reasons is the dependency array. Since you have to write it, it's right there and in your face reminding you of what you're "reacting" to and baiting you into the mental model of 'do this when these values change'.
+エフェクトをコンポーネントの視点から考えてしまう理由について時間をかけて調査し、その一因が依存配列にあると考えるようになりました。常に目の前にあって書かなければならないもののため、コードが何に「反応」しているのかを意識せざるを得ず、だから「これらの値が変わったらこれを行え」式のメンタルモデルに誘い込まれてしまうのです。
 
-When we released hooks, we knew we could make them easier to use with ahead-of-time compilation. With the React Compiler, you're now able to avoid writing `useCallback` and `useMemo` yourself in most cases. For Effects, the compiler can insert the dependencies for you:
+フックをリリースした当時から、事前コンパイルでこの使いやすやを改善できることは分かっていました。React Compiler を使用すると、ほとんどの場合、自分で `useCallback` や `useMemo` を書く必要がなくなります。エフェクトの場合、コンパイラが依存配列を自動的に挿入できるようになります。
 
 ```js
 useEffect(() => {
@@ -14295,64 +14295,64 @@ useEffect(() => {
 }); // compiler inserted dependencies. 
 ```
 
-With this code, the React Compiler can infer the dependencies for you and insert them automatically so you don't need to see or write them. With features like [the IDE extension](#compiler-ide-extension) and [`useEffectEvent`](/reference/react/experimental_useEffectEvent), we can provide a CodeLens to show you what the Compiler inserted for times you need to debug, or to optimize by removing a dependency. This helps reinforce the correct mental model for writing Effects, which can run at any time to synchronize your component or hook's state with something else.
+このコードでは、React Compiler が依存配列を自動的に推論して挿入するため、見る必要も書く必要もありません。[IDE 拡張](#compiler-ide-extension)や [`useEffectEvent`](/reference/react/experimental_useEffectEvent) のような機能を使用することで、デバッグが必要なときや依存値を削除して最適化したい時のために、コンパイラが挿入したものを表示する CodeLens を提供できます。これにより、エフェクトを書くための正しいメンタルモデルが強化され、コンポーネントやフックの state を他のものと同期させるために任意のタイミングで実行できるエフェクトが書けるようになるでしょう。
 
-Our hope is that automatically inserting dependencies is not only easier to write, but that it also makes them easier to understand by forcing you to think in terms of what the Effect does, and not in component lifecycles. 
-
----
-
-## Compiler IDE Extension {/*compiler-ide-extension*/}
-
-Earlier this week [we shared](/blog/2025/04/21/react-compiler-rc) the React Compiler release candidate, and we're working towards shipping the first SemVer stable version of the compiler in the coming months.
-
-We've also begun exploring ways to use the React Compiler to provide information that can improve understanding and debugging your code. One idea we've started exploring is a new experimental LSP-based React IDE extension powered by React Compiler, similar to the extension used in [Lauren Tan's React Conf talk](https://conf2024.react.dev/talks/5).
-
-Our idea is that we can use the compiler's static analysis to provide more information, suggestions, and optimization opportunities directly in your IDE. For example, we can provide diagnostics for code breaking the Rules of React, hovers to show if components and hooks were optimized by the compiler, or a CodeLens to see [automatically inserted Effect dependencies](#automatic-effect-dependencies).
-
-The IDE extension is still an early exploration, but we'll share our progress in future updates.
+依存配列を自動的に挿入することにより我々が期待しているのは、ただ書きやすくなるというだけのことではありません。コンポーネントのライフサイクルではなく「エフェクトが何をするのか」という視点で考えることを強制し、理解がしやすくなることを期待しています。
 
 ---
 
-## Fragment Refs {/*fragment-refs*/}
+## コンパイラの IDE 拡張 {/*compiler-ide-extension*/}
 
-Many DOM APIs like those for event management, positioning, and focus are difficult to compose when writing with React. This often leads developers to reach for Effects, managing multiple Refs, by using APIs like `findDOMNode` (removed in React 19).
+今週初めに React Compiler のリリース候補版を[共有しました](/blog/2025/04/21/react-compiler-rc)。今後の数か月でコンパイラの最初の SemVer 安定版をリリースすることを目指しています。
 
-We are exploring adding refs to Fragments that would point to a group of DOM elements, rather than just a single element. Our hope is that this will simplify managing multiple children and make it easier to write composable React code when calling DOM APIs.
+また、React Compiler を使用してコードの理解やデバッグ体験を改善するための情報を提供する方法を模索し始めました。私たちが探求し始めたアイデアのひとつは、[Lauren Tan の React Conf での講演](https://conf2024.react.dev/talks/5)で使用された拡張に似た、React Compiler によって駆動される新しい実験的な LSP ベースの React IDE 拡張です。
 
-Fragment refs are still being researched. We'll share more when we're closer to having the final API finished.
+考え方としては、IDE 内で情報やサジェスチョン、最適化候補を直接表示するために、コンパイラの静的解析を活用する、というものですです。たとえば、React のルールに違反しているコードに対する診断、コンポーネントやフックがコンパイラによって最適化されたかどうかを示すホバー、または[自動挿入されたエフェクトの依存配列](#automatic-effect-dependencies)を表示する CodeLens といったものを提供できます。
 
----
-
-## Gesture Animations {/*gesture-animations*/}
-
-We're also researching ways to enhance View Transitions to support gesture animations such as swiping to open a menu, or scroll through a photo carousel. 
-
-Gestures present new challenges for a few reasons:
-
-- **Gestures are continuous**: as you swipe the animation is tied to your finger placement time, rather than triggering and running to completion.
-- **Gestures don't complete**: when you release your finger gesture animations can run to completion, or revert to their original state (like when you only partially open a menu) depending on how far you go.
-- **Gestures invert old and new**: while you're animating, you want the page you are animating from to stay "alive" and interactive. This inverts the browser View Transition model where the "old" state is a snapshot and the "new" state is the live DOM.
-
-We believe we’ve found an approach that works well and may introduce a new API for triggering gesture transitions. For now, we're focused on shipping `<ViewTransition>`, and will revisit gestures afterward.
+IDE 拡張はまだ初期の探求段階ですが、今後の更新で進捗を共有していきます。
 
 ---
 
-## Concurrent Stores {/*concurrent-stores*/}
+## フラグメント ref {/*fragment-refs*/}
 
-When we released React 18 with concurrent rendering, we also released `useSyncExternalStore` so external store libraries that did not use React state or context could [support concurrent rendering](https://github.com/reactwg/react-18/discussions/70) by forcing a synchronous render when the store is updated.
+イベント管理、位置決め、フォーカスのために使われる DOM API の多くは、React ではうまく組み合わせて書くことが困難です。このため開発者はよく、エフェクトを使用したり、複数の ref を取り回したり、React 19 で削除された `findDOMNode` のような API を使用したりしています。
 
-Using `useSyncExternalStore` comes at a cost though, since it forces a bail out from concurrent features like transitions, and forces existing content to show Suspense fallbacks.
+フラグメントに ref を追加し、単一の DOM 要素ではなく DOM 要素のグループを参照できるようにすることを検討しています。これにより、複数の子を管理することが簡単になり、DOM API を呼び出すときにより組み合わせしやすい React コードが書きやすくなることを期待しています。
 
-Now that React 19 has shipped, we're revisiting this problem space to create a primitive to fully support concurrent external stores with the `use` API:
+フラグメント ref はまだ研究中です。最終的な API が完成に近づいたらお知らせします。
+
+---
+
+## ジェスチャーアニメーション {/*gesture-animations*/}
+
+ビュー遷移機能を強化して、メニューをスワイプして開く、またはフォトカルーセルをスクロールする、といったジェスチャーアニメーションをサポートする方法についても研究しています。
+
+ジェスチャーには以下のような幾つかの新たな課題があります。
+
+- **ジェスチャーは連続的**：スワイプの最中、アニメーションはユーザの指の位置と結びついており、起動したらただ最後まで再生されるというわけではありません。
+- **ジェスチャーは完了しない場合がある**：指を離した際にジェスチャーアニメーションは最後まで再生されるかもしれませんが、進んだ距離によっては元の状態に戻る（メニューを少しだけ開いた際のように）かもしれません。
+- **ジェスチャーでは「新」と「旧」が逆**：アニメーション中は、アニメーション元のページを「生きた」状態でインタラクティブに保ちたいはずです。ブラウザのビュー遷移モデルでは「古い」状態がスナップショットで「新しい」状態が生きた DOM ですので、動作が逆転しています。
+
+私たちはうまく機能するアプローチを発見できたと考えているため、ジェスチャー遷移をトリガする新しい API を導入するかもしれません。今のところは `<ViewTransition>` のリリースに集中していますが、その後にジェスチャーを再検討する予定です。
+
+---
+
+## 並行ストア {/*concurrent-stores*/}
+
+React 18 を並行レンダー (concurrent rendering) 機能と共にリリースした際、`useSyncExternalStore` もリリースしました。これは、React の state やコンテクストを使用しない外部ストアライブラリが、当該ストアが更新されたときに同期レンダーを強制することで、[並列レンダーをサポート](https://github.com/reactwg/react-18/discussions/70)できるようにするためのものでした。
+
+しかし `useSyncExternalStore` の使用にはコストが伴います。トランジションのような並行レンダー機能からの離脱を強制し、既存のコンテンツにサスペンスのフォールバックを表示させてしまうからです。
+
+React 19 がリリースされましたので、`use` API を使用して並行レンダー対応の外部ストアを完全にサポートするプリミティブを作成できないか、この問題領域について再検討を行っています。
 
 ```js
 const value = use(store);
 ```
 
-Our goal is to allow external state to be read during render without tearing, and to work seamlessly with all of the concurrent features React offers. 
+私たちの目標は、レンダー中に不整合 (tearing) を起こさず外部状態を読み取れるようにし、React が提供するすべての並行レンダー機能とシームレスに連携できるようにすることです。
 
-This research is still early. We'll share more, and what the new APIs will look like, when we're further along. 
+この研究はまだ初期段階です。進展があれば、どのような新しい API になるかを共有する予定です。
 
 ---
 
-_Thanks to [Aurora Scharff](https://bsky.app/profile/aurorascharff.no), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Eli White](https://twitter.com/Eli_White), [Lauren Tan](https://bsky.app/profile/no.lol), [Luna Wei](https://github.com/lunaleaps), [Matt Carroll](https://twitter.com/mattcarrollcode), [Jack Pope](https://jackpope.me), [Jason Bonta](https://threads.net/someextent), [Jordan Brown](https://github.com/jbrown215), [Jordan Eldredge](https://bsky.app/profile/capt.dev), [Mofei Zhang](https://threads.net/z_mofei), [Sebastien Lorber](https://bsky.app/profile/sebastienlorber.com), [Sebastian Markbåge](https://bsky.app/profile/sebmarkbage.calyptus.eu), and [Tim Yung](https://github.com/yungsters) for reviewing this post._
+_この投稿をレビューしていただいた [Aurora Scharff](https://bsky.app/profile/aurorascharff.no), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Eli White](https://twitter.com/Eli_White), [Lauren Tan](https://bsky.app/profile/no.lol), [Luna Wei](https://github.com/lunaleaps), [Matt Carroll](https://twitter.com/mattcarrollcode), [Jack Pope](https://jackpope.me), [Jason Bonta](https://threads.net/someextent), [Jordan Brown](https://github.com/jbrown215), [Jordan Eldredge](https://bsky.app/profile/capt.dev), [Mofei Zhang](https://threads.net/z_mofei), [Sebastien Lorber](https://bsky.app/profile/sebastienlorber.com), [Sebastian Markbåge](https://bsky.app/profile/sebmarkbage.calyptus.eu), [Tim Yung](https://github.com/yungsters) に感謝します。_

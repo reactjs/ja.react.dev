@@ -16,9 +16,9 @@ Bluesky の [@react.dev](https://bsky.app/profile/react.dev) や Twitter の [@r
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
-<BlogCard title="React Labs: View Transitions, Activity, and more" date="April 23, 2025" url="/blog/2025/04/23/react-labs-view-transitions-activity-and-more">
+<BlogCard title="React Labs: ビュー遷移、Activity、その他もろもろ" date="April 23, 2025" url="/blog/2025/04/23/react-labs-view-transitions-activity-and-more">
 
-In React Labs posts, we write about projects in active research and development. In this post, we're sharing two new experimental features that are ready to try today, and sharing other areas we're working on now ...
+React Labs 記事では、現在活発に研究・開発が行われているプロジェクトについて述べていきます。この投稿では、今すぐ試すことができる 2 つの新しい実験的機能と、現在取り組んでいる他の分野の更新情報を共有します。
 
 </BlogCard>
 
