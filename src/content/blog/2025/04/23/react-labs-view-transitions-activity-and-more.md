@@ -6215,7 +6215,7 @@ root.render(
 
 サスペンスもビュー遷移を起動できます。
 
-フォールバックからコンテンツへのアニメーションを行うには、`<ViewTranstion>` で `Suspense` をラップします。
+フォールバックからコンテンツへのアニメーションを行うには、`<ViewTransition>` で `Suspense` をラップします。
 
 ```js
 <ViewTransition>
