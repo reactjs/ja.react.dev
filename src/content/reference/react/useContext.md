@@ -38,23 +38,13 @@ function MyComponent() {
 
 #### 返り値 {/*returns*/}
 
-<<<<<<< HEAD
-`useContext` は、呼び出したコンポーネントに対応するコンテクストの値を返します。値は、ツリー内で `useContext` を呼び出したコンポーネントの上位かつ最も近い `SomeContext.Provider` に渡された `value` として決定されます。そのようなプロバイダが存在しない場合は、返り値はそのコンテクストの [`createContext`](/reference/react/createContext) に渡した `defaultValue` になります。返り値は常にコンテクストの最新の値です。React は、コンテクストに変更があると、それを読み取っているコンポーネントを自動的に再レンダーします。
-=======
-`useContext` returns the context value for the calling component. It is determined as the `value` passed to the closest `SomeContext` above the calling component in the tree. If there is no such provider, then the returned value will be the `defaultValue` you have passed to [`createContext`](/reference/react/createContext) for that context. The returned value is always up-to-date. React automatically re-renders components that read some context if it changes.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+`useContext` は、呼び出したコンポーネントに対応するコンテクストの値を返します。値は、ツリー内で `useContext` を呼び出したコンポーネントの上位かつ最も近い `SomeContext` に渡された `value` として決定されます。そのようなプロバイダが存在しない場合は、返り値はそのコンテクストの [`createContext`](/reference/react/createContext) に渡した `defaultValue` になります。返り値は常にコンテクストの最新の値です。React は、コンテクストに変更があると、それを読み取っているコンポーネントを自動的に再レンダーします。
 
 #### 注意点 {/*caveats*/}
 
-<<<<<<< HEAD
-* コンポーネントの `useContext()` 呼び出しは、*同じ*コンポーネントから返されるプロバイダの影響を受けません。対応する `<Context.Provider>` は、`useContext()` を呼び出すコンポーネントの***上*にある**必要があります。
+* コンポーネントの `useContext()` 呼び出しは、*同じ*コンポーネントから返されるプロバイダの影響を受けません。対応する `<Context>` は、`useContext()` を呼び出すコンポーネントの***上*にある**必要があります。
 * あるコンテクストのプロバイダが異なる `value` を受け取ると、当該プロバイダより下にありそのコンテクストを使用しているすべての子コンポーネントは、React によって**自動的に再レンダーされます**。前の値と次の値は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) で比較されます。[`memo`](/reference/react/memo) を使って再レンダーをスキップする場合でも、子コンポーネントがコンテクストから新しい値を受け取ることによる再レンダーは妨げられません。
 * ビルドシステムが生成する出力の中にモジュールの重複がある場合（シンボリックリンクで起こり得る場合がある）、コンテクストが壊れる可能性があります。コンテクストを介した値の受け渡しが動作するのは、コンテクストを提供するために使用する `SomeContext` と、読み込むために使用する `SomeContext` が、`===` による比較で***厳密*に同じオブジェクト**である場合のみです。
-=======
-* `useContext()` call in a component is not affected by providers returned from the *same* component. The corresponding `<Context>` **needs to be *above*** the component doing the `useContext()` call.
-* React **automatically re-renders** all the children that use a particular context starting from the provider that receives a different `value`. The previous and the next values are compared with the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. Skipping re-renders with [`memo`](/reference/react/memo) does not prevent the children receiving fresh context values.
-* If your build system produces duplicates modules in the output (which can happen with symlinks), this can break context. Passing something via context only works if `SomeContext` that you use to provide context and `SomeContext` that you use to read it are ***exactly* the same object**, as determined by a `===` comparison.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 ---
 
@@ -1359,15 +1349,9 @@ function MyApp() {
 
 これが起こる一般的な理由はいくつかあります：
 
-<<<<<<< HEAD
-1. `useContext()` を呼び出しているコンポーネントと同じ（または下位の）コンポーネントで `<SomeContext.Provider>` をレンダーしている。`<SomeContext.Provider>` を `useContext()` を呼び出すコンポーネントの*外側かつ上位*に移動してください。
-2. コンポーネントを `<SomeContext.Provider>` でラップし忘れているか、ツリー内の思っているのとは違う場所に配置してしまっている。[React DevTools](/learn/react-developer-tools) を使ってツリー階層が正しいか確認してみてください。
+1. `useContext()` を呼び出しているコンポーネントと同じ（または下位の）コンポーネントで `<SomeContext>` をレンダーしている。`<SomeContext>` を `useContext()` を呼び出すコンポーネントの*外側かつ上位*に移動してください。
+2. コンポーネントを `<SomeContext>` でラップし忘れているか、ツリー内の思っているのとは違う場所に配置してしまっている。[React DevTools](/learn/react-developer-tools) を使ってツリー階層が正しいか確認してみてください。
 3. プロバイダコンポーネントから見た `SomeContext` と、利用側のコンポーネントから見た `SomeContext` が、ビルドツールの問題により 2 つの異なるオブジェクトになっている。これは例えば、シンボリックリンクを使用している場合などに発生します。これを確認するために、それらを `window.SomeContext1` や `window.SomeContext2` のようなグローバル変数に割り当て、コンソールで `window.SomeContext1 === window.SomeContext2` が成り立つか確認してみてください。もし同一でないなら、ビルドツールのレベルで、その問題を修正する必要があります。
-=======
-1. You're rendering `<SomeContext>` in the same component (or below) as where you're calling `useContext()`. Move `<SomeContext>` *above and outside* the component calling `useContext()`.
-2. You may have forgotten to wrap your component with `<SomeContext>`, or you might have put it in a different part of the tree than you thought. Check whether the hierarchy is right using [React DevTools.](/learn/react-developer-tools)
-3. You might be running into some build issue with your tooling that causes `SomeContext` as seen from the providing component and `SomeContext` as seen by the reading component to be two different objects. This can happen if you use symlinks, for example. You can verify this by assigning them to globals like `window.SomeContext1` and `window.SomeContext2` and then checking whether `window.SomeContext1 === window.SomeContext2` in the console. If they're not the same, fix that issue on the build tool level.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 ### 違うデフォルト値を指定しているのにコンテクストから常に `undefined` が返ってくる {/*i-am-always-getting-undefined-from-my-context-although-the-default-value-is-different*/}
 
@@ -1400,8 +1384,4 @@ function MyApp() {
 </ThemeContext>
 ```
 
-<<<<<<< HEAD
-[createContext(defaultValue) で指定するデフォルト値](#specifying-a-fallback-default-value)は、ツリーの上側に**一致するプロバイダが一切存在しない場合**にのみ使用されることに注意してください。親のツリーのどこかに `<SomeContext.Provider value={undefined}>` のようなコンポーネントがあれば、`useContext(SomeContext)` を呼び出すコンポーネントはコンテクスト値として*その* `undefined` を受け取ります。
-=======
-Note that the [default value from your `createContext(defaultValue)` call](#specifying-a-fallback-default-value) is only used **if there is no matching provider above at all.** If there is a `<SomeContext value={undefined}>` component somewhere in the parent tree, the component calling `useContext(SomeContext)` *will* receive `undefined` as the context value.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+[createContext(defaultValue) で指定するデフォルト値](#specifying-a-fallback-default-value)は、ツリーの上側に**一致するプロバイダが一切存在しない場合**にのみ使用されることに注意してください。親のツリーのどこかに `<SomeContext value={undefined}>` のようなコンポーネントがあれば、`useContext(SomeContext)` を呼び出すコンポーネントはコンテクスト値として*その* `undefined` を受け取ります。
