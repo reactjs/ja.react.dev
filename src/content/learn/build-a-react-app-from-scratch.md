@@ -83,7 +83,7 @@ React エコシステムには、これらの問題に対するツールがた�
 
 以下のライブラリの使用をお勧めします。
 
-- [React Router](https://reactrouter.com/start/framework/custom)
+- [React Router](https://reactrouter.com/start/data/custom)
 - [Tanstack Router](https://tanstack.com/router/latest)
 
 
@@ -116,7 +116,7 @@ GraphQL API からデータを取得する場合、以下の使用をお勧め�
 ルートごとにコードを分割するだけでなく、バンドルやデータフェッチと統合することで、アプリの初期読み込み時間とアプリの最大可視コンテンツのレンダー時間 ([Largest Contentful Paint](https://web.dev/articles/lcp)) を短縮できます。
 
 コード分割の手順については、ビルドツールのドキュメントを参照してください。
-- [Vite のビルド最適化](https://v3.vitejs.dev/guide/features.html#build-optimizations)
+- [Vite のビルド最適化](https://vite.dev/guide/features.html#build-optimizations)
 - [Parcel のコード分割](https://parceljs.org/features/code-splitting/)
 - [Rsbuild のコード分割](https://rsbuild.dev/guide/optimization/code-splitting)
 

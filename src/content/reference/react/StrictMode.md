@@ -88,7 +88,7 @@ Strict Mode は開発中に以下のチェックを有効にします：
 
 - コンポーネントは、純粋でない (impure) レンダーによって引き起こされるバグを見つけるために、[レンダーを追加で 1 回行います](#fixing-bugs-found-by-double-rendering-in-development)。
 - コンポーネントは、エフェクトのクリーンアップし忘れによるバグを見つけるために、[エフェクトの実行を追加で 1 回行います](#fixing-bugs-found-by-re-running-effects-in-development)。
-- コンポーネントは、ref のクリーンアップし忘れによるバグを見つけるために、[ref コールバックの実行を追加で 1 回行います](#fixing-bugs-found-by-cleaning-up-and-re-attaching-dom-refs-in-development)。
+- コンポーネントは、ref のクリーンアップし忘れによるバグを見つけるために、[ref コールバックの実行を追加で 1 回行います](#fixing-bugs-found-by-re-running-ref-callbacks-in-development)。
 - コンポーネントが[非推奨の API を使っていないかチェック](#fixing-deprecation-warnings-enabled-by-strict-mode)します。
 
 **これらのチェックはすべて開発環境専用であり、本番用ビルドには影響しません。**
@@ -121,6 +121,12 @@ function App() {
 ```
 
 上記の例では、Strict Mode のチェックは `Header` と `Footer` コンポーネントに対しては実行されません。しかし、`Sidebar` と `Content`、およびそれらの中にあるすべてのコンポーネントに対しては、どれだけ深いところにあってもチェックが実行されます。
+
+<Note>
+
+`StrictMode` がアプリの一部のみで有効になっている場合、React は本番環境で起こりえる動作のみを再現します。例えば、アプリのルートで `<StrictMode>` が有効になっていない場合、初期マウント時に[エフェクトを追加で再実行](#fixing-bugs-found-by-re-running-effects-in-development)することはなくなります。親エフェクトなしに子エフェクトが二重に発火することは本番環境では起こらないためです。
+
+</Note>
 
 ---
 

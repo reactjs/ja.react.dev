@@ -16,7 +16,19 @@ Bluesky の [@react.dev](https://bsky.app/profile/react.dev) や Twitter の [@r
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
-<BlogCard title="Create React App の非推奨化" date="February 13, 2025" url="/blog/2025/02/14/sunsetting-create-react-app">
+<BlogCard title="React Labs: View Transitions, Activity, and more" date="April 23, 2025" url="/blog/2025/04/23/react-labs-view-transitions-activity-and-more">
+
+In React Labs posts, we write about projects in active research and development. In this post, we're sharing two new experimental features that are ready to try today, and sharing other areas we're working on now ...
+
+</BlogCard>
+
+<BlogCard title="React Compiler RC" date="April 21, 2025" url="/blog/2025/04/21/react-compiler-rc">
+
+We are releasing the compiler's first Release Candidate (RC) today.
+
+</BlogCard>
+
+<BlogCard title="Create React App の非推奨化" date="February 14, 2025" url="/blog/2025/02/14/sunsetting-create-react-app">
 
 本日、新規アプリに対して Create React App を非推奨とし、既存のアプリにはフレームワークへの移行、または Vite、Parcel、RSBuild などのビルドツールへの移行を推奨します。また、フレームワークがプロジェクトに適していない場合や独自のフレームワークを構築したい場合、あるいは React がどのように動作するかを学ぶためにゼロから React アプリを構築したい場合のためのドキュメントも提供します。
 

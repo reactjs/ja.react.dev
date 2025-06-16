@@ -29,4 +29,4 @@ Stack Overflow は、コードレベルの質問をしたい場合や、特定�
 
 ## ニュース {/*news*/}
 
-React の最新ニュースについては、[Twitter の **@reactjs**](https://twitter.com/reactjs) と、このウェブサイト上の[公式 React ブログ](/blog/)をフォローしてください。
+React の最新ニュースについては、[Twitter の **@reactjs**](https://twitter.com/reactjs)、[Bluesky の **@react.dev**](https://bsky.app/profile/react.dev) や、このウェブサイトの[公式 React ブログ](/blog/)をフォローしてください。
