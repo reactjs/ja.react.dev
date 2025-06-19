@@ -12,8 +12,8 @@
       "skipBreadcrumb": true,
       "routes": [
         {
-          "title": "React Labs: View Transitions, Activity, and more",
-          "titleForHomepage": "View Transitions and Activity",
+          "title": "React Labs: ビュー遷移、Activity、その他もろもろ",
+          "titleForHomepage": "ビュー遷移と Activity",
           "icon": "blog",
           "date": "April 23, 2025",
           "path": "/blog/2025/04/23/react-labs-view-transitions-activity-and-more"
