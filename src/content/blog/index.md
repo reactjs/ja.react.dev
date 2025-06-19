@@ -28,9 +28,9 @@ We are releasing the compiler's first Release Candidate (RC) today.
 
 </BlogCard>
 
-<BlogCard title="Sunsetting Create React App" date="February 14, 2025" url="/blog/2025/02/14/sunsetting-create-react-app">
+<BlogCard title="Create React App の非推奨化" date="February 14, 2025" url="/blog/2025/02/14/sunsetting-create-react-app">
 
-Today, we’re deprecating Create React App for new apps, and encouraging existing apps to migrate to a framework, or to migrate to a build tool like Vite, Parcel, or RSBuild. We’re also providing docs for when a framework isn’t a good fit for your project, you want to build your own framework, or you just want to learn how React works by building a React app from scratch ...
+本日、新規アプリに対して Create React App を非推奨とし、既存のアプリにはフレームワークへの移行、または Vite、Parcel、RSBuild などのビルドツールへの移行を推奨します。また、フレームワークがプロジェクトに適していない場合や独自のフレームワークを構築したい場合、あるいは React がどのように動作するかを学ぶためにゼロから React アプリを構築したい場合のためのドキュメントも提供します。
 
 </BlogCard>
 
