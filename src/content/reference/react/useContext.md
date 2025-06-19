@@ -38,11 +38,11 @@ function MyComponent() {
 
 #### 返り値 {/*returns*/}
 
-`useContext` は、呼び出したコンポーネントに対応するコンテクストの値を返します。値は、ツリー内で `useContext` を呼び出したコンポーネントの上位かつ最も近い `SomeContext.Provider` に渡された `value` として決定されます。そのようなプロバイダが存在しない場合は、返り値はそのコンテクストの [`createContext`](/reference/react/createContext) に渡した `defaultValue` になります。返り値は常にコンテクストの最新の値です。React は、コンテクストに変更があると、それを読み取っているコンポーネントを自動的に再レンダーします。
+`useContext` は、呼び出したコンポーネントに対応するコンテクストの値を返します。値は、ツリー内で `useContext` を呼び出したコンポーネントの上位かつ最も近い `SomeContext` に渡された `value` として決定されます。そのようなプロバイダが存在しない場合は、返り値はそのコンテクストの [`createContext`](/reference/react/createContext) に渡した `defaultValue` になります。返り値は常にコンテクストの最新の値です。React は、コンテクストに変更があると、それを読み取っているコンポーネントを自動的に再レンダーします。
 
 #### 注意点 {/*caveats*/}
 
-* コンポーネントの `useContext()` 呼び出しは、*同じ*コンポーネントから返されるプロバイダの影響を受けません。対応する `<Context.Provider>` は、`useContext()` を呼び出すコンポーネントの***上*にある**必要があります。
+* コンポーネントの `useContext()` 呼び出しは、*同じ*コンポーネントから返されるプロバイダの影響を受けません。対応する `<Context>` は、`useContext()` を呼び出すコンポーネントの***上*にある**必要があります。
 * あるコンテクストのプロバイダが異なる `value` を受け取ると、当該プロバイダより下にありそのコンテクストを使用しているすべての子コンポーネントは、React によって**自動的に再レンダーされます**。前の値と次の値は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) で比較されます。[`memo`](/reference/react/memo) を使って再レンダーをスキップする場合でも、子コンポーネントがコンテクストから新しい値を受け取ることによる再レンダーは妨げられません。
 * ビルドシステムが生成する出力の中にモジュールの重複がある場合（シンボリックリンクで起こり得る場合がある）、コンテクストが壊れる可能性があります。コンテクストを介した値の受け渡しが動作するのは、コンテクストを提供するために使用する `SomeContext` と、読み込むために使用する `SomeContext` が、`===` による比較で***厳密*に同じオブジェクト**である場合のみです。
 
@@ -70,9 +70,9 @@ function Button() {
 ```js [[1, 3, "ThemeContext"], [2, 3, "\\"dark\\""], [1, 5, "ThemeContext"]]
 function MyPage() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Form />
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }
 
@@ -98,9 +98,9 @@ const ThemeContext = createContext(null);
 
 export default function MyApp() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Form />
-    </ThemeContext.Provider>
+    </ThemeContext>
   )
 }
 
@@ -183,14 +183,14 @@ function Button({ children }) {
 function MyPage() {
   const [theme, setTheme] = useState('dark');
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext value={theme}>
       <Form />
       <Button onClick={() => {
         setTheme('light');
       }}>
         Switch to light theme
       </Button>
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }
 ```
@@ -213,7 +213,7 @@ const ThemeContext = createContext(null);
 export default function MyApp() {
   const [theme, setTheme] = useState('light');
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext value={theme}>
       <Form />
       <label>
         <input
@@ -225,7 +225,7 @@ export default function MyApp() {
         />
         Use dark mode
       </label>
-    </ThemeContext.Provider>
+    </ThemeContext>
   )
 }
 
@@ -317,14 +317,14 @@ const CurrentUserContext = createContext(null);
 export default function MyApp() {
   const [currentUser, setCurrentUser] = useState(null);
   return (
-    <CurrentUserContext.Provider
+    <CurrentUserContext
       value={{
         currentUser,
         setCurrentUser
       }}
     >
       <Form />
-    </CurrentUserContext.Provider>
+    </CurrentUserContext>
   );
 }
 
@@ -411,8 +411,8 @@ export default function MyApp() {
   const [theme, setTheme] = useState('light');
   const [currentUser, setCurrentUser] = useState(null);
   return (
-    <ThemeContext.Provider value={theme}>
-      <CurrentUserContext.Provider
+    <ThemeContext value={theme}>
+      <CurrentUserContext
         value={{
           currentUser,
           setCurrentUser
@@ -429,8 +429,8 @@ export default function MyApp() {
           />
           Use dark mode
         </label>
-      </CurrentUserContext.Provider>
-    </ThemeContext.Provider>
+      </CurrentUserContext>
+    </ThemeContext>
   )
 }
 
@@ -596,16 +596,16 @@ export default function MyApp() {
 function MyProviders({ children, theme, setTheme }) {
   const [currentUser, setCurrentUser] = useState(null);
   return (
-    <ThemeContext.Provider value={theme}>
-      <CurrentUserContext.Provider
+    <ThemeContext value={theme}>
+      <CurrentUserContext
         value={{
           currentUser,
           setCurrentUser
         }}
       >
         {children}
-      </CurrentUserContext.Provider>
-    </ThemeContext.Provider>
+      </CurrentUserContext>
+    </ThemeContext>
   );
 }
 
@@ -775,11 +775,11 @@ export function TasksProvider({ children }) {
   );
 
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
         {children}
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 
@@ -978,9 +978,9 @@ export default function MyApp() {
   const [theme, setTheme] = useState('light');
   return (
     <>
-      <ThemeContext.Provider value={theme}>
+      <ThemeContext value={theme}>
         <Form />
-      </ThemeContext.Provider>
+      </ThemeContext>
       <Button onClick={() => {
         setTheme(theme === 'dark' ? 'light' : 'dark');
       }}>
@@ -1067,13 +1067,13 @@ function Button({ children, onClick }) {
 異なる値を持つプロバイダでツリーの一部をラップすることにより、その部分のコンテクストを上書きできます。
 
 ```js {3,5}
-<ThemeContext.Provider value="dark">
+<ThemeContext value="dark">
   ...
-  <ThemeContext.Provider value="light">
+  <ThemeContext value="light">
     <Footer />
-  </ThemeContext.Provider>
+  </ThemeContext>
   ...
-</ThemeContext.Provider>
+</ThemeContext>
 ```
 
 プロバイダのネストと上書きは必要なだけ行うことができます。
@@ -1093,9 +1093,9 @@ const ThemeContext = createContext(null);
 
 export default function MyApp() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Form />
-    </ThemeContext.Provider>
+    </ThemeContext>
   )
 }
 
@@ -1104,9 +1104,9 @@ function Form() {
     <Panel title="Welcome">
       <Button>Sign up</Button>
       <Button>Log in</Button>
-      <ThemeContext.Provider value="light">
+      <ThemeContext value="light">
         <Footer />
-      </ThemeContext.Provider>
+      </ThemeContext>
     </Panel>
   );
 }
@@ -1230,9 +1230,9 @@ export default function Section({ children }) {
   const level = useContext(LevelContext);
   return (
     <section className="section">
-      <LevelContext.Provider value={level + 1}>
+      <LevelContext value={level + 1}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
@@ -1302,9 +1302,9 @@ function MyApp() {
   }
 
   return (
-    <AuthContext.Provider value={{ currentUser, login }}>
+    <AuthContext value={{ currentUser, login }}>
       <Page />
-    </AuthContext.Provider>
+    </AuthContext>
   );
 }
 ```
@@ -1330,9 +1330,9 @@ function MyApp() {
   }), [currentUser, login]);
 
   return (
-    <AuthContext.Provider value={contextValue}>
+    <AuthContext value={contextValue}>
       <Page />
-    </AuthContext.Provider>
+    </AuthContext>
   );
 }
 ```
@@ -1349,8 +1349,8 @@ function MyApp() {
 
 これが起こる一般的な理由はいくつかあります：
 
-1. `useContext()` を呼び出しているコンポーネントと同じ（または下位の）コンポーネントで `<SomeContext.Provider>` をレンダーしている。`<SomeContext.Provider>` を `useContext()` を呼び出すコンポーネントの*外側かつ上位*に移動してください。
-2. コンポーネントを `<SomeContext.Provider>` でラップし忘れているか、ツリー内の思っているのとは違う場所に配置してしまっている。[React DevTools](/learn/react-developer-tools) を使ってツリー階層が正しいか確認してみてください。
+1. `useContext()` を呼び出しているコンポーネントと同じ（または下位の）コンポーネントで `<SomeContext>` をレンダーしている。`<SomeContext>` を `useContext()` を呼び出すコンポーネントの*外側かつ上位*に移動してください。
+2. コンポーネントを `<SomeContext>` でラップし忘れているか、ツリー内の思っているのとは違う場所に配置してしまっている。[React DevTools](/learn/react-developer-tools) を使ってツリー階層が正しいか確認してみてください。
 3. プロバイダコンポーネントから見た `SomeContext` と、利用側のコンポーネントから見た `SomeContext` が、ビルドツールの問題により 2 つの異なるオブジェクトになっている。これは例えば、シンボリックリンクを使用している場合などに発生します。これを確認するために、それらを `window.SomeContext1` や `window.SomeContext2` のようなグローバル変数に割り当て、コンソールで `window.SomeContext1 === window.SomeContext2` が成り立つか確認してみてください。もし同一でないなら、ビルドツールのレベルで、その問題を修正する必要があります。
 
 ### 違うデフォルト値を指定しているのにコンテクストから常に `undefined` が返ってくる {/*i-am-always-getting-undefined-from-my-context-although-the-default-value-is-different*/}
@@ -1359,9 +1359,9 @@ function MyApp() {
 
 ```js {1,2}
 // 🚩 Doesn't work: no value prop
-<ThemeContext.Provider>
+<ThemeContext>
    <Button />
-</ThemeContext.Provider>
+</ThemeContext>
 ```
 
 `value` を指定し忘れた場合、それは `value={undefined}` を渡すのと同じです。
@@ -1370,18 +1370,18 @@ function MyApp() {
 
 ```js {1,2}
 // 🚩 Doesn't work: prop should be called "value"
-<ThemeContext.Provider theme={theme}>
+<ThemeContext theme={theme}>
    <Button />
-</ThemeContext.Provider>
+</ThemeContext>
 ```
 
 どちらの場合も、React からの警告がコンソールに表示されるはずです。修正するには、props として `value` を使います：
 
 ```js {1,2}
 // ✅ Passing the value prop
-<ThemeContext.Provider value={theme}>
+<ThemeContext value={theme}>
    <Button />
-</ThemeContext.Provider>
+</ThemeContext>
 ```
 
-[createContext(defaultValue) で指定するデフォルト値](#specifying-a-fallback-default-value)は、ツリーの上側に**一致するプロバイダが一切存在しない場合**にのみ使用されることに注意してください。親のツリーのどこかに `<SomeContext.Provider value={undefined}>` のようなコンポーネントがあれば、`useContext(SomeContext)` を呼び出すコンポーネントはコンテクスト値として*その* `undefined` を受け取ります。
+[createContext(defaultValue) で指定するデフォルト値](#specifying-a-fallback-default-value)は、ツリーの上側に**一致するプロバイダが一切存在しない場合**にのみ使用されることに注意してください。親のツリーのどこかに `<SomeContext value={undefined}>` のようなコンポーネントがあれば、`useContext(SomeContext)` を呼び出すコンポーネントはコンテクスト値として*その* `undefined` を受け取ります。
