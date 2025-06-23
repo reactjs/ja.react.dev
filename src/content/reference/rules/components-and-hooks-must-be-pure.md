@@ -206,8 +206,13 @@ function ProductDetailPage({ product }) {
 
 props と state の値は、レンダーが終わってから更新されるスナップショットと考えることができます。したがって props や state 変数を直接書き換えることはありません。代わりに新しい props を渡すか、あるいはセッタ関数を使用して React に state をコンポーネントの次回レンダー時に更新する必要があると伝えます。
 
+<<<<<<< HEAD
 ### props を書き換えない {/*props*/}
 props はイミュータブルです。props を変更すると、アプリケーションが一貫性のない出力を生成し、状況によって動作したりしなかったりするためデバッグが困難になるからです。
+=======
+### Don't mutate Props {/*props*/}
+Props are immutable because if you mutate them, the application will produce inconsistent output, which can be hard to debug as it may or may not work depending on the circumstances.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 ```js {2}
 function Post({ item }) {
@@ -307,7 +312,11 @@ function useIconStyle(icon) {
 }
 ```
 
+<<<<<<< HEAD
 フックの引数を書き換えた場合、カスタムフック内のメモ化が正しく動作しなくなります。これを避けることが重要です。
+=======
+If you were to mutate the Hook's arguments, the custom hook's memoization will become incorrect,  so it's important to avoid doing that.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 ```js {4}
 style = useIconStyle(icon);         // `style` is memoized based on `icon`
@@ -327,7 +336,11 @@ style = useIconStyle(icon);         // new value of `style` is calculated
 
 ## JSX に渡された値はイミュータブル {/*values-are-immutable-after-being-passed-to-jsx*/}
 
+<<<<<<< HEAD
 JSX で使用された後に値を書き換えてはいけません。ミューテーションは JSX が作成される前に行ってください。
+=======
+Don't mutate values after they've been used in JSX. Move the mutation to before the JSX is created.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 式として JSX を使用する際、React はコンポーネントのレンダーが完了する前に JSX を先行して評価してしまうかもしれません。つまり JSX に渡された後で値を変更した場合、React がコンポーネントの出力を更新する必要があることを認識しないため、古い UI が表示され続ける可能性があるということです。
 
