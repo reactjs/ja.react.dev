@@ -69,11 +69,7 @@ app.use('/', async (request, response) => {
 
 #### 注意点 {/*caveats*/}
 
-<<<<<<< HEAD
 プリレンダー中に `nonce` オプションは利用できません。nonce はリクエストごとに一意である必要があり、[CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP) でアプリケーションを保護するために nonce を使用する場合、プリレンダー自体に nonce 値を含めることは不適切かつ危険です。
-=======
-`nonce` is not an available option when prerendering. Nonces must be unique per request and if you use nonces to secure your application with [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP) it would be inappropriate and insecure to include the nonce value in the prerender itself.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 <Note>
 
@@ -323,9 +319,4 @@ async function renderToString() {
 
 `prerenderToNodeStream` の返り値は解決する前に、全サスペンスバウンダリが解決することも含む、アプリ全体のレンダーの終了を待機します。これは事前静的サイト生成 (SSG) のために設計されているものであり、コンテンツを読み込みながらのストリーミングをサポートしません。
 
-<<<<<<< HEAD
 コンテンツを読み込みながらストリームしたい場合は、サーバレンダー API である [renderToReadableStream](/reference/react-dom/server/renderToReadableStream) などを使用してください。
- 
-=======
-To stream content as it loads, use a streaming server render API like [renderToPipeableStream](/reference/react-dom/server/renderToPipeableStream).
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91

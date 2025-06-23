@@ -38,22 +38,15 @@ const ThemeContext = createContext('light');
 
 `createContext` はコンテクストオブジェクトを返します。
 
-<<<<<<< HEAD
-**コンテクストオブジェクト自体は情報を持っていません**。他のコンポーネントが*どの*コンテクストを読み取るか、または提供するかを表します。通常、上位のコンポーネントで [`SomeContext.Provider`](#provider) を使用してコンテクストの値を指定し、下位のコンポーネントで [`useContext(SomeContext)`](/reference/react/useContext) を呼び出してコンテクストを読み取ります。コンテクストオブジェクトにはいくつかのプロパティがあります：
+**コンテクストオブジェクト自体は情報を持っていません**。他のコンポーネントが*どの*コンテクストを読み取るか、または提供するかを表します。通常、上位のコンポーネントで [`SomeContext`](#provider) を使用してコンテクストの値を指定し、下位のコンポーネントで [`useContext(SomeContext)`](/reference/react/useContext) を呼び出してコンテクストを読み取ります。コンテクストオブジェクトにはいくつかのプロパティがあります：
 
-* `SomeContext.Provider` では、コンポーネントにコンテクストの値を提供できます。
+* `SomeContext` で、コンポーネントにコンテクストの値を提供できます。
 * `SomeContext.Consumer` は、コンテクストの値を読み取るための方法ですが、あまり使用されません。
-=======
-**The context object itself does not hold any information.** It represents _which_ context other components read or provide. Typically, you will use [`SomeContext`](#provider) in components above to specify the context value, and call [`useContext(SomeContext)`](/reference/react/useContext) in components below to read it. The context object has a few properties:
-
-* `SomeContext` lets you provide the context value to components.
-* `SomeContext.Consumer` is an alternative and rarely used way to read the context value.
-* `SomeContext.Provider` is a legacy way to provide the context value before React 19.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+* `SomeContext.Provider` は、React 19 より前のバージョンでコンテクストの値を提供するためのレガシーな記法です。
 
 ---
 
-### `SomeContext` Provider {/*provider*/}
+### `SomeContext` プロバイダ {/*provider*/}
 
 コンポーネントをコンテクストプロバイダでラップすると、内部のコンポーネントに対してこのコンテクストの値を指定できます。
 
@@ -69,19 +62,15 @@ function App() {
 }
 ```
 
-<<<<<<< HEAD
-#### props {/*provider-props*/}
-=======
 <Note>
 
-Starting in React 19, you can render `<SomeContext>` as a provider. 
+React 19 以降では、`<SomeContext>` 自体をプロバイダとしてレンダーできます。
 
-In older versions of React, use `<SomeContext.Provider>`.
+以前のバージョンでは、代わりに `<SomeContext.Provider>` を使用してください。
 
 </Note>
 
-#### Props {/*provider-props*/}
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+#### props {/*provider-props*/}
 
 * `value`: このプロバイダの内側（深さに関わらず）にあるコンポーネントがコンテクストを読み取る際に、渡したい値です。コンテクストの値は任意の型にすることができます。プロバイダ内で [`useContext(SomeContext)`](/reference/react/useContext) を呼び出しているコンポーネントは、それより上位かつ最も内側にある対応するコンテクストプロバイダの `value` を受け取ります。
 
@@ -233,9 +222,4 @@ const ThemeContext = createContext('light');
 
 この値は決して変わりません。React は、対応するプロバイダを上位のコンポーネントで見つけられない場合にのみ、この値をフォールバックとして使用します。
 
-<<<<<<< HEAD
 コンテクストを時間の経過とともに変化させるには、[state を追加し、コンポーネントをコンテクストプロバイダでラップ](/reference/react/useContext#updating-data-passed-via-context)します。
-
-=======
-To make context change over time, [add state and wrap components in a context provider.](/reference/react/useContext#updating-data-passed-via-context)
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91

@@ -464,11 +464,7 @@ export default function Toggle() {
 
 #### デバウンスの修正 {/*fix-debouncing*/}
 
-<<<<<<< HEAD
-この例では、すべてのボタンクリックハンドラが ["デバウンス (debounce)"](https://redd.one/blog/debounce-vs-throttle) されています。この意味を確認するために、ボタンのうちの 1 つを押してみてください。メッセージが 1 秒後に表示されることに気付くでしょう。メッセージを待っている間にボタンを押すと、タイマがリセットされます。ですので、同じボタンを素早く何度もクリックし続けると、メッセージはクリックを*やめた* 1 秒後まで表示されません。デバウンスにより、ユーザが「操作をやめる」まであるアクションを遅らせることができます。
-=======
-In this example, all button click handlers are ["debounced".](https://kettanaito.com/blog/debounce-vs-throttle) To see what this means, press one of the buttons. Notice how the message appears a second later. If you press the button while waiting for the message, the timer will reset. So if you keep clicking the same button fast many times, the message won't appear until a second *after* you stop clicking. Debouncing lets you delay some action until the user "stops doing things".
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+この例では、すべてのボタンクリックハンドラが ["デバウンス (debounce)"](https://kettanaito.com/blog/debounce-vs-throttle) されています。この意味を確認するために、ボタンのうちの 1 つを押してみてください。メッセージが 1 秒後に表示されることに気付くでしょう。メッセージを待っている間にボタンを押すと、タイマがリセットされます。ですので、同じボタンを素早く何度もクリックし続けると、メッセージはクリックを*やめた* 1 秒後まで表示されません。デバウンスにより、ユーザが「操作をやめる」まであるアクションを遅らせることができます。
 
 この例は動作していますが、意図した通りではありません。ボタンが独立していないのです。問題を確認するために、ボタンのうちの 1 つをクリックし、すぐに別のボタンをクリックしてみてください。遅延の後、両方のボタンのメッセージが表示されることを期待するでしょう。しかし、最後のボタンのメッセージだけが表示され、最初のボタンのメッセージは失われてしまいます。
 
