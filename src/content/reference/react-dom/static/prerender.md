@@ -68,7 +68,11 @@ async function handler(request) {
 
 #### 注意点 {/*caveats*/}
 
+<<<<<<< HEAD
 プリレンダー中に `nonce` オプションは利用できません。nonce はリクエストごとに一意である必要があり、[CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP) でアプリケーションを保護するために nonce を使用する場合、プリレンダー自体に nonce 値を含めることは不適切かつ危険です。
+=======
+`nonce` is not an available option when prerendering. Nonces must be unique per request and if you use nonces to secure your application with [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP) it would be inappropriate and insecure to include the nonce value in the prerender itself.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 
 <Note>
@@ -231,7 +235,7 @@ async function renderToString() {
   const {prelude} = await prerender(<App />, {
     bootstrapScripts: ['/main.js']
   });
-  
+
   const reader = prelude.getReader();
   let content = '';
   while (true) {
@@ -317,7 +321,13 @@ async function renderToString() {
 
 ### アプリ全体がレンダーされるまでストリームが始まらない {/*my-stream-doesnt-start-until-the-entire-app-is-rendered*/}
 
+<<<<<<< HEAD
 `prerender` の返り値は解決する前に、全サスペンスバウンダリが解決することも含む、アプリ全体のレンダーの終了を待機します。これは事前静的サイト生成 (SSG) のために設計されているものであり、コンテンツを読み込みながらのストリーミングをサポートしません。
 
 コンテンツを読み込みながらストリームしたい場合は、サーバレンダー API である [renderToReadableStream](/reference/react-dom/server/renderToReadableStream) などを使用してください。
  
+=======
+The `prerender` response waits for the entire app to finish rendering, including waiting for all Suspense boundaries to resolve, before resolving. It is designed for static site generation (SSG) ahead of time and does not support streaming more content as it loads.
+
+To stream content as it loads, use a streaming server render API like [renderToReadableStream](/reference/react-dom/server/renderToReadableStream).
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
