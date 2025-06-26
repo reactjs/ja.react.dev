@@ -61,7 +61,7 @@ import {unstable_Activity as Activity} from 'react';
 
 - hidden の間、`<Activity>` の `children` はページ上で非表示になります。
 - `<Activity>` は、"visible" から "hidden" に切り替わる際、React の state や DOM の状態を破棄することなくすべてのエフェクトをアンマウントします。これは、マウント時に一度だけ実行されることが期待されるエフェクトであっても、"hidden" から "visible" に切り替わる際に再度実行されることを意味します。概念的には、"hidden" 状態の Activity はアンマウントされるが破棄されてもいないということです。この挙動による予期せぬ副作用をキャッチするために [`<StrictMode>`](/reference/react/StrictMode) を使用することをお勧めします。
-- `<ViewTransition>` と共に使用すると、トランジションで表示される非表示の Activity は "enter" アニメーションを起動にします。トランジションで非表示になる表示中の Activity は "exit" アニメーションを起動します。
+- `<ViewTransition>` と共に使用すると、トランジションで表示される非表示の Activity は "enter" アニメーションを起動します。トランジションで非表示になる表示中の Activity は "exit" アニメーションを起動します。
 - `<Activity mode="hidden">` でラップされた UI は、SSR のレスポンスに含まれません。
 - `<Activity mode="visible">` でラップされた UI は、他のコンテンツよりも低い優先度でハイドレーションされます。
 
