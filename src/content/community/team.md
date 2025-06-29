@@ -27,7 +27,7 @@ React コアチームのメンバーは、コアコンポーネントの API、R
 </TeamMember>
 
 <TeamMember name="Hendrik Liebau" permalink="hendrik-liebau" photo="/images/team/hendrik.jpg" github="unstubbable" bsky="unstubbable.bsky.social" twitter="unstubbable" title="Engineer at Vercel">
-    Hendrik の技術者としての歩みは、90 年代後半に Netscape Communicator で初めてウェブサイトを構築したことから始まりました。コンピュータサイエンスの学位を取得し、デジタル製作会社で働いた後、React Server Components バンドルラとライブラリを構築し、Next.js チームに加入しました。仕事以外での趣味はサイクリングと自宅の作業場でのもの作りです。
+    Hendrik の技術者としての歩みは、90 年代後半に Netscape Communicator で初めてウェブサイトを構築したことから始まりました。コンピュータサイエンスの学位を取得し、デジタル製作会社で働いた後、React Server Components バンドラとライブラリを構築し、Next.js チームに加入しました。仕事以外での趣味はサイクリングと自宅の作業場でのもの作りです。
 </TeamMember>
 
 <TeamMember name="Jack Pope" permalink="jack-pope" photo="/images/team/jack-pope.jpg" github="jackpope" personal="jackpope.me" title="Engineer at Meta">
@@ -83,7 +83,7 @@ React コアチームのメンバーは、コアコンポーネントの API、R
 </TeamMember>
 
 <TeamMember name="Sebastian Silbermann" permalink="sebastian-silbermann" photo="/images/team/sebsilbermann.jpg" github="eps1lon" twitter="sebsilbermann" threads="sebsilbermann" title="Engineer at Vercel">
-    Sebastian は、授業中に遊んでいたブラウザゲームをより楽しくするためにプログラミングを学びました。それはいずれ、オープンソースコードに可能な限りの貢献をすることにつながりました。コーディング以外の時間では、彼は React コミュニティにいるほかの Sebastian や Zilberman と混同されないために頑張っています。
+    Sebastian は、授業中に遊んでいたブラウザゲームをより楽しくするためにプログラミングを学びました。それはいずれ、オープンソースコードに可能な限りの貢献をすることにつながりました。コーディング以外の時間では、彼は React コミュニティにいるほかの Sebastian や Zilberman と混同されないように頑張っています。
 </TeamMember>
 
 <TeamMember name="Seth Webster" permalink="seth-webster" photo="/images/team/seth.jpg" github="sethwebster" twitter="sethwebster" threads="sethwebster" personal="sethwebster.com" title="Engineering Manager at Meta">
