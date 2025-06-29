@@ -73,7 +73,7 @@ app.use('/', (request, response) => {
 });
 ```
 
-これにより、React コンポーネントの初期の非インタラクティブな HTML 出力が生成されます。クライアント側では、サーバーが生成した HTML の*ハイドレーション*を行い操作可能にするために、[`hydrateRoot`](/reference/react-dom/client/hydrateRoot) を呼び出す必要があります。
+これにより、React コンポーネントの初期の非インタラクティブな HTML 出力が生成されます。クライアント側では、サーバが生成した HTML の*ハイドレーション*を行い操作可能にするために、[`hydrateRoot`](/reference/react-dom/client/hydrateRoot) を呼び出す必要があります。
 
 
 <Pitfall>

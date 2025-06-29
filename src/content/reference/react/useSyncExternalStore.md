@@ -326,7 +326,7 @@ function subscribe(callback) {
 
 ---
 
-### サーバーレンダリングのサポートを追加する {/*adding-support-for-server-rendering*/}
+### サーバレンダリングのサポートを追加する {/*adding-support-for-server-rendering*/}
 
 React アプリが[サーバレンダリング](/reference/react-dom/server)を使用している場合、React コンポーネントは初期 HTML を生成するためにブラウザ環境外でも実行されます。これにより、外部ストアへの接続に関するいくつかの課題が生じます。
 
