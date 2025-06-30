@@ -4,7 +4,7 @@ title: React 関連動画
 
 <Intro>
 
-React および React のエコシステムについて説明するための動画を紹介します。
+React および React のエコシステムについて説明している動画を紹介します。
 
 </Intro>
 
@@ -52,7 +52,7 @@ React 18 では、エキスパートや開発者、ライブラリメンテナ�
 
 ### メモ化不要の React {/*react-without-memo*/}
 
-より将来に目を向けた話として、[Xuan Huang (黄玄)](https://twitter.com/Huxpro) は、React Labs が行っている自動メモ化コンパイラに関する研究の現状についてお話ししました。この発表とコンパイラのプロタイプについての詳細・デモは以下でご覧ください。
+より将来に目を向けた話として、[Xuan Huang (黄玄)](https://twitter.com/Huxpro) は、React Labs が行っている自動メモ化コンパイラに関する研究の現状についてお話ししました。この発表とコンパイラのプロトタイプについての詳細・デモは以下でご覧ください。
 
 <YouTubeIframe src="https://www.youtube.com/embed/lGEMwh32soc" title="YouTube video player" />
 
