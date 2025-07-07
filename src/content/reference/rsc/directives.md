@@ -10,7 +10,11 @@ title: "ディレクティブ"
 
 <Intro>
 
+<<<<<<< HEAD
 ディレクティブによって、[React Server Components 互換バンドラ](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)に指示を与えます。
+=======
+Directives provide instructions to [bundlers compatible with React Server Components](/learn/start-a-new-react-project#full-stack-frameworks).
+>>>>>>> 341c312916e1b657262bbe14b134a6f1779fecf1
 
 </Intro>
 
