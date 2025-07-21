@@ -41,8 +41,13 @@ March 16, 2023 by [Dan Abramov](https://bsky.app/profile/danabra.mov) and [Rache
 
 **新しいドキュメントでは、最初からフックを用いて React を学びます**。ドキュメントは主に 2 つのセクションに分かれています。
 
+<<<<<<< HEAD
 * **[React を学ぶ](/learn)** は、ゼロから React を学ぶ自己学習型のコースです。
 * **[API リファレンス](/reference)** では、すべての React API の詳細と使い方のサンプルが提供されています。
+=======
+* **[Learn React](/learn)** is a self-paced course that teaches React from scratch.
+* **[API Reference](/reference/react)** provides the details and usage examples for every React API.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 それぞれのセクションで見ることができる内容を詳しく見ていきましょう。
 
@@ -607,7 +612,11 @@ button { display: block; margin-top: 10px; }
 
 </Recipes>
 
+<<<<<<< HEAD
 一部の API ページには、（よくある問題に対する）[トラブルシューティング](/reference/react/useEffect#troubleshooting)や、（非推奨の API に対する）[代替手段](/reference/react-dom/findDOMNode#alternatives)のセクションも含まれています。
+=======
+Some API pages also include [Troubleshooting](/reference/react/useEffect#troubleshooting) (for common problems) and [Alternatives](https://18.react.dev/reference/react-dom/findDOMNode#alternatives) (for deprecated APIs).
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 このアプローチにより、API リファレンスが引数を調べる手段としてだけでなく、その API を使用してどれだけ色々なことができるのか、他の API とどのように繋がっているのかを示す手段として役立つことを願っています。
 

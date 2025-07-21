@@ -21,7 +21,11 @@ title: React DOM API
 
 これらの API は、例えばスクリプト、スタイルシート、フォントなどのリソースを必要とする別のページに実際に遷移する前に、それらのリソースが必要となることが判明した時点で即座にプリロードを開始することで、アプリを高速化するためのものです。
 
+<<<<<<< HEAD
 [React ベースのフレームワーク](/learn/start-a-new-react-project)は、多くの場合リソースの読み込みを自動で処理してくれるため、この API を直接呼び出す必要はないかもしれません。詳細はフレームワークのドキュメントを参照してください。
+=======
+[React-based frameworks](/learn/creating-a-react-app) frequently handle resource loading for you, so you might not have to call these APIs yourself. Consult your framework's documentation for details.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 * [`prefetchDNS`](/reference/react-dom/prefetchDNS) は、接続予定の DNS ドメインネームに対応する IP アドレスをプリフェッチします。
 * [`preconnect`](/reference/react-dom/preconnect) は、具体的なリソースが不明な場合でも事前にリクエスト先のサーバへの接続を確立します。
@@ -45,9 +49,18 @@ title: React DOM API
 
 以下の API は React 19 で削除されています。
 
+<<<<<<< HEAD
 * [`findDOMNode`](https://18.react.dev/reference/react-dom/findDOMNode): [代替手段](https://18.react.dev/reference/react-dom/findDOMNode#alternatives)を参照してください。
 * [`hydrate`](https://18.react.dev/reference/react-dom/hydrate): 代わりに [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) を使用してください。
 * [`render`](https://18.react.dev/reference/react-dom/render): 代わりに [`createRoot`](/reference/react-dom/client/createRoot) を使用してください。
 * [`unmountComponentAtNode`](/reference/react-dom/unmountComponentAtNode): 代わりに [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount) を使用してください。
 * [`renderToNodeStream`](https://18.react.dev/reference/react-dom/server/renderToNodeStream): 代わりに [`react-dom/server`](/reference/react-dom/server) の API を使用してください。
 * [`renderToStaticNodeStream`](https://18.react.dev/reference/react-dom/server/renderToStaticNodeStream): 代わりに [`react-dom/server`](/reference/react-dom/server) の API を使用してください。
+=======
+* [`findDOMNode`](https://18.react.dev/reference/react-dom/findDOMNode): see [alternatives](https://18.react.dev/reference/react-dom/findDOMNode#alternatives).
+* [`hydrate`](https://18.react.dev/reference/react-dom/hydrate): use [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) instead.
+* [`render`](https://18.react.dev/reference/react-dom/render): use [`createRoot`](/reference/react-dom/client/createRoot) instead.
+* [`unmountComponentAtNode`](https://18.react.dev/reference/react-dom/unmountComponentAtNode): use [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount) instead.
+* [`renderToNodeStream`](https://18.react.dev/reference/react-dom/server/renderToNodeStream): use [`react-dom/server`](/reference/react-dom/server) APIs instead.
+* [`renderToStaticNodeStream`](https://18.react.dev/reference/react-dom/server/renderToStaticNodeStream): use [`react-dom/server`](/reference/react-dom/server) APIs instead.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73

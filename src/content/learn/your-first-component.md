@@ -215,7 +215,11 @@ React アプリケーションは "ルート (root)" コンポーネントから
 
 ほとんどの React アプリでは隅から隅までコンポーネントが使われます。つまり、ボタンのような再利用可能なところでのみ使うのではなく、サイドバーやリスト、最終的にはページ本体といった大きなパーツのためにも使うのです。コンポーネントは、1 回しか使わないような UI コードやマークアップであっても、それらを整理するための有用な手段です。
 
+<<<<<<< HEAD
 Next.js のようなフレームワークではこれを更に 1 歩押し進めます。空の HTML ファイルから始めて JavaScript で React にページ内容の管理を引き継がせるのではなく、あなたの書いた React コンポーネントから HTML ファイル*自体も*自動生成するのです。これにより、JavaScript コードがロードされる前にコンテンツの一部をアプリが表示できるようになります。
+=======
+[React-based frameworks](/learn/creating-a-react-app) take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 その一方で、多くのウェブサイトでは React を ["対話機能をちょっと添える"](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) ためにのみ使っています。そのようなサイトはページ全体のためのルートコンポーネントを 1 つだけ持つのではなく、たくさんのルートコンポーネントを持っています。必要しだいで、React を使う量は多くても少なくても構わないのです！
 

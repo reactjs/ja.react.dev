@@ -20,11 +20,19 @@ title: 既存プロジェクトに React を追加する
 
 以下の手順に従って設定することをお勧めします。
 
+<<<<<<< HEAD
 1. [React ベースのフレームワーク](/learn/start-a-new-react-project)のうちひとつを使い、アプリの **React 部分をビルド**します。
 2. フレームワークの設定で `/some-app` を ***base path* に指定**します（方法：[Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath)、[Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)）。
 3. **サーバまたはプロキシを設定**して、`/some-app/` 以下のすべてのリクエストを React アプリで処理するようにします。
 
 こうすることで、アプリの React 部分がこれらのフレームワークに組み込まれた[ベストプラクティスを最大限に取り入れる](/learn/start-a-new-react-project#can-i-use-react-without-a-framework)ことができます。
+=======
+1. **Build the React part of your app** using one of the [React-based frameworks](/learn/creating-a-react-app).
+2. **Specify `/some-app` as the *base path*** in your framework's configuration (here's how: [Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
+3. **Configure your server or a proxy** so that all requests under `/some-app/` are handled by your React app.
+
+This ensures the React part of your app can [benefit from the best practices](/learn/creating-a-react-app#full-stack-frameworks) baked into those frameworks.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 多くの React ベースのフレームワークはフルスタックであり、React アプリがサーバ機能を活用できるようになっています。ただし、サーバで JavaScript を実行できない場合や実行したくない場合でも、同じアプローチが使用できます。この場合、エクスポートされた HTML/CSS/JS（Next.js の場合は [`next export` 出力](https://nextjs.org/docs/advanced-features/static-html-export)、Gatsby の場合はデフォルト）を `/some-app` としてサーブします。
 
@@ -149,7 +157,11 @@ root.render(<NavigationBar />);
 
 `index.html` にあるオリジナルの HTML コンテンツはそのままに、自分の `NavigationBar` という React コンポーネントが、HTML の `<nav id="navigation">` 内に表示されるようになりました。React コンポーネントを既存の HTML ページの内部にレンダーする方法の詳細については、[`createRoot` 使用方法のドキュメント](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) を参照してください。
 
+<<<<<<< HEAD
 既存のプロジェクトで React を使用する場合、まずはボタンのような小さなインタラクティブなコンポーネントから始め、その後、徐々に「上向きに」進んでいき、最終的にはページ全体が React で構築されるようにすることが一般的です。もしもそのような段階に到達した場合は、React の効果が最大限に得られるように、[React フレームワーク](/learn/start-a-new-react-project)に移行することをお勧めします。
+=======
+When you adopt React in an existing project, it's common to start with small interactive components (like buttons), and then gradually keep "moving upwards" until eventually your entire page is built with React. If you ever reach that point, we recommend migrating to [a React framework](/learn/creating-a-react-app) right after to get the most out of React.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 ## 既存のネイティブモバイルアプリ内で React Native を使用する {/*using-react-native-in-an-existing-native-mobile-app*/}
 

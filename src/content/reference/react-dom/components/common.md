@@ -916,7 +916,11 @@ export default function Form() {
 
 </Sandpack>
 
+<<<<<<< HEAD
 [ref を使った DOM の操作](/learn/manipulating-the-dom-with-refs)に詳しい解説があります。[こちらに他の例があります](/reference/react/useRef#examples-dom)。
+=======
+Read more about [manipulating DOM with refs](/learn/manipulating-the-dom-with-refs) and [check out more examples.](/reference/react/useRef#usage)
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 より高度なユースケースのために、`ref` 属性は[コールバック関数](#ref-callback)も受け入れます。
 

@@ -36,7 +36,11 @@ title: "<select>"
 
 #### props {/*props*/}
 
+<<<<<<< HEAD
 `<select>` は[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
+=======
+`<select>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 `value` プロパティを渡すことで、[セレクトボックスを制御されたコンポーネント (controlled component)](#controlling-a-select-box-with-a-state-variable) にできます。
 

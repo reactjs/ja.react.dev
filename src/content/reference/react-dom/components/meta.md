@@ -30,7 +30,11 @@ meta: "<meta>"
 
 #### props {/*props*/}
 
+<<<<<<< HEAD
 `<meta>` は、[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
+=======
+`<meta>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 `name`、`httpEquiv`、`charset`、`itemProp` のうち、props として*どれかひとつだけ*を指定しなければなりません。これらの props のうちどれが指定されているかによって、`<meta>` コンポーネントの動作は異なります。
 

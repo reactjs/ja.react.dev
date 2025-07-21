@@ -57,7 +57,11 @@ function Component() {
 
 #### オーナスタックとコンポーネントスタックの違い {/*owner-stack-vs-component-stack*/}
 
+<<<<<<< HEAD
 オーナスタックは、React のエラーハンドラで利用できるコンポーネントスタック（例：[`onUncaughtError` 内での `errorInfo.componentStack`](/reference/react-dom/client/hydrateRoot#show-a-dialog-for-uncaught-errors)）とは異なります。
+=======
+The Owner Stack is different from the Component Stack available in React error handlers like [`errorInfo.componentStack` in `onUncaughtError`](/reference/react-dom/client/hydrateRoot#error-logging-in-production).
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 例えば、次のコードを考えてみましょう。
 

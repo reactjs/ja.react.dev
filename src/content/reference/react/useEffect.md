@@ -896,7 +896,11 @@ button { margin: 5px; }
 
 ### エフェクトを使ったデータフェッチ {/*fetching-data-with-effects*/}
 
+<<<<<<< HEAD
 エフェクトを使って、コンポーネントに必要なデータをフェッチ（fetch, 取得）することができます。ただし[フレームワークを使用している場合](/learn/start-a-new-react-project#production-grade-react-frameworks)は、エフェクトを自力で記述するよりも、フレームワークのデータフェッチメカニズムを使用する方がはるかに効率的であることに注意してください。
+=======
+You can use an Effect to fetch data for your component. Note that [if you use a framework,](/learn/creating-a-react-app#full-stack-frameworks) using your framework's data fetching mechanism will be a lot more efficient than writing Effects manually.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 エフェクトを使って自力でデータをフェッチしたい場合は、以下のようなコードを書くことになります。
 
@@ -1048,8 +1052,13 @@ export async function fetchBio(person) {
 
 上記の欠点は、マウント時にデータをフェッチするのであれば、React に限らずどのライブラリを使う場合でも当てはまる内容です。ルーティングと同様、データフェッチの実装も上手にやろうとすると一筋縄ではいきません。私たちは以下のアプローチをお勧めします。
 
+<<<<<<< HEAD
 - **[フレームワーク](/learn/start-a-new-react-project#production-grade-react-frameworks)を使用している場合、組み込みのデータフェッチ機構を使用してください**。モダンな React フレームワークには、効率的で上記の欠点がないデータフェッチ機構が統合されています。
 - **それ以外の場合は、クライアントサイドキャッシュの使用や構築を検討してください**。一般的なオープンソースのソリューションには、[React Query](https://tanstack.com/query/latest/)、[useSWR](https://swr.vercel.app/)、および [React Router 6.4+](https://beta.reactrouter.com/en/main/start/overview) が含まれます。自分でソリューションを構築することもできます。その場合、エフェクトを内部で使用しつつ、リクエストの重複排除、レスポンスのキャッシュ、ネットワークのウォーターフォールを回避するためのロジック（データのプリロードやルーティング部へのデータ要求の巻き上げ）を追加することになります。
+=======
+- **If you use a [framework](/learn/creating-a-react-app#full-stack-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
+- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [React Query](https://tanstack.com/query/latest/), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) You can build your own solution too, in which case you would use Effects under the hood but also add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 これらのアプローチがどちらも適合しない場合は、引き続きエフェクト内で直接データをフェッチすることができます。
 
@@ -1733,7 +1742,11 @@ function Page({ url, shoppingCart }) {
 
 ### サーバとクライアントで異なるコンテンツを表示する {/*displaying-different-content-on-the-server-and-the-client*/}
 
+<<<<<<< HEAD
 お使いのアプリがサーバレンダリングを（[直接](/reference/react-dom/server)ないし[フレームワーク](/learn/start-a-new-react-project#production-grade-react-frameworks)経由で）使用している場合、コンポーネントは 2 種類の環境でレンダーされます。サーバ上では、初期 HTML を生成するためにレンダーされます。クライアント上では、React がその HTML にイベントハンドラをアタッチするために再度レンダーコードを実行します。これが、[ハイドレーション](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html)が動作するためには初回レンダーの出力がクライアントとサーバの両方で同一でなければならない理由です。
+=======
+If your app uses server rendering (either [directly](/reference/react-dom/server) or via a [framework](/learn/creating-a-react-app#full-stack-frameworks)), your component will render in two different environments. On the server, it will render to produce the initial HTML. On the client, React will run the rendering code again so that it can attach your event handlers to that HTML. This is why, for [hydration](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html) to work, your initial render output must be identical on the client and the server.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 まれに、クライアント側で異なるコンテンツを表示する必要がある場合があります。たとえば、アプリが [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) からデータを読み込む場合、サーバ上ではそれを行うことができません。これは以下の方法で実装できます。
 

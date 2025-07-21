@@ -129,7 +129,11 @@ npx codemod@latest react/19/migration-recipe
 
 これまでのバージョンの React では、レンダー中にスローされたエラーはキャッチされた後に再スローされていました。開発環境では、`console.error` にもログを出力していたため、エラーログの重複が発生していました。
 
+<<<<<<< HEAD
 React 19 では、重複を減らすためにエラーの扱いを[改善し](/blog/2024/04/25/react-19#error-handling)、再スローは行わないようになりました。
+=======
+In React 19, we've [improved how errors are handled](/blog/2024/12/05/react-19#error-handling) to reduce duplication by not re-throwing:
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 - **キャッチされないエラー**：エラーバウンダリによってキャッチされないエラーは `window.reportError` に報告されます。
 - **キャッチされたエラー**：エラーバウンダリによってキャッチされたエラーは `console.error` に報告されます。
@@ -499,7 +503,11 @@ function AutoselectingInput() {
 
 ### 非推奨化：`element.ref` {/*deprecated-element-ref*/}
 
+<<<<<<< HEAD
 React 19 では [props としての `ref`](/blog/2024/04/25/react-19#ref-as-a-prop) がサポートされるため、`element.ref` を非推奨化します。代わりに `element.props.ref` を使用します。
+=======
+React 19 supports [`ref` as a prop](/blog/2024/12/05/react-19#ref-as-a-prop), so we're deprecating the `element.ref` in place of `element.props.ref`.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 `element.ref` にアクセスすると、以下の警告が表示されます。
 

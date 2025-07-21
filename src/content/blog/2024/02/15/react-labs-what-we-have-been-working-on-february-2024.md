@@ -107,7 +107,11 @@ Activity はまだ研究中であり、残された作業は、ライブラリ�
 
 このアップデートに加えて、私たちのチームはカンファレンスでの発表やポッドキャストへの出演を通じ、我々の作業についてお伝えし、質問にお答えしています。
 
+<<<<<<< HEAD
 - [Sathya Gunasekaran](/community/team#sathya-gunasekaran) は [React India](https://www.youtube.com/watch?v=kjOacmVsLSE) カンファレンスで React コンパイラについて話しました。
+=======
+- [Sathya Gunasekaran](https://github.com/gsathya) spoke about the React Compiler at the [React India](https://www.youtube.com/watch?v=kjOacmVsLSE) conference
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 - [Dan Abramov](/community/team#dan-abramov) は [RemixConf](https://www.youtube.com/watch?v=zMf_xeGPn6s) で "React from Another Dimension" というタイトルの講演を行い、React Server Components やアクションの成立に際してありえたかもしれない別の歴史について紹介しました。
 
