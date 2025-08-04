@@ -21,12 +21,9 @@
     "postinstall": "is-ci || husky install .husky",
     "check-all": "npm-run-all prettier lint:fix tsc rss",
     "rss": "node scripts/generateRss.js",
-<<<<<<< HEAD
+    "deadlinks": "node scripts/deadLinkChecker.js",
     "textlint": "cd textlint && yarn --frozen-lockfile && yarn textlint",
     "textlint-staged": "cd textlint && yarn --frozen-lockfile && yarn textlint-staged --"
-=======
-    "deadlinks": "node scripts/deadLinkChecker.js"
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "2.13.5",

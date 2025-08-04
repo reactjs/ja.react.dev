@@ -95,11 +95,7 @@ async function addToCart(data) {
 * イベントハンドラが受け取るイベント
 
 
-<<<<<<< HEAD
-サポートされるシリアライズ可能な返り値は、クライアントコンポーネントに渡せる[シリアライズ可能な props](/reference/rsc/use-client#passing-props-from-server-to-client-components) の型と同じです。
-=======
-Supported serializable return values are the same as [serializable props](/reference/rsc/use-client#serializable-types) for a boundary Client Component.
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
+サポートされるシリアライズ可能な返り値は、クライアントコンポーネントに渡せる[シリアライズ可能な props](/reference/rsc/use-client#serializable-types) の型と同じです。
 
 
 ## 使用法 {/*usage*/}

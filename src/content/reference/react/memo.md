@@ -14,7 +14,7 @@ const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
 
 <Note>
 
-[React Compiler](/learn/react-compiler) automatically applies the equivalent of `memo` to all components, reducing the need for manual memoization. You can use the compiler to handle component memoization automatically.
+[React Compiler](/learn/react-compiler) はすべてのコンポーネントに自動で `memo` を適用するため、手作業によるメモ化の必要性を減らします。コンパイラを使って自動的にコンポーネントのメモ化を行えます。
 
 </Note>
 
@@ -118,11 +118,7 @@ label {
 
 #### あらゆる場所に memo を追加すべきか？ {/*should-you-add-memo-everywhere*/}
 
-<<<<<<< HEAD
 あなたのアプリがこのサイトのように、ほとんどのインタラクションが大まかなもの（ページ全体やセクション全体の置き換えなど）である場合、メモ化は通常不要です。一方、あなたのアプリが描画エディタのようなもので、ほとんどのインタラクションが細かなもの（図形を移動させるなど）である場合、メモ化は非常に役に立つでしょう。
-=======
-If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful.
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 `memo` による最適化は、コンポーネントが全く同一の props で頻繁に再レンダーされ、しかもその再レンダーロジックが高コストである場合にのみ価値があります。コンポーネントが再レンダーされても遅延を感じられない場合、`memo` は不要です。レンダー中に定義されたオブジェクトやプレーンな関数を渡しているなどでコンポーネントに渡される props が*毎回異なる*場合、`memo` は全く無意味であることを覚えておいてください。これが、`memo` と一緒に [`useMemo`](/reference/react/useMemo#skipping-re-rendering-of-components) や [`useCallback`](/reference/react/useCallback#skipping-re-rendering-of-components) がよく必要となる理由です。
 
@@ -367,17 +363,13 @@ function arePropsEqual(oldProps, newProps) {
 
 ---
 
-<<<<<<< HEAD
-## トラブルシューティング {/*troubleshooting*/}
-### props がオブジェクト・配列・関数の場合にコンポーネントが再レンダーされる {/*my-component-rerenders-when-a-prop-is-an-object-or-array*/}
-=======
-### Do I still need React.memo if I use React Compiler? {/*react-compiler-memo*/}
+### React Compiler を使用する場合でも React.memo は必要？ {/*react-compiler-memo*/}
 
-When you enable [React Compiler](/learn/react-compiler), you typically don't need `React.memo` anymore. The compiler automatically optimizes component re-rendering for you.
+[React Compiler](/learn/react-compiler) を有効にすると、通常は `React.memo` は不要になります。コンパイラがコンポーネントの再レンダーを自動的に最適化してくれるからです。
 
-Here's how it works:
+仕組みは以下の通りです。
 
-**Without React Compiler**, you need `React.memo` to prevent unnecessary re-renders:
+**React Compiler なし**の場合、不要な再レンダーを防ぐために `React.memo` が必要です。
 
 ```js
 // Parent re-renders every second
@@ -406,7 +398,7 @@ const ExpensiveChild = memo(function ExpensiveChild({ name }) {
 });
 ```
 
-**With React Compiler enabled**, the same optimization happens automatically:
+**React Compiler が有効**の場合、同じ最適化が自動的に行われます。
 
 ```js
 // No memo needed - compiler prevents re-renders automatically
@@ -416,7 +408,7 @@ function ExpensiveChild({ name }) {
 }
 ```
 
-Here's the key part of what the React Compiler generates:
+React Compiler が生成するコードの重要な部分は以下の通りです。
 
 ```js {6-12}
 function Parent() {
@@ -435,25 +427,24 @@ function Parent() {
 }
 ```
 
-Notice the highlighted lines: The compiler wraps `<ExpensiveChild name="John" />` in a cache check. Since the `name` prop is always `"John"`, this JSX is created once and reused on every parent re-render. This is exactly what `React.memo` does - it prevents the child from re-rendering when its props haven't changed.
+ハイライトされた行に注目してください：コンパイラは `<ExpensiveChild name="John" />` をキャッシュチェックでラップしています。props である `name` は常に `"John"` であるため、この JSX は一度作成されたら、親の再レンダーのたびに再利用されます。これはまさに `React.memo` が行うことと同じです。つまり props が変更されていない場合、子コンポーネントの再レンダーを防いでいます。
 
-The React Compiler automatically:
-1. Tracks that the `name` prop passed to `ExpensiveChild` hasn't changed
-2. Reuses the previously created JSX for `<ExpensiveChild name="John" />`
-3. Skips re-rendering `ExpensiveChild` entirely
+React Compiler は自動的に以下を行います。
+1. `ExpensiveChild` に渡される props である `name` が変更されていないことを追跡
+2. `<ExpensiveChild name="John" />` に対する以前に作成された JSX を再利用
+3. `ExpensiveChild` の再レンダーを完全にスキップ
 
-This means **you can safely remove `React.memo` from your components when using React Compiler**. The compiler provides the same optimization automatically, making your code cleaner and easier to maintain.
+つまり、**React Compiler を使用する場合、コンポーネントから `React.memo` を安全に削除できます**。コンパイラが同じ最適化を自動的に提供し、コードをよりクリーンで保守しやすくしてくれます。
 
 <Note>
 
-The compiler's optimization is actually more comprehensive than `React.memo`. It also memoizes intermediate values and expensive computations within your components, similar to combining `React.memo` with `useMemo` throughout your component tree.
+コンパイラの最適化は実際には `React.memo` よりも包括的です。コンポーネント内の中間値や高コストな計算もメモ化し、コンポーネントツリー全体で `React.memo` と `useMemo` を組み合わせたのと似たような効果をもたらします。
 
 </Note>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
-### My component re-renders when a prop is an object, array, or function {/*my-component-rerenders-when-a-prop-is-an-object-or-array*/}
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
+## トラブルシューティング {/*troubleshooting*/}
+### props がオブジェクト・配列・関数の場合にコンポーネントが再レンダーされる {/*my-component-rerenders-when-a-prop-is-an-object-or-array*/}
 
 React は古い props と新しい props とを浅く比較します。つまり、新しい props のそれぞれの値が古い props と参照ベースで等価であるかどうかを比較します。親が再レンダーのたびに新しいオブジェクトや配列を作成している場合、個々の要素が同じであっても、React は変更があったと考えます。同様に、親コンポーネントのレンダー時に新しい関数を作成すると、関数の定義が同じであっても、React はそれを別のものだと考えます。これを避けるためには、[親コンポーネントで props を単純化するか、または props をメモ化してください](#minimizing-props-changes)。

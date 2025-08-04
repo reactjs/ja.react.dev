@@ -26,11 +26,7 @@ title: 'そのエフェクトは不要かも'
 * **レンダーのためのデータ変換にエフェクトは必要ありません**。例えば、表示する前にリストをフィルタリングしたいとします。リストが変更されたときに state 変数を更新するようなエフェクトを書きたくなるかもしれません。しかし、これは非効率的です。state を更新すると、React はまず、画面の表示内容を計算するためにコンポーネントの関数を呼び出します。次に、React はこれらの変更を DOM に ["コミット"](/learn/render-and-commit) して、画面を更新します。その後、React はエフェクトを実行します。ここであなたのエフェクトが*また*直ちに state を更新してしまうと、このプロセス全体が最初からやり直しになってしまいます！ 不要なレンダーを避けるために、コンポーネントのトップレベルですべてのデータを変換するようにしましょう。そのコードは、props や state が変更されるたびに自動的に再実行されます。
 * **ユーザイベントの処理にエフェクトは必要ありません**。例えば、ユーザが製品を購入したときに `/api/buy` POST リクエストを送信し、通知を表示したいとします。購入ボタンのクリックイベントハンドラでは、何が起こったかが正確にわかります。エフェクトが実行される時点では、ユーザが*何をした*のか（例えば、どのボタンがクリックされたのか）はもうわかりません。したがって、通常は対応するイベントハンドラでユーザイベントを処理するべきです。
 
-<<<<<<< HEAD
-エフェクトは、外部システムと[同期](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events)したい場合には*必要*です。例えば、React の state と jQuery ウィジェットを同期させるエフェクトを書くことができます。また、エフェクトでデータを取得し、例えば現在の検索クエリと検索結果を同期させることができます。ただし、モダンな[フレームワーク](/learn/start-a-new-react-project#production-grade-react-frameworks)は、コンポーネント内で直接エフェクトを書くよりも効率的な組み込みデータ取得メカニズムを提供していることに注意してください。
-=======
-You *do* need Effects to [synchronize](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events) with external systems. For example, you can write an Effect that keeps a jQuery widget synchronized with the React state. You can also fetch data with Effects: for example, you can synchronize the search results with the current search query. Keep in mind that modern [frameworks](/learn/start-a-new-react-project#full-stack-frameworks) provide more efficient built-in data fetching mechanisms than writing Effects directly in your components.
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
+エフェクトは、外部システムと[同期](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events)したい場合には*必要*です。例えば、React の state と jQuery ウィジェットを同期させるエフェクトを書くことができます。また、エフェクトでデータを取得し、例えば現在の検索クエリと検索結果を同期させることができます。ただし、モダンな[フレームワーク](/learn/start-a-new-react-project#full-stack-frameworks)は、コンポーネント内で直接エフェクトを書くよりも効率的な組み込みデータ取得メカニズムを提供していることに注意してください。
 
 正しい直観力を養うために、一般的かつ具体的な例をいくつか見ていきましょう！
 
@@ -101,7 +97,7 @@ function TodoList({ todos, filter }) {
 
 <Note>
 
-[React Compiler](/learn/react-compiler) can automatically memoize expensive calculations for you, eliminating the need for manual `useMemo` in many cases.
+[React Compiler](/learn/react-compiler) は高価な計算を自動でメモ化してくれるため、多くの場合、手作業による `useMemo` は不要となります。
 
 </Note>
 
@@ -761,11 +757,7 @@ function SearchResults({ query }) {
 
 競合状態への対処がデータフェッチにまつわる唯一の問題というわけでもありません。レスポンスのキャッシュ（ユーザが「戻る」をクリックしたときに前の画面を即座に表示できるようにする）、サーバ上でのデータフェッチ（サーバレンダリングされた初期 HTML にフェッチされたコンテンツが含まれるようにする）、ネットワークのウォーターフォールの回避（子が親を待たずにデータを取得できるようにする）などが考慮すべき点です。
 
-<<<<<<< HEAD
-**これらは React だけでなく、あらゆる UI ライブラリで問題となるものです。これらは一筋縄では解決できないため、現代の[フレームワーク](/learn/start-a-new-react-project#production-grade-react-frameworks)では、エフェクトでデータを取得するよりも効率的な組み込みデータ取得メカニズムが提供されています**。
-=======
-**These issues apply to any UI library, not just React. Solving them is not trivial, which is why modern [frameworks](/learn/start-a-new-react-project#full-stack-frameworks) provide more efficient built-in data fetching mechanisms than fetching data in Effects.**
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
+**これらは React だけでなく、あらゆる UI ライブラリで問題となるものです。これらは一筋縄では解決できないため、現代の[フレームワーク](/learn/start-a-new-react-project#full-stack-frameworks)では、エフェクトでデータを取得するよりも効率的な組み込みデータ取得メカニズムが提供されています**。
 
 フレームワークを使用しない（し独自に構築もしたくない）がエフェクトからのデータフェッチをより使いやすくしたい、という場合、以下の例のように、データフェッチのロジックをカスタムフックに抽出することを検討してください。
 

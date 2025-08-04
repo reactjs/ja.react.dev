@@ -30,11 +30,7 @@ link: "<link>"
 
 #### props {/*props*/}
 
-<<<<<<< HEAD
-`<link>` は、[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
-=======
-`<link>` supports all [common element props.](/reference/react-dom/components/common#common-props)
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
+`<link>` は、[一般的な要素の props](/reference/react-dom/components/common#common-props) をすべてサポートしています。
 
 * `rel`: 文字列、必須。[リソースとの関係](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel)を指定します。React は [`rel="stylesheet"` となっているリンク](#special-rendering-behavior)を他のリンクとは異なる方法で扱います。
 

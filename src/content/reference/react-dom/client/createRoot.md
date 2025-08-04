@@ -90,7 +90,7 @@ React は `root` に `<App />` を表示し、その内部の DOM の管理を�
 
 * 同じルートに対して `render` を複数回呼び出すと、React は最新の JSX を反映するために必要なだけの DOM の更新を行います。React は、渡された JSX を以前にレンダーしたツリーと[「マッチング」](/learn/preserving-and-resetting-state)して、DOM のどの部分が再利用でき、どの部分を再作成する必要があるのかを決定します。同じルートに対して複数回 `render` を呼び出すことは、ルートコンポーネントで [`set` 関数](/reference/react/useState#setstate)を呼び出すことに似ており、React は不必要な DOM 更新を回避します。
 
-* Although rendering is synchronous once it starts, `root.render(...)` is not. This means code after `root.render()` may run before any effects (`useLayoutEffect`, `useEffect`) of that specific render are fired. This is usually fine and rarely needs adjustment. In rare cases where effect timing matters, you can wrap `root.render(...)` in [`flushSync`](https://react.dev/reference/react-dom/flushSync) to ensure the initial render runs fully synchronously.
+* レンダーは一度始まると同期的に実行されますが、`root.render(...)` 自体は同期的ではありません。つまり、`root.render()` の後に書かれたコードが、そのレンダーで発生するエフェクト（`useLayoutEffect` や `useEffect`）よりも先に実行される場合があります。これは通常問題なく、調整が必要となることは滅多にありません。エフェクトのタイミングが重要となる稀なケースでは、[`flushSync`](https://react.dev/reference/react-dom/flushSync) で `root.render(...)` をラップすることで、初回レンダーを完全に同期的に実行できます。
   
   ```js
   const root = createRoot(document.getElementById('root'));
@@ -209,11 +209,7 @@ HTML が空の場合、アプリの JavaScript コードが読み込まれて実
 <div id="root"></div>
 ```
 
-<<<<<<< HEAD
-これは非常に遅く感じられることがあります！ これを解決するために、[サーバサイドで、あるいはビルド時に](/reference/react-dom/server)初期 HTML をコンポーネントから生成することができます。これにより、訪問者は JavaScript コードが読み込まれる前にテキストを読んだり、画像を見たり、リンクをクリックしたりすることができます。この最適化を自動で行う[フレームワークの使用](/learn/start-a-new-react-project#production-grade-react-frameworks)を推奨します。実行タイミングにより、この技術は*サーバサイドレンダリング (server-side rendering; SSR)* または *静的サイト生成 (static site generation; SSG)* と呼ばれます。
-=======
-This can feel very slow! To solve this, you can generate the initial HTML from your components [on the server or during the build.](/reference/react-dom/server) Then your visitors can read text, see images, and click links before any of the JavaScript code loads. We recommend [using a framework](/learn/start-a-new-react-project#full-stack-frameworks) that does this optimization out of the box. Depending on when it runs, this is called *server-side rendering (SSR)* or *static site generation (SSG).*
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
+これは非常に遅く感じられることがあります！ これを解決するために、[サーバサイドで、あるいはビルド時に](/reference/react-dom/server)初期 HTML をコンポーネントから生成することができます。これにより、訪問者は JavaScript コードが読み込まれる前にテキストを読んだり、画像を見たり、リンクをクリックしたりすることができます。この最適化を自動で行う[フレームワークの使用](/learn/start-a-new-react-project#full-stack-frameworks)を推奨します。実行タイミングにより、この技術は*サーバサイドレンダリング (server-side rendering; SSR)* または *静的サイト生成 (static site generation; SSG)* と呼ばれます。
 
 </Note>
 

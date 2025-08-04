@@ -31,11 +31,7 @@ script: "<script>"
 
 #### props {/*props*/}
 
-<<<<<<< HEAD
-`<script>` は、[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
-=======
-`<script>` supports all [common element props.](/reference/react-dom/components/common#common-props)
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
+`<script>` は、[一般的な要素の props](/reference/react-dom/components/common#common-props) をすべてサポートしています。
 
 props として `children` または `src` のいずれかが必要です。
 

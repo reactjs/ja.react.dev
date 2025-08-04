@@ -11,27 +11,16 @@ TypeScript は JavaScript コードベースに型定義を追加するための
 
 <YouWillLearn>
 
-<<<<<<< HEAD
 * [TypeScript で React コンポーネントを書く方法](/learn/typescript#typescript-with-react-components)
 * [フックの型付けの例](/learn/typescript#example-hooks)
-* [`@types/react` にある一般的な型](/learn/typescript/#useful-types)
-* [さらに学習するためのリソース](/learn/typescript/#further-learning)
-=======
-* [TypeScript with React Components](/learn/typescript#typescript-with-react-components)
-* [Examples of typing with Hooks](/learn/typescript#example-hooks)
-* [Common types from `@types/react`](/learn/typescript#useful-types)
-* [Further learning locations](/learn/typescript#further-learning)
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
+* [`@types/react` にある一般的な型](/learn/typescript#useful-types)
+* [さらに学習するためのリソース](/learn/typescript#further-learning)
 
 </YouWillLearn>
 
 ## インストール {/*installation*/}
 
-<<<<<<< HEAD
-すべての[本番環境向け React フレームワーク](/learn/start-a-new-react-project#production-grade-react-frameworks)は TypeScript の使用をサポートしています。フレームワーク個別のガイドに従ってインストールを行ってください。
-=======
-All [production-grade React frameworks](/learn/start-a-new-react-project#full-stack-frameworks) offer support for using TypeScript. Follow the framework specific guide for installation:
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
+すべての[本番環境向け React フレームワーク](/learn/start-a-new-react-project#full-stack-frameworks)は TypeScript の使用をサポートしています。フレームワーク個別のガイドに従ってインストールを行ってください。
 
 - [Next.js](https://nextjs.org/docs/app/building-your-application/configuring/typescript)
 - [Remix](https://remix.run/docs/en/1.19.2/guides/typescript)
@@ -135,11 +124,7 @@ export default App = AppTSX;
 
 ## 例：フック {/*example-hooks*/}
 
-<<<<<<< HEAD
 `@types/react` にある型定義には、組み込みのフックに対する型が含まれており、追加のセットアップなしにあなたのコンポーネント内で使用することができます。これらはあなたがコンポーネントに書くコードを考慮できるように作られており、多くの場合は[型の推論](https://www.typescriptlang.org/docs/handbook/type-inference.html)が働くため、理想的にはこまごまと型の指定を行う必要がないようになっています。
-=======
-The type definitions from `@types/react` include types for the built-in Hooks, so you can use them in your components without any additional setup. They are built to take into account the code you write in your component, so you will get [inferred types](https://www.typescriptlang.org/docs/handbook/type-inference.html) a lot of the time and ideally do not need to handle the minutiae of providing the types.
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 とはいえ、フックの型をどのように指定するかについて、ここでいくつかの例を見ておきましょう。
 
@@ -299,11 +284,7 @@ export default App = AppTSX;
 
 </Sandpack>
 
-<<<<<<< HEAD
 意味のあるデフォルト値が存在する場合にはこれでうまくいきます。しかし時にはそうではない場合もあり、デフォルト値として `null` が適切に感じられることもあるでしょう。型システムにあなたのコードを理解させるため、`createContext` 呼び出しで `ContextShape | null` と明示的に指定する必要があります。
-=======
-This technique works when you have a default value which makes sense - but there are occasionally cases when you do not, and in those cases `null` can feel reasonable as a default value. However, to allow the type-system to understand your code, you need to explicitly set `ContextShape | null` on the `createContext`.
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 これにより、コンテクストを利用する側で `| null` の可能性を排除する必要が生じます。お勧めの方法は、値が存在することをフックで実行時にチェックし、存在しない場合にエラーをスローするようにすることです。
 
@@ -348,17 +329,13 @@ function MyComponent() {
 
 ### `useMemo` {/*typing-usememo*/}
 
-<<<<<<< HEAD
-[`useMemo`](/reference/react/useMemo) フックは、関数呼び出しからの値の作成/再アクセスを行い、2 番目の引数として渡された依存配列が変更されたときにのみ関数を再実行します。フックの呼び出し結果の型は、1 番目の引数として指定した関数の返り値の型から推論されます。フックに型引数を指定することで明示的にすることができます。
-=======
 <Note>
 
-[React Compiler](/learn/react-compiler) automatically memoizes values and functions, reducing the need for manual `useMemo` calls. You can use the compiler to handle memoization automatically.
+[React Compiler](/learn/react-compiler) は値や関数の自動的なメモ化を行うことで、手作業による `useMemo` 呼び出しの必要性を軽減します。自動でメモ化を行うためにコンパイラを使用可能です。
 
 </Note>
 
-The [`useMemo`](/reference/react/useMemo) Hooks will create/re-access a memorized value from a function call, re-running the function only when dependencies passed as the 2nd parameter are changed. The result of calling the Hook is inferred from the return value from the function in the first parameter. You can be more explicit by providing a type argument to the Hook.
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
+[`useMemo`](/reference/react/useMemo) フックは、関数呼び出しからの値の作成/再アクセスを行い、2 番目の引数として渡された依存配列が変更されたときにのみ関数を再実行します。フックの呼び出し結果の型は、1 番目の引数として指定した関数の返り値の型から推論されます。フックに型引数を指定することで明示的にすることができます。
 
 ```ts
 // The type of visibleTodos is inferred from the return value of filterTodos
@@ -368,17 +345,13 @@ const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
 
 ### `useCallback` {/*typing-usecallback*/}
 
-<<<<<<< HEAD
-[`useCallback`](/reference/react/useCallback) は、第 2 引数に渡される依存配列が同じである限り、関数への安定した参照を提供するものです。`useMemo` と同様に、関数の型は 1 番目の引数として指定した関数から推論され、フックに型引数を指定することでより明示的にすることができます。
-=======
 <Note>
 
-[React Compiler](/learn/react-compiler) automatically memoizes values and functions, reducing the need for manual `useCallback` calls. You can use the compiler to handle memoization automatically.
+[React Compiler](/learn/react-compiler) は値や関数の自動的なメモ化を行うことで、手作業による `useCallback` 呼び出しの必要性を軽減します。自動でメモ化を行うためにコンパイラを使用可能です。
 
 </Note>
 
-The [`useCallback`](/reference/react/useCallback) provide a stable reference to a function as long as the dependencies passed into the second parameter are the same. Like `useMemo`, the function's type is inferred from the return value of the function in the first parameter, and you can be more explicit by providing a type argument to the Hook.
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
+[`useCallback`](/reference/react/useCallback) は、第 2 引数に渡される依存配列が同じである限り、関数への安定した参照を提供するものです。`useMemo` と同様に、関数の型は 1 番目の引数として指定した関数から推論され、フックに型引数を指定することでより明示的にすることができます。
 
 
 ```ts
@@ -389,11 +362,7 @@ const handleClick = useCallback(() => {
 
 TypeScript の strict モードで作業している場合、`useCallback` ではコールバックの引数に型を追加する必要があります。これは、コールバックの型が関数から推論されるため、引数がないと型を完全に決定できないからです。
 
-<<<<<<< HEAD
 好みのコードスタイルによっては、React が提供する `*EventHandler` 関数型を使用して、コールバックを定義しながらイベントハンドラの型を提供することができます：
-=======
-Depending on your code-style preferences, you could use the `*EventHandler` functions from the React types to provide the type for the event handler at the same time as defining the callback:
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 ```ts
 import { useState, useCallback } from 'react';
@@ -476,11 +445,7 @@ interface ModalRendererProps {
 }
 ```
 
-<<<<<<< HEAD
 子要素が特定の JSX 要素の型であることを TypeScript で記述することはできないことに注意してください。子要素として `<li>` のみを受け入れるコンポーネントを型システムで記述することはできません。
-=======
-Note, that you cannot use TypeScript to describe that the children are a certain type of JSX elements, so you cannot use the type-system to describe a component which only accepts `<li>` children.
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 [こちらの TypeScript プレイグラウンド](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgIilQ3wChSB6CxYmAOmXRgDkIATJOdNJMGAZzgwAFpxAR+8YADswAVwGkZMJFEzpOjDKw4AFHGEEBvUnDhphwADZsi0gFw0mDWjqQBuUgF9yaCNMlENzgAXjgACjADfkctFnYkfQhDAEpQgD44AB42YAA3dKMo5P46C2tbJGkvLIpcgt9-QLi3AEEwMFCItJDMrPTTbIQ3dKywdIB5aU4kKyQQKpha8drhhIGzLLWODbNs3b3s8YAxKBQAcwXpAThMaGWDvbH0gFloGbmrgQfBzYpd1YjQZbEYARkB6zMwO2SHSAAlZlYIBCdtCRkZpHIrFYahQYQD8UYYFA5EhcfjyGYqHAXnJAsIUHlOOUbHYhMIIHJzsI0Qk4P9SLUBuRqXEXEwAKKfRZcNA8PiCfxWACecAAUgBlAAacFm80W-CU11U6h4TgwUv11yShjgJjMLMqDnN9Dilq+nh8pD8AXgCHdMrCkWisVoAet0R6fXqhWKhjKllZVVxMcavpd4Zg7U6Qaj+2hmdG4zeRF10uu-Aeq0LBfLMEe-V+T2L7zLVu+FBWLdLeq+lc7DYFf39deFVOotMCACNOCh1dq219a+30uC8YWoZsRyuEdjkevR8uvoVMdjyTWt4WiSSydXD4NqZP4AymeZE072ZzuUeZQKheQgA)で、`React.ReactNode` と `React.ReactElement` の両方の例を型チェッカ付きで確認することができます。
 

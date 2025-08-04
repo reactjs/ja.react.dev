@@ -24,11 +24,7 @@ title: 既存プロジェクトに React を追加する
 2. フレームワークの設定で `/some-app` を ***base path* に指定**します（方法：[Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath)、[Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)）。
 3. **サーバまたはプロキシを設定**して、`/some-app/` 以下のすべてのリクエストを React アプリで処理するようにします。
 
-<<<<<<< HEAD
-こうすることで、アプリの React 部分がこれらのフレームワークに組み込まれた[ベストプラクティスを最大限に取り入れる](/learn/start-a-new-react-project#can-i-use-react-without-a-framework)ことができます。
-=======
-This ensures the React part of your app can [benefit from the best practices](/learn/build-a-react-app-from-scratch#consider-using-a-framework) baked into those frameworks.
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
+こうすることで、アプリの React 部分がこれらのフレームワークに組み込まれた[ベストプラクティスを最大限に取り入れる](/learn/build-a-react-app-from-scratch#consider-using-a-framework)ことができます。
 
 多くの React ベースのフレームワークはフルスタックであり、React アプリがサーバ機能を活用できるようになっています。ただし、サーバで JavaScript を実行できない場合や実行したくない場合でも、同じアプローチが使用できます。この場合、エクスポートされた HTML/CSS/JS（Next.js の場合は [`next export` 出力](https://nextjs.org/docs/advanced-features/static-html-export)、Gatsby の場合はデフォルト）を `/some-app` としてサーブします。
 

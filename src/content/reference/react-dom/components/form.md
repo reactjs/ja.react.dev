@@ -36,11 +36,7 @@ title: "<form>"
 
 #### props {/*props*/}
 
-<<<<<<< HEAD
-`<form>` は、[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
-=======
-`<form>` supports all [common element props.](/reference/react-dom/components/common#common-props)
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
+`<form>` は、[一般的な要素の props](/reference/react-dom/components/common#common-props) をすべてサポートしています。
 
 [`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action)：URL または関数。`action` として URL が渡された場合、フォームは HTML の form コンポーネントと同様に動作します。`action` として関数が渡された場合、その関数がフォームの送信を処理します。`action` に渡された関数は非同期でもよく、送信されたフォームの [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) を唯一の引数として呼び出されます。`action` は、`<button>`、`<input type="submit">`、または `<input type="image">` コンポーネントの `formAction` プロパティによって上書きされることがあります。
 
