@@ -685,7 +685,11 @@ ul, li { margin: 0; padding: 0; }
 </TasksContext>
 ```
 
+<<<<<<< HEAD
 タスクのリストを必要とするコンポーネントは、代わりに `TaskContext` から読み込むことができます。
+=======
+Instead, any component that needs the task list can read it from the `TasksContext`:
+>>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 ```js {2}
 export default function TaskList() {

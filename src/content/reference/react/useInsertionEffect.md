@@ -133,7 +133,11 @@ function useCSS(rule) {
 
 #### この手法がレンダー中や useLayoutEffect でスタイルを注入するより優れている理由 {/*how-is-this-better-than-injecting-styles-during-rendering-or-uselayouteffect*/}
 
+<<<<<<< HEAD
 レンダー中、React が[非ブロッキング更新](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition)を処理している最中にスタイルを挿入すると、ブラウザはコンポーネントツリーのレンダー中に毎フレームスタイルを再計算することになり、これは**非常に遅くなる**ことがあります。
+=======
+If you insert styles during rendering and React is processing a [non-blocking update,](/reference/react/useTransition#perform-non-blocking-updates-with-actions) the browser will recalculate the styles every single frame while rendering a component tree, which can be **extremely slow.**
+>>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 `useInsertionEffect` は、[`useLayoutEffect`](/reference/react/useLayoutEffect) や [`useEffect`](/reference/react/useEffect) でスタイルを挿入するよりも優れています。なぜなら、他のエフェクトがあなたのコンポーネントで実行される時点で `<style>` タグがすでに挿入されていることが保証されるからです。さもないと、古くなったスタイルにより、通常のエフェクトでのレイアウト計算が正しくなくなってしまいます。
 

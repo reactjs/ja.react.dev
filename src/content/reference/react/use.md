@@ -312,7 +312,11 @@ export default async function App() {
 }
 ```
 
+<<<<<<< HEAD
 しかし[サーバコンポーネント](/reference/react/components#server-components)で `await` を使用すると、`await` 文が終了するまでそのレンダーがブロックされます。サーバコンポーネントからクライアントコンポーネントにプロミスを渡すことで、プロミスがサーバコンポーネントのレンダーをブロックすることを防ぐことができます。
+=======
+But using `await` in a [Server Component](/reference/rsc/server-components) will block its rendering until the `await` statement is finished. Passing a Promise from a Server Component to a Client Component prevents the Promise from blocking the rendering of the Server Component.
+>>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 </DeepDive>
 

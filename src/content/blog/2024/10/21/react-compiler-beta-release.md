@@ -72,11 +72,19 @@ npm install -D eslint-plugin-react-compiler@beta
 yarn add -D eslint-plugin-react-compiler@beta
 </TerminalBlock>
 
+<<<<<<< HEAD
 インストール後、[ESLint の設定ファイルに記載を追加することでリンタを有効にできます](/learn/react-compiler#installing-eslint-plugin-react-compiler)。リンタを使用することで、React のルールに対する違反を特定でき、コンパイラが完全にリリースされる際の導入が容易になります。
+=======
+After installation you can enable the linter by [adding it to your ESLint config](/learn/react-compiler/installation#eslint-integration). Using the linter helps identify Rules of React breakages, making it easier to adopt the compiler when it's fully released.
+>>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 ## 後方互換性 {/*backwards-compatibility*/}
 
+<<<<<<< HEAD
 React Compiler は React 19 に追加されたランタイム API に依存するコードを生成しますが、React 17 および 18 でもコンパイラが動作するようにサポートを追加しました。ベータ版では、まだ React 19 に移行していない場合でも、コンパイラ設定で小さな `target` を指定し、`react-compiler-runtime` を依存ライブラリとして追加することで、React Compiler を試すことができます。[これに関するドキュメントはこちらでご覧いただけます](/learn/react-compiler#using-react-compiler-with-react-17-or-18)。
+=======
+React Compiler produces code that depends on runtime APIs added in React 19, but we've since added support for the compiler to also work with React 17 and 18. If you are not on React 19 yet, in the Beta release you can now try out React Compiler by specifying a minimum `target` in your compiler config, and adding `react-compiler-runtime` as a dependency. [You can find docs on this here](/reference/react-compiler/configuration#react-17-18).
+>>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 ## ライブラリでの React Compiler の使用 {/*using-react-compiler-in-libraries*/}
 
@@ -86,7 +94,11 @@ React Compiler はライブラリのコンパイルにも使用できます。Re
 
 ライブラリのコードが事前にコンパイルされていれば、ライブラリのユーザはコンパイラを有効にしなくても、ライブラリに適用された自動メモ化の恩恵を受けることができます。ライブラリがまだ React 19 に移行していないアプリを対象としている場合、最小の `target` を指定し、`react-compiler-runtime` を dependency として直接追加してください。ランタイムパッケージはアプリケーションのバージョンに応じて正しい API の実装を使用し、必要に応じて欠けている API をポリフィルします。
 
+<<<<<<< HEAD
 [これに関するドキュメントはこちら](/learn/react-compiler#using-the-compiler-on-libraries)。
+=======
+[You can find more docs on this here.](/reference/react-compiler/compiling-libraries)
+>>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 ## React Compiler Working Group を全員に開放 {/*opening-up-react-compiler-working-group-to-everyone*/}
 

@@ -30,7 +30,11 @@ title: "<title>"
 
 #### props {/*props*/}
 
+<<<<<<< HEAD
 `<title>` は、[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
+=======
+`<title>` supports all [common element props.](/reference/react-dom/components/common#common-props)
+>>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 * `children`: `<title>` は子としてテキストのみを受け入れます。このテキストがドキュメントのタイトルになります。それがテキストのみをレンダーする限り、カスタムのコンポーネントを渡すこともできます。
 
