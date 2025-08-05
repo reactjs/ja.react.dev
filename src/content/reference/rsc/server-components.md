@@ -4,7 +4,7 @@ title: サーバコンポーネント
 
 <RSC>
 
-サーバコンポーネントは [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) 用の機能です。
+サーバコンポーネントは [React Server Components](/learn/creating-a-react-app#full-stack-frameworks) 用の機能です。
 
 </RSC>
 
