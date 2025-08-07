@@ -30,7 +30,7 @@ style: "<style>"
 
 #### props {/*props*/}
 
-`<style>` は、[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
+`<style>` は、[一般的な要素の props](/reference/react-dom/components/common#common-props) をすべてサポートしています。
 
 * `children`: 文字列、必須。スタイルシートの内容です。
 * `precedence`: 文字列。React がドキュメントの `<head>` 内で `<style>` DOM ノードを他と比較してどのように順序付けるかを指定します。これによりどのスタイルシートが他を上書きできるかが決まります。React は、最初に見つけた優先順位の値を「低い」と見なし、後で見つけた優先順位の値を「高い」と見なします。多くのスタイルシステムは、スタイルルールがアトミックであるため、単一の優先順位の値を使用しても問題なく機能します。同じ優先順位を持つスタイルシートは、`<link>` の場合でもインライン `<style>` タグの場合でも、あるいは [`preinit`](/reference/react-dom/preinit) 関数を使用してロードされた場合でも、一緒に配置されます。

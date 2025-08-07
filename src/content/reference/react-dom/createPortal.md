@@ -50,7 +50,7 @@ import { createPortal } from 'react-dom';
 
 * `domNode`: `document.getElementById()` によって返されるような DOM ノード。ノードはすでに存在している必要があります。更新中に異なる DOM ノードを渡すと、ポータルの内容が再作成されます。
 
-* **省略可能** `key`: ポータルの [key](/learn/rendering-lists/#keeping-list-items-in-order-with-key) として使用される一意の文字列または数値。
+* **省略可能** `key`: ポータルの [key](/learn/rendering-lists#keeping-list-items-in-order-with-key) として使用される一意の文字列または数値。
 
 #### 返り値 {/*returns*/}
 

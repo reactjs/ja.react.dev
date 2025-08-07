@@ -4,7 +4,7 @@ title: クライアント用 React DOM API
 
 <Intro>
 
-`react-dom/client` の API を用いて、クライアント（ブラウザ）上で React コンポーネントをレンダーすることができます。これらの API は通常、React ツリーを初期化するためにアプリのトップレベルで使用されます。[フレームワーク](/learn/start-a-new-react-project#production-grade-react-frameworks)はこれらをあなたの代わりに呼び出すことがあります。ほとんどのコンポーネントは、これらをインポートしたり使用したりする必要はありません。
+`react-dom/client` の API を用いて、クライアント（ブラウザ）上で React コンポーネントをレンダーすることができます。これらの API は通常、React ツリーを初期化するためにアプリのトップレベルで使用されます。[フレームワーク](/learn/start-a-new-react-project#full-stack-frameworks)はこれらをあなたの代わりに呼び出すことがあります。ほとんどのコンポーネントは、これらをインポートしたり使用したりする必要はありません。
 
 </Intro>
 

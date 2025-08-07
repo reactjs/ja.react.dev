@@ -12,6 +12,12 @@ const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
 
 </Intro>
 
+<Note>
+
+[React Compiler](/learn/react-compiler) はすべてのコンポーネントに自動で `memo` を適用するため、手作業によるメモ化の必要性を減らします。コンパイラを使って自動的にコンポーネントのメモ化を行えます。
+
+</Note>
+
 <InlineToc />
 
 ---
@@ -222,7 +228,7 @@ export default function MyApp() {
   const [theme, setTheme] = useState('dark');
 
   function handleClick() {
-    setTheme(theme === 'dark' ? 'light' : 'dark'); 
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   }
 
   return (
@@ -354,6 +360,87 @@ function arePropsEqual(oldProps, newProps) {
 対象のデータ構造が既知の有限の深さを持つことが 100% 確定している場合を除き、`arePropsEqual` 内で深い等価性チェックを行うことは避けてください。**深い等価性チェックは非常に遅くなる危険性がある**ため、誰かが後でデータ構造を変更することによりアプリが何秒間もフリーズしてしまう可能性があります。
 
 </Pitfall>
+
+---
+
+### React Compiler を使用する場合でも React.memo は必要？ {/*react-compiler-memo*/}
+
+[React Compiler](/learn/react-compiler) を有効にすると、通常は `React.memo` は不要になります。コンパイラがコンポーネントの再レンダーを自動的に最適化してくれるからです。
+
+仕組みは以下の通りです。
+
+**React Compiler なし**の場合、不要な再レンダーを防ぐために `React.memo` が必要です。
+
+```js
+// Parent re-renders every second
+function Parent() {
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSeconds(s => s + 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <>
+      <h1>Seconds: {seconds}</h1>
+      <ExpensiveChild name="John" />
+    </>
+  );
+}
+
+// Without memo, this re-renders every second even though props don't change
+const ExpensiveChild = memo(function ExpensiveChild({ name }) {
+  console.log('ExpensiveChild rendered');
+  return <div>Hello, {name}!</div>;
+});
+```
+
+**React Compiler が有効**の場合、同じ最適化が自動的に行われます。
+
+```js
+// No memo needed - compiler prevents re-renders automatically
+function ExpensiveChild({ name }) {
+  console.log('ExpensiveChild rendered');
+  return <div>Hello, {name}!</div>;
+}
+```
+
+React Compiler が生成するコードの重要な部分は以下の通りです。
+
+```js {6-12}
+function Parent() {
+  const $ = _c(7);
+  const [seconds, setSeconds] = useState(0);
+  // ... other code ...
+
+  let t3;
+  if ($[4] === Symbol.for("react.memo_cache_sentinel")) {
+    t3 = <ExpensiveChild name="John" />;
+    $[4] = t3;
+  } else {
+    t3 = $[4];
+  }
+  // ... return statement ...
+}
+```
+
+ハイライトされた行に注目してください：コンパイラは `<ExpensiveChild name="John" />` をキャッシュチェックでラップしています。props である `name` は常に `"John"` であるため、この JSX は一度作成されたら、親の再レンダーのたびに再利用されます。これはまさに `React.memo` が行うことと同じです。つまり props が変更されていない場合、子コンポーネントの再レンダーを防いでいます。
+
+React Compiler は自動的に以下を行います。
+1. `ExpensiveChild` に渡される props である `name` が変更されていないことを追跡
+2. `<ExpensiveChild name="John" />` に対する以前に作成された JSX を再利用
+3. `ExpensiveChild` の再レンダーを完全にスキップ
+
+つまり、**React Compiler を使用する場合、コンポーネントから `React.memo` を安全に削除できます**。コンパイラが同じ最適化を自動的に提供し、コードをよりクリーンで保守しやすくしてくれます。
+
+<Note>
+
+コンパイラの最適化は実際には `React.memo` よりも包括的です。コンポーネント内の中間値や高コストな計算もメモ化し、コンポーネントツリー全体で `React.memo` と `useMemo` を組み合わせたのと似たような効果をもたらします。
+
+</Note>
 
 ---
 

@@ -36,7 +36,7 @@ title: "<option>"
 
 #### props {/*props*/}
 
-`<option>` は、[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
+`<option>` は、[一般的な要素の props](/reference/react-dom/components/common#common-props) をすべてサポートしています。
 
 さらに、`<option>` は以下の props をサポートしています：
 

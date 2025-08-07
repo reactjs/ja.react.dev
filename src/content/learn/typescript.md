@@ -13,14 +13,14 @@ TypeScript は JavaScript コードベースに型定義を追加するための
 
 * [TypeScript で React コンポーネントを書く方法](/learn/typescript#typescript-with-react-components)
 * [フックの型付けの例](/learn/typescript#example-hooks)
-* [`@types/react` にある一般的な型](/learn/typescript/#useful-types)
-* [さらに学習するためのリソース](/learn/typescript/#further-learning)
+* [`@types/react` にある一般的な型](/learn/typescript#useful-types)
+* [さらに学習するためのリソース](/learn/typescript#further-learning)
 
 </YouWillLearn>
 
 ## インストール {/*installation*/}
 
-すべての[本番環境向け React フレームワーク](/learn/start-a-new-react-project#production-grade-react-frameworks)は TypeScript の使用をサポートしています。フレームワーク個別のガイドに従ってインストールを行ってください。
+すべての[本番環境向け React フレームワーク](/learn/start-a-new-react-project#full-stack-frameworks)は TypeScript の使用をサポートしています。フレームワーク個別のガイドに従ってインストールを行ってください。
 
 - [Next.js](https://nextjs.org/docs/app/building-your-application/configuring/typescript)
 - [Remix](https://remix.run/docs/en/1.19.2/guides/typescript)
@@ -139,7 +139,7 @@ const [enabled, setEnabled] = useState(false);
 
 これで `enabled` に `boolean` 型が割り当てられ、また `setEnabled` は引数として `boolean` 値または `boolean` を返す関数を受け取る関数になります。state の型を明示的に指定したい場合は、`useState` の呼び出しに型引数を渡すことで行えます。
 
-```ts 
+```ts
 // Explicitly set the type to "boolean"
 const [enabled, setEnabled] = useState<boolean>(false);
 ```
@@ -174,7 +174,7 @@ const [requestState, setRequestState] = useState<RequestState>({ status: 'idle' 
 import {useReducer} from 'react';
 
 interface State {
-   count: number 
+   count: number
 };
 
 type CounterAction =
@@ -329,6 +329,12 @@ function MyComponent() {
 
 ### `useMemo` {/*typing-usememo*/}
 
+<Note>
+
+[React Compiler](/learn/react-compiler) は値や関数の自動的なメモ化を行うことで、手作業による `useMemo` 呼び出しの必要性を軽減します。自動でメモ化を行うためにコンパイラを使用可能です。
+
+</Note>
+
 [`useMemo`](/reference/react/useMemo) フックは、関数呼び出しからの値の作成/再アクセスを行い、2 番目の引数として渡された依存配列が変更されたときにのみ関数を再実行します。フックの呼び出し結果の型は、1 番目の引数として指定した関数の返り値の型から推論されます。フックに型引数を指定することで明示的にすることができます。
 
 ```ts
@@ -338,6 +344,12 @@ const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
 
 
 ### `useCallback` {/*typing-usecallback*/}
+
+<Note>
+
+[React Compiler](/learn/react-compiler) は値や関数の自動的なメモ化を行うことで、手作業による `useCallback` 呼び出しの必要性を軽減します。自動でメモ化を行うためにコンパイラを使用可能です。
+
+</Note>
 
 [`useCallback`](/reference/react/useCallback) は、第 2 引数に渡される依存配列が同じである限り、関数への安定した参照を提供するものです。`useMemo` と同様に、関数の型は 1 番目の引数として指定した関数から推論され、フックに型引数を指定することでより明示的にすることができます。
 
@@ -361,7 +373,7 @@ export default function Form() {
   const handleChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>((event) => {
     setValue(event.currentTarget.value);
   }, [setValue])
-  
+
   return (
     <>
       <input value={value} onChange={handleChange} />

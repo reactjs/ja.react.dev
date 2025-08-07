@@ -685,7 +685,7 @@ ul, li { margin: 0; padding: 0; }
 </TasksContext>
 ```
 
-タスクのリストを必要とするコンポーネントは、代わりに `TaskContext` から読み込むことができます。
+タスクのリストを必要とするコンポーネントは、代わりに `TasksContext` から読み込むことができます。
 
 ```js {2}
 export default function TaskList() {

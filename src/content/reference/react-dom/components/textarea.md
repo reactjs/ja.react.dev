@@ -30,7 +30,7 @@ title: "<textarea>"
 
 #### props {/*props*/}
 
-`<textarea>` は[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
+`<textarea>` は[一般的な要素の props](/reference/react-dom/components/common#common-props) をすべてサポートしています。
 
 `value` プロパティを渡すことで、[テキストエリアを制御されたコンポーネント (controlled component)](#controlling-a-text-area-with-a-state-variable) にできます。
 
