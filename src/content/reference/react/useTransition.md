@@ -65,9 +65,9 @@ function TabContainer() {
 ```
 
 <Note>
-#### Functions called in `startTransition` are called "Actions". {/*functions-called-in-starttransition-are-called-actions*/}
+#### `startTransition` で呼び出される関数は「アクション」と呼ばれる。 {/*functions-called-in-starttransition-are-called-actions*/}
 
-The function passed to `startTransition` is called an "Action". By convention, any callback called inside `startTransition` (such as a callback prop) should be named `action` or include the "Action" suffix:
+`startTransition` に渡される関数は「アクション」と呼ばれます。慣例として、（コールバック props のように）`startTransition` 内で呼び出されるコールバックは `action` という名前にするか、末尾に "Action" というサフィックスを含めるとよいでしょう。
 
 ```js {1,9}
 function SubmitButton({ submitAction }) {
