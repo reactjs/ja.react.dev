@@ -12,7 +12,11 @@ React 19 では、`forwardRef` は不要となりました。代わりに props 
 
 <Intro>
 
+<<<<<<< HEAD
 `forwardRef` は、親コンポーネントに対して DOM ノードを [ref](/learn/manipulating-the-dom-with-refs) として公開できるようにします。
+=======
+`forwardRef` lets your component expose a DOM node to the parent component with a [ref.](/learn/manipulating-the-dom-with-refs)
+>>>>>>> d34c6a2c6fa49fc6f64b07aa4fa979d86d41c4e8
 
 ```js
 const SomeComponent = forwardRef(render)

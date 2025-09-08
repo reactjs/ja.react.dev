@@ -321,7 +321,11 @@ React がメモ化された関数に対してキャッシュアクセスを提�
 
 #### `useMemo` {/*deep-dive-use-memo*/}
 
+<<<<<<< HEAD
 一般的に、[`useMemo`](/reference/react/useMemo) は、レンダー間でクライアントコンポーネント内の高コストな計算をキャッシュするために使用すべきです。例えば、コンポーネント内のデータの変換をメモ化するために使用します。
+=======
+In general, you should use [`useMemo`](/reference/react/useMemo) for caching an expensive computation in a Client Component across renders. As an example, to memoize a transformation of data within a component.
+>>>>>>> d34c6a2c6fa49fc6f64b07aa4fa979d86d41c4e8
 
 ```jsx {4}
 'use client';
