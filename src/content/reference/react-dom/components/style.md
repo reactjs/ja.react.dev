@@ -49,7 +49,11 @@ React は `<style>` コンポーネントをドキュメントの `<head>` に�
 
 この動作を有効にするには、props として `href` と `precedence` を指定してください。React は同じ `href` を持つスタイルの重複解消処理を行います。`precedence` はドキュメントの `<head>` 内における他の `<style>` DOM ノードとの相対ランクを React に指示することで、どのスタイルシートが他を上書きできるかを決定できるようにします。
 
+<<<<<<< HEAD
 この特別な動作に関して、以下の注意点があります。
+=======
+This special treatment comes with three caveats:
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 
 * スタイルがレンダーされた後、React は props に変更があってもそれを無視します（開発中にこれが起きた場合は React が警告を発します）。
 * `precedence` が指定されている場合、React は（`href` と `precedence` 以外の）無関係な props をすべて削除します。

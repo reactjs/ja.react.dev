@@ -1773,7 +1773,11 @@ function setState() {
 
 `startTransition` 内で `await` を使用すると、更新が順不同で発生する可能性があります。
 
+<<<<<<< HEAD
 以下の例では、`updateQuantity` 関数がカート内の商品の数量を更新するリクエストをサーバに送信する部分をシミュレーションしています。この関数は、ネットワークリクエストの競合状態をシミュレートするため、*初回リクエストの結果が常に後続リクエストの結果より後に返ってくる*ようになっています。
+=======
+In this example, the `updateQuantity` function simulates a request to the server to update the item's quantity in the cart. This function *artificially returns every other request after the previous* to simulate race conditions for network requests.
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 
 数量を一度だけ更新した場合と、素早く複数回更新した場合を試してみてください。誤った合計が表示される場合があることに気付くでしょう。
 
