@@ -711,7 +711,7 @@ function Page({ url }) {
 
 既存のコードベースで、以下のようにリントルールが抑制されているのを見かけることがあるかもしれません。
 
-```js {7-9}
+```js {expectedErrors: {'react-compiler': [8]}} {7-9}
 function Page({ url }) {
   const { items } = useContext(ShoppingCartContext);
   const numberOfItems = items.length;
@@ -735,7 +735,7 @@ function Page({ url }) {
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [16]}}
 import { useState, useEffect } from 'react';
 
 export default function App() {
@@ -990,7 +990,7 @@ function useTimer(callback, delay) {
 ```
 
 
-```js
+```js {expectedErrors: {'react-compiler': [14]}}
 import { useState, useEffect } from 'react';
 
 export default function Timer() {

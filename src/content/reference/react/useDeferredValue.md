@@ -244,7 +244,11 @@ input { margin: 10px; }
 
 </Sandpack>
 
+<<<<<<< HEAD
 この代わりに一般的に使われる UI パターンは、結果リストの更新を*遅延*させて、新しい結果が準備できるまで前の結果を表示し続けるというものです。遅延バージョンのクエリ文字列を渡すために `useDeferredValue` を呼び出します：
+=======
+A common alternative UI pattern is to *defer* updating the list of results and to keep showing the previous results until the new results are ready. Call `useDeferredValue` to pass a deferred version of the query down:
+>>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
 
 ```js {3,11}
 export default function App() {
@@ -669,7 +673,7 @@ export default function App() {
 }
 ```
 
-```js src/SlowList.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
@@ -746,7 +750,7 @@ export default function App() {
 }
 ```
 
-```js src/SlowList.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {

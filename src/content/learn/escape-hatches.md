@@ -201,7 +201,7 @@ input { display: block; margin-bottom: 20px; }
 
 例えば、他の state に基づいてほかの state を調整するのに、エフェクトは必要ありません。
 
-```js {5-9}
+```js {expectedErrors: {'react-compiler': [8]}} {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');

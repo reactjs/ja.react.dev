@@ -34,7 +34,7 @@ title: 'そのエフェクトは不要かも'
 
 例えば、`firstName` と `lastName` の 2 つの state 変数を持つコンポーネントがあるとします。これらを連結して `fullName` を計算したいとします。となると、`firstName` または `lastName` が変更されたときに `fullName` を更新したくなるでしょう。直観的には、`fullName` という state 変数を追加して、エフェクトでそれを更新すればいいと思うかもしれません。
 
-```js {5-9}
+```js {expectedErrors: {'react-compiler': [8]}} {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
@@ -66,7 +66,7 @@ function Form() {
 
 このコンポーネントは、props で受け取った `todos` を、`filter` プロパティに従ってフィルタリングして `visibleTodos` を計算しています。計算結果を state に格納してエフェクトから更新するようにしたくなるかもしれません。
 
-```js {4-8}
+```js {expectedErrors: {'react-compiler': [7]}} {4-8}
 function TodoList({ todos, filter }) {
   const [newTodo, setNewTodo] = useState('');
 
@@ -165,7 +165,7 @@ console.timeEnd('filter array');
 
 この `ProfilePage` コンポーネントは props として `userId` を受け取ります。ページにはコメント入力欄があり、その値を保持するために `comment` という state 変数を使用しています。ある日、問題に気付きました。あるプロフィールから別のプロフィールに移動しても、`comment` がリセットされないのです。その結果、うっかり別のユーザのプロフィールにコメントを投稿してしまいやすい状態になっています。この問題を解決するために、`userId` が変更されるたびに `comment` state 変数をクリアしたいと考えています。
 
-```js {4-7}
+```js {expectedErrors: {'react-compiler': [6]}} {4-7}
 export default function ProfilePage({ userId }) {
   const [comment, setComment] = useState('');
 
@@ -208,7 +208,7 @@ function Profile({ userId }) {
 
 この `List` コンポーネントは、`items` リストを props として受け取り、選択中のアイテムを `selection` という state 変数に保持します。`items` が異なる配列を受け取るたびに、`selection` を `null` にリセットしたいとします。
 
-```js {5-8}
+```js {expectedErrors: {'react-compiler': [7]}} {5-8}
 function List({ items }) {
   const [isReverse, setIsReverse] = useState(false);
   const [selection, setSelection] = useState(null);
@@ -819,7 +819,7 @@ function useData(url) {
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [12, 16, 20]}}
 import { useState, useEffect } from 'react';
 import { initialTodos, createTodo } from './todos.js';
 
@@ -1022,7 +1022,7 @@ input { margin-top: 10px; }
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState, useEffect } from 'react';
 import { initialTodos, createTodo, getVisibleTodos } from './todos.js';
 
@@ -1106,7 +1106,7 @@ state 変数とエフェクトを削除し、代わりに `getVisibleTodos()` �
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [8]}}
 import { useState, useMemo } from 'react';
 import { initialTodos, createTodo, getVisibleTodos } from './todos.js';
 
@@ -1363,7 +1363,7 @@ export default function ContactList({
 }
 ```
 
-```js src/EditContact.js active
+```js {expectedErrors: {'react-compiler': [8, 9]}} src/EditContact.js active
 import { useState, useEffect } from 'react';
 
 export default function EditContact({ savedContact, onSave }) {

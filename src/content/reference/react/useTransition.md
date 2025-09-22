@@ -161,7 +161,11 @@ function CheckoutForm() {
 }
 ```
 
+<<<<<<< HEAD
 `startTransition` に渡される関数が "アクション (Action)" と呼ばれるものです。アクション内では state を更新したり、（必要に応じて）副作用を実行したりすることができます。その作業はバックグラウンドで、ページ上のユーザ操作をブロックすることなく行われます。ひとつのトランジションが複数のアクションを含むことができ、トランジションが進行中でも UI の応答性は保たれます。例えば、ユーザがタブをクリックしたあとに気が変わって別のタブをクリックした場合でも、最初の更新が終了するのを待つことなく、2 回目のクリックが即座に処理されます。
+=======
+The function passed to `startTransition` is called the "Action". You can update state and (optionally) perform side effects within an Action, and the work will be done in the background without blocking user interactions on the page. A Transition can include multiple Actions, and while a Transition is in progress, your UI stays responsive. For example, if the user clicks a tab but then changes their mind and clicks another tab, the second click will be immediately handled without waiting for the first update to finish.
+>>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
 
 トランジションの進行中状態に関するフィードバックをユーザに提供するために、`startTransition` が最初に呼び出されると `isPending` state が `true` に切り替わり、すべてのアクションが完了して最終的な状態がユーザに表示されるまで `true` のままになります。トランジションによりアクション内の副作用が順番に完了することが保証され、[不要なローディングインジケータが抑止](#preventing-unwanted-loading-indicators)されます。また、`useOptimistic` を使用することで、トランジションが進行中の間にも即時のフィードバックを提供することができます。
 
@@ -597,7 +601,7 @@ export default function TabButton({ action, children, isActive }) {
     <button onClick={() => {
       startTransition(async () => {
         // await the action that's passed in.
-        // This allows it to be either sync or async. 
+        // This allows it to be either sync or async.
         await action();
       });
     }}>
@@ -664,7 +668,7 @@ export default function TabButton({ action, children, isActive }) {
     <button onClick={async () => {
       startTransition(async () => {
         // await the action that's passed in.
-        // This allows it to be either sync or async. 
+        // This allows it to be either sync or async.
         await action();
       });
     }}>
@@ -682,7 +686,7 @@ export default function AboutTab() {
 }
 ```
 
-```js src/PostsTab.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/PostsTab.js
 import { memo } from 'react';
 
 const PostsTab = memo(function PostsTab() {
@@ -742,7 +746,11 @@ b { display: inline-block; margin-right: 10px; }
 
 <Note>
 
+<<<<<<< HEAD
 コンポーネント内から props として `action` を公開する場合は、トランジション内で `await` するべきです。
+=======
+When exposing an `action` prop from a component, you should `await` it inside the transition.
+>>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
 
 これにより `action` コールバックが同期的な場合でも非同期の場合でも、アクションを `await` でラップするために余分に `startTransition` を用いる必要がなくなります。
 
@@ -837,7 +845,7 @@ export default function AboutTab() {
 }
 ```
 
-```js src/PostsTab.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/PostsTab.js
 import { memo } from 'react';
 
 const PostsTab = memo(function PostsTab() {
@@ -1773,7 +1781,11 @@ function setState() {
 
 `startTransition` 内で `await` を使用すると、更新が順不同で発生する可能性があります。
 
+<<<<<<< HEAD
 以下の例では、`updateQuantity` 関数がカート内の商品の数量を更新するリクエストをサーバに送信する部分をシミュレーションしています。この関数は、ネットワークリクエストの競合状態をシミュレートするため、*初回リクエストの結果が常に後続リクエストの結果より後に返ってくる*ようになっています。
+=======
+In this example, the `updateQuantity` function simulates a request to the server to update the item's quantity in the cart. This function *artificially returns every other request after the previous* to simulate race conditions for network requests.
+>>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
 
 数量を一度だけ更新した場合と、素早く複数回更新した場合を試してみてください。誤った合計が表示される場合があることに気付くでしょう。
 
@@ -1805,7 +1817,7 @@ export default function App({}) {
   const [isPending, startTransition] = useTransition();
   // Store the actual quantity in separate state to show the mismatch.
   const [clientQuantity, setClientQuantity] = useState(1);
-  
+
   const updateQuantityAction = newQuantity => {
     setClientQuantity(newQuantity);
 
@@ -1840,7 +1852,7 @@ export default function Item({action}) {
     startTransition(async () => {
       await action(e.target.value);
     });
-  }  
+  }
   return (
     <div className="item">
       <span>Eras Tour Tickets</span>
@@ -2005,7 +2017,7 @@ export default function Item({action}) {
     startTransition(() => {
       action(e.target.value);
     });
-  }  
+  }
   return (
     <div className="item">
       <span>Eras Tour Tickets</span>
