@@ -400,13 +400,23 @@ label { display: block; margin-top: 10px; }
 
 ### エフェクトイベントの宣言 {/*declaring-an-effect-event*/}
 
-<Wip>
+<Canary>
 
+<<<<<<< HEAD
 このセクションでは、まだ安定版の React で**リリースされていない実験的な API** について説明しています。
+=======
+**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
-</Wip>
+[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
 
+<<<<<<< HEAD
 [`useEffectEvent`](/reference/react/experimental_useEffectEvent) という特別なフックを使うことで、エフェクトからこの非リアクティブなロジックを分離することができます。
+=======
+</Canary>
+
+Use a special Hook called [`useEffectEvent`](/reference/react/useEffectEvent) to extract this non-reactive logic out of your Effect:
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
 ```js {1,4-6}
 import { useEffect, useEffectEvent } from 'react';
@@ -448,8 +458,8 @@ function ChatRoom({ roomId, theme }) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -464,7 +474,7 @@ function ChatRoom({ roomId, theme }) {
 
 ```js
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import { createConnection, sendMessage } from './chat.js';
 import { showNotification } from './notifications.js';
 
@@ -578,11 +588,17 @@ label { display: block; margin-top: 10px; }
 
 ### エフェクトイベントで最新の props や state を読み取る {/*reading-latest-props-and-state-with-effect-events*/}
 
-<Wip>
+<Canary>
 
+<<<<<<< HEAD
 このセクションでは、まだ安定版の React で**リリースされていない実験的な API** について説明しています。
+=======
+**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
-</Wip>
+[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
+
+</Canary>
 
 依存値に関するリンタを抑制したくなるようなパターンの多くは、エフェクトイベントによって回避可能です。
 
@@ -711,7 +727,7 @@ function Page({ url }) {
 
 既存のコードベースで、以下のようにリントルールが抑制されているのを見かけることがあるかもしれません。
 
-```js {7-9}
+```js {expectedErrors: {'react-compiler': [8]}} {7-9}
 function Page({ url }) {
   const { items } = useContext(ShoppingCartContext);
   const numberOfItems = items.length;
@@ -735,7 +751,7 @@ function Page({ url }) {
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [16]}}
 import { useState, useEffect } from 'react';
 
 export default function App() {
@@ -803,8 +819,8 @@ body {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -818,7 +834,7 @@ body {
 
 ```js
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export default function App() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -878,11 +894,17 @@ body {
 
 ### エフェクトイベントに関する制限事項 {/*limitations-of-effect-events*/}
 
-<Wip>
+<Canary>
 
+<<<<<<< HEAD
 このセクションでは、まだ安定版の React で**リリースされていない実験的な API** について説明しています。
+=======
+**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
-</Wip>
+[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
+
+</Canary>
 
 エフェクトイベントは、使い方が非常に限定されています。
 
@@ -976,8 +998,8 @@ function useTimer(callback, delay) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -990,7 +1012,7 @@ function useTimer(callback, delay) {
 ```
 
 
-```js
+```js {expectedErrors: {'react-compiler': [14]}}
 import { useState, useEffect } from 'react';
 
 export default function Timer() {
@@ -1046,8 +1068,8 @@ button { margin: 10px; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -1124,8 +1146,8 @@ button { margin: 10px; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -1139,7 +1161,7 @@ button { margin: 10px; }
 
 ```js
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export default function Timer() {
   const [count, setCount] = useState(0);
@@ -1193,8 +1215,8 @@ button { margin: 10px; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -1208,7 +1230,7 @@ button { margin: 10px; }
 
 ```js
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export default function Timer() {
   const [count, setCount] = useState(0);
@@ -1275,8 +1297,8 @@ button { margin: 10px; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -1290,7 +1312,7 @@ button { margin: 10px; }
 
 ```js
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export default function Timer() {
   const [count, setCount] = useState(0);
@@ -1362,8 +1384,8 @@ button { margin: 10px; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -1377,7 +1399,7 @@ button { margin: 10px; }
 
 ```js
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export default function Timer() {
   const [count, setCount] = useState(0);
@@ -1458,8 +1480,8 @@ button { margin: 10px; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1474,7 +1496,7 @@ button { margin: 10px; }
 
 ```js
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import { createConnection, sendMessage } from './chat.js';
 import { showNotification } from './notifications.js';
 
@@ -1599,8 +1621,8 @@ label { display: block; margin-top: 10px; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1615,7 +1637,7 @@ label { display: block; margin-top: 10px; }
 
 ```js
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import { createConnection, sendMessage } from './chat.js';
 import { showNotification } from './notifications.js';
 
@@ -1736,8 +1758,8 @@ label { display: block; margin-top: 10px; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1752,7 +1774,7 @@ label { display: block; margin-top: 10px; }
 
 ```js
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import { createConnection, sendMessage } from './chat.js';
 import { showNotification } from './notifications.js';
 

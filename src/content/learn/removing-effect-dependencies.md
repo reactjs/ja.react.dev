@@ -303,7 +303,7 @@ useEffect(() => {
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [14]}}
 import { useState, useEffect } from 'react';
 
 export default function Timer() {
@@ -609,11 +609,17 @@ function ChatRoom({ roomId }) {
 
 ### 変更に「反応」せず値を読み出したいだけか？ {/*do-you-want-to-read-a-value-without-reacting-to-its-changes*/}
 
-<Wip>
+<Canary>
 
+<<<<<<< HEAD
 このセクションでは、まだ安定版の React でリリースされていない**実験的な API** を説明しています。
+=======
+**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
-</Wip>
+[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
+
+</Canary>
 
 `isMuted` が `true` でない場合に限り、ユーザが新しいメッセージを受信したときに音を再生したいとします。
 
@@ -794,7 +800,7 @@ function ChatRoom({ roomId }) {
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [10]}}
 import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1262,8 +1268,8 @@ export default function Timer() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -1277,7 +1283,7 @@ export default function Timer() {
 
 ```js
 import { useState, useEffect, useRef } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import { FadeInAnimation } from './animation.js';
 
 function Welcome({ duration }) {
@@ -1389,8 +1395,8 @@ html, body { min-height: 300px; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -1405,7 +1411,7 @@ html, body { min-height: 300px; }
 ```js
 import { useState, useEffect, useRef } from 'react';
 import { FadeInAnimation } from './animation.js';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 function Welcome({ duration }) {
   const ref = useRef(null);
@@ -1825,8 +1831,8 @@ props として `onMessage` と `createConnection` という 2 つの関数を�
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1907,7 +1913,7 @@ export default function App() {
 
 ```js src/ChatRoom.js active
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export default function ChatRoom({ roomId, createConnection, onMessage }) {
   useEffect(() => {
@@ -2120,8 +2126,8 @@ export default function ChatRoom({ roomId, isEncrypted, onMessage }) { // Reacti
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -2189,7 +2195,7 @@ export default function App() {
 
 ```js src/ChatRoom.js active
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import {
   createEncryptedConnection,
   createUnencryptedConnection,

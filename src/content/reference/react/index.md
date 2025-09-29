@@ -37,7 +37,17 @@ React Compiler はビルド時に使用する最適化ツールであり、あ�
 * [Directives](/reference/react-compiler/directives) - コンパイル動作を制御するための関数レベルのディレクティブ
 * [Compiling Libraries](/reference/react-compiler/compiling-libraries) - コンパイル済みのライブラリコードをリリースする際のガイド
 
+<<<<<<< HEAD
 ## React のルール {/*rules-of-react*/}
+=======
+## ESLint Plugin React Hooks {/*eslint-plugin-react-hooks*/}
+
+The [ESLint plugin for React Hooks](/reference/eslint-plugin-react-hooks) helps enforce the Rules of React:
+
+* [Lints](/reference/eslint-plugin-react-hooks) - Detailed documentation for each lint with examples.
+
+## Rules of React {/*rules-of-react*/}
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
 React には、理解しやすい方法でパターンを表現し高品質なアプリケーションを産み出すための慣用的な記法、ないしルールが存在します。
 

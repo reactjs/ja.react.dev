@@ -928,7 +928,8 @@ export default function Page() {
 
 <Sandpack>
 
-```js src/App.js
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [9]}} src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1690,11 +1691,17 @@ button { margin-left: 10px; }
 
 ### エフェクトから最新の props と state を読み取る {/*reading-the-latest-props-and-state-from-an-effect*/}
 
-<Wip>
+<Canary>
 
+<<<<<<< HEAD
 このセクションでは、まだ安定したバージョンの React でリリースされていない**実験的な API** について説明します。
+=======
+**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
-</Wip>
+[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
+
+</Canary>
 
 デフォルトでは、エフェクトからリアクティブな値を読み取るときは、それを依存値として追加する必要があります。これにより、エフェクトはその値の変更に対して「反応」することが保証されます。ほとんどの依存値については、それが望む挙動です。
 
@@ -1709,7 +1716,11 @@ function Page({ url, shoppingCart }) {
 }
 ```
 
+<<<<<<< HEAD
 **`url` の変更ごとに新しいページ訪問を記録したいが、`shoppingCart` の変更のみでは記録したくない場合はどうすればいいのでしょうか？** [リアクティブルール](#specifying-reactive-dependencies)に反することなく `shoppingCart` を依存配列から除外することはできません。しかし、エフェクト内から呼ばれるコードの一部であるにもかかわらず、そのコードが変更に「反応」しないことを示すことができます。[`useEffectEvent`](/reference/react/experimental_useEffectEvent) フックを使用して、[*エフェクトイベント (effect event)* を宣言](/learn/separating-events-from-effects#declaring-an-effect-event)し、`shoppingCart` を読み取るコードをその内部に移動してください。
+=======
+<CanaryBadge /> **What if you want to log a new page visit after every `url` change, but *not* if only the `shoppingCart` changes?** You can't exclude `shoppingCart` from dependencies without breaking the [reactivity rules.](#specifying-reactive-dependencies) However, you can express that you *don't want* a piece of code to "react" to changes even though it is called from inside an Effect. [Declare an *Effect Event*](/learn/separating-events-from-effects#declaring-an-effect-event) with the [`useEffectEvent`](/reference/react/useEffectEvent) Hook, and move the code reading `shoppingCart` inside of it:
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
 ```js {2-4,7,8}
 function Page({ url, shoppingCart }) {
@@ -1737,7 +1748,9 @@ function Page({ url, shoppingCart }) {
 
 まれに、クライアント側で異なるコンテンツを表示する必要がある場合があります。たとえば、アプリが [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) からデータを読み込む場合、サーバ上ではそれを行うことができません。これは以下の方法で実装できます。
 
-```js
+
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [5]}}
 function MyComponent() {
   const [didMount, setDidMount] = useState(false);
 

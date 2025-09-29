@@ -52,7 +52,11 @@ export default function ProductPage({ productId, referrer, theme }) {
 
 初回のレンダー時、`useCallback` は渡された `fn` 関数を返します。
 
+<<<<<<< HEAD
 その後のレンダー時には、前回のレンダーからすでに保存されている `fn` 関数を返すか（依存配列が変更されていない場合）、このレンダー時に渡された `fn` 関数を返します。
+=======
+During subsequent renders, it will either return an already stored `fn` function from the last render (if the dependencies haven't changed), or return the `fn` function you have passed during this render.
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
 #### 注意点 {/*caveats*/}
 
@@ -130,7 +134,7 @@ function ProductPage({ productId, referrer, theme }) {
       orderDetails,
     });
   }
-  
+
   return (
     <div className={theme}>
       {/* ... so ShippingForm's props will never be the same, and it will re-render every time */}
@@ -207,7 +211,7 @@ function ProductPage({ productId, referrer }) {
 
 すでに [`useMemo`](/reference/react/useMemo) に詳しい場合、`useCallback` を次のように考えると役立つかもしれません。
 
-```js
+```js {expectedErrors: {'react-compiler': [3]}}
 // Simplified implementation (inside React)
 function useCallback(fn, dependencies) {
   return useMemo(() => fn, dependencies);
@@ -222,9 +226,15 @@ function useCallback(fn, dependencies) {
 
 #### あらゆる場所に useCallback を追加すべきか？ {/*should-you-add-usecallback-everywhere*/}
 
+<<<<<<< HEAD
 あなたのアプリがこのサイトのように、ほとんどのインタラクションが大まかなもの（ページ全体やセクション全体の置き換えなど）である場合、メモ化は通常不要です。一方、あなたのアプリが描画エディタのようなもので、ほとんどのインタラクションが細かなもの（図形を移動させるなど）である場合、メモ化は非常に役に立つでしょう。
 
 `useCallback` で関数をキャッシュすることが有用なのはいくつかのケースに限られます。
+=======
+If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful.
+
+Caching a function with `useCallback` is only valuable in a few cases:
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
 - それを [`memo`](/reference/react/memo) でラップされたコンポーネントに props として渡すケース。この場合は、値が変化していない場合には再レンダーをスキップしたいでしょう。メモ化することで、依存値が異なる場合にのみコンポーネントを再レンダーさせることができます。
 - あなたが渡している関数が、後で何らかのフックの依存値として使用されるケース。たとえば、他の `useCallback` でラップされた関数がそれに依存している、または [`useEffect`](/reference/react/useEffect) からこの関数に依存しているケースです。
@@ -310,7 +320,7 @@ function post(url, data) {
 }
 ```
 
-```js src/ShippingForm.js
+```js {expectedErrors: {'react-compiler': [7, 8]}} src/ShippingForm.js
 import { memo, useState } from 'react';
 
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
@@ -449,7 +459,7 @@ function post(url, data) {
 }
 ```
 
-```js src/ShippingForm.js
+```js {expectedErrors: {'react-compiler': [7, 8]}} src/ShippingForm.js
 import { memo, useState } from 'react';
 
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
@@ -868,7 +878,7 @@ Object.is(temp1[2], temp2[2]); // ... and so on for every dependency ...
 
 `Chart` コンポーネントが [`memo`](/reference/react/memo) でラップされていると仮定します。`ReportList` コンポーネントが再レンダーするときに、リスト内の `Chart` がすべて再レンダーされてしまわないよう、一部をスキップしたいとしましょう。しかし、ループの中で `useCallback` を呼び出すことはできません。
 
-```js {5-14}
+```js {expectedErrors: {'react-compiler': [6]}} {5-14}
 function ReportList({ items }) {
   return (
     <article>

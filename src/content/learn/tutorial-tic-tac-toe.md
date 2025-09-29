@@ -283,9 +283,15 @@ CodeSandbox 画面には、以下の 3 つの主要なセクションが表示�
 
 ![CodeSandbox のスタータコード](../images/tutorial/react-starter-code-codesandbox.png)
 
+<<<<<<< HEAD
 1. `App.js`、`index.js`、`styles.css` などのファイルリストや `public` というフォルダがある _Files_ セクション
 1. 選択したファイルのソースコードが表示される _コードエディタ_ 
 1. 書いたコードがどのように表示されるかがわかる _Browser_ セクション
+=======
+1. The _Files_ section with a list of files like `App.js`, `index.js`, `styles.css` in `src` folder and a folder called `public`
+1. The _code editor_ where you'll see the source code of your selected file
+1. The _browser_ section where you'll see how the code you've written will be displayed
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
 _Files_ セクションで `App.js` ファイルが選択されているはずです。そのファイルの内容は _コードエディタ_ に以下のように表示されています。
 

@@ -149,7 +149,11 @@ console.timeEnd('filter array');
 
 #### あらゆる場所に useMemo を追加すべきか？ {/*should-you-add-usememo-everywhere*/}
 
+<<<<<<< HEAD
 あなたのアプリがこのサイトのように、ほとんどのインタラクションが大まかなもの（ページ全体やセクション全体の置き換えなど）である場合、メモ化は通常不要です。一方、あなたのアプリが描画エディタのようなもので、ほとんどのインタラクションが細かなもの（図形を移動させるなど）である場合、メモ化は非常に役に立つでしょう。
+=======
+If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful.
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
 `useMemo` を利用した最適化が力を発揮するのは、以下のような、ほんの一部のケースに限られます。
 
@@ -225,7 +229,8 @@ export default function App() {
 
 ```
 
-```js src/TodoList.js active
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [5]}} src/TodoList.js active
 import { useMemo } from 'react';
 import { filterTodos } from './utils.js'
 
@@ -717,7 +722,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js src/List.js
+```js {expectedErrors: {'react-compiler': [5, 6]}} src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -855,7 +860,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js src/List.js
+```js {expectedErrors: {'react-compiler': [5, 6]}} src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -1127,7 +1132,7 @@ function ChatRoom({ roomId }) {
       serverUrl: 'https://localhost:1234',
       roomId: roomId
     }
-    
+
     const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
@@ -1371,7 +1376,7 @@ Object.is(temp1[2], temp2[2]); // ... and so on for every dependency ...
 
 `Chart` コンポーネントが [`memo`](/reference/react/memo) でラップされているとします。`ReportList` コンポーネントが再レンダーされた場合でも、リスト内の各 `Chart` の再レンダーはスキップしたいです。ところが、以下のようにループ内で `useMemo` を呼び出すことはできません。
 
-```js {5-11}
+```js {expectedErrors: {'react-compiler': [6]}} {5-11}
 function ReportList({ items }) {
   return (
     <article>

@@ -195,7 +195,11 @@ function UpdateName() {
 
 サーバ関数と `useActionState` を使用する場合、React はハイドレーションの完了前に実行されたフォーム送信を自動的に再現します。これにより、ユーザはアプリのハイドレーションが起きる前からアプリを操作できるようになります。
 
+<<<<<<< HEAD
 詳細については、[`useActionState`](/reference/react-dom/hooks/useFormState) のドキュメントを参照してください。
+=======
+For more, see the docs for [`useActionState`](/reference/react/useActionState).
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
 ### `useActionState` を使用したプログレッシブエンハンスメント {/*progressive-enhancement-with-useactionstate*/}
 
@@ -219,4 +223,8 @@ function UpdateName() {
 
 <CodeStep step={2}>パーマリンク</CodeStep>が `useActionState` に渡された場合、JavaScript バンドルが読み込まれる前にフォームが送信されると、React はこの渡された URL にリダイレクトします。
 
+<<<<<<< HEAD
 詳しくは、[`useActionState`](/reference/react-dom/hooks/useFormState) のドキュメントを参照してください。
+=======
+For more, see the docs for [`useActionState`](/reference/react/useActionState).
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
