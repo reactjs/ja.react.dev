@@ -10,6 +10,7 @@ title: サーバ用 React DOM API
 
 ---
 
+<<<<<<< HEAD
 ## Node.js ストリーム用のサーバ API {/*server-apis-for-nodejs-streams*/}
 
 以下のメソッドは、[Node.js ストリーム](https://nodejs.org/api/stream.html)が利用可能な環境でのみ使用できます。
@@ -19,10 +20,33 @@ title: サーバ用 React DOM API
 ---
 
 ## Web Stream 用のサーバ API {/*server-apis-for-web-streams*/}
+=======
+## Server APIs for Web Streams {/*server-apis-for-web-streams*/}
+>>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 
 以下のメソッドは、[Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) が利用可能な環境でのみ使用できます。これには、ブラウザ、Deno、および一部のモダンなエッジランタイムが含まれます。
 
+<<<<<<< HEAD
 * [`renderToReadableStream`](/reference/react-dom/server/renderToReadableStream) は、React ツリーを[読み取り可能な Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream) にレンダーします。
+=======
+* [`renderToReadableStream`](/reference/react-dom/server/renderToReadableStream) renders a React tree to a [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
+* [`resume`](/reference/react-dom/server/renderToPipeableStream) resumes [`prerender`](/reference/react-dom/static/prerender) to a [Readable Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream).
+
+
+<Note>
+
+Node.js also includes these methods for compatibility, but they are not recommended due to worse performance. Use the [dedicated Node.js APIs](#server-apis-for-nodejs-streams) instead.
+
+</Note>
+---
+
+## Server APIs for Node.js Streams {/*server-apis-for-nodejs-streams*/}
+
+These methods are only available in the environments with [Node.js Streams:](https://nodejs.org/api/stream.html)
+
+* [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) renders a React tree to a pipeable [Node.js Stream.](https://nodejs.org/api/stream.html)
+* [`resumeToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) resumes [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream) to a pipeable [Node.js Stream.](https://nodejs.org/api/stream.html)
+>>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 
 ---
 

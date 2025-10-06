@@ -28,7 +28,7 @@ React Compiler automatically optimizes your React application at build time. Rea
 
 Without the compiler, you need to manually memoize components and values to optimize re-renders:
 
-```js
+```js {expectedErrors: {'react-compiler': [4]}}
 import { useMemo, useCallback, memo } from 'react';
 
 const ExpensiveComponent = memo(function ExpensiveComponent({ data, onClick }) {
@@ -49,6 +49,21 @@ const ExpensiveComponent = memo(function ExpensiveComponent({ data, onClick }) {
   );
 });
 ```
+
+
+<Note>
+
+This manual memoization has a subtle bug that breaks memoization:
+
+```js [[2, 1, "() => handleClick(item)"]]
+<Item key={item.id} onClick={() => handleClick(item)} />
+```
+
+Even though `handleClick` is wrapped in `useCallback`, the arrow function `() => handleClick(item)` creates a new function every time the component renders. This means that `Item` will always receive a new `onClick` prop, breaking memoization.
+
+React Compiler is able to optimize this correctly with or without the arrow function, ensuring that `Item` only re-renders when `props.onClick` changes.
+
+</Note>
 
 ### After React Compiler {/*after-react-compiler*/}
 
@@ -74,7 +89,7 @@ function ExpensiveComponent({ data, onClick }) {
 
 _[See this example in the React Compiler Playground](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAogB4AOCmYeAbggMIQC2Fh1OAFMEQCYBDHAIA0RQowA2eOAGsiAXwCURYAB1iROITA4iFGBERgwCPgBEhAogF4iCStVoMACoeO1MAcy6DhSgG4NDSItHT0ACwFMPkkmaTlbIi48HAQWFRsAPlUQ0PFMKRlZFLSWADo8PkC8hSDMPJgEHFhiLjzQgB4+eiyO-OADIwQTM0thcpYBClL02xz2zXz8zoBJMqJZBABPG2BU9Mq+BQKiuT2uTJyomLizkoOMk4B6PqX8pSUFfs7nnro3qEapgFCAFEA)_
 
-React Compiler automatically applies the equivalent optimizations, ensuring your app only re-renders when necessary.
+React Compiler automatically applies the optimal memoization, ensuring your app only re-renders when necessary.
 
 <DeepDive>
 #### What kind of memoization does React Compiler add? {/*what-kind-of-memoization-does-react-compiler-add*/}
@@ -154,7 +169,7 @@ Next.js users can enable the swc-invoked React Compiler by using [v15.3.1](https
 
 ## What should I do about useMemo, useCallback, and React.memo? {/*what-should-i-do-about-usememo-usecallback-and-reactmemo*/}
 
-If you are using React Compiler, [`useMemo`](/reference/react/useMemo), [`useCallback`](/reference/react/useCallback), and [`React.memo`](/reference/react/memo) can be removed. React Compiler adds automatic memoization more precisely and granularly than is possible with these hooks. If you choose to keep manual memoization, React Compiler will analyze them and determine if your manual memoization matches its automatically inferred memoization. If there isn't a match, the compiler will choose to bail out of optimizing that component.
+React Compiler adds automatic memoization more precisely and granularly than is possible with [`useMemo`](/reference/react/useMemo), [`useCallback`](/reference/react/useCallback), and [`React.memo`](/reference/react/memo). If you choose to keep manual memoization, React Compiler will analyze them and determine if your manual memoization matches its automatically inferred memoization. If there isn't a match, the compiler will choose to bail out of optimizing that component.
 
 This is done out of caution as a common anti-pattern with manual memoization is using it for correctness.  This means your app depends on specific values being memoized to work properly. For example, in order to prevent an infinite loop, you may have memoized some values to stop a `useEffect` call from firing. This breaks the Rules of React, but since it can potentially be dangerous for the compiler to automatically remove manual memoization, the compiler will just bail out instead. You should manually remove your handwritten memoization and verify that your app still works as expected.
 
