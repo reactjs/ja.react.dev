@@ -47,9 +47,15 @@ function Tooltip() {
 
 #### 引数 {/*parameters*/}
 
+<<<<<<< HEAD
 * `setup`: エフェクトのロジックが記述された関数です。このセットアップ関数は、オプションで*クリーンアップ*関数を返すことができます。コンポーネントが初めて DOM に追加されると、React はセットアップ関数を実行します。依存配列 (dependencies) が変更された再レンダー時には、React はまず古い値を使ってクリーンアップ関数（あれば）を実行し、次に新しい値を使ってセットアップ関数を実行します。コンポーネントが DOM から削除された後、React はクリーンアップ関数を最後にもう一度実行します。
  
 * **省略可能** `dependencies`: `setup` コード内で参照されるすべてのリアクティブな値のリストです。リアクティブな値には、props、state、コンポーネント本体に直接宣言されたすべての変数および関数が含まれます。リンタが [React 用に設定されている場合](/learn/editor-setup#linting)、すべてのリアクティブな値が依存値として正しく指定されているか確認できます。依存値のリストは要素数が一定である必要があり、`[dep1, dep2, dep3]` のようにインラインで記述する必要があります。React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を使った比較で、それぞれの依存値を以前の値と比較します。この引数を省略すると、エフェクトはコンポーネントの毎回のレンダー後に再実行されます。
+=======
+* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. Before your component is added to the DOM, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. Before your component is removed from the DOM, React will run your cleanup function.
+
+* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If you omit this argument, your Effect will re-run after every re-render of the component.
+>>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 
 #### 返り値 {/*returns*/}
 
@@ -87,7 +93,8 @@ function Tooltip() {
 
 **これらすべては、ブラウザが画面を再描画する前に行わなければなりません**。ユーザにツールチップが移動するのを見せたくないのです。ブラウザが画面を再描画する前にレイアウトの測定を行うために `useLayoutEffect` を呼び出します。
 
-```js {5-8}
+{/* TODO(@poteto) - fixed by https://github.com/facebook/react/pull/34462. need a new release */}
+```js {expectedErrors: {'react-compiler': [7]}} {5-8}
 function Tooltip() {
   const ref = useRef(null);
   const [tooltipHeight, setTooltipHeight] = useState(0); // You don't know real height yet
@@ -187,7 +194,8 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js src/Tooltip.js active
+{/* TODO(@poteto) - fixed by https://github.com/facebook/react/pull/34462. need a new release */}
+```js {expectedErrors: {'react-compiler': [11]}} src/Tooltip.js active
 import { useRef, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -337,7 +345,8 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js src/Tooltip.js active
+{/* TODO(@poteto) - fixed by https://github.com/facebook/react/pull/34462. need a new release */}
+```js {expectedErrors: {'react-compiler': [11]}} src/Tooltip.js active
 import { useRef, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -484,7 +493,8 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js src/Tooltip.js active
+{/* TODO(@poteto) - fixed by https://github.com/facebook/react/pull/34462. need a new release */}
+```js {expectedErrors: {'react-compiler': [11]}} src/Tooltip.js active
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -627,7 +637,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js src/Tooltip.js active
+```js {expectedErrors: {'react-compiler': [10, 11]}} src/Tooltip.js active
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
