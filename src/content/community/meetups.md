@@ -58,6 +58,7 @@ title: React ミーティング
 * [Manchester](https://www.meetup.com/Manchester-React-User-Group/)
 * [React.JS Girls London](https://www.meetup.com/ReactJS-Girls-London/)
 * [React Advanced London](https://guild.host/react-advanced-london)
+* [React Native Liverpool](https://www.meetup.com/react-native-liverpool/)
 * [React Native London](https://guild.host/RNLDN)
 
 ## Finland {/*finland*/}
@@ -136,6 +137,9 @@ title: React ミーティング
 
 ## Portugal {/*portugal*/}
 * [Lisbon](https://www.meetup.com/JavaScript-Lisbon/)
+
+## Scotland (UK) {/*scotland-uk*/}
+* [Edinburgh](https://www.meetup.com/react-edinburgh/)
 
 ## Spain {/*spain*/}
 * [Barcelona](https://www.meetup.com/ReactJS-Barcelona/)

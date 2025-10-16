@@ -95,7 +95,7 @@ function VideoPlayer({ src, isPlaying }) {
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [7, 9]}}
 import { useState, useRef, useEffect } from 'react';
 
 function VideoPlayer({ src, isPlaying }) {
@@ -617,7 +617,11 @@ React は、開発中に意図的にコンポーネントを再マウントし�
 
 これにより `"✅ Connecting..."` が開発時に 1 回だけ表示されるようにはなるのですが、これでバグが修正されるわけではありません。
 
+<<<<<<< HEAD
 ユーザが他のページに移動しても、接続は閉じられず、戻ってきたときに新しい接続が作成されます。ユーザがアプリ内を移動するたびに接続が積み重なっていきます。「修正」前と同じ状況です。
+=======
+When the user navigates away, the connection still isn't closed and when they navigate back, a new connection is created. As the user navigates across the app, the connections would keep piling up, the same as it would before the "fix".
+>>>>>>> 0d05d9b6ef0f115ec0b96a2726ab0699a9ebafe1
 
 このバグを修正するには、エフェクトを一度だけ実行するようにするだけでは不十分です。エフェクトは再マウント時にも機能する必要があり、接続は上記の解決策のようにクリーンアップされる必要があるのです。
 
@@ -1005,7 +1009,7 @@ export default function MyInput({ value, onChange }) {
   const ref = useRef(null);
 
   // TODO: This doesn't quite work. Fix it.
-  // ref.current.focus()    
+  // ref.current.focus()
 
   return (
     <input
@@ -1468,7 +1472,8 @@ body {
 
 <Sandpack>
 
-```js src/App.js
+{/* not the most efficient, but this validation is enabled in the linter only, so it's fine to ignore it here since we know what we're doing */}
+```js {expectedErrors: {'react-compiler': [9]}} src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1541,7 +1546,8 @@ export async function fetchBio(person) {
 
 <Sandpack>
 
-```js src/App.js
+{/* not the most efficient, but this validation is enabled in the linter only, so it's fine to ignore it here since we know what we're doing */}
+```js {expectedErrors: {'react-compiler': [9]}} src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1605,4 +1611,3 @@ export async function fetchBio(person) {
 </Solution>
 
 </Challenges>
-

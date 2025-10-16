@@ -37,7 +37,11 @@ title: <Profiler>
 
 #### 注意点 {/*caveats*/}
 
+<<<<<<< HEAD
 * プロファイリングには追加のオーバーヘッドが発生するため、**デフォルトでは本番用ビルドでは無効になっています**。本番環境でプロファイリングを行うためには、[プロファイリングを有効にした特別な本番用ビルド](https://fb.me/react-profiling)を明示的に用いる必要があります。
+=======
+* Profiling adds some additional overhead, so **it is disabled in the production build by default.** To opt into production profiling, you need to enable a [special production build with profiling enabled.](/reference/dev-tools/react-performance-tracks#using-profiling-builds)
+>>>>>>> 0d05d9b6ef0f115ec0b96a2726ab0699a9ebafe1
 
 ---
 
@@ -81,13 +85,20 @@ React ツリーを `<Profiler>` コンポーネントで囲むことで、その
 
 <Pitfall>
 
+<<<<<<< HEAD
 プロファイリングには追加のオーバーヘッドが発生するため、**デフォルトでは本番用ビルドでは無効になっています**。本番環境でプロファイリングを行うためには、[プロファイリングを有効にした特別な本番用ビルド](https://fb.me/react-profiling)を明示的に用いる必要があります。
+=======
+Profiling adds some additional overhead, so **it is disabled in the production build by default.** To opt into production profiling, you need to enable a [special production build with profiling enabled.](/reference/dev-tools/react-performance-tracks#using-profiling-builds)
+>>>>>>> 0d05d9b6ef0f115ec0b96a2726ab0699a9ebafe1
 
 </Pitfall>
 
 <Note>
 
 `<Profiler>` を使うことで測定結果をプログラムで収集することができます。対話型のプロファイラを使いたい場合は、[React Developer Tools](/learn/react-developer-tools) の Profiler タブを試してみてください。これは同様の機能をブラウザの拡張機能として提供します。
+
+Components wrapped in `<Profiler>` will also be marked in the [Component tracks](/reference/dev-tools/react-performance-tracks#components) of React Performance tracks even in profiling builds.
+In development builds, all components are marked in the Components track regardless of whether they're wrapped in `<Profiler>`.
 
 </Note>
 
