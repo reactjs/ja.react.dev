@@ -1,32 +1,32 @@
 ---
-title: Introduction
+title: はじめに
 ---
 
 <Intro>
-React Compiler is a new build-time tool that automatically optimizes your React app. It works with plain JavaScript, and understands the [Rules of React](/reference/rules), so you don't need to rewrite any code to use it.
+React Compiler は、React アプリを自動的に最適化する新しいビルド時ツールです。プレーンな JavaScript で動作し、[React のルール](/reference/rules) を理解しているため、コードを書き直すことなく使用できます。
 </Intro>
 
 <YouWillLearn>
 
-* What React Compiler does
-* Getting started with the compiler
-* Incremental adoption strategies
-* Debugging and troubleshooting when things go wrong
-* Using the compiler on your React library
+* React Compiler の機能
+* React Compiler の導入方法
+* 段階的な導入戦略
+* 問題が発生した際のデバッグとトラブルシューティング
+* React ライブラリでのコンパイラの使用方法
 
 </YouWillLearn>
 
 <Note>
-React Compiler is currently in Release Candidate (RC). We now recommend everyone to try the compiler and provide feedback. The latest RC release can be found with the `@rc` tag.
+React Compiler は現在リリース候補 (RC) の状態です。皆様にコンパイラをお試しいただき、フィードバックを提供いただくことをお勧めします。最新のRCリリースは@rcタグで確認できます。
 </Note>
 
-## What does React Compiler do? {/*what-does-react-compiler-do*/}
+## React Compiler の機能 {/*what-does-react-compiler-do*/}
 
-React Compiler automatically optimizes your React application at build time. React is often fast enough without optimization, but sometimes you need to manually memoize components and values to keep your app responsive. This manual memoization is tedious, easy to get wrong, and adds extra code to maintain. React Compiler does this optimization automatically for you, freeing you from this mental burden so you can focus on building features.
+React Compiler は、ビルド時に React アプリケーションを自動的に最適化します。React は最適化なしでも十分に高速ですが、アプリの応答性を保つために、コンポーネントや値を手動でメモ化する必要がある場合があります。このメモ化は面倒で、間違いやすく、コードのメンテナンス性を損ねます。React Compiler はこの最適化を自動的に行い、開発者は機能開発に集中できるようになります。
 
-### Before React Compiler {/*before-react-compiler*/}
+### React Compiler を使用しない場合 {/*before-react-compiler*/}
 
-Without the compiler, you need to manually memoize components and values to optimize re-renders:
+再レンダーを最適化するためにコンポーネントや値をメモ化する必要があります。
 
 ```js
 import { useMemo, useCallback, memo } from 'react';
@@ -50,9 +50,9 @@ const ExpensiveComponent = memo(function ExpensiveComponent({ data, onClick }) {
 });
 ```
 
-### After React Compiler {/*after-react-compiler*/}
+### React Compiler を使用する場合 {/*after-react-compiler*/}
 
-With React Compiler, you write the same code without manual memoization:
+メモ化なしで同じコードを書くことができます。
 
 ```js
 function ExpensiveComponent({ data, onClick }) {
@@ -72,23 +72,23 @@ function ExpensiveComponent({ data, onClick }) {
 }
 ```
 
-_[See this example in the React Compiler Playground](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAogB4AOCmYeAbggMIQC2Fh1OAFMEQCYBDHAIA0RQowA2eOAGsiAXwCURYAB1iROITA4iFGBERgwCPgBEhAogF4iCStVoMACoeO1MAcy6DhSgG4NDSItHT0ACwFMPkkmaTlbIi48HAQWFRsAPlUQ0PFMKRlZFLSWADo8PkC8hSDMPJgEHFhiLjzQgB4+eiyO-OADIwQTM0thcpYBClL02xz2zXz8zoBJMqJZBABPG2BU9Mq+BQKiuT2uTJyomLizkoOMk4B6PqX8pSUFfs7nnro3qEapgFCAFEA)_
+*[React Compiler Playground でこの例を確認](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAogB4AOCmYeAbggMIQC2Fh1OAFMEQCYBDHAIA0RQowA2eOAGsiAXwCURYAB1iROITA4iFGBERgwCPgBEhAogF4iCStVoMACoeO1MAcy6DhSgG4NDSItHT0ACwFMPkkmaTlbIi48HAQWFRsAPlUQ0PFMKRlZFLSWADo8PkC8hSDMPJgEHFhiLjzQgB4+eiyO-OADIwQTM0thcpYBClL02xz2zXz8zoBJMqJZBABPG2BU9Mq+BQKiuT2uTJyomLizkoOMk4B6PqX8pSUFfs7nnro3qEapgFCAFEA)*
 
-React Compiler automatically applies the equivalent optimizations, ensuring your app only re-renders when necessary.
+React Compiler は最適なメモ化を自動で適用し、必要なときだけ再レンダーされるようにします。
 
 <DeepDive>
-#### What kind of memoization does React Compiler add? {/*what-kind-of-memoization-does-react-compiler-add*/}
+#### React Compiler はどのようなメモ化を行うのか？ {/*what-kind-of-memoization-does-react-compiler-add*/}
 
-React Compiler's automatic memoization is primarily focused on **improving update performance** (re-rendering existing components), so it focuses on these two use cases:
+React Compiler の自動メモ化は主に **更新パフォーマンスの向上**（既存コンポーネントの再レンダー）に焦点を当てており、主に以下の 2 つのユースケースに重点を置いています：
 
-1. **Skipping cascading re-rendering of components**
-    * Re-rendering `<Parent />` causes many components in its component tree to re-render, even though only `<Parent />` has changed
-1. **Skipping expensive calculations from outside of React**
-    * For example, calling `expensivelyProcessAReallyLargeArrayOfObjects()` inside of your component or hook that needs that data
+1. **コンポーネントの連鎖的な再レンダーのスキップ**
+    * `<Parent />` の再レンダーにより、`<Parent />` のみが変更されたにも関わらず、そのコンポーネントツリー内の多くのコンポーネントが再レンダーされる
+1. **React の外で行われる高コストな計算のスキップ**
+    * 例えば、コンポーネントやフック内で `expensivelyProcessAReallyLargeArrayOfObjects()` を呼び出す場合
 
-#### Optimizing Re-renders {/*optimizing-re-renders*/}
+#### 再レンダーの最適化 {/*optimizing-re-renders*/}
 
-React lets you express your UI as a function of their current state (more concretely: their props, state, and context). In its current implementation, when a component's state changes, React will re-render that component _and all of its children_ — unless you have applied some form of manual memoization with `useMemo()`, `useCallback()`, or `React.memo()`. For example, in the following example, `<MessageButton>` will re-render whenever `<FriendList>`'s state changes:
+React では、UI を現在の state（具体的には props、state、context）の関数として表現できます。現在の実装では、コンポーネントの state が変更されると、`useMemo()`、`useCallback()`、`React.memo()` による何らかのメモ化を適用していない限り、React はそのコンポーネント *そのすべての子要素* を再レンダーします。例えば、以下の例では、`<FriendList>` の state が変更されるたびに `<MessageButton>` が再レンダーされます：
 
 ```javascript
 function FriendList({ friends }) {
@@ -107,13 +107,13 @@ function FriendList({ friends }) {
   );
 }
 ```
-[_See this example in the React Compiler Playground_](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAYjHgpgCYAyeYOAFMEWuZVWEQL4CURwADrEicQgyKEANnkwIAwtEw4iAXiJQwCMhWoB5TDLmKsTXgG5hRInjRFGbXZwB0UygHMcACzWr1ABn4hEWsYBBxYYgAeADkIHQ4uAHoAPksRbisiMIiYYkYs6yiqPAA3FMLrIiiwAAcAQ0wU4GlZBSUcbklDNqikusaKkKrgR0TnAFt62sYHdmp+VRT7SqrqhOo6Bnl6mCoiAGsEAE9VUfmqZzwqLrHqM7ubolTVol5eTOGigFkEMDB6u4EAAhKA4HCEZ5DNZ9ErlLIWYTcEDcIA)
+[*React Compiler Playground でこの例を確認*](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAYjHgpgCYAyeYOAFMEWuZVWEQL4CURwADrEicQgyKEANnkwIAwtEw4iAXiJQwCMhWoB5TDLmKsTXgG5hRInjRFGbXZwB0UygHMcACzWr1ABn4hEWsYBBxYYgAeADkIHQ4uAHoAPksRbisiMIiYYkYs6yiqPAA3FMLrIiiwAAcAQ0wU4GlZBSUcbklDNqikusaKkKrgR0TnAFt62sYHdmp+VRT7SqrqhOo6Bnl6mCoiAGsEAE9VUfmqZzwqLrHqM7ubolTVol5eTOGigFkEMDB6u4EAAhKA4HCEZ5DNZ9ErlLIWYTcEDcIA)
 
-React Compiler automatically applies the equivalent of manual memoization, ensuring that only the relevant parts of an app re-render as state changes, which is sometimes referred to as "fine-grained reactivity". In the above example, React Compiler determines that the return value of `<FriendListCard />` can be reused even as `friends` changes, and can avoid recreating this JSX _and_ avoid re-rendering `<MessageButton>` as the count changes.
+React Compiler はメモ化と同等の処理を自動的に適用し、state が変更されてもアプリの関連部分のみが再レンダーされることを保証します。これは細粒度のリアクティビティ（fine-grained reactivity）と呼ばれることもあります。上記の例では、React Compiler は `friends` が変更されても `<FriendListCard />` の返り値を再利用できると判断し、この JSX の再作成 *と* カウントの変更による `<MessageButton>` の再レンダーを回避できます。
 
-#### Expensive calculations also get memoized {/*expensive-calculations-also-get-memoized*/}
+#### 高コストな計算もメモ化される {/*expensive-calculations-also-get-memoized*/}
 
-React Compiler can also automatically memoize expensive calculations used during rendering:
+React Compiler は、レンダー中に使用される高コストな計算も自動的にメモ化できます：
 
 ```js
 // **Not** memoized by React Compiler, since this is not a component or hook
@@ -126,51 +126,50 @@ function TableContainer({ items }) {
   // ...
 }
 ```
-[_See this example in the React Compiler Playground_](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAejQAgFTYHIQAuumAtgqRAJYBeCAJpgEYCemASggIZyGYDCEUgAcqAGwQwANJjBUAdokyEAFlTCZ1meUUxdMcIcIjyE8vhBiYVECAGsAOvIBmURYSonMCAB7CzcgBuCGIsAAowEIhgYACCnFxioQAyXDAA5gixMDBcLADyzvlMAFYIvGAAFACUmMCYaNiYAHStOFgAvk5OGJgAshTUdIysHNy8AkbikrIKSqpaWvqGIiZmhE6u7p7ymAAqXEwSguZcCpKV9VSEFBodtcBOmAYmYHz0XIT6ALzefgFUYKhCJRBAxeLcJIsVIZLI5PKFYplCqVa63aoAbm6u0wMAQhFguwAPPRAQA+YAfL4dIloUmBMlODogDpAA)
+[*React Compiler Playground でこの例を確認*](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAejQAgFTYHIQAuumAtgqRAJYBeCAJpgEYCemASggIZyGYDCEUgAcqAGwQwANJjBUAdokyEAFlTCZ1meUUxdMcIcIjyE8vhBiYVECAGsAOvIBmURYSonMCAB7CzcgBuCGIsAAowEIhgYACCnFxioQAyXDAA5gixMDBcLADyzvlMAFYIvGAAFACUmMCYaNiYAHStOFgAvk5OGJgAshTUdIysHNy8AkbikrIKSqpaWvqGIiZmhE6u7p7ymAAqXEwSguZcCpKV9VSEFBodtcBOmAYmYHz0XIT6ALzefgFUYKhCJRBAxeLcJIsVIZLI5PKFYplCqVa63aoAbm6u0wMAQhFguwAPPRAQA+YAfL4dIloUmBMlODogDpAA)
 
-However, if `expensivelyProcessAReallyLargeArrayOfObjects` is truly an expensive function, you may want to consider implementing its own memoization outside of React, because:
+ただし、`expensivelyProcessAReallyLargeArrayOfObjects` が本当に高コストな関数である場合は、React 外で独自のメモ化を実装することを検討することをお勧めします。理由は以下の通りです。
 
-- React Compiler only memoizes React components and hooks, not every function
-- React Compiler's memoization is not shared across multiple components or hooks
+- React Compiler は React コンポーネントとフックのみをメモ化し、すべての関数をメモ化するわけではない
+- React Compiler のメモ化は複数のコンポーネントやフック間で共有されない
 
-So if `expensivelyProcessAReallyLargeArrayOfObjects` was used in many different components, even if the same exact items were passed down, that expensive calculation would be run repeatedly. We recommend [profiling](reference/react/useMemo#how-to-tell-if-a-calculation-is-expensive) first to see if it really is that expensive before making code more complicated.
+そのため、`expensivelyProcessAReallyLargeArrayOfObjects` が多くの異なるコンポーネントで使用される場合、同じ入力が渡されたとしても、その高コストな計算が繰り返し実行されます。コードの修正を行う前に、[プロファイリング](reference/react/useMemo#how-to-tell-if-a-calculation-is-expensive) を行って、本当にそれほど高コストかどうかを確認することをお勧めします。
 </DeepDive>
 
-## Should I try out the compiler? {/*should-i-try-out-the-compiler*/}
+## コンパイラを試すべきか？ {/*should-i-try-out-the-compiler*/}
 
-We encourage everyone to start using React Compiler. While the compiler is still an optional addition to React today, in the future some features may require the compiler in order to fully work.
+すべての方に React Compiler の使用を開始することをお勧めします。ココンパイラは現在は任意機能ですが、将来的には一部の機能を完全に動作させるためにコンパイラが必要になる可能性があります。
 
-### Is it safe to use? {/*is-it-safe-to-use*/}
+### 安全に使用できるか？ {/*is-it-safe-to-use*/}
 
-React Compiler is now in RC and has been tested extensively in production. While it has been used in production at companies like Meta, rolling out the compiler to production for your app will depend on the health of your codebase and how well you've followed the [Rules of React](/reference/rules).
+React Compiler は現在リリース候補 (RC) で、本番環境で広範囲にテストされています。Meta などの企業で本番環境で使用されていますが、あなたのアプリケーションでコンパイラを導入できるかどうかは、コードベースの健全性と [React のルール](/reference/rules) をどの程度遵守しているかに依存します。
 
-## What build tools are supported? {/*what-build-tools-are-supported*/}
+## どのビルドツールがサポートされているか？ {/*what-build-tools-are-supported*/}
 
-React Compiler can be installed across [several build tools](/learn/react-compiler/installation) such as Babel, Vite, Metro, and Rsbuild.
+React Compiler は [いくつかのビルドツール](/learn/react-compiler/installation) で利用できます。具体的には Babel、Vite、Metro、Rsbuild などが含まれます。
 
-React Compiler is primarily a light Babel plugin wrapper around the core compiler, which was designed to be decoupled from Babel itself. While the initial stable version of the compiler will remain primarily a Babel plugin, we are working with the swc and [oxc](https://github.com/oxc-project/oxc/issues/10048) teams to build first class support for React Compiler so you won't have to add Babel back to your build pipelines in the future.
+React Compiler は主に、コアコンパイラを囲む軽量な Babel プラグインラッパーです。これは Babel 自体から分離されるように設計されています。コンパイラの最初の安定版は主に Babel プラグインとして残りますが、swc と [oxc](https://github.com/oxc-project/oxc/issues/10048) チームと協力して、React Compiler のファーストクラスサポートを構築しており、将来的にビルドパイプラインに Babel を追加する必要がなくなります。
 
-Next.js users can enable the swc-invoked React Compiler by using [v15.3.1](https://github.com/vercel/next.js/releases/tag/v15.3.1) and up.
+Next.js を使用しているユーザは、[v15.3.1](https://github.com/vercel/next.js/releases/tag/v15.3.1) 以降のバージョンを利用することで、SWC 経由（swc‑invoked）の React Compiler を有効化できます。
 
-## What should I do about useMemo, useCallback, and React.memo? {/*what-should-i-do-about-usememo-usecallback-and-reactmemo*/}
+## useMemo、useCallback、React.memo をどう扱うべきか？ {/*what-should-i-do-about-usememo-usecallback-and-reactmemo*/}
 
-If you are using React Compiler, [`useMemo`](/reference/react/useMemo), [`useCallback`](/reference/react/useCallback), and [`React.memo`](/reference/react/memo) can be removed. React Compiler adds automatic memoization more precisely and granularly than is possible with these hooks. If you choose to keep manual memoization, React Compiler will analyze them and determine if your manual memoization matches its automatically inferred memoization. If there isn't a match, the compiler will choose to bail out of optimizing that component.
+React Compiler を使用している場合、[`useMemo`](/reference/react/useMemo)、[`useCallback`](/reference/react/useCallback)、[`React.memo`](/reference/react/memo) は不要になります。React Compiler はこれらのフックよりも正確で細かいメモ化を自動で追加します。手動のメモ化を保持することを選択した場合、React Compiler はそれらを分析し、手動のメモ化が自動的に推論されたメモ化と一致するかどうかを判断します。一致しない場合、コンパイラはそのコンポーネントの最適化を停止します。
 
-This is done out of caution as a common anti-pattern with manual memoization is using it for correctness.  This means your app depends on specific values being memoized to work properly. For example, in order to prevent an infinite loop, you may have memoized some values to stop a `useEffect` call from firing. This breaks the Rules of React, but since it can potentially be dangerous for the compiler to automatically remove manual memoization, the compiler will just bail out instead. You should manually remove your handwritten memoization and verify that your app still works as expected.
+これは慎重を期しての措置で、メモ化によって期待する挙動を担保しようとしているケースが、よくあるアンチパターンとして挙げられるからです。つまり、アプリケーションの動作が特定の値のメモ化に依存してしまう状態です。例えば、無限ループを防ぐ目的で、ある値をメモ化して `useEffect` の発火を抑えているケースなどです。これは React のルールに反しますが、コンパイラが手動のメモ化を自動的に取り除くのは危険になり得るため、その場合は最適化を停止します。手動のメモ化は自分で削除し、アプリケーションが期待どおりに動作するか確認してください。
 
-## Try React Compiler {/*try-react-compiler*/}
+## React Compiler を試す {/*try-react-compiler*/}
 
-This section will help you get started with React Compiler and understand how to use it effectively in your projects.
+このセクションでは、React Compiler の始め方と、プロジェクトで効果的に使用するための情報を提供します。
 
-* **[Installation](/learn/react-compiler/installation)** - Install React Compiler and configure it for your build tools
-* **[React Version Compatibility](/reference/react-compiler/target)** - Support for React 17, 18, and 19
-* **[Configuration](/reference/react-compiler/configuration)** - Customize the compiler for your specific needs
-* **[Incremental Adoption](/learn/react-compiler/incremental-adoption)** - Strategies for gradually rolling out the compiler in existing codebases
-* **[Debugging and Troubleshooting](/learn/react-compiler/debugging)** - Identify and fix issues when using the compiler
-* **[Compiling Libraries](/reference/react-compiler/compiling-libraries)** - Best practices for shipping compiled code
-* **[API Reference](/reference/react-compiler/configuration)** - Detailed documentation of all configuration options
+* **[インストール](/learn/react-compiler/installation)** - React Compiler をインストールし、ビルドツール用に設定する
+* **[React バージョン互換性](/reference/react-compiler/target)** - React 17、18、19 のサポート
+* **[設定](/reference/react-compiler/configuration)** - 特定のニーズに合わせてコンパイラをカスタマイズする
+* **[段階的な導入](/learn/react-compiler/incremental-adoption)** - 既存のコードベースでコンパイラを段階的に展開する戦略
+* **[デバッグとトラブルシューティング](/learn/react-compiler/debugging)** - コンパイラ使用時の問題の特定と修正
+* **[ライブラリのコンパイル](/reference/react-compiler/compiling-libraries)** - コンパイルされたコードを配布するためのベストプラクティス
+* **[API リファレンス](/reference/react-compiler/configuration)** - すべての設定オプションの詳細ドキュメント
 
-## Additional resources {/*additional-resources*/}
+## 追加情報 {/*additional-resources*/}
 
-In addition to these docs, we recommend checking the [React Compiler Working Group](https://github.com/reactwg/react-compiler) for additional information and discussion about the compiler.
-
+これらのドキュメントに加えて、コンパイラに関する追加情報や議論については [React Compiler Working Group](https://github.com/reactwg/react-compiler) を確認することをお勧めします。

@@ -1,60 +1,60 @@
 ---
-title: Installation
+title: インストール
 ---
 
 <Intro>
-This guide will help you install and configure React Compiler in your React application.
+このガイドでは、React アプリケーションに React Compiler をインストールし、設定する方法を説明します。
 </Intro>
 
 <YouWillLearn>
 
-* How to install React Compiler
-* Basic configuration for different build tools
-* How to verify your setup is working
+* React Compiler のインストール方法
+* 異なるビルドツールでの基本的な設定
+* セットアップが正常に動作しているかの確認方法
 
 </YouWillLearn>
 
-## Prerequisites {/*prerequisites*/}
+## 前提条件 {/*prerequisites*/}
 
-React Compiler is designed to work best with React 19, but it also supports React 17 and 18. Learn more about [React version compatibility](/reference/react-compiler/target).
+React Compiler は React 19 で最適に動作するよう設計されていますが、React 17 および 18 もサポートしています。詳細については [React バージョン互換性](/reference/react-compiler/target) をご覧ください。
 
 <Note>
-React Compiler is currently in RC. Install it using the `@rc` tag to get the latest release candidate version.
+React Compiler は現在リリース候補 (RC) 段階です。最新のリリース候補バージョンを入手するには、`@rc` タグを使用してインストールしてください。
 </Note>
 
-## Installation {/*installation*/}
+## インストール {/*installation*/}
 
-Install React Compiler as a `devDependency`:
+React Compiler を `devDependency` としてインストールします。
 
 <TerminalBlock>
 npm install -D babel-plugin-react-compiler@rc
 </TerminalBlock>
 
-Or with Yarn:
+Yarn を使用する場合：
 
 <TerminalBlock>
 yarn add -D babel-plugin-react-compiler@rc
 </TerminalBlock>
 
-Or with pnpm:
+pnpm を使用する場合：
 
 <TerminalBlock>
 pnpm install -D babel-plugin-react-compiler@rc
 </TerminalBlock>
 
-## Basic Setup {/*basic-setup*/}
+## 基本的なセットアップ {/*basic-setup*/}
 
-React Compiler is designed to work by default without any configuration. However, if you need to configure it in special circumstances (for example, to target React versions below 19), refer to the [compiler options reference](/reference/react-compiler/configuration).
+React Compiler は、デフォルトで設定なしで動作するように設計されています。ただし、特別な状況で設定が必要な場合（例えば、React 19 未満のバージョンを対象とする場合）は、[コンパイラオプションリファレンス](/reference/react-compiler/configuration) を参照してください。
 
-The setup process depends on your build tool. React Compiler includes a Babel plugin that integrates with your build pipeline.
+セットアッププロセスは使用するビルドツールによって異なります。React Compiler には、ビルドパイプラインと統合する Babel プラグインが含まれています。
 
 <Pitfall>
-React Compiler must run **first** in your Babel plugin pipeline. The compiler needs the original source information for proper analysis, so it must process your code before other transformations.
+React Compiler は Babel プラグインパイプラインで **最初に** 実行される必要があります。コンパイラは適切な解析には元のソース情報が必要なため、他の変換より前に処理する必要があります。
 </Pitfall>
 
 ### Babel {/*babel*/}
 
-Create or update your `babel.config.js`:
+`babel.config.js` を作成または更新します。
 
 ```js {3}
 module.exports = {
@@ -68,7 +68,7 @@ module.exports = {
 
 ### Vite {/*vite*/}
 
-If you use Vite, you can add the plugin to vite-plugin-react:
+Vite を使用している場合は、プラグインを vite-plugin-react に追加できます。
 
 ```js {3,9}
 // vite.config.js
@@ -86,7 +86,7 @@ export default defineConfig({
 });
 ```
 
-Alternatively, if you prefer a separate Babel plugin for Vite:
+または、Vite 用の別の Babel プラグインを使用したい場合
 
 <TerminalBlock>
 npm install -D vite-plugin-babel
@@ -112,10 +112,10 @@ export default defineConfig({
 
 ### Next.js {/*usage-with-nextjs*/}
 
-Please refer to the [Next.js docs](https://nextjs.org/docs/app/api-reference/next-config-js/reactCompiler) for more information.
+詳細については [Next.js ドキュメント](https://nextjs.org/docs/app/api-reference/next-config-js/reactCompiler) を参照してください。
 
 ### React Router {/*usage-with-react-router*/}
-Install `vite-plugin-babel`, and add the compiler's Babel plugin to it:
+`vite-plugin-babel` をインストールし、コンパイラの Babel プラグインを追加します。
 
 <TerminalBlock>
 {`npm install vite-plugin-babel`}
@@ -147,36 +147,36 @@ export default defineConfig({
 
 ### Webpack {/*usage-with-webpack*/}
 
-A community webpack loader is [now available here](https://github.com/SukkaW/react-compiler-webpack).
+コミュニティ製の webpack ローダーが [こちら](https://github.com/SukkaW/react-compiler-webpack) で利用できます。
 
 ### Expo {/*usage-with-expo*/}
 
-Please refer to [Expo's docs](https://docs.expo.dev/guides/react-compiler/) to enable and use the React Compiler in Expo apps.
+Expo アプリで React Compiler を有効にして使用する方法については、[Expo のドキュメント](https://docs.expo.dev/guides/react-compiler/) を参照してください。
 
 ### Metro (React Native) {/*usage-with-react-native-metro*/}
 
-React Native uses Babel via Metro, so refer to the [Usage with Babel](#babel) section for installation instructions.
+React Native は Metro 経由で Babel を使用するため、インストール手順については [Babel での使用](#babel) セクションを参照してください。
 
 ### Rspack {/*usage-with-rspack*/}
 
-Please refer to [Rspack's docs](https://rspack.dev/guide/tech/react#react-compiler) to enable and use the React Compiler in Rspack apps.
+Rspack アプリで React Compiler を有効にして使用する方法については、[Rspack のドキュメント](https://rspack.dev/guide/tech/react#react-compiler) を参照してください。
 
 ### Rsbuild {/*usage-with-rsbuild*/}
 
-Please refer to [Rsbuild's docs](https://rsbuild.dev/guide/framework/react#react-compiler) to enable and use the React Compiler in Rsbuild apps.
+Rsbuild アプリで React Compiler を有効にして使用する方法については、[Rsbuild のドキュメント](https://rsbuild.dev/guide/framework/react#react-compiler) を参照してください。
 
 
-## ESLint Integration {/*eslint-integration*/}
+## ESLint 統合 {/*eslint-integration*/}
 
-React Compiler includes an ESLint rule that helps identify code that can't be optimized. When the ESLint rule reports an error, it means the compiler will skip optimizing that specific component or hook. This is safe: the compiler will continue optimizing other parts of your codebase. You don't need to fix all violations immediately. Address them at your own pace to gradually increase the number of optimized components.
+React Compiler には、最適化できないコードを特定するのに役立つ ESLint ルールが含まれています。ESLint ルールがエラーを報告した場合、コンパイラがその特定のコンポーネントやフックの最適化をスキップします。その場合は、コンパイラはコードベースの他の部分の最適化を続けるので、すべての違反をすぐに修正する必要はありません。自分のペースで対処し、最適化されるコンポーネントの数を徐々に増やしていってください。
 
-Install the ESLint plugin:
+ESLint プラグインをインストールします。
 
 <TerminalBlock>
 npm install -D eslint-plugin-react-hooks@rc
 </TerminalBlock>
 
-Then enable the compiler rule in your ESLint configuration:
+次に、ESLint 設定でコンパイラルールを有効にします。
 
 ```js {3}
 // .eslintrc.js
@@ -187,32 +187,32 @@ module.exports = {
 };
 ```
 
-The ESLint rule will:
-- Identify violations of the [Rules of React](/reference/rules)
-- Show which components can't be optimized
-- Provide helpful error messages for fixing issues
+ESLint ルールは以下を行います。
+- [React のルール](/reference/rules) の違反の特定
+- 最適化できないコンポーネントの表示
+- 問題の修正に役立つエラーメッセージの提供
 
-## Verify Your Setup {/*verify-your-setup*/}
+## セットアップの確認 {/*verify-your-setup*/}
 
-After installation, verify that React Compiler is working correctly.
+インストール後、React Compiler が正常に動作していることを確認します。
 
-### Check React DevTools {/*check-react-devtools*/}
+### React DevTools による確認 {/*check-react-devtools*/}
 
-Components optimized by React Compiler will show a "Memo ✨" badge in React DevTools:
+React Compiler によって最適化されたコンポーネントは、React DevTools で「Memo ✨」バッジが表示されます。
 
-1. Install the [React Developer Tools](/learn/react-developer-tools) browser extension
-2. Open your app in development mode
-3. Open React DevTools
-4. Look for the ✨ emoji next to component names
+1. [React Developer Tools](/learn/react-developer-tools) ブラウザ拡張機能をインストール
+2. 開発モードでアプリを開く
+3. React DevTools を開く
+4. コンポーネント名の横にある ✨ 絵文字を探す
 
-If the compiler is working:
-- Components will show a "Memo ✨" badge in React DevTools
-- Expensive calculations will be automatically memoized
-- No manual `useMemo` is required
+コンパイラが動作している場合
+- コンポーネントは React DevTools で「Memo ✨」バッジを表示
+- 高コストな計算が自動的にメモ化される
+- 手動の `useMemo` は不要
 
-### Check Build Output {/*check-build-output*/}
+### ビルド出力の確認 {/*check-build-output*/}
 
-You can also verify the compiler is running by checking your build output. The compiled code will include automatic memoization logic that the compiler adds automatically.
+また、ビルド出力を確認することでコンパイラが動作していることを確認できます。コンパイルされたコードには、コンパイラが自動的に追加する自動メモ化ロジックを含めます。
 
 ```js
 import { c as _c } from "react/compiler-runtime";
@@ -230,11 +230,11 @@ export default function MyApp() {
 
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### Opting out specific components {/*opting-out-specific-components*/}
+### 特定のコンポーネントの除外 {/*opting-out-specific-components*/}
 
-If a component is causing issues after compilation, you can temporarily opt it out using the `"use no memo"` directive:
+コンポーネントがコンパイル後に問題を引き起こしている場合、`"use no memo"` ディレクティブを使用して一時的に除外できます。
 
 ```js
 function ProblematicComponent() {
@@ -243,16 +243,16 @@ function ProblematicComponent() {
 }
 ```
 
-This tells the compiler to skip optimization for this specific component. You should fix the underlying issue and remove the directive once resolved.
+これにより、コンパイラはこの特定のコンポーネントの最適化をスキップします。根本的な問題を修正し、解決したらディレクティブを削除してください。
 
-For more troubleshooting help, see the [debugging guide](/learn/react-compiler/debugging).
+トラブルシューティングの詳細については、[デバッグガイド](/learn/react-compiler/debugging) を参照してください。
 
-## Next Steps {/*next-steps*/}
+## 次のステップ {/*next-steps*/}
 
-Now that you have React Compiler installed, learn more about:
+React Compiler がインストールされたので、以下について詳しく学びましょう。
 
-- [React version compatibility](/reference/react-compiler/target) for React 17 and 18
-- [Configuration options](/reference/react-compiler/configuration) to customize the compiler
-- [Incremental adoption strategies](/learn/react-compiler/incremental-adoption) for existing codebases
-- [Debugging techniques](/learn/react-compiler/debugging) for troubleshooting issues
-- [Compiling Libraries guide](/reference/react-compiler/compiling-libraries) for compiling your React library
+- React 17 と 18 の [React バージョン互換性](/reference/react-compiler/target)
+- コンパイラをカスタマイズする [設定オプション](/reference/react-compiler/configuration)
+- 既存のコードベースでの [段階的な導入戦略](/learn/react-compiler/incremental-adoption)
+- 問題のトラブルシューティングのための [デバッグテクニック](/learn/react-compiler/debugging)
+- React ライブラリをコンパイルするための [ライブラリコンパイルガイド](/reference/react-compiler/compiling-libraries)
