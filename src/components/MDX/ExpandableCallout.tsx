@@ -53,7 +53,7 @@ const variantMap = {
       'linear-gradient(rgba(245, 249, 248, 0), rgba(245, 249, 248, 1)',
   },
   experimental: {
-    title: 'Experimental Feature',
+    title: '実験的機能',
     Icon: IconCanary,
     containerClasses:
       'bg-green-5 dark:bg-green-60 dark:bg-opacity-20 text-primary dark:text-primary-dark text-lg',
