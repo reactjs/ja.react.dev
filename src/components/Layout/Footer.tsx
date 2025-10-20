@@ -313,50 +313,46 @@ export function Footer() {
         </div>
         <div className="flex flex-col">
           <FooterLink href="/learn" isHeader={true}>
-            Learn React
+            React を学ぶ
           </FooterLink>
-          <FooterLink href="/learn/">Quick Start</FooterLink>
-          <FooterLink href="/learn/installation">Installation</FooterLink>
-          <FooterLink href="/learn/describing-the-ui">
-            Describing the UI
-          </FooterLink>
+          <FooterLink href="/learn/">クイックスタート</FooterLink>
+          <FooterLink href="/learn/installation">インストール</FooterLink>
+          <FooterLink href="/learn/describing-the-ui">UI の記述</FooterLink>
           <FooterLink href="/learn/adding-interactivity">
-            Adding Interactivity
+            インタラクティビティの追加
           </FooterLink>
-          <FooterLink href="/learn/managing-state">Managing State</FooterLink>
-          <FooterLink href="/learn/escape-hatches">Escape Hatches</FooterLink>
+          <FooterLink href="/learn/managing-state">state の管理</FooterLink>
+          <FooterLink href="/learn/escape-hatches">避難ハッチ</FooterLink>
         </div>
         <div className="flex flex-col">
           <FooterLink href="/reference/react" isHeader={true}>
-            API Reference
+            API リファレンス
           </FooterLink>
           <FooterLink href="/reference/react">React APIs</FooterLink>
           <FooterLink href="/reference/react-dom">React DOM APIs</FooterLink>
         </div>
         <div className="md:col-start-2 xl:col-start-4 flex flex-col">
           <FooterLink href="/community" isHeader={true}>
-            Community
+            コミュニティ
           </FooterLink>
           <FooterLink href="https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md">
-            Code of Conduct
+            行動規範
           </FooterLink>
-          <FooterLink href="/community/team">Meet the Team</FooterLink>
+          <FooterLink href="/community/team">チーム紹介</FooterLink>
           <FooterLink href="/community/docs-contributors">
-            Docs Contributors
+            ドキュメント貢献者
           </FooterLink>
-          <FooterLink href="/community/acknowledgements">
-            Acknowledgements
-          </FooterLink>
+          <FooterLink href="/community/acknowledgements">謝辞</FooterLink>
         </div>
         <div className="flex flex-col">
           <FooterLink isHeader={true}>More</FooterLink>
-          <FooterLink href="/blog">Blog</FooterLink>
+          <FooterLink href="/blog">ブログ</FooterLink>
           <FooterLink href="https://reactnative.dev/">React Native</FooterLink>
           <FooterLink href="https://opensource.facebook.com/legal/privacy">
-            Privacy
+            プライバシー
           </FooterLink>
           <FooterLink href="https://opensource.fb.com/legal/terms/">
-            Terms
+            利用規約
           </FooterLink>
           <div className="flex flex-row items-center mt-8 gap-x-2">
             <ExternalLink
