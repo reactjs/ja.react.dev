@@ -317,9 +317,7 @@ export function Footer() {
           </FooterLink>
           <FooterLink href="/learn/">クイックスタート</FooterLink>
           <FooterLink href="/learn/installation">インストール</FooterLink>
-          <FooterLink href="/learn/describing-the-ui">
-            UI の記述
-          </FooterLink>
+          <FooterLink href="/learn/describing-the-ui">UI の記述</FooterLink>
           <FooterLink href="/learn/adding-interactivity">
             インタラクティビティの追加
           </FooterLink>
@@ -344,9 +342,7 @@ export function Footer() {
           <FooterLink href="/community/docs-contributors">
             ドキュメント貢献者
           </FooterLink>
-          <FooterLink href="/community/acknowledgements">
-            謝辞
-          </FooterLink>
+          <FooterLink href="/community/acknowledgements">謝辞</FooterLink>
         </div>
         <div className="flex flex-col">
           <FooterLink isHeader={true}>More</FooterLink>
