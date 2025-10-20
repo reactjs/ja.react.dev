@@ -167,11 +167,11 @@ export function HomeContent() {
               ユーザインターフェースを作成
             </Header>
             <Para>
-              React ではユーザインターフェースを、{}
+              React ではユーザインターフェースを、{''}
               コンポーネントと呼ばれる部品を使って構築できます。
               <Code>Thumbnail</Code>、<Code>LikeButton</Code>、
               <Code>Video</Code>
-              といった React コンポーネントを書き、{}
+              といった React コンポーネントを書き、{''}
               それらを組み合わせて画面やページやアプリの全体を組み立てましょう。
             </Para>
           </Center>
@@ -180,9 +180,10 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              独りで開発していても、数千の開発者と共同開発していても、{}
-              React の開発体験は同じです。個人、チーム、大規模な組織によって{}
-              書かれさまざまなコンポーネントを、シームレスに組み合わせながら{}
+              独りで開発していても、数千の開発者と共同開発していても、{''}
+              React の開発体験は同じです。個人、チーム、大規模な組織によって{''}
+              書かれたさまざまなコンポーネントを、シームレスに組み合わせながら
+              {''}
               開発できる。それが React の設計理念です。
             </Para>
           </Center>
@@ -196,7 +197,7 @@ export function HomeContent() {
               コンポーネントを作成
             </Header>
             <Para>
-              React コンポーネントは単なる JavaScript の関数です。{}
+              React コンポーネントは単なる JavaScript の関数です。{''}
               条件によってコンテンツの表示を変えたければ <Code>if</Code>{' '}
               文を使いましょう！ リストを表示したいなら配列の <Code>map()</Code>{' '}
               を使いましょう！ React
@@ -209,7 +210,7 @@ export function HomeContent() {
           <Center>
             <Para>
               このマークアップ構文は JSX と呼ばれます。React が普及させた
-              JavaScript の構文拡張です。JSX マークアップは関連する{}
+              JavaScript の構文拡張です。JSX マークアップは関連する{''}
               レンダリングロジックのすぐそばに配置できるので、React
               コンポーネントは簡単に作成、保守、削除ができます。
             </Para>
@@ -225,9 +226,10 @@ export function HomeContent() {
             </Header>
             <Para>
               React
-              コンポーネントはデータを受け取り、画面に表示するものを返します。{}
-              入力フィールドへのタイピングなどのユーザ操作によって{}
-              新しいデータができたら、コンポーネントにそれを渡します。{}
+              コンポーネントはデータを受け取り、画面に表示するものを返します。
+              {''}
+              入力フィールドへのタイピングなどのユーザ操作によって{''}
+              新しいデータができたら、コンポーネントにそれを渡します。{''}
               React が新しいデータに基づいて画面を更新します。
             </Para>
           </Center>
@@ -259,10 +261,10 @@ export function HomeContent() {
               フルスタックな開発を
             </Header>
             <Para>
-              React はライブラリです。{}
-              コンポーネントを組み合わせることはできますが、{}
-              ルーティングやデータフェッチの方法までは指定しません。{}
-              React でアプリ全体を構築する場合は、{}
+              React はライブラリです。{''}
+              コンポーネントを組み合わせることはできますが、{''}
+              ルーティングやデータフェッチの方法までは指定しません。{''}
+              React でアプリ全体を構築する場合は、{''}
               <Link href="https://nextjs.org">Next.js</Link> や{' '}
               <Link href="https://remix.run">Remix</Link>{' '}
               のようなフルスタックのフレームワークをお勧めします。
@@ -273,10 +275,10 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              React とはアーキテクチャでもあります。{}
-              フレームワークでは、サーバやビルド時に動作する{}
-              非同期コンポーネントを使ってデータの取得が可能です。{}
-              ファイルやデータベースからデータを読み込んで、{}
+              React とはアーキテクチャでもあります。{''}
+              フレームワークでは、サーバやビルド時に動作する{''}
+              非同期コンポーネントを使ってデータの取得が可能です。{''}
+              ファイルやデータベースからデータを読み込んで、{''}
               インタラクティブなコンポーネントに渡しましょう。
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
@@ -298,12 +300,12 @@ export function HomeContent() {
                 能力を最大限に活用
               </Header>
               <Para>
-                人々はウェブを愛し、そしてネイティブアプリを愛しています。{}
-                その理由は様々です。{}
+                人々はウェブを愛し、そしてネイティブアプリを愛しています。{''}
+                その理由は様々です。{''}
                 React
-                を使えば、同じスキルを使ってウェブアプリとネイティブアプリの{}
-                両方を構築できます。{}
-                各プラットフォームが持つ独自の強みを活かし、{}
+                を使えば、同じスキルを使ってウェブアプリとネイティブアプリの{''}
+                両方を構築できます。{''}
+                各プラットフォームが持つ独自の強みを活かし、{''}
                 どんなプラットフォームにおいても自然なインターフェースを実現します。
               </Para>
             </div>
@@ -322,11 +324,11 @@ export function HomeContent() {
                       </h4>
                       <p className="lg:text-xl leading-normal text-secondary">
                         人々はウェブアプリが素早く読み込まれることを期待します。
-                        {}
+                        {''}
                         React を使用すれば、サーバ上でデータが取得中でも HTML
                         のストリーミングを開始でき、JavaScript
-                        コードが読み込まれる前に{}
-                        コンテンツを段階的にロードすることができます。{}
+                        コードが読み込まれる前に{''}
+                        コンテンツを段階的にロードすることができます。{''}
                         クライアント側では、React は標準的な Web API
                         を使用して、レンダーの最中でも UI の応答性を保ちます。
                       </p>
@@ -410,7 +412,7 @@ export function HomeContent() {
                         </h4>
                         <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
                           人々はネイティブアプリがそのプラットフォームに見合った
-                          {}
+                          {''}
                           ルック＆フィールを持つことを期待します。
                           <Link href="https://reactnative.dev">
                             React Native
@@ -418,10 +420,10 @@ export function HomeContent() {
                           や{' '}
                           <Link href="https://github.com/expo/expo">Expo</Link>{' '}
                           を使えば、React で Android、iOS
-                          などのアプリを構築できます。{}
-                          ネイティブアプリのように感じるのは、{}
-                          ウェブビューではなく真のネイティブ UI だからです。{}
-                          React コンポーネントは、プラットフォーム固有の、{}
+                          などのアプリを構築できます。{''}
+                          ネイティブアプリのように感じるのは、{''}
+                          ウェブビューではなく真のネイティブ UI だからです。{''}
+                          React コンポーネントは、プラットフォーム固有の、{''}
                           本物の Android や iOS のビューを表示できます。
                         </p>
                       </div>
@@ -432,11 +434,11 @@ export function HomeContent() {
             </div>
             <div className="px-5 lg:px-0 max-w-4xl mx-auto lg:text-center text-secondary dark:text-secondary-dark">
               <Para>
-                React を使えば、{}
-                ウェブ開発者にもネイティブアプリ開発者にもなれるのです。{}
-                ユーザー体験を犠牲にすることなく、{}
-                多くのプラットフォームでリリースを行えます。{}
-                ひとつのプラットフォームに縛られることなく、{}
+                React を使えば、{''}
+                ウェブ開発者にもネイティブアプリ開発者にもなれるのです。{''}
+                ユーザー体験を犠牲にすることなく、{''}
+                多くのプラットフォームでリリースを行えます。{''}
+                ひとつのプラットフォームに縛られることなく、{''}
                 すべての機能をエンドツーエンドで担当するチームを作れます。
               </Para>
               <div className="flex justify-start w-full lg:justify-center">
@@ -458,18 +460,19 @@ export function HomeContent() {
                   リリースされる
                 </Header>
                 <Para>
-                  React は開発アプローチの変更に慎重に取り組みます。{}
-                  すべてのコミットは 10 億人以上のユーザによる{}
-                  ビジネスクリティカルな環境においてテストされます。{}
-                  Meta にある 10 万以上の React コンポーネントが、{}
+                  React は開発アプローチの変更に慎重に取り組みます。{''}
+                  すべてのコミットは 10 億人以上のユーザによる{''}
+                  ビジネスクリティカルな環境においてテストされます。{''}
+                  Meta にある 10 万以上の React コンポーネントが、{''}
                   すべての移行戦略の検証を支援します。
                 </Para>
                 <div className="order-last pt-5">
                   <Para>
                     React チームは、常に React
-                    を改善する方法を模索していますが、{}
-                    研究によっては成果が出るまでに何年もかかることもあります。{}
-                    研究のアイデアをリリースするまでの高いハードルを越えた、{}
+                    を改善する方法を模索していますが、{''}
+                    研究によっては成果が出るまでに何年もかかることもあります。
+                    {''}
+                    研究のアイデアをリリースするまでの高いハードルを越えた、{''}
                     実証済みのアプローチだけが React の一部となるのです。
                   </Para>
                   <div className="hidden lg:flex justify-start w-full">
@@ -519,7 +522,7 @@ export function HomeContent() {
                 </Header>
                 <Para>
                   あなたは 1 人ではありません。世界中から毎月 200 万人の開発者が
-                  React ドキュメントに訪れています。{}
+                  React ドキュメントに訪れています。{''}
                   人々とチームが共感できる技術、それが React なのです。
                 </Para>
               </Center>
@@ -528,13 +531,15 @@ export function HomeContent() {
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>
                 <Para>
-                  React は単なるライブラリやアーキテクチャ、{}
-                  あるいはエコシステムという以上の存在です。{}
-                  React とはコミュニティです。{}
-                  ヘルプを求め、チャンスを見つけ、新しい友人に会える場所です。{}
-                  開発者やデザイナ、初心者やエキスパート、{}
-                  研究者やアーティスト、教師や学生と出会える場所です。{}
-                  私たちのバックグラウンドはさまざまですが、React を通じて皆で{}
+                  React は単なるライブラリやアーキテクチャ、{''}
+                  あるいはエコシステム以上の存在です。{''}
+                  React とはコミュニティです。{''}
+                  ヘルプを求め、チャンスを見つけ、新しい友人に会える場所です。
+                  {''}
+                  開発者やデザイナ、初心者やエキスパート、{''}
+                  研究者やアーティスト、教師や学生と出会える場所です。{''}
+                  私たちのバックグラウンドはさまざまですが、React を通じて皆で
+                  {''}
                   ユーザーインターフェースの創造に取り組んでいるのです。
                 </Para>
               </Center>
@@ -1214,7 +1219,7 @@ async function Talks({ confId }) {
         </CodeBlock>
       }
       right={
-        <NavContext.Provider value={{slug, navigate}}>
+        <NavContext value={{slug, navigate}}>
           <BrowserChrome
             domain="example.com"
             path={'confs/' + slug}
@@ -1234,7 +1239,7 @@ async function Talks({ confId }) {
               </Suspense>
             </ExamplePanel>
           </BrowserChrome>
-        </NavContext.Provider>
+        </NavContext>
       }
     />
   );

@@ -29,6 +29,14 @@ React DOM には（ブラウザの DOM 環境で動作する）ウェブアプ�
 * [クライアント API](/reference/react-dom/client) - クライアント（ブラウザ）で React コンポーネントをレンダーするための `react-dom/client` API 群
 * [サーバ API](/reference/react-dom/server) - サーバで React コンポーネントを HTML にレンダーするための `react-dom/server` API 群
 
+## React Compiler {/*react-compiler*/}
+
+React Compiler はビルド時に使用する最適化ツールであり、あなたの React コンポーネントや値に自動的にメモ化を適用します。
+
+* [Configuration](/reference/react-compiler/configuration) - React Compiler の設定オプション
+* [Directives](/reference/react-compiler/directives) - コンパイル動作を制御するための関数レベルのディレクティブ
+* [Compiling Libraries](/reference/react-compiler/compiling-libraries) - コンパイル済みのライブラリコードをリリースする際のガイド
+
 ## React のルール {/*rules-of-react*/}
 
 React には、理解しやすい方法でパターンを表現し高品質なアプリケーションを産み出すための慣用的な記法、ないしルールが存在します。

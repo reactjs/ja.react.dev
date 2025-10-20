@@ -896,7 +896,7 @@ button { margin: 5px; }
 
 ### エフェクトを使ったデータフェッチ {/*fetching-data-with-effects*/}
 
-エフェクトを使って、コンポーネントに必要なデータをフェッチ（fetch, 取得）することができます。ただし[フレームワークを使用している場合](/learn/start-a-new-react-project#production-grade-react-frameworks)は、エフェクトを自力で記述するよりも、フレームワークのデータフェッチメカニズムを使用する方がはるかに効率的であることに注意してください。
+エフェクトを使って、コンポーネントに必要なデータをフェッチ（fetch, 取得）することができます。ただし[フレームワークを使用している場合](/learn/start-a-new-react-project#full-stack-frameworks)は、エフェクトを自力で記述するよりも、フレームワークのデータフェッチメカニズムを使用する方がはるかに効率的であることに注意してください。
 
 エフェクトを使って自力でデータをフェッチしたい場合は、以下のようなコードを書くことになります。
 
@@ -1048,7 +1048,7 @@ export async function fetchBio(person) {
 
 上記の欠点は、マウント時にデータをフェッチするのであれば、React に限らずどのライブラリを使う場合でも当てはまる内容です。ルーティングと同様、データフェッチの実装も上手にやろうとすると一筋縄ではいきません。私たちは以下のアプローチをお勧めします。
 
-- **[フレームワーク](/learn/start-a-new-react-project#production-grade-react-frameworks)を使用している場合、組み込みのデータフェッチ機構を使用してください**。モダンな React フレームワークには、効率的で上記の欠点がないデータフェッチ機構が統合されています。
+- **[フレームワーク](/learn/start-a-new-react-project#full-stack-frameworks)を使用している場合、組み込みのデータフェッチ機構を使用してください**。モダンな React フレームワークには、効率的で上記の欠点がないデータフェッチ機構が統合されています。
 - **それ以外の場合は、クライアントサイドキャッシュの使用や構築を検討してください**。一般的なオープンソースのソリューションには、[React Query](https://tanstack.com/query/latest/)、[useSWR](https://swr.vercel.app/)、および [React Router 6.4+](https://beta.reactrouter.com/en/main/start/overview) が含まれます。自分でソリューションを構築することもできます。その場合、エフェクトを内部で使用しつつ、リクエストの重複排除、レスポンスのキャッシュ、ネットワークのウォーターフォールを回避するためのロジック（データのプリロードやルーティング部へのデータ要求の巻き上げ）を追加することになります。
 
 これらのアプローチがどちらも適合しない場合は、引き続きエフェクト内で直接データをフェッチすることができます。
@@ -1733,7 +1733,7 @@ function Page({ url, shoppingCart }) {
 
 ### サーバとクライアントで異なるコンテンツを表示する {/*displaying-different-content-on-the-server-and-the-client*/}
 
-お使いのアプリがサーバレンダリングを（[直接](/reference/react-dom/server)ないし[フレームワーク](/learn/start-a-new-react-project#production-grade-react-frameworks)経由で）使用している場合、コンポーネントは 2 種類の環境でレンダーされます。サーバ上では、初期 HTML を生成するためにレンダーされます。クライアント上では、React がその HTML にイベントハンドラをアタッチするために再度レンダーコードを実行します。これが、[ハイドレーション](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html)が動作するためには初回レンダーの出力がクライアントとサーバの両方で同一でなければならない理由です。
+アプリがサーバレンダリングを（[直接](/reference/react-dom/server)ないし[フレームワーク](/learn/start-a-new-react-project#full-stack-frameworks)経由で）使用している場合、コンポーネントは 2 種類の環境でレンダーされます。サーバ上では、初期 HTML を生成するためにレンダーされます。クライアント上では、React がその HTML にイベントハンドラをアタッチするために再度レンダーコードを実行します。これが、[ハイドレーション](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html)が動作するためには初回レンダーの出力がクライアントとサーバの両方で同一でなければならない理由です。
 
 まれに、クライアント側で異なるコンテンツを表示する必要がある場合があります。たとえば、アプリが [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) からデータを読み込む場合、サーバ上ではそれを行うことができません。これは以下の方法で実装できます。
 

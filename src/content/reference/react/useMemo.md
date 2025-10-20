@@ -12,6 +12,12 @@ const cachedValue = useMemo(calculateValue, dependencies)
 
 </Intro>
 
+<Note>
+
+[React Compiler](/learn/react-compiler) は値や関数の自動的なメモ化を行うことで、手作業による `useMemo` 呼び出しの必要性を軽減します。自動でメモ化を行うためにコンパイラを使用可能です。
+
+</Note>
+
 <InlineToc />
 
 ---

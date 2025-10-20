@@ -88,6 +88,7 @@ title: React ミーティング
 * [Delhi NCR](https://www.meetup.com/React-Delhi-NCR/)
 * [Mumbai](https://reactmumbai.dev)
 * [Pune](https://www.meetup.com/ReactJS-and-Friends/)
+* [Rajasthan](https://reactrajasthan.com)
 
 ## Indonesia {/*indonesia*/}
 * [Indonesia](https://www.meetup.com/reactindonesia/)
@@ -135,9 +136,6 @@ title: React ミーティング
 
 ## Portugal {/*portugal*/}
 * [Lisbon](https://www.meetup.com/JavaScript-Lisbon/)
-
-## Scotland (UK) {/*scotland-uk*/}
-* [Edinburgh](https://www.meetup.com/React-Scotland/)
 
 ## Spain {/*spain*/}
 * [Barcelona](https://www.meetup.com/ReactJS-Barcelona/)

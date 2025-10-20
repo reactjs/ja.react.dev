@@ -38,14 +38,15 @@ const ThemeContext = createContext('light');
 
 `createContext` はコンテクストオブジェクトを返します。
 
-**コンテクストオブジェクト自体は情報を持っていません**。他のコンポーネントが*どの*コンテクストを読み取るか、または提供するかを表します。通常、上位のコンポーネントで [`SomeContext.Provider`](#provider) を使用してコンテクストの値を指定し、下位のコンポーネントで [`useContext(SomeContext)`](/reference/react/useContext) を呼び出してコンテクストを読み取ります。コンテクストオブジェクトにはいくつかのプロパティがあります：
+**コンテクストオブジェクト自体は情報を持っていません**。他のコンポーネントが*どの*コンテクストを読み取るか、または提供するかを表します。通常、上位のコンポーネントで [`SomeContext`](#provider) を使用してコンテクストの値を指定し、下位のコンポーネントで [`useContext(SomeContext)`](/reference/react/useContext) を呼び出してコンテクストを読み取ります。コンテクストオブジェクトにはいくつかのプロパティがあります：
 
-* `SomeContext.Provider` では、コンポーネントにコンテクストの値を提供できます。
+* `SomeContext` で、コンポーネントにコンテクストの値を提供できます。
 * `SomeContext.Consumer` は、コンテクストの値を読み取るための方法ですが、あまり使用されません。
+* `SomeContext.Provider` は、React 19 より前のバージョンでコンテクストの値を提供するためのレガシーな記法です。
 
 ---
 
-### `SomeContext.Provider` {/*provider*/}
+### `SomeContext` プロバイダ {/*provider*/}
 
 コンポーネントをコンテクストプロバイダでラップすると、内部のコンポーネントに対してこのコンテクストの値を指定できます。
 
@@ -54,12 +55,20 @@ function App() {
   const [theme, setTheme] = useState('light');
   // ...
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext value={theme}>
       <Page />
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }
 ```
+
+<Note>
+
+React 19 以降では、`<SomeContext>` 自体をプロバイダとしてレンダーできます。
+
+以前のバージョンでは、代わりに `<SomeContext.Provider>` を使用してください。
+
+</Note>
 
 #### props {/*provider-props*/}
 
@@ -141,11 +150,11 @@ function App() {
   // ...
 
   return (
-    <ThemeContext.Provider value={theme}>
-      <AuthContext.Provider value={currentUser}>
+    <ThemeContext value={theme}>
+      <AuthContext value={currentUser}>
         <Page />
-      </AuthContext.Provider>
-    </ThemeContext.Provider>
+      </AuthContext>
+    </ThemeContext>
   );
 }
 ```
@@ -187,11 +196,11 @@ import { ThemeContext, AuthContext } from './Contexts.js';
 function App() {
   // ...
   return (
-    <ThemeContext.Provider value={theme}>
-      <AuthContext.Provider value={currentUser}>
+    <ThemeContext value={theme}>
+      <AuthContext value={currentUser}>
         <Page />
-      </AuthContext.Provider>
-    </ThemeContext.Provider>
+      </AuthContext>
+    </ThemeContext>
   );
 }
 ```
@@ -214,4 +223,3 @@ const ThemeContext = createContext('light');
 この値は決して変わりません。React は、対応するプロバイダを上位のコンポーネントで見つけられない場合にのみ、この値をフォールバックとして使用します。
 
 コンテクストを時間の経過とともに変化させるには、[state を追加し、コンポーネントをコンテクストプロバイダでラップ](/reference/react/useContext#updating-data-passed-via-context)します。
-

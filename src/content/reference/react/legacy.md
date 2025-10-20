@@ -30,6 +30,6 @@ title: "レガシー React API"
 * [`createFactory`](https://18.react.dev/reference/react/createFactory): 代わりに JSX を使用してください。
 * クラスコンポーネントの [`static contextTypes`](https://18.react.dev//reference/react/Component#static-contexttypes): 代わりに [`static contextType`](#static-contexttype) を使用してください。
 * クラスコンポーネントの [`static childContextTypes`](https://18.react.dev//reference/react/Component#static-childcontexttypes): 代わりに [`static contextType`](#static-contexttype) を使用してください。
-* クラスコンポーネントの [`static getChildContext`](https://18.react.dev//reference/react/Component#getchildcontext): 代わりに [`Context.Provider`](/reference/react/createContext#provider) を使用してください。
+* クラスコンポーネントの [`static getChildContext`](https://18.react.dev//reference/react/Component#getchildcontext): 代わりに [`Context`](/reference/react/createContext#provider) を使用してください。
 * クラスコンポーネントの [`static propTypes`](https://18.react.dev//reference/react/Component#static-proptypes): 代わりに [TypeScript](https://www.typescriptlang.org/) などの型システムを使用してください。
 * クラスコンポーネントの [`this.refs`](https://18.react.dev//reference/react/Component#refs): 代わりに [`createRef`](/reference/react/createRef) を使用してください。

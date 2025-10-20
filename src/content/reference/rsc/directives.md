@@ -10,7 +10,7 @@ title: "ディレクティブ"
 
 <Intro>
 
-ディレクティブによって、[React Server Components 互換バンドラ](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)に指示を与えます。
+ディレクティブによって、[React Server Components 互換バンドラ](/learn/start-a-new-react-project#full-stack-frameworks)に指示を与えます。
 
 </Intro>
 

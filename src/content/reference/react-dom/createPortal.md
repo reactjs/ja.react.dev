@@ -50,7 +50,7 @@ import { createPortal } from 'react-dom';
 
 * `domNode`: `document.getElementById()` によって返されるような DOM ノード。ノードはすでに存在している必要があります。更新中に異なる DOM ノードを渡すと、ポータルの内容が再作成されます。
 
-* **省略可能** `key`: ポータルの [key](/learn/rendering-lists/#keeping-list-items-in-order-with-key) として使用される一意の文字列または数値。
+* **省略可能** `key`: ポータルの [key](/learn/rendering-lists#keeping-list-items-in-order-with-key) として使用される一意の文字列または数値。
 
 #### 返り値 {/*returns*/}
 
@@ -240,7 +240,7 @@ export default function ModalContent({ onClose }) {
 
 ポータルを使用する際には、アプリを正しくアクセシブルにすることが重要です。例えば、ユーザが自然にポータルの内または外へフォーカスを移動できるよう、キーボードフォーカスを管理する必要があるかもしれません。
 
-モーダルを作成する際には、[WAI-ARIA のモーダル作成実践ガイド](https://www.w3.org/WAI/ARIA/apg/#dialog_modal)に従ってください。コミュニティパッケージを使用する場合は、それがアクセシブルであり、このガイドラインに従っていることを確認してください。
+モーダルを作成する際には、[WAI-ARIA のモーダル作成実践ガイド](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal)に従ってください。コミュニティパッケージを使用する場合は、それがアクセシブルであり、このガイドラインに従っていることを確認してください。
 
 </Pitfall>
 

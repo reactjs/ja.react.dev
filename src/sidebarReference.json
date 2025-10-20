@@ -127,7 +127,8 @@
         {
           "title": "cache",
           "path": "/reference/react/cache"
-        },        {
+        },
+        {
           "title": "captureOwnerStack",
           "path": "/reference/react/captureOwnerStack"
         },

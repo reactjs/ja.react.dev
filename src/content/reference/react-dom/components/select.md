@@ -36,7 +36,7 @@ title: "<select>"
 
 #### props {/*props*/}
 
-`<select>` は[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
+`<select>` は[一般的な要素の props](/reference/react-dom/components/common#common-props) をすべてサポートしています。
 
 `value` プロパティを渡すことで、[セレクトボックスを制御されたコンポーネント (controlled component)](#controlling-a-select-box-with-a-state-variable) にできます。
 
