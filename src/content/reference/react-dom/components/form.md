@@ -38,7 +38,11 @@ title: "<form>"
 
 `<form>` は、[一般的な要素の props](/reference/react-dom/components/common#common-props) をすべてサポートしています。
 
+<<<<<<< HEAD
 [`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action)：URL または関数。`action` として URL が渡された場合、フォームは HTML の form コンポーネントと同様に動作します。`action` として関数が渡された場合、その関数がフォームの送信を処理します。`action` に渡された関数は非同期でもよく、送信されたフォームの [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) を唯一の引数として呼び出されます。`action` は、`<button>`、`<input type="submit">`、または `<input type="image">` コンポーネントの `formAction` プロパティによって上書きされることがあります。
+=======
+[`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action): a URL or function. When a URL is passed to `action` the form will behave like the HTML form component. When a function is passed to `action` the function will handle the form submission in a Transition following [the Action prop pattern](/reference/react/useTransition#exposing-action-props-from-components). The function passed to `action` may be async and will be called with a single argument containing the [form data](https://developer.mozilla.org/en-US/docs/Web/API/FormData) of the submitted form. The `action` prop can be overridden by a `formAction` attribute on a `<button>`, `<input type="submit">`, or `<input type="image">` component.
+>>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 #### 注意点 {/*caveats*/}
 
@@ -229,7 +233,7 @@ export async function deliverMessage(message) {
 
 </Sandpack>
 
-[//]: # 'Uncomment the next line, and delete this line after the `useOptimistic` reference documentatino page is published'
+[//]: # 'Uncomment the next line, and delete this line after the `useOptimistic` reference documentation page is published'
 [//]: # 'To learn more about the `useOptimistic` Hook see the [reference documentation](/reference/react/useOptimistic).'
 
 ### フォーム送信エラーの処理 {/*handling-form-submission-errors*/}
@@ -278,9 +282,15 @@ export default function Search() {
 
 プログレッシブエンハンスメントの実現のため JavaScript バンドルが読み込まれる前にフォーム送信エラーメッセージを表示できるようにするには、以下の条件を満たす必要があります。
 
+<<<<<<< HEAD
 1. `<form>` が [サーバコンポーネント](/reference/rsc/use-client)によってレンダーされている
 1. `<form>` の `action` プロパティに渡される関数が[サーバ関数](/reference/rsc/server-functions)である
 1. `useActionState` フックを使用してエラーメッセージを表示している
+=======
+1. `<form>` be rendered by a [Client Component](/reference/rsc/use-client)
+1. the function passed to the `<form>`'s `action` prop be a [Server Function](/reference/rsc/server-functions)
+1. the `useActionState` Hook be used to display the error message
+>>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 `useActionState` は[サーバ関数](/reference/rsc/server-functions)と初期 state の 2 つの引数を受け取り、state 変数とアクションの 2 つの値を返します。`useActionState` が返したアクションは、フォームの `action` プロパティに渡します。`useActionState` が返した state 変数は、エラーメッセージを表示するために使用できます。`useActionState` に渡すサーバ関数が返す値は、state 変数を更新するために使用されます。
 

@@ -37,9 +37,15 @@ React で UI を実装する際には、通常以下のような 5 つのステ�
 
 あなたの技術的バックグラウンドによって、デザインをコンポーネントに分割するとはどういうことなのか、いろいろな考え方ができるでしょう：
 
+<<<<<<< HEAD
 * **プログラマ** -- 新しい関数やオブジェクトを作成するかどうかを決定するときと同じ手法を使いましょう。そのような手法のひとつに[単一責任の原則 (single responsibility principle)](https://en.wikipedia.org/wiki/Single_responsibility_principle) があります。つまり、1 つのコンポーネントは理想的には 1 つのことだけを行うべきだということです。もし大きくなってしまったら、より小さなサブコンポーネントに分解するべきです。
 * **CSS エンジニア** -- どの部分に対してクラスセレクタを作成するのか、と考えてみてください（ただし、コンポーネントの方が少し粒度が低めです）。
 * **デザイナ** -- デザインのレイヤをどのように整理するかを考えてください。
+=======
+* **Programming**--use the same techniques for deciding if you should create a new function or object. One such technique is the [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns), that is, a component should ideally only be concerned with one thing. If it ends up growing, it should be decomposed into smaller subcomponents. 
+* **CSS**--consider what you would make class selectors for. (However, components are a bit less granular.)
+* **Design**--consider how you would organize the design's layers.
+>>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 JSON がうまく構造化されている場合、それが UI のコンポーネント構造に自然に対応していることがよくあります。それは、UI とデータモデルが同じ情報アーキテクチャ、つまり同じ形状を持っていることが多いためです。1 つのコンポーネントがデータモデルの 1 つの部分に対応するような形で、UI をコンポーネントに分割していきましょう。
 

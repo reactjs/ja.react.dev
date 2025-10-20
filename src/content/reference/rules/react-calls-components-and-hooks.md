@@ -21,7 +21,7 @@ function BlogPost() {
 }
 ```
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2]}} {2}
 function BlogPost() {
   return <Layout>{Article()}</Layout>; // 🔴 Bad: Never call them directly
 }
@@ -51,7 +51,7 @@ React にレンダーの指揮権を与えることで、多くの利点が得�
 
 フックは可能な限り「静的」であるべきです。つまり、動的に変更してはいけません。たとえば、高階 (higher-order) フックを書くべきではありません。
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2, 3]}} {2}
 function ChatInput() {
   const useDataWithLogging = withLogging(useData); // 🔴 Bad: don't write higher order Hooks
   const data = useDataWithLogging();
@@ -74,7 +74,7 @@ function useDataWithLogging() {
 
 フックを動的に使用してはいけません。例えば以下のように、フックそのものを値としてコンポーネントに渡して依存性注入を行わないようにしてください。
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2]}} {2}
 function ChatInput() {
   return <Button useData={useDataWithLogging} /> // 🔴 Bad: don't pass Hooks as props
 }

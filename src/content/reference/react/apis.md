@@ -4,7 +4,11 @@ title: "React の組み込み API"
 
 <Intro>
 
+<<<<<<< HEAD
 [フック](/reference/react)や[コンポーネント](/reference/react/components)の他に、`react` パッケージはコンポーネントの定義に役立つ他の API も提供しています。このページでは、残りのモダンな React API をすべてリストアップしています。
+=======
+In addition to [Hooks](/reference/react/hooks) and [Components](/reference/react/components), the `react` package exports a few other APIs that are useful for defining components. This page lists all the remaining modern React APIs.
+>>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 </Intro>
 
