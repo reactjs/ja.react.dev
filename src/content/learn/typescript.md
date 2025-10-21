@@ -37,15 +37,9 @@ npm install --save-dev @types/react @types/react-dom
 
 `tsconfig.json` で以下のコンパイラオプションを設定する必要があります。
 
-<<<<<<< HEAD
 1. [`lib`](https://www.typescriptlang.org/tsconfig/#lib) に `dom` が含まれていなければなりません（注：`lib` オプションが指定されない場合、`dom` はデフォルトで含まれます）。
-1. [`jsx`](https://www.typescriptlang.org/tsconfig/#jsx) を有効なオプションのいずれかに設定する必要があります。ほとんどのアプリケーションでは `preserve` で上手くいきます。
+2. [`jsx`](https://www.typescriptlang.org/tsconfig/#jsx) を有効なオプションのいずれかに設定する必要があります。ほとんどのアプリケーションでは `preserve` で上手くいきます。
   ライブラリを公開する場合は、選択すべき値について [`jsx` のドキュメンテーション](https://www.typescriptlang.org/tsconfig/#jsx)を参照してください。
-=======
-1. `dom` must be included in [`lib`](https://www.typescriptlang.org/tsconfig/#lib) (Note: If no `lib` option is specified, `dom` is included by default).
-2. [`jsx`](https://www.typescriptlang.org/tsconfig/#jsx) must be set to one of the valid options. `preserve` should suffice for most applications.
-  If you're publishing a library, consult the [`jsx` documentation](https://www.typescriptlang.org/tsconfig/#jsx) on what value to choose.
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 ## TypeScript で React コンポーネントを書く方法 {/*typescript-with-react-components*/}
 

@@ -2,15 +2,6 @@
 title: サーバコンポーネント
 ---
 
-<<<<<<< HEAD
-<RSC>
-
-サーバコンポーネントは [React Server Components](/learn/start-a-new-react-project#full-stack-frameworks) 用の機能です。
-
-</RSC>
-
-=======
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 <Intro>
 
 サーバコンポーネントは新しいタイプのコンポーネントです。クライアントアプリケーションや SSR サーバとは別の環境で、バンドル前に事前にレンダーされます。

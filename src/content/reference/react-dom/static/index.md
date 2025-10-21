@@ -14,14 +14,10 @@ title: 静的サイト用 React DOM API
 
 以下のメソッドは、[Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) が利用可能な環境でのみ使用できます。これには、ブラウザ、Deno、および一部のモダンなエッジランタイムが含まれます。
 
-<<<<<<< HEAD
 * [`prerender`](/reference/react-dom/static/prerender) は React ツリーを[読み取り可能な Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream) を用いて静的な HTML にレンダーします。
-=======
-* [`prerender`](/reference/react-dom/static/prerender) renders a React tree to static HTML with a [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
-* <ExperimentalBadge /> [`resumeAndPrerender`](/reference/react-dom/static/resumeAndPrerender) continues a prerendered React tree to static HTML with a [Readable Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream).
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
+* <ExperimentalBadge /> [`resumeAndPrerender`](/reference/react-dom/static/resumeAndPrerender) はプリンレンダー済みの React ツリーを再開して、[読み取り可能な Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream) に静的な HTML として流します。
 
-Node.js also includes these methods for compatibility, but they are not recommended due to worse performance. Use the [dedicated Node.js APIs](#static-apis-for-nodejs-streams) instead.
+Node.js でも互換性のためこれらのメソッドが使用可能ですが、パフォーマンスが劣化するため推奨されません。代わりに [Node.js 専用の API](#static-apis-for-nodejs-streams) を使用してください。
 
 ---
 
@@ -29,11 +25,5 @@ Node.js also includes these methods for compatibility, but they are not recommen
 
 以下のメソッドは、[Node.js ストリーム](https://nodejs.org/api/stream.html)が利用可能な環境でのみ使用できます。
 
-<<<<<<< HEAD
 * [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream) は React ツリーを [Node.js ストリーム](https://nodejs.org/api/stream.html)を用いて静的な HTML にレンダーします。
-
-=======
-* [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream) renders a React tree to static HTML with a [Node.js Stream.](https://nodejs.org/api/stream.html)
-* <ExperimentalBadge /> [`resumeAndPrerenderToNodeStream`](/reference/react-dom/static/resumeAndPrerenderToNodeStream) continues a prerendered React tree to static HTML with a [Node.js Stream.](https://nodejs.org/api/stream.html)
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
-
+* <ExperimentalBadge /> [`resumeAndPrerenderToNodeStream`](/reference/react-dom/static/resumeAndPrerenderToNodeStream) はプリレンダー済みの React ツリーを再開して、[Node.js ストリーム](https://nodejs.org/api/stream.html)に静的な HTML として流します。

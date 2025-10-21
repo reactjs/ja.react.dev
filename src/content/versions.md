@@ -10,14 +10,9 @@ title: React のバージョン
 
 私たちは、同一メジャーバージョン内ではドキュメントを最新の状態に保つようにしており、マイナーバージョンやパッチバージョン別にドキュメントを公開することはありません。新しいメジャーバージョンのリリース後、前バージョンのドキュメントは `x.react.dev` としてアーカイブされます。詳細は[バージョニングポリシー](/community/versioning-policy)を参照してください。
 
-<<<<<<< HEAD
 過去のメジャーバージョンのアーカイブは以下から参照できます。
-## Latest version: 19.1 {/*latest-version*/}
-=======
-You can find an archive of previous major versions below.
 
 ## Latest version: 19.2 {/*latest-version*/}
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 - [react.dev](https://react.dev) {/*docs-19*/}
 
@@ -304,11 +299,7 @@ React 15 より前のバージョンについては [15.react.dev](https://15.re
 
 React は 2013 年 5 月 29 日にオープンソース化されました。初回コミットはこちらです：[`75897c`: Initial public release](https://github.com/facebook/react/commit/75897c2dcd1dd3a6ca46284dd37e13d22b4b16b4)
 
-<<<<<<< HEAD
 最初のブログ記事もご覧ください：[なぜ React を作ったのか？](https://legacy.reactjs.org/blog/2013/06/05/why-react.html)
-=======
-See the first blog post: [Why did we build React?](https://legacy.reactjs.org/blog/2013/06/05/why-react.html)
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 React は 2013 年、シアトルの Facebook 社でオープンソース化されました。
 

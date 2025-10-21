@@ -609,17 +609,7 @@ function ChatRoom({ roomId }) {
 
 ### 変更に「反応」せず値を読み出したいだけか？ {/*do-you-want-to-read-a-value-without-reacting-to-its-changes*/}
 
-<<<<<<< HEAD
-<Wip>
-
-このセクションでは、まだ安定版の React でリリースされていない**実験的な API** を説明しています。
-
-</Wip>
-
 `isMuted` が `true` でない場合に限り、ユーザが新しいメッセージを受信したときに音を再生したいとします。
-=======
-Suppose that you want to play a sound when the user receives a new message unless `isMuted` is `true`:
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 ```js {3,10-12}
 function ChatRoom({ roomId }) {

@@ -211,11 +211,7 @@ li {
 
 これを回避する方法のひとつは、親要素への単一の ref を取得し、[`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) のような DOM 操作メソッドを使って、個々の子ノードを「見つける」ことです。ただし、これは壊れやすく、DOM 構造が変更されると機能しなくなる可能性があります。
 
-<<<<<<< HEAD
-別の解決策は、**`ref` 属性に関数を渡す**ことです。これは、[`ref` コールバック](/reference/react-dom/components/common#ref-callback) と呼ばれます。React は、ref を設定するタイミングで DOM ノードを引数にして ref コールバックを呼び出し、クリアするタイミングでは `null` を引数にして呼び出します。これにより、独自の配列や [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) を保持し、インデックスや ID のようなもので任意の ref にアクセスできるようになります。
-=======
-Another solution is to **pass a function to the `ref` attribute.** This is called a [`ref` callback.](/reference/react-dom/components/common#ref-callback) React will call your ref callback with the DOM node when it's time to set the ref, and call the cleanup function returned from the callback when it's time to clear it. This lets you maintain your own array or a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), and access any ref by its index or some kind of ID.
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
+別の解決策は、**`ref` 属性に関数を渡す**ことです。これは、[`ref` コールバック](/reference/react-dom/components/common#ref-callback) と呼ばれます。React は、ref を設定するタイミングで DOM ノードを引数にして ref コールバックを呼び出し、クリアするタイミングではそのコールバックが返したクリーンアップ関数を呼び出します。これにより、独自の配列や [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) を保持し、インデックスや ID のようなもので任意の ref にアクセスできるようになります。
 
 この例では、このアプローチを用いて、長いリストの任意のノードにスクロールする方法を示しています。
 

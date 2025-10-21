@@ -149,11 +149,7 @@ console.timeEnd('filter array');
 
 #### あらゆる場所に useMemo を追加すべきか？ {/*should-you-add-usememo-everywhere*/}
 
-<<<<<<< HEAD
 あなたのアプリがこのサイトのように、ほとんどのインタラクションが大まかなもの（ページ全体やセクション全体の置き換えなど）である場合、メモ化は通常不要です。一方、あなたのアプリが描画エディタのようなもので、ほとんどのインタラクションが細かなもの（図形を移動させるなど）である場合、メモ化は非常に役に立つでしょう。
-=======
-If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful.
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 `useMemo` を利用した最適化が力を発揮するのは、以下のような、ほんの一部のケースに限られます。
 

@@ -2008,11 +2008,7 @@ main {
 
 [ストリーミングサーバレンダリング API](/reference/react-dom/server) のいずれか（またはそれらに依存するフレームワーク）を使用する場合も、React は `<Suspense>` バウンダリを使用してサーバ上のエラーを処理します。コンポーネントがサーバ上でエラーをスローしても、React はサーバレンダリングを中止しません。代わりに、上位の最も近い `<Suspense>` コンポーネントを見つけ、そのフォールバック（スピナなど）を、生成されたサーバ HTML に含めます。ユーザには最初にスピナが見えることになります。
 
-<<<<<<< HEAD
 クライアント側では、React は同じコンポーネントを再度レンダーしようとします。クライアントでもエラーが発生すると、React はエラーをスローし、最も近い[エラーバウンダリ](/reference/react/Component#static-getderivedstatefromerror)を表示します。しかし、クライアントでエラーが発生しない場合は、最終的にコンテンツが正常に表示されたということになるため、React はユーザにエラーを表示しません。
-=======
-On the client, React will attempt to render the same component again. If it errors on the client too, React will throw the error and display the closest [Error Boundary.](/reference/react/Component#static-getderivedstatefromerror) However, if it does not error on the client, React will not display the error to the user since the content was eventually displayed successfully.
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 これを使用して、サーバ上で一部のコンポーネントのレンダーを明示的に拒否することができます。これを行うには、サーバ環境ではエラーをスローするようにし、コンポーネントを `<Suspense>` バウンダリにラップして、HTML の代わりにフォールバックが表示されるようにします。
 

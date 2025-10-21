@@ -162,38 +162,31 @@ React はブラウザ組み込みのすべての HTML コンポーネントを�
 
 ### カスタム HTML 要素 {/*custom-html-elements*/}
 
-<<<<<<< HEAD
-ダッシュを含むタグ、例えば `<my-element>` をレンダーする場合、React は[カスタム HTML 要素](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)をレンダーしていると想定します。React では、カスタム要素のレンダーは、組み込みのブラウザタグのレンダーとは異なる方法で行われます。
-
-- すべてのカスタム要素の props は文字列にシリアライズされ、常に属性を使用して設定されます。
-- カスタム要素は `className` ではなく `class` を、`htmlFor` ではなく `for` を受け入れます。
-=======
-If you render a tag with a dash, like `<my-element>`, React will assume you want to render a [custom HTML element.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
+ダッシュを含むタグ、例えば `<my-element>` をレンダーする場合、React は[カスタム HTML 要素](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)をレンダーしていると想定します。
 
 組み込みのブラウザ HTML 要素を [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is) 属性を用いてレンダーする場合も、カスタム要素として扱われます。
 
-#### Setting values on custom elements {/*attributes-vs-properties*/}
+#### カスタム要素に値を渡す {/*attributes-vs-properties*/}
 
-Custom elements have two methods of passing data into them:
+カスタム要素にデータを渡す方法は 2 種類あります。
 
-1) Attributes: Which are displayed in markup and can only be set to string values
-2) Properties: Which are not displayed in markup and can be set to arbitrary JavaScript values
+1) 属性 (attribute) として：マークアップ内に現れ、文字列型の値しかとれない
+2) プロパティ (property) として：マークアップ内には直接現れず、任意の JavaScript 型をとれる
 
-By default, React will pass values bound in JSX as attributes:
+デフォルトでは、React は JSX に書かれた値を属性として渡します。
 
 ```jsx
 <my-element value="Hello, world!"></my-element>
 ```
 
-Non-string JavaScript values passed to custom elements will be serialized by default:
+カスタム要素に文字列ではない JavaScript の値が渡されると、デフォルトではシリアライズされます。
 
 ```jsx
 // Will be passed as `"1,2,3"` as the output of `[1,2,3].toString()`
 <my-element value={[1,2,3]}></my-element>
 ```
 
-React will, however, recognize an custom element's property as one that it may pass arbitrary values to if the property name shows up on the class during construction:
+ただし React は、対応するクラスのコンストラクタ内に当該プロパティ名が出現する場合、カスタム要素のプロパティに任意の値を渡すことができる、と認識します。
 
 <Sandpack>
 
@@ -231,9 +224,9 @@ export function App() {
 
 </Sandpack>
 
-#### Listening for events on custom elements {/*custom-element-events*/}
+#### カスタム要素でのイベントのリッスン {/*custom-element-events*/}
 
-A common pattern when using custom elements is that they may dispatch [`CustomEvent`s](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) rather than accept a function to call when an event occur. You can listen for these events using an `on` prefix when binding to the event via JSX.
+カスタム要素においては、イベントが起こったときに呼び出すための関数を受け取るのではなく、要素自体が [`CustomEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) をディスパッチするというのが一般的なパターンです。このようなイベントは、`on` 接頭辞をつけることで JSX 経由でリッスンすることができます。
 
 <Sandpack>
 
@@ -292,17 +285,7 @@ export function App() {
 
 <Note>
 
-<<<<<<< HEAD
-[React の将来のバージョンでは、カスタム要素に対するより包括的なサポートが含まれます](https://github.com/facebook/react/issues/11347#issuecomment-1122275286)。
-
-これは、最新の実験的 (experimental) バージョンに React パッケージをアップグレードすることで試すことができます。
-
-- `react@experimental`
-- `react-dom@experimental`
-
-React の実験的バージョンにはバグが含まれている可能性があります。本番環境では使用しないでください。
-=======
-Events are case-sensitive and support dashes (`-`). Preserve the casing of the event and include all dashes when listening for custom element's events:
+イベント名は大文字・小文字を区別し、ダッシュ (`-`) をサポートします。カスタム要素のイベントをリッスンする際は、大文字・小文字の別やダッシュを保持するようにしてください。
 
 ```jsx
 // Listens for `say-hi` events
@@ -310,7 +293,6 @@ Events are case-sensitive and support dashes (`-`). Preserve the casing of the e
 // Listens for `sayHi` events
 <my-element onsayHi={console.log}></my-element>
 ```
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 </Note>
 ---

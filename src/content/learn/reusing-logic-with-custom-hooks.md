@@ -837,17 +837,7 @@ export default function ChatRoom({ roomId }) {
 
 ### カスタムフックにイベントハンドラを渡す {/*passing-event-handlers-to-custom-hooks*/}
 
-<<<<<<< HEAD
-<Wip>
-
-このセクションでは、まだ安定版の React で**リリースされていない実験的な API** について説明しています。
-
-</Wip>
-
 `useChatRoom` がより多くのコンポーネントで使用されるようになると、コンポーネント側でその動作をカスタマイズしたくなってくるでしょう。例えば現在のところ、メッセージが届いたときの処理ロジックはフック内にハードコードされています。
-=======
-As you start using `useChatRoom` in more components, you might want to let components customize its behavior. For example, currently, the logic for what to do when a message arrives is hardcoded inside the Hook:
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 ```js {9-11}
 export function useChatRoom({ serverUrl, roomId }) {
@@ -1423,10 +1413,7 @@ function SaveButton() {
 
 #### 将来 React はデータフェッチのための組み込みソリューションを提供するか？ {/*will-react-provide-any-built-in-solution-for-data-fetching*/}
 
-<<<<<<< HEAD
-まだ詳細は検討中ですが、将来的にはデータフェッチを以下のように書くことになるでしょう。
-=======
-Today, with the [`use`](/reference/react/use#streaming-data-from-server-to-client) API, data can be read in render by passing a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to `use`:
+現在では [`use`](/reference/react/use#streaming-data-from-server-to-client) API に[プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)を渡すことで、レンダー時にデータの読み込みが可能となっています。
 
 ```js {1,4,11}
 import { use, Suspense } from "react";
@@ -1445,8 +1432,7 @@ export function MessageContainer({ messagePromise }) {
 }
 ```
 
-We're still working out the details, but we expect that in the future, you'll write data fetching like this:
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
+詳細はまだ検討中ですが、将来的にはデータフェッチを以下のように書けるようになるはずです。
 
 ```js {1,4,6}
 import { use } from 'react';

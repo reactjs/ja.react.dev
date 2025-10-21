@@ -400,17 +400,7 @@ label { display: block; margin-top: 10px; }
 
 ### エフェクトイベントの宣言 {/*declaring-an-effect-event*/}
 
-<<<<<<< HEAD
-<Wip>
-
-このセクションでは、まだ安定版の React で**リリースされていない実験的な API** について説明しています。
-
-</Wip>
-
-[`useEffectEvent`](/reference/react/experimental_useEffectEvent) という特別なフックを使うことで、エフェクトからこの非リアクティブなロジックを分離することができます。
-=======
-Use a special Hook called [`useEffectEvent`](/reference/react/useEffectEvent) to extract this non-reactive logic out of your Effect:
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
+[`useEffectEvent`](/reference/react/useEffectEvent) という特別なフックを使うことで、エフェクトからこの非リアクティブなロジックを分離することができます。
 
 ```js {1,4-6}
 import { useEffect, useEffectEvent } from 'react';
@@ -582,17 +572,7 @@ label { display: block; margin-top: 10px; }
 
 ### エフェクトイベントで最新の props や state を読み取る {/*reading-latest-props-and-state-with-effect-events*/}
 
-<<<<<<< HEAD
-<Wip>
-
-このセクションでは、まだ安定版の React で**リリースされていない実験的な API** について説明しています。
-
-</Wip>
-
 依存値に関するリンタを抑制したくなるようなパターンの多くは、エフェクトイベントによって回避可能です。
-=======
-Effect Events let you fix many patterns where you might be tempted to suppress the dependency linter.
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 例えば、ページへの訪問をログに記録するエフェクトがあるとしましょう。
 
@@ -733,11 +713,7 @@ function Page({ url }) {
 }
 ```
 
-<<<<<<< HEAD
-`useEffectEvent` が React の安定版に含まれるようになった後は、**決してリンタを抑制しない**ことをお勧めします。
-=======
-We recommend **never suppressing the linter**.
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
+**決してリンタを抑制しない**ことをお勧めします。
 
 このルールを止めてしまうことの最大の欠点は、新たにコードにリアクティブな依存値を追加してそれにエフェクトが「反応する」必要がある場合でも、もはや React が警告を表示できなくなってしまうことです。先ほどの例でも、`url` を依存配列に追加し忘れずに済んだのは、そうするよう React が教えてくれていたからでしたね。リンタを無効化してしまうと、今後そのエフェクトを編集する際に、そのようなリマインダを受け取ることができなくなります。これはバグにつながります。
 
@@ -874,17 +850,7 @@ body {
 
 ### エフェクトイベントに関する制限事項 {/*limitations-of-effect-events*/}
 
-<<<<<<< HEAD
-<Wip>
-
-このセクションでは、まだ安定版の React で**リリースされていない実験的な API** について説明しています。
-
-</Wip>
-
 エフェクトイベントは、使い方が非常に限定されています。
-=======
-Effect Events are very limited in how you can use them:
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 * **エフェクトの内部からしか呼び出すことができない**。
 * **他のコンポーネントやフックに渡してはいけない**。

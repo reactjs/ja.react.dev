@@ -20,11 +20,7 @@ React をはじめとする多くの UI ライブラリは、UI をツリーと�
 
 ## UI をツリーとして理解する {/*your-ui-as-a-tree*/}
 
-<<<<<<< HEAD
 ツリーとはアイテム間の関係を表すモデルの一種です。UI はよくツリー構造を使用して表現されます。例えば、ブラウザは HTML ([DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)) や CSS ([CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)) をモデル化するためにツリー構造を使用します。モバイルプラットフォームもビューの階層構造を表現するためにツリーを使用します。
-=======
-Trees are a relationship model between items. The UI is often represented using tree structures. For example, browsers use tree structures to model HTML ([DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)) and CSS ([CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)). Mobile platforms also use trees to represent their view hierarchy.
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 <Diagram name="preserving_state_dom_tree" height={193} width={864} alt="横に並んだ3つのセクションからなる図。最初のセクションには、'Component A'、'Component B'、'Component C' とラベル付けされた 3 つの長方形が縦に積み重ねられている。次のパネルへの遷移は 'React' とラベル付けされた React ロゴが上にある矢印で示されている。中央セクションには、ルートが 'A' で子が 'B' と 'C' のラベルが付いたコンポーネントのツリーがある。次のセクションへの遷移も、'React DOM' とラベル付けされた React ロゴが上にある矢印で示されている。最後である 3 つ目のセクションは、8 つのノードからなるツリーを含むブラウザのワイヤーフレームで、そのうちの一部だけが強調表示され、中央のセクションからのサブツリーを示している。">
 

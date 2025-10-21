@@ -122,11 +122,7 @@ GraphQL API からデータを取得する場合、以下の使用をお勧め�
 
 ### アプリケーションパフォーマンスの向上 {/*improving-application-performance*/}
 
-<<<<<<< HEAD
 あなたが選択したビルドツールは、シングルページアプリ (SPA) のみをサポートしています。このためサーバサイドレンダリング (SSR)、静的サイト生成 (SSG)、あるいは React Server Components (RSC) などの他の[レンダーパターン](https://www.patterns.dev/vanilla/rendering-patterns)は自分で実装する必要があります。最初はこれらの機能が必要でなくても、将来的には SSR、SSG、または RSC の恩恵を受けるルート（ページ）があるかもしれません。
-=======
-Since the build tool you select only supports single page apps (SPAs), you'll need to implement other [rendering patterns](https://www.patterns.dev/vanilla/rendering-patterns) like server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC). Even if you don't need these features at first, in the future there may be some routes that would benefit SSR, SSG or RSC.
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 * **シングルページアプリ (SPA)** は、単一の HTML ページを読み込み、ユーザがアプリを操作した際にページを動的に更新します。SPA は始めやすいですが、初期読み込み時間が遅くなることがあります。SPA はほとんどのビルドツールにおけるデフォルトのアーキテクチャです。
 

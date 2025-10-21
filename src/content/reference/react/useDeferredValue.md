@@ -244,11 +244,7 @@ input { margin: 10px; }
 
 </Sandpack>
 
-<<<<<<< HEAD
 この代わりに一般的に使われる UI パターンは、結果リストの更新を*遅延*させて、新しい結果が準備できるまで前の結果を表示し続けるというものです。遅延バージョンのクエリ文字列を渡すために `useDeferredValue` を呼び出します：
-=======
-A common alternative UI pattern is to *defer* updating the list of results and to keep showing the previous results until the new results are ready. Call `useDeferredValue` to pass a deferred version of the query down:
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 ```js {3,11}
 export default function App() {
@@ -424,11 +420,7 @@ input { margin: 10px; }
 
 値の遅延は 2 つのステップで行われると考えることができます：
 
-<<<<<<< HEAD
 1. **まず React は、`query` は新しい値 (`"ab"`) だが `deferredQuery` は古い値 (`"a"`) のまま、という状態で再レンダーを試みます**。結果リストに渡す側の値である `deferredQuery` は*遅延されて*おり、`query` の値に「遅れて」ついていきます。
-=======
-1. **First, React re-renders with the new `query` (`"ab"`) but with the old `deferredQuery` (still `"a"`).** The `deferredQuery` value, which you pass to the result list, is *deferred:* it "lags behind" the `query` value.
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 2. **バックグラウンドで React は、`query` と `deferredQuery` の両方が `"ab"` に更新された状態で再レンダーを試みます**。この再レンダーが完了した場合、React はそれを画面に表示します。しかし、それがサスペンドした（`"ab"` の結果がまだ読み込まれていない）場合、React はこのレンダーの試行を放棄し、データが読み込まれた後にこの再レンダーを再試行します。ユーザは、データが準備できるまで古い遅延された値を見続けます。
 

@@ -350,12 +350,9 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "React のルール"
+      "sectionHeader": "React Compiler"
     },
     {
-<<<<<<< HEAD
-      "title": "概要",
-=======
       "title": "Configuration",
       "path": "/reference/react-compiler/configuration",
       "routes": [
@@ -489,11 +486,10 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Rules of React"
+      "sectionHeader": "React のルール"
     },
     {
-      "title": "Overview",
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
+      "title": "概要",
       "path": "/reference/rules",
       "routes": [
         {

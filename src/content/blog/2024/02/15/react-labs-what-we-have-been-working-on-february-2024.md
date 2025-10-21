@@ -15,17 +15,6 @@ React Labs 記事では、現在活発に研究・開発が行われているプ
 
 </Intro>
 
-<<<<<<< HEAD
-<Note>
-
-5 月 15 日・16 日にネバダ州ヘンダーソンで React Conf 2024 が開催されます！ 現地で React Conf に参加を希望される方は、2 月 28 日までに[チケットの抽選に参加](https://forms.reform.app/bLaLeE/react-conf-2024-ticket-lottery/1aRQLK)してください。
-
-チケット、無料ストリーミング、スポンサーシップなどの詳細については、[React Conf のウェブサイト](https://conf.react.dev)をご覧ください。
-
-</Note>
-
-=======
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 ---
 
 ## React Compiler {/*react-compiler*/}

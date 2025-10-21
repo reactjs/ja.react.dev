@@ -312,17 +312,7 @@ React は、エフェクトの依存配列が正しく指定されているか�
 
 ## イベントとエフェクトを切り離す {/*separating-events-from-effects*/}
 
-<<<<<<< HEAD
-<Wip>
-
-このセクションでは、まだ安定版の React でリリースされていない**実験的な API** について説明しています。
-
-</Wip>
-
 イベントハンドラは同じインタラクションを再度実行した場合のみ再実行されます。エフェクトはイベントハンドラとは異なり、props や state 変数のようなそれが読み取る値が前回のレンダー時の値と異なる場合に再同期を行います。また、ある値には反応して再実行するが、他の値には反応しないエフェクトなど、両方の動作をミックスさせたい場合もあります。
-=======
-Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if any of the values they read, like props or state, are different than during last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 エフェクト内のすべてのコードは*リアクティブ*です。それが読み取るリアクティブな値が再レンダーにより変更された場合、再度実行されます。例えば、このエフェクトは `roomId` と `theme` のいずれかが変更された場合にチャットに再接続します。
 

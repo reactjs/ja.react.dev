@@ -22,13 +22,10 @@
     "check-all": "npm-run-all prettier lint:fix tsc rss",
     "rss": "node scripts/generateRss.js",
     "deadlinks": "node scripts/deadLinkChecker.js",
-<<<<<<< HEAD
+    "copyright": "node scripts/copyright.js",
+    "test:eslint-local-rules": "yarn --cwd eslint-local-rules test",
     "textlint": "cd textlint && yarn --frozen-lockfile && yarn textlint",
     "textlint-staged": "cd textlint && yarn --frozen-lockfile && yarn textlint-staged --"
-=======
-    "copyright": "node scripts/copyright.js",
-    "test:eslint-local-rules": "yarn --cwd eslint-local-rules test"
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "2.13.5",

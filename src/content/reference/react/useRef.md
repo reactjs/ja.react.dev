@@ -573,11 +573,7 @@ export default function MyInput({ value, onChange }) {
 }
 ```
 
-<<<<<<< HEAD
 次にコンポーネントが受け取る props のリストに `ref` を追加し、その `ref` を、対応する[組み込み](/reference/react-dom/components/common)子コンポーネントに以下のようにして渡します。
-=======
-And then add `ref` to the list of props your component accepts and pass `ref` as a prop to the relevant child [built-in component](/reference/react-dom/components/common) like this:
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 ```js {1,6}
 function MyInput({ value, onChange, ref }) {

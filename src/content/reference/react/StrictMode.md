@@ -224,11 +224,7 @@ li {
 
 上記のコードには間違いがあります。しかし、初回の出力は正しく見えるため、容易に見落としてしまいます。
 
-<<<<<<< HEAD
 `StoryTray` コンポーネントが複数回レンダーされるとこの間違いに気付きやすくなります。例えば、マウスを `StoryTray` の上にホバーすると背景色を変えて `StoryTray` が再レンダーされるようにしてみましょう。
-=======
-This mistake will become more noticeable if the `StoryTray` component re-renders multiple times. For example, let's make the `StoryTray` re-render with a different background color whenever you hover over it:
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 <Sandpack>
 
@@ -1245,13 +1241,8 @@ StrictMode が有効になると、初回レンダー時に ref コールバッ�
 
 Strict Mode がなければ、アプリをクリックして動かない機能があることに気付くまで、このバグは見逃される危険がありました。Strict Mode により、本番環境に投入するプッシュする前にバグがすぐに明らかになったのです。
 
-<<<<<<< HEAD
---- 
-### Strict Mode によって現れるようになった非推奨警告の修正 {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
-=======
 ---
-### Fixing deprecation warnings enabled by Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
+### Strict Mode によって現れるようになった非推奨警告の修正 {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
 
 React は、`<StrictMode>` ツリー内のいずれかのコンポーネントが以下の非推奨 API を使用している場合に警告を発します。
 

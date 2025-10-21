@@ -617,11 +617,7 @@ React は、開発中に意図的にコンポーネントを再マウントし�
 
 これにより `"✅ Connecting..."` が開発時に 1 回だけ表示されるようにはなるのですが、これでバグが修正されるわけではありません。
 
-<<<<<<< HEAD
 ユーザが他のページに移動しても、接続は閉じられず、戻ってきたときに新しい接続が作成されます。ユーザがアプリ内を移動するたびに接続が積み重なっていきます。「修正」前と同じ状況です。
-=======
-When the user navigates away, the connection still isn't closed and when they navigate back, a new connection is created. As the user navigates across the app, the connections would keep piling up, the same as it would before the "fix".
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 このバグを修正するには、エフェクトを一度だけ実行するようにするだけでは不十分です。エフェクトは再マウント時にも機能する必要があり、接続は上記の解決策のようにクリーンアップされる必要があるのです。
 

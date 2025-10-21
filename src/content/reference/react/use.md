@@ -33,11 +33,7 @@ function MessageComponent({ messagePromise }) {
 
 React フックとは異なり、`use` は `if` のようなループや条件文内でも呼び出すことができます。ただし React フックと同様に、`use` を呼び出す関数はコンポーネントまたはフック内でなければなりません。
 
-<<<<<<< HEAD
-プロミスを引数にして呼び出した場合、`use` API は [`Suspense`](/reference/react/Suspense) や[エラーバウンダリ (error boundary)](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) と協調して動作します。`use` を呼び出すコンポーネントは、`use` に渡されたプロミスが保留中 (pending) である間、*サスペンド (suspend)* します。`use` を呼び出すコンポーネントがサスペンスバウンダリでラップされている場合、フォールバックが表示されます。プロミスが解決 (resolve) された時点で、サスペンスフォールバックは、`use` API から返されたデータを使用してレンダーされたコンポーネントの内容に置き換わります。`use` に渡されたプロミスが拒否 (reject) されると、最も近いエラーバウンダリのフォールバックが表示されます。
-=======
-When called with a Promise, the `use` API integrates with [`Suspense`](/reference/react/Suspense) and [Error Boundaries](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). The component calling `use` *suspends* while the Promise passed to `use` is pending. If the component that calls `use` is wrapped in a Suspense boundary, the fallback will be displayed.  Once the Promise is resolved, the Suspense fallback is replaced by the rendered components using the data returned by the `use` API. If the Promise passed to `use` is rejected, the fallback of the nearest Error Boundary will be displayed.
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
+プロミスを引数にして呼び出した場合、`use` API は [`Suspense`](/reference/react/Suspense) や[エラーバウンダリ (Error Boundary)](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) と協調して動作します。`use` を呼び出すコンポーネントは、`use` に渡されたプロミスが保留中 (pending) である間、*サスペンド (suspend)* します。`use` を呼び出すコンポーネントがサスペンスバウンダリでラップされている場合、フォールバックが表示されます。プロミスが解決 (resolve) された時点で、サスペンスフォールバックは、`use` API から返されたデータを使用してレンダーされたコンポーネントの内容に置き換わります。`use` に渡されたプロミスが拒否 (reject) されると、最も近いエラーバウンダリのフォールバックが表示されます。
 
 [さらに例を見る](#usage)
 
@@ -324,27 +320,16 @@ export default async function App() {
 
 場合によっては、`use` に渡されたプロミスが拒否されることがあります。プロミスが拒否された場合にそれを処理する方法は以下の 2 つです。
 
-<<<<<<< HEAD
 1. [エラーバウンダリを使ってユーザにエラーを表示する](#displaying-an-error-to-users-with-error-boundary)
 2. [`Promise.catch` で代替値を提供する](#providing-an-alternative-value-with-promise-catch)
-=======
-1. [Displaying an error to users with an Error Boundary.](#displaying-an-error-to-users-with-error-boundary)
-2. [Providing an alternative value with `Promise.catch`](#providing-an-alternative-value-with-promise-catch)
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 <Pitfall>
 `use` は try-catch ブロック内で呼び出すことはできません。try-catch ブロックを使う代わりに、[コンポーネントをエラーバウンダリでラップする](#displaying-an-error-to-users-with-error-boundary)か、または[プロミスの `.catch` メソッドで代替値を提供](#providing-an-alternative-value-with-promise-catch)してください。
 </Pitfall>
 
-<<<<<<< HEAD
 #### エラーバウンダリを使ってユーザにエラーを表示する {/*displaying-an-error-to-users-with-error-boundary*/}
 
 プロミスが拒否されたときにユーザにエラーを表示したい場合は、[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) を使用できます。エラーバウンダリを使用するには、`use` API を呼び出しているコンポーネントをエラーバウンダリでラップします。`use` に渡されたプロミスが拒否されると、エラーバウンダリに書かれたフォールバックが表示されます。
-=======
-#### Displaying an error to users with an Error Boundary {/*displaying-an-error-to-users-with-error-boundary*/}
-
-If you'd like to display an error to your users when a Promise is rejected, you can use an [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an Error Boundary, wrap the component where you are calling the `use` API in an Error Boundary. If the Promise passed to `use` is rejected the fallback for the Error Boundary will be displayed.
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 <Sandpack>
 
@@ -455,11 +440,7 @@ export default function App() {
 
 ### "Suspense Exception: This is not a real error!" {/*suspense-exception-error*/}
 
-<<<<<<< HEAD
 あなたは React コンポーネントまたはフック関数の外部で `use` を呼び出しているか、または try-catch ブロック内で `use` を呼び出しています。try-catch ブロック内で `use` を呼び出している場合は、コンポーネントをエラーバウンダリでラップするか、プロミスの `catch` を呼び出してエラーをキャッチし、別の値でプロミスを解決します。[こちらの例を参照してください](#dealing-with-rejected-promises)。
-=======
-You are either calling `use` outside of a React Component or Hook function, or calling `use` in a try–catch block. If you are calling `use` inside a try–catch block, wrap your component in an Error Boundary, or call the Promise's `catch` to catch the error and resolve the Promise with another value. [See these examples](#dealing-with-rejected-promises).
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 React コンポーネントまたはフック関数の外部で `use` を呼び出している場合は、`use` の呼び出しを React コンポーネントまたはフック関数に移動します。
 

@@ -268,21 +268,13 @@ export function HomeContent() {
               フルスタックな開発を
             </Header>
             <Para>
-<<<<<<< HEAD
               React はライブラリです。{''}
               コンポーネントを組み合わせることはできますが、{''}
               ルーティングやデータフェッチの方法までは指定しません。{''}
               React でアプリ全体を構築する場合は、{''}
               <Link href="https://nextjs.org">Next.js</Link> や{' '}
-              <Link href="https://remix.run">Remix</Link>{' '}
+              <Link href="https://reactrouter.com">React Router</Link>{' '}
               のようなフルスタックのフレームワークをお勧めします。
-=======
-              React is a library. It lets you put components together, but it
-              doesn’t prescribe how to do routing and data fetching. To build an
-              entire app with React, we recommend a full-stack React framework
-              like <Link href="https://nextjs.org">Next.js</Link> or{' '}
-              <Link href="https://reactrouter.com">React Router</Link>.
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
             </Para>
           </Center>
           <FullBleed>

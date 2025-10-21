@@ -12,9 +12,9 @@ October 21, 2024 by [Lauren Tan](https://twitter.com/potetotes).
 
 <Note>
 
-### React Compiler is now stable! {/*react-compiler-is-now-in-rc*/}
+### React Compiler は安定版となりました！ {/*react-compiler-is-now-in-rc*/}
 
-Please see the [stable release blog post](/blog/2025/10/07/react-compiler-1) for details.
+詳細については[安定版リリース記事](/blog/2025/10/07/react-compiler-1)をご覧ください。
 
 </Note>
 

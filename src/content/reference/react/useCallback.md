@@ -52,11 +52,7 @@ export default function ProductPage({ productId, referrer, theme }) {
 
 初回のレンダー時、`useCallback` は渡された `fn` 関数を返します。
 
-<<<<<<< HEAD
 その後のレンダー時には、前回のレンダーからすでに保存されている `fn` 関数を返すか（依存配列が変更されていない場合）、このレンダー時に渡された `fn` 関数を返します。
-=======
-During subsequent renders, it will either return an already stored `fn` function from the last render (if the dependencies haven't changed), or return the `fn` function you have passed during this render.
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 #### 注意点 {/*caveats*/}
 
@@ -226,15 +222,9 @@ function useCallback(fn, dependencies) {
 
 #### あらゆる場所に useCallback を追加すべきか？ {/*should-you-add-usecallback-everywhere*/}
 
-<<<<<<< HEAD
 あなたのアプリがこのサイトのように、ほとんどのインタラクションが大まかなもの（ページ全体やセクション全体の置き換えなど）である場合、メモ化は通常不要です。一方、あなたのアプリが描画エディタのようなもので、ほとんどのインタラクションが細かなもの（図形を移動させるなど）である場合、メモ化は非常に役に立つでしょう。
 
 `useCallback` で関数をキャッシュすることが有用なのはいくつかのケースに限られます。
-=======
-If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful.
-
-Caching a function with `useCallback` is only valuable in a few cases:
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 - それを [`memo`](/reference/react/memo) でラップされたコンポーネントに props として渡すケース。この場合は、値が変化していない場合には再レンダーをスキップしたいでしょう。メモ化することで、依存値が異なる場合にのみコンポーネントを再レンダーさせることができます。
 - あなたが渡している関数が、後で何らかのフックの依存値として使用されるケース。たとえば、他の `useCallback` でラップされた関数がそれに依存している、または [`useEffect`](/reference/react/useEffect) からこの関数に依存しているケースです。
@@ -245,19 +235,11 @@ Caching a function with `useCallback` is only valuable in a few cases:
 
 **実際には、以下のいくつかの原則に従うことで、多くのメモ化を不要にすることができます**。
 
-<<<<<<< HEAD
 1. コンポーネントが他のコンポーネントを視覚的にラップするときは、それが[子として JSX を受け入れるようにします](/learn/passing-props-to-a-component#passing-jsx-as-children)。これにより、ラッパコンポーネントが自身の state を更新しても、React はその子を再レンダーする必要がないことを認識します。
-1. ローカル state を優先し、必要以上に [state のリフトアップ](/learn/sharing-state-between-components)を行わないようにします。フォームや、アイテムがホバーされているかどうか、といった頻繁に変化する state は、ツリーのトップやグローバルの状態ライブラリに保持しないでください。
-1. [レンダーロジックを純粋に](/learn/keeping-components-pure)保ちます。コンポーネントの再レンダーが問題を引き起こしたり、何らかの目に見える視覚的な結果を生じたりする場合、それはあなたのコンポーネントのバグです！ メモ化を追加するのではなく、バグを修正します。
-1. [state を更新する不要なエフェクトを避けてください](/learn/you-might-not-need-an-effect)。React アプリケーションのパフォーマンス問題の大部分は、エフェクト内での連鎖的な state 更新によってコンポーネントのレンダーが何度も引き起こされるために生じます。
-1. [エフェクトから不要な依存値をできるだけ削除します](/learn/removing-effect-dependencies)。例えば、メモ化する代わりに、オブジェクトや関数をエフェクトの中や外に移動させるだけで、簡単に解決できる場合があります。
-=======
-1. When a component visually wraps other components, let it [accept JSX as children.](/learn/passing-props-to-a-component#passing-jsx-as-children) Then, if the wrapper component updates its own state, React knows that its children don't need to re-render.
-2. Prefer local state and don't [lift state up](/learn/sharing-state-between-components) any further than necessary. Don't keep transient state like forms and whether an item is hovered at the top of your tree or in a global state library.
-3. Keep your [rendering logic pure.](/learn/keeping-components-pure) If re-rendering a component causes a problem or produces some noticeable visual artifact, it's a bug in your component! Fix the bug instead of adding memoization.
-4. Avoid [unnecessary Effects that update state.](/learn/you-might-not-need-an-effect) Most performance problems in React apps are caused by chains of updates originating from Effects that cause your components to render over and over.
-5. Try to [remove unnecessary dependencies from your Effects.](/learn/removing-effect-dependencies) For example, instead of memoization, it's often simpler to move some object or a function inside an Effect or outside the component.
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
+2. ローカル state を優先し、必要以上に [state のリフトアップ](/learn/sharing-state-between-components)を行わないようにします。フォームや、アイテムがホバーされているかどうか、といった頻繁に変化する state は、ツリーのトップやグローバルの状態ライブラリに保持しないでください。
+3. [レンダーロジックを純粋に](/learn/keeping-components-pure)保ちます。コンポーネントの再レンダーが問題を引き起こしたり、何らかの目に見える視覚的な結果を生じたりする場合、それはあなたのコンポーネントのバグです！ メモ化を追加するのではなく、バグを修正します。
+4. [state を更新する不要なエフェクトを避けてください](/learn/you-might-not-need-an-effect)。React アプリケーションのパフォーマンス問題の大部分は、エフェクト内での連鎖的な state 更新によってコンポーネントのレンダーが何度も引き起こされるために生じます。
+5. [エフェクトから不要な依存値をできるだけ削除します](/learn/removing-effect-dependencies)。例えば、メモ化する代わりに、オブジェクトや関数をエフェクトの中や外に移動させるだけで、簡単に解決できる場合があります。
 
 それでも特定のインタラクションが遅いと感じる場合は、[React Developer Tools のプロファイラを使用して](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html)、どのコンポーネントでのメモ化が最も有効かを確認し、そこでメモ化を行いましょう。これらの原則を守ることで、コンポーネントのデバッグや理解が容易になるため、常に原則に従うことをおすすめします。長期的には、この問題を一挙に解決できる[自動的なメモ化](https://www.youtube.com/watch?v=lGEMwh32soc)について研究を行っています。
 
