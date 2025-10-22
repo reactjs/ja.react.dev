@@ -38,7 +38,7 @@ title: "<form>"
 
 `<form>` は、[一般的な要素の props](/reference/react-dom/components/common#common-props) をすべてサポートしています。
 
-[`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action)：URL または関数。`action` として URL が渡された場合、フォームは HTML の form コンポーネントと同様に動作します。`action` として関数が渡された場合、その関数がフォームの送信を処理します。`action` に渡された関数は非同期でもよく、送信されたフォームの [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) を唯一の引数として呼び出されます。`action` は、`<button>`、`<input type="submit">`、または `<input type="image">` コンポーネントの `formAction` プロパティによって上書きされることがあります。
+[`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action)：URL または関数。`action` として URL が渡された場合、フォームは HTML の form コンポーネントと同様に動作します。`action` として関数が渡された場合、その関数がフォームの送信を [Action prop パターン](/reference/react/useTransition#exposing-action-props-from-components)を用いてトランジション内で処理します。`action` に渡された関数は非同期でもよく、送信されたフォームの [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) を唯一の引数として呼び出されます。`action` は、`<button>`、`<input type="submit">`、または `<input type="image">` コンポーネントの `formAction` プロパティによって上書きされることがあります。
 
 #### 注意点 {/*caveats*/}
 
@@ -229,7 +229,7 @@ export async function deliverMessage(message) {
 
 </Sandpack>
 
-[//]: # 'Uncomment the next line, and delete this line after the `useOptimistic` reference documentatino page is published'
+[//]: # 'Uncomment the next line, and delete this line after the `useOptimistic` reference documentation page is published'
 [//]: # 'To learn more about the `useOptimistic` Hook see the [reference documentation](/reference/react/useOptimistic).'
 
 ### フォーム送信エラーの処理 {/*handling-form-submission-errors*/}
@@ -278,7 +278,7 @@ export default function Search() {
 
 プログレッシブエンハンスメントの実現のため JavaScript バンドルが読み込まれる前にフォーム送信エラーメッセージを表示できるようにするには、以下の条件を満たす必要があります。
 
-1. `<form>` が [サーバコンポーネント](/reference/rsc/use-client)によってレンダーされている
+1. `<form>` が [クライアントコンポーネント](/reference/rsc/use-client)によってレンダーされている
 1. `<form>` の `action` プロパティに渡される関数が[サーバ関数](/reference/rsc/server-functions)である
 1. `useActionState` フックを使用してエラーメッセージを表示している
 

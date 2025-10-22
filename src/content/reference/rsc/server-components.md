@@ -2,12 +2,6 @@
 title: サーバコンポーネント
 ---
 
-<RSC>
-
-サーバコンポーネントは [React Server Components](/learn/start-a-new-react-project#full-stack-frameworks) 用の機能です。
-
-</RSC>
-
 <Intro>
 
 サーバコンポーネントは新しいタイプのコンポーネントです。クライアントアプリケーションや SSR サーバとは別の環境で、バンドル前に事前にレンダーされます。
@@ -293,7 +287,7 @@ function Comments({commentsPromise}) {
   // NOTE: this will resume the promise from the server.
   // It will suspend until the data is available.
   const comments = use(commentsPromise);
-  return comments.map(commment => <p>{comment}</p>);
+  return comments.map(comment => <p>{comment}</p>);
 }
 ```
 

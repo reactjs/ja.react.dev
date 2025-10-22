@@ -16,10 +16,6 @@ React Compiler は、React アプリを自動的に最適化する新しいビ�
 
 </YouWillLearn>
 
-<Note>
-React Compiler は現在リリース候補 (RC) の状態です。皆様にコンパイラをお試しいただき、フィードバックを提供いただくことをお勧めします。最新のRCリリースは@rcタグで確認できます。
-</Note>
-
 ## React Compiler の機能 {/*what-does-react-compiler-do*/}
 
 React Compiler は、ビルド時に React アプリケーションを自動的に最適化します。React は最適化なしでも十分に高速ですが、アプリの応答性を保つために、コンポーネントや値を手動でメモ化する必要がある場合があります。このメモ化は面倒で、間違いやすく、コードのメンテナンス性を損ねます。React Compiler はこの最適化を自動的に行い、開発者は機能開発に集中できるようになります。
@@ -49,6 +45,21 @@ const ExpensiveComponent = memo(function ExpensiveComponent({ data, onClick }) {
   );
 });
 ```
+
+
+<Note>
+
+この手動でのメモ化には、メモ化を破壊してしまう気づきづらいバグがあります。
+
+```js [[2, 1, "() => handleClick(item)"]]
+<Item key={item.id} onClick={() => handleClick(item)} />
+```
+
+`handleClick` は `useCallback` でラップされていますが、アロー関数 `() => handleClick(item)` はコンポーネントがレンダーされるたびに新しい関数を作成します。つまり `Item` は常に新しい `onClick` プロパティを受け取っていることになり、メモ化が動作しなくなります。
+
+React Compiler は、アロー関数の使用の有無にかかわらず、これを正しく最適化でき、`props.onClick` が変更されたときにのみ `Item` が再レンダーされることを保証します。
+
+</Note>
 
 ### React Compiler を使用する場合 {/*after-react-compiler*/}
 
@@ -142,7 +153,7 @@ function TableContainer({ items }) {
 
 ### 安全に使用できるか？ {/*is-it-safe-to-use*/}
 
-React Compiler は現在リリース候補 (RC) で、本番環境で広範囲にテストされています。Meta などの企業で本番環境で使用されていますが、あなたのアプリケーションでコンパイラを導入できるかどうかは、コードベースの健全性と [React のルール](/reference/rules) をどの程度遵守しているかに依存します。
+React Compiler は現在安定板であり、本番環境で広範囲にテストされています。Meta などの企業で本番環境で使用されていますが、あなたのアプリケーションでコンパイラを導入できるかどうかは、コードベースの健全性と [React のルール](/reference/rules)をどの程度遵守しているかに依存します。
 
 ## どのビルドツールがサポートされているか？ {/*what-build-tools-are-supported*/}
 
@@ -154,9 +165,13 @@ Next.js を使用しているユーザは、[v15.3.1](https://github.com/vercel/
 
 ## useMemo、useCallback、React.memo をどう扱うべきか？ {/*what-should-i-do-about-usememo-usecallback-and-reactmemo*/}
 
-React Compiler を使用している場合、[`useMemo`](/reference/react/useMemo)、[`useCallback`](/reference/react/useCallback)、[`React.memo`](/reference/react/memo) は不要になります。React Compiler はこれらのフックよりも正確で細かいメモ化を自動で追加します。手動のメモ化を保持することを選択した場合、React Compiler はそれらを分析し、手動のメモ化が自動的に推論されたメモ化と一致するかどうかを判断します。一致しない場合、コンパイラはそのコンポーネントの最適化を停止します。
+デフォルトでは、React Compiler はコードの分析結果とヒューリスティックに基づいてコードをメモ化します。ほとんどの場合このメモ化は、あなたが書くであろうものと同等か、それ以上に正確です。
 
-これは慎重を期しての措置で、メモ化によって期待する挙動を担保しようとしているケースが、よくあるアンチパターンとして挙げられるからです。つまり、アプリケーションの動作が特定の値のメモ化に依存してしまう状態です。例えば、無限ループを防ぐ目的で、ある値をメモ化して `useEffect` の発火を抑えているケースなどです。これは React のルールに反しますが、コンパイラが手動のメモ化を自動的に取り除くのは危険になり得るため、その場合は最適化を停止します。手動のメモ化は自分で削除し、アプリケーションが期待どおりに動作するか確認してください。
+ただし、場合によっては開発者がメモ化をより細かく制御する必要があるかもしれません。`useMemo` と `useCallback` フックは、React Compiler と併用して、どの値をメモ化するかを制御するための避難ハッチ (escape hatch) として使用し続けることができます。一般的なユースケースは、メモ化された値がエフェクトの依存値として使用される場合で、依存値が実質的に変化しないならエフェクトが繰り返し発火しないようにする、というものです。
+
+新しいコードにおいては、メモ化をコンパイラに任せ、詳細な制御が必要な場合に `useMemo`/`useCallback` を使用することをお勧めします。
+
+既存のコードの場合は、既存のメモ化をそのまま残すか（削除するとコンパイル出力が変わる可能性があります）、メモ化を削除する前に慎重にテストすることをお勧めします。
 
 ## React Compiler を試す {/*try-react-compiler*/}
 

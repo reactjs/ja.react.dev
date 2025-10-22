@@ -18,28 +18,24 @@ title: インストール
 
 React Compiler は React 19 で最適に動作するよう設計されていますが、React 17 および 18 もサポートしています。詳細については [React バージョン互換性](/reference/react-compiler/target) をご覧ください。
 
-<Note>
-React Compiler は現在リリース候補 (RC) 段階です。最新のリリース候補バージョンを入手するには、`@rc` タグを使用してインストールしてください。
-</Note>
-
 ## インストール {/*installation*/}
 
 React Compiler を `devDependency` としてインストールします。
 
 <TerminalBlock>
-npm install -D babel-plugin-react-compiler@rc
+npm install -D babel-plugin-react-compiler@latest
 </TerminalBlock>
 
 Yarn を使用する場合：
 
 <TerminalBlock>
-yarn add -D babel-plugin-react-compiler@rc
+yarn add -D babel-plugin-react-compiler@latest
 </TerminalBlock>
 
 pnpm を使用する場合：
 
 <TerminalBlock>
-pnpm install -D babel-plugin-react-compiler@rc
+pnpm install -D babel-plugin-react-compiler@latest
 </TerminalBlock>
 
 ## 基本的なセットアップ {/*basic-setup*/}
@@ -173,19 +169,10 @@ React Compiler には、最適化できないコードを特定するのに役�
 ESLint プラグインをインストールします。
 
 <TerminalBlock>
-npm install -D eslint-plugin-react-hooks@rc
+npm install -D eslint-plugin-react-hooks@latest
 </TerminalBlock>
 
-次に、ESLint 設定でコンパイラルールを有効にします。
-
-```js {3}
-// .eslintrc.js
-module.exports = {
-  rules: {
-    'react-hooks/react-compiler': 'error',
-  },
-};
-```
+`eslint-plugin-react-hooks` をまだ設定していない場合は、[readme のインストール手順](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/README.md#installation)に従ってください。コンパイラのルールは `recommended-latest` プリセットで利用できます。
 
 ESLint ルールは以下を行います。
 - [React のルール](/reference/rules) の違反の特定

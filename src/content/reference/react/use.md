@@ -33,7 +33,7 @@ function MessageComponent({ messagePromise }) {
 
 React フックとは異なり、`use` は `if` のようなループや条件文内でも呼び出すことができます。ただし React フックと同様に、`use` を呼び出す関数はコンポーネントまたはフック内でなければなりません。
 
-プロミスを引数にして呼び出した場合、`use` API は [`Suspense`](/reference/react/Suspense) や[エラーバウンダリ (error boundary)](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) と協調して動作します。`use` を呼び出すコンポーネントは、`use` に渡されたプロミスが保留中 (pending) である間、*サスペンド (suspend)* します。`use` を呼び出すコンポーネントがサスペンスバウンダリでラップされている場合、フォールバックが表示されます。プロミスが解決 (resolve) された時点で、サスペンスフォールバックは、`use` API から返されたデータを使用してレンダーされたコンポーネントの内容に置き換わります。`use` に渡されたプロミスが拒否 (reject) されると、最も近いエラーバウンダリのフォールバックが表示されます。
+プロミスを引数にして呼び出した場合、`use` API は [`Suspense`](/reference/react/Suspense) や[エラーバウンダリ (Error Boundary)](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) と協調して動作します。`use` を呼び出すコンポーネントは、`use` に渡されたプロミスが保留中 (pending) である間、*サスペンド (suspend)* します。`use` を呼び出すコンポーネントがサスペンスバウンダリでラップされている場合、フォールバックが表示されます。プロミスが解決 (resolve) された時点で、サスペンスフォールバックは、`use` API から返されたデータを使用してレンダーされたコンポーネントの内容に置き換わります。`use` に渡されたプロミスが拒否 (reject) されると、最も近いエラーバウンダリのフォールバックが表示されます。
 
 [さらに例を見る](#usage)
 
