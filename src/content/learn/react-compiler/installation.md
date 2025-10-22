@@ -16,7 +16,7 @@ title: インストール
 
 ## 前提条件 {/*prerequisites*/}
 
-React Compiler は React 19 で最適に動作するよう設計されていますが、React 17 および 18 もサポートしています。詳細については [React バージョン互換性](/reference/react-compiler/target) をご覧ください。
+React Compiler は React 19 で最適に動作するよう設計されていますが、React 17 および 18 もサポートしています。詳細については [React バージョン互換性](/reference/react-compiler/target)をご覧ください。
 
 ## インストール {/*installation*/}
 
@@ -40,7 +40,7 @@ pnpm install -D babel-plugin-react-compiler@latest
 
 ## 基本的なセットアップ {/*basic-setup*/}
 
-React Compiler は、デフォルトで設定なしで動作するように設計されています。ただし、特別な状況で設定が必要な場合（例えば、React 19 未満のバージョンを対象とする場合）は、[コンパイラオプションリファレンス](/reference/react-compiler/configuration) を参照してください。
+React Compiler は、デフォルトで設定なしで動作するように設計されています。ただし、特別な状況で設定が必要な場合（例えば、React 19 未満のバージョンを対象とする場合）は、[コンパイラオプションリファレンス](/reference/react-compiler/configuration)を参照してください。
 
 セットアッププロセスは使用するビルドツールによって異なります。React Compiler には、ビルドパイプラインと統合する Babel プラグインが含まれています。
 
@@ -108,7 +108,7 @@ export default defineConfig({
 
 ### Next.js {/*usage-with-nextjs*/}
 
-詳細については [Next.js ドキュメント](https://nextjs.org/docs/app/api-reference/next-config-js/reactCompiler) を参照してください。
+詳細については [Next.js ドキュメント](https://nextjs.org/docs/app/api-reference/next-config-js/reactCompiler)を参照してください。
 
 ### React Router {/*usage-with-react-router*/}
 `vite-plugin-babel` をインストールし、コンパイラの Babel プラグインを追加します。
@@ -143,23 +143,23 @@ export default defineConfig({
 
 ### Webpack {/*usage-with-webpack*/}
 
-コミュニティ製の webpack ローダーが [こちら](https://github.com/SukkaW/react-compiler-webpack) で利用できます。
+コミュニティ製の webpack ローダーが[こちら](https://github.com/SukkaW/react-compiler-webpack)で利用できます。
 
 ### Expo {/*usage-with-expo*/}
 
-Expo アプリで React Compiler を有効にして使用する方法については、[Expo のドキュメント](https://docs.expo.dev/guides/react-compiler/) を参照してください。
+Expo アプリで React Compiler を有効にして使用する方法については、[Expo のドキュメント](https://docs.expo.dev/guides/react-compiler/)を参照してください。
 
 ### Metro (React Native) {/*usage-with-react-native-metro*/}
 
-React Native は Metro 経由で Babel を使用するため、インストール手順については [Babel での使用](#babel) セクションを参照してください。
+React Native は Metro 経由で Babel を使用するため、インストール手順については [Babel での使用](#babel)セクションを参照してください。
 
 ### Rspack {/*usage-with-rspack*/}
 
-Rspack アプリで React Compiler を有効にして使用する方法については、[Rspack のドキュメント](https://rspack.dev/guide/tech/react#react-compiler) を参照してください。
+Rspack アプリで React Compiler を有効にして使用する方法については、[Rspack のドキュメント](https://rspack.dev/guide/tech/react#react-compiler)を参照してください。
 
 ### Rsbuild {/*usage-with-rsbuild*/}
 
-Rsbuild アプリで React Compiler を有効にして使用する方法については、[Rsbuild のドキュメント](https://rsbuild.dev/guide/framework/react#react-compiler) を参照してください。
+Rsbuild アプリで React Compiler を有効にして使用する方法については、[Rsbuild のドキュメント](https://rsbuild.dev/guide/framework/react#react-compiler)を参照してください。
 
 
 ## ESLint 統合 {/*eslint-integration*/}
@@ -175,7 +175,7 @@ npm install -D eslint-plugin-react-hooks@latest
 `eslint-plugin-react-hooks` をまだ設定していない場合は、[readme のインストール手順](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/README.md#installation)に従ってください。コンパイラのルールは `recommended-latest` プリセットで利用できます。
 
 ESLint ルールは以下を行います。
-- [React のルール](/reference/rules) の違反の特定
+- [React のルール](/reference/rules)の違反の特定
 - 最適化できないコンポーネントの表示
 - 問題の修正に役立つエラーメッセージの提供
 
@@ -232,14 +232,14 @@ function ProblematicComponent() {
 
 これにより、コンパイラはこの特定のコンポーネントの最適化をスキップします。根本的な問題を修正し、解決したらディレクティブを削除してください。
 
-トラブルシューティングの詳細については、[デバッグガイド](/learn/react-compiler/debugging) を参照してください。
+トラブルシューティングの詳細については、[デバッグガイド](/learn/react-compiler/debugging)を参照してください。
 
 ## 次のステップ {/*next-steps*/}
 
 React Compiler がインストールされたので、以下について詳しく学びましょう。
 
 - React 17 と 18 の [React バージョン互換性](/reference/react-compiler/target)
-- コンパイラをカスタマイズする [設定オプション](/reference/react-compiler/configuration)
-- 既存のコードベースでの [段階的な導入戦略](/learn/react-compiler/incremental-adoption)
-- 問題のトラブルシューティングのための [デバッグテクニック](/learn/react-compiler/debugging)
-- React ライブラリをコンパイルするための [ライブラリコンパイルガイド](/reference/react-compiler/compiling-libraries)
+- コンパイラをカスタマイズする[設定オプション](/reference/react-compiler/configuration)
+- 既存のコードベースでの[段階的な導入戦略](/learn/react-compiler/incremental-adoption)
+- 問題のトラブルシューティングのための[デバッグテクニック](/learn/react-compiler/debugging)
+- React ライブラリをコンパイルするための[ライブラリコンパイルガイド](/reference/react-compiler/compiling-libraries)

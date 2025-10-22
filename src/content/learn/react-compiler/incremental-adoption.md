@@ -214,12 +214,12 @@ export function isCompilerEnabled() {
 導入中に問題が発生した場合
 
 1. `"use no memo"` を使用して問題のあるコンポーネントを一時的に除外
-2. 一般的な問題については [デバッグガイド](/learn/react-compiler/debugging) を確認
+2. 一般的な問題については[デバッグガイド](/learn/react-compiler/debugging)を確認
 3. ESLint プラグインによって特定された React のルール違反を修正
 4. より段階的な導入のために `compilationMode: 'annotation'` の使用を検討
 
 ## 次のステップ {/*next-steps*/}
 
-- より多くのオプションについては [設定ガイド](/reference/react-compiler/configuration) を確認する
-- [デバッグテクニック](/learn/react-compiler/debugging) について学ぶ
-- すべてのコンパイラオプションについては [API リファレンス](/reference/react-compiler/configuration) を確認する
+- より多くのオプションについては[設定ガイド](/reference/react-compiler/configuration)を確認する
+- [デバッグテクニック](/learn/react-compiler/debugging)について学ぶ
+- すべてのコンパイラオプションについては [API リファレンス](/reference/react-compiler/configuration)を確認する

@@ -4,20 +4,20 @@ title: React Compiler
 
 ## はじめに {/*introduction*/}
 
-[React Compiler の機能](/learn/react-compiler/introduction) について学び、`useMemo`、`useCallback`、`React.memo` による手動メモ化が不要になる、React アプリケーションを自動的に最適化する仕組みを理解しましょう。
+[React Compiler の機能](/learn/react-compiler/introduction)について学び、`useMemo`、`useCallback`、`React.memo` による手動メモ化が不要になる、React アプリケーションを自動的に最適化する仕組みを理解しましょう。
 
 ## インストール {/*installation*/}
 
-[React Compiler のインストール](/learn/react-compiler/installation) から、ビルドツールとの設定方法を学びましょう。
+[React Compiler のインストール](/learn/react-compiler/installation)から、ビルドツールとの設定方法を学びましょう。
 
 
 ## 段階的な導入 {/*incremental-adoption*/}
 
-横断的に有効にする準備がまだできていない場合は、既存のコードベースで [React Compiler を段階的に導入する戦略](/learn/react-compiler/incremental-adoption) を学びましょう。
+横断的に有効にする準備がまだできていない場合は、既存のコードベースで [React Compiler を段階的に導入する戦略](/learn/react-compiler/incremental-adoption)を学びましょう。
 
 ## デバッグとトラブルシューティング {/*debugging-and-troubleshooting*/}
 
-期待通りに動作しない場合は[デバッグガイド](/learn/react-compiler/debugging) を参考に、コンパイラエラーとランタイムエラーの違いやよくある失敗パターンを理解しつつ、体系的なデバッグ作業を行いましょう。
+期待通りに動作しない場合は[デバッグガイド](/learn/react-compiler/debugging)を参考に、コンパイラエラーとランタイムエラーの違いやよくある失敗パターンを理解しつつ、体系的なデバッグ作業を行いましょう。
 
 ## 設定とリファレンス {/*configuration-and-reference*/}
 

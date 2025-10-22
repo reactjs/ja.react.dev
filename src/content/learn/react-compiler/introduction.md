@@ -3,7 +3,7 @@ title: はじめに
 ---
 
 <Intro>
-React Compiler は、React アプリを自動的に最適化する新しいビルド時ツールです。プレーンな JavaScript で動作し、[React のルール](/reference/rules) を理解しているため、コードを書き直すことなく使用できます。
+React Compiler は、React アプリを自動的に最適化する新しいビルド時ツールです。プレーンな JavaScript で動作し、[React のルール](/reference/rules)を理解しているため、コードを書き直すことなく使用できます。
 </Intro>
 
 <YouWillLearn>
@@ -90,7 +90,7 @@ React Compiler は最適なメモ化を自動で適用し、必要なときだ�
 <DeepDive>
 #### React Compiler はどのようなメモ化を行うのか？ {/*what-kind-of-memoization-does-react-compiler-add*/}
 
-React Compiler の自動メモ化は主に **更新パフォーマンスの向上**（既存コンポーネントの再レンダー）に焦点を当てており、主に以下の 2 つのユースケースに重点を置いています：
+React Compiler の自動メモ化は主に**更新パフォーマンスの向上**（既存コンポーネントの再レンダー）に焦点を当てており、主に以下の 2 つのユースケースに重点を置いています。
 
 1. **コンポーネントの連鎖的な再レンダーのスキップ**
     * `<Parent />` の再レンダーにより、`<Parent />` のみが変更されたにも関わらず、そのコンポーネントツリー内の多くのコンポーネントが再レンダーされる
@@ -99,7 +99,7 @@ React Compiler の自動メモ化は主に **更新パフォーマンスの向�
 
 #### 再レンダーの最適化 {/*optimizing-re-renders*/}
 
-React では、UI を現在の state（具体的には props、state、context）の関数として表現できます。現在の実装では、コンポーネントの state が変更されると、`useMemo()`、`useCallback()`、`React.memo()` による何らかのメモ化を適用していない限り、React はそのコンポーネント *そのすべての子要素* を再レンダーします。例えば、以下の例では、`<FriendList>` の state が変更されるたびに `<MessageButton>` が再レンダーされます：
+React では、UI を現在の state（具体的には props、state、context）の関数として表現できます。現在の実装では、コンポーネントの state が変更されると、`useMemo()`、`useCallback()`、`React.memo()` による何らかのメモ化を適用していない限り、React はそのコンポーネント *そのすべての子要素* を再レンダーします。例えば、以下の例では、`<FriendList>` の state が変更されるたびに `<MessageButton>` が再レンダーされます。
 
 ```javascript
 function FriendList({ friends }) {
@@ -120,7 +120,7 @@ function FriendList({ friends }) {
 ```
 [*React Compiler Playground でこの例を確認*](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAYjHgpgCYAyeYOAFMEWuZVWEQL4CURwADrEicQgyKEANnkwIAwtEw4iAXiJQwCMhWoB5TDLmKsTXgG5hRInjRFGbXZwB0UygHMcACzWr1ABn4hEWsYBBxYYgAeADkIHQ4uAHoAPksRbisiMIiYYkYs6yiqPAA3FMLrIiiwAAcAQ0wU4GlZBSUcbklDNqikusaKkKrgR0TnAFt62sYHdmp+VRT7SqrqhOo6Bnl6mCoiAGsEAE9VUfmqZzwqLrHqM7ubolTVol5eTOGigFkEMDB6u4EAAhKA4HCEZ5DNZ9ErlLIWYTcEDcIA)
 
-React Compiler はメモ化と同等の処理を自動的に適用し、state が変更されてもアプリの関連部分のみが再レンダーされることを保証します。これは細粒度のリアクティビティ（fine-grained reactivity）と呼ばれることもあります。上記の例では、React Compiler は `friends` が変更されても `<FriendListCard />` の返り値を再利用できると判断し、この JSX の再作成 *と* カウントの変更による `<MessageButton>` の再レンダーを回避できます。
+React Compiler はメモ化と同等の処理を自動的に適用し、state が変更されてもアプリの関連部分のみが再レンダーされることを保証します。これは細粒度のリアクティビティ (fine-grained reactivity) と呼ばれることもあります。上記の例では、React Compiler は `friends` が変更されても `<FriendListCard />` の返り値を再利用できると判断し、この JSX の再作成 *と* カウントの変更による `<MessageButton>` の再レンダーを回避できます。
 
 #### 高コストな計算もメモ化される {/*expensive-calculations-also-get-memoized*/}
 

@@ -16,7 +16,7 @@ title: デバッグとトラブルシューティング
 
 ## コンパイラの動作を理解する {/*understanding-compiler-behavior*/}
 
-React Compiler は [React のルール](/reference/rules) に従うコードを処理するように設計されています。これらのルールに違反する可能性のあるコードに遭遇した場合、アプリケーションの動作を変更するリスクを冒すよりも、最適化を安全にスキップします。
+React Compiler は [React のルール](/reference/rules)に従うコードを処理するように設計されています。これらのルールに違反する可能性のあるコードに遭遇した場合、アプリケーションの動作を変更するリスクを冒すよりも、最適化を安全にスキップします。
 
 ### コンパイラエラーとランタイムエラー {/*compiler-errors-vs-runtime-issues*/}
 
@@ -89,5 +89,5 @@ function ProblematicComponent() {
 
 ## 次のステップ {/*next-steps*/}
 
-- 問題を防ぐために [React のルール](/reference/rules) を確認する
-- 段階的な展開戦略については [段階的導入ガイド](/learn/react-compiler/incremental-adoption) を確認する
+- 問題を防ぐために [React のルール](/reference/rules)を確認する
+- 段階的な展開戦略については[段階的導入ガイド](/learn/react-compiler/incremental-adoption)を確認する
