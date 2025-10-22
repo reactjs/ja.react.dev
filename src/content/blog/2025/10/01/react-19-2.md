@@ -2,7 +2,7 @@
 title: "React 19.2"
 author: The React Team
 date: 2025/10/01
-description: React 19.2 adds new features like Activity, React Performance Tracks, useEffectEvent, and more.
+description: React 19.2 では Activity、パフォーマンストラック、useEffectEvent などの新機能が追加されます。
 ---
 
 October 1, 2025 by [The React Team](/community/team)
