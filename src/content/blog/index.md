@@ -28,9 +28,9 @@ We're releasing the compiler's first stable release today, plus linting and tool
 
 </BlogCard>
 
-<BlogCard title="Introducing the React Foundation" date="October 7, 2025" url="/blog/2025/10/07/introducing-the-react-foundation">
+<BlogCard title="React Foundation 設立" date="October 7, 2025" url="/blog/2025/10/07/introducing-the-react-foundation">
 
-Today, we're announcing our plans to create the React Foundation and a new technical governance structure ...
+本日、React Foundation の設立と新しい技術ガバナンス構造について発表します。
 
 </BlogCard>
 
