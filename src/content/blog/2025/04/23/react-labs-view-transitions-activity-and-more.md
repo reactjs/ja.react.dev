@@ -2494,7 +2494,7 @@ root.render(
 </ViewTransition>
 ```
 
-その後に[ビュー遷移クラス](/reference/react/ViewTransition#view-transition-classes)を用いて CSS で `slow-fade` を定義します。
+その後に[ビュー遷移クラス](/reference/react/ViewTransition#view-transition-class)を用いて CSS で `slow-fade` を定義します。
 
 ```css
 ::view-transition-old(.slow-fade) {
