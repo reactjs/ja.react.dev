@@ -1,11 +1,10 @@
 ---
 title: cache
-canary: true
 ---
 
 <RSC>
 
-`cache` は、[React サーバコンポーネント](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components)専用のものです。
+`cache` は、[React サーバコンポーネント](/reference/rsc/server-components)専用のものです。
 
 </RSC>
 
@@ -63,12 +62,10 @@ function Chart({data}) {
 
 #### 注意点 {/*caveats*/}
 
-[//]: # 'TODO: add links to Server/Client Component reference once https://github.com/reactjs/react.dev/pull/6177 is merged'
-
 - React は、サーバへの各リクエストごとにすべてのメモ化された関数のキャッシュを無効化します。
 - `cache` を呼び出すたびに新しい関数が作成されます。これは、同じ関数で `cache` を複数回呼び出すと、同じキャッシュを共有しない異なるメモ化された関数が返されることを意味します。
 - `cachedFn` はエラーもキャッシュします。特定の引数で `fn` がエラーをスローすると、それがキャッシュされ、同じ引数で `cachedFn` が呼び出されると同じエラーが再スローされます。
-- `cache` は、[サーバコンポーネント](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components)でのみ使用できます。
+- `cache` は、[サーバコンポーネント](/reference/rsc/server-components)でのみ使用できます。
 
 ---
 
@@ -103,6 +100,8 @@ function TeamReport({users}) {
 最初に `Profile` がレンダーされると仮定します。<CodeStep step={1}>`getUserMetrics`</CodeStep> が呼び出され、キャッシュされた結果があるかどうかを確認します。その `user` で `getUserMetrics` を呼び出すのは初めてなので、キャッシュミスが発生します。`getUserMetrics` はその後、その `user` で `calculateUserMetrics` を呼び出し、結果をキャッシュに書き込みます。
 
 `TeamReport` が `users` のリストをレンダーし、同じ `user` オブジェクトに到達すると、<CodeStep step={2}>`getUserMetrics`</CodeStep> を呼び出し、結果をキャッシュから読み取ります。
+
+[`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) を渡すことで `calculateUserMetrics` を中断できる場合、React がレンダーを終了したときに高コストな計算をキャンセルするために [`cacheSignal()`](/reference/react/cacheSignal) を使用することができます。`calculateUserMetrics` は、`cacheSignal` を直接使用することにより、内部的にすでにキャンセル処理を行っている場合もあります。
 
 <Pitfall>
 
@@ -204,8 +203,6 @@ async function MinimalWeatherCard({city}) {
 
 <Note>
 
-[//]: # 'TODO: add links to Server Components when merged.'
-
 <CodeStep step={3}>非同期レンダー</CodeStep>はサーバコンポーネントでのみサポートされています。
 
 ```js [[3, 1, "async"], [3, 2, "await"]]
@@ -214,8 +211,8 @@ async function AnimatedWeatherCard({city}) {
 	// ...
 }
 ```
-[//]: # 'TODO: add link and mention to use documentation when merged'
-[//]: # 'To render components that use asynchronous data in Client Components, see `use` documentation.'
+
+クライアントコンポーネントで非同期データを使用するコンポーネントをレンダーする場合は、[`use()` のドキュメント](/reference/react/use)を参照してください。
 
 </Note>
 
@@ -271,7 +268,7 @@ const getData = cache(fetchData);
 
 async function MyComponent() {
   getData();
-  // ... some computational work  
+  // ... some computational work
   await getData();
   // ...
 }
@@ -323,7 +320,7 @@ React がメモ化された関数に対してキャッシュアクセスを提�
 
 一般的に、[`useMemo`](/reference/react/useMemo) は、レンダー間でクライアントコンポーネント内の高コストな計算をキャッシュするために使用すべきです。例えば、コンポーネント内のデータの変換をメモ化するために使用します。
 
-```jsx {4}
+```jsx {expectedErrors: {'react-compiler': [4]}} {4}
 'use client';
 
 function WeatherReport({record}) {
@@ -379,7 +376,7 @@ function App() {
 'use client';
 
 function WeatherReport({record}) {
-  const avgTemp = calculateAvg(record); 
+  const avgTemp = calculateAvg(record);
   // ...
 }
 
@@ -495,4 +492,3 @@ function App() {
   );
 }
 ```
-

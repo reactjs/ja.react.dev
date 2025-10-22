@@ -4,7 +4,7 @@ title: "React の組み込み API"
 
 <Intro>
 
-[フック](/reference/react)や[コンポーネント](/reference/react/components)の他に、`react` パッケージはコンポーネントの定義に役立つ他の API も提供しています。このページでは、残りのモダンな React API をすべてリストアップしています。
+[フック](/reference/react/hooks)や[コンポーネント](/reference/react/components)の他に、`react` パッケージはコンポーネントの定義に役立つ他の API も提供しています。このページでは、残りのモダンな React API をすべてリストアップしています。
 
 </Intro>
 

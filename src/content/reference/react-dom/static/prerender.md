@@ -7,7 +7,7 @@ title: prerender
 `prerender` は React ツリーを [Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) を用いて静的な HTML 文字列にレンダーします。
 
 ```js
-const {prelude} = await prerender(reactNode, options?)
+const {prelude, postponed} = await prerender(reactNode, options?)
 ```
 
 </Intro>
@@ -31,7 +31,7 @@ const {prelude} = await prerender(reactNode, options?)
 ```js
 import { prerender } from 'react-dom/static';
 
-async function handler(request) {
+async function handler(request, response) {
   const {prelude} = await prerender(<App />, {
     bootstrapScripts: ['/main.js']
   });
@@ -64,18 +64,20 @@ async function handler(request) {
 `prerender` はプロミスを返します。
 - レンダーが成功した場合、プロミスは以下を含んだオブジェクトに解決 (resolve) されます。
   - `prelude`: HTML の [Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API)。このストリームを使ってレスポンスを送信したり、ストリームを文字列に一括して読み出したりできます。
+  - `postponed`: `prerender` が終了しなかった場合には、[`resume`](/reference/react-dom/server/resume) に渡すために用いる、JSON シリアライズ可能な非公開のオブジェクト。そうでない場合は `null` で、これは `predule` に必要なすべてのコンテンツが入っており `resume` が必要ないことを表す。
 - レンダーが失敗した場合は、Promise は拒否 (reject) されます。[これを使用してフォールバックシェルを出力します](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell)。
 
 #### 注意点 {/*caveats*/}
 
 プリレンダー中に `nonce` オプションは利用できません。nonce はリクエストごとに一意である必要があり、[CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP) でアプリケーションを保護するために nonce を使用する場合、プリレンダー自体に nonce 値を含めることは不適切かつ危険です。
 
-
 <Note>
 
 ### `prerender` をいつ使うのか {/*when-to-use-prerender*/}
 
 `prerender` API は、静的なサーバサイド生成 (server-side generation; SSG) に使用するものです。`renderToString` とは異なり、`prerender` はすべてのデータの読み込みが完了するまで待機してから解決されます。このため、サスペンスを使用して取得するデータを含む、ページ全体の静的な HTML を生成するのに適しています。読み込み中のコンテンツをストリーミングする場合は、[renderToReadableStream](/reference/react-dom/server/renderToReadableStream) のようなストリーミング付きサーバサイドレンダリング (SSR) API を使用してください。
+
+部分プリレンダリング (partial pre-rendering) をサポートするため、`prerender` は中断可能です。あとで `resumeAndPrerender` でプリレンダーを継続することも、`resume` で再開することも可能です。
 
 </Note>
 
@@ -311,7 +313,7 @@ async function renderToString() {
 
 サスペンスバウンダリは、子のレンダーが未完了の場合にはフォールバックの状態で結果 (prelude) に含まれます。
 
----
+これは [`resume`](/reference/react-dom/server/resume) または [`resumeAndPrerender`](/reference/react-dom/static/resumeAndPrerender) を用いた部分プリレンダリングで利用可能です。
 
 ## トラブルシューティング {/*troubleshooting*/}
 
