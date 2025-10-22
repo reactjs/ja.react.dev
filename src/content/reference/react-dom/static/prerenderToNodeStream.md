@@ -7,7 +7,7 @@ title: prerenderToNodeStream
 `prerenderToNodeStream` は React ツリーを [Node.js ストリーム](https://nodejs.org/api/stream.html)を用いて静的な HTML 文字列にレンダーします。
 
 ```js
-const {prelude} = await prerenderToNodeStream(reactNode, options?)
+const {prelude, postponed} = await prerenderToNodeStream(reactNode, options?)
 ```
 
 </Intro>
@@ -65,6 +65,7 @@ app.use('/', async (request, response) => {
 `prerenderToNodeStream` はプロミスを返します。
 - レンダーが成功した場合、プロミスは以下を含んだオブジェクトに解決 (resolve) されます。
   - `prelude`: HTML の [Node.js ストリーム](https://nodejs.org/api/stream.html)。このストリームを使ってレスポンスを送信したり、ストリームを文字列に一括して読み出したりできます。
+  - `postponed`: `prerender` が終了しなかった場合には、[`resume`](/reference/react-dom/server/resume) に渡すために用いる、JSON シリアライズ可能な非公開のオブジェクト。そうでない場合は `null` で、これは `predule` に必要なすべてのコンテンツが入っており `resume` が必要ないことを表す。
 - レンダーが失敗した場合は、Promise は拒否 (reject) されます。[これを使用してフォールバックシェルを出力します](/reference/react-dom/server/renderToPipeableStream#recovering-from-errors-inside-the-shell)。
 
 #### 注意点 {/*caveats*/}
@@ -76,6 +77,8 @@ app.use('/', async (request, response) => {
 ### `prerenderToNodeStream` をいつ使うのか {/*when-to-use-prerender*/}
 
 `prerenderToNodeStream` API は、静的なサーバサイド生成 (server-side generation; SSG) に使用するものです。`renderToString` とは異なり、`prerender` はすべてのデータの読み込みが完了するまで待機してから解決されます。このため、サスペンスを使用して取得するデータを含む、ページ全体の静的な HTML を生成するのに適しています。読み込み中のコンテンツをストリーミングする場合は、[renderToReadableStream](/reference/react-dom/server/renderToReadableStream) のようなストリーミング付きサーバサイドレンダリング (SSR) API を使用してください。
+
+部分プリレンダリング (partial pre-rendering) をサポートするため、`prerenderToNodeStream` は中断可能です。あとで `resumeToPipeableStream` でプリレンダーを継続することが可能です。
 
 </Note>
 
@@ -311,7 +314,7 @@ async function renderToString() {
 
 サスペンスバウンダリは、子のレンダーが未完了の場合にはフォールバックの状態で結果 (prelude) に含まれます。
 
----
+これは  [`resumeToPipeableStream`](/reference/react-dom/server/resumeToPipeableStream) または [`resumeAndPrerenderToNodeStream`](/reference/react-dom/static/resumeAndPrerenderToNodeStream) を用いた部分プリレンダリングで利用可能です。
 
 ## トラブルシューティング {/*troubleshooting*/}
 

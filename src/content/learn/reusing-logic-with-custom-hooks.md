@@ -837,12 +837,6 @@ export default function ChatRoom({ roomId }) {
 
 ### カスタムフックにイベントハンドラを渡す {/*passing-event-handlers-to-custom-hooks*/}
 
-<Wip>
-
-このセクションでは、まだ安定版の React で**リリースされていない実験的な API** について説明しています。
-
-</Wip>
-
 `useChatRoom` がより多くのコンポーネントで使用されるようになると、コンポーネント側でその動作をカスタマイズしたくなってくるでしょう。例えば現在のところ、メッセージが届いたときの処理ロジックはフック内にハードコードされています。
 
 ```js {9-11}
@@ -985,7 +979,7 @@ export default function ChatRoom({ roomId }) {
 
 ```js src/useChatRoom.js
 import { useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import { createConnection } from './chat.js';
 
 export function useChatRoom({ serverUrl, roomId, onReceiveMessage }) {
@@ -1070,8 +1064,8 @@ export function showNotification(message, theme = 'dark') {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1419,10 +1413,29 @@ function SaveButton() {
 
 #### 将来 React はデータフェッチのための組み込みソリューションを提供するか？ {/*will-react-provide-any-built-in-solution-for-data-fetching*/}
 
-まだ詳細は検討中ですが、将来的にはデータフェッチを以下のように書くことになるでしょう。
+現在では [`use`](/reference/react/use#streaming-data-from-server-to-client) API に[プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)を渡すことで、レンダー時にデータの読み込みが可能となっています。
+
+```js {1,4,11}
+import { use, Suspense } from "react";
+
+function Message({ messagePromise }) {
+  const messageContent = use(messagePromise);
+  return <p>Here is the message: {messageContent}</p>;
+}
+
+export function MessageContainer({ messagePromise }) {
+  return (
+    <Suspense fallback={<p>⌛Downloading message...</p>}>
+      <Message messagePromise={messagePromise} />
+    </Suspense>
+  );
+}
+```
+
+詳細はまだ検討中ですが、将来的にはデータフェッチを以下のように書けるようになるはずです。
 
 ```js {1,4,6}
-import { use } from 'react'; // Not available yet!
+import { use } from 'react';
 
 function ShippingForm({ country }) {
   const cities = use(fetch(`/api/cities?country=${country}`));
@@ -1647,7 +1660,7 @@ export default function App() {
 
 ```js src/useFadeIn.js active
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export function useFadeIn(ref, duration) {
   const [isRunning, setIsRunning] = useState(true);
@@ -1694,22 +1707,6 @@ html, body { min-height: 300px; }
   text-align: center;
   font-size: 50px;
   background-image: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-}
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
 }
 ```
 
@@ -2186,22 +2183,6 @@ export function useInterval(onTick, delay) {
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js
 import { useCounter } from './useCounter.js';
 import { useInterval } from './useInterval.js';
@@ -2233,7 +2214,7 @@ export function useCounter(delay) {
 
 ```js src/useInterval.js
 import { useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export function useInterval(onTick, delay) {
   useEffect(() => {
@@ -2256,22 +2237,6 @@ export function useInterval(onTick, delay) {
 この変更により、両方のインターバルが期待通りに動作し、互いに干渉しないようになります。
 
 <Sandpack>
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
 
 
 ```js
@@ -2305,7 +2270,7 @@ export function useCounter(delay) {
 
 ```js src/useInterval.js active
 import { useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export function useInterval(callback, delay) {
   const onTick = useEffectEvent(callback);

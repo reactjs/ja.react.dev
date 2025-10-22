@@ -206,7 +206,7 @@ class Counter extends Component {
 
 `componentDidCatch` を定義すると、子コンポーネント（遠くの子を含む）がレンダー中にエラーをスローしたときに React がそれを呼び出します。これにより、本番環境でそのエラーをエラーレポートサービスにログとして記録することができます。
 
-通常これは、エラーに反応して state を更新し、ユーザにエラーメッセージを表示するための [`static getDerivedStateFromError`](#static-getderivedstatefromerror) と一緒に使用されます。これらのメソッドを持つコンポーネントのことを*エラーバウンダリ (error boundary)* と呼びます。
+通常これは、エラーに反応して state を更新し、ユーザにエラーメッセージを表示するための [`static getDerivedStateFromError`](#static-getderivedstatefromerror) と一緒に使用されます。これらのメソッドを持つコンポーネントのことを*エラーバウンダリ (Error Boundary)* と呼びます。
 
 [例を見る](#catching-rendering-errors-with-an-error-boundary)
 

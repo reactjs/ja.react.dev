@@ -717,7 +717,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js src/List.js
+```js {expectedErrors: {'react-compiler': [5, 6]}} src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -855,7 +855,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js src/List.js
+```js {expectedErrors: {'react-compiler': [5, 6]}} src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -1127,7 +1127,7 @@ function ChatRoom({ roomId }) {
       serverUrl: 'https://localhost:1234',
       roomId: roomId
     }
-    
+
     const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
@@ -1371,7 +1371,7 @@ Object.is(temp1[2], temp2[2]); // ... and so on for every dependency ...
 
 `Chart` コンポーネントが [`memo`](/reference/react/memo) でラップされているとします。`ReportList` コンポーネントが再レンダーされた場合でも、リスト内の各 `Chart` の再レンダーはスキップしたいです。ところが、以下のようにループ内で `useMemo` を呼び出すことはできません。
 
-```js {5-11}
+```js {expectedErrors: {'react-compiler': [6]}} {5-11}
 function ReportList({ items }) {
   return (
     <article>

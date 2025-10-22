@@ -32,13 +32,13 @@ TypeScript は JavaScript コードベースに型定義を追加するための
 React の型定義の最新バージョンをインストールするには以下のようにします。
 
 <TerminalBlock>
-npm install @types/react @types/react-dom
+npm install --save-dev @types/react @types/react-dom
 </TerminalBlock>
 
 `tsconfig.json` で以下のコンパイラオプションを設定する必要があります。
 
 1. [`lib`](https://www.typescriptlang.org/tsconfig/#lib) に `dom` が含まれていなければなりません（注：`lib` オプションが指定されない場合、`dom` はデフォルトで含まれます）。
-1. [`jsx`](https://www.typescriptlang.org/tsconfig/#jsx) を有効なオプションのいずれかに設定する必要があります。ほとんどのアプリケーションでは `preserve` で上手くいきます。
+2. [`jsx`](https://www.typescriptlang.org/tsconfig/#jsx) を有効なオプションのいずれかに設定する必要があります。ほとんどのアプリケーションでは `preserve` で上手くいきます。
   ライブラリを公開する場合は、選択すべき値について [`jsx` のドキュメンテーション](https://www.typescriptlang.org/tsconfig/#jsx)を参照してください。
 
 ## TypeScript で React コンポーネントを書く方法 {/*typescript-with-react-components*/}

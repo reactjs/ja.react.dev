@@ -928,7 +928,8 @@ export default function Page() {
 
 <Sandpack>
 
-```js src/App.js
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [9]}} src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1690,12 +1691,6 @@ button { margin-left: 10px; }
 
 ### エフェクトから最新の props と state を読み取る {/*reading-the-latest-props-and-state-from-an-effect*/}
 
-<Wip>
-
-このセクションでは、まだ安定したバージョンの React でリリースされていない**実験的な API** について説明します。
-
-</Wip>
-
 デフォルトでは、エフェクトからリアクティブな値を読み取るときは、それを依存値として追加する必要があります。これにより、エフェクトはその値の変更に対して「反応」することが保証されます。ほとんどの依存値については、それが望む挙動です。
 
 **ただし、時には「反応」をせずに最新の props や state を エフェクト内から読み取りたいことがあるでしょう**。例えば、ショッピングカート内のアイテム数をページ訪問ごとに記録する場合を想像してみてください。
@@ -1709,7 +1704,7 @@ function Page({ url, shoppingCart }) {
 }
 ```
 
-**`url` の変更ごとに新しいページ訪問を記録したいが、`shoppingCart` の変更のみでは記録したくない場合はどうすればいいのでしょうか？** [リアクティブルール](#specifying-reactive-dependencies)に反することなく `shoppingCart` を依存配列から除外することはできません。しかし、エフェクト内から呼ばれるコードの一部であるにもかかわらず、そのコードが変更に「反応」しないことを示すことができます。[`useEffectEvent`](/reference/react/experimental_useEffectEvent) フックを使用して、[*エフェクトイベント (effect event)* を宣言](/learn/separating-events-from-effects#declaring-an-effect-event)し、`shoppingCart` を読み取るコードをその内部に移動してください。
+**`url` の変更ごとに新しいページ訪問を記録したいが、`shoppingCart` の変更のみでは記録したくない場合はどうすればいいのでしょうか？** [リアクティブルール](#specifying-reactive-dependencies)に反することなく `shoppingCart` を依存配列から除外することはできません。しかし、エフェクト内から呼ばれるコードの一部であるにもかかわらず、そのコードが変更に「反応」しないことを示すことができます。[`useEffectEvent`](/reference/react/useEffectEvent) フックを使用して、[*エフェクトイベント (Effect Event)* を宣言](/learn/separating-events-from-effects#declaring-an-effect-event)し、`shoppingCart` を読み取るコードをその内部に移動してください。
 
 ```js {2-4,7,8}
 function Page({ url, shoppingCart }) {
@@ -1737,7 +1732,9 @@ function Page({ url, shoppingCart }) {
 
 まれに、クライアント側で異なるコンテンツを表示する必要がある場合があります。たとえば、アプリが [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) からデータを読み込む場合、サーバ上ではそれを行うことができません。これは以下の方法で実装できます。
 
-```js
+
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [5]}}
 function MyComponent() {
   const [didMount, setDidMount] = useState(false);
 
