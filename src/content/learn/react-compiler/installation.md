@@ -9,7 +9,7 @@ title: インストール
 <YouWillLearn>
 
 * React Compiler のインストール方法
-* 異なるビルドツールでの基本的な設定
+* さまざまなビルドツールでの基本的な設定
 * セットアップが正常に動作しているかの確認方法
 
 </YouWillLearn>
@@ -42,10 +42,10 @@ pnpm install -D babel-plugin-react-compiler@latest
 
 React Compiler は、デフォルトで設定なしで動作するように設計されています。ただし、特別な状況で設定が必要な場合（例えば、React 19 未満のバージョンを対象とする場合）は、[コンパイラオプションリファレンス](/reference/react-compiler/configuration)を参照してください。
 
-セットアッププロセスは使用するビルドツールによって異なります。React Compiler には、ビルドパイプラインと統合する Babel プラグインが含まれています。
+セットアッププロセスは使用するビルドツールによって異なります。React Compiler には、ビルドパイプラインと統合して動作する Babel プラグインが含まれています。
 
 <Pitfall>
-React Compiler は Babel プラグインパイプラインで **最初に** 実行される必要があります。コンパイラは適切な解析には元のソース情報が必要なため、他の変換より前に処理する必要があります。
+React Compiler は Babel プラグインパイプライン内で**最初に**実行される必要があります。コンパイラが適切な解析を行うためにはオリジナルのソース情報が必要なため、他の変換より前に処理する必要があるのです。
 </Pitfall>
 
 ### Babel {/*babel*/}
@@ -82,7 +82,7 @@ export default defineConfig({
 });
 ```
 
-または、Vite 用の別の Babel プラグインを使用したい場合
+または、Vite 用の Babel プラグインを別に使用したい場合は以下のようにします。
 
 <TerminalBlock>
 npm install -D vite-plugin-babel
@@ -164,7 +164,7 @@ Rsbuild アプリで React Compiler を有効にして使用する方法につ�
 
 ## ESLint 統合 {/*eslint-integration*/}
 
-React Compiler には、最適化できないコードを特定するのに役立つ ESLint ルールが含まれています。ESLint ルールがエラーを報告した場合、コンパイラがその特定のコンポーネントやフックの最適化をスキップします。その場合は、コンパイラはコードベースの他の部分の最適化を続けるので、すべての違反をすぐに修正する必要はありません。自分のペースで対処し、最適化されるコンポーネントの数を徐々に増やしていってください。
+React Compiler には、最適化できないコードを特定するのに役立つ ESLint ルールが含まれています。ESLint ルールがエラーを報告する場合、コンパイラによるそのコンポーネントやフックの最適化がスキップされるという意味です。これは安全です。コンパイラはコードベースの他の部分の最適化を続けるので、すべての違反をすぐに修正する必要はありません。自分のペースで対処し、最適化されるコンポーネントの数を徐々に増やしていってください。
 
 ESLint プラグインをインストールします。
 
@@ -185,7 +185,7 @@ ESLint ルールは以下を行います。
 
 ### React DevTools による確認 {/*check-react-devtools*/}
 
-React Compiler によって最適化されたコンポーネントは、React DevTools で「Memo ✨」バッジが表示されます。
+React Compiler によって最適化されたコンポーネントは、React DevTools で "Memo ✨" バッジが表示されます。
 
 1. [React Developer Tools](/learn/react-developer-tools) ブラウザ拡張機能をインストール
 2. 開発モードでアプリを開く
@@ -193,13 +193,13 @@ React Compiler によって最適化されたコンポーネントは、React De
 4. コンポーネント名の横にある ✨ 絵文字を探す
 
 コンパイラが動作している場合
-- コンポーネントは React DevTools で「Memo ✨」バッジを表示
+- コンポーネントは React DevTools で "Memo ✨" バッジを表示
 - 高コストな計算が自動的にメモ化される
 - 手動の `useMemo` は不要
 
 ### ビルド出力の確認 {/*check-build-output*/}
 
-また、ビルド出力を確認することでコンパイラが動作していることを確認できます。コンパイルされたコードには、コンパイラが自動的に追加する自動メモ化ロジックを含めます。
+また、ビルド出力を確認することでもコンパイラが動作していることを確認できます。コンパイルされたコードには、コンパイラが自動的に追加する自動メモ化ロジックが含まれています。
 
 ```js
 import { c as _c } from "react/compiler-runtime";

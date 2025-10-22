@@ -4,16 +4,16 @@ title: React Compiler
 
 ## はじめに {/*introduction*/}
 
-[React Compiler の機能](/learn/react-compiler/introduction)について学び、`useMemo`、`useCallback`、`React.memo` による手動メモ化が不要になる、React アプリケーションを自動的に最適化する仕組みを理解しましょう。
+[React Compiler の機能](/learn/react-compiler/introduction)について知り、React アプリケーションを自動的に最適化して `useMemo`、`useCallback`、`React.memo` による手動メモ化を不要にしてくれる仕組みについて理解しましょう。
 
 ## インストール {/*installation*/}
 
-[React Compiler のインストール](/learn/react-compiler/installation)から、ビルドツールとの設定方法を学びましょう。
+[React Compiler のインストール](/learn/react-compiler/installation)を行い、ビルドツールと組み合わせるための設定方法を学びましょう。
 
 
 ## 段階的な導入 {/*incremental-adoption*/}
 
-横断的に有効にする準備がまだできていない場合は、既存のコードベースで [React Compiler を段階的に導入する戦略](/learn/react-compiler/incremental-adoption)を学びましょう。
+全面的に有効にする準備がまだできていない場合に、既存のコードベースで [React Compiler を段階的に導入する戦略](/learn/react-compiler/incremental-adoption)を学びましょう。
 
 ## デバッグとトラブルシューティング {/*debugging-and-troubleshooting*/}
 
