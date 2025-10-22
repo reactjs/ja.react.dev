@@ -64,7 +64,7 @@ async function handler(request, response) {
 `prerender` はプロミスを返します。
 - レンダーが成功した場合、プロミスは以下を含んだオブジェクトに解決 (resolve) されます。
   - `prelude`: HTML の [Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API)。このストリームを使ってレスポンスを送信したり、ストリームを文字列に一括して読み出したりできます。
-  - `postponed`: `prerender` が終了しなかった場合に [`resume`](/reference/react-dom/server/resume) に渡すために用いる、JSON シリアライズ可能な非公開のオブジェクト。`predule` に必要なすべてのコンテンツが入っており `resume` が必要ない場合は `null` になる。
+  - `postponed`: `prerender` が終了しなかった場合には、[`resume`](/reference/react-dom/server/resume) に渡すために用いる、JSON シリアライズ可能な非公開のオブジェクト。そうでない場合は `null` で、これは `predule` に必要なすべてのコンテンツが入っており `resume` が必要ないことを表す。
 - レンダーが失敗した場合は、Promise は拒否 (reject) されます。[これを使用してフォールバックシェルを出力します](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell)。
 
 #### 注意点 {/*caveats*/}
