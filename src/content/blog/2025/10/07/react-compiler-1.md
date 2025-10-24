@@ -58,7 +58,7 @@ export default function ThemeProvider(props) {
 ```
 _この例を [React Compiler Playground](https://playground.react.dev/#N4Igzg9grgTgxgUxALhASwLYAcIwC4AEwBUYCBAvgQGYwQYEDkMCAhnHowNwA6AdvwQAPHPgIATBNVZQANoWpQ+HNBD4EAKgAsEGBAAU6ANzSSYACix0sYAJRF+BAmmoFzAQisQbAOjha0WXEWPntgRycCFjxYdT45WV51Sgi4NTBCPB09AgBeAj0YAHMEbV0ES2swHyzygBoSMnMyvQBhNTxhPFtbJKdo2LcIpwAeFoR2vk6hQiNWWSgEXOBavQoAPmHI4C9ff0DghD4KLZGAenHJ6bxN5N7+ChA6kDS+ajQilHRsXEyATyw5GI+gWRTQfAA8lg8Ko+GBKDQ6AxGAAjVgohCyAC0WFB4KxLHYeCxaWwgQQMDO4jQGW4-H45nCyTOZ1JWECrBhagAshBJMgCDwQPNZEKHgQwJyae8EPCQVAwZDobC7FwnuAtBAAO4ASSmFL48zAKGksjIFCAA) で確認する_
 
-自動メモ化に加え、React Compiler にはあなたの React コードに対して実行される検証パスも含まれています。これは [React のルール](/reference/rules)をエンコードしたものであり、コンパイラのデータフローおよびミュータビリティに関する理解を用いて、React のルールにに違反している箇所に関する診断情報を提供します。この情報は主に `eslint-plugin-react-hooks` を通じて提供され、しばしば React コード内に隠れている潜在的なバグを明らかにしてくれます。
+自動メモ化に加え、React Compiler にはあなたの React コードに対して実行される検証パスも含まれています。これは [React のルール](/reference/rules)をエンコードしたものであり、コンパイラのデータフローおよびミュータビリティに関する理解を用いて、React のルールに違反している箇所に関する診断情報を提供します。この情報は主に `eslint-plugin-react-hooks` を通じて提供され、しばしば React コード内に隠れている潜在的なバグを明らかにしてくれます。
 
 コンパイラがどのようにコードを最適化するかについてさらに詳しく知るには、[Playground](https://playground.react.dev) を参照してください。
 
