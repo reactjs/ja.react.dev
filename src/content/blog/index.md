@@ -40,9 +40,9 @@ React 19.2 adds new features like Activity, React Performance Tracks, useEffectE
 
 </BlogCard>
 
-<BlogCard title="React Labs: View Transitions, Activity, and more" date="April 23, 2025" url="/blog/2025/04/23/react-labs-view-transitions-activity-and-more">
+<BlogCard title="React Labs: ビュー遷移、Activity、その他もろもろ" date="April 23, 2025" url="/blog/2025/04/23/react-labs-view-transitions-activity-and-more">
 
-In React Labs posts, we write about projects in active research and development. In this post, we're sharing two new experimental features that are ready to try today, and sharing other areas we're working on now ...
+React Labs 記事では、現在活発に研究・開発が行われているプロジェクトについて述べていきます。この投稿では、今すぐ試すことができる 2 つの新しい実験的機能と、現在取り組んでいる他の分野の更新情報を共有します。
 
 </BlogCard>
 
