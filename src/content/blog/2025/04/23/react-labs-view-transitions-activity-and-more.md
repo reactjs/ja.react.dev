@@ -4932,7 +4932,7 @@ function navigateBack(url) {
 </ViewTransition>
 ```
 
-ここでは、遷移タイプに基づいてどのようにアニメーションするかを定義するため、props として `share` を渡しています。`nav-forward` による共通要素ビュー遷移が起動すると、ビュー遷移クラスとして `slide-forward` が適用されます。`nav-back` による場合は、`slide-back` のアニメーションが起動します。これらのアニメーションを CSS で定義しましょう。
+ここでは、遷移タイプに基づいてどのようにアニメーションするかを定義するため、props として `share` にオブジェクトを渡しています。共通要素ビュー遷移が `nav-forward` によって起動した場合には、ビュー遷移クラスとして `slide-forward` が適用されます。`nav-back` による場合には、`slide-back` のアニメーションが起動します。これらのアニメーションを CSS で定義しましょう。
 
 ```css
 ::view-transition-old(.slide-forward) {
