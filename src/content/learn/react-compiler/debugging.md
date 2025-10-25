@@ -1,60 +1,60 @@
 ---
-title: Debugging and Troubleshooting
+title: デバッグとトラブルシューティング
 ---
 
 <Intro>
-This guide helps you identify and fix issues when using React Compiler. Learn how to debug compilation problems and resolve common issues.
+このガイドでは、React Compiler を使用する際に発生する問題を特定し、修正する方法を説明します。コンパイル問題のデバッグ方法と一般的な問題の解決方法を学びましょう。
 </Intro>
 
 <YouWillLearn>
 
-* The difference between compiler errors and runtime issues
-* Common patterns that break compilation
-* Step-by-step debugging workflow
+* コンパイラエラーとランタイムエラーの違い
+* コンパイルが失敗する一般的なパターン
+* デバッグ手順
 
 </YouWillLearn>
 
-## Understanding Compiler Behavior {/*understanding-compiler-behavior*/}
+## コンパイラの動作を理解する {/*understanding-compiler-behavior*/}
 
-React Compiler is designed to handle code that follows the [Rules of React](/reference/rules). When it encounters code that might break these rules, it safely skips optimization rather than risk changing your app's behavior.
+React Compiler は [React のルール](/reference/rules)に従うコードを処理するように設計されています。ルールに違反している可能性のあるコードに遭遇した場合、アプリケーションの動作を変更するリスクを冒すのではなく、最適化を安全にスキップします。
 
-### Compiler Errors vs Runtime Issues {/*compiler-errors-vs-runtime-issues*/}
+### コンパイラエラーとランタイムエラー {/*compiler-errors-vs-runtime-issues*/}
 
-**Compiler errors** occur at build time and prevent your code from compiling. These are rare because the compiler is designed to skip problematic code rather than fail.
+**コンパイラエラー** はビルド時に発生し、コードのコンパイルができなくなってしまうものです。コンパイラは問題のあるコードをエラーを発生させずにスキップするように設計されているため、このようなエラーが発生することは稀です。
 
-**Runtime issues** occur when compiled code behaves differently than expected. Most of the time, if you encounter an issue with React Compiler, it's a runtime issue. This typically happens when your code violates the Rules of React in subtle ways that the compiler couldn't detect, and the compiler mistakenly compiled a component it should have skipped.
+**ランタイムエラー** は、コンパイル後のコードが想定と異なる動作をした場合に発生します。React Compiler で問題に遭遇した場合、ほとんどの場合はランタイムエラーです。これは通常、コードがコンパイラが検出できない微妙な形で React のルールに違反し、コンパイラがスキップすべきコンポーネントを誤ってコンパイルした場合に発生します。
 
-When debugging runtime issues, focus your efforts on finding Rules of React violations in the affected components that were not detected by the ESLint rule. The compiler relies on your code following these rules, and when they're broken in ways it can't detect, that's when runtime problems occur.
+ランタイムエラーのデバッグにおいては、影響を受けているコンポーネント内にある、ESLint では検出されない React のルール違反の特定に注力してください。コンパイラはコードがこれらのルールに従うことを前提としています。ランタイムエラーが発生するのは、検出できない方法でルール違反が起きている場合なのです。
 
 
-## Common Breaking Patterns {/*common-breaking-patterns*/}
+## 一般的な違反パターン {/*common-breaking-patterns*/}
 
-One of the main ways React Compiler can break your app is if your code was written to rely on memoization for correctness. This means your app depends on specific values being memoized to work properly. Since the compiler may memoize differently than your manual approach, this can lead to unexpected behavior like effects over-firing, infinite loops, or missing updates.
+React Compiler がアプリケーションの不具合を引き起こす代表的なパターンの 1 つは、コードの正しさがメモ化の存在に依存している場合です。つまり、アプリケーションが正常に動作するために、特定の値がメモ化されることに依存している状態です。コンパイラは、あなたの手動のアプローチとは異なる方法でメモ化を行う可能性があるため、エフェクトの過剰な実行や無限ループ、更新の欠落といった予期せぬ動作を引き起こす可能性があります。
 
-Common scenarios where this occurs:
+これが発生する一般的なシナリオは以下のようなものです。
 
-- **Effects that rely on referential equality** - When effects depend on objects or arrays maintaining the same reference across renders
-- **Dependency arrays that need stable references** - When unstable dependencies cause effects to fire too often or create infinite loops
-- **Conditional logic based on reference checks** - When code uses referential equality checks for caching or optimization
+- **参照同一性に依存したエフェクト** - エフェクトが、複数のレンダー間でオブジェクトや配列が同じ参照を保つことに依存している場合
+- **参照の同一性を仮定した依存配列** - 依存値が不安定で、エフェクトの過剰発火や無限ループを引き起こしている場合
+- **参照同一性のチェックを条件にしたロジック** - キャッシュや最適化のために参照同一性のチェックを行っている場合
 
-## Debugging Workflow {/*debugging-workflow*/}
+## デバッグ手順 {/*debugging-workflow*/}
 
-Follow these steps when you encounter issues:
+問題に遭遇した場合は、以下の手順に従ってください。
 
-### Compiler Build Errors {/*compiler-build-errors*/}
+### ビルド時のコンパイラエラー {/*compiler-build-errors*/}
 
-If you encounter a compiler error that unexpectedly breaks your build, this is likely a bug in the compiler. Report it to the [facebook/react](https://github.com/facebook/react/issues) repository with:
-- The error message
-- The code that caused the error
-- Your React and compiler versions
+コンパイラエラーでビルドが予期せず失敗した場合、これはコンパイラのバグである可能性が高いです。以下の情報を添えて [facebook/react](https://github.com/facebook/react/issues) リポジトリに報告してください。
+- エラーメッセージ
+- エラーを引き起こしたコード
+- React とコンパイラのバージョン
 
-### Runtime Issues {/*runtime-issues*/}
+### ランタイムエラー {/*runtime-issues*/}
 
-For runtime behavior issues:
+ランタイム動作の問題については以下の手順に従ってください。
 
-### 1. Temporarily Disable Compilation {/*temporarily-disable-compilation*/}
+### 1. コンパイルを一時的に無効化 {/*temporarily-disable-compilation*/}
 
-Use `"use no memo"` to isolate whether an issue is compiler-related:
+問題がコンパイラによるものかを切り分けるために `"use no memo"` を使用します。
 
 ```js
 function ProblematicComponent() {
@@ -63,31 +63,31 @@ function ProblematicComponent() {
 }
 ```
 
-If the issue disappears, it's likely related to a Rules of React violation.
+これで問題が解決する場合は、React のルール違反が原因である可能性が高いです。
 
-You can also try removing manual memoization (useMemo, useCallback, memo) from the problematic component to verify that your app works correctly without any memoization. If the bug still occurs when all memoization is removed, you have a Rules of React violation that needs to be fixed.
+問題のあるコンポーネントから手動のメモ化（useMemo、useCallback、memo）を削除し、メモ化なしでアプリケーションが正しく動作することを確認することもできます。メモ化をすべて外しても不具合が残る場合は、React のルール違反の修正が必要です。
 
-### 2. Fix Issues Step by Step {/*fix-issues-step-by-step*/}
+### 2. 段階的な問題の修正 {/*fix-issues-step-by-step*/}
 
-1. Identify the root cause (often memoization-for-correctness)
-2. Test after each fix
-3. Remove `"use no memo"` once fixed
-4. Verify the component shows the ✨ badge in React DevTools
+1. 根本原因を特定する（大抵は動作がメモ化の存在に依存していることが原因）
+2. 修正のたびにテストを実施する
+3. 修正したら `"use no memo"` を削除する
+4. React DevTools でコンポーネントに ✨ バッジが表示されることを確認する
 
-## Reporting Compiler Bugs {/*reporting-compiler-bugs*/}
+## コンパイラバグの報告 {/*reporting-compiler-bugs*/}
 
-If you believe you've found a compiler bug:
+コンパイラバグを発見したと思われる場合は以下のようにしてください。
 
-1. **Verify it's not a Rules of React violation** - Check with ESLint
-2. **Create a minimal reproduction** - Isolate the issue in a small example
-3. **Test without the compiler** - Confirm the issue only occurs with compilation
-4. **File an [issue](https://github.com/facebook/react/issues/new?template=compiler_bug_report.yml)**:
-   - React and compiler versions
-   - Minimal reproduction code
-   - Expected vs actual behavior
-   - Any error messages
+1. **React のルール違反ではないことを確認する** - ESLint でチェックする
+2. **最小限の再現方法を特定する** - 小さな例で問題を切り分ける
+3. **コンパイラを無効化した状態でテストする** - 問題がコンパイル時にのみ発生するかを確認する
+4. **[issue](https://github.com/facebook/react/issues/new?template=compiler_bug_report.yml) を提出する**：
+   - React とコンパイラのバージョン
+   - 最小限の再現コード
+   - 期待される動作と実際の動作
+   - エラーメッセージ
 
-## Next Steps {/*next-steps*/}
+## 次のステップ {/*next-steps*/}
 
-- Review the [Rules of React](/reference/rules) to prevent issues
-- Check the [incremental adoption guide](/learn/react-compiler/incremental-adoption) for gradual rollout strategies
+- 問題を防ぐために [React のルール](/reference/rules)を確認する
+- 段階的な展開戦略については[段階的導入ガイド](/learn/react-compiler/incremental-adoption)を確認する
