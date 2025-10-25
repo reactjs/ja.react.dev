@@ -12,8 +12,8 @@
       "skipBreadcrumb": true,
       "routes": [
         {
-          "title": "React Conf 2025 Recap",
-          "titleForHomepage": "React Conf 2025 Recap",
+          "title": "React Conf 2025 振り返り",
+          "titleForHomepage": "React Conf 2025 振り返り",
           "icon": "blog",
           "date": "October 16, 2025",
           "path": "/blog/2025/10/16/react-conf-2025-recap"
