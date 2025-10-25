@@ -1,8 +1,8 @@
 ---
-title: "Introducing the React Foundation"
+title: "React Foundation 設立"
 author: Seth Webster, Matt Carroll, Joe Savona
 date: 2025/10/07
-description: Today, we're announcing our plans to create the React Foundation a new technical governance structure
+description: 本日、React Foundation の設立と新しい技術ガバナンス構造について発表します。
 ---
 
 October 7, 2025 by [Seth Webster](https://x.com/sethwebster), [Matt Carroll](https://x.com/mattcarrollcode), [Joe Savona](https://x.com/en_JS), [Sophie Alpert](https://x.com/sophiebits)
@@ -23,27 +23,27 @@ October 7, 2025 by [Seth Webster](https://x.com/sethwebster), [Matt Carroll](htt
 
 <Intro>
 
-Today, we're announcing our plans to create the React Foundation and a new technical governance structure.
+本日、React Foundation の設立と新しい技術ガバナンス構造について発表します。
 
 </Intro>
 
 ---
 
-We open sourced React over a decade ago to help developers build great user experiences. From its earliest days, React has received substantial contributions from contributors outside of Meta. Over time, the number of contributors and the scope of their contributions has grown significantly. What started out as a tool developed for Meta has expanded into a project that spans multiple companies with regular contributions from across the ecosystem. React has outgrown the confines of any one company.
+開発者がすばらしいユーザ体験を構築できるようにするため、私たちが React をオープンソース化してから 10 年以上が経過しました。その最初期から、React は Meta 以外のコントリビュータからの多大な貢献を受けてきました。時が経つにつれ、コントリビュータの数とその貢献の範囲は大幅に拡大しました。Meta のために開発されたツールとして始まったプロジェクトは、複数の企業にまたがってエコシステム全体から常に貢献を受け続けるプロジェクトへと成長しました。React は、もはや単一の企業の枠組みを超えたのです。
 
-To better serve the React community, we are announcing our plans to move React and React Native from Meta to a new React Foundation. As a part of this change, we will also be implementing a new independent technical governance structure. We believe these changes will enable us to give React ecosystem projects more resources.
+React コミュニティによりよいサービスを提供するために、React と React Native を、Meta から新しく設立する React Foundation に移管する計画を発表します。この変更の一環として、新しい独立した技術ガバナンス構造も導入する予定です。これらの変更により、React エコシステムに属するプロジェクトに、より多くのリソースを提供できるようになると信じています。
 
-## The React Foundation {/*the-react-foundation*/}
+## React Foundation {/*the-react-foundation*/}
 
-We will make the React Foundation the new home for React, React Native, and some supporting projects like JSX. The React Foundation’s mission will be to support the React community and ecosystem. Once implemented, the React Foundation will
+React Foundation は、React、React Native、および JSX などのサポートプロジェクトの新しいホームとなります。React Foundation のミッションは、React コミュニティとエコシステムをサポートすることです。設立後に、React Foundation は以下を行います。
 
-* Maintain React’s infrastructure like GitHub, CI, and trademarks
-* Organize React Conf
-* Create initiatives to support the React ecosystem like financial support of ecosystem projects, issuing grants, and creating programs
+* GitHub、CI、商標といった React のインフラストラクチャの維持
+* React Conf の運営
+* エコシステムのプロジェクトへの資金提供、助成金の発行、プログラムの作成など、React エコシステムをサポートするためのイニシアチブを作り上げる
 
-The React Foundation will be governed by a board of directors, with Seth Webster serving as the executive director. This board will direct funds and resources to support React’s development, community, and ecosystem. We believe that this is the best structure to ensure that the React Foundation is vendor-neutral and reflects the best interests of the community.
+React Foundation は取締役会によって運営され、Seth Webster がエグゼクティブディレクターとして務めます。この取締役会が、React の開発、コミュニティ、およびエコシステムをサポートするための資金とリソースを指揮します。React Foundation がベンダ中立を保ち、コミュニティの最善の利益を反映するため、これが最適な構造であると信じています。
 
-The founding corporate members of the React Foundation will be Amazon, Callstack, Expo, Meta, Microsoft, Software Mansion, and Vercel. These companies have had a major impact on the React and React Native ecosystems and we are grateful for their support. We are excited to welcome even more members in the future.
+React Foundation の企業創設メンバーは、Amazon、Callstack、Expo、Meta、Microsoft、Software Mansion、Vercel です。これらの企業は React および React Native エコシステムに大きな影響を与えており、我々はそのサポートに感謝しています。今後、さらに多くのメンバーを迎えられることを楽しみにしています。
 
 <div style={{display: 'flex', justifyContent: 'center', margin: '2rem'}}>
   <picture >
@@ -56,12 +56,12 @@ The founding corporate members of the React Foundation will be Amazon, Callstack
   </picture>
 </div>
 
-## React’s technical governance {/*reacts-technical-governance*/}
+## React の技術ガバナンス {/*reacts-technical-governance*/}
 
-We believe that React's technical direction should be set by the people who contribute to and maintain React. As React moves to a foundation, it is important that no single company or organization is overrepresented. To achieve this, we plan to define a new technical governance structure for React that is independent from the React Foundation.
+React の技術的な方向性は、React に貢献し、維持している人々によって設定されるべきだと考えています。React が財団に移行するにあたり、単一の企業や組織が過度に影響力を行使しないことが重要です。これを達成するために、React Foundation から独立した新しい技術ガバナンス構造を React に導入する予定です。
 
-As a part of creating React’s new technical governance structure we will reach out to the community for feedback. Once finalized, we will share details in a future post.
+React の新しい技術ガバナンス構造を決定する取り組みの一環として、コミュニティからフィードバックを求めます。最終決定の後、詳細については今後の投稿で共有します。
 
-## Thank you {/*thank-you*/}
+## 謝辞 {/*thank-you*/}
 
-React's incredible growth is thanks to the thousands of people, companies, and projects that have shaped React. The creation of the React Foundation is a testament to the strength and vibrancy of the React community. Together, the React Foundation and React’s new technical governance will ensure that React’s future is secure for years to come.
+React の驚異的な成長は、React を形作ってきた何千もの人々、企業、プロジェクトのおかげです。React Foundation の設立は、React コミュニティの強さと活力の証です。React Foundation と React の新しい技術ガバナンスが一体となることで、React の未来が今後何年にもわたって確実なものになることを期待しています。
