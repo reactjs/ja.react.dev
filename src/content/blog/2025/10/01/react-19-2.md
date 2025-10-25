@@ -27,7 +27,7 @@ React 19.2 が npm で利用可能になりました！
 
 `<Activity>` を使うことで、アプリを制御・優先順位付けが可能な "activity" に分割できます。
 
-Activity は、アプリの一部を条件付きでレンダーする際の代替手段として使用できます。
+Activity は、条件付きレンダーに対する代替手段として、アプリの一部の表示を切り替えるのに使用できます。
 
 ```js
 // Before
@@ -75,7 +75,7 @@ function ChatRoom({ roomId, theme }) {
 
 上記のコードの問題は、このような「イベント」内で使用されている値が変更されると、それを囲んでいるエフェクトが再実行されてしまうことです。例えば、`theme` を変更するとチャットルームが再接続されます。エフェクトのロジック自体に関連する `roomId` のような値の場合はこれで正しいですが、`theme` の場合は理に適っていません。
 
-これを解決するため、多くのユーザはリンタのルールを単に無効化して、依存値を除外してきました。しかしこれでは、後でエフェクトを更新したくなった場合にリンタが依存配列を最新の状態に保ってくれなくなるため、バグに繋がります。
+これを解決するため、多くのユーザはリンタのルールを単に無効化して、依存値を除外してきました。しかしこれでは、後でエフェクトを更新したくなった時に、リンタが依存配列をそれに追従させてくれなくなるため、バグに繋がります。
 
 `useEffectEvent` を使うことで、このロジックの「イベント」部分を、それをトリガするエフェクトから分離できます。
 
@@ -233,7 +233,7 @@ const { prelude } = await resumeAndPrerender(<App />, postponedState);
 
 サスペンスバウンダリの表示のされ方が、クライアントでレンダーされる場合とサーバサイドレンダリングからストリーミングされる場合とで異なる、という動作上のバグを修正しました。
 
-19.2 以降の React では、サーバでレンダーされた複数のサスペンスバウンダリの表示に対して束ね (batch) 処理を行い、より多くのコンテンツを同じタイミングで表示できるようにし、クライアントでレンダーされた場合の動作と一致させます。
+19.2 以降の React では、サーバでレンダーされた複数のサスペンスバウンダリが短時間で立て続けに表示へ切り替わるとき、それをバッチ処理することで、より多くのコンテンツが同時に表示へ切り替わるようにし、クライアントでレンダーされた場合の動作と一致させます。
 
 <Diagram name="19_2_batching_before" height={162} width={1270} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a page rectangle showing a glimmer loading state with faded bars. The second panel shows the top half of the page revealed and highlighted in blue. The third panel shows the entire the page revealed and highlighted in blue.">
 
@@ -247,7 +247,7 @@ React 19.2 では、サスペンスバウンダリは短い時間束ね処理さ
 
 </Diagram>
 
-この修正は、SSR 中のサスペンスに対する `<ViewTransition>` サポートの準備にもなっています。より多くのコンテンツをまとめて表示することで、アニメーションがより大きなコンテンツのまとまりで実行され、五月雨式にストリーミングされてくるコンテンツによる小刻みなアニメーションの連続を回避できます。
+この修正は、SSR 中のサスペンスに対する `<ViewTransition>` サポートの準備にもなっています。より多くのコンテンツをまとめて表示に切り替えることで、アニメーションがより大きなコンテンツのまとまりで実行され、五月雨式に小刻みなコンテンツのアニメーションが発生するのを回避できます。
 
 <Note>
 
@@ -315,7 +315,7 @@ CSS セレクタとして無効な特殊文字を使用していた元々の意�
 ## 変更履歴 {/*changelog*/}
 
 その他の注目すべき変更
-- `react-dom`: hoistable スタイルで nonce を使用できるように [#32461](https://github.com/facebook/react/pull/32461)
+- `react-dom`: 巻き上げ可能な style で nonce を使用できるように [#32461](https://github.com/facebook/react/pull/32461)
 - `react-dom`: React が所有するノードをコンテナとして使用し、テキストコンテンツも含まれている場合に警告を表示 [#32774](https://github.com/facebook/react/pull/32774)
 
 注目すべきバグ修正
