@@ -16,9 +16,9 @@ Bluesky の [@react.dev](https://bsky.app/profile/react.dev) や Twitter の [@r
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
-<BlogCard title="React Conf 2025 Recap" date="October 16, 2025" url="/blog/2025/10/16/react-conf-2025-recap">
+<BlogCard title="React Conf 2025 振り返り" date="October 16, 2025" url="/blog/2025/10/16/react-conf-2025-recap">
 
-Last week we hosted React Conf 2025. In this post, we summarize the talks and announcements from the event...
+先週 React Conf 2025 が開催されました。この投稿では、イベントでの講演と発表内容をまとめます。
 
 </BlogCard>
 
