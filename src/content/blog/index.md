@@ -36,7 +36,7 @@ We're releasing the compiler's first stable release today, plus linting and tool
 
 <BlogCard title="React 19.2" date="October 1, 2025" url="/blog/2025/10/01/react-19-2">
 
-React 19.2 adds new features like Activity, React Performance Tracks, useEffectEvent, and more. In this post ...
+React 19.2 では Activity、パフォーマンストラック、useEffectEvent などの新機能が追加されます。
 
 </BlogCard>
 

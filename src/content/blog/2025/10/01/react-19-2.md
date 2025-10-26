@@ -2,7 +2,7 @@
 title: "React 19.2"
 author: The React Team
 date: 2025/10/01
-description: React 19.2 adds new features like Activity, React Performance Tracks, useEffectEvent, and more.
+description: React 19.2 では Activity、パフォーマンストラック、useEffectEvent などの新機能が追加されます。
 ---
 
 October 1, 2025 by [The React Team](/community/team)
@@ -11,23 +11,23 @@ October 1, 2025 by [The React Team](/community/team)
 
 <Intro>
 
-React 19.2 is now available on npm!
+React 19.2 が npm で利用可能になりました！
 
 </Intro>
 
-This is our third release in the last year, following React 19 in December and React 19.1 in June. In this post, we'll give an overview of the new features in React 19.2, and highlight some notable changes.
+これは、昨年 12 月の React 19 と今年 6 月の React 19.1 に続く、ここ 1 年で 3 回目となるリリースです。この投稿では React 19.2 の新機能の概要を説明し、いくつかの注目すべき変更点をハイライトとして紹介します。
 
 <InlineToc />
 
 ---
 
-## New React Features {/*new-react-features*/}
+## 新しい React の機能 {/*new-react-features*/}
 
 ### `<Activity />` {/*activity*/}
 
-`<Activity>` lets you break your app into "activities" that can be controlled and prioritized.
+`<Activity>` を使うことで、アプリを制御・優先順位付けが可能な "activity" に分割できます。
 
-You can use Activity as an alternative to conditionally rendering parts of your app:
+Activity は、条件付きレンダーに対する代替手段として、アプリの一部の表示を切り替えるのに使用できます。
 
 ```js
 // Before
@@ -39,24 +39,24 @@ You can use Activity as an alternative to conditionally rendering parts of your 
 </Activity>
 ```
 
-In React 19.2, Activity supports two modes: `visible` and `hidden`.
+React 19.2 では、Activity は `visible` と `hidden` の 2 つのモードをサポートしています。
 
-- `hidden`: hides the children, unmounts effects, and defers all updates until React has nothing left to work on.
-- `visible`: shows the children, mounts effects, and allows updates to be processed normally.
+- `hidden`: 子要素を非表示にし、エフェクトをアンマウントし、React が他に処理するものがなくなるまで、すべての更新を遅延させます。
+- `visible`: 子要素を表示し、エフェクトをマウントし、更新を通常通り処理できるようにします。
 
-This means you can pre-render and keep rendering hidden parts of the app without impacting the performance of anything visible on screen.
+これにより、画面上で表示されているコンテンツのパフォーマンスに影響を与えることなく、アプリの非表示の部分を事前レンダーし続けることができます。
 
-You can use Activity to render hidden parts of the app that a user is likely to navigate to next, or to save the state of parts the user navigates away from. This helps make navigations quicker by loading data, css, and images in the background, and allows back navigations to maintain state such as input fields.
+Activity 機能を使用することで、ユーザが次に移動する可能性の高い不可視部分をレンダーしておくことや、ユーザが離れたあとに state を保持しておくことが可能です。これにより、データ、CSS、画像をバックグラウンドで読み込んでナビゲーションを高速化したり、戻るナビゲーションで入力フィールドなどの状態を維持したりできるようになります。
 
-In the future, we plan to add more modes to Activity for different use cases.
+将来的には、さまざまなユースケースに対応するために、Activity にさらに多くのモードを追加する予定です。
 
-For examples on how to use Activity, check out the [Activity docs](/reference/react/Activity).
+Activity の使用方法の例については、[Activity のドキュメント](/reference/react/Activity)を参照してください。
 
 ---
 
 ### `useEffectEvent` {/*use-effect-event*/}
 
-One common pattern with `useEffect` is to notify the app code about some kind of "events" from an external system. For example, when a chat room gets connected, you might want to display a notification:
+`useEffect` でよくあるパターンの 1 つは、外部システムからの「イベント」に応答してアプリコードに通知を行うことです。例えば、チャットルームが接続されたときに通知を表示したい場合を考えましょう。
 
 ```js {5,11}
 function ChatRoom({ roomId, theme }) {
@@ -73,11 +73,11 @@ function ChatRoom({ roomId, theme }) {
   // ...
 ```
 
-The problem with the code above is that a change to any values used inside such an "event" will cause the surrounding Effect to re-run. For example, changing the `theme` will cause the chat room to reconnect. This makes sense for values related to the Effect logic itself, like `roomId`, but it doesn't make sense for `theme`.
+上記のコードの問題は、このような「イベント」内で使用されている値が変更されると、それを囲んでいるエフェクトが再実行されてしまうことです。例えば、`theme` を変更するとチャットルームが再接続されます。エフェクトのロジック自体に関連する `roomId` のような値の場合はこれで正しいですが、`theme` の場合は理に適っていません。
 
-To solve this, most users just disable the lint rule and exclude the dependency. But that can lead to bugs since the linter can no longer help you keep the dependencies up to date if you need to update the Effect later.
+これを解決するため、多くのユーザはリンタのルールを単に無効化して、依存値を除外してきました。しかしこれでは、後でエフェクトを更新したくなったときに、リンタが依存配列をそれに追従させてくれなくなるため、バグに繋がります。
 
-With `useEffectEvent`, you can split the "event" part of this logic out of the Effect that emits it:
+`useEffectEvent` を使うことで、このロジックの「イベント」部分を、それをトリガするエフェクトから分離できます。
 
 ```js {2,3,4,9}
 function ChatRoom({ roomId, theme }) {
@@ -96,17 +96,17 @@ function ChatRoom({ roomId, theme }) {
   // ...
 ```
 
-Similar to DOM events, Effect Events always “see” the latest props and state.
+DOM イベントと同様、エフェクトイベントは常に最新の props や state を「見る」ことができます。
 
-**Effect Events should _not_ be declared in the dependency array**. You'll need to upgrade to `eslint-plugin-react-hooks@latest` so that the linter doesn't try to insert them as dependencies. Note that Effect Events can only be declared in the same component or Hook as "their" Effect. These restrictions are verified by the linter.
+**エフェクトイベントは依存配列に宣言すべきではありません**。リンタがエフェクトイベントを依存値として挿入しないようにするため、`eslint-plugin-react-hooks@latest` にアップグレードする必要があります。エフェクトイベントは、それを使うエフェクトと同じコンポーネントまたはフック内でのみ宣言できることに注意してください。この制限はリンタによってチェックされます。
 
 <Note>
 
-#### When to use `useEffectEvent` {/*when-to-use-useeffectevent*/}
+#### `useEffectEvent` をいつ使うべきか {/*when-to-use-useeffectevent*/}
 
-You should use `useEffectEvent` for functions that are conceptually "events" that happen to be fired from an Effect instead of a user event (that's what makes it an "Effect Event"). You don't need to wrap everything in `useEffectEvent`, or to use it just to silence the lint error, as this can lead to bugs.
+`useEffectEvent` は概念的には、ユーザに起因するイベントではなくエフェクトから発火する「イベント」となる関数に使用すべきです（それが「エフェクトイベント」の意味です）。すべてを `useEffectEvent` でラップする必要はありませんし、リンタのエラーを黙らせるためだけに使うとバグにつながる可能性があります。
 
-For a deep dive on how to think about Event Effects, see: [Separating Events from Effects](/learn/separating-events-from-effects#extracting-non-reactive-logic-out-of-effects).
+エフェクトイベントについての考え方の詳細については、[イベントとエフェクトを分離する](/learn/separating-events-from-effects#extracting-non-reactive-logic-out-of-effects)を参照してください。
 
 </Note>
 
@@ -116,11 +116,11 @@ For a deep dive on how to think about Event Effects, see: [Separating Events fro
 
 <RSC>
 
-`cacheSignal` is only for use with [React Server Components](/reference/rsc/server-components).
+`cacheSignal` は [React Server Components](/reference/rsc/server-components) でのみ使用できます。
 
 </RSC>
 
-`cacheSignal` allows you to know when the [`cache()`](/reference/react/cache) lifetime is over:
+`cacheSignal` を使うことで、[`cache()`](/reference/react/cache) のライフタイムの終了タイミングを知ることができます。
 
 ```
 import {cache, cacheSignal} from 'react';
@@ -131,19 +131,19 @@ async function Component() {
 }
 ```
 
-This allows you to clean up or abort work when the result will no longer be used in the cache, such as:
+これにより、キャッシュされる結果がもはや必要なくなった場合に、作業をクリーンアップまたは中止できるようになります。以下のような場合が該当します。
 
-- React has successfully completed rendering
-- The render was aborted
-- The render has failed
+- React がレンダーを正常に完了した
+- レンダーが中断された
+- レンダーが失敗した
 
-For more info, see the [`cacheSignal` docs](/reference/react/cacheSignal).
+詳細については、[`cacheSignal` のドキュメント](/reference/react/cacheSignal)を参照してください。
 
 ---
 
-### Performance Tracks {/*performance-tracks*/}
+### パフォーマンストラック {/*performance-tracks*/}
 
-React 19.2 adds a new set of [custom tracks](https://developer.chrome.com/docs/devtools/performance/extension) to Chrome DevTools performance profiles to provide more information about the performance of your React app:
+React 19.2 では、Chrome DevTools のパフォーマンスプロファイルに新しい[カスタムトラック](https://developer.chrome.com/docs/devtools/performance/extension)が複数追加され、React アプリのパフォーマンスに関するより詳しい情報が提供されます。
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <picture >
@@ -156,35 +156,35 @@ React 19.2 adds a new set of [custom tracks](https://developer.chrome.com/docs/d
   </picture>
 </div>
 
-The [React Performance Tracks docs](/reference/dev-tools/react-performance-tracks) explain everything included in the tracks, but here is a high-level overview.
+[React パフォーマンストラックのドキュメント](/reference/dev-tools/react-performance-tracks)では、トラックに含まれるすべての内容を説明していますが、ここでは概要を説明します。
 
 #### Scheduler ⚛ {/*scheduler-*/}
 
-The Scheduler track shows what React is working on for different priorities such as "blocking" for user interactions, or "transition" for updates inside startTransition. Inside each track, you will see the type of work being performed such as the event that scheduled an update, and when the render for that update happened.
+Scheduler トラックは、React が様々な優先度で何を処理しているかを表示します。例えばユーザ操作のための "Blocking" や startTransition 内の更新のための "Transition" などです。各トラック内では、更新をスケジュールしたイベントといった作業種別や、更新に対応するレンダーの開始タイミングが表示されます。
 
-We also show information such as when an update is blocked waiting for a different priority, or when React is waiting for paint before continuing. The Scheduler track helps you understand how React splits your code into different priorities, and the order it completed the work.
+また、更新が別の優先度の処理を待つためにブロックされている、React が作業継続前にペイントの完了を待っている、といった情報も表示されます。Scheduler トラックは、React がコードを異なる優先度に分割する方法や、作業を完了した順序を理解するのに役立ちます。
 
-See the [Scheduler track](/reference/dev-tools/react-performance-tracks#scheduler) docs to see everything included.
+含まれるすべての内容については、[Scheduler トラック](/reference/dev-tools/react-performance-tracks#scheduler)のドキュメントを参照してください。
 
 #### Components ⚛ {/*components-*/}
 
-The Components track shows the tree of components that React is working on either to render or run effects. Inside you'll see labels such as "Mount" for when children mount or effects are mounted, or "Blocked" for when rendering is blocked due to yielding to work outside React.
+Components トラックは、React がレンダーまたはエフェクト実行のために処理しているコンポーネントのツリーを示します。内部には、子やエフェクトがマウントされたときの "Mount" や、React 外の作業を待つためにレンダーがブロックされたときの "Blocked" といったラベルが表示されます。
 
-The Components track helps you understand when components are rendered or run effects, and the time it takes to complete that work to help identify performance problems.
+Components トラックは、コンポーネントのレンダーやエフェクトの実行タイミング、あるいはそれらの作業にかかる時間を知ることで、パフォーマンスの問題を特定するのに役立ちます。
 
-See the [Components track docs](/reference/dev-tools/react-performance-tracks#components) for see everything included.
+含まれるすべての内容については、[Components トラックのドキュメント](/reference/dev-tools/react-performance-tracks#components)を参照してください。
 
 ---
 
-## New React DOM Features {/*new-react-dom-features*/}
+## 新しい React DOM の機能 {/*new-react-dom-features*/}
 
-### Partial Pre-rendering {/*partial-pre-rendering*/}
+### 部分プリレンダー {/*partial-pre-rendering*/}
 
-In 19.2 we're adding a new capability to pre-render part of the app ahead of time, and resume rendering it later.
+19.2 では、アプリの一部を事前にレンダーし、後でレンダーを再開するための新機能を追加しています。
 
-This feature is called "Partial Pre-rendering", and allows you to pre-render the static parts of your app and serve it from a CDN, and then resume rendering the shell to fill it in with dynamic content later.
+この機能は「部分プリレンダー (Partial Pre-rendering)」と呼ばれ、アプリの静的な部分を事前レンダーして CDN から提供し、後でシェルのレンダーを再開して動的コンテンツで埋められるようにするためのものです。
 
-To pre-render an app to resume later, first call `prerender` with an `AbortController`:
+後で再開できるようアプリを事前レンダーするには、まず `AbortController` を使って `prerender` を呼び出します。
 
 ```
 const {prelude, postponed} = await prerender(<App />, {
@@ -197,7 +197,7 @@ await savePostponedState(postponed);
 // Send prelude to client or CDN.
 ```
 
-Then, you can return the `prelude` shell to the client, and later call `resume` to "resume" to a SSR stream:
+その後、`prelude` シェルをクライアントに返し、後で `resume` を呼び出して SSR ストリーム内に「再開」できます。
 
 ```
 const postponed = await getPostponedState(request);
@@ -206,7 +206,7 @@ const resumeStream = await resume(<App />, postponed);
 // Send stream to client.
 ```
 
-Or you can call `resumeAndPrerender` to resume to get static HTML for SSG:
+または `resumeAndPrerender` を呼び出して、SSG 用の静的 HTML を取得することもできます。
 
 ```
 const postponedState = await getPostponedState(request);
@@ -215,73 +215,73 @@ const { prelude } = await resumeAndPrerender(<App />, postponedState);
 // Send complete HTML prelude to CDN.
 ```
 
-For more info, see the docs for the new APIs:
+詳細については、新しい API のドキュメントを参照してください。
 - `react-dom/server`
-  - [`resume`](/reference/react-dom/server/resume): for Web Streams.
-  - [`resumeToPipeableStream`](/reference/react-dom/server/resumeToPipeableStream) for Node Streams.
+  - [`resume`](/reference/react-dom/server/resume): Web ストリーム用
+  - [`resumeToPipeableStream`](/reference/react-dom/server/resumeToPipeableStream): Node ストリーム用
 - `react-dom/static`
-  - [`resumeAndPrerender`](/reference/react-dom/static/resumeAndPrerender) for Web Streams.
-  - [`resumeAndPrerenderToNodeStream`](/reference/react-dom/static/resumeAndPrerenderToNodeStream) for Node Streams.
+  - [`resumeAndPrerender`](/reference/react-dom/static/resumeAndPrerender): Web ストリーム用
+  - [`resumeAndPrerenderToNodeStream`](/reference/react-dom/static/resumeAndPrerenderToNodeStream): Node ストリーム用
 
-Additionally, the prerender apis now return a `postpone` state to pass to the `resume` apis.
+加えて、prerender 系 API は、`resume` 系 API に渡すための `postpone` ステートを返すようになりました。
 
 ---
 
-## Notable Changes {/*notable-changes*/}
+## 注目すべき変更点 {/*notable-changes*/}
 
-### Batching Suspense Boundaries for SSR {/*batching-suspense-boundaries-for-ssr*/}
+### SSR におけるサスペンスバウンダリのバッチ処理 {/*batching-suspense-boundaries-for-ssr*/}
 
-We fixed a behavioral bug where Suspense boundaries would reveal differently depending on if they were rendered on the client or when streaming from server-side rendering.
+サスペンスバウンダリの表示のされ方が、クライアントでレンダーされる場合とサーバサイドレンダリングからストリーミングされる場合とで異なる、という動作上のバグを修正しました。
 
-Starting in 19.2, React will batch reveals of server-rendered Suspense boundaries for a short time, to allow more content to be revealed together and align with the client-rendered behavior.
+19.2 以降の React では、サーバでレンダーされた複数のサスペンスバウンダリが短時間で立て続けに表示へ切り替わるとき、それをバッチ処理することで、より多くのコンテンツが同時に表示へ切り替わるようにし、クライアントでレンダーされた場合の動作と一致させます。
 
 <Diagram name="19_2_batching_before" height={162} width={1270} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a page rectangle showing a glimmer loading state with faded bars. The second panel shows the top half of the page revealed and highlighted in blue. The third panel shows the entire the page revealed and highlighted in blue.">
 
-Previously, during streaming server-side rendering, suspense content would immediately replace fallbacks.
+これまでは、サーバサイドレンダリングのストリーミング中に、サスペンスのコンテンツがフォールバックを即座に置き換えていた。
 
 </Diagram>
 
 <Diagram name="19_2_batching_after" height={162} width={1270} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a page rectangle showing a glimmer loading state with faded bars. The second panel shows the same page. The third panel shows the entire the page revealed and highlighted in blue.">
 
-In React 19.2, suspense boundaries are batched for a small amount of time, to allow revealing more content together.
+React 19.2 では、サスペンスバウンダリは短い時間バッチ処理され、より多くのコンテンツを同じタイミングで表示できるようになる。
 
 </Diagram>
 
-This fix also prepares apps for supporting `<ViewTransition>` for Suspense during SSR. By revealing more content together, animations can run in larger batches of content, and avoid chaining animations of content that stream in close together.
+この修正は、SSR 中のサスペンスに対する `<ViewTransition>` サポートの準備にもなっています。より多くのコンテンツをまとめて表示に切り替えることで、アニメーションがより大きなコンテンツのまとまりで実行され、五月雨式に小刻みなコンテンツのアニメーションが発生するのを回避できます。
 
 <Note>
 
-React uses heuristics to ensure throttling does not impact core web vitals and search ranking.
+React は、このスロットリングが core web vital や検索ランキングに影響を与えないようにするためのヒューリスティックを使用します。
 
-For example, if the total page load time is approaching 2.5s (which is the time considered "good" for [LCP](https://web.dev/articles/lcp)), React will stop batching and reveal content immediately so that the throttling is not the reason to miss the metric.
+例えば、ページのトータル読み込み時間が 2.5 秒（[LCP](https://web.dev/articles/lcp) で "good" と見なされる時間）に近づいている場合、スロットリングが指標悪化の原因とならないよう、React はバッチ処理を停止して即座にコンテンツを表示します。
 
 </Note>
 
 ---
 
-### SSR: Web Streams support for Node {/*ssr-web-streams-support-for-node*/}
+### SSR：Node での Web ストリームサポート {/*ssr-web-streams-support-for-node*/}
 
-React 19.2 adds support for Web Streams for streaming SSR in Node.js:
-- [`renderToReadableStream`](/reference/react-dom/server/renderToReadableStream) is now available for Node.js
-- [`prerender`](/reference/react-dom/static/prerender) is now available for Node.js
+React 19.2 では、Node.js においてもストリーミング SSR のための Web ストリームのサポートが追加されます。
+- [`renderToReadableStream`](/reference/react-dom/server/renderToReadableStream) が Node.js で利用可能になりました。
+- [`prerender`](/reference/react-dom/static/prerender) が Node.js で利用可能になりました。
 
-As well as the new `resume` APIs:
-- [`resume`](/reference/react-dom/server/resume) is available for Node.js.
-- [`resumeAndPrerender`](/reference/react-dom/static/resumeAndPrerender) is available for Node.js.
+新しい `resume` API も同様です。
+- [`resume`](/reference/react-dom/server/resume) が Node.js で利用可能です。
+- [`resumeAndPrerender`](/reference/react-dom/static/resumeAndPrerender) が Node.js で利用可能です。
 
 
 <Pitfall>
 
-#### Prefer Node Streams for server-side rendering in Node.js {/*prefer-node-streams-for-server-side-rendering-in-nodejs*/}
+#### Node.js でのサーバサイドレンダリングには Node ストリームを推奨 {/*prefer-node-streams-for-server-side-rendering-in-nodejs*/}
 
-In Node.js environments, we still highly recommend using the Node Streams APIs:
+Node.js 環境では、引き続き Node ストリーム API の使用を強く推奨します。
 
 - [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream)
 - [`resumeToPipeableStream`](/reference/react-dom/server/resumeToPipeableStream)
 - [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream)
 - [`resumeAndPrerenderToNodeStream`](/reference/react-dom/static/resumeAndPrerenderToNodeStream)
 
-This is because Node Streams are much faster than Web Streams in Node, and Web Streams do not support compression by default, leading to users accidentally missing the benefits of streaming.
+これは、Node においては Node ストリームが Web ストリームよりはるかに高速であり、また Web ストリームはデフォルトで圧縮をサポートしていないため、ユーザがストリーミングの恩恵を受けられなくなってしまう可能性があるためです。
 
 </Pitfall>
 
@@ -289,51 +289,51 @@ This is because Node Streams are much faster than Web Streams in Node, and Web S
 
 ### `eslint-plugin-react-hooks` v6 {/*eslint-plugin-react-hooks*/}
 
-We also published `eslint-plugin-react-hooks@latest` with flat config by default in the `recommended` preset, and opt-in for new React Compiler powered rules.
+`eslint-plugin-react-hooks@latest` も公開されました。`recommended` プリセットではデフォルトで flat config が使用され、新しい React Compiler を利用したルールがオプトインで利用できます。
 
-To continue using the legacy config, you can change to `recommended-legacy`:
+レガシー config を引き続き使用するには、`recommended-legacy` に変更できます。
 
 ```diff
 - extends: ['plugin:react-hooks/recommended']
 + extends: ['plugin:react-hooks/recommended-legacy']
 ```
 
-For a full list of compiler enabled rules, [check out the linter docs](/reference/eslint-plugin-react-hooks#recommended).
+コンパイラ対応のルールの完全なリストについては、[リンタのドキュメントを確認してください](/reference/eslint-plugin-react-hooks#recommended)。
 
-Check out the `eslint-plugin-react-hooks` [changelog for a full list of changes](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/CHANGELOG.md#610).
-
----
-
-### Update the default `useId` prefix {/*update-the-default-useid-prefix*/}
-
-In 19.2, we're updating the default `useId` prefix from `:r:` (19.0.0) or `«r»` (19.1.0) to `_r_`.
-
-The original intent of using a special character that was not valid for CSS selectors was that it would be unlikely to collide with IDs written by users. However, to support View Transitions, we need to ensure that IDs generated by `useId` are valid for `view-transition-name` and XML 1.0 names.
+変更の完全なリストについては、`eslint-plugin-react-hooks` の [changelog を確認してください](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/CHANGELOG.md#610)。
 
 ---
 
-## Changelog {/*changelog*/}
+### デフォルトの `useId` プレフィックスの更新 {/*update-the-default-useid-prefix*/}
 
-Other notable changes
-- `react-dom`: Allow nonce to be used on hoistable styles [#32461](https://github.com/facebook/react/pull/32461)
-- `react-dom`: Warn for using a React owned node as a Container if it also has text content [#32774](https://github.com/facebook/react/pull/32774)
+19.2 では、デフォルトの `useId` プレフィックスを `:r:` (19.0.0) または `«r»` (19.1.0) から `_r_` に更新しています。
 
-Notable bug fixes
-- `react`: Stringify context as "SomeContext" instead of "SomeContext.Provider" [#33507](https://github.com/facebook/react/pull/33507)
-- `react`: Fix infinite useDeferredValue loop in popstate event [#32821](https://github.com/facebook/react/pull/32821)
-- `react`: Fix a bug when an initial value was passed to useDeferredValue [#34376](https://github.com/facebook/react/pull/34376)
-- `react`: Fix a crash when submitting forms with Client Actions [#33055](https://github.com/facebook/react/pull/33055)
-- `react`: Hide/unhide the content of dehydrated suspense boundaries if they resuspend [#32900](https://github.com/facebook/react/pull/32900)
-- `react`: Avoid stack overflow on wide trees during Hot Reload [#34145](https://github.com/facebook/react/pull/34145)
-- `react`: Improve component stacks in various places [#33629](https://github.com/facebook/react/pull/33629), [#33724](https://github.com/facebook/react/pull/33724), [#32735](https://github.com/facebook/react/pull/32735), [#33723](https://github.com/facebook/react/pull/33723)
-- `react`: Fix a bug with React.use inside React.lazy-ed Component [#33941](https://github.com/facebook/react/pull/33941)
-- `react-dom`: Stop warning when ARIA 1.3 attributes are used [#34264](https://github.com/facebook/react/pull/34264)
-- `react-dom`: Fix a bug with deeply nested Suspense inside Suspense fallbacks [#33467](https://github.com/facebook/react/pull/33467)
-- `react-dom`: Avoid hanging when suspending after aborting while rendering [#34192](https://github.com/facebook/react/pull/34192)
+CSS セレクタとして無効な特殊文字を使用していた元々の意図は、ユーザが記述する ID と衝突する可能性を下げるためでした。しかし、View Transitions をサポートするためには、`useId` によって生成される ID が `view-transition-name` および XML 1.0 name として有効であることを保証する必要があります。
 
-For a full list of changes, please see the [Changelog](https://github.com/facebook/react/blob/main/CHANGELOG.md).
+---
+
+## 変更履歴 {/*changelog*/}
+
+その他の注目すべき変更
+- `react-dom`: 巻き上げ可能な style で nonce を使用できるように [#32461](https://github.com/facebook/react/pull/32461)
+- `react-dom`: React が所有するノードをコンテナとして使用し、テキストコンテンツも含まれている場合に警告を表示 [#32774](https://github.com/facebook/react/pull/32774)
+
+注目すべきバグ修正
+- `react`: コンテクストを "SomeContext.Provider" ではなく "SomeContext" として文字列化 [#33507](https://github.com/facebook/react/pull/33507)
+- `react`: popstate イベントでの無限 useDeferredValue ループを修正 [#32821](https://github.com/facebook/react/pull/32821)
+- `react`: useDeferredValue に初期値が渡されたときのバグを修正 [#34376](https://github.com/facebook/react/pull/34376)
+- `react`: クライアント Action でフォームを送信するときのクラッシュを修正 [#33055](https://github.com/facebook/react/pull/33055)
+- `react`: dehydrated suspense バウンダリが再サスペンドした場合にコンテンツを非表示/表示 [#32900](https://github.com/facebook/react/pull/32900)
+- `react`: Hot Reload 中に大きなツリーで発生するスタックオーバーフローを回避 [#34145](https://github.com/facebook/react/pull/34145)
+- `react`: 複数のコンポーネントスタック改善 [#33629](https://github.com/facebook/react/pull/33629), [#33724](https://github.com/facebook/react/pull/33724), [#32735](https://github.com/facebook/react/pull/32735), [#33723](https://github.com/facebook/react/pull/33723)
+- `react`: React.lazy されたコンポーネント内での React.use のバグ修正 [#33941](https://github.com/facebook/react/pull/33941)
+- `react-dom`: ARIA 1.3 属性が使用されたときの警告を停止 [#34264](https://github.com/facebook/react/pull/34264)
+- `react-dom`: Suspense フォールバック内の深くネストされた Suspense のバグを修正 [#33467](https://github.com/facebook/react/pull/33467)
+- `react-dom`: レンダー中に中断した後にサスペンドするときのハングを回避 [#34192](https://github.com/facebook/react/pull/34192)
+
+変更の完全なリストについては、[Changelog](https://github.com/facebook/react/blob/main/CHANGELOG.md) を参照してください。
 
 
 ---
 
-_Thanks to [Ricky Hanlon](https://bsky.app/profile/ricky.fm) for [writing this post](https://www.youtube.com/shorts/T9X3YkgZRG0), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Matt Carroll](https://twitter.com/mattcarrollcode), [Jack Pope](https://jackpope.me), and [Joe Savona](https://x.com/en_JS) for reviewing this post._
+_この投稿を[書いてくれた](https://www.youtube.com/shorts/T9X3YkgZRG0) [Ricky Hanlon](https://bsky.app/profile/ricky.fm)、およびこの投稿をレビューしてくれた [Dan Abramov](https://bsky.app/profile/danabra.mov)、[Matt Carroll](https://twitter.com/mattcarrollcode)、[Jack Pope](https://jackpope.me)、[Joe Savona](https://x.com/en_JS) に感謝します。_
