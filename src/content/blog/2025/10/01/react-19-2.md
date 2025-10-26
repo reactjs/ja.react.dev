@@ -243,7 +243,7 @@ const { prelude } = await resumeAndPrerender(<App />, postponedState);
 
 <Diagram name="19_2_batching_after" height={162} width={1270} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a page rectangle showing a glimmer loading state with faded bars. The second panel shows the same page. The third panel shows the entire the page revealed and highlighted in blue.">
 
-React 19.2 では、サスペンスバウンダリは短い時間束ね処理され、より多くのコンテンツを同じタイミングで表示できるようになる。
+React 19.2 では、サスペンスバウンダリは短い時間バッチ処理され、より多くのコンテンツを同じタイミングで表示できるようになる。
 
 </Diagram>
 
