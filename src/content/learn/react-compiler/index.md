@@ -2,32 +2,32 @@
 title: React Compiler
 ---
 
-## Introduction {/*introduction*/}
+## はじめに {/*introduction*/}
 
-Learn [what React Compiler does](/learn/react-compiler/introduction) and how it automatically optimizes your React application by handling memoization for you, eliminating the need for manual `useMemo`, `useCallback`, and `React.memo`.
+[React Compiler の機能](/learn/react-compiler/introduction)について知り、React アプリケーションを自動的に最適化して `useMemo`、`useCallback`、`React.memo` による手動メモ化を不要にしてくれる仕組みについて理解しましょう。
 
-## Installation {/*installation*/}
+## インストール {/*installation*/}
 
-Get started with [installing React Compiler](/learn/react-compiler/installation) and learn how to configure it with your build tools.
+[React Compiler のインストール](/learn/react-compiler/installation)を行い、ビルドツールと組み合わせるための設定方法を学びましょう。
 
 
-## Incremental Adoption {/*incremental-adoption*/}
+## 段階的な導入 {/*incremental-adoption*/}
 
-Learn [strategies for gradually adopting React Compiler](/learn/react-compiler/incremental-adoption) in your existing codebase if you're not ready to enable it everywhere yet.
+全面的に有効にする準備がまだできていない場合に、既存のコードベースで [React Compiler を段階的に導入する戦略](/learn/react-compiler/incremental-adoption)を学びましょう。
 
-## Debugging and Troubleshooting {/*debugging-and-troubleshooting*/}
+## デバッグとトラブルシューティング {/*debugging-and-troubleshooting*/}
 
-When things don't work as expected, use our [debugging guide](/learn/react-compiler/debugging) to understand the difference between compiler errors and runtime issues, identify common breaking patterns, and follow a systematic debugging workflow.
+期待通りに動作しない場合は[デバッグガイド](/learn/react-compiler/debugging)を参考に、コンパイラエラーとランタイムエラーの違いやよくある失敗パターンを理解しつつ、体系的なデバッグ作業を行いましょう。
 
-## Configuration and Reference {/*configuration-and-reference*/}
+## 設定とリファレンス {/*configuration-and-reference*/}
 
-For detailed configuration options and API reference:
+詳細な設定オプションと API リファレンスについては以下をご覧ください：
 
-- [Configuration Options](/reference/react-compiler/configuration) - All compiler configuration options including React version compatibility
-- [Directives](/reference/react-compiler/directives) - Function-level compilation control
-- [Compiling Libraries](/reference/react-compiler/compiling-libraries) - Shipping pre-compiled libraries
+- [設定オプション](/reference/react-compiler/configuration) - React バージョンの互換性を含むすべてのコンパイラ設定オプション
+- [ディレクティブ](/reference/react-compiler/directives) - 関数レベルのコンパイル制御
+- [ライブラリのコンパイル](/reference/react-compiler/compiling-libraries) - 事前コンパイルされたライブラリの配布
 
-## Additional resources {/*additional-resources*/}
+## 追加情報 {/*additional-resources*/}
 
-In addition to these docs, we recommend checking the [React Compiler Working Group](https://github.com/reactwg/react-compiler) for additional information and discussion about the compiler.
+これらのドキュメントに加えて、コンパイラに関する追加情報や議論については [React Compiler Working Group](https://github.com/reactwg/react-compiler) を確認することをお勧めします。
 
