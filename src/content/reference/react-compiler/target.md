@@ -4,7 +4,7 @@ title: target
 
 <Intro>
 
-The `target` option specifies which React version the compiler should generate code for.
+`target` オプションは、コンパイラがどの React バージョン向けにコードを生成するか指定します。
 
 </Intro>
 
@@ -18,11 +18,11 @@ The `target` option specifies which React version the compiler should generate c
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `target` {/*target*/}
 
-Configures the React version compatibility for the compiled output.
+コンパイル出力の React バージョンの互換性を設定します。
 
 #### Type {/*type*/}
 
@@ -30,30 +30,30 @@ Configures the React version compatibility for the compiled output.
 '17' | '18' | '19'
 ```
 
-#### Default value {/*default-value*/}
+#### デフォルト値 {/*default-value*/}
 
 `'19'`
 
-#### Valid values {/*valid-values*/}
+#### 有効な値 {/*valid-values*/}
 
-- **`'19'`**: Target React 19 (default). No additional runtime required.
-- **`'18'`**: Target React 18. Requires `react-compiler-runtime` package.
-- **`'17'`**: Target React 17. Requires `react-compiler-runtime` package.
+- **`'19'`**：React 19 が対象（デフォルト）。追加のランタイムパッケージは不要です。
+- **`'18'`**：React 18 が対象。`react-compiler-runtime` パッケージが必要です。
+- **`'17'`**：React 17 が対象。`react-compiler-runtime` パッケージが必要です。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-- Always use string values, not numbers (e.g., `'17'` not `17`)
-- Don't include patch versions (e.g., use `'18'` not `'18.2.0'`)
-- React 19 includes built-in compiler runtime APIs
-- React 17 and 18 require installing `react-compiler-runtime@latest`
+- 数値ではなく文字列値を使用してください。（例： `17` ではなく `'17'` です）
+- パッチバージョンを含めないでください。（例： `'18.2.0'`ではなく`'18'` です）
+- React 19 にはビルトインのコンパイラランタイム API が含まれます。
+- React 17 と 18 では `react-compiler-runtime@latest` のインストールが必要です。
 
 ---
 
-## Usage {/*usage*/}
+## 使用方法 {/*usage*/}
 
-### Targeting React 19 (default) {/*targeting-react-19*/}
+### React 19 が対象の場合（デフォルト） {/*targeting-react-19*/}
 
-For React 19, no special configuration is needed:
+React 19 では特別な設定は不要です。
 
 ```js
 {
@@ -61,24 +61,24 @@ For React 19, no special configuration is needed:
 }
 ```
 
-The compiler will use React 19's built-in runtime APIs:
+コンパイラは React 19 のビルトインランタイム API を使用します。
 
 ```js
 // Compiled output uses React 19's native APIs
 import { c as _c } from 'react/compiler-runtime';
 ```
 
-### Targeting React 17 or 18 {/*targeting-react-17-or-18*/}
+### React 17 または 18 が対象の場合 {/*targeting-react-17-or-18*/}
 
-For React 17 and React 18 projects, you need two steps:
+React 17 と React 18 のプロジェクトでは、2 つのステップが必要です。
 
-1. Install the runtime package:
+1. ランタイムパッケージをインストールします。
 
 ```bash
 npm install react-compiler-runtime@latest
 ```
 
-2. Configure the target:
+2. 対象を設定します。
 
 ```js
 // For React 18
@@ -92,7 +92,7 @@ npm install react-compiler-runtime@latest
 }
 ```
 
-The compiler will use the polyfill runtime for both versions:
+コンパイラは両バージョンでポリフィルランタイムを使用します。
 
 ```js
 // Compiled output uses the polyfill
@@ -101,41 +101,41 @@ import { c as _c } from 'react-compiler-runtime';
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### Runtime errors about missing compiler runtime {/*missing-runtime*/}
+### コンパイラのランタイムが不足していることに関するランタイムエラー {/*missing-runtime*/}
 
-If you see errors like "Cannot find module 'react/compiler-runtime'":
+"Cannot find module 'react/compiler-runtime'" のようなエラーが表示される場合
 
-1. Check your React version:
+1. React バージョンを確認してください。
    ```bash
    npm why react
    ```
 
-2. If using React 17 or 18, install the runtime:
+2. React 17 または 18 を使用している場合は、ランタイムをインストールしてください。
    ```bash
    npm install react-compiler-runtime@latest
    ```
 
-3. Ensure your target matches your React version:
+3. ターゲットが React バージョンと一致していることを確認してください。
    ```js
    {
      target: '18' // Must match your React major version
    }
    ```
 
-### Runtime package not working {/*runtime-not-working*/}
+### ランタイムパッケージが動作しない場合 {/*runtime-not-working*/}
 
-Ensure the runtime package is:
+ランタイムパッケージが以下を満たしていることを確認してください。
 
-1. Installed in your project (not globally)
-2. Listed in your `package.json` dependencies
-3. The correct version (`@latest` tag)
-4. Not in `devDependencies` (it's needed at runtime)
+1. プロジェクト内にインストールされていること。（グローバルではないこと）
+2. `package.json` の依存関係に記載されていること。
+3. 正しいバージョンであること。（`@latest` タグ）
+4. `devDependencies` に含まれていないこと。（ランタイムで必要です）
 
-### Checking compiled output {/*checking-output*/}
+### コンパイル済み出力の確認 {/*checking-output*/}
 
-To verify the correct runtime is being used, note the different import (`react/compiler-runtime` for builtin, `react-compiler-runtime` standalone package for 17/18):
+正しいランタイムが使用されていることを確認するには、異なるインポートに注目してください。（組み込み版は `react/compiler-runtime`、React 17/18 のスタンドアロンパッケージ版では `react-compiler-runtime`）
 
 ```js
 // For React 19 (built-in runtime)
