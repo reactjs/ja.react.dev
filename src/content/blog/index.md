@@ -24,7 +24,7 @@ Bluesky の [@react.dev](https://bsky.app/profile/react.dev) や Twitter の [@r
 
 <BlogCard title="React Compiler v1.0" date="October 7, 2025" url="/blog/2025/10/07/react-compiler-1">
 
-We're releasing the compiler's first stable release today, plus linting and tooling improvements to make adoption easier.
+本日、コンパイラの最初の安定版リリースを行います。また、導入を支援するためのリンタやツールの改善もリリースします。
 
 </BlogCard>
 
