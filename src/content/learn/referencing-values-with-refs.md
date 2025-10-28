@@ -232,7 +232,7 @@ export default function Counter() {
 
 </Sandpack>
 
-これが、レンダー中に `ref.current` を読みこむと信頼性の低いコードになる理由です。それが必要な場合は、代わりに state を使用してください。
+これが、レンダー中に `ref.current` を読み込むと信頼性の低いコードになる理由です。それが必要な場合は、代わりに state を使用してください。
 
 <DeepDive>
 
@@ -269,7 +269,7 @@ React が `useRef` を組み込み機能として提供しているのは、こ�
 以下の原則に従うことで、コンポーネントがより予測可能になります。
 
 - **ref を避難ハッチ (escape hatch) として扱う**。ref が有用なのは、外部システムやブラウザ API と連携する場合です。アプリケーションのロジックやデータフローの多くが ref に依存しているような場合は、アプローチを見直すことを検討してください。
-- **レンダー中に `ref.current` を読み書きしない**。レンダー中に情報が必要な場合は、代わりに [state](/learn/state-a-components-memory) を使用してください。React は `ref.current` が書き換わったタイミングを把握しないため、レンダー中にただそれを読みこむだけでも、コンポーネントの挙動が予測しづらくなってしまいます。（唯一の例外は `if (!ref.current) ref.current = new Thing()` のような、最初のレンダー中に一度だけ ref をセットするコードです。）
+- **レンダー中に `ref.current` を読み書きしない**。レンダー中に情報が必要な場合は、代わりに [state](/learn/state-a-components-memory) を使用してください。React は `ref.current` が書き換わったタイミングを把握しないため、レンダー中にただそれを読み込むだけでも、コンポーネントの挙動が予測しづらくなってしまいます。（唯一の例外は `if (!ref.current) ref.current = new Thing()` のような、最初のレンダー中に一度だけ ref をセットするコードです。）
 
 React の state の制約は ref には適用されません。例えば、state は[各レンダーのスナップショット](/learn/state-as-a-snapshot)のように振る舞い、[同期的に更新されません](/learn/queueing-a-series-of-state-updates)。しかし、ref の現在値を書き換えると、すぐに変更されます。
 
