@@ -16,6 +16,7 @@ React は、JSX で使用できるいくつかの組み込みコンポーネン�
 * [`<Profiler>`](/reference/react/Profiler) を使い、React ツリーのレンダーパフォーマンスをプログラム上で測定することができます。
 * [`<Suspense>`](/reference/react/Suspense) を使い、子コンポーネントがロードされる間、フォールバックを表示することができます。
 * [`<StrictMode>`](/reference/react/StrictMode) を使い、バグを早期に見つけるための追加の開発環境専用チェックを有効化します。
+* [`<Activity>`](/reference/react/Activity) を使い、内部状態を復元しつつ UI の表示状態を切り替えます。
 
 ---
 
