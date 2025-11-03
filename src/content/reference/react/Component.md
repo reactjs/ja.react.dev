@@ -1271,7 +1271,21 @@ button { margin-left: 10px; }
 
 デフォルトでは、アプリケーションがレンダー中にエラーをスローすると、React はその UI を画面から削除します。これを防ぐために、UI を*エラーバウンダリ*にラップすることができます。エラーバウンダリは、クラッシュした部位の代わりに、例えばエラーメッセージなどのフォールバック UI を表示するための、特別なコンポーネントです。
 
+<<<<<<< HEAD
 エラーバウンダリコンポーネントを実装するためには、エラーに反応して state を更新し、ユーザにエラーメッセージを表示するための [`static getDerivedStateFromError`](#static-getderivedstatefromerror) を提供する必要があります。またオプションで、例えばエラーを分析サービスに記録するなどの追加のロジックを追加するために [`componentDidCatch`](#componentdidcatch) を実装することもできます。
+=======
+<Note>
+Error boundaries do not catch errors for:
+
+- Event handlers [(learn more)](/learn/responding-to-events)
+- [Server side rendering](/reference/react-dom/server) 
+- Errors thrown in the error boundary itself (rather than its children)
+- Asynchronous code (e.g. `setTimeout` or `requestAnimationFrame` callbacks); an exception is the usage of the [`startTransition`](/reference/react/useTransition#starttransition) function returned by the [`useTransition`](/reference/react/useTransition) Hook. Errors thrown inside the transition function are caught by error boundaries [(learn more)](/reference/react/useTransition#displaying-an-error-to-users-with-error-boundary)
+
+</Note>
+
+To implement an Error Boundary component, you need to provide [`static getDerivedStateFromError`](#static-getderivedstatefromerror) which lets you update state in response to an error and display an error message to the user. You can also optionally implement [`componentDidCatch`](#componentdidcatch) to add some extra logic, for example, to log the error to an analytics service.
+>>>>>>> f9e2c1396769bb5da87db60f9ff03683d18711e2
 
 [`captureOwnerStack`](/reference/react/captureOwnerStack) を使うことで開発中にオーナーのスタックトレースを含めることが可能です。
 
