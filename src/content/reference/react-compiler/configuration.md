@@ -33,7 +33,7 @@ module.exports = {
 
 これらのオプションは、コンパイラが*何を*最適化し、*どのように*コンポーネントとフックを選択してコンパイルするかを制御します。
 
-* [`compilationMode`](/reference/react-compiler/compilationMode) は、コンパイルする関数を選択する方法を制御します。（例：すべての関数、注釈付きのもののみ、インテリジェント検出など）
+* [`compilationMode`](/reference/react-compiler/compilationMode) は、コンパイルする関数を選択する方法を制御します（例：すべての関数、アノテーション付きのもののみ、インテリジェント検出など）。
 
 ```js
 {
@@ -45,7 +45,7 @@ module.exports = {
 
 ## バージョン互換性 {/*version-compatibility*/}
 
-React のバージョン設定により、コンパイラが使用中の React バージョンと互換性のあるコードが生成されることが保証されます。
+React バージョンの設定により、使用中の React バージョンと互換性のあるコードをコンパイラが生成することが保証されます。
 
 [`target`](/reference/react-compiler/target) は、使用中の React バージョン（17、18、19）を指定します。
 
@@ -60,7 +60,7 @@ React のバージョン設定により、コンパイラが使用中の React �
 
 ## エラーハンドリング {/*error-handling*/}
 
-これらのオプションは、コンパイラが [Rules of React](/reference/rules) に従わないコードに対し、どのように応答するか制御します。
+これらのオプションは、コンパイラが [React のルール](/reference/rules)に従わないコードをどのように処理するか制御します。
 
 [`panicThreshold`](/reference/react-compiler/panicThreshold) は、ビルドを失敗させるか、問題のあるコンポーネントをスキップするかを決定します。
 
@@ -77,7 +77,7 @@ React のバージョン設定により、コンパイラが使用中の React �
 
 ログと解析オプションは、コンパイラが何を行っているのか理解するのに役立ちます。
 
-[`logger`](/reference/react-compiler/logger) は、コンパイルイベントのカスタムログを提供します。
+[`logger`](/reference/react-compiler/logger) は、コンパイルイベントに対するカスタムのロギング手段を指定します。
 
 ```js
 {

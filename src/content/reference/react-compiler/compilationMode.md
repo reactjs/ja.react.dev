@@ -37,8 +37,8 @@ React Compiler が最適化する関数を決定する方法を制御します�
 #### Options {/*options*/}
 
 - **`'infer'`**（デフォルト）：コンパイラは高度なヒューリスティックを使用して React コンポーネントとフックを識別します。
-  - `"use memo"` ディレクティブで明示的に注釈された関数
-  - コンポーネント（パスカルケース）やフック（`use` プレフィックス）のように命名され、かつ JSX を作成または他のフックを呼び出す関数
+  - `"use memo"` ディレクティブで明示的にアノテーションされた関数
+  - コンポーネント（パスカルケース）やフック（`use` プレフィックス）の規約で命名され、かつ、JSX の作成あるいは他のフックの呼び出しを行っている関数
 
 - **`'annotation'`**： `"use memo"` ディレクティブで明示的にマークされた関数のみをコンパイルします。段階的導入に最適です。
 
@@ -49,7 +49,7 @@ React Compiler が最適化する関数を決定する方法を制御します�
 #### 注意点 {/*caveats*/}
 
 - `'infer'` モードでは、関数が検出されるために React の命名規則に従う必要があります。
-- `'all'` モードを使用すると、ユーティリティ関数をコンパイルすることでパフォーマンスに悪影響を与える可能性があります。
+- `'all'` モードを使用すると、ユーティリティ関数がコンパイルされるためにパフォーマンスに悪影響を与える可能性があります。
 - `'syntax'` モードでは Flow が必要で、TypeScript では動作しません。
 - モードに関係なく、`"use no memo"` ディレクティブを持つ関数は常にスキップされます。
 
@@ -59,7 +59,7 @@ React Compiler が最適化する関数を決定する方法を制御します�
 
 ### デフォルト推論モード {/*default-inference-mode*/}
 
-デフォルトの `'infer'` モードは、React の慣例に従う大抵のコードベースでうまく動作します。
+デフォルトの `'infer'` モードは、React の慣習に従う大抵のコードベースでうまく動作します。
 
 ```js
 {
@@ -93,7 +93,7 @@ function calculateTotal(items) {
 }
 ```
 
-### 注釈を使用した段階的な導入 {/*incremental-adoption*/}
+### アノテーションを使用した段階的な導入 {/*incremental-adoption*/}
 
 段階的な移行では、マークされた関数のみをコンパイルするために `'annotation'` モードを使用してください。
 
@@ -103,7 +103,7 @@ function calculateTotal(items) {
 }
 ```
 
-次に、コンパイルする関数を明示的にマークします。
+その後に、コンパイルする関数を明示的にマークしていきます。
 
 ```js
 // Only this function will be compiled
@@ -126,7 +126,7 @@ function NormalComponent(props) {
 
 ### Flow syntax モードの使用方法 {/*flow-syntax-mode*/}
 
-コードベースで TypeScript の代わりに Flow を使用している場合は、本セクションを参照ください。
+コードベースで TypeScript ではなく Flow を使用している場合は、以下のようにします。
 
 ```js
 {
@@ -173,9 +173,9 @@ function ComponentWithSideEffects() {
 
 ## トラブルシューティング {/*troubleshooting*/}
 
-### infer モードでコンポーネントがコンパイルされない場合 {/*component-not-compiled-infer*/}
+### infer モードでコンポーネントがコンパイルされない {/*component-not-compiled-infer*/}
 
-`'infer'` モードでは、コンポーネントが React の慣例に従っていることを確認してください。
+`'infer'` モードでは、コンポーネントが React の慣習に従っていることを確認してください。
 
 ```js
 // ❌ Won't be compiled: lowercase name
