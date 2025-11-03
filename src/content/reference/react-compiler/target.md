@@ -24,7 +24,7 @@ title: target
 
 コンパイル出力の React バージョンの互換性を設定します。
 
-#### Type {/*type*/}
+#### 型 {/*type*/}
 
 ```
 '17' | '18' | '19'
@@ -36,9 +36,9 @@ title: target
 
 #### 有効な値 {/*valid-values*/}
 
-- **`'19'`**：React 19 がターゲット（デフォルト）。追加のランタイムパッケージは不要です。
-- **`'18'`**：React 18 がターゲット。`react-compiler-runtime` パッケージが必要です。
-- **`'17'`**：React 17 がターゲット。`react-compiler-runtime` パッケージが必要です。
+- **`'19'`**: React 19 がターゲット（デフォルト）。追加のランタイムパッケージは不要です。
+- **`'18'`**: React 18 がターゲット。`react-compiler-runtime` パッケージが必要です。
+- **`'17'`**: React 17 がターゲット。`react-compiler-runtime` パッケージが必要です。
 
 #### 注意点 {/*caveats*/}
 

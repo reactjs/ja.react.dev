@@ -24,7 +24,7 @@ title: panicThreshold
 
 コンパイルエラーでビルドを失敗させるか、最適化をスキップするかを決定します。
 
-#### Type {/*type*/}
+#### 型 {/*type*/}
 
 ```
 'none' | 'critical_errors' | 'all_errors'

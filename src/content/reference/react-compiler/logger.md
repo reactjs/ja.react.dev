@@ -28,7 +28,7 @@ title: logger
 
 コンパイラの動作を追跡しエラーをデバッグするための、カスタムのロギング方法を設定します。
 
-#### Type {/*type*/}
+#### 型 {/*type*/}
 
 ```
 {
@@ -40,18 +40,18 @@ title: logger
 
 `null`
 
-#### Methods {/*methods*/}
+#### メソッド {/*methods*/}
 
 - **`logEvent`**: 各コンパイライベントに対して、ファイル名およびイベント詳細を引数にして呼び出される。
 
 #### イベントタイプ {/*event-types*/}
 
-- **`CompileSuccess`**： 関数が正常にコンパイルされた
-- **`CompileError`**：エラーにより関数がスキップされた
-- **`CompileDiagnostic`**：致命的でない診断情報
-- **`CompileSkip`**：その他の理由で関数がスキップされた
-- **`PipelineError`**：予期しないコンパイルエラー
-- **`Timing`**：パフォーマンスの測定情報
+- **`CompileSuccess`**: 関数が正常にコンパイルされた
+- **`CompileError`**: エラーにより関数がスキップされた
+- **`CompileDiagnostic`**: 致命的でない診断情報
+- **`CompileSkip`**: その他の理由で関数がスキップされた
+- **`PipelineError`**: 予期しないコンパイルエラー
+- **`Timing`**: パフォーマンスの測定情報
 
 #### 注意点 {/*caveats*/}
 

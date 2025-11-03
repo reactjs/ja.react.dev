@@ -24,7 +24,7 @@ title: compilationMode
 
 React Compiler が最適化する関数を決定する方法を制御します。
 
-#### Type {/*type*/}
+#### 型 {/*type*/}
 
 ```
 'infer' | 'syntax' | 'annotation' | 'all'
@@ -34,17 +34,17 @@ React Compiler が最適化する関数を決定する方法を制御します�
 
 `'infer'`
 
-#### Options {/*options*/}
+#### 指定可能な値 {/*options*/}
 
-- **`'infer'`**（デフォルト）：コンパイラは高度なヒューリスティックを使用して React コンポーネントとフックを識別します。
+- **`'infer'`**（デフォルト）: コンパイラは高度なヒューリスティックを使用して React コンポーネントとフックを識別します。
   - `"use memo"` ディレクティブで明示的にアノテーションされた関数
   - コンポーネント（パスカルケース）やフック（`use` プレフィックス）の規約で命名され、かつ、JSX の作成あるいは他のフックの呼び出しを行っている関数
 
-- **`'annotation'`**： `"use memo"` ディレクティブで明示的にマークされた関数のみをコンパイルします。段階的導入に最適です。
+- **`'annotation'`**: `"use memo"` ディレクティブで明示的にマークされた関数のみをコンパイルします。段階的導入に最適です。
 
-- **`'syntax'`**： Flow の [component](https://flow.org/en/docs/react/component-syntax/) および [hook](https://flow.org/en/docs/react/hook-syntax/) 構文を使用するコンポーネントとフックのみをコンパイルします。
+- **`'syntax'`**: Flow の [component](https://flow.org/en/docs/react/component-syntax/) および [hook](https://flow.org/en/docs/react/hook-syntax/) 構文を使用するコンポーネントとフックのみをコンパイルします。
 
-- **`'all'`**：すべてのトップレベル関数をコンパイルします。非 React 関数もコンパイルする可能性があるため推奨されません。
+- **`'all'`**: すべてのトップレベル関数をコンパイルします。非 React 関数もコンパイルする可能性があるため推奨されません。
 
 #### 注意点 {/*caveats*/}
 

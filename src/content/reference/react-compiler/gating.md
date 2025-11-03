@@ -27,7 +27,7 @@ title: gating
 
 コンパイルされた関数に対する、ランタイムのフィーチャーフラグによる制御を設定します。
 
-#### Type {/*type*/}
+#### 型 {/*type*/}
 
 ```
 {
@@ -40,10 +40,10 @@ title: gating
 
 `null`
 
-#### Properties {/*properties*/}
+#### プロパティ {/*properties*/}
 
-- **`source`**：フィーチャーフラグをインポートするモジュールパス
-- **`importSpecifierName`**：インポートするエクスポートされた関数の名前
+- **`source`**: フィーチャーフラグをインポートするモジュールパス
+- **`importSpecifierName`**: インポートするエクスポートされた関数の名前
 
 #### 注意点 {/*caveats*/}
 
