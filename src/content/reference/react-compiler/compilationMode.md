@@ -93,7 +93,7 @@ function calculateTotal(items) {
 }
 ```
 
-### アノテーションを使用した段階的な導入 {/*incremental-adoption*/}
+### アノテーションモードを使用した段階的な導入 {/*incremental-adoption*/}
 
 段階的な移行では、マークされた関数のみをコンパイルするために `'annotation'` モードを使用してください。
 
