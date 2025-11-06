@@ -4,7 +4,7 @@ title: panicThreshold
 
 <Intro>
 
-The `panicThreshold` option controls how the React Compiler handles errors during compilation.
+`panicThreshold` オプションは、コンパイル時のエラーを React Compiler がどのように処理するかを制御します。
 
 </Intro>
 
@@ -18,42 +18,42 @@ The `panicThreshold` option controls how the React Compiler handles errors durin
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `panicThreshold` {/*panicthreshold*/}
 
-Determines whether compilation errors should fail the build or skip optimization.
+コンパイルエラーでビルドを失敗させるか、最適化をスキップするかを決定します。
 
-#### Type {/*type*/}
+#### 型 {/*type*/}
 
 ```
 'none' | 'critical_errors' | 'all_errors'
 ```
 
-#### Default value {/*default-value*/}
+#### デフォルト値 {/*default-value*/}
 
 `'none'`
 
-#### Options {/*options*/}
+#### 指定可能な値 {/*options*/}
 
-- **`'none'`** (default, recommended): Skip components that can't be compiled and continue building
-- **`'critical_errors'`**: Fail the build only on critical compiler errors
-- **`'all_errors'`**: Fail the build on any compiler diagnostic
+- **`'none'`**（デフォルト、推奨）: コンパイルできないコンポーネントをスキップしてビルドを継続する。
+- **`'critical_errors'`**: クリティカルなコンパイラエラーの場合のみビルドを失敗させる。
+- **`'all_errors'`**: コンパイラの診断情報がある場合常にビルドを失敗させる。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-- Production builds should always use `'none'`
-- Build failures prevent your application from building
-- The compiler automatically detects and skips problematic code with `'none'`
-- Higher thresholds are only useful during development for debugging
+- 本番ビルドでは常に `'none'` を使用してください。
+- ビルドが失敗すると、アプリケーションのビルドも失敗します。
+- `'none'` の場合、コンパイラは問題のあるコードを自動的に検出してスキップします。
+- より高い閾値は開発中のデバッグ時にのみ有用です。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Production configuration (recommended) {/*production-configuration*/}
+### 本番設定（推奨） {/*production-configuration*/}
 
-For production builds, always use `'none'`. This is the default value:
+本番ビルドでは常に `'none'` を使用します。これがデフォルト値です。
 
 ```js
 {
@@ -61,15 +61,15 @@ For production builds, always use `'none'`. This is the default value:
 }
 ```
 
-This ensures:
-- Your build never fails due to compiler issues
-- Components that can't be optimized run normally
-- Maximum components get optimized
-- Stable production deployments
+これにより以下が保証されます。
+- コンパイラの問題でビルドが失敗することはありません。
+- 最適化できないコンポーネントは通常通り実行されます。
+- 最大数のコンポーネントが最適化されます。
+- 安定した本番デプロイが行われます。
 
-### Development debugging {/*development-debugging*/}
+### 開発時のデバッグ {/*development-debugging*/}
 
-Temporarily use stricter thresholds to find issues:
+問題を見つけるために、一時的により厳しい閾値を使用します。
 
 ```js
 const isDevelopment = process.env.NODE_ENV === 'development';

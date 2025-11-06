@@ -4,7 +4,7 @@ title: gating
 
 <Intro>
 
-The `gating` option enables conditional compilation, allowing you to control when optimized code is used at runtime.
+`gating` オプションは条件付きコンパイルを有効にし、最適化されたコードがランタイムでいつ使用されるか制御できるようにします。
 
 </Intro>
 
@@ -21,13 +21,13 @@ The `gating` option enables conditional compilation, allowing you to control whe
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `gating` {/*gating*/}
 
-Configures runtime feature flag gating for compiled functions.
+コンパイルされた関数に対する、ランタイムのフィーチャーフラグによる制御を設定します。
 
-#### Type {/*type*/}
+#### 型 {/*type*/}
 
 ```
 {
@@ -36,28 +36,28 @@ Configures runtime feature flag gating for compiled functions.
 } | null
 ```
 
-#### Default value {/*default-value*/}
+#### デフォルト値 {/*default-value*/}
 
 `null`
 
-#### Properties {/*properties*/}
+#### プロパティ {/*properties*/}
 
-- **`source`**: Module path to import the feature flag from
-- **`importSpecifierName`**: Name of the exported function to import
+- **`source`**: フィーチャーフラグをインポートするモジュールパス
+- **`importSpecifierName`**: インポートするエクスポート済み関数の名前
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-- The gating function must return a boolean
-- Both compiled and original versions increase bundle size
-- The import is added to every file with compiled functions
+- ゲーティング関数はブーリアンを返す必要があります。
+- コンパイル済みバージョンと元のバージョンの両方を含めるため、バンドルサイズが増加します。
+- コンパイルされた関数を含むすべてのファイルにインポート文が付加されます。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Basic feature flag setup {/*basic-setup*/}
+### 基本的なフィーチャーフラグのセットアップ {/*basic-setup*/}
 
-1. Create a feature flag module:
+1. フィーチャーフラグモジュールを作成します。
 
 ```js
 // src/utils/feature-flags.js
@@ -67,7 +67,7 @@ export function shouldUseCompiler() {
 }
 ```
 
-2. Configure the compiler:
+2. コンパイラを設定します。
 
 ```js
 {
@@ -78,7 +78,7 @@ export function shouldUseCompiler() {
 }
 ```
 
-3. The compiler generates gated code:
+3. コンパイラがゲーティング済みのコードを生成します。
 
 ```js
 // Input
@@ -94,15 +94,15 @@ const Button = shouldUseCompiler()
   : function Button_original(props) { /* original version */ };
 ```
 
-Note that the gating function is evaluated once at module time, so once the JS bundle has been parsed and evaluated the choice of component stays static for the rest of the browser session.
+ゲーティング関数はモジュール評価時に一度だけ評価されることに注意してください。JS バンドルがパース・評価された時点でコンポーネントの選択が固定され、ブラウザセッションが持続する間、静的に維持されます。
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### Feature flag not working {/*flag-not-working*/}
+### フィーチャーフラグが動作しない {/*flag-not-working*/}
 
-Verify your flag module exports the correct function:
+フラグモジュールが正しい関数をエクスポートしているか確認してください。
 
 ```js
 // ❌ Wrong: Default export
@@ -116,9 +116,9 @@ export function shouldUseCompiler() {
 }
 ```
 
-### Import errors {/*import-errors*/}
+### インポートエラーが発生する {/*import-errors*/}
 
-Ensure the source path is correct:
+ソースのパスが正しいことを確認してください。
 
 ```js
 // ❌ Wrong: Relative to babel.config.js

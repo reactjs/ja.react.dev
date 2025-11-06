@@ -4,7 +4,7 @@ title: logger
 
 <Intro>
 
-The `logger` option provides custom logging for React Compiler events during compilation.
+`logger` オプションで、コンパイル時に起こる React Compiler のイベントに対するカスタムロガーを指定します。
 
 </Intro>
 
@@ -22,13 +22,13 @@ The `logger` option provides custom logging for React Compiler events during com
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `logger` {/*logger*/}
 
-Configures custom logging to track compiler behavior and debug issues.
+コンパイラの動作を追跡しエラーをデバッグするための、カスタムのロギング方法を設定します。
 
-#### Type {/*type*/}
+#### 型 {/*type*/}
 
 ```
 {
@@ -36,35 +36,35 @@ Configures custom logging to track compiler behavior and debug issues.
 } | null
 ```
 
-#### Default value {/*default-value*/}
+#### デフォルト値 {/*default-value*/}
 
 `null`
 
-#### Methods {/*methods*/}
+#### メソッド {/*methods*/}
 
-- **`logEvent`**: Called for each compiler event with the filename and event details
+- **`logEvent`**: 各コンパイライベントに対して、ファイル名およびイベント詳細を引数にして呼び出される。
 
-#### Event types {/*event-types*/}
+#### イベントタイプ {/*event-types*/}
 
-- **`CompileSuccess`**: Function successfully compiled
-- **`CompileError`**: Function skipped due to errors
-- **`CompileDiagnostic`**: Non-fatal diagnostic information
-- **`CompileSkip`**: Function skipped for other reasons
-- **`PipelineError`**: Unexpected compilation error
-- **`Timing`**: Performance timing information
+- **`CompileSuccess`**: 関数が正常にコンパイルされた
+- **`CompileError`**: エラーにより関数がスキップされた
+- **`CompileDiagnostic`**: 致命的でない診断情報
+- **`CompileSkip`**: その他の理由で関数がスキップされた
+- **`PipelineError`**: 予期しないコンパイルエラー
+- **`Timing`**: パフォーマンスの測定情報
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-- Event structure may change between versions
-- Large codebases generate many log entries
+- イベントの構造はバージョン間で変更される可能性があります。
+- 大きなコードベースだと、多くのログエントリが生成されます。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Basic logging {/*basic-logging*/}
+### 基本的なログ {/*basic-logging*/}
 
-Track compilation success and failures:
+コンパイルの成功と失敗を追跡します。
 
 ```js
 {
@@ -86,9 +86,9 @@ Track compilation success and failures:
 }
 ```
 
-### Detailed error logging {/*detailed-error-logging*/}
+### 詳細なエラーログ {/*detailed-error-logging*/}
 
-Get specific information about compilation failures:
+コンパイル失敗に関する詳細な情報を取得します。
 
 ```js
 {

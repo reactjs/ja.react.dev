@@ -1,16 +1,16 @@
 ---
-title: Configuration
+title: 設定
 ---
 
 <Intro>
 
-This page lists all configuration options available in React Compiler.
+このページでは、React Compiler で利用可能な設定オプションをすべてリストアップしています。
 
 </Intro>
 
 <Note>
 
-For most apps, the default options should work out of the box. If you have a special need, you can use these advanced options.
+ほとんどのアプリでは、デフォルトの設定で問題なく動作します。特別な要件がある場合は、後述する詳細な設定を利用できます。
 
 </Note>
 
@@ -29,11 +29,11 @@ module.exports = {
 
 ---
 
-## Compilation Control {/*compilation-control*/}
+## コンパイル制御 {/*compilation-control*/}
 
-These options control *what* the compiler optimizes and *how* it selects components and hooks to compile.
+これらのオプションは、コンパイラが*何を*最適化し、*どのように*コンポーネントとフックを選択してコンパイルするかを制御します。
 
-* [`compilationMode`](/reference/react-compiler/compilationMode) controls the strategy for selecting functions to compile (e.g., all functions, only annotated ones, or intelligent detection).
+* [`compilationMode`](/reference/react-compiler/compilationMode) は、コンパイルする関数を選択する方法を制御します（例：すべての関数、アノテーション付きのもののみ、インテリジェント検出など）。
 
 ```js
 {
@@ -43,11 +43,11 @@ These options control *what* the compiler optimizes and *how* it selects compone
 
 ---
 
-## Version Compatibility {/*version-compatibility*/}
+## バージョン互換性 {/*version-compatibility*/}
 
-React version configuration ensures the compiler generates code compatible with your React version.
+React バージョンの設定により、使用中の React バージョンと互換性のあるコードをコンパイラが生成することが保証されます。
 
-[`target`](/reference/react-compiler/target) specifies which React version you're using (17, 18, or 19).
+[`target`](/reference/react-compiler/target) は、使用中の React バージョン（17、18、19）を指定します。
 
 ```js
 // For React 18 projects
@@ -58,11 +58,11 @@ React version configuration ensures the compiler generates code compatible with 
 
 ---
 
-## Error Handling {/*error-handling*/}
+## エラーハンドリング {/*error-handling*/}
 
-These options control how the compiler responds to code that doesn't follow the [Rules of React](/reference/rules).
+これらのオプションは、コンパイラが [React のルール](/reference/rules)に従わないコードをどのように処理するか制御します。
 
-[`panicThreshold`](/reference/react-compiler/panicThreshold) determines whether to fail the build or skip problematic components.
+[`panicThreshold`](/reference/react-compiler/panicThreshold) は、ビルドを失敗させるか、問題のあるコンポーネントをスキップするかを決定します。
 
 ```js
 // Recommended for production
@@ -73,11 +73,11 @@ These options control how the compiler responds to code that doesn't follow the 
 
 ---
 
-## Debugging {/*debugging*/}
+## デバッグ {/*debugging*/}
 
-Logging and analysis options help you understand what the compiler is doing.
+ログと解析オプションは、コンパイラが何を行っているのか理解するのに役立ちます。
 
-[`logger`](/reference/react-compiler/logger) provides custom logging for compilation events.
+[`logger`](/reference/react-compiler/logger) は、コンパイルイベントに対するカスタムのロギング手段を指定します。
 
 ```js
 {
@@ -93,11 +93,11 @@ Logging and analysis options help you understand what the compiler is doing.
 
 ---
 
-## Feature Flags {/*feature-flags*/}
+## フィーチャーフラグ {/*feature-flags*/}
 
-Conditional compilation lets you control when optimized code is used.
+条件付きコンパイルにより、最適化されたコードがいつ使用されるか制御することができます。
 
-[`gating`](/reference/react-compiler/gating) enables runtime feature flags for A/B testing or gradual rollouts.
+[`gating`](/reference/react-compiler/gating) は、A/B テストや段階的ロールアウトのためのランタイムフィーチャーフラグを有効にします。
 
 ```js
 {
@@ -110,11 +110,11 @@ Conditional compilation lets you control when optimized code is used.
 
 ---
 
-## Common Configuration Patterns {/*common-patterns*/}
+## 一般的な設定パターン {/*common-patterns*/}
 
-### Default configuration {/*default-configuration*/}
+### デフォルト設定 {/*default-configuration*/}
 
-For most React 19 applications, the compiler works without configuration:
+ほとんどの React 19 アプリケーションで、コンパイラは設定なしで動作します。
 
 ```js
 // babel.config.js
@@ -125,9 +125,9 @@ module.exports = {
 };
 ```
 
-### React 17/18 projects {/*react-17-18*/}
+### React 17/18 プロジェクト {/*react-17-18*/}
 
-Older React versions need the runtime package and target configuration:
+古い React バージョンでは、ランタイムパッケージとターゲット設定が必要です。
 
 ```bash
 npm install react-compiler-runtime@latest
@@ -139,9 +139,9 @@ npm install react-compiler-runtime@latest
 }
 ```
 
-### Incremental adoption {/*incremental-adoption*/}
+### 段階的な導入 {/*incremental-adoption*/}
 
-Start with specific directories and expand gradually:
+特定のディレクトリから始めて、段階的に拡張することができます。
 
 ```js
 {

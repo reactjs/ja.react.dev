@@ -4,7 +4,7 @@ title: compilationMode
 
 <Intro>
 
-The `compilationMode` option controls how the React Compiler selects which functions to compile.
+`compilationMode` オプションは、React Compiler がコンパイル対象の関数をどのように選択するか制御します。
 
 </Intro>
 
@@ -18,48 +18,48 @@ The `compilationMode` option controls how the React Compiler selects which funct
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `compilationMode` {/*compilationmode*/}
 
-Controls the strategy for determining which functions the React Compiler will optimize.
+React Compiler が最適化する関数を決定する方法を制御します。
 
-#### Type {/*type*/}
+#### 型 {/*type*/}
 
 ```
 'infer' | 'syntax' | 'annotation' | 'all'
 ```
 
-#### Default value {/*default-value*/}
+#### デフォルト値 {/*default-value*/}
 
 `'infer'`
 
-#### Options {/*options*/}
+#### 指定可能な値 {/*options*/}
 
-- **`'infer'`** (default): The compiler uses intelligent heuristics to identify React components and hooks:
-  - Functions explicitly annotated with `"use memo"` directive
-  - Functions that are named like components (PascalCase) or hooks (`use` prefix) AND create JSX and/or call other hooks
+- **`'infer'`**（デフォルト）: コンパイラは高度なヒューリスティックを使用して React コンポーネントとフックを識別します。
+  - `"use memo"` ディレクティブで明示的にアノテーションされた関数
+  - コンポーネント（パスカルケース）やフック（`use` プレフィックス）の規約で命名され、かつ、JSX の作成あるいは他のフックの呼び出しを行っている関数
 
-- **`'annotation'`**: Only compile functions explicitly marked with the `"use memo"` directive. Ideal for incremental adoption.
+- **`'annotation'`**: `"use memo"` ディレクティブで明示的にマークされた関数のみをコンパイルします。段階的導入に最適です。
 
-- **`'syntax'`**: Only compile components and hooks that use Flow's [component](https://flow.org/en/docs/react/component-syntax/) and [hook](https://flow.org/en/docs/react/hook-syntax/) syntax.
+- **`'syntax'`**: Flow の [component](https://flow.org/en/docs/react/component-syntax/) および [hook](https://flow.org/en/docs/react/hook-syntax/) 構文を使用するコンポーネントとフックのみをコンパイルします。
 
-- **`'all'`**: Compile all top-level functions. Not recommended as it may compile non-React functions.
+- **`'all'`**: すべてのトップレベル関数をコンパイルします。非 React 関数もコンパイルする可能性があるため推奨されません。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-- The `'infer'` mode requires functions to follow React naming conventions to be detected
-- Using `'all'` mode may negatively impact performance by compiling utility functions
-- The `'syntax'` mode requires Flow and won't work with TypeScript
-- Regardless of mode, functions with `"use no memo"` directive are always skipped
+- `'infer'` モードでは、関数が検出されるために React の命名規則に従う必要があります。
+- `'all'` モードを使用すると、ユーティリティ関数がコンパイルされるためにパフォーマンスに悪影響を与える可能性があります。
+- `'syntax'` モードでは Flow が必要で、TypeScript では動作しません。
+- モードに関係なく、`"use no memo"` ディレクティブを持つ関数は常にスキップされます。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Default inference mode {/*default-inference-mode*/}
+### デフォルト推論モード {/*default-inference-mode*/}
 
-The default `'infer'` mode works well for most codebases that follow React conventions:
+デフォルトの `'infer'` モードは、React の慣習に従う大抵のコードベースでうまく動作します。
 
 ```js
 {
@@ -67,7 +67,7 @@ The default `'infer'` mode works well for most codebases that follow React conve
 }
 ```
 
-With this mode, these functions will be compiled:
+このモードでは、以下の関数がコンパイルされます。
 
 ```js
 // ✅ Compiled: Named like a component + returns JSX
@@ -93,9 +93,9 @@ function calculateTotal(items) {
 }
 ```
 
-### Incremental adoption with annotation mode {/*incremental-adoption*/}
+### アノテーションモードを使用した段階的な導入 {/*incremental-adoption*/}
 
-For gradual migration, use `'annotation'` mode to only compile marked functions:
+段階的な移行では、マークされた関数のみをコンパイルするために `'annotation'` モードを使用してください。
 
 ```js
 {
@@ -103,7 +103,7 @@ For gradual migration, use `'annotation'` mode to only compile marked functions:
 }
 ```
 
-Then explicitly mark functions to compile:
+その後に、コンパイルする関数を明示的にマークしていきます。
 
 ```js
 // Only this function will be compiled
@@ -124,9 +124,9 @@ function NormalComponent(props) {
 }
 ```
 
-### Using Flow syntax mode {/*flow-syntax-mode*/}
+### Flow syntax モードの使用方法 {/*flow-syntax-mode*/}
 
-If your codebase uses Flow instead of TypeScript:
+コードベースで TypeScript ではなく Flow を使用している場合は、以下のようにします。
 
 ```js
 {
@@ -134,7 +134,7 @@ If your codebase uses Flow instead of TypeScript:
 }
 ```
 
-Then use Flow's component syntax:
+次に、Flow のコンポーネント構文を使用します。
 
 ```js
 // Compiled: Flow component syntax
@@ -154,9 +154,9 @@ function helper(data) {
 }
 ```
 
-### Opting out specific functions {/*opting-out*/}
+### 特定の関数のオプトアウト {/*opting-out*/}
 
-Regardless of compilation mode, use `"use no memo"` to skip compilation:
+コンパイルモードに関係なく、`"use no memo"` を使用してコンパイルをスキップすることができます。
 
 ```js
 function ComponentWithSideEffects() {
@@ -171,11 +171,11 @@ function ComponentWithSideEffects() {
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### Component not being compiled in infer mode {/*component-not-compiled-infer*/}
+### infer モードでコンポーネントがコンパイルされない {/*component-not-compiled-infer*/}
 
-In `'infer'` mode, ensure your component follows React conventions:
+`'infer'` モードでは、コンポーネントが React の慣習に従っていることを確認してください。
 
 ```js
 // ❌ Won't be compiled: lowercase name
