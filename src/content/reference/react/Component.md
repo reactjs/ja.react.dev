@@ -1271,6 +1271,16 @@ button { margin-left: 10px; }
 
 デフォルトでは、アプリケーションがレンダー中にエラーをスローすると、React はその UI を画面から削除します。これを防ぐために、UI を*エラーバウンダリ*にラップすることができます。エラーバウンダリは、クラッシュした部位の代わりに、例えばエラーメッセージなどのフォールバック UI を表示するための、特別なコンポーネントです。
 
+<Note>
+以下の場合、エラーバウンダリはエラーをキャッチしません。
+
+- イベントハンドラ[（詳細）](/learn/responding-to-events)
+- [サーバサイドレンダリング](/reference/react-dom/server)
+- エラーバウンダリ自身（子ではなく）でスローされたエラー
+- 非同期コード（例えば `setTimeout` や `requestAnimationFrame` のコールバック）。ただし [`useTransition`](/reference/react/useTransition) フックが返す [`startTransition`](/reference/react/useTransition#starttransition) 関数の使用は例外です。トランジション関数内でスローされたエラーはエラーバウンダリでキャッチされます[（詳細）](/reference/react/useTransition#displaying-an-error-to-users-with-error-boundary)。
+
+</Note>
+
 エラーバウンダリコンポーネントを実装するためには、エラーに反応して state を更新し、ユーザにエラーメッセージを表示するための [`static getDerivedStateFromError`](#static-getderivedstatefromerror) を提供する必要があります。またオプションで、例えばエラーを分析サービスに記録するなどの追加のロジックを追加するために [`componentDidCatch`](#componentdidcatch) を実装することもできます。
 
 [`captureOwnerStack`](/reference/react/captureOwnerStack) を使うことで開発中にオーナーのスタックトレースを含めることが可能です。
