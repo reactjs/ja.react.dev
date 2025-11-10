@@ -112,7 +112,11 @@ MC および Chief Vibes Officer を務めた [Ashley Narcisse](https://twitter.
 
 カンファレンスのウェブサイトを作成してくれた [Callstack](https://www.callstack.com/)、そしてカンファレンスのモバイルアプリを作成してくれた [Kadi Kraman](https://twitter.com/kadikraman) と [Expo](https://expo.dev/) チームに感謝します。
 
+<<<<<<< HEAD
 イベントを実現してくださったすべてのスポンサーに感謝します：[Remix](https://remix.run/)、[Amazon](https://developer.amazon.com/apps-and-games?cmp=US_2024_05_3P_React-Conf-2024&ch=prtnr&chlast=prtnr&pub=ref&publast=ref&type=org&typelast=org)、[MUI](https://mui.com/)、[Sentry](https://sentry.io/for/react/?utm_source=sponsored-conf&utm_medium=sponsored-event&utm_campaign=frontend-fy25q2-evergreen&utm_content=logo-reactconf2024-learnmore)、[Abbott](https://www.jobs.abbott/software)、[Expo](https://expo.dev/)、[RedwoodJS](https://redwoodjs.com/)、[Vercel](https://vercel.com)。
+=======
+Thank you to all the sponsors who made the event possible: [Remix](https://remix.run/), [Amazon](https://developer.amazon.com/apps-and-games?cmp=US_2024_05_3P_React-Conf-2024&ch=prtnr&chlast=prtnr&pub=ref&publast=ref&type=org&typelast=org), [MUI](https://mui.com/), [Sentry](https://sentry.io/for/react/?utm_source=sponsored-conf&utm_medium=sponsored-event&utm_campaign=frontend-fy25q2-evergreen&utm_content=logo-reactconf2024-learnmore), [Abbott](https://www.jobs.abbott/software), [Expo](https://expo.dev/), [RedwoodJS](https://rwsdk.com/), and [Vercel](https://vercel.com).
+>>>>>>> d271a7ac11d2bf0d6e95ebdfacaf1038421f9be0
 
 ビジュアル、ステージ、サウンドを担当していただいた AV チーム、そして私たちをホストしていただいた Westin Hotel に感謝します。
 
