@@ -152,11 +152,7 @@ DOM イベントをディスパッチできるのは、DOM コンテナがドキ
 
 ## トラブルシューティング {/*troubleshooting*/}
 
-<<<<<<< HEAD
-### エラー："The current testing environment is not configured to support act"(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
-=======
-### I'm getting an error: "The current testing environment is not configured to support act(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
->>>>>>> d271a7ac11d2bf0d6e95ebdfacaf1038421f9be0
+### エラー："The current testing environment is not configured to support act(...)" {/*error-the-current-testing-environment-is-not-configured-to-support-act*/}
 
 `act` を使用するには、テスト環境で `global.IS_REACT_ACT_ENVIRONMENT=true` を設定する必要があります。これは `act` が正しい環境でのみ使用されることを保証するためです。
 
