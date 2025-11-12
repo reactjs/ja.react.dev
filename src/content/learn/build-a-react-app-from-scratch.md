@@ -34,7 +34,7 @@ React の始め方としてゼロからスタートするのは簡単ですが�
 [Vite](https://vite.dev/) は、モダンなウェブプロジェクトのために素早くかつスリムな開発体験を提供することを目指したビルドツールです。
 
 <TerminalBlock>
-{`npm create vite@latest my-app -- --template react`}
+{`npm create vite@latest my-app -- --template react-ts`}
 </TerminalBlock>
 
 Vite はデフォルトで適切な設定がされた、使い方に規約がある (opinionated) ツールです。Vite には、ファストリフレッシュ、JSX、Babel/SWC、その他の一般的な機能をサポートする豊富なプラグインのエコシステムがあります。Vite の [React プラグイン](https://vite.dev/plugins/#vitejs-plugin-react)や [React SWC プラグイン](https://vite.dev/plugins/#vitejs-plugin-react-swc)、[React SSR のサンプルプロジェクト](https://vite.dev/guide/ssr.html#example-projects) を参照して始めてみてください。
@@ -97,7 +97,7 @@ React エコシステムには、これらの問題に対するツールがた�
 
 ほとんどのデータをバックエンドや REST スタイルの API から取得している場合、以下のライブラリの使用をお勧めします。
 
-- [React Query](https://react-query.tanstack.com/)
+- [TanStack Query](https://tanstack.com/query/)
 - [SWR](https://swr.vercel.app/)
 - [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
 

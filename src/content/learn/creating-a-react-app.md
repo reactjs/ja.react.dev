@@ -63,8 +63,8 @@ Expo は [Expo（社名）](https://expo.dev/about) によってメンテナン�
 
 私たちのフルスタック React ビジョンに向けて取り組んでいる他の新進のフレームワークも存在します。
 
-- [TanStack Start (Beta)](https://tanstack.com/): TanStack Start は、TanStack Router を活用したフルスタック React フレームワークです。Nitro や Vite などのツールを使用して、フルドキュメント SSR、ストリーミング、サーバ関数、バンドル機能などを提供します。
-- [RedwoodJS](https://redwoodjs.com/): Redwood は、多くのプリインストールされたパッケージと設定を備えたフルスタック React フレームワークで、フルスタックウェブアプリケーションを簡単に構築できます。
+- [TanStack Start (Beta)](https://tanstack.com/start/): TanStack Start は、TanStack Router を活用したフルスタック React フレームワークです。Nitro や Vite などのツールを使用して、フルドキュメント SSR、ストリーミング、サーバ関数、バンドル機能などを提供します。
+- [RedwoodSDK](https://rwsdk.com/): Redwood は、多くのプリインストールされたパッケージと設定を備えたフルスタック React フレームワークで、フルスタックウェブアプリケーションを簡単に構築できます。
 
 <DeepDive>
 

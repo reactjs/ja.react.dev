@@ -28,6 +28,7 @@ React DOM には（ブラウザの DOM 環境で動作する）ウェブアプ�
 * [API](/reference/react-dom) - ウェブアプリケーションでのみ用いられる `react-dom` パッケージのメソッド
 * [クライアント API](/reference/react-dom/client) - クライアント（ブラウザ）で React コンポーネントをレンダーするための `react-dom/client` API 群
 * [サーバ API](/reference/react-dom/server) - サーバで React コンポーネントを HTML にレンダーするための `react-dom/server` API 群
+* [静的 API](/reference/react-dom/static) - React コンポーネントから静的 HTML を生成するための `react-dom/static` API 群
 
 ## React Compiler {/*react-compiler*/}
 

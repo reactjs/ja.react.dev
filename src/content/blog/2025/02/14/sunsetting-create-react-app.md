@@ -177,7 +177,7 @@ export default function Dashboard() {
 }
 ```
 
-エフェクト内でフェッチするということは、ユーザがコンテンツを見るまでの待ち時間が長くなるということです。データはもっと早く取得できていたかもしれないのです。これを解決するために、[React Query](https://react-query.tanstack.com/)、[SWR](https://swr.vercel.app/)、[Apollo](https://www.apollographql.com/docs/react)、[Relay](https://relay.dev/) などのデータフェッチライブラリを使用すると、コンポーネントのレンダーより前にデータをプリフェッチできるオプションが使用可能です。
+エフェクト内でフェッチするということは、ユーザがコンテンツを見るまでの待ち時間が長くなるということです。データはもっと早く取得できていたかもしれないのです。これを解決するために、[TanStack Query](https://tanstack.com/query/)、[SWR](https://swr.vercel.app/)、[Apollo](https://www.apollographql.com/docs/react)、[Relay](https://relay.dev/) などのデータフェッチライブラリを使用すると、コンポーネントのレンダーより前にデータをプリフェッチできるオプションが使用可能です。
 
 これらのライブラリは、ルートのレベルで依存データを指定するための、「ルーティングローダ」パターンと統合することで最適に機能します。これによりルータがデータフェッチを最適化可能です。
 
