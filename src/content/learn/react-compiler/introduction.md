@@ -153,7 +153,7 @@ function TableContainer({ items }) {
 
 ### 安全に使用できるか？ {/*is-it-safe-to-use*/}
 
-React Compiler は現在安定板であり、本番環境で広範囲にテストされています。Meta などの企業で本番環境で使用されていますが、あなたのアプリケーションでコンパイラを導入できるかどうかは、コードベースの健全性と [React のルール](/reference/rules)をどの程度遵守しているかに依存します。
+React Compiler は現在安定版であり、本番環境で広範囲にテストされています。Meta などの企業で本番環境で使用されていますが、あなたのアプリケーションでコンパイラを導入できるかどうかは、コードベースの健全性と [React のルール](/reference/rules)をどの程度遵守しているかに依存します。
 
 ## どのビルドツールがサポートされているか？ {/*what-build-tools-are-supported*/}
 
