@@ -69,17 +69,17 @@ _この例を [React Compiler Playground](https://playground.react.dev/#N4Igzg9g
 
 npm
 <TerminalBlock>
-{`npm install --save-dev --save-exact babel-plugin-react-compiler@latest`}
+npm install --save-dev --save-exact babel-plugin-react-compiler@latest
 </TerminalBlock>
 
 pnpm
 <TerminalBlock>
-{`pnpm add --save-dev --save-exact babel-plugin-react-compiler@latest`}
+pnpm add --save-dev --save-exact babel-plugin-react-compiler@latest
 </TerminalBlock>
 
 yarn
 <TerminalBlock>
-{`yarn add --dev --exact babel-plugin-react-compiler@latest`}
+yarn add --dev --exact babel-plugin-react-compiler@latest
 </TerminalBlock>
 
 この安定版リリースの一環として、React Compiler をプロジェクトに追加しやすくするための作業や、コンパイラがメモ化を行う方法に関しての最適化を行ってきました。React Compiler はオプショナルチェーンをサポートし、配列の添字を依存値として利用できるようになりました。これらの改善により、最終的な再レンダーが減少してよりレスポンシブな UI が実現される一方で、開発者が自然で宣言的なコードを書き続けることができます。
@@ -101,17 +101,17 @@ React Compiler には、[React のルール](/reference/rules)に違反したコ
 
 npm
 <TerminalBlock>
-{`npm install --save-dev eslint-plugin-react-hooks@latest`}
+npm install --save-dev eslint-plugin-react-hooks@latest
 </TerminalBlock>
 
 pnpm
 <TerminalBlock>
-{`pnpm add --save-dev eslint-plugin-react-hooks@latest`}
+pnpm add --save-dev eslint-plugin-react-hooks@latest
 </TerminalBlock>
 
 yarn
 <TerminalBlock>
-{`yarn add --dev eslint-plugin-react-hooks@latest`}
+yarn add --dev eslint-plugin-react-hooks@latest
 </TerminalBlock>
 
 ```js {6}
@@ -153,19 +153,19 @@ Expo、Vite、Next.js のチームと提携し、新規アプリ作成時のフ�
 [Expo SDK 54](https://docs.expo.dev/guides/react-compiler/) 以降では、デフォルトでコンパイラが有効になっているため、新しいアプリが最初から自動的にコンパイラを活用できるようになります。
 
 <TerminalBlock>
-{`npx create-expo-app@latest`}
+npx create-expo-app@latest
 </TerminalBlock>
 
 [Vite](https://vite.dev/guide/) および [Next.js](https://nextjs.org/docs/app/api-reference/cli/create-next-app) のユーザは、`create-vite` および `create-next-app` でコンパイラが有効化されたテンプレートを選択できます。
 
 <TerminalBlock>
-{`npm create vite@latest`}
+npm create vite@latest
 </TerminalBlock>
 
 <br />
 
 <TerminalBlock>
-{`npx create-next-app@latest`}
+npx create-next-app@latest
 </TerminalBlock>
 
 ## React Compiler を段階的に採用する {/*adopt-react-compiler-incrementally*/}

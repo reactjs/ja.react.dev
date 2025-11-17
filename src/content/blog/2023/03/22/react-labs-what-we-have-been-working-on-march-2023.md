@@ -31,7 +31,11 @@ RSC は、サーバセントリックなマルチページアプリケーショ�
 
 データフェッチがかなり整理されましたので、クライアントからサーバという逆方向へのデータ送信を行って、データベース更新やフォームの実装ができる方法についても検討しています。サーバ/クライアントの境界を越えて Server Action 関数を渡せるようにすることで、クライアントがそれを呼び出し、シームレスな RPC を実現できるようする、という方法を考えています。Server Action により、JavaScript が読み込まれる前に段階的に動作するようになるフォームを提供することも可能です。
 
+<<<<<<< HEAD
 React Server Components は [Next.js App Router](/learn/start-a-new-react-project#nextjs-app-router) でリリースされました。これは RSC をプリミティブとして完全採用し深く統合を行ったルータのデモとなっていますが、これが RSC 互換ルータやフレームワークを構築するための唯一の方法というわけではありません。RSC 仕様が提供するものと、その実装が提供するものとの間には明確な区切りがあります。React Server Components は、互換のある複数の React フレームワーク間で動作する、コンポーネント仕様として作られています。
+=======
+React Server Components has shipped in [Next.js App Router](/learn/creating-a-react-app#nextjs-app-router). This showcases a deep integration of a router that really buys into RSC as a primitive, but it's not the only way to build a RSC-compatible router and framework. There's a clear separation for features provided by the RSC spec and implementation. React Server Components is meant as a spec for components that work across compatible React frameworks.
+>>>>>>> 2534424ec6c433cc2c811d5a0bd5a65b75efa5f0
 
 一般的には既存のフレームワークを使用することをお勧めしますが、自分自身のカスタムフレームワークの構築が必要な場合は、それも可能です。独自の RSC 互換フレームワークの構築は、主にバンドラとの深い統合が必要であるという理由により、我々が望むほど簡単なものにはなっていません。現行世代のバンドラはクライアントでの使用には適していますが、サーバとクライアントをまたいだ単一のモジュールグラフの分割を行うことを優先的なサポート項目として設計されてはいません。これが、現在 RSC のプリミティブを組み込んでもらうために、バンドラ開発者と直接協力している理由です。
 
@@ -92,7 +96,11 @@ React コンポーネント内のプレーンな JavaScript をリアクティ�
 
 ## トランジショントレーシング {/*transition-tracing*/}
 
+<<<<<<< HEAD
 Transition Tracing API により、[React のトランジション](/reference/react/useTransition)が遅くなったことを検出し、なぜ遅くなるのかを調査することができます。前回のお知らせ以降、API の初期設計を完了し、[RFC](https://github.com/reactjs/rfcs/pull/238) を公開しました。基本的な機能も実装されています。現在、プロジェクトは保留中です。RFC に対するフィードバックを歓迎します。React のパフォーマンス測定ツールをより良くするために開発を再開できるようになることを楽しみにしています。これは、[Next.js App Router](/learn/start-a-new-react-project#nextjs-app-router) のように React トランジション上に構築されたルータでは、特に役立ちます。
+=======
+The Transition Tracing API lets you detect when [React Transitions](/reference/react/useTransition) become slower and investigate why they may be slow. Following our last update, we have completed the initial design of the API and published an [RFC](https://github.com/reactjs/rfcs/pull/238). The basic capabilities have also been implemented. The project is currently on hold. We welcome feedback on the RFC and look forward to resuming its development to provide a better performance measurement tool for React. This will be particularly useful with routers built on top of React Transitions, like the [Next.js App Router](/learn/creating-a-react-app#nextjs-app-router).
+>>>>>>> 2534424ec6c433cc2c811d5a0bd5a65b75efa5f0
 
 * * *
 このページでのアップデートに加えて、私たちのチームは最近、コミュニティのポッドキャストやライブストリームにゲスト出演し、取り組みについてより多くのことをお話しし、質問に答える機会がありました。

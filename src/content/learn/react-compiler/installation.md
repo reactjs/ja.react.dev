@@ -114,7 +114,7 @@ export default defineConfig({
 `vite-plugin-babel` をインストールし、コンパイラの Babel プラグインを追加します。
 
 <TerminalBlock>
-{`npm install vite-plugin-babel`}
+npm install vite-plugin-babel
 </TerminalBlock>
 
 ```js {3-4,16}
