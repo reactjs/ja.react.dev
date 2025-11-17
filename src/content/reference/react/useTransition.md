@@ -95,11 +95,7 @@ function SubmitButton({ submitAction }) {
 
 #### 引数 {/*starttransition-parameters*/}
 
-<<<<<<< HEAD
-* `action`: 1 つ以上の [`set` 関数](/reference/react/useState#setstate)を呼び出して state を更新する関数。React は引数なしで直ちに `action` を呼び出し、`action` 関数呼び出し中に同期的にスケジュールされたすべての state 更新をトランジションとしてマークします。`action` 内で await されている非同期関数のコールもトランジションの一部ではありますが、現時点では `await` の後に来る `set` 関数は別の `startTransition` にラップする必要があります（[トラブルシューティング](#react-doesnt-treat-my-state-update-after-await-as-a-transition)参照）。トランジションとしてマークされた state の更新は[ノンブロッキング](#marking-a-state-update-as-a-non-blocking-transition)になり、[不要なローディングインジケータを表示しない](#preventing-unwanted-loading-indicators)ようになります。
-=======
-* `action`: A function that updates some state by calling one or more [`set` functions](/reference/react/useState#setstate). React calls `action` immediately with no parameters and marks all state updates scheduled synchronously during the `action` function call as Transitions. Any async calls that are awaited in the `action` will be included in the Transition, but currently require wrapping any `set` functions after the `await` in an additional `startTransition` (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)). State updates marked as Transitions will be [non-blocking](#perform-non-blocking-updates-with-actions) and [will not display unwanted loading indicators](#preventing-unwanted-loading-indicators).
->>>>>>> 2534424ec6c433cc2c811d5a0bd5a65b75efa5f0
+* `action`: 1 つ以上の [`set` 関数](/reference/react/useState#setstate)を呼び出して state を更新する関数。React は引数なしで直ちに `action` を呼び出し、`action` 関数呼び出し中に同期的にスケジュールされたすべての state 更新をトランジションとしてマークします。`action` 内で await されている非同期関数のコールもトランジションの一部ではありますが、現時点では `await` の後に来る `set` 関数は別の `startTransition` にラップする必要があります（[トラブルシューティング](#react-doesnt-treat-my-state-update-after-await-as-a-transition)参照）。トランジションとしてマークされた state の更新は[ノンブロッキング](#perform-non-blocking-updates-with-actions)になり、[不要なローディングインジケータを表示しない](#preventing-unwanted-loading-indicators)ようになります。
 
 #### 返り値 {/*starttransition-returns*/}
 
@@ -1250,15 +1246,9 @@ function Router() {
 
 これが推奨されるのは以下の 3 つの理由からです：
 
-<<<<<<< HEAD
-- [トランジションは中断可能](#marking-a-state-update-as-a-non-blocking-transition)であるため、ユーザは再レンダーの完了を待たずにクリックしてページから離れることができます。
+- [トランジションは中断可能](#perform-non-blocking-updates-with-actions)であるため、ユーザは再レンダーの完了を待たずにクリックしてページから離れることができます。
 - [トランジションは不要なローディングインジケータを防ぐ](#preventing-unwanted-loading-indicators)ため、ユーザがナビゲーション時の不快なちらつきを避けることができます。
 - [トランジションはすべての保留中のアクションを待機します](#perform-non-blocking-updates-with-actions)。これにより、新しいページが表示される前に副作用の完了をユーザが待つことができます。
-=======
-- [Transitions are interruptible,](#perform-non-blocking-updates-with-actions) which lets the user click away without waiting for the re-render to complete.
-- [Transitions prevent unwanted loading indicators,](#preventing-unwanted-loading-indicators) which lets the user avoid jarring jumps on navigation.
-- [Transitions wait for all pending actions](#perform-non-blocking-updates-with-actions) which lets the user wait for side effects to complete before the new page is shown.
->>>>>>> 2534424ec6c433cc2c811d5a0bd5a65b75efa5f0
 
 以下は、ナビゲーションにトランジションを使用した簡易的なルータの例です。
 

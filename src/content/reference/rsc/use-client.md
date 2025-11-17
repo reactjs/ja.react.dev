@@ -41,11 +41,7 @@ export default function RichTextEditor({ timestamp, text }) {
 }
 ```
 
-<<<<<<< HEAD
-`'use client'` でマークされているファイルがサーバコンポーネントからインポートされた場合、[互換性のあるバンドラ](/learn/start-a-new-react-project#full-stack-frameworks)は当該モジュールのインポートを、サーバで実行されるコードとクライアントで実行されるコードの境界として扱います。
-=======
-When a file marked with `'use client'` is imported from a Server Component, [compatible bundlers](/learn/creating-a-react-app#full-stack-frameworks) will treat the module import as a boundary between server-run and client-run code.
->>>>>>> 2534424ec6c433cc2c811d5a0bd5a65b75efa5f0
+`'use client'` でマークされているファイルがサーバコンポーネントからインポートされた場合、[互換性のあるバンドラ](/learn/creating-a-react-app#full-stack-frameworks)は当該モジュールのインポートを、サーバで実行されるコードとクライアントで実行されるコードの境界として扱います。
 
 上記では `formatDate` と `Button` は `RichTextEditor` が依存するモジュールですので、これらのモジュール自体に `'use client'` ディレクティブが含まれているかどうかに関わらず、これらもクライアントで評価されます。ある単一のモジュールが、サーバコードからインポートされた場合はサーバで、クライアントコードからインポートされた場合はクライアントで評価される場合があることに注意してください。
 

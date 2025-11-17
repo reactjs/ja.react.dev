@@ -10,11 +10,7 @@ title: "ディレクティブ"
 
 <Intro>
 
-<<<<<<< HEAD
-ディレクティブによって、[React Server Components 互換バンドラ](/learn/start-a-new-react-project#full-stack-frameworks)に指示を与えます。
-=======
-Directives provide instructions to [bundlers compatible with React Server Components](/learn/creating-a-react-app#full-stack-frameworks).
->>>>>>> 2534424ec6c433cc2c811d5a0bd5a65b75efa5f0
+ディレクティブによって、[React Server Components 互換バンドラ](/learn/creating-a-react-app#full-stack-frameworks)に指示を与えます。
 
 </Intro>
 
