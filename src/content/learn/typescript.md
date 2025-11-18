@@ -20,7 +20,7 @@ TypeScript は JavaScript コードベースに型定義を追加するための
 
 ## インストール {/*installation*/}
 
-すべての[本番環境向け React フレームワーク](/learn/start-a-new-react-project#full-stack-frameworks)は TypeScript の使用をサポートしています。フレームワーク個別のガイドに従ってインストールを行ってください。
+すべての[本番環境向け React フレームワーク](/learn/creating-a-react-app#full-stack-frameworks)は TypeScript の使用をサポートしています。フレームワーク個別のガイドに従ってインストールを行ってください。
 
 - [Next.js](https://nextjs.org/docs/app/building-your-application/configuring/typescript)
 - [Remix](https://remix.run/docs/en/1.19.2/guides/typescript)

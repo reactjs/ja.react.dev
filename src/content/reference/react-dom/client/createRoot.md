@@ -209,7 +209,7 @@ HTML が空の場合、アプリの JavaScript コードが読み込まれて実
 <div id="root"></div>
 ```
 
-これは非常に遅く感じられることがあります！ これを解決するために、[サーバサイドで、あるいはビルド時に](/reference/react-dom/server)初期 HTML をコンポーネントから生成することができます。これにより、訪問者は JavaScript コードが読み込まれる前にテキストを読んだり、画像を見たり、リンクをクリックしたりすることができます。この最適化を自動で行う[フレームワークの使用](/learn/start-a-new-react-project#full-stack-frameworks)を推奨します。実行タイミングにより、この技術は*サーバサイドレンダリング (server-side rendering; SSR)* または *静的サイト生成 (static site generation; SSG)* と呼ばれます。
+これは非常に遅く感じられることがあります！ これを解決するために、[サーバサイドで、あるいはビルド時に](/reference/react-dom/server)初期 HTML をコンポーネントから生成することができます。これにより、訪問者は JavaScript コードが読み込まれる前にテキストを読んだり、画像を見たり、リンクをクリックしたりすることができます。この最適化を自動で行う[フレームワークの使用](/learn/creating-a-react-app#full-stack-frameworks)を推奨します。実行タイミングにより、この技術は*サーバサイドレンダリング (server-side rendering; SSR)* または *静的サイト生成 (static site generation; SSG)* と呼ばれます。
 
 </Note>
 

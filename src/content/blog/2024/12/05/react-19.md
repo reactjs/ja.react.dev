@@ -355,7 +355,7 @@ async function handler(request) {
 
 サーバコンポーネントは、クライアントアプリケーションや SSR サーバとは別の環境で、バンドル前にコンポーネントを事前レンダーするための新しいオプションです。React Server Components の "server" とはこの別の環境を指しています。サーバコンポーネントは、CI サーバでビルド時に一度だけ実行することも、ウェブサーバを使用してリクエストごとに実行することもできます。
 
-React 19 には、Canary チャンネルにあったすべての React Server Components の機能が含まれています。これにより、サーバコンポーネントを使用するライブラリは、React 19 を peer dependency としてターゲットにすることができ、`react-server` [エクスポート条件](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#react-server-conditional-exports) を用いて[フルスタック React アーキテクチャ](/learn/start-a-new-react-project#which-features-make-up-the-react-teams-full-stack-architecture-vision)をサポートするフレームワークで使用できます。
+React 19 には、Canary チャンネルにあったすべての React Server Components の機能が含まれています。これにより、サーバコンポーネントを使用するライブラリは、React 19 を peer dependency としてターゲットにすることができ、`react-server` [エクスポート条件](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#react-server-conditional-exports) を用いて[フルスタック React アーキテクチャ](/learn/creating-a-react-app#which-features-make-up-the-react-teams-full-stack-architecture-vision)をサポートするフレームワークで使用できます。
 
 
 <Note>

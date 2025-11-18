@@ -95,7 +95,7 @@ function SubmitButton({ submitAction }) {
 
 #### 引数 {/*starttransition-parameters*/}
 
-* `action`: 1 つ以上の [`set` 関数](/reference/react/useState#setstate)を呼び出して state を更新する関数。React は引数なしで直ちに `action` を呼び出し、`action` 関数呼び出し中に同期的にスケジュールされたすべての state 更新をトランジションとしてマークします。`action` 内で await されている非同期関数のコールもトランジションの一部ではありますが、現時点では `await` の後に来る `set` 関数は別の `startTransition` にラップする必要があります（[トラブルシューティング](#react-doesnt-treat-my-state-update-after-await-as-a-transition)参照）。トランジションとしてマークされた state の更新は[ノンブロッキング](#marking-a-state-update-as-a-non-blocking-transition)になり、[不要なローディングインジケータを表示しない](#preventing-unwanted-loading-indicators)ようになります。
+* `action`: 1 つ以上の [`set` 関数](/reference/react/useState#setstate)を呼び出して state を更新する関数。React は引数なしで直ちに `action` を呼び出し、`action` 関数呼び出し中に同期的にスケジュールされたすべての state 更新をトランジションとしてマークします。`action` 内で await されている非同期関数のコールもトランジションの一部ではありますが、現時点では `await` の後に来る `set` 関数は別の `startTransition` にラップする必要があります（[トラブルシューティング](#react-doesnt-treat-my-state-update-after-await-as-a-transition)参照）。トランジションとしてマークされた state の更新は[ノンブロッキング](#perform-non-blocking-updates-with-actions)になり、[不要なローディングインジケータを表示しない](#preventing-unwanted-loading-indicators)ようになります。
 
 #### 返り値 {/*starttransition-returns*/}
 
@@ -1246,7 +1246,7 @@ function Router() {
 
 これが推奨されるのは以下の 3 つの理由からです：
 
-- [トランジションは中断可能](#marking-a-state-update-as-a-non-blocking-transition)であるため、ユーザは再レンダーの完了を待たずにクリックしてページから離れることができます。
+- [トランジションは中断可能](#perform-non-blocking-updates-with-actions)であるため、ユーザは再レンダーの完了を待たずにクリックしてページから離れることができます。
 - [トランジションは不要なローディングインジケータを防ぐ](#preventing-unwanted-loading-indicators)ため、ユーザがナビゲーション時の不快なちらつきを避けることができます。
 - [トランジションはすべての保留中のアクションを待機します](#perform-non-blocking-updates-with-actions)。これにより、新しいページが表示される前に副作用の完了をユーザが待つことができます。
 
