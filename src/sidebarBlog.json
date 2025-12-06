@@ -12,6 +12,13 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "React サーバーコンポーネントにおける重大なセキュリティ脆弱性",
+          "titleForHomepage": "React Server Components の脆弱性",
+          "icon": "blog",
+          "date": "December 03, 2025",
+          "path": "/blog/2025/12/03/critical-security-vulnerability-in-react-server-components"
+        },
+        {
           "title": "React Conf 2025 振り返り",
           "titleForHomepage": "React Conf 2025 振り返り",
           "icon": "blog",
