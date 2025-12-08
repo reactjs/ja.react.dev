@@ -12,8 +12,20 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+<<<<<<< HEAD
           "title": "React Conf 2025 振り返り",
           "titleForHomepage": "React Conf 2025 振り返り",
+=======
+          "title": "Critical Security Vulnerability in React Server Components",
+          "titleForHomepage": "Vulnerability in React Server Components",
+          "icon": "blog",
+          "date": "December 03, 2025",
+          "path": "/blog/2025/12/03/critical-security-vulnerability-in-react-server-components"
+        },
+        {
+          "title": "React Conf 2025 Recap",
+          "titleForHomepage": "React Conf 2025 Recap",
+>>>>>>> e22544e68d6fffda33332771efe27034739f35a4
           "icon": "blog",
           "date": "October 16, 2025",
           "path": "/blog/2025/10/16/react-conf-2025-recap"

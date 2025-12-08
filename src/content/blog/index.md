@@ -16,7 +16,17 @@ Bluesky の [@react.dev](https://bsky.app/profile/react.dev) や Twitter の [@r
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<<<<<<< HEAD
 <BlogCard title="React Conf 2025 振り返り" date="October 16, 2025" url="/blog/2025/10/16/react-conf-2025-recap">
+=======
+<BlogCard title="Critical Security Vulnerability in React Server Components" date="December 3, 2025" url="/blog/2025/12/03/critical-security-vulnerability-in-react-server-components">
+
+There is an unauthenticated remote code execution vulnerability in React Server Components. A fix has been published in versions 19.0.1, 19.1.2, and 19.2.1. We recommend upgrading immediately.
+
+</BlogCard>
+
+<BlogCard title="React Conf 2025 Recap" date="October 16, 2025" url="/blog/2025/10/16/react-conf-2025-recap">
+>>>>>>> e22544e68d6fffda33332771efe27034739f35a4
 
 先週 React Conf 2025 が開催されました。この投稿では、イベントでの講演と発表内容をまとめます。
 
