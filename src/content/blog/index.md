@@ -18,7 +18,7 @@ Bluesky の [@react.dev](https://bsky.app/profile/react.dev) や Twitter の [@r
 
 <BlogCard title="React Server Components における重大なセキュリティ脆弱性" date="December 3, 2025" url="/blog/2025/12/03/critical-security-vulnerability-in-react-server-components">
 
-React Server Components に、認証不要のリモートコード実行の脆弱性があります。バージョン 19.0.1、19.1.2、19.2.1 で修正が公開されました。直ちにアップグレードすることを推奨します。
+React Server Components に、認証不要のリモートコード実行の脆弱性が存在します。バージョン 19.0.1、19.1.2、19.2.1 で修正が公開されました。直ちにアップグレードすることを推奨します。
 
 </BlogCard>
 
