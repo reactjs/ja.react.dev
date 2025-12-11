@@ -11,7 +11,7 @@ Bluesky の [@react.dev](https://bsky.app/profile/react.dev) や Twitter の [@r
 </Intro>
 
 <Note>
-日本語版サイト (ja.react.dev) のブログセクションへの記事掲載には英語版サイトと比べてタイムラグがあります。 最新のブログ記事は英語版でご確認ください。
+日本語版サイト (ja.react.dev) のブログセクションへの記事掲載には英語版サイトと比べてタイムラグがあります。 最新のブログ記事は[英語版](https://react.dev/blog)でご確認ください。
 </Note>
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
