@@ -16,7 +16,17 @@ Bluesky の [@react.dev](https://bsky.app/profile/react.dev) や Twitter の [@r
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<<<<<<< HEAD
 <BlogCard title="React Server Components における重大なセキュリティ脆弱性" date="December 3, 2025" url="/blog/2025/12/03/critical-security-vulnerability-in-react-server-components">
+=======
+<BlogCard title="Denial of Service and Source Code Exposure in React Server Components" date="December 11, 2025" url="/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components">
+
+Security researchers have found and disclosed two additional vulnerabilities in React Server Components while attempting to exploit the patches in last week’s critical vulnerability...
+
+</BlogCard>
+
+<BlogCard title="Critical Security Vulnerability in React Server Components" date="December 3, 2025" url="/blog/2025/12/03/critical-security-vulnerability-in-react-server-components">
+>>>>>>> 2da4f7fbd90ddc09835c9f85d61fd5644a271abc
 
 React Server Components に、認証不要のリモートコード実行の脆弱性が存在します。バージョン 19.0.1、19.1.2、19.2.1 で修正が公開されました。直ちにアップグレードすることを推奨します。
 
