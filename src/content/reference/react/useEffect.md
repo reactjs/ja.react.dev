@@ -44,9 +44,9 @@ function ChatRoom({ roomId }) {
 
 #### 引数 {/*parameters*/}
 
-* `setup`: エフェクトのロジックが記述された関数です。このセットアップ関数は、オプションで*クリーンアップ*関数を返すことができます。コンポーネントが初めて DOM に追加されると、React はセットアップ関数を実行します。依存配列 (dependencies) が変更された再レンダー時には、React はまず古い値を使ってクリーンアップ関数（あれば）を実行し、次に新しい値を使ってセットアップ関数を実行します。コンポーネントが DOM から削除された後、React はクリーンアップ関数を最後にもう一度実行します。
+* `setup`: エフェクトのロジックが記述された関数です。このセットアップ関数は、オプションで*クリーンアップ*関数を返すことができます。[コンポーネントがコミットされる](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom)と、React はセットアップ関数を実行します。依存配列 (dependencies) が変更された次のコミット時には、React はまず古い値を使ってクリーンアップ関数（あれば）を実行し、次に新しい値を使ってセットアップ関数を実行します。コンポーネントが DOM から削除された後、React はクリーンアップ関数を最後にもう一度実行します。
  
-* **省略可能** `dependencies`: `setup` コード内で参照されるすべてのリアクティブな値のリストです。リアクティブな値には、props、state、コンポーネント本体に直接宣言されたすべての変数および関数が含まれます。リンタが [React 用に設定されている場合](/learn/editor-setup#linting)、すべてのリアクティブな値が依存値として正しく指定されているか確認できます。依存値のリストは要素数が一定である必要があり、`[dep1, dep2, dep3]` のようにインラインで記述する必要があります。React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を使った比較で、それぞれの依存値を以前の値と比較します。この引数を省略すると、エフェクトはコンポーネントの毎回のレンダー後に再実行されます。[依存値の配列を渡す場合と空の配列を渡す場合、および何も渡さない場合の違い](#examples-dependencies)を確認してください。
+* **省略可能** `dependencies`: `setup` コード内で参照されるすべてのリアクティブな値のリストです。リアクティブな値には、props、state、コンポーネント本体に直接宣言されたすべての変数および関数が含まれます。リンタが [React 用に設定されている場合](/learn/editor-setup#linting)、すべてのリアクティブな値が依存値として正しく指定されているか確認できます。依存値のリストは要素数が一定である必要があり、`[dep1, dep2, dep3]` のようにインラインで記述する必要があります。React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を使った比較で、それぞれの依存値を以前の値と比較します。この引数を省略すると、エフェクトはコンポーネントの毎回のコミット後に再実行されます。[依存値の配列を渡す場合と空の配列を渡す場合、および何も渡さない場合の違い](#examples-dependencies)を確認してください。
 
 #### 返り値 {/*returns*/}
 
@@ -107,14 +107,14 @@ function ChatRoom({ roomId }) {
 **React は必要に応じてセットアップ関数とクリーンアップ関数を呼び出し、これは複数回行われることがあります。**
 
 1. コンポーネントがページに追加（*マウント*）されると、<CodeStep step={1}>セットアップコード</CodeStep>が実行されます。
-2. <CodeStep step={3}>依存値</CodeStep>が変更された上でコンポーネントが再レンダーされる度に：
+2. <CodeStep step={3}>依存値</CodeStep>が変更された上でコンポーネントがコミットされる度に：
    - まず、古い props と state で<CodeStep step={2}>クリーンアップコード</CodeStep>が実行されます。
    - 次に、新しい props と state で<CodeStep step={1}>セットアップコード</CodeStep>が実行されます。
 3. コンポーネントがページから削除（*アンマウント*）されると、最後に<CodeStep step={2}>クリーンアップコード</CodeStep>が実行されます。
 
 **上記の例でこのシーケンスを説明しましょう。**
 
-上記の `ChatRoom` コンポーネントがページに追加されると、`serverUrl` と `roomId` の初期値を使ってチャットルームに接続します。`serverUrl` または `roomId` が再レンダーの結果として変更される場合（例えば、ユーザがドロップダウンで別のチャットルームを選択した場合）、あなたのエフェクトは*以前のルームから切断し、次のルームに接続します*。`ChatRoom` コンポーネントがページから削除されると、あなたのエフェクトは最後の切断を行います。
+上記の `ChatRoom` コンポーネントがページに追加されると、`serverUrl` と `roomId` の初期値を使ってチャットルームに接続します。`serverUrl` または `roomId` がコミットの結果として変更される場合（例えば、ユーザがドロップダウンで別のチャットルームを選択した場合）、あなたのエフェクトは*以前のルームから切断し、次のルームに接続します*。`ChatRoom` コンポーネントがページから削除されると、あなたのエフェクトは最後の切断を行います。
 
 **[バグを見つけ出すために](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed)、開発中には React は<CodeStep step={1}>セットアップ</CodeStep>と<CodeStep step={2}>クリーンアップ</CodeStep>を、<CodeStep step={1}>セットアップ</CodeStep>の前に 1 回余分に実行します**。これは、エフェクトのロジックが正しく実装されていることを確認するストレステストです。これが目に見える問題を引き起こす場合、クリーンアップ関数に一部のロジックが欠けています。クリーンアップ関数は、セットアップ関数が行っていたことを停止ないし元に戻す必要があります。基本ルールとして、ユーザはセットアップが一度しか呼ばれていない（本番環境の場合）か、*セットアップ* → *クリーンアップ* → *セットアップ*のシーケンス（開発環境の場合）で呼ばれているかを区別できないようにする必要があります。[一般的な解決法を参照してください](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)。
 
@@ -1145,7 +1145,7 @@ useEffect(() => {
 
 #### 依存配列を渡す {/*passing-a-dependency-array*/}
 
-依存配列を指定すると、エフェクトは**最初のレンダー後*および*依存配列が変わった後の再レンダー後に実行されます。**
+依存配列を指定すると、エフェクトは**最初のコミット後*および*依存配列が変わった後の再コミット後に実行されます。**
 
 ```js {3}
 useEffect(() => {
@@ -1242,7 +1242,7 @@ button { margin-left: 5px; }
 
 #### 空の依存配列を渡す {/*passing-an-empty-dependency-array*/}
 
-あなたのエフェクトがリアクティブな値を本当に使っていないのであれば、それは**初回のレンダー後に**のみ実行されます。
+あなたのエフェクトがリアクティブな値を本当に使っていないのであれば、それは**初回のコミット後に**のみ実行されます。
 
 ```js {3}
 useEffect(() => {
@@ -1319,7 +1319,7 @@ export function createConnection(serverUrl, roomId) {
 
 #### 依存配列を渡さない {/*passing-no-dependency-array-at-all*/}
 
-依存配列自体をまったく渡さない場合、コンポーネントの**毎回のレンダー（再レンダー）後に**エフェクトが実行されます。
+依存配列自体をまったく渡さない場合、コンポーネントの**毎回のコミット後に**エフェクトが実行されます。
 
 ```js {3}
 useEffect(() => {
@@ -1480,7 +1480,7 @@ body {
 
 ### オブジェクト型の不要な依存値を削除する {/*removing-unnecessary-object-dependencies*/}
 
-エフェクトがレンダー中に作成されたオブジェクトや関数に依存している場合、必要以上にエフェクトが実行されてしまうことがあります。たとえば、このエフェクトは `options` オブジェクトが[レンダーごとに異なる](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)ため、毎回のレンダー後に再接続を行ってしまいます：
+エフェクトがレンダー中に作成されたオブジェクトや関数に依存している場合、必要以上にエフェクトが実行されてしまうことがあります。たとえば、このエフェクトは `options` オブジェクトが[レンダーごとに異なる](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)ため、毎回のコミット後に再接続を行ってしまいます。
 
 ```js {6-9,12,15}
 const serverUrl = 'https://localhost:1234';
@@ -1497,7 +1497,7 @@ function ChatRoom({ roomId }) {
     const connection = createConnection(options); // It's used inside the Effect
     connection.connect();
     return () => connection.disconnect();
-  }, [options]); // 🚩 As a result, these dependencies are always different on a re-render
+  }, [options]); // 🚩 As a result, these dependencies are always different on a commit
   // ...
 ```
 
@@ -1583,7 +1583,7 @@ button { margin-left: 10px; }
 
 ### 関数型の不要な依存値を削除する {/*removing-unnecessary-function-dependencies*/}
 
-エフェクトがレンダー中に作成されたオブジェクトや関数に依存している場合、必要以上にエフェクトが実行されてしまうことがあります。たとえば、このエフェクトは `createOptions` 関数が[レンダーごとに異なる](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)ため、毎回再接続を行ってしまいます：
+エフェクトがレンダー中に作成されたオブジェクトや関数に依存している場合、必要以上にエフェクトが実行されてしまうことがあります。たとえば、このエフェクトは `createOptions` 関数が[レンダーごとに異なる](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)ため、毎回のコミット後に再接続を行ってしまいます。
 
 ```js {4-9,12,16}
 function ChatRoom({ roomId }) {
@@ -1601,11 +1601,11 @@ function ChatRoom({ roomId }) {
     const connection = createConnection();
     connection.connect();
     return () => connection.disconnect();
-  }, [createOptions]); // 🚩 As a result, these dependencies are always different on a re-render
+  }, [createOptions]); // 🚩 As a result, these dependencies are always different on a commit
   // ...
 ```
 
-再レンダーのたびに新しい関数を作成すること、それ自体には問題はなく、最適化しようとする必要はありません。ただし、エフェクトの依存値としてそれを使用する場合、毎回のレンダー後にエフェクトが再実行されてしまうことになります。
+再レンダーのたびに新しい関数を作成すること、それ自体には問題はなく、最適化しようとする必要はありません。ただし、エフェクトの依存値としてそれを使用する場合、毎回のコミット後にエフェクトが再実行されてしまうことになります。
 
 レンダー中に作成された関数を依存値として使用することは避けてください。代わりに、エフェクトの内部で宣言するようにします。
 
@@ -1775,7 +1775,7 @@ Strict Mode がオンの場合、開発時に React は実際のセットアッ�
 ```js {3}
 useEffect(() => {
   // ...
-}); // 🚩 No dependency array: re-runs after every render!
+}); // 🚩 No dependency array: re-runs after every commit!
 ```
 
 依存配列を指定しているにもかかわらず、エフェクトがループで再実行される場合、それは再レンダーごとに依存する値のどれかが変わっているためです。
