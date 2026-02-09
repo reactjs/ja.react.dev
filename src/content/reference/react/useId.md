@@ -44,7 +44,13 @@ function PasswordField() {
 
 * `useId` はフックであるため、**コンポーネントのトップレベル**または独自のフック内でのみ呼び出すことができます。ループまたは条件分岐内で呼び出すことはできません。もし必要な場合は、新しいコンポーネントを作成し、状態を移動させる必要があります。
 
+<<<<<<< HEAD
 * `useId` を、**リスト内の key の生成には使用しないでください**。[key はデータから生成される必要があります。](/learn/rendering-lists#where-to-get-your-key)
+=======
+* `useId` **should not be used to generate cache keys** for [use()](/reference/react/use). The ID is stable when a component is mounted but may change during rendering. Cache keys should be generated from your data.
+
+* `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+>>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 
 * `useId` currently cannot be used in [async Server Components](/reference/rsc/server-components#async-components-with-server-components).
 

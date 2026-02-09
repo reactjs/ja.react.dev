@@ -9,6 +9,8 @@ description: セキュリティ研究者が先週の重大な脆弱性に対す�
 
 December 11, 2025 by [The React Team](/community/team)
 
+_Updated January 26, 2026._
+
 ---
 
 <Intro>
@@ -23,7 +25,7 @@ December 11, 2025 by [The React Team](/community/team)
 
 新しい脆弱性は以下のように公開されています。
 
-- **Denial of Service - High Severity**: [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) and [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779) (CVSS 7.5)
+- **Denial of Service - High Severity**: [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184), [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779), and [CVE-2026-23864](https://www.cve.org/CVERecord?id=CVE-2026-23864) (CVSS 7.5)
 - **Source Code Exposure - Medium Severity**: [CVE-2025-55183](https://www.cve.org/CVERecord?id=CVE-2025-55183) (CVSS 5.3)
 
 新たに開示された脆弱性の深刻さを鑑み、直ちにアップグレードすることを推奨します。
@@ -32,11 +34,21 @@ December 11, 2025 by [The React Team](/community/team)
 
 #### 以前に公開されたパッチには脆弱性があります {/*the-patches-published-earlier-are-vulnerable*/}
 
+<<<<<<< HEAD
 先週の重大なセキュリティ脆弱性の対応のため既にアップデートを行っている場合でも、再度アップデートが必要です。
 
 19.0.2、19.1.3、および 19.2.2 にアップデート済みの場合でも、[これらは不完全](#additional-fix-published)であり、再度アップデートする必要があります。
+=======
+If you already updated for the previous vulnerabilities, you will need to update again.
+
+If you updated to 19.0.3, 19.1.4, and 19.2.3, [these are incomplete](#additional-fix-published), and you will need to update again.
+>>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 
 アップグレード手順については、[前回記事のガイド](/blog/2025/12/03/critical-security-vulnerability-in-react-server-components#update-instructions)を参照してください。
+
+-----
+
+_Updated January 26, 2026._
 
 </Note>
 
@@ -46,13 +58,21 @@ December 11, 2025 by [The React Team](/community/team)
 
 これらの脆弱性は、[CVE-2025-55182](/blog/2025/12/03/critical-security-vulnerability-in-react-server-components) と同じパッケージおよびバージョンに存在します。
 
+<<<<<<< HEAD
 以下のパッケージのバージョン 19.0.0、19.0.1、19.0.2、19.1.0、19.1.1、19.1.2、19.1.2、19.2.0、19.2.1、および 19.2.2 が該当します。
+=======
+This includes 19.0.0, 19.0.1, 19.0.2, 19.0.3, 19.1.0, 19.1.1, 19.1.2, 19.1.3, 19.2.0, 19.2.1, 19.2.2, and 19.2.3 of:
+>>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 
 * [react-server-dom-webpack](https://www.npmjs.com/package/react-server-dom-webpack)
 * [react-server-dom-parcel](https://www.npmjs.com/package/react-server-dom-parcel)
 * [react-server-dom-turbopack](https://www.npmjs.com/package/react-server-dom-turbopack?activeTab=readme)
 
+<<<<<<< HEAD
 修正はバージョン 19.0.3、19.1.4、および 19.2.3 にバックポートされています。上記のパッケージを使用している場合は、直ちに修正済みバージョンのいずれかにアップグレードしてください。
+=======
+Fixes were backported to versions 19.0.4, 19.1.5, and 19.2.4. If you are using any of the above packages please upgrade to any of the fixed versions immediately.
+>>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 
 以前と同様、アプリの React コードがサーバを使用していない場合、アプリはこれらの脆弱性の影響を受けません。アプリが React Server Components をサポートするフレームワーク、バンドラ、またはバンドラプラグインを使用していない場合、アプリはこれらの脆弱性の影響を受けません。
 
@@ -72,7 +92,11 @@ December 11, 2025 by [The React Team](/community/team)
 
 一部の React フレームワークやバンドラが、脆弱性のある React パッケージに依存しているか、peer dependency として依存しているか、あるいはそれらを含んでいました。影響を受ける React フレームワークやバンドラは以下の通りです：[next](https://www.npmjs.com/package/next)、[react-router](https://www.npmjs.com/package/react-router)、[waku](https://www.npmjs.com/package/waku)、[@parcel/rsc](https://www.npmjs.com/package/@parcel/rsc)、[@vite/rsc-plugin](https://www.npmjs.com/package/@vitejs/plugin-rsc)、[rwsdk](https://www.npmjs.com/package/rwsdk)
 
+<<<<<<< HEAD
 アップグレード方法について、[前回の記事の手順](https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components#update-instructions)を参照してください。
+=======
+Please see [the instructions in the previous post](/blog/2025/12/03/critical-security-vulnerability-in-react-server-components#update-instructions) for upgrade steps.
+>>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 
 ### ホスティングプロバイダによる緩和策 {/*hosting-provider-mitigations*/}
 
@@ -94,7 +118,41 @@ December 11, 2025 by [The React Team](/community/team)
 
 詳細については[この issue](https://github.com/facebook/react-native/issues/54772#issuecomment-3617929832) を参照してください。
 
+<<<<<<< HEAD
 ## 高深刻度：サービス拒否攻撃 {/*high-severity-denial-of-service*/}
+=======
+---
+
+## High Severity: Multiple Denial of Service {/*high-severity-multiple-denial-of-service*/}
+
+**CVEs:** [CVE-2026-23864](https://www.cve.org/CVERecord?id=CVE-2026-23864)
+**Base Score:** 7.5 (High)
+**Date**: January 26, 2025
+
+Security researchers discovered additional DoS vulnerabilities still exist in React Server Components.
+
+The vulnerabilities are triggered by sending specially crafted HTTP requests to Server Function endpoints, and could lead to server crashes, out-of-memory exceptions or excessive CPU usage; depending on the vulnerable code path being exercised, the application configuration and application code.
+
+The patches published January 26th mitigate these DoS vulnerabilities.
+
+<Note>
+
+#### Additional fixes published {/*additional-fix-published*/}
+
+The original fix addressing the DoS in [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) was incomplete.
+
+This left previous versions vulnerable. Versions 19.0.4, 19.1.5, 19.2.4 are safe.
+
+-----
+
+_Updated January 26, 2026._
+
+</Note>
+
+---
+
+## High Severity: Denial of Service {/*high-severity-denial-of-service*/}
+>>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 
 **CVE**: [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) および [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779)
 **Base Score**: 7.5 (High)
@@ -105,6 +163,7 @@ December 11, 2025 by [The React Team](/community/team)
 
 本日公開されたパッチは、無限ループを防ぐことでこの問題を緩和します。
 
+<<<<<<< HEAD
 <Note>
 
 #### 追加の修正が公開されました {/*additional-fix-published*/}
@@ -118,6 +177,9 @@ December 11, 2025 by [The React Team](/community/team)
 </Note>
 
 ## 中深刻度：ソースコード露出 {/*low-severity-source-code-exposure*/}
+=======
+## Medium Severity: Source Code Exposure {/*low-severity-source-code-exposure*/}
+>>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 
 **CVE**: [CVE-2025-55183](https://www.cve.org/CVERecord?id=CVE-2025-55183)
 **Base Score**: 5.3 (Medium)
@@ -160,6 +222,7 @@ export async function serverFunction(name) {
 
 ---
 
+<<<<<<< HEAD
 ## タイムライン {/*timeline*/}
 * **12 月 3 日**：[Andrew MacPherson](https://github.com/AndrewMohawk) 氏が Vercel および [Meta Bug Bounty](https://bugbounty.meta.com/) に漏洩の問題を報告。
 * **12 月 4 日**：[RyotaK](https://ryotak.net) 氏が [Meta Bug Bounty](https://bugbounty.meta.com/) に DoS 問題を初期報告。
@@ -171,8 +234,25 @@ export async function serverFunction(name) {
 * **12 月 11 日**：パッチが公開され、[CVE-2025-55183](https://www.cve.org/CVERecord?id=CVE-2025-55183) および [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) として一般公開。
 * **12 月 11 日**：不足していた DoS のケースが内部で発見され、修正が適用され [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779) として一般公開。
 
+=======
+## Timeline {/*timeline*/}
+* **December 3rd**: Leak reported to Vercel and [Meta Bug Bounty](https://bugbounty.meta.com/) by [Andrew MacPherson](https://github.com/AndrewMohawk).
+* **December 4th**: Initial DoS reported to [Meta Bug Bounty](https://bugbounty.meta.com/) by [RyotaK](https://ryotak.net).
+* **December 6th**: Both issues confirmed by the React team, and the team began investigating.
+* **December 7th**: Initial fixes created and the React team began verifying and planning new patch.
+* **December 8th**: Affected hosting providers and open source projects notified.
+* **December 10th**: Hosting provider mitigations in place and patches verified.
+* **December 11th**: Additional DoS reported to [Meta Bug Bounty](https://bugbounty.meta.com/) by Shinsaku Nomura.
+* **December 11th**: Patches published and publicly disclosed as [CVE-2025-55183](https://www.cve.org/CVERecord?id=CVE-2025-55183) and [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184).
+* **December 11th**: Missing DoS case found internally, patched and publicly disclosed as [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779).
+* **January 26th**: Additional DoS cases found, patched, and publicly disclosed as [CVE-2026-23864](https://www.cve.org/CVERecord?id=CVE-2026-23864).
+>>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 ---
 
 ## 謝辞 {/*attribution*/}
 
+<<<<<<< HEAD
 ソースコード漏洩を報告してくださった [Andrew MacPherson (AndrewMohawk)](https://github.com/AndrewMohawk) 氏、サービス拒否攻撃の脆弱性を報告してくださった GMO Flatt Security Inc の [RyotaK](https://ryotak.net) 氏および株式会社ビットフォレストの Shinsaku Nomura 氏に感謝します。
+=======
+Thank you to [Andrew MacPherson (AndrewMohawk)](https://github.com/AndrewMohawk) for reporting the Source Code Exposure, [RyotaK](https://ryotak.net) from GMO Flatt Security Inc and Shinsaku Nomura of Bitforest Co., Ltd. for reporting the Denial of Service vulnerabilities. Thank you to [Mufeed VH](https://x.com/mufeedvh) from [Winfunc Research](https://winfunc.com), [Joachim Viide](https://jviide.iki.fi), [RyotaK](https://ryotak.net) from [GMO Flatt Security Inc](https://flatt.tech/en/) and Xiangwei Zhang of Tencent Security YUNDING LAB for reporting the additional DoS vulnerabilities.
+>>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75

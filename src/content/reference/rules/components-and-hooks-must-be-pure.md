@@ -28,7 +28,11 @@ React を React たらしめる重要な概念のひとつが*純粋性 (purity)
 
 React は宣言型 (declarative) です。あなたは*何 (what)* をレンダーしたいのかだけを React に伝え、それを*どうやって (how)* ユーザにうまく表示するのかについては React が考えます。これを実現するため、React は複数のフェーズに分けてコードを実行します。React を使いこなすためにこれらのフェーズすべてを知っておく必要はありません。しかしどのコードが*レンダー*中に実行され、どのコードがそれ以外のタイミングで実行されるのかについては、概要を知っておくべきです。
 
+<<<<<<< HEAD
 *レンダー*とは、UI の次のバージョンとして何が見えるべきかを計算する作業を指します。レンダーの後、[エフェクト](/reference/react/useEffect)が*フラッシュ (flush)*（つまり未処理分がなくなるまで実行）され、それらがレイアウトに影響を与える場合は計算の更新を行います。React はこの新しい計算結果を受け取り、UI の以前のバージョンを作成する際に使われた計算結果と比較し、最新バージョンに追いつくために必要な最小限の変更を [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)（ユーザが目にするもの）に*コミット (commit)* します。
+=======
+_Rendering_ refers to calculating what the next version of your UI should look like. After rendering, React takes this new calculation and compares it to the calculation used to create the previous version of your UI. Then React commits just the minimum changes needed to the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) (what your user actually sees) to apply the changes. Finally, [Effects](/learn/synchronizing-with-effects) are flushed (meaning they are run until there are no more left). For more detailed information see the docs for [Render](/learn/render-and-commit) and [Commit and Effect Hooks](/reference/react/hooks#effect-hooks).
+>>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 
 <DeepDive>
 
