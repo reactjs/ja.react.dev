@@ -4,7 +4,7 @@ title: useOptimistic
 
 <Intro>
 
-`useOptimistic` は、UI を楽観的に (optimistically) 更新するための React フックです。
+`useOptimistic` は、UI を楽観的 (optimistic) に更新するための React フックです。
 
 ```js
 const [optimisticState, setOptimistic] = useOptimistic(value, reducer?);
@@ -20,13 +20,7 @@ const [optimisticState, setOptimistic] = useOptimistic(value, reducer?);
 
 ### `useOptimistic(value, reducer?)` {/*useoptimistic*/}
 
-<<<<<<< HEAD
-`useOptimistic` は、何らかの非同期アクションが進行中の間だけ、異なる state を表示するための React フックです。ある state を引数として受け取ってそのコピーを返しますが、ネットワークリクエストなどの非同期アクションが実行中の場合に異なる値を返すことができます。現在の state とアクションへの入力を受け取り、アクション実行中に使用される楽観的 state を返すような関数を渡します。
-
-このような state が「楽観的」state と呼ばれるのは、実際にはアクションの完了には時間がかかるにも関わらず、そのアクションの実行結果をユーザに即座に提示するために通常使用されるものだからです。
-=======
-Call `useOptimistic` at the top level of your component to create optimistic state for a value.
->>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
+コンポーネントのトップレベルで `useOptimistic` を呼び出し、値に対する楽観的 state を作成します。
 
 ```js
 import { useOptimistic } from 'react';
@@ -43,31 +37,21 @@ function MyComponent({name, todos}) {
 
 #### 引数 {/*parameters*/}
 
-<<<<<<< HEAD
-* `state`: 初期状態や、実行中のアクションが存在しない場合に返される値。
-* `updateFn(currentState, optimisticValue)`: state の現在値と、`addOptimistic` に渡された楽観的更新に使用する値 (optimistic value) を受け取り、結果としての楽観的 state を返す関数。純関数でなければなりません。`updateFn` は `currentState` と `optimisticValue` の 2 つの引数を受け取ります。返り値は `currentState` に `optimisticValue` の値を反映させたものとなります。
-
-=======
-* `value`: The value returned when there are no pending Actions.
-* **optional** `reducer(currentState, action)`: The reducer function that specifies how the optimistic state gets updated. It must be pure, should take the current state and reducer action arguments, and should return the next optimistic state.
->>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
+* `value`: 実行中 (pending) のアクションが存在しない場合に返される値。
+* **省略可能** `reducer(currentState, action)`: 楽観的 state の更新方法を定義するリデューサ関数。純関数である必要があり、現在の state とリデューサアクションを引数として受け取り、次の楽観的 state を返す。
 
 #### 返り値 {/*returns*/}
 
-<<<<<<< HEAD
-* `optimisticState`: 結果としての楽観的 state。実行中のアクションがない場合は `state` と等しくなり、何らかのアクションが実行中の場合は `updateFn` が返す値と等しくなります。
-* `addOptimistic`: 楽観的な更新を行う際に呼び出すためのディスパッチ関数。任意の型の引数 `optimisticValue` を 1 つだけ受け取ります。それにより、`state` と `optimisticValue` を引数にして `updateFn` が呼び出されます。
-=======
-`useOptimistic` returns an array with exactly two values:
+`useOptimistic` は、厳密に 2 つの値を持つ配列を返します。
 
-1. `optimisticState`: The current optimistic state. It is equal to `value` unless an Action is pending, in which case it is equal to the state returned by `reducer` (or the value passed to the set function if no `reducer` was provided).
-2. The [`set` function](#setoptimistic) that lets you update the optimistic state to a different value inside an Action.
+1. `optimisticState`: 現在の楽観的 state。実行中のアクションがない場合は `value` と同じです。実行中のアクションがある場合は `reducer` が返した state（`reducer` を指定しなかった場合は set 関数に渡した値）と同じになります。
+2. [`set` 関数](#setoptimistic): アクション内で楽観的 state を別の値に更新できる関数。
 
 ---
 
-### `set` functions, like `setOptimistic(optimisticState)` {/*setoptimistic*/}
+### `set` 関数（`setOptimistic(optimisticState)` のように使う） {/*setoptimistic*/}
 
-The `set` function returned by `useOptimistic` lets you update the state for the duration of an [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions). You can pass the next state directly, or a function that calculates it from the previous state:
+`useOptimistic` が返す `set` 関数により、[アクション](reference/react/useTransition#functions-called-in-starttransition-are-called-actions)の実行中だけ state を更新できます。次の state を直接渡すことも、前の state から計算するための関数を渡すこともできます。
 
 ```js
 const [optimisticLike, setOptimisticLike] = useOptimistic(false);
@@ -82,24 +66,24 @@ function handleClick() {
 }
 ```
 
-#### Parameters {/*setoptimistic-parameters*/}
+#### 引数 {/*setoptimistic-parameters*/}
 
-* `optimisticState`: The value that you want the optimistic state to be during an [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions). If you provided a `reducer` to `useOptimistic`, this value will be passed as the second argument to your reducer. It can be a value of any type.
-    * If you pass a function as `optimisticState`, it will be treated as an _updater function_. It must be pure, should take the pending state as its only argument, and should return the next optimistic state. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying the queued updaters to the previous state similar to [`useState` updaters](/reference/react/useState#setstate-parameters).
+* `optimisticState`: [アクション](reference/react/useTransition#functions-called-in-starttransition-are-called-actions)の実行中に楽観的 state として使いたい値。`useOptimistic` に `reducer` を渡している場合、この値は `reducer` の第 2 引数として渡されます。任意の型の値を渡せます。
+    * `optimisticState` に関数を渡した場合、それは*更新用関数 (updater function)* として扱われます。純関数である必要があり、楽観的 state を唯一の引数として受け取り、次の楽観的 state を返す必要があります。React は更新用関数をキューに積んでコンポーネントを再レンダーします。次回レンダー時に、React は [`useState` の更新用関数](/reference/react/useState#setstate-parameters) と同様の仕組みで、キューに積まれた更新用関数をひとつ前の state に順に適用していき次の state を計算します。
 
-#### Returns {/*setoptimistic-returns*/}
+#### 返り値 {/*setoptimistic-returns*/}
 
-`set` functions do not have a return value.
+`set` 関数に返り値はありません。
 
-#### Caveats {/*setoptimistic-caveats*/}
+#### 注意点 {/*setoptimistic-caveats*/}
 
-* The `set` function must be called inside an [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions). If you call the setter outside an Action, [React will show a warning](#an-optimistic-state-update-occurred-outside-a-transition-or-action) and the optimistic state will briefly render.
+* `set` 関数は[アクション](reference/react/useTransition#functions-called-in-starttransition-are-called-actions)の内部で呼び出す必要があります。アクションの外でセッタ関数を呼ぶと、[React は警告を表示](#an-optimistic-state-update-occurred-outside-a-transition-or-action)し、楽観的 state が一瞬表示されます。
 
 <DeepDive>
 
-#### How optimistic state works {/*how-optimistic-state-works*/}
+#### 楽観的 state の仕組み {/*how-optimistic-state-works*/}
 
-`useOptimistic` lets you show a temporary value while a Action is in progress:
+`useOptimistic` を使うと、アクションの実行中に一時的な値を表示できます。
 
 ```js
 const [value, setValue] = useState('a');
@@ -112,65 +96,57 @@ startTransition(async () => {
 });
 ```
 
-When the setter is called inside an Action, `useOptimistic` will trigger a re-render to show that state while the Action is in progress. Otherwise, the `value` passed to `useOptimistic` is returned.
+セッタ関数がアクションの内部で呼び出されると、`useOptimistic` は再レンダーをトリガし、アクションの実行中はその state を表示します。そうでない場合は、`useOptimistic` に渡した `value` が返されます。
 
-This state is called the "optimistic" because it is used to immediately present the user with the result of performing an Action, even though the Action actually takes time to complete.
+この state は "楽観的 (optimistic)" と呼ばれます。実際にはアクションの完了まで時間がかかっているにもかかわらず、アクションの実行結果をユーザに即座に提示するために使われるからです。
 
-**How the update flows**
+**更新の流れ**
 
-1. **Update immediately**: When `setOptimistic('b')` is called, React immediately renders with `'b'`.
+1. **即時更新**: `setOptimistic('b')` が呼ばれると、React は直ちに `'b'` でレンダーします。
 
-2. **(Optional) await in Action**: If you await in the Action, React continues showing `'b'`.
+2. **（オプション）アクション内で await**: アクション内で await している間も、React は `'b'` を表示し続けます。
 
-3. **Transition scheduled**: `setValue(newValue)` schedules an update to the real state.
+3. **トランジションをスケジュール**: `setValue(newValue)` が本来の state への更新をスケジュールします。
 
-4. **(Optional) wait for Suspense**: If `newValue` suspends, React continues showing `'b'`.
+4. **（オプション）サスペンスを待機**: `newValue` がサスペンドした場合、React は `'b'` を表示し続けます。
 
-5. **Single render commit**: Finally, the `newValue` commits for `value` and `optimistic`.
+5. **単一レンダーでコミット**: 最終的に、`value` と `optimistic` の両方に `newValue` がコミットされます。
 
-There's no extra render to "clear" the optimistic state. The optimistic and real state converge in the same render when the Transition completes.
+楽観的 state を「クリア」するための余分なレンダーはありません。トランジションが完了すると、楽観的な state と本来の state が同一レンダー内で合流して一致するようになります。
 
 <Note>
 
-#### Optimistic state is temporary {/*optimistic-state-is-temporary*/}
+#### 楽観的 state は一時的なもの {/*optimistic-state-is-temporary*/}
 
-Optimistic state only renders while an Action is in progress, otherwise `value` is rendered.
+楽観的 state はアクションの実行中にのみレンダーされ、それ以外では `value` がレンダーされます。
 
-If `saveChanges` returned `'c'`, then both `value` and `optimistic` will be `'c'`, not `'b'`.
+`saveChanges` が `'c'` を返した場合、`value` と `optimistic` はどちらも `'b'` ではなく `'c'` になります。
 
 </Note>
 
-**How the final state is determined**
+**最終的な state が決まる仕組み**
 
-The `value` argument to `useOptimistic` determines what displays after the Action finishes. How this works depends on the pattern you use:
+アクション終了後に何が表示されるかは、`useOptimistic` の `value` 引数で決まります。これは以下のどのパターンを使用するかによって変わります。
 
-- **Hardcoded values** like `useOptimistic(false)`: After the Action, `state` is still `false`, so the UI shows `false`. This is useful for pending states where you always start from `false`.
+- `useOptimistic(false)` のような**ハードコードされた値**: アクション終了後も `state` は `false` のままなので、UI は `false` を表示します。常に `false` から始まる保留中状態を表すのに有用です。
 
-- **Props or state passed in** like `useOptimistic(isLiked)`: If the parent updates `isLiked` during the Action, the new value is used after the Action completes. This is how the UI reflects the result of the Action.
+- `useOptimistic(isLiked)` のように **props や state を渡すパターン**: アクション中に親が `isLiked` を更新すると、アクション完了後に新しい値が使われます。これにより UI がアクション結果を反映するようになります。
 
-- **Reducer pattern** like `useOptimistic(items, fn)`: If `items` changes while the Action is pending, React re-runs your `reducer` with the new `items` to recalculate the state. This keeps your optimistic additions on top of the latest data.
+- `useOptimistic(items, fn)` のような**リデューサパターン**: アクションの実行中に `items` が変化した場合、React は新しい `items` で `reducer` を再実行して state を再計算します。これにより、楽観的な追加が常に最新データに対して適用されます。
 
-**What happens when the Action fails**
+**アクションが失敗したときの挙動**
 
-If the Action throws an error, the Transition still ends, and React renders with whatever `value` currently is. Since the parent typically only updates `value` on success, a failure means `value` hasn't changed, so the UI shows what it showed before the optimistic update. You can catch the error to show a message to the user.
+アクションがエラーをスローした場合にもトランザクションは終了し、React はその時点の `value` でレンダーを行います。通常、親は成功時にのみ `value` を更新するため、失敗時は `value` が変わらず、UI は楽観的更新前の表示に戻ります。エラーを捕捉してユーザにメッセージを表示することもできます。
 
 </DeepDive>
->>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 
 ---
 
 ## 使用法 {/*usage*/}
 
-<<<<<<< HEAD
-### フォームの楽観的な更新 {/*optimistically-updating-with-forms*/}
+### コンポーネントに楽観的 state を追加する {/*adding-optimistic-state-to-a-component*/}
 
-`useOptimistic` フックは、ネットワークリクエストのようなバックグラウンド作業が完了する前に、ユーザインターフェースを楽観的に更新する方法を提供します。フォームにおいては、この技術はアプリをよりレスポンシブに感じさせるために役立ちます。ユーザがフォームを送信した際に、サーバのレスポンスを待たずに、予想される結果を用いてインターフェースを即座に更新しておきます。
-
-例えば、ユーザがフォームにメッセージを入力して送信ボタンを押すと、`useOptimistic` フックにより、メッセージが実際にサーバに送信される前であっても、リストに "Sending..." というラベル付きでメッセージを即座に表示できるようになります。この「楽観的」アプローチにより、アプリの印象が高速でレスポンシブになります。その後フォームはバックグラウンドでメッセージの実際の送信を試みます。サーバにメッセージが到着したことを確認すると、"Sending..." ラベルが取り除かれます。
-=======
-### Adding optimistic state to a component {/*adding-optimistic-state-to-a-component*/}
-
-Call `useOptimistic` at the top level of your component to declare one or more optimistic states.
+コンポーネントのトップレベルで `useOptimistic` を呼び出し、1 つ以上の楽観的 state を宣言します。
 
 ```js [[1, 4, "age"], [1, 5, "name"], [1, 6, "todos"], [2, 4, "optimisticAge"], [2, 5, "optimisticName"], [2, 6, "optimisticTodos"], [3, 4, "setOptimisticAge"], [3, 5, "setOptimisticName"], [3, 6, "setOptimisticTodos"], [4, 6, "reducer"]]
 import { useOptimistic } from 'react';
@@ -182,15 +158,15 @@ function MyComponent({age, name, todos}) {
   // ...
 ```
 
-`useOptimistic` returns an array with exactly two items:
+`useOptimistic` は厳密に 2 つの値を持つ配列を返します。
 
-1. The <CodeStep step={2}>optimistic state</CodeStep>, initially set to the <CodeStep step={1}>value</CodeStep> provided.
-2. The <CodeStep step={3}>set function</CodeStep> that lets you temporarily change the state during an [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
-   * If a <CodeStep step={4}>reducer</CodeStep> is provided, it will run before returning the optimistic state.
+1. <CodeStep step={2}>楽観的 state</CodeStep>: 初期値は渡した <CodeStep step={1}>value</CodeStep> です。
+2. <CodeStep step={3}>set 関数</CodeStep>: [アクション](reference/react/useTransition#functions-called-in-starttransition-are-called-actions) の間だけ一時的に state を変更できます。
+   * <CodeStep step={4}>リデューサ</CodeStep>を渡した場合、楽観的 state を返す前に実行されます。
 
-To use the <CodeStep step={2}>optimistic state</CodeStep>, call the `set` function inside an Action. 
+<CodeStep step={2}>楽観的 state</CodeStep> を使うには、アクション内で `set` 関数を呼び出します。
 
-Actions are functions called inside `startTransition`:
+アクションとは `startTransition` 内で呼び出される関数です。
 
 ```js {3}
 function onAgeChange(e) {
@@ -202,13 +178,13 @@ function onAgeChange(e) {
 }
 ```
 
-React will render the optimistic state `42` first while the `age` remains the current age. The Action waits for POST, and then renders the `newAge` for both `age` and `optimisticAge`.
+`age` 自体は現在値のまま、React はまず楽観的 state である `42` を使ってレンダーします。アクションが POST を待機した後、`age` と `optimisticAge` の両方を `newAge` にしてレンダーします。
 
-See [How optimistic state works](#how-optimistic-state-works) for a deep dive.
+[楽観的 state の仕組み](#how-optimistic-state-works)で詳細を確認できます。
 
 <Note>
 
-When using [Action props](/reference/react/useTransition#exposing-action-props-from-components), you can call the set function without `startTransition`:
+[アクションプロップ (Action props)](/reference/react/useTransition#exposing-action-props-from-components) を使う場合は、`startTransition` なしでセッタ関数を呼び出せます。
 
 ```js [[3, 2, "setOptimisticName"]]
 async function submitAction() {
@@ -217,20 +193,19 @@ async function submitAction() {
 }
 ```
 
-This works because Action props are already called inside `startTransition`.
+これが動作するのは、アクションプロップがすでに `startTransition` 内で呼び出されるようになっているためです。
 
-For an example, see: [Using optimistic state in Action props](#using-optimistic-state-in-action-props).
+例は[アクションプロップで楽観的 state を使う](#using-optimistic-state-in-action-props)を参照してください。
 
 </Note>
 
 ---
 
-### Using optimistic state in Action props {/*using-optimistic-state-in-action-props*/}
+### アクションプロップで楽観的 state を使う {/*using-optimistic-state-in-action-props*/}
 
-In an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), you can call the optimistic setter directly without `startTransition`.
+[アクションプロップ](/reference/react/useTransition#exposing-action-props-from-components)中では、`startTransition` なしで楽観的セッタ関数を直接呼び出せます。
 
-This example sets optimistic state inside a `<form>` `submitAction` prop:
->>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
+以下の例では、`<form>` の props である `submitAction` 内で楽観的 state を設定しています。
 
 <Sandpack>
 
@@ -287,27 +262,27 @@ export async function updateName(name) {
 
 </Sandpack>
 
-In this example, when the user submits the form, the `optimisticName` updates immediately to show the `newName` optimistically while the server request is in progress. When the request completes, `name` and `optimisticName` are rendered with the actual `updatedName` from the response.
+この例では、ユーザがフォームのサブミット操作を行うと  `optimisticName` が即座に更新され、サーバリクエストが進行中の間、`newName` を楽観的に表示します。リクエストが完了すると、`name` と `optimisticName` がレスポンスの実際の `updatedName` となってレンダーされます。
 
 <DeepDive>
 
-#### Why doesn't this need `startTransition`? {/*why-doesnt-this-need-starttransition*/}
+#### この例で `startTransition` が不要である理由 {/*why-doesnt-this-need-starttransition*/}
 
-By convention, props called inside `startTransition` are named with "Action".
+慣習として、`startTransition` の中で呼び出される props は "Action" を含む名前になります。
 
-Since `submitAction` is named with "Action", you know it's already called inside `startTransition`.
+`submitAction` が "Action" を含む名前なので、すでに `startTransition` の中で呼び出されていると分かるのです。
 
-See [Exposing `action` prop from components](/reference/react/useTransition#exposing-action-props-from-components) for the Action prop pattern.
+アクションプロップパターンについては、[コンポーネントから `action` を props として公開する](/reference/react/useTransition#exposing-action-props-from-components) を参照してください。
 
 </DeepDive>
 
 ---
 
-### Adding optimistic state to Action props {/*adding-optimistic-state-to-action-props*/}
+### アクションプロップに楽観的 state を追加する {/*adding-optimistic-state-to-action-props*/}
 
-When creating an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), you can add `useOptimistic` to show immediate feedback.
+[アクションプロップ](/reference/react/useTransition#exposing-action-props-from-components)を作るときは、`useOptimistic` を追加することで即時フィードバックを表示できます。
 
-Here's a button that shows "Submitting..." while the `action` is pending:
+以下は、`action` が実行中の間 "Submitting..." を表示するボタンです。
 
 <Sandpack>
 
@@ -362,9 +337,9 @@ export async function submitForm() {
 
 </Sandpack>
 
-When the button is clicked, `setIsPending(true)` uses optimistic state to immediately show "Submitting..." and disable the button. When the Action is done, `isPending` is rendered as `false` automatically.
+ボタンをクリックすると、`setIsPending(true)` が楽観的 state を使って即座に "Submitting..." を表示し、ボタンを無効化します。アクションが終わると、`isPending` が自動的に `false` となってレンダーされます。
 
-This pattern automatically shows a pending state however `action` prop is used with `Button`:
+このパターンを使うことで、props である `action` を `Button` とどのように組み合わせた場合でも保留中状態が自動で表示されます。
 
 ```js
 // Show pending state for a state update
@@ -384,23 +359,23 @@ This pattern automatically shows a pending state however `action` prop is used w
 }} />
 ```
 
-The pending state will be shown until everything in the `action` prop is finished.
+保留中状態は `action` 内のすべての処理が完了するまで表示されます。
 
 <Note>
 
-You can also use [`useTransition`](/reference/react/useTransition) to get pending state via `isPending`. 
+[`useTransition`](/reference/react/useTransition) を使って `isPending` 経由で保留中状態を取得することもできます。
 
-The difference is that `useTransition` gives you the `startTransition` function, while `useOptimistic` works with any Transition. Use whichever fits your component's needs.
+違いは、`useTransition` が `startTransition` 関数を提供する一方で、`useOptimistic` は任意のトランジションで動作することです。コンポーネントの要件に合う方を使ってください。
 
 </Note>
 
 ---
 
-### Updating props or state optimistically {/*updating-props-or-state-optimistically*/}
+### props や state を楽観的に更新する {/*updating-props-or-state-optimistically*/}
 
-You can wrap props or state in `useOptimistic` to update it immediately while an Action is in progress.
+props や state を `useOptimistic` でラップすることで、アクション実行中に即座に更新されるようにできます。
 
-In this example, `LikeButton` receives `isLiked` as a prop and immediately toggles it when clicked:
+以下の例では、`LikeButton` は `isLiked` を prop として受け取り、クリック時にそれを即座に切り替えます。
 
 <Sandpack>
 
@@ -463,23 +438,23 @@ root.render(<App />);
 
 </Sandpack>
 
-When the button is clicked, `setOptimisticIsLiked` immediately updates the displayed state to show the heart as liked. Meanwhile, `await toggleLike` runs in the background. When the `await` completes, `setIsLiked` parent updates the "real" `isLiked` state, and the optimistic state is rendered to match this new value.
+ボタンがクリックされると、`setOptimisticIsLiked` が表示中の state を即座に更新し、ハートを「いいね済み」として表示します。その間、`await toggleLike` がバックグラウンドで実行されます。`await` が完了すると、親の `setIsLiked` が「本物」の state である `isLiked` を更新し、楽観的 state はこの新しい値に一致する形でレンダーされます。
 
 <Note>
 
-This example reads from `optimisticIsLiked` to calculate the next value. This works when the base state won't change, but if the base state might change while your Action is pending, you may want to use a state updater or the reducer.
+この例では、次の値を計算するために `optimisticIsLiked` を読み取っています。これはベースの state が変化しない場合は機能しますが、アクションの実行中にベース state が変わる可能性がある場合は、state 更新用関数またはリデューサを使うほうがよいことがあります。
 
-See [Updating state based on the current state](#updating-state-based-on-current-state) for an example.
+例は[現在の state に基づいて state を更新する](#updating-state-based-on-current-state)を参照してください。
 
 </Note>
 
 ---
 
-### Updating multiple values together {/*updating-multiple-values-together*/}
+### 複数の値をまとめて更新する {/*updating-multiple-values-together*/}
 
-When an optimistic update affects multiple related values, use a reducer to update them together. This ensures the UI stays consistent. 
+楽観的更新が複数の関連する値に影響する場合は、リデューサを使ってまとめて更新してください。これにより UI の一貫性を保つことができます。
 
-Here's a follow button that updates both the follow state and follower count:
+以下のフォローボタンでは、フォロー状態とフォロワー数を両方同時に更新します。
 
 <Sandpack>
 
@@ -558,23 +533,23 @@ export async function unfollowUser(name) {
 
 </Sandpack>
 
-The reducer receives the new `isFollowing` value and calculates both the new follow state and the updated follower count in a single update. This ensures the button text and count always stay in sync.
+リデューサは新しい `isFollowing` の値を受け取り、単一の更新で新しいフォロー状態と新しいフォロワー数の両方を計算します。これにより、ボタンテキストとフォロー数カウントが常に同期した状態を保てます。
 
 
 <DeepDive>
 
-#### Choosing between updaters and reducers {/*choosing-between-updaters-and-reducers*/}
+#### 更新用関数とリデューサの使い分け {/*choosing-between-updaters-and-reducers*/}
 
-`useOptimistic` supports two patterns for calculating state based on current state:
+`useOptimistic` では、現在の state に基づいて state を計算するための 2 つのパターンがサポートされています。
 
-**Updater functions** work like [useState updaters](/reference/react/useState#updating-state-based-on-the-previous-state). Pass a function to the setter:
+**更新用関数**は [useState の更新用関数](/reference/react/useState#updating-state-based-on-the-previous-state) と同様に動作します。セッタ関数に関数を渡してください。
 
 ```js
 const [optimistic, setOptimistic] = useOptimistic(value);
 setOptimistic(current => !current);
 ```
 
-**Reducers** separate the update logic from the setter call:
+**リデューサ**を使う場合、更新ロジックをセッタ呼び出しから分離できます。
 
 ```js
 const [optimistic, dispatch] = useOptimistic(value, (current, action) => {
@@ -583,23 +558,23 @@ const [optimistic, dispatch] = useOptimistic(value, (current, action) => {
 dispatch(action);
 ```
 
-**Use updaters** for calculations where the setter call naturally describes the update. This is similar to using `setState(prev => ...)` with `useState`.
+**更新用関数を使う**のは、セッタ呼び出し内だけで自然に更新内容を表現できる計算の場合です。これは `useState` で `setState(prev => ...)` を使うのに似ています。
 
-**Use reducers** when you need to pass data to the update (like which item to add) or when handling multiple types of updates with a single hook.
+**リデューサを使う**のは、更新時にデータ（どの項目を追加するかなど）を渡す必要がある場合や、単一のフックで複数種類の更新を扱う場合です。
 
-**Why use a reducer?**
+**なぜリデューサを使うのでしょうか？**
 
-Reducers are essential when the base state might change while your Transition is pending. If `todos` changes while your add is pending (for example, another user added a todo), React will re-run your reducer with the new `todos` to recalculate what to show. This ensures your new todo is added to the latest list, not an outdated copy.
+トランザクションの実行中にベースの state が変わる可能性がある場合、リデューサは不可欠です。add 処理の実行中に（たとえば別ユーザが todo を追加するなどで）`todos` が変化した場合、React は新しい `todos` でリデューサを再実行し、表示内容を再計算します。これにより、古くなったコピーではなく最新のリストに対して新しい todo を追加できるようになります。
 
-An updater function like `setOptimistic(prev => [...prev, newItem])` would only see the state from when the Transition started, missing any updates that happened during the async work.
+`setOptimistic(prev => [...prev, newItem])` のような更新用関数では、トランザクション開始時点の state しか見えないため、非同期処理中に発生した更新を取りこぼします。
 
 </DeepDive>
 
 ---
 
-### Optimistically adding to a list {/*optimistically-adding-to-a-list*/}
+### 楽観的更新でリストに追加 {/*optimistically-adding-to-a-list*/}
 
-When you need to optimistically add items to a list, use a `reducer`:
+リストに項目を楽観的に追加したい場合、`reducer` を使用してください。
 
 <Sandpack>
 
@@ -669,21 +644,21 @@ export async function addTodo(todo) {
 
 </Sandpack>
 
-The `reducer` receives the current list of todos and the new todo to add. This is important because if the `todos` prop changes while your add is pending (for example, another user added a todo), React will update your optimistic state by re-running the reducer with the updated list. This ensures your new todo is added to the latest list, not an outdated copy.
+`reducer` は現在の todo のリストと、追加対象の新しい todo を受け取ります。これが重要なのは、add 処理の実行中に（たとえば別ユーザが todo を追加するなどで）`todos` が変化した場合、React は更新後のリストでリデューサを再実行して楽観的 state を更新するからです。これにより、古くなったコピーではなく最新のリストに対して新しい todo を追加できるようになります。
 
 <Note>
 
-Each optimistic item includes a `pending: true` flag so you can show loading state for individual items. When the server responds and the parent updates the canonical `todos` list with the saved item, the optimistic state updates to the confirmed item without the pending flag.
+楽観的更新用のリストの各要素には `pending: true` フラグが含まれているため、要素ごとにローディング状態を表示できます。サーバが応答し、親が保存した要素を含んだ正規の `todos` リストで更新すると、楽観的 state は pending フラグのない確定済み項目に更新されます。
 
 </Note>
 
 ---
 
-### Handling multiple `action` types {/*handling-multiple-action-types*/}
+### 複数 `action` タイプの処理 {/*handling-multiple-action-types*/}
 
-When you need to handle multiple types of optimistic updates (like adding and removing items), use a reducer pattern with `action` objects. 
+処理すべき楽観的更新が複数ある（項目の追加と削除など）場合は、`action` オブジェクトを用いるリデューサパターンを使用してください。
 
-This shopping cart example shows how to handle add and remove with a single reducer:
+以下のショッピングカートの例は、単一のリデューサで追加と削除の両方を扱う方法を示しています。
 
 <Sandpack>
 
@@ -847,15 +822,15 @@ export async function updateQuantity(id, quantity) {
 
 </Sandpack>
 
-The reducer handles three `action` types (`add`, `remove`, `update_quantity`) and returns the new optimistic state for each. Each `action` sets a `pending: true` flag so you can show visual feedback while the [Server Function](/reference/rsc/server-functions) runs.
+リデューサは 3 種類の `action` タイプ (`add`, `remove`, `update_quantity`) を処理し、それぞれについて新しい楽観的 state を返します。各 `action` は `pending: true` フラグを設定するため、[サーバ関数](/reference/rsc/server-functions)の実行中に視覚的なフィードバックを表示できます。
 
 ---
 
-### Optimistic delete with error recovery {/*optimistic-delete-with-error-recovery*/}
+### エラーリカバリを伴う楽観的削除 {/*optimistic-delete-with-error-recovery*/}
 
-When deleting items optimistically, you should handle the case where the Action fails.
+項目を楽観的に削除する場合、アクションが失敗するケースを扱う必要があります。
 
-This example shows how to display an error message when a delete fails, and the UI automatically rolls back to show the item again.
+以下の例では、削除に失敗したときにエラーメッセージを表示し、UI が自動でロールバックして項目が再表示される様子を示しています。
 
 <Sandpack>
 
@@ -955,15 +930,15 @@ export async function deleteItem(id) {
 
 </Sandpack>
 
-Try deleting 'Deploy to production'. When the delete fails, the item automatically reappears in the list. 
+'Deploy to production' を削除してみてください。削除が失敗すると、該当項目が自動的にリスト内に再表示されます。
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### I'm getting an error: "An optimistic state update occurred outside a Transition or Action" {/*an-optimistic-state-update-occurred-outside-a-transition-or-action*/}
+### "An optimistic state update occurred outside a Transition or Action" というエラーが出る {/*an-optimistic-state-update-occurred-outside-a-transition-or-action*/}
 
-You may see this error:
+次のエラーが表示される場合があります：
 
 <ConsoleBlockMulti>
 
@@ -975,7 +950,7 @@ An optimistic state update occurred outside a Transition or Action. To fix, move
 
 </ConsoleBlockMulti>
 
-The optimistic setter function must be called inside `startTransition`: 
+楽観的セッタ関数は `startTransition` の中で呼び出す必要があります。
 
 ```js
 // 🚩 Incorrect: outside a Transition
@@ -999,11 +974,11 @@ function submitAction(formData) {
 }
 ```
 
-When you call the setter outside an Action, the optimistic state will briefly appear and then immediately revert back to the original value. This happens because there's no Transition to "hold" the optimistic state while your Action runs.
+セッタをアクション外で呼び出すと、楽観的 state が一瞬表示されたあと、すぐに元の値へ戻ります。これは、アクションの実行中に楽観的 state を「保持」するためのトランザクションが存在しないためです。
 
-### I'm getting an error: "Cannot update optimistic state while rendering" {/*cannot-update-optimistic-state-while-rendering*/}
+### "Cannot update optimistic state while rendering" というエラーが出る {/*cannot-update-optimistic-state-while-rendering*/}
 
-You may see this error:
+以下のエラーが表示される場合があります。
 
 <ConsoleBlockMulti>
 
@@ -1015,7 +990,7 @@ Cannot update optimistic state while rendering.
 
 </ConsoleBlockMulti>
 
-This error occurs when you call the optimistic setter during the render phase of a component. You can only call it from event handlers, effects, or other callbacks:
+このエラーは、コンポーネントのレンダーフェーズ中に楽観的セッタを呼び出したときに発生します。呼び出せるのはイベントハンドラ、エフェクト、またはその他のコールバックの中だけです。
 
 ```js
 // 🚩 Incorrect: calling during render
@@ -1055,9 +1030,9 @@ function MyComponent({ items }) {
 }
 ```
 
-### My optimistic updates show stale values {/*my-optimistic-updates-show-stale-values*/}
+### 楽観的更新で古い値が表示される {/*my-optimistic-updates-show-stale-values*/}
 
-If your optimistic state seems to be based on old data, consider using an updater function or reducer to calculate the optimistic state relative to the current state.
+楽観的 state が古いデータに基づいているように見える場合は、現在の state を基準に楽観的 state を計算するため、更新用関数またはリデューサの使用を検討してください。
 
 ```js
 // May show stale data if state changes during Action
@@ -1069,22 +1044,22 @@ const [optimistic, adjust] = useOptimistic(count, (current, delta) => current + 
 adjust(1);  // Always adds 1 to whatever the current count is
 ```
 
-See [Updating state based on the current state](#updating-state-based-on-current-state) for details.
+詳しくは[現在の state に基づいて state を更新する](#updating-state-based-on-current-state)を参照してください。
 
-### I don't know if my optimistic update is pending {/*i-dont-know-if-my-optimistic-update-is-pending*/}
+### 楽観的更新が実行中かどうか分からない {/*i-dont-know-if-my-optimistic-update-is-pending*/}
 
-To know when `useOptimistic` is pending, you have three options:
+`useOptimistic` が実行中 (pending) 状態かどうかを知る方法は 3 つあります。
 
-1. **Check if `optimisticValue === value`**
+1. **`optimisticValue === value` を確認する**
 
 ```js
 const [optimistic, setOptimistic] = useOptimistic(value);
 const isPending = optimistic !== value;
 ```
 
-If the values are not equal, there's a Transition in progress.
+値が等しくない場合、進行中のトランザクションがあるということです。
 
-2. **Add a `useTransition`**
+2. **`useTransition` を追加する**
 
 ```js
 const [isPending, startTransition] = useTransition();
@@ -1096,9 +1071,9 @@ startTransition(() => {
 })
 ```
 
-Since `useTransition` uses `useOptimistic` for `isPending` under the hood, this is equivalent to option 1.
+`useTransition` は内部的に `useOptimistic` を使用して `isPending` を取得しています。つまりこれは 1 の方法と等価です。
 
-3. **Add a `pending` flag in your reducer**
+3. **リデューサ内で `pending` フラグを追加する**
 
 ```js
 const [optimistic, addOptimistic] = useOptimistic(
@@ -1107,4 +1082,4 @@ const [optimistic, addOptimistic] = useOptimistic(
 );
 ```
 
-Since each optimistic item has its own flag, you can show loading state for individual items.
+それぞれの楽観的要素が独自のフラグを持つため、要素ごとにローディング状態を表示できます。
