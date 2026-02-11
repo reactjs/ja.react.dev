@@ -581,7 +581,7 @@ export async function updateQuantity(newQuantity) {
 
 ---
 
-### Exposing `action` prop from components {/*exposing-action-props-from-components*/}
+### コンポーネントから `action` を props として公開する {/*exposing-action-props-from-components*/}
 
 コンポーネントが props として `action` を公開することで、親がアクションを呼び出せるようにできます。
 

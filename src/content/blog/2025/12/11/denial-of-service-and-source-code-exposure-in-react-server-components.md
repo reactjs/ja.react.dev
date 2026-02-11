@@ -9,6 +9,8 @@ description: セキュリティ研究者が先週の重大な脆弱性に対す�
 
 December 11, 2025 by [The React Team](/community/team)
 
+_Updated January 26, 2026._
+
 ---
 
 <Intro>
@@ -23,7 +25,7 @@ December 11, 2025 by [The React Team](/community/team)
 
 新しい脆弱性は以下のように公開されています。
 
-- **Denial of Service - High Severity**: [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) and [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779) (CVSS 7.5)
+- **Denial of Service - High Severity**: [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184), [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779), and [CVE-2026-23864](https://www.cve.org/CVERecord?id=CVE-2026-23864) (CVSS 7.5)
 - **Source Code Exposure - Medium Severity**: [CVE-2025-55183](https://www.cve.org/CVERecord?id=CVE-2025-55183) (CVSS 5.3)
 
 新たに開示された脆弱性の深刻さを鑑み、直ちにアップグレードすることを推奨します。
@@ -32,11 +34,15 @@ December 11, 2025 by [The React Team](/community/team)
 
 #### 以前に公開されたパッチには脆弱性があります {/*the-patches-published-earlier-are-vulnerable*/}
 
-先週の重大なセキュリティ脆弱性の対応のため既にアップデートを行っている場合でも、再度アップデートが必要です。
+以前の脆弱性対応のために既にアップデートを行っている場合でも、再度アップデートが必要です。
 
-19.0.2、19.1.3、および 19.2.2 にアップデート済みの場合でも、[これらは不完全](#additional-fix-published)であり、再度アップデートする必要があります。
+19.0.3、19.1.4、および 19.2.3 にアップデート済みの場合でも、[これらは不完全](#additional-fix-published)であり、再度アップデートする必要があります。
 
 アップグレード手順については、[前回記事のガイド](/blog/2025/12/03/critical-security-vulnerability-in-react-server-components#update-instructions)を参照してください。
+
+-----
+
+_Updated January 26, 2026._
 
 </Note>
 
@@ -46,13 +52,13 @@ December 11, 2025 by [The React Team](/community/team)
 
 これらの脆弱性は、[CVE-2025-55182](/blog/2025/12/03/critical-security-vulnerability-in-react-server-components) と同じパッケージおよびバージョンに存在します。
 
-以下のパッケージのバージョン 19.0.0、19.0.1、19.0.2、19.1.0、19.1.1、19.1.2、19.1.2、19.2.0、19.2.1、および 19.2.2 が該当します。
+以下のパッケージの 19.0.0、19.0.1、19.0.2、19.0.3、19.1.0、19.1.1、19.1.2、19.1.3、19.2.0、19.2.1、19.2.2、および 19.2.3 が該当します。
 
 * [react-server-dom-webpack](https://www.npmjs.com/package/react-server-dom-webpack)
 * [react-server-dom-parcel](https://www.npmjs.com/package/react-server-dom-parcel)
 * [react-server-dom-turbopack](https://www.npmjs.com/package/react-server-dom-turbopack?activeTab=readme)
 
-修正はバージョン 19.0.3、19.1.4、および 19.2.3 にバックポートされています。上記のパッケージを使用している場合は、直ちに修正済みバージョンのいずれかにアップグレードしてください。
+修正はバージョン 19.0.4、19.1.5、および 19.2.4 にバックポートされています。上記のパッケージを使用している場合は、直ちに修正済みバージョンのいずれかにアップグレードしてください。
 
 以前と同様、アプリの React コードがサーバを使用していない場合、アプリはこれらの脆弱性の影響を受けません。アプリが React Server Components をサポートするフレームワーク、バンドラ、またはバンドラプラグインを使用していない場合、アプリはこれらの脆弱性の影響を受けません。
 
@@ -72,7 +78,7 @@ December 11, 2025 by [The React Team](/community/team)
 
 一部の React フレームワークやバンドラが、脆弱性のある React パッケージに依存しているか、peer dependency として依存しているか、あるいはそれらを含んでいました。影響を受ける React フレームワークやバンドラは以下の通りです：[next](https://www.npmjs.com/package/next)、[react-router](https://www.npmjs.com/package/react-router)、[waku](https://www.npmjs.com/package/waku)、[@parcel/rsc](https://www.npmjs.com/package/@parcel/rsc)、[@vite/rsc-plugin](https://www.npmjs.com/package/@vitejs/plugin-rsc)、[rwsdk](https://www.npmjs.com/package/rwsdk)
 
-アップグレード方法について、[前回の記事の手順](https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components#update-instructions)を参照してください。
+アップグレード方法について、[前回の記事の手順](/blog/2025/12/03/critical-security-vulnerability-in-react-server-components#update-instructions)を参照してください。
 
 ### ホスティングプロバイダによる緩和策 {/*hosting-provider-mitigations*/}
 
@@ -94,28 +100,46 @@ December 11, 2025 by [The React Team](/community/team)
 
 詳細については[この issue](https://github.com/facebook/react-native/issues/54772#issuecomment-3617929832) を参照してください。
 
-## 高深刻度：サービス拒否攻撃 {/*high-severity-denial-of-service*/}
+---
 
-**CVE**: [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) および [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779)
+## 高深刻度：複数のサービス拒否攻撃 {/*high-severity-multiple-denial-of-service*/}
+
+**CVE**: [CVE-2026-23864](https://www.cve.org/CVERecord?id=CVE-2026-23864)
 **Base Score**: 7.5 (High)
+**Date**: January 26, 2025
 
-セキュリティ研究者は、悪意のある HTTP リクエストを作成して任意のサーバ関数 (Server Function) エンドポイントに対して送信することで、React がそれをデシリアライズする際に、サーバプロセスをハングさせて CPU を消費する無限ループを引き起こすことができることを発見しました。アプリが React のサーバ関数のエンドポイントを実装していない場合でも、React Server Components をサポートしている場合は脆弱性の影響を受ける可能性があります。
+セキュリティ研究者により、React Server Components に追加の DoS 脆弱性が残っていることが発見されました。
 
-これにより、攻撃者がユーザによる製品へのアクセスを不能にし、サーバ環境のパフォーマンスに影響を与えうる手段が生じます。
+これらの脆弱性は、特別に細工された HTTP リクエストをサーバ関数 (Server Function) エンドポイントに送信することで引き起こされます。実行される脆弱なコード経路、アプリケーション設定、およびアプリケーションコードに応じて、サーバクラッシュ、メモリ不足例外、または過剰な CPU 使用率につながる可能性があります。
 
-本日公開されたパッチは、無限ループを防ぐことでこの問題を緩和します。
+1 月 26 日に公開されたパッチは、これらの DoS 脆弱性を緩和します。
 
 <Note>
 
 #### 追加の修正が公開されました {/*additional-fix-published*/}
 
-[CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) における DoS に対処する元の修正は不完全でした。
+[CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) の DoS に対処する元の修正は不完全でした。
 
-これにより、バージョン 19.0.2、19.1.3、19.2.2 が脆弱な状態のままでした。バージョン 19.0.3、19.1.4、19.2.3 は安全です。
+これにより以前のバージョンが脆弱な状態のままでした。バージョン 19.0.4、19.1.5、19.2.4 は安全です。
 
-我々は追加のケースを修正し、脆弱なバージョンに対して [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779) を提出しました。
+-----
+
+_Updated January 26, 2026._
 
 </Note>
+
+---
+
+## 高深刻度：サービス拒否攻撃 {/*high-severity-denial-of-service*/}
+
+**CVE**: [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) および [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779)
+**Base Score**: 7.5 (High)
+
+セキュリティ研究者は、悪意のある HTTP リクエストを作成して任意のサーバ関数エンドポイントに対して送信することで、React がそれをデシリアライズする際に、サーバプロセスをハングさせて CPU を消費する無限ループを引き起こすことができることを発見しました。アプリが React のサーバ関数のエンドポイントを実装していない場合でも、React Server Components をサポートしている場合は脆弱性の影響を受ける可能性があります。
+
+これにより、攻撃者がユーザによる製品へのアクセスを不能にし、サーバ環境のパフォーマンスに影響を与えうる手段が生じます。
+
+本日公開されたパッチは、無限ループを防ぐことでこの問題を緩和します。
 
 ## 中深刻度：ソースコード露出 {/*low-severity-source-code-exposure*/}
 
@@ -170,9 +194,9 @@ export async function serverFunction(name) {
 * **12 月 11 日**：Shinsaku Nomura 氏が [Meta Bug Bounty](https://bugbounty.meta.com/) に追加の DoS を報告。
 * **12 月 11 日**：パッチが公開され、[CVE-2025-55183](https://www.cve.org/CVERecord?id=CVE-2025-55183) および [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) として一般公開。
 * **12 月 11 日**：不足していた DoS のケースが内部で発見され、修正が適用され [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779) として一般公開。
-
+* **1 月 26 日**：追加の DoS ケースが発見され、修正が適用され [CVE-2026-23864](https://www.cve.org/CVERecord?id=CVE-2026-23864) として一般公開。
 ---
 
 ## 謝辞 {/*attribution*/}
 
-ソースコード漏洩を報告してくださった [Andrew MacPherson (AndrewMohawk)](https://github.com/AndrewMohawk) 氏、サービス拒否攻撃の脆弱性を報告してくださった GMO Flatt Security Inc の [RyotaK](https://ryotak.net) 氏および株式会社ビットフォレストの Shinsaku Nomura 氏に感謝します。
+ソースコード漏洩を報告してくださった [Andrew MacPherson (AndrewMohawk)](https://github.com/AndrewMohawk) 氏、サービス拒否攻撃の脆弱性を報告してくださった GMO Flatt Security Inc の [RyotaK](https://ryotak.net) 氏および株式会社ビットフォレストの Shinsaku Nomura 氏に感謝します。追加の DoS 脆弱性を報告してくださった [Winfunc Research](https://winfunc.com) の [Mufeed VH](https://x.com/mufeedvh) 氏、[Joachim Viide](https://jviide.iki.fi) 氏、[GMO Flatt Security Inc](https://flatt.tech/en/) の [RyotaK](https://ryotak.net) 氏、および Tencent Security YUNDING LAB の Xiangwei Zhang 氏に感謝します。
