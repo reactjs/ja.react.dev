@@ -47,8 +47,13 @@ Activity バウンダリが <CodeStep step={1}>hidden</CodeStep> になってい
 
 #### 注意点 {/*caveats*/}
 
+<<<<<<< HEAD
 - [`ViewTransition`](/reference/react/ViewTransition) の内部で Activity がレンダーされ、[`startTransition`](/reference/react/startTransition) によって引き起こされた更新の結果として表示されるようになると、`ViewTransition` の `enter` アニメーションが作動します。非表示になると、`exit` アニメーションが作動します。
 - テキストのみをレンダーする Activity は、非表示のテキストをレンダーするのではなく、何もレンダーしません。これは、可視性の変化を適用するための対応する DOM 要素がないためです。例えば、`<Activity mode="hidden"><ComponentThatJustReturnsText /></Activity>` は、`const ComponentThatJustReturnsText = () => "Hello, World!"` の場合に DOM に何も出力しません。
+=======
+- If an Activity is rendered inside of a [ViewTransition](/reference/react/ViewTransition), and it becomes visible as a result of an update caused by [startTransition](/reference/react/startTransition), it will activate the ViewTransition's `enter` animation. If it becomes hidden, it will activate its `exit` animation.
+- A *hidden* Activity that just renders text will not render anything rather than rendering hidden text, because there’s no corresponding DOM element to apply visibility changes to. For example, `<Activity mode="hidden"><ComponentThatJustReturnsText /></Activity>` will not produce any output in the DOM for `const ComponentThatJustReturnsText = () => "Hello, World!"`. `<Activity mode="visible"><ComponentThatJustReturnsText /></Activity>` will render visible text.
+>>>>>>> 55a317d40781a0054a05a9f6c443ae0bd71f7d7e
 
 ---
 
