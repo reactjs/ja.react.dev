@@ -194,11 +194,11 @@ export default function App() {
 </Sandpack>
 
 これが上手く動作するのは、最終ステップで React によって更新されるのが、新しい `time` の値で更新される `<h1>` の中身だけだからです。`<input>` は JSX 内で前回と同じ場所にあるので、React は `<input>` やその `value` に触れません！
-## エピローグ：ブラウザのペイント {/*epilogue-browser-paint*/}
+## エピローグ：ブラウザの描画 {/*epilogue-browser-paint*/}
 
-レンダーが完了し、React が DOM を更新した後、ブラウザは画面を再描画します。このプロセスは「ブラウザレンダリング」として知られていますが、我々は、混乱を避けるために、ドキュメント全体を通して「ペイント」と呼ぶことにします。
+レンダーが完了し、React が DOM を更新した後、ブラウザは画面を再描画します。このプロセスは「ブラウザレンダリング」として知られていますが、我々は、混乱を避けるために、ドキュメント全体を通して「描画」と呼ぶことにします。
 
-<Illustration alt="ブラウザが「カード要素と静物画」をペイントしている" src="/images/docs/illustrations/i_browser-paint.png" />
+<Illustration alt="ブラウザが「カード要素と静物画」を描画している" src="/images/docs/illustrations/i_browser-paint.png" />
 
 <Recap>
 
@@ -210,4 +210,3 @@ export default function App() {
 * レンダー結果が前回と同一である場合、React は DOM を触らない。
 
 </Recap>
-
