@@ -104,9 +104,15 @@ _Updated January 26, 2026._
 
 ## 高深刻度：複数のサービス拒否攻撃 {/*high-severity-multiple-denial-of-service*/}
 
+<<<<<<< HEAD
 **CVE**: [CVE-2026-23864](https://www.cve.org/CVERecord?id=CVE-2026-23864)
 **Base Score**: 7.5 (High)
 **Date**: January 26, 2025
+=======
+**CVEs:** [CVE-2026-23864](https://www.cve.org/CVERecord?id=CVE-2026-23864)
+**Base Score:** 7.5 (High)
+**Date**: January 26, 2026
+>>>>>>> 7c90c6eb4bb93a5eacb9cb4ad4ca496c32984636
 
 セキュリティ研究者により、React Server Components に追加の DoS 脆弱性が残っていることが発見されました。
 
