@@ -40,7 +40,7 @@ experimental_taintObjectReference(message, object);
 
 ### `taintObjectReference(message, object)` {/*taintobjectreference*/}
 
-`taintObjectReference` をオブジェクトと共に呼び出すことで、そのオブジェクトを「クライアントにそのまま渡してはならないもの」として React に登録します。
+`taintObjectReference` をオブジェクトと共に呼び出すことで、そのオブジェクトをクライアントにそのまま渡してはならないものとして React に登録します。
 
 ```js
 import {experimental_taintObjectReference} from 'react';
@@ -79,7 +79,7 @@ experimental_taintObjectReference(
 
 ### ユーザデータが意図せずクライアントに到達するのを防ぐ {/*prevent-user-data-from-unintentionally-reaching-the-client*/}
 
-Client Component は、機密データを持つオブジェクトを決して受け取るべきではありません。理想的には、データ取得関数は現在のユーザに見せるべきではないデータを公開しないようにするべきです。しかしリファクタリング中にミスが起きることもあります。後続の処理でそのようなミスが起きた場合に備えて、データ API 内で `user` オブジェクトを「taint」できます。
+Client Component は、機密データを持つオブジェクトを決して受け取るべきではありません。理想的には、データ取得関数は現在のユーザに見せるべきではないデータを公開しないようにするべきです。しかしリファクタリング中にミスが起きることもあります。後続の処理でそのようなミスが起きた場合に備えて、データ API 内で user オブジェクトを "taint" できます。
 
 ```js
 import {experimental_taintObjectReference} from 'react';
@@ -131,7 +131,7 @@ export async function InfoCard({ user }) {
 }
 ```
 
-理想的には、`getUser` は現在のユーザに見せるべきではないデータを公開しないようにするべきです。後続の処理で `user` オブジェクトが Client Component に渡されるのを防ぐために、`user` オブジェクトを「taint」できます。
+理想的には、`getUser` は現在のユーザに見せるべきではないデータを公開しないようにするべきです。後続の処理で `user` オブジェクトが Client Component に渡されるのを防ぐために、user オブジェクトを "taint" できます。
 
 
 ```js
