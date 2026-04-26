@@ -81,7 +81,7 @@ function ChatRoom({ roomId }) {
 
 エフェクトからイベントを分離することもできます：
 
-- [`useEffectEvent`](/reference/react/useEffectEvent) は、任意のエフェクトフックから発火できる非リアクティブなイベントを作成します。
+- [`useEffectEvent`](/reference/react/useEffectEvent) は任意のエフェクトフックから発火できる非リアクティブなイベントを作成します。
 ---
 
 ## パフォーマンス関連フック {/*performance-hooks*/}
