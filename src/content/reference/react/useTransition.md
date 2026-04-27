@@ -1947,7 +1947,7 @@ export async function updateQuantity(newName) {
 
 トランジション内のアクションは実行順序を保証しないため、これは想定された動作です。一般的なユースケースのために、React は [`useActionState`](/reference/react/useActionState) や [`<form>` アクション](/reference/react-dom/components/form) のような高レベルの抽象化を提供しており、順序の管理を自動化します。高度なユースケースでは、独自のキューイングや中断ロジックを実装して、実行順序を管理する必要があります。
 
-Example of `useActionState` handling execution order:
+`useActionState` で実行順序を扱う例：
 
 <Sandpack>
 
