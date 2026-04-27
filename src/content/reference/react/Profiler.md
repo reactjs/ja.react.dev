@@ -89,8 +89,8 @@ React ツリーを `<Profiler>` コンポーネントで囲むことで、その
 
 `<Profiler>` を使うことで測定結果をプログラムで収集することができます。対話型のプロファイラを使いたい場合は、[React Developer Tools](/learn/react-developer-tools) の Profiler タブを試してみてください。これは同様の機能をブラウザの拡張機能として提供します。
 
-Components wrapped in `<Profiler>` will also be marked in the [Component tracks](/reference/dev-tools/react-performance-tracks#components) of React Performance tracks even in profiling builds.
-In development builds, all components are marked in the Components track regardless of whether they're wrapped in `<Profiler>`.
+`<Profiler>` でラップされたコンポーネントは、プロファイリングビルドにおいても React パフォーマンストラックの [コンポーネントトラック](/reference/dev-tools/react-performance-tracks#components) に記録されます。
+開発用ビルドでは、`<Profiler>` でラップされているかどうかにかかわらず、すべてのコンポーネントがコンポーネントトラックに記録されます。
 
 </Note>
 
