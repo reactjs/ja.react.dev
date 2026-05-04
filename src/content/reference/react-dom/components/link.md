@@ -151,7 +151,11 @@ export default function SiteMapPage() {
 
 ### スタイルシートの優先度の制御 {/*controlling-stylesheet-precedence*/}
 
+<<<<<<< HEAD
 スタイルシートは互いに競合することがあり、その場合ブラウザはドキュメント内で後に来るものを採用します。React では props である `precedence` を使用してスタイルシートの順序を制御できます。以下の例では 2 つのコンポーネントがスタイルシートをレンダーしています。優先度の高いリンクをレンダーしているコンポーネントが先に来ていますが、ドキュメント内では後に配置されます。
+=======
+Stylesheets can conflict with each other, and when they do, the browser goes with the one that comes later in the document. React lets you control the order of stylesheets with the `precedence` prop. In this example, three components render stylesheets, and the ones with the same precedence are grouped together in the `<head>`.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <SandpackWithHTMLOutput>
 

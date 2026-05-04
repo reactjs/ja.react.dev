@@ -40,6 +40,7 @@ props として `children` または `src` のいずれかが必要です。
 
 他に、以下の props がサポートされます。
 
+<<<<<<< HEAD
 * `async`: ブーリアン。ドキュメントの残りの部分の処理を完了するまでブラウザにスクリプトの実行を遅延させることを許可します。これはパフォーマンスのために推奨される動作です。
 * `crossOrigin`: 文字列。使用する [CORS ポリシー](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin)。可能な値は `anonymous` と `use-credentials` です。
 * `fetchPriority`: 文字列。複数のスクリプトを同時にフェッチする際に、ブラウザにスクリプトの優先付けを行わせます。`"high"`、`"low"`、`"auto"`（デフォルト）のいずれかです。
@@ -48,6 +49,16 @@ props として `children` または `src` のいずれかが必要です。
 * `nonce`: 文字列。厳格なコンテンツセキュリティポリシーを使用する際に[リソースを許可するための暗号化 nonce](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce)。
 * `referrer`: 文字列。スクリプトをフェッチする際、およびそのスクリプトが更にリソースフェッチする際に送信する [Referer ヘッダー](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#referrerpolicy)を指定します。
 * `type`: 文字列。スクリプトが[従来のスクリプト、ES モジュール、またはインポートマップ](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type)のいずれであるかを指定します。
+=======
+* `async`: a boolean. Allows the browser to defer execution of the script until the rest of the document has been processed — the preferred behavior for performance.
+*  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
+* `fetchPriority`: a string. Lets the browser rank scripts in priority when fetching multiple scripts at the same time. Can be `"high"`, `"low"`, or `"auto"` (the default).
+* `integrity`: a string. A cryptographic hash of the script, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+* `noModule`: a boolean. Disables the script in browsers that support ES modules — allowing for a fallback script for browsers that do not.
+* `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
+* `referrer`: a string. Says [what Referer header to send](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#referrerpolicy) when fetching the script and any resources that the script fetches in turn.
+* `type`: a string. Says whether the script is a [classic script, ES module, or import map](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type).
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 以下の props は React による[スクリプトの特別な扱い](#special-rendering-behavior)を無効にします。
 

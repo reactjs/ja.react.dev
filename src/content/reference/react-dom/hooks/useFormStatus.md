@@ -40,7 +40,11 @@ export default function App() {
 }
 ```
 
+<<<<<<< HEAD
 ステータス情報を取得するには、この `Submit` コンポーネントが `<form>` 内でレンダーされている必要があります。このフックは、フォームが送信中かどうかを示す <CodeStep step={1}>`pending`</CodeStep> プロパティなどの情報を返します。
+=======
+To get status information, the `Submit` component must be rendered within a `<form>`. The Hook returns information like the <CodeStep step={1}>`pending`</CodeStep> property which tells you if the form is actively submitting.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 上記の例では、`Submit` がこの情報を使用して、フォームが送信中の間 `<button>` を無効にして押せなくしています。
 
@@ -65,8 +69,13 @@ export default function App() {
 
 #### 注意点 {/*caveats*/}
 
+<<<<<<< HEAD
 * `useFormStatus` フックは、`<form>` 内でレンダーされるコンポーネントから呼び出す必要があります。
 * `useFormStatus` は親 `<form>` のステータス情報のみを返します。同じコンポーネントや子コンポーネント内でレンダーされた `<form>` のステータス情報は返しません。
+=======
+* The `useFormStatus` Hook must be called from a component that is rendered inside a `<form>`.
+* `useFormStatus` will only return status information for a parent `<form>`. It will not return status information for any `<form>` rendered in that same component or children components.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 ---
 
@@ -75,7 +84,11 @@ export default function App() {
 ### フォーム送信中にステータスを表示 {/*display-a-pending-state-during-form-submission*/}
 フォームの送信中にそのステータスを表示するには、`<form>` 内でレンダーされるコンポーネントで `useFormStatus` フックを呼び出し、返された `pending` プロパティを読み取ります。
 
+<<<<<<< HEAD
 以下では、フォームが送信中であることを示すために `pending` プロパティを使用しています。
+=======
+Here, we use the `pending` property to indicate the form is submitting.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <Sandpack>
 
@@ -110,7 +123,7 @@ export async function submitForm(query) {
     await new Promise((res) => setTimeout(res, 1000));
 }
 ```
-</Sandpack>  
+</Sandpack>
 
 <Pitfall>
 
@@ -132,7 +145,7 @@ function Form() {
 ```js
 function Submit() {
   // ✅ `pending` will be derived from the form that wraps the Submit component
-  const { pending } = useFormStatus(); 
+  const { pending } = useFormStatus();
   return <button disabled={pending}>...</button>;
 }
 
@@ -215,7 +228,7 @@ button {
 
 ```
 
-</Sandpack>  
+</Sandpack>
 
 ---
 
@@ -223,7 +236,11 @@ button {
 
 ### `status.pending` が `true` にならない {/*pending-is-never-true*/}
 
+<<<<<<< HEAD
 `useFormStatus` は親の `<form>` に対するステータス情報のみを返します。
+=======
+`useFormStatus` will only return status information for a parent `<form>`.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 `useFormStatus` を呼び出しているコンポーネントが `<form>` の中にネストされていない場合、`status.pending` は常に `false` を返します。`useFormStatus` が `<form>` 要素の子コンポーネント内で呼び出されていることを確認してください。
 
