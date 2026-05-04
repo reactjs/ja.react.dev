@@ -337,7 +337,11 @@ import './styles.css';
 import App from './App';
 ```
 
+<<<<<<< HEAD
 1〜5 行目で、必要なすべての部品を取り出しています：
+=======
+Lines 1-5 bring all the necessary pieces together:
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 * React
 * Web ブラウザとやり取りするための React ライブラリ (React DOM)
@@ -551,7 +555,11 @@ export default function Board() {
 }
 ```
 
+<<<<<<< HEAD
 ブラウザの `div` とは異なり、自分で作成するコンポーネントである `Board` と `Square` は、大文字で始める必要があることに注意してください。
+=======
+Note how unlike the browser `div`s, your own components `Board` and `Square` must start with a capital letter.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 どうなったか見てみましょう。
 
@@ -1094,7 +1102,11 @@ function Square({ value, onSquareClick }) {
 }
 ```
 
+<<<<<<< HEAD
 次にこの `onSquareClick` プロパティを、`Board` コンポーネント内に `handleClick` という名前で作る関数に接続します。`onSquareClick` を `handleClick` に接続するために、1 番目の `Square` コンポーネントの `onSquareClick` プロパティに関数を渡しましょう：
+=======
+Now you'll connect the `onSquareClick` prop to a function in the `Board` component that you'll name `handleClick`. To connect `onSquareClick` to `handleClick` you'll pass a function to the `onSquareClick` prop of the first `Square` component:
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 ```js {7}
 export default function Board() {
@@ -2073,13 +2085,21 @@ export default function Game() {
 }
 ```
 
+<<<<<<< HEAD
 コードは以下のようになります。なお開発者ツールのコンソールには以下のようなエラーが表示されています。
+=======
+You can see what your code should look like below. Note that you should see an error in the developer tools console that says:
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <ConsoleBlock level="warning">
 Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of &#96;Game&#96;.
 </ConsoleBlock>
 
+<<<<<<< HEAD
 このエラーは次のセクションで修正します。
+=======
+You'll fix this error in the next section.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <Sandpack>
 

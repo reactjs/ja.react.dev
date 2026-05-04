@@ -11,7 +11,11 @@ February 14, 2025 by [Matt Carroll](https://twitter.com/mattcarrollcode) and [Ri
 
 <Intro>
 
+<<<<<<< HEAD
 本日、新しいアプリに対して [Create React App](https://create-react-app.dev/) を非推奨とします。既存のアプリに対しては、[フレームワーク](#how-to-migrate-to-a-framework)への移行、または Vite、Parcel、RSBuild などの[ビルドツールへの移行](#how-to-migrate-to-a-build-tool)を推奨します。
+=======
+Today, we’re deprecating [Create React App](https://create-react-app.dev/) for new apps, and encouraging existing apps to migrate to a [framework](#how-to-migrate-to-a-framework), or to [migrate to a build tool](#how-to-migrate-to-a-build-tool) like Vite, Parcel, or RSBuild.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 また、フレームワークがプロジェクトに適していない場合や、独自のフレームワークを構築したい場合、あるいは[ゼロから React アプリを構築する](/learn/build-a-react-app-from-scratch)ことで React がどのように動作するかを学びたい場合のためのドキュメントも提供します。
 
@@ -75,7 +79,11 @@ Vite、Parcel、Rsbuild を使用して始めるために、[ゼロから React 
 
 #### フレームワークは必要？ {/*do-i-need-a-framework*/}
 
+<<<<<<< HEAD
 ほとんどのアプリはフレームワークの恩恵を受けますが、ゼロから React アプリを構築する正当なケースもあります。目安として、アプリにルーティングが必要なら、おそらくフレームワークの恩恵を受ける可能性が高いでしょう。
+=======
+Most apps would benefit from a framework, but there are valid cases to build a React app from scratch. A good rule of thumb is if your app needs routing, you would probably benefit from a framework.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Svelte には Sveltekit、Vue には Nuxt、Solid には SolidStart があるように、React は、ルーティングをデータフェッチやコード分割などの機能に完全に統合した[フレームワークを使用することを推奨しています](#why-we-recommend-frameworks)。これにより、複雑な設定を自分で書いて実質的に自分用のフレームワークを構築してしまうような必要がなくなります。
 

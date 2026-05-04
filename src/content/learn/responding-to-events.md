@@ -169,7 +169,11 @@ button { margin-right: 10px; }
 
 ### イベントハンドラを props として渡す {/*passing-event-handlers-as-props*/}
 
+<<<<<<< HEAD
 よくあるケースとして、親コンポーネントが子のイベントハンドラを指定したい場合があります。ボタンを考えてみましょう：`Button` というコンポーネントには、使用する場所によって、動画を再生する、画像をアップロードするなど、異なる関数を実行させたいことでしょう。
+=======
+Often you'll want the parent component to specify a child's event handler. Consider buttons: depending on where you're using a `Button` component, you might want to execute a different function—perhaps one plays a movie and another uploads an image.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 これを行うには、以下のようにして、コンポーネントが親から受け取った props の一部をイベントハンドラとして渡します：
 
@@ -312,12 +316,21 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
+<<<<<<< HEAD
 `Toolbar` が `onPlayMovie` や `onUploadImage` を*どう扱う*のかを、`App` コンポーネントが知る必要がないことに注意してください。それは `Toolbar` の実装の詳細です。ここでは、`Toolbar` はそれらを `Button` の `onClick` ハンドラとして渡していますが、後でキーボードショートカットでもそれらをトリガするようにすることができます。`onPlayMovie` のようなアプリ固有のインタラクションに基づいて props を名付けることで、後でどのように使用されるかを変更できるという柔軟性が得られます。
   
 <Note>
 
 イベントハンドラは適切な HTML タグに設定するようにしてください。例えば、クリックを処理するためには、`<div onClick={handleClick}>` ではなく [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) を使用します。本物のブラウザの `<button>` を使用することで、キーボードナビゲーションのようなブラウザ組み込みの振る舞いが有効になります。ブラウザデフォルトのボタンのスタイルが気に入らず、リンクや他の UI 要素のような見た目にしたい場合、CSS を使うことで実現できます。[アクセシブルなマークアップについて学ぶ](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)。
   
+=======
+Notice how the `App` component does not need to know *what* `Toolbar` will do with `onPlayMovie` or `onUploadImage`. That's an implementation detail of the `Toolbar`. Here, `Toolbar` passes them down as `onClick` handlers to its `Button`s, but it could later also trigger them on a keyboard shortcut. Naming props after app-specific interactions like `onPlayMovie` gives you the flexibility to change how they're used later.
+
+<Note>
+
+Make sure that you use the appropriate HTML tags for your event handlers. For example, to handle clicks, use [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) instead of `<div onClick={handleClick}>`. Using a real browser `<button>` enables built-in browser behaviors like keyboard navigation. If you don't like the default browser styling of a button and want to make it look more like a link or a different UI element, you can achieve it with CSS. [Learn more about writing accessible markup.](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
+
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 </Note>
 
 ## イベント伝播 {/*event-propagation*/}
@@ -411,12 +424,21 @@ button { margin: 5px; }
 
 ボタンをクリックすると以下のことが起こります。
 
+<<<<<<< HEAD
 1. React が `<button>` に渡された `onClick` ハンドラを呼び出す。
 2. そのハンドラは `Button` で定義されており、次のことを行う。
    * `e.stopPropagation()` を呼び出し、イベントがさらにバブリングされるのを防ぐ。
    * `Toolbar` コンポーネントから渡された props である `onClick` 関数を呼び出す。
 3. その関数は `Toolbar` コンポーネントで定義されており、そのボタン固有のアラートを表示する。
 4. 伝播が停止されたため、親の `<div>` の `onClick` ハンドラは*実行されない*。
+=======
+1. React calls the `onClick` handler passed to `<button>`.
+2. That handler, defined in `Button`, does the following:
+   * Calls `e.stopPropagation()`, preventing the event from bubbling further.
+   * Calls the `onClick` function, which is a prop passed from the `Toolbar` component.
+3. That function, defined in the `Toolbar` component, displays the button's own alert.
+4. Since the propagation was stopped, the parent `<div>`'s `onClick` handler does *not* run.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 `e.stopPropagation()` の結果、ボタンをクリックすると、アラートが 2 つ（`<button>` と親のツールバーの `<div>` から）ではなく、1 つだけ（`<button>` のみから）表示されるようになります。ボタンをクリックすることと、周囲のツールバーの余白をクリックすることは別物なので、この UI では伝播を止めることが理にかなっています。
 
@@ -433,11 +455,19 @@ button { margin: 5px; }
 </div>
 ```
 
+<<<<<<< HEAD
 すべてのイベントは 3 つのフェーズで伝播します。
 
 1. 下方向に移動し、すべての `onClickCapture` ハンドラを呼び出す。
 2. クリックされた要素自体の `onClick` ハンドラを実行する。
 3. 上方向に移動し、すべての `onClick` ハンドラを呼び出す。
+=======
+Each event propagates in three phases:
+
+1. It travels down, calling all `onClickCapture` handlers.
+2. It runs the clicked element's `onClick` handler.
+3. It travels upwards, calling all `onClick` handlers.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 キャプチャイベントはルータや分析のようなコードで役立ちますが、アプリケーションコードで使用することはほとんどありません。
 

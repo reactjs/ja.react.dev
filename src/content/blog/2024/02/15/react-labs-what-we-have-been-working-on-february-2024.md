@@ -49,19 +49,31 @@ JavaScript は、そのルールの緩さと動的な性質のために、最適
 
 この `action` 関数は同期的にも非同期的にも動作します。クライアント側で標準の JavaScript を使用して定義することもできますし、[`'use server'`](/reference/rsc/use-server) ディレクティブを使用してサーバ側で定義することも可能です。アクションを使用することで、React がデータ送信に関するライフサイクルを管理するようになり、[`useFormStatus`](/reference/react-dom/hooks/useFormStatus) や [`useActionState`](/reference/react/useActionState) などのフックを通じて、現在の送信ステータスやフォームアクションのレスポンスにアクセスできるようになります。
 
+<<<<<<< HEAD
 デフォルトでは、アクションは[トランジション](/reference/react/useTransition)内で送信されるため、アクションが処理されている間も現在のページをインタラクティブに保ちます。アクションは非同期関数をサポートしているため、トランジション内で `async/await` を使用する機能も追加しました。これにより、`fetch` のような非同期リクエストが開始されたときにトランジションの `isPending` 状態を使って保留中 (pending) UI を表示できるようになり、更新の適用が完了するまで保留中 UI を表示し続けることができます。
+=======
+By default, Actions are submitted within a [transition](/reference/react/useTransition), keeping the current page interactive while the action is processing. Since Actions support async functions, we've also added the ability to use `async/await` in transitions. This allows you to show pending UI with the `isPending` state of a transition when an async request like `fetch` starts, and show the pending UI all the way through the update being applied.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 アクションと並行して、楽観的な state 更新を管理するための [`useOptimistic`](/reference/react/useOptimistic) という機能を導入しています。このフックを使用すると、最終 state がコミットされた際に自動的に元に戻る一時的な更新を適用できます。アクションの場合、送信が成功するものと仮定してクライアント側でデータの最終 state を楽観的に設定しておき、最終的にサーバから受け取ったデータの値に戻すことができます。これは通常の `async`/`await` を使用して動作するため、クライアントで `fetch` を使用している場合でも、サーバからの Server Action を使用している場合でも同じように動作します。
 
 ライブラリの作者は、`useTransition` を使用する独自のコンポーネントでカスタムの `action={fn}` という props を実装できます。私たちの意図は、ライブラリがコンポーネントの API を設計する際に Action のパターンを採用することで、React 開発者に一貫した体験が提供されるようになることです。例えば、あなたのライブラリが `<Calendar onSelect={eventHandler}>` というコンポーネントを提供している場合、`<Calendar selectAction={action}>` API も公開することを検討してください。
 
+<<<<<<< HEAD
 当初はクライアントからサーバへのデータ転送方法としての Server Action にフォーカスしてきましたが、React の哲学は、すべてのプラットフォームと環境で同じプログラミングモデルを提供することです。可能な限り、クライアントで何か機能を導入する場合はサーバでも動作するようにしようとしますし、その逆も同様です。この哲学により、アプリがどこで実行される場合でも機能する単一の API セットを作成でき、後で異なる環境にアップグレードすることが容易になるでしょう。
+=======
+While we initially focused on Server Actions for client-server data transfer, our philosophy for React is to provide the same programming model across all platforms and environments. When possible, if we introduce a feature on the client, we aim to make it also work on the server, and vice versa. This philosophy allows us to create a single set of APIs that work no matter where your app runs, making it easier to upgrade to different environments later.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 アクションは現在 Canary チャンネルで利用可能であり、次回の React のリリースに含まれる予定です。
 
 ## React Canary での新機能 {/*new-features-in-react-canary*/}
 
+<<<<<<< HEAD
 私たちは、semver の安定バージョンでリリースされる前に、設計がほぼ最終的な段階に近づいた新しい安定機能を個別に採用するオプションとして、[React Canary](/blog/2023/05/03/react-canaries) を導入しました。
+=======
+We introduced [React Canaries](/blog/2023/05/03/react-canaries) as an option to adopt individual new stable features as soon as their design is close to final, before they’re released in a stable semver version.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Canary は我々の新しい React 開発方法です。これまで、新機能は Meta 内でプライベートに研究、構築されていたため、ユーザは安定版にリリースされたときに初めて最終版のプロダクトを目にすることになっていました。Canary 以降は、コミュニティの助けを借りつつ公開の場で、React Labs ブログシリーズで共有している各種機能について開発を進め、最終確定を行っています。これは、機能が完成してしまった後ではなく最終確定の途上にある段階で、新機能についていち早く知ることができる、ということです。
 
@@ -75,7 +87,11 @@ React Server Components、アセットローディング、ドキュメントメ
 
 - **アクション**: 上記で述べた通り、クライアントからサーバへのデータ送信を管理する機能であるアクションを追加しました。[`<form/>`](/reference/react-dom/components/form) などの要素に `action` を追加し、[`useFormStatus`](/reference/react-dom/hooks/useFormStatus) で送信ステータスを取得し、[`useActionState`](/reference/react/useActionState) で結果を処理し、[`useOptimistic`](/reference/react/useOptimistic) で UI を楽観的に更新することが可能です。
 
+<<<<<<< HEAD
 これらの機能はすべて連携して動作するため、個別に安定版チャンネルでリリースすることは困難です。フォームステータスを取得するためのフックによる補完なしでアクションをリリースすれば、実用的な有用性は限定されてしまうでしょう。React Server Components をサーバアクションと統合せずに導入すれば、サーバ上のデータを変更することが大変になってしまうでしょう。
+=======
+Since all of these features work together, it’s difficult to release them in the Stable channel individually. Releasing Actions without the complementary hooks for accessing form states would limit the practical usability of Actions. Introducing React Server Components without integrating Server Actions would complicate modifying data on the server.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 一連の機能を安定版チャンネルにリリースする前に、それらが統合的に動作し、開発者が本番環境で使用する際に必要なすべてのものが確実に揃っているようにする必要があります。React Canary により、これらの機能を個別に開発し、最終的に機能セット全体が完成する前に、安定した API を段階的にリリースすることができるのです。
 

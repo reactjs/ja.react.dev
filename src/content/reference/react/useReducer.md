@@ -38,9 +38,15 @@ function MyComponent() {
 
 #### 引数 {/*parameters*/}
 
+<<<<<<< HEAD
 * `reducer`: state をどのように更新するかを指定するリデューサ関数です。純粋でなければならず、引数として state とアクションを取り、次の state を返します。state とアクションはどのような型でも大丈夫です。
 * `initialArg`: 初期 state が計算される元になる値です。任意の型の値を指定できます。どのように初期 state を計算するかは、次の `init` 引数に依存します。
 * **省略可能** `init`: 初期 state を返す初期化関数です。指定されていない場合、初期 state は `initialArg` そのものになります。指定されている場合、初期 state は `init(initialArg)` の結果になります。
+=======
+* `reducer`: The reducer function that specifies how the state gets updated. It must be pure, should take the state and action as arguments, and should return the next state. State and action can be of any types.
+* `initialArg`: The value from which the initial state is calculated. It can be a value of any type. How the initial state is calculated from it depends on the next `init` argument.
+* **optional** `init`: The initializer function that should return the initial state. If it's not specified, the initial state is set to `initialArg`. Otherwise, the initial state is set to the result of calling `init(initialArg)`.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 #### 返り値 {/*returns*/}
 
@@ -199,7 +205,7 @@ function reducer(state, action) {
 ```js {5,9-12}
 function Form() {
   const [state, dispatch] = useReducer(reducer, { name: 'Taylor', age: 42 });
-  
+
   function handleButtonClick() {
     dispatch({ type: 'incremented_age' });
   }
@@ -291,7 +297,7 @@ export default function Form() {
     dispatch({
       type: 'changed_name',
       nextName: e.target.value
-    }); 
+    });
   }
 
   return (

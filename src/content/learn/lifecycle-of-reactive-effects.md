@@ -293,7 +293,11 @@ button { margin-left: 10px; }
 ```js {1,3,8}
 function ChatRoom({ roomId }) { // roomId は時間の経過とともに変化する可能性がある
   useEffect(() => {
+<<<<<<< HEAD
     const connection = createConnection(serverUrl, roomId); // このエフェクトは `roomId` を利用している
+=======
+    const connection = createConnection(serverUrl, roomId); // This Effect reads roomId
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
     connection.connect();
     return () => {
       connection.disconnect();
@@ -969,7 +973,7 @@ export default function App() {
       <label>
         <input type="checkbox"
           checked={canMove}
-          onChange={e => setCanMove(e.target.checked)} 
+          onChange={e => setCanMove(e.target.checked)}
         />
         The dot is allowed to move
       </label>
@@ -1027,7 +1031,7 @@ export default function App() {
       <label>
         <input type="checkbox"
           checked={canMove}
-          onChange={e => setCanMove(e.target.checked)} 
+          onChange={e => setCanMove(e.target.checked)}
         />
         The dot is allowed to move
       </label>
@@ -1083,7 +1087,7 @@ export default function App() {
       <label>
         <input type="checkbox"
           checked={canMove}
-          onChange={e => setCanMove(e.target.checked)} 
+          onChange={e => setCanMove(e.target.checked)}
         />
         The dot is allowed to move
       </label>
@@ -1155,7 +1159,7 @@ export default function App() {
       <label>
         <input type="checkbox"
           checked={canMove}
-          onChange={e => setCanMove(e.target.checked)} 
+          onChange={e => setCanMove(e.target.checked)}
         />
         The dot is allowed to move
       </label>
@@ -1220,7 +1224,7 @@ export default function App() {
       <label>
         <input type="checkbox"
           checked={canMove}
-          onChange={e => setCanMove(e.target.checked)} 
+          onChange={e => setCanMove(e.target.checked)}
         />
         The dot is allowed to move
       </label>
@@ -1279,7 +1283,7 @@ export default function App() {
       <label>
         <input type="checkbox"
           checked={canMove}
-          onChange={e => setCanMove(e.target.checked)} 
+          onChange={e => setCanMove(e.target.checked)}
         />
         The dot is allowed to move
       </label>
@@ -1711,7 +1715,7 @@ async function fetchPlanets() {
         name: 'Venus'
       }, {
         id: 'mars',
-        name: 'Mars'        
+        name: 'Mars'
       }]);
     }, 1000);
   });
@@ -1735,7 +1739,7 @@ async function fetchPlaces(planetId) {
           name: 'Spain'
         }, {
           id: 'vietnam',
-          name: 'Vietnam'        
+          name: 'Vietnam'
         }]);
       } else if (planetId === 'venus') {
         resolve([{
@@ -1746,7 +1750,7 @@ async function fetchPlaces(planetId) {
           name: 'Diana Chasma'
         }, {
           id: 'kumsong-vallis',
-          name: 'Kŭmsŏng Vallis'        
+          name: 'Kŭmsŏng Vallis'
         }]);
       } else if (planetId === 'mars') {
         resolve([{
@@ -1879,7 +1883,7 @@ async function fetchPlanets() {
         name: 'Venus'
       }, {
         id: 'mars',
-        name: 'Mars'        
+        name: 'Mars'
       }]);
     }, 1000);
   });
@@ -1903,7 +1907,7 @@ async function fetchPlaces(planetId) {
           name: 'Spain'
         }, {
           id: 'vietnam',
-          name: 'Vietnam'        
+          name: 'Vietnam'
         }]);
       } else if (planetId === 'venus') {
         resolve([{
@@ -1914,7 +1918,7 @@ async function fetchPlaces(planetId) {
           name: 'Diana Chasma'
         }, {
           id: 'kumsong-vallis',
-          name: 'Kŭmsŏng Vallis'        
+          name: 'Kŭmsŏng Vallis'
         }]);
       } else if (planetId === 'mars') {
         resolve([{
@@ -2042,7 +2046,7 @@ async function fetchPlanets() {
         name: 'Venus'
       }, {
         id: 'mars',
-        name: 'Mars'        
+        name: 'Mars'
       }]);
     }, 1000);
   });
@@ -2066,7 +2070,7 @@ async function fetchPlaces(planetId) {
           name: 'Spain'
         }, {
           id: 'vietnam',
-          name: 'Vietnam'        
+          name: 'Vietnam'
         }]);
       } else if (planetId === 'venus') {
         resolve([{
@@ -2077,7 +2081,7 @@ async function fetchPlaces(planetId) {
           name: 'Diana Chasma'
         }, {
           id: 'kumsong-vallis',
-          name: 'Kŭmsŏng Vallis'        
+          name: 'Kŭmsŏng Vallis'
         }]);
       } else if (planetId === 'mars') {
         resolve([{

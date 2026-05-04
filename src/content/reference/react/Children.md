@@ -492,7 +492,11 @@ export default function RowList({ children }) {
 
 ### 子を配列に変換する {/*converting-children-to-an-array*/}
 
+<<<<<<< HEAD
 `Children.toArray(children)` を呼び出して、`children` データ構造を通常の JavaScript 配列に変換します。これにより、[`filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)、[`sort`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)、[`reverse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse) などの組み込み配列メソッドを使って配列を操作できます。
+=======
+Call `Children.toArray(children)` to turn the `children` data structure into a regular JavaScript array. This lets you manipulate the array with built-in array methods like [`filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), [`sort`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), or [`reverse`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse)
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <Sandpack>
 
@@ -861,7 +865,7 @@ export default function App() {
         return (
           <Row isHighlighted={index % 2 === 0}>
             <p>This is the {id} item.</p>
-          </Row> 
+          </Row>
         );
       }}
     />

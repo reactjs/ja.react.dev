@@ -294,7 +294,11 @@ function ProfilePage() {
 
 上記の `Posts` コンポーネントで実際にデータをロードする方法は、使用するフレームワークによって異なります。サスペンス対応のフレームワークを使用している場合、詳細はデータフェッチに関するドキュメンテーション内に記載されているはずです。
 
+<<<<<<< HEAD
 使い方の規約のある (opinionated) フレームワークを使用せずにサスペンスを使ったデータフェッチを行うことは、まだサポートされていません。サスペンス対応のデータソースを実装するための要件はまだ不安定であり、ドキュメント化されていません。データソースをサスペンスと統合するための公式な API は、React の将来のバージョンでリリースされる予定です。
+=======
+Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 </Note>
 
@@ -401,7 +405,7 @@ const { pipe } = renderToPipeableStream(<App />, {
   onShellError(error) {
     response.statusCode = 500;
     response.setHeader('content-type', 'text/html');
-    response.send('<h1>Something went wrong</h1>'); 
+    response.send('<h1>Something went wrong</h1>');
   },
   onError(error) {
     console.error(error);
@@ -460,7 +464,7 @@ const { pipe } = renderToPipeableStream(<App />, {
   onShellError(error) {
     response.statusCode = 500;
     response.setHeader('content-type', 'text/html');
-    response.send('<h1>Something went wrong</h1>'); 
+    response.send('<h1>Something went wrong</h1>');
   },
   onError(error) {
     console.error(error);
@@ -486,7 +490,7 @@ const { pipe } = renderToPipeableStream(<App />, {
   onShellError(error) {
     response.statusCode = 500;
     response.setHeader('content-type', 'text/html');
-    response.send('<h1>Something went wrong</h1>'); 
+    response.send('<h1>Something went wrong</h1>');
   },
   onError(error) {
     didError = true;
@@ -530,7 +534,7 @@ const { pipe } = renderToPipeableStream(<App />, {
   onShellError(error) {
    response.statusCode = getStatusCode();
    response.setHeader('content-type', 'text/html');
-   response.send('<h1>Something went wrong</h1>'); 
+   response.send('<h1>Something went wrong</h1>');
   },
   onError(error) {
     didError = true;
@@ -570,13 +574,13 @@ const { pipe } = renderToPipeableStream(<App />, {
   onShellError(error) {
     response.statusCode = 500;
     response.setHeader('content-type', 'text/html');
-    response.send('<h1>Something went wrong</h1>'); 
+    response.send('<h1>Something went wrong</h1>');
   },
   onAllReady() {
     if (isCrawler) {
       response.statusCode = didError ? 500 : 200;
       response.setHeader('content-type', 'text/html');
-      pipe(response);      
+      pipe(response);
     }
   },
   onError(error) {

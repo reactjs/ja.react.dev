@@ -227,7 +227,11 @@ function Form() {
 }
 ```
 
+<<<<<<< HEAD
 ただし、外部システムと同期するためにはエフェクトが*必要*です。
+=======
+However, you *do* need Effects to synchronize with external systems.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <LearnMore path="/learn/you-might-not-need-an-effect">
 
@@ -382,7 +386,7 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );
@@ -515,7 +519,7 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );

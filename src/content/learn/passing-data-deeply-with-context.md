@@ -853,12 +853,21 @@ CSS では、`color` や `background-color` といった異なるプロパティ
 
 ## コンテクストのさまざまな用途 {/*use-cases-for-context*/}
 
+<<<<<<< HEAD
 * **テーマ**：例えばダークモードのように、アプリの外見をユーザが変更できる場合は、アプリのトップレベルにコンテクストプロバイダを配置し、外観を変化させる必要があるコンポーネントでそのコンテクストを使用します。
 * **現在のアカウント**：多くのコンポーネントは、現在ログインしているユーザを知る必要があります。それをコンテクストに入れることで、ツリーのどこからでも読み取りが容易になります。一部のアプリでは、複数のアカウントを同時に操作できます（例：別のユーザとしてコメントを残す）。このような場合、別の現在アカウントを指定したプロバイダをネストして、UI の一部をラップすることが有用です。
 * **ルーティング**：ほとんどのルーティングソリューションは、現在のルートを保持するために内部でコンテクストを使用しています。これが、自身がアクティブかどうかをすべてのリンクが「知っている」理由です。独自のルータを構築する場合は自分でもこれを行いたいでしょう。
 * **state 管理**：アプリが大きくなると、アプリのトップ近くに大量の state が集まってくることがあります。下の遠いところにある多くのコンポーネントがその state を変更する必要があるかもしれません。[リデューサとコンテクストを一緒に使用](/learn/scaling-up-with-reducer-and-context)することは一般的であり、これにより大変な手間をかけずに、複雑な state を離れたコンポーネントへ受け渡すことができます。
   
 コンテクストで扱う値は静的なものとは限りません。次のレンダーで異なる値を渡すと、React はその下でそれを必要しているすべてのコンポーネントを更新します！ これがコンテクストが state と一緒によく使われる理由です。
+=======
+* **Theming:** If your app lets the user change its appearance (e.g. dark mode), you can put a context provider at the top of your app, and use that context in components that need to adjust their visual look.
+* **Current account:** Many components might need to know the currently logged in user. Putting it in context makes it convenient to read it anywhere in the tree. Some apps also let you operate multiple accounts at the same time (e.g. to leave a comment as a different user). In those cases, it can be convenient to wrap a part of the UI into a nested provider with a different current account value.
+* **Routing:** Most routing solutions use context internally to hold the current route. This is how every link "knows" whether it's active or not. If you build your own router, you might want to do it too.
+* **Managing state:** As your app grows, you might end up with a lot of state closer to the top of your app. Many distant components below may want to change it. It is common to [use a reducer together with context](/learn/scaling-up-with-reducer-and-context) to manage complex state and pass it down to distant components without too much hassle.
+
+Context is not limited to static values. If you pass a different value on the next render, React will update all the components reading it below! This is why context is often used in combination with state.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 一般的に、ある情報が、ツリーの様々な部分にある離れたコンポーネントによって必要とされている場合、コンテクストが役立つというサインです。
 
@@ -963,27 +972,27 @@ export const places = [{
   description: 'The tradition of choosing bright colors for houses began in the late 20th century.',
   imageId: 'K9HVAGH'
 }, {
-  id: 1, 
+  id: 1,
   name: 'Rainbow Village in Taichung, Taiwan',
   description: 'To save the houses from demolition, Huang Yung-Fu, a local resident, painted all 1,200 of them in 1924.',
   imageId: '9EAYZrt'
 }, {
-  id: 2, 
+  id: 2,
   name: 'Macromural de Pachuca, Mexico',
   description: 'One of the largest murals in the world covering homes in a hillside neighborhood.',
   imageId: 'DgXHVwu'
 }, {
-  id: 3, 
+  id: 3,
   name: 'Selarón Staircase in Rio de Janeiro, Brazil',
   description: 'This landmark was created by Jorge Selarón, a Chilean-born artist, as a "tribute to the Brazilian people."',
   imageId: 'aeO3rpI'
 }, {
-  id: 4, 
+  id: 4,
   name: 'Burano, Italy',
   description: 'The houses are painted following a specific color system dating back to 16th century.',
   imageId: 'kxsph5C'
 }, {
-  id: 5, 
+  id: 5,
   name: 'Chefchaouen, Marocco',
   description: 'There are a few theories on why the houses are painted blue, including that the color repels mosquitos or that it symbolizes sky and heaven.',
   imageId: 'rTqKo46'
@@ -998,7 +1007,7 @@ export const places = [{
 ```js src/utils.js
 export function getImageUrl(place) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     place.imageId +
     'l.jpg'
   );
@@ -1007,9 +1016,9 @@ export function getImageUrl(place) {
 
 ```css
 ul { list-style-type: none; padding: 0px 10px; }
-li { 
-  margin-bottom: 10px; 
-  display: grid; 
+li {
+  margin-bottom: 10px;
+  display: grid;
   grid-template-columns: auto 1fr;
   gap: 20px;
   align-items: center;
@@ -1102,27 +1111,27 @@ export const places = [{
   description: 'The tradition of choosing bright colors for houses began in the late 20th century.',
   imageId: 'K9HVAGH'
 }, {
-  id: 1, 
+  id: 1,
   name: 'Rainbow Village in Taichung, Taiwan',
   description: 'To save the houses from demolition, Huang Yung-Fu, a local resident, painted all 1,200 of them in 1924.',
   imageId: '9EAYZrt'
 }, {
-  id: 2, 
+  id: 2,
   name: 'Macromural de Pachuca, Mexico',
   description: 'One of the largest murals in the world covering homes in a hillside neighborhood.',
   imageId: 'DgXHVwu'
 }, {
-  id: 3, 
+  id: 3,
   name: 'Selarón Staircase in Rio de Janeiro, Brazil',
   description: 'This landmark was created by Jorge Selarón, a Chilean-born artist, as a "tribute to the Brazilian people".',
   imageId: 'aeO3rpI'
 }, {
-  id: 4, 
+  id: 4,
   name: 'Burano, Italy',
   description: 'The houses are painted following a specific color system dating back to 16th century.',
   imageId: 'kxsph5C'
 }, {
-  id: 5, 
+  id: 5,
   name: 'Chefchaouen, Marocco',
   description: 'There are a few theories on why the houses are painted blue, including that the color repels mosquitos or that it symbolizes sky and heaven.',
   imageId: 'rTqKo46'
@@ -1137,7 +1146,7 @@ export const places = [{
 ```js src/utils.js
 export function getImageUrl(place) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     place.imageId +
     'l.jpg'
   );
@@ -1146,9 +1155,9 @@ export function getImageUrl(place) {
 
 ```css
 ul { list-style-type: none; padding: 0px 10px; }
-li { 
-  margin-bottom: 10px; 
-  display: grid; 
+li {
+  margin-bottom: 10px;
+  display: grid;
   grid-template-columns: auto 1fr;
   gap: 20px;
   align-items: center;
