@@ -44,9 +44,15 @@ function ChatRoom({ roomId }) {
 
 #### 引数 {/*parameters*/}
 
+<<<<<<< HEAD
 * `setup`: エフェクトのロジックが記述された関数です。このセットアップ関数は、オプションで*クリーンアップ*関数を返すことができます。[コンポーネントがコミットされる](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom)と、React はセットアップ関数を実行します。依存配列 (dependencies) が変更された次のコミット時には、React はまず古い値を使ってクリーンアップ関数（あれば）を実行し、次に新しい値を使ってセットアップ関数を実行します。コンポーネントが DOM から削除された後、React はクリーンアップ関数を最後にもう一度実行します。
  
 * **省略可能** `dependencies`: `setup` コード内で参照されるすべてのリアクティブな値のリストです。リアクティブな値には、props、state、コンポーネント本体に直接宣言されたすべての変数および関数が含まれます。リンタが [React 用に設定されている場合](/learn/editor-setup#linting)、すべてのリアクティブな値が依存値として正しく指定されているか確認できます。依存値のリストは要素数が一定である必要があり、`[dep1, dep2, dep3]` のようにインラインで記述する必要があります。React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を使った比較で、それぞれの依存値を以前の値と比較します。この引数を省略すると、エフェクトはコンポーネントの毎回のコミット後に再実行されます。[依存値の配列を渡す場合と空の配列を渡す場合、および何も渡さない場合の違い](#examples-dependencies)を確認してください。
+=======
+* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. When your [component commits](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom), React will run your setup function. After every commit with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. After your component is removed from the DOM, React will run your cleanup function.
+
+* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If you omit this argument, your Effect will re-run after every commit of the component. [See the difference between passing an array of dependencies, an empty array, and no dependencies at all.](#examples-dependencies)
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 #### 返り値 {/*returns*/}
 
@@ -112,7 +118,11 @@ function ChatRoom({ roomId }) {
    - 次に、新しい props と state で<CodeStep step={1}>セットアップコード</CodeStep>が実行されます。
 3. コンポーネントがページから削除（*アンマウント*）されると、最後に<CodeStep step={2}>クリーンアップコード</CodeStep>が実行されます。
 
+<<<<<<< HEAD
 **上記の例でこのシーケンスを説明しましょう。**
+=======
+**Let's illustrate this sequence for the example above.**
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 上記の `ChatRoom` コンポーネントがページに追加されると、`serverUrl` と `roomId` の初期値を使ってチャットルームに接続します。`serverUrl` または `roomId` がコミットの結果として変更される場合（例えば、ユーザがドロップダウンで別のチャットルームを選択した場合）、あなたのエフェクトは*以前のルームから切断し、次のルームに接続します*。`ChatRoom` コンポーネントがページから削除されると、あなたのエフェクトは最後の切断を行います。
 
@@ -1082,7 +1092,7 @@ function ChatRoom({ roomId }) { // This is a reactive value
 ```js {8}
 function ChatRoom({ roomId }) {
   const [serverUrl, setServerUrl] = useState('https://localhost:1234');
-  
+
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
@@ -1436,7 +1446,11 @@ function Counter() {
 }
 ```
 
+<<<<<<< HEAD
 `count` はリアクティブな値なので、依存配列に指定する必要があります。ただし、このままでは `count` が変更されるたびに、エフェクトがクリーンアップとセットアップを繰り返すことになります。これは望ましくありません。
+=======
+Since `count` is a reactive value, it must be specified in the list of dependencies. However, that causes the Effect to cleanup and setup again every time the `count` changes. This is not ideal.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 この問題を解決するには、`setCount` に [`c => c + 1` という state 更新用関数を渡します](/reference/react/useState#updating-state-based-on-the-previous-state)。
 

@@ -193,7 +193,11 @@ React 内部では、呼び出し元コンポーネントの "親のパス (pare
 
 ### 複数の関連要素に対して ID を生成する {/*generating-ids-for-several-related-elements*/}
 
+<<<<<<< HEAD
 複数の関連要素に ID を与える必要がある場合は、`useId` で生成した値を共有のプレフィックスとして使用できます。
+=======
+If you need to give IDs to multiple related elements, you can call `useId` to generate a shared prefix for them:
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <Sandpack>
 

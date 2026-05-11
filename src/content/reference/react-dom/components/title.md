@@ -36,11 +36,19 @@ title: "<title>"
 
 #### 特別なレンダー動作 {/*special-rendering-behavior*/}
 
+<<<<<<< HEAD
 `<title>` コンポーネントが React ツリー内のどこでレンダーされていても、React は対応する DOM 要素を常にドキュメントの `<head>` 内に配置します。`<head>` は DOM 内で `<title>` が存在できる唯一の有効な場所ですが、ある特定のページを表すコンポーネントが自分自身で `<title>` コンポーネントをレンダーできれば有用であり、コンポーネントの組み合わせやすさが保たれます。
 
 これには 2 つの例外があります。
 * `<title>` が `<svg>` コンポーネント内にある場合、特別な動作は発生しません。その文脈ではドキュメントのタイトルではなく[当該 SVG グラフィックに対するアクセシビリティ用の説明](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/title)を表すことになるからです。
 * `<title>` に props として [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop) がある場合、特別な動作は発生しません。その場合はドキュメントのタイトルではなく、ページの特定の部分に関するメタデータを表すことになるからです。
+=======
+React will always place the DOM element corresponding to the `<title>` component within the document’s `<head>`, regardless of where in the React tree it is rendered. The `<head>` is the only valid place for `<title>` to exist within the DOM, yet it’s convenient and keeps things composable if a component representing a specific page can render its `<title>` itself.
+
+There are two exception to this:
+* If `<title>` is within an `<svg>` component, then there is no special behavior, because in this context it doesn’t represent the document’s title but rather is an [accessibility annotation for that SVG graphic](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/title).
+* If the `<title>` has an [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop) prop, there is no special behavior, because in this case it doesn’t represent the document’s title but rather metadata about a specific part of the page.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <Pitfall>
 

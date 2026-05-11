@@ -32,17 +32,29 @@ function ChatRoom({ roomId, theme }) {
 }
 ```
 
+<<<<<<< HEAD
 エフェクトイベントはエフェクトのロジックの一部ですが、よりイベントハンドラに近いふるまいをします。常に最新のレンダー時の値（props や state など）が "見える" 一方で、エフェクトの再同期を起こさないため、エフェクトの依存配列には入れません。詳しくは[エフェクトからイベントを分離する](/learn/separating-events-from-effects#extracting-non-reactive-logic-out-of-effects)を参照してください。
+=======
+Effect Events are a part of your Effect logic, but they behave more like an event handler. They always “see” the latest values from render (like props and state) without re-synchronizing your Effect, so they're excluded from Effect dependencies. See [Separating Events from Effects](/learn/separating-events-from-effects#extracting-non-reactive-logic-out-of-effects) to learn more.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 [さらに例を見る](#usage)
 
 #### 引数 {/*parameters*/}
 
+<<<<<<< HEAD
 * `callback`: エフェクトイベントのロジックを含む関数。この関数は任意の数の引数を受け取り、任意の値を返せます。返されたエフェクトイベント関数を呼び出すと、`callback` は呼び出し時点でレンダーにコミット済みの最新の値に常にアクセスします。
+=======
+* `callback`: A function containing the logic for your Effect Event. The function can accept any number of arguments and return any value. When you call the returned Effect Event function, the `callback` always accesses the latest committed values from render at the time of the call.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 #### 返り値 {/*returns*/}
 
+<<<<<<< HEAD
 `useEffectEvent` は、`callback` と同じ型シグネチャのエフェクトイベント関数を返します。
+=======
+`useEffectEvent` returns an Effect Event function with the same type signature as your `callback`.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 この関数は `useEffect`、`useLayoutEffect`、`useInsertionEffect` の中、または同じコンポーネント内の他のエフェクトイベント内から呼び出せます。
 

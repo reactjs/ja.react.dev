@@ -4,7 +4,11 @@ title: <Fragment> (<>...</>)
 
 <Intro>
 
+<<<<<<< HEAD
 `<Fragment>` を使うことで、ラッパ用のノードを用いずに要素をグループ化することができます。通常は `<>...</>` という構文で使用されます。
+=======
+`<Fragment>`, often used via `<>...</>` syntax, lets you group elements without a wrapper node.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <Canary> フラグメントは ref を受け取ることもでき、これによりラッパ要素を追加することなく、内部の DOM ノードとやり取りすることができます。以下のリファレンスと使用法を参照してください。</Canary>
 
@@ -41,6 +45,7 @@ title: <Fragment> (<>...</>)
 - `removeEventListener(type, listener, options?)`: フラグメントのすべての第 1 レベルの DOM の子からイベントリスナを削除します。
 - `dispatchEvent(event)`: フラグメントの仮想的な単一の子にイベントをディスパッチします。追加されたすべてのリスナを呼び出すとともに、DOM の親にバブルアップさせることができます。
 
+<<<<<<< HEAD
 **レイアウトメソッド：**
 - `compareDocumentPosition(otherNode)`: フラグメントのドキュメント内の位置を別のノードと比較します。
   - フラグメントに子がある場合、ネイティブの `compareDocumentPosition` の値が返されます。
@@ -48,6 +53,15 @@ title: <Fragment> (<>...</>)
   - ポータルやその他の挿入により、React ツリーと DOM ツリーで異なる関係を持つ要素は、`Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC` を返します。
 - `getClientRects()`: すべての子の境界矩形を表す `DOMRect` オブジェクトのフラットな配列を返します。
 - `getRootNode()`: フラグメントの親 DOM ノードを含むルートノードを返します。
+=======
+**Layout methods:**
+- `compareDocumentPosition(otherNode)`: Compares the document position of the Fragment with another node.
+  - If the Fragment has children, the native `compareDocumentPosition` value is returned.
+  - Empty Fragments will attempt to compare positioning within the React tree and include `Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC`.
+  - Elements that have a different relationship in the React tree and DOM tree due to portaling or other insertions are `Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC`.
+- `getClientRects()`: Returns a flat array of `DOMRect` objects representing the bounding rectangles of all children.
+- `getRootNode()`: Returns the root node containing the Fragment's parent DOM node.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 **フォーカス管理メソッド:**
 - `focus(options?)`: フラグメント内の最初のフォーカス可能な DOM ノードにフォーカスを当てます。ネストされた子に対して深さ優先でフォーカスを試みます。
@@ -279,7 +293,7 @@ function VisibilityObserverFragment({ threshold = 0.5, onVisibilityChange, child
       },
       { threshold }
     );
-    
+
     fragmentRef.current.observeUsing(observer);
     return () => fragmentRef.current.unobserveUsing(observer);
   }, [threshold, onVisibilityChange]);

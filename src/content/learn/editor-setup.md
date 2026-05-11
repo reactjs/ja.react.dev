@@ -31,7 +31,11 @@ title: エディタのセットアップ
 
 ### リント {/*linting*/}
 
+<<<<<<< HEAD
 コードリンタは、書きながらコード内の問題を見つけて、問題を早期に修正できるようにしてくれます。[ESLint](https://eslint.org/) は、人気の JavaScript 用オープンソースリンタです。
+=======
+Code linters find problems in your code as you write, helping you fix them early. [ESLint](https://eslint.org/) is a popular, open source linter for JavaScript.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 * [React に適した構成の ESLint をインストールする](https://www.npmjs.com/package/eslint-config-react-app)（[Node をインストール](https://nodejs.org/en/download/current/)していることを確認してください！）
 * [公式拡張機能を使用して VS Code に ESLint を統合する](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)

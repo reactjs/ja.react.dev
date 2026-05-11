@@ -42,13 +42,23 @@ Activity バウンダリが <CodeStep step={1}>hidden</CodeStep> になってい
 
 #### props {/*props*/}
 
+<<<<<<< HEAD
 * `children`: 表示・非表示を切り替えたい UI。
 * `mode`: `'visible'` または `'hidden'` の文字列。省略時は `'visible'` になる。
+=======
+* `children`: The UI you intend to show and hide.
+* `mode`: A string value of either `'visible'` or `'hidden'`. If omitted, defaults to `'visible'`.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 #### 注意点 {/*caveats*/}
 
+<<<<<<< HEAD
 - [`ViewTransition`](/reference/react/ViewTransition) の内部で Activity がレンダーされ、[`startTransition`](/reference/react/startTransition) によって引き起こされた更新の結果として表示されるようになると、`ViewTransition` の `enter` アニメーションが作動します。非表示になると、`exit` アニメーションが作動します。
 - テキストのみをレンダーする Activity は、非表示のテキストをレンダーするのではなく、何もレンダーしません。これは、可視性の変化を適用するための対応する DOM 要素がないためです。例えば、`<Activity mode="hidden"><ComponentThatJustReturnsText /></Activity>` は、`const ComponentThatJustReturnsText = () => "Hello, World!"` の場合に DOM に何も出力しません。
+=======
+- If an Activity is rendered inside of a [ViewTransition](/reference/react/ViewTransition), and it becomes visible as a result of an update caused by [startTransition](/reference/react/startTransition), it will activate the ViewTransition's `enter` animation. If it becomes hidden, it will activate its `exit` animation.
+- A *hidden* Activity that just renders text will not render anything rather than rendering hidden text, because there’s no corresponding DOM element to apply visibility changes to. For example, `<Activity mode="hidden"><ComponentThatJustReturnsText /></Activity>` will not produce any output in the DOM for `const ComponentThatJustReturnsText = () => "Hello, World!"`. `<Activity mode="visible"><ComponentThatJustReturnsText /></Activity>` will render visible text.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 ---
 
@@ -111,7 +121,7 @@ import { useState } from 'react';
 
 export default function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(false)
-  
+
   return (
     <nav>
       <button onClick={() => setIsExpanded(!isExpanded)}>
@@ -219,7 +229,7 @@ import { useState } from 'react';
 
 export default function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(false)
-  
+
   return (
     <nav>
       <button onClick={() => setIsExpanded(!isExpanded)}>
@@ -287,7 +297,7 @@ Activity バウンダリは `display: none` を使って子を非表示にする
 
 <Sandpack>
 
-```js src/App.js 
+```js src/App.js
 import { useState } from 'react';
 import TabButton from './TabButton.js';
 import Home from './Home.js';
@@ -434,7 +444,7 @@ export default function Home() {
 }
 ```
 
-```js src/Contact.js 
+```js src/Contact.js
 export default function Contact() {
   return (
     <div>
@@ -765,7 +775,11 @@ Activity は、エフェクト内部でフェッチされたデータを検出**
 
 上記の `Posts` コンポーネントでデータをロードする具体的な方法については、使用しているフレームワークに依存します。サスペンス対応のフレームワークを使用している場合、詳細はそのフレームワークのデータフェッチのドキュメントに記載されています。
 
+<<<<<<< HEAD
 使い方に規約のある (opinionated) フレームワーク以外でサスペンス対応のデータフェッチを行うことは、まだサポートされていません。サスペンス対応のデータソースを実装するための要件は安定しておらず、ドキュメント化されていません。データソースをサスペンスと統合するための公式な API は、React の将来のバージョンでリリースされる予定です。
+=======
+Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 </Note>
 
@@ -903,7 +917,7 @@ function Page() {
       </Activity>
     </>
   );
-} 
+}
 ```
 
 ---
@@ -975,7 +989,7 @@ export default function Home() {
 }
 ```
 
-```js src/Video.js 
+```js src/Video.js
 export default function Video() {
   return (
     <video
@@ -1068,7 +1082,7 @@ export default function Home() {
 }
 ```
 
-```js src/Video.js 
+```js src/Video.js
 export default function Video() {
   return (
     <video
@@ -1185,7 +1199,7 @@ export default function Home() {
 }
 ```
 
-```js src/Video.js 
+```js src/Video.js
 import { useRef, useLayoutEffect } from 'react';
 
 export default function Video() {
@@ -1238,7 +1252,11 @@ video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
 
 ただし通常は、React コンポーネントのほとんどは、Activity バウンダリによって非表示にされても問題なく動作するはずです。そして概念的には、「非表示」の Activity はアンマウントされているものとして考えるべきです。
 
+<<<<<<< HEAD
 適切なクリーンアップを行っていないエフェクトを積極的に発見するために、[`<StrictMode>`](/reference/react/StrictMode) の使用をお勧めします。これは Activity バウンダリだけでなく、React の他の多くの動作にとっても重要です。
+=======
+To eagerly discover other Effects that don't have proper cleanup, which is important not only for Activity boundaries but for many other behaviors in React, we recommend using [`<StrictMode>`](/reference/react/StrictMode).
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 ---
 
@@ -1249,4 +1267,8 @@ video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
 
 コンポーネントの副作用をクリーンアップするためにエフェクトのマウントに依存している場合は、代わりにエフェクトから返すクリーンアップ関数内でその作業を行うよう、エフェクトをリファクタリングしてください。
 
+<<<<<<< HEAD
 問題のあるエフェクトを積極的に見つけるために、[`<StrictMode>`](/reference/react/StrictMode) を追加することをお勧めします。これは Activity のアンマウントとマウントを積極的に実行して、予期しない副作用をキャッチします。
+=======
+To eagerly find problematic Effects, we recommend adding [`<StrictMode>`](/reference/react/StrictMode) which will eagerly perform Activity unmounts and mounts to catch any unexpected side-effects.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
