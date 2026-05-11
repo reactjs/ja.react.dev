@@ -79,9 +79,9 @@ function ChatRoom({ roomId }) {
 * [`useLayoutEffect`](/reference/react/useLayoutEffect) はブラウザが画面を再描画する前に発火します。このフックでレイアウトを測定できます。
 * [`useInsertionEffect`](/reference/react/useInsertionEffect) は React が DOM に変更を加える前に発火します。ライブラリは動的な CSS をこのフックで挿入できます。
 
-You can also separate events from Effects:
+エフェクトからイベントを分離することもできます：
 
-- [`useEffectEvent`](/reference/react/useEffectEvent) creates a non-reactive event to fire from any Effect hook.
+- [`useEffectEvent`](/reference/react/useEffectEvent) は任意のエフェクトフックから発火できる非リアクティブなイベントを作成します。
 ---
 
 ## パフォーマンス関連フック {/*performance-hooks*/}
