@@ -695,7 +695,7 @@ function ChatIndicator() {
 }
 ```
 
-このアプローチにより、エフェクトを使って可変データを React の state に手動で同期させるよりも、エラーが発生しにくなります。通常、上記のような `useOnlineStatus()` のようなカスタムフックを作成して、個々のコンポーネントでこのコードを繰り返さなくて済むようにします。[React コンポーネントから外部ストアにサブスクライブする方法について詳しく読む](/reference/react/useSyncExternalStore)
+このアプローチにより、エフェクトを使って可変データを React の state に手動で同期させるよりも、エラーが発生しにくくなります。通常、上記のような `useOnlineStatus()` のようなカスタムフックを作成して、個々のコンポーネントでこのコードを繰り返さなくて済むようにします。[React コンポーネントから外部ストアにサブスクライブする方法について詳しく読む](/reference/react/useSyncExternalStore)
 
 ### データのフェッチ {/*fetching-data*/}
 
