@@ -526,15 +526,9 @@ export default function TeaSet() {
 
 ## UI をツリーとして理解する {/*your-ui-as-a-tree*/}
 
-<<<<<<< HEAD
 React はコンポーネント間あるいはモジュール間の関係性をモデル化するために、ツリー構造を使用します。
 
 React レンダーツリーとはコンポーネントの親子関係を表現したものです。
-=======
-React uses trees to model the relationships between components and modules.
-
-A React render tree is a representation of the parent and child relationship between components.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <Diagram name="generic_render_tree" height={250} width={500} alt="5 つのノードからなるツリー。それぞれのノードはコンポーネントを表している。ルートノードはツリーの最上部にあり 'Root Component' と書かれている。そこから 2 本の矢印が下に伸びており 'Component A' および 'Component C' と書かれたノードを指している。それぞれの矢印には 'renders' と書かれている。'Component A' からは 'renders' と書かれた矢印が 'Component B' と書かれたノードに伸びている。'Component C' からは 'renders' と書かれた矢印が 'Component D' と書かれたノードに伸びている。">
 
@@ -544,11 +538,7 @@ React のレンダーツリーの例
 
 ツリーの上側、つまりルートに近いコンポーネントはトップレベルコンポーネントです。子を持たないコンポーネントはリーフ（葉）コンポーネントです。このようなコンポーネントの分類は、データの流れやレンダーパフォーマンスを理解する際に有用です。
 
-<<<<<<< HEAD
 アプリを理解する上では、JavaScript のモジュール間の関係性をモデルすることも重要です。このようなものをモジュール依存関係ツリーと呼びます。
-=======
-Modelling the relationship between JavaScript modules is another useful way to understand your app. We refer to it as a module dependency tree.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <Diagram name="generic_dependency_tree" height={250} width={500} alt="5 つのノードからなるツリー。それぞれのノードは JavaScript のモジュールを表している。最上部のノードは 'RootModule.js' と書かれている。そこから 'ModuleA.js'、'ModuleB.js'、'ModuleC.js' へと 3 本の矢印が伸びている。各矢印には 'imports' と書かれている。'ModuleC.js' からは 'imports' と書かれた矢印が 'ModuleD.js' と書かれたノードに伸びている。">
 
@@ -556,11 +546,7 @@ Modelling the relationship between JavaScript modules is another useful way to u
 
 </Diagram>
 
-<<<<<<< HEAD
 依存関係ツリーは、関連する JavaScript コードをすべてバンドルしてクライアントがダウンロード・レンダーできるようにするために、ビルドツールでよく使用されます。バンドルサイズが大きいと、React アプリのユーザ体験は悪化します。モジュール依存関係ツリーを理解することは、そのような問題をデバッグするのに役立ちます。
-=======
-A dependency tree is often used by build tools to bundle all the relevant JavaScript code for the client to download and render. A large bundle size regresses user experience for React apps. Understanding the module dependency tree is helpful to debug such issues.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <LearnMore path="/learn/understanding-your-ui-as-a-tree">
 

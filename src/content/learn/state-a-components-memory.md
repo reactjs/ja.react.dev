@@ -361,11 +361,7 @@ const [index, setIndex] = useState(0);
 
 </Note>
 
-<<<<<<< HEAD
 `useState` に渡す唯一の引数は、state 変数の**初期値**です。この例では `useState(0)` とすることで `index` の初期値を `0` に設定しています。
-=======
-The only argument to `useState` is the **initial value** of your state variable. In this example, the `index`'s initial value is set to `0` with `useState(0)`.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 コンポーネントがレンダーされるたびに、`useState` は以下の 2 つの値を含む配列を返します。
 
@@ -1450,11 +1446,7 @@ export default function FeedbackForm() {
 
 2 番目の `useState` の呼び出しを `if` 条件の後ろ側に移動して、再びコードが動かなくなることを確認してください。
 
-<<<<<<< HEAD
 リンタが [React 用に設定されている場合](/learn/editor-setup#linting)、このような間違いをした際にリントエラーが表示されるはずです。不具合のあるコードをローカルで試してもエラーが表示されない場合は、プロジェクトのリント設定が必要です。
-=======
-If your linter is [configured for React](/learn/editor-setup#linting), you should see a lint error when you make a mistake like this. If you don't see an error when you try the faulty code locally, you need to set up linting for your project.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 </Solution>
 

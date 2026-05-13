@@ -1821,7 +1821,6 @@ button { margin: 10px; }
 
 <Recap>
 
-<<<<<<< HEAD
 * 2 つの state 変数が常に一緒に更新される場合は、それらを 1 つにまとめることを検討する。
 * 「ありえない」state を作成しないよう、state 変数を注意深く選択する。
 * state は、更新時に間違いが発生しづらいやり方で構成する。
@@ -1829,15 +1828,6 @@ button { margin: 10px; }
 * 意図的に更新されないようにしたい場合を除き、props を state にコピーしない。
 * 項目選択のような UI パターンにおいては、state にオブジェクト自体ではなく ID またはインデックスを保持する。
 * 深くネストされた state の更新が複雑な場合は、フラット化を試す。
-=======
-* If two state variables always update together, consider merging them into one.
-* Choose your state variables carefully to avoid creating "impossible" states.
-* Structure your state in a way that reduces the chances that you'll make a mistake updating it.
-* Avoid redundant and duplicate state so that you don't need to keep it in sync.
-* Don't put props *into* state unless you specifically want to prevent updates.
-* For UI patterns like selection, keep ID or index in state instead of the object itself.
-* If updating deeply nested state is complicated, try flattening it.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 </Recap>
 

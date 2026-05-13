@@ -164,11 +164,7 @@ function MyComponent({age, name, todos}) {
 2. <CodeStep step={3}>set 関数</CodeStep>: [アクション](reference/react/useTransition#functions-called-in-starttransition-are-called-actions) の間だけ一時的に state を変更できます。
    * <CodeStep step={4}>リデューサ</CodeStep>を渡した場合、楽観的 state を返す前に実行されます。
 
-<<<<<<< HEAD
 <CodeStep step={2}>楽観的 state</CodeStep> を使うには、アクション内で `set` 関数を呼び出します。
-=======
-To use the <CodeStep step={2}>optimistic state</CodeStep>, call the `set` function inside an Action.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 アクションとは `startTransition` 内で呼び出される関数です。
 
@@ -367,11 +363,7 @@ export async function submitForm() {
 
 <Note>
 
-<<<<<<< HEAD
 [`useTransition`](/reference/react/useTransition) を使って `isPending` 経由で保留中状態を取得することもできます。
-=======
-You can also use [`useTransition`](/reference/react/useTransition) to get pending state via `isPending`.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 違いは、`useTransition` が `startTransition` 関数を提供する一方で、`useOptimistic` は任意のトランジションで動作することです。コンポーネントの要件に合う方を使ってください。
 
@@ -460,11 +452,7 @@ root.render(<App />);
 
 ### 複数の値をまとめて更新する {/*updating-multiple-values-together*/}
 
-<<<<<<< HEAD
 楽観的更新が複数の関連する値に影響する場合は、リデューサを使ってまとめて更新してください。これにより UI の一貫性を保つことができます。
-=======
-When an optimistic update affects multiple related values, use a reducer to update them together. This ensures the UI stays consistent.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 以下のフォローボタンでは、フォロー状態とフォロワー数を両方同時に更新します。
 
@@ -668,11 +656,7 @@ export async function addTodo(todo) {
 
 ### 複数 `action` タイプの処理 {/*handling-multiple-action-types*/}
 
-<<<<<<< HEAD
 処理すべき楽観的更新が複数ある（項目の追加と削除など）場合は、`action` オブジェクトを用いるリデューサパターンを使用してください。
-=======
-When you need to handle multiple types of optimistic updates (like adding and removing items), use a reducer pattern with `action` objects.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 以下のショッピングカートの例は、単一のリデューサで追加と削除の両方を扱う方法を示しています。
 
@@ -946,11 +930,7 @@ export async function deleteItem(id) {
 
 </Sandpack>
 
-<<<<<<< HEAD
 'Deploy to production' を削除してみてください。削除が失敗すると、該当項目が自動的にリスト内に再表示されます。
-=======
-Try deleting 'Deploy to production'. When the delete fails, the item automatically reappears in the list.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 ---
 
@@ -970,11 +950,7 @@ An optimistic state update occurred outside a Transition or Action. To fix, move
 
 </ConsoleBlockMulti>
 
-<<<<<<< HEAD
 楽観的セッタ関数は `startTransition` の中で呼び出す必要があります。
-=======
-The optimistic setter function must be called inside `startTransition`:
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 ```js
 // 🚩 Incorrect: outside a Transition

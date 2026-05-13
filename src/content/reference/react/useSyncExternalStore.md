@@ -34,7 +34,7 @@ function TodosApp() {
 
 これは、ストアにあるデータのスナップショットを返します。引数として 2 つの関数を渡す必要があります：
 
-1. `subscribe` 関数はストアへのサブスクライブを開始します。サブスクライブを解除する関数を返す必要があります。 
+1. `subscribe` 関数はストアへのサブスクライブを開始します。サブスクライブを解除する関数を返す必要があります。
 2. `getSnapshot` 関数は、ストアからデータのスナップショットを読み取る必要があります。
 
 [さらに例を見る](#usage)
@@ -107,11 +107,7 @@ function TodosApp() {
 
 React はこれらの関数を使ってコンポーネントをストアにサブスクライブされた状態に保ち、変更があるたびに再レンダーします。
 
-<<<<<<< HEAD
-例えば、以下のサンドボックスでは、`todosStore` は React の外部にデータを保存する外部ストアとして実装されています。`TodosApp` コンポーネントは、`useSyncExternalStore` フックを使ってその外部ストアに接続します。 
-=======
-For example, in the sandbox below, `todosStore` is implemented as an external store that stores data outside of React. The `TodosApp` component connects to that external store with the `useSyncExternalStore` Hook.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+例えば、以下のサンドボックスでは、`todosStore` は React の外部にデータを保存する外部ストアとして実装されています。`TodosApp` コンポーネントは、`useSyncExternalStore` フックを使ってその外部ストアに接続します。
 
 <Sandpack>
 
@@ -422,11 +418,7 @@ function ChatIndicator() {
 }
 ```
 
-<<<<<<< HEAD
 React は、再レンダー間で異なる `subscribe` 関数を渡すと、ストアに再サブスクライブします。これがパフォーマンスの問題を引き起こし、再サブスクライブを避けたい場合は、`subscribe` 関数を外部に移動してください：
-=======
-React will resubscribe to your store if you pass a different `subscribe` function between re-renders. If this causes performance issues and you'd like to avoid resubscribing, move the `subscribe` function outside:
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 ```js {1-4}
 // ✅ Always the same function, so React won't need to resubscribe

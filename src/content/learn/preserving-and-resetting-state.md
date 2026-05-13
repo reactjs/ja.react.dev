@@ -86,11 +86,7 @@ label {
 
 </Sandpack>
 
-<<<<<<< HEAD
 ツリーとしては、これは以下のように見えます。
-=======
-Here's how these look as a tree:
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <DiagramGroup>
 

@@ -246,11 +246,7 @@ button {
 
 ### レンダープロップを用いてデータを渡す {/*passing-data-with-a-render-prop*/}
 
-<<<<<<< HEAD
 `cloneElement` を使用する代わりに、`renderItem` のような*レンダープロップ (render prop)* を受け取るようにすることを検討してみてください。以下の例では、`List` は `renderItem` を props として受け取ります。`List` は各アイテムに対して `renderItem` を呼び出し、`isHighlighted` を引数として渡します。
-=======
-Instead of using `cloneElement`, consider accepting a *render prop* like `renderItem`. Here, `List` receives `renderItem` as a prop. `List` calls `renderItem` for every item and passes `isHighlighted` as an argument:
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 ```js {1,7}
 export default function List({ items, renderItem }) {
