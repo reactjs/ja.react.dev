@@ -53,10 +53,10 @@ title: "<select>"
 * [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#autocomplete): 文字列。可能な[オートコンプリート動作](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)の 1 つを指定します。
 * [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#autofocus): ブーリアン。`true` の場合、React は要素をマウント時にフォーカスします。
 * `children`: `<select>` は [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option)、[`<optgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup)、[`<datalist>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) コンポーネントを子として受け入れます。カスタムコンポーネントを渡しても構いませんが、その場合は最終的に上記のコンポーネントのいずれかにレンダーされる必要があります。`<option>` タグを最終的にレンダーする独自のコンポーネントを渡す場合、レンダーする各 `<option>` には `value` が必要です。
-* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#disabled): ブーリアン。`true` の場合、セレクトボックスはインタラクティブではなくなり、薄暗く表示されます。 
+* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#disabled): ブーリアン。`true` の場合、セレクトボックスはインタラクティブではなくなり、薄暗く表示されます。
 * [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#form): 文字列。このセレクトボックスが属する `<form>` 要素の `id` を指定します。省略した場合、最も近い親フォームが対象となります。
 * [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#multiple): ブーリアン。`true` の場合、ブラウザで[複数選択](#enabling-multiple-selection)が可能になります。
-* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#name): 文字列。[フォームとともに送信される](#reading-the-select-box-value-when-submitting-a-form)この選択ボックスの名前を指定します。 
+* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#name): 文字列。[フォームとともに送信される](#reading-the-select-box-value-when-submitting-a-form)この選択ボックスの名前を指定します。
 * `onChange`: [`Event` ハンドラ](/reference/react-dom/components/common#event-handler)関数。[制御されたセレクトボックス](#controlling-a-select-box-with-a-state-variable)では必要です。ユーザが別のオプションを選択したときに即座に発火します。ブラウザの [`input` イベント](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)と同様に動作します。
 * `onChangeCapture`: `onChange` の[キャプチャフェーズ](/learn/responding-to-events#capture-phase-events)で発火するバージョンです。
 * [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): [`Event` ハンドラ](/reference/react-dom/components/common#event-handler)関数。ユーザによって値が変更されたときに即座に発火します。歴史的な理由から、React では代わりに同様の動作をする `onChange` を使用するのが慣習となっています。
