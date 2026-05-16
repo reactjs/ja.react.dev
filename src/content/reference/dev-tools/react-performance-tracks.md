@@ -1,14 +1,14 @@
 ---
-title: React Performance tracks
+title: React パフォーマンストラック
 ---
 
 <Intro>
 
-React Performance tracks are specialized custom entries that appear on the Performance panel's timeline in your browser developer tools.
+React パフォーマンストラック (React Performance tracks) は、ブラウザの開発者ツールにあるパフォーマンスパネルのタイムラインに表示される特別なカスタムエントリです。
 
 </Intro>
 
-These tracks are designed to provide developers with comprehensive insights into their React application's performance by visualizing React-specific events and metrics alongside other critical data sources such as network requests, JavaScript execution, and event loop activity, all synchronized on a unified timeline within the Performance panel for a complete understanding of application behavior.
+これらのトラックは、ネットワークリクエスト、JavaScript の実行、イベントループのアクティビティなど、他の重要なデータソースと並べて React 固有のイベントやメトリクスを可視化することで、React アプリケーションのパフォーマンスに関する包括的な情報を開発者に提供するように設計されています。これらはすべてパフォーマンスパネル内の統一されたタイムラインで同期され、アプリケーションの動作の全体像を把握できるようになります。
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <img className="w-full light-image" src="/images/docs/performance-tracks/overview.png" alt="React Performance Tracks" />
@@ -19,86 +19,86 @@ These tracks are designed to provide developers with comprehensive insights into
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-React Performance tracks are only available in development and profiling builds of React:
+React パフォーマンストラックは、開発用ビルドおよびプロファイリングビルドの React でのみ使用できます。
 
-- **Development**: enabled by default.
-- **Profiling**: Only Scheduler tracks are enabled by default. The Components track only lists Components that are in subtrees wrapped with [`<Profiler>`](/reference/react/Profiler). If you have [React Developer Tools extension](/learn/react-developer-tools) enabled, all Components are included in the Components track even if they're not wrapped in `<Profiler>`. Server tracks are not available in profiling builds.
+- **開発用**: デフォルトで有効になっています。
+- **プロファイリング**: Scheduler トラックのみがデフォルトで有効になっています。コンポーネントトラックには、[`<Profiler>`](/reference/react/Profiler) でラップされたサブツリー内のコンポーネントのみが表示されます。[React Developer Tools 拡張機能](/learn/react-developer-tools)が有効になっている場合、`<Profiler>` でラップされていないコンポーネントもコンポーネントトラックに含まれます。サーバトラックはプロファイリングビルドでは利用できません。
 
-If enabled, tracks should appear automatically in the traces you record with the Performance panel of browsers that provide [extensibility APIs](https://developer.chrome.com/docs/devtools/performance/extension).
+有効になっている場合、[拡張 API](https://developer.chrome.com/docs/devtools/performance/extension) を提供するブラウザのパフォーマンスパネルで記録したトレースに、トラックが自動的に表示されます。
 
 <Pitfall>
 
-The profiling instrumentation that powers React Performance tracks adds some additional overhead, so it is disabled in production builds by default.
-Server Components and Server Requests tracks are only available in development builds.
+React パフォーマンストラックを動かすプロファイリング機能には追加のオーバーヘッドが生じるため、デフォルトでは本番用ビルドでは無効になっています。
+サーバコンポーネントおよびサーバリクエストのトラックは、開発用ビルドでのみ利用できます。
 
 </Pitfall>
 
-### Using profiling builds {/*using-profiling-builds*/}
+### プロファイリングビルドの使用 {/*using-profiling-builds*/}
 
-In addition to production and development builds, React also includes a special profiling build.
-To use profiling builds, you have to use `react-dom/profiling` instead of `react-dom/client`.
-We recommend that you alias `react-dom/client` to `react-dom/profiling` at build time via bundler aliases instead of manually updating each `react-dom/client` import.
-Your framework might have built-in support for enabling React's profiling build.
+本番用ビルドと開発用ビルドに加えて、React には特別なプロファイリングビルドが含まれています。
+プロファイリングビルドを使用するには、`react-dom/client` の代わりに `react-dom/profiling` を使用する必要があります。
+各 `react-dom/client` のインポートを手動で更新するのではなく、バンドラのエイリアス機能を使ってビルド時に `react-dom/client` を `react-dom/profiling` にエイリアスすることをお勧めします。
+使用しているフレームワークによっては、React のプロファイリングビルドを有効にするための組み込みサポートがある場合があります。
 
 ---
 
-## Tracks {/*tracks*/}
+## トラック {/*tracks*/}
 
 ### Scheduler {/*scheduler*/}
 
-The Scheduler is an internal React concept used for managing tasks with different priorities. This track consists of 4 subtracks, each representing work of a specific priority:
+Scheduler は、異なる優先度を持つタスクを管理するために使用される React の内部概念です。このトラックは 4 つのサブトラックで構成され、それぞれが特定の優先度の作業を表しています。
 
-- **Blocking** - The synchronous updates, which could've been initiated by user interactions.
-- **Transition** - Non-blocking work that happens in the background, usually initiated via [`startTransition`](/reference/react/startTransition).
-- **Suspense** - Work related to Suspense boundaries, such as displaying fallbacks or revealing content.
-- **Idle** - The lowest priority work that is done when there are no other tasks with higher priority.
+- **Blocking (ブロッキング)** - ユーザ操作によって開始された可能性のある同期更新です。
+- **Transition (トランジション)** - 通常は [`startTransition`](/reference/react/startTransition) 経由で開始される、バックグラウンドで行われる非ブロッキング作業です。
+- **Suspense** - フォールバックの表示やコンテンツの表示など、Suspense バウンダリに関連する作業です。
+- **Idle (アイドル)** - より高い優先度のタスクがない場合に行われる最も低い優先度の作業です。
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <img className="w-full light-image" src="/images/docs/performance-tracks/scheduler.png" alt="Scheduler track" />
   <img className="w-full dark-image" src="/images/docs/performance-tracks/scheduler.dark.png" alt="Scheduler track" />
 </div>
 
-#### Renders {/*renders*/}
+#### レンダー {/*renders*/}
 
-Every render pass consists of multiple phases that you can see on a timeline:
+各レンダーのパスは、タイムラインで確認できる複数のフェーズで構成されています。
 
-- **Update** - this is what caused a new render pass.
-- **Render** - React renders the updated subtree by calling render functions of components. You can see the rendered components subtree on [Components track](#components), which follows the same color scheme.
-- **Commit** - After rendering components, React will submit the changes to the DOM and run layout effects, like [`useLayoutEffect`](/reference/react/useLayoutEffect).
-- **Remaining Effects** - React runs passive effects of a rendered subtree. This usually happens after the paint, and this is when React runs hooks like [`useEffect`](/reference/react/useEffect). One known exception is user interactions, like clicks, or other discrete events. In this scenario, this phase could run before the paint.
+- **Update (更新)** - 新しいレンダーパスのきっかけとなったものです。
+- **Render (レンダー)** - React がコンポーネントのレンダー関数を呼び出し、更新されたサブツリーをレンダーします。レンダーされたコンポーネントのサブツリーは[コンポーネントトラック](#components)で確認でき、同じ配色が使われます。
+- **Commit (コミット)** - コンポーネントをレンダーした後、React は変更を DOM に反映し、[`useLayoutEffect`](/reference/react/useLayoutEffect) のようなレイアウトエフェクトを実行します。
+- **Remaining Effects (残りのエフェクト)** - React はレンダーされたサブツリーのパッシブエフェクトを実行します。これは通常ペイント後に行われ、[`useEffect`](/reference/react/useEffect) のようなフックが実行されるタイミングです。既知の例外として、クリックなどのユーザ操作やその他の個別のイベントがあります。この場合、このフェーズがペイントの前に実行される可能性があります。
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <img className="w-full light-image" src="/images/docs/performance-tracks/scheduler-update.png" alt="Scheduler track: updates" />
   <img className="w-full dark-image" src="/images/docs/performance-tracks/scheduler-update.dark.png" alt="Scheduler track: updates" />
 </div>
 
-[Learn more about renders and commits](/learn/render-and-commit).
+[レンダーとコミットの詳細を学ぶ](/learn/render-and-commit)
 
-#### Cascading updates {/*cascading-updates*/}
+#### カスケード更新 {/*cascading-updates*/}
 
-Cascading updates is one of the patterns for performance regressions. If an update was scheduled during a render pass, React could discard completed work and start a new pass.
+カスケード更新は、パフォーマンスの低下を引き起こすパターンの 1 つです。レンダーパス中に更新がスケジュールされた場合、React は完了した作業を破棄して新たにレンダリングを開始する可能性があります。
 
-In development builds, React can show you which Component scheduled a new update. This includes both general updates and cascading ones. You can see the enhanced stack trace by clicking on the "Cascading update" entry, which should also display the name of the method that scheduled an update.
+開発用ビルドでは、React はどのコンポーネントが新しい更新をスケジュールしたかを表示できます。これには一般的な更新とカスケード更新の両方が含まれます。"Cascading update"エントリをクリックすると、拡張されたスタックトレースが表示され、更新をスケジュールしたメソッドの名前も確認できます。
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <img className="w-full light-image" src="/images/docs/performance-tracks/scheduler-cascading-update.png" alt="Scheduler track: cascading updates" />
   <img className="w-full dark-image" src="/images/docs/performance-tracks/scheduler-cascading-update.dark.png" alt="Scheduler track: cascading updates" />
 </div>
 
-[Learn more about Effects](/learn/you-might-not-need-an-effect).
+[エフェクトの詳細を学ぶ](/learn/you-might-not-need-an-effect)
 
 ### Components {/*components*/}
 
-The Components track visualizes the durations of React components. They are displayed as a flamegraph, where each entry represents the duration of the corresponding component render and all its descendant children components.
+コンポーネントトラックは、React コンポーネントの継続時間を可視化します。フレームグラフとして表示され、各エントリは対応するコンポーネントのレンダーとすべての子コンポーネントの継続時間を表します。
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <img className="w-full light-image" src="/images/docs/performance-tracks/components-render.png" alt="Components track: render durations" />
   <img className="w-full dark-image" src="/images/docs/performance-tracks/components-render.dark.png" alt="Components track: render durations" />
 </div>
 
-Similar to render durations, effect durations are also represented as a flamegraph, but with a different color scheme that aligns with the corresponding phase on the Scheduler track.
+エフェクトの継続時間もレンダーの継続時間と同様に、フレームグラフとして表示されますが、Scheduler トラック上の対応するフェーズに合わせて配色が異なります。
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <img className="w-full light-image" src="/images/docs/performance-tracks/components-effects.png" alt="Components track: effects durations" />
@@ -107,22 +107,22 @@ Similar to render durations, effect durations are also represented as a flamegra
 
 <Note>
 
-Unlike renders, not all effects are shown on the Components track by default.
+レンダーとは異なり、デフォルトではすべてのエフェクトがコンポーネントトラックに表示されるわけではありません。
 
-To maintain performance and prevent UI clutter, React will only display those effects, which had a duration of 0.05ms or longer, or triggered an update.
+パフォーマンスを維持し、UI の乱雑さを防ぐために、React は 0.05 ミリ秒以上の継続時間を持つエフェクト、または更新をトリガしたエフェクトのみを表示します。
 
 </Note>
 
-Additional events may be displayed during the render and effects phases:
+レンダーとエフェクトのフェーズ中に、追加のイベントが表示される場合があります。
 
-- <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Mount</span> - A corresponding subtree of component renders or effects was mounted.
-- <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Unmount</span> - A corresponding subtree of component renders or effects was unmounted.
-- <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Reconnect</span> - Similar to Mount, but limited to cases when [`<Activity>`](/reference/react/Activity) is used.
-- <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Disconnect</span> - Similar to Unmount, but limited to cases when [`<Activity>`](/reference/react/Activity) is used.
+- <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Mount</span> - コンポーネントのレンダーまたはエフェクトの対応するサブツリーがマウントされました。
+- <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Unmount</span> - コンポーネントのレンダーまたはエフェクトの対応するサブツリーがアンマウントされました。
+- <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Reconnect</span> - Mount と似ていますが、[`<Activity>`](/reference/react/Activity) が使用されている場合に限定されます。
+- <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Disconnect</span> - Unmount と似ていますが、[`<Activity>`](/reference/react/Activity) が使用されている場合に限定されます。
 
-#### Changed props {/*changed-props*/}
+#### 変更された props {/*changed-props*/}
 
-In development builds, when you click on a component render entry, you can inspect potential changes in props. You can use this information to identify unnecessary renders.
+開発用ビルドでは、コンポーネントのレンダーエントリをクリックすると、props の潜在的な変更を検査できます。この情報を利用して、不要なレンダーを特定できます。
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <img className="w-full light-image" src="/images/docs/performance-tracks/changed-props.png" alt="Components track: changed props" />
@@ -138,22 +138,22 @@ In development builds, when you click on a component render entry, you can inspe
 
 #### Server Requests {/*server-requests*/}
 
-The Server Requests track visualized all Promises that eventually end up in a React Server Component. This includes any `async` operations like calling `fetch` or async Node.js file operations. 
+サーバリクエストトラックは、最終的に React Server Component 内で使われるすべての Promise を可視化します。これには、`fetch` の呼び出しや非同期 Node.js ファイル操作などの `async` 操作が含まれます。
 
-React will try to combine Promises that are started from inside third-party code into a single span representing the the duration of the entire operation blocking 1st party code.
-For example, a third party library method called `getUser` that calls `fetch` internally multiple times will be represented as a single span called `getUser`, instead of showing multiple `fetch` spans.
+React は、サードパーティのコードから開始された Promise を、ファーストパーティコードをブロックする操作全体の継続時間を表す単一のスパンに結合しようとします。
+例えば、内部的に複数回 `fetch` を呼び出す `getUser` というサードパーティライブラリのメソッドは、複数の `fetch` スパンを表示するのではなく、`getUser` という単一のスパンとして表されます。
 
-Clicking on spans will show you a stack trace of where the Promise was created as well as a view of the value that the Promise resolved to, if available.
+スパンをクリックすると、Promise が作成された場所のスタックトレースと、利用可能な場合は Promise が解決した値のビューが表示されます。
 
-Rejected Promises are displayed as red with their rejected value.
+拒否された Promise は、拒否された値とともに赤色で表示されます。
 
 #### Server Components {/*server-components*/}
 
-The Server Components tracks visualize the durations of React Server Components Promises they awaited. Timings are displayed as a flamegraph, where each entry represents the duration of the corresponding component render and all its descendant children components.
+サーバコンポーネントトラックは、React Server Components と、それらが待機した Promise の所要時間を可視化します。タイミングはフレームグラフとして表示され、各エントリは対応するコンポーネントのレンダーとすべての子孫コンポーネントの所要時間を表します。
 
-If you await a Promise, React will display duration of that Promise. To see all I/O operations, use the Server Requests track.
+Promise を待機する場合、React はその Promise の継続時間を表示します。すべての I/O 操作を確認するには、サーバリクエストトラックを使用してください。
 
-Different colors are used to indicate the duration of the component render. The darker the color, the longer the duration.
+コンポーネントのレンダーの継続時間を示すために異なる色が使用されます。色が濃いほど、継続時間が長いことを示します。
 
-The Server Components track group will always contain a "Primary" track. If React is able to render Server Components concurrently, it will display addititional "Parallel" tracks.
-If more than 8 Server Components are rendered concurrently, React will associate them with the last "Parallel" track instead of adding more tracks.
+サーバコンポーネントトラックグループには、常に"Primary"トラックが含まれます。React がサーバコンポーネントを並行してレンダーできる場合、追加の"Parallel"トラックが表示されます。
+8 つ以上のサーバコンポーネントが並行してレンダーされる場合、React はさらにトラックを追加するのではなく、最後の"Parallel"トラックに関連付けます。
