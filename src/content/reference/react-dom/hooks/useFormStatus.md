@@ -110,7 +110,7 @@ export async function submitForm(query) {
     await new Promise((res) => setTimeout(res, 1000));
 }
 ```
-</Sandpack>  
+</Sandpack>
 
 <Pitfall>
 
@@ -132,7 +132,7 @@ function Form() {
 ```js
 function Submit() {
   // ✅ `pending` will be derived from the form that wraps the Submit component
-  const { pending } = useFormStatus(); 
+  const { pending } = useFormStatus();
   return <button disabled={pending}>...</button>;
 }
 
@@ -215,7 +215,7 @@ button {
 
 ```
 
-</Sandpack>  
+</Sandpack>
 
 ---
 

@@ -16,6 +16,12 @@ Bluesky の [@react.dev](https://bsky.app/profile/react.dev) や Twitter の [@r
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<BlogCard title="React Foundation: Linux Foundation がホストする React の新たな拠点" date="February 24, 2026" url="/blog/2026/02/24/the-react-foundation">
+
+React Foundation が Linux Foundation のもとで正式に立ち上がりました。
+
+</BlogCard>
+
 <BlogCard title="React Server Components におけるサービス拒否攻撃とソースコード露出" date="December 11, 2025" url="/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components">
 
 セキュリティ研究者が先週の重大な脆弱性に対するパッチを検証する過程で、React Server Components における 2 つの脆弱性を追加で発見し、開示しました。

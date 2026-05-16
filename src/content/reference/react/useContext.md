@@ -60,7 +60,7 @@ import { useContext } from 'react';
 
 function Button() {
   const theme = useContext(ThemeContext);
-  // ... 
+  // ...
 ```
 
 `useContext` は<CodeStep step={1}>渡したコンテクスト</CodeStep>に対応する<CodeStep step={2}>コンテクストの値</CodeStep>を返します。コンテクストの値を決定するために、React はコンポーネントツリーを探索し、そのコンテクストに対して**最も近い上位のコンテクストプロバイダ**を見つけます。
@@ -845,7 +845,7 @@ export default function AddTask() {
           type: 'added',
           id: nextId++,
           text: text,
-        }); 
+        });
       }}>Add</button>
     </>
   );
@@ -1292,7 +1292,7 @@ export const LevelContext = createContext(0);
 
 コンテクストを介して、オブジェクトや関数を含んだどんな値も渡すことができます。
 
-```js [[2, 10, "{ currentUser, login }"]] 
+```js [[2, 10, "{ currentUser, login }"]]
 function MyApp() {
   const [currentUser, setCurrentUser] = useState(null);
 
