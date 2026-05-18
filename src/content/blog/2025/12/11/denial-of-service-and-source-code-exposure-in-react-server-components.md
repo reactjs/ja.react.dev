@@ -104,9 +104,15 @@ _Updated January 26, 2026._
 
 ## 高深刻度：複数のサービス拒否攻撃 {/*high-severity-multiple-denial-of-service*/}
 
+<<<<<<< HEAD
 **CVE**: [CVE-2026-23864](https://www.cve.org/CVERecord?id=CVE-2026-23864)
 **Base Score**: 7.5 (High)
 **Date**: January 26, 2025
+=======
+**CVEs:** [CVE-2026-23864](https://www.cve.org/CVERecord?id=CVE-2026-23864)
+**Base Score:** 7.5 (High)
+**Date**: January 26, 2026
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 セキュリティ研究者により、React Server Components に追加の DoS 脆弱性が残っていることが発見されました。
 
@@ -176,7 +182,11 @@ export async function serverFunction(name) {
 
 ソースコードにハードコードされた秘密情報は漏洩の可能性がありますが、`process.env.SECRET` などのランタイムシークレットは影響を受けません。
 
+<<<<<<< HEAD
 漏洩されるコードの範囲は、サーバ関数内のコードに限定されますが、バンドラが行うインライン化の程度によっては他の関数が含まれる可能性があります。
+=======
+The scope of the exposed code is limited to the code inside the Server Function, which may include other functions depending on the amount of inlining your bundler provides.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 必ず本番バンドルに対して検証を行ってください。
 

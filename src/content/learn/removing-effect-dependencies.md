@@ -411,7 +411,7 @@ function Form() {
 
   function handleSubmit() {
     setSubmitted(true);
-  }  
+  }
 
   // ...
 }
@@ -429,7 +429,7 @@ function Form() {
     // ✅ Good: Event-specific logic is called from event handlers
     post('/api/register');
     showNotification('Successfully registered!', theme);
-  }  
+  }
 
   // ...
 }
@@ -878,7 +878,11 @@ const options2 = { serverUrl: 'https://localhost:1234', roomId: 'music' };
 console.log(Object.is(options1, options2)); // false
 ```
 
+<<<<<<< HEAD
 **オブジェクト型や関数型の依存値は、エフェクトが必要以上に再同期される原因となります**。
+=======
+**Object and function dependencies can make your Effect re-synchronize more often than you need.**
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 したがって、エフェクトの依存値としてのオブジェクトや関数は、可能な限り避けるべきです。代わりに、それらをコンポーネントの外側やエフェクトの内側に移動させるか、あるいはそれらからプリミティブな値を抽出するよう試みてください。
 

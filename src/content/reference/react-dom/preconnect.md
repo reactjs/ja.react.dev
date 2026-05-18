@@ -34,7 +34,11 @@ function AppRoot() {
 
 [さらに例を見る](#usage)
 
+<<<<<<< HEAD
 `preconnect` 関数は、指定されたサーバへの接続を開くよう、ブラウザに対してヒントを与えます。ブラウザがそのヒントに従うと、そのサーバからのリソースのロードが素早く行える可能性があります。
+=======
+The `preconnect` function provides the browser with a hint that it should open a connection to the given server. If the browser chooses to do so, this can speed up the loading of resources from that server.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 #### 引数 {/*parameters*/}
 

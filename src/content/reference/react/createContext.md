@@ -64,7 +64,11 @@ function App() {
 
 <Note>
 
+<<<<<<< HEAD
 React 19 以降では、`<SomeContext>` 自体をプロバイダとしてレンダーできます。
+=======
+Starting in React 19, you can render `<SomeContext>` as a provider.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 以前のバージョンでは、代わりに `<SomeContext.Provider>` を使用してください。
 

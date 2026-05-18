@@ -34,7 +34,11 @@ function AppRoot() {
 
 [さらに例を見る](#usage)
 
+<<<<<<< HEAD
 prefetchDNS 関数は、指定されたサーバの IP アドレスを調べるようブラウザに対してヒントを与えます。ブラウザがそのヒントに従うと、そのサーバからのリソースのロードが素早く行える可能性があります。
+=======
+The prefetchDNS function provides the browser with a hint that it should look up the IP address of a given server. If the browser chooses to do so, this can speed up the loading of resources from that server.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 #### 引数 {/*parameters*/}
 

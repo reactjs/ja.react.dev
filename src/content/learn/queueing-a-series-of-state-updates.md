@@ -177,7 +177,11 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 | "`5` に置き換えよ" | `0` (未使用) | `5` |
 | `n => n + 1` | `5` | `5 + 1 = 6` |
 
+<<<<<<< HEAD
 React は `6` を最終結果として保存し、`useState` から返します。
+=======
+React stores `6` as the final result and returns it from `useState`.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 <Note>
 
@@ -305,7 +309,7 @@ export default function RequestTracker() {
         Completed: {completed}
       </h3>
       <button onClick={handleClick}>
-        Buy     
+        Buy
       </button>
     </>
   );
@@ -349,7 +353,7 @@ export default function RequestTracker() {
         Completed: {completed}
       </h3>
       <button onClick={handleClick}>
-        Buy     
+        Buy
       </button>
     </>
   );
