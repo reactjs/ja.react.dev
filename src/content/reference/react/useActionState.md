@@ -263,7 +263,7 @@ button {
 
 #### `useActionState` のキューイングの仕組み {/*how-useactionstate-queuing-works*/}
 
-"Add Ticket" を複数回クリックしてみてください。クリックするたびに、新しい `addToCartAction` がキューに入ります。人工的に 1 秒の遅延があるため、4 回クリックすると完了まで約 4 秒かかります。
+"Add Ticket" を複数回クリックしてみてください。クリックするたびに、新しい `addToCartAction` がキューに入ります。人工的な 1 秒の遅延があるため、4 回クリックすると完了まで約 4 秒かかります。
 
 **これは `useActionState` の設計上意図されたものです。**
 
@@ -1481,7 +1481,7 @@ function MyComponent() {
 
 ### "An async function with useActionState was called outside of a transition." というエラーが出る {/*async-function-outside-transition*/}
 
-よくある間違いは、トランジション内から `dispatchAction` を呼び出し忘れることです：
+よくある間違いは、`dispatchAction` をトランジション内から呼び出すのを忘れることです：
 
 <ConsoleBlockMulti>
 <ConsoleLogLine level="error">
