@@ -114,7 +114,7 @@ function TodoList({ todos, tab, theme }) {
 これらのフックはライブラリの開発者には有用ですが、アプリケーションコードでは通常は用いられることはありません。
 
 - [`useDebugValue`](/reference/react/useDebugValue) を用いると、React DevTools が表示するカスタムフックのラベルをカスタマイズできます。
-- [`useId`](/reference/react/useId) を用いると、コンポーネントにユニークな ID を関連付けることができます。通常はアクセシビリティ API とともに使用されます。 
+- [`useId`](/reference/react/useId) を用いると、コンポーネントにユニークな ID を関連付けることができます。通常はアクセシビリティ API とともに使用されます。
 - [`useSyncExternalStore`](/reference/react/useSyncExternalStore) を用いると、コンポーネントは外部のストアを参照できるようになります。
 - [`useActionState`](/reference/react/useActionState) によってアクションの state を管理できます。
 

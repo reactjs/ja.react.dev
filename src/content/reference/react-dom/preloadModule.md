@@ -48,8 +48,8 @@ function AppRoot() {
 * `options`: オブジェクト。以下のプロパティを含みます。
   *  `as`: 必須の文字列。`'script'` である必要があります。
   *  `crossOrigin`: 文字列。使用する [CORS ポリシー](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin)。可能な値は `anonymous` と `use-credentials` です。
-  *  `integrity`: 文字列。[真正性を検証する](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)ために使用するリソースの暗号化ハッシュ。
-  *  `nonce`: 文字列。厳格なコンテンツセキュリティポリシーを使用する際に[リソースを許可するための暗号化 nonce](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce)。
+  *  `integrity`: 文字列。[真正性を検証する](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)ために使用するモジュールの暗号化ハッシュ。
+  *  `nonce`: 文字列。厳格なコンテンツセキュリティポリシーを使用する際に[モジュールを許可するための暗号化 nonce](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce)。
 
 
 #### 返り値 {/*returns*/}

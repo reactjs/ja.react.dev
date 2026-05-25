@@ -382,7 +382,7 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );
@@ -515,7 +515,7 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );

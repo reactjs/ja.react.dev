@@ -64,7 +64,7 @@ import { use } from 'react';
 
 function Button() {
   const theme = use(ThemeContext);
-  // ... 
+  // ...
 ```
 
 `use` は、渡した<CodeStep step={1}>コンテクスト</CodeStep>の<CodeStep step={2}>値</CodeStep>を返します。コンテクストの値を決定するために、React はコンポーネントツリーを上方向に検索し、当該コンテクストに対応する**最も近いコンテクストプロバイダ (context provider)** を見つけます。
@@ -456,7 +456,7 @@ function MessageComponent({messagePromise}) {
 
 ```jsx
 function MessageComponent({messagePromise}) {
-  // ✅ `use` is being called from a component. 
+  // ✅ `use` is being called from a component.
   const message = use(messagePromise);
   // ...
 ```

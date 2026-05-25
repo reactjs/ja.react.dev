@@ -117,7 +117,7 @@ class Counter extends Component {
 
   handleAgeChange = () => {
     this.setState({
-      age: this.state.age + 1 
+      age: this.state.age + 1
     });
   };
 
@@ -1098,7 +1098,7 @@ export default class Counter extends Component {
 
   handleAgeChange = () => {
     this.setState({
-      age: this.state.age + 1 
+      age: this.state.age + 1
     });
   };
 
@@ -1123,7 +1123,7 @@ export default class Counter extends Component {
 button { display: block; margin-top: 10px; }
 ```
 
-</Sandpack> 
+</Sandpack>
 
 <Pitfall>
 
@@ -1207,7 +1207,7 @@ export default class ChatRoom extends Component {
       this.state.serverUrl,
       this.props.roomId
     );
-    this.connection.connect();    
+    this.connection.connect();
   }
 
   destroyConnection() {
@@ -1439,7 +1439,7 @@ export default class Counter extends Component {
 
   handleAgeChange = (e) => {
     this.setState({
-      age: this.state.age + 1 
+      age: this.state.age + 1
     });
   };
 
@@ -1606,7 +1606,7 @@ export default class ChatRoom extends Component {
       this.state.serverUrl,
       this.props.roomId
     );
-    this.connection.connect();    
+    this.connection.connect();
   }
 
   destroyConnection() {
@@ -1795,7 +1795,7 @@ class Panel extends Component {
         <h1>{this.props.title}</h1>
         {this.props.children}
       </section>
-    );    
+    );
   }
 }
 

@@ -109,10 +109,10 @@ npx codemod@latest react/19/migration-recipe
 ```
 
 これにより以下の `react-codemod` の codemod が実行されます。
-- [`replace-reactdom-render`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-reactdom-render) 
+- [`replace-reactdom-render`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-reactdom-render)
 - [`replace-string-ref`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-string-ref)
 - [`replace-act-import`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-act-import)
-- [`replace-use-form-state`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-use-form-state) 
+- [`replace-use-form-state`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-use-form-state)
 - [`prop-types-typescript`](https://github.com/reactjs/react-codemod#react-proptypes-to-prop-types)
 
 これには TypeScript 関連の変更は含まれていません。以下の [TypeScript 関連の変更](#typescript-changes)を参照してください。

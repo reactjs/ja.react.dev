@@ -34,7 +34,7 @@ function TodosApp() {
 
 これは、ストアにあるデータのスナップショットを返します。引数として 2 つの関数を渡す必要があります：
 
-1. `subscribe` 関数はストアへのサブスクライブを開始します。サブスクライブを解除する関数を返す必要があります。 
+1. `subscribe` 関数はストアへのサブスクライブを開始します。サブスクライブを解除する関数を返す必要があります。
 2. `getSnapshot` 関数は、ストアからデータのスナップショットを読み取る必要があります。
 
 [さらに例を見る](#usage)
@@ -107,7 +107,7 @@ function TodosApp() {
 
 React はこれらの関数を使ってコンポーネントをストアにサブスクライブされた状態に保ち、変更があるたびに再レンダーします。
 
-例えば、以下のサンドボックスでは、`todosStore` は React の外部にデータを保存する外部ストアとして実装されています。`TodosApp` コンポーネントは、`useSyncExternalStore` フックを使ってその外部ストアに接続します。 
+例えば、以下のサンドボックスでは、`todosStore` は React の外部にデータを保存する外部ストアとして実装されています。`TodosApp` コンポーネントは、`useSyncExternalStore` フックを使ってその外部ストアに接続します。
 
 <Sandpack>
 
@@ -411,7 +411,7 @@ function ChatIndicator() {
   function subscribe() {
     // ...
   }
-  
+
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ...
@@ -440,7 +440,7 @@ function ChatIndicator({ userId }) {
   const subscribe = useCallback(() => {
     // ...
   }, [userId]);
-  
+
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ...

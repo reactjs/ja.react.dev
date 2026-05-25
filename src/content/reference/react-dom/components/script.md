@@ -43,7 +43,7 @@ props として `children` または `src` のいずれかが必要です。
 * `async`: ブーリアン。ドキュメントの残りの部分の処理を完了するまでブラウザにスクリプトの実行を遅延させることを許可します。これはパフォーマンスのために推奨される動作です。
 * `crossOrigin`: 文字列。使用する [CORS ポリシー](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin)。可能な値は `anonymous` と `use-credentials` です。
 * `fetchPriority`: 文字列。複数のスクリプトを同時にフェッチする際に、ブラウザにスクリプトの優先付けを行わせます。`"high"`、`"low"`、`"auto"`（デフォルト）のいずれかです。
-* `integrity`: 文字列。文字列。[真正性を検証する](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)ために使用するスクリプトの暗号化ハッシュ。
+* `integrity`: 文字列。[真正性を検証する](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)ために使用するスクリプトの暗号化ハッシュ。
 * `noModule`: ブーリアン。ES モジュールをサポートするブラウザでこのスクリプトを無効にすることで、サポートしていないブラウザ用のフォールバックスクリプトとして利用できるようにします。
 * `nonce`: 文字列。厳格なコンテンツセキュリティポリシーを使用する際に[リソースを許可するための暗号化 nonce](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce)。
 * `referrer`: 文字列。スクリプトをフェッチする際、およびそのスクリプトが更にリソースフェッチする際に送信する [Referer ヘッダー](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#referrerpolicy)を指定します。
