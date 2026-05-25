@@ -1,8 +1,8 @@
 ---
-title: "The React Foundation: A New Home for React Hosted by the Linux Foundation"
+title: "React Foundation: Linux Foundation がホストする React の新たな拠点"
 author: Matt Carroll
 date: 2026/02/24
-description: The React Foundation has officially launched, hosted by the Linux Foundation.
+description: React Foundation が Linux Foundation のもとで正式に立ち上がりました。
 ---
 
 February 24, 2026 by [Matt Carroll](https://x.com/mattcarrollcode)
@@ -22,19 +22,19 @@ February 24, 2026 by [Matt Carroll](https://x.com/mattcarrollcode)
 
 <Intro>
 
-The React Foundation has officially launched, hosted by the Linux Foundation.
+React Foundation が Linux Foundation のもとで正式に立ち上がりました。
 
 </Intro>
 
 ---
 
-[In October](/blog/2025/10/07/introducing-the-react-foundation), we announced our intent to form the React Foundation. Today, we're excited to share that the React Foundation has officially launched.
+[10 月に](/blog/2025/10/07/introducing-the-react-foundation)、React Foundation を設立する意向を発表しました。本日、React Foundation が正式に立ち上がったことをお知らせします。
 
-React, React Native, and supporting projects like JSX are no longer owned by Meta — they are now owned by the React Foundation, an independent foundation hosted by the Linux Foundation. You can read more in the [Linux Foundation's press release](https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-react-foundation).
+React、React Native、および JSX などのサポートプロジェクトは、現在は Meta の所有ではありません。これらは、Linux Foundation のもとに置かれた独立した Foundation である React Foundation が所有しています。詳しくは [Linux Foundation のプレスリリース](https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-react-foundation)をご覧ください。
 
-### Founding Members {/*founding-members*/}
+### 創設メンバー {/*founding-members*/}
 
-The React Foundation has eight Platinum founding members: **Amazon**, **Callstack**, **Expo**, **Huawei**, **Meta**, **Microsoft**, **Software Mansion**, and **Vercel**. **Huawei** has joined since [our announcement in October](/blog/2025/10/07/introducing-the-react-foundation). The React Foundation will be governed by a board of directors composed of representatives from each member, with [Seth Webster](https://sethwebster.com/) serving as executive director.
+React Foundation には 8 社のプラチナ創設メンバーがいます：**Amazon**、**Callstack**、**Expo**、**Huawei**、**Meta**、**Microsoft**、**Software Mansion**、**Vercel**。**Huawei** は [10 月の発表](/blog/2025/10/07/introducing-the-react-foundation)以降に参加しました。React Foundation は各メンバーからの代表者で構成される取締役会によって運営され、[Seth Webster](https://sethwebster.com/) がエグゼクティブディレクターを務めます。
 
 <div style={{display: 'flex', justifyContent: 'center', margin: '2rem'}}>
   <picture >
@@ -47,21 +47,21 @@ The React Foundation has eight Platinum founding members: **Amazon**, **Callstac
   </picture>
 </div>
 
-### New Provisional Leadership Council {/*new-provisional-leadership-council*/}
+### 新しい暫定リーダーシップ評議会 {/*new-provisional-leadership-council*/}
 
-React's technical governance will always be independent from the React Foundation board — React's technical direction will continue to be set by the people who contribute to and maintain React. We have formed a provisional leadership council to determine this structure. We will share an update in the coming months.
+React の技術ガバナンスは、React Foundation の取締役会から常に独立したものとなります。React の技術的な方向性は、React に貢献し、維持している人々によって引き続き決定されます。この構造を決定するために、暫定リーダーシップ評議会を設置しました。今後数か月のうちに続報を共有します。
 
-### Next Steps {/*next-steps*/}
+### 次のステップ {/*next-steps*/}
 
-There is still work to do to complete the transition. In the coming months we will be:
+移行を完了するには、まだやるべき作業が残っています。今後数か月のうちに、以下の作業を行います。
 
-* Finalizing the technical governance structure for React
-* Transferring repositories, websites, and other infrastructure to the React Foundation
-* Exploring programs to support the React ecosystem
-* Kicking off planning for the next React Conf
+* React の技術ガバナンス構造を最終決定する
+* リポジトリ、ウェブサイト、その他のインフラストラクチャを React Foundation に移管する
+* React エコシステムをサポートするプログラムを検討する
+* 次回の React Conf に向けた計画を開始する
 
-We will share updates as this work progresses.
+この作業の進捗に合わせて、更新情報を共有していきます。
 
-### Thank You {/*thank-you*/}
+### 謝辞 {/*thank-you*/}
 
-None of this would be possible without the thousands of contributors who have shaped React over the past decade. Thank you to our founding members, to every contributor who has opened a pull request, filed an issue, or helped someone learn React, and to the millions of developers who build with React every day. The React Foundation exists because of this community, and we're looking forward to building its future together.
+過去 10 年にわたって React を形作ってきた何千ものコントリビュータなしには、これらのどれも実現できませんでした。創設メンバーの皆さま、プルリクエストを開き、issue を報告し、あるいは誰かが React を学ぶ手助けをしてきたすべてのコントリビュータの皆さま、そして日々 React で開発を行っている何百万もの開発者の皆さまに感謝します。React Foundation はこのコミュニティがあってこそ存在しており、私たちはその未来を共に築いていけることを楽しみにしています。
