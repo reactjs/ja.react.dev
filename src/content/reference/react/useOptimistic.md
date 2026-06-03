@@ -215,7 +215,7 @@ import EditName from './EditName';
 
 export default function App() {
   const [name, setName] = useState('Alice');
-  
+
   return <EditName name={name} action={setName} />;
 }
 ```
@@ -230,7 +230,7 @@ export default function EditName({ name, action }) {
   async function submitAction(formData) {
     const newName = formData.get('name');
     setOptimisticName(newName);
-    
+
     const updatedName = await updateName(newName);
     startTransition(() => {
       action(updatedName);
@@ -295,7 +295,7 @@ export default function App() {
   const [count, setCount] = useState(0);
   return (
     <div>
-      <Button action={async () => {         
+      <Button action={async () => {
         await submitForm();
         startTransition(() => {
           setCount(c => c + 1);
@@ -391,10 +391,10 @@ export default function App() {
     startTransition(async () => {
       const newValue = !optimisticIsLiked
       console.log('⏳ setting optimistic state: ' + newValue);
-      
+
       setOptimisticIsLiked(newValue);
       const updatedValue = await toggleLike(newValue);
-      
+
       startTransition(() => {
         console.log('⏳ setting real state: ' + updatedValue );
         setIsLiked(updatedValue);
@@ -403,11 +403,11 @@ export default function App() {
   }
 
   if (optimisticIsLiked !== isLiked) {
-    console.log('✅ rendering optimistic state: ' + optimisticIsLiked);  
+    console.log('✅ rendering optimistic state: ' + optimisticIsLiked);
   } else {
     console.log('✅ rendering real value: ' + optimisticIsLiked);
   }
-  
+
 
   return (
     <button onClick={handleClick}>
@@ -999,7 +999,7 @@ function MyComponent({ items }) {
 
   // This runs during render - not allowed!
   setPending(true);
-  
+
   // ...
 }
 

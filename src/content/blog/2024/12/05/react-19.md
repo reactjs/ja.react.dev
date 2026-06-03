@@ -59,7 +59,7 @@ function UpdateName({}) {
     if (error) {
       setError(error);
       return;
-    } 
+    }
     redirect("/path");
   };
 
@@ -92,7 +92,7 @@ function UpdateName({}) {
       if (error) {
         setError(error);
         return;
-      } 
+      }
       redirect("/path");
     })
   };
@@ -308,7 +308,7 @@ function Heading({children}) {
   if (children == null) {
     return null;
   }
-  
+
   // This would not work with useContext
   // because of the early return.
   const theme = use(ThemeContext);
@@ -497,7 +497,7 @@ function App({children}) {
     <ThemeContext value="dark">
       {children}
     </ThemeContext>
-  );  
+  );
 }
 ```
 
@@ -551,7 +551,7 @@ function Search({deferredValue}) {
   // On initial render the value is ''.
   // Then a re-render is scheduled with the deferredValue.
   const value = useDeferredValue(deferredValue, '');
-  
+
   return (
     <Results query={value} />
   );

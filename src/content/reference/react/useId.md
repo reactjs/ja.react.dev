@@ -48,7 +48,7 @@ function PasswordField() {
 
 * `useId` を、**リスト内の key の生成には使用しないでください**。[key はデータから生成される必要があります。](/learn/rendering-lists#where-to-get-your-key)
 
-* `useId` currently cannot be used in [async Server Components](/reference/rsc/server-components#async-components-with-server-components).
+* `useId` は現時点で[非同期サーバコンポーネント](/reference/rsc/server-components#async-components-with-server-components)では使用できません。
 
 ---
 
@@ -81,7 +81,7 @@ function PasswordField() {
 </>
 ```
 
-**これがどのような場合に役立つかを、例を通してみてみましょう。** 
+**これがどのような場合に役立つかを、例を通してみてみましょう。**
 
 [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) のような [HTML アクセシビリティ属性](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)を使用すると、2 つのタグが相互に関連していることを指定することができます。例えば、入力フィールドのような要素が、段落などの別の要素で説明されていることを指定することができます。
 
