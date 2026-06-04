@@ -30,7 +30,7 @@ React Foundation が Linux Foundation のもとで正式に立ち上がりまし
 
 [10 月に](/blog/2025/10/07/introducing-the-react-foundation)、React Foundation を設立する意向を発表しました。本日、React Foundation が正式に立ち上がったことをお知らせします。
 
-React、React Native、および JSX などのサポートプロジェクトは、現在は Meta の所有ではありません。これらは、Linux Foundation のもとに置かれた独立した財団である React Foundation が所有しています。詳しくは [Linux Foundation のプレスリリース](https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-react-foundation)をご覧ください。
+React、React Native、および JSX などのサポートプロジェクトは、もはや Meta の所有ではなくなっています。これらは現在、Linux Foundation のもとに置かれた独立した財団である React Foundation が所有しています。詳しくは [Linux Foundation のプレスリリース](https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-react-foundation)をご覧ください。
 
 ### 創設メンバー {/*founding-members*/}
 
