@@ -52,7 +52,7 @@ React はこのような概念に基づいて設計されています。**React 
 ```js src/App.js
 function Recipe({ drinkers }) {
   return (
-    <ol>    
+    <ol>
       <li>Boil {drinkers} cups of water.</li>
       <li>Add {drinkers} spoons of tea and {0.5 * drinkers} spoons of spice.</li>
       <li>Add {0.5 * drinkers} cups of milk to boil and sugar to taste.</li>
@@ -226,7 +226,7 @@ React では、**副作用は通常、[イベントハンドラ](/learn/respondi
 </Recap>
 
 
-  
+
 <Challenges>
 
 #### 壊れた時計を修理 {/*fix-a-broken-clock*/}
@@ -451,7 +451,7 @@ export default function App() {
 ```js src/utils.js hidden
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -549,7 +549,7 @@ export default function App() {
 ```js src/utils.js hidden
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'

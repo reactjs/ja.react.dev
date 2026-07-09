@@ -33,7 +33,7 @@ Web の世界では、HTML で `<h1>` や `<li>` といった組み込みタグ�
 
 このマークアップは、記事自身 (`<article>`)、見出し (`<h1>`)、そして番号付きリスト (`<ol>`) による目次（一部省略しています）を表現しています。我々がウェブで目にするサイドバー、アバター、モーダル、ドロップダウンといったあらゆる UI パーツの裏側では、このようなマークアップが、スタイルのための CSS やユーザ対話のための JavaScript と組み合わさりながら働いています。
 
-React では、あなたのマークアップと CSS と JavaScript を、独自の "コンポーネント" と呼ばれる、**アプリのための再利用可能な UI 要素**にまとめることができます。上記にある目次のためのコードを、`<TableOfContents />` と呼ばれるコンポーネントにすることができるのです。その裏では、やはり `<articles>` や `<h1>` といった同じ HTML タグを使っています。
+React では、あなたのマークアップと CSS と JavaScript を、独自の "コンポーネント" と呼ばれる、**アプリのための再利用可能な UI 要素**にまとめることができます。上記にある目次のためのコードを、`<TableOfContents />` と呼ばれるコンポーネントにすることができるのです。その裏では、やはり `<article>` や `<h1>` といった同じ HTML タグを使っています。
 
 HTML タグを使う時と同様にして、コンポーネントを組み合わせたり、並び替えたり、ネストしたりして、ページ全体をデザインすることができます。例えばあなたが今読んでいるこのページも、以下のような React コンポーネントから作られています。
 
@@ -63,7 +63,7 @@ HTML タグを使う時と同様にして、コンポーネントを組み合わ
 export default function Profile() {
   return (
     <img
-      src="https://i.imgur.com/MK3eW3Am.jpg"
+      src="https://react.dev/images/docs/scientists/MK3eW3Am.jpg"
       alt="Katherine Johnson"
     />
   )
@@ -99,7 +99,7 @@ React コンポーネントは普通の JavaScript 関数ですが、**名前は
 return 文は、以下のように 1 行にまとめて書いても構いません。
 
 ```js
-return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
+return <img src="https://react.dev/images/docs/scientists/MK3eW3As.jpg" alt="Katherine Johnson" />;
 ```
 
 しかし return キーワードと同じ行にマークアップ全体が収まらない場合は、括弧で囲んで以下のようにする必要があります。
@@ -107,7 +107,7 @@ return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
 ```js
 return (
   <div>
-    <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
+    <img src="https://react.dev/images/docs/scientists/MK3eW3As.jpg" alt="Katherine Johnson" />
   </div>
 );
 ```
@@ -128,7 +128,7 @@ return (
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/MK3eW3As.jpg"
+      src="https://react.dev/images/docs/scientists/MK3eW3As.jpg"
       alt="Katherine Johnson"
     />
   );
@@ -164,9 +164,9 @@ img { margin: 0 10px 10px 0; height: 90px; }
 ```html
 <section>
   <h1>Amazing scientists</h1>
-  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
-  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
-  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
+  <img src="https://react.dev/images/docs/scientists/MK3eW3As.jpg" alt="Katherine Johnson" />
+  <img src="https://react.dev/images/docs/scientists/MK3eW3As.jpg" alt="Katherine Johnson" />
+  <img src="https://react.dev/images/docs/scientists/MK3eW3As.jpg" alt="Katherine Johnson" />
 </section>
 ```
 
@@ -248,7 +248,7 @@ React アプリケーションは "ルート (root)" コンポーネントから
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/lICfvbD.jpg"
+      src="https://react.dev/images/docs/scientists/lICfvbD.jpg"
       alt="Aklilu Lemma"
     />
   );
@@ -273,7 +273,7 @@ img { height: 181px; }
 export default function Profile() {
   return (
     <img
-      src="https://i.imgur.com/lICfvbD.jpg"
+      src="https://react.dev/images/docs/scientists/lICfvbD.jpg"
       alt="Aklilu Lemma"
     />
   );
@@ -306,7 +306,7 @@ img { height: 181px; }
 ```js
 export default function Profile() {
   return
-    <img src="https://i.imgur.com/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
+    <img src="https://react.dev/images/docs/scientists/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
 }
 ```
 
@@ -324,7 +324,7 @@ img { height: 180px; }
 
 ```js
 export default function Profile() {
-  return <img src="https://i.imgur.com/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
+  return <img src="https://react.dev/images/docs/scientists/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
 }
 ```
 
@@ -341,9 +341,9 @@ img { height: 180px; }
 ```js
 export default function Profile() {
   return (
-    <img 
-      src="https://i.imgur.com/jA8hHMpm.jpg" 
-      alt="Katsuko Saruhashi" 
+    <img
+      src="https://react.dev/images/docs/scientists/jA8hHMpm.jpg"
+      alt="Katsuko Saruhashi"
     />
   );
 }
@@ -367,7 +367,7 @@ img { height: 180px; }
 function profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/docs/scientists/QIrZWGIs.jpg"
       alt="Alan L. Hart"
     />
   );
@@ -403,7 +403,7 @@ React コンポーネントの名前は大文字で始めなければなりま�
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/docs/scientists/QIrZWGIs.jpg"
       alt="Alan L. Hart"
     />
   );

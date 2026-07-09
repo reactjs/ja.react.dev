@@ -73,7 +73,7 @@ JSON がうまく構造化されている場合、それが UI のコンポー�
 
 ## ステップ 2: React で静的なバージョンを作成する {/*step-2-build-a-static-version-in-react*/}
 
-これでコンポーネント階層ができたので、アプリの実装に取り掛かりましょう。最も分かりやすいアプローチは、インタラクティブな要素はまだ加えず、単にデータモデルから UI をレンダーするバージョンを作成することです。静的なバージョンを先に構築し、後からインタラクティブ性を追加する方が、多くの場合は簡単です。静的なバージョンを作成する間はタイプ量が多い代わりに考えることはほどんどなく、インタラクティブな要素を追加しようとするとタイプ量が少ない代わりに考えることが多くなります。
+これでコンポーネント階層ができたので、アプリの実装に取り掛かりましょう。最も分かりやすいアプローチは、インタラクティブな要素はまだ加えず、単にデータモデルから UI をレンダーするバージョンを作成することです。静的なバージョンを先に構築し、後からインタラクティブ性を追加する方が、多くの場合は簡単です。静的なバージョンを作成する間はタイプ量が多い代わりに考えることはほとんどなく、インタラクティブな要素を追加しようとするとタイプ量が少ない代わりに考えることが多くなります。
 
 データモデルをレンダーする静的バージョンのアプリを作成するにあたっては、[コンポーネント](/learn/your-first-component)を作成していく際に、他のコンポーネントを再利用しつつ [props](/learn/passing-props-to-a-component) 経由でそれらにデータを渡すようにします。props とは、親から子へとデータを渡すための手段です。（もし [state](/learn/state-a-components-memory) の概念に馴染みがある場合でも、この静的なバージョンを作成している間は state を一切使わないでください。state はインタラクティビティ、つまり時間とともに変化するデータのためにあるものです。今はアプリの静的なバージョンなので state は不要です。）
 
@@ -278,17 +278,17 @@ props と state は異なるものですが、それらは協調して働きま�
 ```js
 function FilterableProductTable({ products }) {
   const [filterText, setFilterText] = useState('');
-  const [inStockOnly, setInStockOnly] = useState(false);  
+  const [inStockOnly, setInStockOnly] = useState(false);
 ```
 
 次に、`filterText` と `inStockOnly` を `ProductTable` と `SearchBar` に props として渡します：
 
 ```js
 <div>
-  <SearchBar 
-    filterText={filterText} 
+  <SearchBar
+    filterText={filterText}
     inStockOnly={inStockOnly} />
-  <ProductTable 
+  <ProductTable
     products={products}
     filterText={filterText}
     inStockOnly={inStockOnly} />
@@ -308,10 +308,10 @@ function FilterableProductTable({ products }) {
 
   return (
     <div>
-      <SearchBar 
-        filterText={filterText} 
+      <SearchBar
+        filterText={filterText}
         inStockOnly={inStockOnly} />
-      <ProductTable 
+      <ProductTable
         products={products}
         filterText={filterText}
         inStockOnly={inStockOnly} />
@@ -389,13 +389,13 @@ function ProductTable({ products, filterText, inStockOnly }) {
 function SearchBar({ filterText, inStockOnly }) {
   return (
     <form>
-      <input 
-        type="text" 
-        value={filterText} 
+      <input
+        type="text"
+        value={filterText}
         placeholder="Search..."/>
       <label>
-        <input 
-          type="checkbox" 
+        <input
+          type="checkbox"
           checked={inStockOnly} />
         {' '}
         Only show products in stock
@@ -451,9 +451,9 @@ You provided a \`value\` prop to a form field without an \`onChange\` handler. T
 function SearchBar({ filterText, inStockOnly }) {
   return (
     <form>
-      <input 
-        type="text" 
-        value={filterText} 
+      <input
+        type="text"
+        value={filterText}
         placeholder="Search..."/>
 ```
 
@@ -475,8 +475,8 @@ function FilterableProductTable({ products }) {
 
   return (
     <div>
-      <SearchBar 
-        filterText={filterText} 
+      <SearchBar
+        filterText={filterText}
         inStockOnly={inStockOnly}
         onFilterTextChange={setFilterText}
         onInStockOnlyChange={setInStockOnly} />
@@ -519,13 +519,13 @@ function FilterableProductTable({ products }) {
 
   return (
     <div>
-      <SearchBar 
-        filterText={filterText} 
-        inStockOnly={inStockOnly} 
-        onFilterTextChange={setFilterText} 
+      <SearchBar
+        filterText={filterText}
+        inStockOnly={inStockOnly}
+        onFilterTextChange={setFilterText}
         onInStockOnlyChange={setInStockOnly} />
-      <ProductTable 
-        products={products} 
+      <ProductTable
+        products={products}
         filterText={filterText}
         inStockOnly={inStockOnly} />
     </div>
@@ -607,14 +607,14 @@ function SearchBar({
 }) {
   return (
     <form>
-      <input 
-        type="text" 
-        value={filterText} placeholder="Search..." 
+      <input
+        type="text"
+        value={filterText} placeholder="Search..."
         onChange={(e) => onFilterTextChange(e.target.value)} />
       <label>
-        <input 
-          type="checkbox" 
-          checked={inStockOnly} 
+        <input
+          type="checkbox"
+          checked={inStockOnly}
           onChange={(e) => onInStockOnlyChange(e.target.checked)} />
         {' '}
         Only show products in stock

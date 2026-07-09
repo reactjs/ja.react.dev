@@ -43,7 +43,7 @@ title: "<input>"
 
 以下の `<input>` の props は、非制御 (uncontrolled) の入力欄にのみ使用されます。
 
-* [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): ブーリアン。`type="checkbox"` および `type="radio"` の入力欄の場合に、[初期値](#providing-an-initial-value-for-an-input)を指定します。 
+* [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): ブーリアン。`type="checkbox"` および `type="radio"` の入力欄の場合に、[初期値](#providing-an-initial-value-for-an-input)を指定します。
 * [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): 文字列。テキスト入力の場合に、[初期値](#providing-an-initial-value-for-an-input)を指定します。
 
 以下の `<input>` の props は、非制御の入力欄と制御された入力欄の両方で用いられます。
@@ -212,7 +212,7 @@ export default function MyForm() {
             type="radio"
             name="myRadio"
             value="option2"
-            defaultChecked={true} 
+            defaultChecked={true}
           />
           Option 2
         </label>

@@ -12,6 +12,13 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "React Foundation: Linux Foundation がホストする React の新たな拠点",
+          "titleForHomepage": "The React Foundation: Linux Foundation がホストする React の新たな拠点",
+          "icon": "blog",
+          "date": "February 24, 2026",
+          "path": "/blog/2026/02/24/the-react-foundation"
+        },
+        {
           "title": "React Server Components におけるサービス拒否攻撃とソースコード露出",
           "titleForHomepage": "RSC における追加の脆弱性",
           "icon": "blog",

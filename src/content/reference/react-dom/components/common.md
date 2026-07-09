@@ -662,7 +662,7 @@ React イベントオブジェクトは、標準の [`Event`](https://developer.
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/shiftKey)
   * [`touches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/touches)
   * [`targetTouches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/targetTouches)
-  
+
   また、継承元である [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) のプロパティも含みます：
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
@@ -795,7 +795,7 @@ import Avatar from './Avatar.js';
 
 const user = {
   name: 'Hedy Lamarr',
-  imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
+  imageUrl: 'https://react.dev/images/docs/scientists/yXOvdOSs.jpg',
   imageSize: 90,
 };
 

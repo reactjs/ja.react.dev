@@ -48,13 +48,13 @@ function AppRoot() {
 * `options`: オブジェクト。以下のプロパティを含みます。
   *  `as`: 必須の文字列。リソースの種別。[指定可能な値](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#as)は `audio`、`document`、`embed`、`fetch`、`font`、`image`、`object`、`script`、`style`、`track`、`video`、`worker` です。
   *  `crossOrigin`: 文字列。使用する [CORS ポリシー](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin)。可能な値は `anonymous` と `use-credentials` です。`as` が `"fetch"` に設定されている場合は必須です。
-  *  `referrerPolicy`: 文字列。フェッチ時に送信する [Referrer ヘッダー](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#referrerpolicy)。指定可能な値は `no-referrer-when-downgrade`（デフォルト）、`no-referrer`, `origin`, `origin-when-cross-origin`, `unsafe-url` です。
+  *  `referrerPolicy`: 文字列。フェッチ時に送信する [Referrer ヘッダー](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#referrerpolicy)。指定可能な値は `no-referrer-when-downgrade`（デフォルト）、`no-referrer`、`origin`、`origin-when-cross-origin`、`unsafe-url` です。
   *  `integrity`: 文字列。[真正性を検証する](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)ために使用するリソースの暗号化ハッシュ。
   *  `type`: 文字列。リソースの MIME タイプ。
   *  `nonce`: 文字列。厳格なコンテンツセキュリティポリシーを使用する際に[リソースを許可するための暗号化 nonce](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce)。
   *  `fetchPriority`: 文字列。リソースの相対的なフェッチ優先度のヒントです。指定可能な値は `auto`（デフォルト）、`high`、`low` です。
   *  `imageSrcSet`: 文字列。`as: "image"` の場合にのみ使用します。[画像のソースセット](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)を指定します。
-  *  `imageSizes`: 文字列。`as: image"` の場合にのみ使用します。[画像のサイズ](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)を指定します。
+  *  `imageSizes`: 文字列。`as: "image"` の場合にのみ使用します。[画像のサイズ](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)を指定します。
 
 #### 返り値 {/*returns*/}
 

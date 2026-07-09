@@ -46,7 +46,7 @@ import { createPortal } from 'react-dom';
 
 #### 引数 {/*parameters*/}
 
-* `children`: React でレンダーできるあらゆるもの、例えば JSX（`<div />` や `<SomeComponent />` など）、[フラグメント](/reference/react/Fragment) (`<>...</>`)、文字列や数値、またはこれらの配列。 
+* `children`: React でレンダーできるあらゆるもの、例えば JSX（`<div />` や `<SomeComponent />` など）、[フラグメント](/reference/react/Fragment) (`<>...</>`)、文字列や数値、またはこれらの配列。
 
 * `domNode`: `document.getElementById()` によって返されるような DOM ノード。ノードはすでに存在している必要があります。更新中に異なる DOM ノードを渡すと、ポータルの内容が再作成されます。
 

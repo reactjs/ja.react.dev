@@ -28,7 +28,7 @@ export default function Avatar() {
   return (
     <img
       className="avatar"
-      src="https://i.imgur.com/7vQD0fPs.jpg"
+      src="https://react.dev/images/docs/scientists/7vQD0fPs.jpg"
       alt="Gregorio Y. Zara"
     />
   );
@@ -41,7 +41,7 @@ export default function Avatar() {
 
 </Sandpack>
 
-この例では `"https://i.imgur.com/7vQD0fPs.jpg"` と `"Gregorio Y. Zara"` が文字列として渡されています。
+この例では `"https://react.dev/images/docs/scientists/7vQD0fPs.jpg"` と `"Gregorio Y. Zara"` が文字列として渡されています。
 
 では `src` や `alt` のテキストを動的に指定したい場合はどうすればいいのでしょう？ **`"` と `"` を `{` と `}` に置き換えることで、JavaScript の値を使う**ことができるのです。
 
@@ -49,7 +49,7 @@ export default function Avatar() {
 
 ```js
 export default function Avatar() {
-  const avatar = 'https://i.imgur.com/7vQD0fPs.jpg';
+  const avatar = 'https://react.dev/images/docs/scientists/7vQD0fPs.jpg';
   const description = 'Gregorio Y. Zara';
   return (
     <img
@@ -190,7 +190,7 @@ export default function TodoList() {
       <h1>{person.name}'s Todos</h1>
       <img
         className="avatar"
-        src="https://i.imgur.com/7vQD0fPs.jpg"
+        src="https://react.dev/images/docs/scientists/7vQD0fPs.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
@@ -266,7 +266,7 @@ export default function TodoList() {
       <h1>{person}'s Todos</h1>
       <img
         className="avatar"
-        src="https://i.imgur.com/7vQD0fPs.jpg"
+        src="https://react.dev/images/docs/scientists/7vQD0fPs.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
@@ -314,7 +314,7 @@ export default function TodoList() {
       <h1>{person.name}'s Todos</h1>
       <img
         className="avatar"
-        src="https://i.imgur.com/7vQD0fPs.jpg"
+        src="https://react.dev/images/docs/scientists/7vQD0fPs.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
@@ -358,7 +358,7 @@ export default function TodoList() {
       <h1>{person.name}'s Todos</h1>
       <img
         className="avatar"
-        src="https://i.imgur.com/7vQD0fPs.jpg"
+        src="https://react.dev/images/docs/scientists/7vQD0fPs.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
@@ -388,7 +388,7 @@ body > div > div { padding: 20px; }
 ```js
 const person = {
   name: 'Gregorio Y. Zara',
-  imageUrl: "https://i.imgur.com/7vQD0fPs.jpg",
+  imageUrl: "https://react.dev/images/docs/scientists/7vQD0fPs.jpg",
   theme: {
     backgroundColor: 'black',
     color: 'pink'
@@ -428,7 +428,7 @@ body > div > div { padding: 20px; }
 
 以下のオブジェクトでは画像の URL が、ベース URL・`imageId`・`imageSize`・ファイル拡張子の 4 つに分割されています。
 
-画像 URL を指定するところで、ベース URL（常に `'https://i.imgur.com/'`）、`imageId` (`'7vQD0fP'`)、`imageSize` (`'s'`)、ファイル拡張子（常に `'.jpg'`）の 4 つの値を結合したいと思っています。ですが `<img>` タグが `src` を指定する部分で何かがおかしいようです。
+画像 URL を指定するところで、ベース URL（常に `'https://react.dev/images/docs/scientists/'`）、`imageId` (`'7vQD0fP'`)、`imageSize` (`'s'`)、ファイル拡張子（常に `'.jpg'`）の 4 つの値を結合したいと思っています。ですが `<img>` タグが `src` を指定する部分で何かがおかしいようです。
 
 修正できますか？
 
@@ -436,7 +436,7 @@ body > div > div { padding: 20px; }
 
 ```js
 
-const baseUrl = 'https://i.imgur.com/';
+const baseUrl = 'https://react.dev/images/docs/scientists/';
 const person = {
   name: 'Gregorio Y. Zara',
   imageId: '7vQD0fP',
@@ -487,7 +487,7 @@ body > div > div { padding: 20px; }
 <Sandpack>
 
 ```js
-const baseUrl = 'https://i.imgur.com/';
+const baseUrl = 'https://react.dev/images/docs/scientists/';
 const person = {
   name: 'Gregorio Y. Zara',
   imageId: '7vQD0fP',
@@ -564,7 +564,7 @@ export default function TodoList() {
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     person.imageSize +
     '.jpg'

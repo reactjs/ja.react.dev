@@ -34,7 +34,7 @@ const ref = useRef(0);
 `useRef` は以下のようなオブジェクトを返します。
 
 ```js
-{ 
+{
   current: 0 // The value you passed to useRef
 }
 ```

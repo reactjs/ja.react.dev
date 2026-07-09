@@ -48,7 +48,7 @@ Activity バウンダリが <CodeStep step={1}>hidden</CodeStep> になってい
 #### 注意点 {/*caveats*/}
 
 - [`ViewTransition`](/reference/react/ViewTransition) の内部で Activity がレンダーされ、[`startTransition`](/reference/react/startTransition) によって引き起こされた更新の結果として表示されるようになると、`ViewTransition` の `enter` アニメーションが作動します。非表示になると、`exit` アニメーションが作動します。
-- テキストのみをレンダーする Activity は、非表示のテキストをレンダーするのではなく、何もレンダーしません。これは、可視性の変化を適用するための対応する DOM 要素がないためです。例えば、`<Activity mode="hidden"><ComponentThatJustReturnsText /></Activity>` は、`const ComponentThatJustReturnsText = () => "Hello, World!"` の場合に DOM に何も出力しません。
+- テキストのみをレンダーする*非表示*の Activity は、非表示のテキストをレンダーするのではなく、何もレンダーしません。これは、可視性の変化を適用するための対応する DOM 要素がないためです。例えば、`<Activity mode="hidden"><ComponentThatJustReturnsText /></Activity>` は、`const ComponentThatJustReturnsText = () => "Hello, World!"` の場合に DOM に何も出力しません。`<Activity mode="visible"><ComponentThatJustReturnsText /></Activity>` は表示されるテキストをレンダーします。
 
 ---
 
@@ -111,7 +111,7 @@ import { useState } from 'react';
 
 export default function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(false)
-  
+
   return (
     <nav>
       <button onClick={() => setIsExpanded(!isExpanded)}>
@@ -219,7 +219,7 @@ import { useState } from 'react';
 
 export default function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(false)
-  
+
   return (
     <nav>
       <button onClick={() => setIsExpanded(!isExpanded)}>
@@ -287,7 +287,7 @@ Activity バウンダリは `display: none` を使って子を非表示にする
 
 <Sandpack>
 
-```js src/App.js 
+```js src/App.js
 import { useState } from 'react';
 import TabButton from './TabButton.js';
 import Home from './Home.js';
@@ -434,7 +434,7 @@ export default function Home() {
 }
 ```
 
-```js src/Contact.js 
+```js src/Contact.js
 export default function Contact() {
   return (
     <div>
@@ -903,7 +903,7 @@ function Page() {
       </Activity>
     </>
   );
-} 
+}
 ```
 
 ---
@@ -975,7 +975,7 @@ export default function Home() {
 }
 ```
 
-```js src/Video.js 
+```js src/Video.js
 export default function Video() {
   return (
     <video
@@ -1068,7 +1068,7 @@ export default function Home() {
 }
 ```
 
-```js src/Video.js 
+```js src/Video.js
 export default function Video() {
   return (
     <video
@@ -1185,7 +1185,7 @@ export default function Home() {
 }
 ```
 
-```js src/Video.js 
+```js src/Video.js
 import { useRef, useLayoutEffect } from 'react';
 
 export default function Video() {

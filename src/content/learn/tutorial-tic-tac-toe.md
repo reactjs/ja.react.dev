@@ -797,7 +797,7 @@ function Square() {
 }
 ```
 
-この `set` 関数を `onClick` ハンドラから呼び出すことで、`<button>` がクリックされるたびに React に `Square` を再レンダーするよう要求しています。更新の後では当該 `Square` の `value` は `'X'` になっているので、ゲームの盤面上に "X" が表示されるようになります。いずれかのマス目かをクリックすると "X" が表示されるはずです。
+この `set` 関数を `onClick` ハンドラから呼び出すことで、`<button>` がクリックされるたびに React に `Square` を再レンダーするよう要求しています。更新の後では当該 `Square` の `value` は `'X'` になっているので、ゲームの盤面上に "X" が表示されるようになります。いずれかのマス目をクリックすると "X" が表示されるはずです。
 
 ![盤面に複数の "X" を追加](../images/tutorial/tictac-adding-x-s.gif)
 
@@ -909,7 +909,7 @@ React DevTools を使うと、React コンポーネントの props や state を
 
 <Note>
 
-ローカル開発をしている場合、React DevTools は [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)、[Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)、そして [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) ブラウザの拡張機能として利用できます。インストールすると、React を利用しているサイトでは *Compontents* タブがブラウザの開発者ツールに表示されるようになります。
+ローカル開発をしている場合、React DevTools は [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)、[Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)、そして [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) ブラウザの拡張機能として利用できます。インストールすると、React を利用しているサイトでは *Components* タブがブラウザの開発者ツールに表示されるようになります。
 
 </Note>
 

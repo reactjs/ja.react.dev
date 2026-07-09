@@ -362,9 +362,9 @@ async function getBio() {
     setTimeout(resolve, 1500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
     and Ringo Starr.`;
 }
 
@@ -624,9 +624,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
     and Ringo Starr.`;
 }
 
@@ -903,7 +903,7 @@ export default function App() {
 
 ```js {2}
 <div style={{
-  opacity: query !== deferredQuery ? 0.5 : 1 
+  opacity: query !== deferredQuery ? 0.5 : 1
 }}>
   <SearchResults query={deferredQuery} />
 </div>
@@ -1251,9 +1251,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
     and Ringo Starr.`;
 }
 
@@ -1375,7 +1375,7 @@ function Router() {
 
   function navigate(url) {
     startTransition(() => {
-      setPage(url);      
+      setPage(url);
     });
   }
   // ...
@@ -1563,9 +1563,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
     and Ringo Starr.`;
 }
 
@@ -1874,9 +1874,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
     and Ringo Starr.`;
 }
 
