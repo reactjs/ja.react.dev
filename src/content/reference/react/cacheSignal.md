@@ -26,7 +26,7 @@ const signal = cacheSignal();
 
 ### `cacheSignal` {/*cachesignal*/}
 
-`AbortSignal` を取得するには、`cacheSignal` を呼び出します。
+`cacheSignal` を呼び出すことで `AbortSignal` を取得できます。
 
 ```js {3,7}
 import {cacheSignal} from 'react';
@@ -85,7 +85,7 @@ async function Component() {
 
 ### React がレンダリングを完了した後のエラーを無視する {/*ignore-errors-after-react-has-finished-rendering*/}
 
-関数が例外をスローした場合、その原因がキャンセルであることがあります（例えば、<CodeStep step={1}>データベース接続</CodeStep> が閉じられた場合など）。<CodeStep step={2}>`aborted` プロパティ</CodeStep> を使用すると、そのエラーがキャンセルによるものか、本当のエラーなのかを確認できます。キャンセルが原因のエラーは、<CodeStep step={3}>無視</CodeStep> したい場合があります。
+関数が例外をスローした場合、その原因がキャンセルであることがあります（例えば、<CodeStep step={1}>データベース接続</CodeStep> が閉じられた場合など）。<CodeStep step={2}>`aborted` プロパティ</CodeStep> を使用すると、そのエラーがキャンセルによるものか、本当のエラーなのかを確認できます。キャンセルが原因のエラーを、<CodeStep step={3}>無視</CodeStep>すべき場合があります。
 
 ```js [[1, 2, "./database"], [2, 8, "cacheSignal()?.aborted"], [3, 12, "return null"]]
 import {cacheSignal} from "react";
