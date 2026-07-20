@@ -36,7 +36,11 @@ title: "<div> などの一般的なコンポーネント"
 
 * `suppressHydrationWarning`: ブーリアン値。[サーバレンダリング](/reference/react-dom/server)を使用する場合、通常、サーバとクライアントが異なる内容をレンダーすると警告が表示されます。一部の稀なケース（タイムスタンプなど）では、完全な一致を保証することが非常に困難または不可能です。`suppressHydrationWarning` を `true` に設定すると、React はその要素の属性と内容の不一致について警告しなくなります。これは 1 レベルの深さまでしか機能せず、避難ハッチとして使用することを目的としています。過度な使用はしないでください。[ハイドレーションエラーの抑制について読む](/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors)
 
+<<<<<<< HEAD
 * `style`: CSS スタイルを持つオブジェクト。例えば `{ fontWeight: 'bold', margin: 20 }` のようなものです。DOM の [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) プロパティと同様に、CSS プロパティ名は `camelCase` で記述する必要があります。例えば `font-weight` ではなく `fontWeight` と書きます。値として文字列や数値を渡すことができます。数値を渡す場合、例えば `width: 100` のようにすると、React は自動的に `px`（"ピクセル"）を値に追加します。ただし、それが[単位のないプロパティ](https://github.com/facebook/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57)の場合は除きます。`style` は、スタイルの値が事前に分からない動的なスタイルに対してのみ使用することを推奨します。他の場合は、`className` を用いてプレーンな CSS クラスを適用する方が効率的です。[`className` と `style` について詳しく読む](#applying-css-styles)
+=======
+* `style`: An object with CSS styles, for example `{ fontWeight: 'bold', margin: 20 }`. Similarly to the DOM [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) property, the CSS property names need to be written as `camelCase`, for example `fontWeight` instead of `font-weight`. You can pass strings or numbers as values. If you pass a number, like `width: 100`, React will automatically append `px` ("pixels") to the value unless it's a [unitless property.](https://github.com/react/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57) We recommend using `style` only for dynamic styles where you don't know the style values ahead of time. In other cases, applying plain CSS classes with `className` is more efficient. [Read more about `className` and `style`.](#applying-css-styles)
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 以下の標準的な DOM プロパティは、すべての組み込みコンポーネントでサポートされています。
 

@@ -45,7 +45,11 @@ _[1 日目の全ストリームはこちらから視聴できます。](https://
 - [React for Two Computers](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=18825s) by [Dan Abramov](https://bsky.app/profile/danabra.mov)
 - [And Now You Understand React Server Components](https://www.youtube.com/watch?v=0ckOUBiuxVY&t=11256s) by [Kent C. Dodds](https://twitter.com/kentcdodds)
 
+<<<<<<< HEAD
 基調講演の締めくくりとして、[Joe Savona](https://twitter.com/en_JS)、[Sathya Gunasekaran](https://twitter.com/_gsathya)、[Mofei Zhang](https://twitter.com/zmofei) が、React Compiler が[オープンソース](https://github.com/facebook/react/pull/29061)化されたことを発表し、React Compiler の実験バージョンを共有しました。
+=======
+Finally, we ended the keynote with [Joe Savona](https://twitter.com/en_JS), [Sathya Gunasekaran](https://twitter.com/_gsathya), and [Mofei Zhang](https://twitter.com/zmofei) announcing that the React Compiler is now [Open Source](https://github.com/react/react/pull/29061), and sharing an experimental version of the React Compiler to try out.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 コンパイラの使用方法や動作についての詳細は、[ドキュメント](/learn/react-compiler)および以下の講演をご覧ください。
 

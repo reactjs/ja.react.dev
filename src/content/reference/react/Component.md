@@ -1009,7 +1009,11 @@ state 値の派生はコードを冗長にし、コンポーネントを分か�
 
 #### 注意点 {/*static-getderivedstatefromprops-caveats*/}
 
+<<<<<<< HEAD
 - このメソッドは、原因に関係なく*すべての*レンダーで発火します。[`UNSAFE_componentWillReceiveProps`](#unsafe_cmoponentwillreceiveprops) はこれとは異なり、親が再レンダーを引き起こしたときのみ発火し、ローカルの `setState` の結果としては発火しません。
+=======
+- This method is fired on *every* render, regardless of the cause. This is different from [`UNSAFE_componentWillReceiveProps`](#unsafe_componentwillreceiveprops), which only fires when the parent causes a re-render and not as a result of a local `setState`.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 - このメソッドはコンポーネントのインスタンスにアクセスできません。お望みであれば、コンポーネントの props と state に対する純関数をクラス定義の外部に抽出することで、`static getDerivedStateFromProps` と他のクラスメソッドとの間でコードを再利用することができます。
 
