@@ -179,7 +179,7 @@ function UsernameForm() {
 
 [フォーム](/reference/react-dom/components/form)の外部でサーバ関数を使用する場合、[トランジション](/reference/react/useTransition)内でサーバ関数を呼び出すようにしてください。これによりローディングインジケータを表示したり、[楽観的に state 更新結果を表示](/reference/react/useOptimistic)したり、予期せぬエラーを処理したりすることができるようになります。フォームではサーバ関数は自動的にトランジション内にラップされます。
 
-```js {9-12}
+```js {9-14}
 import incrementLike from './actions';
 import { useState, useTransition } from 'react';
 
@@ -190,7 +190,9 @@ function LikeButton() {
   const onClick = () => {
     startTransition(async () => {
       const currentCount = await incrementLike();
-      setLikeCount(currentCount);
+      startTransition(() => {
+        setLikeCount(currentCount);
+      });
     });
   };
 

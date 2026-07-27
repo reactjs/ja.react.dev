@@ -13,7 +13,11 @@ March 08, 2022 by [Rick Hanlon](https://twitter.com/rickhanlonii)
 
 [リリース告知の記事](/blog/2022/03/29/react-v18)でお伝えしたとおり、React 18 には新たな並行レンダラを用いた機能が加わっており、既存のアプリケーションが段階的に採用できる方法も提供しています。この投稿では、React 18 にアップグレードするためのステップについてご案内します。
 
+<<<<<<< HEAD
 React 18 にアップグレードする際に遭遇した[問題は報告](https://github.com/facebook/react/issues/new/choose)をお願いします。
+=======
+Please [report any issues](https://github.com/react/react/issues/new/choose) you encounter while upgrading to React 18.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 </Intro>
 
@@ -315,11 +319,19 @@ Internet Explorer のサポートが必要な場合は、React 17 を使い続�
 
 ### React {/*react*/}
 
+<<<<<<< HEAD
 * **コンポーネントが `undefined` を return できるように**：React はコンポーネントから `undefined` が返された場合でも警告しなくなりました。これにより、コンポーネントからの返り値として許される値が、コンポーネントツリーの中間で許可される値と合致するようになりました。JSX の前に `return` 文を書き忘れるといったミスを防ぐためには、リンタを使用することをお勧めします。
 * **テストにおいて `act` 警告がオプトインに**：End-to-end のテストを実行している場合、`act` 警告は不要です。[オプトインする](https://github.com/reactwg/react-18/discussions/102)メカニズムを用意しましたので、それが有用であるユニットテストの場合にのみ有効化できるようになりました。
 * **アンマウント済みコンポーネントにおける `setState` で警告を表示しないように**：これまで React は、`setState` がアンマウント済みのコンポーネントでコールされた場合、メモリリークに関する警告を表示してきました。この警告は購読に関する問題のために存在していましたが、state をセットしても問題ないシナリオでもこの警告にぶつかることが多く、また回避しようとした場合余計に悪いコードになってしまっていました。この警告は[削除](https://github.com/facebook/react/pull/22114)されました。
 * **コンソールログの抑止を廃止**：strict モードを利用する場合、React はコンポーネントを 2 回レンダーして、予期しない副作用がないか見つけやすくします。React 17 では、ログが見やすくなるようにそのうちの 1 回ではコンソールログを抑止するようにしていました。これが混乱を招くという[コミュニティからのフィードバック](https://github.com/facebook/react/issues/21783)を受けて、このような抑止を行うことを止めました。代わりに、React DevTools をインストールしている場合は、2 回目のレンダーでのログはグレーで表示されるようになりました。完全に抑止するためのオプション（デフォルトではオフ）も存在します。
 * **メモリ使用量の改善**：React はアンマウント時に内部のフィールドをより多く消去するようになったため、あなたのアプリに未修正のメモリリークがあった場合の悪影響が軽減されます。
+=======
+* **Components can now render `undefined`:** React no longer warns if you return `undefined` from a component. This makes the allowed component return values consistent with values that are allowed in the middle of a component tree. We suggest to use a linter to prevent mistakes like forgetting a `return` statement before JSX.
+* **In tests, `act` warnings are now opt-in:** If you're running end-to-end tests, the `act` warnings are unnecessary. We've introduced an [opt-in](https://github.com/reactwg/react-18/discussions/102) mechanism so you can enable them only for unit tests where they are useful and beneficial.
+* **No warning about `setState` on unmounted components:** Previously, React warned about memory leaks when you call `setState` on an unmounted component. This warning was added for subscriptions, but people primarily run into it in scenarios where setting state is fine, and workarounds make the code worse. We've [removed](https://github.com/react/react/pull/22114) this warning.
+* **No suppression of console logs:** When you use Strict Mode, React renders each component twice to help you find unexpected side effects. In React 17, we've suppressed console logs for one of the two renders to make the logs easier to read. In response to [community feedback](https://github.com/react/react/issues/21783) about this being confusing, we've removed the suppression. Instead, if you have React DevTools installed, the second log's renders will be displayed in grey, and there will be an option (off by default) to suppress them completely.
+* **Improved memory usage:** React now cleans up more internal fields on unmount, making the impact from unfixed memory leaks that may exist in your application code less severe.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 ### React DOM Server {/*react-dom-server*/}
 
@@ -328,4 +340,8 @@ Internet Explorer のサポートが必要な場合は、React 17 を使い続�
 
 ## Changelog {/*changelog*/}
 
+<<<<<<< HEAD
 [変更履歴の全リストはこちら](https://github.com/facebook/react/blob/main/CHANGELOG.md)を参照してください。
+=======
+You can view the [full changelog here](https://github.com/react/react/blob/main/CHANGELOG.md).
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698

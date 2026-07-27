@@ -51,7 +51,11 @@ React 18 へのアップグレードに関する詳細やリリースに関す�
 
 当初はワーキンググループ内部で一気に興味が高まることが予想されますので、招待されたメンバーのみがスレッドを作成したりコメントしたりできるようになっています。しかしスレッドは誰でも見えるようになっていますので、全員が同じ情報にアクセスできます。ワーキンググループのメンバーにとって生産的な環境を整えつつ、より広いコミュニティへの透明性も確保するという意味で、これが良い落とし所だと考えています。
 
+<<<<<<< HEAD
 もちろんこれまで通り、バグレポートや質問や一般的なフィードバックについては誰でも[イシュートラッカ](https://github.com/facebook/react/issues)に投稿することができます。
+=======
+As always, you can submit bug reports, questions, and general feedback to our [issue tracker](https://github.com/react/react/issues).
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 ## React 18 アルファ版を今すぐ試す {/*how-to-try-react-18-alpha-today*/}
 

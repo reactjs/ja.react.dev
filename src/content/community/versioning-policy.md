@@ -134,9 +134,15 @@ React へのすべての更新は、一般に公開される前に広範な内�
   ```console
   yarn upgrade react@canary react-dom@canary
   ```
+<<<<<<< HEAD
 - 更新されたパッケージに対してテストスイートを実行します。
 - すべてのテストが通過した場合はおめでとうございます！ あなたのプロジェクトは次のマイナー React リリースでも動作すると期待できます。
 - 何か予期せぬ問題が発生した場合、[問題を報告](https://github.com/facebook/react/issues)してください。
+=======
+- Run your test suite against the updated packages.
+- If everything passes, great! You can expect that your project will work with the next minor React release.
+- If something breaks unexpectedly, please let us know by [filing an issue](https://github.com/react/react/issues).
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 このワークフローを採用しているプロジェクトのひとつが Next.js です。例として彼らの [CircleCI 設定](https://github.com/zeit/next.js/blob/c0a1c0f93966fe33edd93fb53e5fafb0dcd80a9e/.circleci/config.yml)を参照してください。
 
@@ -166,4 +172,8 @@ Experimental に対して統合テストを実行することに価値がある�
 
 新しい実験を発表する準備が整ったときには [React ブログ](/blog) に投稿しますが、すべての実験を公表するわけではありません。
 
+<<<<<<< HEAD
 変更の包括的なリストは、公開 GitHub リポジトリの[履歴](https://github.com/facebook/react/commits/main)でいつでも参照できます。
+=======
+You can always refer to our public GitHub repository's [history](https://github.com/react/react/commits/main) for a comprehensive list of changes.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698

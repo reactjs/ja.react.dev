@@ -154,7 +154,11 @@ React チームより幾つかのお知らせがあります！
 
 ### すべてのリリースノート {/*all-release-notes*/}
 
+<<<<<<< HEAD
 React のすべてのリリースが個別のブログ記事になるわけではありませんが、React リポジトリの [`CHANGELOG.md`](https://github.com/facebook/react/blob/main/CHANGELOG.md) ファイルや [Releases](https://github.com/facebook/react/releases) ページで、すべてのリリースの詳細な変更履歴を見ることができます。
+=======
+Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md`](https://github.com/react/react/blob/main/CHANGELOG.md) file in the React repository, as well as on the [Releases](https://github.com/react/react/releases) page.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 ---
 

@@ -69,7 +69,11 @@ React Conf 2021 において、React Forget についての[アーリープレ�
 
 我々は、文脈なしに個々の遅いコミットやコンポーネントに関する情報だけ分かったところで開発者にとってはさほど役立たない、ということを学びました。知りたい情報は、現に遅いコミットになってしまっている理由の方です。開発者は、ボタンクリック、初回ロード、ページ移動といった特定の操作を追跡してパフォーマンスの悪化を監視し、なぜ操作が遅かったのか、どのように修正するのかを知りたいのです。
 
+<<<<<<< HEAD
 この問題を解決するために、以前 [Interaction Tracing API](https://gist.github.com/bvaughn/8de925562903afd2e7a12554adcdda16) の作成を試みたことがありますが、これには根本的な設計の問題があったため、操作が遅い理由を正確に知ることが難しく、場合によっては操作が全く終わらなくなってしまうこともありました。このため[この API は削除](https://github.com/facebook/react/pull/20037)せざるを得ませんでした。
+=======
+We previously tried to solve this issue by creating an [Interaction Tracing API](https://gist.github.com/bvaughn/8de925562903afd2e7a12554adcdda16), but it had some fundamental design flaws that reduced the accuracy of tracking why an interaction was slow and sometimes resulted in interactions never ending. We ended up [removing this API](https://github.com/react/react/pull/20037) because of these issues.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 現在、この問題を解決するための Interaction Tracing API の新バージョン（`startTransition` で起動するので Transition Tracing と仮に呼んでいます）に取り組んでいます。
 
