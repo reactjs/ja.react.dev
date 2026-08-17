@@ -83,7 +83,11 @@ function handleClick() {
 
 #### 楽観的 state の仕組み {/*how-optimistic-state-works*/}
 
+<<<<<<< HEAD
 `useOptimistic` を使うと、アクションの実行中に一時的な値を表示できます。
+=======
+`useOptimistic` lets you show a temporary value while an Action is in progress:
+>>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
 
 ```js
 const [value, setValue] = useState('a');
