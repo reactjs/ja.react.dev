@@ -755,6 +755,7 @@ video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
 
 <Note>
 
+<<<<<<< HEAD
 **プリレンダー中にフェッチされるのは、サスペンス対応のデータソースのみです**。これには以下のものが含まれます。
 
 - [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) や [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense) のようなサスペンス対応のフレームワークでのデータフェッチ
@@ -766,6 +767,9 @@ Activity は、エフェクト内部でフェッチされたデータを検出**
 上記の `Posts` コンポーネントでデータをロードする具体的な方法については、使用しているフレームワークに依存します。サスペンス対応のフレームワークを使用している場合、詳細はそのフレームワークのデータフェッチのドキュメントに記載されています。
 
 使い方に規約のある (opinionated) フレームワーク以外でサスペンス対応のデータフェッチを行うことは、まだサポートされていません。サスペンス対応のデータソースを実装するための要件は安定しておらず、ドキュメント化されていません。データソースをサスペンスと統合するための公式な API は、React の将来のバージョンでリリースされる予定です。
+=======
+Only data read from a source that [activates a Suspense boundary](/reference/react/Suspense#what-activates-a-suspense-boundary), such as a Promise read with [`use`](/reference/react/use), is fetched during pre-rendering. Activity does not detect data fetched inside an Effect.
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 </Note>
 

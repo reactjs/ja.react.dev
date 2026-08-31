@@ -132,7 +132,11 @@ export default defineConfig([
 }
 ```
 
+<<<<<<< HEAD
 React Compiler ルールを有効にするには、`recommended` プリセットを使用することをお勧めします。詳しい手順については [README](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/README.md) も確認してください。以下は、React Conf で紹介したいくつかの例です。
+=======
+To enable React Compiler rules, we recommend using the `recommended` preset. You can also check out the [README](https://github.com/react/react/blob/main/packages/eslint-plugin-react-hooks/README.md) for more instructions. Here are a few examples we featured at React Conf:
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 - [`set-state-in-render`](/reference/eslint-plugin-react-hooks/lints/set-state-in-render) でレンダーループを引き起こす `setState` パターンをキャッチする。
 - [`set-state-in-effect`](/reference/eslint-plugin-react-hooks/lints/set-state-in-effect) でエフェクト内の高コストな処理にフラグを立てる。
