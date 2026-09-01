@@ -24,11 +24,7 @@ React 19 へのアップグレードを容易にするため、`react@18.3` リ�
 
 React 19 にアップグレードする前に、問題点を見つけるためにまず React 18.3 にアップグレードすることをお勧めします。
 
-<<<<<<< HEAD
-18.3 における変更点については、[リリースノート](https://github.com/facebook/react/blob/main/CHANGELOG.md#1830-april-25-2024)をご覧ください。
-=======
-For a list of changes in 18.3 see the [Release Notes](https://github.com/react/react/blob/main/CHANGELOG.md#1830-april-25-2024).
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+18.3 における変更点については、[リリースノート](https://github.com/react/react/blob/main/CHANGELOG.md#1830-april-25-2024)をご覧ください。
 
 </Note>
 
@@ -42,11 +38,7 @@ For a list of changes in 18.3 see the [Release Notes](https://github.com/react/r
 - [TypeScript 関連の変更](#typescript-changes)
 - [Changelog](#changelog)
 
-<<<<<<< HEAD
-React 19 をテストしていただける方は、このアップグレードガイドに従い、遭遇した[問題を報告](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D)してください。React 19 に追加された新機能のリストについては、[React 19 リリースのお知らせ](/blog/2024/12/05/react-19)をご覧ください。
-=======
-If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/react/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19, see the [React 19 release post](/blog/2024/12/05/react-19).
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+React 19 をテストしていただける方は、このアップグレードガイドに従い、遭遇した[問題を報告](https://github.com/react/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D)してください。React 19 に追加された新機能のリストについては、[React 19 リリースのお知らせ](/blog/2024/12/05/react-19)をご覧ください。
 
 ---
 ## インストール {/*installing*/}
@@ -264,11 +256,7 @@ class Child extends React.Component {
 #### 削除：文字列形式の ref {/*removed-string-refs*/}
 文字列形式の ref は [2018 年 3 月 (v16.3.0)](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html) に非推奨化されました。
 
-<<<<<<< HEAD
-[いくつかの問題](https://github.com/facebook/react/issues/1373)のためコールバック形式の ref に置き換えられるまで、クラスコンポーネントは文字列形式の ref をサポートしていました。React 19 では、React をよりシンプルで理解しやすくするため、文字列形式の ref を削除します。
-=======
-Class components supported string refs before being replaced by ref callbacks due to [multiple downsides](https://github.com/react/react/issues/1373). In React 19, we're removing string refs to make React simpler and easier to understand.
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+[いくつかの問題](https://github.com/react/react/issues/1373)のためコールバック形式の ref に置き換えられるまで、クラスコンポーネントは文字列形式の ref をサポートしていました。React 19 では、React をよりシンプルで理解しやすくするため、文字列形式の ref を削除します。
 
 クラスコンポーネントでまだ文字列形式の ref を使用している場合は、コールバック形式の ref に移行する必要があります。
 
@@ -742,45 +730,24 @@ const reducer = (state: State, action: Action) => state;
 
 ### その他の破壊的変更 {/*other-breaking-changes*/}
 
-<<<<<<< HEAD
-- **react-dom**: `src` と `href での JavaScript URL に対するエラー [#26507](https://github.com/facebook/react/pull/26507)
-- **react-dom**: `onRecoverableError` から `errorInfo.digest` を削除 [#28222](https://github.com/facebook/react/pull/28222)
-- **react-dom**: `unstable_flushControlled` を削除 [#26397](https://github.com/facebook/react/pull/26397)
-- **react-dom**: `unstable_createEventHandle` を削除 [#28271](https://github.com/facebook/react/pull/28271)
-- **react-dom**: `unstable_renderSubtreeIntoContainer` を削除 [#28271](https://github.com/facebook/react/pull/28271)
-- **react-dom**: `unstable_runWithPriority` を削除 [#28271](https://github.com/facebook/react/pull/28271)
-- **react-is**: `react-is` から非推奨のメソッドを削除 [28224](https://github.com/facebook/react/pull/28224)
-=======
-- **react-dom**: Error for javascript URLs in `src` and `href` [#26507](https://github.com/react/react/pull/26507)
-- **react-dom**: Remove `errorInfo.digest` from `onRecoverableError` [#28222](https://github.com/react/react/pull/28222)
-- **react-dom**: Remove `unstable_flushControlled` [#26397](https://github.com/react/react/pull/26397)
-- **react-dom**: Remove `unstable_createEventHandle` [#28271](https://github.com/react/react/pull/28271)
-- **react-dom**: Remove `unstable_renderSubtreeIntoContainer` [#28271](https://github.com/react/react/pull/28271)
-- **react-dom**: Remove `unstable_runWithPriority` [#28271](https://github.com/react/react/pull/28271)
-- **react-is**: Remove deprecated methods from `react-is` [28224](https://github.com/react/react/pull/28224)
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+- **react-dom**: `src` と `href での JavaScript URL に対するエラー [#26507](https://github.com/react/react/pull/26507)
+- **react-dom**: `onRecoverableError` から `errorInfo.digest` を削除 [#28222](https://github.com/react/react/pull/28222)
+- **react-dom**: `unstable_flushControlled` を削除 [#26397](https://github.com/react/react/pull/26397)
+- **react-dom**: `unstable_createEventHandle` を削除 [#28271](https://github.com/react/react/pull/28271)
+- **react-dom**: `unstable_renderSubtreeIntoContainer` を削除 [#28271](https://github.com/react/react/pull/28271)
+- **react-dom**: `unstable_runWithPriority` を削除 [#28271](https://github.com/react/react/pull/28271)
+- **react-is**: `react-is` から非推奨のメソッドを削除 [28224](https://github.com/react/react/pull/28224)
 
 ### その他の注目すべき変更点 {/*other-notable-changes*/}
 
-<<<<<<< HEAD
-- **react**: 同期・デフォルト・連続レーンのバッチ処理 [#25700](https://github.com/facebook/react/pull/25700)
-- **react**: サスペンドされたコンポーネントの兄弟を事前レンダーしない [#26380](https://github.com/facebook/react/pull/26380)
-- **react**: レンダーフェーズでの更新によって引き起こされる無限更新ループを検出 [#26625](https://github.com/facebook/react/pull/26625)
-- **react-dom**: popstate でのトランジションを同期的に [#26025](https://github.com/facebook/react/pull/26025)
-- **react-dom**: SSR 中のレイアウトエフェクト警告を削除 [#26395](https://github.com/facebook/react/pull/26395)
-- **react-dom**: src/href に空文字列を設定しないよう警告（アンカータグを除く）[#28124](https://github.com/facebook/react/pull/28124)
+- **react**: 同期・デフォルト・連続レーンのバッチ処理 [#25700](https://github.com/react/react/pull/25700)
+- **react**: サスペンドされたコンポーネントの兄弟を事前レンダーしない [#26380](https://github.com/react/react/pull/26380)
+- **react**: レンダーフェーズでの更新によって引き起こされる無限更新ループを検出 [#26625](https://github.com/react/react/pull/26625)
+- **react-dom**: popstate でのトランジションを同期的に [#26025](https://github.com/react/react/pull/26025)
+- **react-dom**: SSR 中のレイアウトエフェクト警告を削除 [#26395](https://github.com/react/react/pull/26395)
+- **react-dom**: src/href に空文字列を設定しないよう警告（アンカータグを除く）[#28124](https://github.com/react/react/pull/28124)
 
-全変更点のリストについては、[Changelog](https://github.com/facebook/react/blob/main/CHANGELOG.md#1900-december-5-2024) を参照してください。
-=======
-- **react**: Batch sync, default and continuous lanes [#25700](https://github.com/react/react/pull/25700)
-- **react**: Don't prerender siblings of suspended component [#26380](https://github.com/react/react/pull/26380)
-- **react**: Detect infinite update loops caused by render phase updates [#26625](https://github.com/react/react/pull/26625)
-- **react-dom**: Transitions in popstate are now synchronous [#26025](https://github.com/react/react/pull/26025)
-- **react-dom**: Remove layout effect warning during SSR [#26395](https://github.com/react/react/pull/26395)
-- **react-dom**: Warn and don’t set empty string for src/href (except anchor tags) [#28124](https://github.com/react/react/pull/28124)
-
-For a full list of changes, please see the [Changelog](https://github.com/react/react/blob/main/CHANGELOG.md#1900-december-5-2024).
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+全変更点のリストについては、[Changelog](https://github.com/react/react/blob/main/CHANGELOG.md#1900-december-5-2024) を参照してください。
 
 ---
 

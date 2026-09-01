@@ -198,11 +198,7 @@ ESLint プラグインをインストールします。
 npm install -D eslint-plugin-react-hooks@latest
 </TerminalBlock>
 
-<<<<<<< HEAD
-`eslint-plugin-react-hooks` をまだ設定していない場合は、[readme のインストール手順](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/README.md#installation)に従ってください。コンパイラのルールは `recommended-latest` プリセットで利用できます。
-=======
-If you haven't already configured eslint-plugin-react-hooks, follow the [installation instructions in the readme](https://github.com/react/react/blob/main/packages/eslint-plugin-react-hooks/README.md#installation). The compiler rules are available in the `recommended-latest` preset.
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+`eslint-plugin-react-hooks` をまだ設定していない場合は、[readme のインストール手順](https://github.com/react/react/blob/main/packages/eslint-plugin-react-hooks/README.md#installation)に従ってください。コンパイラのルールは `recommended-latest` プリセットで利用できます。
 
 ESLint ルールは以下を行います。
 - [React のルール](/reference/rules)の違反の特定

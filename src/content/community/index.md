@@ -10,11 +10,7 @@ React には何百万人もの開発者のコミュニティが存在します�
 
 ## 行動規範 {/*code-of-conduct*/}
 
-<<<<<<< HEAD
-React のコミュニティに参加する前に、[私たちの行動規範 (Code of Conduct) をお読みください](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md)。私たちは [Contributor Covenant](https://www.contributor-covenant.org/) を採用しており、すべてのコミュニティメンバが記載されているガイドラインを遵守することを期待しています。
-=======
-Before participating in React's communities, [please read our Code of Conduct.](https://github.com/react/react/blob/main/CODE_OF_CONDUCT.md) We have adopted the [Contributor Covenant](https://www.contributor-covenant.org/) and we expect that all community members adhere to the guidelines within.
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+React のコミュニティに参加する前に、[私たちの行動規範 (Code of Conduct) をお読みください](https://github.com/react/react/blob/main/CODE_OF_CONDUCT.md)。私たちは [Contributor Covenant](https://www.contributor-covenant.org/) を採用しており、すべてのコミュニティメンバが記載されているガイドラインを遵守することを期待しています。
 
 ## Stack Overflow {/*stack-overflow*/}
 

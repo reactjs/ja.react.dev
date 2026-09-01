@@ -300,11 +300,7 @@ Node.js 環境では、引き続き Node ストリーム API の使用を強く�
 
 コンパイラ対応のルールの完全なリストについては、[リンタのドキュメントを確認してください](/reference/eslint-plugin-react-hooks#recommended)。
 
-<<<<<<< HEAD
-変更の完全なリストについては、`eslint-plugin-react-hooks` の [changelog を確認してください](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/CHANGELOG.md#610)。
-=======
-Check out the `eslint-plugin-react-hooks` [changelog for a full list of changes](https://github.com/react/react/blob/main/packages/eslint-plugin-react-hooks/CHANGELOG.md#610).
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+変更の完全なリストについては、`eslint-plugin-react-hooks` の [changelog を確認してください](https://github.com/react/react/blob/main/packages/eslint-plugin-react-hooks/CHANGELOG.md#610)。
 
 ---
 
@@ -318,45 +314,24 @@ CSS セレクタとして無効な特殊文字を使用していた元々の意�
 
 ## 変更履歴 {/*changelog*/}
 
-<<<<<<< HEAD
 その他の注目すべき変更
-- `react-dom`: 巻き上げ可能な style で nonce を使用できるように [#32461](https://github.com/facebook/react/pull/32461)
-- `react-dom`: React が所有するノードをコンテナとして使用し、テキストコンテンツも含まれている場合に警告を表示 [#32774](https://github.com/facebook/react/pull/32774)
+- `react-dom`: 巻き上げ可能な style で nonce を使用できるように [#32461](https://github.com/react/react/pull/32461)
+- `react-dom`: React が所有するノードをコンテナとして使用し、テキストコンテンツも含まれている場合に警告を表示 [#32774](https://github.com/react/react/pull/32774)
 
 注目すべきバグ修正
-- `react`: コンテクストを "SomeContext.Provider" ではなく "SomeContext" として文字列化 [#33507](https://github.com/facebook/react/pull/33507)
-- `react`: popstate イベントでの無限 useDeferredValue ループを修正 [#32821](https://github.com/facebook/react/pull/32821)
-- `react`: useDeferredValue に初期値が渡されたときのバグを修正 [#34376](https://github.com/facebook/react/pull/34376)
-- `react`: クライアント Action でフォームを送信するときのクラッシュを修正 [#33055](https://github.com/facebook/react/pull/33055)
-- `react`: dehydrated suspense バウンダリが再サスペンドした場合にコンテンツを非表示/表示 [#32900](https://github.com/facebook/react/pull/32900)
-- `react`: Hot Reload 中に大きなツリーで発生するスタックオーバーフローを回避 [#34145](https://github.com/facebook/react/pull/34145)
-- `react`: 複数のコンポーネントスタック改善 [#33629](https://github.com/facebook/react/pull/33629), [#33724](https://github.com/facebook/react/pull/33724), [#32735](https://github.com/facebook/react/pull/32735), [#33723](https://github.com/facebook/react/pull/33723)
-- `react`: React.lazy されたコンポーネント内での React.use のバグ修正 [#33941](https://github.com/facebook/react/pull/33941)
-- `react-dom`: ARIA 1.3 属性が使用されたときの警告を停止 [#34264](https://github.com/facebook/react/pull/34264)
-- `react-dom`: Suspense フォールバック内の深くネストされた Suspense のバグを修正 [#33467](https://github.com/facebook/react/pull/33467)
-- `react-dom`: レンダー中に中断した後にサスペンドするときのハングを回避 [#34192](https://github.com/facebook/react/pull/34192)
+- `react`: コンテクストを "SomeContext.Provider" ではなく "SomeContext" として文字列化 [#33507](https://github.com/react/react/pull/33507)
+- `react`: popstate イベントでの無限 useDeferredValue ループを修正 [#32821](https://github.com/react/react/pull/32821)
+- `react`: useDeferredValue に初期値が渡されたときのバグを修正 [#34376](https://github.com/react/react/pull/34376)
+- `react`: クライアント Action でフォームを送信するときのクラッシュを修正 [#33055](https://github.com/react/react/pull/33055)
+- `react`: dehydrated suspense バウンダリが再サスペンドした場合にコンテンツを非表示/表示 [#32900](https://github.com/react/react/pull/32900)
+- `react`: Hot Reload 中に大きなツリーで発生するスタックオーバーフローを回避 [#34145](https://github.com/react/react/pull/34145)
+- `react`: 複数のコンポーネントスタック改善 [#33629](https://github.com/react/react/pull/33629), [#33724](https://github.com/react/react/pull/33724), [#32735](https://github.com/react/react/pull/32735), [#33723](https://github.com/react/react/pull/33723)
+- `react`: React.lazy されたコンポーネント内での React.use のバグ修正 [#33941](https://github.com/react/react/pull/33941)
+- `react-dom`: ARIA 1.3 属性が使用されたときの警告を停止 [#34264](https://github.com/react/react/pull/34264)
+- `react-dom`: Suspense フォールバック内の深くネストされた Suspense のバグを修正 [#33467](https://github.com/react/react/pull/33467)
+- `react-dom`: レンダー中に中断した後にサスペンドするときのハングを回避 [#34192](https://github.com/react/react/pull/34192)
 
-変更の完全なリストについては、[Changelog](https://github.com/facebook/react/blob/main/CHANGELOG.md) を参照してください。
-=======
-Other notable changes
-- `react-dom`: Allow nonce to be used on hoistable styles [#32461](https://github.com/react/react/pull/32461)
-- `react-dom`: Warn for using a React owned node as a Container if it also has text content [#32774](https://github.com/react/react/pull/32774)
-
-Notable bug fixes
-- `react`: Stringify context as "SomeContext" instead of "SomeContext.Provider" [#33507](https://github.com/react/react/pull/33507)
-- `react`: Fix infinite useDeferredValue loop in popstate event [#32821](https://github.com/react/react/pull/32821)
-- `react`: Fix a bug when an initial value was passed to useDeferredValue [#34376](https://github.com/react/react/pull/34376)
-- `react`: Fix a crash when submitting forms with Client Actions [#33055](https://github.com/react/react/pull/33055)
-- `react`: Hide/unhide the content of dehydrated suspense boundaries if they resuspend [#32900](https://github.com/react/react/pull/32900)
-- `react`: Avoid stack overflow on wide trees during Hot Reload [#34145](https://github.com/react/react/pull/34145)
-- `react`: Improve component stacks in various places [#33629](https://github.com/react/react/pull/33629), [#33724](https://github.com/react/react/pull/33724), [#32735](https://github.com/react/react/pull/32735), [#33723](https://github.com/react/react/pull/33723)
-- `react`: Fix a bug with React.use inside React.lazy-ed Component [#33941](https://github.com/react/react/pull/33941)
-- `react-dom`: Stop warning when ARIA 1.3 attributes are used [#34264](https://github.com/react/react/pull/34264)
-- `react-dom`: Fix a bug with deeply nested Suspense inside Suspense fallbacks [#33467](https://github.com/react/react/pull/33467)
-- `react-dom`: Avoid hanging when suspending after aborting while rendering [#34192](https://github.com/react/react/pull/34192)
-
-For a full list of changes, please see the [Changelog](https://github.com/react/react/blob/main/CHANGELOG.md).
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+変更の完全なリストについては、[Changelog](https://github.com/react/react/blob/main/CHANGELOG.md) を参照してください。
 
 
 ---

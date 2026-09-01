@@ -319,11 +319,7 @@ React 15 より前のバージョンについては [15.react.dev](https://15.re
 
 ### 初回コミット {/*initial-commit*/}
 
-<<<<<<< HEAD
-React は 2013 年 5 月 29 日にオープンソース化されました。初回コミットはこちらです：[`75897c`: Initial public release](https://github.com/facebook/react/commit/75897c2dcd1dd3a6ca46284dd37e13d22b4b16b4)
-=======
-React was open-sourced on May 29, 2013. The initial commit is: [`75897c`: Initial public release](https://github.com/react/react/commit/75897c2dcd1dd3a6ca46284dd37e13d22b4b16b4)
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+React は 2013 年 5 月 29 日にオープンソース化されました。初回コミットはこちらです：[`75897c`: Initial public release](https://github.com/react/react/commit/75897c2dcd1dd3a6ca46284dd37e13d22b4b16b4)
 
 最初のブログ記事もご覧ください：[なぜ React を作ったのか？](https://legacy.reactjs.org/blog/2013/06/05/why-react.html)
 
