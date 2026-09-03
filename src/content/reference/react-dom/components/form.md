@@ -48,16 +48,11 @@ title: "<form>"
 
 ## 使用法 {/*usage*/}
 
-<<<<<<< HEAD
-### クライアント上でフォーム送信を処理する {/*handle-form-submission-on-the-client*/}
+### イベントハンドラでフォーム送信を処理する {/*handle-form-submission-with-an-event-handler*/}
 
-フォームの `action` プロパティに関数を渡すことで、フォームが送信されたときにその関数が実行されるようにします。この関数には [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) が引数として渡されるため、フォームが送信したデータにアクセスできます。これは URL のみを受け付ける本来の [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action) とは異なる、独自の動作です。`action` に指定された関数が成功した後、非制御のフィールド要素はすべてリセットされます。
-=======
-### Handle form submission with an event handler {/*handle-form-submission-with-an-event-handler*/}
+フォームの送信時にコードを実行するには、`onSubmit` イベントハンドラに関数を渡します。デフォルトでは、ブラウザは現在の URL にフォームデータを送信してページを再読み込みするため、[`e.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) を呼び出してこの動作を上書きしてください。
 
-Pass a function to the `onSubmit` event handler to run code when the form is submitted. By default, the browser sends the form data to the current URL and refreshes the page, so call [`e.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) to override that behavior.
-
-This example reads the submitted values with [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData), which collects every field by its `name`. This keeps the inputs [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form). If you instead [control an input with state](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable), read from that state on submit rather than from `FormData`.
+以下の例では、各フィールドを `name` ごとに収集する [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) を使って、送信された値を読み取ります。これにより、入力欄は[非制御のまま](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form)になります。[state で入力欄を制御している](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable)場合は、送信時に `FormData` ではなく当該 state から値を読み取ってください。
 
 <Sandpack>
 
@@ -87,14 +82,13 @@ export default function Search() {
 
 <Note>
 
-Reading form data with `onSubmit` works in every version of React and gives you direct access to the [submit event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event), so you can call `e.preventDefault()` and read the data yourself. Passing the function to the `action` prop instead runs the submission in a [Transition](/reference/react/useTransition). React then tracks the pending state, sends thrown errors to the nearest error boundary, and lets the form work with [`useActionState`](/reference/react/useActionState) and [`useOptimistic`](/reference/react/useOptimistic). An `action` can also be a [Server Function](/reference/rsc/server-functions), which `onSubmit` does not support.
+`onSubmit` でフォームデータを読み取る方法は React のすべてのバージョンで動作し、[submit イベント](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event)に直接アクセスできるため、`e.preventDefault()` を呼び出して自分でデータを読み取れます。代わりに `action` プロパティに関数を渡すと、送信処理が[トランジション](/reference/react/useTransition)内で実行されます。その場合、React は保留中の state を追跡し、スローされたエラーを最も近いエラーバウンダリに送り、フォームで [`useActionState`](/reference/react/useActionState) や [`useOptimistic`](/reference/react/useOptimistic) を利用できるようにします。`action` には、`onSubmit` がサポートしていない[サーバ関数](/reference/rsc/server-functions)を指定することもできます。
 
 </Note>
 
-### Handle form submission with an action prop {/*handle-form-submission-with-an-action-prop*/}
+### フォーム送信を Action prop で処理する {/*handle-form-submission-with-an-action-prop*/}
 
-Pass a function to the `action` prop of form to run the function when the form is submitted. [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) will be passed to the function as an argument so you can access the data submitted by the form. This differs from the conventional [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action), which only accepts URLs. Unlike `onSubmit`, an `action` runs in a [Transition](/reference/react/useTransition) and calling `e.preventDefault()` isn't needed. After the `action` function succeeds, all uncontrolled field elements in the form are reset.
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+フォームの `action` プロパティに関数を渡すことで、フォームが送信されたときにその関数が実行されるようにします。この関数には [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) が引数として渡されるため、フォームが送信したデータにアクセスできます。これは URL のみを受け付ける本来の [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action) とは異なる、独自の動作です。`onSubmit` と異なり、`action` は[トランジション](/reference/react/useTransition)内で実行されるため、`e.preventDefault()` を呼び出す必要はありません。`action` に指定された関数が成功した後、フォーム内の非制御のフィールド要素はすべてリセットされます。
 
 <Sandpack>
 

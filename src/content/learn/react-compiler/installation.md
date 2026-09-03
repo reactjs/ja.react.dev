@@ -64,11 +64,7 @@ module.exports = {
 
 ### Vite {/*vite*/}
 
-<<<<<<< HEAD
-Vite を使用している場合は、プラグインを vite-plugin-react に追加できます。
-=======
-If you use Vite with version 6.0.0 or later of `@vitejs/plugin-react`, you can use the `reactCompilerPreset`:
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+Vite でバージョン 6.0.0 以降の `@vitejs/plugin-react` を使用している場合は、`reactCompilerPreset` を使用できます。
 
 <TerminalBlock>
 npm install -D @rolldown/plugin-babel
@@ -91,7 +87,7 @@ export default defineConfig({
 ```
 
 <Note>
-In `@vitejs/plugin-react@6.0.0`, the inline Babel option was removed. If you're using an older version, you can use:
+`@vitejs/plugin-react@6.0.0` では、インラインの Babel オプションが削除されました。古いバージョンを使用している場合は、以下のように記述できます。
 
 ```js
 // vite.config.js
@@ -110,11 +106,7 @@ export default defineConfig({
 ```
 </Note>
 
-<<<<<<< HEAD
-または、Vite 用の Babel プラグインを別に使用したい場合は以下のようにします。
-=======
-Alternatively, you can use the Babel plugin directly with `@rolldown/plugin-babel`:
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+または、`@rolldown/plugin-babel` で Babel プラグインを直接使用できます。
 
 ```js {3,9}
 // vite.config.js

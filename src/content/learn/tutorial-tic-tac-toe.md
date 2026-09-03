@@ -899,33 +899,19 @@ body {
 
 ### React Developer Tools {/*react-developer-tools*/}
 
-<<<<<<< HEAD
-React DevTools を使うと、React コンポーネントの props や state を確認することができます。React DevTools タブは、CodeSandbox の *Browser* セクションの下部にあります。
+React Developer Tools を使うと、React コンポーネントの props や state を確認できます。[Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)、[Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)、[Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) のブラウザ拡張機能として利用できます。
 
-![CodeSandbox 内の React DevTools](../images/tutorial/codesandbox-devtools.png)
+インストールすると、React を使用しているサイトではブラウザの開発者ツールに新しく *Components* というタブが表示されます。CodeSandbox でこのチュートリアルを進めている場合は、まずサンドボックスのプレビューを新しいタブで開く必要があります。
 
-画面上の特定のコンポーネントについて調べるには、React DevTools の左上にあるボタンを使用します。
+![新しいタブで開く](../images/tutorial/sandbox-new-tab.png)
 
-![React DevTools でページ上のコンポーネントを選択する](../images/tutorial/devtools-select.gif)
-=======
-React Developer Tools let you check the props and the state of your React components. It is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), and [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browser extension.
-
-After you install it, a new *Components* tab will appear in your browser Developer Tools for sites using React. If you're following along in CodeSandbox, you'd need to first open your sandbox preview in a new tab:
-
-![opening in new tab](../images/tutorial/sandbox-new-tab.png)
-
-Then, on the preview page, open your browser's DevTools and find the *Components* tab:
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+次に、プレビューページでブラウザの開発者ツールを開き、*Components* タブを探します。
 
 ![components tab](../images/tutorial/components-tab.png)
 
-<<<<<<< HEAD
-ローカル開発をしている場合、React DevTools は [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)、[Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)、そして [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) ブラウザの拡張機能として利用できます。インストールすると、React を利用しているサイトでは *Components* タブがブラウザの開発者ツールに表示されるようになります。
-=======
-To inspect a particular component on the screen, use the button in the top left corner of the Components tab:
+画面上の特定のコンポーネントを調べるには、Components タブの左上にあるボタンを使用します。
 
-![inspecting with devtools](../images/tutorial/devtools-inspect.gif)
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+![開発者ツールでインスペクト](../images/tutorial/devtools-inspect.gif)
 
 
 ## ゲームを完成させる {/*completing-the-game*/}

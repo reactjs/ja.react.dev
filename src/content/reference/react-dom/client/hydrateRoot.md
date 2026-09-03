@@ -274,13 +274,9 @@ export default function App() {
 
 ---
 
-<<<<<<< HEAD
-### クライアントとサーバで異なるコンテンツの処理 {/*handling-different-client-and-server-content*/}
-=======
 {/* TODO: Remove this subsection when browser is available in Stable. */}
 
-### Handling different client and server content {/*handling-different-client-and-server-content*/}
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+### クライアントとサーバで異なるコンテンツの処理 {/*handling-different-client-and-server-content*/}
 
 サーバとクライアントで意図的に異なるものをレンダーする必要がある場合、2 回に分けたレンダーを行うことができます。クライアントで異なるものをレンダーするコンポーネントは、`isClient` のような [state 変数](/reference/react/useState)を読み取るようにし、この変数を[エフェクト](/reference/react/useEffect)内で `true` に設定することができます。
 
@@ -325,9 +321,9 @@ export default function App() {
 
 この方法では、初回のレンダーはサーバと同じコンテンツをレンダーし、不一致を回避しますが、追加のレンダーがハイドレーションの直後に同期的に行われます。
 
-Use this approach when you want the client-rendered content to be different from the initial server-rendered HTML.
+クライアントでレンダーされるコンテンツを、サーバが生成した初期 HTML と異なるものにしたい場合は、この方法を使用してください。
 
-<Canary>If a component should render only in the browser, call [`use(browser())`](/reference/react/use#use-browser) instead of waiting for an Effect.</Canary>
+<Canary> コンポーネントをブラウザでのみレンダーする場合は、エフェクトを待つ代わりに [`use(browser())`](/reference/react/use#use-browser) を呼び出してください。</Canary>
 
 <Pitfall>
 
