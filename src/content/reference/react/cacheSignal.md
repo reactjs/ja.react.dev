@@ -35,28 +35,28 @@ async function Component() {
 }
 ```
 
-React がレンダリングを完了すると、`AbortSignal` は中断されます。これにより、不要になった進行中の処理をキャンセルできます。
-レンダリングは、次のいずれかの場合に完了したとみなされます。
-- React が正常にレンダリングを完了した場合
-- レンダリングが中断された場合
-- レンダリングが失敗した場合
+React がレンダーを完了すると、`AbortSignal` は中断されます。これにより、不要になった進行中の処理をキャンセルできます。
+レンダーは、次のいずれかの場合に完了したとみなされます。
+- React が正常にレンダーを完了した場合
+- レンダーが中断された場合
+- レンダーが失敗した場合
 
-#### パラメータ {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-この関数はパラメータを受け取りません。
+この関数は引数を受け取りません。
 
 #### 返り値 {/*returns*/}
 
-`cacheSignal` は、レンダリング中に呼び出された場合、`AbortSignal` を返します。それ以外の場合、`cacheSignal()` は `null` を返します。
+`cacheSignal` は、レンダー中に呼び出された場合、`AbortSignal` を返します。それ以外の場合、`cacheSignal()` は `null` を返します。
 
-#### 注意事項 {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-- `cacheSignal` は現在、[React Server Components](/reference/rsc/server-components) でのみ使用できます。Client Components では常に `null` を返します。将来的には、クライアントキャッシュの更新や無効化が行われる際に Client Component でも使用される予定です。クライアントでは常に `null` になるとは想定しないでください。
-- レンダリングの外で呼び出された場合、`cacheSignal` は `null` を返します。これは、現在のスコープが永続的にキャッシュされるものではないことを明確にするためです。
+- `cacheSignal` は現在、[React Server Components](/reference/rsc/server-components) でのみ使用できます。クライアントコンポーネントでは常に `null` を返します。将来的には、クライアントキャッシュの更新や無効化が行われる際にクライアントコンポーネントでも使用される予定です。クライアントでは常に `null` になるとは想定しないでください。
+- レンダーの外で呼び出された場合、`cacheSignal` は `null` を返します。これは、現在のスコープが永続的にキャッシュされるものではないことを明確にするためです。
 
 ---
 
-## 使用方法 {/*usage*/}
+## 使用法 {/*usage*/}
 
 ### 進行中のリクエストをキャンセルする {/*cancel-in-flight-requests*/}
 
@@ -71,11 +71,11 @@ async function Component() {
 ```
 
 <Pitfall>
-レンダリングの外で開始された非同期処理は `cacheSignal` を使用して中断できません。例えば、次のようなコードです。
+レンダーの外で開始された非同期処理は `cacheSignal` を使用して中断できません。例えば、次のようなコードです。
 
 ```js
 import {cacheSignal} from 'react';
-// 🚩 注意: `Component` のレンダリングが終了しても、このリクエストは実際には中断されません。
+// 🚩 Pitfall: The request will not actually be aborted if the rendering of `Component` is finished.
 const response = fetch(url, { signal: cacheSignal() });
 async function Component() {
   await response;
@@ -83,7 +83,7 @@ async function Component() {
 ```
 </Pitfall>
 
-### React がレンダリングを完了した後のエラーを無視する {/*ignore-errors-after-react-has-finished-rendering*/}
+### React がレンダーを完了した後のエラーを無視する {/*ignore-errors-after-react-has-finished-rendering*/}
 
 関数が例外をスローした場合、その原因がキャンセルであることがあります（例えば、<CodeStep step={1}>データベース接続</CodeStep> が閉じられた場合など）。<CodeStep step={2}>`aborted` プロパティ</CodeStep> を使用すると、そのエラーがキャンセルによるものか、本当のエラーなのかを確認できます。キャンセルが原因のエラーを、<CodeStep step={3}>無視</CodeStep> すべき場合があります。
 
@@ -96,7 +96,7 @@ async function getData(id) {
      return await queryDatabase(id);
   } catch (x) {
      if (!cacheSignal()?.aborted) {
-        // キャンセルではなく、実際のエラーの場合のみログを記録する
+        // only log if it's a real error and not due to cancellation
        logError(x);
      }
      return null;
