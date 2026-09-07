@@ -96,13 +96,13 @@ JSX に変換しないといけない HTML がたくさんある場合は、[オ
 
 ## スタイルの追加 {/*adding-styles*/}
 
-React では、CSS クラスを `className` で指定します。HTML の [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) 属性と同じ方法で動作します。
+React では、CSS クラスを `className` で指定します。HTML の [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) 属性と同じように動作します。
 
 ```js
 <img className="avatar" />
 ```
 
-そして、別の CSS ファイルに対応する CSS ルールを記述します：
+そして、対応する CSS ルールを別の CSS ファイルに記述します：
 
 ```css
 /* In your CSS */
@@ -111,7 +111,7 @@ React では、CSS クラスを `className` で指定します。HTML の [`clas
 }
 ```
 
-React には CSS ファイルの追加方法に関する規則はありません。最も単純なケースでは、HTML に [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) タグを追加します。ビルドツールやフレームワークを使っている場合は、そちらのドキュメントを参照して、プロジェクトに CSS ファイルを追加する方法を確認してください。
+React は CSS ファイルの追加方法を規定していません。最も単純なケースでは、HTML に [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) タグを追加します。ビルドツールやフレームワークを使っている場合は、そのドキュメントを参照して、プロジェクトに CSS ファイルを追加する方法を確認してください。
 
 ## データの表示 {/*displaying-data*/}
 
