@@ -64,9 +64,36 @@ module.exports = {
 
 ### Vite {/*vite*/}
 
+<<<<<<< HEAD
 Vite を使用している場合は、プラグインを vite-plugin-react に追加できます。
+=======
+If you use Vite with version 6.0.0 or later of `@vitejs/plugin-react`, you can use the `reactCompilerPreset`:
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
-```js {3,9}
+<TerminalBlock>
+npm install -D @rolldown/plugin-babel
+</TerminalBlock>
+
+```js {3-4,9-11}
+// vite.config.js
+import { defineConfig } from 'vite';
+import react, { reactCompilerPreset } from '@vitejs/plugin-react';
+import babel from '@rolldown/plugin-babel';
+
+export default defineConfig({
+  plugins: [
+    react(),
+    babel({
+      presets: [reactCompilerPreset()]
+    }),
+  ],
+});
+```
+
+<Note>
+In `@vitejs/plugin-react@6.0.0`, the inline Babel option was removed. If you're using an older version, you can use:
+
+```js
 // vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -81,26 +108,25 @@ export default defineConfig({
   ],
 });
 ```
+</Note>
 
+<<<<<<< HEAD
 または、Vite 用の Babel プラグインを別に使用したい場合は以下のようにします。
+=======
+Alternatively, you can use the Babel plugin directly with `@rolldown/plugin-babel`:
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
-<TerminalBlock>
-npm install -D vite-plugin-babel
-</TerminalBlock>
-
-```js {2,11}
+```js {3,9}
 // vite.config.js
-import babel from 'vite-plugin-babel';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import babel from '@rolldown/plugin-babel';
 
 export default defineConfig({
   plugins: [
     react(),
     babel({
-      babelConfig: {
-        plugins: ['babel-plugin-react-compiler'],
-      },
+      plugins: ['babel-plugin-react-compiler'],
     }),
   ],
 });
@@ -172,7 +198,11 @@ ESLint プラグインをインストールします。
 npm install -D eslint-plugin-react-hooks@latest
 </TerminalBlock>
 
+<<<<<<< HEAD
 `eslint-plugin-react-hooks` をまだ設定していない場合は、[readme のインストール手順](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/README.md#installation)に従ってください。コンパイラのルールは `recommended-latest` プリセットで利用できます。
+=======
+If you haven't already configured eslint-plugin-react-hooks, follow the [installation instructions in the readme](https://github.com/react/react/blob/main/packages/eslint-plugin-react-hooks/README.md#installation). The compiler rules are available in the `recommended-latest` preset.
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ESLint ルールは以下を行います。
 - [React のルール](/reference/rules)の違反の特定

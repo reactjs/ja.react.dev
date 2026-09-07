@@ -14,8 +14,13 @@ title: サーバ用 React DOM API
 
 以下のメソッドは、[Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) が利用可能な環境でのみ使用できます。これには、ブラウザ、Deno、および一部のモダンなエッジランタイムが含まれます。
 
+<<<<<<< HEAD
 * [`renderToReadableStream`](/reference/react-dom/server/renderToReadableStream) は React ツリーを[読み取り可能な Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream) にレンダーします。
 * [`resume`](/reference/react-dom/server/renderToPipeableStream) は [`prerender`](/reference/react-dom/static/prerender) の結果を再開して[読み取り可能な Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream) に流します。
+=======
+* [`renderToReadableStream`](/reference/react-dom/server/renderToReadableStream) renders a React tree to a [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
+* [`resume`](/reference/react-dom/server/resume) resumes [`prerender`](/reference/react-dom/static/prerender) to a [Readable Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream).
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 
 <Note>
@@ -29,8 +34,13 @@ Node.js でも互換性のためこれらのメソッドが使用可能ですが
 
 以下のメソッドは、[Node.js ストリーム](https://nodejs.org/api/stream.html)が利用可能な環境でのみ使用できます。
 
+<<<<<<< HEAD
 * [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) は React ツリーをパイプ可能な [Node.js ストリーム](https://nodejs.org/api/stream.html)にレンダーします。
 * [`resumeToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) は [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream) の結果を再開してパイプ可能な [Node.js ストリーム](https://nodejs.org/api/stream.html)に流します。
+=======
+* [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) renders a React tree to a pipeable [Node.js Stream.](https://nodejs.org/api/stream.html)
+* [`resumeToPipeableStream`](/reference/react-dom/server/resumeToPipeableStream) resumes [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream) to a pipeable [Node.js Stream.](https://nodejs.org/api/stream.html)
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ---
 

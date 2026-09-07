@@ -43,10 +43,17 @@ React Compiler がアプリケーションの不具合を引き起こす代表�
 
 ### ビルド時のコンパイラエラー {/*compiler-build-errors*/}
 
+<<<<<<< HEAD
 コンパイラエラーでビルドが予期せず失敗した場合、これはコンパイラのバグである可能性が高いです。以下の情報を添えて [facebook/react](https://github.com/facebook/react/issues) リポジトリに報告してください。
 - エラーメッセージ
 - エラーを引き起こしたコード
 - React とコンパイラのバージョン
+=======
+If you encounter a compiler error that unexpectedly breaks your build, this is likely a bug in the compiler. Report it to the [react/react](https://github.com/react/react/issues) repository with:
+- The error message
+- The code that caused the error
+- Your React and compiler versions
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ### ランタイムエラー {/*runtime-issues*/}
 
@@ -78,6 +85,7 @@ function ProblematicComponent() {
 
 コンパイラバグを発見したと思われる場合は以下のようにしてください。
 
+<<<<<<< HEAD
 1. **React のルール違反ではないことを確認する** - ESLint でチェックする
 2. **最小限の再現方法を特定する** - 小さな例で問題を切り分ける
 3. **コンパイラを無効化した状態でテストする** - 問題がコンパイル時にのみ発生するかを確認する
@@ -86,6 +94,16 @@ function ProblematicComponent() {
    - 最小限の再現コード
    - 期待される動作と実際の動作
    - エラーメッセージ
+=======
+1. **Verify it's not a Rules of React violation** - Check with ESLint
+2. **Create a minimal reproduction** - Isolate the issue in a small example
+3. **Test without the compiler** - Confirm the issue only occurs with compilation
+4. **File an [issue](https://github.com/react/react/issues/new?template=compiler_bug_report.yml)**:
+   - React and compiler versions
+   - Minimal reproduction code
+   - Expected vs actual behavior
+   - Any error messages
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 ## 次のステップ {/*next-steps*/}
 

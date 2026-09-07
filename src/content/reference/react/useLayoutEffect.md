@@ -47,7 +47,11 @@ function Tooltip() {
 
 #### 引数 {/*parameters*/}
 
+<<<<<<< HEAD
 * `setup`: エフェクトのロジックが記述された関数です。このセットアップ関数は、オプションで*クリーンアップ*関数を返すことができます。[コンポーネントがコミットされる](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom)前に、React はセットアップ関数を実行します。依存配列 (dependencies) が変更された次のコミット時には、React はまず古い値を使ってクリーンアップ関数（あれば）を実行し、次に新しい値を使ってセットアップ関数を実行します。コンポーネントが DOM から削除される前に、React はクリーンアップ関数を実行します。
+=======
+* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. After your [component commits](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom) to the DOM and before the browser repaints the screen, React will run your setup function. After every commit with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. Before your component is removed from the DOM, React will run your cleanup function.
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 * **省略可能** `dependencies`: `setup` コード内で参照されるすべてのリアクティブな値のリストです。リアクティブな値には、props、state、コンポーネント本体に直接宣言されたすべての変数および関数が含まれます。リンタが [React 用に設定されている場合](/learn/editor-setup#linting)、すべてのリアクティブな値が依存値として正しく指定されているか確認できます。依存値のリストは要素数が一定である必要があり、`[dep1, dep2, dep3]` のようにインラインで記述する必要があります。React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を使った比較で、それぞれの依存値を以前の値と比較します。この引数を省略すると、エフェクトはコンポーネントの毎回のコミット後に再実行されます。
 
@@ -734,7 +738,13 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 - `useLayoutEffect` を [`useEffect`](/reference/react/useEffect) に置き換えます。これにより React に対して、初期レンダー結果の表示を描画をブロックせずに行ってよいことを伝えます（元の HTML はエフェクトが実行される前に表示されるからです）。
 
+<<<<<<< HEAD
 - あるいは、[コンポーネントをクライアント専用としてマークします](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content)。これにより React に対して、サーバレンダリング中に最も近い [`<Suspense>`](/reference/react/Suspense) バウンダリまで、コンテンツをロード中というフォールバック（例えば、スピナやグリマー）に置き換えるように指示します。
+=======
+- <CanaryBadge /> Alternatively, call [`use(browser())`](/reference/react/use#use-browser) to mark the component as browser-only. React will replace its content up to the closest [`<Suspense>`](/reference/react/Suspense) boundary with a loading fallback (for example, a spinner or a glimmer) during server rendering.
+
+- Alternatively, [mark your component as client-only.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content) This tells React to replace its content up to the closest `<Suspense>` boundary with a loading fallback during server rendering.
+>>>>>>> f3d9794fc31f4a3faf7e863984d37f4ae86b3290
 
 - あるいは、`useLayoutEffect` を持つコンポーネントをハイドレーションの後にのみレンダーします。`false` に初期化されたブーリアン型の `isMounted` という state を保持しておき、`useEffect` の呼び出し内で `true` に設定します。そしてレンダーロジックは `return isMounted ? <RealContent /> : <FallbackContent />` のようにします。サーバ上およびハイドレーション中は、ユーザは `useLayoutEffect` を呼び出さない `FallbackContent` を見ることになります。その後、React はそれをクライアント専用の `RealContent` に置き換えますが、そこには `useLayoutEffect` の呼び出しを含むことができます。
 
