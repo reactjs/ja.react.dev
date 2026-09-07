@@ -6,11 +6,7 @@ title: <Fragment> (<>...</>)
 
 `<Fragment>` を使うことで、ラッパ用のノードを用いずに要素をグループ化することができます。通常は `<>...</>` という構文で使用されます。
 
-<<<<<<< HEAD
-<Canary> フラグメントは ref を受け取ることもでき、これによりラッパ要素を追加することなく、内部の DOM ノードとやり取りすることができます。以下のリファレンスと使用法を参照してください。</Canary>
-=======
-<Canary>Fragments can also accept refs, which enable interacting with underlying DOM nodes without adding wrapper elements.</Canary>
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+<Canary> フラグメントは ref を受け取ることもでき、これによりラッパ要素を追加することなく、内部の DOM ノードとやり取りできます。</Canary>
 
 ```js
 <>
@@ -33,298 +29,259 @@ title: <Fragment> (<>...</>)
 
 #### props {/*props*/}
 
-<<<<<<< HEAD
 - **省略可能** `key`: 明示的な `<Fragment>` 構文で宣言されたフラグメントは [key](/learn/rendering-lists#keeping-list-items-in-order-with-key) を持つことができます。
 - <CanaryBadge /> **省略可能** `ref`: ref オブジェクト（例えば [`useRef`](/reference/react/useRef) からのもの）または[コールバック関数](/reference/react-dom/components/common#ref-callback)。React は、フラグメントでラップされた DOM ノードとやり取りするためのメソッドを実装した `FragmentInstance` を ref の値として提供します。
 
-### <CanaryBadge /> FragmentInstance {/*fragmentinstance*/}
-
-フラグメントに ref を渡した場合、React は、フラグメント内にラップした DOM ノードとやり取りするために、以下のメソッドを持つ `FragmentInstance` オブジェクトを提供します。
-
-**イベント処理メソッド：**
-- `addEventListener(type, listener, options?)`: フラグメントのすべての第 1 レベルの DOM の子にイベントリスナを追加します。
-- `removeEventListener(type, listener, options?)`: フラグメントのすべての第 1 レベルの DOM の子からイベントリスナを削除します。
-- `dispatchEvent(event)`: フラグメントの仮想的な単一の子にイベントをディスパッチします。追加されたすべてのリスナを呼び出すとともに、DOM の親にバブルアップさせることができます。
-
-**レイアウトメソッド：**
-- `compareDocumentPosition(otherNode)`: フラグメントのドキュメント内の位置を別のノードと比較します。
-  - フラグメントに子がある場合、ネイティブの `compareDocumentPosition` の値が返されます。
-  - 空のフラグメントは、React ツリー内での位置の比較を試み、`Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC` を含む値を返します。
-  - ポータルやその他の挿入により、React ツリーと DOM ツリーで異なる関係を持つ要素は、`Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC` を返します。
-- `getClientRects()`: すべての子の境界矩形を表す `DOMRect` オブジェクトのフラットな配列を返します。
-- `getRootNode()`: フラグメントの親 DOM ノードを含むルートノードを返します。
-
-**フォーカス管理メソッド:**
-- `focus(options?)`: フラグメント内の最初のフォーカス可能な DOM ノードにフォーカスを当てます。ネストされた子に対して深さ優先でフォーカスを試みます。
-- `focusLast(options?)`: フラグメント内の最後のフォーカス可能な DOM ノードにフォーカスを当てます。ネストされた子に対して深さ優先でフォーカスを試みます。
-- `blur()`: `document.activeElement` がフラグメント内にある場合、フォーカスを外します。
-
-**オブザーバメソッド:**
-- `observeUsing(observer)`: IntersectionObserver または ResizeObserver を使用して、フラグメントの DOM の子の監視を開始します。
-- `unobserveUsing(observer)`: 指定されたオブザーバによるフラグメントの DOM の子の監視を停止します。
-=======
-- **optional** `key`: Fragments declared with the explicit `<Fragment>` syntax may have [keys.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
-- <CanaryBadge /> **optional** `ref`: A ref object (e.g. from [`useRef`](/reference/react/useRef)) or [callback function](/reference/react-dom/components/common#ref-callback). React provides a `FragmentInstance` as the ref value that implements methods for interacting with the DOM nodes wrapped by the Fragment.
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
-
 #### 注意点 {/*caveats*/}
 
-<<<<<<< HEAD
-- `key` をフラグメントに渡したい場合は、`<>...</>` 構文を使用することはできません。`'react'` から `Fragment` を明示的にインポートし、`<Fragment key={yourKey}>...</Fragment>` とレンダーしなければなりません。
+* `key` をフラグメントに渡したい場合は、`<>...</>` 構文を使用することはできません。`'react'` から `Fragment` を明示的にインポートし、`<Fragment key={yourKey}>...</Fragment>` とレンダーしなければなりません。
 
-- React は、`<><Child /></>` と `[<Child />]` のレンダー間、あるいは `<><Child /></>` と `<Child />` のレンダー間で行き来する場合に [state をリセット](/learn/preserving-and-resetting-state)しません。これは単一レベルの深さのときのみの動作です。例えば、`<><><Child /></></>` から `<Child />` への変更では state がリセットされます。具体的な振る舞いの詳細は[こちら](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)を参照してください。
+* React は、`<><Child /></>` と `[<Child />]` のレンダー間、あるいは `<><Child /></>` と `<Child />` のレンダー間で行き来する場合に [state をリセット](/learn/preserving-and-resetting-state)しません。これは単一レベルの深さのときのみの動作です。例えば、`<><><Child /></></>` から `<Child />` への変更では state がリセットされます。具体的な振る舞いの詳細は[こちら](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)を参照してください。
 
-- <CanaryBadge /> `ref` をフラグメントに渡したい場合は、`<>...</>` 構文を使用することはできません。`'react'` から `Fragment` を明示的にインポートし、`<Fragment ref={yourRef}>...</Fragment>` のようにレンダーしなければなりません。
-=======
-* If you want to pass `key` to a Fragment, you can't use the `<>...</>` syntax. You have to explicitly import `Fragment` from `'react'` and render `<Fragment key={yourKey}>...</Fragment>`.
-
-* React does not [reset state](/learn/preserving-and-resetting-state) when you go from rendering `<><Child /></>` to `[<Child />]` or back, or when you go from rendering `<><Child /></>` to `<Child />` and back. This only works a single level deep: for example, going from `<><><Child /></></>` to `<Child />` resets the state. See the precise semantics [here.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
-
-* <CanaryBadge /> If you want to pass `ref` to a Fragment, you can't use the `<>...</>` syntax. You have to explicitly import `Fragment` from `'react'` and render `<Fragment ref={yourRef}>...</Fragment>`.
+* <CanaryBadge /> `ref` をフラグメントに渡したい場合は、`<>...</>` 構文を使用することはできません。`'react'` から `Fragment` を明示的にインポートし、`<Fragment ref={yourRef}>...</Fragment>` のようにレンダーしなければなりません。
 
 ---
 
 ### <CanaryBadge /> `FragmentInstance` {/*fragmentinstance*/}
 
-When you pass a `ref` to a Fragment, React provides a `FragmentInstance` object. It implements methods for interacting with the first-level DOM children wrapped by the Fragment.
+フラグメントに `ref` を渡すと、React は `FragmentInstance` オブジェクトを提供します。このオブジェクトには、フラグメントでラップされた第 1 レベルの DOM 子ノードとやり取りするためのメソッドが実装されています。
 
-* [`addEventListener`](#addeventlistener) and [`removeEventListener`](#removeeventlistener) manage event listeners across all first-level DOM children.
-* [`dispatchEvent`](#dispatchevent) dispatches an event on the Fragment, which can bubble to the DOM parent.
-* [`focus`](#focus), [`focusLast`](#focuslast), and [`blur`](#blur) manage focus across all nested children depth-first.
-* [`observeUsing`](#observeusing) and [`unobserveUsing`](#unobserveusing) attach and detach `IntersectionObserver` or `ResizeObserver` instances.
-* [`getClientRects`](#getclientrects) returns bounding rectangles of all first-level DOM children.
-* [`getRootNode`](#getrootnode) returns the root node of the Fragment's parent.
-* [`compareDocumentPosition`](#comparedocumentposition) compares the Fragment's position with another node.
-* [`scrollIntoView`](#scrollintoview) scrolls the Fragment's children into view.
+* [`addEventListener`](#addeventlistener) と [`removeEventListener`](#removeeventlistener) は、第 1 レベルにあるすべての DOM 子ノードのイベントリスナを管理します。
+* [`dispatchEvent`](#dispatchevent) はフラグメント上でイベントをディスパッチします。このイベントは DOM の親へバブリングできます。
+* [`focus`](#focus)、[`focusLast`](#focuslast)、[`blur`](#blur) は、ネストされたすべての子要素を深さ優先でたどってフォーカスを管理します。
+* [`observeUsing`](#observeusing) と [`unobserveUsing`](#unobserveusing) は、`IntersectionObserver` または `ResizeObserver` のインスタンスを登録および登録解除します。
+* [`getClientRects`](#getclientrects) は、第 1 レベルにあるすべての DOM 子要素の境界矩形を返します。
+* [`getRootNode`](#getrootnode) は、フラグメントの親のルートノードを返します。
+* [`compareDocumentPosition`](#comparedocumentposition) は、フラグメントと別のノードとの位置関係を比較します。
+* [`scrollIntoView`](#scrollintoview) は、フラグメントの子要素が見える位置までスクロールします。
 
 ---
 
 #### `addEventListener(type, listener, options?)` {/*addeventlistener*/}
 
-Adds an event listener to all first-level DOM children of the Fragment.
+フラグメントの第 1 レベルにあるすべての DOM 子ノードにイベントリスナを追加します。
 
 ```js
 fragmentRef.current.addEventListener('click', handleClick);
 ```
 
-##### Parameters {/*addeventlistener-parameters*/}
+##### 引数 {/*addeventlistener-parameters*/}
 
-* `type`: A string representing the event type to listen for (e.g. `'click'`, `'focus'`).
-* `listener`: The event handler function.
-* **optional** `options`: An options object or boolean for capture, matching the [DOM `addEventListener` API.](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+* `type`: リッスンするイベントの種類（例えば `'click'`、`'focus'`）を表す文字列。
+* `listener`: イベントハンドラ関数。
+* **省略可能** `options`: キャプチャに関するオプションオブジェクトまたはブーリアン値。[DOM の `addEventListener` API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) と同じ形式です。
 
-##### Returns {/*addeventlistener-returns*/}
+##### 返り値 {/*addeventlistener-returns*/}
 
-`addEventListener` does not return anything (`undefined`).
+`addEventListener` は何も返しません (`undefined`)。
 
 ---
 
 #### `removeEventListener(type, listener, options?)` {/*removeeventlistener*/}
 
-Removes an event listener from all first-level DOM children of the Fragment.
+フラグメントの第 1 レベルにあるすべての DOM 子ノードからイベントリスナを削除します。
 
 ```js
 fragmentRef.current.removeEventListener('click', handleClick);
 ```
 
-##### Parameters {/*removeeventlistener-parameters*/}
+##### 引数 {/*removeeventlistener-parameters*/}
 
-* `type`: The event type string.
-* `listener`: The event handler function to remove.
-* **optional** `options`: An options object or boolean, matching the [DOM `removeEventListener` API.](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener)
+* `type`: イベントの種類を表す文字列。
+* `listener`: 削除するイベントハンドラ関数。
+* **省略可能** `options`: オプションオブジェクトまたはブーリアン値。[DOM の `removeEventListener` API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) と同じ形式です。
 
-##### Returns {/*removeeventlistener-returns*/}
+##### 返り値 {/*removeeventlistener-returns*/}
 
-`removeEventListener` does not return anything (`undefined`).
+`removeEventListener` は何も返しません (`undefined`)。
 
 ---
 
 #### `dispatchEvent(event)` {/*dispatchevent*/}
 
-Dispatches an event on the Fragment. Added event listeners are called, and the event can bubble to the Fragment's DOM parent.
+フラグメント上でイベントをディスパッチします。登録されているイベントリスナが呼び出され、イベントはフラグメントの DOM の親へバブリングできます。
 
 ```js
 fragmentRef.current.dispatchEvent(new Event('custom', { bubbles: true }));
 ```
 
-##### Parameters {/*dispatchevent-parameters*/}
+##### 引数 {/*dispatchevent-parameters*/}
 
-* `event`: An [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) object to dispatch. If `bubbles` is `true`, the event bubbles to the Fragment's parent DOM node.
+* `event`: ディスパッチする [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) オブジェクト。`bubbles` が `true` の場合、イベントはフラグメントの親 DOM ノードへバブリングします。
 
-##### Returns {/*dispatchevent-returns*/}
+##### 返り値 {/*dispatchevent-returns*/}
 
-`true` if the event was not cancelled, `false` if `preventDefault()` was called.
+イベントがキャンセルされなかった場合は `true`、`preventDefault()` が呼び出された場合は `false` です。
 
 ---
 
 #### `focus(options?)` {/*focus*/}
 
-Focuses the first focusable DOM node in the Fragment. Unlike calling `element.focus()` on a DOM element, this method searches *all* nested children depth-first until it finds a focusable element—not just the element itself or its direct children.
+フラグメント内で最初に見つかるフォーカス可能な DOM ノードにフォーカスを当てます。DOM 要素で `element.focus()` を呼び出す場合とは異なり、このメソッドは要素自体やその直接の子だけでなく、ネストされた*すべての*子を深さ優先で検索し、フォーカス可能な要素を探します。
 
 ```js
 fragmentRef.current.focus();
 ```
 
-##### Parameters {/*focus-parameters*/}
+##### 引数 {/*focus-parameters*/}
 
-* **optional** `options`: A [`FocusOptions`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus#options) object (e.g. `{ preventScroll: true }`).
+* **省略可能** `options`: [`FocusOptions`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus#options) オブジェクト（例えば `{ preventScroll: true }`）。
 
-##### Returns {/*focus-returns*/}
+##### 返り値 {/*focus-returns*/}
 
-`focus` does not return anything (`undefined`).
+`focus` は何も返しません (`undefined`)。
 
 ---
 
 #### `focusLast(options?)` {/*focuslast*/}
 
-Focuses the last focusable DOM node in the Fragment. Searches nested children depth-first, then iterates in reverse.
+フラグメント内で最後に見つかるフォーカス可能な DOM ノードにフォーカスを当てます。ネストされた子を深さ優先で検索した後、逆順にたどります。
 
 ```js
 fragmentRef.current.focusLast();
 ```
 
-##### Parameters {/*focuslast-parameters*/}
+##### 引数 {/*focuslast-parameters*/}
 
-* **optional** `options`: A [`FocusOptions`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus#options) object.
+* **省略可能** `options`: [`FocusOptions`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus#options) オブジェクト。
 
-##### Returns {/*focuslast-returns*/}
+##### 返り値 {/*focuslast-returns*/}
 
-`focusLast` does not return anything (`undefined`).
+`focusLast` は何も返しません (`undefined`)。
 
 ---
 
 #### `blur()` {/*blur*/}
 
-Removes focus from the active element if it is within the Fragment. If `document.activeElement` is not within the Fragment, `blur` does nothing.
+アクティブな要素がフラグメント内にある場合、その要素からフォーカスを外します。`document.activeElement` がフラグメント内にない場合、`blur` は何もしません。
 
 ```js
 fragmentRef.current.blur();
 ```
 
-##### Returns {/*blur-returns*/}
+##### 返り値 {/*blur-returns*/}
 
-`blur` does not return anything (`undefined`).
+`blur` は何も返しません (`undefined`)。
 
 ---
 
 #### `observeUsing(observer)` {/*observeusing*/}
 
-Starts observing all first-level DOM children of the Fragment with the provided observer.
+渡されたオブザーバを使用して、フラグメントの第 1 レベルにあるすべての DOM 子要素の監視を開始します。
 
 ```js
 const observer = new IntersectionObserver(callback, options);
 fragmentRef.current.observeUsing(observer);
 ```
 
-##### Parameters {/*observeusing-parameters*/}
+##### 引数 {/*observeusing-parameters*/}
 
-* `observer`: An [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver) or [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) instance.
+* `observer`: [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver) または [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) のインスタンス。
 
-##### Returns {/*observeusing-returns*/}
+##### 返り値 {/*observeusing-returns*/}
 
-`observeUsing` does not return anything (`undefined`).
+`observeUsing` は何も返しません (`undefined`)。
 
 ---
 
 #### `unobserveUsing(observer)` {/*unobserveusing*/}
 
-Stops observing the Fragment's DOM children with the specified observer.
+指定されたオブザーバによるフラグメントの DOM 子要素の監視を停止します。
 
 ```js
 fragmentRef.current.unobserveUsing(observer);
 ```
 
-##### Parameters {/*unobserveusing-parameters*/}
+##### 引数 {/*unobserveusing-parameters*/}
 
-* `observer`: The same `IntersectionObserver` or `ResizeObserver` instance previously passed to [`observeUsing`](#observeusing).
+* `observer`: 以前に [`observeUsing`](#observeusing) に渡したものと同じ `IntersectionObserver` または `ResizeObserver` のインスタンス。
 
-##### Returns {/*unobserveusing-returns*/}
+##### 返り値 {/*unobserveusing-returns*/}
 
-`unobserveUsing` does not return anything (`undefined`).
+`unobserveUsing` は何も返しません (`undefined`)。
 
 ---
 
 #### `getClientRects()` {/*getclientrects*/}
 
-Returns a flat array of [`DOMRect`](https://developer.mozilla.org/en-US/docs/Web/API/DOMRect) objects representing the bounding rectangles of all first-level DOM children.
+第 1 レベルにあるすべての DOM 子要素の境界矩形を表す [`DOMRect`](https://developer.mozilla.org/en-US/docs/Web/API/DOMRect) オブジェクトのフラットな配列を返します。
 
 ```js
 const rects = fragmentRef.current.getClientRects();
 ```
 
-##### Returns {/*getclientrects-returns*/}
+##### 返り値 {/*getclientrects-returns*/}
 
-An `Array<DOMRect>` containing the bounding rectangles of all children.
+すべての子要素の境界矩形を含む `Array<DOMRect>`。
 
 ---
 
 #### `getRootNode(options?)` {/*getrootnode*/}
 
-Returns the root node containing the Fragment's parent DOM node, matching the behavior of [`Node.getRootNode()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/getRootNode).
+フラグメントの親 DOM ノードを含むルートノードを返します。[`Node.getRootNode()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/getRootNode) と同じ動作です。
 
 ```js
 const root = fragmentRef.current.getRootNode();
 ```
 
-##### Parameters {/*getrootnode-parameters*/}
+##### 引数 {/*getrootnode-parameters*/}
 
-* **optional** `options`: An object with a `composed` boolean property, matching the [DOM `getRootNode` API.](https://developer.mozilla.org/en-US/docs/Web/API/Node/getRootNode#options)
+* **省略可能** `options`: ブーリアン型の `composed` プロパティを持つオブジェクト。[DOM の `getRootNode` API](https://developer.mozilla.org/en-US/docs/Web/API/Node/getRootNode#options) と同じ形式です。
 
-##### Returns {/*getrootnode-returns*/}
+##### 返り値 {/*getrootnode-returns*/}
 
-A `Document`, `ShadowRoot`, or the `FragmentInstance` itself if there is no parent DOM node.
+`Document`、`ShadowRoot`、または親 DOM ノードがない場合は `FragmentInstance` 自体を返します。
 
 ---
 
 #### `compareDocumentPosition(otherNode)` {/*comparedocumentposition*/}
 
-Compares the document position of the Fragment with another node, returning a bitmask matching the behavior of [`Node.compareDocumentPosition()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition).
+フラグメントと別のノードとのドキュメント上の位置関係を比較し、[`Node.compareDocumentPosition()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition) と同様のビットマスクを返します。
 
 ```js
 const position = fragmentRef.current.compareDocumentPosition(otherElement);
 ```
 
-##### Parameters {/*comparedocumentposition-parameters*/}
+##### 引数 {/*comparedocumentposition-parameters*/}
 
-* `otherNode`: The DOM node to compare against.
+* `otherNode`: 比較対象の DOM ノード。
 
-##### Returns {/*comparedocumentposition-returns*/}
+##### 返り値 {/*comparedocumentposition-returns*/}
 
-A bitmask of [position flags](https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition#return_value). Empty Fragments and Fragments with children rendered through a [portal](/reference/react-dom/createPortal) include `Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC` in the result.
+[位置フラグ](https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition#return_value)のビットマスク。空のフラグメント、および[ポータル](/reference/react-dom/createPortal)を介してレンダーされた子要素を持つフラグメントでは、結果に `Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC` が含まれます。
 
 ---
 
 #### `scrollIntoView(alignToTop?)` {/*scrollintoview*/}
 
-Scrolls the Fragment's children into view. When `alignToTop` is `true` or omitted, scrolls to align the first child with the top of the scrollable ancestor. When `alignToTop` is `false`, scrolls to align the last child with the bottom.
+フラグメントの子要素が見える位置までスクロールします。`alignToTop` が `true` または省略されている場合、最初の子要素がスクロール可能な祖先の上端に揃うようにスクロールします。`alignToTop` が `false` の場合、最後の子要素が下端に揃うようにスクロールします。
 
 ```js
 fragmentRef.current.scrollIntoView();
 ```
 
-##### Parameters {/*scrollintoview-parameters*/}
+##### 引数 {/*scrollintoview-parameters*/}
 
-* **optional** `alignToTop`: A boolean. If `true` (the default), scrolls the first child to the top of the scrollable area. If `false`, scrolls the last child to the bottom. Unlike [`Element.scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView), this method does not accept a `ScrollIntoViewOptions` object.
+* **省略可能** `alignToTop`: ブーリアン。`true`（デフォルト）の場合、最初の子要素がスクロール可能な領域の上端に来るようにスクロールします。`false` の場合、最後の子要素が下端に来るようにスクロールします。[`Element.scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) とは異なり、このメソッドは `ScrollIntoViewOptions` オブジェクトを受け取りません。
 
-##### Returns {/*scrollintoview-returns*/}
+##### 返り値 {/*scrollintoview-returns*/}
 
-`scrollIntoView` does not return anything (`undefined`).
+`scrollIntoView` は何も返しません (`undefined`)。
 
-##### Caveats {/*scrollintoview-caveats*/}
+##### 注意点 {/*scrollintoview-caveats*/}
 
-* `scrollIntoView` does not accept an options object. Passing one throws an error. Use the `alignToTop` boolean instead.
-* When the Fragment has no children, `scrollIntoView` scrolls the nearest sibling or parent into view as a fallback.
+* `scrollIntoView` はオプションオブジェクトを受け取りません。渡すとエラーがスローされます。代わりにブーリアン `alignToTop` を使用してください。
+* フラグメントに子がない場合、`scrollIntoView` はフォールバックとして、最も近い兄弟または親が見える位置までスクロールします。
 
 ---
 
-#### `FragmentInstance` Caveats {/*fragmentinstance-caveats*/}
+#### `FragmentInstance` の注意点 {/*fragmentinstance-caveats*/}
 
-* Methods that target children (such as `addEventListener`, `observeUsing`, and `getClientRects`) operate on *first-level host (DOM) children* of the Fragment. They do not directly target children nested inside another DOM element.
-* `focus` and `focusLast` search nested children depth-first for focusable elements, unlike event and observer methods which only target first-level host children.
-* `observeUsing` does not work on text nodes. React logs a warning in development if the Fragment contains only text children.
-* React does not apply event listeners added via `addEventListener` to hidden [`<Activity>`](/reference/react/Activity) trees. When an `Activity` boundary switches from hidden to visible, listeners are applied automatically.
-* Each first-level DOM child of a Fragment with a `ref` gets a `reactFragments` property—a `Set<FragmentInstance>` containing all Fragment instances that own the element. This enables [caching a shared observer](#caching-global-intersection-observer) across multiple Fragments.
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+* 子ノードを対象とするメソッド（`addEventListener`、`observeUsing`、`getClientRects` など）は、フラグメントの*第 1 レベルのホスト (DOM) 子ノード*を操作します。別の DOM 要素内にネストされた子ノードを直接の対象にはしません。
+* `focus` と `focusLast` は、フォーカス可能な要素を探して、ネストされた子要素を深さ優先で検索します。第 1 レベルのホスト子ノードのみを対象とするイベントメソッドやオブザーバメソッドとは異なります。
+* `observeUsing` はテキストノードに対しては動作しません。フラグメントにテキストの子しか含まれていない場合、React は開発用環境で警告をログに出力します。
+* React は、`addEventListener` で追加されたイベントリスナを、非表示になっている [`<Activity>`](/reference/react/Activity) ツリーには適用しません。`Activity` バウンダリが非表示から表示に切り替わると、リスナが自動的に適用されます。
+* `ref` を持つフラグメントの第 1 レベルの DOM 子要素には、それぞれ `reactFragments` プロパティが追加されます。これは、その要素を所有するすべてのフラグメントインスタンスを含む `Set<FragmentInstance>` です。これにより、複数のフラグメントで[共有オブザーバをキャッシュ](#caching-global-intersection-observer)できます。
 
 ---
 
@@ -502,17 +459,11 @@ function PostBody({ body }) {
 
 ---
 
-<<<<<<< HEAD
-### <CanaryBadge /> フラグメント ref を使った DOM とのやり取り {/*using-fragment-refs-for-dom-interaction*/}
+### <CanaryBadge /> ラッパ要素なしでイベントリスナを追加する {/*adding-event-listeners-without-wrapper*/}
 
-フラグメント ref を使用すると、余分なラッパ要素を追加することなく、フラグメントでラップされた DOM ノードとやり取りすることができます。これは、イベント処理、可視性追跡、フォーカス管理、そして `ReactDOM.findDOMNode()` のような非推奨のパターンの置き換えに役立ちます。
-=======
-### <CanaryBadge /> Adding event listeners without a wrapper element {/*adding-event-listeners-without-wrapper*/}
-
-Fragment `ref`s let you add event listeners to a group of elements without adding a wrapper DOM node. Use a [ref callback](/reference/react-dom/components/common#ref-callback) to attach and clean up listeners:
+フラグメントの `ref` を使うと、ラッパとなる DOM ノードを追加せずに、要素のグループにイベントリスナを追加できます。[ref コールバック](/reference/react-dom/components/common#ref-callback)を使ってリスナの登録とクリーンアップを行います。
 
 <Sandpack>
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 ```js
 import { Fragment, useState, useRef, useEffect } from 'react';
@@ -569,13 +520,13 @@ export default function App() {
 
 </Sandpack>
 
-The `addEventListener` call applies the listener to every first-level DOM child of the Fragment. When children are dynamically added or removed, the `FragmentInstance` automatically adds or removes the listener.
+`addEventListener` を呼び出すと、フラグメントの第 1 レベルにあるすべての DOM 子ノードにリスナが適用されます。子ノードが動的に追加または削除されると、`FragmentInstance` がリスナを自動的に追加または削除します。
 
 <DeepDive>
 
-#### Which children does a Fragment ref target? {/*which-children-does-a-fragment-ref-target*/}
+#### フラグメント ref が対象とするのはどの子要素か {/*which-children-does-a-fragment-ref-target*/}
 
-A `FragmentInstance` targets the **first-level host (DOM) children** of the Fragment. Consider this tree:
+`FragmentInstance` が対象とするのは、フラグメントの**第 1 レベルのホスト (DOM) 子ノード**です。次のツリーについて考えてみましょう。
 
 ```js
 <Fragment ref={ref}>
@@ -589,23 +540,17 @@ A `FragmentInstance` targets the **first-level host (DOM) children** of the Frag
 </Fragment>
 ```
 
-`Wrapper` is a React component, so the `FragmentInstance` looks through it to find DOM nodes. The targeted children are `A`, `B`, and `D`. `C` is not targeted because it is nested inside the DOM element `B`.
+`Wrapper` は React コンポーネントなので、`FragmentInstance` はその中までたどって DOM ノードを探します。対象となる子要素は `A`、`B`、`D` です。`C` は DOM 要素 `B` の内部にネストされているため、対象にはなりません。
 
-Methods like `addEventListener`, `observeUsing`, and `getClientRects` operate on these first-level DOM children. `focus` and `focusLast` are different—they search *all* nested children depth-first to find focusable elements.
+`addEventListener`、`observeUsing`、`getClientRects` などのメソッドは、これらの第 1 レベルの DOM 子ノードを操作します。一方、`focus` と `focusLast` は異なり、フォーカス可能な要素を見つけるため、ネストされた*すべての*子要素を深さ優先で検索します。
 
 </DeepDive>
 
 ---
 
-<<<<<<< HEAD
-### <CanaryBadge /> フラグメント ref を使った可視性追跡 {/*tracking-visibility-with-fragment-refs*/}
+### <CanaryBadge /> 要素のグループ全体でフォーカスを管理する {/*managing-focus-across-elements*/}
 
-フラグメント ref は、可視性追跡やインターセクション監視に役立ちます。これにより、子コンポーネントがそれぞれ ref を公開せずとも、コンテンツが表示されるようになったタイミングを監視することができます。
-=======
-### <CanaryBadge /> Managing focus across a group of elements {/*managing-focus-across-elements*/}
-
-Fragment `ref`s provide `focus`, `focusLast`, and `blur` methods that operate across all DOM nodes within the Fragment:
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+フラグメントの `ref` は、フラグメント内のすべての DOM ノードにわたって動作する `focus`、`focusLast`、`blur` メソッドを提供します。
 
 <Sandpack>
 
@@ -684,13 +629,13 @@ label {
 
 </Sandpack>
 
-Calling `focus()` focuses the `street` input—even though it is nested inside a `<fieldset>` and `<label>`. `focus()` searches depth-first through all nested children, not just direct children of the Fragment. `focusLast()` does the same in reverse, and `blur()` removes focus if the currently focused element is within the Fragment.
+`focus()` を呼び出すと、`street` 入力欄が `<fieldset>` と `<label>` の内部にネストされているにもかかわらず、そこにフォーカスが当たります。`focus()` は、フラグメントの直接の子だけでなく、ネストされたすべての子を深さ優先で検索します。`focusLast()` はこれを逆順で行い、`blur()` は現在フォーカスされている要素がフラグメント内にある場合にフォーカスを外します。
 
 ---
 
-### <CanaryBadge /> Scrolling a group of elements into view {/*scrolling-group-into-view*/}
+### <CanaryBadge /> 要素のグループが見える位置までスクロールする {/*scrolling-group-into-view*/}
 
-Use `scrollIntoView` to scroll a Fragment's children into view without a wrapper element. Pass `true` (or omit the argument) to scroll the first child to the top. Pass `false` to scroll the last child to the bottom:
+`scrollIntoView` を使うと、ラッパ要素なしでフラグメントの子要素が見える位置までスクロールできます。最初の子要素が上端に来るようにスクロールするには `true` を渡す（または引数を省略する）ようにします。最後の子要素が下端に来るようにスクロールするには `false` を渡します。
 
 <Sandpack>
 
@@ -782,9 +727,9 @@ p {
 
 ---
 
-### <CanaryBadge /> Observing visibility without a wrapper element {/*observing-visibility-without-wrapper*/}
+### <CanaryBadge /> ラッパ要素なしで可視性を監視する {/*observing-visibility-without-wrapper*/}
 
-Use `observeUsing` to attach an `IntersectionObserver` to all first-level DOM children of a Fragment. This lets you track visibility without requiring child components to expose `ref`s or adding a wrapper element:
+`observeUsing` を使うと、フラグメントの第 1 レベルにあるすべての DOM 子要素に `IntersectionObserver` を登録できます。これにより、子コンポーネントに `ref` を公開させたり、ラッパ要素を追加したりすることなく、可視性を追跡できます。
 
 <Sandpack>
 
@@ -844,15 +789,6 @@ export default function App() {
 }
 ```
 
-<<<<<<< HEAD
-このパターンは、エフェクトベースの可視性ロギング（ほとんどの場合アンチパターン）の代替手段です。エフェクトを使うだけでは、レンダーされたコンポーネントがユーザに見えることを保証できません。
-
----
-
-### <CanaryBadge /> フラグメント ref を使ったフォーカス管理 {/*focus-management-with-fragment-refs*/}
-
-フラグメント ref は、フラグメント内のすべての DOM ノードにわたって機能するフォーカス管理メソッドを提供します。
-=======
 ```css
 .page {
   transition: background 0.3s;
@@ -903,12 +839,11 @@ export default function Card({ title }) {
 
 ---
 
-### <CanaryBadge /> Caching a global IntersectionObserver {/*caching-global-intersection-observer*/}
+### <CanaryBadge /> グローバルな IntersectionObserver をキャッシュする {/*caching-global-intersection-observer*/}
 
-A common performance optimization for sites with many observers is to share a single IntersectionObserver per config and route its entries to the correct callbacks based on which element intersected. Fragment `ref`s support this same pattern through the `reactFragments` property.
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+多数のオブザーバを使用するサイトで一般的なパフォーマンス最適化は、設定ごとに 1 つの IntersectionObserver を共有で持ち、どの要素が交差したかに基づいて、そのエントリを適切なコールバックに振り分けることです。フラグメントの `ref` でも、`reactFragments` プロパティを介して同じパターンを利用できます。
 
-Each first-level DOM child of a Fragment with a `ref` has a `reactFragments` property: a `Set` of `FragmentInstance` objects that contain that element. When the shared observer fires, you can use this property to look up which `FragmentInstance` owns the intersecting element and run the right callbacks.
+`ref` を持つフラグメントの第 1 レベルの DOM 子要素には、それぞれ `reactFragments` プロパティがあります。これは、その要素を含む `FragmentInstance` オブジェクトの `Set` です。共有オブザーバが呼び出されたとき、このプロパティを使って、交差した要素を所有する `FragmentInstance` を特定し、適切なコールバックを実行できます。
 
 <Sandpack>
 
@@ -1040,9 +975,6 @@ export default function ObservedGroup({
 }
 ```
 
-<<<<<<< HEAD
-`focus()` メソッドはフラグメント内の最初のフォーカス可能な要素にフォーカスを当て、`focusLast()` は最後のフォーカス可能な要素にフォーカスを当てます。
-=======
 ```css
 .page {
   transition: background 0.3s;
@@ -1095,5 +1027,4 @@ export default function Card({ title, className }) {
 
 </Sandpack>
 
-Multiple `ObservedGroup` components with the same options reuse a single `IntersectionObserver`. When either section scrolls into view, the shared observer fires and uses `reactFragments` to route the entry to the correct callback.
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+同じオプションを持つ複数の `ObservedGroup` コンポーネントが、単一の `IntersectionObserver` を再利用しています。いずれかのセクションがスクロールによって表示範囲に入ると、共有オブザーバが呼び出され、`reactFragments` を使ってエントリを適切なコールバックに振り分けます。

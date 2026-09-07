@@ -4,11 +4,7 @@ title: use
 
 <Intro>
 
-<<<<<<< HEAD
-`use` は[プロミス (Promise)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) や[コンテクスト](/learn/passing-data-deeply-with-context)などのリソースから値を読み取るための React API です。
-=======
-`use` is a React API that lets you read a resource during rendering, such as a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+`use` は[プロミス (Promise)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) や[コンテクスト](/learn/passing-data-deeply-with-context)などのリソースをレンダー中に読み取るための React API です。
 
 ```js
 const value = use(resource);
@@ -24,11 +20,7 @@ const value = use(resource);
 
 ### `use(context)` {/*use-context*/}
 
-<<<<<<< HEAD
-コンポーネント内で `use` を呼び出し、[プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)や[コンテクスト](/learn/passing-data-deeply-with-context)などのリソースから値を読み取ります。
-=======
-Call `use` with a [context](/learn/passing-data-deeply-with-context) to read its value. Unlike [`useContext`](/reference/react/useContext), `use` can be called within loops and conditional statements like `if`.
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+[コンテクスト](/learn/passing-data-deeply-with-context)を指定して `use` を呼び出し、その値を読み取ります。[`useContext`](/reference/react/useContext) とは異なり、`use` はループや `if` のような条件文の中でも呼び出せます。
 
 ```js
 import { use } from 'react';
@@ -38,51 +30,26 @@ function Button() {
   // ...
 ```
 
-<<<<<<< HEAD
-React フックとは異なり、`use` は `if` のようなループや条件文内でも呼び出すことができます。ただし React フックと同様に、`use` を呼び出す関数はコンポーネントまたはフック内でなければなりません。
+[さらに例を見る](#usage-context)
 
-プロミスを引数にして呼び出した場合、`use` API は [`Suspense`](/reference/react/Suspense) や[エラーバウンダリ (Error Boundary)](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) と協調して動作します。`use` を呼び出すコンポーネントは、`use` に渡されたプロミスが保留中 (pending) である間、*サスペンド (suspend)* します。`use` を呼び出すコンポーネントがサスペンスバウンダリでラップされている場合、フォールバックが表示されます。プロミスが解決 (resolve) された時点で、サスペンスフォールバックは、`use` API から返されたデータを使用してレンダーされたコンポーネントの内容に置き換わります。`use` に渡されたプロミスが拒否 (reject) されると、最も近いエラーバウンダリのフォールバックが表示されます。
+#### 引数 {/*context-parameters*/}
 
-[さらに例を見る](#usage)
+* `context`: [`createContext`](/reference/react/createContext) で作成した[コンテクスト](/learn/passing-data-deeply-with-context)。
 
-#### 引数 {/*parameters*/}
+#### 返り値 {/*context-returns*/}
 
-* `resource`: 値を読み取りたいデータソース。リソースは[プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)または [コンテクスト](/learn/passing-data-deeply-with-context)のいずれかになります。
+渡されたコンテクストの値です。この値は、呼び出し元コンポーネントより上にある最も近いコンテクストプロバイダによって決まります。プロバイダがない場合は、[`createContext`](/reference/react/createContext) に渡した `defaultValue` が返されます。
 
-#### 返り値 {/*returns*/}
+#### 注意点 {/*context-caveats*/}
 
-`use` API は、[プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)の解決された値や[コンテクスト](/learn/passing-data-deeply-with-context)など、リソースから読み取った値を返します。
-
-#### 注意点 {/*caveats*/}
-
-* `use` API は、コンポーネントまたは他のフック内で呼び出す必要があります。
-* [サーバコンポーネント](/reference/rsc/server-components)でデータをフェッチする際は、`use` よりも `async` と `await` を優先して使用してください。`async` と `await` は `await` が呼び出された地点からレンダーを再開しますが、`use` はデータが解決した後にコンポーネントを最初からレンダーします。
-* [クライアントコンポーネント](/reference/rsc/use-client)でプロミスを作成するよりも、なるべく[サーバコンポーネント](/reference/rsc/server-components)でプロミスを作成してそれをクライアントコンポーネントに渡すようにしてください。クライアントコンポーネントで作成されたプロミスは、レンダーごとに再作成されます。サーバコンポーネントからクライアントコンポーネントに渡されたプロミスは、再レンダー間で不変です。[こちらの例を参照してください](#streaming-data-from-server-to-client)。
-
----
-
-## 使用法 {/*usage*/}
-=======
-[See more examples below.](#usage-context)
-
-#### Parameters {/*context-parameters*/}
-
-* `context`: A [context](/learn/passing-data-deeply-with-context) created with [`createContext`](/reference/react/createContext).
-
-#### Returns {/*context-returns*/}
-
-The context value for the passed context, determined by the closest context provider above the calling component. If there is no provider, the returned value is the `defaultValue` passed to [`createContext`](/reference/react/createContext).
-
-#### Caveats {/*context-caveats*/}
-
-* `use` must be called inside a Component or a Hook.
-* Reading context with `use` is not supported in [Server Components](/reference/rsc/server-components).
+* `use` はコンポーネントまたはフックの内部で呼び出す必要があります。
+* [サーバコンポーネント](/reference/rsc/server-components)では、`use` によるコンテクストの読み取りはサポートされていません。
 
 ---
 
 ### `use(promise)` {/*use-promise*/}
 
-Call `use` with a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to read its resolved value. The component calling `use` *suspends* while the Promise is pending. Despite its name, `use` is not a Hook. Unlike Hooks, it can be called inside loops and conditional statements like `if`.
+[プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)を指定して `use` を呼び出し、その解決値を読み取ります。プロミスが保留中の間、`use` を呼び出したコンポーネントは*サスペンド*します。その名前に反して、`use` はフックではありません。フックとは異なり、ループや `if` のような条件文の中でも呼び出せます。
 
 ```js
 import { use } from 'react';
@@ -92,30 +59,30 @@ function MessageComponent({ messagePromise }) {
   // ...
 ```
 
-If the component that calls `use` is wrapped in a [Suspense](/reference/react/Suspense) boundary, the fallback will be displayed while the Promise is pending. Once the Promise is resolved, the Suspense fallback is replaced by the rendered components using the data returned by `use`. If the Promise is rejected, the fallback of the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) will be displayed.
+`use` を呼び出すコンポーネントが[サスペンス](/reference/react/Suspense)バウンダリでラップされている場合、プロミスが保留中の間はフォールバックが表示されます。プロミスが解決されると、サスペンスのフォールバックは、`use` が返したデータを使用してレンダーされたコンポーネントに置き換わります。プロミスが拒否された場合は、最も近い[エラーバウンダリ (Error Boundary)](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) のフォールバックが表示されます。
 
-[See more examples below.](#usage-promises)
+[さらに例を見る](#usage-promises)
 
-#### Parameters {/*promise-parameters*/}
+#### 引数 {/*promise-parameters*/}
 
-* `promise`: A [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) whose resolved value you want to read. The Promise must be [cached](#caching-promises-for-client-components) so that the same instance is reused across re-renders.
+* `promise`: 解決値を読み取りたい[プロミス](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)です。再レンダーをまたいで同じインスタンスが再利用されるように、プロミスを[キャッシュ](#caching-promises-for-client-components)する必要があります。
 
-#### Returns {/*promise-returns*/}
+#### 返り値 {/*promise-returns*/}
 
-The resolved value of the Promise.
+プロミスの解決値です。
 
-#### Caveats {/*promise-caveats*/}
+#### 注意点 {/*promise-caveats*/}
 
-* `use` must be called inside a Component or a Hook.
-* `use` cannot be called inside a try-catch block. Instead, wrap your component in an [Error Boundary](#displaying-an-error-with-an-error-boundary) to catch the error and display a fallback.
-* Promises passed to `use` must be cached so the same Promise instance is reused across re-renders. [See caching Promises below.](#caching-promises-for-client-components)
-* When passing a Promise from a Server Component to a Client Component, its resolved value must be [serializable](/reference/rsc/use-client#serializable-types).
+* `use` はコンポーネントまたはフックの内部で呼び出す必要があります。
+* `use` を try-catch ブロック内で呼び出すことはできません。代わりに、コンポーネントを[エラーバウンダリ](#displaying-an-error-with-an-error-boundary)でラップしてエラーをキャッチし、フォールバックを表示します。
+* `use` に渡すプロミスは、再レンダーをまたいで同じプロミスインスタンスが再利用されるようにキャッシュされている必要があります。[以下のプロミスのキャッシュに関する説明を参照してください](#caching-promises-for-client-components)。
+* サーバコンポーネントからクライアントコンポーネントにプロミスを渡す場合、その解決後の値は[シリアライズ可能](/reference/rsc/use-client#serializable-types)でなければなりません。
 
 ---
 
 ### <CanaryBadge /> `use(browser())` {/*use-browser*/}
 
-Call `use` with the value returned by [`browser`](/reference/react-dom/browser) in a component that should only render in the browser:
+ブラウザでのみレンダーされるべきコンポーネントで、[`browser`](/reference/react-dom/browser) が返した値を指定して `use` を呼び出します。
 
 ```js
 import { use } from 'react';
@@ -127,35 +94,30 @@ function BrowserOnly() {
 }
 ```
 
-During server rendering, the component calling `use(browser())` suspends and React includes the closest [`<Suspense>`](/reference/react/Suspense) boundary's fallback in the HTML. In the browser, `use(browser())` returns `undefined`, so the component renders normally.
+サーバレンダリング中は、`use(browser())` を呼び出したコンポーネントがサスペンドし、React は最も近い [`<Suspense>`](/reference/react/Suspense) バウンダリのフォールバックを HTML に含めます。ブラウザでは `use(browser())` が `undefined` を返すため、コンポーネントは通常どおりレンダーされます。
 
-[See an example below.](#rendering-a-component-only-in-the-browser)
+[以下で例を見る](#rendering-a-component-only-in-the-browser)
 
-#### Parameters {/*browser-parameters*/}
+#### 引数 {/*browser-parameters*/}
 
-* `browserValue`: The value returned by [`browser`](/reference/react-dom/browser).
+* `browserValue`: [`browser`](/reference/react-dom/browser) が返す値です。
 
-#### Returns {/*browser-returns*/}
+#### 返り値 {/*browser-returns*/}
 
-`use(browser())` returns `undefined` in the browser.
+ブラウザでは、`use(browser())` は `undefined` を返します。
 
-#### Caveats {/*browser-caveats*/}
+#### 注意点 {/*browser-caveats*/}
 
-* The component calling `use(browser())` must be inside a `<Suspense>` boundary during server rendering. Without one, server rendering fails.
-* In a React Server Components app, `use(browser())` must be called from a [Client Component](/reference/rsc/use-client), not a [Server Component](/reference/rsc/server-components).
+* サーバレンダリング中、`use(browser())` を呼び出すコンポーネントは `<Suspense>` バウンダリの内部になければなりません。バウンダリがなければ、サーバレンダリングは失敗します。
+* React サーバコンポーネントのアプリでは、`use(browser())` は[クライアントコンポーネント](/reference/rsc/use-client)から呼び出す必要があり、[サーバコンポーネント](/reference/rsc/server-components)からは呼び出せません。
 
 ---
 
-## Usage (Context) {/*usage-context*/}
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+## 使用法（コンテクスト） {/*usage-context*/}
 
 ### `use` でコンテクストを読み取る {/*reading-context-with-use*/}
 
-<<<<<<< HEAD
-[コンテクスト](/learn/passing-data-deeply-with-context)が `use` に渡された場合、[`useContext`](/reference/react/useContext) と同様に動作します。`useContext` はコンポーネントのトップレベルで呼び出す必要がありますが、`use` は `if` や `for` などの条件式の中でも呼び出すことができます。`use` はより柔軟であるため、`useContext` よりも優先的に使用してください。
-=======
-When a [context](/learn/passing-data-deeply-with-context) is passed to `use`, it works similarly to [`useContext`](/reference/react/useContext). While `useContext` must be called at the top level of your component, `use` can be called inside conditionals like `if` and loops like `for`.
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+[コンテクスト](/learn/passing-data-deeply-with-context)が `use` に渡された場合、[`useContext`](/reference/react/useContext) と同様に動作します。`useContext` はコンポーネントのトップレベルで呼び出す必要がありますが、`use` は `if` や `for` などの条件式の中でも呼び出すことができます。
 
 ```js [[2, 4, "theme"], [1, 4, "ThemeContext"]]
 import { use } from 'react';
@@ -292,15 +254,9 @@ function Button({ show, children }) {
 
 </Sandpack>
 
-<<<<<<< HEAD
-### サーバからクライアントへのデータストリーミング {/*streaming-data-from-server-to-client*/}
+### コンテクストからプロミスを読み取る {/*reading-a-promise-from-context*/}
 
-<CodeStep step={1}>サーバコンポーネント</CodeStep>から<CodeStep step={2}>クライアントコンポーネント</CodeStep> に props としてプロミスを渡すことで、サーバからクライアントにデータをストリーミングすることができます。
-=======
-### Reading a Promise from context {/*reading-a-promise-from-context*/}
-
-To share asynchronous data without prop drilling, set a Promise as a context value, then read it with `use(context)` and resolve it with `use(promise)`:
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+props の穴掘り作業 (prop drilling) をせずに非同期データを共有するには、プロミスをコンテクスト値として設定し、`use(context)` で読み取ってから `use(promise)` で値を取り出します。
 
 ```js
 import { use } from 'react';
@@ -313,23 +269,23 @@ function Profile() {
 }
 ```
 
-Reading the value requires two `use` calls because the context value itself isn't awaited. See [Before you use context](/learn/passing-data-deeply-with-context#before-you-use-context) for alternatives to consider before reaching for context.
+コンテクスト値自体は await されないため、値の読み取りには `use` を 2 回呼び出す必要があります。コンテクストを使う前に検討すべき代替手段については、[コンテクストを使用する前に](/learn/passing-data-deeply-with-context#before-you-use-context)を参照してください。
 
-Wrap the components that read the Promise in a [Suspense](/reference/react/Suspense) boundary so only that subtree suspends while the Promise is pending. See [Usage (Promises)](#usage-promises) below for more on reading Promises with `use`.
+プロミスを読み取るコンポーネントを[サスペンス](/reference/react/Suspense)バウンダリでラップすると、プロミスが保留中の間はそのサブツリーだけがサスペンドします。`use` によるプロミスの読み取りについて詳しくは、以下の[使用法（プロミス）](#usage-promises)を参照してください。
 
 <Pitfall>
 
-When this pattern is used with [Server Components](/reference/rsc/server-components), refetching the Promise requires refetching the Server Component that sets the Promise in context. Avoid setting the Promise in context high in the tree, since that would refetch large parts of the app unnecessarily.
+このパターンを[サーバコンポーネント](/reference/rsc/server-components)で使用する場合、プロミスを再フェッチするには、そのプロミスをコンテクストに設定するサーバコンポーネントを再フェッチする必要があります。ツリーの高い位置でプロミスをコンテクストに設定すると、アプリの大部分が不必要に再フェッチされるため避けてください。
 
 </Pitfall>
 
 ---
 
-## Usage (Promises) {/*usage-promises*/}
+## 使用法（プロミス） {/*usage-promises*/}
 
-### Reading a Promise with `use` {/*reading-a-promise-with-use*/}
+### `use` でプロミスを読み取る {/*reading-a-promise-with-use*/}
 
-Call `use` with a Promise to read its resolved value. The component will [suspend](/reference/react/Suspense) while the Promise is pending.
+プロミスを指定して `use` を呼び出し、その解決値を読み取ります。プロミスが保留中の間、コンポーネントは[サスペンド](/reference/react/Suspense)します。
 
 ```js [[1, 4, "use(albumsPromise)"]]
 import { use } from 'react';
@@ -348,13 +304,13 @@ function Albums({ albumsPromise }) {
 }
 ```
 
-Wrap the component that calls <CodeStep step={1}>`use`</CodeStep> in a [Suspense](/reference/react/Suspense) boundary so React can show a fallback while the Promise is pending. The closest Suspense boundary above the suspending component shows its fallback. Once the Promise resolves, React reads the value with `use` and replaces the fallback with the rendered component.
+<CodeStep step={1}>`use`</CodeStep> を呼び出すコンポーネントを[サスペンス](/reference/react/Suspense)バウンダリでラップすると、プロミスが保留中の間、React はフォールバックを表示できます。サスペンドしたコンポーネントより上にある最も近いサスペンスバウンダリが、そのフォールバックを表示します。プロミスが解決されると、React は `use` で値を読み取り、フォールバックをレンダーされたコンポーネントに置き換えます。
 
-<Recipes titleText="Reading a Promise with use vs fetching in an Effect" titleId="examples-promise">
+<Recipes titleText="use でプロミスを読み取る場合とエフェクトでフェッチする場合の比較" titleId="examples-promise">
 
-#### Fetching data with `use` {/*fetching-data-with-use*/}
+#### `use` でデータフェッチ {/*fetching-data-with-use*/}
 
-In this example, `Albums` calls `use` with a cached Promise. The component suspends while the Promise is pending, and React displays the nearest Suspense fallback. Rejected Promises propagate to the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary).
+この例では、`Albums` がキャッシュ済みのプロミスを指定して `use` を呼び出します。プロミスが保留中の間、コンポーネントはサスペンドし、React は最も近いサスペンスのフォールバックを表示します。拒否されたプロミスは、最も近い[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary)へ伝播します。
 
 <Sandpack>
 
@@ -455,9 +411,9 @@ async function getAlbums() {
 
 <Solution />
 
-#### Fetching data with `useEffect` {/*fetching-data-with-useeffect*/}
+#### `useEffect` でデータフェッチ {/*fetching-data-with-useeffect*/}
 
-Before `use`, a common approach was to fetch data in an Effect and update state when the data arrives. Compared to `use`, this approach requires managing loading and error states manually. For more details on why fetching in an Effect is discouraged, see [You Might Not Need an Effect](/learn/you-might-not-need-an-effect#fetching-data).
+`use` が登場する以前は、エフェクトでデータをフェッチし、データが到着したときに state を更新する方法が一般的でした。`use` と比べ、この方法では読み込み中とエラーの状態を手動で管理する必要があります。エフェクトでのデータフェッチが推奨されない理由について詳しくは、[そのエフェクトは不要かも](/learn/you-might-not-need-an-effect#fetching-data)を参照してください。
 
 <Sandpack>
 
@@ -537,9 +493,9 @@ export async function fetchAlbums() {
 
 <Pitfall>
 
-##### Promises passed to `use` must be cached {/*promises-must-cached*/}
+##### `use` に渡すプロミスはキャッシュすること {/*promises-must-cached*/}
 
-Promises created during render are recreated on every render, which causes React to show the Suspense fallback repeatedly and prevents content from appearing.
+レンダー中にプロミスを作成するとそれはレンダーのたびに再作成されるため、React がサスペンスのフォールバックを繰り返し表示し、コンテンツが表示されなくなります。
 
 ```js
 function Albums() {
@@ -549,7 +505,7 @@ function Albums() {
 }
 ```
 
-Instead, pass a Promise from a cache, a [Suspense-enabled framework](/reference/react/Suspense#suspense-enabled-frameworks), or a Server Component:
+代わりに、キャッシュ、[サスペンス対応フレームワーク](/reference/react/Suspense#suspense-enabled-frameworks)、またはサーバコンポーネントから得たプロミスを渡してください。
 
 ```js
 // ✅ fetchData reads the Promise from a cache.
@@ -560,11 +516,11 @@ const albums = use(fetchData('/albums'));
 
 <DeepDive>
 
-#### Why are Promises recreated on every render? {/*why-promises-recreated*/}
+#### プロミスがレンダーのたびに再作成される理由 {/*why-promises-recreated*/}
 
-[React doesn't preserve state for renders that suspended before mounting](/reference/react/Suspense#caveats). After each suspension, React retries rendering from scratch, so any Promise created during render is recreated.
+[React はマウント前にサスペンドしたレンダーの state を保持しません](/reference/react/Suspense#caveats)。サスペンドするたびに React はレンダーを最初からやり直すため、レンダー中に作成したプロミスも再作成されます。
 
-Common ways a Promise can be unintentionally recreated during render:
+レンダー中に意図せずプロミスが再作成される一般的な例を以下に示します。
 
 ```js
 function Albums() {
@@ -584,7 +540,7 @@ function Albums() {
 }
 ```
 
-Ideally, Promises are created before rendering, such as in an event handler, a route loader, or a Server Component, and passed to the component that calls `use`. Fetching lazily in render delays network requests and can create waterfalls.
+理想的には、イベントハンドラ、ルートローダ、サーバコンポーネントなどでレンダー前にプロミスを作成し、`use` を呼び出すコンポーネントに渡します。レンダー中に遅延フェッチを行うとネットワークリクエストの開始が遅れ、ウォーターフォールが発生する可能性があります。
 
 ```js
 // ✅ fetchData reads the Promise from a cache.
@@ -595,9 +551,9 @@ const albums = use(fetchData('/albums'));
 
 ---
 
-### Caching Promises for Client Components {/*caching-promises-for-client-components*/}
+### クライアントコンポーネント用にプロミスをキャッシュする {/*caching-promises-for-client-components*/}
 
-Promises passed to `use` in Client Components must be cached so the same Promise instance is reused across re-renders. If a new Promise is created directly in render, React will display the Suspense fallback on every re-render.
+クライアントコンポーネントで `use` に渡すプロミスは、再レンダーをまたいで同じプロミスインスタンスが再利用されるようにキャッシュする必要があります。レンダー内で新しいプロミスを直接作成すると、React は再レンダーのたびにサスペンスのフォールバックを表示します。
 
 ```js
 // ✅ Cache the Promise so the same one is reused across renders
@@ -611,15 +567,15 @@ export function fetchData(url) {
 }
 ```
 
-The `fetchData` function returns the same Promise each time it's called with the same URL. When `use` receives the same Promise on a re-render, it reads the already-resolved value synchronously without suspending.
+`fetchData` 関数は、同じ URL で呼び出されるたびに同じプロミスを返します。再レンダー時に `use` が同じプロミスを受け取ると、サスペンドせずに、すでに解決された値を同期的に読み取ります。
 
 <Note>
 
-The way you cache Promises depends on the framework you use with Suspense. Frameworks typically provide built-in caching mechanisms. If you don't use a framework, you can use a simple module-level cache like the one above, or a [Suspense-enabled data source](/reference/react/Suspense#what-activates-a-suspense-boundary).
+プロミスをキャッシュする方法は、サスペンスとともに使用するフレームワークによって異なります。通常、フレームワークにはキャッシュ機構が組み込まれています。フレームワークを使用しない場合は、上記のような単純なモジュールレベルのキャッシュや、[サスペンス対応データソース](/reference/react/Suspense#what-activates-a-suspense-boundary)を使用できます。
 
 </Note>
 
-In the example below, clicking "Re-render" updates state in `App` and triggers a re-render. Because `fetchData` returns the same cached Promise, `Albums` reads the value synchronously instead of showing the Suspense fallback again.
+以下の例では、"Re-render" をクリックすると、`App` の state が更新され、再レンダーがトリガされます。`fetchData` は同じキャッシュ済みプロミスを返すため、`Albums` はサスペンスのフォールバックを再び表示することなく、値を同期的に読み取ります。
 
 <Sandpack>
 
@@ -704,9 +660,9 @@ async function getAlbums() {
 
 <DeepDive>
 
-#### How to implement a promise cache {/*how-to-implement-a-promise-cache*/}
+#### プロミスのキャッシュを実装する方法 {/*how-to-implement-a-promise-cache*/}
 
-A basic cache stores the Promise keyed by URL so the same instance is reused across renders. To also avoid unnecessary Suspense fallbacks when data is already available, you can set `status` and `value` (or `reason`) fields on the Promise. React checks these fields when `use` is called: if `status` is `'fulfilled'`, it reads `value` synchronously without suspending. If `status` is `'rejected'`, it throws `reason`. If the field is missing or `'pending'`, it suspends.
+基本的なキャッシュの場合、URL をキーとしてプロミスを保存し、レンダーをまたいで同じインスタンスが再利用されるようにします。データがすでに利用可能な場合にサスペンスの不要なフォールバックが表示されることも避けるには、プロミスに `status` と `value`（または `reason`）フィールドを設定できます。React は `use` が呼び出されたときにこれらのフィールドを確認します。`status` が `'fulfilled'` なら、サスペンドせずに `value` を同期的に読み取ります。`status` が `'rejected'` なら `reason` をスローします。フィールドがないか `'pending'` ならサスペンドします。
 
 ```js
 let cache = new Map();
@@ -731,17 +687,17 @@ function fetchData(url) {
 }
 ```
 
-This is primarily useful for library authors building Suspense-compatible data layers. React will set the `status` field itself on Promises that don't have it, but setting it yourself avoids an extra render when the data is already available.
+これは主に、サスペンス互換のデータレイヤを構築するライブラリ作者にとって有用です。`status` フィールドがないプロミスには React 自身がこのフィールドを設定しますが、自分で設定しておけば、データがすでに利用可能な場合の余分なレンダーを避けられます。
 
-This cache pattern is the foundation for [re-fetching data](#re-fetching-data-in-client-components) (where changing the cache key triggers a new fetch) and [preloading data on hover](#preloading-data-on-hover) (where calling `fetchData` early means the Promise may already be resolved by the time `use` reads it).
+このキャッシュパターンは、[データの再フェッチ](#re-fetching-data-in-client-components)（キャッシュキーの変更によって新しいフェッチをトリガする）や、[ホバー時のデータのプリロード](#preloading-data-on-hover)（早めに `fetchData` を呼び出すことで、`use` が読み取る時点ではプロミスがすでに解決している可能性がある）の基礎になります。
 
 </DeepDive>
 
 <Pitfall>
 
-##### Don't skip calling `use` based on whether a Promise is already settled. {/*conditional-use*/}
+##### プロミスがすでに決定しているかどうかを基準に `use` の呼び出しを省略しない {/*conditional-use*/}
 
-Unlike other hooks, `use` can be called inside conditions and loops — but it must always be called for the Promise itself. Never read `promise.status` or `promise.value` directly to bypass `use`; always pass the Promise to `use` and let React handle it.
+他のフックとは異なり、`use` は条件文やループの中で呼び出せますが、プロミスそのものについては必ず `use` を呼び出す必要があります。`use` を迂回するために `promise.status` や `promise.value` を直接読み取ってはいけません。必ずプロミスを `use` に渡し、React に処理させてください。
 
 
 ```js
@@ -757,15 +713,15 @@ const value = use(promise);
 const value = use(promise);
 ```
 
-Bypassing `use` this way can break React Suspense optimizations and Suspense features for React DevTools. You can `use(promise)` conditionally, but don't conditionally `use(promise)` based on the promise itself.
+このように `use` を迂回すると、React のサスペンス最適化や React DevTools 向けのサスペンス機能が壊れる可能性があります。`use(promise)` は条件付きで呼び出せますが、プロミス自体の状態に基づいて条件付きで `use(promise)` を呼び出してはいけません。
 
 </Pitfall>
 
 ---
 
-### Re-fetching data in Client Components {/*re-fetching-data-in-client-components*/}
+### クライアントコンポーネントでデータを再フェッチする {/*re-fetching-data-in-client-components*/}
 
-To refresh data at the same URL (for example, with a "Refresh" button), invalidate the cache entry and start a new fetch inside a [`startTransition`](/reference/react/startTransition). Store the resulting Promise in state to trigger a re-render. While the new Promise is pending, React keeps showing the existing content because the update is inside a Transition.
+同じ URL のデータを更新するには（例えば "Refresh" ボタンを使う場合）、キャッシュエントリを無効化し、[`startTransition`](/reference/react/startTransition) 内で新しいフェッチを開始します。結果のプロミスを state に保存して、再レンダーをトリガします。更新がトランジション内で行われるため、新しいプロミスが保留中の間も React は既存のコンテンツを表示し続けます。
 
 ```js
 function App() {
@@ -781,7 +737,7 @@ function App() {
 }
 ```
 
-`refetchData` clears the old cache entry and starts a new fetch at the same URL. Storing the resulting Promise in state triggers a re-render inside the Transition. On re-render, `Albums` receives the new Promise and `use` suspends on it while React keeps showing the old content.
+`refetchData` は古いキャッシュエントリを削除し、同じ URL への新しいフェッチを開始します。結果のプロミスを state に保存すると、トランジション内で再レンダーがトリガされます。再レンダー時に `Albums` が新しいプロミスを受け取り、`use` がそのプロミスに対してサスペンドする間、React は古いコンテンツを表示し続けます。
 
 <Sandpack>
 
@@ -902,15 +858,15 @@ button { margin-bottom: 10px; }
 
 <Note>
 
-Frameworks that support Suspense typically provide their own caching and invalidation mechanisms. The custom cache above is useful for understanding the pattern, but in practice prefer your framework's data fetching solution.
+通常、サスペンスをサポートするフレームワークには、独自のキャッシュ機構と無効化機構があります。上記のカスタムキャッシュはパターンを理解するうえでは役立ちますが、実際にはフレームワークのデータフェッチ手段を優先してください。
 
 </Note>
 
 ---
 
-### Preloading data on hover {/*preloading-data-on-hover*/}
+### ホバー時にデータをプリロード {/*preloading-data-on-hover*/}
 
-You can start loading data before it's needed by calling `fetchData` during a hover event. Since `fetchData` caches the Promise, the data may already be available by the time the user clicks. If the Promise has resolved by the time `use` reads it, React renders the component immediately without showing a Suspense fallback.
+ホバーイベント中に `fetchData` を呼び出すことで、データが必要になる前に読み込みを開始できます。`fetchData` はプロミスをキャッシュするため、ユーザがクリックする時点でデータをすでに利用可能にできているかもしれません。`use` が読み取る時点でプロミスが解決済みなら、React はサスペンスのフォールバックを表示せず、すぐにコンポーネントをレンダーします。
 
 ```js
 <button
@@ -923,7 +879,7 @@ You can start loading data before it's needed by calling `fetchData` during a ho
 >
 ```
 
-In this example, hovering over an artist button starts fetching their albums in the background. Without hovering first, clicking shows a loading fallback. Try hovering over a button for a moment before clicking to see the difference.
+以下の例では、アーティストのボタンにホバーすると、そのアルバムのバックグラウンドでのフェッチが始まります。先にホバーせずクリックすると、読み込み中のフォールバックが表示されます。違いを確認するため、ボタンをクリックする前にしばらくホバーしてみてください。
 
 <Sandpack>
 
@@ -1088,9 +1044,9 @@ button { margin-right: 10px; }
 
 ---
 
-### Streaming data from server to client {/*streaming-data-from-server-to-client*/}
+### サーバからクライアントへのデータストリーミング {/*streaming-data-from-server-to-client*/}
 
-Data can be streamed from the server to the client by passing a Promise as a prop from a Server Component to a Client Component.
+サーバコンポーネントからクライアントコンポーネントに props としてプロミスを渡すことで、サーバからクライアントにデータをストリーミングすることができます。
 
 ```js
 import { fetchMessage } from './lib.js';
@@ -1106,11 +1062,7 @@ export default function App() {
 }
 ```
 
-<<<<<<< HEAD
-<CodeStep step={2}>クライアントコンポーネント</CodeStep> は、<CodeStep step={4}>受け取ったプロミス</CodeStep> を <CodeStep step={5}>`use`</CodeStep> API に渡します。これにより<CodeStep step={2}>クライアントコンポーネント</CodeStep>は、サーバコンポーネントが最初に作成した<CodeStep step={4}>プロミス</CodeStep>から値を読み取ることができます。
-=======
-The Client Component then takes the Promise it received as a prop and passes it to the `use` API. This allows the Client Component to read the value from the Promise that was initially created by the Server Component.
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+クライアントコンポーネントは、受け取ったプロミスを `use` API に渡します。これによりクライアントコンポーネントは、サーバコンポーネントが最初に作成したプロミスから値を読み取ることができます。
 
 ```js
 // message.js
@@ -1123,11 +1075,7 @@ export function Message({ messagePromise }) {
   return <p>Here is the message: {messageContent}</p>;
 }
 ```
-<<<<<<< HEAD
-<CodeStep step={2}>`Message`</CodeStep> は <CodeStep step={3}>[`Suspense`](/reference/react/Suspense)</CodeStep> でラップされているため、プロミスが解決されるまでフォールバックが表示されます。プロミスが解決されると、その値が <CodeStep step={5}>`use`</CodeStep> API によって読み取られ、<CodeStep step={2}>`Message`</CodeStep> コンポーネントがサスペンスフォールバックを置き換えます。
-=======
-Because `Message` is wrapped in a [Suspense](/reference/react/Suspense) boundary, the fallback will be displayed until the Promise is resolved. When the Promise is resolved, the value will be read by the `use` API and the `Message` component will replace the Suspense fallback.
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+`Message` は[サスペンス](/reference/react/Suspense)バウンダリでラップされているため、プロミスが解決されるまでフォールバックが表示されます。プロミスが解決されると、その値が `use` API によって読み取られ、`Message` コンポーネントがサスペンスフォールバックを置き換えます。
 
 <Sandpack>
 
@@ -1194,27 +1142,13 @@ root.render(
 
 </Sandpack>
 
-<<<<<<< HEAD
-<Note>
-
-サーバコンポーネントからクライアントコンポーネントにプロミスを渡す場合、その解決値は、サーバとクライアント間でやりとり可能になるよう、シリアライズ可能でなければなりません。関数のようなデータ型はシリアライズ可能ではないため、プロミスの解決値として利用できません。
-
-</Note>
-
-
-=======
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 <DeepDive>
 
 #### プロミスをサーバコンポーネントで解決するか、クライアントコンポーネントで解決するか？ {/*resolve-promise-in-server-or-client-component*/}
 
-<<<<<<< HEAD
-プロミスはサーバコンポーネントからクライアントコンポーネントに渡し、`use` API を使ってクライアントコンポーネントで解決することができます。また、`await` を使ってサーバコンポーネント側でプロミスを解決し、必要なデータを props としてクライアントコンポーネントに渡すことも可能でしょう。
-=======
-If you have a Promise, at some point you need to unwrap it to read its value. You unwrap it with `await` in a Server Component, and with `use` in a Client Component.
+プロミスがある場合、その値を読み取るには、いずれかの時点でプロミスから値を取り出す必要があります。サーバコンポーネントでは `await`、クライアントコンポーネントでは `use` を使って値を取り出します。
 
-Usually, the simplest option is to `await` the Promise where you create it. The Server Component suspends until the data is ready, and everything below it waits too:
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+通常、最も単純なのはプロミスを作成した場所で `await` する方法です。データの準備ができるまでサーバコンポーネントがサスペンドし、その配下にあるものもすべて待機します。
 
 ```js
 // Server Component
@@ -1224,29 +1158,9 @@ export default async function App() {
 }
 ```
 
-<<<<<<< HEAD
-しかし[サーバコンポーネント](/reference/rsc/server-components)で `await` を使用すると、`await` 文が終了するまでそのレンダーがブロックされます。サーバコンポーネントからクライアントコンポーネントにプロミスを渡すことで、プロミスがサーバコンポーネントのレンダーをブロックすることを防ぐことができます。
+ただし、すぐに値を取り出す必要はありません。プロミスを props の一部として下に渡し、ツリーのより深い位置で値を取り出せます。プロミスを読み取るコンポーネントはやはりサスペンドしますが、データを待つのはツリーのその部分だけです。そのコンポーネントを [`<Suspense>`](/reference/react/Suspense) バウンダリでラップすると、ページの残りの部分をすぐにレンダーしながらフォールバックを表示できます。
 
-</DeepDive>
-
-### 拒否されたプロミスの取り扱い {/*dealing-with-rejected-promises*/}
-
-場合によっては、`use` に渡されたプロミスが拒否されることがあります。プロミスが拒否された場合にそれを処理する方法は以下の 2 つです。
-
-1. [エラーバウンダリを使ってユーザにエラーを表示する](#displaying-an-error-to-users-with-error-boundary)
-2. [`Promise.catch` で代替値を提供する](#providing-an-alternative-value-with-promise-catch)
-
-<Pitfall>
-`use` は try-catch ブロック内で呼び出すことはできません。try-catch ブロックを使う代わりに、[コンポーネントをエラーバウンダリでラップする](#displaying-an-error-to-users-with-error-boundary)か、または[プロミスの `.catch` メソッドで代替値を提供](#providing-an-alternative-value-with-promise-catch)してください。
-</Pitfall>
-
-#### エラーバウンダリを使ってユーザにエラーを表示する {/*displaying-an-error-to-users-with-error-boundary*/}
-
-プロミスが拒否されたときにユーザにエラーを表示したい場合は、[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) を使用できます。エラーバウンダリを使用するには、`use` API を呼び出しているコンポーネントをエラーバウンダリでラップします。`use` に渡されたプロミスが拒否されると、エラーバウンダリに書かれたフォールバックが表示されます。
-=======
-However, you don't have to unwrap it right away. You can pass the Promise down as a prop, and unwrap it deeper in the tree. The component that reads the Promise still suspends, but only that part of the tree waits for the data. Wrap that component in a [`<Suspense>`](/reference/react/Suspense) boundary to show a fallback while the rest of the page renders immediately.
-
-For example, a deeper Server Component can `await` the Promise it receives:
+例えば、より深い位置にあるサーバコンポーネントで、受け取ったプロミスを `await` できます。
 
 ```js
 import { Suspense } from 'react';
@@ -1268,7 +1182,7 @@ async function Message({ messagePromise }) {
 }
 ```
 
-Or, in a separate file, a Client Component can unwrap the same Promise with `use`:
+または、別ファイル内のクライアントコンポーネントで、同じプロミスから `use` によって値を取り出せます。
 
 ```js
 // Client Component
@@ -1282,20 +1196,19 @@ export function Message({ messagePromise }) {
 }
 ```
 
-Passing the Promise down works the same way in both cases. Both suspend where the Promise is read, and both unblock the UI above. The only difference is that Client Components can't `await` during render, so they unwrap the Promise with `use` instead. A common case is interactive content like popovers and tooltips, where the data is only needed after a hover or click.
+どちらの場合も、プロミスを下に渡す仕組みは同じです。いずれもプロミスを読み取る場所でサスペンドし、それより上の UI をブロックしません。唯一の違いは、クライアントコンポーネントはレンダー中に `await` できないため、代わりに `use` でプロミスから値を取り出すことです。一般的な例として、ホバーやクリックの後でのみデータが必要になるポップオーバーやツールチップなどのインタラクティブなコンテンツがあります。
 
-See [Revealing content together at once](/reference/react/Suspense#revealing-content-together-at-once) for guidance on where to place Suspense boundaries.
+サスペンスバウンダリを配置する場所については、[コンテンツを一度にまとめて表示する](/reference/react/Suspense#revealing-content-together-at-once)を参照してください。
 
 </DeepDive>
 
 ---
 
-### Displaying an error with an Error Boundary {/*displaying-an-error-with-an-error-boundary*/}
+### エラーバウンダリでエラーを表示する {/*displaying-an-error-with-an-error-boundary*/}
 
-If the Promise passed to `use` is rejected, the error propagates to the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). Wrap the component that calls `use` in an Error Boundary to display a fallback when the Promise is rejected.
+`use` に渡したプロミスが拒否されると、エラーは最も近い[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary)に伝播します。プロミスが拒否されたときにフォールバックを表示するには、`use` を呼び出すコンポーネントをエラーバウンダリでラップします。
 
-In the example below, `fetchData` rejects on the first attempt and succeeds on retry. The Error Boundary catches the rejection and shows a fallback with a "Try again" button.
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+以下の例では、`fetchData` は最初の試行では拒否され、再試行すると成功します。エラーバウンダリが拒否をキャッチし、"Try again" ボタンを含むフォールバックを表示します。
 
 <Sandpack>
 
@@ -1411,21 +1324,15 @@ async function getData(url) {
 ```
 </Sandpack>
 
-<<<<<<< HEAD
-#### `Promise.catch` で代替値を提供する {/*providing-an-alternative-value-with-promise-catch*/}
-
-`use` に渡されたプロミスが拒否されたときに代替値を提供したい場合、プロミスの <CodeStep step={1}>[`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)</CodeStep> メソッドを使用できます。
-=======
 ---
 
-## Usage (Browser) {/*usage-browser*/}
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+## 使用法（ブラウザ） {/*usage-browser*/}
 
-### <CanaryBadge /> Rendering a component only in the browser {/*rendering-a-component-only-in-the-browser*/}
+### <CanaryBadge /> コンポーネントをブラウザでのみレンダー {/*rendering-a-component-only-in-the-browser*/}
 
-Pass the value returned by [`browser`](/reference/react-dom/browser) to `use` inside a component that should only render in the browser.
+ブラウザでのみレンダーされるべきコンポーネント内で、[`browser`](/reference/react-dom/browser) が返した値を `use` に渡します。
 
-Click **Reload** to see the loading fallback in the initial HTML. After hydration, React displays the draft loaded from `localStorage`.
+**Reload** をクリックすると、初期 HTML 内のローディングフォールバックを確認できます。ハイドレーション後、React は `localStorage` から読み込んだ下書きを表示します。
 
 <Sandpack>
 
@@ -1470,9 +1377,6 @@ export default function App() {
 }
 ```
 
-<<<<<<< HEAD
-プロミスの <CodeStep step={1}>`catch`</CodeStep> メソッドを使用するには、プロミスオブジェクトの <CodeStep step={1}>`catch`</CodeStep> を呼び出します。<CodeStep step={1}>`catch`</CodeStep> はエラーメッセージを引数とする関数を唯一の関数として受け取ります。<CodeStep step={1}>`catch`</CodeStep> に渡された関数によって<CodeStep step={2}>返された任意の値</CodeStep>が、プロミスの解決値として使用されます。
-=======
 ```js src/Document.js hidden
 import App from './App.js';
 
@@ -1572,36 +1476,15 @@ iframe {
 
 </Sandpack>
 
-During server rendering, `use(browser())` suspends the component and React includes the closest Suspense boundary's fallback in the HTML. In the browser, `use(browser())` returns `undefined` and the saved draft renders normally.
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+サーバレンダリング中は、`use(browser())` がコンポーネントをサスペンドさせ、React は最も近いサスペンスバウンダリのフォールバックを HTML に含めます。ブラウザでは `use(browser())` が `undefined` を返し、保存済みの下書きが通常どおりレンダーされます。
 
 ---
 
 ## トラブルシューティング {/*troubleshooting*/}
 
-### I'm getting an error: "Suspense Exception: This is not a real error!" {/*suspense-exception-error*/}
+### "Suspense Exception: This is not a real error!" というエラーが表示される {/*suspense-exception-error*/}
 
-<<<<<<< HEAD
-あなたは React コンポーネントまたはフック関数の外部で `use` を呼び出しているか、または try-catch ブロック内で `use` を呼び出しています。try-catch ブロック内で `use` を呼び出している場合は、コンポーネントをエラーバウンダリでラップするか、プロミスの `catch` を呼び出してエラーをキャッチし、別の値でプロミスを解決します。[こちらの例を参照してください](#dealing-with-rejected-promises)。
-
-React コンポーネントまたはフック関数の外部で `use` を呼び出している場合は、`use` の呼び出しを React コンポーネントまたはフック関数に移動します。
-
-```jsx
-function MessageComponent({messagePromise}) {
-  function download() {
-    // ❌ the function calling `use` is not a Component or Hook
-    const message = use(messagePromise);
-    // ...
-```
-
-上記の場合、コンポーネントのクロージャの外で `use` を呼び出すようにすることで、コンポーネントまたはフックから `use` を呼び出すという条件を満たすようになります。
-
-```jsx
-function MessageComponent({messagePromise}) {
-  // ✅ `use` is being called from a component.
-  const message = use(messagePromise);
-=======
-You are calling `use` inside a try-catch block. `use` throws internally to integrate with Suspense, so it cannot be wrapped in try-catch. Instead, wrap the component that calls `use` in an [Error Boundary](#displaying-an-error-with-an-error-boundary) to handle errors.
+`use` を try-catch ブロック内で呼び出しています。`use` はサスペンスと連携するために内部で例外をスローするので、try-catch でラップすることはできません。代わりに、`use` を呼び出すコンポーネントを[エラーバウンダリ](#displaying-an-error-with-an-error-boundary)でラップしてエラーを処理してください。
 
 ```jsx
 function Albums({ albumsPromise }) {
@@ -1611,11 +1494,10 @@ function Albums({ albumsPromise }) {
   } catch (e) {
     return <p>Error</p>;
   }
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
   // ...
 ```
 
-Instead, wrap the component in an Error Boundary:
+代わりに、コンポーネントをエラーバウンダリでラップします。
 
 ```jsx
 function Albums({ albumsPromise }) {
@@ -1633,11 +1515,11 @@ function Albums({ albumsPromise }) {
 
 ---
 
-### I'm getting a warning: "A component was suspended by an uncached promise" {/*uncached-promise-error*/}
+### "A component was suspended by an uncached promise" という警告が表示される {/*uncached-promise-error*/}
 
-The Promise passed to `use` is not cached, so React cannot reuse it across re-renders.
+`use` に渡したプロミスがキャッシュされていないため、React は再レンダーをまたいでそのプロミスを再利用できません。
 
-This commonly happens when calling `fetch` or an `async` function directly in render:
+これは、レンダー内で `fetch` や `async` 関数を直接呼び出した場合によく発生します。
 
 ```js
 function Albums() {
@@ -1647,11 +1529,11 @@ function Albums() {
 }
 ```
 
-To fix this, cache the Promise so the same instance is reused:
+修正するには、同じインスタンスが再利用されるようにプロミスをキャッシュします。
 
 ```js
 // ✅ fetchData returns the same Promise for the same URL
 const albums = use(fetchData('/albums'));
 ```
 
-See [caching Promises for Client Components](#caching-promises-for-client-components) for more details.
+詳しくは、[クライアントコンポーネント用にプロミスをキャッシュする](#caching-promises-for-client-components)を参照してください。

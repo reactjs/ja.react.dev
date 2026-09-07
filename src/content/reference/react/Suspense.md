@@ -23,64 +23,47 @@ title: <Suspense>
 
 ### `<Suspense>` {/*suspense*/}
 
-<<<<<<< HEAD
 #### props {/*props*/}
 * `children`: レンダーしようとしている実際の UI です。`children` がレンダー中にサスペンド（suspend, 一時中断）すると、サスペンスバウンダリは `fallback` のレンダーに切り替わります。
 * `fallback`: 実際の UI がまだ読み込みを完了していない場合に、その代わりにレンダーする代替 UI です。有効な React ノードであれば何でも受け付けますが、現実的には、フォールバックとは軽量なプレースホルダビュー、つまりローディングスピナやスケルトンのようなものです。`children` がサスペンドすると、サスペンスは自動的に `fallback` に切り替わり、データが準備できたら `children` に戻ります。`fallback` 自体がレンダー中にサスペンドした場合、親のサスペンスバウンダリのうち最も近いものがアクティブになります。
-=======
-#### Props {/*props*/}
-* `children`: The actual UI you intend to render. If `children` suspends while rendering, the Suspense boundary will switch to rendering `fallback`.
-* `fallback`: An alternate UI to render in place of the actual UI if it has not finished loading. Any valid React node is accepted, though in practice, a fallback is a lightweight placeholder view, such as a loading spinner or skeleton. Suspense will automatically switch to `fallback` when `children` suspends, and back to `children` when the data is ready. If `fallback` suspends while rendering, it will activate the closest parent Suspense boundary.
-* <ExperimentalBadge /> **optional** `defer`: A boolean. When `true`, React may show the `fallback` first and render or stream `children` later, even when nothing in them suspends. Use it for content that is expensive to render. Defaults to `false`.
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+* <ExperimentalBadge /> **省略可能** `defer`: ブーリアン値。`true` の場合、React は、内部で何もサスペンドしない場合でも最初に `fallback` を表示し、後から `children` をレンダーまたはストリーミングすることがあります。レンダーな高価であるコンテンツに使用します。デフォルトは `false` です。
 
 #### 注意点 {/*caveats*/}
 
-<<<<<<< HEAD
+- サスペンスは、エフェクトやイベントハンドラ内でデータがフェッチされたこと自体を検出するのではありません。[以下に挙げる場合](#what-activates-a-suspense-boundary)にのみアクティブになります。
 - React は、初回マウントが成功するより前にサスペンドしたレンダーに関しては、一切の state を保持しません。コンポーネントが読み込まれたときに、React はサスペンドしていたツリーのレンダーを最初からやり直します。
 - すでにツリーにコンテンツを表示していたサスペンスが再度サスペンドした場合、`fallback` が再び表示されます。しかしその更新が [`startTransition`](/reference/react/startTransition) または [`useDeferredValue`](/reference/react/useDeferredValue) によって引き起こされた場合を除きます。
+- React がサスペンドしたコンテンツを表示するのは、前回の表示から数えて最大 300 ms に 1 回です。この時間内に準備ができたバウンダリは、1 つずつではなく[まとめて表示されます](/blog/2025/10/01/react-19-2#batching-suspense-boundaries-for-ssr)。
 - 既に表示されているコンテンツが再度サスペンドしたために React がそれを隠す必要が生じた場合、React はコンテンツツリーの[レイアウトエフェクト](/reference/react/useLayoutEffect)をクリーンアップします。コンテンツが再度表示できるようになったら、React はレイアウトエフェクトを再度実行します。これにより、DOM レイアウトを測定するエフェクトがコンテンツが隠れている間に測定を試みないようにします。
 - React には、*ストリーミングサーバレンダリング*や*選択的ハイドレーション*などの、サスペンスと統合された自動的な最適化が含まれています。詳しくは、[アーキテクチャの概要](https://github.com/reactwg/react-18/discussions/37)や[テクニカルトーク](https://www.youtube.com/watch?v=pj5N-Khihgc)を参照してください。
 
 ---
 
-## 使用法 {/*usage*/}
-=======
-- Suspense does not detect when data is fetched inside an Effect or event handler. It only activates in the [cases listed below.](#what-activates-a-suspense-boundary)
-- React does not preserve any state for renders that got suspended before they were able to mount for the first time. When the component has loaded, React will retry rendering the suspended tree from scratch.
-- If Suspense was displaying content for the tree, but then it suspended again, the `fallback` will be shown again unless the update causing it was caused by [`startTransition`](/reference/react/startTransition) or [`useDeferredValue`](/reference/react/useDeferredValue).
-- React reveals suspended content at most once every 300ms, measured from the last reveal. Boundaries that become ready within that window are [revealed together](/blog/2025/10/01/react-19-2#batching-suspense-boundaries-for-ssr) rather than one at a time.
-- If React needs to hide the already visible content because it suspended again, it will clean up [layout Effects](/reference/react/useLayoutEffect) in the content tree. When the content is ready to be shown again, React will fire the layout Effects again. This ensures that Effects measuring the DOM layout don't try to do this while the content is hidden.
-- React includes under-the-hood optimizations like *Streaming Server Rendering* and *Selective Hydration* that are integrated with Suspense. Read [an architectural overview](https://github.com/reactwg/react-18/discussions/37) and watch [a technical talk](https://www.youtube.com/watch?v=pj5N-Khihgc) to learn more.
+### サスペンスバウンダリがアクティブになる条件 {/*what-activates-a-suspense-boundary*/}
 
----
+サスペンスバウンダリは、コンテンツの準備ができるまでその表示を待機します。以下のいずれかに該当する間、バウンダリはコンテンツを表示しません。
 
-### What activates a Suspense boundary {/*what-activates-a-suspense-boundary*/}
-
-A Suspense boundary waits for its content to be ready before revealing it. Any of the following keeps a boundary from revealing its content:
-
-- Lazy-loading component code with [`lazy`](/reference/react/lazy).
-- Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components) or loaded through a [Suspense-enabled framework](#suspense-enabled-frameworks).
-- Loading a stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop.](/reference/react-dom/components/link#special-rendering-behavior) React blocks the boundary until the stylesheet loads, up to a timeout. [See an example below.](#waiting-for-a-stylesheet-to-load)
-- Waiting for a large boundary's HTML to arrive during streaming server rendering. Sending HTML takes time, so a boundary with enough content activates even when nothing in it suspends. React reveals the content as the HTML arrives.
-- <CanaryBadge /> Loading fonts. Suspense doesn't wait for fonts by default, but a [`<ViewTransition>`](/reference/react/ViewTransition) update waits for new fonts to load, up to a timeout, so text doesn't flash with a fallback font. [See an example below.](#waiting-for-a-font-to-load)
-- <CanaryBadge /> Loading images. Suspense doesn't wait for images by default, but during a [`<ViewTransition>`](/reference/react/ViewTransition) update, React blocks the boundary until the image loads, up to a timeout. Adding an `onLoad` handler opts a specific image out. [See an example below.](#waiting-for-an-image-to-load)
-- <ExperimentalBadge /> Performing CPU-bound render work inside a [`<Suspense defer>`](#props) boundary.
+- [`lazy`](/reference/react/lazy) によってコンポーネントコードを遅延ロードしている。
+- [`use`](/reference/react/use) でプロミスを読み取っている。[サーバコンポーネント](/reference/rsc/server-components)からストリーミングされたデータや、[サスペンス対応フレームワーク](#suspense-enabled-frameworks)を介して読み込まれたデータも含む。
+- [`<link rel="stylesheet">` と `precedence` プロパティを使ってレンダーされたスタイルシート](/reference/react-dom/components/link#special-rendering-behavior)を読み込んでいる。React は、タイムアウト時間を上限として、スタイルシートが読み込まれるのをバウンダリで待機します。[以下の例を参照](#waiting-for-a-stylesheet-to-load)。
+- 大きなバウンダリ内で、ストリーミングサーバレンダリング経由で HTML が到着するのを待機している。HTML の送信には時間がかかるため、一定以上の量のコンテンツを持つバウンダリは、その内部で何もサスペンドしていなくてもアクティブになります。React は HTML の到着に合わせてコンテンツを表示します。
+- <CanaryBadge /> フォントを読み込んでいる。デフォルトではサスペンスはフォントを待機しませんが、[`<ViewTransition>`](/reference/react/ViewTransition) による更新では、テキストがフォールバックフォントで一瞬表示されないよう、タイムアウト時間を上限として新しいフォントの読み込みを待機します。[以下の例を参照](#waiting-for-a-font-to-load)。
+- <CanaryBadge /> 画像を読み込んでいる。デフォルトではサスペンスは画像を待ちませんが、[`<ViewTransition>`](/reference/react/ViewTransition) による更新中は、タイムアウト時間を上限として React がバウンダリで画像の読み込みを待機します。`onLoad` ハンドラを追加すると、個別の画像をこの動作の対象外にできます。[以下の例を参照](#waiting-for-an-image-to-load)。
+- <ExperimentalBadge /> [`<Suspense defer>`](#props) バウンダリ内で CPU 負荷の高いレンダー処理を実行している。
 
 <Note>
 
-#### Suspense-enabled frameworks {/*suspense-enabled-frameworks*/}
+#### サスペンス対応フレームワーク {/*suspense-enabled-frameworks*/}
 
-A *Suspense-enabled framework* gives you a way to read data in your component in a way that activates the closest Suspense boundary. The exact way you load your data depends on your framework, and you'll find the details in its documentation. Under the hood, a Suspense-enabled framework maintains a cache of Promises and calls [`use`](/reference/react/use) to suspend on a Promise.
+*サスペンス対応フレームワーク*を使うと、最も近いサスペンスバウンダリをアクティブにする形で、コンポーネントからデータを読み取れます。実際にデータを読み込む方法はフレームワークによって異なるため、詳細は各フレームワークのドキュメントを参照してください。内部では、サスペンス対応フレームワークがプロミスのキャッシュを管理し、[`use`](/reference/react/use) を呼び出してプロミスに対してサスペンドします。
 
-Without a framework, you can read a Promise with `use` directly, as long as the Promise is [cached so the same instance is reused across renders.](/reference/react/use#caching-promises-for-client-components)
+フレームワークを使用しない場合でも、[同じインスタンスが複数回のレンダーで再利用されるようにプロミスがキャッシュされていれば](/reference/react/use#caching-promises-for-client-components)、`use` でプロミスを直接読み取れます。
 
 </Note>
 
 ---
 
-## Usage {/*usage*/}
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+## 使用法 {/*usage*/}
 
 ### コンテンツの読み込み中にフォールバックを表示する {/*displaying-a-fallback-while-content-is-loading*/}
 
@@ -247,21 +230,8 @@ async function getAlbums() {
 
 </Sandpack>
 
-By contrast, code that fetches data outside of `use`, such as inside an Effect, does not activate the boundary:
+対照的に、エフェクト内など、`use` の外でデータをフェッチするコードはバウンダリを発動しません。
 
-<<<<<<< HEAD
-**サスペンスコンポーネントをアクティブ化できるのはサスペンス対応のデータソースだけです**。これには以下が含まれます：
-
-- [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) や [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense) のようなサスペンス対応のフレームワークでのデータフェッチ
-- [`lazy`](/reference/react/lazy) を用いたコンポーネントコードの遅延ロード
-- [`use`](/reference/react/use) を用いたキャッシュ済みプロミス (Promise) からの値の読み取り
-
-サスペンスはエフェクトやイベントハンドラ内でデータフェッチが行われた場合にはそれを**検出しません**。
-
-上記の `Albums` コンポーネントで実際にデータをロードする方法は、使用するフレームワークによって異なります。サスペンス対応のフレームワークを使用している場合、詳細はデータフェッチに関するドキュメンテーション内に記載されているはずです。
-
-使い方の規約のある (opinionated) フレームワークを使用せずにサスペンスを使ったデータフェッチを行うことは、まだサポートされていません。サスペンス対応のデータソースを実装するための要件はまだ不安定であり、ドキュメント化されていません。データソースをサスペンスと統合するための公式な API は、React の将来のバージョンでリリースされる予定です。
-=======
 <Sandpack>
 
 ```js src/App.js hidden
@@ -303,7 +273,6 @@ export default function ArtistPage({ artist }) {
     </>
   );
 }
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 function Loading() {
   return <h2>🌀 Loading...</h2>;
@@ -429,7 +398,7 @@ async function getAlbums() {
 
 </Sandpack>
 
-During streaming server rendering, a boundary also activates while its HTML is still streaming in. With any streaming server rendering API, React sends [the shell](/reference/react-dom/server/renderToPipeableStream#specifying-what-goes-into-the-shell) with the `fallback` first, then streams in each boundary's HTML and swaps out its `fallback` as that content arrives. Press "Render the page" to watch the page stream in:
+ストリーミングサーバレンダリング中は、HTML のストリーミング中もバウンダリがアクティブになります。どのストリーミングサーバレンダリング API でも、React は最初に `fallback` を含んだ[シェル](/reference/react-dom/server/renderToPipeableStream#specifying-what-goes-into-the-shell)を送信し、続いて各バウンダリの HTML をストリーミングして、コンテンツが到着するたびに `fallback` と入れ替えます。"Render the page" を押して、ページがストリーミングされる様子を確認してください。
 
 <Sandpack>
 
@@ -2293,24 +2262,15 @@ main {
 
 ### ナビゲーション時にサスペンスバウンダリをリセットする {/*resetting-suspense-boundaries-on-navigation*/}
 
-<<<<<<< HEAD
-トランジション中、React は既に表示されているコンテンツを隠さないようにします。しかし、異なるパラメータを持つルートに移動する場合、React にそれが*異なる*コンテンツであると伝えたいことがあります。これを表現するために、`key` が使えます。
-=======
-During a Transition, React avoids hiding already revealed content. However, when you navigate to *different* content, such as another user's profile, you'll want the boundary to show the fallback instead of the previous content. You can express this with a `key`:
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+トランジション (Transition) 中、React はすでに表示されているコンテンツを隠さないようにします。しかし、別ユーザのプロフィールなど、*別種*のコンテンツに切り替える場合は、既存のコンテンツではなくフォールバックをバウンダリに表示したいはずです。これは `key` で表現できます。
 
 ```js
 <ProfilePage key={queryParams.id} />
 ```
 
-<<<<<<< HEAD
-単一のユーザのプロフィールページ内を閲覧していて、何かがサスペンドすると想像してみてください。その更新がトランジションでラップされている場合、既に表示されているコンテンツのフォールバックをトリガしません。これは期待される動作です。
+異なる `key` を指定すると、React はそれぞれのプロフィールを異なるコンテンツとして扱い、ナビゲーション中にサスペンスバウンダリをリセットします。`key` はバウンダリ自体にも、その上にあるコンポーネントにも指定できます。サスペンスと統合されたルータは、この処理を自動的に行う必要があります。
 
-しかし、2 人の異なるユーザのプロフィール間を移動していると想像してみてください。その場合は、フォールバックを表示することが理にかなっています。例えば、あるユーザのタイムラインは別のユーザのタイムラインとは*異なるコンテンツ*です。`key` を指定することで、React は異なるユーザのプロフィールを異なるコンポーネントとして扱うので、ナビゲーション中にサスペンスバウンダリをリセットします。サスペンスを統合したルータは、これを自動的に行うべきです。
-=======
-With a different `key`, React treats the profiles as different content and resets the Suspense boundary during navigation. The `key` can go on the boundary itself or on a component above it. Suspense-integrated routers should do this automatically.
-
-In the example below, opening the profile page loads the first profile. Pressing "Bob" navigates to a different profile, and the `key` resets the boundary, so the fallback shows instead of the previous user's bio. Try removing the `key`: the previous bio stays visible while the next one loads:
+以下の例では、プロフィールページを開くと最初のプロフィールが読み込まれます。"Bob" を押すと別のプロフィールに移動し、`key` によってバウンダリがリセットされるため、既存ユーザの自己紹介ではなくフォールバックが表示されます。`key` を削除してみてください。次のプロフィールを読み込んでいる間も、既存の自己紹介が表示されたままになってしまいます。
 
 <Sandpack>
 
@@ -2394,7 +2354,6 @@ button {
 ```
 
 </Sandpack>
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 ---
 
@@ -2423,14 +2382,11 @@ function Chat() {
 
 ---
 
-<<<<<<< HEAD
-## トラブルシューティング {/*troubleshooting*/}
-=======
-### <CanaryBadge /> Providing a fallback for browser-only content {/*providing-a-fallback-for-browser-only-content*/}
+### <CanaryBadge /> ブラウザ専用コンテンツにフォールバックを提供する {/*providing-a-fallback-for-browser-only-content*/}
 
-A Suspense boundary can provide a fallback for a browser-only component. Wrap the component in `<Suspense>` and call [`use(browser())`](/reference/react/use#use-browser) inside it.
+サスペンスバウンダリを使って、ブラウザ専用コンポーネントにフォールバックを提供できます。コンポーネントを `<Suspense>` でラップし、その内部で [`use(browser())`](/reference/react/use#use-browser) を呼び出します。
 
-Click **Reload** to see the loading fallback in the initial HTML. After hydration, React displays the draft loaded from `localStorage`.
+**Reload** をクリックすると、初期 HTML 内のローディングフォールバックを確認できます。ハイドレーション後、React は `localStorage` から読み込んだ下書きを表示します。
 
 <Sandpack>
 
@@ -2574,17 +2530,17 @@ iframe {
 
 </Sandpack>
 
-During server rendering, React includes the Suspense boundary's fallback in the HTML. In the browser, React replaces the fallback with the saved draft.
+サーバレンダリング中、React はサスペンスバウンダリのフォールバックを HTML に含めます。ブラウザでは、React がフォールバックを保存済みの下書きに置き換えます。
 
 ---
 
-### Waiting for a stylesheet to load {/*waiting-for-a-stylesheet-to-load*/}
+### スタイルシートの読み込みを待機する {/*waiting-for-a-stylesheet-to-load*/}
 
-A stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop](/reference/react-dom/components/link#special-rendering-behavior) blocks the Suspense boundary until the stylesheet loads, up to a timeout, so the content doesn't appear unstyled.
+[`<link rel="stylesheet">` と `precedence` プロパティを使ってレンダーされたスタイルシート](/reference/react-dom/components/link#special-rendering-behavior)がある場合、コンテンツがスタイル未適用で表示されないよう、React はタイムアウト時間を上限として、そのスタイルシートが読み込まれるまでサスペンスバウンダリ内のコンテンツの表示を待機します。
 
-In the example below, the `Card` component renders a stylesheet with `precedence`. Press "Show card": React shows the fallback until the stylesheet has loaded, and then reveals the card with its styles applied.
+以下の例では、`Card` コンポーネントが `precedence` を指定したスタイルシートをレンダーします。"Show card" を押してください。React はスタイルシートが読み込まれるまでフォールバックを表示し、その後、スタイルが適用されたカードを表示します。
 
-For comparison, the second button performs the same update without React, in a separate document. Nothing waits for the stylesheet, so the card's text appears in a fallback font first and then switches:
+比較のため、2 番目のボタンは別のドキュメント内で React を使わずに同じ更新を行います。スタイルシートの読み込みを待機するものがないため、カードのテキストは最初にフォールバックフォントで表示され、その後切り替わります。
 
 <Sandpack>
 
@@ -2705,9 +2661,9 @@ hr {
 
 ---
 
-### <CanaryBadge /> Animating from Suspense content {/*animating-from-suspense-content*/}
+### <CanaryBadge /> サスペンスのコンテンツからアニメーションする {/*animating-from-suspense-content*/}
 
-Suspense composes with [`<ViewTransition>`](/reference/react/ViewTransition) to animate the swap from the fallback to the content. Wrap the boundary in a `<ViewTransition>`, and React treats the swap as an update, cross-fading between the fallback and the content by default:
+サスペンスと [`<ViewTransition>`](/reference/react/ViewTransition) を組み合わせて、フォールバックからコンテンツへの入れ替えをアニメーションできます。バウンダリを `<ViewTransition>` でラップすると、React は入れ替えを更新として扱い、デフォルトではフォールバックとコンテンツをクロスフェードさせます。
 
 <Sandpack>
 
@@ -2935,21 +2891,21 @@ button:hover {
 
 <Note>
 
-Where you place the `<ViewTransition>` relative to the boundary determines whether the fallback and content cross-fade as one update or animate as separate exit and enter animations. You can also [customize the animation](/reference/react/ViewTransition#customizing-animations) with View Transition classes.
+バウンダリに対して `<ViewTransition>` を配置する相対位置によって、フォールバックとコンテンツが 1 回の更新としてクロスフェードするか、それぞれ exit と enter のアニメーションとして動作するかが決まります。ビュー遷移クラスを使って[アニメーションをカスタマイズする](/reference/react/ViewTransition#customizing-animations)こともできます。
 
-[Learn more about animating from Suspense content.](/reference/react/ViewTransition#animating-from-suspense-content)
+[サスペンスのコンテンツからのアニメーションについて詳しく読む](/reference/react/ViewTransition#animating-from-suspense-content)。
 
 </Note>
 
 ---
 
-### <CanaryBadge /> Waiting for a font to load {/*waiting-for-a-font-to-load*/}
+### <CanaryBadge /> フォントの読み込みを待機する {/*waiting-for-a-font-to-load*/}
 
-When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits for new fonts the content introduces, up to a timeout, so the text doesn't flash with a fallback font. This only happens during a `<ViewTransition>` update.
+[`<ViewTransition>`](/reference/react/ViewTransition) がサスペンスバウンダリの内容表示をアニメーションする際、テキストがフォールバックフォントで一瞬表示されてしまわないよう、React はタイムアウト時間を上限として、コンテンツが導入する新しいフォントの読み込みを待機します。これは `<ViewTransition>` による更新中にのみ行われます。
 
-In the example below, the Suspense boundary is wrapped in a `<ViewTransition>`, and the `Quote` component suspends while its data loads. Rendering the quote starts its font download. React keeps the fallback visible until the font has loaded, so the quote appears already in its font.
+以下の例では、サスペンスバウンダリが `<ViewTransition>` でラップされており、`Quote` コンポーネントはデータの読み込み中にサスペンドします。引用文をレンダーすると、フォントのダウンロードが始まります。React はフォントが読み込まれるまでフォールバックを表示し続けるため、引用文は最初からそのフォントで表示されます。
 
-For comparison, the second button performs the same update without React. Nothing waits for the font, so the text appears in a fallback font first and then switches:
+比較のため、2 番目のボタンは React を使わずに同じ更新を行います。フォントの読み込みを待機するものがないため、テキストは最初にフォールバックフォントで表示され、その後切り替わります。
 
 <Sandpack>
 
@@ -3093,13 +3049,13 @@ hr {
 
 ---
 
-### <CanaryBadge /> Waiting for an image to load {/*waiting-for-an-image-to-load*/}
+### <CanaryBadge /> 画像の読み込みを待機する {/*waiting-for-an-image-to-load*/}
 
-When a [`<ViewTransition>`](/reference/react/ViewTransition) animates a Suspense boundary's reveal, React waits for visible images to load, up to a timeout, so the animation doesn't start with a half-loaded image. This only happens during a `<ViewTransition>` update. Adding an `onLoad` handler opts a specific image out, even inside a `<ViewTransition>`.
+[`<ViewTransition>`](/reference/react/ViewTransition) がサスペンスバウンダリの表示をアニメーションする際、読み込み途中の画像でアニメーションが始まってしまわないよう、React はタイムアウト時間を上限として、表示対象の画像が読み込まれるのを待機します。これは `<ViewTransition>` による更新中にのみ行われます。`onLoad` ハンドラを追加すると、`<ViewTransition>` 内であっても、個別の画像をこの動作の対象外にできます。
 
-In the example below, the Suspense boundary is wrapped in a `<ViewTransition>` and shows a profile skeleton until the portrait has loaded.
+以下の例では、サスペンスバウンダリが `<ViewTransition>` でラップされており、ポートレート画像が読み込まれるまでプロフィールのスケルトンを表示します。
 
-For comparison, the second button performs the same update without React. Nothing waits for the image, so the card appears immediately and the image pops in when it loads:
+比較のため、2 番目のボタンは React を使わずに同じ更新を行います。画像の読み込みを待機するものがないため、カードがすぐに表示され、中の画像は読み込まれた時点で突然現れます。
 
 <Sandpack>
 
@@ -3226,11 +3182,11 @@ hr {
 
 ---
 
-### <CanaryBadge /> Coordinating fonts, images, and stylesheets {/*coordinating-fonts-images-and-stylesheets*/}
+### <CanaryBadge /> フォント、画像、スタイルシートを連携させる {/*coordinating-fonts-images-and-stylesheets*/}
 
-A Suspense boundary can wait for data, stylesheets, fonts, and images at once. Waiting for fonts and images only happens during a [`<ViewTransition>`](/reference/react/ViewTransition) update. In the example below, the `ProfileCard` component suspends while its data loads, and renders a stylesheet with `precedence`, text in a new font, and a portrait. React keeps the skeleton visible while the data and the stylesheet load. The `<ViewTransition>` reveal then waits for the font and the image, so the card appears complete.
+サスペンスバウンダリは、データ、スタイルシート、フォント、画像をまとめて待機することができます。フォントと画像を待つのは、[`<ViewTransition>`](/reference/react/ViewTransition) による更新中だけです。以下の例では、`ProfileCard` コンポーネントがデータの読み込み中にサスペンドし、`precedence` を指定したスタイルシート、新しいフォントのテキスト、ポートレート画像をレンダーします。React はデータとスタイルシートの読み込み中、スケルトンを表示し続けます。その後、`<ViewTransition>` による表示がフォントと画像を待機するため、カードは完成した状態で現れます。
 
-For comparison, the version without React loads the same data and shows every resource arriving on its own schedule:
+比較のための React を使用しないバージョンでは、同じデータを読み込んでいますが、各リソースがそれぞれのタイミングで到着して表示されています。
 
 <Sandpack>
 
@@ -3443,8 +3399,7 @@ hr {
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
->>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
+## トラブルシューティング {/*troubleshooting*/}
 
 ### 更新中に UI がフォールバックに置き換わるのを防ぐ方法は？ {/*preventing-unwanted-fallbacks*/}
 
