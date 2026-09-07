@@ -4,13 +4,13 @@ title: cacheSignal
 
 <RSC>
 
-`cacheSignal` is currently only used with [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components).
+`cacheSignal` は現在、[React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) でのみ使用できます。
 
 </RSC>
 
 <Intro>
 
-`cacheSignal` allows you to know when the `cache()` lifetime is over.
+`cacheSignal` を使用すると、`cache()` のライフタイムが終了したタイミングを知ることができます。
 
 ```js
 const signal = cacheSignal();
@@ -22,11 +22,11 @@ const signal = cacheSignal();
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `cacheSignal` {/*cachesignal*/}
 
-Call `cacheSignal` to get an `AbortSignal`.
+`cacheSignal` を呼び出すことで `AbortSignal` を取得できます。
 
 ```js {3,7}
 import {cacheSignal} from 'react';
@@ -35,32 +35,32 @@ async function Component() {
 }
 ```
 
-When React has finished rendering, the `AbortSignal` will be aborted. This allows you to cancel any in-flight work that is no longer needed.
-Rendering is considered finished when:
-- React has successfully completed rendering
-- the render was aborted
-- the render has failed
+React がレンダーを完了すると、`AbortSignal` は中断されます。これにより、不要になった進行中の処理をキャンセルできます。
+レンダーは、次のいずれかの場合に完了したとみなされます。
+- React が正常にレンダーを完了した場合
+- レンダーが中断された場合
+- レンダーが失敗した場合
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-This function does not accept any parameters.
+この関数は引数を受け取りません。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-`cacheSignal` returns an `AbortSignal` if called during rendering. Otherwise `cacheSignal()` returns `null`.
+`cacheSignal` は、レンダー中に呼び出された場合、`AbortSignal` を返します。それ以外の場合、`cacheSignal()` は `null` を返します。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-- `cacheSignal` is currently for use in [React Server Components](/reference/rsc/server-components) only. In Client Components, it will always return `null`. In the future it will also be used for Client Component when a client cache refreshes or invalidates. You should not assume it'll always be null on the client.
-- If called outside of rendering, `cacheSignal` will return `null` to make it clear that the current scope isn't cached forever.
+- `cacheSignal` は現在、[React Server Components](/reference/rsc/server-components) でのみ使用できます。クライアントコンポーネントでは常に `null` を返します。将来的には、クライアントキャッシュの更新や無効化が行われる際にクライアントコンポーネントでも使用される予定です。クライアントでは常に `null` になるとは想定しないでください。
+- レンダーの外で呼び出された場合、`cacheSignal` は `null` を返します。これは、現在のスコープが永続的にキャッシュされるものではないことを明確にするためです。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Cancel in-flight requests {/*cancel-in-flight-requests*/}
+### 進行中のリクエストをキャンセルする {/*cancel-in-flight-requests*/}
 
-Call <CodeStep step={1}>`cacheSignal`</CodeStep> to abort in-flight requests.
+進行中のリクエストを中断するには、<CodeStep step={1}>`cacheSignal`</CodeStep> を呼び出します。
 
 ```js [[1, 4, "cacheSignal()"]]
 import {cache, cacheSignal} from 'react';
@@ -71,7 +71,7 @@ async function Component() {
 ```
 
 <Pitfall>
-You can't use `cacheSignal` to abort async work that was started outside of rendering e.g.
+レンダーの外で開始された非同期処理は `cacheSignal` を使用して中断できません。例えば、次のようなコードです。
 
 ```js
 import {cacheSignal} from 'react';
@@ -83,9 +83,9 @@ async function Component() {
 ```
 </Pitfall>
 
-### Ignore errors after React has finished rendering {/*ignore-errors-after-react-has-finished-rendering*/}
+### React がレンダーを完了した後のエラーを無視する {/*ignore-errors-after-react-has-finished-rendering*/}
 
-If a function throws, it may be due to cancellation (e.g. <CodeStep step={1}>the Database connection</CodeStep> has been closed). You can use the <CodeStep step={2}>`aborted` property</CodeStep> to check if the error was due to cancellation or a real error. You may want to <CodeStep step={3}>ignore errors</CodeStep> that were due to cancellation.
+関数が例外をスローした場合、その原因がキャンセルであることがあります（例えば、<CodeStep step={1}>データベース接続</CodeStep> が閉じられた場合など）。<CodeStep step={2}>`aborted` プロパティ</CodeStep> を使用すると、そのエラーがキャンセルによるものか、本当のエラーなのかを確認できます。キャンセルが原因のエラーを、<CodeStep step={3}>無視</CodeStep> すべき場合があります。
 
 ```js [[1, 2, "./database"], [2, 8, "cacheSignal()?.aborted"], [3, 12, "return null"]]
 import {cacheSignal} from "react";
