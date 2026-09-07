@@ -907,7 +907,7 @@ React Developer Tools を使うと、React コンポーネントの props や st
 
 次に、プレビューページでブラウザの開発者ツールを開き、*Components* タブを探します。
 
-![components tab](../images/tutorial/components-tab.png)
+![components タブ](../images/tutorial/components-tab.png)
 
 画面上の特定のコンポーネントを調べるには、Components タブの左上にあるボタンを使用します。
 
