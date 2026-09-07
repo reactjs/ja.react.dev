@@ -56,10 +56,11 @@ const { pipe } = renderToPipeableStream(<App />, {
   * **省略可能** `namespaceURI`: このストリームのルート[ネームスペース URI](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElementNS#important_namespace_uris) 文字列。デフォルトでは通常の HTML です。SVG の場合は `'http://www.w3.org/2000/svg'`、MathML の場合は `'http://www.w3.org/1998/Math/MathML'` を渡します。
   * **省略可能** `nonce`: [`script-src` Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src) を用いてスクリプトを許可するための [`nonce`](http://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#nonce) 文字列。
   * **省略可能** `onAllReady`: [シェル](#specifying-what-goes-into-the-shell)とすべての追加[コンテンツ](#streaming-more-content-as-it-loads)の両方を含むすべてのレンダーが完了したときに呼び出されるコールバック。[クローラや静的生成向け](#waiting-for-all-content-to-load-for-crawlers-and-static-generation)の場合に、`onShellReady` の代わりに利用できます。ここからストリーミングを開始する場合、プログレッシブなローディングがなくなり、ストリームには最終的な HTML が含まれるようになります。
+  * <CanaryBadge /> **省略可能** `onBrowserBailout`: [`browser()`](/reference/react-dom/browser) によるサーバレンダリングの中断が起き、ブラウザ側で置き換えるためのサスペンスフォールバックが残った時点で React が呼び出すコールバック。ブラウザのみでレンダーされるという内容の `Error` と、`componentStack` を含む `errorInfo` オブジェクトを受け取ります。`browser` に理由が渡されていた場合、その理由は `error.cause` から取得できます。デフォルトでは React は何も行いません。[ブラウザオンリーのレンダー発生をサーバ上で報告する方法を参照](/reference/react-dom/browser#reporting-browser-only-rendering-on-the-server)。
   * **省略可能** `onError`: サーバエラーが発生するたびに発火するコールバック。[復帰可能なエラー](#recovering-from-errors-outside-the-shell)の場合も[そうでないエラー](#recovering-from-errors-inside-the-shell)の場合もあります。デフォルトでは `console.error` のみを呼び出します。これを上書きして[クラッシュレポートをログに記録する](#logging-crashes-on-the-server)場合でも `console.error` を呼び出すようにしてください。また、シェルが出力される前に[ステータスコードを調整する](#setting-the-status-code)ためにも使用できます。
   * **省略可能** `onShellReady`: [初期シェル](#specifying-what-goes-into-the-shell)がレンダーされた直後に呼び出されるコールバック。ここで[ステータスコードのセット](#setting-the-status-code)を行い、`pipe` をコールしてストリーミングを開始できます。React はシェルを送信した後に、[追加コンテンツ](#streaming-more-content-as-it-loads)と、ローディングフォールバックを追加コンテンツで置換するためのインライン `<script>` タグをストリーミングします。
   * **省略可能** `onShellError`: 初期シェルのレンダー中にエラーが発生すると呼び出されるコールバック。引数としてエラーを受け取ります。ストリームからのバイト列送信はまだ起きておらず、`onShellReady` や `onAllReady` はコールされなくなるため、[フォールバック用の HTML シェルを出力](#recovering-from-errors-inside-the-shell)することができます。
-  * **省略可能** `progressiveChunkSize`: チャンクのバイト数。[デフォルトの推論方法についてはこちらを参照してください](https://github.com/facebook/react/blob/14c2be8dac2d5482fda8a0906a31d239df8551fc/packages/react-server/src/ReactFizzServer.js#L210-L225)。
+  * **省略可能** `progressiveChunkSize`: チャンクのバイト数。[デフォルトの推論方法についてはこちらを参照してください](https://github.com/react/react/blob/14c2be8dac2d5482fda8a0906a31d239df8551fc/packages/react-server/src/ReactFizzServer.js#L210-L225)。
 
 
 #### 返り値 {/*returns*/}
@@ -284,17 +285,7 @@ function ProfilePage() {
 
 <Note>
 
-**サスペンスコンポーネントをアクティブ化できるのはサスペンス対応のデータソースだけです**。これには以下が含まれます：
-
-- [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) や [Next.js](https://nextjs.org/docs/getting-started/react-essentials) のようなサスペンス対応のフレームワークでのデータフェッチ
-- [`lazy`](/reference/react/lazy) を用いたコンポーネントコードの遅延ロード
-- [`use`](/reference/react/use) を用いたプロミス (Promise) からの値の読み取り
-
-サスペンスはエフェクトやイベントハンドラ内でデータフェッチが行われた場合にはそれを**検出しません**。
-
-上記の `Posts` コンポーネントで実際にデータをロードする方法は、使用するフレームワークによって異なります。サスペンス対応のフレームワークを使用している場合、詳細はデータフェッチに関するドキュメンテーション内に記載されているはずです。
-
-使い方の規約のある (opinionated) フレームワークを使用せずにサスペンスを使ったデータフェッチを行うことは、まだサポートされていません。サスペンス対応のデータソースを実装するための要件はまだ不安定であり、ドキュメント化されていません。データソースをサスペンスと統合するための公式な API は、React の将来のバージョンでリリースされる予定です。
+[`use`](/reference/react/use) で読み取ったプロミスなど、[サスペンスバウンダリをアクティベートする](/reference/react/Suspense#what-activates-a-suspense-boundary)データソースから読み取られたデータだけが、レンダー中にサスペンドします。サスペンスはエフェクトやイベントハンドラ内でフェッチされたデータを検出しません。
 
 </Note>
 

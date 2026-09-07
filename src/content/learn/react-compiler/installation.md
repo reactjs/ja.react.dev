@@ -64,9 +64,32 @@ module.exports = {
 
 ### Vite {/*vite*/}
 
-Vite を使用している場合は、プラグインを vite-plugin-react に追加できます。
+Vite でバージョン 6.0.0 以降の `@vitejs/plugin-react` を使用している場合は、`reactCompilerPreset` を使用できます。
 
-```js {3,9}
+<TerminalBlock>
+npm install -D @rolldown/plugin-babel
+</TerminalBlock>
+
+```js {3-4,9-11}
+// vite.config.js
+import { defineConfig } from 'vite';
+import react, { reactCompilerPreset } from '@vitejs/plugin-react';
+import babel from '@rolldown/plugin-babel';
+
+export default defineConfig({
+  plugins: [
+    react(),
+    babel({
+      presets: [reactCompilerPreset()]
+    }),
+  ],
+});
+```
+
+<Note>
+`@vitejs/plugin-react@6.0.0` では、インラインの Babel オプションが削除されました。古いバージョンを使用している場合は、以下のように記述できます。
+
+```js
 // vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -81,26 +104,21 @@ export default defineConfig({
   ],
 });
 ```
+</Note>
 
-または、Vite 用の Babel プラグインを別に使用したい場合は以下のようにします。
+または、`@rolldown/plugin-babel` で Babel プラグインを直接使用できます。
 
-<TerminalBlock>
-npm install -D vite-plugin-babel
-</TerminalBlock>
-
-```js {2,11}
+```js {3,9}
 // vite.config.js
-import babel from 'vite-plugin-babel';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import babel from '@rolldown/plugin-babel';
 
 export default defineConfig({
   plugins: [
     react(),
     babel({
-      babelConfig: {
-        plugins: ['babel-plugin-react-compiler'],
-      },
+      plugins: ['babel-plugin-react-compiler'],
     }),
   ],
 });
@@ -172,7 +190,7 @@ ESLint プラグインをインストールします。
 npm install -D eslint-plugin-react-hooks@latest
 </TerminalBlock>
 
-`eslint-plugin-react-hooks` をまだ設定していない場合は、[readme のインストール手順](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/README.md#installation)に従ってください。コンパイラのルールは `recommended-latest` プリセットで利用できます。
+`eslint-plugin-react-hooks` をまだ設定していない場合は、[readme のインストール手順](https://github.com/react/react/blob/main/packages/eslint-plugin-react-hooks/README.md#installation)に従ってください。コンパイラのルールは `recommended-latest` プリセットで利用できます。
 
 ESLint ルールは以下を行います。
 - [React のルール](/reference/rules)の違反の特定

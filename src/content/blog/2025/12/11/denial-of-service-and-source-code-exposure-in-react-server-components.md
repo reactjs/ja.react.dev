@@ -98,7 +98,7 @@ _Updated January 26, 2026._
 
 これはセキュリティ上の問題を緩和するために必要ですが、`react` および `react-dom` を更新する必要はなく、そのため React Native でのバージョン不一致エラーが発生することはありません。
 
-詳細については[この issue](https://github.com/facebook/react-native/issues/54772#issuecomment-3617929832) を参照してください。
+詳細については[この issue](https://github.com/react/react-native/issues/54772#issuecomment-3617929832) を参照してください。
 
 ---
 
