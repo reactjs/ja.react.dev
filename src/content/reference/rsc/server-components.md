@@ -179,7 +179,44 @@ async function Author({id}) {
 
 サーバコンポーネントをサーバから再フェッチして、サーバではデータにアクセスして再レンダーする、という形で、サーバコンポーネントを動的に扱うことができます。この新しいアプリケーションアーキテクチャは、サーバセントリックなマルチページアプリにおける単純な「リクエスト/レスポンス」式のメンタルモデルと、クライアントセントリックなシングルページアプリケーションにおけるシームレスな操作性を組み合わせ、両方の利点を提供できるものです。
 
+<<<<<<< HEAD
 ### サーバコンポーネントにインタラクティビティを追加する {/*adding-interactivity-to-server-components*/}
+=======
+### Rendering a context provider in a Server Component {/*rendering-a-context-provider-in-a-server-component*/}
+
+Server Components cannot create context, but they can render a context provider imported from a Client Component module.
+
+Create and export the context from a file with the [`'use client'`](/reference/rsc/use-client) directive:
+
+```js
+// user-context.js
+'use client';
+import { createContext } from 'react';
+
+export const UserContext = createContext(null);
+```
+
+Then import and render the context directly from a Server Component:
+
+```js
+// server-component.js
+import { UserContext } from './user-context';
+
+export async function Layout({ children }) {
+  const currentUser = await getCurrentUser();
+
+  return (
+    <UserContext value={currentUser}>
+      {children}
+    </UserContext>
+  );
+}
+```
+
+Client Components rendered inside this provider can read its value with [`use`](/reference/react/use) or [`useContext`](/reference/react/useContext).
+
+### Adding interactivity to Server Components {/*adding-interactivity-to-server-components*/}
+>>>>>>> b011783fcc7a39da9eefd4274147a1444860a12b
 
 サーバコンポーネントはブラウザに送信されないため、`useState` のようなインタラクティブな API を使用できません。サーバコンポーネントにインタラクティビティを追加するには、`"use client"` ディレクティブを使用してクライアントコンポーネントと組み合わせます。
 

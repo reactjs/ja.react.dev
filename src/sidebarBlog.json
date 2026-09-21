@@ -12,8 +12,20 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+<<<<<<< HEAD
           "title": "React Foundation: Linux Foundation がホストする React の新たな拠点",
           "titleForHomepage": "The React Foundation: Linux Foundation がホストする React の新たな拠点",
+=======
+          "title": "React 19.3",
+          "titleForHomepage": "React 19.3",
+          "icon": "blog",
+          "date": "September 9, 2026",
+          "path": "/blog/2026/09/09/react-19-3"
+        },
+        {
+          "title": "The React Foundation: A New Home for React Hosted by the Linux Foundation",
+          "titleForHomepage": "The React Foundation: A New Home for React Hosted by the Linux Foundation",
+>>>>>>> b011783fcc7a39da9eefd4274147a1444860a12b
           "icon": "blog",
           "date": "February 24, 2026",
           "path": "/blog/2026/02/24/the-react-foundation"

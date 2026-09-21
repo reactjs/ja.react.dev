@@ -28,7 +28,11 @@ title: "<div> などの一般的なコンポーネント"
 
 * `children`: React ノード（要素、文字列、数値、[ポータル](/reference/react-dom/createPortal)、`null` や `undefined` やブーリアンのような空ノード、あるいは他の React ノードの配列）。コンポーネントの内容を指定します。JSX を使用する場合、通常は `<div><span /></div>` のようにタグをネストすることで props として暗黙的に `children` を指定します。
 
+<<<<<<< HEAD
 * `dangerouslySetInnerHTML`: `{ __html: '<p>some html</p>' }` という形式の、内部に生の HTML 文字列を含んだオブジェクト。DOM ノードの [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) プロパティを上書きし、渡された HTML を表示します。これは最大限に注意して使用する必要があります！ 内部の HTML が信頼できない場合（例えば、ユーザデータに基づいている場合）、[XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) 脆弱性を導入するリスクがあります。[`dangerouslySetInnerHTML` の使用について詳しく読む](#dangerously-setting-the-inner-html)
+=======
+* `dangerouslySetInnerHTML`: An object of the form `{ __html: '<p>some html</p>' }` with a raw HTML string or [`TrustedHTML`](https://developer.mozilla.org/en-US/docs/Web/API/TrustedHTML) value inside. Overrides the [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) property of the DOM node and displays the passed HTML inside. This should be used with extreme caution! If the HTML inside isn't trusted (for example, if it's based on user data), you risk introducing an [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerability. [Read more about using `dangerouslySetInnerHTML`.](#dangerously-setting-the-inner-html)
+>>>>>>> b011783fcc7a39da9eefd4274147a1444860a12b
 
 * `ref`: [`useRef`](/reference/react/useRef) または [`createRef`](/reference/react/createRef) から得られる ref オブジェクト、または [`ref` コールバック関数](#ref-callback)、または[レガシー ref](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) 用の文字列。指定された ref にこのノードの DOM 要素が渡されます。[ref を使った DOM の操作について詳しく読む](#manipulating-a-dom-node-with-a-ref)
 
@@ -36,7 +40,11 @@ title: "<div> などの一般的なコンポーネント"
 
 * `suppressHydrationWarning`: ブーリアン値。[サーバレンダリング](/reference/react-dom/server)を使用する場合、通常、サーバとクライアントが異なる内容をレンダーすると警告が表示されます。一部の稀なケース（タイムスタンプなど）では、完全な一致を保証することが非常に困難または不可能です。`suppressHydrationWarning` を `true` に設定すると、React はその要素の属性と内容の不一致について警告しなくなります。これは 1 レベルの深さまでしか機能せず、避難ハッチとして使用することを目的としています。過度な使用はしないでください。[ハイドレーションエラーの抑制について読む](/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors)
 
+<<<<<<< HEAD
 * `style`: CSS スタイルを持つオブジェクト。例えば `{ fontWeight: 'bold', margin: 20 }` のようなものです。DOM の [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) プロパティと同様に、CSS プロパティ名は `camelCase` で記述する必要があります。例えば `font-weight` ではなく `fontWeight` と書きます。値として文字列や数値を渡すことができます。数値を渡す場合、例えば `width: 100` のようにすると、React は自動的に `px`（"ピクセル"）を値に追加します。ただし、それが[単位のないプロパティ](https://github.com/facebook/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57)の場合は除きます。`style` は、スタイルの値が事前に分からない動的なスタイルに対してのみ使用することを推奨します。他の場合は、`className` を用いてプレーンな CSS クラスを適用する方が効率的です。[`className` と `style` について詳しく読む](#applying-css-styles)
+=======
+* `style`: An object with CSS styles, for example `{ fontWeight: 'bold', margin: 20 }`. Similarly to the DOM [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) property, the CSS property names need to be written as `camelCase`, for example `fontWeight` instead of `font-weight`. You can pass strings or numbers as values. If you pass a number, like `width: 100`, React will automatically append `px` ("pixels") to the value unless it's a [unitless property.](https://github.com/react/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57) We recommend using `style` only for dynamic styles where you don't know the style values ahead of time. In other cases, applying plain CSS classes with `className` is more efficient. [Read more about `className` and `style`.](#applying-css-styles)
+>>>>>>> b011783fcc7a39da9eefd4274147a1444860a12b
 
 以下の標準的な DOM プロパティは、すべての組み込みコンポーネントでサポートされています。
 
@@ -924,7 +932,11 @@ export default function Form() {
 
 ### 危険を冒して内部 HTML をセットする {/*dangerously-setting-the-inner-html*/}
 
+<<<<<<< HEAD
 以下のように、要素に対して生の HTML 文字列を渡すことができます。
+=======
+You can pass a raw HTML string or a [`TrustedHTML`](https://developer.mozilla.org/en-US/docs/Web/API/TrustedHTML) value to an element like so:
+>>>>>>> b011783fcc7a39da9eefd4274147a1444860a12b
 
 ```js
 const markup = { __html: '<p>some raw html</p>' };
@@ -933,7 +945,13 @@ return <div dangerouslySetInnerHTML={markup} />;
 
 **これは危険です。元の DOM の [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) プロパティも同様ですが、最大限に注意を払ってください！ マークアップが完全に信頼できるソースから来ていない限り、この方法を使うといとも簡単に [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) 脆弱性が発生します**。
 
+<<<<<<< HEAD
 例えば、Markdown を HTML に変換する Markdown ライブラリを使用しており、そのパーサにバグがないと信頼でき、ユーザは本人が入力したものしか見ない、という場合、結果 HTML を以下のように表示することができます。
+=======
+If your site enforces [Trusted Types](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API), pass a `TrustedHTML` value created by your security policy as `__html`. React passes the value to the browser without converting it to a string, allowing the browser to validate it. Your policy must still ensure that any input used to create the value is trusted and sanitized.
+
+For example, if you use a Markdown library that converts Markdown to HTML, you trust that its parser doesn't contain bugs, and the user only sees their own input, you can display the resulting HTML like this:
+>>>>>>> b011783fcc7a39da9eefd4274147a1444860a12b
 
 <Sandpack>
 

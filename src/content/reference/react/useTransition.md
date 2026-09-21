@@ -736,6 +736,10 @@ export default function ContactTab() {
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
 .pending { color: #777; }
+.items {
+  max-height: 300px;
+  overflow: auto;
+}
 ```
 
 </Sandpack>
@@ -891,6 +895,10 @@ export default function ContactTab() {
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
 .pending { color: #777; }
+.items {
+  max-height: 300px;
+  overflow: auto;
+}
 ```
 
 </Sandpack>
@@ -1559,7 +1567,11 @@ main {
 
 ### エラーバウンダリでユーザにエラーを表示する {/*displaying-an-error-to-users-with-error-boundary*/}
 
+<<<<<<< HEAD
 `startTransition` に渡された関数がエラーをスローした場合、[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary)を使用してユーザにエラーを表示することができます。エラーバウンダリを使用するには、`useTransition` を呼び出しているコンポーネントをエラーバウンダリで囲みます。`startTransition` に渡された関数がエラーになった場合、エラーバウンダリに指定されているフォールバックが表示されます。
+=======
+If a function passed to `startTransition` throws an error or returns a rejected Promise, you can display an error to your user with an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `useTransition` in an error boundary. Once the function passed to `startTransition` errors, the fallback for the error boundary will be displayed.
+>>>>>>> b011783fcc7a39da9eefd4274147a1444860a12b
 
 <Sandpack>
 
@@ -1730,7 +1742,15 @@ startTransition(async () => {
 
 ### コンポーネントの外部から `useTransition` を呼び出したい {/*i-want-to-call-usetransition-from-outside-a-component*/}
 
+<<<<<<< HEAD
 `useTransition` はフックであるため、コンポーネント外で呼び出すことはできません。この場合、代わりにスタンドアロンの [`startTransition`](/reference/react/startTransition) メソッドを使用してください。同じように機能しますが、`isPending` インジケータは提供されません。
+=======
+You can't call `useTransition` outside a component because it's a Hook. In this
+case, the standalone [`startTransition`](/reference/react/startTransition)
+function can mark state updates as Transitions. It does not provide the
+`isPending` flag. Because the standalone function is not associated with a
+component, an Error Boundary cannot handle errors from its Transition.
+>>>>>>> b011783fcc7a39da9eefd4274147a1444860a12b
 
 ---
 
