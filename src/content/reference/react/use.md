@@ -117,7 +117,7 @@ function BrowserOnly() {
 
 ### `use` でコンテクストを読み取る {/*reading-context-with-use*/}
 
-[コンテクスト](/learn/passing-data-deeply-with-context)が `use` に渡された場合、[`useContext`](/reference/react/useContext) と同様に動作します。`useContext` はコンポーネントのトップレベルで呼び出す必要がありますが、`use` は `if` や `for` などの条件式の中でも呼び出すことができます。
+[コンテクスト](/learn/passing-data-deeply-with-context)が `use` に渡された場合、[`useContext`](/reference/react/useContext) と同様に動作します。`useContext` はコンポーネントのトップレベルで呼び出す必要がありますが、`use` は `if` のような条件分岐や `for` のようなループの中でも呼び出すことができます。
 
 ```js [[2, 4, "theme"], [1, 4, "ThemeContext"]]
 import { use } from 'react';

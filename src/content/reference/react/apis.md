@@ -27,9 +27,9 @@ title: "React の組み込み API"
 
 以下の種類のリソースを [`use`](/reference/react/use) に渡すことができます。
 
-* 解決された値を読み取るための [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)。
-* 値を読み取るための[コンテクスト](/learn/passing-data-deeply-with-context)。
-* <CanaryBadge /> サーバレンダリング中にコンポーネントをブラウザ専用としてマークするための、[`browser`](/reference/react-dom/browser) が返す値。
+* [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) を渡した場合：その Promise の解決された値を読み取ることができます。
+* [コンテクスト](/learn/passing-data-deeply-with-context)を渡した場合：そのコンテクストの値を読み取ることができます。
+* <CanaryBadge /> [`browser`](/reference/react-dom/browser) の返り値を渡した場合：サーバレンダリング中に、このコンポーネントをブラウザ専用としてマークすることができます。
 
 ```js
 function MessageComponent({ messagePromise }) {

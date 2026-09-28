@@ -44,13 +44,13 @@ title: <Fragment> (<>...</>)
 
 ### <CanaryBadge /> `FragmentInstance` {/*fragmentinstance*/}
 
-フラグメントに `ref` を渡すと、React は `FragmentInstance` オブジェクトを提供します。このオブジェクトには、フラグメントでラップされた第 1 レベルの DOM 子ノードとやり取りするためのメソッドが実装されています。
+フラグメントに `ref` を渡すと、React は `FragmentInstance` オブジェクトを提供します。このオブジェクトには、フラグメント直下の DOM 子ノード群とやり取りするためのメソッドが実装されています。
 
-* [`addEventListener`](#addeventlistener) と [`removeEventListener`](#removeeventlistener) は、第 1 レベルにあるすべての DOM 子ノードのイベントリスナを管理します。
+* [`addEventListener`](#addeventlistener) と [`removeEventListener`](#removeeventlistener) は、直下の DOM 子ノードすべてのイベントリスナを管理します。
 * [`dispatchEvent`](#dispatchevent) はフラグメント上でイベントをディスパッチします。このイベントは DOM の親へバブリングできます。
 * [`focus`](#focus)、[`focusLast`](#focuslast)、[`blur`](#blur) は、ネストされたすべての子要素を深さ優先でたどってフォーカスを管理します。
 * [`observeUsing`](#observeusing) と [`unobserveUsing`](#unobserveusing) は、`IntersectionObserver` または `ResizeObserver` のインスタンスを登録および登録解除します。
-* [`getClientRects`](#getclientrects) は、第 1 レベルにあるすべての DOM 子要素の境界矩形を返します。
+* [`getClientRects`](#getclientrects) は、直下の DOM 子要素すべての境界矩形を返します。
 * [`getRootNode`](#getrootnode) は、フラグメントの親のルートノードを返します。
 * [`compareDocumentPosition`](#comparedocumentposition) は、フラグメントと別のノードとの位置関係を比較します。
 * [`scrollIntoView`](#scrollintoview) は、フラグメントの子要素が見える位置までスクロールします。
@@ -59,7 +59,7 @@ title: <Fragment> (<>...</>)
 
 #### `addEventListener(type, listener, options?)` {/*addeventlistener*/}
 
-フラグメントの第 1 レベルにあるすべての DOM 子ノードにイベントリスナを追加します。
+フラグメント直下の DOM 子ノードすべてにイベントリスナを追加します。
 
 ```js
 fragmentRef.current.addEventListener('click', handleClick);
@@ -79,7 +79,7 @@ fragmentRef.current.addEventListener('click', handleClick);
 
 #### `removeEventListener(type, listener, options?)` {/*removeeventlistener*/}
 
-フラグメントの第 1 レベルにあるすべての DOM 子ノードからイベントリスナを削除します。
+フラグメント直下の DOM 子ノードすべてからイベントリスナを削除します。
 
 ```js
 fragmentRef.current.removeEventListener('click', handleClick);
@@ -167,7 +167,7 @@ fragmentRef.current.blur();
 
 #### `observeUsing(observer)` {/*observeusing*/}
 
-渡されたオブザーバを使用して、フラグメントの第 1 レベルにあるすべての DOM 子要素の監視を開始します。
+渡されたオブザーバを使用して、フラグメント直下の DOM 子要素すべての監視を開始します。
 
 ```js
 const observer = new IntersectionObserver(callback, options);
@@ -204,7 +204,7 @@ fragmentRef.current.unobserveUsing(observer);
 
 #### `getClientRects()` {/*getclientrects*/}
 
-第 1 レベルにあるすべての DOM 子要素の境界矩形を表す [`DOMRect`](https://developer.mozilla.org/en-US/docs/Web/API/DOMRect) オブジェクトのフラットな配列を返します。
+直下の DOM 子要素すべての境界矩形を表す [`DOMRect`](https://developer.mozilla.org/en-US/docs/Web/API/DOMRect) オブジェクトのフラットな配列を返します。
 
 ```js
 const rects = fragmentRef.current.getClientRects();
@@ -277,11 +277,11 @@ fragmentRef.current.scrollIntoView();
 
 #### `FragmentInstance` の注意点 {/*fragmentinstance-caveats*/}
 
-* 子ノードを対象とするメソッド（`addEventListener`、`observeUsing`、`getClientRects` など）は、フラグメントの*第 1 レベルのホスト (DOM) 子ノード*を操作します。別の DOM 要素内にネストされた子ノードを直接の対象にはしません。
-* `focus` と `focusLast` は、フォーカス可能な要素を探して、ネストされた子要素を深さ優先で検索します。第 1 レベルのホスト子ノードのみを対象とするイベントメソッドやオブザーバメソッドとは異なります。
+* 子ノードを対象とするメソッド（`addEventListener`、`observeUsing`、`getClientRects` など）は、フラグメントの*直下のホスト (DOM) 子ノード*を操作します。別の DOM 要素内にネストされた子ノードを直接の対象にはしません。
+* `focus` と `focusLast` は、フォーカス可能な要素を探して、ネストされた子要素を深さ優先で検索します。直下のホスト子ノードのみを対象とするイベントメソッドやオブザーバメソッドとは異なります。
 * `observeUsing` はテキストノードに対しては動作しません。フラグメントにテキストの子しか含まれていない場合、React は開発用環境で警告をログに出力します。
 * React は、`addEventListener` で追加されたイベントリスナを、非表示になっている [`<Activity>`](/reference/react/Activity) ツリーには適用しません。`Activity` バウンダリが非表示から表示に切り替わると、リスナが自動的に適用されます。
-* `ref` を持つフラグメントの第 1 レベルの DOM 子要素には、それぞれ `reactFragments` プロパティが追加されます。これは、その要素を所有するすべてのフラグメントインスタンスを含む `Set<FragmentInstance>` です。これにより、複数のフラグメントで[共有オブザーバをキャッシュ](#caching-global-intersection-observer)できます。
+* `ref` を持つフラグメント直下の DOM 子要素には、それぞれ `reactFragments` プロパティが追加されます。これは、その要素を所有するすべてのフラグメントインスタンスを含む `Set<FragmentInstance>` です。これにより、複数のフラグメントで[共有オブザーバをキャッシュ](#caching-global-intersection-observer)できます。
 
 ---
 
@@ -520,13 +520,13 @@ export default function App() {
 
 </Sandpack>
 
-`addEventListener` を呼び出すと、フラグメントの第 1 レベルにあるすべての DOM 子ノードにリスナが適用されます。子ノードが動的に追加または削除されると、`FragmentInstance` がリスナを自動的に追加または削除します。
+`addEventListener` を呼び出すと、フラグメント直下の DOM 子ノードすべてにリスナが適用されます。子ノードが動的に追加または削除されると、`FragmentInstance` がリスナを自動的に追加または削除します。
 
 <DeepDive>
 
 #### フラグメント ref が対象とするのはどの子要素か {/*which-children-does-a-fragment-ref-target*/}
 
-`FragmentInstance` が対象とするのは、フラグメントの**第 1 レベルのホスト (DOM) 子ノード**です。次のツリーについて考えてみましょう。
+`FragmentInstance` が対象とするのは、フラグメントの**直下のホスト (DOM) 子ノード**です。次のツリーについて考えてみましょう。
 
 ```js
 <Fragment ref={ref}>
@@ -542,7 +542,7 @@ export default function App() {
 
 `Wrapper` は React コンポーネントなので、`FragmentInstance` はその中までたどって DOM ノードを探します。対象となる子要素は `A`、`B`、`D` です。`C` は DOM 要素 `B` の内部にネストされているため、対象にはなりません。
 
-`addEventListener`、`observeUsing`、`getClientRects` などのメソッドは、これらの第 1 レベルの DOM 子ノードを操作します。一方、`focus` と `focusLast` は異なり、フォーカス可能な要素を見つけるため、ネストされた*すべての*子要素を深さ優先で検索します。
+`addEventListener`、`observeUsing`、`getClientRects` などのメソッドは、これらの DOM 子ノードを操作します。一方、`focus` と `focusLast` は異なり、フォーカス可能な要素を見つけるため、ネストされた*すべての*子要素を深さ優先で検索します。
 
 </DeepDive>
 
@@ -729,7 +729,7 @@ p {
 
 ### <CanaryBadge /> ラッパ要素なしで可視性を監視する {/*observing-visibility-without-wrapper*/}
 
-`observeUsing` を使うと、フラグメントの第 1 レベルにあるすべての DOM 子要素に `IntersectionObserver` を登録できます。これにより、子コンポーネントに `ref` を公開させたり、ラッパ要素を追加したりすることなく、可視性を追跡できます。
+`observeUsing` を使うと、フラグメント直下の DOM 子要素すべてに `IntersectionObserver` を登録できます。これにより、子コンポーネントに `ref` を公開させたり、ラッパ要素を追加したりすることなく、可視性を追跡できます。
 
 <Sandpack>
 
@@ -843,7 +843,7 @@ export default function Card({ title }) {
 
 多数のオブザーバを使用するサイトで一般的なパフォーマンス最適化は、設定ごとに 1 つの IntersectionObserver を共有で持ち、どの要素が交差したかに基づいて、そのエントリを適切なコールバックに振り分けることです。フラグメントの `ref` でも、`reactFragments` プロパティを介して同じパターンを利用できます。
 
-`ref` を持つフラグメントの第 1 レベルの DOM 子要素には、それぞれ `reactFragments` プロパティがあります。これは、その要素を含む `FragmentInstance` オブジェクトの `Set` です。共有オブザーバが呼び出されたとき、このプロパティを使って、交差した要素を所有する `FragmentInstance` を特定し、適切なコールバックを実行できます。
+`ref` を持つフラグメント直下の DOM 子要素には、それぞれ `reactFragments` プロパティがあります。これは、その要素を含む `FragmentInstance` オブジェクトの `Set` です。共有オブザーバが呼び出されたとき、このプロパティを使って、交差した要素を所有する `FragmentInstance` を特定し、適切なコールバックを実行できます。
 
 <Sandpack>
 
