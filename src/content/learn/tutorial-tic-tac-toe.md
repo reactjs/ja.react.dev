@@ -899,19 +899,20 @@ body {
 
 ### React Developer Tools {/*react-developer-tools*/}
 
-React DevTools を使うと、React コンポーネントの props や state を確認することができます。React DevTools タブは、CodeSandbox の *Browser* セクションの下部にあります。
+React Developer Tools を使うと、React コンポーネントの props や state を確認できます。[Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)、[Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)、[Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) のブラウザ拡張機能として利用できます。
 
-![CodeSandbox 内の React DevTools](../images/tutorial/codesandbox-devtools.png)
+インストールすると、React を使用しているサイトではブラウザの開発者ツールに新しく *Components* というタブが表示されます。CodeSandbox でこのチュートリアルを進めている場合は、まずサンドボックスのプレビューを新しいタブで開く必要があります。
 
-画面上の特定のコンポーネントについて調べるには、React DevTools の左上にあるボタンを使用します。
+![新しいタブで開く](../images/tutorial/sandbox-new-tab.png)
 
-![React DevTools でページ上のコンポーネントを選択する](../images/tutorial/devtools-select.gif)
+次に、プレビューページでブラウザの開発者ツールを開き、*Components* タブを探します。
 
-<Note>
+![components タブ](../images/tutorial/components-tab.png)
 
-ローカル開発をしている場合、React DevTools は [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)、[Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)、そして [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) ブラウザの拡張機能として利用できます。インストールすると、React を利用しているサイトでは *Components* タブがブラウザの開発者ツールに表示されるようになります。
+画面上の特定のコンポーネントを調べるには、Components タブの左上にあるボタンを使用します。
 
-</Note>
+![開発者ツールでインスペクト](../images/tutorial/devtools-inspect.gif)
+
 
 ## ゲームを完成させる {/*completing-the-game*/}
 

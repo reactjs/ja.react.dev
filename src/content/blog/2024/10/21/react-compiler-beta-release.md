@@ -92,7 +92,7 @@ React Compiler はライブラリのコンパイルにも使用できます。Re
 
 以前 React Conf にて、招待制の [React Compiler Working Group](https://github.com/reactwg/react-compiler) を発表し、コンパイラの実験的リリースに対するフィードバックを提供し、質問をし、貢献を行える場として利用してきました。
 
-本日より、React Compiler Beta のリリースに合わせ、Working Group のメンバーシップを全員に開放します。React Compiler Working Group の目標は、エコシステム全体で、既存のアプリケーションやライブラリによる React Compiler のスムーズかつ段階的な採用準備を整えることです。今後もバグ報告は [React リポジトリ](https://github.com/facebook/react)に行っていただく一方で、フィードバックや質問、アイディアの共有は、[Working Group のディスカッションフォーラム](https://github.com/reactwg/react-compiler/discussions)を利用してください。
+本日より、React Compiler Beta のリリースに合わせ、Working Group のメンバーシップを全員に開放します。React Compiler Working Group の目標は、エコシステム全体で、既存のアプリケーションやライブラリによる React Compiler のスムーズかつ段階的な採用準備を整えることです。今後もバグ報告は [React リポジトリ](https://github.com/react/react)に行っていただく一方で、フィードバックや質問、アイディアの共有は、[Working Group のディスカッションフォーラム](https://github.com/reactwg/react-compiler/discussions)を利用してください。
 
 コアチームも研究結果を共有にディスカッションリポジトリを使用します。安定版リリースが近づくにつれ、重要な情報もこのフォーラムに投稿されます。
 
@@ -127,7 +127,7 @@ React Compiler はライブラリのコンパイルにも使用できます。Re
 
 ---
 
-[^1]: コンパイラの貢献に協力いただいた [@nikeee](https://github.com/facebook/react/pulls?q=is%3Apr+author%3Anikeee)、[@henryqdineen](https://github.com/facebook/react/pulls?q=is%3Apr+author%3Ahenryqdineen)、[@TrickyPi](https://github.com/facebook/react/pulls?q=is%3Apr+author%3ATrickyPi) に感謝します。
+[^1]: コンパイラの貢献に協力いただいた [@nikeee](https://github.com/react/react/pulls?q=is%3Apr+author%3Anikeee)、[@henryqdineen](https://github.com/react/react/pulls?q=is%3Apr+author%3Ahenryqdineen)、[@TrickyPi](https://github.com/react/react/pulls?q=is%3Apr+author%3ATrickyPi) に感謝します。
 
 [^2]: Meta での React コンパイラに関する本研究を主導し、この投稿をレビューしていただいた [Vaishali Garg](https://www.linkedin.com/in/vaishaligarg09) に感謝します。
 

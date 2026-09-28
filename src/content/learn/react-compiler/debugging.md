@@ -43,7 +43,7 @@ React Compiler がアプリケーションの不具合を引き起こす代表�
 
 ### ビルド時のコンパイラエラー {/*compiler-build-errors*/}
 
-コンパイラエラーでビルドが予期せず失敗した場合、これはコンパイラのバグである可能性が高いです。以下の情報を添えて [facebook/react](https://github.com/facebook/react/issues) リポジトリに報告してください。
+コンパイラエラーでビルドが予期せず失敗した場合、これはコンパイラのバグである可能性が高いです。以下の情報を添えて [react/react](https://github.com/react/react/issues) リポジトリに報告してください。
 - エラーメッセージ
 - エラーを引き起こしたコード
 - React とコンパイラのバージョン
@@ -81,7 +81,7 @@ function ProblematicComponent() {
 1. **React のルール違反ではないことを確認する** - ESLint でチェックする
 2. **最小限の再現方法を特定する** - 小さな例で問題を切り分ける
 3. **コンパイラを無効化した状態でテストする** - 問題がコンパイル時にのみ発生するかを確認する
-4. **[issue](https://github.com/facebook/react/issues/new?template=compiler_bug_report.yml) を提出する**：
+4. **[issue](https://github.com/react/react/issues/new?template=compiler_bug_report.yml) を提出する**：
    - React とコンパイラのバージョン
    - 最小限の再現コード
    - 期待される動作と実際の動作
