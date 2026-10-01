@@ -1,9 +1,9 @@
 ---
-title: Directives
+title: ディレクティブ
 ---
 
 <Intro>
-React Compiler directives are special string literals that control whether specific functions are compiled.
+React Compiler のディレクティブは、特定の関数をコンパイルするかどうかを制御する特別な文字列リテラルです。
 </Intro>
 
 ```js
@@ -17,29 +17,29 @@ function MyComponent() {
 
 ---
 
-## Overview {/*overview*/}
+## 概要 {/*overview*/}
 
-React Compiler directives provide fine-grained control over which functions are optimized by the compiler. They are string literals placed at the beginning of a function body or at the top of a module.
+React Compiler のディレクティブを使用することで、コンパイラがどの関数を最適化するかを細かく制御できます。ディレクティブは、関数本体の先頭またはモジュールの先頭に配置する文字列リテラルです。
 
-### Available directives {/*available-directives*/}
+### 利用可能なディレクティブ {/*available-directives*/}
 
-* **[`"use memo"`](/reference/react-compiler/directives/use-memo)** - Opts a function into compilation
-* **[`"use no memo"`](/reference/react-compiler/directives/use-no-memo)** - Opts a function out of compilation
+* **[`"use memo"`](/reference/react-compiler/directives/use-memo)** - 関数をコンパイル対象に含める
+* **[`"use no memo"`](/reference/react-compiler/directives/use-no-memo)** - 関数をコンパイル対象から除外する
 
-### Quick comparison {/*quick-comparison*/}
+### 比較表 {/*quick-comparison*/}
 
-| Directive | Purpose | When to use |
+| ディレクティブ | 目的 | 使用する場面 |
 |-----------|---------|-------------|
-| [`"use memo"`](/reference/react-compiler/directives/use-memo) | Force compilation | When using `annotation` mode or to override `infer` mode heuristics |
-| [`"use no memo"`](/reference/react-compiler/directives/use-no-memo) | Prevent compilation | Debugging issues or working with incompatible code |
+| [`"use memo"`](/reference/react-compiler/directives/use-memo) | コンパイルを強制 | `annotation` モードを使用する場合、または `infer` モードのヒューリスティックを上書きする場合 |
+| [`"use no memo"`](/reference/react-compiler/directives/use-no-memo) | コンパイルを防止 | 問題をデバッグする場合、または互換性のないコードを扱う場合 |
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Function-level directives {/*function-level*/}
+### 関数レベルのディレクティブ {/*function-level*/}
 
-Place directives at the beginning of a function to control its compilation:
+関数のコンパイルを制御するには、その関数の先頭にディレクティブを配置します。
 
 ```js
 // Opt into compilation
@@ -55,9 +55,9 @@ function UnoptimizedComponent() {
 }
 ```
 
-### Module-level directives {/*module-level*/}
+### モジュールレベルのディレクティブ {/*module-level*/}
 
-Place directives at the top of a file to affect all functions in that module:
+モジュール内のすべての関数に適用するには、ファイルの先頭にディレクティブを配置します。
 
 ```js
 // At the very top of the file
@@ -79,21 +79,21 @@ function Component3() {
 }
 ```
 
-### Compilation modes interaction {/*compilation-modes*/}
+### コンパイルモードとの関係 {/*compilation-modes*/}
 
-Directives behave differently depending on your [`compilationMode`](/reference/react-compiler/compilationMode):
+ディレクティブの動作は、[`compilationMode`](/reference/react-compiler/compilationMode) によって異なります。
 
-* **`annotation` mode**: Only functions with `"use memo"` are compiled
-* **`infer` mode**: Compiler decides what to compile, directives override decisions
-* **`all` mode**: Everything is compiled, `"use no memo"` can exclude specific functions
+* **`annotation` モード**：`"use memo"` がある関数のみをコンパイルする
+* **`infer` モード**：コンパイラがコンパイル対象を決定し、ディレクティブがその決定を上書きする
+* **`all` モード**：すべてをコンパイルし、`"use no memo"` で特定の関数を除外できる
 
 ---
 
-## Best practices {/*best-practices*/}
+## ベストプラクティス {/*best-practices*/}
 
-### Use directives sparingly {/*use-sparingly*/}
+### ディレクティブは必要な場合にのみ使用する {/*use-sparingly*/}
 
-Directives are escape hatches. Prefer configuring the compiler at the project level:
+ディレクティブは避難ハッチです。プロジェクトレベルでコンパイラを設定することを優先してください。
 
 ```js
 // ✅ Good - project-wide configuration
@@ -112,9 +112,9 @@ function SpecialCase() {
 }
 ```
 
-### Document directive usage {/*document-usage*/}
+### ディレクティブの使用理由を記録する {/*document-usage*/}
 
-Always explain why a directive is used:
+ディレクティブを使用する理由を必ず説明してください。
 
 ```js
 // ✅ Good - clear explanation
@@ -130,14 +130,14 @@ function Mystery() {
 }
 ```
 
-### Plan for removal {/*plan-removal*/}
+### 削除する予定を立てておく {/*plan-removal*/}
 
-Opt-out directives should be temporary:
+オプトアウト用のディレクティブは一時的なものにしてください。
 
-1. Add the directive with a TODO comment
-2. Create a tracking issue
-3. Fix the underlying problem
-4. Remove the directive
+1. ディレクティブを追加する際は TODO コメント付きにする
+2. 追跡用の issue を作成する
+3. 大元にある問題を修正する
+4. ディレクティブを削除する
 
 ```js
 function TemporaryWorkaround() {
@@ -148,11 +148,11 @@ function TemporaryWorkaround() {
 
 ---
 
-## Common patterns {/*common-patterns*/}
+## よくあるパターン {/*common-patterns*/}
 
-### Gradual adoption {/*gradual-adoption*/}
+### 段階的導入 {/*gradual-adoption*/}
 
-When adopting the React Compiler in a large codebase:
+大規模なコードベースに React Compiler を導入する場合は、次のようにします。
 
 ```js
 // Start with annotation mode
@@ -176,23 +176,23 @@ function ProblematicComponent() {
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-For specific issues with directives, see the troubleshooting sections in:
+ディレクティブに関する具体的な問題については、以下のトラブルシューティングセクションを参照してください。
 
-* [`"use memo"` troubleshooting](/reference/react-compiler/directives/use-memo#troubleshooting)
-* [`"use no memo"` troubleshooting](/reference/react-compiler/directives/use-no-memo#troubleshooting)
+* [`"use memo"` のトラブルシューティング](/reference/react-compiler/directives/use-memo#troubleshooting)
+* [`"use no memo"` のトラブルシューティング](/reference/react-compiler/directives/use-no-memo#troubleshooting)
 
-### Common issues {/*common-issues*/}
+### よくある問題 {/*common-issues*/}
 
-1. **Directive ignored**: Check placement (must be first) and spelling
-2. **Compilation still happens**: Check `ignoreUseNoForget` setting
-3. **Module directive not working**: Ensure it's before all imports
+1. **ディレクティブが無視される**：配置（先頭である必要があります）とスペルを確認する
+2. **コンパイルが引き続き実行される**：`ignoreUseNoForget` の設定を確認する
+3. **モジュールのディレクティブが動作しない**：すべてのインポートより前にあることを確認する
 
 ---
 
-## See also {/*see-also*/}
+## 関連項目 {/*see-also*/}
 
-* [`compilationMode`](/reference/react-compiler/compilationMode) - Configure how the compiler chooses what to optimize
-* [`Configuration`](/reference/react-compiler/configuration) - Full compiler configuration options
-* [React Compiler documentation](https://react.dev/learn/react-compiler) - Getting started guide
+* [`compilationMode`](/reference/react-compiler/compilationMode) - コンパイラが最適化対象を選択する方法を設定する
+* [設定](/reference/react-compiler/configuration) - コンパイラのすべての設定オプション
+* [React Compiler のドキュメント](https://react.dev/learn/react-compiler) - 入門ガイド
