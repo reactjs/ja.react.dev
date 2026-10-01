@@ -195,4 +195,4 @@ function ProblematicComponent() {
 
 * [`compilationMode`](/reference/react-compiler/compilationMode) - コンパイラが最適化対象を選択する方法を設定する
 * [設定](/reference/react-compiler/configuration) - コンパイラのすべての設定オプション
-* [React Compiler のドキュメント](https://react.dev/learn/react-compiler) - 入門ガイド
+* [React Compiler のドキュメント](/learn/react-compiler) - 入門ガイド
