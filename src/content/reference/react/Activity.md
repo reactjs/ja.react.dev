@@ -755,17 +755,7 @@ video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
 
 <Note>
 
-**プリレンダー中にフェッチされるのは、サスペンス対応のデータソースのみです**。これには以下のものが含まれます。
-
-- [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) や [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense) のようなサスペンス対応のフレームワークでのデータフェッチ
-- [`lazy`](/reference/react/lazy) を使ったコンポーネントコードの遅延ロード
-- [`use`](/reference/react/use) を使ったキャッシュ済みプロミスからの値の読み取り
-
-Activity は、エフェクト内部でフェッチされたデータを検出**しません**。
-
-上記の `Posts` コンポーネントでデータをロードする具体的な方法については、使用しているフレームワークに依存します。サスペンス対応のフレームワークを使用している場合、詳細はそのフレームワークのデータフェッチのドキュメントに記載されています。
-
-使い方に規約のある (opinionated) フレームワーク以外でサスペンス対応のデータフェッチを行うことは、まだサポートされていません。サスペンス対応のデータソースを実装するための要件は安定しておらず、ドキュメント化されていません。データソースをサスペンスと統合するための公式な API は、React の将来のバージョンでリリースされる予定です。
+[`use`](/reference/react/use) で読み取ったプロミスなど、[サスペンスバウンダリをアクティベートする](/reference/react/Suspense#what-activates-a-suspense-boundary)データソースから読み取られたデータだけが、プリレンダー中にフェッチされます。Activity はエフェクト内でフェッチされたデータを検出しません。
 
 </Note>
 

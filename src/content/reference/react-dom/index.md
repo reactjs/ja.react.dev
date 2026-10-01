@@ -30,6 +30,12 @@ title: React DOM API
 * [`preinit`](/reference/react-dom/preinit) は、外部スクリプトのフェッチと実行、またはスタイルシートのフェッチと挿入を行います。
 * [`preinitModule`](/reference/react-dom/preinitModule) は、ESM モジュールのフェッチと実行を行います。
 
+## サーバレンダリング API {/*server-rendering-apis*/}
+
+この API はサーバでコンポーネントがレンダーされる方法を制御します。
+
+* <CanaryBadge /> [`browser`](/reference/react-dom/browser) を使うことで、サーバレンダリング中に、コンポーネントをブラウザ専用としてマークすることができます。
+
 ---
 
 ## エントリポイント {/*entry-points*/}
