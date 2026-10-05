@@ -27,3 +27,4 @@ Node.js でも互換性のためこれらのメソッドが使用可能ですが
 
 * [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream) は React ツリーを [Node.js ストリーム](https://nodejs.org/api/stream.html)を用いて静的な HTML にレンダーします。
 * [`resumeAndPrerenderToNodeStream`](/reference/react-dom/static/resumeAndPrerenderToNodeStream) はプリレンダー済みの React ツリーを再開して、[Node.js ストリーム](https://nodejs.org/api/stream.html)に静的な HTML として流します。
+
