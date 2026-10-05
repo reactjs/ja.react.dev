@@ -211,7 +211,7 @@ li {
 
 これを回避する方法のひとつは、親要素への単一の ref を取得し、[`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) のような DOM 操作メソッドを使って、個々の子ノードを「見つける」ことです。ただし、これは壊れやすく、DOM 構造が変更されると機能しなくなる可能性があります。
 
-別の解決策は、**`ref` 属性に関数を渡す**ことです。これは、[`ref` コールバック](/reference/react-dom/components/common#ref-callback) と呼ばれます。React は、ref を設定するタイミングで DOM ノードを引数にして ref コールバックを呼び出し、クリアするタイミングでは `null` を引数にして呼び出します。これにより、独自の配列や [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) を保持し、インデックスや ID のようなもので任意の ref にアクセスできるようになります。
+別の解決策は、**`ref` 属性に関数を渡す**ことです。これは、[`ref` コールバック](/reference/react-dom/components/common#ref-callback) と呼ばれます。React は、ref を設定するタイミングで DOM ノードを引数にして ref コールバックを呼び出し、クリアするタイミングではそのコールバックが返したクリーンアップ関数を呼び出します。これにより、独自の配列や [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) を保持し、インデックスや ID のようなもので任意の ref にアクセスできるようになります。
 
 この例では、このアプローチを用いて、長いリストの任意のノードにスクロールする方法を示しています。
 
@@ -247,13 +247,13 @@ export default function CatFriends() {
       <nav>
         <button onClick={() => scrollToCat(catList[0])}>Neo</button>
         <button onClick={() => scrollToCat(catList[5])}>Millie</button>
-        <button onClick={() => scrollToCat(catList[9])}>Bella</button>
+        <button onClick={() => scrollToCat(catList[8])}>Bella</button>
       </nav>
       <div>
         <ul>
           {catList.map((cat) => (
             <li
-              key={cat}
+              key={cat.id}
               ref={(node) => {
                 const map = getMap();
                 map.set(cat, node);
@@ -263,7 +263,7 @@ export default function CatFriends() {
                 };
               }}
             >
-              <img src={cat} />
+              <img src={cat.imageUrl} />
             </li>
           ))}
         </ul>
@@ -273,11 +273,22 @@ export default function CatFriends() {
 }
 
 function setupCatList() {
-  const catList = [];
-  for (let i = 0; i < 10; i++) {
-    catList.push("https://loremflickr.com/320/240/cat?lock=" + i);
+  const catCount = 10;
+  const catList = new Array(catCount)
+  for (let i = 0; i < catCount; i++) {
+    let imageUrl = '';
+    if (i < 5) {
+      imageUrl = "https://placecats.com/neo/320/240";
+    } else if (i < 8) {
+      imageUrl = "https://placecats.com/millie/320/240";
+    } else {
+      imageUrl = "https://placecats.com/bella/320/240";
+    }
+    catList[i] = {
+      id: i,
+      imageUrl,
+    };
   }
-
   return catList;
 }
 
@@ -647,7 +658,7 @@ DOM 要素を手動で削除した後、`setState` を使用して再度表示�
 - ref は一般的な概念だが、ほとんどの場合、DOM 要素を保持するために使用する。
 - `<div ref={myRef}>` のように渡すことで、React に DOM ノードを `myRef.current` に入れるよう指示する。
 - 通常、フォーカス、スクロール、または DOM 要素の測定などの非破壊的なアクションに ref を使用する。
-- コンポーネントはデフォルトでは内部の DOM ノードを公開しない。`forwardRef` を使用して特定のノードに 2 番目の `ref` 引数を渡すことで、DOM ノードの公開を明示的に許可する。
+- コンポーネントはデフォルトでは内部の DOM ノードを公開しない。props として `ref` を用いることで、DOM ノードの公開を明示的に許可する。
 - React によって管理される DOM ノードの変更を避ける。
 - React によって管理される DOM ノードをどうしても変更する場合は、React が更新する理由のない部分のみ変更する。
 
@@ -876,12 +887,30 @@ export default function CatFriends() {
   );
 }
 
-const catList = [];
-for (let i = 0; i < 10; i++) {
-  catList.push({
+const catCount = 10;
+const catList = new Array(catCount);
+for (let i = 0; i < catCount; i++) {
+  const bucket = Math.floor(Math.random() * catCount) % 2;
+  let imageUrl = '';
+  switch (bucket) {
+    case 0: {
+      imageUrl = "https://placecats.com/neo/250/200";
+      break;
+    }
+    case 1: {
+      imageUrl = "https://placecats.com/millie/250/200";
+      break;
+    }
+    case 2:
+    default: {
+      imageUrl = "https://placecats.com/bella/250/200";
+      break;
+    }
+  }
+  catList[i] = {
     id: i,
-    imageUrl: 'https://loremflickr.com/250/200/cat?lock=' + i
-  });
+    imageUrl,
+  };
 }
 
 ```
@@ -961,7 +990,7 @@ export default function CatFriends() {
             behavior: 'smooth',
             block: 'nearest',
             inline: 'center'
-          });            
+          });
         }}>
           Next
         </button>
@@ -993,12 +1022,30 @@ export default function CatFriends() {
   );
 }
 
-const catList = [];
-for (let i = 0; i < 10; i++) {
-  catList.push({
+const catCount = 10;
+const catList = new Array(catCount);
+for (let i = 0; i < catCount; i++) {
+  const bucket = Math.floor(Math.random() * catCount) % 2;
+  let imageUrl = '';
+  switch (bucket) {
+    case 0: {
+      imageUrl = "https://placecats.com/neo/250/200";
+      break;
+    }
+    case 1: {
+      imageUrl = "https://placecats.com/millie/250/200";
+      break;
+    }
+    case 2:
+    default: {
+      imageUrl = "https://placecats.com/bella/250/200";
+      break;
+    }
+  }
+  catList[i] = {
     id: i,
-    imageUrl: 'https://loremflickr.com/250/200/cat?lock=' + i
-  });
+    imageUrl,
+  };
 }
 
 ```
@@ -1049,7 +1096,7 @@ img {
 
 <Hint>
 
-`SearchInput` のような独自コンポーネントから DOM ノードを公開するためには、`forwardRef` が必要です。
+`SearchInput` のような独自コンポーネントから DOM ノードを公開するためには、props としての `ref` の受け渡しが必要です。
 
 </Hint>
 
@@ -1134,18 +1181,14 @@ export default function SearchButton({ onClick }) {
 ```
 
 ```js src/SearchInput.js
-import { forwardRef } from 'react';
-
-export default forwardRef(
-  function SearchInput(props, ref) {
-    return (
-      <input
-        ref={ref}
-        placeholder="Looking for something?"
-      />
-    );
-  }
-);
+export default function SearchInput({ ref }) {
+  return (
+    <input
+      ref={ref}
+      placeholder="Looking for something?"
+    />
+  );
+}
 ```
 
 ```css

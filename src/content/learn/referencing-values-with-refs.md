@@ -34,7 +34,7 @@ const ref = useRef(0);
 `useRef` は以下のようなオブジェクトを返します。
 
 ```js
-{ 
+{
   current: 0 // The value you passed to useRef
 }
 ```
@@ -211,7 +211,7 @@ export default function Counter() {
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [13]}}
 import { useRef } from 'react';
 
 export default function Counter() {
@@ -232,7 +232,7 @@ export default function Counter() {
 
 </Sandpack>
 
-これが、レンダー中に `ref.current` を読みこむと信頼性の低いコードになる理由です。それが必要な場合は、代わりに state を使用してください。
+これが、レンダー中に `ref.current` を読み込むと信頼性の低いコードになる理由です。それが必要な場合は、代わりに state を使用してください。
 
 <DeepDive>
 
@@ -269,7 +269,7 @@ React が `useRef` を組み込み機能として提供しているのは、こ�
 以下の原則に従うことで、コンポーネントがより予測可能になります。
 
 - **ref を避難ハッチ (escape hatch) として扱う**。ref が有用なのは、外部システムやブラウザ API と連携する場合です。アプリケーションのロジックやデータフローの多くが ref に依存しているような場合は、アプローチを見直すことを検討してください。
-- **レンダー中に `ref.current` を読み書きしない**。レンダー中に情報が必要な場合は、代わりに [state](/learn/state-a-components-memory) を使用してください。React は `ref.current` が書き換わったタイミングを把握しないため、レンダー中にただそれを読みこむだけでも、コンポーネントの挙動が予測しづらくなってしまいます。（唯一の例外は `if (!ref.current) ref.current = new Thing()` のような、最初のレンダー中に一度だけ ref をセットするコードです。）
+- **レンダー中に `ref.current` を読み書きしない**。レンダー中に情報が必要な場合は、代わりに [state](/learn/state-a-components-memory) を使用してください。React は `ref.current` が書き換わったタイミングを把握しないため、レンダー中にただそれを読み込むだけでも、コンポーネントの挙動が予測しづらくなってしまいます。（唯一の例外は `if (!ref.current) ref.current = new Thing()` のような、最初のレンダー中に一度だけ ref をセットするコードです。）
 
 React の state の制約は ref には適用されません。例えば、state は[各レンダーのスナップショット](/learn/state-as-a-snapshot)のように振る舞い、[同期的に更新されません](/learn/queueing-a-series-of-state-updates)。しかし、ref の現在値を書き換えると、すぐに変更されます。
 
@@ -313,7 +313,7 @@ ref は任意の値を参照として保持できます。ただし、ref の最
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [10]}}
 import { useState } from 'react';
 
 export default function Chat() {
@@ -418,7 +418,7 @@ export default function Chat() {
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [10]}}
 import { useRef } from 'react';
 
 export default function Toggle() {
@@ -464,7 +464,7 @@ export default function Toggle() {
 
 #### デバウンスの修正 {/*fix-debouncing*/}
 
-この例では、すべてのボタンクリックハンドラが ["デバウンス (debounce)"](https://redd.one/blog/debounce-vs-throttle) されています。この意味を確認するために、ボタンのうちの 1 つを押してみてください。メッセージが 1 秒後に表示されることに気付くでしょう。メッセージを待っている間にボタンを押すと、タイマがリセットされます。ですので、同じボタンを素早く何度もクリックし続けると、メッセージはクリックを*やめた* 1 秒後まで表示されません。デバウンスにより、ユーザが「操作をやめる」まであるアクションを遅らせることができます。
+この例では、すべてのボタンクリックハンドラが ["デバウンス (debounce)"](https://kettanaito.com/blog/debounce-vs-throttle) されています。この意味を確認するために、ボタンのうちの 1 つを押してみてください。メッセージが 1 秒後に表示されることに気付くでしょう。メッセージを待っている間にボタンを押すと、タイマがリセットされます。ですので、同じボタンを素早く何度もクリックし続けると、メッセージはクリックを*やめた* 1 秒後まで表示されません。デバウンスにより、ユーザが「操作をやめる」まであるアクションを遅らせることができます。
 
 この例は動作していますが、意図した通りではありません。ボタンが独立していないのです。問題を確認するために、ボタンのうちの 1 つをクリックし、すぐに別のボタンをクリックしてみてください。遅延の後、両方のボタンのメッセージが表示されることを期待するでしょう。しかし、最後のボタンのメッセージだけが表示され、最初のボタンのメッセージは失われてしまいます。
 

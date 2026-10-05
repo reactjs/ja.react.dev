@@ -117,7 +117,7 @@ class Counter extends Component {
 
   handleAgeChange = () => {
     this.setState({
-      age: this.state.age + 1 
+      age: this.state.age + 1
     });
   };
 
@@ -206,7 +206,7 @@ class Counter extends Component {
 
 `componentDidCatch` を定義すると、子コンポーネント（遠くの子を含む）がレンダー中にエラーをスローしたときに React がそれを呼び出します。これにより、本番環境でそのエラーをエラーレポートサービスにログとして記録することができます。
 
-通常これは、エラーに反応して state を更新し、ユーザにエラーメッセージを表示するための [`static getDerivedStateFromError`](#static-getderivedstatefromerror) と一緒に使用されます。これらのメソッドを持つコンポーネントのことを*エラーバウンダリ (error boundary)* と呼びます。
+通常これは、エラーに反応して state を更新し、ユーザにエラーメッセージを表示するための [`static getDerivedStateFromError`](#static-getderivedstatefromerror) と一緒に使用されます。これらのメソッドを持つコンポーネントのことを*エラーバウンダリ (Error Boundary)* と呼びます。
 
 [例を見る](#catching-rendering-errors-with-an-error-boundary)
 
@@ -1009,7 +1009,7 @@ state 値の派生はコードを冗長にし、コンポーネントを分か�
 
 #### 注意点 {/*static-getderivedstatefromprops-caveats*/}
 
-- このメソッドは、原因に関係なく*すべての*レンダーで発火します。[`UNSAFE_componentWillReceiveProps`](#unsafe_cmoponentwillreceiveprops) はこれとは異なり、親が再レンダーを引き起こしたときのみ発火し、ローカルの `setState` の結果としては発火しません。
+- このメソッドは、原因に関係なく*すべての*レンダーで発火します。[`UNSAFE_componentWillReceiveProps`](#unsafe_componentwillreceiveprops) はこれとは異なり、親が再レンダーを引き起こしたときのみ発火し、ローカルの `setState` の結果としては発火しません。
 
 - このメソッドはコンポーネントのインスタンスにアクセスできません。お望みであれば、コンポーネントの props と state に対する純関数をクラス定義の外部に抽出することで、`static getDerivedStateFromProps` と他のクラスメソッドとの間でコードを再利用することができます。
 
@@ -1098,7 +1098,7 @@ export default class Counter extends Component {
 
   handleAgeChange = () => {
     this.setState({
-      age: this.state.age + 1 
+      age: this.state.age + 1
     });
   };
 
@@ -1123,7 +1123,7 @@ export default class Counter extends Component {
 button { display: block; margin-top: 10px; }
 ```
 
-</Sandpack> 
+</Sandpack>
 
 <Pitfall>
 
@@ -1207,7 +1207,7 @@ export default class ChatRoom extends Component {
       this.state.serverUrl,
       this.props.roomId
     );
-    this.connection.connect();    
+    this.connection.connect();
   }
 
   destroyConnection() {
@@ -1271,9 +1271,23 @@ button { margin-left: 10px; }
 
 デフォルトでは、アプリケーションがレンダー中にエラーをスローすると、React はその UI を画面から削除します。これを防ぐために、UI を*エラーバウンダリ*にラップすることができます。エラーバウンダリは、クラッシュした部位の代わりに、例えばエラーメッセージなどのフォールバック UI を表示するための、特別なコンポーネントです。
 
+<Note>
+以下の場合、エラーバウンダリはエラーをキャッチしません。
+
+- イベントハンドラ[（詳細）](/learn/responding-to-events)
+- [サーバサイドレンダリング](/reference/react-dom/server)
+- エラーバウンダリ自身（子ではなく）でスローされたエラー
+- 非同期コード（例えば `setTimeout` や `requestAnimationFrame` のコールバック）。ただし [`useTransition`](/reference/react/useTransition) フックが返す [`startTransition`](/reference/react/useTransition#starttransition) 関数の使用は例外です。トランジション関数内でスローされたエラーはエラーバウンダリでキャッチされます[（詳細）](/reference/react/useTransition#displaying-an-error-to-users-with-error-boundary)。
+
+</Note>
+
 エラーバウンダリコンポーネントを実装するためには、エラーに反応して state を更新し、ユーザにエラーメッセージを表示するための [`static getDerivedStateFromError`](#static-getderivedstatefromerror) を提供する必要があります。またオプションで、例えばエラーを分析サービスに記録するなどの追加のロジックを追加するために [`componentDidCatch`](#componentdidcatch) を実装することもできます。
 
-```js {7-10,12-19}
+[`captureOwnerStack`](/reference/react/captureOwnerStack) を使うことで開発中にオーナーのスタックトレースを含めることが可能です。
+
+```js {9-12,14-27}
+import * as React from 'react';
+
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -1286,12 +1300,17 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, info) {
-    // Example "componentStack":
-    //   in ComponentThatThrows (created by App)
-    //   in ErrorBoundary (created by App)
-    //   in div (created by App)
-    //   in App
-    logErrorToMyService(error, info.componentStack);
+    logErrorToMyService(
+      error,
+      // Example "componentStack":
+      //   in ComponentThatThrows (created by App)
+      //   in ErrorBoundary (created by App)
+      //   in div (created by App)
+      //   in App
+      info.componentStack,
+      // Warning: `captureOwnerStack` is not available in production.
+      React.captureOwnerStack(),
+    );
   }
 
   render() {
@@ -1420,7 +1439,7 @@ export default class Counter extends Component {
 
   handleAgeChange = (e) => {
     this.setState({
-      age: this.state.age + 1 
+      age: this.state.age + 1
     });
   };
 
@@ -1587,7 +1606,7 @@ export default class ChatRoom extends Component {
       this.state.serverUrl,
       this.props.roomId
     );
-    this.connection.connect();    
+    this.connection.connect();
   }
 
   destroyConnection() {
@@ -1776,7 +1795,7 @@ class Panel extends Component {
         <h1>{this.props.title}</h1>
         {this.props.children}
       </section>
-    );    
+    );
   }
 }
 
@@ -1805,9 +1824,9 @@ function Form() {
 
 export default function MyApp() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Form />
-    </ThemeContext.Provider>
+    </ThemeContext>
   )
 }
 ```
@@ -1891,9 +1910,9 @@ function Form() {
 
 export default function MyApp() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Form />
-    </ThemeContext.Provider>
+    </ThemeContext>
   )
 }
 ```

@@ -162,23 +162,137 @@ React はブラウザ組み込みのすべての HTML コンポーネントを�
 
 ### カスタム HTML 要素 {/*custom-html-elements*/}
 
-ダッシュを含むタグ、例えば `<my-element>` をレンダーする場合、React は[カスタム HTML 要素](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)をレンダーしていると想定します。React では、カスタム要素のレンダーは、組み込みのブラウザタグのレンダーとは異なる方法で行われます。
-
-- すべてのカスタム要素の props は文字列にシリアライズされ、常に属性を使用して設定されます。
-- カスタム要素は `className` ではなく `class` を、`htmlFor` ではなく `for` を受け入れます。
+ダッシュを含むタグ、例えば `<my-element>` をレンダーする場合、React は[カスタム HTML 要素](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)をレンダーしていると想定します。
 
 組み込みのブラウザ HTML 要素を [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is) 属性を用いてレンダーする場合も、カスタム要素として扱われます。
 
+#### カスタム要素に値を渡す {/*attributes-vs-properties*/}
+
+カスタム要素にデータを渡す方法は 2 種類あります。
+
+1) 属性 (attribute) として：マークアップ内に現れ、文字列型の値しかとれない
+2) プロパティ (property) として：マークアップ内には直接現れず、任意の JavaScript 型をとれる
+
+デフォルトでは、React は JSX に書かれた値を属性として渡します。
+
+```jsx
+<my-element value="Hello, world!"></my-element>
+```
+
+カスタム要素に文字列ではない JavaScript の値が渡されると、デフォルトではシリアライズされます。
+
+```jsx
+// Will be passed as `"1,2,3"` as the output of `[1,2,3].toString()`
+<my-element value={[1,2,3]}></my-element>
+```
+
+ただし React は、対応するクラスのコンストラクタ内に当該プロパティ名が出現する場合、カスタム要素のプロパティに任意の値を渡すことができる、と認識します。
+
+<Sandpack>
+
+```js src/index.js hidden
+import {MyElement} from './MyElement.js';
+import { createRoot } from 'react-dom/client';
+import {App} from "./App.js";
+
+customElements.define('my-element', MyElement);
+
+const root = createRoot(document.getElementById('root'))
+root.render(<App />);
+```
+
+```js src/MyElement.js active
+export class MyElement extends HTMLElement {
+  constructor() {
+    super();
+    // The value here will be overwritten by React
+    // when initialized as an element
+    this.value = undefined;
+  }
+
+  connectedCallback() {
+    this.innerHTML = this.value.join(", ");
+  }
+}
+```
+
+```js src/App.js
+export function App() {
+  return <my-element value={[1,2,3]}></my-element>
+}
+```
+
+</Sandpack>
+
+#### カスタム要素でのイベントのリッスン {/*custom-element-events*/}
+
+カスタム要素においては、イベントが起こったときに呼び出すための関数を受け取るのではなく、要素自体が [`CustomEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) をディスパッチするというのが一般的なパターンです。このようなイベントは、`on` 接頭辞をつけることで JSX 経由でリッスンすることができます。
+
+<Sandpack>
+
+```js src/index.js hidden
+import {MyElement} from './MyElement.js';
+import { createRoot } from 'react-dom/client';
+import {App} from "./App.js";
+
+customElements.define('my-element', MyElement);
+
+const root = createRoot(document.getElementById('root'))
+root.render(<App />);
+```
+
+```javascript src/MyElement.js
+export class MyElement extends HTMLElement {
+  constructor() {
+    super();
+    this.test = undefined;
+    this.emitEvent = this._emitEvent.bind(this);
+  }
+
+  _emitEvent() {
+    const event = new CustomEvent('speak', {
+      detail: {
+        message: 'Hello, world!',
+      },
+    });
+    this.dispatchEvent(event);
+  }
+
+  connectedCallback() {
+    this.el = document.createElement('button');
+    this.el.innerText = 'Say hi';
+    this.el.addEventListener('click', this.emitEvent);
+    this.appendChild(this.el);
+  }
+
+  disconnectedCallback() {
+    this.el.removeEventListener('click', this.emitEvent);
+  }
+}
+```
+
+```jsx src/App.js active
+export function App() {
+  return (
+    <my-element
+      onspeak={e => console.log(e.detail.message)}
+    ></my-element>
+  )
+}
+```
+
+</Sandpack>
+
 <Note>
 
-[React の将来のバージョンでは、カスタム要素に対するより包括的なサポートが含まれます](https://github.com/facebook/react/issues/11347#issuecomment-1122275286)。
+イベント名は大文字・小文字を区別し、ダッシュ (`-`) をサポートします。カスタム要素のイベントをリッスンする際は、大文字・小文字の区別やダッシュを保持するようにしてください。
 
-これは、最新の実験的 (experimental) バージョンに React パッケージをアップグレードすることで試すことができます。
-
-- `react@experimental`
-- `react-dom@experimental`
-
-React の実験的バージョンにはバグが含まれている可能性があります。本番環境では使用しないでください。
+```jsx
+// Listens for `say-hi` events
+<my-element onsay-hi={console.log}></my-element>
+// Listens for `sayHi` events
+<my-element onsayHi={console.log}></my-element>
+```
 
 </Note>
 ---

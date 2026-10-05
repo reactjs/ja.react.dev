@@ -5,7 +5,7 @@ date: 2023/05/03
 description: 私たちは、安定版がリリースされる前に、個々の新機能の設計がほぼ確定した段階でそれらを採用できるという選択肢を、React コミュニティに提供したいと考えています。これは、Meta が長年、React の最先端バージョンを社内で使用してきたやり方に似ています。私たちは、新たに公式サポート対象となる Canary リリースチャンネルを導入します。これにより、フレームワークのような統合済セットアップが、個々の React 機能の採用を React のリリーススケジュールから切り離して行えるようになります。
 ---
 
-May 3, 2023 by [Dan Abramov](https://twitter.com/dan_abramov), [Sophie Alpert](https://twitter.com/sophiebits), [Rick Hanlon](https://twitter.com/rickhanlonii), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Andrew Clark](https://twitter.com/acdlite)
+May 3, 2023 by [Dan Abramov](https://bsky.app/profile/danabra.mov), [Sophie Alpert](https://twitter.com/sophiebits), [Rick Hanlon](https://twitter.com/rickhanlonii), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Andrew Clark](https://twitter.com/acdlite)
 
 ---
 
@@ -39,7 +39,7 @@ May 3, 2023 by [Dan Abramov](https://twitter.com/dan_abramov), [Sophie Alpert](h
 
 **私たちは React コミュニティに、Meta と同じアプローチで、個々の新機能が利用可能になった段階でそれらを早期に採用し、React の次のリリースサイクルまで待たないで済む、というオプションを提供したいと考えています**。
 
-これまで通り、すべての React の機能は最終的には安定板のリリースに含まれることになります。
+これまで通り、すべての React の機能は最終的には安定版のリリースに含まれることになります。
 
 ## ただマイナーリリースを増やせばいいのでは？ {/*can-we-just-do-more-minor-releases*/}
 
@@ -49,7 +49,7 @@ May 3, 2023 by [Dan Abramov](https://twitter.com/dan_abramov), [Sophie Alpert](h
 
 Meta では、`main` ブランチから React をビルドし、毎週特定のピン留めされたコミットに手動で更新することによって、この問題を解決しています。これはまた、過去数年間にわたって React Native リリースが実施してきたアプローチでもあります。React Native のすべての*安定版*リリースは、React リポジトリの `main` ブランチの特定のコミットにピン留めされています。これにより、React Native は重要なバグ修正を取り込むことができ、フレームワークレベルで新しい React 機能を段階的に採用し、グローバルな React のリリース予定に依存しないようにできます。
 
-このワークフローを、他のフレームワークや統合済セットアップでも利用可能にしたいと考えているのです。例えば、これにより、React の*上に作られている*フレームワークが、React 関連の破壊的変更を、それが安定版リリース入る*前に*取り込むことができます。これが特に有用なのは、一部の破壊的変更はフレームワークとの結合部分にのみ影響するものだからです。これによりフレームワークは semver ルールを破ることなく、そのような破壊的変更を独自にマイナーバージョンを付けてリリースできます。
+このワークフローを、他のフレームワークや統合済セットアップでも利用可能にしたいと考えているのです。例えば、これにより、React の*上に作られている*フレームワークが、React 関連の破壊的変更を、それが安定版リリースに入る*前に*取り込むことができます。これが特に有用なのは、一部の破壊的変更はフレームワークとの結合部分にのみ影響するものだからです。これによりフレームワークは semver ルールを破ることなく、そのような破壊的変更を独自にマイナーバージョンを付けてリリースできます。
 
 Canary チャンネルでの継続的リリースにより、より緊密なフィードバックループを実現し、新機能がコミュニティで包括的な検証を確実に受けられるようにすることができます。このワークフローは、JavaScript の標準化委員会である TC39 が[番号付きのステージで変更を処理する方法](https://tc39.es/process-document/)に近いものです。新しい React 機能は、React の安定版でリリースされる前に、React をベースにしたフレームワークにおいて先に利用可能になることがあります。これは、新しい JavaScript 機能が、仕様の公式な一部として批准されるより前に、先にブラウザで利用可能になることと同様です。
 

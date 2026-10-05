@@ -29,9 +29,9 @@ RSC は、サーバセントリックなマルチページアプリケーショ�
 
 最大の変更点は、サーバコンポーネントにおいては [`async` / `await`](https://github.com/reactjs/rfcs/pull/229) を主要なデータフェッチ方法として導入することにしたことです。また、Promise の中身を取り出す新しいフック `use` を導入してクライアントでのデータロードをサポートする予定です。クライアントのみのアプリにおいては、あらゆるコンポーネントで `async / await` をサポートすることはできませんが、RSC アプリの構造に似た方法でクライアントオンリーのアプリを作成する場合にはそれができるよう、サポートを追加する予定です。
 
-データフェッチがかなり整理されましたので、クライアントからサーバという逆方向へのデータ送信を行って、データベース更新やフォームの実装ができる方法についても検討しています。サーバー/クライアントの境界を越えて Server Action 関数を渡せるようにすることで、クライアントがそれを呼び出し、シームレスな RPC を実現できるようする、という方法を考えています。Server Action により、JavaScript が読み込まれる前に段階的に動作するようになるフォームを提供することも可能です。
+データフェッチがかなり整理されましたので、クライアントからサーバという逆方向へのデータ送信を行って、データベース更新やフォームの実装ができる方法についても検討しています。サーバ/クライアントの境界を越えて Server Action 関数を渡せるようにすることで、クライアントがそれを呼び出し、シームレスな RPC を実現できるようする、という方法を考えています。Server Action により、JavaScript が読み込まれる前に段階的に動作するようになるフォームを提供することも可能です。
 
-React Server Components は [Next.js App Router](/learn/start-a-new-react-project#nextjs-app-router) でリリースされました。これは RSC をプリミティブとして完全採用し深く統合を行ったルータのデモとなっていますが、これが RSC 互換ルータやフレームワークを構築するための唯一の方法というわけではありません。RSC 仕様が提供するものと、その実装が提供するものとの間には明確な区切りがあります。React Server Components は、互換のある複数の React フレームワーク間で動作する、コンポーネント仕様として作られています。
+React Server Components は [Next.js App Router](/learn/creating-a-react-app#nextjs-app-router) でリリースされました。これは RSC をプリミティブとして完全採用し深く統合を行ったルータのデモとなっていますが、これが RSC 互換ルータやフレームワークを構築するための唯一の方法というわけではありません。RSC 仕様が提供するものと、その実装が提供するものとの間には明確な区切りがあります。React Server Components は、互換のある複数の React フレームワーク間で動作する、コンポーネント仕様として作られています。
 
 一般的には既存のフレームワークを使用することをお勧めしますが、自分自身のカスタムフレームワークの構築が必要な場合は、それも可能です。独自の RSC 互換フレームワークの構築は、主にバンドラとの深い統合が必要であるという理由により、我々が望むほど簡単なものにはなっていません。現行世代のバンドラはクライアントでの使用には適していますが、サーバとクライアントをまたいだ単一のモジュールグラフの分割を行うことを優先的なサポート項目として設計されてはいません。これが、現在 RSC のプリミティブを組み込んでもらうために、バンドラ開発者と直接協力している理由です。
 
@@ -92,14 +92,14 @@ React コンポーネント内のプレーンな JavaScript をリアクティ�
 
 ## トランジショントレーシング {/*transition-tracing*/}
 
-Transition Tracing API により、[React のトランジション](/reference/react/useTransition)が遅くなったことを検出し、なぜ遅くなるのかを調査することができます。前回のお知らせ以降、API の初期設計を完了し、[RFC](https://github.com/reactjs/rfcs/pull/238) を公開しました。基本的な機能も実装されています。現在、プロジェクトは保留中です。RFC に対するフィードバックを歓迎します。React のパフォーマンス測定ツールをより良くするために開発を再開できるようになることを楽しみにしています。これは、[Next.js App Router](/learn/start-a-new-react-project#nextjs-app-router) のように React トランジション上に構築されたルータでは、特に役立ちます。
+Transition Tracing API により、[React のトランジション](/reference/react/useTransition)が遅くなったことを検出し、なぜ遅くなるのかを調査することができます。前回のお知らせ以降、API の初期設計を完了し、[RFC](https://github.com/reactjs/rfcs/pull/238) を公開しました。基本的な機能も実装されています。現在、プロジェクトは保留中です。RFC に対するフィードバックを歓迎します。React のパフォーマンス測定ツールをより良くするために開発を再開できるようになることを楽しみにしています。これは、[Next.js App Router](/learn/creating-a-react-app#nextjs-app-router) のように React トランジション上に構築されたルータでは、特に役立ちます。
 
 * * *
 このページでのアップデートに加えて、私たちのチームは最近、コミュニティのポッドキャストやライブストリームにゲスト出演し、取り組みについてより多くのことをお話しし、質問に答える機会がありました。
 
-* [Dan Abramov](https://twitter.com/dan_abramov) と [Joe Savona](https://twitter.com/en_JS) は [Kent C. Dodds の YouTube チャンネル](https://www.youtube.com/watch?v=h7tur48JSaw) でインタビューを受け、React Server Components に関する懸念について議論を行いました。
-* [Dan Abramov](https://twitter.com/dan_abramov) と [Joe Savona](https://twitter.com/en_JS) は [JSParty ポッドキャスト](https://jsparty.fm/267) のゲストとして招かれ、React の未来についての考えを共有しました。
+* [Dan Abramov](https://bsky.app/profile/danabra.mov) と [Joe Savona](https://twitter.com/en_JS) は [Kent C. Dodds の YouTube チャンネル](https://www.youtube.com/watch?v=h7tur48JSaw) でインタビューを受け、React Server Components に関する懸念について議論を行いました。
+* [Dan Abramov](https://bsky.app/profile/danabra.mov) と [Joe Savona](https://twitter.com/en_JS) は [JSParty ポッドキャスト](https://jsparty.fm/267) のゲストとして招かれ、React の未来についての考えを共有しました。
 
-この投稿のレビューに協力していただいた [Andrew Clark](https://twitter.com/acdlite)、[Dan Abramov](https://twitter.com/dan_abramov)、[Dave McCabe](https://twitter.com/mcc_abe)、[Luna Wei](https://twitter.com/lunaleaps)、[Matt Carroll](https://twitter.com/mattcarrollcode)、[Sean Keegan](https://twitter.com/DevRelSean)、[Sebastian Silbermann](https://twitter.com/sebsilbermann)、[Seth Webster](https://twitter.com/sethwebster)、[Sophie Alpert](https://twitter.com/sophiebits) に感謝します。
+この投稿のレビューに協力していただいた [Andrew Clark](https://twitter.com/acdlite)、[Dan Abramov](https://bsky.app/profile/danabra.mov)、[Dave McCabe](https://twitter.com/mcc_abe)、[Luna Wei](https://twitter.com/lunaleaps)、[Matt Carroll](https://twitter.com/mattcarrollcode)、[Sean Keegan](https://twitter.com/DevRelSean)、[Sebastian Silbermann](https://twitter.com/sebsilbermann)、[Seth Webster](https://twitter.com/sethwebster)、[Sophie Alpert](https://twitter.com/sophiebits) に感謝します。
 
 お読みいただきありがとうございました。次のアップデートでお会いしましょう！

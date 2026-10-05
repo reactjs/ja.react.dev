@@ -30,7 +30,7 @@ title: "<input>"
 
 #### props {/*props*/}
 
-`<input>` は[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
+`<input>` は[一般的な要素の props](/reference/react-dom/components/common#common-props) をすべてサポートしています。
 
 - [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): 文字列または関数。`type="submit"` and `type="image"` の場合に親の `<form action>` を上書きする。`action` に URL が渡された場合はフォームは標準的な HTML フォームとして動作する。関数が渡された場合はその関数がフォームの送信を処理する。[`<form action>`](/reference/react-dom/components/form#props) を参照。
 
@@ -43,7 +43,7 @@ title: "<input>"
 
 以下の `<input>` の props は、非制御 (uncontrolled) の入力欄にのみ使用されます。
 
-* [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): ブーリアン。`type="checkbox"` および `type="radio"` の入力欄の場合に、[初期値](#providing-an-initial-value-for-an-input)を指定します。 
+* [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): ブーリアン。`type="checkbox"` および `type="radio"` の入力欄の場合に、[初期値](#providing-an-initial-value-for-an-input)を指定します。
 * [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): 文字列。テキスト入力の場合に、[初期値](#providing-an-initial-value-for-an-input)を指定します。
 
 以下の `<input>` の props は、非制御の入力欄と制御された入力欄の両方で用いられます。
@@ -212,7 +212,7 @@ export default function MyForm() {
             type="radio"
             name="myRadio"
             value="option2"
-            defaultChecked={true} 
+            defaultChecked={true}
           />
           Option 2
         </label>
@@ -297,7 +297,7 @@ input { margin: 5px; }
 
 <Pitfall>
 
-デフォルトでは、`<form>` 内の*あらゆる* `<button>` はフォームの送信を行います。これは予想外の挙動かもしれません！ 独自のカスタム `Button` React コンポーネントを利用している場合は、`<button>` の代わりに [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) を返すようにすることを考慮してください。そしてフォームを送信することが*意図されている*ボタンには明示的に `<button type="submit">` を使用してください。
+デフォルトでは、`<form>` 内にあり `type` 属性のない `<button>` はフォームの送信を行います。これは予想外の挙動かもしれません！ 独自のカスタム `Button` React コンポーネントを利用している場合は、（type を指定しない）`<button>` の代わりに [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) を使うようにすることを考慮してください。そしてフォームを送信することが*意図されている*ボタンには明示的に `<button type="submit">` を使用してください。
 
 </Pitfall>
 

@@ -10,6 +10,14 @@ October 21, 2024 by [Lauren Tan](https://twitter.com/potetotes).
 
 ---
 
+<Note>
+
+### React Compiler は安定版となりました！ {/*react-compiler-is-now-in-rc*/}
+
+詳細については[安定版リリース記事](/blog/2025/10/07/react-compiler-1)をご覧ください。
+
+</Note>
+
 <Intro>
 
 React チームより以下の最新情報を共有できることを嬉しく思います。
@@ -64,11 +72,11 @@ npm install -D eslint-plugin-react-compiler@beta
 yarn add -D eslint-plugin-react-compiler@beta
 </TerminalBlock>
 
-インストール後、[ESLint の設定ファイルに記載を追加することでリンタを有効にできます](/learn/react-compiler#installing-eslint-plugin-react-compiler)。リンタを使用することで、React のルールに対する違反を特定でき、コンパイラが完全にリリースされる際の導入が容易になります。
+インストール後、[ESLint の設定ファイルに記載を追加することでリンタを有効にできます](/learn/react-compiler/installation#eslint-integration)。リンタを使用することで、React のルールに対する違反を特定でき、コンパイラが完全にリリースされる際の導入が容易になります。
 
 ## 後方互換性 {/*backwards-compatibility*/}
 
-React Compiler は React 19 に追加されたランタイム API に依存するコードを生成しますが、React 17 および 18 でもコンパイラが動作するようにサポートを追加しました。ベータ版では、まだ React 19 に移行していない場合でも、コンパイラ設定で小さな `target` を指定し、`react-compiler-runtime` を依存ライブラリとして追加することで、React Compiler を試すことができます。[これに関するドキュメントはこちらでご覧いただけます](/learn/react-compiler#using-react-compiler-with-react-17-or-18)。
+React Compiler は React 19 に追加されたランタイム API に依存するコードを生成しますが、React 17 および 18 でもコンパイラが動作するようにサポートを追加しました。ベータ版では、まだ React 19 に移行していない場合でも、コンパイラ設定で小さな `target` を指定し、`react-compiler-runtime` を依存ライブラリとして追加することで、React Compiler を試すことができます。[これに関するドキュメントはこちらでご覧いただけます](/reference/react-compiler/configuration#react-17-18)。
 
 ## ライブラリでの React Compiler の使用 {/*using-react-compiler-in-libraries*/}
 
@@ -78,13 +86,13 @@ React Compiler はライブラリのコンパイルにも使用できます。Re
 
 ライブラリのコードが事前にコンパイルされていれば、ライブラリのユーザはコンパイラを有効にしなくても、ライブラリに適用された自動メモ化の恩恵を受けることができます。ライブラリがまだ React 19 に移行していないアプリを対象としている場合、最小の `target` を指定し、`react-compiler-runtime` を dependency として直接追加してください。ランタイムパッケージはアプリケーションのバージョンに応じて正しい API の実装を使用し、必要に応じて欠けている API をポリフィルします。
 
-[これに関するドキュメントはこちら](/learn/react-compiler#using-the-compiler-on-libraries)。
+[これに関するドキュメントはこちら](/reference/react-compiler/compiling-libraries)。
 
 ## React Compiler Working Group を全員に開放 {/*opening-up-react-compiler-working-group-to-everyone*/}
 
 以前 React Conf にて、招待制の [React Compiler Working Group](https://github.com/reactwg/react-compiler) を発表し、コンパイラの実験的リリースに対するフィードバックを提供し、質問をし、貢献を行える場として利用してきました。
 
-本日より、React Compiler Beta のリリースに合わせ、Working Group のメンバーシップを全員に開放します。React Compiler Working Group の目標は、エコシステム全体で、既存のアプリケーションやライブラリによる React Compiler のスムーズかつ段階的な採用準備を整えることです。今後もバグ報告は [React リポジトリ](https://github.com/facebook/react)に行っていただく一方で、フィードバックや質問、アイディアの共有は、[Working Group のディスカッションフォーラム](https://github.com/reactwg/react-compiler/discussions)を利用してください。
+本日より、React Compiler Beta のリリースに合わせ、Working Group のメンバーシップを全員に開放します。React Compiler Working Group の目標は、エコシステム全体で、既存のアプリケーションやライブラリによる React Compiler のスムーズかつ段階的な採用準備を整えることです。今後もバグ報告は [React リポジトリ](https://github.com/react/react)に行っていただく一方で、フィードバックや質問、アイディアの共有は、[Working Group のディスカッションフォーラム](https://github.com/reactwg/react-compiler/discussions)を利用してください。
 
 コアチームも研究結果を共有にディスカッションリポジトリを使用します。安定版リリースが近づくにつれ、重要な情報もこのフォーラムに投稿されます。
 
@@ -119,7 +127,7 @@ React Compiler はライブラリのコンパイルにも使用できます。Re
 
 ---
 
-[^1]: コンパイラの貢献に協力いただいた [@nikeee](https://github.com/facebook/react/pulls?q=is%3Apr+author%3Anikeee)、[@henryqdineen](https://github.com/facebook/react/pulls?q=is%3Apr+author%3Ahenryqdineen)、[@TrickyPi](https://github.com/facebook/react/pulls?q=is%3Apr+author%3ATrickyPi) に感謝します。
+[^1]: コンパイラの貢献に協力いただいた [@nikeee](https://github.com/react/react/pulls?q=is%3Apr+author%3Anikeee)、[@henryqdineen](https://github.com/react/react/pulls?q=is%3Apr+author%3Ahenryqdineen)、[@TrickyPi](https://github.com/react/react/pulls?q=is%3Apr+author%3ATrickyPi) に感謝します。
 
 [^2]: Meta での React コンパイラに関する本研究を主導し、この投稿をレビューしていただいた [Vaishali Garg](https://www.linkedin.com/in/vaishaligarg09) に感謝します。
 

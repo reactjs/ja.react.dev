@@ -26,7 +26,7 @@ title: 'そのエフェクトは不要かも'
 * **レンダーのためのデータ変換にエフェクトは必要ありません**。例えば、表示する前にリストをフィルタリングしたいとします。リストが変更されたときに state 変数を更新するようなエフェクトを書きたくなるかもしれません。しかし、これは非効率的です。state を更新すると、React はまず、画面の表示内容を計算するためにコンポーネントの関数を呼び出します。次に、React はこれらの変更を DOM に ["コミット"](/learn/render-and-commit) して、画面を更新します。その後、React はエフェクトを実行します。ここであなたのエフェクトが*また*直ちに state を更新してしまうと、このプロセス全体が最初からやり直しになってしまいます！ 不要なレンダーを避けるために、コンポーネントのトップレベルですべてのデータを変換するようにしましょう。そのコードは、props や state が変更されるたびに自動的に再実行されます。
 * **ユーザイベントの処理にエフェクトは必要ありません**。例えば、ユーザが製品を購入したときに `/api/buy` POST リクエストを送信し、通知を表示したいとします。購入ボタンのクリックイベントハンドラでは、何が起こったかが正確にわかります。エフェクトが実行される時点では、ユーザが*何をした*のか（例えば、どのボタンがクリックされたのか）はもうわかりません。したがって、通常は対応するイベントハンドラでユーザイベントを処理するべきです。
 
-エフェクトは、外部システムと[同期](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events)したい場合には*必要*です。例えば、React の state と jQuery ウィジェットを同期させるエフェクトを書くことができます。また、エフェクトでデータを取得し、例えば現在の検索クエリと検索結果を同期させることができます。ただし、モダンな[フレームワーク](/learn/start-a-new-react-project#production-grade-react-frameworks)は、コンポーネント内で直接エフェクトを書くよりも効率的な組み込みデータ取得メカニズムを提供していることに注意してください。
+エフェクトは、外部システムと[同期](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events)したい場合には*必要*です。例えば、React の state と jQuery ウィジェットを同期させるエフェクトを書くことができます。また、エフェクトでデータを取得し、例えば現在の検索クエリと検索結果を同期させることができます。ただし、モダンな[フレームワーク](/learn/creating-a-react-app#full-stack-frameworks)は、コンポーネント内で直接エフェクトを書くよりも効率的な組み込みデータ取得メカニズムを提供していることに注意してください。
 
 正しい直観力を養うために、一般的かつ具体的な例をいくつか見ていきましょう！
 
@@ -34,7 +34,7 @@ title: 'そのエフェクトは不要かも'
 
 例えば、`firstName` と `lastName` の 2 つの state 変数を持つコンポーネントがあるとします。これらを連結して `fullName` を計算したいとします。となると、`firstName` または `lastName` が変更されたときに `fullName` を更新したくなるでしょう。直観的には、`fullName` という state 変数を追加して、エフェクトでそれを更新すればいいと思うかもしれません。
 
-```js {5-9}
+```js {expectedErrors: {'react-compiler': [8]}} {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
@@ -66,7 +66,7 @@ function Form() {
 
 このコンポーネントは、props で受け取った `todos` を、`filter` プロパティに従ってフィルタリングして `visibleTodos` を計算しています。計算結果を state に格納してエフェクトから更新するようにしたくなるかもしれません。
 
-```js {4-8}
+```js {expectedErrors: {'react-compiler': [7]}} {4-8}
 function TodoList({ todos, filter }) {
   const [newTodo, setNewTodo] = useState('');
 
@@ -94,6 +94,12 @@ function TodoList({ todos, filter }) {
 通常、このコードに問題はありません！ しかし、`getFilteredTodos()` が遅かったり、大量の `todos` があったりするかもしれません。そのような場合、`newTodo` のような無関係の state 変数が変更されたときに `getFilteredTodos()` の再計算を避けたくなるかもしれません。
 
 重たい計算をキャッシュする（あるいは ["メモ化する (memoize)"](https://en.wikipedia.org/wiki/Memoization)）には、[`useMemo`](/reference/react/useMemo) フックでラップします。
+
+<Note>
+
+[React Compiler](/learn/react-compiler) は高価な計算を自動でメモ化してくれるため、多くの場合、手作業による `useMemo` は不要となります。
+
+</Note>
 
 ```js {5-8}
 import { useMemo, useState } from 'react';
@@ -159,7 +165,7 @@ console.timeEnd('filter array');
 
 この `ProfilePage` コンポーネントは props として `userId` を受け取ります。ページにはコメント入力欄があり、その値を保持するために `comment` という state 変数を使用しています。ある日、問題に気付きました。あるプロフィールから別のプロフィールに移動しても、`comment` がリセットされないのです。その結果、うっかり別のユーザのプロフィールにコメントを投稿してしまいやすい状態になっています。この問題を解決するために、`userId` が変更されるたびに `comment` state 変数をクリアしたいと考えています。
 
-```js {4-7}
+```js {expectedErrors: {'react-compiler': [6]}} {4-7}
 export default function ProfilePage({ userId }) {
   const [comment, setComment] = useState('');
 
@@ -202,7 +208,7 @@ function Profile({ userId }) {
 
 この `List` コンポーネントは、`items` リストを props として受け取り、選択中のアイテムを `selection` という state 変数に保持します。`items` が異なる配列を受け取るたびに、`selection` を `null` にリセットしたいとします。
 
-```js {5-8}
+```js {expectedErrors: {'react-compiler': [7]}} {5-8}
 function List({ items }) {
   const [isReverse, setIsReverse] = useState(false);
   const [selection, setSelection] = useState(null);
@@ -431,7 +437,7 @@ function Game() {
     // ✅ Calculate all the next state in the event handler
     setCard(nextCard);
     if (nextCard.gold) {
-      if (goldCardCount <= 3) {
+      if (goldCardCount < 3) {
         setGoldCardCount(goldCardCount + 1);
       } else {
         setGoldCardCount(0);
@@ -660,7 +666,7 @@ function ChatIndicator() {
 }
 ```
 
-ここでは、コンポーネントが外部データストア（この場合は、ブラウザの `navigator.onLine` API）にサブスクライブしています。この API はサーバー上には存在しない（サーバレンダリング用の初期 HTML には使用できない）ため、最初 state は `true` にセットされます。ブラウザ内のデータストアの値が変更されるたびに、コンポーネントは自身の state を更新します。
+ここでは、コンポーネントが外部データストア（この場合は、ブラウザの `navigator.onLine` API）にサブスクライブしています。この API はサーバ上には存在しない（サーバレンダリング用の初期 HTML には使用できない）ため、最初 state は `true` にセットされます。ブラウザ内のデータストアの値が変更されるたびに、コンポーネントは自身の state を更新します。
 
 エフェクトを使うことも一般的ですが、React には外部ストアへサブスクライブする際に推奨される、専用のフックが用意されています。エフェクトを削除し、[`useSyncExternalStore`](/reference/react/useSyncExternalStore) の呼び出しに置き換えてください。
 
@@ -689,7 +695,7 @@ function ChatIndicator() {
 }
 ```
 
-このアプローチにより、エフェクトを使って可変データを React の state に手動で同期させるよりも、エラーが発生しにくなります。通常、上記のような `useOnlineStatus()` のようなカスタムフックを作成して、個々のコンポーネントでこのコードを繰り返さなくて済むようにします。[React コンポーネントから外部ストアにサブスクライブする方法について詳しく読む](/reference/react/useSyncExternalStore)
+このアプローチにより、エフェクトを使って可変データを React の state に手動で同期させるよりも、エラーが発生しにくくなります。通常、上記のような `useOnlineStatus()` のようなカスタムフックを作成して、個々のコンポーネントでこのコードを繰り返さなくて済むようにします。[React コンポーネントから外部ストアにサブスクライブする方法について詳しく読む](/reference/react/useSyncExternalStore)
 
 ### データのフェッチ {/*fetching-data*/}
 
@@ -718,7 +724,7 @@ function SearchResults({ query }) {
 
 これは、イベントハンドラにロジックを入れる必要があったここまでの例と矛盾しているように思えるかもしれません。しかし、*タイピングというイベント*がデータのフェッチを行う理由だというわけではないことに留意しましょう。検索フィールドは URL から事前入力されることがよくありますし、ユーザは入力フィールドに触れずに戻る・進むといったナビゲーションを行うこともあります。
 
-この `page` や `query` がどこから来たかのかは問題ではありません。このコンポーネントが表示されている間は `results` を、現在の `page` と `query` に対応するネットワークからのデータに[同期させる](/learn/synchronizing-with-effects)必要があるのです。だからこれはエフェクトであるべきだということです。
+この `page` や `query` がどこから来たのかは問題ではありません。このコンポーネントが表示されている間は `results` を、現在の `page` と `query` に対応するネットワークからのデータに[同期させる](/learn/synchronizing-with-effects)必要があるのです。だからこれはエフェクトであるべきだということです。
 
 ただし、上記のコードにはバグがあります。例えば、素早く `"hello"` と入力すると、`query` は `"h"`、`"he"`、`"hel"`、`"hell"`、`"hello"` の順に変わります。これにより、別々のフェッチが開始されますが、レスポンスがどの順序で届くかについては何の保証もありません。例えば、`"hell"` のレスポンスが `"hello"` のレスポンスの*後*に届くかもしれません。それが最後に `setResults()` を呼び出すと、間違った検索結果が表示されることになります。これは ["競合状態 (race condition)"](https://en.wikipedia.org/wiki/Race_condition) と呼ばれるもので、2 つの異なるリクエストが予想外の順序で「競争」してしまうという現象です。
 
@@ -751,7 +757,7 @@ function SearchResults({ query }) {
 
 競合状態への対処がデータフェッチにまつわる唯一の問題というわけでもありません。レスポンスのキャッシュ（ユーザが「戻る」をクリックしたときに前の画面を即座に表示できるようにする）、サーバ上でのデータフェッチ（サーバレンダリングされた初期 HTML にフェッチされたコンテンツが含まれるようにする）、ネットワークのウォーターフォールの回避（子が親を待たずにデータを取得できるようにする）などが考慮すべき点です。
 
-**これらは React だけでなく、あらゆる UI ライブラリで問題となるものです。これらは一筋縄では解決できないため、現代の[フレームワーク](/learn/start-a-new-react-project#production-grade-react-frameworks)では、エフェクトでデータを取得するよりも効率的な組み込みデータ取得メカニズムが提供されています**。
+**これらは React だけでなく、あらゆる UI ライブラリで問題となるものです。これらは一筋縄では解決できないため、現代の[フレームワーク](/learn/creating-a-react-app#full-stack-frameworks)では、エフェクトでデータを取得するよりも効率的な組み込みデータ取得メカニズムが提供されています**。
 
 フレームワークを使用しない（し独自に構築もしたくない）がエフェクトからのデータフェッチをより使いやすくしたい、という場合、以下の例のように、データフェッチのロジックをカスタムフックに抽出することを検討してください。
 
@@ -788,7 +794,7 @@ function useData(url) {
 
 また、エラー処理やコンテンツの読み込み状況を追跡するためのロジックを追加することも検討してください。このようなフックを自分で構築するか、React エコシステムで既に利用可能な多くのソリューションのいずれかを使用することができます。**これだけではフレームワークの組み込みデータフェッチメカニズムほど効率的にはなりませんが、データ取得ロジックをカスタムフックに移動しておけば、後で効率的なデータフェッチ戦略を採用することもより簡単になるでしょう**。
 
-一般的に、エフェクトを書く必要がある場合は常に、上記の `useData` のように、より宣言的かつ目的に応じた API を持つカスタムフックに機能の一部を抽出でききないか、目を光らせるようにしてください。コンポーネント内の生の `useEffect` の呼び出しが少なければ少ないほど、アプリケーションのメンテナンスは容易になります。
+一般的に、エフェクトを書く必要がある場合は常に、上記の `useData` のように、より宣言的かつ目的に応じた API を持つカスタムフックに機能の一部を抽出できないか、目を光らせるようにしてください。コンポーネント内の生の `useEffect` の呼び出しが少なければ少ないほど、アプリケーションのメンテナンスは容易になります。
 
 <Recap>
 
@@ -813,7 +819,7 @@ function useData(url) {
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [12, 16, 20]}}
 import { useState, useEffect } from 'react';
 import { initialTodos, createTodo } from './todos.js';
 
@@ -1016,7 +1022,7 @@ input { margin-top: 10px; }
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState, useEffect } from 'react';
 import { initialTodos, createTodo, getVisibleTodos } from './todos.js';
 
@@ -1357,7 +1363,7 @@ export default function ContactList({
 }
 ```
 
-```js src/EditContact.js active
+```js {expectedErrors: {'react-compiler': [8, 9]}} src/EditContact.js active
 import { useState, useEffect } from 'react';
 
 export default function EditContact({ savedContact, onSave }) {

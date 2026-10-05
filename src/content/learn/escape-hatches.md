@@ -201,7 +201,7 @@ input { display: block; margin-bottom: 20px; }
 
 例えば、他の state に基づいてほかの state を調整するのに、エフェクトは必要ありません。
 
-```js {5-9}
+```js {expectedErrors: {'react-compiler': [8]}} {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
@@ -312,12 +312,6 @@ React は、エフェクトの依存配列が正しく指定されているか�
 
 ## イベントとエフェクトを切り離す {/*separating-events-from-effects*/}
 
-<Wip>
-
-このセクションでは、まだ安定版の React でリリースされていない**実験的な API** について説明しています。
-
-</Wip>
-
 イベントハンドラは同じインタラクションを再度実行した場合のみ再実行されます。エフェクトはイベントハンドラとは異なり、props や state 変数のようなそれが読み取る値が前回のレンダー時の値と異なる場合に再同期を行います。また、ある値には反応して再実行するが、他の値には反応しないエフェクトなど、両方の動作をミックスさせたい場合もあります。
 
 エフェクト内のすべてのコードは*リアクティブ*です。それが読み取るリアクティブな値が再レンダーにより変更された場合、再度実行されます。例えば、このエフェクトは `roomId` と `theme` のいずれかが変更された場合にチャットに再接続します。
@@ -388,7 +382,7 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );
@@ -455,8 +449,8 @@ label { display: block; margin-top: 10px; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -471,7 +465,7 @@ label { display: block; margin-top: 10px; }
 
 ```js
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import { createConnection, sendMessage } from './chat.js';
 import { showNotification } from './notifications.js';
 
@@ -521,7 +515,7 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );

@@ -36,9 +36,9 @@ title: "<form>"
 
 #### props {/*props*/}
 
-`<form>` は、[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
+`<form>` は、[一般的な要素の props](/reference/react-dom/components/common#common-props) をすべてサポートしています。
 
-[`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action)：URL または関数。`action` として URL が渡された場合、フォームは HTML の form コンポーネントと同様に動作します。`action` として関数が渡された場合、その関数がフォームの送信を処理します。`action` に渡された関数は非同期でもよく、送信されたフォームの [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) を唯一の引数として呼び出されます。`action` は、`<button>`、`<input type="submit">`、または `<input type="image">` コンポーネントの `formAction` プロパティによって上書きされることがあります。
+[`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action)：URL または関数。`action` として URL が渡された場合、フォームは HTML の form コンポーネントと同様に動作します。`action` として関数が渡された場合、その関数がフォームの送信を [Action prop パターン](/reference/react/useTransition#exposing-action-props-from-components)を用いてトランジション内で処理します。`action` に渡された関数は非同期でもよく、送信されたフォームの [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) を唯一の引数として呼び出されます。`action` は、`<button>`、`<input type="submit">`、または `<input type="image">` コンポーネントの `formAction` プロパティによって上書きされることがあります。
 
 #### 注意点 {/*caveats*/}
 
@@ -48,9 +48,47 @@ title: "<form>"
 
 ## 使用法 {/*usage*/}
 
-### クライアント上でフォーム送信を処理する {/*handle-form-submission-on-the-client*/}
+### イベントハンドラでフォーム送信を処理する {/*handle-form-submission-with-an-event-handler*/}
 
-フォームの `action` プロパティに関数を渡すことで、フォームが送信されたときにその関数が実行されるようにします。この関数には [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) が引数として渡されるため、フォームが送信したデータにアクセスできます。これは URL のみを受け付ける本来の [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action) とは異なる、独自の動作です。`action` に指定された関数が成功した後、非制御のフィールド要素はすべてリセットされます。
+フォームの送信時にコードを実行するには、`onSubmit` イベントハンドラに関数を渡します。デフォルトでは、ブラウザは現在の URL にフォームデータを送信してページを再読み込みするため、[`e.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) を呼び出してこの動作を上書きしてください。
+
+以下の例では、各フィールドを `name` ごとに収集する [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) を使って、送信された値を読み取ります。これにより、入力欄は[非制御のまま](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form)になります。[state で入力欄を制御している](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable)場合は、送信時に `FormData` ではなく当該 state から値を読み取ってください。
+
+<Sandpack>
+
+```js src/App.js
+export default function Search() {
+  function handleSubmit(e) {
+    // Prevent the browser from reloading the page
+    e.preventDefault();
+
+    // Read the form data
+    const form = e.target;
+    const formData = new FormData(form);
+    const query = formData.get("query");
+    alert(`You searched for '${query}'`);
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input name="query" />
+      <button type="submit">Search</button>
+    </form>
+  );
+}
+```
+
+</Sandpack>
+
+<Note>
+
+`onSubmit` でフォームデータを読み取る方法は React のすべてのバージョンで動作し、[submit イベント](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event)に直接アクセスできるため、`e.preventDefault()` を呼び出して自分でデータを読み取れます。代わりに `action` プロパティに関数を渡すと、送信処理が[トランジション](/reference/react/useTransition)内で実行されます。その場合、React は保留中の state を追跡し、スローされたエラーを最も近いエラーバウンダリに送り、フォームで [`useActionState`](/reference/react/useActionState) や [`useOptimistic`](/reference/react/useOptimistic) を利用できるようにします。`action` には、`onSubmit` がサポートしていない[サーバ関数](/reference/rsc/server-functions)を指定することもできます。
+
+</Note>
+
+### フォーム送信を Action prop で処理する {/*handle-form-submission-with-an-action-prop*/}
+
+フォームの `action` プロパティに関数を渡すことで、フォームが送信されたときにその関数が実行されるようにします。この関数には [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) が引数として渡されるため、フォームが送信したデータにアクセスできます。これは URL のみを受け付ける本来の [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action) とは異なる、独自の動作です。`onSubmit` と異なり、`action` は[トランジション](/reference/react/useTransition)内で実行されるため、`e.preventDefault()` を呼び出す必要はありません。`action` に指定された関数が成功した後、フォーム内の非制御のフィールド要素はすべてリセットされます。
 
 <Sandpack>
 
@@ -214,7 +252,7 @@ export default function App() {
   ]);
   async function sendMessage(formData) {
     const sentMessage = await deliverMessage(formData.get("message"));
-    setMessages([...messages, { text: sentMessage }]);
+    setMessages((messages) => [...messages, { text: sentMessage }]);
   }
   return <Thread messages={messages} sendMessage={sendMessage} />;
 }
@@ -229,8 +267,8 @@ export async function deliverMessage(message) {
 
 </Sandpack>
 
-[//]: # 'Uncomment the next line, and delete this line after the `useOptimistic` reference documentatino page is published'
-[//]: # 'To learn more about the `useOptimistic` Hook see the [reference documentation](/reference/react/hooks/useOptimistic).'
+[//]: # 'Uncomment the next line, and delete this line after the `useOptimistic` reference documentation page is published'
+[//]: # 'To learn more about the `useOptimistic` Hook see the [reference documentation](/reference/react/useOptimistic).'
 
 ### フォーム送信エラーの処理 {/*handling-form-submission-errors*/}
 
@@ -278,7 +316,7 @@ export default function Search() {
 
 プログレッシブエンハンスメントの実現のため JavaScript バンドルが読み込まれる前にフォーム送信エラーメッセージを表示できるようにするには、以下の条件を満たす必要があります。
 
-1. `<form>` が [サーバコンポーネント](/reference/rsc/use-client)によってレンダーされている
+1. `<form>` が [クライアントコンポーネント](/reference/rsc/use-client)によってレンダーされている
 1. `<form>` の `action` プロパティに渡される関数が[サーバ関数](/reference/rsc/server-functions)である
 1. `useActionState` フックを使用してエラーメッセージを表示している
 

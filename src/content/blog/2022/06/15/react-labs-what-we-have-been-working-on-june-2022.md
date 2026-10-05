@@ -5,7 +5,7 @@ date: 2022/06/15
 description: React 18 の完成は数年がかりの仕事であり、React チームはそこから貴重な教訓を得ることになりました。このリリースは何年も研究を行い、様々なアプローチを試した結果として生まれたものです。いくつかのアプローチはうまく行った一方で、多くは行き詰まって新たな知見のみをもたらすことになりました。ここから我々が学んだことは、我々がどんなことを試しているのかをコミュニティに知らせることなくただお待たせするというのは、フラストレーションの元だ、ということです。
 ---
 
-June 15, 2022 by [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](https://twitter.com/dan_abramov), [Jan Kassens](https://twitter.com/kassens), [Joseph Savona](https://twitter.com/en_JS), [Josh Story](https://twitter.com/joshcstory), [Lauren Tan](https://twitter.com/potetotes), [Luna Ruan](https://twitter.com/lunaruan), [Mengdi Chen](https://twitter.com/mengdi_en), [Rick Hanlon](https://twitter.com/rickhanlonii), [Robert Zhang](https://twitter.com/jiaxuanzhang01), [Sathya Gunasekaran](https://twitter.com/_gsathya), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Xuan Huang](https://twitter.com/Huxpro)
+June 15, 2022 by [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Jan Kassens](https://twitter.com/kassens), [Joseph Savona](https://twitter.com/en_JS), [Josh Story](https://twitter.com/joshcstory), [Lauren Tan](https://twitter.com/potetotes), [Luna Ruan](https://twitter.com/lunaruan), [Mengdi Chen](https://twitter.com/mengdi_en), [Rick Hanlon](https://twitter.com/rickhanlonii), [Robert Zhang](https://twitter.com/jiaxuanzhang01), [Sathya Gunasekaran](https://twitter.com/_gsathya), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Xuan Huang](https://twitter.com/Huxpro)
 
 ---
 
@@ -27,7 +27,7 @@ June 15, 2022 by [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](http
 
 特に、I/O ライブラリをフォークして例えば react-fetch のようなものを作成していく、というアイディアは捨て去ることにし、代わりに互換性のために async/await モデルを採用することにします。データフェッチングにはルータを使うこともできるのでこれにより RSC のリリースが遅れるということはありません。もうひとつの変更は、ファイルの拡張子でサーバコンポーネントかどうかを区別するというアプローチをやめ、[区別を注釈で行う](https://github.com/reactjs/rfcs/pull/189#issuecomment-1116482278)ことにする、というものです。
 
-Webpack と Vite の両方で振る舞いが同じになるようバンドラのサポートを共通化することについて、Vercel および Shopify とともに取り組んでいます。リリース前に、React のエコシステム全体で RSC の振る舞いが同じになるようにしたいと考えています。この部分が安定化前の最大の障壁となっています。
+webpack と Vite の両方で振る舞いが同じになるようバンドラのサポートを共通化することについて、Vercel および Shopify とともに取り組んでいます。リリース前に、React のエコシステム全体で RSC の振る舞いが同じになるようにしたいと考えています。この部分が安定化前の最大の障壁となっています。
 
 ## アセットのロード {/*asset-loading*/}
 
@@ -69,7 +69,7 @@ React Conf 2021 において、React Forget についての[アーリープレ�
 
 我々は、文脈なしに個々の遅いコミットやコンポーネントに関する情報だけ分かったところで開発者にとってはさほど役立たない、ということを学びました。知りたい情報は、現に遅いコミットになってしまっている理由の方です。開発者は、ボタンクリック、初回ロード、ページ移動といった特定の操作を追跡してパフォーマンスの悪化を監視し、なぜ操作が遅かったのか、どのように修正するのかを知りたいのです。
 
-この問題を解決するために、以前 [Interaction Tracing API](https://gist.github.com/bvaughn/8de925562903afd2e7a12554adcdda16) の作成を試みたことがありますが、これには根本的な設計の問題があったため、操作が遅い理由を正確に知ることが難しく、場合によっては操作が全く終わらなくなってしまうこともありました。このため[この API は削除](https://github.com/facebook/react/pull/20037)せざるを得ませんでした。
+この問題を解決するために、以前 [Interaction Tracing API](https://gist.github.com/bvaughn/8de925562903afd2e7a12554adcdda16) の作成を試みたことがありますが、これには根本的な設計の問題があったため、操作が遅い理由を正確に知ることが難しく、場合によっては操作が全く終わらなくなってしまうこともありました。このため[この API は削除](https://github.com/react/react/pull/20037)せざるを得ませんでした。
 
 現在、この問題を解決するための Interaction Tracing API の新バージョン（`startTransition` で起動するので Transition Tracing と仮に呼んでいます）に取り組んでいます。
 

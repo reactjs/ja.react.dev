@@ -10,7 +10,7 @@ React には何百万人もの開発者のコミュニティが存在します�
 
 ## 行動規範 {/*code-of-conduct*/}
 
-React のコミュニティに参加する前に、[私たちの行動規範 (Code of Conduct) をお読みください](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md)。私たちは [Contributor Covenant](https://www.contributor-covenant.org/) を採用しており、すべてのコミュニティメンバが記載されているガイドラインを遵守することを期待しています。
+React のコミュニティに参加する前に、[私たちの行動規範 (Code of Conduct) をお読みください](https://github.com/react/react/blob/main/CODE_OF_CONDUCT.md)。私たちは [Contributor Covenant](https://www.contributor-covenant.org/) を採用しており、すべてのコミュニティメンバが記載されているガイドラインを遵守することを期待しています。
 
 ## Stack Overflow {/*stack-overflow*/}
 
@@ -29,4 +29,4 @@ Stack Overflow は、コードレベルの質問をしたい場合や、特定�
 
 ## ニュース {/*news*/}
 
-React の最新ニュースについては、[Twitter の **@reactjs**](https://twitter.com/reactjs) と、このウェブサイト上の[公式 React ブログ](/blog/)をフォローしてください。
+React の最新ニュースについては、[Twitter の **@reactjs**](https://twitter.com/reactjs)、[Bluesky の **@react.dev**](https://bsky.app/profile/react.dev) や、このウェブサイトの[公式 React ブログ](/blog/)をフォローしてください。

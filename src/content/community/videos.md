@@ -4,9 +4,79 @@ title: React 関連動画
 
 <Intro>
 
-React および React のエコシステムについて説明するための動画を紹介します。
+React および React のエコシステムについて説明している動画を紹介します。
 
 </Intro>
+
+## React Conf 2024 {/*react-conf-2024*/}
+
+React Conf 2024 では、Meta CTO の [Andrew "Boz" Bosworth](https://www.threads.net/@boztank) が開会の挨拶を述べました。
+
+<YouTubeIframe src="https://www.youtube.com/embed/T8TZQ6k4SLE?t=975s" title="Boz and Seth Intro" />
+
+### React 19 キーノート {/*react-19-keynote*/}
+
+初日のキーノートでは、React コンパイラと React 19 から始まる React のビジョンについて発表しました。[Joe Savona](https://twitter.com/en_JS)、[Lauren Tan](https://twitter.com/potetotes)、[Andrew Clark](https://twitter.com/acdlite)、[Josh Story](https://twitter.com/joshcstory)、[Sathya Gunasekaran](https://twitter.com/_gsathya)、[Mofei Zhang](https://twitter.com/zmofei) による完全なキーノートは以下で視聴できます：
+
+
+<YouTubeIframe src="https://www.youtube.com/embed/lyEKhv8-3n0" title="YouTube video player" />
+
+### React Unpacked: React 19へのロードマップ {/*react-unpacked-a-roadmap-to-react-19*/}
+
+React 19 では Actions、`use()`、`useOptimistic` など、新機能が導入されました。React 19 の新機能についてさらに詳しく知りたい方は、[Sam Selikoff](https://twitter.com/samselikoff) の講演をご覧ください：
+
+
+<YouTubeIframe src="https://www.youtube.com/embed/R0B2HsSM78s" title="React Unpacked: A Roadmap to React 19" />
+
+### React 19の新機能 {/*whats-new-in-react-19*/}
+
+[Lydia Hallie](https://twitter.com/lydiahallie) が React 19 の新機能を視覚的に分かりやすく解説しました：
+
+<YouTubeIframe src="https://www.youtube.com/embed/AJOGzVygGcY" title="What's New in React 19" />
+
+### React 19 Deep Dive: HTML の協調 {/*react-19-deep-dive-coordinating-html*/}
+
+[Josh Story](https://twitter.com/joshcstory) が React 19 のドキュメントおよびリソースストリーミング API について詳細な解説を行いました：
+
+<YouTubeIframe src="https://www.youtube.com/embed/IBBN-s77YSI" title="React 19 Deep Dive: Coordinating HTML" />
+
+### React を2つのコンピュータで {/*react-for-two-computers*/}
+
+[Dan Abramov](https://bsky.app/profile/danabra.mov) は、もし React がサーバファーストで始まっていたらどうなっていたかを想像しました：
+
+<YouTubeIframe src="https://www.youtube.com/embed/ozI4V_29fj4" title="React for Two Computers" />
+
+### Memo を忘れよう {/*forget-about-memo*/}
+
+[Lauren Tan](https://twitter.com/potetotes) が、React Compiler を実践的に利用する方法について講演しました：
+
+<YouTubeIframe src="https://www.youtube.com/embed/lvhPq5chokM" title="Forget About Memo" />
+
+### React Compiler について詳しく {/*react-compiler-deep-dive*/}
+
+[Sathya Gunasekaran](https://twitter.com/_gsathya) と [Mofei Zhang](https://twitter.com/zmofei) が React Compiler がどのように動作するか詳しく解説しました：
+
+<YouTubeIframe src="https://www.youtube.com/embed/uA_PVyZP7AI" title="React Compiler Deep Dive" />
+
+### さらに… {/*and-more-2024*/}
+
+**コミュニティからサーバコンポーネントに関する講演について聞きました：**
+* [Enhancing Forms with React Server Components](https://www.youtube.com/embed/0ckOUBiuxVY&t=25280s) by [Aurora Walberg Scharff](https://twitter.com/aurorascharff)
+* [And Now You Understand React Server Components](https://www.youtube.com/embed/pOo7x8OiAec) by [Kent C. Dodds](https://twitter.com/kentcdodds)
+* [Real-time Server Components](https://www.youtube.com/embed/6sMANTHWtLM) by [Sunil Pai](https://twitter.com/threepointone)
+
+**React フレームワークの最新機能に関する講演：**
+
+* [Vanilla React](https://www.youtube.com/embed/ZcwA0xt8FlQ) by [Ryan Florence](https://twitter.com/ryanflorence)
+* [React Rhythm & Blues](https://www.youtube.com/embed/rs9X5MjvC4s) by [Lee Robinson](https://twitter.com/leeerob)
+* [RedwoodJS, now with React Server Components](https://www.youtube.com/embed/sjyY4MTECUU) by [Amy Dutton](https://twitter.com/selfteachme)
+* [Introducing Universal React Server Components in Expo Router](https://www.youtube.com/embed/djhEgxQf3Kw) by [Evan Bacon](https://twitter.com/Baconbrix)
+
+**React と React Native の開発チームによる Q&A セッション：**
+- [React Q&A](https://www.youtube.com/embed/T8TZQ6k4SLE&t=27518s) hosted by [Michael Chan](https://twitter.com/chantastic)
+- [React Native Q&A](https://www.youtube.com/embed/0ckOUBiuxVY&t=27935s) hosted by [Jamon Holmgren](https://twitter.com/jamonholmgren)
+
+React Conf 2024 のすべての講演は [conf2024.react.dev](https://conf2024.react.dev/talks) から視聴できます。
 
 ## React Conf 2021 {/*react-conf-2021*/}
 
@@ -16,13 +86,13 @@ React および React のエコシステムについて説明するための動�
 
 [Andrew Clark](https://twitter.com/acdlite)、[Juan Tejada](https://twitter.com/_jstejada)、[Lauren Tan](https://twitter.com/potetotes)、[Rick Hanlon](https://twitter.com/rickhanlonii) による完全なキーノートは以下で視聴できます。
 
-<YouTubeIframe src="https://www.youtube.com/embed/FZ0cG47msEk" title="YouTube video player" />
+<YouTubeIframe src="https://www.youtube.com/embed/FZ0cG47msEk" title="React 18 Keynote" />
 
 ### アプリ開発者にとっての React 18 {/*react-18-for-application-developers*/}
 
 React 18 へのアップグレードのデモについて、[Shruti Kapoor](https://twitter.com/shrutikapoor08) のトークを以下でご覧ください。
 
-<YouTubeIframe src="https://www.youtube.com/embed/ytudH8je5ko" title="YouTube video player" />
+<YouTubeIframe src="https://www.youtube.com/embed/ytudH8je5ko" title="React 18 for Application Developers" />
 
 ### サスペンスを使ったストリーミングサーバレンダリング {/*streaming-server-rendering-with-suspense*/}
 
@@ -32,7 +102,7 @@ React 18 では、サスペンスを使用することでサーバサイドレ�
 
 詳しくは、[Shaundai Person](https://twitter.com/shaundai) による以下の発表をご覧ください：
 
-<YouTubeIframe src="https://www.youtube.com/embed/pj5N-Khihgc" title="YouTube video player" />
+<YouTubeIframe src="https://www.youtube.com/embed/pj5N-Khihgc" title="Streaming Server Rendering with Suspense" />
 
 ### React ワーキンググループの立ち上げ {/*the-first-react-working-group*/}
 
@@ -40,7 +110,7 @@ React 18 では、エキスパートや開発者、ライブラリメンテナ�
 
 この試みの概要については、[Aakansha' Doshi](https://twitter.com/aakansha1216) による発表をご覧ください。
 
-<YouTubeIframe src="https://www.youtube.com/embed/qn7gRClrC9U" title="YouTube video player" />
+<YouTubeIframe src="https://www.youtube.com/embed/qn7gRClrC9U" title="The first React working group" />
 
 ### React 開発者向けツール {/*react-developer-tooling*/}
 
@@ -48,19 +118,19 @@ React 18 では、エキスパートや開発者、ライブラリメンテナ�
 
 新たな DevTools の機能についての詳細およびデモについては、[Brian Vaughn](https://twitter.com/brian_d_vaughn) による発表をご覧ください。
 
-<YouTubeIframe src="https://www.youtube.com/embed/oxDfrke8rZg" title="YouTube video player" />
+<YouTubeIframe src="https://www.youtube.com/embed/oxDfrke8rZg" title="React Developer Tooling" />
 
 ### メモ化不要の React {/*react-without-memo*/}
 
-より将来に目を向けた話として、[Xuan Huang (黄玄)](https://twitter.com/Huxpro) は、React Labs が行っている自動メモ化コンパイラに関する研究の現状についてお話ししました。この発表とコンパイラのプロタイプについての詳細・デモは以下でご覧ください。
+より将来に目を向けた話として、[Xuan Huang (黄玄)](https://twitter.com/Huxpro) は、React Labs が行っている自動メモ化コンパイラに関する研究の現状についてお話ししました。この発表とコンパイラのプロトタイプについての詳細・デモは以下でご覧ください。
 
-<YouTubeIframe src="https://www.youtube.com/embed/lGEMwh32soc" title="YouTube video player" />
+<YouTubeIframe src="https://www.youtube.com/embed/lGEMwh32soc" title="React without memo" />
 
 ### React ドキュメントキーノート {/*react-docs-keynote*/}
 
 React の学習や React による設計についての一連の発表は [Rachel Nabors](https://twitter.com/rachelnabors) からスタートしました。その中では React の新ドキュメントに対する我々の注力についてのキーノートがありました（[react.dev としてリリース済み](/blog/2023/03/16/introducing-react-dev)）：
 
-<YouTubeIframe src="https://www.youtube.com/embed/mneDaMYOKP8" title="YouTube video player" />
+<YouTubeIframe src="https://www.youtube.com/embed/mneDaMYOKP8" title="React docs keynote" />
 
 ### さらに… {/*and-more*/}
 

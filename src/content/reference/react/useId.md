@@ -44,7 +44,11 @@ function PasswordField() {
 
 * `useId` はフックであるため、**コンポーネントのトップレベル**または独自のフック内でのみ呼び出すことができます。ループまたは条件分岐内で呼び出すことはできません。もし必要な場合は、新しいコンポーネントを作成し、状態を移動させる必要があります。
 
+* `useId` は [use()](/reference/react/use) の**キャッシュキーの生成には使用しないでください**。ID はコンポーネントのマウント中は安定していますが、レンダー中に変わる可能性があります。キャッシュキーはデータから生成する必要があります。
+
 * `useId` を、**リスト内の key の生成には使用しないでください**。[key はデータから生成される必要があります。](/learn/rendering-lists#where-to-get-your-key)
+
+* `useId` は現時点で[非同期サーバコンポーネント](/reference/rsc/server-components#async-components-with-server-components)では使用できません。
 
 ---
 
@@ -77,7 +81,7 @@ function PasswordField() {
 </>
 ```
 
-**これがどのような場合に役立つかを、例を通してみてみましょう。** 
+**これがどのような場合に役立つかを、例を通してみてみましょう。**
 
 [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) のような [HTML アクセシビリティ属性](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)を使用すると、2 つのタグが相互に関連していることを指定することができます。例えば、入力フィールドのような要素が、段落などの別の要素で説明されていることを指定することができます。
 
@@ -226,7 +230,7 @@ input { margin: 5px; }
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>

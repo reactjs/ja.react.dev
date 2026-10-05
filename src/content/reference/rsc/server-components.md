@@ -2,12 +2,6 @@
 title: サーバコンポーネント
 ---
 
-<RSC>
-
-サーバコンポーネントは [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) 用の機能です。
-
-</RSC>
-
 <Intro>
 
 サーバコンポーネントは新しいタイプのコンポーネントです。クライアントアプリケーションや SSR サーバとは別の環境で、バンドル前に事前にレンダーされます。
@@ -45,7 +39,7 @@ function Page({page}) {
       setContent(data.content);
     });
   }, [page]);
-  
+
   return <div>{sanitizeHtml(marked(content))}</div>;
 }
 ```
@@ -69,7 +63,7 @@ import sanitizeHtml from 'sanitize-html'; // Not included in bundle
 async function Page({page}) {
   // NOTE: loads *during* render, when the app is built.
   const content = await file.readFile(`${page}.md`);
-  
+
   return <div>{sanitizeHtml(marked(content))}</div>;
 }
 ```
@@ -113,7 +107,7 @@ function Note({id}) {
       setNote(data.note);
     });
   }, [id]);
-  
+
   return (
     <div>
       <Author id={note.authorId} />
@@ -253,7 +247,7 @@ export default function Expandable({children}) {
       <p>this is the second note</p>
     </Expandable>
     <!--...-->
-  </div> 
+  </div>
 </body>
 ```
 
@@ -270,8 +264,8 @@ import db from './database';
 async function Page({id}) {
   // Will suspend the Server Component.
   const note = await db.notes.get(id);
-  
-  // NOTE: not awaited, will start here and await on the client. 
+
+  // NOTE: not awaited, will start here and await on the client.
   const commentsPromise = db.comments.get(note.id);
   return (
     <div>
@@ -293,10 +287,10 @@ function Comments({commentsPromise}) {
   // NOTE: this will resume the promise from the server.
   // It will suspend until the data is available.
   const comments = use(commentsPromise);
-  return comments.map(commment => <p>{comment}</p>);
+  return comments.map(comment => <p>{comment}</p>);
 }
 ```
 
 `note` の内容はページをレンダーするために重要なデータなので、サーバ側で `await` します。コメントは折りたたまれており優先度が低いため、サーバではプロミスを開始だけして、クライアントで `use` API を使用してそれを待機します。これによりクライアント側でサスペンドが起きますが、`note` の内容のレンダーをブロックしないで済みます。
 
-非同期コンポーネントは[クライアントではサポートされていない](#why-cant-i-use-async-components-on-the-client) ため、プロミスの待機は `use` を使用して行います。
+非同期コンポーネントはクライアントではサポートされていないため、プロミスの待機は `use` を使用して行います。

@@ -7,7 +7,7 @@ title: prerender
 `prerender` は React ツリーを [Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) を用いて静的な HTML 文字列にレンダーします。
 
 ```js
-const {prelude} = await prerender(reactNode, options?)
+const {prelude, postponed} = await prerender(reactNode, options?)
 ```
 
 </Intro>
@@ -31,7 +31,7 @@ const {prelude} = await prerender(reactNode, options?)
 ```js
 import { prerender } from 'react-dom/static';
 
-async function handler(request) {
+async function handler(request, response) {
   const {prelude} = await prerender(<App />, {
     bootstrapScripts: ['/main.js']
   });
@@ -55,25 +55,30 @@ async function handler(request) {
   * **省略可能** `bootstrapModules`: `bootstrapScripts` と同様ですが、代わりに [`<script type="module">`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) を出力します。
   * **省略可能** `identifierPrefix`: React が [`useId`](/reference/react/useId) によって生成する ID に使用する文字列プレフィックス。同じページ上に複数のルートを使用する際に、競合を避けるために用います。[`hydrateRoot`](/reference/react-dom/client/hydrateRoot#parameters) にも同じプレフィックスを渡す必要があります。
   * **省略可能** `namespaceURI`: このストリームのルート[ネームスペース URI](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElementNS#important_namespace_uris) 文字列。デフォルトでは通常の HTML です。SVG の場合は `'http://www.w3.org/2000/svg'`、MathML の場合は `'http://www.w3.org/1998/Math/MathML'` を渡します。
-  * **省略可能** `onError`: サーバエラーが発生するたびに発火するコールバック。[復帰可能なエラー](#recovering-from-errors-outside-the-shell)の場合も[そうでないエラー](#recovering-from-errors-inside-the-shell)の場合もあります。デフォルトでは `console.error` のみを呼び出します。これを上書きして[クラッシュレポートをログに記録する](#logging-crashes-on-the-server)場合でも `console.error` を呼び出すようにしてください。また、シェルが出力される前に[ステータスコードを調整する](#setting-the-status-code)ためにも使用できます。
-  * **省略可能** `progressiveChunkSize`: チャンクのバイト数。[デフォルトの推論方法についてはこちらを参照してください](https://github.com/facebook/react/blob/14c2be8dac2d5482fda8a0906a31d239df8551fc/packages/react-server/src/ReactFizzServer.js#L210-L225)。
-  * **省略可能** `signal`: [サーバでのレンダーを中止](#aborting-server-rendering)してクライアントで残りをレンダーするために使用できる [abort signal](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal)。
+  * <CanaryBadge /> **省略可能** `onBrowserBailout`: [`browser()`](/reference/react-dom/browser) によるサーバレンダリングの中断が起き、ブラウザ側で置き換えるためのサスペンスフォールバックが残った時点で React が呼び出すコールバック。ブラウザのみでレンダーされるという内容の `Error` と、`componentStack` を含む `errorInfo` オブジェクトを受け取ります。`browser` に理由が渡されていた場合、その理由は `error.cause` から取得できます。デフォルトでは React は何も行いません。[ブラウザオンリーのレンダー発生をサーバ上で報告する方法を参照](/reference/react-dom/browser#reporting-browser-only-rendering-on-the-server)。
+  * **省略可能** `onError`: サーバエラーが発生するたびに発火するコールバック。[復帰可能なエラー](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-outside-the-shell)の場合も[そうでないエラー](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell)の場合もあります。デフォルトでは `console.error` のみを呼び出します。これを上書きして[クラッシュレポートをログに記録する](/reference/react-dom/server/renderToReadableStream#logging-crashes-on-the-server)場合でも `console.error` を呼び出すようにしてください。また、シェルが出力される前に[ステータスコードを調整する](/reference/react-dom/server/renderToReadableStream#setting-the-status-code)ためにも使用できます。
+  * **省略可能** `progressiveChunkSize`: チャンクのバイト数。[デフォルトの推論方法についてはこちらを参照してください](https://github.com/react/react/blob/14c2be8dac2d5482fda8a0906a31d239df8551fc/packages/react-server/src/ReactFizzServer.js#L210-L225)。
+  * **省略可能** `signal`: [プリレンダーを中止](#aborting-prerendering)してクライアントで残りをレンダーするために使用できる [abort signal](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal)。
 
 #### 返り値 {/*returns*/}
 
-`prerender` は Promise を返します。
+`prerender` はプロミスを返します。
 - レンダーが成功した場合、プロミスは以下を含んだオブジェクトに解決 (resolve) されます。
   - `prelude`: HTML の [Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API)。このストリームを使ってレスポンスを送信したり、ストリームを文字列に一括して読み出したりできます。
-- レンダーが失敗した場合は、Promise は拒否 (reject) されます。[これを使用してフォールバックシェルを出力します](#recovering-from-errors-inside-the-shell)。
+  - `postponed`: `prerender` が終了しなかった場合には、[`resume`](/reference/react-dom/server/resume) に渡すために用いる、JSON シリアライズ可能な非公開のオブジェクト。そうでない場合は `null` で、これは `predule` に必要なすべてのコンテンツが入っており `resume` が必要ないことを表す。
+- レンダーが失敗した場合は、Promise は拒否 (reject) されます。[これを使用してフォールバックシェルを出力します](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell)。
 
+#### 注意点 {/*caveats*/}
 
-
+プリレンダー中に `nonce` オプションは利用できません。nonce はリクエストごとに一意である必要があり、[CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP) でアプリケーションを保護するために nonce を使用する場合、プリレンダー自体に nonce 値を含めることは不適切かつ危険です。
 
 <Note>
 
 ### `prerender` をいつ使うのか {/*when-to-use-prerender*/}
 
 `prerender` API は、静的なサーバサイド生成 (server-side generation; SSG) に使用するものです。`renderToString` とは異なり、`prerender` はすべてのデータの読み込みが完了するまで待機してから解決されます。このため、サスペンスを使用して取得するデータを含む、ページ全体の静的な HTML を生成するのに適しています。読み込み中のコンテンツをストリーミングする場合は、[renderToReadableStream](/reference/react-dom/server/renderToReadableStream) のようなストリーミング付きサーバサイドレンダリング (SSR) API を使用してください。
+
+部分プリレンダリング (partial pre-rendering) をサポートするため、`prerender` は中断可能です。あとで `resumeAndPrerender` でプリレンダーを継続することも、`resume` で再開することも可能です。
 
 </Note>
 
@@ -229,8 +234,8 @@ async function renderToString() {
   const {prelude} = await prerender(<App />, {
     bootstrapScripts: ['/main.js']
   });
-  
-  const reader = stream.getReader();
+
+  const reader = prelude.getReader();
   let content = '';
   while (true) {
     const {done, value} = await reader.read();
@@ -271,21 +276,35 @@ function ProfilePage() {
 
 <Note>
 
-**サスペンスコンポーネントをアクティブ化できるのはサスペンス対応のデータソースだけです**。これには以下が含まれます：
-
-- [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) や [Next.js](https://nextjs.org/docs/getting-started/react-essentials) のようなサスペンス対応のフレームワークでのデータフェッチ
-- [`lazy`](/reference/react/lazy) を用いたコンポーネントコードの遅延ロード
-- [`use`](/reference/react/use) を用いたプロミス (Promise) からの値の読み取り
-
-サスペンスはエフェクトやイベントハンドラ内でデータフェッチが行われた場合にはそれを**検出しません**。
-
-上記の `Posts` コンポーネントで実際にデータをロードする方法は、使用するフレームワークによって異なります。サスペンス対応のフレームワークを使用している場合、詳細はデータフェッチに関するドキュメンテーション内に記載されているはずです。
-
-使い方の規約のある (opinionated) フレームワークを使用せずにサスペンスを使ったデータフェッチを行うことは、まだサポートされていません。サスペンス対応のデータソースを実装するための要件はまだ不安定であり、ドキュメント化されていません。データソースをサスペンスと統合するための公式な API は、React の将来のバージョンでリリースされる予定です。
+[`use`](/reference/react/use) で読み取ったプロミスなど、[サスペンスバウンダリをアクティベートする](/reference/react/Suspense#what-activates-a-suspense-boundary)データソースから読み取られたデータだけが、レンダー中にサスペンドします。サスペンスはエフェクトやイベントハンドラ内でフェッチされたデータを検出しません。
 
 </Note>
 
 ---
+
+### プリレンダーの中止 {/*aborting-prerendering*/}
+
+プリレンダー処理は、一定時間経過 (timeout) 後に強制的に「諦めさせる」ことが可能です。
+
+```js {2-5,11}
+async function renderToString() {
+  const controller = new AbortController();
+  setTimeout(() => {
+    controller.abort()
+  }, 10000);
+
+  try {
+    // the prelude will contain all the HTML that was prerendered
+    // before the controller aborted.
+    const {prelude} = await prerender(<App />, {
+      signal: controller.signal,
+    });
+    //...
+```
+
+サスペンスバウンダリは、子のレンダーが未完了の場合にはフォールバックの状態で結果 (prelude) に含まれます。
+
+これは [`resume`](/reference/react-dom/server/resume) または [`resumeAndPrerender`](/reference/react-dom/static/resumeAndPrerender) を用いた部分プリレンダリングで利用可能です。
 
 ## トラブルシューティング {/*troubleshooting*/}
 
@@ -294,4 +313,3 @@ function ProfilePage() {
 `prerender` の返り値は解決する前に、全サスペンスバウンダリが解決することも含む、アプリ全体のレンダーの終了を待機します。これは事前静的サイト生成 (SSG) のために設計されているものであり、コンテンツを読み込みながらのストリーミングをサポートしません。
 
 コンテンツを読み込みながらストリームしたい場合は、サーバレンダー API である [renderToReadableStream](/reference/react-dom/server/renderToReadableStream) などを使用してください。
- 

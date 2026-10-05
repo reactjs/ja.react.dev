@@ -4,7 +4,7 @@ title: サーバ関数
 
 <RSC>
 
-サーバ関数は [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) で使用するための機能です。
+サーバ関数は [React Server Components](/reference/rsc/server-components) で使用するための機能です。
 
 **補足**：2024 年 9 月までは、すべてのサーバ関数を「サーバアクション (Server Action)」と呼んでいました。サーバ関数が `action` プロパティに渡されるか `action` 内から呼び出されている場合は、それはサーバアクションとも呼べるでしょうが、すべてのサーバ関数がサーバアクションであるとは限りません。サーバ関数自体は様々な目的で使用できるものですので、それを反映するために本ドキュメントでは名前を変更しました。
 
@@ -46,7 +46,7 @@ function EmptyNote () {
   async function createNoteAction() {
     // Server Function
     'use server';
-    
+
     await db.notes.create();
   }
 
@@ -59,8 +59,8 @@ React はサーバコンポーネントである `EmptyNote` をレンダーす�
 ```js {5}
 "use client";
 
-export default function Button({onClick}) { 
-  console.log(onClick); 
+export default function Button({onClick}) {
+  console.log(onClick);
   // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNoteAction'}
   return <button onClick={() => onClick()}>Create Empty Note</button>
 }
@@ -82,7 +82,7 @@ export async function createNote() {
 
 ```
 
-バンドラがクライアントコンポーネントである `EmptyNote` をビルドする際に、バンドル内で `createNoteAction` 関数への参照を作成します。`button` がクリックされると、React は渡された参照を使用してサーバにリクエストを送信し、`createNoteAction` 関数を実行します。
+バンドラがクライアントコンポーネントである `EmptyNote` をビルドする際に、バンドル内で `createNote` 関数への参照を作成します。`button` がクリックされると、React は渡された参照を使用してサーバにリクエストを送信し、`createNote` 関数を実行します。
 
 ```js [[1, 2, "createNote"], [1, 5, "createNote"], [1, 7, "createNote"]]
 "use client";
@@ -90,7 +90,7 @@ import {createNote} from './actions';
 
 function EmptyNote() {
   console.log(createNote);
-  // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNoteAction'}
+  // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNote'}
   <button onClick={() => createNote()} />
 }
 ```
@@ -112,7 +112,7 @@ export async function updateName(name) {
 }
 ```
 
-```js [[1, 3, "updateName"], [1, 13, "updateName"], [2, 11, "submitAction"],  [2, 23, "submitAction"]]
+```js [[1, 3, "updateName"], [1, 13, "updateName"], [2, 11, "submitAction"], [2, 25, "submitAction"]]
 "use client";
 
 import {updateName} from './actions';
@@ -126,18 +126,20 @@ function UpdateName() {
   const submitAction = async () => {
     startTransition(async () => {
       const {error} = await updateName(name);
-      if (!error) {
-        setError(error);
-      } else {
-        setName('');
-      }
+      startTransition(() => {
+        if (error) {
+          setError(error);
+        } else {
+          setName('');
+        }
+      });
     })
   }
-  
+
   return (
     <form action={submitAction}>
       <input type="text" name="name" disabled={isPending}/>
-      {state.error && <span>Failed: {state.error}</span>}
+      {error && <span>Failed: {error}</span>}
     </form>
   )
 }
@@ -195,7 +197,7 @@ function UpdateName() {
 
 サーバ関数と `useActionState` を使用する場合、React はハイドレーションの完了前に実行されたフォーム送信を自動的に再現します。これにより、ユーザはアプリのハイドレーションが起きる前からアプリを操作できるようになります。
 
-詳細については、[`useActionState`](/reference/react-dom/hooks/useFormState) のドキュメントを参照してください。
+詳細については、[`useActionState`](/reference/react/useActionState) のドキュメントを参照してください。
 
 ### `useActionState` を使用したプログレッシブエンハンスメント {/*progressive-enhancement-with-useactionstate*/}
 
@@ -219,4 +221,4 @@ function UpdateName() {
 
 <CodeStep step={2}>パーマリンク</CodeStep>が `useActionState` に渡された場合、JavaScript バンドルが読み込まれる前にフォームが送信されると、React はこの渡された URL にリダイレクトします。
 
-詳しくは、[`useActionState`](/reference/react-dom/hooks/useFormState) のドキュメントを参照してください。
+詳しくは、[`useActionState`](/reference/react/useActionState) のドキュメントを参照してください。

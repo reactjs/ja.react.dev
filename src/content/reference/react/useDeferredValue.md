@@ -86,13 +86,9 @@ function SearchPage() {
 
 <Note>
 
-この例では、以下のようなサスペンス (Suspense) 対応のデータソースを使用していることを前提としています。
+この例では、[`use`](/reference/react/use) で読み取るプロミスなど、[サスペンスバウンダリをアクティベートする](/reference/react/Suspense#what-activates-a-suspense-boundary)データソースを使用していることを前提としています。
 
-- [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) や [Next.js](https://nextjs.org/docs/getting-started/react-essentials) のようなサスペンス対応のフレームワークでのデータフェッチ
-- [`lazy`](/reference/react/lazy) を用いたコンポーネントコードの遅延ロード
-- [`use`](/reference/react/use) を用いたプロミス (Promise) からの値の読み取り
-
-[サスペンスとその制限について詳しく学ぶ。](/reference/react/Suspense)
+[サスペンスについて詳しく学ぶ](/reference/react/Suspense)
 
 </Note>
 
@@ -669,7 +665,7 @@ export default function App() {
 }
 ```
 
-```js src/SlowList.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
@@ -706,6 +702,8 @@ export default SlowList;
 ```css
 .items {
   padding: 0;
+  max-height: 300px;
+  overflow: auto;
 }
 
 .item {
@@ -746,7 +744,7 @@ export default function App() {
 }
 ```
 
-```js src/SlowList.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
@@ -783,6 +781,8 @@ export default SlowList;
 ```css
 .items {
   padding: 0;
+  max-height: 300px;
+  overflow: auto;
 }
 
 .item {

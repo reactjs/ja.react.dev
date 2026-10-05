@@ -28,6 +28,21 @@ React DOM には（ブラウザの DOM 環境で動作する）ウェブアプ�
 * [API](/reference/react-dom) - ウェブアプリケーションでのみ用いられる `react-dom` パッケージのメソッド
 * [クライアント API](/reference/react-dom/client) - クライアント（ブラウザ）で React コンポーネントをレンダーするための `react-dom/client` API 群
 * [サーバ API](/reference/react-dom/server) - サーバで React コンポーネントを HTML にレンダーするための `react-dom/server` API 群
+* [静的 API](/reference/react-dom/static) - React コンポーネントから静的 HTML を生成するための `react-dom/static` API 群
+
+## React Compiler {/*react-compiler*/}
+
+React Compiler はビルド時に使用する最適化ツールであり、あなたの React コンポーネントや値に自動的にメモ化を適用します。
+
+* [Configuration](/reference/react-compiler/configuration) - React Compiler の設定オプション
+* [Directives](/reference/react-compiler/directives) - コンパイル動作を制御するための関数レベルのディレクティブ
+* [Compiling Libraries](/reference/react-compiler/compiling-libraries) - コンパイル済みのライブラリコードをリリースする際のガイド
+
+## React フック用の ESLint プラグイン {/*eslint-plugin-react-hooks*/}
+
+[React フック用の ESLint プラグイン](/reference/eslint-plugin-react-hooks) を用いることで React のルールを強制できます。
+
+* [リント](/reference/eslint-plugin-react-hooks) - 個々のリントルールについての実例つきドキュメント
 
 ## React のルール {/*rules-of-react*/}
 

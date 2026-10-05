@@ -4,7 +4,7 @@ title: 謝辞
 
 <Intro>
 
-オリジナルの React は [Jordan Walke](https://github.com/jordwalke) によって作成されました。現在、React に取り組んでいる[フルタイムの専門チーム](/community/team)があり、また [1000 名を超えるオープンソース貢献者](https://github.com/facebook/react/graphs/contributors)がいます。
+オリジナルの React は [Jordan Walke](https://github.com/jordwalke) によって作成されました。現在、React に取り組んでいる[フルタイムの専門チーム](/community/team)があり、また [1000 名を超えるオープンソース貢献者](https://github.com/react/react/graphs/contributors)がいます。
 
 </Intro>
 
@@ -36,6 +36,8 @@ title: 謝辞
 * [Joe Critchley](https://github.com/joecritch)
 * [Jeff Morrison](https://github.com/jeffmo)
 * [Luna Ruan](https://github.com/lunaruan)
+* [Luna Wei](https://github.com/lunaleaps)
+* [Noah Lemen](https://github.com/noahlemen)
 * [Kathryn Middleton](https://github.com/kmiddleton14)
 * [Keyan Zhang](https://github.com/keyz)
 * [Marco Salazar](https://github.com/salazarm)
@@ -51,9 +53,10 @@ title: 謝辞
 * [Samuel Susla](https://github.com/sammy-SC)
 * [Sander Spies](https://github.com/sanderspies)
 * [Sasha Aickin](https://github.com/aickin)
-* [Sean Keegan](https://github.com/seanryankeegan)
+* [Sathya Gunasekaran](https://github.com/gsathya)
 * [Sophia Shoemaker](https://github.com/mrscobbler)
 * [Sunil Pai](https://github.com/threepointone)
+* [Tianyu Yao](https://github.com/)
 * [Tim Yung](https://github.com/yungsters)
 * [Xuan Huang](https://github.com/huxpro)
 

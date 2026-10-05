@@ -5,7 +5,7 @@ titleForTitleTag: "'use server' ディレクティブ"
 
 <RSC>
 
-`'use server'` は [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) 用の機能です。
+`'use server'` は [React Server Components](/reference/rsc/server-components) 用の機能です。
 
 </RSC>
 
@@ -95,7 +95,7 @@ async function addToCart(data) {
 * イベントハンドラが受け取るイベント
 
 
-サポートされるシリアライズ可能な返り値は、クライアントコンポーネントに渡せる[シリアライズ可能な props](/reference/rsc/use-client#passing-props-from-server-to-client-components) の型と同じです。
+サポートされるシリアライズ可能な返り値は、クライアントコンポーネントに渡せる[シリアライズ可能な props](/reference/rsc/use-client#serializable-types) の型と同じです。
 
 
 ## 使用法 {/*usage*/}
@@ -179,7 +179,7 @@ function UsernameForm() {
 
 [フォーム](/reference/react-dom/components/form)の外部でサーバ関数を使用する場合、[トランジション](/reference/react/useTransition)内でサーバ関数を呼び出すようにしてください。これによりローディングインジケータを表示したり、[楽観的に state 更新結果を表示](/reference/react/useOptimistic)したり、予期せぬエラーを処理したりすることができるようになります。フォームではサーバ関数は自動的にトランジション内にラップされます。
 
-```js {9-12}
+```js {9-14}
 import incrementLike from './actions';
 import { useState, useTransition } from 'react';
 
@@ -190,7 +190,9 @@ function LikeButton() {
   const onClick = () => {
     startTransition(async () => {
       const currentCount = await incrementLike();
-      setLikeCount(currentCount);
+      startTransition(() => {
+        setLikeCount(currentCount);
+      });
     });
   };
 

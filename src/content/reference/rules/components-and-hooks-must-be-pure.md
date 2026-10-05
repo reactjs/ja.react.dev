@@ -28,7 +28,7 @@ React を React たらしめる重要な概念のひとつが*純粋性 (purity)
 
 React は宣言型 (declarative) です。あなたは*何 (what)* をレンダーしたいのかだけを React に伝え、それを*どうやって (how)* ユーザにうまく表示するのかについては React が考えます。これを実現するため、React は複数のフェーズに分けてコードを実行します。React を使いこなすためにこれらのフェーズすべてを知っておく必要はありません。しかしどのコードが*レンダー*中に実行され、どのコードがそれ以外のタイミングで実行されるのかについては、概要を知っておくべきです。
 
-*レンダー*とは、UI の次のバージョンとして何が見えるべきかを計算する作業を指します。レンダーの後、[エフェクト](/reference/react/useEffect)が*フラッシュ (flush)*（つまり未処理分がなくなるまで実行）され、それらがレイアウトに影響を与える場合は計算の更新を行います。React はこの新しい計算結果を受け取り、UI の以前のバージョンを作成する際に使われた計算結果と比較し、最新バージョンに追いつくために必要な最小限の変更を [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)（ユーザが目にするもの）に*コミット (commit)* します。
+*レンダー*とは、UI の次のバージョンとして何が見えるべきかを計算する作業を指します。レンダーの後、React はこの新しい計算結果を受け取り、UI の以前のバージョンを作成する際に使われた計算結果と比較します。その後 React は、変更を適用するために必要な最小限の変更だけを [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)（ユーザが実際に目にするもの）にコミットします。最後に、[エフェクト](/learn/synchronizing-with-effects) がフラッシュ（つまり未処理分がなくなるまで実行）されます。より詳しい情報は[レンダー](/learn/render-and-commit)および[コミットとフック](/reference/react/hooks#effect-hooks)のドキュメントを参照してください。
 
 <DeepDive>
 
@@ -209,7 +209,7 @@ props と state の値は、レンダーが終わってから更新されるス�
 ### props を書き換えない {/*props*/}
 props はイミュータブルです。props を変更すると、アプリケーションが一貫性のない出力を生成し、状況によって動作したりしなかったりするためデバッグが困難になるからです。
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2]}} {2}
 function Post({ item }) {
   item.url = new Url(item.url, base); // 🔴 Bad: never mutate props directly
   return <Link url={item.url}>{item.title}</Link>;
@@ -232,7 +232,7 @@ const [stateVariable, setter] = useState(0);
 
 state 変数はその場で書き換えるのではなく、`useState` によって返されるセッタ関数を使用して更新する必要があります。state 変数の中身を書き換えてもコンポーネントが更新されるわけではないため、ユーザに古くなった UI が表示されたままになります。セッタ関数を使用することで、state が変更され、UI を更新するため再レンダーをキューに入れる必要があるということを React に伝えます。
 
-```js {5}
+```js {expectedErrors: {'react-compiler': [2, 5]}} {5}
 function Counter() {
   const [count, setCount] = useState(0);
 
@@ -270,7 +270,7 @@ function Counter() {
 
 一度値がフックに渡されたならそれを書き換えてはいけません。JSX の props と同様、フックに渡された時点でその値はイミュータブルです。
 
-```js {4}
+```js {expectedErrors: {'react-compiler': [4]}} {4}
 function useIconStyle(icon) {
   const theme = useContext(ThemeContext);
   if (icon.enabled) {
@@ -331,7 +331,7 @@ JSX で使用された後に値を書き換えてはいけません。ミュー�
 
 式として JSX を使用する際、React はコンポーネントのレンダーが完了する前に JSX を先行して評価してしまうかもしれません。つまり JSX に渡された後で値を変更した場合、React がコンポーネントの出力を更新する必要があることを認識しないため、古い UI が表示され続ける可能性があるということです。
 
-```js {4}
+```js {expectedErrors: {'react-compiler': [4]}} {4}
 function Page({ colour }) {
   const styles = { colour, size: "large" };
   const header = <Header styles={styles} />;

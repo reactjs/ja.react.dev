@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -71,31 +78,27 @@ function useActiveSection() {
 }
 
 // Deserialize a client React tree from JSON.
-function reviveNodeOnClient(key, val) {
+function reviveNodeOnClient(parentPropertyName, val) {
   if (Array.isArray(val) && val[0] == '$r') {
     // Assume it's a React element.
-    let type = val[1];
+    let Type = val[1];
     let key = val[2];
+    if (key == null) {
+      key = parentPropertyName; // Index within a parent.
+    }
     let props = val[3];
-    if (type === 'wrapper') {
-      type = Fragment;
+    if (Type === 'wrapper') {
+      Type = Fragment;
       props = {children: props.children};
     }
-    if (MDXComponents[type]) {
-      type = MDXComponents[type];
+    if (Type in MDXComponents) {
+      Type = MDXComponents[Type];
     }
-    if (!type) {
-      console.error('Unknown type: ' + type);
-      type = Fragment;
+    if (!Type) {
+      console.error('Unknown type: ' + Type);
+      Type = Fragment;
     }
-    return {
-      $$typeof: Symbol.for('react.element'),
-      type: type,
-      key: key,
-      ref: null,
-      props: props,
-      _owner: null,
-    };
+    return <Type key={key} {...props} />;
   } else {
     return val;
   }
@@ -136,6 +139,9 @@ export async function getStaticPaths() {
   const stat = promisify(fs.stat);
   const rootDir = process.cwd() + '/src/content';
 
+  // Pages that should only be available in development.
+  const devOnlyPages = new Set(['learn/rsc-sandbox-test']);
+
   // Find all MD files recursively.
   async function getFiles(dir) {
     const subdirs = await readdir(dir);
@@ -167,14 +173,20 @@ export async function getStaticPaths() {
 
   const files = await getFiles(rootDir);
 
-  const paths = files.map((file) => ({
-    params: {
-      markdownPath: getSegments(file),
-      // ^^^ CAREFUL HERE.
-      // If you rename markdownPath, update patches/next-remote-watch.patch too.
-      // Otherwise you'll break Fast Refresh for all MD files.
-    },
-  }));
+  const paths = files
+    .map((file) => ({
+      params: {
+        markdownPath: getSegments(file),
+        // ^^^ CAREFUL HERE.
+        // If you rename markdownPath, update patches/next-remote-watch.patch too.
+        // Otherwise you'll break Fast Refresh for all MD files.
+      },
+    }))
+    .filter((entry) => {
+      if (process.env.NODE_ENV !== 'production') return true;
+      const pagePath = entry.params.markdownPath.join('/');
+      return !devOnlyPages.has(pagePath);
+    });
 
   return {
     paths: paths,

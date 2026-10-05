@@ -5,7 +5,7 @@ date: 2024/02/15
 description: React Labs 記事では、現在活発に研究・開発が行われているプロジェクトについて述べていきます。前回のアップデートから大きな進展がありましたので、我々が学んだことを共有していきます。
 ---
 
-February 15, 2024 by [Joseph Savona](https://twitter.com/en_JS), [Ricky Hanlon](https://twitter.com/rickhanlonii), [Andrew Clark](https://twitter.com/acdlite), [Matt Carroll](https://twitter.com/mattcarrollcode), and [Dan Abramov](https://twitter.com/dan_abramov).
+February 15, 2024 by [Joseph Savona](https://twitter.com/en_JS), [Ricky Hanlon](https://twitter.com/rickhanlonii), [Andrew Clark](https://twitter.com/acdlite), [Matt Carroll](https://twitter.com/mattcarrollcode), and [Dan Abramov](https://bsky.app/profile/danabra.mov).
 
 ---
 
@@ -14,14 +14,6 @@ February 15, 2024 by [Joseph Savona](https://twitter.com/en_JS), [Ricky Hanlon](
 React Labs 記事では、現在活発に研究・開発が行われているプロジェクトについて述べていきます。[前回のアップデート](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023)から大きな進展がありましたので、我々が学んだことを共有していきます。
 
 </Intro>
-
-<Note>
-
-5 月 15 日・16 日にネバダ州ヘンダーソンで React Conf 2024 が開催されます！ 現地で React Conf に参加を希望される方は、2 月 28 日までに[チケットの抽選に参加](https://forms.reform.app/bLaLeE/react-conf-2024-ticket-lottery/1aRQLK)してください。
-
-チケット、無料ストリーミング、スポンサーシップなどの詳細については、[React Conf のウェブサイト](https://conf.react.dev)をご覧ください。
-
-</Note>
 
 ---
 
@@ -107,7 +99,7 @@ Activity はまだ研究中であり、残された作業は、ライブラリ�
 
 このアップデートに加えて、私たちのチームはカンファレンスでの発表やポッドキャストへの出演を通じ、我々の作業についてお伝えし、質問にお答えしています。
 
-- [Sathya Gunasekaran](/community/team#sathya-gunasekaran) は [React India](https://www.youtube.com/watch?v=kjOacmVsLSE) カンファレンスで React コンパイラについて話しました。
+- [Sathya Gunasekaran](https://github.com/gsathya) は [React India](https://www.youtube.com/watch?v=kjOacmVsLSE) カンファレンスで React コンパイラについて話しました。
 
 - [Dan Abramov](/community/team#dan-abramov) は [RemixConf](https://www.youtube.com/watch?v=zMf_xeGPn6s) で "React from Another Dimension" というタイトルの講演を行い、React Server Components やアクションの成立に際してありえたかもしれない別の歴史について紹介しました。
 

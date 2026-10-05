@@ -34,7 +34,7 @@ function TodosApp() {
 
 これは、ストアにあるデータのスナップショットを返します。引数として 2 つの関数を渡す必要があります：
 
-1. `subscribe` 関数はストアへのサブスクライブを開始します。サブスクライブを解除する関数を返す必要があります。 
+1. `subscribe` 関数はストアへのサブスクライブを開始します。サブスクライブを解除する関数を返す必要があります。
 2. `getSnapshot` 関数は、ストアからデータのスナップショットを読み取る必要があります。
 
 [さらに例を見る](#usage)
@@ -107,7 +107,7 @@ function TodosApp() {
 
 React はこれらの関数を使ってコンポーネントをストアにサブスクライブされた状態に保ち、変更があるたびに再レンダーします。
 
-例えば、以下のサンドボックスでは、`todosStore` は React の外部にデータを保存する外部ストアとして実装されています。`TodosApp` コンポーネントは、`useSyncExternalStore` フックを使ってその外部ストアに接続します。 
+例えば、以下のサンドボックスでは、`todosStore` は React の外部にデータを保存する外部ストアとして実装されています。`TodosApp` コンポーネントは、`useSyncExternalStore` フックを使ってその外部ストアに接続します。
 
 <Sandpack>
 
@@ -326,7 +326,7 @@ function subscribe(callback) {
 
 ---
 
-### サーバーレンダリングのサポートを追加する {/*adding-support-for-server-rendering*/}
+### サーバレンダリングのサポートを追加する {/*adding-support-for-server-rendering*/}
 
 React アプリが[サーバレンダリング](/reference/react-dom/server)を使用している場合、React コンポーネントは初期 HTML を生成するためにブラウザ環境外でも実行されます。これにより、外部ストアへの接続に関するいくつかの課題が生じます。
 
@@ -405,14 +405,14 @@ function getSnapshot() {
 
 この `subscribe` 関数はコンポーネントの**内部**で定義されているため、再レンダーするたびに異なった値になります：
 
-```js {4-7}
+```js {2-5}
 function ChatIndicator() {
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
-  
   // 🚩 Always a different function, so React will resubscribe on every re-render
   function subscribe() {
     // ...
   }
+
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ...
 }
@@ -420,28 +420,28 @@ function ChatIndicator() {
 
 React は、再レンダー間で異なる `subscribe` 関数を渡すと、ストアに再サブスクライブします。これがパフォーマンスの問題を引き起こし、再サブスクライブを避けたい場合は、`subscribe` 関数を外部に移動してください：
 
-```js {6-9}
-function ChatIndicator() {
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
+```js {1-4}
+// ✅ Always the same function, so React won't need to resubscribe
+function subscribe() {
   // ...
 }
 
-// ✅ Always the same function, so React won't need to resubscribe
-function subscribe() {
+function ChatIndicator() {
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
   // ...
 }
 ```
 
 あるいは、`subscribe` を [`useCallback`](/reference/react/useCallback) でラップすることで、引数が変更されたときのみ再サブスクライブすることができます：
 
-```js {4-8}
+```js {2-5}
 function ChatIndicator({ userId }) {
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
-  
   // ✅ Same function as long as userId doesn't change
   const subscribe = useCallback(() => {
     // ...
   }, [userId]);
+
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ...
 }

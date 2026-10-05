@@ -42,10 +42,10 @@ _[1 日目の全ストリームはこちらから視聴できます。](https://
 - [React Unpacked: A Roadmap to React 19](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=10112s) by [Sam Selikoff](https://twitter.com/samselikoff)
 - [React 19 Deep Dive: Coordinating HTML](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=24916s) by [Josh Story](https://twitter.com/joshcstory)
 - [Enhancing Forms with React Server Components](https://www.youtube.com/watch?v=0ckOUBiuxVY&t=25280s) by [Aurora Walberg Scharff](https://twitter.com/aurorascharff)
-- [React for Two Computers](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=18825s) by [Dan Abramov](https://twitter.com/dan_abramov2)
+- [React for Two Computers](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=18825s) by [Dan Abramov](https://bsky.app/profile/danabra.mov)
 - [And Now You Understand React Server Components](https://www.youtube.com/watch?v=0ckOUBiuxVY&t=11256s) by [Kent C. Dodds](https://twitter.com/kentcdodds)
 
-基調講演の締めくくりとして、[Joe Savona](https://twitter.com/en_JS)、[Sathya Gunasekaran](https://twitter.com/_gsathya)、[Mofei Zhang](https://twitter.com/zmofei) が、React Compiler が[オープンソース](https://github.com/facebook/react/pull/29061)化されたことを発表し、React Compiler の実験バージョンを共有しました。
+基調講演の締めくくりとして、[Joe Savona](https://twitter.com/en_JS)、[Sathya Gunasekaran](https://twitter.com/_gsathya)、[Mofei Zhang](https://twitter.com/zmofei) が、React Compiler が[オープンソース](https://github.com/react/react/pull/29061)化されたことを発表し、React Compiler の実験バージョンを共有しました。
 
 コンパイラの使用方法や動作についての詳細は、[ドキュメント](/learn/react-compiler)および以下の講演をご覧ください。
 
@@ -112,7 +112,7 @@ MC および Chief Vibes Officer を務めた [Ashley Narcisse](https://twitter.
 
 カンファレンスのウェブサイトを作成してくれた [Callstack](https://www.callstack.com/)、そしてカンファレンスのモバイルアプリを作成してくれた [Kadi Kraman](https://twitter.com/kadikraman) と [Expo](https://expo.dev/) チームに感謝します。
 
-イベントを実現してくださったすべてのスポンサーに感謝します：[Remix](https://remix.run/)、[Amazon](https://developer.amazon.com/apps-and-games?cmp=US_2024_05_3P_React-Conf-2024&ch=prtnr&chlast=prtnr&pub=ref&publast=ref&type=org&typelast=org)、[MUI](https://mui.com/)、[Sentry](https://sentry.io/for/react/?utm_source=sponsored-conf&utm_medium=sponsored-event&utm_campaign=frontend-fy25q2-evergreen&utm_content=logo-reactconf2024-learnmore)、[Abbott](https://www.jobs.abbott/software)、[Expo](https://expo.dev/)、[RedwoodJS](https://redwoodjs.com/)、[Vercel](https://vercel.com)。
+イベントを実現してくださったすべてのスポンサーに感謝します：[Remix](https://remix.run/)、[Amazon](https://developer.amazon.com/apps-and-games?cmp=US_2024_05_3P_React-Conf-2024&ch=prtnr&chlast=prtnr&pub=ref&publast=ref&type=org&typelast=org)、[MUI](https://mui.com/)、[Sentry](https://sentry.io/for/react/?utm_source=sponsored-conf&utm_medium=sponsored-event&utm_campaign=frontend-fy25q2-evergreen&utm_content=logo-reactconf2024-learnmore)、[Abbott](https://www.jobs.abbott/software)、[Expo](https://expo.dev/)、[RedwoodJS](https://rwsdk.com/)、[Vercel](https://vercel.com)。
 
 ビジュアル、ステージ、サウンドを担当していただいた AV チーム、そして私たちをホストしていただいた Westin Hotel に感謝します。
 

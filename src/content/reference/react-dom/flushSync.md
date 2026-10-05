@@ -51,10 +51,10 @@ flushSync(() => {
 
 #### 注意点 {/*caveats*/}
 
-* `flushSync` can significantly hurt performance. Use sparingly.
-* `flushSync` may force pending Suspense boundaries to show their `fallback` state.
-* `flushSync` may run pending Effects and synchronously apply any updates they contain before returning.
-* `flushSync` may flush updates outside the callback when necessary to flush the updates inside the callback. For example, if there are pending updates from a click, React may flush those before flushing the updates inside the callback.
+* `flushSync` はパフォーマンスを大幅に低下させることがあります。慎重に使用してください。
+* `flushSync` により、保留中のサスペンスバウンダリが強制的に `fallback` 状態で表示される可能性があります。
+* `flushSync` は、保留中のエフェクトを実行し、リターンする前にそれらに含まれる更新を同期的に適用することがあります。
+* `flushSync` は、コールバック内の更新をフラッシュするために必要な場合、コールバックの外にある更新もフラッシュすることがあります。例えば、クリックに起因する保留中の更新がある場合、React はコールバック内の更新をフラッシュする前にそれらをフラッシュする可能性があります。
 
 ---
 
@@ -129,5 +129,77 @@ export default function PrintApp() {
 `flushSync` はパフォーマンスを大幅に低下させ、保留中のサスペンスバウンダリのフォールバックが予期せず表示されてしまう可能性があります。
 
 ほとんどの場合、`flushSync` の使用は避けることができるので、`flushSync` は最後の手段として使用してください。
+
+</Pitfall>
+
+---
+
+## Troubleshooting {/*troubleshooting*/}
+
+### I'm getting an error: "flushSync was called from inside a lifecycle method" {/*im-getting-an-error-flushsync-was-called-from-inside-a-lifecycle-method*/}
+
+
+React cannot `flushSync` in the middle of a render. If you do, it will noop and warn:
+
+<ConsoleBlock level="error">
+
+Warning: flushSync was called from inside a lifecycle method. React cannot flush when React is already rendering. Consider moving this call to a scheduler task or micro task.
+
+</ConsoleBlock>
+
+This includes calling `flushSync` inside:
+
+- rendering a component.
+- `useLayoutEffect` or `useEffect` hooks.
+- Class component lifecycle methods.
+
+For example, calling `flushSync` in an Effect will noop and warn:
+
+```js
+import { useEffect } from 'react';
+import { flushSync } from 'react-dom';
+
+function MyComponent() {
+  useEffect(() => {
+    // 🚩 Wrong: calling flushSync inside an effect
+    flushSync(() => {
+      setSomething(newValue);
+    });
+  }, []);
+
+  return <div>{/* ... */}</div>;
+}
+```
+
+To fix this, you usually want to move the `flushSync` call to an event:
+
+```js
+function handleClick() {
+  // ✅ Correct: flushSync in event handlers is safe
+  flushSync(() => {
+    setSomething(newValue);
+  });
+}
+```
+
+
+If it's difficult to move to an event, you can defer `flushSync` in a microtask:
+
+```js {3,7}
+useEffect(() => {
+  // ✅ Correct: defer flushSync to a microtask
+  queueMicrotask(() => {
+    flushSync(() => {
+      setSomething(newValue);
+    });
+  });
+}, []);
+```
+
+This will allow the current render to finish and schedule another syncronous render to flush the updates.
+
+<Pitfall>
+
+`flushSync` can significantly hurt performance, but this particular pattern is even worse for performance. Exhaust all other options before calling `flushSync` in a microtask as an escape hatch.
 
 </Pitfall>

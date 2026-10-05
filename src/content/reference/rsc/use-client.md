@@ -5,7 +5,7 @@ titleForTitleTag: "'use client' ディレクティブ"
 
 <RSC>
 
-`'use client'` は [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) 用の機能です。
+`'use client'` は [React Server Components](/reference/rsc/server-components) 用の機能です。
 
 </RSC>
 
@@ -41,7 +41,7 @@ export default function RichTextEditor({ timestamp, text }) {
 }
 ```
 
-`'use client'` でマークされているファイルがサーバコンポーネントからインポートされた場合、[互換性のあるバンドラ](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)は当該モジュールのインポートを、サーバで実行されるコードとクライアントで実行されるコードの境界として扱います。
+`'use client'` でマークされているファイルがサーバコンポーネントからインポートされた場合、[互換性のあるバンドラ](/learn/creating-a-react-app#full-stack-frameworks)は当該モジュールのインポートを、サーバで実行されるコードとクライアントで実行されるコードの境界として扱います。
 
 上記では `formatDate` と `Button` は `RichTextEditor` が依存するモジュールですので、これらのモジュール自体に `'use client'` ディレクティブが含まれているかどうかに関わらず、これらもクライアントで評価されます。ある単一のモジュールが、サーバコードからインポートされた場合はサーバで、クライアントコードからインポートされた場合はクライアントで評価される場合があることに注意してください。
 

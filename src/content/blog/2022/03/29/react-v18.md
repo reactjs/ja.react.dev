@@ -53,7 +53,7 @@ React の並行処理機能の重要な特性は、処理を中断可能であ�
 
 もう 1 つの例は、state の再利用です。React の並行処理機能により、画面から UI の一部分をいったん削除し、前回の state を再利用しながら後で戻す、ということが可能です。例えば、ユーザがタブを切り替えて画面から離れて戻ってきた場合、React は以前の画面を以前と同様の state で復帰させる必要があります。将来のマイナーリリースにおいて、このパターンを実装した `<Offscreen>` というコンポーネントを新たに加える予定です。同様に、`<Offscreen>` を使ってバックグラウンドで新しい UI を用意し、ユーザが表示させようとする前に準備完了にしておく、ということもできるようになるでしょう。
 
-並行レンダーは React における新しいパワフルなツールであり、サスペンス、トランジション、ストリーミング付きサーバーレンダリングといった新たな機能のほとんどはこれを活用して構築されています。しかし React 18 はこの新しい基盤の上に我々が構築しようとしているものの始まりに過ぎません。
+並行レンダーは React における新しいパワフルなツールであり、サスペンス、トランジション、ストリーミング付きサーバレンダリングといった新たな機能のほとんどはこれを活用して構築されています。しかし React 18 はこの新しい基盤の上に我々が構築しようとしているものの始まりに過ぎません。
 
 ## 並行処理機能の段階的な採用 {/*gradually-adopting-concurrent-features*/}
 
@@ -61,7 +61,7 @@ React の並行処理機能の重要な特性は、処理を中断可能であ�
 
 我々はテストにおいて、数千のコンポーネントを React 18 のためにアップグレードしました。そこで分かったことは、ほとんどすべての既存のコンポーネントは並行レンダーにおいても「普通に」動作するということです。しかしいくつかのコンポーネントでは移行のための追加作業が必要です。変更は通常小さなものですが、自分のペースで更新作業を行うことも可能です。React 18 の新たなレンダーの挙動は、**あなたのアプリ内で新機能を使っている部分でのみ有効化されます**。
 
-大まかな移行作業の流れとしては、まず既存コードの挙動を壊さずにアプリが React 18 で動作するようにします。それから自分のペースで並行処理機能を徐々に追加し始めることができます。[`<StrictMode>`](/docs/strict-mode.html) を利用すれば、並行処理に関連するバグに開発時に気付きやすいようにできます。strict モードは本番での動作に影響を与えませんが、開発中には追加の警告を表示したり、べき等 (idempotent) であるべき関数を 2 回呼び出したりします。すべての間違いを捕捉することはできませんが、最もよくある間違いを防ぐのに効果的です。
+大まかな移行作業の流れとしては、まず既存コードの挙動を壊さずにアプリが React 18 で動作するようにします。それから自分のペースで並行処理機能を徐々に追加し始めることができます。[`<StrictMode>`](/reference/react/StrictMode) を利用すれば、並行処理に関連するバグに開発時に気付きやすいようにできます。strict モードは本番での動作に影響を与えませんが、開発中には追加の警告を表示したり、べき等 (idempotent) であるべき関数を 2 回呼び出したりします。すべての間違いを捕捉することはできませんが、最もよくある間違いを防ぐのに効果的です。
 
 React 18 にアップグレード後、並行処理機能をすぐに使い始めることができます。例えばユーザの入力をブロックせずに画面遷移を行うために startTransition を使うことができます。あるいは高価な再レンダーの頻度を落とすために useDeferredValue を使うことも可能です。
 
@@ -81,7 +81,7 @@ React の以前のバージョンと同様、サスペンスはクライアン�
 
 ## サーバコンポーネントはまだ開発中です {/*server-components-is-still-in-development*/}
 
-[**サーバコンポーネント**](/blog/2020/12/21/data-fetching-with-react-server-components.html) は実装予定の機能であり、クライアントサイドアプリにおけるリッチなインタラクティビティと伝統的なサーバレンダリングによるパフォーマンス改善とを兼ね備えた、クライアント・サーバ両方にまたがるアプリの開発を可能にするものです。サーバコンポーネントは React の並行処理機能と本質的に結合してはいませんが、サスペンスやストリーミングサーバレンダリングのような並行処理機能と併用した際に最もうまく働くようデザインされています。
+[**サーバコンポーネント**](/blog/2020/12/21/data-fetching-with-react-server-components) は実装予定の機能であり、クライアントサイドアプリにおけるリッチなインタラクティビティと伝統的なサーバレンダリングによるパフォーマンス改善とを兼ね備えた、クライアント・サーバ両方にまたがるアプリの開発を可能にするものです。サーバコンポーネントは React の並行処理機能と本質的に結合してはいませんが、サスペンスやストリーミングサーバレンダリングのような並行処理機能と併用した際に最もうまく働くようデザインされています。
 
 サーバコンポーネントはまだ実験的機能ですが、18.x のマイナーリリースで初期バージョンをリリースできる見込みです。それまでは、プロポーザルを推し進めて広く採用できる準備が整うよう、Next.js、Hydrogen、Remix のようなフレームワークと協力していきます。
 
@@ -147,7 +147,7 @@ startTransition でラップした更新は緊急性の低いものとして扱�
 
 トランジションを使うと並行レンダー機能にオプトインし、更新が中断可能になります。また、コンテンツが再サスペンドした場合、バックグラウンドでトランジション中のコンテンツをレンダーしつつ、現在のコンテンツを表示し続けるよう React に伝えます（詳細については [サスペンス RFC](https://github.com/reactjs/rfcs/blob/main/text/0213-suspense-in-react-18.md) を参照）。
 
-[トランジションのドキュメントはこちら](/docs/react-api.html#transitions)。
+[トランジションのドキュメントはこちら](/reference/react/useTransition)。
 
 ### サスペンスの新機能 {/*new-suspense-features*/}
 
@@ -232,7 +232,7 @@ React 18 の strict モードでは、開発時にコンポーネントがマウ
 
 #### useId {/*useid*/}
 
-`useId` はハイドレーション時の不整合を防ぎつつクライアントとサーバで一意な ID を生成するためのフックです。これは主に、一意な ID を必要とするアクセシビリティ API を組み込むようなコンポーネントライブラリで有用なものです。これにより React 17 およびそれ以前から既に存在した問題が解決されますが、React 18 では新しいストリーミング対応のサーバレンダラが HTML を順番通りに送信しなくなるため、この問題はより重要です。[こちらのドキュメントを参照](/docs/hooks-reference.html#useid)。
+`useId` はハイドレーション時の不整合を防ぎつつクライアントとサーバで一意な ID を生成するためのフックです。これは主に、一意な ID を必要とするアクセシビリティ API を組み込むようなコンポーネントライブラリで有用なものです。これにより React 17 およびそれ以前から既に存在した問題が解決されますが、React 18 では新しいストリーミング対応のサーバレンダラが HTML を順番通りに送信しなくなるため、この問題はより重要です。[こちらのドキュメントを参照](/reference/react/useId)。
 
 > 補足
 >
@@ -270,75 +270,75 @@ React 18 の strict モードでは、開発時にコンポーネントがマウ
 
 ### React {/*react*/}
 
-* Add `useTransition` and `useDeferredValue` to separate urgent updates from transitions. ([#10426](https://github.com/facebook/react/pull/10426), [#10715](https://github.com/facebook/react/pull/10715), [#15593](https://github.com/facebook/react/pull/15593), [#15272](https://github.com/facebook/react/pull/15272), [#15578](https://github.com/facebook/react/pull/15578), [#15769](https://github.com/facebook/react/pull/15769), [#17058](https://github.com/facebook/react/pull/17058), [#18796](https://github.com/facebook/react/pull/18796), [#19121](https://github.com/facebook/react/pull/19121), [#19703](https://github.com/facebook/react/pull/19703), [#19719](https://github.com/facebook/react/pull/19719), [#19724](https://github.com/facebook/react/pull/19724), [#20672](https://github.com/facebook/react/pull/20672), [#20976](https://github.com/facebook/react/pull/20976) by [@acdlite](https://github.com/acdlite), [@lunaruan](https://github.com/lunaruan), [@rickhanlonii](https://github.com/rickhanlonii), and [@sebmarkbage](https://github.com/sebmarkbage))
-* Add `useId` for generating unique IDs. ([#17322](https://github.com/facebook/react/pull/17322), [#18576](https://github.com/facebook/react/pull/18576), [#22644](https://github.com/facebook/react/pull/22644), [#22672](https://github.com/facebook/react/pull/22672), [#21260](https://github.com/facebook/react/pull/21260) by [@acdlite](https://github.com/acdlite), [@lunaruan](https://github.com/lunaruan), and [@sebmarkbage](https://github.com/sebmarkbage))
-* Add `useSyncExternalStore` to help external store libraries integrate with React. ([#15022](https://github.com/facebook/react/pull/15022), [#18000](https://github.com/facebook/react/pull/18000), [#18771](https://github.com/facebook/react/pull/18771), [#22211](https://github.com/facebook/react/pull/22211), [#22292](https://github.com/facebook/react/pull/22292), [#22239](https://github.com/facebook/react/pull/22239), [#22347](https://github.com/facebook/react/pull/22347), [#23150](https://github.com/facebook/react/pull/23150) by [@acdlite](https://github.com/acdlite), [@bvaughn](https://github.com/bvaughn), and [@drarmstr](https://github.com/drarmstr))
-* Add `startTransition` as a version of `useTransition` without pending feedback. ([#19696](https://github.com/facebook/react/pull/19696)  by [@rickhanlonii](https://github.com/rickhanlonii))
-* Add `useInsertionEffect` for CSS-in-JS libraries. ([#21913](https://github.com/facebook/react/pull/21913)  by [@rickhanlonii](https://github.com/rickhanlonii))
-* Make Suspense remount layout effects when content reappears.  ([#19322](https://github.com/facebook/react/pull/19322), [#19374](https://github.com/facebook/react/pull/19374), [#19523](https://github.com/facebook/react/pull/19523), [#20625](https://github.com/facebook/react/pull/20625), [#21079](https://github.com/facebook/react/pull/21079) by [@acdlite](https://github.com/acdlite), [@bvaughn](https://github.com/bvaughn), and [@lunaruan](https://github.com/lunaruan))
-* Make `<StrictMode>` re-run effects to check for restorable state. ([#19523](https://github.com/facebook/react/pull/19523) , [#21418](https://github.com/facebook/react/pull/21418)  by [@bvaughn](https://github.com/bvaughn) and [@lunaruan](https://github.com/lunaruan))
-* Assume Symbols are always available. ([#23348](https://github.com/facebook/react/pull/23348)  by [@sebmarkbage](https://github.com/sebmarkbage))
-* Remove `object-assign` polyfill. ([#23351](https://github.com/facebook/react/pull/23351)  by [@sebmarkbage](https://github.com/sebmarkbage))
-* Remove unsupported `unstable_changedBits` API.  ([#20953](https://github.com/facebook/react/pull/20953)  by [@acdlite](https://github.com/acdlite))
-* Allow components to render undefined. ([#21869](https://github.com/facebook/react/pull/21869)  by [@rickhanlonii](https://github.com/rickhanlonii))
-* Flush `useEffect` resulting from discrete events like clicks synchronously. ([#21150](https://github.com/facebook/react/pull/21150)  by [@acdlite](https://github.com/acdlite))
-* Suspense `fallback={undefined}` now behaves the same as `null` and isn't ignored. ([#21854](https://github.com/facebook/react/pull/21854)  by [@rickhanlonii](https://github.com/rickhanlonii))
-* Consider all `lazy()` resolving to the same component equivalent. ([#20357](https://github.com/facebook/react/pull/20357)  by [@sebmarkbage](https://github.com/sebmarkbage))
-* Don't patch console during first render. ([#22308](https://github.com/facebook/react/pull/22308)  by [@lunaruan](https://github.com/lunaruan))
-* Improve memory usage. ([#21039](https://github.com/facebook/react/pull/21039)  by [@bgirard](https://github.com/bgirard))
-* Improve messages if string coercion throws (Temporal.*, Symbol, etc.) ([#22064](https://github.com/facebook/react/pull/22064)  by [@justingrant](https://github.com/justingrant))
-* Use `setImmediate` when available over `MessageChannel`. ([#20834](https://github.com/facebook/react/pull/20834)  by [@gaearon](https://github.com/gaearon))
-* Fix context failing to propagate inside suspended trees. ([#23095](https://github.com/facebook/react/pull/23095)  by [@gaearon](https://github.com/gaearon))
-* Fix `useReducer` observing incorrect props by removing the eager bailout mechanism. ([#22445](https://github.com/facebook/react/pull/22445)  by [@josephsavona](https://github.com/josephsavona))
-* Fix `setState` being ignored in Safari when appending iframes. ([#23111](https://github.com/facebook/react/pull/23111)  by [@gaearon](https://github.com/gaearon))
-* Fix a crash when rendering `ZonedDateTime` in the tree. ([#20617](https://github.com/facebook/react/pull/20617)  by [@dimaqq](https://github.com/dimaqq))
-* Fix a crash when document is set to `null` in tests. ([#22695](https://github.com/facebook/react/pull/22695)  by [@SimenB](https://github.com/SimenB))
-* Fix `onLoad` not triggering when concurrent features are on. ([#23316](https://github.com/facebook/react/pull/23316)  by [@gnoff](https://github.com/gnoff))
-* Fix a warning when a selector returns `NaN`.  ([#23333](https://github.com/facebook/react/pull/23333)  by [@hachibeeDI](https://github.com/hachibeeDI))
-* Fix a crash when document is set to `null` in tests. ([#22695](https://github.com/facebook/react/pull/22695) by [@SimenB](https://github.com/SimenB))
-* Fix the generated license header. ([#23004](https://github.com/facebook/react/pull/23004)  by [@vitaliemiron](https://github.com/vitaliemiron))
-* Add `package.json` as one of the entry points. ([#22954](https://github.com/facebook/react/pull/22954)  by [@Jack](https://github.com/Jack-Works))
-* Allow suspending outside a Suspense boundary. ([#23267](https://github.com/facebook/react/pull/23267)  by [@acdlite](https://github.com/acdlite))
-* Log a recoverable error whenever hydration fails. ([#23319](https://github.com/facebook/react/pull/23319)  by [@acdlite](https://github.com/acdlite))
+* Add `useTransition` and `useDeferredValue` to separate urgent updates from transitions. ([#10426](https://github.com/react/react/pull/10426), [#10715](https://github.com/react/react/pull/10715), [#15593](https://github.com/react/react/pull/15593), [#15272](https://github.com/react/react/pull/15272), [#15578](https://github.com/react/react/pull/15578), [#15769](https://github.com/react/react/pull/15769), [#17058](https://github.com/react/react/pull/17058), [#18796](https://github.com/react/react/pull/18796), [#19121](https://github.com/react/react/pull/19121), [#19703](https://github.com/react/react/pull/19703), [#19719](https://github.com/react/react/pull/19719), [#19724](https://github.com/react/react/pull/19724), [#20672](https://github.com/react/react/pull/20672), [#20976](https://github.com/react/react/pull/20976) by [@acdlite](https://github.com/acdlite), [@lunaruan](https://github.com/lunaruan), [@rickhanlonii](https://github.com/rickhanlonii), and [@sebmarkbage](https://github.com/sebmarkbage))
+* Add `useId` for generating unique IDs. ([#17322](https://github.com/react/react/pull/17322), [#18576](https://github.com/react/react/pull/18576), [#22644](https://github.com/react/react/pull/22644), [#22672](https://github.com/react/react/pull/22672), [#21260](https://github.com/react/react/pull/21260) by [@acdlite](https://github.com/acdlite), [@lunaruan](https://github.com/lunaruan), and [@sebmarkbage](https://github.com/sebmarkbage))
+* Add `useSyncExternalStore` to help external store libraries integrate with React. ([#15022](https://github.com/react/react/pull/15022), [#18000](https://github.com/react/react/pull/18000), [#18771](https://github.com/react/react/pull/18771), [#22211](https://github.com/react/react/pull/22211), [#22292](https://github.com/react/react/pull/22292), [#22239](https://github.com/react/react/pull/22239), [#22347](https://github.com/react/react/pull/22347), [#23150](https://github.com/react/react/pull/23150) by [@acdlite](https://github.com/acdlite), [@bvaughn](https://github.com/bvaughn), and [@drarmstr](https://github.com/drarmstr))
+* Add `startTransition` as a version of `useTransition` without pending feedback. ([#19696](https://github.com/react/react/pull/19696)  by [@rickhanlonii](https://github.com/rickhanlonii))
+* Add `useInsertionEffect` for CSS-in-JS libraries. ([#21913](https://github.com/react/react/pull/21913)  by [@rickhanlonii](https://github.com/rickhanlonii))
+* Make Suspense remount layout effects when content reappears.  ([#19322](https://github.com/react/react/pull/19322), [#19374](https://github.com/react/react/pull/19374), [#19523](https://github.com/react/react/pull/19523), [#20625](https://github.com/react/react/pull/20625), [#21079](https://github.com/react/react/pull/21079) by [@acdlite](https://github.com/acdlite), [@bvaughn](https://github.com/bvaughn), and [@lunaruan](https://github.com/lunaruan))
+* Make `<StrictMode>` re-run effects to check for restorable state. ([#19523](https://github.com/react/react/pull/19523) , [#21418](https://github.com/react/react/pull/21418)  by [@bvaughn](https://github.com/bvaughn) and [@lunaruan](https://github.com/lunaruan))
+* Assume Symbols are always available. ([#23348](https://github.com/react/react/pull/23348)  by [@sebmarkbage](https://github.com/sebmarkbage))
+* Remove `object-assign` polyfill. ([#23351](https://github.com/react/react/pull/23351)  by [@sebmarkbage](https://github.com/sebmarkbage))
+* Remove unsupported `unstable_changedBits` API.  ([#20953](https://github.com/react/react/pull/20953)  by [@acdlite](https://github.com/acdlite))
+* Allow components to render undefined. ([#21869](https://github.com/react/react/pull/21869)  by [@rickhanlonii](https://github.com/rickhanlonii))
+* Flush `useEffect` resulting from discrete events like clicks synchronously. ([#21150](https://github.com/react/react/pull/21150)  by [@acdlite](https://github.com/acdlite))
+* Suspense `fallback={undefined}` now behaves the same as `null` and isn't ignored. ([#21854](https://github.com/react/react/pull/21854)  by [@rickhanlonii](https://github.com/rickhanlonii))
+* Consider all `lazy()` resolving to the same component equivalent. ([#20357](https://github.com/react/react/pull/20357)  by [@sebmarkbage](https://github.com/sebmarkbage))
+* Don't patch console during first render. ([#22308](https://github.com/react/react/pull/22308)  by [@lunaruan](https://github.com/lunaruan))
+* Improve memory usage. ([#21039](https://github.com/react/react/pull/21039)  by [@bgirard](https://github.com/bgirard))
+* Improve messages if string coercion throws (Temporal.*, Symbol, etc.) ([#22064](https://github.com/react/react/pull/22064)  by [@justingrant](https://github.com/justingrant))
+* Use `setImmediate` when available over `MessageChannel`. ([#20834](https://github.com/react/react/pull/20834)  by [@gaearon](https://github.com/gaearon))
+* Fix context failing to propagate inside suspended trees. ([#23095](https://github.com/react/react/pull/23095)  by [@gaearon](https://github.com/gaearon))
+* Fix `useReducer` observing incorrect props by removing the eager bailout mechanism. ([#22445](https://github.com/react/react/pull/22445)  by [@josephsavona](https://github.com/josephsavona))
+* Fix `setState` being ignored in Safari when appending iframes. ([#23111](https://github.com/react/react/pull/23111)  by [@gaearon](https://github.com/gaearon))
+* Fix a crash when rendering `ZonedDateTime` in the tree. ([#20617](https://github.com/react/react/pull/20617)  by [@dimaqq](https://github.com/dimaqq))
+* Fix a crash when document is set to `null` in tests. ([#22695](https://github.com/react/react/pull/22695)  by [@SimenB](https://github.com/SimenB))
+* Fix `onLoad` not triggering when concurrent features are on. ([#23316](https://github.com/react/react/pull/23316)  by [@gnoff](https://github.com/gnoff))
+* Fix a warning when a selector returns `NaN`.  ([#23333](https://github.com/react/react/pull/23333)  by [@hachibeeDI](https://github.com/hachibeeDI))
+* Fix a crash when document is set to `null` in tests. ([#22695](https://github.com/react/react/pull/22695) by [@SimenB](https://github.com/SimenB))
+* Fix the generated license header. ([#23004](https://github.com/react/react/pull/23004)  by [@vitaliemiron](https://github.com/vitaliemiron))
+* Add `package.json` as one of the entry points. ([#22954](https://github.com/react/react/pull/22954)  by [@Jack](https://github.com/Jack-Works))
+* Allow suspending outside a Suspense boundary. ([#23267](https://github.com/react/react/pull/23267)  by [@acdlite](https://github.com/acdlite))
+* Log a recoverable error whenever hydration fails. ([#23319](https://github.com/react/react/pull/23319)  by [@acdlite](https://github.com/acdlite))
 
 ### React DOM {/*react-dom*/}
 
-* Add `createRoot` and `hydrateRoot`. ([#10239](https://github.com/facebook/react/pull/10239), [#11225](https://github.com/facebook/react/pull/11225), [#12117](https://github.com/facebook/react/pull/12117), [#13732](https://github.com/facebook/react/pull/13732), [#15502](https://github.com/facebook/react/pull/15502), [#15532](https://github.com/facebook/react/pull/15532), [#17035](https://github.com/facebook/react/pull/17035), [#17165](https://github.com/facebook/react/pull/17165), [#20669](https://github.com/facebook/react/pull/20669), [#20748](https://github.com/facebook/react/pull/20748), [#20888](https://github.com/facebook/react/pull/20888), [#21072](https://github.com/facebook/react/pull/21072), [#21417](https://github.com/facebook/react/pull/21417), [#21652](https://github.com/facebook/react/pull/21652), [#21687](https://github.com/facebook/react/pull/21687), [#23207](https://github.com/facebook/react/pull/23207), [#23385](https://github.com/facebook/react/pull/23385) by [@acdlite](https://github.com/acdlite), [@bvaughn](https://github.com/bvaughn), [@gaearon](https://github.com/gaearon), [@lunaruan](https://github.com/lunaruan), [@rickhanlonii](https://github.com/rickhanlonii), [@trueadm](https://github.com/trueadm), and [@sebmarkbage](https://github.com/sebmarkbage))
-* Add selective hydration. ([#14717](https://github.com/facebook/react/pull/14717), [#14884](https://github.com/facebook/react/pull/14884), [#16725](https://github.com/facebook/react/pull/16725), [#16880](https://github.com/facebook/react/pull/16880), [#17004](https://github.com/facebook/react/pull/17004), [#22416](https://github.com/facebook/react/pull/22416), [#22629](https://github.com/facebook/react/pull/22629), [#22448](https://github.com/facebook/react/pull/22448), [#22856](https://github.com/facebook/react/pull/22856), [#23176](https://github.com/facebook/react/pull/23176) by [@acdlite](https://github.com/acdlite), [@gaearon](https://github.com/gaearon), [@salazarm](https://github.com/salazarm), and [@sebmarkbage](https://github.com/sebmarkbage))
-* Add `aria-description` to the list of known ARIA attributes. ([#22142](https://github.com/facebook/react/pull/22142)  by [@mahyareb](https://github.com/mahyareb))
-* Add `onResize` event to video elements. ([#21973](https://github.com/facebook/react/pull/21973)  by [@rileyjshaw](https://github.com/rileyjshaw))
-* Add `imageSizes` and `imageSrcSet` to known props. ([#22550](https://github.com/facebook/react/pull/22550)  by [@eps1lon](https://github.com/eps1lon))
-* Allow non-string `<option>` children if `value` is provided.  ([#21431](https://github.com/facebook/react/pull/21431)  by [@sebmarkbage](https://github.com/sebmarkbage))
-* Fix `aspectRatio` style not being applied. ([#21100](https://github.com/facebook/react/pull/21100)  by [@gaearon](https://github.com/gaearon))
-* Warn if `renderSubtreeIntoContainer` is called. ([#23355](https://github.com/facebook/react/pull/23355)  by [@acdlite](https://github.com/acdlite))
+* Add `createRoot` and `hydrateRoot`. ([#10239](https://github.com/react/react/pull/10239), [#11225](https://github.com/react/react/pull/11225), [#12117](https://github.com/react/react/pull/12117), [#13732](https://github.com/react/react/pull/13732), [#15502](https://github.com/react/react/pull/15502), [#15532](https://github.com/react/react/pull/15532), [#17035](https://github.com/react/react/pull/17035), [#17165](https://github.com/react/react/pull/17165), [#20669](https://github.com/react/react/pull/20669), [#20748](https://github.com/react/react/pull/20748), [#20888](https://github.com/react/react/pull/20888), [#21072](https://github.com/react/react/pull/21072), [#21417](https://github.com/react/react/pull/21417), [#21652](https://github.com/react/react/pull/21652), [#21687](https://github.com/react/react/pull/21687), [#23207](https://github.com/react/react/pull/23207), [#23385](https://github.com/react/react/pull/23385) by [@acdlite](https://github.com/acdlite), [@bvaughn](https://github.com/bvaughn), [@gaearon](https://github.com/gaearon), [@lunaruan](https://github.com/lunaruan), [@rickhanlonii](https://github.com/rickhanlonii), [@trueadm](https://github.com/trueadm), and [@sebmarkbage](https://github.com/sebmarkbage))
+* Add selective hydration. ([#14717](https://github.com/react/react/pull/14717), [#14884](https://github.com/react/react/pull/14884), [#16725](https://github.com/react/react/pull/16725), [#16880](https://github.com/react/react/pull/16880), [#17004](https://github.com/react/react/pull/17004), [#22416](https://github.com/react/react/pull/22416), [#22629](https://github.com/react/react/pull/22629), [#22448](https://github.com/react/react/pull/22448), [#22856](https://github.com/react/react/pull/22856), [#23176](https://github.com/react/react/pull/23176) by [@acdlite](https://github.com/acdlite), [@gaearon](https://github.com/gaearon), [@salazarm](https://github.com/salazarm), and [@sebmarkbage](https://github.com/sebmarkbage))
+* Add `aria-description` to the list of known ARIA attributes. ([#22142](https://github.com/react/react/pull/22142)  by [@mahyareb](https://github.com/mahyareb))
+* Add `onResize` event to video elements. ([#21973](https://github.com/react/react/pull/21973)  by [@rileyjshaw](https://github.com/rileyjshaw))
+* Add `imageSizes` and `imageSrcSet` to known props. ([#22550](https://github.com/react/react/pull/22550)  by [@eps1lon](https://github.com/eps1lon))
+* Allow non-string `<option>` children if `value` is provided.  ([#21431](https://github.com/react/react/pull/21431)  by [@sebmarkbage](https://github.com/sebmarkbage))
+* Fix `aspectRatio` style not being applied. ([#21100](https://github.com/react/react/pull/21100)  by [@gaearon](https://github.com/gaearon))
+* Warn if `renderSubtreeIntoContainer` is called. ([#23355](https://github.com/react/react/pull/23355)  by [@acdlite](https://github.com/acdlite))
 
 ### React DOM Server {/*react-dom-server-1*/}
 
-* Add the new streaming renderer. ([#14144](https://github.com/facebook/react/pull/14144), [#20970](https://github.com/facebook/react/pull/20970), [#21056](https://github.com/facebook/react/pull/21056), [#21255](https://github.com/facebook/react/pull/21255), [#21200](https://github.com/facebook/react/pull/21200), [#21257](https://github.com/facebook/react/pull/21257), [#21276](https://github.com/facebook/react/pull/21276), [#22443](https://github.com/facebook/react/pull/22443), [#22450](https://github.com/facebook/react/pull/22450), [#23247](https://github.com/facebook/react/pull/23247), [#24025](https://github.com/facebook/react/pull/24025), [#24030](https://github.com/facebook/react/pull/24030) by [@sebmarkbage](https://github.com/sebmarkbage))
-* Fix context providers in SSR when handling multiple requests. ([#23171](https://github.com/facebook/react/pull/23171)  by [@frandiox](https://github.com/frandiox))
-* Revert to client render on text mismatch. ([#23354](https://github.com/facebook/react/pull/23354)  by [@acdlite](https://github.com/acdlite))
-* Deprecate `renderToNodeStream`. ([#23359](https://github.com/facebook/react/pull/23359)  by [@sebmarkbage](https://github.com/sebmarkbage))
-* Fix a spurious error log in the new server renderer. ([#24043](https://github.com/facebook/react/pull/24043)  by [@eps1lon](https://github.com/eps1lon))
-* Fix a bug in the new server renderer. ([#22617](https://github.com/facebook/react/pull/22617)  by [@shuding](https://github.com/shuding))
-* Ignore function and symbol values inside custom elements on the server. ([#21157](https://github.com/facebook/react/pull/21157)  by [@sebmarkbage](https://github.com/sebmarkbage))
+* Add the new streaming renderer. ([#14144](https://github.com/react/react/pull/14144), [#20970](https://github.com/react/react/pull/20970), [#21056](https://github.com/react/react/pull/21056), [#21255](https://github.com/react/react/pull/21255), [#21200](https://github.com/react/react/pull/21200), [#21257](https://github.com/react/react/pull/21257), [#21276](https://github.com/react/react/pull/21276), [#22443](https://github.com/react/react/pull/22443), [#22450](https://github.com/react/react/pull/22450), [#23247](https://github.com/react/react/pull/23247), [#24025](https://github.com/react/react/pull/24025), [#24030](https://github.com/react/react/pull/24030) by [@sebmarkbage](https://github.com/sebmarkbage))
+* Fix context providers in SSR when handling multiple requests. ([#23171](https://github.com/react/react/pull/23171)  by [@frandiox](https://github.com/frandiox))
+* Revert to client render on text mismatch. ([#23354](https://github.com/react/react/pull/23354)  by [@acdlite](https://github.com/acdlite))
+* Deprecate `renderToNodeStream`. ([#23359](https://github.com/react/react/pull/23359)  by [@sebmarkbage](https://github.com/sebmarkbage))
+* Fix a spurious error log in the new server renderer. ([#24043](https://github.com/react/react/pull/24043)  by [@eps1lon](https://github.com/eps1lon))
+* Fix a bug in the new server renderer. ([#22617](https://github.com/react/react/pull/22617)  by [@shuding](https://github.com/shuding))
+* Ignore function and symbol values inside custom elements on the server. ([#21157](https://github.com/react/react/pull/21157)  by [@sebmarkbage](https://github.com/sebmarkbage))
 
 ### React DOM Test Utils {/*react-dom-test-utils*/}
 
-* Throw when `act` is used in production. ([#21686](https://github.com/facebook/react/pull/21686)  by [@acdlite](https://github.com/acdlite))
-* Support disabling spurious act warnings with `global.IS_REACT_ACT_ENVIRONMENT`. ([#22561](https://github.com/facebook/react/pull/22561)  by [@acdlite](https://github.com/acdlite))
-* Expand act warning to cover all APIs that might schedule React work. ([#22607](https://github.com/facebook/react/pull/22607)  by [@acdlite](https://github.com/acdlite))
-* Make `act` batch updates. ([#21797](https://github.com/facebook/react/pull/21797)  by [@acdlite](https://github.com/acdlite))
-* Remove warning for dangling passive effects. ([#22609](https://github.com/facebook/react/pull/22609)  by [@acdlite](https://github.com/acdlite))
+* Throw when `act` is used in production. ([#21686](https://github.com/react/react/pull/21686)  by [@acdlite](https://github.com/acdlite))
+* Support disabling spurious act warnings with `global.IS_REACT_ACT_ENVIRONMENT`. ([#22561](https://github.com/react/react/pull/22561)  by [@acdlite](https://github.com/acdlite))
+* Expand act warning to cover all APIs that might schedule React work. ([#22607](https://github.com/react/react/pull/22607)  by [@acdlite](https://github.com/acdlite))
+* Make `act` batch updates. ([#21797](https://github.com/react/react/pull/21797)  by [@acdlite](https://github.com/acdlite))
+* Remove warning for dangling passive effects. ([#22609](https://github.com/react/react/pull/22609)  by [@acdlite](https://github.com/acdlite))
 
 ### React Refresh {/*react-refresh*/}
 
-* Track late-mounted roots in Fast Refresh. ([#22740](https://github.com/facebook/react/pull/22740)  by [@anc95](https://github.com/anc95))
-* Add `exports` field to `package.json`. ([#23087](https://github.com/facebook/react/pull/23087)  by [@otakustay](https://github.com/otakustay))
+* Track late-mounted roots in Fast Refresh. ([#22740](https://github.com/react/react/pull/22740)  by [@anc95](https://github.com/anc95))
+* Add `exports` field to `package.json`. ([#23087](https://github.com/react/react/pull/23087)  by [@otakustay](https://github.com/otakustay))
 
 ### Server Components (Experimental) {/*server-components-experimental*/}
 
-* Add Server Context support. ([#23244](https://github.com/facebook/react/pull/23244)  by [@salazarm](https://github.com/salazarm))
-* Add `lazy` support. ([#24068](https://github.com/facebook/react/pull/24068)  by [@gnoff](https://github.com/gnoff))
-* Update webpack plugin for webpack 5 ([#22739](https://github.com/facebook/react/pull/22739)  by [@michenly](https://github.com/michenly))
-* Fix a mistake in the Node loader. ([#22537](https://github.com/facebook/react/pull/22537)  by [@btea](https://github.com/btea))
-* Use `globalThis` instead of `window` for edge environments. ([#22777](https://github.com/facebook/react/pull/22777)  by [@huozhi](https://github.com/huozhi))
+* Add Server Context support. ([#23244](https://github.com/react/react/pull/23244)  by [@salazarm](https://github.com/salazarm))
+* Add `lazy` support. ([#24068](https://github.com/react/react/pull/24068)  by [@gnoff](https://github.com/gnoff))
+* Update webpack plugin for webpack 5 ([#22739](https://github.com/react/react/pull/22739)  by [@michenly](https://github.com/michenly))
+* Fix a mistake in the Node loader. ([#22537](https://github.com/react/react/pull/22537)  by [@btea](https://github.com/btea))
+* Use `globalThis` instead of `window` for edge environments. ([#22777](https://github.com/react/react/pull/22777)  by [@huozhi](https://github.com/huozhi))

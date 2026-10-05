@@ -4,15 +4,71 @@ title: React Blog
 
 <Intro>
 
-React チームからの公式な更新のお知らせはこのブログに掲載されます。リリースノートや非推奨化のお知らせなどの重要なことはすべて、まずこちらに掲載されます。Twitter の [@reactjs](https://twitter.com/reactjs) フォローすることもできますが、このブログさえ読んでいれば、重要なことを見逃す心配はありません。
+React チームからの公式な更新のお知らせはこのブログに掲載されます。リリースノートや非推奨化のお知らせなどの重要なことはすべて、まずこちらに掲載されます。
+
+Bluesky の [@react.dev](https://bsky.app/profile/react.dev) や Twitter の [@reactjs](https://twitter.com/reactjs) アカウントをフォローすることもできますが、このブログさえ読んでいれば、重要なことを見逃す心配はありません。
 
 </Intro>
 
 <Note>
-日本語版サイト (ja.react.dev) のブログセクションへの記事掲載には英語版サイトと比べてタイムラグがあります。 最新のブログ記事は英語版でご確認ください。
+日本語版サイト (ja.react.dev) のブログセクションへの記事掲載には英語版サイトと比べてタイムラグがあります。 最新のブログ記事は[英語版](https://react.dev/blog)でご確認ください。
 </Note>
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
+
+<BlogCard title="React Foundation: Linux Foundation がホストする React の新たな拠点" date="February 24, 2026" url="/blog/2026/02/24/the-react-foundation">
+
+React Foundation が Linux Foundation のもとで正式に立ち上がりました。
+
+</BlogCard>
+
+<BlogCard title="React Server Components におけるサービス拒否攻撃とソースコード露出" date="December 11, 2025" url="/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components">
+
+セキュリティ研究者が先週の重大な脆弱性に対するパッチを検証する過程で、React Server Components における 2 つの脆弱性を追加で発見し、開示しました。
+
+</BlogCard>
+
+<BlogCard title="React Server Components における重大なセキュリティ脆弱性" date="December 3, 2025" url="/blog/2025/12/03/critical-security-vulnerability-in-react-server-components">
+
+React Server Components に、認証不要のリモートコード実行の脆弱性が存在します。バージョン 19.0.1、19.1.2、19.2.1 で修正が公開されました。直ちにアップグレードすることを推奨します。
+
+</BlogCard>
+
+<BlogCard title="React Conf 2025 振り返り" date="October 16, 2025" url="/blog/2025/10/16/react-conf-2025-recap">
+
+先週 React Conf 2025 が開催されました。この投稿では、イベントでの講演と発表内容をまとめます。
+
+</BlogCard>
+
+<BlogCard title="React Compiler v1.0" date="October 7, 2025" url="/blog/2025/10/07/react-compiler-1">
+
+本日、コンパイラの最初の安定版リリースを行います。また、導入を支援するためのリンタやツールの改善もリリースします。
+
+</BlogCard>
+
+<BlogCard title="React Foundation 設立" date="October 7, 2025" url="/blog/2025/10/07/introducing-the-react-foundation">
+
+本日、React Foundation の設立と新しい技術ガバナンス構造について発表します。
+
+</BlogCard>
+
+<BlogCard title="React 19.2" date="October 1, 2025" url="/blog/2025/10/01/react-19-2">
+
+React 19.2 では Activity、パフォーマンストラック、useEffectEvent などの新機能が追加されます。
+
+</BlogCard>
+
+<BlogCard title="React Labs: ビュー遷移、Activity、その他もろもろ" date="April 23, 2025" url="/blog/2025/04/23/react-labs-view-transitions-activity-and-more">
+
+React Labs 記事では、現在活発に研究・開発が行われているプロジェクトについて述べていきます。この投稿では、今すぐ試すことができる 2 つの新しい実験的機能と、現在取り組んでいる他の分野の更新情報を共有します。
+
+</BlogCard>
+
+<BlogCard title="Create React App の非推奨化" date="February 14, 2025" url="/blog/2025/02/14/sunsetting-create-react-app">
+
+本日、新規アプリに対して Create React App を非推奨とし、既存のアプリにはフレームワークへの移行、または Vite、Parcel、RSBuild などのビルドツールへの移行を推奨します。また、フレームワークがプロジェクトに適していない場合や独自のフレームワークを構築したい場合、あるいは React がどのように動作するかを学ぶためにゼロから React アプリを構築したい場合のためのドキュメントも提供します。
+
+</BlogCard>
 
 <BlogCard title="React v19 " date="December 5, 2024" url="/blog/2024/12/05/react-19">
 
@@ -98,7 +154,7 @@ React チームより幾つかのお知らせがあります！
 
 ### すべてのリリースノート {/*all-release-notes*/}
 
-React のすべてのリリースが個別のブログ記事になるわけではありませんが、React リポジトリの [`CHANGELOG.md`](https://github.com/facebook/react/blob/main/CHANGELOG.md) ファイルや [Releases](https://github.com/facebook/react/releases) ページで、すべてのリリースの詳細な変更履歴を見ることができます。
+React のすべてのリリースが個別のブログ記事になるわけではありませんが、React リポジトリの [`CHANGELOG.md`](https://github.com/react/react/blob/main/CHANGELOG.md) ファイルや [Releases](https://github.com/react/react/releases) ページで、すべてのリリースの詳細な変更履歴を見ることができます。
 
 ---
 

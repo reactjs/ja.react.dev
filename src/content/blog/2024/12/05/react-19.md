@@ -59,7 +59,7 @@ function UpdateName({}) {
     if (error) {
       setError(error);
       return;
-    } 
+    }
     redirect("/path");
   };
 
@@ -92,7 +92,7 @@ function UpdateName({}) {
       if (error) {
         setError(error);
         return;
-      } 
+      }
       redirect("/path");
     })
   };
@@ -182,7 +182,7 @@ const [error, submitAction, isPending] = useActionState(
 
 `React.useActionState` は以前の Canary リリースでは `ReactDOM.useFormState` と呼ばれていましたが、名前を変更し、`useFormState` を非推奨にしました。
 
-詳細は [#28491](https://github.com/facebook/react/pull/28491) を参照してください。
+詳細は [#28491](https://github.com/react/react/pull/28491) を参照してください。
 
 </Note>
 
@@ -308,7 +308,7 @@ function Heading({children}) {
   if (children == null) {
     return null;
   }
-  
+
   // This would not work with useContext
   // because of the early return.
   const theme = use(ThemeContext);
@@ -355,7 +355,7 @@ async function handler(request) {
 
 サーバコンポーネントは、クライアントアプリケーションや SSR サーバとは別の環境で、バンドル前にコンポーネントを事前レンダーするための新しいオプションです。React Server Components の "server" とはこの別の環境を指しています。サーバコンポーネントは、CI サーバでビルド時に一度だけ実行することも、ウェブサーバを使用してリクエストごとに実行することもできます。
 
-React 19 には、Canary チャンネルにあったすべての React Server Components の機能が含まれています。これにより、サーバコンポーネントを使用するライブラリは、React 19 を peer dependency としてターゲットにすることができ、`react-server` [エクスポート条件](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#react-server-conditional-exports) を用いて[フルスタック React アーキテクチャ](/learn/start-a-new-react-project#which-features-make-up-the-react-teams-full-stack-architecture-vision)をサポートするフレームワークで使用できます。
+React 19 には、Canary チャンネルにあったすべての React Server Components の機能が含まれています。これにより、サーバコンポーネントを使用するライブラリは、React 19 を peer dependency としてターゲットにすることができ、`react-server` [エクスポート条件](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#react-server-conditional-exports) を用いて[フルスタック React アーキテクチャ](/learn/creating-a-react-app#which-features-make-up-the-react-teams-full-stack-architecture-vision)をサポートするフレームワークで使用できます。
 
 
 <Note>
@@ -497,7 +497,7 @@ function App({children}) {
     <ThemeContext value="dark">
       {children}
     </ThemeContext>
-  );  
+  );
 }
 ```
 
@@ -551,7 +551,7 @@ function Search({deferredValue}) {
   // On initial render the value is ''.
   // Then a re-render is scheduled with the deferredValue.
   const value = useDeferredValue(deferredValue, '');
-  
+
   return (
     <Results query={value} />
   );

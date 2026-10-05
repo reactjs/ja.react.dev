@@ -5,7 +5,7 @@ date: 2021/06/08
 description: React チームより幾つかのお知らせがあります！ 次のメジャーバージョンとなる React 18 リリースに向けての作業を開始しました。コミュニティが React 18 の新機能を段階的に導入できるようにするため、ワーキンググループを作成しました。ライブラリの作者が試用してフィードバックを送れるようにするため、React 18 のアルファ版を公開しました。
 ---
 
-June 8, 2021 by [Andrew Clark](https://twitter.com/acdlite), [Brian Vaughn](https://github.com/bvaughn), [Christine Abernathy](https://twitter.com/abernathyca), [Dan Abramov](https://twitter.com/dan_abramov), [Rachel Nabors](https://twitter.com/rachelnabors), [Rick Hanlon](https://twitter.com/rickhanlonii), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Seth Webster](https://twitter.com/sethwebster)
+June 8, 2021 by [Andrew Clark](https://twitter.com/acdlite), [Brian Vaughn](https://github.com/bvaughn), [Christine Abernathy](https://twitter.com/abernathyca), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Rachel Nabors](https://twitter.com/rachelnabors), [Rick Hanlon](https://twitter.com/rickhanlonii), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Seth Webster](https://twitter.com/sethwebster)
 
 ---
 
@@ -51,7 +51,7 @@ React 18 へのアップグレードに関する詳細やリリースに関す�
 
 当初はワーキンググループ内部で一気に興味が高まることが予想されますので、招待されたメンバーのみがスレッドを作成したりコメントしたりできるようになっています。しかしスレッドは誰でも見えるようになっていますので、全員が同じ情報にアクセスできます。ワーキンググループのメンバーにとって生産的な環境を整えつつ、より広いコミュニティへの透明性も確保するという意味で、これが良い落とし所だと考えています。
 
-もちろんこれまで通り、バグレポートや質問や一般的なフィードバックについては誰でも[イシュートラッカ](https://github.com/facebook/react/issues)に投稿することができます。
+もちろんこれまで通り、バグレポートや質問や一般的なフィードバックについては誰でも[イシュートラッカ](https://github.com/react/react/issues)に投稿することができます。
 
 ## React 18 アルファ版を今すぐ試す {/*how-to-try-react-18-alpha-today*/}
 

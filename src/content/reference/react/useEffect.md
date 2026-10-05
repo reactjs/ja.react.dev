@@ -23,7 +23,7 @@ useEffect(setup, dependencies?)
 コンポーネントのトップレベルで `useEffect` を呼び出して、エフェクト (Effect) を宣言します。
 
 ```js
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
 function ChatRoom({ roomId }) {
@@ -44,9 +44,9 @@ function ChatRoom({ roomId }) {
 
 #### 引数 {/*parameters*/}
 
-* `setup`: エフェクトのロジックが記述された関数です。このセットアップ関数は、オプションで*クリーンアップ*関数を返すことができます。コンポーネントが初めて DOM に追加されると、React はセットアップ関数を実行します。依存配列 (dependencies) が変更された再レンダー時には、React はまず古い値を使ってクリーンアップ関数（あれば）を実行し、次に新しい値を使ってセットアップ関数を実行します。コンポーネントが DOM から削除された後、React はクリーンアップ関数を最後にもう一度実行します。
- 
-* **省略可能** `dependencies`: `setup` コード内で参照されるすべてのリアクティブな値のリストです。リアクティブな値には、props、state、コンポーネント本体に直接宣言されたすべての変数および関数が含まれます。リンタが [React 用に設定されている場合](/learn/editor-setup#linting)、すべてのリアクティブな値が依存値として正しく指定されているか確認できます。依存値のリストは要素数が一定である必要があり、`[dep1, dep2, dep3]` のようにインラインで記述する必要があります。React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を使った比較で、それぞれの依存値を以前の値と比較します。この引数を省略すると、エフェクトはコンポーネントの毎回のレンダー後に再実行されます。[依存値の配列を渡す場合と空の配列を渡す場合、および何も渡さない場合の違い](#examples-dependencies)を確認してください。
+* `setup`: エフェクトのロジックが記述された関数です。このセットアップ関数は、オプションで*クリーンアップ*関数を返すことができます。[コンポーネントがコミットされる](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom)と、React はセットアップ関数を実行します。依存配列 (dependencies) が変更された次のコミット時には、React はまず古い値を使ってクリーンアップ関数（あれば）を実行し、次に新しい値を使ってセットアップ関数を実行します。コンポーネントが DOM から削除された後、React はクリーンアップ関数を最後にもう一度実行します。
+
+* **省略可能** `dependencies`: `setup` コード内で参照されるすべてのリアクティブな値のリストです。リアクティブな値には、props、state、コンポーネント本体に直接宣言されたすべての変数および関数が含まれます。リンタが [React 用に設定されている場合](/learn/editor-setup#linting)、すべてのリアクティブな値が依存値として正しく指定されているか確認できます。依存値のリストは要素数が一定である必要があり、`[dep1, dep2, dep3]` のようにインラインで記述する必要があります。React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を使った比較で、それぞれの依存値を以前の値と比較します。この引数を省略すると、エフェクトはコンポーネントの毎回のコミット後に再実行されます。[依存値の配列を渡す場合と空の配列を渡す場合、および何も渡さない場合の違い](#examples-dependencies)を確認してください。
 
 #### 返り値 {/*returns*/}
 
@@ -81,7 +81,7 @@ function ChatRoom({ roomId }) {
 [コンポーネントを外部システムに接続する](/learn/synchronizing-with-effects)には、コンポーネントのトップレベルで `useEffect` を呼び出します。
 
 ```js [[1, 8, "const connection = createConnection(serverUrl, roomId);"], [1, 9, "connection.connect();"], [2, 11, "connection.disconnect();"], [3, 13, "[serverUrl, roomId]"]]
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
 function ChatRoom({ roomId }) {
@@ -107,14 +107,14 @@ function ChatRoom({ roomId }) {
 **React は必要に応じてセットアップ関数とクリーンアップ関数を呼び出し、これは複数回行われることがあります。**
 
 1. コンポーネントがページに追加（*マウント*）されると、<CodeStep step={1}>セットアップコード</CodeStep>が実行されます。
-2. <CodeStep step={3}>依存値</CodeStep>が変更された上でコンポーネントが再レンダーされる度に：
+2. <CodeStep step={3}>依存値</CodeStep>が変更された上でコンポーネントがコミットされる度に：
    - まず、古い props と state で<CodeStep step={2}>クリーンアップコード</CodeStep>が実行されます。
    - 次に、新しい props と state で<CodeStep step={1}>セットアップコード</CodeStep>が実行されます。
 3. コンポーネントがページから削除（*アンマウント*）されると、最後に<CodeStep step={2}>クリーンアップコード</CodeStep>が実行されます。
 
 **上記の例でこのシーケンスを説明しましょう。**
 
-上記の `ChatRoom` コンポーネントがページに追加されると、`serverUrl` と `roomId` の初期値を使ってチャットルームに接続します。`serverUrl` または `roomId` が再レンダーの結果として変更される場合（例えば、ユーザがドロップダウンで別のチャットルームを選択した場合）、あなたのエフェクトは*以前のルームから切断し、次のルームに接続します*。`ChatRoom` コンポーネントがページから削除されると、あなたのエフェクトは最後の切断を行います。
+上記の `ChatRoom` コンポーネントがページに追加されると、`serverUrl` と `roomId` の初期値を使ってチャットルームに接続します。`serverUrl` または `roomId` がコミットの結果として変更される場合（例えば、ユーザがドロップダウンで別のチャットルームを選択した場合）、あなたのエフェクトは*以前のルームから切断し、次のルームに接続します*。`ChatRoom` コンポーネントがページから削除されると、あなたのエフェクトは最後の切断を行います。
 
 **[バグを見つけ出すために](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed)、開発中には React は<CodeStep step={1}>セットアップ</CodeStep>と<CodeStep step={2}>クリーンアップ</CodeStep>を、<CodeStep step={1}>セットアップ</CodeStep>の前に 1 回余分に実行します**。これは、エフェクトのロジックが正しく実装されていることを確認するストレステストです。これが目に見える問題を引き起こす場合、クリーンアップ関数に一部のロジックが欠けています。クリーンアップ関数は、セットアップ関数が行っていたことを停止ないし元に戻す必要があります。基本ルールとして、ユーザはセットアップが一度しか呼ばれていない（本番環境の場合）か、*セットアップ* → *クリーンアップ* → *セットアップ*のシーケンス（開発環境の場合）で呼ばれているかを区別できないようにする必要があります。[一般的な解決法を参照してください](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)。
 
@@ -896,7 +896,7 @@ button { margin: 5px; }
 
 ### エフェクトを使ったデータフェッチ {/*fetching-data-with-effects*/}
 
-エフェクトを使って、コンポーネントに必要なデータをフェッチ（fetch, 取得）することができます。ただし[フレームワークを使用している場合](/learn/start-a-new-react-project#production-grade-react-frameworks)は、エフェクトを自力で記述するよりも、フレームワークのデータフェッチメカニズムを使用する方がはるかに効率的であることに注意してください。
+エフェクトを使って、コンポーネントに必要なデータをフェッチ（fetch, 取得）することができます。ただし[フレームワークを使用している場合](/learn/creating-a-react-app#full-stack-frameworks)は、エフェクトを自力で記述するよりも、フレームワークのデータフェッチメカニズムを使用する方がはるかに効率的であることに注意してください。
 
 エフェクトを使って自力でデータをフェッチしたい場合は、以下のようなコードを書くことになります。
 
@@ -928,7 +928,8 @@ export default function Page() {
 
 <Sandpack>
 
-```js src/App.js
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [9]}} src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1048,8 +1049,8 @@ export async function fetchBio(person) {
 
 上記の欠点は、マウント時にデータをフェッチするのであれば、React に限らずどのライブラリを使う場合でも当てはまる内容です。ルーティングと同様、データフェッチの実装も上手にやろうとすると一筋縄ではいきません。私たちは以下のアプローチをお勧めします。
 
-- **[フレームワーク](/learn/start-a-new-react-project#production-grade-react-frameworks)を使用している場合、組み込みのデータフェッチ機構を使用してください**。モダンな React フレームワークには、効率的で上記の欠点がないデータフェッチ機構が統合されています。
-- **それ以外の場合は、クライアントサイドキャッシュの使用や構築を検討してください**。一般的なオープンソースのソリューションには、[React Query](https://tanstack.com/query/latest/)、[useSWR](https://swr.vercel.app/)、および [React Router 6.4+](https://beta.reactrouter.com/en/main/start/overview) が含まれます。自分でソリューションを構築することもできます。その場合、エフェクトを内部で使用しつつ、リクエストの重複排除、レスポンスのキャッシュ、ネットワークのウォーターフォールを回避するためのロジック（データのプリロードやルーティング部へのデータ要求の巻き上げ）を追加することになります。
+- **[フレームワーク](/learn/creating-a-react-app#full-stack-frameworks)を使用している場合、組み込みのデータフェッチ機構を使用してください**。モダンな React フレームワークには、効率的で上記の欠点がないデータフェッチ機構が統合されています。
+- **それ以外の場合は、クライアントサイドキャッシュの使用や構築を検討してください**。一般的なオープンソースのソリューションには、[TanStack Query](https://tanstack.com/query/latest/)、[useSWR](https://swr.vercel.app/)、および [React Router 6.4+](https://beta.reactrouter.com/en/main/start/overview) が含まれます。自分でソリューションを構築することもできます。その場合、エフェクトを内部で使用しつつ、リクエストの重複排除、レスポンスのキャッシュ、ネットワークのウォーターフォールを回避するためのロジック（データのプリロードやルーティング部へのデータ要求の巻き上げ）を追加することになります。
 
 これらのアプローチがどちらも適合しない場合は、引き続きエフェクト内で直接データをフェッチすることができます。
 
@@ -1081,7 +1082,7 @@ function ChatRoom({ roomId }) { // This is a reactive value
 ```js {8}
 function ChatRoom({ roomId }) {
   const [serverUrl, setServerUrl] = useState('https://localhost:1234');
-  
+
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
@@ -1144,7 +1145,7 @@ useEffect(() => {
 
 #### 依存配列を渡す {/*passing-a-dependency-array*/}
 
-依存配列を指定すると、エフェクトは**最初のレンダー後*および*依存配列が変わった後の再レンダー後に実行されます。**
+依存配列を指定すると、エフェクトは**最初のコミット後*および*依存配列が変わった後の再コミット後に実行されます。**
 
 ```js {3}
 useEffect(() => {
@@ -1241,7 +1242,7 @@ button { margin-left: 5px; }
 
 #### 空の依存配列を渡す {/*passing-an-empty-dependency-array*/}
 
-あなたのエフェクトがリアクティブな値を本当に使っていないのであれば、それは**初回のレンダー後に**のみ実行されます。
+あなたのエフェクトがリアクティブな値を本当に使っていないのであれば、それは**初回のコミット後に**のみ実行されます。
 
 ```js {3}
 useEffect(() => {
@@ -1318,7 +1319,7 @@ export function createConnection(serverUrl, roomId) {
 
 #### 依存配列を渡さない {/*passing-no-dependency-array-at-all*/}
 
-依存配列自体をまったく渡さない場合、コンポーネントの**毎回のレンダー（再レンダー）後に**エフェクトが実行されます。
+依存配列自体をまったく渡さない場合、コンポーネントの**毎回のコミット後に**エフェクトが実行されます。
 
 ```js {3}
 useEffect(() => {
@@ -1479,7 +1480,7 @@ body {
 
 ### オブジェクト型の不要な依存値を削除する {/*removing-unnecessary-object-dependencies*/}
 
-エフェクトがレンダー中に作成されたオブジェクトや関数に依存している場合、必要以上にエフェクトが実行されてしまうことがあります。たとえば、このエフェクトは `options` オブジェクトが[レンダーごとに異なる](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)ため、毎回のレンダー後に再接続を行ってしまいます：
+エフェクトがレンダー中に作成されたオブジェクトや関数に依存している場合、必要以上にエフェクトが実行されてしまうことがあります。たとえば、このエフェクトは `options` オブジェクトが[レンダーごとに異なる](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)ため、毎回のコミット後に再接続を行ってしまいます。
 
 ```js {6-9,12,15}
 const serverUrl = 'https://localhost:1234';
@@ -1496,7 +1497,7 @@ function ChatRoom({ roomId }) {
     const connection = createConnection(options); // It's used inside the Effect
     connection.connect();
     return () => connection.disconnect();
-  }, [options]); // 🚩 As a result, these dependencies are always different on a re-render
+  }, [options]); // 🚩 As a result, these dependencies are always different on a commit
   // ...
 ```
 
@@ -1582,7 +1583,7 @@ button { margin-left: 10px; }
 
 ### 関数型の不要な依存値を削除する {/*removing-unnecessary-function-dependencies*/}
 
-エフェクトがレンダー中に作成されたオブジェクトや関数に依存している場合、必要以上にエフェクトが実行されてしまうことがあります。たとえば、このエフェクトは `createOptions` 関数が[レンダーごとに異なる](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)ため、毎回再接続を行ってしまいます：
+エフェクトがレンダー中に作成されたオブジェクトや関数に依存している場合、必要以上にエフェクトが実行されてしまうことがあります。たとえば、このエフェクトは `createOptions` 関数が[レンダーごとに異なる](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)ため、毎回のコミット後に再接続を行ってしまいます。
 
 ```js {4-9,12,16}
 function ChatRoom({ roomId }) {
@@ -1600,11 +1601,11 @@ function ChatRoom({ roomId }) {
     const connection = createConnection();
     connection.connect();
     return () => connection.disconnect();
-  }, [createOptions]); // 🚩 As a result, these dependencies are always different on a re-render
+  }, [createOptions]); // 🚩 As a result, these dependencies are always different on a commit
   // ...
 ```
 
-再レンダーのたびに新しい関数を作成すること、それ自体には問題はなく、最適化しようとする必要はありません。ただし、エフェクトの依存値としてそれを使用する場合、毎回のレンダー後にエフェクトが再実行されてしまうことになります。
+再レンダーのたびに新しい関数を作成すること、それ自体には問題はなく、最適化しようとする必要はありません。ただし、エフェクトの依存値としてそれを使用する場合、毎回のコミット後にエフェクトが再実行されてしまうことになります。
 
 レンダー中に作成された関数を依存値として使用することは避けてください。代わりに、エフェクトの内部で宣言するようにします。
 
@@ -1690,12 +1691,6 @@ button { margin-left: 10px; }
 
 ### エフェクトから最新の props と state を読み取る {/*reading-the-latest-props-and-state-from-an-effect*/}
 
-<Wip>
-
-このセクションでは、まだ安定したバージョンの React でリリースされていない**実験的な API** について説明します。
-
-</Wip>
-
 デフォルトでは、エフェクトからリアクティブな値を読み取るときは、それを依存値として追加する必要があります。これにより、エフェクトはその値の変更に対して「反応」することが保証されます。ほとんどの依存値については、それが望む挙動です。
 
 **ただし、時には「反応」をせずに最新の props や state を エフェクト内から読み取りたいことがあるでしょう**。例えば、ショッピングカート内のアイテム数をページ訪問ごとに記録する場合を想像してみてください。
@@ -1709,7 +1704,7 @@ function Page({ url, shoppingCart }) {
 }
 ```
 
-**`url` の変更ごとに新しいページ訪問を記録したいが、`shoppingCart` の変更のみでは記録したくない場合はどうすればいいのでしょうか？** [リアクティブルール](#specifying-reactive-dependencies)に反することなく `shoppingCart` を依存配列から除外することはできません。しかし、エフェクト内から呼ばれるコードの一部であるにもかかわらず、そのコードが変更に「反応」しないことを示すことができます。[`useEffectEvent`](/reference/react/experimental_useEffectEvent) フックを使用して、[*エフェクトイベント (effect event)* を宣言](/learn/separating-events-from-effects#declaring-an-effect-event)し、`shoppingCart` を読み取るコードをその内部に移動してください。
+**`url` の変更ごとに新しいページ訪問を記録したいが、`shoppingCart` の変更のみでは記録したくない場合はどうすればいいのでしょうか？** [リアクティブルール](#specifying-reactive-dependencies)に反することなく `shoppingCart` を依存配列から除外することはできません。しかし、エフェクト内から呼ばれるコードの一部であるにもかかわらず、そのコードが変更に「反応」しないことを示すことができます。[`useEffectEvent`](/reference/react/useEffectEvent) フックを使用して、[*エフェクトイベント (Effect Event)* を宣言](/learn/separating-events-from-effects#declaring-an-effect-event)し、`shoppingCart` を読み取るコードをその内部に移動してください。
 
 ```js {2-4,7,8}
 function Page({ url, shoppingCart }) {
@@ -1733,11 +1728,13 @@ function Page({ url, shoppingCart }) {
 
 ### サーバとクライアントで異なるコンテンツを表示する {/*displaying-different-content-on-the-server-and-the-client*/}
 
-お使いのアプリがサーバレンダリングを（[直接](/reference/react-dom/server)ないし[フレームワーク](/learn/start-a-new-react-project#production-grade-react-frameworks)経由で）使用している場合、コンポーネントは 2 種類の環境でレンダーされます。サーバ上では、初期 HTML を生成するためにレンダーされます。クライアント上では、React がその HTML にイベントハンドラをアタッチするために再度レンダーコードを実行します。これが、[ハイドレーション](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html)が動作するためには初回レンダーの出力がクライアントとサーバの両方で同一でなければならない理由です。
+アプリがサーバレンダリングを（[直接](/reference/react-dom/server)ないし[フレームワーク](/learn/creating-a-react-app#full-stack-frameworks)経由で）使用している場合、コンポーネントは 2 種類の環境でレンダーされます。サーバ上では、初期 HTML を生成するためにレンダーされます。クライアント上では、React がその HTML にイベントハンドラをアタッチするために再度レンダーコードを実行します。これが、[ハイドレーション](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html)が動作するためには初回レンダーの出力がクライアントとサーバの両方で同一でなければならない理由です。
 
 まれに、クライアント側で異なるコンテンツを表示する必要がある場合があります。たとえば、アプリが [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) からデータを読み込む場合、サーバ上ではそれを行うことができません。これは以下の方法で実装できます。
 
-```js
+
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [5]}}
 function MyComponent() {
   const [didMount, setDidMount] = useState(false);
 
@@ -1778,7 +1775,7 @@ Strict Mode がオンの場合、開発時に React は実際のセットアッ�
 ```js {3}
 useEffect(() => {
   // ...
-}); // 🚩 No dependency array: re-runs after every render!
+}); // 🚩 No dependency array: re-runs after every commit!
 ```
 
 依存配列を指定しているにもかかわらず、エフェクトがループで再実行される場合、それは再レンダーごとに依存する値のどれかが変わっているためです。

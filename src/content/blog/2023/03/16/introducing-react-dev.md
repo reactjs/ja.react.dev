@@ -5,7 +5,7 @@ date: 2023/03/16
 description: 本日、React とそのドキュメントの新しいホームとなる react.dev の立ち上げを発表することができ、大変うれしく思います。この記事では、新しいサイトの見どころをご紹介します。
 ---
 
-March 16, 2023 by [Dan Abramov](https://twitter.com/dan_abramov) and [Rachel Nabors](https://twitter.com/rachelnabors)
+March 16, 2023 by [Dan Abramov](https://bsky.app/profile/danabra.mov) and [Rachel Nabors](https://twitter.com/rachelnabors)
 
 ---
 
@@ -279,17 +279,17 @@ export default function PackingList() {
     <section>
       <h1>Sally Ride's Packing List</h1>
       <ul>
-        <Item 
-          isPacked={true} 
-          name="Space suit" 
+        <Item
+          isPacked={true}
+          name="Space suit"
         />
-        <Item 
-          isPacked={true} 
-          name="Helmet with a golden leaf" 
+        <Item
+          isPacked={true}
+          name="Helmet with a golden leaf"
         />
-        <Item 
-          isPacked={false} 
-          name="Photo of Tam" 
+        <Item
+          isPacked={false}
+          name="Photo of Tam"
         />
       </ul>
     </section>
@@ -317,17 +317,17 @@ export default function PackingList() {
     <section>
       <h1>Sally Ride's Packing List</h1>
       <ul>
-        <Item 
-          isPacked={true} 
-          name="Space suit" 
+        <Item
+          isPacked={true}
+          name="Space suit"
         />
-        <Item 
-          isPacked={true} 
-          name="Helmet with a golden leaf" 
+        <Item
+          isPacked={true}
+          name="Helmet with a golden leaf"
         />
-        <Item 
-          isPacked={false} 
-          name="Photo of Tam" 
+        <Item
+          isPacked={false}
+          name="Photo of Tam"
         />
       </ul>
     </section>
@@ -365,17 +365,17 @@ export default function PackingList() {
     <section>
       <h1>Sally Ride's Packing List</h1>
       <ul>
-        <Item 
-          importance={9} 
-          name="Space suit" 
+        <Item
+          importance={9}
+          name="Space suit"
         />
-        <Item 
-          importance={0} 
-          name="Helmet with a golden leaf" 
+        <Item
+          importance={0}
+          name="Helmet with a golden leaf"
         />
-        <Item 
-          importance={6} 
-          name="Photo of Tam" 
+        <Item
+          importance={6}
+          name="Photo of Tam"
         />
       </ul>
     </section>
@@ -409,17 +409,17 @@ export default function PackingList() {
     <section>
       <h1>Sally Ride's Packing List</h1>
       <ul>
-        <Item 
-          importance={9} 
-          name="Space suit" 
+        <Item
+          importance={9}
+          name="Space suit"
         />
-        <Item 
-          importance={0} 
-          name="Helmet with a golden leaf" 
+        <Item
+          importance={0}
+          name="Helmet with a golden leaf"
         />
-        <Item 
-          importance={6} 
-          name="Photo of Tam" 
+        <Item
+          importance={6}
+          name="Photo of Tam"
         />
       </ul>
     </section>
@@ -631,7 +631,7 @@ React を学ぶには、今がこれまでで最高のタイミングだと思�
 
 ## 誰がこのプロジェクトに取り組んだのか？ {/*who-worked-on-this*/}
 
-React チームでは、[Rachel Nabors](https://twitter.com/rachelnabors/) がプロジェクトをリードし（イラストも提供）、[Dan Abramov](https://twitter.com/dan_abramov) がカリキュラムをデザインしました。この 2 人が共同でほとんどのコンテンツを執筆しました。
+React チームでは、[Rachel Nabors](https://twitter.com/rachelnabors/) がプロジェクトをリードし（イラストも提供）、[Dan Abramov](https://bsky.app/profile/danabra.mov) がカリキュラムをデザインしました。この 2 人が共同でほとんどのコンテンツを執筆しました。
 
 もちろん、これほど大きなプロジェクトが少人数で進むことはありません。お礼を言いたい方がたくさんいます！
 

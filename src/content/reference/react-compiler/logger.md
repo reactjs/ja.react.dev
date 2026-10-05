@@ -1,0 +1,118 @@
+---
+title: logger
+---
+
+<Intro>
+
+`logger` オプションで、コンパイル時に起こる React Compiler のイベントに対するカスタムロガーを指定します。
+
+</Intro>
+
+```js
+{
+  logger: {
+    logEvent(filename, event) {
+      console.log(`[Compiler] ${event.kind}: ${filename}`);
+    }
+  }
+}
+```
+
+<InlineToc />
+
+---
+
+## リファレンス {/*reference*/}
+
+### `logger` {/*logger*/}
+
+コンパイラの動作を追跡しエラーをデバッグするための、カスタムのロギング方法を設定します。
+
+#### 型 {/*type*/}
+
+```
+{
+  logEvent: (filename: string | null, event: LoggerEvent) => void;
+} | null
+```
+
+#### デフォルト値 {/*default-value*/}
+
+`null`
+
+#### メソッド {/*methods*/}
+
+- **`logEvent`**: 各コンパイライベントに対して、ファイル名およびイベント詳細を引数にして呼び出される。
+
+#### イベントタイプ {/*event-types*/}
+
+- **`CompileSuccess`**: 関数が正常にコンパイルされた
+- **`CompileError`**: エラーにより関数がスキップされた
+- **`CompileDiagnostic`**: 致命的でない診断情報
+- **`CompileSkip`**: その他の理由で関数がスキップされた
+- **`PipelineError`**: 予期しないコンパイルエラー
+- **`Timing`**: パフォーマンスの測定情報
+
+#### 注意点 {/*caveats*/}
+
+- イベントの構造はバージョン間で変更される可能性があります。
+- 大きなコードベースだと、多くのログエントリが生成されます。
+
+---
+
+## 使用法 {/*usage*/}
+
+### 基本的なログ {/*basic-logging*/}
+
+コンパイルの成功と失敗を追跡します。
+
+```js
+{
+  logger: {
+    logEvent(filename, event) {
+      switch (event.kind) {
+        case 'CompileSuccess': {
+          console.log(`✅ Compiled: ${filename}`);
+          break;
+        }
+        case 'CompileError': {
+          console.log(`❌ Skipped: ${filename}`);
+          break;
+        }
+        default: {}
+      }
+    }
+  }
+}
+```
+
+### 詳細なエラーログ {/*detailed-error-logging*/}
+
+コンパイル失敗に関する詳細な情報を取得します。
+
+```js
+{
+  logger: {
+    logEvent(filename, event) {
+      if (event.kind === 'CompileError') {
+        console.error(`\nCompilation failed: ${filename}`);
+        console.error(`Reason: ${event.detail.reason}`);
+
+        if (event.detail.description) {
+          console.error(`Details: ${event.detail.description}`);
+        }
+
+        if (event.detail.loc) {
+          const { line, column } = event.detail.loc.start;
+          console.error(`Location: Line ${line}, Column ${column}`);
+        }
+
+        if (event.detail.suggestions) {
+          console.error('Suggestions:', event.detail.suggestions);
+        }
+      }
+    }
+  }
+}
+```
+

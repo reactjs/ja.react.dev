@@ -4,13 +4,13 @@ title: "ディレクティブ"
 
 <RSC>
 
-ディレクティブは [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) 用の機能です。
+ディレクティブは [React Server Components](/reference/rsc/server-components) 用の機能です。
 
 </RSC>
 
 <Intro>
 
-ディレクティブによって、[React Server Components 互換バンドラ](/learn/start-a-new-react-project#bleeding-edge-react-frameworks)に指示を与えます。
+ディレクティブによって、[React Server Components 互換バンドラ](/learn/creating-a-react-app#full-stack-frameworks)に指示を与えます。
 
 </Intro>
 

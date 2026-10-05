@@ -45,7 +45,7 @@ function useCSS(rule) {
 #### 引数 {/*parameters*/}
 
 * `setup`: エフェクトのロジックが記述された関数です。このセットアップ関数は、オプションで*クリーンアップ*関数を返すことができます。コンポーネントが初めて DOM に追加された後、レイアウトエフェクトが発火する前に、React はセットアップ関数を実行します。依存配列 (dependencies) が変更された再レンダー時には、React はまず古い値を使ってクリーンアップ関数（あれば）を実行し、次に新しい値を使ってセットアップ関数を実行します。コンポーネントが DOM から削除された後、React はクリーンアップ関数を最後にもう一度実行します。
- 
+
 * **省略可能** `dependencies`: `setup` コード内で参照されるすべてのリアクティブな値のリストです。リアクティブな値には、props、state、コンポーネント本体に直接宣言されたすべての変数および関数が含まれます。リンタが [React 用に設定されている場合](/learn/editor-setup#linting)、すべてのリアクティブな値が依存値として正しく指定されているか確認できます。依存値のリストは要素数が一定である必要があり、`[dep1, dep2, dep3]` のようにインラインで記述する必要があります。React は、[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を使った比較で、それぞれの依存値を以前の値と比較します。この引数を省略すると、エフェクトはコンポーネントの毎回のレンダー後に再実行されます。
 
 #### 返り値 {/*returns*/}
@@ -133,7 +133,7 @@ function useCSS(rule) {
 
 #### この手法がレンダー中や useLayoutEffect でスタイルを注入するより優れている理由 {/*how-is-this-better-than-injecting-styles-during-rendering-or-uselayouteffect*/}
 
-レンダー中、React が[非ブロッキング更新](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition)を処理している最中にスタイルを挿入すると、ブラウザはコンポーネントツリーのレンダー中に毎フレームスタイルを再計算することになり、これは**非常に遅くなる**ことがあります。
+レンダー中、React が[非ブロッキング更新](/reference/react/useTransition#perform-non-blocking-updates-with-actions)を処理している最中にスタイルを挿入すると、ブラウザはコンポーネントツリーのレンダー中に毎フレームスタイルを再計算することになり、これは**非常に遅くなる**ことがあります。
 
 `useInsertionEffect` は、[`useLayoutEffect`](/reference/react/useLayoutEffect) や [`useEffect`](/reference/react/useEffect) でスタイルを挿入するよりも優れています。なぜなら、他のエフェクトがあなたのコンポーネントで実行される時点で `<style>` タグがすでに挿入されていることが保証されるからです。さもないと、古くなったスタイルにより、通常のエフェクトでのレイアウト計算が正しくなくなってしまいます。
 

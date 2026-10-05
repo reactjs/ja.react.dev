@@ -283,9 +283,9 @@ CodeSandbox 画面には、以下の 3 つの主要なセクションが表示�
 
 ![CodeSandbox のスタータコード](../images/tutorial/react-starter-code-codesandbox.png)
 
-1. `App.js`、`index.js`、`styles.css` などのファイルリストや `public` というフォルダがある _Files_ セクション
-1. 選択したファイルのソースコードが表示される _コードエディタ_ 
-1. 書いたコードがどのように表示されるかがわかる _Browser_ セクション
+1. _Files_ セクション：ファイル一覧となっており、`src` フォルダに `App.js`、`index.js`、`styles.css` があるほか、`public` フォルダもある
+1. _コードエディタ_：選択したファイルのソースコードが表示される
+1. _Browser_ セクション：書いたコードがどのように表示されるかがわかる
 
 _Files_ セクションで `App.js` ファイルが選択されているはずです。そのファイルの内容は _コードエディタ_ に以下のように表示されています。
 
@@ -797,7 +797,7 @@ function Square() {
 }
 ```
 
-この `set` 関数を `onClick` ハンドラから呼び出すことで、`<button>` がクリックされるたびに React に `Square` を再レンダーするよう要求しています。更新の後では当該 `Square` の `value` は `'X'` になっているので、ゲームの盤面上に "X" が表示されるようになります。いずれかのマス目かをクリックすると "X" が表示されるはずです。
+この `set` 関数を `onClick` ハンドラから呼び出すことで、`<button>` がクリックされるたびに React に `Square` を再レンダーするよう要求しています。更新の後では当該 `Square` の `value` は `'X'` になっているので、ゲームの盤面上に "X" が表示されるようになります。いずれかのマス目をクリックすると "X" が表示されるはずです。
 
 ![盤面に複数の "X" を追加](../images/tutorial/tictac-adding-x-s.gif)
 
@@ -899,19 +899,20 @@ body {
 
 ### React Developer Tools {/*react-developer-tools*/}
 
-React DevTools を使うと、React コンポーネントの props や state を確認することができます。React DevTools タブは、CodeSandbox の *Browser* セクションの下部にあります。
+React Developer Tools を使うと、React コンポーネントの props や state を確認できます。[Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)、[Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)、[Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) のブラウザ拡張機能として利用できます。
 
-![CodeSandbox 内の React DevTools](../images/tutorial/codesandbox-devtools.png)
+インストールすると、React を使用しているサイトではブラウザの開発者ツールに新しく *Components* というタブが表示されます。CodeSandbox でこのチュートリアルを進めている場合は、まずサンドボックスのプレビューを新しいタブで開く必要があります。
 
-画面上の特定のコンポーネントについて調べるには、React DevTools の左上にあるボタンを使用します。
+![新しいタブで開く](../images/tutorial/sandbox-new-tab.png)
 
-![React DevTools でページ上のコンポーネントを選択する](../images/tutorial/devtools-select.gif)
+次に、プレビューページでブラウザの開発者ツールを開き、*Components* タブを探します。
 
-<Note>
+![components タブ](../images/tutorial/components-tab.png)
 
-ローカル開発をしている場合、React DevTools は [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)、[Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)、そして [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) ブラウザの拡張機能として利用できます。インストールすると、React を利用しているサイトでは *Compontents* タブがブラウザの開発者ツールに表示されるようになります。
+画面上の特定のコンポーネントを調べるには、Components タブの左上にあるボタンを使用します。
 
-</Note>
+![開発者ツールでインスペクト](../images/tutorial/devtools-inspect.gif)
+
 
 ## ゲームを完成させる {/*completing-the-game*/}
 

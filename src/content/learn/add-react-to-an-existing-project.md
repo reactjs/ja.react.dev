@@ -20,11 +20,11 @@ title: 既存プロジェクトに React を追加する
 
 以下の手順に従って設定することをお勧めします。
 
-1. [React ベースのフレームワーク](/learn/start-a-new-react-project)のうちひとつを使い、アプリの **React 部分をビルド**します。
-2. フレームワークの設定で `/some-app` を ***base path* に指定**します（方法：[Next.js](https://nextjs.org/docs/api-reference/next.config.js/basepath)、[Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)）。
-3. **サーバーまたはプロキシを設定**して、`/some-app/` 以下のすべてのリクエストを React アプリで処理するようにします。
+1. [React ベースのフレームワーク](/learn/creating-a-react-app)のうちひとつを使い、アプリの **React 部分をビルド**します。
+2. フレームワークの設定で `/some-app` を ***base path* に指定**します（方法：[Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath)、[Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)）。
+3. **サーバまたはプロキシを設定**して、`/some-app/` 以下のすべてのリクエストを React アプリで処理するようにします。
 
-こうすることで、アプリの React 部分がこれらのフレームワークに組み込まれた[ベストプラクティスを最大限に取り入れる](/learn/start-a-new-react-project#can-i-use-react-without-a-framework)ことができます。
+こうすることで、アプリの React 部分がこれらのフレームワークに組み込まれた[ベストプラクティスを最大限に取り入れる](/learn/build-a-react-app-from-scratch#consider-using-a-framework)ことができます。
 
 多くの React ベースのフレームワークはフルスタックであり、React アプリがサーバ機能を活用できるようになっています。ただし、サーバで JavaScript を実行できない場合や実行したくない場合でも、同じアプローチが使用できます。この場合、エクスポートされた HTML/CSS/JS（Next.js の場合は [`next export` 出力](https://nextjs.org/docs/advanced-features/static-html-export)、Gatsby の場合はデフォルト）を `/some-app` としてサーブします。
 
@@ -45,7 +45,7 @@ title: 既存プロジェクトに React を追加する
 
 * **アプリが既に `import` 文を使ってファイル分割するよう設定されている場合**、その既存の設定を使用するようにしてみてください。JS コードで `<div />` と記述すると、構文エラーが発生するかどうかを確認してください。構文エラーが発生する場合は、[Babel を使用して JavaScript を変換](https://babeljs.io/setup)するようにし、JSX を使うために [Babel React プリセット](https://babeljs.io/docs/babel-preset-react) を有効にしてください。
 
-* **JavaScript モジュールをコンパイルする既存のセットアップがない場合**は、[Vite](https://vitejs.dev/) を使ってセットアップします。Vite コミュニティは、Rails、Django、Laravel をはじめ、[多くのバックエンドフレームワークとのインテグレーション](https://github.com/vitejs/awesome-vite#integrations-with-backends)をメンテナンスしています。あなたのバックエンドフレームワークがリストされていない場合は、[このガイドに従って](https://vitejs.dev/guide/backend-integration.html)手動で Vite ビルドをバックエンドと統合してください。
+* **JavaScript モジュールをコンパイルする既存のセットアップがない場合**は、[Vite](https://vite.dev/) を使ってセットアップします。Vite コミュニティは、Rails、Django、Laravel をはじめ、[多くのバックエンドフレームワークとのインテグレーション](https://github.com/vitejs/awesome-vite#integrations-with-backends)をメンテナンスしています。あなたのバックエンドフレームワークがリストされていない場合は、[このガイドに従って](https://vite.dev/guide/backend-integration.html)手動で Vite ビルドをバックエンドと統合してください。
 
 セットアップがうまくいっているかどうかを確認するには、プロジェクトフォルダーで次のコマンドを実行します。
 
@@ -57,12 +57,13 @@ npm install react react-dom
 
 <Sandpack>
 
-```html index.html hidden
+```html public/index.html hidden
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>
   <body>
     <!-- Your existing page content (in this example, it gets replaced) -->
+    <div id="root"></div>
   </body>
 </html>
 ```
@@ -84,7 +85,7 @@ root.render(<h1>Hello, world</h1>);
 
 <Note>
 
-既存のプロジェクトにモジュラーな JavaScript 環境を組み込むことを最初は不安に感じるかもしれませんが、その価値はあると思います！ 行き詰まったら、[コミュニティのリソース](/community)または [Vite Chat](https://chat.vitejs.dev/) を試してみてください。
+既存のプロジェクトにモジュラーな JavaScript 環境を組み込むことを最初は不安に感じるかもしれませんが、その価値はあると思います！ 行き詰まったら、[コミュニティのリソース](/community)または [Vite Chat](https://chat.vite.dev/) を試してみてください。
 
 </Note>
 
@@ -119,7 +120,7 @@ root.render(<h1>Hello, world</h1>);
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>
@@ -148,7 +149,7 @@ root.render(<NavigationBar />);
 
 `index.html` にあるオリジナルの HTML コンテンツはそのままに、自分の `NavigationBar` という React コンポーネントが、HTML の `<nav id="navigation">` 内に表示されるようになりました。React コンポーネントを既存の HTML ページの内部にレンダーする方法の詳細については、[`createRoot` 使用方法のドキュメント](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) を参照してください。
 
-既存のプロジェクトで React を使用する場合、まずはボタンのような小さなインタラクティブなコンポーネントから始め、その後、徐々に「上向きに」進んでいき、最終的にはページ全体が React で構築されるようにすることが一般的です。もしもそのような段階に到達した場合は、React の効果が最大限に得られるように、[React フレームワーク](/learn/start-a-new-react-project)に移行することをお勧めします。
+既存のプロジェクトで React を使用する場合、まずはボタンのような小さなインタラクティブなコンポーネントから始め、その後、徐々に「上向きに」進んでいき、最終的にはページ全体が React で構築されるようにすることが一般的です。もしもそのような段階に到達した場合は、React の効果が最大限に得られるように、[React フレームワーク](/learn/creating-a-react-app)に移行することをお勧めします。
 
 ## 既存のネイティブモバイルアプリ内で React Native を使用する {/*using-react-native-in-an-existing-native-mobile-app*/}
 

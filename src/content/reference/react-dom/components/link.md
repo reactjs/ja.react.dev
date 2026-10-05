@@ -30,7 +30,7 @@ link: "<link>"
 
 #### props {/*props*/}
 
-`<link>` は、[一般的な要素の props](/reference/react-dom/components/common#props) をすべてサポートしています。
+`<link>` は、[一般的な要素の props](/reference/react-dom/components/common#common-props) をすべてサポートしています。
 
 * `rel`: 文字列、必須。[リソースとの関係](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel)を指定します。React は [`rel="stylesheet"` となっているリンク](#special-rendering-behavior)を他のリンクとは異なる方法で扱います。
 
@@ -151,7 +151,7 @@ export default function SiteMapPage() {
 
 ### スタイルシートの優先度の制御 {/*controlling-stylesheet-precedence*/}
 
-スタイルシートは互いに競合することがあり、その場合ブラウザはドキュメント内で後に来るものを採用します。React では props である `precedence` を使用してスタイルシートの順序を制御できます。以下の例では 2 つのコンポーネントがスタイルシートをレンダーしています。優先度の高いリンクをレンダーしているコンポーネントが先に来ていますが、ドキュメント内では後に配置されます。
+スタイルシートは互いに競合することがあり、その場合ブラウザはドキュメント内で後に来るものを採用します。React では props である `precedence` を使用してスタイルシートの順序を制御できます。以下の例では 3 つのコンポーネントがスタイルシートをレンダーしており、同じ優先度のものは `<head>` 内でグループ化されます。
 
 <SandpackWithHTMLOutput>
 

@@ -21,7 +21,7 @@ title: React DOM API
 
 これらの API は、例えばスクリプト、スタイルシート、フォントなどのリソースを必要とする別のページに実際に遷移する前に、それらのリソースが必要となることが判明した時点で即座にプリロードを開始することで、アプリを高速化するためのものです。
 
-[React ベースのフレームワーク](/learn/start-a-new-react-project)は、多くの場合リソースの読み込みを自動で処理してくれるため、この API を直接呼び出す必要はないかもしれません。詳細はフレームワークのドキュメントを参照してください。
+[React ベースのフレームワーク](/learn/creating-a-react-app)は、多くの場合リソースの読み込みを自動で処理してくれるため、この API を直接呼び出す必要はないかもしれません。詳細はフレームワークのドキュメントを参照してください。
 
 * [`prefetchDNS`](/reference/react-dom/prefetchDNS) は、接続予定の DNS ドメインネームに対応する IP アドレスをプリフェッチします。
 * [`preconnect`](/reference/react-dom/preconnect) は、具体的なリソースが不明な場合でも事前にリクエスト先のサーバへの接続を確立します。
@@ -29,6 +29,12 @@ title: React DOM API
 * [`preloadModule`](/reference/react-dom/preloadModule) は、使用予定の ESM モジュールのフェッチを行います。
 * [`preinit`](/reference/react-dom/preinit) は、外部スクリプトのフェッチと実行、またはスタイルシートのフェッチと挿入を行います。
 * [`preinitModule`](/reference/react-dom/preinitModule) は、ESM モジュールのフェッチと実行を行います。
+
+## サーバレンダリング API {/*server-rendering-apis*/}
+
+この API はサーバでコンポーネントがレンダーされる方法を制御します。
+
+* <CanaryBadge /> [`browser`](/reference/react-dom/browser) を使うことで、サーバレンダリング中に、コンポーネントをブラウザ専用としてマークすることができます。
 
 ---
 
