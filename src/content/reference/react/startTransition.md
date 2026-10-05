@@ -92,11 +92,7 @@ function TabContainer() {
 
 <Note>
 
-<<<<<<< HEAD
-`startTransition` は [`useTransition`](/reference/react/useTransition) と非常に似ていますが、トランジションが進行中かどうかを追跡する `isPending` フラグを提供しない点が異なります。`useTransition` が利用できない場合でも `startTransition` を呼び出すことができます。例えば、`startTransition` はコンポーネントの外部、たとえばデータライブラリ内でも動作します。
-=======
-`startTransition` is very similar to [`useTransition`](/reference/react/useTransition), except that it does not provide the `isPending` flag to track whether a Transition is ongoing. The standalone function is also not associated with a component, so if the function passed to it throws an error or returns a rejected Promise, React reports the error with [`reportError`](https://developer.mozilla.org/en-US/docs/Web/API/Window/reportError). You can call `startTransition` when `useTransition` is not available. For example, `startTransition` works outside components, such as from a data library.
->>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
+`startTransition` は [`useTransition`](/reference/react/useTransition) と非常に似ていますが、トランジションが進行中かどうかを追跡する `isPending` フラグを提供しない点が異なります。また、このスタンドアロン関数はコンポーネントに関連付けられていないため、渡された関数がエラーをスローするか、拒否 (reject) されたプロミスを返すと、React は [`reportError`](https://developer.mozilla.org/en-US/docs/Web/API/Window/reportError) でエラーを報告します。`useTransition` が利用できない場合でも `startTransition` を呼び出すことができます。例えば、`startTransition` はコンポーネントの外部、たとえばデータライブラリ内でも動作します。
 
 [`useTransition` ページでトランジションについて学び、例を見ることができます](/reference/react/useTransition)。
 

@@ -1328,11 +1328,7 @@ async function getData(url) {
 
 ## 使用法（ブラウザ） {/*usage-browser*/}
 
-<<<<<<< HEAD
-### <CanaryBadge /> コンポーネントをブラウザでのみレンダー {/*rendering-a-component-only-in-the-browser*/}
-=======
-### Rendering a component only in the browser {/*rendering-a-component-only-in-the-browser*/}
->>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
+### コンポーネントをブラウザでのみレンダー {/*rendering-a-component-only-in-the-browser*/}
 
 ブラウザでのみレンダーされるべきコンポーネント内で、[`browser`](/reference/react-dom/browser) が返した値を `use` に渡します。
 

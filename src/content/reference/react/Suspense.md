@@ -43,23 +43,13 @@ title: <Suspense>
 
 サスペンスバウンダリは、コンテンツの準備ができるまでその表示を待機します。以下のいずれかに該当する間、バウンダリはコンテンツを表示しません。
 
-<<<<<<< HEAD
 - [`lazy`](/reference/react/lazy) によってコンポーネントコードを遅延ロードしている。
 - [`use`](/reference/react/use) でプロミスを読み取っている。[サーバコンポーネント](/reference/rsc/server-components)からストリーミングされたデータや、[サスペンス対応フレームワーク](#suspense-enabled-frameworks)を介して読み込まれたデータも含む。
 - [`<link rel="stylesheet">` と `precedence` プロパティを使ってレンダーされたスタイルシート](/reference/react-dom/components/link#special-rendering-behavior)を読み込んでいる。React は、タイムアウト時間を上限として、スタイルシートが読み込まれるのをバウンダリで待機します。[以下の例を参照](#waiting-for-a-stylesheet-to-load)。
 - 大きなバウンダリ内で、ストリーミングサーバレンダリング経由で HTML が到着するのを待機している。HTML の送信には時間がかかるため、一定以上の量のコンテンツを持つバウンダリは、その内部で何もサスペンドしていなくてもアクティブになります。React は HTML の到着に合わせてコンテンツを表示します。
-- <CanaryBadge /> フォントを読み込んでいる。デフォルトではサスペンスはフォントを待機しませんが、[`<ViewTransition>`](/reference/react/ViewTransition) による更新では、テキストがフォールバックフォントで一瞬表示されないよう、タイムアウト時間を上限として新しいフォントの読み込みを待機します。[以下の例を参照](#waiting-for-a-font-to-load)。
-- <CanaryBadge /> 画像を読み込んでいる。デフォルトではサスペンスは画像を待ちませんが、[`<ViewTransition>`](/reference/react/ViewTransition) による更新中は、タイムアウト時間を上限として React がバウンダリで画像の読み込みを待機します。`onLoad` ハンドラを追加すると、個別の画像をこの動作の対象外にできます。[以下の例を参照](#waiting-for-an-image-to-load)。
+- フォントを読み込んでいる。デフォルトではサスペンスはフォントを待機しませんが、[`<ViewTransition>`](/reference/react/ViewTransition) による更新では、テキストがフォールバックフォントで一瞬表示されないよう、タイムアウト時間を上限として新しいフォントの読み込みを待機します。[以下の例を参照](#waiting-for-a-font-to-load)。
+- 画像を読み込んでいる。デフォルトではサスペンスは画像を待ちませんが、[`<ViewTransition>`](/reference/react/ViewTransition) による更新中は、タイムアウト時間を上限として React がバウンダリで画像の読み込みを待機します。`onLoad` ハンドラを追加すると、個別の画像をこの動作の対象外にできます。[以下の例を参照](#waiting-for-an-image-to-load)。
 - <ExperimentalBadge /> [`<Suspense defer>`](#props) バウンダリ内で CPU 負荷の高いレンダー処理を実行している。
-=======
-- Lazy-loading component code with [`lazy`](/reference/react/lazy).
-- Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components) or loaded through a [Suspense-enabled framework](#suspense-enabled-frameworks).
-- Loading a stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop.](/reference/react-dom/components/link#special-rendering-behavior) React blocks the boundary until the stylesheet loads, up to a timeout. [See an example below.](#waiting-for-a-stylesheet-to-load)
-- Waiting for a large boundary's HTML to arrive during streaming server rendering. Sending HTML takes time, so a boundary with enough content activates even when nothing in it suspends. React reveals the content as the HTML arrives.
-- Loading fonts. Suspense doesn't wait for fonts by default, but a [`<ViewTransition>`](/reference/react/ViewTransition) update waits for new fonts to load, up to a timeout, so text doesn't flash with a fallback font. [See an example below.](#waiting-for-a-font-to-load)
-- Loading images. Suspense doesn't wait for images by default, but during a [`<ViewTransition>`](/reference/react/ViewTransition) update, React blocks the boundary until the image loads, up to a timeout. Adding an `onLoad` handler opts a specific image out. [See an example below.](#waiting-for-an-image-to-load)
-- <ExperimentalBadge /> Performing CPU-bound render work inside a [`<Suspense defer>`](#props) boundary.
->>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
 
 <Note>
 
@@ -2392,11 +2382,7 @@ function Chat() {
 
 ---
 
-<<<<<<< HEAD
-### <CanaryBadge /> ブラウザ専用コンテンツにフォールバックを提供する {/*providing-a-fallback-for-browser-only-content*/}
-=======
-### Providing a fallback for browser-only content {/*providing-a-fallback-for-browser-only-content*/}
->>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
+### ブラウザ専用コンテンツにフォールバックを提供する {/*providing-a-fallback-for-browser-only-content*/}
 
 サスペンスバウンダリを使って、ブラウザ専用コンポーネントにフォールバックを提供できます。コンポーネントを `<Suspense>` でラップし、その内部で [`use(browser())`](/reference/react/use#use-browser) を呼び出します。
 
@@ -2675,11 +2661,7 @@ hr {
 
 ---
 
-<<<<<<< HEAD
-### <CanaryBadge /> サスペンスのコンテンツからアニメーションする {/*animating-from-suspense-content*/}
-=======
-### Animating from Suspense content {/*animating-from-suspense-content*/}
->>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
+### サスペンスのコンテンツからアニメーションする {/*animating-from-suspense-content*/}
 
 サスペンスと [`<ViewTransition>`](/reference/react/ViewTransition) を組み合わせて、フォールバックからコンテンツへの入れ替えをアニメーションできます。バウンダリを `<ViewTransition>` でラップすると、React は入れ替えを更新として扱い、デフォルトではフォールバックとコンテンツをクロスフェードさせます。
 
@@ -2917,11 +2899,7 @@ button:hover {
 
 ---
 
-<<<<<<< HEAD
-### <CanaryBadge /> フォントの読み込みを待機する {/*waiting-for-a-font-to-load*/}
-=======
-### Waiting for a font to load {/*waiting-for-a-font-to-load*/}
->>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
+### フォントの読み込みを待機する {/*waiting-for-a-font-to-load*/}
 
 [`<ViewTransition>`](/reference/react/ViewTransition) がサスペンスバウンダリの内容表示をアニメーションする際、テキストがフォールバックフォントで一瞬表示されてしまわないよう、React はタイムアウト時間を上限として、コンテンツが導入する新しいフォントの読み込みを待機します。これは `<ViewTransition>` による更新中にのみ行われます。
 
@@ -3071,11 +3049,7 @@ hr {
 
 ---
 
-<<<<<<< HEAD
-### <CanaryBadge /> 画像の読み込みを待機する {/*waiting-for-an-image-to-load*/}
-=======
-### Waiting for an image to load {/*waiting-for-an-image-to-load*/}
->>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
+### 画像の読み込みを待機する {/*waiting-for-an-image-to-load*/}
 
 [`<ViewTransition>`](/reference/react/ViewTransition) がサスペンスバウンダリの表示をアニメーションする際、読み込み途中の画像でアニメーションが始まってしまわないよう、React はタイムアウト時間を上限として、表示対象の画像が読み込まれるのを待機します。これは `<ViewTransition>` による更新中にのみ行われます。`onLoad` ハンドラを追加すると、`<ViewTransition>` 内であっても、個別の画像をこの動作の対象外にできます。
 
@@ -3208,11 +3182,7 @@ hr {
 
 ---
 
-<<<<<<< HEAD
-### <CanaryBadge /> フォント、画像、スタイルシートを連携させる {/*coordinating-fonts-images-and-stylesheets*/}
-=======
-### Coordinating fonts, images, and stylesheets {/*coordinating-fonts-images-and-stylesheets*/}
->>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
+### フォント、画像、スタイルシートを連携させる {/*coordinating-fonts-images-and-stylesheets*/}
 
 サスペンスバウンダリは、データ、スタイルシート、フォント、画像をまとめて待機することができます。フォントと画像を待つのは、[`<ViewTransition>`](/reference/react/ViewTransition) による更新中だけです。以下の例では、`ProfileCard` コンポーネントがデータの読み込み中にサスペンドし、`precedence` を指定したスタイルシート、新しいフォントのテキスト、ポートレート画像をレンダーします。React はデータとスタイルシートの読み込み中、スケルトンを表示し続けます。その後、`<ViewTransition>` による表示がフォントと画像を待機するため、カードは完成した状態で現れます。
 

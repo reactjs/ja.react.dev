@@ -28,11 +28,7 @@ title: "<div> などの一般的なコンポーネント"
 
 * `children`: React ノード（要素、文字列、数値、[ポータル](/reference/react-dom/createPortal)、`null` や `undefined` やブーリアンのような空ノード、あるいは他の React ノードの配列）。コンポーネントの内容を指定します。JSX を使用する場合、通常は `<div><span /></div>` のようにタグをネストすることで props として暗黙的に `children` を指定します。
 
-<<<<<<< HEAD
-* `dangerouslySetInnerHTML`: `{ __html: '<p>some html</p>' }` という形式の、内部に生の HTML 文字列を含んだオブジェクト。DOM ノードの [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) プロパティを上書きし、渡された HTML を表示します。これは最大限に注意して使用する必要があります！ 内部の HTML が信頼できない場合（例えば、ユーザデータに基づいている場合）、[XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) 脆弱性を導入するリスクがあります。[`dangerouslySetInnerHTML` の使用について詳しく読む](#dangerously-setting-the-inner-html)
-=======
-* `dangerouslySetInnerHTML`: An object of the form `{ __html: '<p>some html</p>' }` with a raw HTML string or [`TrustedHTML`](https://developer.mozilla.org/en-US/docs/Web/API/TrustedHTML) value inside. Overrides the [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) property of the DOM node and displays the passed HTML inside. This should be used with extreme caution! If the HTML inside isn't trusted (for example, if it's based on user data), you risk introducing an [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerability. [Read more about using `dangerouslySetInnerHTML`.](#dangerously-setting-the-inner-html)
->>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
+* `dangerouslySetInnerHTML`: `{ __html: '<p>some html</p>' }` という形式の、内部に生の HTML 文字列または [`TrustedHTML`](https://developer.mozilla.org/en-US/docs/Web/API/TrustedHTML) の値を含んだオブジェクト。DOM ノードの [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) プロパティを上書きし、渡された HTML を表示します。これは最大限に注意して使用する必要があります！ 内部の HTML が信頼できない場合（例えば、ユーザデータに基づいている場合）、[XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) 脆弱性を導入するリスクがあります。[`dangerouslySetInnerHTML` の使用について詳しく読む](#dangerously-setting-the-inner-html)
 
 * `ref`: [`useRef`](/reference/react/useRef) または [`createRef`](/reference/react/createRef) から得られる ref オブジェクト、または [`ref` コールバック関数](#ref-callback)、または[レガシー ref](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) 用の文字列。指定された ref にこのノードの DOM 要素が渡されます。[ref を使った DOM の操作について詳しく読む](#manipulating-a-dom-node-with-a-ref)
 
@@ -928,11 +924,7 @@ export default function Form() {
 
 ### 危険を冒して内部 HTML をセットする {/*dangerously-setting-the-inner-html*/}
 
-<<<<<<< HEAD
-以下のように、要素に対して生の HTML 文字列を渡すことができます。
-=======
-You can pass a raw HTML string or a [`TrustedHTML`](https://developer.mozilla.org/en-US/docs/Web/API/TrustedHTML) value to an element like so:
->>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
+以下のように、要素に対して生の HTML 文字列または [`TrustedHTML`](https://developer.mozilla.org/en-US/docs/Web/API/TrustedHTML) の値を渡すことができます。
 
 ```js
 const markup = { __html: '<p>some raw html</p>' };
@@ -941,13 +933,9 @@ return <div dangerouslySetInnerHTML={markup} />;
 
 **これは危険です。元の DOM の [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) プロパティも同様ですが、最大限に注意を払ってください！ マークアップが完全に信頼できるソースから来ていない限り、この方法を使うといとも簡単に [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) 脆弱性が発生します**。
 
-<<<<<<< HEAD
-例えば、Markdown を HTML に変換する Markdown ライブラリを使用しており、そのパーサにバグがないと信頼でき、ユーザは本人が入力したものしか見ない、という場合、結果 HTML を以下のように表示することができます。
-=======
-If your site enforces [Trusted Types](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API), pass a `TrustedHTML` value created by your security policy as `__html`. React passes the value to the browser without converting it to a string, allowing the browser to validate it. Your policy must still ensure that any input used to create the value is trusted and sanitized.
+サイトで [Trusted Type](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API) を強制している場合、セキュリティポリシーによって作成された `TrustedHTML` の値を `__html` として渡してください。React はこの値を文字列に変換せずにブラウザに渡すため、ブラウザが値を検証できます。この値の作成に使用される入力がサニタイズされた信頼できる値であることは、引き続きポリシーで保証する必要があります。
 
-For example, if you use a Markdown library that converts Markdown to HTML, you trust that its parser doesn't contain bugs, and the user only sees their own input, you can display the resulting HTML like this:
->>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
+例えば、Markdown を HTML に変換する Markdown ライブラリを使用しており、そのパーサにバグがないと信頼でき、ユーザは本人が入力したものしか見ない、という場合、結果 HTML を以下のように表示することができます。
 
 <Sandpack>
 
