@@ -449,7 +449,7 @@ export default function PackingList() {
 
 </Diagram>
 
-ドキュメントの中にはイラストもいくつかあります。こちらは[ブラウザが画面を描画しているイラスト](/learn/render-and-commit#epilogue-browser-paint)となります：
+ドキュメントの中にはイラストもいくつかあります。こちらは[ブラウザが画面をペイントしているイラスト](/learn/render-and-commit#epilogue-browser-paint)となります：
 
 <Illustration alt="A browser painting 'still life with card element'." src="/images/docs/illustrations/i_browser-paint.png" />
 

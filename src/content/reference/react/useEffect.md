@@ -62,11 +62,11 @@ function ChatRoom({ roomId }) {
 
 * 依存配列の一部にコンポーネント内で定義されたオブジェクトや関数がある場合、**エフェクトが必要以上に再実行される**可能性があります。これを修正するには、[オブジェクト型](#removing-unnecessary-object-dependencies)および[関数型](#removing-unnecessary-function-dependencies)の不要な依存値を削除します。また、エフェクトの外部に [state の更新](#updating-state-based-on-previous-state-from-an-effect)や[非リアクティブなロジック](#reading-the-latest-props-and-state-from-an-effect)を抽出することもできます。
 
-* エフェクトがユーザ操作（クリックなど）によって引き起こされたものでない場合、React は通常、ブラウザが**新しい画面を描画した後にエフェクトを実行**します。あなたのエフェクトが（ツールチップの配置など）何か視覚的な作業を行っており遅延が目立つ場合（ちらつくなど）、`useEffect` を [`useLayoutEffect` に置き換えてください](/reference/react/useLayoutEffect)。
+* エフェクトがユーザ操作（クリックなど）によって引き起こされたものでない場合、React は通常、ブラウザが**新しい画面をペイントした後にエフェクトを実行**します。あなたのエフェクトが（ツールチップの配置など）何か視覚的な作業を行っており遅延が目立つ場合（ちらつくなど）、`useEffect` を [`useLayoutEffect` に置き換えてください](/reference/react/useLayoutEffect)。
 
-* エフェクトがユーザ操作（クリックなど）によって引き起こされた場合、**React はブラウザが更新後の画面を描画する前にエフェクトを実行することがあります**。これによりエフェクトの結果がイベントシステムに見えることが保証されます。これは通常は期待通りに動作します。しかし、`alert()` のように描画後まで作業を遅らせる必要がある場合は、`setTimeout` を使用できます。詳細については、[reactwg/react-18/128](https://github.com/reactwg/react-18/discussions/128) を参照してください。
+* エフェクトがユーザ操作（クリックなど）によって引き起こされた場合、**React はブラウザが更新後の画面をペイントする前にエフェクトを実行することがあります**。これによりエフェクトの結果がイベントシステムに見えることが保証されます。これは通常は期待通りに動作します。しかし、`alert()` のようにペイント後まで作業を遅らせる必要がある場合は、`setTimeout` を使用できます。詳細については、[reactwg/react-18/128](https://github.com/reactwg/react-18/discussions/128) を参照してください。
 
-* エフェクトがユーザ操作（クリックなど）によって引き起こされた場合、**React はエフェクト内で起きた state 更新を処理する前に、ブラウザに画面を再描画させる**ことがあります。これは通常は期待通りに動作します。しかし、ブラウザによる画面の再描画をブロックしなければならない場合は、`useEffect` を [`useLayoutEffect`](/reference/react/useLayoutEffect) に置き換える必要があります。
+* エフェクトがユーザ操作（クリックなど）によって引き起こされた場合、**React はエフェクト内で起きた state 更新を処理する前に、ブラウザに画面を再ペイントさせる**ことがあります。これは通常は期待通りに動作します。しかし、ブラウザによる画面の再ペイントをブロックしなければならない場合は、`useEffect` を [`useLayoutEffect`](/reference/react/useLayoutEffect) に置き換える必要があります。
 
 * エフェクトは**クライアント上でのみ実行されます**。サーバレンダリング中には実行されません。
 
@@ -1859,4 +1859,4 @@ useEffect(() => {
 
 ### エフェクトが表示に関することを行っており、実行前にちらつきが見られる {/*my-effect-does-something-visual-and-i-see-a-flicker-before-it-runs*/}
 
-エフェクトがブラウザの[画面描画をブロック](/learn/render-and-commit#epilogue-browser-paint)する必要がある場合は、`useEffect` の代わりに [`useLayoutEffect`](/reference/react/useLayoutEffect) を使用してください。ただし、これは**ほとんどのエフェクトには必要ない**ということに注意してください。これは、ブラウザ描画の前にエフェクトを実行することが重要な場合にのみ必要です。例えば、ユーザがツールチップを見る前に、ツールチップのサイズを測定して配置するために使用します。
+エフェクトがブラウザの[画面ペイントをブロック](/learn/render-and-commit#epilogue-browser-paint)する必要がある場合は、`useEffect` の代わりに [`useLayoutEffect`](/reference/react/useLayoutEffect) を使用してください。ただし、これは**ほとんどのエフェクトには必要ない**ということに注意してください。これは、ブラウザペイントの前にエフェクトを実行することが重要な場合にのみ必要です。例えば、ユーザがツールチップを見る前に、ツールチップのサイズを測定して配置するために使用します。
