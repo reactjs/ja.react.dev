@@ -4,31 +4,31 @@ title: rules-of-hooks
 
 <Intro>
 
-Validates that components and hooks follow the [Rules of Hooks](/reference/rules/rules-of-hooks).
+コンポーネントとフックが[フックのルール](/reference/rules/rules-of-hooks)に従っているか検証します。
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## ルールの詳細 {/*rule-details*/}
 
-React relies on the order in which hooks are called to correctly preserve state between renders. Each time your component renders, React expects the exact same hooks to be called in the exact same order. When hooks are called conditionally or in loops, React loses track of which state corresponds to which hook call, leading to bugs like state mismatches and "Rendered fewer/more hooks than expected" errors.
+React はレンダー間で state を正しく保持するために、フックが呼び出される順番を用います。コンポーネントがレンダーされるたびに、まったく同じフックがまったく同じ順序で呼び出されることを期待しています。フックを条件付きで呼び出したり、ループ内で呼び出したりすると、どの state がどのフック呼び出しに対応するのか React が分からなくなり、state の不一致や "Rendered fewer/more hooks than expected" といったエラーにつながります。
 
-## Common Violations {/*common-violations*/}
+## よくある違反 {/*common-violations*/}
 
-These patterns violate the Rules of Hooks:
+以下のパターンは、フックのルールに違反します。
 
-- **Hooks in conditions** (`if`/`else`, ternary, `&&`/`||`)
-- **Hooks in loops** (`for`, `while`, `do-while`)
-- **Hooks after early returns**
-- **Hooks in callbacks/event handlers**
-- **Hooks in async functions**
-- **Hooks in class methods**
-- **Hooks at module level**
+- **条件分岐内でのフックの呼び出し**（`if`／`else`、三項演算子、`&&`／`||`）
+- **ループ内でのフックの呼び出し** (`for`, `while`, `do-while`)
+- **早期リターンの後でのフックの呼び出し**
+- **コールバックやイベントハンドラ内でのフックの呼び出し**
+- **非同期関数内でのフックの呼び出し**
+- **クラスメソッド内でのフックの呼び出し**
+- **モジュールレベルでのフックの呼び出し**
 
 <Note>
 
-### `use` hook {/*use-hook*/}
+### `use` フック {/*use-hook*/}
 
-The `use` hook is different from other React hooks. You can call it conditionally and in loops:
+`use` フックは、他の React フックとは異なります。条件付きで呼び出すことも、ループ内で呼び出すこともできます。
 
 ```js
 // ✅ `use` can be conditional
@@ -42,17 +42,17 @@ for (const promise of promises) {
 }
 ```
 
-However, `use` still has restrictions:
-- Can't be wrapped in try/catch
-- Must be called inside a component or hook
+ただし、`use` にも制約はあります。
+- try/catch で囲むことはできません
+- コンポーネントまたはフック内で呼び出す必要があります
 
-Learn more: [`use` API Reference](/reference/react/use)
+詳細は、[`use` の API リファレンス](/reference/react/use)を参照してください。
 
 </Note>
 
-### Invalid {/*invalid*/}
+### 無効な例 {/*invalid*/}
 
-Examples of incorrect code for this rule:
+このルールに違反するコードの例です。
 
 ```js
 // ❌ Hook in condition
@@ -80,9 +80,9 @@ try {
 const globalState = useState(0); // Outside component
 ```
 
-### Valid {/*valid*/}
+### 有効な例 {/*valid*/}
 
-Examples of correct code for this rule:
+このルールに従ったコードの例です。
 
 ```js
 function Component({ isSpecial, shouldFetch, fetchPromise }) {
@@ -104,11 +104,11 @@ function Component({ isSpecial, shouldFetch, fetchPromise }) {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### I want to fetch data based on some condition {/*conditional-data-fetching*/}
+### 条件に応じてデータをフェッチしたい {/*conditional-data-fetching*/}
 
-You're trying to conditionally call useEffect:
+以下では、useEffect を条件付きで呼び出そうとしています。
 
 ```js
 // ❌ Conditional hook
@@ -119,7 +119,7 @@ if (isLoggedIn) {
 }
 ```
 
-Call the hook unconditionally, check condition inside:
+フックは無条件で呼び出すことにし、条件はその内部で確認してください。
 
 ```js
 // ✅ Condition inside hook
@@ -132,15 +132,15 @@ useEffect(() => {
 
 <Note>
 
-There are better ways to fetch data rather than in a useEffect. Consider using TanStack Query, useSWR, or React Router 6.4+ for data fetching. These solutions handle deduplicating requests, caching responses, and avoiding network waterfalls.
+データのフェッチには、useEffect 内で行うよりも良い方法があります。TanStack Query、useSWR、React Router 6.4 以降の利用を検討してください。これらは、リクエストの重複排除、レスポンスのキャッシュ、ネットワークウォーターフォールの回避に対応しています。
 
-Learn more: [Fetching Data](/learn/synchronizing-with-effects#fetching-data)
+詳細は、[データのフェッチ](/learn/synchronizing-with-effects#fetching-data)を参照してください。
 
 </Note>
 
-### I need different state for different scenarios {/*conditional-state-initialization*/}
+### 状況に応じて別の state が欲しい {/*conditional-state-initialization*/}
 
-You're trying to conditionally initialize state:
+以下では、state を条件付きで初期化しようとしています。
 
 ```js
 // ❌ Conditional state
@@ -151,7 +151,7 @@ if (userType === 'admin') {
 }
 ```
 
-Always call useState, conditionally set the initial value:
+useState は常に呼び出すようにし、初期値を条件に応じて設定してください。
 
 ```js
 // ✅ Conditional initial value
@@ -160,9 +160,9 @@ const [permissions, setPermissions] = useState(
 );
 ```
 
-## Options {/*options*/}
+## オプション {/*options*/}
 
-You can configure custom effect hooks using shared ESLint settings (available in `eslint-plugin-react-hooks` 6.1.1 and later):
+ESLint の共有設定を使って、カスタムエフェクトフックを設定できます（`eslint-plugin-react-hooks` 6.1.1 以降で利用可能）。
 
 ```js
 {
@@ -174,6 +174,6 @@ You can configure custom effect hooks using shared ESLint settings (available in
 }
 ```
 
-- `additionalEffectHooks`: Regex pattern matching custom hooks that should be treated as effects. This allows `useEffectEvent` and similar event functions to be called from your custom effect hooks.
+- `additionalEffectHooks`: エフェクトとして扱うカスタムフックにマッチする正規表現パターン。これにより、カスタムエフェクトフックから `useEffectEvent` や同様のイベント関数を呼び出せるようになります。
 
-This shared configuration is used by both `rules-of-hooks` and `exhaustive-deps` rules, ensuring consistent behavior across all hook-related linting.
+この共有設定は、`rules-of-hooks` と `exhaustive-deps` の両方のルールで使われ、フック関連のすべてのリントで一貫した動作が保証されます。
