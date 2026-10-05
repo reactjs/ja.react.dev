@@ -16,7 +16,17 @@ Bluesky の [@react.dev](https://bsky.app/profile/react.dev) や Twitter の [@r
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<<<<<<< HEAD
 <BlogCard title="React Foundation: Linux Foundation がホストする React の新たな拠点" date="February 24, 2026" url="/blog/2026/02/24/the-react-foundation">
+=======
+<BlogCard title="React 19.3" date="September 9, 2026" url="/blog/2026/09/09/react-19-3">
+
+React 19.3 adds new features like View Transitions, Fragment Refs, browser(), Trusted Types, and more. In this post ...
+
+</BlogCard>
+
+<BlogCard title="The React Foundation: A New Home for React Hosted by the Linux Foundation" date="February 24, 2026" url="/blog/2026/02/24/the-react-foundation">
+>>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
 
 React Foundation が Linux Foundation のもとで正式に立ち上がりました。
 

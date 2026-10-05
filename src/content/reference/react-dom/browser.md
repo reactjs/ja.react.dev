@@ -1,17 +1,8 @@
 ---
 title: browser
-version: canary
 ---
 
 <Intro>
-
-<Canary>
-
-**The `browser` API is currently only available in React’s Canary and Experimental channels.**
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
 
 `browser` lets you mark a component as browser-only during server rendering.
 
@@ -56,7 +47,7 @@ During server rendering, `use(browser())` stops rendering the component and leav
 #### Caveats {/*caveats*/}
 
 * `use(browser())` must be inside a `<Suspense>` boundary during server rendering. Without one, the server render fails.
-* In a React Server Components app, `use(browser())` must be called from a [Client Component](/reference/rsc/use-client), not a [Server Component](/reference/rsc/server-components).
+* `use(browser())` must be called from a [Client Component](/reference/rsc/use-client), not a [Server Component](/reference/rsc/server-components).
 * Calling `browser()` by itself has no effect. To mark a component as browser-only, pass the value returned by `browser` to `use`. Do not throw it.
 
 ---
@@ -198,8 +189,8 @@ iframe {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -215,7 +206,7 @@ iframe {
 
 <Note>
 
-In a React Server Components app, `use(browser())` must be called from a Client Component. If your framework uses Server Components by default, add the [`'use client'`](/reference/rsc/use-client) directive to that file or move the call to a child Client Component:
+`use(browser())` must be called from a Client Component. If your framework uses Server Components by default, add the [`'use client'`](/reference/rsc/use-client) directive to that file or move the call to a child Client Component:
 
 ```js {1}
 'use client';
@@ -234,9 +225,153 @@ export default function SavedDraft() {
 
 ---
 
-### Conditionally rendering in the browser {/*conditionally-rendering-in-the-browser*/}
+### Conditionally rendering on the server {/*conditionally-rendering-on-the-server*/}
 
-Like other calls to [`use`](/reference/react/use), you can call `use(browser())` conditionally or inside a custom Hook. For example, you can wrap a Suspense-enabled data-fetching library's `useQuery` and skip server rendering when initial data is missing:
+Like other calls to [`use`](/reference/react/use), `use(browser())` can be called inside a conditional statement or after an early return. This lets a Component or custom Hook opt out of server rendering based on a condition, such as the value of a prop.
+
+For example, this `useTimeZone` Hook accepts an optional default value. When provided, React renders the default value in the initial HTML and in the browser. Without a default value, the Component suspends during server rendering and shows the device's local time zone in the browser.
+
+Click **Reload** to see the loading fallback before the user's time zone appears.
+
+<Sandpack>
+
+```js src/App.js
+import { Suspense } from 'react';
+import { useTimeZone } from './useTimeZone.js';
+
+function TimeZone({label, defaultTimeZone}) {
+  const timeZone = useTimeZone(defaultTimeZone);
+  return <p>{label}: <strong>{timeZone}</strong></p>;
+}
+
+export default function App() {
+  return (
+    <>
+      <h1>Event details</h1>
+      <TimeZone
+        label="Event time zone"
+        defaultTimeZone="America/New_York"
+      />
+      <Suspense fallback={<p>Loading your time zone...</p>}>
+        <TimeZone label="Your time zone" />
+      </Suspense>
+    </>
+  );
+}
+```
+
+```js src/useTimeZone.js active
+import { use } from 'react';
+import { browser } from 'react-dom';
+
+export function useTimeZone(defaultTimeZone) {
+  if (defaultTimeZone !== undefined) {
+    return defaultTimeZone;
+  }
+
+  use(browser('No default time zone was provided.'));
+  return Intl.DateTimeFormat().resolvedOptions().timeZone;
+}
+```
+
+```js src/Document.js hidden
+import App from './App.js';
+
+export default function Document() {
+  return (
+    <html lang="en">
+      <head>
+        <title>Event details</title>
+        <style>{`
+          h1 { font-size: 24px; margin-top: 0; }
+        `}</style>
+      </head>
+      <body>
+        <App />
+      </body>
+    </html>
+  );
+}
+```
+
+```js src/index.js hidden
+import { hydrateRoot } from 'react-dom/client';
+import { renderToReadableStream } from 'react-dom/server';
+import Document from './Document.js';
+import { flushReadableStreamToFrame } from './demo-helpers.js';
+import './styles.css';
+
+async function main(frame) {
+  const stream = await renderToReadableStream(<Document />);
+  await flushReadableStreamToFrame(stream, frame);
+
+  // Wait so both the fallback and hydrated content are visible.
+  await new Promise(resolve => setTimeout(resolve, 1200));
+  hydrateRoot(frame.contentDocument, <Document />);
+}
+
+main(document.getElementById('preview'));
+```
+
+```js src/demo-helpers.js hidden
+export async function flushReadableStreamToFrame(readable, frame) {
+  const doc = frame.contentWindow.document;
+  const decoder = new TextDecoder();
+  const reader = readable.getReader();
+
+  while (true) {
+    const {done, value} = await reader.read();
+    if (done) {
+      break;
+    }
+    doc.write(decoder.decode(value, {stream: true}));
+  }
+
+  doc.write(decoder.decode());
+  doc.close();
+}
+```
+
+```html public/index.html hidden
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Conditional browser rendering</title>
+</head>
+<body>
+  <iframe id="preview" title="Rendered page"></iframe>
+</body>
+</html>
+```
+
+```css src/styles.css hidden
+iframe {
+  width: 100%;
+  height: 240px;
+  border: 0;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+</Sandpack>
+
+You can apply a similar pattern to conditionally avoid server rendering when using a Suspense-enabled data-fetching library:
 
 ```js {3}
 function useBrowserQuery(query, options) {
@@ -256,7 +391,7 @@ function ProductDetails({ productId, initialData }) {
 }
 ```
 
-On the server, `useBrowserQuery` calls `useQuery` only when `initialData` is available. Otherwise, the closest Suspense boundary's fallback remains in the HTML. In the browser, `use(browser())` returns `undefined`, so the query library can fetch the data or read it from its client cache.
+With `initialData`, React renders the Component to HTML on the server. Without it, React leaves the closest [`<Suspense>`](/reference/react/Suspense) boundary's fallback in the HTML. In the browser, `useQuery` can fetch the data or read it from its client cache as usual.
 
 ---
 
@@ -275,19 +410,22 @@ function SavedDraft() {
   return <DraftEditor initialDraft={draft} />;
 }
 
-const { pipe } = renderToPipeableStream(
-  <Suspense fallback={<p>Loading saved draft...</p>}>
-    <SavedDraft />
-  </Suspense>,
-  {
-    onShellReady() {
-      pipe(response);
-    },
-    onBrowserBailout(error, errorInfo) {
-      logBrowserBailout(error, errorInfo);
-    }
+function App() {
+  return (
+    <Suspense fallback={<p>Loading saved draft...</p>}>
+      <SavedDraft />
+    </Suspense>
+  );
+}
+
+const { pipe } = renderToPipeableStream(<App />, {
+  onShellReady() {
+    pipe(response);
+  },
+  onBrowserBailout(error, errorInfo) {
+    logBrowserBailout(error, errorInfo);
   }
-);
+});
 ```
 
 `onBrowserBailout` receives two arguments:

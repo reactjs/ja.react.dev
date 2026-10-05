@@ -6,7 +6,11 @@ title: <Fragment> (<>...</>)
 
 `<Fragment>` を使うことで、ラッパ用のノードを用いずに要素をグループ化することができます。通常は `<>...</>` という構文で使用されます。
 
+<<<<<<< HEAD
 <Canary> フラグメントは ref を受け取ることもでき、これによりラッパ要素を追加することなく、内部の DOM ノードとやり取りできます。</Canary>
+=======
+Fragments can also accept refs, which enable interacting with underlying DOM nodes without adding wrapper elements.
+>>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
 
 ```js
 <>
@@ -29,8 +33,13 @@ title: <Fragment> (<>...</>)
 
 #### props {/*props*/}
 
+<<<<<<< HEAD
 - **省略可能** `key`: 明示的な `<Fragment>` 構文で宣言されたフラグメントは [key](/learn/rendering-lists#keeping-list-items-in-order-with-key) を持つことができます。
 - <CanaryBadge /> **省略可能** `ref`: ref オブジェクト（例えば [`useRef`](/reference/react/useRef) からのもの）または[コールバック関数](/reference/react-dom/components/common#ref-callback)。React は、フラグメントでラップされた DOM ノードとやり取りするためのメソッドを実装した `FragmentInstance` を ref の値として提供します。
+=======
+- **optional** `key`: Fragments declared with the explicit `<Fragment>` syntax may have [keys.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
+- **optional** `ref`: A ref object (e.g. from [`useRef`](/reference/react/useRef)) or [callback function](/reference/react-dom/components/common#ref-callback). React provides a `FragmentInstance` as the ref value that implements methods for interacting with the DOM nodes wrapped by the Fragment.
+>>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
 
 #### 注意点 {/*caveats*/}
 
@@ -38,11 +47,15 @@ title: <Fragment> (<>...</>)
 
 * React は、`<><Child /></>` と `[<Child />]` のレンダー間、あるいは `<><Child /></>` と `<Child />` のレンダー間で行き来する場合に [state をリセット](/learn/preserving-and-resetting-state)しません。これは単一レベルの深さのときのみの動作です。例えば、`<><><Child /></></>` から `<Child />` への変更では state がリセットされます。具体的な振る舞いの詳細は[こちら](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)を参照してください。
 
+<<<<<<< HEAD
 * <CanaryBadge /> `ref` をフラグメントに渡したい場合は、`<>...</>` 構文を使用することはできません。`'react'` から `Fragment` を明示的にインポートし、`<Fragment ref={yourRef}>...</Fragment>` のようにレンダーしなければなりません。
+=======
+* If you want to pass `ref` to a Fragment, you can't use the `<>...</>` syntax. You have to explicitly import `Fragment` from `'react'` and render `<Fragment ref={yourRef}>...</Fragment>`.
+>>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
 
 ---
 
-### <CanaryBadge /> `FragmentInstance` {/*fragmentinstance*/}
+### `FragmentInstance` {/*fragmentinstance*/}
 
 フラグメントに `ref` を渡すと、React は `FragmentInstance` オブジェクトを提供します。このオブジェクトには、フラグメント直下の DOM 子ノード群とやり取りするためのメソッドが実装されています。
 
@@ -459,7 +472,11 @@ function PostBody({ body }) {
 
 ---
 
+<<<<<<< HEAD
 ### <CanaryBadge /> ラッパ要素なしでイベントリスナを追加する {/*adding-event-listeners-without-wrapper*/}
+=======
+### Adding event listeners without a wrapper element {/*adding-event-listeners-without-wrapper*/}
+>>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
 
 フラグメントの `ref` を使うと、ラッパとなる DOM ノードを追加せずに、要素のグループにイベントリスナを追加できます。[ref コールバック](/reference/react-dom/components/common#ref-callback)を使ってリスナの登録とクリーンアップを行います。
 
@@ -511,8 +528,8 @@ export default function App() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -548,7 +565,11 @@ export default function App() {
 
 ---
 
+<<<<<<< HEAD
 ### <CanaryBadge /> 要素のグループ全体でフォーカスを管理する {/*managing-focus-across-elements*/}
+=======
+### Managing focus across a group of elements {/*managing-focus-across-elements*/}
+>>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
 
 フラグメントの `ref` は、フラグメント内のすべての DOM ノードにわたって動作する `focus`、`focusLast`、`blur` メソッドを提供します。
 
@@ -620,8 +641,8 @@ label {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -633,7 +654,11 @@ label {
 
 ---
 
+<<<<<<< HEAD
 ### <CanaryBadge /> 要素のグループが見える位置までスクロールする {/*scrolling-group-into-view*/}
+=======
+### Scrolling a group of elements into view {/*scrolling-group-into-view*/}
+>>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
 
 `scrollIntoView` を使うと、ラッパ要素なしでフラグメントの子要素が見える位置までスクロールできます。最初の子要素が上端に来るようにスクロールするには `true` を渡す（または引数を省略する）ようにします。最後の子要素が下端に来るようにスクロールするには `false` を渡します。
 
@@ -716,8 +741,8 @@ p {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -727,7 +752,11 @@ p {
 
 ---
 
+<<<<<<< HEAD
 ### <CanaryBadge /> ラッパ要素なしで可視性を監視する {/*observing-visibility-without-wrapper*/}
+=======
+### Observing visibility without a wrapper element {/*observing-visibility-without-wrapper*/}
+>>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
 
 `observeUsing` を使うと、フラグメント直下の DOM 子要素すべてに `IntersectionObserver` を登録できます。これにより、子コンポーネントに `ref` を公開させたり、ラッパ要素を追加したりすることなく、可視性を追跡できます。
 
@@ -828,8 +857,8 @@ export default function Card({ title }) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -839,7 +868,11 @@ export default function Card({ title }) {
 
 ---
 
+<<<<<<< HEAD
 ### <CanaryBadge /> グローバルな IntersectionObserver をキャッシュする {/*caching-global-intersection-observer*/}
+=======
+### Caching a global IntersectionObserver {/*caching-global-intersection-observer*/}
+>>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
 
 多数のオブザーバを使用するサイトで一般的なパフォーマンス最適化は、設定ごとに 1 つの IntersectionObserver を共有で持ち、どの要素が交差したかに基づいて、そのエントリを適切なコールバックに振り分けることです。フラグメントの `ref` でも、`reactFragments` プロパティを介して同じパターンを利用できます。
 
@@ -1018,8 +1051,8 @@ export default function Card({ title, className }) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }

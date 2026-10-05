@@ -34,7 +34,11 @@ title: React DOM API
 
 この API はサーバでコンポーネントがレンダーされる方法を制御します。
 
+<<<<<<< HEAD
 * <CanaryBadge /> [`browser`](/reference/react-dom/browser) を使うことで、サーバレンダリング中に、コンポーネントをブラウザ専用としてマークすることができます。
+=======
+* [`browser`](/reference/react-dom/browser) lets you mark a component as browser-only during server rendering.
+>>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
 
 ---
 

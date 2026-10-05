@@ -10,6 +10,7 @@ title: "React の組み込み API"
 
 ---
 
+<<<<<<< HEAD
 * [`createContext`](/reference/react/createContext) を利用すると、子コンポーネントに対してコンテクストを定義および提供できます。[`useContext`](/reference/react/useContext) と一緒に使用されます。
 * [`lazy`](/reference/react/lazy) を利用すると、コンポーネントのコードの読み込みを初回レンダーまで遅延することができます。
 * [`memo`](/reference/react/memo) を利用すると、同じ props を持つコンポーネントの再レンダーをスキップできます。[`useMemo`](/reference/react/useMemo) や [`useCallback`](/reference/react/useCallback) と一緒に使用されます。
@@ -18,6 +19,17 @@ title: "React の組み込み API"
 * [`cache`](/reference/react/cache) を使うと、データフェッチや計算の結果をキャッシュできます。
 * [`cacheSignal`](/reference/react/cacheSignal) を使うと、`cache()` の生存期間が終了したことを知ることができます。
 * [`captureOwnerStack`](/reference/react/captureOwnerStack) は、開発環境で現在の Owner Stack を読み取り、利用可能な場合は文字列として返します。
+=======
+* [`createContext`](/reference/react/createContext) lets you define and provide context to the child components. Used with [`useContext`.](/reference/react/useContext)
+* [`lazy`](/reference/react/lazy) lets you defer loading a component's code until it's rendered for the first time.
+* [`memo`](/reference/react/memo) lets your component skip re-renders with same props. Used with [`useMemo`](/reference/react/useMemo) and [`useCallback`.](/reference/react/useCallback)
+* [`startTransition`](/reference/react/startTransition) lets you mark a state update as non-urgent. Similar to [`useTransition`.](/reference/react/useTransition)
+* [`addTransitionType`](/reference/react/addTransitionType) lets you specify the cause of a Transition. Used with [`startTransition`](/reference/react/startTransition) and [`<ViewTransition>`.](/reference/react/ViewTransition)
+* [`act`](/reference/react/act) lets you wrap renders and interactions in tests to ensure updates have processed before making assertions.
+* [`cache`](/reference/react/cache) lets you cache the result of a data fetch or computation.
+* [`cacheSignal`](/reference/react/cacheSignal) lets you know when the `cache()` lifetime is over.
+* [`captureOwnerStack`](/reference/react/captureOwnerStack) reads the current Owner Stack in development and returns it as a string if available.
+>>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
 
 ---
 
@@ -27,9 +39,15 @@ title: "React の組み込み API"
 
 以下の種類のリソースを [`use`](/reference/react/use) に渡すことができます。
 
+<<<<<<< HEAD
 * [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) を渡した場合：その Promise の解決された値を読み取ることができます。
 * [コンテクスト](/learn/passing-data-deeply-with-context)を渡した場合：そのコンテクストの値を読み取ることができます。
 * <CanaryBadge /> [`browser`](/reference/react-dom/browser) の返り値を渡した場合：サーバレンダリング中に、このコンポーネントをブラウザ専用としてマークすることができます。
+=======
+* A [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to read its resolved value.
+* A [context](/learn/passing-data-deeply-with-context) to read its value.
+* The value returned by [`browser`](/reference/react-dom/browser) to mark a component as browser-only during server rendering.
+>>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
 
 ```js
 function MessageComponent({ messagePromise }) {
