@@ -4,29 +4,29 @@ title: set-state-in-effect
 
 <Intro>
 
-Validates against calling setState synchronously in an effect, which can lead to re-renders that degrade performance.
+パフォーマンスを低下させる再レンダーにつながる、エフェクト内での同期的な setState 呼び出しを行っていないか検証します。
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## ルールの詳細 {/*rule-details*/}
 
-Setting state immediately inside an effect forces React to restart the entire render cycle. When you update state in an effect, React must re-render your component, apply changes to the DOM, and then run effects again. This creates an extra render pass that could have been avoided by transforming data directly during render or deriving state from props. Transform data at the top level of your component instead. This code will naturally re-run when props or state change without triggering additional render cycles.
+エフェクト内で即座に state を設定すると、React はレンダーサイクル全体を最初からやり直すことになります。エフェクト内で state を更新すると、React はコンポーネントを再レンダーし、DOM に変更を適用してから、エフェクトを再び実行しなければなりません。これにより、レンダー中に直接データを変換したり、props から state を導出したりすれば避けられたはずの、余分なレンダーが発生します。代わりに、コンポーネントのトップレベルでデータを変換してください。このコードは、props や state が変わると自然に再実行され、余分なレンダーサイクルを引き起こしません。
 
-Synchronous `setState` calls in effects trigger immediate re-renders before the browser can paint, causing performance issues and visual jank. React has to render twice: once to apply the state update, then again after effects run. This double rendering is wasteful when the same result could be achieved with a single render.
+エフェクト内で同期的に `setState` を呼び出すと、ブラウザがペイントする前に即座に再レンダーが起き、パフォーマンスの問題や表示のちらつきを引き起こします。React は、state の更新を適用するために 1 回、そしてエフェクトの実行後にもう 1 回、合計 2 回レンダーすることになります。1 回のレンダーで同じ結果を得られる場合、この二重のレンダーは無駄です。
 
-In many cases, you may also not need an effect at all. Please see [You Might Not Need an Effect](/learn/you-might-not-need-an-effect) for more information.
+多くの場合、そもそもエフェクト自体が不要かもしれません。詳細は、[そのエフェクトは不要かも](/learn/you-might-not-need-an-effect)を参照してください。
 
-## Common Violations {/*common-violations*/}
+## よくある違反 {/*common-violations*/}
 
-This rule catches several patterns where synchronous setState is used unnecessarily:
+このルールは、同期的な setState が不要なのに使われているパターンを検出します。
 
-- Setting loading state synchronously
-- Deriving state from props in effects
-- Transforming data in effects instead of render
+- ローディングを表す state を同期的に設定している
+- エフェクト内で props から state を導出している
+- レンダー中ではなくエフェクト内でデータを変換している
 
-### Invalid {/*invalid*/}
+### 無効な例 {/*invalid*/}
 
-Examples of incorrect code for this rule:
+このルールに違反するコードの例です。
 
 ```js
 // ❌ Synchronous setState in effect
@@ -67,9 +67,9 @@ function Component({selectedId, items}) {
 }
 ```
 
-### Valid {/*valid*/}
+### 有効な例 {/*valid*/}
 
-Examples of correct code for this rule:
+このルールに従ったコードの例です。
 
 ```js
 // ✅ setState in an effect is fine if the value comes from a ref
@@ -90,4 +90,4 @@ function Component({selectedId, items}) {
 }
 ```
 
-**When something can be calculated from the existing props or state, don't put it in state.** Instead, calculate it during rendering. This makes your code faster, simpler, and less error-prone. Learn more in [You Might Not Need an Effect](/learn/you-might-not-need-an-effect).
+**既存の props や state から計算できるものを、state に保存しないでください**。代わりに、レンダー中に計算してください。これにより、コードが高速でシンプルになり、間違いが起きにくくなります。詳細は、[そのエフェクトは不要かも](/learn/you-might-not-need-an-effect)を参照してください。
