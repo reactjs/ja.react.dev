@@ -4,17 +4,17 @@ title: gating
 
 <Intro>
 
-Validates configuration of [gating mode](/reference/react-compiler/gating).
+[ゲーティングモード](/reference/react-compiler/gating)の設定を検証します。
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## ルールの詳細 {/*rule-details*/}
 
-Gating mode lets you gradually adopt React Compiler by marking specific components for optimization. This rule ensures your gating configuration is valid so the compiler knows which components to process.
+ゲーティングモードでは、特定のコンポーネントを最適化の対象として指定することで、React Compiler を段階的に導入できます。このルールは、ゲーティングの設定が有効であることを確認し、コンパイラがどのコンポーネントを処理すべきか判断できるようにします。
 
-### Invalid {/*invalid*/}
+### 無効な例 {/*invalid*/}
 
-Examples of incorrect code for this rule:
+このルールに違反するコードの例です。
 
 ```js
 // ❌ Missing required fields
@@ -39,9 +39,9 @@ module.exports = {
 };
 ```
 
-### Valid {/*valid*/}
+### 有効な例 {/*valid*/}
 
-Examples of correct code for this rule:
+このルールに従ったコードの例です。
 
 ```js
 // ✅ Complete gating configuration
