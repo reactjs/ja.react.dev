@@ -4,19 +4,19 @@ title: incompatible-library
 
 <Intro>
 
-Validates against usage of libraries which are incompatible with memoization (manual or automatic).
+メモ化（手動でも自動でも）と互換性のないライブラリを使っていないか検証します。
 
 </Intro>
 
 <Note>
 
-These libraries were designed before React's memoization rules were fully documented. They made the correct choices at the time to optimize for ergonomic ways to keep components just the right amount of reactive as app state changes. While these legacy patterns worked, we have since discovered that it's incompatible with React's programming model. We will continue working with library authors to migrate these libraries to use patterns that follow the Rules of React.
+これらの非互換ライブラリは、React のメモ化のルールが十分に文書化される前に設計されました。アプリの状態の変化に対し、コンポーネントが必要な分だけリアクティブに反応するよう、使いやすさを重視した設計は、当時としては正しい選択でした。これらの従来のパターンは機能していましたが、その後、React のプログラミングモデルとは互換性がないことが分かりました。今後もライブラリの作者と協力し、React のルールに従うパターンへと移行していきます。
 
 </Note>
 
-## Rule Details {/*rule-details*/}
+## ルールの詳細 {/*rule-details*/}
 
-Some libraries use patterns that aren't supported by React. When the linter detects usages of these APIs from a [known list](https://github.com/react/react/blob/main/compiler/packages/babel-plugin-react-compiler/src/HIR/DefaultModuleTypeProvider.ts), it flags them under this rule. This means that React Compiler can automatically skip over components that use these incompatible APIs, in order to avoid breaking your app.
+一部のライブラリは、React がサポートしていないパターンを使っています。リンタは、[既知のリスト](https://github.com/react/react/blob/main/compiler/packages/babel-plugin-react-compiler/src/HIR/DefaultModuleTypeProvider.ts)にある API の使用を検出すると、このルールの違反として報告します。これにより、React Compiler は、互換性のない API を使うコンポーネントを自動的にスキップして、アプリが動作しなくなることを防げます。
 
 ```js
 // Example of how memoization breaks with these libraries
@@ -30,17 +30,17 @@ function Form() {
 }
 ```
 
-React Compiler automatically memoizes values following the Rules of React. If something breaks with manual `useMemo`, it will also break the compiler's automatic optimization. This rule helps identify these problematic patterns.
+React Compiler は、React のルールに従って値を自動的にメモ化します。手動で `useMemo` を使って動作しなくなるものは、コンパイラの自動最適化であっても動作しなくなります。このルールは、こうした問題のあるパターンを見つけるのに役立ちます。
 
 <DeepDive>
 
-#### Designing APIs that follow the Rules of React {/*designing-apis-that-follow-the-rules-of-react*/}
+#### React のルールに従う API の設計 {/*designing-apis-that-follow-the-rules-of-react*/}
 
-One question to think about when designing a library API or hook is whether calling the API can be safely memoized with `useMemo`. If it can't, then both manual and React Compiler memoizations will break your user's code.
+ライブラリの API やフックを設計する際に考えるべきことのひとつは、その API の呼び出しを `useMemo` で安全にメモ化できるかどうかです。できなければ、手動のメモ化であれ React Compiler によるメモ化であれ、ユーザのコードは動作しなくなります。
 
-For example, one such incompatible pattern is "interior mutability". Interior mutability is when an object or function keeps its own hidden state that changes over time, even though the reference to it stays the same. Think of it like a box that looks the same on the outside but secretly rearranges its contents. React can't tell anything changed because it only checks if you gave it a different box, not what's inside. This breaks memoization, since React relies on the outer object (or function) changing if part of its value has changed.
+例えば、互換性のないパターンのひとつに「内部可変性 (interior mutability)」があります。内部可変性とは、オブジェクトや関数への参照は変わらないのに、それらが保持する内部の隠れた状態だけが経時的に変化することです。外見は同じままで中身だけがひそかに入れ替わる箱のようなものだと考えてください。React が確認するのは、別の箱が渡されたかどうかだけであり、中身ではないため、変化があったことを判断できません。React は、値の一部が変わったら、それを含むオブジェクト（または関数）も変わることを前提としているため、メモ化が正しく機能しなくなります。
 
-As a rule of thumb, when designing React APIs, think about whether `useMemo` would break it:
+React の API を設計する際の目安として、以下のように `useMemo` を使っても動作するかどうか考えてください。
 
 ```js
 function Component() {
@@ -50,7 +50,7 @@ function Component() {
 }
 ```
 
-Instead, design APIs that return immutable state and use explicit update functions:
+代わりに、イミュータブルな状態を返し、明示的な更新関数を使う API を設計してください。
 
 ```js
 // ✅ Good: Return immutable state that changes reference when updated
@@ -73,9 +73,9 @@ function Component() {
 
 </DeepDive>
 
-### Invalid {/*invalid*/}
+### 無効な例 {/*invalid*/}
 
-Examples of incorrect code for this rule:
+このルールに違反するコードの例です。
 
 ```js
 // ❌ react-hook-form `watch`
@@ -101,7 +101,7 @@ function Component({data}) {
 
 #### MobX {/*mobx*/}
 
-MobX patterns like `observer` also break memoization assumptions, but the linter does not yet detect them. If you rely on MobX and find that your app doesn't work with React Compiler, you may need to use the `"use no memo" directive`.
+MobX の `observer` などのパターンもメモ化の前提に反しますが、リンタはまだ検出できません。MobX を使っていて、React Compiler でアプリが動作しなくなる場合は、`"use no memo"` ディレクティブを使う必要があるかもしれません。
 
 ```js
 // ❌ MobX `observer`
@@ -113,9 +113,9 @@ const Component = observer(() => {
 
 </Pitfall>
 
-### Valid {/*valid*/}
+### 有効な例 {/*valid*/}
 
-Examples of correct code for this rule:
+このルールに従ったコードの例です。
 
 ```js
 // ✅ For react-hook-form, use `useWatch`:
@@ -135,4 +135,4 @@ function Component() {
 }
 ```
 
-Some other libraries do not yet have alternative APIs that are compatible with React's memoization model. If the linter doesn't automatically skip over your components or hooks that call these APIs, please [file an issue](https://github.com/react/react/issues) so we can add it to the linter.
+ほかにも、React のメモ化モデルと互換性のある代替 API がまだないライブラリがあります。これらの API を呼び出すコンポーネントやフックがリンタによって自動的にスキップされない場合は、リンタに追加できるよう、[問題を報告](https://github.com/react/react/issues)してください。
