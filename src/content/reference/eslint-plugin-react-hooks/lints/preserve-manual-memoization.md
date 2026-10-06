@@ -4,17 +4,17 @@ title: preserve-manual-memoization
 
 <Intro>
 
-Validates that existing manual memoization is preserved by the compiler. React Compiler will only compile components and hooks if its inference [matches or exceeds the existing manual memoization](/learn/react-compiler/introduction#what-should-i-do-about-usememo-usecallback-and-reactmemo).
+既存の手動メモ化がコンパイラによって保持されるか検証します。React Compiler は、その推論結果が[既存の手動メモ化と同等以上である](/learn/react-compiler/introduction#what-should-i-do-about-usememo-usecallback-and-reactmemo)場合にのみ、コンポーネントやフックをコンパイルします。
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## ルールの詳細 {/*rule-details*/}
 
-React Compiler preserves your existing `useMemo`, `useCallback`, and `React.memo` calls. If you've manually memoized something, the compiler assumes you had a good reason and won't remove it. However, incomplete dependencies prevent the compiler from understanding your code's data flow and applying further optimizations.
+React Compiler は、既存の `useMemo`、`useCallback`、`React.memo` の呼び出しを保持します。手動でメモ化しているものがあれば、コンパイラはそれに十分な理由があるとみなし、削除しません。ただし、依存値が不足していると、コンパイラがコードのデータフローを理解して、さらなる最適化を適用することができなくなります。
 
-### Invalid {/*invalid*/}
+### 無効な例 {/*invalid*/}
 
-Examples of incorrect code for this rule:
+このルールに違反するコードの例です。
 
 ```js
 // ❌ Missing dependencies in useMemo
@@ -37,9 +37,9 @@ function Component({ onUpdate, value }) {
 }
 ```
 
-### Valid {/*valid*/}
+### 有効な例 {/*valid*/}
 
-Examples of correct code for this rule:
+このルールに従ったコードの例です。
 
 ```js
 // ✅ Complete dependencies
@@ -60,11 +60,11 @@ function Component({ data, filter }) {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### Should I remove my manual memoization? {/*remove-manual-memoization*/}
+### 手動のメモ化は削除するべきか？ {/*remove-manual-memoization*/}
 
-You might wonder if React Compiler makes manual memoization unnecessary:
+以下のような手動のメモ化は、React Compiler を使えば不要になるのかと思うかもしれません。
 
 ```js
 // Do I still need this?
@@ -79,7 +79,7 @@ function Component({items, sortBy}) {
 }
 ```
 
-You can safely remove it if using React Compiler:
+React Compiler を使っているなら、安全に削除できます。
 
 ```js
 // ✅ Better: Let the compiler optimize
