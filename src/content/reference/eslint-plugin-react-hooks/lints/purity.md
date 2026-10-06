@@ -4,26 +4,26 @@ title: purity
 
 <Intro>
 
-Validates that [components/hooks are pure](/reference/rules/components-and-hooks-must-be-pure) by checking that they do not call known-impure functions.
+既知の純粋でない関数を呼び出していないかチェックすることで、[コンポーネントやフックが純粋である](/reference/rules/components-and-hooks-must-be-pure)ことを検証します。
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## ルールの詳細 {/*rule-details*/}
 
-React components must be pure functions - given the same props, they should always return the same JSX. When components use functions like `Math.random()` or `Date.now()` during render, they produce different output each time, breaking React's assumptions and causing bugs like hydration mismatches, incorrect memoization, and unpredictable behavior.
+React コンポーネントは純関数でなければなりません。同じ props が与えられたら、常に同じ JSX を返すべきです。レンダー中に `Math.random()` や `Date.now()` などの関数を使うと、毎回異なる出力が生成されるため、React の前提に反し、ハイドレーションの不一致や誤ったメモ化、予測できない動作といったバグを引き起こします。
 
-## Common Violations {/*common-violations*/}
+## よくある違反 {/*common-violations*/}
 
-In general, any API that returns a different value for the same inputs violates this rule. Usual examples include:
+一般に、同じ入力に対して異なる値を返す API は、このルールに違反します。よくある例は以下のとおりです。
 
 - `Math.random()`
 - `Date.now()` / `new Date()`
 - `crypto.randomUUID()`
 - `performance.now()`
 
-### Invalid {/*invalid*/}
+### 無効な例 {/*invalid*/}
 
-Examples of incorrect code for this rule:
+このルールに違反するコードの例です。
 
 ```js
 // ❌ Math.random() in render
@@ -39,9 +39,9 @@ function Component() {
 }
 ```
 
-### Valid {/*valid*/}
+### 有効な例 {/*valid*/}
 
-Examples of correct code for this rule:
+このルールに従ったコードの例です。
 
 ```js
 // ✅ Stable IDs from initial state
@@ -51,11 +51,11 @@ function Component() {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### I need to show the current time {/*current-time*/}
+### 現在の時刻を表示したい {/*current-time*/}
 
-Calling `Date.now()` during render makes your component impure:
+以下のようにレンダー中に `Date.now()` を呼び出すと、コンポーネントが純粋ではなくなります。
 
 ```js {expectedErrors: {'react-compiler': [3]}}
 // ❌ Wrong: Time changes every render
@@ -64,7 +64,7 @@ function Clock() {
 }
 ```
 
-Instead, [move the impure function outside of render](/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent):
+代わりに、[非純粋な関数はレンダーの外に移動](/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent)してください。
 
 ```js
 function Clock() {
