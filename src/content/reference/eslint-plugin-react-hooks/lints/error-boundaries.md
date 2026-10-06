@@ -4,17 +4,17 @@ title: error-boundaries
 
 <Intro>
 
-Validates usage of Error Boundaries instead of try/catch for errors in child components.
+子コンポーネントのエラーを、エラーバウンダリではなく try/catch で処理しようとしていないか検証します。
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## ルールの詳細 {/*rule-details*/}
 
-Try/catch blocks can't catch errors that happen during React's rendering process. Errors thrown in rendering methods or hooks bubble up through the component tree. Only [Error Boundaries](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) can catch these errors.
+React のレンダー処理中に起きるエラーは、try/catch ブロックではキャッチできません。レンダーを行うメソッドやフック内でスローされたエラーは、コンポーネントツリーを上へと伝播します。これらのエラーをキャッチできるのは、[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary)だけです。
 
-### Invalid {/*invalid*/}
+### 無効な例 {/*invalid*/}
 
-Examples of incorrect code for this rule:
+このルールに違反するコードの例です。
 
 ```js {expectedErrors: {'react-compiler': [4]}}
 // ❌ Try/catch won't catch render errors
@@ -27,9 +27,9 @@ function Parent() {
 }
 ```
 
-### Valid {/*valid*/}
+### 有効な例 {/*valid*/}
 
-Examples of correct code for this rule:
+このルールに従ったコードの例です。
 
 ```js
 // ✅ Using error boundary
@@ -42,11 +42,11 @@ function Parent() {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### Why is the linter telling me not to wrap `use` in `try`/`catch`? {/*why-is-the-linter-telling-me-not-to-wrap-use-in-trycatch*/}
+### なぜ `use` を `try`/`catch` で囲まないようにリンタに指摘されるのか {/*why-is-the-linter-telling-me-not-to-wrap-use-in-trycatch*/}
 
-The `use` hook doesn't throw errors in the traditional sense, it suspends component execution. When `use` encounters a pending promise, it suspends the component and lets React show a fallback. Only Suspense and Error Boundaries can handle these cases. The linter warns against `try`/`catch` around `use` to prevent confusion as the `catch` block would never run.
+`use` フックは、通常の意味でエラーをスローするのではなく、コンポーネントの実行をサスペンドします。`use` が処理中のプロミスを受け取ると、コンポーネントをサスペンドし、React にフォールバックを表示させます。このようなケースに対応できるのは、サスペンスとエラーバウンダリだけです。`catch` ブロックが実行されることはないため、混乱を避けるために、リンタは `use` を `try`/`catch` で囲むことに対して警告します。
 
 ```js {expectedErrors: {'react-compiler': [5]}}
 // ❌ Try/catch around `use` hook
