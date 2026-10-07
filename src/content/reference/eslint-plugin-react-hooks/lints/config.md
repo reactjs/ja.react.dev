@@ -4,17 +4,17 @@ title: config
 
 <Intro>
 
-Validates the compiler [configuration options](/reference/react-compiler/configuration).
+コンパイラの[設定オプション](/reference/react-compiler/configuration)を検証します。
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## ルールの詳細 {/*rule-details*/}
 
-React Compiler accepts various [configuration options](/reference/react-compiler/configuration)  to control its behavior. This rule validates that your configuration uses correct option names and value types, preventing silent failures from typos or incorrect settings.
+React Compiler は、動作を制御するさまざまな[設定オプション](/reference/react-compiler/configuration)を受け付けます。このルールは、設定で正しいオプション名と値の型が使われているか検証し、タイプミスや誤った設定によって気づかないうちに動作しなくなることを防ぎます。
 
-### Invalid {/*invalid*/}
+### 無効な例 {/*invalid*/}
 
-Examples of incorrect code for this rule:
+このルールに違反するコードの例です。
 
 ```js
 // ❌ Unknown option name
@@ -36,9 +36,9 @@ module.exports = {
 };
 ```
 
-### Valid {/*valid*/}
+### 有効な例 {/*valid*/}
 
-Examples of correct code for this rule:
+このルールに従ったコードの例です。
 
 ```js
 // ✅ Valid compiler configuration
@@ -52,11 +52,11 @@ module.exports = {
 };
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### Configuration not working as expected {/*config-not-working*/}
+### 設定が期待どおりに動作しない {/*config-not-working*/}
 
-Your compiler configuration might have typos or incorrect values:
+以下のように、コンパイラの設定にタイプミスや誤った値が含まれているかもしれません。
 
 ```js
 // ❌ Wrong: Common configuration mistakes
@@ -74,7 +74,7 @@ module.exports = {
 };
 ```
 
-Check the [configuration documentation](/reference/react-compiler/configuration) for valid options:
+有効なオプションについては、[設定のドキュメント](/reference/react-compiler/configuration)を確認してください。
 
 ```js
 // ✅ Better: Valid configuration
