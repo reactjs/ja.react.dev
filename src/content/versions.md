@@ -12,7 +12,7 @@ title: React のバージョン
 
 過去のメジャーバージョンのアーカイブは以下から参照できます。
 
-## Latest version: 19.2 {/*latest-version*/}
+## Latest version: 19.3 {/*latest-version*/}
 
 - [react.dev](https://react.dev) {/*docs-19*/}
 
@@ -43,6 +43,7 @@ React 15 より前のバージョンについては [15.react.dev](https://15.re
 - [React Compiler Beta Release](/blog/2024/10/21/react-compiler-beta-release)
 - [React Compiler v1.0](/blog/2025/10/07/react-compiler-1)
 - [React 19.2](/blog/2025/10/01/react-19-2)
+- [React 19.3](/blog/2026/09/09/react-19-3)
 
 **Talks**
 - [React 19 Keynote](https://www.youtube.com/watch?v=lyEKhv8-3n0)
@@ -54,6 +55,7 @@ React 15 より前のバージョンについては [15.react.dev](https://15.re
 - [React 19 Deep Dive: Coordinating HTML](https://www.youtube.com/watch?v=IBBN-s77YSI)
 
 **Releases**
+- [v19.3.0 (September 9, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1930-september-9-2026)
 - [v19.2.7 (June, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1927-june-1-2026)
 - [v19.2.6 (May, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1926-may-6-2026)
 - [v19.2.5 (March, 2026)](https://github.com/react/react/blob/main/CHANGELOG.md#1925-march-18-2026)

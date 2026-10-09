@@ -6,7 +6,7 @@ title: <Fragment> (<>...</>)
 
 `<Fragment>` を使うことで、ラッパ用のノードを用いずに要素をグループ化することができます。通常は `<>...</>` という構文で使用されます。
 
-<Canary> フラグメントは ref を受け取ることもでき、これによりラッパ要素を追加することなく、内部の DOM ノードとやり取りできます。</Canary>
+フラグメントは ref を受け取ることもでき、これによりラッパ要素を追加することなく、内部の DOM ノードとやり取りできます。
 
 ```js
 <>
@@ -30,7 +30,7 @@ title: <Fragment> (<>...</>)
 #### props {/*props*/}
 
 - **省略可能** `key`: 明示的な `<Fragment>` 構文で宣言されたフラグメントは [key](/learn/rendering-lists#keeping-list-items-in-order-with-key) を持つことができます。
-- <CanaryBadge /> **省略可能** `ref`: ref オブジェクト（例えば [`useRef`](/reference/react/useRef) からのもの）または[コールバック関数](/reference/react-dom/components/common#ref-callback)。React は、フラグメントでラップされた DOM ノードとやり取りするためのメソッドを実装した `FragmentInstance` を ref の値として提供します。
+- **省略可能** `ref`: ref オブジェクト（例えば [`useRef`](/reference/react/useRef) からのもの）または[コールバック関数](/reference/react-dom/components/common#ref-callback)。React は、フラグメントでラップされた DOM ノードとやり取りするためのメソッドを実装した `FragmentInstance` を ref の値として提供します。
 
 #### 注意点 {/*caveats*/}
 
@@ -38,11 +38,11 @@ title: <Fragment> (<>...</>)
 
 * React は、`<><Child /></>` と `[<Child />]` のレンダー間、あるいは `<><Child /></>` と `<Child />` のレンダー間で行き来する場合に [state をリセット](/learn/preserving-and-resetting-state)しません。これは単一レベルの深さのときのみの動作です。例えば、`<><><Child /></></>` から `<Child />` への変更では state がリセットされます。具体的な振る舞いの詳細は[こちら](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)を参照してください。
 
-* <CanaryBadge /> `ref` をフラグメントに渡したい場合は、`<>...</>` 構文を使用することはできません。`'react'` から `Fragment` を明示的にインポートし、`<Fragment ref={yourRef}>...</Fragment>` のようにレンダーしなければなりません。
+* `ref` をフラグメントに渡したい場合は、`<>...</>` 構文を使用することはできません。`'react'` から `Fragment` を明示的にインポートし、`<Fragment ref={yourRef}>...</Fragment>` のようにレンダーしなければなりません。
 
 ---
 
-### <CanaryBadge /> `FragmentInstance` {/*fragmentinstance*/}
+### `FragmentInstance` {/*fragmentinstance*/}
 
 フラグメントに `ref` を渡すと、React は `FragmentInstance` オブジェクトを提供します。このオブジェクトには、フラグメント直下の DOM 子ノード群とやり取りするためのメソッドが実装されています。
 
@@ -459,7 +459,7 @@ function PostBody({ body }) {
 
 ---
 
-### <CanaryBadge /> ラッパ要素なしでイベントリスナを追加する {/*adding-event-listeners-without-wrapper*/}
+### ラッパ要素なしでイベントリスナを追加する {/*adding-event-listeners-without-wrapper*/}
 
 フラグメントの `ref` を使うと、ラッパとなる DOM ノードを追加せずに、要素のグループにイベントリスナを追加できます。[ref コールバック](/reference/react-dom/components/common#ref-callback)を使ってリスナの登録とクリーンアップを行います。
 
@@ -511,8 +511,8 @@ export default function App() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -548,7 +548,7 @@ export default function App() {
 
 ---
 
-### <CanaryBadge /> 要素のグループ全体でフォーカスを管理する {/*managing-focus-across-elements*/}
+### 要素のグループ全体でフォーカスを管理する {/*managing-focus-across-elements*/}
 
 フラグメントの `ref` は、フラグメント内のすべての DOM ノードにわたって動作する `focus`、`focusLast`、`blur` メソッドを提供します。
 
@@ -620,8 +620,8 @@ label {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -633,7 +633,7 @@ label {
 
 ---
 
-### <CanaryBadge /> 要素のグループが見える位置までスクロールする {/*scrolling-group-into-view*/}
+### 要素のグループが見える位置までスクロールする {/*scrolling-group-into-view*/}
 
 `scrollIntoView` を使うと、ラッパ要素なしでフラグメントの子要素が見える位置までスクロールできます。最初の子要素が上端に来るようにスクロールするには `true` を渡す（または引数を省略する）ようにします。最後の子要素が下端に来るようにスクロールするには `false` を渡します。
 
@@ -716,8 +716,8 @@ p {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -727,7 +727,7 @@ p {
 
 ---
 
-### <CanaryBadge /> ラッパ要素なしで可視性を監視する {/*observing-visibility-without-wrapper*/}
+### ラッパ要素なしで可視性を監視する {/*observing-visibility-without-wrapper*/}
 
 `observeUsing` を使うと、フラグメント直下の DOM 子要素すべてに `IntersectionObserver` を登録できます。これにより、子コンポーネントに `ref` を公開させたり、ラッパ要素を追加したりすることなく、可視性を追跡できます。
 
@@ -828,8 +828,8 @@ export default function Card({ title }) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -839,7 +839,7 @@ export default function Card({ title }) {
 
 ---
 
-### <CanaryBadge /> グローバルな IntersectionObserver をキャッシュする {/*caching-global-intersection-observer*/}
+### グローバルな IntersectionObserver をキャッシュする {/*caching-global-intersection-observer*/}
 
 多数のオブザーバを使用するサイトで一般的なパフォーマンス最適化は、設定ごとに 1 つの IntersectionObserver を共有で持ち、どの要素が交差したかに基づいて、そのエントリを適切なコールバックに振り分けることです。フラグメントの `ref` でも、`reactFragments` プロパティを介して同じパターンを利用できます。
 
@@ -1018,8 +1018,8 @@ export default function Card({ title, className }) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }

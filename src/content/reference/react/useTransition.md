@@ -1567,7 +1567,7 @@ main {
 
 ### エラーバウンダリでユーザにエラーを表示する {/*displaying-an-error-to-users-with-error-boundary*/}
 
-`startTransition` に渡された関数がエラーをスローした場合、[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary)を使用してユーザにエラーを表示することができます。エラーバウンダリを使用するには、`useTransition` を呼び出しているコンポーネントをエラーバウンダリで囲みます。`startTransition` に渡された関数がエラーになった場合、エラーバウンダリに指定されているフォールバックが表示されます。
+`startTransition` に渡された関数がエラーをスローするか、拒否 (reject) されたプロミスを返した場合、[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary)を使用してユーザにエラーを表示することができます。エラーバウンダリを使用するには、`useTransition` を呼び出しているコンポーネントをエラーバウンダリで囲みます。`startTransition` に渡された関数がエラーになった場合、エラーバウンダリに指定されているフォールバックが表示されます。
 
 <Sandpack>
 
@@ -1738,7 +1738,11 @@ startTransition(async () => {
 
 ### コンポーネントの外部から `useTransition` を呼び出したい {/*i-want-to-call-usetransition-from-outside-a-component*/}
 
-`useTransition` はフックであるため、コンポーネント外で呼び出すことはできません。この場合、代わりにスタンドアロンの [`startTransition`](/reference/react/startTransition) メソッドを使用してください。同じように機能しますが、`isPending` インジケータは提供されません。
+`useTransition` はフックであるため、コンポーネント外で呼び出すことはできません。この
+場合、スタンドアロンの [`startTransition`](/reference/react/startTransition)
+関数を使うと、state の更新をトランジションとしてマークできます。この関数は
+`isPending` フラグを提供しません。スタンドアロン関数はコンポーネントに関連付けられていないため、
+エラーバウンダリでそのトランジションのエラーを処理することはできません。
 
 ---
 
@@ -1954,6 +1958,7 @@ export async function updateQuantity(newName) {
 複数回のクリックがあると、後続のリクエストが完了した後で古いリクエストが完了する場合があります。この場合、現在の React は意図した順序を認識できません。これは、更新が非同期的にスケジュールされ、非同期の境界を越えると React が順序の情報を保持できないからです。
 
 トランジション内のアクションは実行順序を保証しないため、これは想定された動作です。一般的なユースケースのために、React は [`useActionState`](/reference/react/useActionState) や [`<form>` アクション](/reference/react-dom/components/form) のような高レベルの抽象化を提供しており、順序の管理を自動化します。高度なユースケースでは、独自のキューイングや中断ロジックを実装して、実行順序を管理する必要があります。
+
 
 `useActionState` で実行順序を扱う例：
 

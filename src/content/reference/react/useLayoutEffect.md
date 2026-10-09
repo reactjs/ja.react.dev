@@ -734,7 +734,7 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 - `useLayoutEffect` を [`useEffect`](/reference/react/useEffect) に置き換えます。これにより React に対して、初期レンダー結果の表示をペイントをブロックせずに行ってよいことを伝えます（元の HTML はエフェクトが実行される前に表示されるからです）。
 
-- <CanaryBadge /> あるいは、[`use(browser())`](/reference/react/use#use-browser) を呼び出して、コンポーネントをブラウザ専用としてマークします。React はサーバレンダリング中に、最も近い [`<Suspense>`](/reference/react/Suspense) バウンダリまでのコンテンツを、ローディング中のフォールバック（例えば、スピナやグリマー）に置き換えます。
+- あるいは、[`use(browser())`](/reference/react/use#use-browser) を呼び出して、コンポーネントをブラウザ専用としてマークします。React はサーバレンダリング中に、最も近い [`<Suspense>`](/reference/react/Suspense) バウンダリまでのコンテンツを、ローディング中のフォールバック（例えば、スピナやグリマー）に置き換えます。
 
 - あるいは、[コンポーネントをクライアント専用としてマークします](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content)。これにより React に対して、サーバレンダリング中に最も近い `<Suspense>` バウンダリまでのコンテンツを、ローディング中のフォールバックに置き換えるように指示します。
 

@@ -92,7 +92,7 @@ function TabContainer() {
 
 <Note>
 
-`startTransition` は [`useTransition`](/reference/react/useTransition) と非常に似ていますが、トランジションが進行中かどうかを追跡する `isPending` フラグを提供しない点が異なります。`useTransition` が利用できない場合でも `startTransition` を呼び出すことができます。例えば、`startTransition` はコンポーネントの外部、たとえばデータライブラリ内でも動作します。
+`startTransition` は [`useTransition`](/reference/react/useTransition) と非常に似ていますが、トランジションが進行中かどうかを追跡する `isPending` フラグを提供しない点が異なります。また、このスタンドアロン関数はコンポーネントに関連付けられていないため、渡された関数がエラーをスローするか、拒否 (reject) されたプロミスを返すと、React は [`reportError`](https://developer.mozilla.org/en-US/docs/Web/API/Window/reportError) でエラーを報告します。`useTransition` が利用できない場合でも `startTransition` を呼び出すことができます。例えば、`startTransition` はコンポーネントの外部、たとえばデータライブラリ内でも動作します。
 
 [`useTransition` ページでトランジションについて学び、例を見ることができます](/reference/react/useTransition)。
 

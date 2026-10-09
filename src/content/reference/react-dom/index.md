@@ -34,7 +34,7 @@ title: React DOM API
 
 この API はサーバでコンポーネントがレンダーされる方法を制御します。
 
-* <CanaryBadge /> [`browser`](/reference/react-dom/browser) を使うことで、サーバレンダリング中に、コンポーネントをブラウザ専用としてマークすることができます。
+* [`browser`](/reference/react-dom/browser) を使うことで、サーバレンダリング中に、コンポーネントをブラウザ専用としてマークすることができます。
 
 ---
 

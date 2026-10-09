@@ -47,8 +47,8 @@ title: <Suspense>
 - [`use`](/reference/react/use) でプロミスを読み取っている。[サーバコンポーネント](/reference/rsc/server-components)からストリーミングされたデータや、[サスペンス対応フレームワーク](#suspense-enabled-frameworks)を介して読み込まれたデータも含む。
 - [`<link rel="stylesheet">` と `precedence` プロパティを使ってレンダーされたスタイルシート](/reference/react-dom/components/link#special-rendering-behavior)を読み込んでいる。React は、タイムアウト時間を上限として、スタイルシートが読み込まれるのをバウンダリで待機します。[以下の例を参照](#waiting-for-a-stylesheet-to-load)。
 - 大きなバウンダリ内で、ストリーミングサーバレンダリング経由で HTML が到着するのを待機している。HTML の送信には時間がかかるため、一定以上の量のコンテンツを持つバウンダリは、その内部で何もサスペンドしていなくてもアクティブになります。React は HTML の到着に合わせてコンテンツを表示します。
-- <CanaryBadge /> フォントを読み込んでいる。デフォルトではサスペンスはフォントを待機しませんが、[`<ViewTransition>`](/reference/react/ViewTransition) による更新では、テキストがフォールバックフォントで一瞬表示されないよう、タイムアウト時間を上限として新しいフォントの読み込みを待機します。[以下の例を参照](#waiting-for-a-font-to-load)。
-- <CanaryBadge /> 画像を読み込んでいる。デフォルトではサスペンスは画像を待ちませんが、[`<ViewTransition>`](/reference/react/ViewTransition) による更新中は、タイムアウト時間を上限として React がバウンダリで画像の読み込みを待機します。`onLoad` ハンドラを追加すると、個別の画像をこの動作の対象外にできます。[以下の例を参照](#waiting-for-an-image-to-load)。
+- フォントを読み込んでいる。デフォルトではサスペンスはフォントを待機しませんが、[`<ViewTransition>`](/reference/react/ViewTransition) による更新では、テキストがフォールバックフォントで一瞬表示されないよう、タイムアウト時間を上限として新しいフォントの読み込みを待機します。[以下の例を参照](#waiting-for-a-font-to-load)。
+- 画像を読み込んでいる。デフォルトではサスペンスは画像を待ちませんが、[`<ViewTransition>`](/reference/react/ViewTransition) による更新中は、タイムアウト時間を上限として React がバウンダリで画像の読み込みを待機します。`onLoad` ハンドラを追加すると、個別の画像をこの動作の対象外にできます。[以下の例を参照](#waiting-for-an-image-to-load)。
 - <ExperimentalBadge /> [`<Suspense defer>`](#props) バウンダリ内で CPU 負荷の高いレンダー処理を実行している。
 
 <Note>
@@ -2382,7 +2382,7 @@ function Chat() {
 
 ---
 
-### <CanaryBadge /> ブラウザ専用コンテンツにフォールバックを提供する {/*providing-a-fallback-for-browser-only-content*/}
+### ブラウザ専用コンテンツにフォールバックを提供する {/*providing-a-fallback-for-browser-only-content*/}
 
 サスペンスバウンダリを使って、ブラウザ専用コンポーネントにフォールバックを提供できます。コンポーネントを `<Suspense>` でラップし、その内部で [`use(browser())`](/reference/react/use#use-browser) を呼び出します。
 
@@ -2515,8 +2515,8 @@ iframe {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -2661,7 +2661,7 @@ hr {
 
 ---
 
-### <CanaryBadge /> サスペンスのコンテンツからアニメーションする {/*animating-from-suspense-content*/}
+### サスペンスのコンテンツからアニメーションする {/*animating-from-suspense-content*/}
 
 サスペンスと [`<ViewTransition>`](/reference/react/ViewTransition) を組み合わせて、フォールバックからコンテンツへの入れ替えをアニメーションできます。バウンダリを `<ViewTransition>` でラップすると、React は入れ替えを更新として扱い、デフォルトではフォールバックとコンテンツをクロスフェードさせます。
 
@@ -2880,8 +2880,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -2899,7 +2899,7 @@ button:hover {
 
 ---
 
-### <CanaryBadge /> フォントの読み込みを待機する {/*waiting-for-a-font-to-load*/}
+### フォントの読み込みを待機する {/*waiting-for-a-font-to-load*/}
 
 [`<ViewTransition>`](/reference/react/ViewTransition) がサスペンスバウンダリの内容表示をアニメーションする際、テキストがフォールバックフォントで一瞬表示されてしまわないよう、React はタイムアウト時間を上限として、コンテンツが導入する新しいフォントの読み込みを待機します。これは `<ViewTransition>` による更新中にのみ行われます。
 
@@ -3038,8 +3038,8 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -3049,7 +3049,7 @@ hr {
 
 ---
 
-### <CanaryBadge /> 画像の読み込みを待機する {/*waiting-for-an-image-to-load*/}
+### 画像の読み込みを待機する {/*waiting-for-an-image-to-load*/}
 
 [`<ViewTransition>`](/reference/react/ViewTransition) がサスペンスバウンダリの表示をアニメーションする際、読み込み途中の画像でアニメーションが始まってしまわないよう、React はタイムアウト時間を上限として、表示対象の画像が読み込まれるのを待機します。これは `<ViewTransition>` による更新中にのみ行われます。`onLoad` ハンドラを追加すると、`<ViewTransition>` 内であっても、個別の画像をこの動作の対象外にできます。
 
@@ -3171,8 +3171,8 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }
@@ -3182,7 +3182,7 @@ hr {
 
 ---
 
-### <CanaryBadge /> フォント、画像、スタイルシートを連携させる {/*coordinating-fonts-images-and-stylesheets*/}
+### フォント、画像、スタイルシートを連携させる {/*coordinating-fonts-images-and-stylesheets*/}
 
 サスペンスバウンダリは、データ、スタイルシート、フォント、画像をまとめて待機することができます。フォントと画像を待つのは、[`<ViewTransition>`](/reference/react/ViewTransition) による更新中だけです。以下の例では、`ProfileCard` コンポーネントがデータの読み込み中にサスペンドし、`precedence` を指定したスタイルシート、新しいフォントのテキスト、ポートレート画像をレンダーします。React はデータとスタイルシートの読み込み中、スケルトンを表示し続けます。その後、`<ViewTransition>` による表示がフォントと画像を待機するため、カードは完成した状態で現れます。
 
@@ -3388,8 +3388,8 @@ hr {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   }
 }

@@ -45,6 +45,7 @@ React は、`domNode` 内に存在する HTML にアタッチし、その内部�
   * **省略可能** `onUncaughtError`: エラーがスローされたがエラーバウンダリでキャッチされなかったときに呼び出されるコールバック。スローされた `error` と、`componentStack` を含んだ `errorInfo` を引数にして呼び出されます。
   * **optional** `onRecoverableError`: React が自動的にエラーから回復したときに呼び出されるコールバック。React がスローする `error` と、`componentStack` を含んだ `errorInfo` を引数にして呼び出されます。復帰可能なエラーの一部は元のエラーを `error.cause` として含んでいます。
   * **省略可能** `identifierPrefix`: React が [`useId`](/reference/react/useId) によって生成する ID に使用する文字列プレフィックス。同じページ上に複数のルートを使用する際に、競合を避けるために用います。サーバ上で使用されたものと同じプレフィックスでなければなりません。
+  * **省略可能** `formState`: [サーバ関数](/reference/rsc/server-functions)で処理されたフォーム送信によるフォームの状態。`permalink` を指定した [`useActionState`](/reference/react/useActionState) を使用するフォームの送信に応じてページがサーバ上でレンダーされた場合、その結果のフォームの状態を渡すことで、`useActionState` が `initialState` の代わりに送信された状態を返すようになります。[サーバレンダラ](/reference/react-dom/server/renderToPipeableStream#parameters)に渡された `formState` と同じ値である必要があります。通常はフレームワークがこの値を引き渡します。
 
 
 #### 返り値 {/*returns*/}
@@ -323,7 +324,7 @@ export default function App() {
 
 クライアントでレンダーされるコンテンツを、サーバが生成した初期 HTML と異なるものにしたい場合は、この方法を使用してください。
 
-<Canary> コンポーネントをブラウザでのみレンダーする場合は、エフェクトを待つ代わりに [`use(browser())`](/reference/react/use#use-browser) を呼び出してください。</Canary>
+コンポーネントをブラウザでのみレンダーする場合は、エフェクトを待つ代わりに [`use(browser())`](/reference/react/use#use-browser) を呼び出してください。
 
 <Pitfall>
 
