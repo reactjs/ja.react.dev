@@ -4,17 +4,17 @@ title: globals
 
 <Intro>
 
-Validates against assignment/mutation of globals during render, part of ensuring that [side effects must run outside of render](/reference/rules/components-and-hooks-must-be-pure#side-effects-must-run-outside-of-render).
+レンダー中にグローバル変数への代入・書き換えを行っていないか検証します。これは、[副作用はレンダーの外で実行しなければならない](/reference/rules/components-and-hooks-must-be-pure#side-effects-must-run-outside-of-render)というルールを守るためのチェックの一部です。
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## ルールの詳細 {/*rule-details*/}
 
-Global variables exist outside React's control. When you modify them during render, you break React's assumption that rendering is pure. This can cause components to behave differently in development vs production, break Fast Refresh, and make your app impossible to optimize with features like React Compiler.
+グローバル変数は、React の管理外にあります。レンダー中に書き換えを行うと、レンダーは純粋であるべきという React の前提に反します。これにより、開発環境と本番環境でコンポーネントの動作が異なったり、Fast Refresh が動作しなくなったり、React Compiler などの機能によるアプリの最適化ができなくなったりする可能性があります。
 
-### Invalid {/*invalid*/}
+### 無効な例 {/*invalid*/}
 
-Examples of incorrect code for this rule:
+このルールに違反するコードの例です。
 
 ```js
 // ❌ Global counter
@@ -47,9 +47,9 @@ function Component({id}) {
 }
 ```
 
-### Valid {/*valid*/}
+### 有効な例 {/*valid*/}
 
-Examples of correct code for this rule:
+このルールに従ったコードの例です。
 
 ```js
 // ✅ Use state for counters
