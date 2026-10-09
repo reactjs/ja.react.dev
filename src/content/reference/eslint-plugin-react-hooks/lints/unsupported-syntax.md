@@ -4,17 +4,17 @@ title: unsupported-syntax
 
 <Intro>
 
-Validates against syntax that React Compiler does not support. If you need to, you can still use this syntax outside of React, such as in a standalone utility function.
+React Compiler がサポートしていない構文を使っていないか検証します。その構文が必要な場合、独立したユーティリティ関数など、React の外であれば引き続き使用できます。
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## ルールの詳細 {/*rule-details*/}
 
-React Compiler needs to statically analyze your code to apply optimizations. Features like `eval` and `with` make it impossible to statically understand what the code does at compile time, so the compiler can't optimize components that use them.
+React Compiler が最適化を適用するには、コードを静的に解析する必要があります。`eval` や `with` などの機能を使うと、コードの動作をコンパイル時に静的に理解できなくなるため、コンパイラはそれらを使うコンポーネントを最適化できません。
 
-### Invalid {/*invalid*/}
+### 無効な例 {/*invalid*/}
 
-Examples of incorrect code for this rule:
+このルールに違反するコードの例です。
 
 ```js
 // ❌ Using eval in component
@@ -37,9 +37,9 @@ function Component({propName}) {
 }
 ```
 
-### Valid {/*valid*/}
+### 有効な例 {/*valid*/}
 
-Examples of correct code for this rule:
+このルールに従ったコードの例です。
 
 ```js
 // ✅ Use normal property access
@@ -54,11 +54,11 @@ function Component() {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### I need to evaluate dynamic code {/*evaluate-dynamic-code*/}
+### 動的なコードを評価したい {/*evaluate-dynamic-code*/}
 
-You might need to evaluate user-provided code:
+以下のように、ユーザが入力したコードを評価する必要があるかもしれません。
 
 ```js {expectedErrors: {'react-compiler': [3]}}
 // ❌ Wrong: eval in component
@@ -68,7 +68,7 @@ function Calculator({expression}) {
 }
 ```
 
-Use a safe expression parser instead:
+代わりに、安全な式のパーサを使ってください。
 
 ```js
 // ✅ Better: Use a safe parser
@@ -97,6 +97,6 @@ function Calculator({expression}) {
 
 <Note>
 
-Never use `eval` with user input - it's a security risk. Use dedicated parsing libraries for specific use cases like mathematical expressions, JSON parsing, or template evaluation.
+ユーザの入力に対して `eval` を決して使ってはいけません。セキュリティ上のリスクがあります。数式や JSON のパース、テンプレートの評価といった用途に応じて、専用のパース用ライブラリを使ってください。
 
 </Note>
