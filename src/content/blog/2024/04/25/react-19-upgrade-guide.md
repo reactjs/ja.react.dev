@@ -84,7 +84,7 @@ TypeScript を使用している場合は、型も更新する必要がありま
 npm install --save-exact @types/react@^19.0.0 @types/react-dom@^19.0.0
 ```
 
-Or, if you're using Yarn:
+Yarn をお使いの場合は以下のようにします。
 ```bash
 yarn add --exact @types/react@^19.0.0 @types/react-dom@^19.0.0
 ```
