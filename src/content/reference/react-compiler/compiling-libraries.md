@@ -1,30 +1,30 @@
 ---
-title: Compiling Libraries
+title: ライブラリのコンパイル
 ---
 
 <Intro>
-This guide helps library authors understand how to use React Compiler to ship optimized library code to their users.
+このガイドでは、ライブラリの作者が React Compiler を使用して、最適化されたライブラリコードをユーザに配布する方法を説明します。
 </Intro>
 
 <InlineToc />
 
-## Why Ship Compiled Code? {/*why-ship-compiled-code*/}
+## コンパイル済みコードを配布する理由 {/*why-ship-compiled-code*/}
 
-As a library author, you can compile your library code before publishing to npm. This provides several benefits:
+ライブラリの作者は、npm に公開する前にライブラリのコードを事前コンパイルできます。これには次のような利点があります。
 
-- **Performance improvements for all users** - Your library users get optimized code even if they aren't using React Compiler yet
-- **No configuration required by users** - The optimizations work out of the box
-- **Consistent behavior** - All users get the same optimized version regardless of their build setup
+- **すべてのユーザのパフォーマンスが向上** - ライブラリのユーザが React Compiler をまだ使用していない場合でも最適化されたコードが利用できる
+- **ユーザによる設定が不要** - 最適化がそのまま機能する
+- **一貫した動作** - ユーザのビルド環境にかかわらず、すべてのユーザが同じ最適化済みバージョンを利用できる
 
-## Setting Up Compilation {/*setting-up-compilation*/}
+## コンパイルのセットアップ {/*setting-up-compilation*/}
 
-Add React Compiler to your library's build process:
+ライブラリのビルドプロセスに React Compiler を追加します。
 
 <TerminalBlock>
 npm install -D babel-plugin-react-compiler@latest
 </TerminalBlock>
 
-Configure your build tool to compile your library. For example, with Babel:
+ライブラリをコンパイルするようにビルドツールを設定します。例えば Babel では次のようにします。
 
 ```js
 // babel.config.js
@@ -36,13 +36,13 @@ module.exports = {
 };
 ```
 
-## Backwards Compatibility {/*backwards-compatibility*/}
+## 後方互換性 {/*backwards-compatibility*/}
 
-If your library supports React versions below 19, you'll need additional configuration:
+ライブラリが React 19 未満のバージョンをサポートする場合は、追加の設定が必要です。
 
-### 1. Install the runtime package {/*install-runtime-package*/}
+### 1. ランタイムパッケージをインストール {/*install-runtime-package*/}
 
-We recommend installing react-compiler-runtime as a direct dependency:
+react-compiler-runtime を直接の依存ライブラリとしてインストールすることを推奨します。
 
 <TerminalBlock>
 npm install react-compiler-runtime@latest
@@ -59,9 +59,9 @@ npm install react-compiler-runtime@latest
 }
 ```
 
-### 2. Configure the target version {/*configure-target-version*/}
+### 2. ターゲットバージョンを設定 {/*configure-target-version*/}
 
-Set the minimum React version your library supports:
+ライブラリがサポートする最小の React バージョンを設定します。
 
 ```js
 {
@@ -69,38 +69,38 @@ Set the minimum React version your library supports:
 }
 ```
 
-## Testing Strategy {/*testing-strategy*/}
+## テスト戦略 {/*testing-strategy*/}
 
-Test your library both with and without compilation to ensure compatibility. Run your existing test suite against the compiled code, and also create a separate test configuration that bypasses the compiler. This helps catch any issues that might arise from the compilation process and ensures your library works correctly in all scenarios.
+互換性を確認するため、コンパイルありとなしの両方でライブラリをテストしてください。コンパイル済みコードに対して既存のテストスイートを実行し、コンパイラを通さない別のテスト設定も作成します。これにより、コンパイルプロセスから生じる可能性のある問題を検出し、あらゆる状況でライブラリが正しく動作することを確認できます。
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### Library doesn't work with older React versions {/*library-doesnt-work-with-older-react-versions*/}
+### 古い React バージョンでライブラリが動作しない {/*library-doesnt-work-with-older-react-versions*/}
 
-If your compiled library throws errors in React 17 or 18:
+コンパイル済みライブラリが React 17 または 18 でエラーをスローする場合があります。
 
-1. Verify you've installed `react-compiler-runtime` as a dependency
-2. Check that your `target` configuration matches your minimum supported React version
-3. Ensure the runtime package is included in your published bundle
+1. `react-compiler-runtime` が依存ライブラリとしてインストールされていることを確認してください。
+2. `target` の設定がサポート対象の最小 React バージョンと一致していることを確認してください。
+3. 公開したバンドルにランタイムパッケージが含まれていることを確認してください。
 
-### Compilation conflicts with other Babel plugins {/*compilation-conflicts-with-other-babel-plugins*/}
+### コンパイルが他の Babel プラグインと競合する {/*compilation-conflicts-with-other-babel-plugins*/}
 
-Some Babel plugins may conflict with React Compiler:
+一部の Babel プラグインは React Compiler と競合する可能性があります。
 
-1. Place `babel-plugin-react-compiler` early in your plugin list
-2. Disable conflicting optimizations in other plugins
-3. Test your build output thoroughly
+1. `babel-plugin-react-compiler` をプラグインリストの先頭付近に配置してください。
+2. 他のプラグインで競合する最適化を無効化してください。
+3. ビルド出力を十分にテストしてください。
 
-### Runtime module not found {/*runtime-module-not-found*/}
+### ランタイムモジュールが見つからない {/*runtime-module-not-found*/}
 
-If users see "Cannot find module 'react-compiler-runtime'":
+ユーザに "Cannot find module 'react-compiler-runtime'" と表示される場合があります。
 
-1. Ensure the runtime is listed in `dependencies`, not `devDependencies`
-2. Check that your bundler includes the runtime in the output
-3. Verify the package is published to npm with your library
+1. ランタイムが `devDependencies` ではなく `dependencies` に記載されていることを確認してください。
+2. バンドラの出力にランタイムが含まれていることを確認してください。
+3. パッケージがライブラリに含まれた状態で npm に公開されていることを確認してください。
 
-## Next Steps {/*next-steps*/}
+## 次のステップ {/*next-steps*/}
 
-- Learn about [debugging techniques](/learn/react-compiler/debugging) for compiled code
-- Check the [configuration options](/reference/react-compiler/configuration) for all compiler options
-- Explore [compilation modes](/reference/react-compiler/compilationMode) for selective optimization
+- コンパイル済みコードの[デバッグ手法](/learn/react-compiler/debugging)について学ぶ
+- 利用できるすべてのコンパイラオプションを[設定オプション](/reference/react-compiler/configuration)で確認する
+- 選択的に最適化するための[コンパイルモード](/reference/react-compiler/compilationMode)を確認する

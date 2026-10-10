@@ -4,23 +4,23 @@ title: exhaustive-deps
 
 <Intro>
 
-Validates that dependency arrays for React hooks contain all necessary dependencies.
+React フックの依存配列に、必要な依存値がすべて含まれているか検証します。
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## ルールの詳細 {/*rule-details*/}
 
-React hooks like `useEffect`, `useMemo`, and `useCallback` accept dependency arrays. When a value referenced inside these hooks isn't included in the dependency array, React won't re-run the effect or recalculate the value when that dependency changes. This causes stale closures where the hook uses outdated values.
+`useEffect`、`useMemo`、`useCallback` などの React フックは、依存配列を受け取ります。これらのフック内で参照する値が依存配列に含まれていないと、その依存値が変わっても React はエフェクトの再実行や値の再計算を行いません。これにより、フックが古くなった値を使い続ける、古いクロージャ (stale closure) の問題が発生します。
 
-## Common Violations {/*common-violations*/}
+## よくある違反 {/*common-violations*/}
 
-This error often happens when you try to "trick" React about dependencies to control when an effect runs. Effects should synchronize your component with external systems. The dependency array tells React which values the effect uses, so React knows when to re-synchronize.
+このエラーは、エフェクトが実行されるタイミングを制御しようとして、依存値について React を「だまそう」としたときによく起こります。エフェクトは、コンポーネントと外部システムを同期するためのものです。依存配列はエフェクトが使う値を React に伝えることで、いつ再同期すべきか判断できるようにします。
 
-If you find yourself fighting with the linter, you likely need to restructure your code. See [Removing Effect Dependencies](/learn/removing-effect-dependencies) to learn how.
+リンタと格闘しているようなら、コードの構造を見直す必要があるでしょう。方法については、[エフェクトから依存値を取り除く](/learn/removing-effect-dependencies)を参照してください。
 
-### Invalid {/*invalid*/}
+### 無効な例 {/*invalid*/}
 
-Examples of incorrect code for this rule:
+このルールに違反するコードの例です。
 
 ```js
 // ❌ Missing dependency
@@ -39,9 +39,9 @@ useMemo(() => {
 }, [items]); // Missing 'sortOrder'
 ```
 
-### Valid {/*valid*/}
+### 有効な例 {/*valid*/}
 
-Examples of correct code for this rule:
+このルールに従ったコードの例です。
 
 ```js
 // ✅ All dependencies included
@@ -55,11 +55,11 @@ useEffect(() => {
 }, [userId]);
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### Adding a function dependency causes infinite loops {/*function-dependency-loops*/}
+### 関数を依存配列に追加すると無限ループが起きる {/*function-dependency-loops*/}
 
-You have an effect, but you're creating a new function on every render:
+以下では、エフェクトがありますが、レンダーのたびに新しい関数を作成しています。
 
 ```js
 // ❌ Causes infinite loop
@@ -72,7 +72,7 @@ useEffect(() => {
 }, [logItems]); // Infinite loop!
 ```
 
-In most cases, you don't need the effect. Call the function where the action happens instead:
+ほとんどの場合、このエフェクトは不要です。代わりに、アクションが起きる場所で関数を呼び出してください。
 
 ```js
 // ✅ Call it from the event handler
@@ -88,7 +88,7 @@ items.forEach(item => {
 });
 ```
 
-If you genuinely need the effect (for example, to subscribe to something external), make the dependency stable:
+エフェクトが本当に必要な場合（例えば、外部の何かをサブスクライブする場合）は、依存値を安定させてください。
 
 ```js
 // ✅ useCallback keeps the function reference stable
@@ -106,9 +106,9 @@ useEffect(() => {
 }, [items]);
 ```
 
-### Running an effect only once {/*effect-on-mount*/}
+### エフェクトを 1 回だけ実行する {/*effect-on-mount*/}
 
-You want to run an effect once on mount, but the linter complains about missing dependencies:
+マウント時にエフェクトを 1 回だけ実行したいのに、依存値が不足しているとリンタに指摘されています。
 
 ```js
 // ❌ Missing dependency
@@ -117,7 +117,7 @@ useEffect(() => {
 }, []); // Missing 'userId'
 ```
 
-Either include the dependency (recommended) or use a ref if you truly need to run once:
+依存値を依存配列に含める（推奨）か、本当に 1 回だけ実行する必要があるなら ref を使ってください。
 
 ```js
 // ✅ Include dependency
@@ -138,9 +138,9 @@ useEffect(() => {
 }, [userId]);
 ```
 
-## Options {/*options*/}
+## オプション {/*options*/}
 
-You can configure custom effect hooks using shared ESLint settings (available in `eslint-plugin-react-hooks` 6.1.1 and later):
+ESLint の共有設定を使って、カスタムエフェクトフックを設定できます（`eslint-plugin-react-hooks` 6.1.1 以降で利用可能）。
 
 ```js
 {
@@ -152,9 +152,9 @@ You can configure custom effect hooks using shared ESLint settings (available in
 }
 ```
 
-- `additionalEffectHooks`: Regex pattern matching custom hooks that should be checked for exhaustive dependencies. This configuration is shared across all `react-hooks` rules.
+- `additionalEffectHooks`: 依存値網羅性チェックの対象となるカスタムフック名にマッチする正規表現パターン。この設定は、すべての `react-hooks` ルールで共有されます。
 
-For backward compatibility, this rule also accepts a rule-level option:
+後方互換性のため、このルールはルール単位のオプションも受け付けます。
 
 ```js
 {
@@ -166,4 +166,4 @@ For backward compatibility, this rule also accepts a rule-level option:
 }
 ```
 
-- `additionalHooks`: Regex for hooks that should be checked for exhaustive dependencies. **Note:** If this rule-level option is specified, it takes precedence over the shared `settings` configuration.
+- `additionalHooks`: 依存値網羅性チェックの対象となるカスタムフック名にマッチする正規表現パターン。**注意**：このルール単位のオプションを指定すると、共有の `settings` 設定よりも優先されます。

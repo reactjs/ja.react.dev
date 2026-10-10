@@ -134,12 +134,12 @@ export default function PrintApp() {
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### I'm getting an error: "flushSync was called from inside a lifecycle method" {/*im-getting-an-error-flushsync-was-called-from-inside-a-lifecycle-method*/}
+### "flushSync was called from inside a lifecycle method" というエラーが出る {/*im-getting-an-error-flushsync-was-called-from-inside-a-lifecycle-method*/}
 
 
-React cannot `flushSync` in the middle of a render. If you do, it will noop and warn:
+React はレンダー中に `flushSync` を実行できません。実行した場合、`flushSync` は何も行わず、以下の警告を表示します。
 
 <ConsoleBlock level="error">
 
@@ -147,13 +147,13 @@ Warning: flushSync was called from inside a lifecycle method. React cannot flush
 
 </ConsoleBlock>
 
-This includes calling `flushSync` inside:
+これには、以下の場所で `flushSync` を呼び出す場合が含まれます。
 
-- rendering a component.
-- `useLayoutEffect` or `useEffect` hooks.
-- Class component lifecycle methods.
+- コンポーネントのレンダー中。
+- `useLayoutEffect` または `useEffect` フック内。
+- クラスコンポーネントのライフサイクルメソッド内。
 
-For example, calling `flushSync` in an Effect will noop and warn:
+例えば、エフェクト内で `flushSync` を呼び出すと、`flushSync` は何も行わず、警告を表示します。
 
 ```js
 import { useEffect } from 'react';
@@ -171,7 +171,7 @@ function MyComponent() {
 }
 ```
 
-To fix this, you usually want to move the `flushSync` call to an event:
+これを修正するには、通常、`flushSync` の呼び出しをイベントに移します。
 
 ```js
 function handleClick() {
@@ -183,7 +183,7 @@ function handleClick() {
 ```
 
 
-If it's difficult to move to an event, you can defer `flushSync` in a microtask:
+イベントへの移動が難しい場合は、マイクロタスク内で `flushSync` の実行を遅らせることが可能です。
 
 ```js {3,7}
 useEffect(() => {
@@ -196,10 +196,10 @@ useEffect(() => {
 }, []);
 ```
 
-This will allow the current render to finish and schedule another syncronous render to flush the updates.
+これにより、現在のレンダーを完了させたうえで、更新をフラッシュするための別の同期レンダーをスケジュールできます。
 
 <Pitfall>
 
-`flushSync` can significantly hurt performance, but this particular pattern is even worse for performance. Exhaust all other options before calling `flushSync` in a microtask as an escape hatch.
+`flushSync` はパフォーマンスを大幅に低下させる可能性がありますが、このパターンではパフォーマンスへの悪影響がさらに大きくなります。マイクロタスク内で `flushSync` を避難ハッチとして呼び出す前に、まず他のあらゆる選択肢を試してください。
 
 </Pitfall>

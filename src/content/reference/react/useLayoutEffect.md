@@ -10,7 +10,7 @@ title: useLayoutEffect
 
 <Intro>
 
-`useLayoutEffect` は [`useEffect`](/reference/react/useEffect) の一種ですが、ブラウザが画面を再描画する前に実行されます。
+`useLayoutEffect` は [`useEffect`](/reference/react/useEffect) の一種ですが、ブラウザが画面を再ペイントする前に実行されます。
 
 ```js
 useLayoutEffect(setup, dependencies?)
@@ -26,7 +26,7 @@ useLayoutEffect(setup, dependencies?)
 
 ### `useLayoutEffect(setup, dependencies?)` {/*useinsertioneffect*/}
 
-ブラウザが画面を再描画する前にレイアウトの計測を行うために `useLayoutEffect` を呼び出します。
+ブラウザが画面を再ペイントする前にレイアウトの計測を行うために `useLayoutEffect` を呼び出します。
 
 ```js
 import { useState, useRef, useLayoutEffect } from 'react';
@@ -65,7 +65,7 @@ function Tooltip() {
 
 * エフェクトは**クライアント上でのみ実行されます**。サーバレンダリング中には実行されません。
 
-* `useLayoutEffect` 内のコードと、そこでスケジュールされたすべての state 更新は、**ブラウザによる画面の再描画をブロックします**。過度に使用すると、アプリが遅くなります。可能な限り [`useEffect` を使用してください](/reference/react/useEffect)。
+* `useLayoutEffect` 内のコードと、そこでスケジュールされたすべての state 更新は、**ブラウザによる画面の再ペイントをブロックします**。過度に使用すると、アプリが遅くなります。可能な限り [`useEffect` を使用してください](/reference/react/useEffect)。
 
 * `useLayoutEffect` 内で state の更新をトリガすると、React は `useEffect` も含む残りのエフェクトをすべて即座に実行します。
 
@@ -73,9 +73,9 @@ function Tooltip() {
 
 ## 使用法 {/*usage*/}
 
-### ブラウザが画面を再描画する前にレイアウトを測定する {/*measuring-layout-before-the-browser-repaints-the-screen*/}
+### ブラウザが画面を再ペイントする前にレイアウトを測定する {/*measuring-layout-before-the-browser-repaints-the-screen*/}
 
-ほとんどのコンポーネントは、何をレンダーするかを決定するために、画面上での位置やサイズを知る必要はありません。単に JSX を返します。その後、ブラウザがその*レイアウト*（位置とサイズ）を計算し、画面を再描画します。
+ほとんどのコンポーネントは、何をレンダーするかを決定するために、画面上での位置やサイズを知る必要はありません。単に JSX を返します。その後、ブラウザがその*レイアウト*（位置とサイズ）を計算し、画面を再ペイントします。
 
 しかし、それだけでは不十分な場合もあります。例えば、ある要素をホバーしたときに近くに表示されるツールチップを想像してみてください。十分なスペースがある場合、ツールチップは要素の上に表示されるべきですが、収まらない場合は下に表示されるとします。ツールチップを正しい最終位置にレンダーするためには、その高さ（つまり、上部に収まるかどうか）を知る必要があります。
 
@@ -85,7 +85,7 @@ function Tooltip() {
 2. ツールチップの高さを測定し、ツールチップを配置する場所を決定します。
 3. ツールチップを正しい場所で*再度*レンダーします。
 
-**これらすべては、ブラウザが画面を再描画する前に行わなければなりません**。ユーザにツールチップが移動するのを見せたくないのです。ブラウザが画面を再描画する前にレイアウトの測定を行うために `useLayoutEffect` を呼び出します。
+**これらすべては、ブラウザが画面を再ペイントする前に行わなければなりません**。ユーザにツールチップが移動するのを見せたくないのです。ブラウザが画面を再ペイントする前にレイアウトの測定を行うために `useLayoutEffect` を呼び出します。
 
 ```js {5-8}
 function Tooltip() {
@@ -257,9 +257,9 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 <Recipes titleText="useLayoutEffect vs useEffect" titleId="examples">
 
-#### `useLayoutEffect` はブラウザの再描画をブロックする {/*uselayouteffect-blocks-the-browser-from-repainting*/}
+#### `useLayoutEffect` はブラウザの再ペイントをブロックする {/*uselayouteffect-blocks-the-browser-from-repainting*/}
 
-React は、`useLayoutEffect` 内のコードとその中でスケジュールされたすべての state 更新が、**ブラウザが画面を再描画する前に**処理されることを保証します。これにより、ツールチップをレンダーし、測定し、再度レンダーするという処理を、ユーザが最初の余分なレンダーに気付かないように行うことができます。言い換えると、`useLayoutEffect` はブラウザの描画をブロックします。
+React は、`useLayoutEffect` 内のコードとその中でスケジュールされたすべての state 更新が、**ブラウザが画面を再ペイントする前に**処理されることを保証します。これにより、ツールチップをレンダーし、測定し、再度レンダーするという処理を、ユーザが最初の余分なレンダーに気付かないように行うことができます。言い換えると、`useLayoutEffect` はブラウザのペイントをブロックします。
 
 <Sandpack>
 
@@ -549,7 +549,7 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 </Sandpack>
 
-バグを再現しやすくするため、このバージョンではレンダー中に人為的な遅延を追加しています。React は、`useEffect` 内の state 更新を処理する前に、ブラウザに画面を描画させます。その結果、ツールチップがちらつきます：
+バグを再現しやすくするため、このバージョンではレンダー中に人為的な遅延を追加しています。React は、`useEffect` 内の state 更新を処理する前に、ブラウザに画面をペイントさせます。その結果、ツールチップがちらつきます：
 
 <Sandpack>
 
@@ -698,7 +698,7 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 </Sandpack>
 
-この例を `useLayoutEffect` に置き換えて、レンダーが遅くなっても描画をブロックすることを確認してください。
+この例を `useLayoutEffect` に置き換えて、レンダーが遅くなってもペイントをブロックすることを確認してください。
 
 <Solution />
 
@@ -719,7 +719,7 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 `useLayoutEffect` の目的は、コンポーネントがレンダーのために[レイアウト情報を使用できるようにする](#measuring-layout-before-the-browser-repaints-the-screen)ことです。
 
 1. 初期コンテンツをレンダーする。
-2. ブラウザが画面を再描画する*前に*レイアウトを測定する。
+2. ブラウザが画面を再ペイントする*前に*レイアウトを測定する。
 3. 読み取ったレイアウト情報を使用して最終コンテンツをレンダーする。
 
 あなた、またはあなたのフレームワークが[サーバレンダリング](/reference/react-dom/server)を使用している場合、React アプリは初期表示のためにサーバ上で HTML にレンダーされます。これにより、JavaScript コードがロードされる前に初期 HTML を表示できます。
@@ -732,9 +732,9 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 しかし、この問題に直面している場合、いくつかの選択肢があります。
 
-- `useLayoutEffect` を [`useEffect`](/reference/react/useEffect) に置き換えます。これにより React に対して、初期レンダー結果の表示を描画をブロックせずに行ってよいことを伝えます（元の HTML はエフェクトが実行される前に表示されるからです）。
+- `useLayoutEffect` を [`useEffect`](/reference/react/useEffect) に置き換えます。これにより React に対して、初期レンダー結果の表示をペイントをブロックせずに行ってよいことを伝えます（元の HTML はエフェクトが実行される前に表示されるからです）。
 
-- <CanaryBadge /> あるいは、[`use(browser())`](/reference/react/use#use-browser) を呼び出して、コンポーネントをブラウザ専用としてマークします。React はサーバレンダリング中に、最も近い [`<Suspense>`](/reference/react/Suspense) バウンダリまでのコンテンツを、ローディング中のフォールバック（例えば、スピナやグリマー）に置き換えます。
+- あるいは、[`use(browser())`](/reference/react/use#use-browser) を呼び出して、コンポーネントをブラウザ専用としてマークします。React はサーバレンダリング中に、最も近い [`<Suspense>`](/reference/react/Suspense) バウンダリまでのコンテンツを、ローディング中のフォールバック（例えば、スピナやグリマー）に置き換えます。
 
 - あるいは、[コンポーネントをクライアント専用としてマークします](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content)。これにより React に対して、サーバレンダリング中に最も近い `<Suspense>` バウンダリまでのコンテンツを、ローディング中のフォールバックに置き換えるように指示します。
 

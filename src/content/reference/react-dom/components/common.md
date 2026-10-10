@@ -28,7 +28,7 @@ title: "<div> などの一般的なコンポーネント"
 
 * `children`: React ノード（要素、文字列、数値、[ポータル](/reference/react-dom/createPortal)、`null` や `undefined` やブーリアンのような空ノード、あるいは他の React ノードの配列）。コンポーネントの内容を指定します。JSX を使用する場合、通常は `<div><span /></div>` のようにタグをネストすることで props として暗黙的に `children` を指定します。
 
-* `dangerouslySetInnerHTML`: `{ __html: '<p>some html</p>' }` という形式の、内部に生の HTML 文字列を含んだオブジェクト。DOM ノードの [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) プロパティを上書きし、渡された HTML を表示します。これは最大限に注意して使用する必要があります！ 内部の HTML が信頼できない場合（例えば、ユーザデータに基づいている場合）、[XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) 脆弱性を導入するリスクがあります。[`dangerouslySetInnerHTML` の使用について詳しく読む](#dangerously-setting-the-inner-html)
+* `dangerouslySetInnerHTML`: `{ __html: '<p>some html</p>' }` という形式の、内部に生の HTML 文字列または [`TrustedHTML`](https://developer.mozilla.org/en-US/docs/Web/API/TrustedHTML) の値を含んだオブジェクト。DOM ノードの [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) プロパティを上書きし、渡された HTML を表示します。これは最大限に注意して使用する必要があります！ 内部の HTML が信頼できない場合（例えば、ユーザデータに基づいている場合）、[XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) 脆弱性を導入するリスクがあります。[`dangerouslySetInnerHTML` の使用について詳しく読む](#dangerously-setting-the-inner-html)
 
 * `ref`: [`useRef`](/reference/react/useRef) または [`createRef`](/reference/react/createRef) から得られる ref オブジェクト、または [`ref` コールバック関数](#ref-callback)、または[レガシー ref](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) 用の文字列。指定された ref にこのノードの DOM 要素が渡されます。[ref を使った DOM の操作について詳しく読む](#manipulating-a-dom-node-with-a-ref)
 
@@ -756,13 +756,13 @@ CSS トランジションイベントのためのイベントハンドラタイ�
 
 ### CSS スタイルの適用 {/*applying-css-styles*/}
 
-React では、CSS クラスを [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) で指定します。これは HTML の `class` 属性と同様に動作します。
+React では、CSS クラスを [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) で指定します。これは HTML の `class` 属性と同じように動作します。
 
 ```js
 <img className="avatar" />
 ```
 
-そして別の CSS ファイルでそれに対する CSS ルールを記述します。
+そして、対応する CSS ルールを別の CSS ファイルに記述します：
 
 ```css
 /* In your CSS */
@@ -771,7 +771,7 @@ React では、CSS クラスを [`className`](https://developer.mozilla.org/en-U
 }
 ```
 
-React は CSS ファイルの追加方法を規定しません。最も単純なケースでは、HTML に [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) タグを追加します。ビルドツールやフレームワークを使用している場合は、そのドキュメンテーションを参照して、プロジェクトに CSS ファイルを追加する方法を学んでください。
+React は CSS ファイルの追加方法を規定していません。最も単純なケースでは、HTML に [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) タグを追加します。ビルドツールやフレームワークを使っている場合は、そのドキュメントを参照して、プロジェクトに CSS ファイルを追加する方法を確認してください。
 
 時には、スタイルの値がデータに依存することがあります。`style` 属性を使用して、一部のスタイルを動的に渡します。
 
@@ -924,7 +924,7 @@ export default function Form() {
 
 ### 危険を冒して内部 HTML をセットする {/*dangerously-setting-the-inner-html*/}
 
-以下のように、要素に対して生の HTML 文字列を渡すことができます。
+以下のように、要素に対して生の HTML 文字列または [`TrustedHTML`](https://developer.mozilla.org/en-US/docs/Web/API/TrustedHTML) の値を渡すことができます。
 
 ```js
 const markup = { __html: '<p>some raw html</p>' };
@@ -932,6 +932,8 @@ return <div dangerouslySetInnerHTML={markup} />;
 ```
 
 **これは危険です。元の DOM の [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) プロパティも同様ですが、最大限に注意を払ってください！ マークアップが完全に信頼できるソースから来ていない限り、この方法を使うといとも簡単に [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) 脆弱性が発生します**。
+
+サイトで [Trusted Type](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API) を強制している場合、セキュリティポリシーによって作成された `TrustedHTML` の値を `__html` として渡してください。React はこの値を文字列に変換せずにブラウザに渡すため、ブラウザが値を検証できます。この値の作成に使用される入力がサニタイズされた信頼できる値であることは、引き続きポリシーで保証する必要があります。
 
 例えば、Markdown を HTML に変換する Markdown ライブラリを使用しており、そのパーサにバグがないと信頼でき、ユーザは本人が入力したものしか見ない、という場合、結果 HTML を以下のように表示することができます。
 

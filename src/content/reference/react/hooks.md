@@ -76,7 +76,7 @@ function ChatRoom({ roomId }) {
 
 `useEffect` には、実行タイミングが異なり、まれに使われることのある 2 つのバリエーションがあります：
 
-* [`useLayoutEffect`](/reference/react/useLayoutEffect) はブラウザが画面を再描画する前に発火します。このフックでレイアウトを測定できます。
+* [`useLayoutEffect`](/reference/react/useLayoutEffect) はブラウザが画面を再ペイントする前に発火します。このフックでレイアウトを測定できます。
 * [`useInsertionEffect`](/reference/react/useInsertionEffect) は React が DOM に変更を加える前に発火します。ライブラリは動的な CSS をこのフックで挿入できます。
 
 エフェクトからイベントを分離することもできます：

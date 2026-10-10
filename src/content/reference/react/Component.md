@@ -286,7 +286,7 @@ class ChatRoom extends Component {
 
 <Note>
 
-多くのユースケースにおいて、クラスコンポーネントで `componentDidMount`、`componentDidUpdate`、`componentWillUnmount` をまとめて定義することは、関数コンポーネントで [`useEffect`](/reference/react/useEffect) を呼び出すことと同等です。ブラウザの描画前にコードを実行することが重要となる稀なケースでは、[`useLayoutEffect`](/reference/react/useLayoutEffect) がより近いものになります。
+多くのユースケースにおいて、クラスコンポーネントで `componentDidMount`、`componentDidUpdate`、`componentWillUnmount` をまとめて定義することは、関数コンポーネントで [`useEffect`](/reference/react/useEffect) を呼び出すことと同等です。ブラウザのペイント前にコードを実行することが重要となる稀なケースでは、[`useLayoutEffect`](/reference/react/useLayoutEffect) がより近いものになります。
 
 [移行方法を見る](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 
@@ -353,7 +353,7 @@ class ChatRoom extends Component {
 
 <Note>
 
-多くのユースケースにおいて、クラスコンポーネントで `componentDidMount`、`componentDidUpdate`、`componentWillUnmount` をまとめて定義することは、関数コンポーネントで [`useEffect`](/reference/react/useEffect) を呼び出すことと同等です。ブラウザの描画前にコードを実行することが重要となる稀なケースでは、[`useLayoutEffect`](/reference/react/useLayoutEffect) がより近いものになります。
+多くのユースケースにおいて、クラスコンポーネントで `componentDidMount`、`componentDidUpdate`、`componentWillUnmount` をまとめて定義することは、関数コンポーネントで [`useEffect`](/reference/react/useEffect) を呼び出すことと同等です。ブラウザのペイント前にコードを実行することが重要となる稀なケースでは、[`useLayoutEffect`](/reference/react/useLayoutEffect) がより近いものになります。
 
 [移行方法を見る](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 
@@ -446,7 +446,7 @@ class ChatRoom extends Component {
 
 <Note>
 
-多くのユースケースにおいて、クラスコンポーネントで `componentDidMount`、`componentDidUpdate`、`componentWillUnmount` をまとめて定義することは、関数コンポーネントで [`useEffect`](/reference/react/useEffect) を呼び出すことと同等です。ブラウザの描画前にコードを実行することが重要となる稀なケースでは、[`useLayoutEffect`](/reference/react/useLayoutEffect) がより近いものになります。
+多くのユースケースにおいて、クラスコンポーネントで `componentDidMount`、`componentDidUpdate`、`componentWillUnmount` をまとめて定義することは、関数コンポーネントで [`useEffect`](/reference/react/useEffect) を呼び出すことと同等です。ブラウザのペイント前にコードを実行することが重要となる稀なケースでは、[`useLayoutEffect`](/reference/react/useLayoutEffect) がより近いものになります。
 
 [移行方法を見る](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 

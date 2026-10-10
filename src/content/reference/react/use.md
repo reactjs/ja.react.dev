@@ -80,7 +80,7 @@ function MessageComponent({ messagePromise }) {
 
 ---
 
-### <CanaryBadge /> `use(browser())` {/*use-browser*/}
+### `use(browser())` {/*use-browser*/}
 
 ブラウザでのみレンダーされるべきコンポーネントで、[`browser`](/reference/react-dom/browser) が返した値を指定して `use` を呼び出します。
 
@@ -1328,7 +1328,7 @@ async function getData(url) {
 
 ## 使用法（ブラウザ） {/*usage-browser*/}
 
-### <CanaryBadge /> コンポーネントをブラウザでのみレンダー {/*rendering-a-component-only-in-the-browser*/}
+### コンポーネントをブラウザでのみレンダー {/*rendering-a-component-only-in-the-browser*/}
 
 ブラウザでのみレンダーされるべきコンポーネント内で、[`browser`](/reference/react-dom/browser) が返した値を `use` に渡します。
 
@@ -1461,8 +1461,8 @@ iframe {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.3.0-canary-eb8feb71-20260814",
-    "react-dom": "19.3.0-canary-eb8feb71-20260814",
+    "react": "19.3.0-canary-f1f7ed2a-20260904",
+    "react-dom": "19.3.0-canary-f1f7ed2a-20260904",
     "react-scripts": "latest"
   },
   "scripts": {
