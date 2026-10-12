@@ -4,17 +4,17 @@ title: component-hook-factories
 
 <Intro>
 
-Validates against higher order functions defining nested components or hooks. Components and hooks should be defined at the module level.
+コンポーネントやフックをネストして定義する高階関数 (higher order function) を使っていないか検証します。コンポーネントやフックは、モジュールレベルで定義するべきです。
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## ルールの詳細 {/*rule-details*/}
 
-Defining components or hooks inside other functions creates new instances on every call. React treats each as a completely different component, destroying and recreating the entire component tree, losing all state, and causing performance problems.
+関数内でコンポーネントやフックを定義すると、呼び出しのたびに新しい関数インスタンスが作成されます。React はそれぞれをまったく別のコンポーネントとして扱うため、コンポーネントツリー全体が破棄されて再作成され、すべての state が失われ、パフォーマンスの問題が発生します。
 
-### Invalid {/*invalid*/}
+### 無効な例 {/*invalid*/}
 
-Examples of incorrect code for this rule:
+このルールに違反するコードの例です。
 
 ```js {expectedErrors: {'react-compiler': [14]}}
 // ❌ Factory function creating components
@@ -41,9 +41,9 @@ function createCustomHook(endpoint) {
 }
 ```
 
-### Valid {/*valid*/}
+### 有効な例 {/*valid*/}
 
-Examples of correct code for this rule:
+このルールに従ったコードの例です。
 
 ```js
 // ✅ Component defined at module level
@@ -57,11 +57,11 @@ function useData(endpoint) {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### I need dynamic component behavior {/*dynamic-behavior*/}
+### コンポーネントの動作を動的に変えたい {/*dynamic-behavior*/}
 
-You might think you need a factory to create customized components:
+以下のように、カスタマイズしたコンポーネントを作るにはファクトリが必要だと思うかもしれません。
 
 ```js
 // ❌ Wrong: Factory pattern
@@ -79,7 +79,7 @@ const RedButton = makeButton('red');
 const BlueButton = makeButton('blue');
 ```
 
-Pass [JSX as children](/learn/passing-props-to-a-component#passing-jsx-as-children) instead:
+代わりに、[JSX を children として渡して](/learn/passing-props-to-a-component#passing-jsx-as-children)ください。
 
 ```js
 // ✅ Better: Pass JSX as children

@@ -4,17 +4,17 @@ title: static-components
 
 <Intro>
 
-Validates that components are static, not recreated every render. Components that are recreated dynamically can reset state and trigger excessive re-rendering.
+コンポーネントが静的であり、レンダーのたびに再作成されていないことを検証します。動的に再作成されるコンポーネントは、state のリセットや過剰な再レンダーを引き起こす可能性があります。
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## ルールの詳細 {/*rule-details*/}
 
-Components defined inside other components are recreated on every render. React sees each as a brand new component type, unmounting the old one and mounting the new one, destroying all state and DOM nodes in the process.
+他のコンポーネント内で定義したコンポーネントは、レンダーのたびに再作成されます。React はそれぞれをまったく新しいコンポーネント型として扱うため、古いものをアンマウントし、新しいものをマウントします。その過程で、state と DOM ノードがすべて破棄されてしまいます。
 
-### Invalid {/*invalid*/}
+### 無効な例 {/*invalid*/}
 
-Examples of incorrect code for this rule:
+このルールに違反するコードの例です。
 
 ```js
 // ❌ Component defined inside component
@@ -37,9 +37,9 @@ function Parent({type}) {
 }
 ```
 
-### Valid {/*valid*/}
+### 有効な例 {/*valid*/}
 
-Examples of correct code for this rule:
+このルールに従ったコードの例です。
 
 ```js
 // ✅ Components at module level
@@ -55,11 +55,11 @@ function Parent({type}) {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### I need to render different components conditionally {/*conditional-components*/}
+### 条件に応じて別のコンポーネントをレンダーしたい {/*conditional-components*/}
 
-You might define components inside to access local state:
+以下のように、ローカルの state にアクセスする目的で、コンポーネントの内側でコンポーネントを定義したいのかもしれません。
 
 ```js {expectedErrors: {'react-compiler': [13]}}
 // ❌ Wrong: Inner component to access parent state
@@ -78,7 +78,7 @@ function Parent() {
 }
 ```
 
-Pass data as props instead:
+代わりに、データを props として渡してください。
 
 ```js
 // ✅ Better: Pass props to static component
@@ -98,6 +98,6 @@ function Parent() {
 
 <Note>
 
-If you find yourself wanting to define components inside other components to access local variables, that's a sign you should be passing props instead. This makes components more reusable and testable.
+ローカル変数にアクセスするために、他のコンポーネントの内側でコンポーネントを定義したくなったら、それは代わりに props を渡すべきだというサインです。そうすることで、コンポーネントの再利用やテストが容易になります。
 
 </Note>
