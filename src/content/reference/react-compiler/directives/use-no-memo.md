@@ -1,11 +1,11 @@
 ---
 title: "use no memo"
-titleForTitleTag: "'use no memo' directive"
+titleForTitleTag: "'use no memo' ディレクティブ"
 ---
 
 <Intro>
 
-`"use no memo"` prevents a function from being optimized by React Compiler.
+`"use no memo"` は、React Compiler が関数を最適化しないようにします。
 
 </Intro>
 
@@ -13,11 +13,11 @@ titleForTitleTag: "'use no memo' directive"
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `"use no memo"` {/*use-no-memo*/}
 
-Add `"use no memo"` at the beginning of a function to prevent React Compiler optimization.
+React Compiler による最適化を防ぐには、関数の先頭に `"use no memo"` を追加します。
 
 ```js {1}
 function MyComponent() {
@@ -26,32 +26,32 @@ function MyComponent() {
 }
 ```
 
-When a function contains `"use no memo"`, the React Compiler will skip it entirely during optimization. This is useful as a temporary escape hatch when debugging or when dealing with code that doesn't work correctly with the compiler.
+関数に `"use no memo"` が含まれている場合、React Compiler は最適化の際にその関数を完全にスキップします。これは、デバッグを行う場合やコンパイラで正しく動作しないコードを扱う場合に、一時的な避難ハッチとして役立ちます。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-* `"use no memo"` must be at the very beginning of a function body, before any imports or other code (comments are OK).
-* The directive must be written with double or single quotes, not backticks.
-* The directive must exactly match `"use no memo"` or its alias `"use no forget"`.
-* This directive takes precedence over all compilation modes and other directives.
-* It's intended as a temporary debugging tool, not a permanent solution.
+* `"use no memo"` は、インポートやその他のコードより前、関数本体の冒頭に置く必要があります（コメントは置くことができます）。
+* ディレクティブはバッククォートではなく、ダブルクォートまたはシングルクォートで記述する必要があります。
+* ディレクティブ文字列は `"use no memo"` またはその別名である `"use no forget"` に完全に合致する必要があります。
+* このディレクティブは、すべてのコンパイルモードや他のディレクティブよりも優先されます。
+* 恒久的な解決策ではなく、一時的なデバッグツールとして使用することを意図しています。
 
-### How `"use no memo"` opts-out of optimization {/*how-use-no-memo-opts-out*/}
+### `"use no memo"` によって最適化からオプトアウトする仕組み {/*how-use-no-memo-opts-out*/}
 
-React Compiler analyzes your code at build time to apply optimizations. `"use no memo"` creates an explicit boundary that tells the compiler to skip a function entirely.
+React Compiler は最適化を適用するため、ビルド時にコードを解析します。`"use no memo"` は、関数を完全にスキップするようコンパイラに指示する明示的な境界を作ります。
 
-This directive takes precedence over all other settings:
-* In `all` mode: The function is skipped despite the global setting
-* In `infer` mode: The function is skipped even if heuristics would optimize it
+このディレクティブは他のすべての設定よりも優先されます。
+* `all` モード：グローバル設定にかかわらず、その関数はスキップされる
+* `infer` モード：ヒューリスティックでは最適化対象になる場合でも、その関数はスキップされる
 
-The compiler treats these functions as if the React Compiler wasn't enabled, leaving them exactly as written.
+コンパイラはこれらの関数を React Compiler が有効化されていない場合と同様に扱い、記述されたとおり変更せずに残します。
 
-### When to use `"use no memo"` {/*when-to-use*/}
+### `"use no memo"` を使用する場面 {/*when-to-use*/}
 
-`"use no memo"` should be used sparingly and temporarily. Common scenarios include:
+`"use no memo"` は、必要な場合にのみ一時的に使用してください。よくある使用場面は次のとおりです。
 
-#### Debugging compiler issues {/*debugging-compiler*/}
-When you suspect the compiler is causing issues, temporarily disable optimization to isolate the problem:
+#### コンパイラの問題をデバッグする {/*debugging-compiler*/}
+コンパイラが問題を引き起こしている疑いがある場合は、一時的に最適化を無効にして問題を切り分けます。
 
 ```js
 function ProblematicComponent({ data }) {
@@ -62,8 +62,8 @@ function ProblematicComponent({ data }) {
 }
 ```
 
-#### Third-party library integration {/*third-party*/}
-When integrating with libraries that might not be compatible with the compiler:
+#### サードパーティライブラリと統合する {/*third-party*/}
+コンパイラと互換性がない可能性のあるライブラリと統合する場合は、次のようにします。
 
 ```js
 function ThirdPartyWrapper() {
@@ -76,9 +76,9 @@ function ThirdPartyWrapper() {
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-The `"use no memo"` directive is placed at the beginning of a function body to prevent React Compiler from optimizing that function:
+React Compiler が関数を最適化しないようにするには、関数本体の先頭に `"use no memo"` ディレクティブを配置します。
 
 ```js
 function MyComponent() {
@@ -87,7 +87,7 @@ function MyComponent() {
 }
 ```
 
-The directive can also be placed at the top of a file to affect all functions in that module:
+モジュール内のすべての関数に適用するには、ファイルの先頭にディレクティブを配置することもできます。
 
 ```js
 "use no memo";
@@ -95,15 +95,15 @@ The directive can also be placed at the top of a file to affect all functions in
 // All functions in this file will be skipped by the compiler
 ```
 
-`"use no memo"` at the function level overrides the module level directive.
+関数レベルの `"use no memo"` は、モジュールレベルのディレクティブを上書きします。
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### Directive not preventing compilation {/*not-preventing*/}
+### ディレクティブでコンパイルを防止できない {/*not-preventing*/}
 
-If `"use no memo"` isn't working:
+`"use no memo"` が動作しない場合は以下を確認してください。
 
 ```js
 // ❌ Wrong - directive after code
@@ -119,13 +119,13 @@ function Component() {
 }
 ```
 
-Also check:
-* Spelling - must be exactly `"use no memo"`
-* Quotes - must use single or double quotes, not backticks
+次の点も確認してください。
+* スペル - `"use no memo"` と完全合致する必要がある
+* 引用符 - バッククォートではなく、シングルクォートまたはダブルクォートを使用する必要がある
 
-### Best practices {/*best-practices*/}
+### ベストプラクティス {/*best-practices*/}
 
-**Always document why** you're disabling optimization:
+最適化を無効にする**理由を必ず記録してください**。
 
 ```js
 // ✅ Good - clear explanation and tracking
@@ -141,7 +141,7 @@ function Mystery() {
 }
 ```
 
-### See also {/*see-also*/}
+### 関連項目 {/*see-also*/}
 
-* [`"use memo"`](/reference/react-compiler/directives/use-memo) - Opt into compilation
-* [React Compiler](/learn/react-compiler) - Getting started guide
+* [`"use memo"`](/reference/react-compiler/directives/use-memo) - コンパイルにオプトインする
+* [React Compiler](/learn/react-compiler) - 入門ガイド
