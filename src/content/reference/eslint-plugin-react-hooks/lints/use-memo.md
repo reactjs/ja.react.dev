@@ -4,17 +4,17 @@ title: use-memo
 
 <Intro>
 
-Validates that the `useMemo` hook is used with a return value. See [`useMemo` docs](/reference/react/useMemo) for more information.
+`useMemo` フックが返り値を伴って使われているか検証します。詳細は、[`useMemo` のドキュメント](/reference/react/useMemo)を参照してください。
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## ルールの詳細 {/*rule-details*/}
 
-`useMemo` is for computing and caching expensive values, not for side effects. Without a return value, `useMemo` returns `undefined`, which defeats its purpose and likely indicates you're using the wrong hook.
+`useMemo` は、計算コストの高い値を計算してキャッシュするためのものであり、副作用を実行するためのものではありません。返り値がないと、`useMemo` は `undefined` を返し、その目的を果たせません。おそらく、使うフックを間違えているということです。
 
-### Invalid {/*invalid*/}
+### 無効な例 {/*invalid*/}
 
-Examples of incorrect code for this rule:
+このルールに違反するコードの例です。
 
 ```js {expectedErrors: {'react-compiler': [3]}}
 // ❌ No return value
@@ -28,9 +28,9 @@ function Component({ data }) {
 }
 ```
 
-### Valid {/*valid*/}
+### 有効な例 {/*valid*/}
 
-Examples of correct code for this rule:
+このルールに従ったコードの例です。
 
 ```js
 // ✅ Returns computed value
@@ -43,11 +43,11 @@ function Component({ data }) {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### I need to run side effects when dependencies change {/*side-effects*/}
+### 依存値が変わったときに副作用を実行したい {/*side-effects*/}
 
-You might try to use `useMemo` for side effects:
+以下では、副作用のために `useMemo` を使おうとしています。
 
 {/* TODO(@poteto) fix compiler validation to check for unassigned useMemos */}
 ```js {expectedErrors: {'react-compiler': [4]}}
@@ -65,7 +65,7 @@ function Component({user}) {
 }
 ```
 
-If the side effect needs to happen in response to user interaction, it's best to colocate the side effect with the event:
+ユーザの操作に応じて副作用を実行する必要がある場合は、その副作用をイベントの処理と同じ場所に置くのが最善です。
 
 ```js
 // ✅ Good: Side effects in event handlers
@@ -79,7 +79,7 @@ function Component({user}) {
 }
 ```
 
-If the side effect sychronizes React state with some external state (or vice versa), use `useEffect`:
+副作用によって React の state を外部の状態と同期する（またはその逆を行う）場合は、`useEffect` を使ってください。
 
 ```js
 // ✅ Good: Synchronization in useEffect
