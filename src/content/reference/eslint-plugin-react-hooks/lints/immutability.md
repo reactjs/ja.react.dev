@@ -4,17 +4,17 @@ title: immutability
 
 <Intro>
 
-Validates against mutating props, state, and other values that [are immutable](/reference/rules/components-and-hooks-must-be-pure#props-and-state-are-immutable).
+props や state、その他の[イミュータブルな値](/reference/rules/components-and-hooks-must-be-pure#props-and-state-are-immutable)を書き換えていないか検証します。
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## ルールの詳細 {/*rule-details*/}
 
-A component’s props and state are immutable snapshots. Never mutate them directly. Instead, pass new props down, and use the setter function from `useState`.
+コンポーネントの props と state は、イミュータブルなスナップショットです。直接書き換えてはいけません。代わりに、新しい props を渡したり、`useState` のセッタ関数を使ったりしてください。
 
-## Common Violations {/*common-violations*/}
+## よくある違反 {/*common-violations*/}
 
-### Invalid {/*invalid*/}
+### 無効な例 {/*invalid*/}
 
 ```js
 // ❌ Array push mutation
@@ -47,7 +47,7 @@ function Component() {
 }
 ```
 
-### Valid {/*valid*/}
+### 有効な例 {/*valid*/}
 
 ```js
 // ✅ Create new array
@@ -69,11 +69,11 @@ function Component() {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### I need to add items to an array {/*add-items-array*/}
+### 配列に要素を追加したい {/*add-items-array*/}
 
-Mutating arrays with methods like `push()` won't trigger re-renders:
+以下のように `push()` などのメソッドで配列を書き換えても、再レンダーは起きません。
 
 ```js
 // ❌ Wrong: Mutating the array
@@ -93,7 +93,7 @@ function TodoList() {
 }
 ```
 
-Create a new array instead:
+代わりに、新しい配列を作成してください。
 
 ```js
 // ✅ Better: Create a new array
@@ -113,9 +113,9 @@ function TodoList() {
 }
 ```
 
-### I need to update nested objects {/*update-nested-objects*/}
+### ネストされたオブジェクトを更新したい {/*update-nested-objects*/}
 
-Mutating nested properties doesn't trigger re-renders:
+以下のようにネストされたプロパティを書き換えても、再レンダーは起きません。
 
 ```js
 // ❌ Wrong: Mutating nested object
@@ -135,7 +135,7 @@ function UserProfile() {
 }
 ```
 
-Spread at each level that needs updating:
+更新が必要な各階層で、スプレッド構文を使ってください。
 
 ```js
 // ✅ Better: Create new objects at each level
