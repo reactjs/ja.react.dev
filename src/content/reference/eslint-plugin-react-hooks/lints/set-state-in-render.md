@@ -4,17 +4,17 @@ title: set-state-in-render
 
 <Intro>
 
-Validates against unconditionally setting state during render, which can trigger additional renders and potential infinite render loops.
+余分なレンダーや無限レンダーループにつながる可能性のある、レンダー中の無条件な state 更新を行っていないか検証します。
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## ルールの詳細 {/*rule-details*/}
 
-Calling `setState` during render unconditionally triggers another render before the current one finishes. This creates an infinite loop that crashes your app.
+レンダー中に無条件で `setState` を呼び出すと、現在のレンダーが終わる前に新しいレンダーがトリガされます。これにより、無限ループが発生し、アプリがクラッシュします。
 
-## Common Violations {/*common-violations*/}
+## よくある違反 {/*common-violations*/}
 
-### Invalid {/*invalid*/}
+### 無効な例 {/*invalid*/}
 
 ```js {expectedErrors: {'react-compiler': [4]}}
 // ❌ Unconditional setState directly in render
@@ -25,7 +25,7 @@ function Component({value}) {
 }
 ```
 
-### Valid {/*valid*/}
+### 有効な例 {/*valid*/}
 
 ```js
 // ✅ Derive during render
@@ -65,11 +65,11 @@ function Component({ items }) {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### I want to sync state to a prop {/*clamp-state-to-prop*/}
+### state を props と同期したい {/*clamp-state-to-prop*/}
 
-A common problem is trying to "fix" state after it renders. Suppose you want to keep a counter from exceeding a `max` prop:
+よくある問題は、レンダーした後で state を「修正」しようとすることです。例えば、以下のようにカウンタが `max` プロパティの値を超えないようにしたいとします。
 
 ```js
 // ❌ Wrong: clamps during render
@@ -88,9 +88,9 @@ function Counter({max}) {
 }
 ```
 
-As soon as `count` exceeds `max`, an infinite loop is triggered.
+`count` が `max` を超えると、すぐに無限ループが発生します。
 
-Instead, it's often better to move this logic to the event (the place where the state is first set). For example, you can enforce the maximum at the moment you update state:
+代わりに、このロジックをイベント（最初に state を設定する場所）へ移す方が良い場合が多いです。例えば、state を更新する時点で、上限を超えないようにできます。
 
 ```js
 // ✅ Clamp when updating
@@ -105,6 +105,6 @@ function Counter({max}) {
 }
 ```
 
-Now the setter only runs in response to the click, React finishes the render normally, and `count` never crosses `max`.
+これで、セッタはクリックに応じてのみ実行され、React はレンダーを正常に完了し、`count` が `max` を超えることはなくなります。
 
-In rare cases, you may need to adjust state based on information from previous renders. For those, follow [this pattern](https://react.dev/reference/react/useState#storing-information-from-previous-renders) of setting state conditionally.
+まれに、以前のレンダーの情報に基づいて state を調整する必要があるかもしれません。その場合は、条件付きで state を設定する[こちらのパターン](https://react.dev/reference/react/useState#storing-information-from-previous-renders)に従ってください。
