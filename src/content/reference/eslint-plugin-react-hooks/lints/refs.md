@@ -4,47 +4,47 @@ title: refs
 
 <Intro>
 
-Validates correct usage of refs, not reading/writing during render. See the "pitfalls" section in [`useRef()` usage](/reference/react/useRef#usage).
+レンダー中に読み書きせずに ref を正しく使っているかについて検証します。[`useRef()` の使用法](/reference/react/useRef#usage)にある「落とし穴」の節を参照してください。
 
 </Intro>
 
-## Rule Details {/*rule-details*/}
+## ルールの詳細 {/*rule-details*/}
 
-Refs hold values that aren't used for rendering. Unlike state, changing a ref doesn't trigger a re-render. Reading or writing `ref.current` during render breaks React's expectations. Refs might not be initialized when you try to read them, and their values can be stale or inconsistent.
+ref は、レンダーに使われない値を保持します。state とは異なり、ref を変更しても再レンダーは起きません。レンダー中に `ref.current` を読み書きすると、React の前提に反します。読み取ろうとしたときに ref が初期化されていなかったり、値が古くなっていたり、一貫性がなかったりする可能性があります。
 
-## How It Detects Refs {/*how-it-detects-refs*/}
+## ref を検出する方法 {/*how-it-detects-refs*/}
 
-The lint only applies these rules to values it knows are refs. A value is inferred as a ref when the compiler sees any of the following patterns:
+リンタは、ref だと分かっている値にのみ、これらのルールを適用します。コンパイラが以下のいずれかのパターンを見つけると、その値は ref だと推論されます。
 
-- Returned from `useRef()` or `React.createRef()`.
+- `useRef()` または `React.createRef()` から返された値。
 
   ```js
   const scrollRef = useRef(null);
   ```
 
-- An identifier named `ref` or ending in `Ref` that reads from or writes to `.current`.
+- 名前が `ref`、または末尾が `Ref` で、その `.current` が読み書きされる識別子。
 
   ```js
   buttonRef.current = node;
   ```
 
-- Passed through a JSX `ref` prop (for example `<div ref={someRef} />`).
+- JSX の `ref` プロパティを通じて渡される値（例えば `<div ref={someRef} />`）。
 
   ```jsx
   <input ref={inputRef} />
   ```
 
-Once something is marked as a ref, that inference follows the value through assignments, destructuring, or helper calls. This lets the lint surface violations even when `ref.current` is accessed inside another function that received the ref as an argument.
+ある値が ref だと判断されると、その推論は、代入や分割代入、ヘルパ関数の呼び出しを経ても、その値に引き継がれます。これにより、ref を引数として受け取った別の関数内で `ref.current` にアクセスしている場合でも、リンタは違反を報告できます。
 
-## Common Violations {/*common-violations*/}
+## よくある違反 {/*common-violations*/}
 
-- Reading `ref.current` during render
-- Updating `refs` during render
-- Using `refs` for values that should be state
+- レンダー中に `ref.current` を読み取る
+- レンダー中に ref を更新する
+- state にすべき値に ref を使う
 
-### Invalid {/*invalid*/}
+### 無効な例 {/*invalid*/}
 
-Examples of incorrect code for this rule:
+このルールに違反するコードの例です。
 
 ```js
 // ❌ Reading ref during render
@@ -62,9 +62,9 @@ function Component({value}) {
 }
 ```
 
-### Valid {/*valid*/}
+### 有効な例 {/*valid*/}
 
-Examples of correct code for this rule:
+このルールに従ったコードの例です。
 
 ```js
 // ✅ Read ref in effects/handlers
@@ -108,8 +108,8 @@ function Component() {
 }
 ```
 
-## Troubleshooting {/*troubleshooting*/}
+## トラブルシューティング {/*troubleshooting*/}
 
-### The lint flagged my plain object with `.current` {/*plain-object-current*/}
+### `.current` を持つだけのプレーンなオブジェクトがリントで指摘された {/*plain-object-current*/}
 
-The name heuristic intentionally treats `ref.current` and `fooRef.current` as real refs. If you're modeling a custom container object, pick a different name (for example, `box`) or move the mutable value into state. Renaming avoids the lint because the compiler stops inferring it as a ref.
+名前に基づく判定では、`ref.current` と `fooRef.current` を意図的に本物の ref として扱います。独自のコンテナオブジェクトを作っている場合は、別の名前（例えば `box`）を選ぶか、書き換え可能な値を state に移動してください。名前を変えることでコンパイラがその値を ref だと推論しなくなるため、このリントの対象から外れます。
