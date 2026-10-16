@@ -90,9 +90,9 @@ function TodoList({ todos, tab, theme }) {
 
 初回レンダーでは、`useMemo` から返される<CodeStep step={3}>値</CodeStep>は、<CodeStep step={1}>計算関数</CodeStep>を呼び出した結果になります。
 
-次回以降のレンダーでは、今回のレンダー時に渡した<CodeStep step={2}>依存配列</CodeStep>と、前回のレンダー時に渡した依存配列が比較されます。（[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) で比較します。）依存値のいずれも変化していない場合、`useMemo` は以前に計算した値を返します。変化している場合は、再度計算が実行され、新しい値が返されます。
+次回以降のレンダーでは、今回のレンダー時に渡した<CodeStep step={2}>依存配列</CodeStep>内の各依存値が、前回のレンダー時の対応する依存値と比較されます。（[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) で比較します。）依存値のいずれも変化していない場合、`useMemo` は以前に計算した値を返します。変化している場合は、再度計算が実行され、新しい値が返されます。
 
-つまり `useMemo` は、依存配列が変化しない限り、複数のレンダーを跨いで計算結果をキャッシュします。
+つまり `useMemo` は、依存値が変化しない限り、複数のレンダーを跨いで計算結果をキャッシュします。
 
 **これが役に立つ場面を見てみましょう。**
 
