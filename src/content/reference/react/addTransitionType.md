@@ -4,7 +4,7 @@ title: addTransitionType
 
 <Intro>
 
-`addTransitionType` lets you specify the cause of a transition.
+`addTransitionType` を使うと、トランジションの原因を指定できます。
 
 
 ```js
@@ -20,30 +20,30 @@ startTransition(() => {
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `addTransitionType` {/*addtransitiontype*/}
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-- `type`: The type of transition to add. This can be any string.
+- `type`: 追加するトランジションタイプ。任意の文字列を指定できます。
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-`addTransitionType` does not return anything.
+`addTransitionType` は何も返しません。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-- If multiple transitions are combined, all Transition Types are collected. You can also add more than one type to a Transition.
-- Transition Types are reset after each commit. This means a `<Suspense>` fallback will associate the types after a `startTransition`, but revealing the content does not.
+- 複数のトランジションがまとめて処理される場合、すべてのトランジションタイプが収集されます。1 つのトランジションに複数のタイプを追加することもできます。
+- トランジションタイプはコミットのたびにリセットされます。つまり、`startTransition` の後の `<Suspense>` フォールバックにはタイプが関連付けられますが、その後に表示されるコンテンツには関連付けられません。
 
 ---
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Adding the cause of a transition {/*adding-the-cause-of-a-transition*/}
+### トランジションの原因を追加する {/*adding-the-cause-of-a-transition*/}
 
-Call `addTransitionType` inside of `startTransition` to indicate the cause of a transition:
+`startTransition` の中で `addTransitionType` を呼び出し、トランジションの原因を明示します。
 
 ``` [[1, 6, "addTransitionType"], [2, 5, "startTransition", [3, 6, "'submit-click'"]]
 import { startTransition, addTransitionType } from 'react';
@@ -61,22 +61,22 @@ function Submit({action) {
 
 ```
 
-When you call <CodeStep step={1}>addTransitionType</CodeStep> inside the scope of <CodeStep step={2}>startTransition</CodeStep>, React will associate <CodeStep step={3}>submit-click</CodeStep> as one of the causes for the Transition.
+<CodeStep step={2}>startTransition</CodeStep> のスコープ内で <CodeStep step={1}>addTransitionType</CodeStep> を呼び出すと、React は <CodeStep step={3}>submit-click</CodeStep> をそのトランジションの原因のひとつとして関連付けます。
 
-Currently, Transition Types can be used to customize different animations based on what caused the Transition. You have three different ways to choose from for how to use them:
+現在、トランジションタイプは、トランジションの原因に応じてアニメーションを個別にカスタマイズするために使用できます。使い方は以下の 3 通りです。
 
-- [Customize animations using browser view transition types](#customize-animations-using-browser-view-transition-types)
-- [Customize animations using `View Transition` Class](#customize-animations-using-view-transition-class)
-- [Customize animations using `ViewTransition` events](#customize-animations-using-viewtransition-events)
+- [ブラウザのビュー遷移タイプを使ってアニメーションをカスタマイズする](#customize-animations-using-browser-view-transition-types)
+- [ビュー遷移クラスを使ってアニメーションをカスタマイズする](#customize-animations-using-view-transition-class)
+- [`ViewTransition` イベントを使ってアニメーションをカスタマイズする](#customize-animations-using-viewtransition-events)
 
-In the future, we plan to support more use cases for using the cause of a transition.
+将来的には、トランジションの原因を利用したユースケースをさらにサポートしていく予定です。
 
 ---
-### Customize animations using browser view transition types {/*customize-animations-using-browser-view-transition-types*/}
+### ブラウザのビュー遷移タイプを使ってアニメーションをカスタマイズする {/*customize-animations-using-browser-view-transition-types*/}
 
-When a [`ViewTransition`](/reference/react/ViewTransition) activates from a transition, React adds all the Transition Types as browser [view transition types](https://www.w3.org/TR/css-view-transitions-2/#active-view-transition-pseudo-examples) to the element.
+トランジションによって [`ViewTransition`](/reference/react/ViewTransition) が起動すると、React はすべてのトランジションタイプを、ブラウザの[ビュー遷移タイプ (view transition types)](https://www.w3.org/TR/css-view-transitions-2/#active-view-transition-pseudo-examples) として要素に追加します。
 
-This allows you to customize different animations based on CSS scopes:
+これにより、CSS のスコープに基づいてアニメーションを個別にカスタマイズできます。
 
 ```js [11]
 function Component() {
@@ -103,9 +103,9 @@ startTransition(() => {
 
 ---
 
-### Customize animations using `View Transition` Class {/*customize-animations-using-view-transition-class*/}
+### ビュー遷移クラスを使ってアニメーションをカスタマイズする {/*customize-animations-using-view-transition-class*/}
 
-You can customize animations for an activated `ViewTransition` based on type by passing an object to the View Transition Class:
+ビュー遷移クラスにオブジェクトを渡すことで、起動した `ViewTransition` のアニメーションをタイプに応じてカスタマイズできます。
 
 ```js
 function Component() {
@@ -125,9 +125,9 @@ startTransition(() => {
 });
 ```
 
-If multiple types match, then they're joined together. If no types match then the special "default" entry is used instead. If any type has the value "none" then that wins and the ViewTransition is disabled (not assigned a name).
+複数のタイプが一致した場合、それらは結合されます。一致するタイプがない場合は、代わりに特別な "default" エントリが使われます。いずれかのタイプの値が "none" の場合はそれが優先され、ViewTransition は無効化されます（名前が割り当てられません）。
 
-These can be combined with enter/exit/update/layout/share props to match based on kind of trigger and Transition Type.
+これらを enter/exit/update/layout/share の各 props と組み合わせることで、トリガの種類とトランジションタイプの組み合わせに応じてアニメーションを指定できます。
 
 ```js
 <ViewTransition enter={{
@@ -142,9 +142,9 @@ exit={{
 
 ---
 
-### Customize animations using `ViewTransition` events {/*customize-animations-using-viewtransition-events*/}
+### `ViewTransition` イベントを使ってアニメーションをカスタマイズする {/*customize-animations-using-viewtransition-events*/}
 
-You can imperatively customize animations for an activated `ViewTransition` based on type using View Transition events:
+ビュー遷移イベントを使うことで、起動した `ViewTransition` のアニメーションを、タイプに応じて命令的にカスタマイズできます。
 
 ```
 <ViewTransition onUpdate={(inst, types) => {
@@ -158,4 +158,4 @@ You can imperatively customize animations for an activated `ViewTransition` base
 }}>
 ```
 
-This allows you to pick different imperative Animations based on the cause.
+これにより、原因に応じて異なるアニメーションを命令的に選択できます。
