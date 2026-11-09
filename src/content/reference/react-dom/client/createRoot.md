@@ -90,7 +90,11 @@ React は `root` に `<App />` を表示し、その内部の DOM の管理を�
 
 * 同じルートに対して `render` を複数回呼び出すと、React は最新の JSX を反映するために必要なだけの DOM の更新を行います。React は、渡された JSX を以前にレンダーしたツリーと[「マッチング」](/learn/preserving-and-resetting-state)して、DOM のどの部分が再利用でき、どの部分を再作成する必要があるのかを決定します。同じルートに対して複数回 `render` を呼び出すことは、ルートコンポーネントで [`set` 関数](/reference/react/useState#setstate)を呼び出すことに似ており、React は不必要な DOM 更新を回避します。
 
+<<<<<<< HEAD
 * レンダーは一度始まると同期的に実行されますが、`root.render(...)` 自体は同期的ではありません。つまり、`root.render()` の後に書かれたコードが、そのレンダーで発生するエフェクト（`useLayoutEffect` や `useEffect`）よりも先に実行される場合があります。これは通常問題なく、調整が必要となることは滅多にありません。エフェクトのタイミングが重要となる稀なケースでは、[`flushSync`](https://react.dev/reference/react-dom/flushSync) で `root.render(...)` をラップすることで、初回レンダーを完全に同期的に実行できます。
+=======
+* Although rendering is synchronous once it starts, `root.render(...)` is not. This means code after `root.render()` may run before any effects (`useLayoutEffect`, `useEffect`) of that specific render are fired. This is usually fine and rarely needs adjustment. In rare cases where effect timing matters, you can wrap `root.render(...)` in [`flushSync`](/reference/react-dom/flushSync) to ensure the initial render runs fully synchronously.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
   ```js
   const root = createRoot(document.getElementById('root'));
@@ -379,7 +383,11 @@ const root = createRoot(container, {
 1. スローされた <CodeStep step={2}>error</CodeStep>。
 2. <CodeStep step={3}>errorInfo</CodeStep> オブジェクト。エラーの <CodeStep step={4}>componentStack</CodeStep> を含んでいる。
 
+<<<<<<< HEAD
 `onUncaughtError` と `onRecoverableError` を組み合わせて、独自のエラーレポーティングのシステムを実装できます。
+=======
+Together with `onUncaughtError` and `onRecoverableError`, you can implement your own error reporting system:
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 <Sandpack>
 
@@ -419,7 +427,7 @@ const container = document.getElementById("root");
 const root = createRoot(container, {
   // Keep in mind to remove these options in development to leverage
   // React's default handlers or implement your own overlay for development.
-  // The handlers are only specfied unconditionally here for demonstration purposes.
+  // The handlers are only specified unconditionally here for demonstration purposes.
   onCaughtError: onCaughtErrorProd,
   onRecoverableError: onRecoverableErrorProd,
   onUncaughtError: onUncaughtErrorProd,

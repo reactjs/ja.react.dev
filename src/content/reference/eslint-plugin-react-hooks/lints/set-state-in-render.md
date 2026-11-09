@@ -107,4 +107,8 @@ function Counter({max}) {
 
 これで、セッタはクリックに応じてのみ実行され、React はレンダーを正常に完了し、`count` が `max` を超えることはなくなります。
 
+<<<<<<< HEAD
 まれに、以前のレンダーの情報に基づいて state を調整する必要があるかもしれません。その場合は、条件付きで state を設定する[こちらのパターン](https://react.dev/reference/react/useState#storing-information-from-previous-renders)に従ってください。
+=======
+In rare cases, you may need to adjust state based on information from previous renders. For those, follow [this pattern](/reference/react/useState#storing-information-from-previous-renders) of setting state conditionally.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3

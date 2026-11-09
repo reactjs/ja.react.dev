@@ -144,7 +144,11 @@ function TableContainer({ items }) {
 - React Compiler は React コンポーネントとフックのみをメモ化し、すべての関数をメモ化するわけではない
 - React Compiler のメモ化は複数のコンポーネントやフック間で共有されない
 
+<<<<<<< HEAD
 そのため、`expensivelyProcessAReallyLargeArrayOfObjects` が多くの異なるコンポーネントで使用される場合、まったく同じ入力が渡されたとしても、その高コストな計算が繰り返し実行されてしまいます。コードをより複雑にする前に、[プロファイリング](reference/react/useMemo#how-to-tell-if-a-calculation-is-expensive)を行って、本当にそれほど高コストかどうかを確認することをお勧めします。
+=======
+So if `expensivelyProcessAReallyLargeArrayOfObjects` was used in many different components, even if the same exact items were passed down, that expensive calculation would be run repeatedly. We recommend [profiling](/reference/react/useMemo#how-to-tell-if-a-calculation-is-expensive) first to see if it really is that expensive before making code more complicated.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 </DeepDive>
 
 ## コンパイラを試すべきか？ {/*should-i-try-out-the-compiler*/}

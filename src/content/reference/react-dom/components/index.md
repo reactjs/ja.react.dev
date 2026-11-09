@@ -24,6 +24,7 @@ React は、ブラウザ組み込みのすべての [HTML](https://developer.moz
 
 以下のブラウザ組み込みコンポーネントはユーザからの入力を受け付けます。
 
+* [`<form>`](/reference/react-dom/components/form)
 * [`<input>`](/reference/react-dom/components/input)
 * [`<select>`](/reference/react-dom/components/select)
 * [`<textarea>`](/reference/react-dom/components/textarea)
@@ -83,7 +84,7 @@ React はブラウザ組み込みのすべての HTML コンポーネントを�
 * [`<figcaption>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figcaption)
 * [`<figure>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure)
 * [`<footer>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer)
-* [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
+* [`<form>`](/reference/react-dom/components/form)
 * [`<h1>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/h1)
 * [`<head>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head)
 * [`<header>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header)
@@ -99,12 +100,12 @@ React はブラウザ組み込みのすべての HTML コンポーネントを�
 * [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label)
 * [`<legend>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/legend)
 * [`<li>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li)
-* [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link)
+* [`<link>`](/reference/react-dom/components/link)
 * [`<main>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main)
 * [`<map>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/map)
 * [`<mark>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/mark)
 * [`<menu>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/menu)
-* [`<meta>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta)
+* [`<meta>`](/reference/react-dom/components/meta)
 * [`<meter>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meter)
 * [`<nav>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav)
 * [`<noscript>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/noscript)
@@ -123,7 +124,7 @@ React はブラウザ組み込みのすべての HTML コンポーネントを�
 * [`<ruby>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ruby)
 * [`<s>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/s)
 * [`<samp>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/samp)
-* [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script)
+* [`<script>`](/reference/react-dom/components/script)
 * [`<section>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section)
 * [`<select>`](/reference/react-dom/components/select)
 * [`<slot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)
@@ -131,7 +132,7 @@ React はブラウザ組み込みのすべての HTML コンポーネントを�
 * [`<source>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source)
 * [`<span>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span)
 * [`<strong>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/strong)
-* [`<style>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style)
+* [`<style>`](/reference/react-dom/components/style)
 * [`<sub>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/sub)
 * [`<summary>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary)
 * [`<sup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/sup)
@@ -144,7 +145,7 @@ React はブラウザ組み込みのすべての HTML コンポーネントを�
 * [`<th>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th)
 * [`<thead>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead)
 * [`<time>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time)
-* [`<title>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title)
+* [`<title>`](/reference/react-dom/components/title)
 * [`<tr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr)
 * [`<track>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track)
 * [`<u>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/u)
@@ -187,7 +188,11 @@ React はブラウザ組み込みのすべての HTML コンポーネントを�
 <my-element value={[1,2,3]}></my-element>
 ```
 
+<<<<<<< HEAD
 ただし React は、対応するクラスのコンストラクタ内に当該プロパティ名が出現する場合、カスタム要素のプロパティに任意の値を渡すことができる、と認識します。
+=======
+React will, however, recognize a custom element's property as one that it may pass arbitrary values to if the property name shows up on the class during construction:
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 <Sandpack>
 

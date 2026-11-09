@@ -530,7 +530,11 @@ React はコンポーネント間あるいはモジュール間の関係性を�
 
 React レンダーツリーとはコンポーネントの親子関係を表現したものです。
 
+<<<<<<< HEAD
 <Diagram name="generic_render_tree" height={250} width={500} alt="5 つのノードからなるツリー。それぞれのノードはコンポーネントを表している。ルートノードはツリーの最上部にあり 'Root Component' と書かれている。そこから 2 本の矢印が下に伸びており 'Component A' および 'Component C' と書かれたノードを指している。それぞれの矢印には 'renders' と書かれている。'Component A' からは 'renders' と書かれた矢印が 'Component B' と書かれたノードに伸びている。'Component C' からは 'renders' と書かれた矢印が 'Component D' と書かれたノードに伸びている。">
+=======
+<Diagram name="generic_render_tree" height={250} width={500} alt="A tree graph with five nodes, with each node representing a component. The root node is located at the top of the tree graph and is labelled 'Root Component'. It has two arrows extending down to two nodes labelled 'Component A' and 'Component C'. Each of the arrows is labelled with 'renders'. 'Component A' has a single 'renders' arrow to a node labelled 'Component B'. 'Component C' has a single 'renders' arrow to a node labelled 'Component D'.">
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 React のレンダーツリーの例
 

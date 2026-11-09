@@ -79,7 +79,11 @@ function Component({user}) {
 }
 ```
 
+<<<<<<< HEAD
 副作用によって React の state を外部の状態と同期する（またはその逆を行う）場合は、`useEffect` を使ってください。
+=======
+If the side effect synchronizes React state with some external state (or vice versa), use `useEffect`:
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 ```js
 // ✅ Good: Synchronization in useEffect

@@ -65,11 +65,19 @@ async function handler(request, response) {
 
 #### 返り値 {/*returns*/}
 
+<<<<<<< HEAD
 `prerender` はプロミスを返します。
 - レンダーが成功した場合、プロミスは以下を含んだオブジェクトに解決 (resolve) されます。
   - `prelude`: HTML の [Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API)。このストリームを使ってレスポンスを送信したり、ストリームを文字列に一括して読み出したりできます。
   - `postponed`: `prerender` が終了しなかった場合には、[`resume`](/reference/react-dom/server/resume) に渡すために用いる、JSON シリアライズ可能な非公開のオブジェクト。そうでない場合は `null` で、これは `predule` に必要なすべてのコンテンツが入っており `resume` が必要ないことを表す。
 - レンダーが失敗した場合は、Promise は拒否 (reject) されます。[これを使用してフォールバックシェルを出力します](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell)。
+=======
+`prerender` returns a Promise:
+- If the rendering is successful, the Promise will resolve to an object containing:
+  - `prelude`: a [Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) of HTML. You can use this stream to send a response in chunks, or you can read the entire stream into a string.
+  - `postponed`: a JSON-serializeable, opaque object that can be passed to [`resume`](/reference/react-dom/server/resume) if `prerender` did not finish. Otherwise `null` indicating that the `prelude` contains all the content and no resume is necessary.
+- If rendering fails, the Promise will be rejected. [Use this to output a fallback shell.](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell)
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 #### 注意点 {/*caveats*/}
 

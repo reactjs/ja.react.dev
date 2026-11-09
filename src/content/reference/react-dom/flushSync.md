@@ -196,7 +196,11 @@ useEffect(() => {
 }, []);
 ```
 
+<<<<<<< HEAD
 これにより、現在のレンダーを完了させたうえで、更新をフラッシュするための別の同期レンダーをスケジュールできます。
+=======
+This will allow the current render to finish and schedule another synchronous render to flush the updates.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 <Pitfall>
 
