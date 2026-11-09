@@ -4,7 +4,7 @@ title: resumeToPipeableStream
 
 <Intro>
 
-`resumeToPipeableStream` streams a pre-rendered React tree  to a pipeable [Node.js Stream.](https://nodejs.org/api/stream.html)
+`resumeToPipeableStream` はプリレンダーされた React ツリーを、パイプ可能な [Node.js ストリーム](https://nodejs.org/api/stream.html)にストリーミングします。
 
 ```js
 const {pipe, abort} = await resumeToPipeableStream(reactNode, postponedState, options?)
@@ -16,17 +16,17 @@ const {pipe, abort} = await resumeToPipeableStream(reactNode, postponedState, op
 
 <Note>
 
-This API is specific to Node.js. Environments with [Web Streams,](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) like Deno and modern edge runtimes, should use [`resume`](/reference/react-dom/server/renderToReadableStream) instead.
+この API は Node.js 専用です。Deno やモダンなエッジランタイムなどの [Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) を用いる環境では、[`resume`](/reference/react-dom/server/renderToReadableStream) を代わりに使用してください。
 
 </Note>
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `resumeToPipeableStream(node, postponed, options?)` {/*resume-to-pipeable-stream*/}
 
-Call `resumeToPipeableStream` to resume rendering a pre-rendered React tree as HTML into a [Node.js Stream.](https://nodejs.org/api/stream.html#writable-streams)
+`resumeToPipeableStream` を呼び出して、プリレンダーされた React ツリーの HTML としてのレンダーを再開し、[Node.js ストリーム](https://nodejs.org/api/stream.html#writable-streams)に出力します。
 
 ```js
 import { resumeToPipeableStream } from 'react-dom/server';
@@ -42,38 +42,38 @@ async function handler(request, response) {
 }
 ```
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-* `reactNode`: The React node you called `prerender` with. For example, a JSX element like `<App />`. It is expected to represent the entire document, so the `App` component should render the `<html>` tag.
-* `postponedState`: The opaque `postpone` object returned from a [prerender API](/reference/react-dom/static/index), loaded from wherever you stored it (e.g. redis, a file, or S3).
-* **optional** `options`: An object with streaming options.
-  * **optional** `nonce`: A [`nonce`](http://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#nonce) string to allow scripts for [`script-src` Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src).
-  * **optional** `onAllReady`: A callback that fires when all rendering is complete, including both the shell and all additional content. You can call `pipe` here instead of in `onShellReady` for crawlers and static generation. The stream will contain the final HTML.
-  * **optional** `onBrowserBailout`: A callback React calls when it recovers from [`browser()`](/reference/react-dom/browser) by leaving a Suspense fallback for the browser to replace. It receives an `Error` describing the browser-only render and an `errorInfo` object containing the `componentStack`. If a reason was passed to `browser`, it is available as `error.cause`. By default, React does nothing. [See how to report browser-only rendering.](/reference/react-dom/browser#reporting-browser-only-rendering-on-the-server)
-  * **optional** `onError`: A callback that fires whenever there is a server error, whether [recoverable](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-outside-the-shell) or [not.](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell) By default, this only calls `console.error`. If you override it to [log crash reports,](/reference/react-dom/server/renderToReadableStream#logging-crashes-on-the-server) make sure that you still call `console.error`.
-  * **optional** `onShellReady`: A callback that fires right after the [shell](#specifying-what-goes-into-the-shell) has finished. You can call `pipe` here to start streaming. React will [stream the additional content](#streaming-more-content-as-it-loads) after the shell along with the inline `<script>` tags that replace the HTML loading fallbacks with the content.
-  * **optional** `onShellError`: A callback that fires if there was an error rendering the shell. It receives the error as an argument. No bytes were emitted from the stream yet, and neither `onShellReady` nor `onAllReady` will get called, so you can [output a fallback HTML shell](#recovering-from-errors-inside-the-shell) or use the prelude.
+* `reactNode`: `prerender` を呼び出したときに渡した React ノード。例えば `<App />` のような JSX 要素です。これはドキュメント全体を表すことが期待されているため、`App` コンポーネントは `<html>` タグをレンダーする必要があります。
+* `postponedState`: [プリレンダー API](/reference/react-dom/static/index) が返した内部構造非公開の `postpone` オブジェクト。保存しておいた場所（redis、ファイル、S3 など）から読み込んだものを渡します。
+* **省略可能** `options`: ストリーミングに関するオプションを含むオブジェクト。
+  * **省略可能** `nonce`: [`script-src` Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src) においてスクリプトを許可するための [`nonce`](http://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#nonce) 文字列。
+  * **省略可能** `onAllReady`: シェルとすべての追加コンテンツの両方を含むすべてのレンダーが完了したときに呼び出されるコールバック。クローラや静的生成向けの場合に、`onShellReady` の代わりにここで `pipe` を呼び出せます。ストリームには最終的な HTML が含まれるようになります。
+  * **省略可能** `onBrowserBailout`: [`browser()`](/reference/react-dom/browser) によるサーバレンダリングの中断が起き、ブラウザ側で置き換えるためのサスペンスフォールバックが残った時点で React が呼び出すコールバック。ブラウザのみでレンダーされるという内容の `Error` と、`componentStack` を含む `errorInfo` オブジェクトを受け取ります。`browser` に理由が渡されていた場合、その理由は `error.cause` から取得できます。デフォルトでは React は何も行いません。[ブラウザオンリーのレンダー発生をサーバ上で報告する方法を参照](/reference/react-dom/browser#reporting-browser-only-rendering-on-the-server)。
+  * **省略可能** `onError`: サーバエラーが発生するたびに発火するコールバック。[復帰可能なエラー](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-outside-the-shell)の場合も[そうでないエラー](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell)の場合もあります。デフォルトでは `console.error` のみを呼び出します。これを上書きして[クラッシュレポートをログに記録する](/reference/react-dom/server/renderToReadableStream#logging-crashes-on-the-server)場合でも `console.error` を呼び出すようにしてください。
+  * **省略可能** `onShellReady`: [シェル](#specifying-what-goes-into-the-shell)のレンダーが完了した直後に呼び出されるコールバック。ここで `pipe` を呼び出してストリーミングを開始できます。React はシェルを送信した後に、[追加コンテンツ](#streaming-more-content-as-it-loads)と、HTML のローディングフォールバックを追加コンテンツで置換するためのインライン `<script>` タグをストリーミングします。
+  * **省略可能** `onShellError`: シェルのレンダー中にエラーが発生すると呼び出されるコールバック。引数としてエラーを受け取ります。ストリームからのバイト列送信はまだ起きておらず、`onShellReady` や `onAllReady` はコールされなくなるため、[フォールバック用の HTML シェルを出力](#recovering-from-errors-inside-the-shell)するか、prelude を使用できます。
 
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-`resumeToPipeableStream` returns an object with two methods:
+`resumeToPipeableStream` は以下の 2 つのメソッドを含んだオブジェクトを返します。
 
-* `pipe` outputs the HTML into the provided [Writable Node.js Stream.](https://nodejs.org/api/stream.html#writable-streams) Call `pipe` in `onShellReady` if you want to enable streaming, or in `onAllReady` for crawlers and static generation.
-* `abort` lets you [abort server rendering](#aborting-server-rendering) and render the rest on the client.
+* `pipe`: HTML を指定された [Node.js の Writable ストリーム](https://nodejs.org/api/stream.html#writable-streams)に出力します。`pipe` の呼び出しは、ストリーミングを有効にしたい場合は `onShellReady` で、クローラや静的生成向けの出力を行いたい場合は `onAllReady` で行ってください。
+* `abort`: [サーバでのレンダーを中止](#aborting-server-rendering)してクライアントで残りをレンダーするために使用します。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-- `resumeToPipeableStream` does not accept options for `bootstrapScripts`, `bootstrapScriptContent`, or `bootstrapModules`. Instead, you need to pass these options to the `prerender` call that generates the `postponedState`. You can also inject bootstrap content into the writable stream manually.
-- `resumeToPipeableStream` does not accept `identifierPrefix` since the prefix needs to be the same in both `prerender` and `resumeToPipeableStream`.
-- Since `nonce` cannot be provided to prerender, you should only provide `nonce` to `resumeToPipeableStream` if you're not providing scripts to prerender.
-- `resumeToPipeableStream` re-renders from the root until it finds a component that was not fully pre-rendered. Only fully prerendered Components (the Component and its children finished prerendering) are skipped entirely.
+- `resumeToPipeableStream` は `bootstrapScripts`、`bootstrapScriptContent`、`bootstrapModules` のオプションを受け付けません。代わりに、`postponedState` を生成する `prerender` の呼び出しにこれらのオプションを渡す必要があります。ブートストラップ用のコンテンツを書き込み可能ストリームに手動で注入することもできます。
+- `resumeToPipeableStream` は `identifierPrefix` を受け付けません。プレフィックスは `prerender` と `resumeToPipeableStream` で同じである必要があるためです。
+- プリレンダーには `nonce` を渡せないため、`resumeToPipeableStream` に `nonce` を渡すのは、プリレンダーにスクリプトを渡していない場合だけにしてください。
+- `resumeToPipeableStream` は、プリレンダーが完了していないコンポーネントが見つかるまで、ルートから再レンダーします。完全にプリレンダーされたコンポーネント（そのコンポーネントと子のプリレンダーがすべて完了したもの）だけが、まるごとスキップされます。
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Further reading {/*further-reading*/}
+### さらに学ぶ {/*further-reading*/}
 
-Resuming behaves like `renderToReadableStream`. For more examples, check out the [usage section of `renderToReadableStream`](/reference/react-dom/server/renderToReadableStream#usage).
-The [usage section of `prerender`](/reference/react-dom/static/prerender#usage) includes examples of how to use `prerenderToNodeStream` specifically.
+再開は `renderToReadableStream` と同様に動作します。その他の例については、[`renderToReadableStream` の使用法のセクション](/reference/react-dom/server/renderToReadableStream#usage)を参照してください。
+`prerenderToNodeStream` に特化した使用例は、[`prerender` の使用法のセクション](/reference/react-dom/static/prerender#usage)にあります。
