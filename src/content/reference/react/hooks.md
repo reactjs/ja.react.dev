@@ -16,8 +16,14 @@ title: "組み込みの React フック"
 
 コンポーネントに state を追加するには、次のフックのいずれかを使います：
 
+<<<<<<< HEAD
 * [`useState`](/reference/react/useState) は直接的に更新できる state 変数を定義します。
 * [`useReducer`](/reference/react/useReducer) は、[リデューサ関数](/learn/extracting-state-logic-into-a-reducer)内に書いたロジックを用いて更新を行う state 変数を定義します。
+=======
+* [`useState`](/reference/react/useState) declares a state variable that you can update directly.
+* [`useReducer`](/reference/react/useReducer) declares a state variable with the update logic inside a [reducer function.](/learn/extracting-state-logic-into-a-reducer)
+* [`useOptimistic`](/reference/react/useOptimistic) lets you show a different state while an async action is pending.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 ```js
 function ImageGallery() {

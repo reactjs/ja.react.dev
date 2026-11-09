@@ -257,7 +257,11 @@ button {
 
 </Sandpack>
 
+<<<<<<< HEAD
 "Add Ticket" をクリックするたびに、React は `addToCartAction` の呼び出しをキューに入れます。React はすべてのチケットが追加されるまで保留中状態を表示し、その後、最終的な state で再レンダーします。
+=======
+Every time you click "Add Ticket", React queues a call to `addToCartAction`. React shows the pending state until all the tickets are added, and then re-renders with the final state.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 <DeepDive>
 
@@ -811,20 +815,20 @@ export default function Checkout() {
   const abortRef = useRef(null);
   const [count, dispatchAction, isPending] = useActionState(updateCartAction, 0);
 
-  async function addAction() {
+  function addAction() {
     if (abortRef.current) {
       abortRef.current.abort();
     }
     abortRef.current = new AbortController();
-    await dispatchAction({ type: 'ADD', signal: abortRef.current.signal });
+    dispatchAction({ type: 'ADD', signal: abortRef.current.signal });
   }
 
-  async function removeAction() {
+  function removeAction() {
     if (abortRef.current) {
       abortRef.current.abort();
     }
     abortRef.current = new AbortController();
-    await dispatchAction({ type: 'REMOVE', signal: abortRef.current.signal });
+    dispatchAction({ type: 'REMOVE', signal: abortRef.current.signal });
   }
 
   return (
@@ -1184,14 +1188,80 @@ hr {
 
 この例では、ユーザがステッパの矢印をクリックすると、ボタンがフォームを送信し、`useActionState` がフォームデータを渡して `updateCartAction` を呼び出します。この例では、サーバが更新を確認している間、新しい数量を即座に表示するために `useOptimistic` を使っています。
 
+#### Displaying validation errors and preserving form values {/*displaying-validation-errors-and-preserving-form-values*/}
+
+Return validation errors and submitted values from the Action to display an error without clearing the affected fields. Try submitting a name with fewer than three characters:
+
+<Sandpack>
+
+```js src/App.js active
+import { useActionState } from 'react';
+import { updateName } from './api.js';
+
+const initialState = {
+  error: null,
+  submitted: null,
+};
+
+export default function UpdateName() {
+  const [state, submitAction, isPending] = useActionState(
+    updateName,
+    initialState
+  );
+
+  return (
+    <form action={submitAction}>
+      <label>
+        Name:{' '}
+        <input
+          name="name"
+          defaultValue={state.submitted?.get('name') ?? ''}
+          disabled={isPending}
+        />
+      </label>
+      <button type="submit" disabled={isPending}>Save</button>
+      {state.error && <p>{state.error}</p>}
+    </form>
+  );
+}
+```
+
+```js src/api.js
+export async function updateName(previousState, formData) {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  const name = formData.get('name');
+  if (typeof name !== 'string' || name.trim().length < 3) {
+    return {
+      error: 'Name must be at least three characters long',
+      submitted: formData,
+    };
+  }
+  return {
+    error: null,
+    submitted: null,
+  };
+}
+```
+
+</Sandpack>
+
+When validation fails, `updateName` returns an error and the submitted `FormData`. The component uses the submitted name as the input's new `defaultValue`, so React's automatic form reset preserves it. When validation succeeds, `submitted` is `null`, so the automatic reset clears the field.
+
 <RSC>
 
+<<<<<<< HEAD
 [サーバ関数](/reference/rsc/server-functions)と併用すると、`useActionState` により、ハイドレーション（React がサーバでレンダーされた HTML にアタッチする処理）が完了する前にサーバのレスポンスを表示できます。動的コンテンツを含むページでプログレッシブエンハンスメント（JavaScript の読み込み前でもフォームを動作可能にすること）を行うために、省略可能な `permalink` 引数を使うこともできます。通常、これはフレームワークが代わりに処理します。
 
 </RSC>
 
 フォームでアクションを使用する方法について詳しくは、[`<form>`](/reference/react-dom/components/form#handle-form-submission-with-a-server-function) のドキュメントを参照してください。
 
+=======
+The example above runs `updateName` in the browser. To display the error and preserve the submitted name before JavaScript loads, make `updateName` a [Server Function](/reference/rsc/server-functions). Keep passing `submitAction` to the form's `action` prop. React can then display the Server Function's returned value before hydration completes. See [preserving form values before JavaScript loads](/reference/react-dom/components/form#preserving-form-values-before-javascript-loads) for the setup. On pages with dynamic content, you can also use the optional [`permalink`](#parameters) parameter for progressive enhancement.
+
+</RSC>
+
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 ---
 
 ### エラーを処理する {/*handling-errors*/}
@@ -1200,7 +1270,11 @@ hr {
 
 バックエンドから返される "quantity not available" のような既知のバリデーションエラーについては、`reducerAction` の state の一部として返し、UI に表示できます。
 
+<<<<<<< HEAD
 `undefined is not a function` のような未知のエラーについては、エラーをスローできます。React はキューに入っているすべてのアクションをキャンセルし、`useActionState` フックからエラーを再スローすることで、最も近い[エラーバウンダリ](/reference/react/Component#catching-rendering-errors-with-an-error-boundary)を表示します。
+=======
+For unknown errors, such as `undefined is not a function`, you can throw an error. React will cancel all queued Actions and show the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) by rethrowing the error from the `useActionState` hook.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 <Sandpack>
 
@@ -1216,7 +1290,7 @@ function Checkout() {
       const result = await addToCart(prevState.count, quantity);
       if (result.error) {
         // Return the error from the API as state
-        return {...prevState, error: `Could not add quanitiy ${quantity}: ${result.error}`};
+        return {...prevState, error: `Could not add quantity ${quantity}: ${result.error}`};
       }
 
       if (!isPending) {

@@ -41,8 +41,13 @@ March 16, 2023 by [Dan Abramov](https://bsky.app/profile/danabra.mov) and [Rache
 
 **新しいドキュメントでは、最初からフックを用いて React を学びます**。ドキュメントは主に 2 つのセクションに分かれています。
 
+<<<<<<< HEAD
 * **[React を学ぶ](/learn)** は、ゼロから React を学ぶ自己学習型のコースです。
 * **[API リファレンス](/reference)** では、すべての React API の詳細と使い方のサンプルが提供されています。
+=======
+* **[Learn React](/learn)** is a self-paced course that teaches React from scratch.
+* **[API Reference](/reference/react)** provides the details and usage examples for every React API.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 それぞれのセクションで見ることができる内容を詳しく見ていきましょう。
 
@@ -459,11 +464,19 @@ export default function PackingList() {
 
 [API リファレンス](/reference/react) では、すべての React API に専用のページが用意されています。これにはあらゆる種類の API が含まれます：
 
+<<<<<<< HEAD
 - 組み込みフックである [`useState`](/reference/react/useState) など。
 - 組み込みコンポーネントである [`<Suspense>`](/reference/react/Suspense) など。
 - 組み込みブラウザコンポーネントである [`<input>`](/reference/react-dom/components/input) など。
 - フレームワーク向けの API である [`renderToPipeableStream`](/reference/react-dom/server/renderToReadableStream) など。
 - その他の React API である [`memo`](/reference/react/memo) など。
+=======
+- Built-in Hooks like [`useState`](/reference/react/useState).
+- Built-in components like [`<Suspense>`](/reference/react/Suspense).
+- Built-in browser components like [`<input>`](/reference/react-dom/components/input).
+- Framework-oriented APIs like [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream).
+- Other React APIs like [`memo`](/reference/react/memo).
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 各 API ページは少なくとも*リファレンス*と*使用法*の 2 つのセグメントに分かれていることに気付くでしょう。
 
@@ -607,7 +620,11 @@ button { display: block; margin-top: 10px; }
 
 </Recipes>
 
+<<<<<<< HEAD
 一部の API ページには、（よくある問題に対する）[トラブルシューティング](/reference/react/useEffect#troubleshooting)や、（非推奨の API に対する）[代替手段](/reference/react-dom/findDOMNode#alternatives)のセクションも含まれています。
+=======
+Some API pages also include [Troubleshooting](/reference/react/useEffect#troubleshooting) (for common problems) and [Alternatives](https://18.react.dev/reference/react-dom/findDOMNode#alternatives) (for deprecated APIs).
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 このアプローチにより、API リファレンスが引数を調べる手段としてだけでなく、その API を使用してどれだけ色々なことができるのか、他の API とどのように繋がっているのかを示す手段として役立つことを願っています。
 

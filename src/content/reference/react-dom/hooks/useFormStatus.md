@@ -54,7 +54,11 @@ export default function App() {
 
 以下のプロパティを持つ `status` オブジェクト。
 
+<<<<<<< HEAD
 * `pending`: ブーリアン。`true` の場合、親 `<form>` で送信が進行中であることを意味します。それ以外の場合は `false` となります。
+=======
+* `pending`: A boolean. `true` while the parent `<form>` is submitting an Action or [running a Transition from `onSubmit`](#display-a-pending-state-with-an-onsubmit-handler). Otherwise, `false`.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 * `data`: [`FormData` インターフェース](https://developer.mozilla.org/en-US/docs/Web/API/FormData)を実装したオブジェクト。親 `<form>` が送信中のデータを含んでいます。送信がアクティブでない場合や親 `<form>` がない場合は `null` になります。
 
@@ -72,8 +76,13 @@ export default function App() {
 
 ## 使用法 {/*usage*/}
 
+<<<<<<< HEAD
 ### フォーム送信中にステータスを表示 {/*display-a-pending-state-during-form-submission*/}
 フォームの送信中にそのステータスを表示するには、`<form>` 内でレンダーされるコンポーネントで `useFormStatus` フックを呼び出し、返された `pending` プロパティを読み取ります。
+=======
+### Display a pending state with an `action` prop {/*display-a-pending-state-during-form-submission*/}
+To display a pending state while a form is submitting, you can call the `useFormStatus` Hook in a component rendered in a `<form>` and read the `pending` property returned.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 以下では、フォームが送信中であることを示すために `pending` プロパティを使用しています。
 
@@ -111,6 +120,65 @@ export async function submitForm(query) {
 }
 ```
 </Sandpack>
+
+---
+
+### Display a pending state with an `onSubmit` handler {/*display-a-pending-state-with-an-onsubmit-handler*/}
+
+If you need to handle form submission in an `onSubmit` event handler instead of passing a function to the [`<form action>` prop](/reference/react-dom/components/form#handle-form-submission-with-an-action-prop), call [`event.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) and [start a Transition](/reference/react/startTransition) in the same event handler. A component inside the form can then use `useFormStatus` to read the pending state while the Action is running.
+
+<Sandpack>
+
+```js src/App.js
+import { startTransition } from 'react';
+import { useFormStatus } from 'react-dom';
+import { submitForm } from './submitForm.js';
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <button type='submit' disabled={pending}>
+      {pending ? 'Submitting...' : 'Submit'}
+    </button>
+  );
+}
+
+function Form({ submitAction }) {
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    startTransition(async () => {
+      await submitAction(formData);
+    });
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input name='query' />
+      <SubmitButton />
+    </form>
+  );
+}
+
+export default function App() {
+  async function submitAction(formData) {
+    await submitForm(formData);
+  }
+
+  return <Form submitAction={submitAction} />;
+}
+```
+
+```js src/submitForm.js hidden
+export async function submitForm(formData) {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+}
+```
+
+</Sandpack>
+
+Unlike a function passed to the `<form action>` prop, handling submission this way [does not automatically reset the form](/reference/react-dom/components/form#other-ways-to-control-form-resets).
+
 
 <Pitfall>
 

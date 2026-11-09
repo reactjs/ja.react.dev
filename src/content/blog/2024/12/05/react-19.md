@@ -389,7 +389,11 @@ React Server Components をバンドラやフレームワークでサポート�
 
 サーバアクションをサーバコンポーネント内で作成し props としてクライアントコンポーネントに渡すことも、クライアントコンポーネントでインポートして使用することもできます。
 
+<<<<<<< HEAD
 詳細については、[React サーバアクション](/reference/rsc/server-actions)のドキュメントをご覧ください。
+=======
+For more, see the docs for [React Server Actions](/reference/rsc/server-functions).
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 ## React 19 の改善点 {/*improvements-in-react-19*/}
 

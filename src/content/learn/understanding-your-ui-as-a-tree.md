@@ -135,7 +135,11 @@ React レンダーツリーのルートノードは、アプリの[ルートコ�
 
 #### レンダーツリー内の HTML タグはどこに？ {/*where-are-the-html-elements-in-the-render-tree*/}
 
+<<<<<<< HEAD
 上記のレンダーツリーの図には、各コンポーネントがレンダーする HTML タグについては載っていません。これは、レンダーツリーとは React の[コンポーネント](learn/your-first-component#components-ui-building-blocks)だけで構成されるものだからです。
+=======
+You'll notice in the above render tree, there is no mention of the HTML tags that each component renders. This is because the render tree is only composed of React [components](/learn/your-first-component#components-ui-building-blocks).
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 UI フレームワークとしての React は特定のプラットフォームに依存しません。react.dev ではウェブへレンダーする例が紹介されており、そこでは UI のプリミティブとして HTML マークアップが使用されます。しかし、React アプリは同様にモバイルやデスクトッププラットフォームにレンダーすることも可能であり、そこでは [UIView](https://developer.apple.com/documentation/uikit/uiview) や [FrameworkElement](https://learn.microsoft.com/en-us/dotnet/api/system.windows.frameworkelement?view=windowsdesktop-7.0) のような別の UI プリミティブが使用されるでしょう。
 

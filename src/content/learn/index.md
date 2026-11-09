@@ -336,7 +336,11 @@ function MyButton() {
 }
 ```
 
+<<<<<<< HEAD
 React は、再度コンポーネントの関数を呼び出します。今度は `count` が `1` になっています。次の呼び出しでは `2` になっています。次々と増えていきます。
+=======
+Calling `setCount` tells React to call your component function again. This is called a *re-render*. This time, `count` will be `1`. Then it will be `2`. And so on.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 同じコンポーネントを複数の場所でレンダーした場合、それぞれが独自の state を持ちます。それぞれのボタンを個別にクリックしてみてください：
 

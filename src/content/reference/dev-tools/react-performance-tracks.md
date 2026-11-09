@@ -140,8 +140,13 @@ Scheduler は、異なる優先度を持つタスクを管理するために使�
 
 サーバリクエストトラックは、最終的に React Server Component 内で使われるすべてのプロミス (Promise) を可視化します。これには、`fetch` の呼び出しや非同期 Node.js ファイル操作などの `async` 操作が含まれます。
 
+<<<<<<< HEAD
 React は、サードパーティのコードから開始されたプロミスを、ファーストパーティコードをブロックする操作全体の継続時間を表す単一のスパンに結合しようとします。
 例えば、内部的に複数回 `fetch` を呼び出す `getUser` というサードパーティライブラリのメソッドは、複数の `fetch` スパンを表示するのではなく、`getUser` という単一のスパンとして表されます。
+=======
+React will try to combine Promises that are started from inside third-party code into a single span representing the duration of the entire operation blocking 1st party code.
+For example, a third party library method called `getUser` that calls `fetch` internally multiple times will be represented as a single span called `getUser`, instead of showing multiple `fetch` spans.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 スパンをクリックすると、プロミスが作成された場所のスタックトレースと、利用可能な場合はプロミスが解決した値のビューが表示されます。
 
@@ -155,5 +160,10 @@ React は、サードパーティのコードから開始されたプロミス�
 
 コンポーネントのレンダーの継続時間を示すために異なる色が使用されます。色が濃いほど、継続時間が長いことを示します。
 
+<<<<<<< HEAD
 サーバコンポーネントトラックグループには、常に "Primary" トラックが含まれます。React がサーバコンポーネントを並行してレンダーできる場合、追加の "Parallel" トラックが表示されます。
 8 つを超えるサーバコンポーネントが並行してレンダーされる場合、React はさらにトラックを追加するのではなく、最後の "Parallel" トラックに関連付けます。
+=======
+The Server Components track group will always contain a "Primary" track. If React is able to render Server Components concurrently, it will display additional "Parallel" tracks.
+If more than 8 Server Components are rendered concurrently, React will associate them with the last "Parallel" track instead of adding more tracks.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3

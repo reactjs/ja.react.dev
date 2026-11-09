@@ -51,9 +51,18 @@ title: React DOM API
 
 以下の API は React 19 で削除されています。
 
+<<<<<<< HEAD
 * [`findDOMNode`](https://18.react.dev/reference/react-dom/findDOMNode): [代替手段](https://18.react.dev/reference/react-dom/findDOMNode#alternatives)を参照してください。
 * [`hydrate`](https://18.react.dev/reference/react-dom/hydrate): 代わりに [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) を使用してください。
 * [`render`](https://18.react.dev/reference/react-dom/render): 代わりに [`createRoot`](/reference/react-dom/client/createRoot) を使用してください。
 * [`unmountComponentAtNode`](/reference/react-dom/unmountComponentAtNode): 代わりに [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount) を使用してください。
 * [`renderToNodeStream`](https://18.react.dev/reference/react-dom/server/renderToNodeStream): 代わりに [`react-dom/server`](/reference/react-dom/server) の API を使用してください。
 * [`renderToStaticNodeStream`](https://18.react.dev/reference/react-dom/server/renderToStaticNodeStream): 代わりに [`react-dom/server`](/reference/react-dom/server) の API を使用してください。
+=======
+* [`findDOMNode`](https://18.react.dev/reference/react-dom/findDOMNode): see [alternatives](https://18.react.dev/reference/react-dom/findDOMNode#alternatives).
+* [`hydrate`](https://18.react.dev/reference/react-dom/hydrate): use [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) instead.
+* [`render`](https://18.react.dev/reference/react-dom/render): use [`createRoot`](/reference/react-dom/client/createRoot) instead.
+* [`unmountComponentAtNode`](https://18.react.dev/reference/react-dom/unmountComponentAtNode): use [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount) instead.
+* [`renderToNodeStream`](https://18.react.dev/reference/react-dom/server/renderToNodeStream): use [`react-dom/server`](/reference/react-dom/server) APIs instead.
+* [`renderToStaticNodeStream`](https://18.react.dev/reference/react-dom/server/renderToStaticNodeStream): use [`react-dom/server`](/reference/react-dom/server) APIs instead.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3

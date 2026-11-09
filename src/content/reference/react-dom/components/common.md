@@ -257,9 +257,15 @@ title: "<div> などの一般的なコンポーネント"
 
 [`ref` コールバックを使用した例を見る](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
 
+<<<<<<< HEAD
 `<div>` DOM ノードが画面に追加されると、React はその DOM `node` を引数として `ref` コールバックを呼び出します。`<div>` DOM ノードが削除されると、React はコールバックが返したクリーンアップ関数を呼び出します。
 
 React は、*異なる* `ref` コールバックが渡された場合も `ref` コールバックを呼び出します。上記の例では、`(node) => { ... }` は毎回のレンダーで異なる関数です。コンポーネントが再レンダーされると、*前*の関数が `null` を引数として呼び出され、*次*の関数が DOM ノードを引数として呼び出されます。
+=======
+When the `<div>` DOM node is added to the screen, React will call your `ref` callback with the DOM `node` as the argument. When that `<div>` DOM node is removed, React will call the cleanup function returned from the callback.
+
+React will also call your `ref` callback whenever you pass a *different* `ref` callback. In the above example, `(node) => { ... }` is a different function on every render. When your component re-renders, the cleanup function returned by the *previous* function will be called, and the *next* function will be called with the DOM node. If no cleanup function is returned, the *previous* function will be called with `null` as the argument instead.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 #### 引数 {/*ref-callback-parameters*/}
 

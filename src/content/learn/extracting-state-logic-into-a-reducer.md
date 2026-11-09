@@ -874,7 +874,11 @@ li {
 - **テスト**：リデューサはコンポーネントに依存しない純関数です。これは、リデューサをエクスポートし、他のものとは別に単体でテストできることを意味します。一般的には、より現実的な環境でコンポーネントをテストするのがベストですが、複雑な state 更新ロジックがある場合は、特定の初期 state とアクションに対してリデューサが特定の state を返すことをテストすることが役立ちます。
 - **個人の好み**：人によってリデューサが好きだったり、好きではなかったりします。それで構いません。好みの問題です。`useState` と `useReducer` の間を行ったり来たりすることはいつでも可能です。どちらも同等のものです！
 
+<<<<<<< HEAD
 バグが頻繁に発生しておりコンポーネントのコードに構造を導入したい場合に、リデューサを利用することをお勧めします。あらゆるコンポーネントにリデューサを使用する必要はありません。自由に組み合わせてください！ 同じコンポーネントで `useState` と `useReducer` を両方使うことも可能です。
+=======
+We recommend using a reducer if you often encounter bugs due to incorrect state updates in some component, and want to introduce more structure to its code. You don't have to use reducers for everything: feel free to mix and match! You can even use `useState` and `useReducer` in the same component.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 ## 良いリデューサの書き方 {/*writing-reducers-well*/}
 

@@ -1138,7 +1138,11 @@ JavaScript は[クロージャ](https://developer.mozilla.org/en-US/docs/Web/Jav
 
 </Note>
 
+<<<<<<< HEAD
 これで、盤に X を置けるようになりました…が、まだ左上隅のマス目にしか置けません。今の `handleClick` 関数は、左上のマス目に対応するインデックス (`0`) で更新するようハードコードされているからです。`handleClick` を書き換えて、任意のマス目の内容を更新できるようにしましょう。`handleClick` 関数に、更新するマス目のインデックスを指定する引数 `i` を追加します：
+=======
+Now you can add X's to the board...  but only to the upper left square. Your `handleClick` function is hardcoded to update the index for the upper left square (`0`). Let's update `handleClick` to be able to update any square. Add a parameter `i` to the `handleClick` function that takes the index of the square to update:
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 ```js {4,6}
 export default function Board() {
