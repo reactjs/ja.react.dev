@@ -14,8 +14,14 @@ title: React DOM API
 
 これらの API はインポートしてコンポーネントで使用できます。これらはあまり使用されません。
 
+<<<<<<< HEAD
 * [`createPortal`](/reference/react-dom/createPortal) は、DOM ツリーの別の場所に子コンポーネントをレンダーできるようにします。
 * [`flushSync`](/reference/react-dom/flushSync) は、React に state の更新を強制的にフラッシュさせ、DOM を同期的に更新させます。
+=======
+* [`createPortal`](/reference/react-dom/createPortal) lets you render child components in a different part of the DOM tree.
+* [`flushSync`](/reference/react-dom/flushSync) lets you force React to flush a state update and update the DOM synchronously.
+* [`requestFormReset`](/reference/react-dom/requestFormReset) lets you request a form reset when handling submissions with custom Actions or Transitions.
+>>>>>>> 46a54e0592729712b7640308b53268e84fdc7c9f
 
 ## リソースプリロード関連の API {/*resource-preloading-apis*/}
 
@@ -51,9 +57,18 @@ title: React DOM API
 
 以下の API は React 19 で削除されています。
 
+<<<<<<< HEAD
 * [`findDOMNode`](https://18.react.dev/reference/react-dom/findDOMNode): [代替手段](https://18.react.dev/reference/react-dom/findDOMNode#alternatives)を参照してください。
 * [`hydrate`](https://18.react.dev/reference/react-dom/hydrate): 代わりに [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) を使用してください。
 * [`render`](https://18.react.dev/reference/react-dom/render): 代わりに [`createRoot`](/reference/react-dom/client/createRoot) を使用してください。
 * [`unmountComponentAtNode`](/reference/react-dom/unmountComponentAtNode): 代わりに [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount) を使用してください。
 * [`renderToNodeStream`](https://18.react.dev/reference/react-dom/server/renderToNodeStream): 代わりに [`react-dom/server`](/reference/react-dom/server) の API を使用してください。
 * [`renderToStaticNodeStream`](https://18.react.dev/reference/react-dom/server/renderToStaticNodeStream): 代わりに [`react-dom/server`](/reference/react-dom/server) の API を使用してください。
+=======
+* [`findDOMNode`](https://18.react.dev/reference/react-dom/findDOMNode): see [alternatives](https://18.react.dev/reference/react-dom/findDOMNode#alternatives).
+* [`hydrate`](https://18.react.dev/reference/react-dom/hydrate): use [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) instead.
+* [`render`](https://18.react.dev/reference/react-dom/render): use [`createRoot`](/reference/react-dom/client/createRoot) instead.
+* [`unmountComponentAtNode`](https://18.react.dev/reference/react-dom/unmountComponentAtNode): use [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount) instead.
+* [`renderToNodeStream`](https://18.react.dev/reference/react-dom/server/renderToNodeStream): use [`react-dom/server`](/reference/react-dom/server) APIs instead.
+* [`renderToStaticNodeStream`](https://18.react.dev/reference/react-dom/server/renderToStaticNodeStream): use [`react-dom/server`](/reference/react-dom/server) APIs instead.
+>>>>>>> 46a54e0592729712b7640308b53268e84fdc7c9f

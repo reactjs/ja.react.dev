@@ -14266,7 +14266,11 @@ Activity の別のモードとして我々が考慮しているのは、メモ�
 
 多くの場合に混乱の原因は、必要もなくエフェクトが使われていることにあるとわかりました。[そのエフェクトは不要かも](/learn/you-might-not-need-an-effect)のガイドは、エフェクトがソリューションとして適切ではないパターンの多くをカバーしています。しかし、ある問題に対してエフェクトが適切であるという場合ですら、エフェクトはクラスコンポーネントのライフサイクルよりも理解しにくい場合があります。
 
+<<<<<<< HEAD
 混乱の一因は、開発者がエフェクトをエフェクト自体の視点（エフェクトが何をするか）ではなく、ライフサイクルのような*コンポーネント*の視点から考えてしまっていることにあると考えています。
+=======
+We believe one of the reasons for confusion is that developers tend to think of Effects from the _component's_ perspective (like a lifecycle), instead of the _Effects_ point of view (what the Effect does).
+>>>>>>> 46a54e0592729712b7640308b53268e84fdc7c9f
 
 [ドキュメントにあるこちらの例](/learn/lifecycle-of-reactive-effects#thinking-from-the-effects-perspective)を見てみましょう。
 

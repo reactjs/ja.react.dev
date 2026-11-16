@@ -18,7 +18,11 @@ state は複数のコンポーネント間で独立しています。React は U
 
 ## state はレンダーツリー内の位置に結びついている {/*state-is-tied-to-a-position-in-the-tree*/}
 
+<<<<<<< HEAD
 React はあなたの UI のコンポーネント構造を[レンダーツリー](learn/understanding-your-ui-as-a-tree#the-render-tree)としてビルドします。
+=======
+React builds [render trees](/learn/understanding-your-ui-as-a-tree#the-render-tree) for the component structure in your UI.
+>>>>>>> 46a54e0592729712b7640308b53268e84fdc7c9f
 
 コンポーネントに state を与えると、その state はそのコンポーネントの内部で「生存」しているように思えるかもしれません。しかし、実際には state は React の中に保持されています。React は、「レンダーツリー内でそのコンポーネントがどの位置にあるか」に基づいて、保持している各 state を正しいコンポーネントに関連付けます。
 
