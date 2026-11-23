@@ -335,7 +335,11 @@ function MyComponent() {
 
 </Note>
 
+<<<<<<< HEAD
 [`useMemo`](/reference/react/useMemo) フックは、関数呼び出しからの値の作成/再アクセスを行い、2 番目の引数として渡された依存配列が変更されたときにのみ関数を再実行します。フックの呼び出し結果の型は、1 番目の引数として指定した関数の返り値の型から推論されます。フックに型引数を指定することで明示的にすることができます。
+=======
+The [`useMemo`](/reference/react/useMemo) Hooks will create/re-access a memoized value from a function call, re-running the function only when dependencies passed as the 2nd parameter are changed. The result of calling the Hook is inferred from the return value from the function in the first parameter. You can be more explicit by providing a type argument to the Hook.
+>>>>>>> 46a54e0592729712b7640308b53268e84fdc7c9f
 
 ```ts
 // The type of visibleTodos is inferred from the return value of filterTodos
