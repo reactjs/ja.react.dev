@@ -102,7 +102,7 @@ async function addToCart(data) {
 
 ### フォームでサーバ関数を使用する {/*server-functions-in-forms*/}
 
-サーバ関数の最も一般的なユースケースは、データを更新するための関数呼び出しです。ブラウザ上においては [HTML フォーム要素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)が、ユーザが更新処理を送信する際の伝統的な方法です。React Server Components により、[フォーム](/reference/react-dom/components/form)に書かれたサーバ関数に対する第 1 級サポートが導入されます。
+サーバ関数の最も一般的なユースケースは、データを更新するための関数呼び出しです。ブラウザ上においては [HTML フォーム要素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)が、ユーザが更新処理を送信する際の伝統的な方法です。React Server Components により、[フォーム](/reference/react-dom/components/form)に書かれたサーバ関数に対する第一級のサポートが導入されます。
 
 以下は、ユーザがユーザ名をリクエストできるフォームです。
 

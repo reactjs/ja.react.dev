@@ -159,7 +159,7 @@ React Compiler は現在安定版であり、本番環境で広範囲にテス�
 
 React Compiler は[複数のビルドツール](/learn/react-compiler/installation)で利用できます。具体的には Babel、Vite、Metro、Rsbuild などが含まれます。
 
-React Compiler は本質的に、コアコンパイラを軽量な Babel プラグインでラップしたものです。コアコンパイラは Babel 自体から分離して設計されています。コンパイラの最初の安定版は主に Babel プラグインとなりますが、swc と [oxc](https://github.com/oxc-project/oxc/issues/10048) チームと協力して、React Compiler のファーストクラスサポートを構築しており、将来的にはビルドパイプラインに Babel を再追加する必要がなくなる予定です。
+React Compiler は本質的に、コアコンパイラを軽量な Babel プラグインでラップしたものです。コアコンパイラは Babel 自体から分離して設計されています。コンパイラの最初の安定版は主に Babel プラグインとなりますが、swc と [oxc](https://github.com/oxc-project/oxc/issues/10048) チームと協力して、React Compiler の第一級のサポートを構築しており、将来的にはビルドパイプラインに Babel を再追加する必要がなくなる予定です。
 
 Next.js を使用しているユーザは、[v15.3.1](https://github.com/vercel/next.js/releases/tag/v15.3.1) 以降のバージョンを利用することで、SWC 経由での React Compiler の利用を有効化できます。
 
