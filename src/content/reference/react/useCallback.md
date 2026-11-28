@@ -89,9 +89,9 @@ function ProductPage({ productId, referrer, theme }) {
 
 初回のレンダー時に `useCallback` から<CodeStep step={3}>返される関数</CodeStep>、つまりあなたが受け取る関数は、あなたが渡した関数そのものになります。
 
-次回以降のレンダーでは、React は<CodeStep step={2}>依存配列</CodeStep>を前回のレンダー時に渡した依存配列と比較します。（[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を使った比較で）依存配列が変更されていない場合、`useCallback` は前回と同じ関数を返します。それ以外の場合、`useCallback` は*今回の*レンダーで渡された関数を返します。
+次回以降のレンダーでは、React は<CodeStep step={2}>依存配列</CodeStep>内の各依存値を、前回のレンダー時の対応する依存値と比較します。（[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) を使った比較で）依存値のいずれも変化していない場合、`useCallback` は前回と同じ関数を返します。それ以外の場合、`useCallback` は*今回の*レンダーで渡された関数を返します。
 
-言い換えると、`useCallback` は依存配列が変更されるまでの再レンダー間で関数をキャッシュします。
+言い換えると、`useCallback` は依存値が変更されるまでの再レンダー間で関数をキャッシュします。
 
 **例を通して、これが有用な場合を見ていきましょう**。
 
