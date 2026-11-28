@@ -4,7 +4,7 @@ title: resume
 
 <Intro>
 
-`resume` streams a pre-rendered React tree to a [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
+`resume` はプリレンダーされた React ツリーを[読み取り可能な Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream) にストリーミングします。
 
 ```js
 const stream = await resume(reactNode, postponedState, options?)
@@ -16,17 +16,17 @@ const stream = await resume(reactNode, postponedState, options?)
 
 <Note>
 
-This API depends on [Web Streams.](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) For Node.js, use [`resumeToNodeStream`](/reference/react-dom/server/renderToPipeableStream) instead.
+この API は [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) に依存しています。Node.js では、代わりに [`resumeToNodeStream`](/reference/react-dom/server/renderToPipeableStream) を使用してください。
 
 </Note>
 
 ---
 
-## Reference {/*reference*/}
+## リファレンス {/*reference*/}
 
 ### `resume(node, postponedState, options?)` {/*resume*/}
 
-Call `resume` to resume rendering a pre-rendered React tree as HTML into a [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
+`resume` を呼び出して、プリレンダーされた React ツリーの HTML としてのレンダーを再開し、[読み取り可能な Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream) に出力します。
 
 ```js
 import { resume } from 'react-dom/server';
@@ -39,40 +39,40 @@ async function handler(request, writable) {
 }
 ```
 
-[See more examples below.](#usage)
+[さらに例を見る](#usage)
 
-#### Parameters {/*parameters*/}
+#### 引数 {/*parameters*/}
 
-* `reactNode`: The React node you called `prerender` with. For example, a JSX element like `<App />`. It is expected to represent the entire document, so the `App` component should render the `<html>` tag.
-* `postponedState`: The opaque `postpone` object returned from a [prerender API](/reference/react-dom/static/index), loaded from wherever you stored it (e.g. redis, a file, or S3).
-* **optional** `options`: An object with streaming options.
-  * **optional** `nonce`: A [`nonce`](http://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#nonce) string to allow scripts for [`script-src` Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src).
-  * **optional** `signal`: An [abort signal](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) that lets you [abort server rendering](#aborting-server-rendering) and render the rest on the client.
-  * **optional** `onBrowserBailout`: A callback React calls when it recovers from [`browser()`](/reference/react-dom/browser) by leaving a Suspense fallback for the browser to replace. It receives an `Error` describing the browser-only render and an `errorInfo` object containing the `componentStack`. If a reason was passed to `browser`, it is available as `error.cause`. By default, React does nothing. [See how to report browser-only rendering.](/reference/react-dom/browser#reporting-browser-only-rendering-on-the-server)
-  * **optional** `onError`: A callback that fires whenever there is a server error, whether [recoverable](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-outside-the-shell) or [not.](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell) By default, this only calls `console.error`. If you override it to [log crash reports,](/reference/react-dom/server/renderToReadableStream#logging-crashes-on-the-server) make sure that you still call `console.error`.
+* `reactNode`: `prerender` を呼び出したときに渡した React ノード。例えば `<App />` のような JSX 要素です。これはドキュメント全体を表すことが期待されているため、`App` コンポーネントは `<html>` タグをレンダーする必要があります。
+* `postponedState`: [プリレンダー API](/reference/react-dom/static/index) が返した内部構造非公開の `postpone` オブジェクト。保存しておいた場所（redis、ファイル、S3 など）から読み込んだものを渡します。
+* **省略可能** `options`: ストリーミングに関するオプションを含むオブジェクト。
+  * **省略可能** `nonce`: [`script-src` Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src) においてスクリプトを許可するための [`nonce`](http://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#nonce) 文字列。
+  * **省略可能** `signal`: [サーバレンダリングを中止](#aborting-server-rendering)してクライアントで残りをレンダーするために使用できる [abort signal](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal)。
+  * **省略可能** `onBrowserBailout`: [`browser()`](/reference/react-dom/browser) によるサーバレンダリングの中断が起き、ブラウザ側で置き換えるためのサスペンスフォールバックが残った時点で React が呼び出すコールバック。ブラウザのみでレンダーされるという内容の `Error` と、`componentStack` を含む `errorInfo` オブジェクトを受け取ります。`browser` に理由が渡されていた場合、その理由は `error.cause` から取得できます。デフォルトでは React は何も行いません。[ブラウザオンリーのレンダー発生をサーバ上で報告する方法を参照](/reference/react-dom/browser#reporting-browser-only-rendering-on-the-server)。
+  * **省略可能** `onError`: サーバエラーが発生するたびに発火するコールバック。[復帰可能なエラー](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-outside-the-shell)の場合も[そうでないエラー](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell)の場合もあります。デフォルトでは `console.error` のみを呼び出します。これを上書きして[クラッシュレポートをログに記録する](/reference/react-dom/server/renderToReadableStream#logging-crashes-on-the-server)場合でも `console.error` を呼び出すようにしてください。
 
 
-#### Returns {/*returns*/}
+#### 返り値 {/*returns*/}
 
-`resume` returns a Promise:
+`resume` は Promise を返します。
 
-- If `resume` successfully produced a [shell](/reference/react-dom/server/renderToReadableStream#specifying-what-goes-into-the-shell), that Promise will resolve to a [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream) that can be piped to a [Writable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/WritableStream).
-- If an error happens in the shell, the Promise will reject with that error.
+- `resume` が[シェル](/reference/react-dom/server/renderToReadableStream#specifying-what-goes-into-the-shell)の生成に成功した場合、Promise は[書き込み可能な Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/WritableStream) にパイプできる[読み取り可能な Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream) に解決 (resolve) されます。
+- シェルでエラーが発生した場合、Promise はそのエラーで拒否 (reject) されます。
 
-The returned stream has an additional property:
+返されるストリームには追加のプロパティがあります。
 
-* `allReady`: A Promise that resolves when all rendering is complete. You can `await stream.allReady` before returning a response [for crawlers and static generation.](/reference/react-dom/server/renderToReadableStream#waiting-for-all-content-to-load-for-crawlers-and-static-generation) If you do that, you won't get any progressive loading. The stream will contain the final HTML.
+* `allReady`: すべてのレンダーが完了したときに解決される Promise。[クローラや静的生成向け](/reference/react-dom/server/renderToReadableStream#waiting-for-all-content-to-load-for-crawlers-and-static-generation)の場合、レスポンスを返す前に `stream.allReady` を await できます。これを行うとプログレッシブなローディングがなくなり、ストリームには最終的な HTML が含まれるようになります。
 
-#### Caveats {/*caveats*/}
+#### 注意点 {/*caveats*/}
 
-- `resume` does not accept options for `bootstrapScripts`, `bootstrapScriptContent`, or `bootstrapModules`. Instead, you need to pass these options to the `prerender` call that generates the `postponedState`. You can also inject bootstrap content into the writable stream manually.
-- `resume` does not accept `identifierPrefix` since the prefix needs to be the same in both `prerender` and `resume`.
-- Since `nonce` cannot be provided to prerender, you should only provide `nonce` to `resume` if you're not providing scripts to prerender.
-- `resume` re-renders from the root until it finds a component that was not fully pre-rendered. Only fully prerendered Components (the Component and its children finished prerendering) are skipped entirely.
+- `resume` は `bootstrapScripts`、`bootstrapScriptContent`、`bootstrapModules` のオプションを受け付けません。代わりに、`postponedState` を生成する `prerender` の呼び出しにこれらのオプションを渡す必要があります。ブートストラップ用のコンテンツを書き込み可能ストリームに手動で注入することもできます。
+- `resume` は `identifierPrefix` を受け付けません。プレフィックスは `prerender` と `resume` で同じである必要があるためです。
+- プリレンダーには `nonce` を渡せないため、`resume` に `nonce` を渡すのは、プリレンダーにスクリプトを渡していない場合だけにしてください。
+- `resume` は、プリレンダーが完了していないコンポーネントが見つかるまで、ルートから再レンダーします。完全にプリレンダーされたコンポーネント（そのコンポーネントと子のプリレンダーがすべて完了したもの）だけが、まるごとスキップされます。
 
-## Usage {/*usage*/}
+## 使用法 {/*usage*/}
 
-### Resuming a prerender {/*resuming-a-prerender*/}
+### プリレンダーの再開 {/*resuming-a-prerender*/}
 
 <Sandpack>
 
@@ -239,7 +239,7 @@ export function sleep(timeoutMS) {
 
 </Sandpack>
 
-### Further reading {/*further-reading*/}
+### さらに学ぶ {/*further-reading*/}
 
-Resuming behaves like `renderToReadableStream`. For more examples, check out the [usage section of `renderToReadableStream`](/reference/react-dom/server/renderToReadableStream#usage).
-The [usage section of `prerender`](/reference/react-dom/static/prerender#usage) includes examples of how to use `prerender` specifically.
+再開は `renderToReadableStream` と同様に動作します。その他の例については、[`renderToReadableStream` の使用法のセクション](/reference/react-dom/server/renderToReadableStream#usage)を参照してください。
+`prerender` に特化した使用例は、[`prerender` の使用法のセクション](/reference/react-dom/static/prerender#usage)にあります。
