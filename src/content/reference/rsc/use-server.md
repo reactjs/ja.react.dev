@@ -5,7 +5,11 @@ titleForTitleTag: "'use server' ディレクティブ"
 
 <RSC>
 
+<<<<<<< HEAD
 `'use server'` は [React Server Components](/reference/rsc/server-components) 用の機能です。
+=======
+`'use server'` is for use with [React Server Components](/reference/rsc/server-components).
+>>>>>>> 46a54e0592729712b7640308b53268e84fdc7c9f
 
 </RSC>
 
@@ -139,7 +143,7 @@ export default function App() {
 // requestUsername.js
 'use server';
 
-export default async function requestUsername(formData) {
+export default async function requestUsername(prevState, formData) {
   const username = formData.get('username');
   if (canRequest(username)) {
     // ...
@@ -199,7 +203,7 @@ function LikeButton() {
   return (
     <>
       <p>Total Likes: {likeCount}</p>
-      <button onClick={onClick} disabled={isPending}>Like</button>;
+      <button onClick={onClick} disabled={isPending}>Like</button>
     </>
   );
 }
